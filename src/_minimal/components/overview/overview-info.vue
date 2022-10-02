@@ -32,7 +32,7 @@
           </template>
         </div>
       </div>
-      <div v-if="single && single.getProgressOptions().length" class="item">
+      <div v-if="single && single.getProgressOptions().length" class="item ongoing">
         <div class="type">{{ lang('prediction_ongoing') }}:</div>
         <div class="content ongoing">
           <div
@@ -106,6 +106,11 @@ function getTitle(item) {
     flex-direction: column;
     gap: 3px;
   });
+
+  &.ongoing {
+    flex-direction: column;
+    gap: 3px;
+  }
 
   .type {
     margin-right: 10px;
