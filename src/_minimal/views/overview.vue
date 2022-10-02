@@ -98,8 +98,8 @@
           </Section>
         </template>
       </Section>
-      <HR />
-      <Section v-if="metaRequest.data" class="info-section" :loading="totalLoading">
+      <HR v-if="metaRequest.data && metaRequest.data!.info.length" />
+      <Section v-if="metaRequest.data && metaRequest.data!.info.length" class="info-section" :loading="totalLoading">
         <OverviewInfo
           :info="metaRequest.data!.info"
           :single="(singleRequest.data as null | SingleAbstract)"
