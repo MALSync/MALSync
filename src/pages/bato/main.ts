@@ -26,11 +26,7 @@ export const bato: pageInterface = {
 
       if (!selectedOptionText) return NaN;
 
-      const chapterTextMatches = selectedOptionText.match(/(ch\.|chapter)\D?\d+/i);
-
-      if (!chapterTextMatches || chapterTextMatches.length === 0) return NaN;
-
-      return Number(chapterTextMatches[0].match(/\d+/));
+      return getChapter(selectedOptionText);
     },
     getVolume(url) {
       const selectedOptionText = j.$('div.nav-epis > select > optgroup > option:selected').text();
@@ -74,11 +70,7 @@ export const bato: pageInterface = {
 
         if (!episodeText) return NaN;
 
-        const matches = episodeText.match(/(ch\.|chapter)\D?\d+/i);
-
-        if (!matches || matches.length === 0) return NaN;
-
-        return Number(matches[0].match(/\d+/));
+        return getChapter(episodeText);
       },
     },
   },
@@ -93,3 +85,11 @@ export const bato: pageInterface = {
     });
   },
 };
+
+function getChapter(text: string) {
+  const res = /(ch|chapter|episode|ep|chap|chp)\D?(\d+)/i.exec(text);
+
+  if (!res) return NaN;
+
+  return Number(res[2]) || NaN;
+}
