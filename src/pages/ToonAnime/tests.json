@@ -1,0 +1,27 @@
+{
+  "title": "ToonAnime",
+  "url": "https://vvww.toonanime.cc/",
+  "testCases": [
+    {
+      "url": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-8-tv.html",
+      "expected": {
+        "sync": true,
+        "title": "Classroom of the Elite",
+        "identifier": "1852",
+        "overviewUrl": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf-tv.html",
+        "nextEpUrl": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-9-tv.html",
+        "episode": 8,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf-tv.html",
+      "expected": {
+        "sync": false,
+        "title": "Classroom of the Elite",
+        "identifier": "1852",
+        "uiSelector": true
+      }
+    }
+  ]
+}
