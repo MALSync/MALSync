@@ -1,6 +1,7 @@
 import SettingsGroup from './settings-group.vue';
 import SettingsProfile from './settings-profile.vue';
 import SettingsListSync from './settings-list-sync.vue';
+import SettingsHr from './settings-hr.vue';
 import { tracking } from './settings-structure-tracking';
 import { ConfObj } from '../../../_provider/definitions';
 import { theming } from './settings-structure-theming';
@@ -126,5 +127,28 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: etc,
+  },
+  {
+    key: 'hr',
+    title: '',
+    component: SettingsHr,
+  },
+  {
+    key: 'joinDiscord',
+    title: 'Join our community',
+    props: {
+      icon: 'forum',
+      href: 'https://discord.com/invite/cTH4yaw',
+    },
+    component: SettingsGroup,
+  },
+  {
+    key: 'support',
+    title: 'Support Malsync',
+    props: {
+      icon: 'favorite',
+      href: 'https://malsync.moe/donate',
+    },
+    component: SettingsGroup,
   },
 ];

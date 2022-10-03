@@ -1,5 +1,12 @@
 <template>
-  <router-link v-if="type === 'general'" :to="{ name: 'Settings', params: { path } }">
+  <MediaLink v-if="href" :href="href">
+    <div class="overview-button">
+      <Header>
+        <TextIcon :icon="icon" mode="flex">{{ title }}</TextIcon>
+      </Header>
+    </div>
+  </MediaLink>
+  <router-link v-else-if="type === 'general'" :to="{ name: 'Settings', params: { path } }">
     <div class="overview-button">
       <Header>
         <TextIcon :icon="icon" mode="flex">{{ title }}</TextIcon>
@@ -23,6 +30,7 @@ import TextIcon from '../text-icon.vue';
 import Header from '../header.vue';
 import SettingsGeneral from './settings-general.vue';
 import FormButton from '../form/form-button.vue';
+import MediaLink from '../media-link.vue';
 
 defineProps({
   title: {
@@ -37,6 +45,10 @@ defineProps({
     type: Array as PropType<string[]>,
     require: true,
     default: () => [],
+  },
+  href: {
+    type: String,
+    default: '',
   },
   type: {
     type: String as PropType<'button' | 'general'>,
