@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Vostfree: pageInterface = {
   name: 'Vostfree',
-  domain: ['https://vostfree.com', 'https://vostfree.cx', 'https://vostfree.tv'],
+  domain: 'https://vostfree.cx',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
@@ -16,7 +16,7 @@ export const Vostfree: pageInterface = {
         .replace(/ (FRENCH|VOSTFR|VF)$/, '');
     },
     getIdentifier(url) {
-      return url.split('/')[3].match(/[0-9]+/)?.[0] || '';
+      return utils.urlPart(url, 3).split('-')[0] || '';
     },
     getOverviewUrl(url) {
       return url;
@@ -41,6 +41,16 @@ export const Vostfree: pageInterface = {
         return;
       }
       page.handlePage();
+
+      utils.changeDetect(
+        () => {
+          page.reset();
+          page.handlePage();
+        },
+        () => {
+          return j.$('#player-tabs .new_player_selector_box .jq-selectbox__select-text').text();
+        },
+      );
     });
   },
 };
