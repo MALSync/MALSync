@@ -37,6 +37,7 @@ const scrolled = ref(false);
 const rootBody = inject('rootBody') as HTMLElement;
 const rootHtml = inject('rootHtml') as HTMLElement;
 const rootWindow = inject('rootWindow') as Window;
+const closeFunction = inject('closeFunction') as () => void;
 
 const route = useRoute();
 const router = useRouter();
@@ -60,7 +61,7 @@ onUnmounted(() => {
 });
 
 const closeWindow = () => {
-  rootWindow.close();
+  closeFunction();
 };
 </script>
 

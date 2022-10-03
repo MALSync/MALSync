@@ -14,7 +14,10 @@ function createIframe(page) {
     api.storage.injectCssResource('montserrat.css', head);
 
     setTimeout(function () {
-      minimalObj = new Minimal(j.$('#info-iframe').contents().find('html'));
+      minimalObj = new Minimal(j.$('#info-iframe').contents().find('html'), () => {
+        document.getElementById('info-popup')!.style.display = 'none';
+        j.$('.floatbutton').fadeIn();
+      });
       if (typeof page !== 'undefined') {
         if (typeof page.singleObj !== 'undefined') {
           minimalObj.fill({ url: page.singleObj.getUrl() }, true);
