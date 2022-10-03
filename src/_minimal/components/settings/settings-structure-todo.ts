@@ -39,52 +39,6 @@ export const todo: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
-    key: 'epPredictions',
-    title: () => api.storage.lang('settings_epPredictions'),
-    props: {
-      component: 'checkbox',
-      option: 'epPredictions',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'malTags',
-    title: () => api.storage.lang('settings_malTags'),
-    props: () => ({
-      component: 'checkbox',
-      tooltip: api.storage.lang('settings_malTags_text'),
-      option: 'malTags',
-    }),
-    component: SettingsGeneral,
-  },
-  {
-    key: 'malContinue',
-    title: () => api.storage.lang('settings_malContinue'),
-    props: {
-      component: 'checkbox',
-      option: 'malContinue',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'malResume',
-    title: () => api.storage.lang('settings_malResume'),
-    props: {
-      component: 'checkbox',
-      option: 'malResume',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'usedPage',
-    title: () => api.storage.lang('settings_usedPage'),
-    props: {
-      component: 'checkbox',
-      option: 'usedPage',
-    },
-    component: SettingsGeneral,
-  },
-  {
     key: 'floatButtonStealth',
     title: () => api.storage.lang('settings_miniMAL_floatButtonStealth'),
     props: {

@@ -160,6 +160,16 @@ export const tracking: ConfObj[] = [
     component: SettingsHr,
   },
   {
+    key: 'malTags',
+    title: () => api.storage.lang('settings_malTags'),
+    props: () => ({
+      component: 'checkbox',
+      tooltip: api.storage.lang('settings_malTags_text'),
+      option: 'malTags',
+    }),
+    component: SettingsGeneral,
+  },
+  {
     key: 'localSync',
     title: () => api.storage.lang('settings_LocalSync'),
     props: {
