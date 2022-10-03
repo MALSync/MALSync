@@ -1,4 +1,3 @@
-import { watch } from 'vue';
 import { Minimal } from '../_minimal/minimalClass';
 
 let minimalObj: Minimal;

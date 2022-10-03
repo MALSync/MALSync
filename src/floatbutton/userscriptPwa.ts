@@ -6,6 +6,7 @@ export function pwa() {
     api.storage.injectCssResource('materialFont.css', head);
     api.storage.injectCssResource('montserrat.css', head);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const minimalObj = new Minimal($('html'));
   });
 }
