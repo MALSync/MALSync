@@ -18,7 +18,7 @@
           <div
             v-for="link in linksWithState"
             :key="link.name"
-            class="mdl-chip quicklink"
+            class="quicklink"
             :class="{
               active: link.active,
             }"

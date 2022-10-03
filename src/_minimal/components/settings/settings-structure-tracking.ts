@@ -6,7 +6,7 @@ import SettingsDisabledWebsites from './settings-disabled-websites.vue';
 import SettingsGroup from './settings-group.vue';
 import SettingsHr from './settings-hr.vue';
 
-export const tracking: ConfObj[] = [
+export const trackingSimple: ConfObj[] = [
   {
     key: 'login',
     title: 'Login',
@@ -61,6 +61,10 @@ export const tracking: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+];
+
+export const tracking: ConfObj[] = [
+  ...trackingSimple,
   {
     key: 'autoTrackingModeanime',
     title: () => api.storage.lang('settings_Animesync'),
