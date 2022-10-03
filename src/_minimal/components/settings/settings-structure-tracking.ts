@@ -164,7 +164,7 @@ export const tracking: ConfObj[] = [
     title: () => api.storage.lang('settings_malTags'),
     props: () => ({
       component: 'checkbox',
-      tooltip: api.storage.lang('settings_malTags_text'),
+      tooltip: api.storage.lang('settings_malTags_Text'),
       option: 'malTags',
     }),
     component: SettingsGeneral,
