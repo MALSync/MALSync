@@ -1,43 +1,8 @@
 import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
+import SettingsHr from './settings-hr.vue';
 
-export const todo: ConfObj[] = [
-  {
-    key: 'malThumbnail',
-    title: () => api.storage.lang('settings_Thumbnails'),
-    props: () => ({
-      component: 'dropdown',
-      tooltip: api.storage.lang('settings_Thumbnails_text'),
-      option: 'malThumbnail',
-      props: {
-        options: [
-          { title: api.storage.lang('settings_Thumbnails_Large'), value: '144' },
-          { title: api.storage.lang('settings_Thumbnails_Medium'), value: '100' },
-          { title: api.storage.lang('settings_Thumbnails_Small'), value: '60' },
-          { title: api.storage.lang('settings_Thumbnails_Default'), value: '0' },
-        ],
-      },
-    }),
-    component: SettingsGeneral,
-  },
-  {
-    key: 'friendScore',
-    title: () => api.storage.lang('settings_FriendScore'),
-    props: {
-      component: 'checkbox',
-      option: 'friendScore',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'anilistUpdateUi',
-    title: () => api.storage.lang('settings_anilist_update_ui'),
-    props: {
-      component: 'checkbox',
-      option: 'anilistUpdateUi',
-    },
-    component: SettingsGeneral,
-  },
+export const onsite: ConfObj[] = [
   {
     key: 'floatButtonStealth',
     title: () => api.storage.lang('settings_miniMAL_floatButtonStealth'),
@@ -84,6 +49,52 @@ export const todo: ConfObj[] = [
       tooltip: api.storage.lang('settings_filler_text'),
       option: 'checkForFiller',
     }),
+    component: SettingsGeneral,
+  },
+  {
+    key: 'hr',
+    title: 'MyAnimeList',
+    component: SettingsHr,
+  },
+  {
+    key: 'malThumbnail',
+    title: () => api.storage.lang('settings_Thumbnails'),
+    props: () => ({
+      component: 'dropdown',
+      tooltip: api.storage.lang('settings_Thumbnails_text'),
+      option: 'malThumbnail',
+      props: {
+        options: [
+          { title: api.storage.lang('settings_Thumbnails_Large'), value: '144' },
+          { title: api.storage.lang('settings_Thumbnails_Medium'), value: '100' },
+          { title: api.storage.lang('settings_Thumbnails_Small'), value: '60' },
+          { title: api.storage.lang('settings_Thumbnails_Default'), value: '0' },
+        ],
+      },
+    }),
+    component: SettingsGeneral,
+  },
+  {
+    key: 'friendScore',
+    title: () => api.storage.lang('settings_FriendScore'),
+    props: {
+      component: 'checkbox',
+      option: 'friendScore',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'hr',
+    title: 'Anilist',
+    component: SettingsHr,
+  },
+  {
+    key: 'anilistUpdateUi',
+    title: () => api.storage.lang('settings_anilist_update_ui'),
+    props: {
+      component: 'checkbox',
+      option: 'anilistUpdateUi',
+    },
     component: SettingsGeneral,
   },
 ];

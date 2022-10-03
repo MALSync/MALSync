@@ -5,7 +5,7 @@ import { tracking } from './settings-structure-tracking';
 import { ConfObj } from '../../../_provider/definitions';
 import { theming } from './settings-structure-theming';
 import { customDomains, missingPermissions } from './settings-structure-custom-domains';
-import { todo } from './settings-structure-todo';
+import { onsite } from './settings-structure-onsite';
 import { discord } from './settings-structure-discord';
 import { etc } from './settings-structure-etc';
 import { video } from './settings-structure-video';
@@ -37,6 +37,15 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: theming,
+  },
+  {
+    key: 'onsite',
+    title: 'Onsite',
+    props: {
+      icon: 'view_quilt',
+    },
+    component: SettingsGroup,
+    children: onsite,
   },
   {
     key: 'streaming',
@@ -117,14 +126,5 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: etc,
-  },
-  {
-    key: 'todo',
-    title: 'TODO',
-    props: {
-      icon: 'check_box',
-    },
-    component: SettingsGroup,
-    children: todo,
   },
 ];
