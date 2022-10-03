@@ -39,6 +39,14 @@ setBreakpoint();
 
 onMounted(() => {
   window.addEventListener('resize', setBreakpoint);
+  if (
+    ['popup', 'settings'].includes(document.documentElement.getAttribute('mode')!) &&
+    window.innerWidth !== 550
+  ) {
+    document.documentElement.style.minWidth = `${window.innerWidth}px`;
+    document.documentElement.style.width = 'auto';
+    document.body.style.width = 'auto';
+  }
 });
 
 onUnmounted(() => {
