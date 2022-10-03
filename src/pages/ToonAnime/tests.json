@@ -9,9 +9,14 @@
         "title": "Classroom of the Elite",
         "identifier": "1852",
         "overviewUrl": "https://vvww.toonanime.cc/1852-tv.html",
-        "nextEpUrl": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-9-tv.html",
+        "nextEpUrl": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-9-t.html",
         "episode": 8,
-        "uiSelector": false
+        "uiSelector": false,
+        "epList": {
+          "1": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-1-t.html",
+          "4": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-4-t.html",
+          "6": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-6-t.html"
+        }
       }
     },
     {
