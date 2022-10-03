@@ -20,6 +20,10 @@ export class Minimal {
       use: vue => {
         vue.use(router);
         vue.provide('fill', this.fillState);
+        vue.provide('rootHtml', this.minimal.get(0));
+        vue.provide('rootBody', this.minimal.get(0).ownerDocument.body);
+        vue.provide('rootDocument', this.minimal.get(0).ownerDocument);
+        vue.provide('rootWindow', this.minimal.get(0).ownerDocument.defaultView);
       },
     });
   }

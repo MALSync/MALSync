@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from 'vue';
+import { inject, onMounted, onUnmounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getStateContext, getTypeContext } from '../../utils/state';
 import NavSearch from './nav-search.vue';
@@ -34,11 +34,15 @@ import NavBack from './nav-back.vue';
 
 const scrolled = ref(false);
 
+const rootBody = inject('rootBody') as HTMLElement;
+const rootHtml = inject('rootHtml') as HTMLElement;
+const rootWindow = inject('rootWindow') as Window;
+
 const route = useRoute();
 const router = useRouter();
 
 function scrollEvent() {
-  const scrollPos = document.documentElement.scrollTop;
+  const scrollPos = rootHtml.scrollTop || rootBody.scrollTop;
   if (scrollPos > 30) {
     scrolled.value = true;
   } else {
@@ -48,15 +52,15 @@ function scrollEvent() {
 scrollEvent();
 
 onMounted(() => {
-  window.addEventListener('scroll', scrollEvent);
+  rootWindow.addEventListener('scroll', scrollEvent);
 });
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', scrollEvent);
+  rootWindow.removeEventListener('scroll', scrollEvent);
 });
 
 const closeWindow = () => {
-  window.close();
+  rootWindow.close();
 };
 </script>
 

@@ -9,16 +9,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
+
+const rootWindow = inject('rootWindow') as Window;
 
 const router = useRouter();
 const display = document.documentElement.getAttribute('mode') === 'popup';
-const hasPrevious = ref(window.history.length > 1);
+const hasPrevious = ref(rootWindow.history.length > 1);
 
 if (display) {
   router.afterEach(() => {
-    hasPrevious.value = window.history.length > 1;
+    hasPrevious.value = rootWindow.history.length > 1;
   });
 }
 </script>

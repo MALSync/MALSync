@@ -97,6 +97,7 @@
 <script lang="ts" setup>
 import {
   computed,
+  inject,
   onActivated,
   onDeactivated,
   onMounted,
@@ -122,6 +123,9 @@ import { bookmarkFormats } from '../utils/bookmarks';
 import ErrorBookmarks from '../components/error/error-bookmarks.vue';
 import Empty from '../components/empty.vue';
 import TextIcon from '../components/text-icon.vue';
+
+const rootWindow = inject('rootWindow') as Window;
+const rootDocument = inject('rootDocument') as Document;
 
 const router = useRouter();
 
@@ -262,7 +266,10 @@ async function loadNext() {
 const handleScroll = () => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  if ($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+  if (
+    rootWindow.pageYOffset + rootWindow.innerHeight >
+    rootDocument.documentElement.scrollHeight - 500
+  ) {
     loadNext();
   }
 };
@@ -273,19 +280,19 @@ watch(
 );
 
 onActivated(() => {
-  window.addEventListener('scroll', handleScroll);
+  rootWindow.addEventListener('scroll', handleScroll);
 });
 
 onDeactivated(() => {
-  window.removeEventListener('scroll', handleScroll);
+  rootWindow.removeEventListener('scroll', handleScroll);
 });
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
+  rootWindow.addEventListener('scroll', handleScroll);
 });
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
+  rootWindow.removeEventListener('scroll', handleScroll);
 });
 
 const sortingOptions = computed(() => {

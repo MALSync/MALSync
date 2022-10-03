@@ -3,8 +3,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch } from 'vue';
+import { computed, inject, watch } from 'vue';
 import { hexToHsl, HSL, Hsl } from '../../utils/color';
+
+const rootHtml = inject('rootHtml') as HTMLElement;
 
 const hslColor = computed(() => hexToHsl(api.settings.get('themeColor')));
 
@@ -37,7 +39,7 @@ const classes = computed(() => {
 watch(
   classes,
   value => {
-    document.documentElement.className = value;
+    rootHtml.className = value;
   },
   {
     immediate: true,
@@ -87,7 +89,7 @@ const styles = computed(() => {
 watch(
   styles,
   value => {
-    document.documentElement.style.cssText = value;
+    rootHtml.style.cssText = value;
   },
   {
     immediate: true,

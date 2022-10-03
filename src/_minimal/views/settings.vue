@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType, watch } from 'vue';
+import { computed, inject, PropType, watch } from 'vue';
 
 import { structure } from '../components/settings/settings-structure';
 import Header from '../components/header.vue';
@@ -42,6 +42,9 @@ import { ConfObj } from '../../_provider/definitions';
 import TransitionSlide from '../components/transition-slide.vue';
 import SettingsDesigned from '../components/settings/settings-designed.vue';
 import SettingsRendering from '../components/settings/settings-rendering.vue';
+
+const rootWindow = inject('rootWindow') as Window;
+const rootDocument = inject('rootDocument') as Document;
 
 const props = defineProps({
   path: {
@@ -89,10 +92,10 @@ watch(
   value => {
     if (value) {
       setTimeout(() => {
-        const el = document.getElementById(`id-${value}`);
+        const el = rootDocument.getElementById(`id-${value}`);
         if (el) {
           const topOfElement = el.offsetTop - 90;
-          window.scroll({ top: topOfElement, behavior: 'smooth' });
+          rootWindow.scroll({ top: topOfElement, behavior: 'smooth' });
         }
       }, 100);
     }

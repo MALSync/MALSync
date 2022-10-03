@@ -3,7 +3,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, Ref, ref } from 'vue';
+import { computed, inject, Ref, ref } from 'vue';
+
+const rootWindow = inject('rootWindow') as Window;
 
 const props = defineProps({
   text: {
@@ -23,7 +25,7 @@ const length = computed(() => props.text.length);
 const getCharWidth = (fontSize: number) => fontSize * 0.55;
 
 const size = computed(() => {
-  const fieldWidth = target.value ? target.value.clientWidth : window.innerWidth - 310;
+  const fieldWidth = target.value ? target.value.clientWidth : rootWindow.innerWidth - 310;
 
   let found = sizes.find(fontSize => {
     const charWidth = getCharWidth(fontSize);

@@ -21,15 +21,19 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, onMounted, onUnmounted, provide, ref } from 'vue';
+import { inject, nextTick, onMounted, onUnmounted, provide, ref } from 'vue';
 import Theming from './components/theming.vue';
 import NavBar from './components/nav/nav-bar.vue';
 import MediaModal from './components/media/media-modal.vue';
 
 const breakpoint = ref('desktop' as 'desktop' | 'mobile');
 
+const rootWindow = inject('rootWindow') as Window;
+const rootHtml = inject('rootHtml') as HTMLElement;
+const rootBody = inject('rootBody') as HTMLElement;
+
 function setBreakpoint() {
-  if (window.innerWidth < 900) {
+  if (rootWindow.innerWidth < 900) {
     breakpoint.value = 'mobile';
   } else {
     breakpoint.value = 'desktop';
@@ -38,22 +42,22 @@ function setBreakpoint() {
 setBreakpoint();
 
 onMounted(() => {
-  window.addEventListener('resize', setBreakpoint);
+  rootWindow.addEventListener('resize', setBreakpoint);
   nextTick(() => {
     if (
-      ['popup', 'settings'].includes(document.documentElement.getAttribute('mode')!) &&
-      window.innerWidth !== 550
+      ['popup', 'settings'].includes(rootHtml.getAttribute('mode')!) &&
+      rootWindow.innerWidth !== 550
     ) {
-      document.documentElement.style.minWidth = `${window.innerWidth}px`;
-      // document.documentElement.style.maxWidth = `${window.innerWidth}px`;
-      document.documentElement.style.width = 'auto';
-      document.body.style.width = 'auto';
+      rootHtml.style.minWidth = `${rootWindow.innerWidth}px`;
+      // rootHtml.style.maxWidth = `${rootWindow.innerWidth}px`;
+      rootHtml.style.width = 'auto';
+      rootBody.style.width = 'auto';
     }
   });
 });
 
 onUnmounted(() => {
-  window.removeEventListener('resize', setBreakpoint);
+  rootWindow.removeEventListener('resize', setBreakpoint);
 });
 
 provide('breakpoint', breakpoint);
