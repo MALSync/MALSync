@@ -134,8 +134,17 @@ export const structure: ConfObj[] = [
     component: SettingsHr,
   },
   {
+    key: 'support',
+    title: 'Need help?',
+    props: {
+      icon: 'help',
+      href: 'https://github.com/MALSync/MALSync/wiki/Support',
+    },
+    component: SettingsGroup,
+  },
+  {
     key: 'joinDiscord',
-    title: 'Join our community',
+    title: 'Join our Discord Server',
     props: {
       icon: 'forum',
       href: 'https://discord.com/invite/cTH4yaw',
@@ -143,8 +152,8 @@ export const structure: ConfObj[] = [
     component: SettingsGroup,
   },
   {
-    key: 'support',
-    title: 'Support Malsync',
+    key: 'donate',
+    title: 'Donate',
     props: {
       icon: 'favorite',
       href: 'https://malsync.moe/donate',
