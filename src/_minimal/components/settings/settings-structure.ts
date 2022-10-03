@@ -1,7 +1,5 @@
 import SettingsGroup from './settings-group.vue';
-import SettingsGeneral from './settings-general.vue';
 import SettingsProfile from './settings-profile.vue';
-import SettingsStreaming from './settings-streaming.vue';
 import SettingsListSync from './settings-list-sync.vue';
 import { tracking } from './settings-structure-tracking';
 import { ConfObj } from '../../../_provider/definitions';
@@ -13,6 +11,7 @@ import { etc } from './settings-structure-etc';
 import { video } from './settings-structure-video';
 import { minimal } from './settings-structure-minimal';
 import { estimation } from './settings-structure-estimation';
+import { links } from './settings-structure-links';
 
 export const structure: ConfObj[] = [
   {
@@ -46,30 +45,7 @@ export const structure: ConfObj[] = [
       icon: 'rss_feed',
     },
     component: SettingsGroup,
-    children: [
-      {
-        key: 'quicklinksPosition',
-        title: () => api.storage.lang('settings_custom_domains_position'),
-        condition: () =>
-          api.settings.get('syncMode') === 'ANILIST' || api.settings.get('syncMode') === 'MAL',
-        props: {
-          component: 'dropdown',
-          option: 'quicklinksPosition',
-          props: {
-            options: [
-              { title: 'Default', value: 'default' },
-              { title: 'Below Information', value: 'below' },
-            ],
-          },
-        },
-        component: SettingsGeneral,
-      },
-      {
-        key: 'streamingSite',
-        title: () => api.storage.lang('settings_StreamingSite'),
-        component: SettingsStreaming,
-      },
-    ],
+    children: links,
   },
   {
     key: 'videoPlayerSection',
