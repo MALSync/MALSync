@@ -8,6 +8,7 @@ export const discord: ConfObj[] = [
     props: {
       component: 'checkbox',
       option: 'rpc',
+      infoLink: 'https://github.com/MALSync/MALSync/wiki/Discord-Rich-Presence',
     },
     component: SettingsGeneral,
   },
