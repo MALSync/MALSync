@@ -1,37 +1,53 @@
 <template>
-  <Card class="custom">
-    <Section v-if="permissions.length" class="grid" spacer="half">
-      <template v-for="(perm, index) in permissions" :key="index">
-        <FormButton class="close-item" @click="removePermission(index)">
-          <div class="material-icons">close</div>
-        </FormButton>
-        <FormDropdown
-          v-model="perm.page"
-          :options="options"
-          :disabled="perm.auto"
-          align-items="left"
-          placeholder="Select Page"
-          class="page-select select-items"
-        />
-        <FormText
-          v-model="perm.domain"
-          :validation="validDomain"
-          :disabled="perm.auto"
-          placeholder="Domain"
-          class="select-items"
-        />
-      </template>
+  <div>
+    <Section spacer="half">
+      <Card>
+        <div>Please only use if you know what you are doing!</div>
+        <div>
+          More info
+          <MediaLink
+            color="secondary"
+            href="https://github.com/MALSync/MALSync/wiki/Custom-Domains"
+          >
+            here
+          </MediaLink>
+        </div>
+      </Card>
     </Section>
-    <Section>
-      <FormButton @click="addPermission()"><div class="material-icons">add</div></FormButton>
-    </Section>
-    <div v-if="!verifyEverything">
-      <FormButton color="secondary">Configuration is not correct!</FormButton>
-    </div>
-    <div v-else-if="!hasAllPermissions || JSON.stringify(model) !== JSON.stringify(permissions)">
-      <FormButton color="primary" @click="savePermissions()">{{ lang('Update') }}</FormButton>
-    </div>
-  </Card>
+    <Card class="custom">
+      <Section v-if="permissions.length" class="grid" spacer="half">
+        <template v-for="(perm, index) in permissions" :key="index">
+          <FormButton class="close-item" @click="removePermission(index)">
+            <div class="material-icons">close</div>
+          </FormButton>
+          <FormDropdown
+            v-model="perm.page"
+            :options="options"
+            :disabled="perm.auto"
+            align-items="left"
+            placeholder="Select Page"
+            class="page-select select-items"
+          />
+          <FormText
+            v-model="perm.domain"
+            :validation="validDomain"
+            :disabled="perm.auto"
+            placeholder="Domain"
+            class="select-items"
+          />
+        </template>
+      </Section>
+      <Section>
+        <FormButton @click="addPermission()"><div class="material-icons">add</div></FormButton>
+      </Section>
+      <div v-if="!verifyEverything">
+        <FormButton color="secondary">Configuration is not correct!</FormButton>
+      </div>
+      <div v-else-if="!hasAllPermissions || JSON.stringify(model) !== JSON.stringify(permissions)">
+        <FormButton color="primary" @click="savePermissions()">{{ lang('Update') }}</FormButton>
+      </div>
+    </Card>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -43,6 +59,8 @@ import FormText from '../form/form-text.vue';
 import FormButton from '../form/form-button.vue';
 import Section from '../section.vue';
 import { domainType } from '../../../background/customDomain';
+import MediaLink from '../media-link.vue';
+import CodeBlock from '../code-block.vue';
 
 const options = getPageOptions()
   .map(el => ({ title: el.title, value: el.key }))

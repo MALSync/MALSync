@@ -3,6 +3,16 @@
     <SettingsGeneral v-if="isExtension()" component="checkbox" title="Sync daily in the background">
       <template #component> <FormCheckbox v-model="backgroundSync" /> </template>
     </SettingsGeneral>
+    <Section spacer="half">
+      <Card>
+        <div>
+          More info
+          <MediaLink color="secondary" href="https://github.com/MALSync/MALSync/wiki/List-Sync">
+            here
+          </MediaLink>
+        </div>
+      </Card>
+    </Section>
     <Card class="list-sync">
       <Section>
         <FormSwitch
