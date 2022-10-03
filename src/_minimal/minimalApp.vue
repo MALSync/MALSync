@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, provide, ref } from 'vue';
+import { nextTick, onMounted, onUnmounted, provide, ref } from 'vue';
 import Theming from './components/theming.vue';
 import NavBar from './components/nav/nav-bar.vue';
 import MediaModal from './components/media/media-modal.vue';
@@ -39,14 +39,17 @@ setBreakpoint();
 
 onMounted(() => {
   window.addEventListener('resize', setBreakpoint);
-  if (
-    ['popup', 'settings'].includes(document.documentElement.getAttribute('mode')!) &&
-    window.innerWidth !== 550
-  ) {
-    document.documentElement.style.minWidth = `${window.innerWidth}px`;
-    document.documentElement.style.width = 'auto';
-    document.body.style.width = 'auto';
-  }
+  nextTick(() => {
+    if (
+      ['popup', 'settings'].includes(document.documentElement.getAttribute('mode')!) &&
+      window.innerWidth !== 550
+    ) {
+      document.documentElement.style.minWidth = `${window.innerWidth}px`;
+      // document.documentElement.style.maxWidth = `${window.innerWidth}px`;
+      document.documentElement.style.width = 'auto';
+      document.body.style.width = 'auto';
+    }
+  });
 });
 
 onUnmounted(() => {
