@@ -67,4 +67,17 @@ export const minimal: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+  {
+    key: 'pwa',
+    title: 'PWA',
+    props: () => ({
+      component: 'button',
+      props: {
+        color: 'primary',
+        title: 'Open',
+        link: 'https://malsync.moe/pwa/',
+      },
+    }),
+    component: SettingsGeneral,
+  },
 ];

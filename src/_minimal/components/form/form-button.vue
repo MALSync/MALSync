@@ -1,17 +1,20 @@
 <template>
-  <div
+  <component
+    :is="link ? MediaLink : 'div'"
     class="button"
+    :href="link"
     :class="`${padding} ${animation ? 'animation' : ''} ${color} ${disabled ? 'disabled' : ''}`"
     tabindex="tabindex"
     @click="disabled ? null : click()"
   >
     <slot /> {{ title }}
     <div v-if="icon" class="material-icons top-icon">{{ icon }}</div>
-  </div>
+  </component>
 </template>
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
+import MediaLink from '../media-link.vue';
 
 defineProps({
   padding: {
@@ -34,6 +37,10 @@ defineProps({
   click: {
     type: Function as PropType<() => void>,
     default: () => true,
+  },
+  link: {
+    type: String,
+    default: '',
   },
   icon: {
     type: String,
