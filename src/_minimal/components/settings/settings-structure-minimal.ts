@@ -1,6 +1,5 @@
 import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
-import SettingsHr from './settings-hr.vue';
 
 export const minimal: ConfObj[] = [
   {
