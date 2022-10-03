@@ -46,8 +46,8 @@ export function floatClick(page) {
     j.$('.floatbutton').fadeOut();
     if (!j.$('#info-iframe').length) {
       createIframe(page);
-    } else if (typeof minimalObj !== 'undefined' && typeof page.malObj !== 'undefined') {
-      minimalObj.fill({ url: page.malObj.url }, true);
+    } else if (typeof minimalObj !== 'undefined' && typeof page.singleObj !== 'undefined') {
+      minimalObj.fill({ url: page.singleObj.getUrl() }, true);
     }
   } else {
     document.getElementById('info-popup')!.style.display = 'none';
