@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="settings-block" :class="{ designed: !components.path.length }">
     <transition :name="components.path.length ? 'slide-in' : 'slide-out'">
       <div :key="components.path">
         <div v-if="components.path.length" class="back-button">
@@ -33,6 +33,7 @@
         </template>
       </div>
     </transition>
+    <SettingsDesigned v-if="!components.path.length" />
   </div>
 </template>
 
@@ -44,6 +45,7 @@ import Header from '../components/header.vue';
 import TextIcon from '../components/text-icon.vue';
 import { ConfObj } from '../../_provider/definitions';
 import TransitionSlide from '../components/transition-slide.vue';
+import SettingsDesigned from '../components/settings/settings-designed.vue';
 
 const props = defineProps({
   path: {
@@ -113,6 +115,16 @@ function showOption(comp: ConfObj) {
 
 <style lang="less" scoped>
 @import '../less/_globals.less';
+
+.settings-block {
+  position: relative;
+  .__breakpoint-popup__({
+    &.designed {
+      padding-bottom: 30px
+    }
+  });
+}
+
 .back-button {
   .click-move-down();
 
