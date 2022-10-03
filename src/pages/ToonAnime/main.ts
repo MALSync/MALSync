@@ -14,10 +14,10 @@ export const ToonAnime: pageInterface = {
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    return j.$('.ss-list').length > 0;
+    return j.$('anis-watch anis-watch-tv').length > 0;
   },
   isOverviewPage(url) {
-    return url.endsWith('-tv.html');
+    return j.$('.movie_play').length > 0;
   },
   sync: {
     getTitle(url) {
@@ -64,7 +64,18 @@ export const ToonAnime: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      page.handlePage();
+      if (ToonAnime.isSyncPage(window.location.href)) {
+        utils.waitUntilTrue(
+          function () {
+            return j.$('div.ss-list > .ep-item').length;
+          },
+          function () {
+            page.handlePage();
+          },
+        );
+      } else {
+        page.handlePage();
+      }
     });
   },
 };
