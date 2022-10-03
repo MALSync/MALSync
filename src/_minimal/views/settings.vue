@@ -19,15 +19,10 @@
         </div>
         <template v-for="comp in components.structure" :key="comp.key">
           <TransitionSlide>
-            <component
-              :is="comp.component"
-              v-if="showOption(comp)"
-              v-bind="typeof comp.props === 'function' ? comp.props() : comp.props"
-              :id="`id-${comp.key}`"
-              :path="[...components.path, comp.key]"
-              :title="typeof comp.title === 'function' ? comp.title() : comp.title"
-              :class="{ highlight: comp.key === components.highlight }"
-              @change="comp.change ? comp.change() : null"
+            <SettingsRendering
+              :comp="comp"
+              :highlight="components.highlight"
+              :current-path="components.path"
             />
           </TransitionSlide>
         </template>
@@ -46,6 +41,7 @@ import TextIcon from '../components/text-icon.vue';
 import { ConfObj } from '../../_provider/definitions';
 import TransitionSlide from '../components/transition-slide.vue';
 import SettingsDesigned from '../components/settings/settings-designed.vue';
+import SettingsRendering from '../components/settings/settings-rendering.vue';
 
 const props = defineProps({
   path: {
@@ -103,14 +99,6 @@ watch(
   },
   { immediate: true },
 );
-
-function showOption(comp: ConfObj) {
-  if (comp.condition && !comp.condition()) return false;
-
-  if (comp.system && comp.system !== api.type) return false;
-
-  return true;
-}
 </script>
 
 <style lang="less" scoped>
