@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import { computed, PropType, ref, watch } from 'vue';
 
-import VueSlider from 'vue-slider-component';
+import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min';
 
 const props = defineProps({
   options: {
