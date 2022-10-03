@@ -1,6 +1,7 @@
-import { Minimal } from '../minimal/minimalClass';
+import { watch } from 'vue';
+import { Minimal } from '../_minimal/minimalClass';
 
-let minimalObj;
+let minimalObj: Minimal;
 
 function createIframe(page) {
   const iframe = document.createElement('iframe');
@@ -9,21 +10,15 @@ function createIframe(page) {
   iframe.onload = function () {
     const head = j.$('#info-iframe').contents().find('head');
 
-    api.storage.injectjsResource('material.js', head);
-    api.storage.updateDom(head);
-
-    api.storage.injectCssResource('material.css', head);
     api.storage.injectCssResource('materialFont.css', head);
+    api.storage.injectCssResource('montserrat.css', head);
 
     setTimeout(function () {
       minimalObj = new Minimal(j.$('#info-iframe').contents().find('html'));
       if (typeof page !== 'undefined') {
         if (typeof page.singleObj !== 'undefined') {
-          minimalObj.fillBase(page.singleObj.getUrl());
-        } else {
-          minimalObj.fillBase(null);
+          minimalObj.fill({ url: page.singleObj.getUrl() }, true);
         }
-        minimalObj.setPageSync(page);
       }
     }, 200);
   };
@@ -49,8 +44,7 @@ export function floatClick(page) {
     if (!j.$('#info-iframe').length) {
       createIframe(page);
     } else if (typeof minimalObj !== 'undefined' && typeof page.malObj !== 'undefined') {
-      minimalObj.fillBase(page.malObj.url);
-      minimalObj.setPageSync(page);
+      minimalObj.fill({ url: page.malObj.url }, true);
     }
   } else {
     document.getElementById('info-popup')!.style.display = 'none';
