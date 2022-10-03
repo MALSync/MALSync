@@ -758,5 +758,5 @@ module.exports = {
   // toonanime
   toonvip: {
     match: ['*://mb.toonanime.xyz/dist/myt.html*'],
-  }
+  },
 };
