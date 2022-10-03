@@ -41,7 +41,7 @@ module.exports = {
     match: ['*://*.mail.ru/*'],
   },
   myvi: {
-    match: ['*://*.myvi.ru/*'],
+    match: ['*://*.myvi.ru/*', '*://www.myvi.tv/embed/*'],
   },
   sibnet: {
     match: ['*://*.sibnet.ru/*'],
@@ -754,5 +754,9 @@ module.exports = {
   // 9anime
   filemoon: {
     match: ['*://filemoon.sx/e/*'],
+  },
+  // toonanime
+  toonvip: {
+    match: ['*://mb.toonanime.xyz/dist/myt.html*'],
   },
 };
