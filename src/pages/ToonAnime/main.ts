@@ -14,7 +14,7 @@ export const ToonAnime: pageInterface = {
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    return j.$('anis-watch anis-watch-tv').length > 0;
+    return j.$('.anis-watch.anis-watch-tv').length > 0;
   },
   isOverviewPage(url) {
     return j.$('.movie_play').length > 0;
