@@ -27,7 +27,7 @@ export const ToonAnime: pageInterface = {
       return utils.urlPart(url, 3).split('-')[0] || '';
     },
     getOverviewUrl(url) {
-      return `${ToonAnime.domain}/anime/${ToonAnime.sync.getIdentifier(url)}-tv.html`;
+      return `${ToonAnime.domain}/${ToonAnime.sync.getIdentifier(url)}-tv.html`;
     },
     getEpisode(url) {
       return Number(j.$('.ss-list > .ssl-item.active').first().attr('data-number'));
