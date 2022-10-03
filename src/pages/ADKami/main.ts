@@ -48,13 +48,15 @@ export const ADKami: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     j.$(document).ready(function () {
       utils.waitUntilTrue(
-        function() {
+        function () {
           return j.$('#syncData').length;
         },
-        function() {
+        function () {
           jsonData = JSON.parse(j.$('#syncData').text());
           page.handlePage();
         },
