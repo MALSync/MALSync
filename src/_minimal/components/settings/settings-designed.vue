@@ -26,7 +26,7 @@ import MediaLink from '../media-link.vue';
 }
 
 .logotype_dot {
-  color: rgb(231, 29, 54);
+  color: rgb(231 29 54);
 }
 
 .designed-wrapper {

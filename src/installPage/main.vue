@@ -105,7 +105,7 @@ p {
 }
 
 a {
-  color: rgb(255, 64, 129);
+  color: rgb(255 64 129);
 }
 
 #iconimage {
