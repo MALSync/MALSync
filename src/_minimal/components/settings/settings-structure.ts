@@ -89,7 +89,7 @@ export const structure: ConfObj[] = [
     title: () => api.storage.lang('settings_custom_domains_button'),
     system: 'webextension',
     props: {
-      icon: 'http',
+      icon: 'web',
     },
     component: SettingsGroup,
     children: customDomains,
@@ -114,7 +114,7 @@ export const structure: ConfObj[] = [
     title: 'Discord Rich Presence',
     system: 'webextension',
     props: {
-      icon: 'badge',
+      icon: 'discord',
     },
     component: SettingsGroup,
     children: discord,

@@ -1,6 +1,9 @@
 <template>
   <span class="text-icon" :class="[mode, background, spacer].join(' ')">
-    <span v-if="icon && position === 'before'" class="material-icons before">{{ icon }}</span>
+    <span v-if="icon && position === 'before' && icon === 'discord'" class="before">
+      <SettingsDiscordIcon />
+    </span>
+    <span v-else-if="icon && position === 'before'" class="material-icons before">{{ icon }}</span>
     <img v-if="src && position === 'before'" class="img-icons before" :src="src" />
     <slot />
     <span v-if="icon && position === 'after'" class="material-icons after">{{ icon }}</span>
@@ -10,6 +13,7 @@
 
 <script lang="ts" setup>
 import { defineProps, PropType } from 'vue';
+import SettingsDiscordIcon from './settings/settings-discord-icon.vue';
 
 defineProps({
   icon: {

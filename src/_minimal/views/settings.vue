@@ -1,5 +1,6 @@
 <template>
   <div class="settings-block" :class="{ designed: !components.path.length }">
+    <SettingsDiscordIcon />
     <transition :name="components.path.length ? 'slide-in' : 'slide-out'">
       <div :key="components.path">
         <div v-if="components.path.length" class="back-button">
@@ -46,6 +47,7 @@ import TextIcon from '../components/text-icon.vue';
 import { ConfObj } from '../../_provider/definitions';
 import TransitionSlide from '../components/transition-slide.vue';
 import SettingsDesigned from '../components/settings/settings-designed.vue';
+import SettingsDiscordIcon from '../components/settings/settings-discord-icon.vue';
 
 const props = defineProps({
   path: {
