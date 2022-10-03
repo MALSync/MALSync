@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Section spacer="half">
+    <Section spacer="half" direction="both">
       <Card>
         <div>Please only use if you know what you are doing!</div>
         <div>

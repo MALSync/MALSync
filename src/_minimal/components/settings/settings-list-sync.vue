@@ -3,7 +3,7 @@
     <SettingsGeneral v-if="isExtension()" component="checkbox" title="Sync daily in the background">
       <template #component> <FormCheckbox v-model="backgroundSync" /> </template>
     </SettingsGeneral>
-    <Section spacer="half">
+    <Section spacer="half" direction="both">
       <Card>
         <div>
           More info
