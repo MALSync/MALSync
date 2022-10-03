@@ -136,6 +136,7 @@ import { LuminousScans } from './LuminousScans/main';
 import { Animeworld } from './Animeworld/main';
 import { MangaBuddy } from './MangaBuddy/main';
 import { Vostfree } from './Vostfree/main';
+import { VoidScans } from './VoidScans/main';
 
 export const pages = {
   nineAnime,
@@ -276,4 +277,5 @@ export const pages = {
   Animeworld,
   MangaBuddy,
   Vostfree,
+  VoidScans,
 };

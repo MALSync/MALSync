@@ -1,0 +1,6 @@
+{
+  "search": "https://void-scans.com/?s={searchtermPlus}",
+  "urls": {
+    "match": ["*://void-scans.com/*"]
+  }
+}

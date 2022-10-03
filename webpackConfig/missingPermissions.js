@@ -30,6 +30,14 @@ async function main() {
     const currentData = JSON.parse(data);
     currentData[version] = diffUrls;
 
+    if(Object.keys(currentData).length > 5) {
+      const remove = Object.keys(currentData).slice(0, Object.keys(currentData).length - 5);
+
+      for(const item of remove) {
+        delete currentData[item];
+      }
+    }
+
     fs.writeFile(descFile, JSON.stringify(currentData, null, 2), 'utf8', function (err) {
       if (err) throw err;
     });

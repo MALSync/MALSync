@@ -79,6 +79,7 @@ module.exports = {
       '*://*.dutrag.com/*',
       '*://*.diasfem.com/*',
       '*://*.fembed-hd.com/*',
+      '*://*.fembed9hd.com/*',
     ],
   },
   youpload: {
@@ -313,6 +314,7 @@ module.exports = {
       '*://*.animixplay.to/goplyr.html*',
       '*://*.animixplay.to/player.html*',
       '*://*.plyr.link/*',
+      '*://*.plyr.in/*',
       '*://jzscuqezoqkcpvy.win/*',
       '*://v.cdnmix.org/*',
       '*://v.cachecow.eu/*',
@@ -390,6 +392,10 @@ module.exports = {
       '*://*.gogoplay.io/load.php?*',
       '*://*.gogoplay.io/loadserver.php?*',
       '*://*.gogoplay.io/embedplus*',
+      '*://*.gogohd.net/embedplus*',
+      '*://*.gogohd.net/streaming.php?*',
+      '*://*.gogohd.net/load.php?*',
+      '*://*.gogohd.net/loadserver.php?*',
     ],
   },
   // bs.to
@@ -451,6 +457,7 @@ module.exports = {
       '*://sbplay2.xyz/*',
       '*://sbfull.com/e/*',
       '*://ssbstream.net/*',
+      '*://streamsss.net/*',
     ],
   },
   // gogo
@@ -541,6 +548,13 @@ module.exports = {
       '*://launchreliantcleaverriver.com/e/*',
       '*://reputationsheriffkennethsand.com/e/*',
       '*://fittingcentermondaysunday.com/e/*',
+      '*://voe.bar/e/*',
+      '*://housecardsummerbutton.com/e/*',
+      '*://fraudclatterflyingcar.com/e/*',
+      '*://bigclatterhomesguideservice.com/e/*',
+      '*://uptodatefinishconferenceroom.com/e/*',
+      '*://realfinanceblogcenter.com/e/*',
+      '*://tinycat-voe-fashion.com/e/*',
     ],
   },
   // animewho
@@ -620,7 +634,7 @@ module.exports = {
   },
   // zoro
   rapidstream: {
-    match: ['*://*.rapid-cloud.ru/*'],
+    match: ['*://*.rapid-cloud.ru/*', '*://*.rapid-cloud.co/*'],
   },
   // tenshi
   tenshi: {

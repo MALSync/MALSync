@@ -1,28 +1,28 @@
 {
   "title": "AsuraScans",
-  "url": "https://asurascans.com/",
+  "url": "https://asura.gg",
   "testCases": [
     {
-      "url": "https://asurascans.com/sss-class-suicide-hunter-chapter-18/",
+      "url": "https://asura.gg/sss-class-suicide-hunter-chapter-18/",
       "expected": {
         "sync": true,
         "title": "SSS-Class Suicide Hunter",
         "identifier": "sss-class-suicide-hunter",
-        "overviewUrl": "https://asurascans.com/comics/1649969363-sss-class-suicide-hunter/",
-        "nextEpUrl": "https://asurascans.com/1649969469-sss-class-suicide-hunter-chapter-19/",
+        "overviewUrl": "https://asura.gg/manga/sss-class-suicide-hunter/",
+        "nextEpUrl": "https://asura.gg/sss-class-suicide-hunter-chapter-19/",
         "episode": 18,
         "uiSelector": false
       }
     },
     {
-      "url": "https://asurascans.com/comics/sss-class-suicide-hunter/",
+      "url": "https://asura.gg/manga/sss-class-suicide-hunter/",
       "expected": {
         "sync": false,
         "title": "SSS-Class Suicide Hunter",
         "identifier": "sss-class-suicide-hunter",
         "uiSelector": true,
         "epList": {
-          "25": "https://asurascans.com/sss-class-suicide-hunter-chapter-25/"
+          "25": "https://asura.gg/sss-class-suicide-hunter-chapter-25/"
         }
       }
     }
