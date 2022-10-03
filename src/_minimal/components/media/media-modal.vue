@@ -1,5 +1,5 @@
 <template>
-  <component :is="Teleport" to="html">
+  <component :is="Teleport" :to="rootHtml">
     <div v-if="fill && fill.url && open" class="outer">
       <MediaLink :href="fill.url" class="mediaModal" @click="open = false">
         <ImageFit :src="fill.image" class="image" />
@@ -25,6 +25,8 @@ import {
 import MediaLink from '../media-link.vue';
 import ImageFit from '../image-fit.vue';
 import DynamicFont from '../dynamic-font.vue';
+
+const rootHtml = inject('rootHtml') as HTMLElement;
 
 const fill = inject('fill') as Ref<null | { url: string; image: string; title: string }>;
 

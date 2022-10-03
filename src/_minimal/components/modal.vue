@@ -1,5 +1,5 @@
 <template>
-  <component :is="Teleport" to="html">
+  <component :is="Teleport" :to="rootHtml">
     <transition name="fade-shrink-in" appear>
       <div v-if="state" class="modal" @click="state = false">
         <div class="content" @click.stop>
@@ -11,7 +11,16 @@
 </template>
 
 <script lang="ts" setup>
-import { Teleport as teleport_, type TeleportProps, type VNodeProps, ref, watch } from 'vue';
+import {
+  Teleport as teleport_,
+  type TeleportProps,
+  type VNodeProps,
+  ref,
+  watch,
+  inject,
+} from 'vue';
+
+const rootHtml = inject('rootHtml') as HTMLElement;
 
 const props = defineProps({
   modelValue: {
