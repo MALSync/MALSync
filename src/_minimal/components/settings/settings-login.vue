@@ -43,6 +43,10 @@ const props = defineProps({
     type: String,
     default: 'syncMode',
   },
+  title: {
+    type: String,
+    required: true,
+  },
 });
 
 const parameters = computed(() => {

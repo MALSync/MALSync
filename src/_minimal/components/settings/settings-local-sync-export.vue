@@ -19,6 +19,13 @@ import FormButton from '../form/form-button.vue';
 import SettingsGeneral from './settings-general.vue';
 import SettingsLocalSyncFileUpload from './settings-local-sync-file-upload.vue';
 
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+});
+
 async function exportFallbackSync() {
   const exportObj = await exportData();
   con.log('Export', exportObj);

@@ -54,6 +54,13 @@ import FormButton from '../form/form-button.vue';
 import { domainType } from '../../../background/customDomain';
 import Description from '../description.vue';
 
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+});
+
 const permissions = ref(null as null | MissingPermissions);
 const temp = new MissingPermissions();
 temp.init().then(() => {

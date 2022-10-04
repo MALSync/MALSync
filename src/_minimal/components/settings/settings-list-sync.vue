@@ -192,6 +192,13 @@ import CodeBlock from '../code-block.vue';
 import SettingsGeneral from './settings-general.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
 
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+});
+
 const mode = 'mirror';
 
 const providerList = ref(null as any);

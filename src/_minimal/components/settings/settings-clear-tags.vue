@@ -31,6 +31,13 @@ import FormButton from '../form/form-button.vue';
 import Header from '../header.vue';
 import Section from '../section.vue';
 
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+});
+
 const running = ref(false);
 const done = ref(false);
 

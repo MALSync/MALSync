@@ -43,6 +43,13 @@ import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
 import Section from '../section.vue';
 
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+});
+
 const parameters = computed(() => {
   return {
     listObj: getListbyType(api.settings.get('syncMode')),

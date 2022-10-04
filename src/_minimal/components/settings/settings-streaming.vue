@@ -112,6 +112,13 @@ import Header from '../header.vue';
 import CodeBlock from '../code-block.vue';
 import HR from '../hr.vue';
 
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+});
+
 function stateNumber(link) {
   if (link.custom) return 0;
   if (link.database) return 1;

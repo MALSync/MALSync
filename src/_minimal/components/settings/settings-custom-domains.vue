@@ -60,6 +60,13 @@ import Section from '../section.vue';
 import { domainType } from '../../../background/customDomain';
 import MediaLink from '../media-link.vue';
 
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+});
+
 const options = getPageOptions()
   .map(el => ({ title: el.title, value: el.key }))
   .sort((a, b) => utils.sortAlphabetically(a.title, b.title));

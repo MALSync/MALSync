@@ -38,6 +38,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  title: {
+    type: String,
+    required: true,
+  },
 });
 
 const emit = defineEmits(['change']);

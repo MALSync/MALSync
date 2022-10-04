@@ -11,6 +11,13 @@
 
 <script lang="ts" setup>
 import MediaLink from '../media-link.vue';
+
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+});
 </script>
 
 <style lang="less" scoped>
