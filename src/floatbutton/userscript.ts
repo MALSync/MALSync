@@ -14,10 +14,24 @@ function createIframe(page) {
     importAssets(head);
 
     setTimeout(function () {
-      minimalObj = new Minimal(j.$('#info-iframe').contents().find('html'), () => {
-        document.getElementById('info-popup')!.style.display = 'none';
-        j.$('.floatbutton').fadeIn();
-      });
+      minimalObj = new Minimal(
+        j.$('#info-iframe').contents().find('html'),
+        () => {
+          document.getElementById('info-popup')!.style.display = 'none';
+          j.$('.floatbutton').fadeIn();
+        },
+        () => {
+          if (j.$('.modal-content-kal.fullscreen').length) {
+            j.$('.modal-content-kal').removeClass('fullscreen');
+            // @ts-ignore
+            j.$(this).find('i').text('fullscreen');
+          } else {
+            j.$('.modal-content-kal').addClass('fullscreen');
+            // @ts-ignore
+            j.$(this).find('i').text('fullscreen_exit');
+          }
+        },
+      );
       if (typeof page !== 'undefined') {
         if (typeof page.singleObj !== 'undefined') {
           minimalObj.fill({ url: page.singleObj.getUrl() }, true);

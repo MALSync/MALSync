@@ -20,6 +20,7 @@
       <router-link to="/settings" class="link">
         <span class="material-icons">settings</span>
       </router-link>
+      <span v-if="fullscreenFunction" class="material-icons link" @click="fullscreenFunction()">fullscreen</span>
       <span class="material-icons link" @click="closeWindow()">close</span>
     </div>
   </div>
@@ -38,6 +39,7 @@ const rootBody = inject('rootBody') as HTMLElement;
 const rootHtml = inject('rootHtml') as HTMLElement;
 const rootWindow = inject('rootWindow') as Window;
 const closeFunction = inject('closeFunction') as () => void;
+const fullscreenFunction = inject('fullscreenFunction') as () => void;
 
 const route = useRoute();
 const router = useRouter();

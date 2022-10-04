@@ -11,7 +11,11 @@ export class Minimal {
 
   private fillState = ref(null);
 
-  constructor(public minimal, closeFunction = () => window.close()) {
+  constructor(
+    public minimal,
+    closeFunction = () => window.close(),
+    fullscreenFunction: null | Function = null,
+  ) {
     if (document.body.hasAttribute('hash')) {
       document.location.hash = document.body.getAttribute('hash')!;
     }
@@ -21,6 +25,7 @@ export class Minimal {
         vue.use(router);
         vue.provide('fill', this.fillState);
         vue.provide('closeFunction', closeFunction);
+        vue.provide('fullscreenFunction', fullscreenFunction);
         vue.provide('rootHtml', this.minimal.get(0));
         vue.provide('rootBody', this.minimal.get(0).ownerDocument.body);
         vue.provide('rootDocument', this.minimal.get(0).ownerDocument);
