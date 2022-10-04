@@ -7,7 +7,7 @@
             {{ profileRequest.data.username }}
           </MediaLink>
         </Header>
-        <div>Logged in via {{ parameters.listObj.name }}</div>
+        <div>{{ lang('settings_profile_logged_via', [parameters.listObj.name])}}</div>
         <div @click="deauth()">
           <TextIcon icon="eject" position="after" mode="flex">
             {{ lang('settings_profile_logout') }}

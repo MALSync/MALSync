@@ -655,6 +655,16 @@
     "message": "Check",
     "description": "Button to rechecks the login status"
   },
+  "settings_profile_logged_via": {
+    "message": "Logged in via $provider$",
+    "description": "Info about which provider is used to login",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "MyAnimeList"
+      }
+    }
+  },
   "settings_LocalSync": {
     "message": "Local storage fallback",
     "description": "Option to activate the local storage fallback sync"

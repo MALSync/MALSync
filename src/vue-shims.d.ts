@@ -7,7 +7,7 @@ declare module '*.vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     getOption: (key: string) => string;
-    lang: (key: string) => string;
+    lang: (key: string, args?: string[]) => string;
   }
 }
 
