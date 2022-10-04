@@ -2,6 +2,8 @@ import { Minimal } from '../_minimal/minimalClass';
 
 let minimalObj: Minimal;
 
+declare let GM_getResourceURL: any;
+
 function createIframe(page) {
   const iframe = document.createElement('iframe');
   iframe.setAttribute('id', 'info-iframe');
@@ -9,8 +11,7 @@ function createIframe(page) {
   iframe.onload = function () {
     const head = j.$('#info-iframe').contents().find('head');
 
-    api.storage.injectCssResource('materialFont.css', head);
-    api.storage.injectCssResource('montserrat.css', head);
+    importAssets(head);
 
     setTimeout(function () {
       minimalObj = new Minimal(j.$('#info-iframe').contents().find('html'), () => {
@@ -52,4 +53,37 @@ export function floatClick(page) {
     document.getElementById('info-popup')!.style.display = 'none';
     j.$('.floatbutton').fadeIn();
   }
+}
+
+export function importAssets(head) {
+  api.storage.injectCssResource(
+    '',
+    head,
+    `
+      /* fallback */
+      @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url(${GM_getResourceURL('materialFont.woff2')}) format('woff2');
+      }
+
+      .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+      }
+    `,
+  );
+  api.storage.injectCssResource('montserrat.css', head);
 }

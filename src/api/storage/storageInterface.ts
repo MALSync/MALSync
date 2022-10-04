@@ -15,7 +15,7 @@ export interface storageInterface {
 
   assetUrl(filename: string): string;
 
-  injectCssResource(res: string, head): void;
+  injectCssResource(res: string, head, code?: string | null): void;
 
   injectjsResource(res: string, head): void;
 
