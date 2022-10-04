@@ -68,12 +68,12 @@ export const minimal: ConfObj[] = [
   },
   {
     key: 'pwa',
-    title: 'PWA',
+    title: () => api.storage.lang('settings_miniMAL_pwa'),
     props: () => ({
       component: 'button',
       props: {
         color: 'primary',
-        title: 'Open',
+        title: api.storage.lang('Show'),
         link: 'https://malsync.moe/pwa/',
       },
     }),

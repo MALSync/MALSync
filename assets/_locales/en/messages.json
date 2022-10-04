@@ -831,6 +831,62 @@
     "message": "Width (px / %)",
     "description": "miniMAL Width"
   },
+  "settings_miniMAL_pwa": {
+    "message": "PWA website",
+    "description": "Link to the PWA version of the extension popup"
+  },
+  "settings_donate": {
+    "message": "Donate",
+    "description": "Link to donation page"
+  },
+  "settings_discord_join": {
+    "message": "Join our Discord Server",
+    "description": "Link to join discord"
+  },
+  "settings_help": {
+    "message": "Need help?",
+    "description": "Button that links to support"
+  },
+  "settings_miscellaneous": {
+    "message": "Miscellaneous",
+    "description": "Header of the section of settings without specific theme"
+  },
+  "settings_listsync": {
+    "message": "List Sync",
+    "description": "Header of the section of List Sync settings"
+  },
+  "settings_listsync_background": {
+    "message": "Sync daily in the background",
+    "description": "Option to sync list once a day in the background"
+  },
+  "settings_progress": {
+    "message": "Progress Estimation",
+    "description": "Header of the section of progress estimation settings"
+  },
+  "settings_onsite": {
+    "message": "Onsite",
+    "description": "Header of the section to change onsite website appearance and features"
+  },
+  "settings_theming": {
+    "message": "Theming",
+    "description": "Header of the theming section"
+  },
+  "settings_theming_sidebars": {
+    "message": "Sidebars",
+    "description": "Option to disable the sidebars in the extension popup"
+  },
+  "settings_theming_color": {
+    "message": "Theme Color",
+    "description": "Option to select a custom theme color for the extension popup"
+  },
+  "settings_theming_background_image": {
+    "message": "Background Image",
+    "description": "Option to select a custom background image for the extension popup"
+  },
+  "settings_theming_background_opacity": {
+    "message": "Background Opacity",
+    "description": "Option to set the transparency of the UI in front of the background image"
+  },
   "settings_Shortcuts": {
     "message": "Shortcuts",
     "description": "Shortcuts"

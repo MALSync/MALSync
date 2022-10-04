@@ -1,6 +1,10 @@
 <template>
   <div class="list-sync">
-    <SettingsGeneral v-if="isExtension()" component="checkbox" title="Sync daily in the background">
+    <SettingsGeneral
+      v-if="isExtension()"
+      component="checkbox"
+      :title="lang('settings_listsync_background')"
+    >
       <template #component> <FormCheckbox v-model="backgroundSync" /> </template>
     </SettingsGeneral>
     <Section spacer="half" direction="both">

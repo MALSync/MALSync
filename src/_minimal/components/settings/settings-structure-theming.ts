@@ -22,7 +22,7 @@ export const theming: ConfObj[] = [
   },
   {
     key: 'sidebars',
-    title: 'Sidebars',
+    title: () => api.storage.lang('settings_theming_sidebars'),
     props: {
       component: 'checkbox',
       option: 'themeSidebars',
@@ -31,7 +31,7 @@ export const theming: ConfObj[] = [
   },
   {
     key: 'color',
-    title: 'Color',
+    title: () => api.storage.lang('settings_theming_color'),
     props: {
       component: 'colorPicker',
       option: 'themeColor',
@@ -41,7 +41,7 @@ export const theming: ConfObj[] = [
   },
   {
     key: 'image',
-    title: 'Background Image',
+    title: () => api.storage.lang('settings_theming_background_image'),
     props: {
       component: 'input',
       option: 'themeImage',
@@ -56,7 +56,7 @@ export const theming: ConfObj[] = [
   },
   {
     key: 'opacity',
-    title: 'Background Opacity',
+    title: () => api.storage.lang('settings_theming_background_opacity'),
     props: {
       component: 'slider',
       option: 'themeOpacity',

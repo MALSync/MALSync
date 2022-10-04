@@ -9,12 +9,12 @@ import SettingsHr from './settings-hr.vue';
 export const trackingSimple: ConfObj[] = [
   {
     key: 'login',
-    title: 'Login',
+    title: () => api.storage.lang('kitsuClass_authentication_Login'),
     component: SettingsLogin,
   },
   {
     key: 'login',
-    title: 'Login',
+    title: () => api.storage.lang('kitsuClass_authentication_Login'),
     condition: () => api.settings.get('syncMode') === 'SIMKL',
     props: {
       option: 'syncModeSimkl',
@@ -191,7 +191,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'allSitesUi',
-    title: 'Tracking',
+    title: () => api.storage.lang('settings_tracking'),
     props: () => ({
       type: 'button',
       icon: '-',

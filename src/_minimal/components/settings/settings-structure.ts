@@ -23,7 +23,7 @@ export const structure: ConfObj[] = [
   missingPermissions,
   {
     key: 'tracking',
-    title: 'Tracking',
+    title: () => api.storage.lang('settings_tracking'),
     props: {
       icon: 'visibility',
     },
@@ -32,7 +32,7 @@ export const structure: ConfObj[] = [
   },
   {
     key: 'theming',
-    title: 'Theming',
+    title: () => api.storage.lang('settings_theming'),
     props: {
       icon: 'palette',
     },
@@ -41,7 +41,7 @@ export const structure: ConfObj[] = [
   },
   {
     key: 'onsite',
-    title: 'Onsite',
+    title: () => api.storage.lang('settings_onsite'),
     props: {
       icon: 'view_quilt',
     },
@@ -77,7 +77,7 @@ export const structure: ConfObj[] = [
   },
   {
     key: 'estimationSection',
-    title: 'Progress Estimation',
+    title: () => api.storage.lang('settings_progress'),
     props: {
       icon: 'update',
     },
@@ -96,7 +96,7 @@ export const structure: ConfObj[] = [
   },
   {
     key: 'listSyncSection',
-    title: 'List Sync',
+    title: () => api.storage.lang('settings_listsync'),
     props: {
       icon: 'sync_alt',
     },
@@ -104,7 +104,7 @@ export const structure: ConfObj[] = [
     children: [
       {
         key: 'listSync',
-        title: 'List Sync',
+        title: () => api.storage.lang('settings_listsync'),
         component: SettingsListSync,
       },
     ],
@@ -121,7 +121,7 @@ export const structure: ConfObj[] = [
   },
   {
     key: 'miscellaneous',
-    title: 'Miscellaneous',
+    title: () => api.storage.lang('settings_miscellaneous'),
     props: {
       icon: 'code',
     },
@@ -135,7 +135,7 @@ export const structure: ConfObj[] = [
   },
   {
     key: 'support',
-    title: 'Need help?',
+    title: () => api.storage.lang('settings_help'),
     props: {
       icon: 'help',
       href: 'https://github.com/MALSync/MALSync/wiki/Support',
@@ -144,7 +144,7 @@ export const structure: ConfObj[] = [
   },
   {
     key: 'joinDiscord',
-    title: 'Join our Discord Server',
+    title: () => api.storage.lang('settings_discord_join'),
     props: {
       icon: 'forum',
       href: 'https://discord.com/invite/cTH4yaw',
@@ -153,7 +153,7 @@ export const structure: ConfObj[] = [
   },
   {
     key: 'donate',
-    title: 'Donate',
+    title: () => api.storage.lang('settings_donate'),
     props: {
       icon: 'favorite',
       href: 'https://malsync.moe/donate',
