@@ -14,7 +14,7 @@
               </TextIcon>
             </div>
           </template>
-          <template v-if="state === 'loading'"> loading </template>
+          <template v-if="state === 'loading'"> {{ lang('Loading') }} </template>
           <template v-if="state === 'noAuth'">
             <div class="fll">
               <div @click="profileRequest.execute()"><TextIcon icon="sync">Recheck</TextIcon></div>

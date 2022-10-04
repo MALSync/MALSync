@@ -2,14 +2,13 @@
   <div>
     <Section spacer="half" direction="both">
       <Card>
-        <div>Please only use if you know what you are doing!</div>
+        <div>{{ lang('settings_custom_domains_disclaimer') }}</div>
         <div>
-          More info
           <MediaLink
             color="secondary"
             href="https://github.com/MALSync/MALSync/wiki/Custom-Domains"
           >
-            here
+            {{ lang('settings_more_info') }}
           </MediaLink>
         </div>
       </Card>
@@ -41,7 +40,7 @@
         <FormButton @click="addPermission()"><div class="material-icons">add</div></FormButton>
       </Section>
       <div v-if="!verifyEverything">
-        <FormButton color="secondary">Configuration is not correct!</FormButton>
+        <FormButton color="secondary">{{ lang('settings_custom_domains_wrong') }}</FormButton>
       </div>
       <div v-else-if="!hasAllPermissions || JSON.stringify(model) !== JSON.stringify(permissions)">
         <FormButton color="primary" @click="savePermissions()">{{ lang('Update') }}</FormButton>
@@ -60,7 +59,6 @@ import FormButton from '../form/form-button.vue';
 import Section from '../section.vue';
 import { domainType } from '../../../background/customDomain';
 import MediaLink from '../media-link.vue';
-import CodeBlock from '../code-block.vue';
 
 const options = getPageOptions()
   .map(el => ({ title: el.title, value: el.key }))

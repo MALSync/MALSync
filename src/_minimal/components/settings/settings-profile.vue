@@ -9,17 +9,21 @@
         </Header>
         <div>Logged in via {{ parameters.listObj.name }}</div>
         <div @click="deauth()">
-          <TextIcon icon="eject" position="after" mode="flex"> Deauthenticate </TextIcon>
+          <TextIcon icon="eject" position="after" mode="flex">
+            {{ lang('settings_profile_logout') }}
+          </TextIcon>
         </div>
       </template>
       <template v-if="state === 'loading'">
-        <Header> Loading </Header>
+        <Header> {{ lang('Loading') }} </Header>
         <div>{{ parameters.listObj.name }}</div>
         <div>--</div>
       </template>
       <template v-if="state === 'noAuth'">
-        <Header>No Login</Header>
-        <div @click="profileRequest.execute()"><TextIcon icon="sync">Recheck</TextIcon></div>
+        <Header>{{ lang('settings_profile_no_login') }}</Header>
+        <div @click="profileRequest.execute()">
+          <TextIcon icon="sync">{{ lang('settings_profile_check') }}</TextIcon>
+        </div>
         <MediaLink :href="parameters.listObj.authenticationUrl">
           <TextIcon icon="login">{{ lang('settings_Authenticate') }}</TextIcon>
         </MediaLink>

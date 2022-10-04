@@ -50,7 +50,7 @@
       </Card>
     </Section>
     <Card>
-      <Header :spacer="true">Custom search links</Header>
+      <Header :spacer="true">{{ lang('settings_StreamingSite_custom') }}</Header>
       <Section>
         <table>
           <tr class="row">

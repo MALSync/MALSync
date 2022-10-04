@@ -6,9 +6,8 @@
     <Section spacer="half" direction="both">
       <Card>
         <div>
-          More info
           <MediaLink color="secondary" href="https://github.com/MALSync/MALSync/wiki/List-Sync">
-            here
+            {{ lang('settings_more_info') }}
           </MediaLink>
         </div>
       </Card>

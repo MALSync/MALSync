@@ -28,7 +28,9 @@
           </table>
         </Description>
       </Section>
-      <Section v-if="!hasAllPermissions">Some Page permissions are not yet granted</Section>
+      <Section v-if="!hasAllPermissions">
+        {{ lang('settings_custom_domains_missing_permissions_long') }}
+      </Section>
       <FormButton color="secondary" padding="large" @click="add()">
         {{ lang('Add') }}
       </FormButton>

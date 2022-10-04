@@ -643,6 +643,18 @@
     "message": "Authenticate",
     "description": "Authenticate"
   },
+  "settings_profile_no_login": {
+    "message": "No Login",
+    "description": "Text if not logged in"
+  },
+  "settings_profile_logout": {
+    "message": "Logout",
+    "description": "Button to logout"
+  },
+  "settings_profile_check": {
+    "message": "Check",
+    "description": "Button to rechecks the login status"
+  },
   "settings_LocalSync": {
     "message": "Local storage fallback",
     "description": "Option to activate the local storage fallback sync"
@@ -702,6 +714,10 @@
   "settings_StreamingSite_text": {
     "message": "If disabled, the streaming site will no longer appear in an anime’s sidebar on MyAnimeList/AniList/Kitsu/Simkl.",
     "description": "Streaming Site Links - Text"
+  },
+  "settings_StreamingSite_custom": {
+    "message": "Custom search links",
+    "description": "Header of the section where you can add your own custom search links"
   },
   "settings_Thumbnails": {
     "message": "Thumbnails",
@@ -922,6 +938,14 @@
     "message": "ETC",
     "description": "ETC"
   },
+  "settings_tracking": {
+    "message": "Tracking",
+    "description": "tracking settings header"
+  },
+  "settings_tracking_disabled": {
+    "message": "Tracking Disabled",
+    "description": "Header for section with websites with disabled tracking"
+  },
   "settings_Userscriptmode": {
     "message": "Userscript mode",
     "description": "Userscript mode"
@@ -989,6 +1013,18 @@
   "settings_custom_domains_missing_permissions_header": {
     "message": "Missing permissions detected",
     "description": "Section header for asking to allow missing domain permissions"
+  },
+  "settings_custom_domains_missing_permissions_long": {
+    "message": "Some page permissions are not yet granted",
+    "description": "Asking to allow missing domain permissions"
+  },
+  "settings_custom_domains_disclaimer": {
+    "message": "Please only use if you know what you are doing!",
+    "description": "Text on the custom domain configuration page"
+  },
+  "settings_custom_domains_wrong": {
+    "message": "Configuration is not correct!",
+    "description": "Error text if the configuration is not correct"
   },
   "settings_clean_tags_button": {
     "message": "Clean Tags",

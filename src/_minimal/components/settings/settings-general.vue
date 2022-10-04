@@ -5,7 +5,7 @@
         {{ typeof title === 'function' ? (title as any)() : title }}
       </slot>
       <MediaLink v-if="infoLink" class="infoLink" :href="infoLink">
-        <FormButton padding="mini" color="primary">Info</FormButton>
+        <FormButton padding="mini" color="primary">{{ lang('settings_more_info') }}</FormButton>
       </MediaLink>
       <span v-if="tooltip" :data-text="tooltip" class="material-icons tooltip">help</span>
     </div>
