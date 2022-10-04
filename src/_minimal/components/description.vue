@@ -13,11 +13,11 @@
         :animation="false"
         @click="open = true"
       >
-        Read More
+        {{ lang('settings_read_more') }}
       </FormButton>
       <div v-if="open" class="close-button-box">
         <FormButton class="close-button" :animation="false" @click="open = false">
-          Read Less
+          {{ lang('settings_read_less') }}
         </FormButton>
       </div>
     </template>

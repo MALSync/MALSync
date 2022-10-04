@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :spacer="true">Information</Header>
+    <Header :spacer="true">{{ lang('overview_Information') }}</Header>
     <div class="flex">
       <div v-for="item in info" :key="item.title" class="item">
         <div class="type">{{ item.title }}</div>

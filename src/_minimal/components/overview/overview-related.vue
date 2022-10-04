@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :spacer="true">Related</Header>
+    <Header :spacer="true">{{ lang('overview_Related') }}</Header>
     <div class="grid">
       <FormButton v-for="relation in related" :key="relation.type" class="related-item">
         <div class="type">{{ relation.type }}</div>

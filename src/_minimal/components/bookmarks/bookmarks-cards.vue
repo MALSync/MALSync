@@ -19,14 +19,14 @@
       </div>
       <div class="subtext">
         <div>
-          Progress
+          {{ episodeLang(item.type) }}
           <span class="value">
             {{ item.watchedEp }}/<MediaTotalEpisode :episode="item.totalEp" />
             <MediaProgress :episode="item.progressEp" :text="item.progressText" />
           </span>
         </div>
         <div v-if="item.score">
-          Score
+          {{ lang('search_Score') }}
           <span class="value">
             {{ item.score }}
           </span>
@@ -55,6 +55,8 @@ defineProps({
     required: true,
   },
 });
+
+const episodeLang = utils.episode;
 </script>
 
 <style lang="less" scoped>

@@ -23,6 +23,10 @@
     "message": "Reset",
     "description": "Reset"
   },
+  "Synchronize": {
+    "message": "Synchronize",
+    "description": "Button to Synchronize state with mal..."
+  },
   "Remove": {
     "message": "Remove",
     "description": "Button for removing entry from MAL..."
@@ -595,6 +599,18 @@
     "message": "Characters",
     "description": "Characters"
   },
+  "overview_Information": {
+    "message": "Information",
+    "description": "Header of the information section of the popup anime overview"
+  },
+  "overview_Related": {
+    "message": "Related",
+    "description": "Header of the anime/manga relations section of the popup anime overview"
+  },
+  "overview_Streaming": {
+    "message": "Streaming",
+    "description": "Header of the streaming link section of the popup anime overview"
+  },
   "overview_OpeningTheme": {
     "message": "Opening Theme:",
     "description": "Opening Theme"
@@ -981,6 +997,14 @@
   "settings_more_info": {
     "message": "More Info",
     "description": "Link button which links to more informations"
+  },
+  "settings_read_more": {
+    "message": "Read More",
+    "description": "Button to show more of the description"
+  },
+  "settings_read_less": {
+    "message": "Read Less",
+    "description": "Button to show less the description"
   },
   "settings_presenceShowButtons": {
     "message": "Show button to view the anime/manga on MAL or another provider",
