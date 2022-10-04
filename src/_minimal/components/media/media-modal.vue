@@ -1,6 +1,6 @@
 <template>
   <component :is="Teleport" :to="rootHtml">
-    <div v-if="fill && fill.url && open" class="outer">
+    <div v-if="fill && fill.url && slugObj.path && open" class="outer">
       <MediaLink :href="fill.url" class="mediaModal" @click="open = false">
         <ImageFit :src="fill.image" class="image" />
         <DynamicFont class="title" :text="fill.title || fill.url" />
@@ -25,6 +25,7 @@ import {
 import MediaLink from '../media-link.vue';
 import ImageFit from '../image-fit.vue';
 import DynamicFont from '../dynamic-font.vue';
+import { urlToSlug } from '../../../utils/slugs';
 
 const rootHtml = inject('rootHtml') as HTMLElement;
 
@@ -33,6 +34,8 @@ const fill = inject('fill') as Ref<null | { url: string; image: string; title: s
 const open = ref(true);
 
 const url = computed(() => (fill.value ? fill.value.url : null));
+
+const slugObj = computed(() => urlToSlug(url.value || ''));
 
 watch(url, () => {
   open.value = true;
