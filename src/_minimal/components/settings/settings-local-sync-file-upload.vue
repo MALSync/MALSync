@@ -4,28 +4,32 @@
       <slot />
     </FormButton>
     <template v-else>
-      <input type="file" @change="handleFileUpload($event)" />
-      <p v-if="type() == 'webextension'" class="info">
-        If you have problems please retry in
-        <a style="text-decoration: underline" href="#" @click="openWindow($event)">this window</a>
-      </p>
+      <Card>
+        <input type="file" @change="handleFileUpload($event)" />
+        <p v-if="type() == 'webextension'" class="info">
+          If you have problems please retry in
+          <a style="text-decoration: underline" href="#" @click="openWindow($event)">this window</a>
+        </p>
+      </Card>
     </template>
   </span>
 </template>
 
 <style lang="less" scoped>
 .info {
-  height: 0;
   padding: 0;
   margin: 0;
+  margin-top: 10px;
+  width: 250px;
 }
 </style>
 
 <script lang="ts">
 import FormButton from '../form/form-button.vue';
+import Card from '../card.vue';
 
 export default {
-  components: { FormButton },
+  components: { FormButton, Card },
   data() {
     return {
       button: true,

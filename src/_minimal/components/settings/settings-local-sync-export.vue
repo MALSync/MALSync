@@ -1,5 +1,5 @@
 <template>
-  <SettingsGeneral component="checkbox" title="">
+  <SettingsGeneral component="checkbox" :title="title">
     <template #component>
       <div class="buttons">
         <FormButton color="primary" @click="exportFallbackSync()">
@@ -85,6 +85,9 @@ function importFallbackSync(filecontent) {
 <style lang="less" scoped>
 .buttons {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-start;
   gap: 10px;
 }
 </style>
