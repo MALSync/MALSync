@@ -57,7 +57,12 @@ export function usePopper({ emit, popperNode, triggerNode, placement }) {
     state.popperInstance = createPopper(triggerNode.value, popperNode.value, {
       placement: placement.value,
       modifiers: [
-        preventOverflow,
+        {
+          name: 'preventOverflow',
+          options: {
+            padding: 15,
+          },
+        },
         flip,
         {
           name: 'flip',
