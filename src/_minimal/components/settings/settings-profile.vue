@@ -8,7 +8,7 @@
           </MediaLink>
         </Header>
         <div>{{ lang('settings_profile_logged_via', [parameters.listObj.name]) }}</div>
-        <div @click="deauth()">
+        <div class="link-hover" @click="deauth()">
           <TextIcon icon="eject" position="after" mode="flex">
             {{ lang('settings_profile_logout') }}
           </TextIcon>
@@ -21,7 +21,7 @@
       </template>
       <template v-if="state === 'noAuth'">
         <Header>{{ lang('settings_profile_no_login') }}</Header>
-        <div @click="profileRequest.execute()">
+        <div class="link-hover" @click="profileRequest.execute()">
           <TextIcon icon="sync">{{ lang('settings_profile_check') }}</TextIcon>
         </div>
         <MediaLink :href="parameters.listObj.authenticationUrl">
@@ -89,3 +89,10 @@ const state = computed(() => {
   return 'auth';
 });
 </script>
+
+<style lang="less" scoped>
+@import '../../less/_globals.less';
+.link-hover {
+  .link();
+}
+</style>

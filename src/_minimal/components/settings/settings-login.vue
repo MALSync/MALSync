@@ -8,7 +8,7 @@
       <template #component>
         <div>
           <template v-if="state === 'auth'">
-            <div @click="deauth()">
+            <div class="link-hover" @click="deauth()">
               <TextIcon icon="eject" position="after" mode="flex" spacer="small">
                 <strong>{{ profileRequest.data.username }}</strong>
               </TextIcon>
@@ -17,7 +17,7 @@
           <template v-if="state === 'loading'"> {{ lang('Loading') }} </template>
           <template v-if="state === 'noAuth'">
             <div class="fll">
-              <div @click="profileRequest.execute()"><TextIcon icon="sync">Recheck</TextIcon></div>
+              <div class="link-hover" @click="profileRequest.execute()"><TextIcon icon="sync">Recheck</TextIcon></div>
               <MediaLink :href="parameters.listObj.authenticationUrl">
                 <TextIcon icon="login">{{ lang('settings_Authenticate') }}</TextIcon>
               </MediaLink>
@@ -80,6 +80,8 @@ const state = computed(() => {
 </script>
 
 <style lang="less" scoped>
+@import '../../less/_globals.less';
+
 .fll {
   display: flex;
   align-items: center;
@@ -90,5 +92,9 @@ const state = computed(() => {
 
 .noAuth {
   color: red;
+}
+
+.link-hover {
+  .link();
 }
 </style>
