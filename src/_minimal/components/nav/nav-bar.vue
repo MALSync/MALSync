@@ -20,7 +20,9 @@
       <router-link to="/settings" class="link">
         <span class="material-icons">settings</span>
       </router-link>
-      <span v-if="fullscreenFunction" class="material-icons link" @click="fullscreenFunction()">fullscreen</span>
+      <span v-if="fullscreenFunction" class="material-icons link" @click="fullscreenFunction()"
+        >fullscreen</span
+      >
       <span class="material-icons link" @click="closeWindow()">close</span>
     </div>
   </div>

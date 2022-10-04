@@ -109,6 +109,10 @@ watch(
 
 .settings-block {
   position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
   .__breakpoint-popup__({
     &.designed {
       padding-bottom: 30px
