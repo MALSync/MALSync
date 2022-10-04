@@ -8,9 +8,6 @@ export const ADKami: pageInterface = {
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    if (jsonData) {
-      return jsonData.isStreaming;
-    }
     return utils.urlPart(url, 3) === 'anime' && utils.urlPart(url, 4).length !== 0;
   },
   sync: {
