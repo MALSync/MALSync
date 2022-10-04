@@ -1,6 +1,15 @@
 <template>
   <component :is="Teleport" :to="rootHtml">
-    <div v-if="fill && fill.url && slugObj.path && open" class="outer">
+    <div
+      v-if="
+        fill &&
+        fill.url &&
+        slugObj.path &&
+        JSON.stringify(route.params) !== JSON.stringify(slugObj.path) &&
+        open
+      "
+      class="outer"
+    >
       <MediaLink :href="fill.url" class="mediaModal" @click="open = false">
         <ImageFit :src="fill.image" class="image" />
         <DynamicFont class="title" :text="fill.title || fill.url" />
@@ -22,10 +31,13 @@ import {
   ref,
   watch,
 } from 'vue';
+import { useRoute } from 'vue-router';
 import MediaLink from '../media-link.vue';
 import ImageFit from '../image-fit.vue';
 import DynamicFont from '../dynamic-font.vue';
 import { urlToSlug } from '../../../utils/slugs';
+
+const route = useRoute();
 
 const rootHtml = inject('rootHtml') as HTMLElement;
 
