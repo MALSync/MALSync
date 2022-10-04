@@ -8,7 +8,10 @@ export const ADKami: pageInterface = {
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    return jsonData.isStreaming;
+    if (jsonData) {
+      return jsonData.isStreaming;
+    }
+    return utils.urlPart(url, 3) === 'anime' && utils.urlPart(url, 4).length !== 0;
   },
   sync: {
     getTitle(url) {
@@ -51,16 +54,24 @@ export const ADKami: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(function () {
-      utils.waitUntilTrue(
-        function () {
-          return j.$('#syncData').length;
-        },
-        function () {
-          jsonData = JSON.parse(j.$('#syncData').text());
-          page.handlePage();
-        },
-      );
+    j.$(function () {
+      if (ADKami.isSyncPage(window.location.href)) {
+        utils.waitUntilTrue(
+          function () {
+            return j.$('#syncData').length;
+          },
+          function () {
+            jsonData = JSON.parse(j.$('#syncData').text());
+            if (jsonData.id.split('-')[2] === '1') {
+              page.handlePage();
+            } else {
+              con.info('Only episodes are supported');
+            }
+          },
+        );
+      } else {
+        page.handlePage();
+      }
     });
   },
 };
