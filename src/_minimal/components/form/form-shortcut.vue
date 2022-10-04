@@ -96,7 +96,7 @@ const display = computed(() => {
   } else if (recording.value) {
     objKeys = Object.keys(keys.value);
   } else if (!objKeys || !objKeys.length) {
-    return api.storage.lang('settings_Shortcuts_Click');
+    return inFocus.value ? '' : api.storage.lang('settings_Shortcuts_Click');
   }
   return objKeys.map(val => keyboardMap[val]).join(' + ');
 });
@@ -113,7 +113,7 @@ const display = computed(() => {
   gap: 10px;
   position: relative;
   align-items: center;
-  height: 32px;
+  min-height: 32px;
   min-width: 50px;
   max-width: 100%;
   border: 2px solid var(--cl-backdrop);
