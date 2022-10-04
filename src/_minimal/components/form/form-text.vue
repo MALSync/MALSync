@@ -133,7 +133,7 @@ const valid = computed(() => {
   gap: 10px;
   position: relative;
   align-items: center;
-  height: 32px;
+  min-height: 32px;
   min-width: v-bind(width);
   max-width: 100%;
   border: 2px solid var(--cl-backdrop);
