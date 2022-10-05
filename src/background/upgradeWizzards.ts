@@ -69,6 +69,16 @@ export async function upgradewWizzards(lastVersion) {
       },
     },
     {
+      version: '0.8.22',
+      name: 'Migate serial theme',
+      action: () => {
+        return api.storage.get('settings/theme').then(res => {
+          if (typeof res !== 'undefined' && res === 'serial')
+            api.storage.set('settings/theme', 'auto');
+        });
+      },
+    },
+    {
       version: '*',
       name: 'Remove auto domain permissions',
       action: () => {
