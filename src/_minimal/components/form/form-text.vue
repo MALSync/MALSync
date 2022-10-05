@@ -199,7 +199,7 @@ const valid = computed(() => {
     .border-radius-small();
 
     padding: 2px 5px;
-    height: auto;
+    min-height: auto;
     .text-input {
       width: 70px;
     }
