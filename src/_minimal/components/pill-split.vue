@@ -22,7 +22,7 @@ defineProps({
     default: false,
   },
   color: {
-    type: String as PropType<'primary-dark' | 'secondary'>,
+    type: String as PropType<'primary-dark' | 'secondary' | 'dark-background'>,
     default: 'primary-dark',
   },
 });
@@ -57,6 +57,10 @@ defineProps({
     }
     &.secondary {
       background-color: var(--cl-secondary);
+    }
+
+    &.dark-background {
+      background-color: var(--cl-dark-background);
     }
   }
   & > .right {

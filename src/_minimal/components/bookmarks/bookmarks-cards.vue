@@ -15,6 +15,7 @@
           :stream-url="item.streamUrl"
           :stream-icon="item.streamIcon"
           :watched-ep="item.watchedEp"
+          :show-ep="false"
         />
       </div>
       <div class="subtext">

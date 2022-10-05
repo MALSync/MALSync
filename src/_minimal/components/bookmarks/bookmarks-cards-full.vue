@@ -11,6 +11,7 @@
           :stream-url="item.streamUrl"
           :stream-icon="item.streamIcon"
           :watched-ep="item.watchedEp"
+          :total-ep="item.totalEp"
         />
       </div>
       <div class="bottomBox">
