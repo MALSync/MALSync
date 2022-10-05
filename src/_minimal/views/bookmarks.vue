@@ -19,6 +19,13 @@
         :type="parameters.type"
         :rewatching="listRequest.data ? listRequest.data?.seperateRewatching : false"
       />
+      <FormButton
+        v-if="parameters.state === 6"
+        padding="pill"
+        @click="openRandom(6, parameters.type)"
+      >
+        <div class="material-icons" title="random">shuffle</div>
+      </FormButton>
       <div style="flex-grow: 1"></div>
       <FormDropdown
         v-if="sortingOptions && sortingOptions.length"
@@ -123,6 +130,8 @@ import { bookmarkFormats } from '../utils/bookmarks';
 import ErrorBookmarks from '../components/error/error-bookmarks.vue';
 import Empty from '../components/empty.vue';
 import TextIcon from '../components/text-icon.vue';
+import FormButton from '../components/form/form-button.vue';
+import { urlToSlug } from '../../utils/slugs';
 
 const rootWindow = inject('rootWindow') as Window;
 const rootDocument = inject('rootDocument') as Document;
@@ -317,6 +326,30 @@ const sort = computed({
     listRequest.execute();
   },
 });
+
+const randomListCache = { anime: [], manga: [] };
+async function openRandom(status, type) {
+  if (!randomListCache[type].length) {
+    utils.flashm('Loading');
+    const listProvider = await getList(status, type);
+    await listProvider
+      .getCompleteList()
+      .then(async res => {
+        randomListCache[type] = res;
+      })
+      .catch(e => {
+        con.error(e);
+      });
+  }
+  if (randomListCache[type].length > 1) {
+    const currentUrl =
+      randomListCache[type][Math.floor(Math.random() * randomListCache[type].length)].url;
+    const slugObj = urlToSlug(currentUrl);
+    router.push({ name: 'Overview', params: slugObj.path });
+  } else {
+    utils.flashm('List is too small!');
+  }
+}
 </script>
 
 <style lang="less" scoped>
