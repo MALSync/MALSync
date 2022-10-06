@@ -41,7 +41,7 @@ async function urlChange(page) {
   $('html').addClass('miniMAL-hide');
   let curUrl: string = window.location.href;
   if ($(syncSelector).attr('href')) {
-    curUrl = $(syncSelector).attr('href')!;
+    curUrl = utils.absoluteLink($(syncSelector).attr('href'), window.location.origin);
   }
 
   const path = String(utils.urlParam(curUrl, 'key'));
