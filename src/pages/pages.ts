@@ -135,6 +135,7 @@ import { RealmScans } from './RealmScans/main';
 import { LuminousScans } from './LuminousScans/main';
 import { Animeworld } from './Animeworld/main';
 import { MangaBuddy } from './MangaBuddy/main';
+import { Vostfree } from './Vostfree/main';
 import { VoidScans } from './VoidScans/main';
 import { ToonAnime } from './ToonAnime/main';
 
@@ -276,6 +277,7 @@ export const pages = {
   LuminousScans,
   Animeworld,
   MangaBuddy,
+  Vostfree,
   VoidScans,
   ToonAnime,
 };
