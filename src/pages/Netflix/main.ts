@@ -69,7 +69,7 @@ function getSeries(page) {
   api.request
     .xhr(
       'GET',
-      `${meta.models.playerModel.data.config.ui.initParams.apiUrl}/metadata?movieid=${videoId}`,
+      `https://${meta.models.services.data.memberapi.hostname}${meta.models.services.data.memberapi.path[0]}/metadata?movieid=${videoId}`,
     )
     .then(response => {
       const data = JSON.parse(response.responseText);
