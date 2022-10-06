@@ -4,15 +4,12 @@ let jsonData = {
   title: '',
   episode: null,
   aniId: null,
-  id: null,
   nextEpUrl: null,
 };
 
-const domain = 'https://kaguya.live';
-
 export const Kaguya: pageInterface = {
   name: 'Kaguya',
-  domain,
+  domain: 'https://kaguya.live',
   languages: ['Vietnamese', 'English'],
   type: 'anime',
   isSyncPage(url) {
@@ -26,15 +23,15 @@ export const Kaguya: pageInterface = {
       return jsonData.title;
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 5);
+      return jsonData.aniId!;
     },
     getOverviewUrl(url) {
-      const id = utils.urlPart(url, 5);
+      const id = Kaguya.sync!.getIdentifier(url);
 
-      return `${domain}/anime/details/${id}`;
+      return `${Kaguya.domain}/anime/details/${id}`;
     },
     nextEpUrl() {
-      return `${domain}${jsonData.nextEpUrl}`;
+      return utils.absoluteLink(jsonData.nextEpUrl, Kaguya.domain);
     },
     getEpisode() {
       return jsonData.episode || 0;
@@ -45,7 +42,7 @@ export const Kaguya: pageInterface = {
       return jsonData.title;
     },
     getIdentifier() {
-      return (jsonData.aniId || 0).toString();
+      return jsonData.aniId!;
     },
     uiSelector(selector) {
       j.$('#mal-sync').first().after(j.html(selector));
@@ -62,26 +59,20 @@ export const Kaguya: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
 
-    j.$(document).ready(function () {
-      const check = () => {
-        utils.waitUntilTrue(
-          function () {
-            const tempJsonData = JSON.parse(j.$('#syncData').text() || '{}');
+    let _debounce;
 
-            return Object.keys(tempJsonData).length !== 0;
-          },
-          function () {
-            jsonData = JSON.parse(j.$('#syncData').text() || '{}');
+    utils.changeDetect(check, () => j.$('#syncData').text());
+    check();
 
-            page.handlePage();
-          },
-        );
-      };
-
-      utils.fullUrlChangeDetect(function () {
-        page.reset();
-        check();
-      });
-    });
+    function check() {
+      page.reset();
+      if (j.$('#syncData').length) {
+        jsonData = JSON.parse(j.$('#syncData').text());
+        clearTimeout(_debounce);
+        _debounce = setTimeout(() => {
+          page.handlePage();
+        }, 500);
+      }
+    }
   },
 };
