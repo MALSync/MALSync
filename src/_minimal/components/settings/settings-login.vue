@@ -17,7 +17,9 @@
           <template v-if="state === 'loading'"> {{ lang('Loading') }} </template>
           <template v-if="state === 'noAuth'">
             <div class="fll">
-              <div class="link-hover" @click="profileRequest.execute()"><TextIcon icon="sync">Recheck</TextIcon></div>
+              <div class="link-hover" @click="profileRequest.execute()">
+                <TextIcon icon="sync">Recheck</TextIcon>
+              </div>
               <MediaLink :href="parameters.listObj.authenticationUrl">
                 <TextIcon icon="login">{{ lang('settings_Authenticate') }}</TextIcon>
               </MediaLink>
