@@ -1,6 +1,7 @@
 {
   "title": "Voiranime",
   "url": "http://voiranime.com",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://voiranime.com/anime/no-game-no-life/no-game-no-life-06-vostfr/",
@@ -34,6 +35,30 @@
         "identifier": "no-game-no-life",
         "uiSelector": true
       }
-    }
+    },
+    {
+      "url": "https://voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav2-vostfr/",
+      "expected": {
+        "sync": true,
+        "title": "Kujibiki Unbalance ",
+        "identifier": "kujibiki-unbalance",
+        "overviewUrl": "https://voiranime.com/anime/kujibiki-unbalance/",
+        "nextEpUrl": "https://voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav3-vostfr/",
+        "episode": 2,
+        "uiSelector": false
+     }
+   },
+    {
+      "url": "https://voiranime.com/anime/kujibiki-unbalance/",
+      "expected": {
+        "sync": false,
+        "title": "Kujibiki Unbalance",
+        "identifier": "kujibiki-unbalance",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav3-vostfr/"
+        }
+      }
+    },
   ]
 }
