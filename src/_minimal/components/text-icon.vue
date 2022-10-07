@@ -48,14 +48,16 @@ defineProps({
 </script>
 
 <style lang="less" scoped>
+@import '../less/_globals.less';
+
 .text-icon {
   line-height: 1;
 
   .before {
-    margin-right: 10px;
+    margin-right: @img-text-spacing;
   }
   .after {
-    margin-left: 10px;
+    margin-left: @img-text-spacing;
   }
 
   &.small {
