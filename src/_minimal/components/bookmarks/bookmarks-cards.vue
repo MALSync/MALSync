@@ -8,37 +8,41 @@
     <div class="gradient gradient-black" />
     <MediaLink class="link" :href="item.url" />
     <div class="text">
-      <div class="top-text">
-        <MediaPillProgress :progress="item.progress" />
-        <MediaPill
-          :score="item.score"
-          :stream-url="item.streamUrl"
-          :stream-icon="item.streamIcon"
-          :watched-ep="item.watchedEp"
-          :show-ep="false"
-        />
-      </div>
-      <div class="subtext">
-        <div>
-          {{ episodeLang(item.type) }}
-          <span class="value">
-            {{ item.watchedEp }}/<MediaTotalEpisode :episode="item.totalEp" />
-            <MediaProgressPill
-              :episode="item.progressEp"
-              :text="item.progressText"
-              mode="large"
-              :watched-ep="item.watchedEp"
-            />
-          </span>
-        </div>
-        <div v-if="item.score">
-          {{ lang('search_Score') }}
-          <span class="value">
-            {{ item.score }}
-          </span>
+      <div class="gradient-transition">
+        <div class="top-text">
+          <MediaPillProgress :progress="item.progress" />
+          <MediaPill
+            :score="item.score"
+            :stream-url="item.streamUrl"
+            :stream-icon="item.streamIcon"
+            :watched-ep="item.watchedEp"
+            :show-ep="false"
+          />
         </div>
       </div>
-      <Header class="title"> <StateDot :status="item.status" />{{ item.title }} </Header>
+      <div class="gradient-text">
+        <div class="subtext">
+          <div>
+            {{ episodeLang(item.type) }}
+            <span class="value">
+              {{ item.watchedEp }}/<MediaTotalEpisode :episode="item.totalEp" />
+              <MediaProgressPill
+                :episode="item.progressEp"
+                :text="item.progressText"
+                mode="large"
+                :watched-ep="item.watchedEp"
+              />
+            </span>
+          </div>
+          <div v-if="item.score">
+            {{ lang('search_Score') }}
+            <span class="value">
+              {{ item.score }}
+            </span>
+          </div>
+        </div>
+        <Header class="title"> <StateDot :status="item.status" />{{ item.title }} </Header>
+      </div>
     </div>
   </div>
 </template>
@@ -98,12 +102,21 @@ const episodeLang = utils.episode;
 
     display: flex;
     flex-direction: column;
-    padding: @spacer-half;
     pointer-events: none;
+
+    .gradient-transition {
+      flex-grow: 1;
+      padding: @spacer-half;
+      background: linear-gradient(rgb(255 255 255 / 0%) 30%, #00000030 100%);
+    }
+
+    .gradient-text {
+      padding: @spacer-half;
+      background: linear-gradient(#00000030 0%, #00000030 115%);
+    }
   }
 
   .top-text {
-    flex-grow: 1;
     align-self: flex-end;
     display: flex;
     flex-direction: column;
