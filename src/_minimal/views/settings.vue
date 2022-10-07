@@ -2,8 +2,11 @@
   <div class="settings-block" :class="{ designed: !components.path.length }">
     <transition :name="components.path.length ? 'slide-in' : 'slide-out'">
       <div :key="components.path">
-        <div v-if="components.path.length" class="back-button">
-          <router-link :to="{ name: 'Settings', params: { path: [components.path.slice(0, -1)] } }">
+        <router-link
+          v-if="components.path.length"
+          :to="{ name: 'Settings', params: { path: [components.path.slice(0, -1)] } }"
+        >
+          <div class="back-button">
             <Header>
               <TextIcon icon="arrow_back" mode="flex" background="round">
                 {{
@@ -15,8 +18,8 @@
                 }}
               </TextIcon>
             </Header>
-          </router-link>
-        </div>
+          </div>
+        </router-link>
         <template v-for="comp in components.structure" :key="comp.key">
           <TransitionSlide>
             <SettingsRendering
