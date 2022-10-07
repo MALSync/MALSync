@@ -41,7 +41,9 @@
             </span>
           </div>
         </div>
-        <Header class="title"> <StateDot :status="item.status" />{{ item.title }} </Header>
+        <Header class="title">
+          <StateDot :status="item.status" /><span>{{ item.title }}</span>
+        </Header>
       </div>
     </div>
   </div>
@@ -126,6 +128,8 @@ const episodeLang = utils.episode;
 
   .title {
     margin: 0;
+    display: flex;
+    align-items: center;
   }
 
   .subtext {
