@@ -36,9 +36,11 @@
               <template #placeholder="{ picked, suffix }">
                 <div class="progress-picked">
                   {{ picked }}{{ picked ? suffix : '' }}
-                  <span v-if="progress" class="progress-pill">{{
-                    progress.getCurrentEpisode()
-                  }}</span>
+                  <MediaProgressPill
+                    v-if="progress"
+                    :episode="progress.getCurrentEpisode()"
+                    :text="progress.getPredictionText()"
+                  />
                 </div>
               </template>
             </FormText>
@@ -167,6 +169,7 @@ import { ScoreOption } from '../../../_provider/ScoreMode/ScoreModeStrategy';
 import OverviewImageLanguage from './overview-image-language.vue';
 import FormClick from '../form/form-click.vue';
 import ErrorSingle from '../error/error-single.vue';
+import MediaProgressPill from '../media/media-progress-pill.vue';
 
 const singleLoading = ref(false);
 
@@ -419,14 +422,6 @@ const episodeLang = utils.episode;
   align-items: center;
   gap: 5px;
   justify-content: center;
-
-  .progress-pill {
-    font-size: 12px;
-    background-color: var(--cl-primary);
-    color: white;
-    padding: 0 5px;
-    border-radius: 5px;
-  }
 }
 
 .increase {

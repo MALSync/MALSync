@@ -28,8 +28,10 @@
         <div class="value">{{ item.watchedEp }}</div>
         <div>/</div>
         <div><MediaTotalEpisode :episode="item.totalEp" /></div>
+        <div>
+          <MediaProgressPill :episode="item.progressEp" :text="item.progressText" mode="medium" />
+        </div>
       </div>
-      <MediaProgress :episode="item.progressEp" :text="item.progressText" />
     </div>
     <div class="subtext score">
       {{ item.score || '-' }}
@@ -48,6 +50,7 @@ import MediaProgress from '../media/media-progress.vue';
 import TextIcon from '../text-icon.vue';
 import DynamicFont from '../dynamic-font.vue';
 import Arrow from '../arrow.vue';
+import MediaProgressPill from '../media/media-progress-pill.vue';
 
 defineProps({
   item: {
