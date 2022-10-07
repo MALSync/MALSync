@@ -78,7 +78,6 @@ const closeWindow = () => {
   position: sticky;
   padding: 0 @spacer;
   top: -20px;
-  margin-bottom: @spacer;
   z-index: 10;
   transition: box-shadow 0.1s, background-color 0.1s;
   border-top-left-radius: 0;

@@ -76,13 +76,6 @@ provide('breakpoint', breakpoint);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-}
-
-// temp
-
-.transitionTest {
-  width: 100px;
-  height: 100px;
-  background-color: red;
+  padding-top: @spacer;
 }
 </style>

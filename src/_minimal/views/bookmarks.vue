@@ -35,16 +35,18 @@
         :compare-func="(el, picked) => el.toString() === picked.toString().replace('_asc', '')"
       >
         <template #select="slotProps">
-          <span
-            v-if="slotProps.meta.asc"
-            class="material-icons"
-            @click.stop="
-              sort.endsWith('_asc') ? (sort = sort.replace('_asc', '')) : (sort = sort + '_asc')
-            "
-          >
-            {{ !sort.endsWith('_asc') ? 'arrow_downward' : 'arrow_upward' }}
-          </span>
-          <span class="material-icons">{{ slotProps.meta.icon || 'filter_list' }}</span>
+          <div class="select-icon">
+            <span
+              v-if="slotProps.meta.asc"
+              class="material-icons"
+              @click.stop="
+                sort.endsWith('_asc') ? (sort = sort.replace('_asc', '')) : (sort = sort + '_asc')
+              "
+            >
+              {{ !sort.endsWith('_asc') ? 'arrow_downward' : 'arrow_upward' }}
+            </span>
+            <span class="material-icons">{{ slotProps.meta.icon || 'filter_list' }}</span>
+          </div>
         </template>
         <template #option="slotProps">
           <TextIcon :icon="slotProps.option.meta.icon"> {{ slotProps.option.title }}</TextIcon>
@@ -59,7 +61,7 @@
         size="small"
       >
         <template #select>
-          <span class="material-icons">{{ listTheme.icon }}</span>
+          <span class="material-icons select-icon">{{ listTheme.icon }}</span>
         </template>
         <template #option="slotProps">
           <span class="material-icons">{{ slotProps.option.value }}</span>
@@ -381,5 +383,9 @@ async function openRandom(status, type) {
 
 .sortPlaceholder {
   padding-top: 1px;
+}
+
+.select-icon {
+  display: flex;
 }
 </style>

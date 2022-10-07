@@ -1,5 +1,5 @@
 <template>
-  <div class="radio-slider">
+  <div class="radio-slider" tabindex="0">
     <template v-for="(option, index) in options" :key="option.value">
       <input
         :id="`radio-${id}-${index}`"
@@ -80,6 +80,10 @@ const id = Math.floor(Math.random() * 10000);
 
     background-color: var(--cl-primary);
     color: white;
+  }
+
+  &:focus-visible {
+    .focus-outline();
   }
 
   .input {
