@@ -1,0 +1,6 @@
+{
+  "search": "https://www.adkami.com/video?search={searchtermPlus}",
+  "urls": {
+    "match": ["*://*.adkami.com/*"]
+  }
+}
