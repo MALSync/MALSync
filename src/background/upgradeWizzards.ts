@@ -69,8 +69,8 @@ export async function upgradewWizzards(lastVersion) {
       },
     },
     {
-      version: '0.8.22',
-      name: 'Migate serial theme',
+      version: '0.9.0',
+      name: 'Migrate serial theme',
       action: () => {
         return api.storage.get('settings/theme').then(res => {
           if (typeof res !== 'undefined' && res === 'serial')
