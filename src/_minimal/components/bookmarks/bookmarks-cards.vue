@@ -23,7 +23,12 @@
           {{ episodeLang(item.type) }}
           <span class="value">
             {{ item.watchedEp }}/<MediaTotalEpisode :episode="item.totalEp" />
-            <MediaProgress :episode="item.progressEp" :text="item.progressText" />
+            <MediaProgressPill
+              :episode="item.progressEp"
+              :text="item.progressText"
+              mode="large"
+              :watched-ep="item.watchedEp"
+            />
           </span>
         </div>
         <div v-if="item.score">
@@ -49,6 +54,7 @@ import MediaTotalEpisode from '../media/media-total-episode.vue';
 import MediaProgress from '../media/media-progress.vue';
 import MediaPill from '../media/media-pill.vue';
 import MediaPillProgress from '../media/media-pill-progress.vue';
+import MediaProgressPill from '../media/media-progress-pill.vue';
 
 defineProps({
   item: {

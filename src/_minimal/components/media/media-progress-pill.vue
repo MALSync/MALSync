@@ -1,13 +1,13 @@
 <template>
-  <span v-if="episode" class="progress-pill" :title="text" :class="[mode].join(' ')">
+  <span v-if="episode" class="progress-pill" :title="text" :class="[mode, hasNewEps].join(' ')">
     {{ episode }}
   </span>
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue';
+import { computed, PropType } from 'vue';
 
-defineProps({
+const props = defineProps({
   episode: {
     type: Number,
     required: false,
@@ -19,9 +19,18 @@ defineProps({
     default: '',
   },
   mode: {
-    type: String as PropType<'small' | 'medium'>,
+    type: String as PropType<'small' | 'medium' | 'large'>,
     default: 'small',
   },
+  watchedEp: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+});
+
+const hasNewEps = computed(() => {
+  return props.episode > props.watchedEp ? 'has-new-eps' : '';
 });
 </script>
 
@@ -33,9 +42,17 @@ defineProps({
   padding: 0 5px;
   border-radius: 5px;
 
-  &.medium {
+  &.medium,
+  &.large {
     font-size: 14px;
     margin-left: 3px;
+    &.large {
+      margin-left: 6px;
+    }
+  }
+
+  &.has-new-eps {
+    background-color: var(--cl-secondary);
   }
 }
 </style>
