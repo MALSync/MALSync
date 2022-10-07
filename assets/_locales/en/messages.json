@@ -729,6 +729,14 @@
     "message": "Custom search links",
     "description": "Header of the section where you can add your own custom search links"
   },
+  "settings_StreamingSite_custom_url_anime": {
+    "message": "Anime search URL",
+    "description": "Form field title to enter the search url for anime"
+  },
+  "settings_StreamingSite_custom_url_manga": {
+    "message": "Manga search URL",
+    "description": "Form field title to enter the search url for manga"
+  },
   "settings_Thumbnails": {
     "message": "Thumbnails",
     "description": "Thumbnails"

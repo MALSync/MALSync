@@ -82,10 +82,18 @@
         <FormText v-model="customName" placeholder="Name" class="custom-field" />
       </Section>
       <Section spacer="half">
-        <FormText v-model="customAnime" placeholder="Anime Search Url" class="custom-field" />
+        <FormText
+          v-model="customAnime"
+          :placeholder="lang('settings_StreamingSite_custom_url_anime')"
+          class="custom-field"
+        />
       </Section>
       <Section spacer="half">
-        <FormText v-model="customManga" placeholder="Manga Search Url" class="custom-field" />
+        <FormText
+          v-model="customManga"
+          :placeholder="lang('settings_StreamingSite_custom_url_manga')"
+          class="custom-field"
+        />
       </Section>
 
       <FormButton
