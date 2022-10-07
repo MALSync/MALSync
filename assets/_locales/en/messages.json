@@ -382,28 +382,28 @@
     "description": "Credentials wrong"
   },
   "bookmarksItem_Years": {
-    "message": "Years",
-    "description": "Years"
+    "message": "years",
+    "description": "years"
   },
   "bookmarksItem_Year": {
-    "message": "Year",
-    "description": "Year"
+    "message": "year",
+    "description": "year"
   },
   "bookmarksItem_Days": {
-    "message": "Days",
-    "description": "Days"
+    "message": "days",
+    "description": "days"
   },
   "bookmarksItem_Day": {
-    "message": "Day",
-    "description": "Day"
+    "message": "day",
+    "description": "day"
   },
   "bookmarksItem_Hours": {
-    "message": "Hours",
-    "description": "Hours"
+    "message": "hours",
+    "description": "hours"
   },
   "bookmarksItem_Hour": {
-    "message": "Hour",
-    "description": "Hour"
+    "message": "hour",
+    "description": "hour"
   },
   "bookmarksItem_mins": {
     "message": "mins",
