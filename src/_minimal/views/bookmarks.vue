@@ -64,7 +64,7 @@
           <span class="material-icons select-icon">{{ listTheme.icon }}</span>
         </template>
         <template #option="slotProps">
-          <span class="material-icons">{{ slotProps.option.value }}</span>
+          <span class="material-icons select-icon">{{ slotProps.option.value }}</span>
         </template>
       </FormDropdown>
     </Section>
