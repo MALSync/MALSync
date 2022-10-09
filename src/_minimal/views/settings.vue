@@ -7,7 +7,7 @@
           :to="{ name: 'Settings', params: { path: [components.path.slice(0, -1)] } }"
         >
           <div class="back-button">
-            <Header>
+            <Header weight="normal">
               <TextIcon icon="arrow_back" mode="flex" background="round">
                 {{
                   components.parent

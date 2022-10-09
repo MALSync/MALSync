@@ -84,12 +84,14 @@ watch(inner, () => calcOverflow());
     bottom: 1px;
     left: 50%;
     transform: translateX(-50%);
+    font-weight: 500;
   }
 
   .close-button-box {
     display: flex;
     justify-content: center;
     margin-top: @spacer-half;
+    font-weight: 500;
   }
 
   &.close {

@@ -1,14 +1,14 @@
 <template>
   <MediaLink v-if="href" :href="href">
     <div class="overview-button">
-      <Header>
+      <Header weight="normal">
         <TextIcon :icon="icon" mode="flex">{{ title }}</TextIcon>
       </Header>
     </div>
   </MediaLink>
   <router-link v-else-if="type === 'general'" :to="{ name: 'Settings', params: { path } }">
     <div class="overview-button">
-      <Header>
+      <Header weight="normal">
         <TextIcon :icon="icon" mode="flex">{{ title }}</TextIcon>
       </Header>
     </div>

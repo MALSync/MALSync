@@ -114,7 +114,7 @@ function getTitle(item) {
 
   .type {
     margin-right: 10px;
-    font-weight: bold;
+    font-weight: 500;
     white-space: nowrap;
   }
 

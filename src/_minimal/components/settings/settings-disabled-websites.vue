@@ -1,6 +1,8 @@
 <template>
   <Card v-if="Object.keys(pageArray).length" class="disabledWebsites">
-    <Header v-if="onlyDisabled" :spacer="true">{{ lang('settings_tracking_disabled') }}</Header>
+    <Header v-if="onlyDisabled" :spacer="true" weight="normal">
+      {{ lang('settings_tracking_disabled') }}
+    </Header>
     <SettingsGeneral
       v-for="(page, key) in (pageArray as any)"
       :key="key"

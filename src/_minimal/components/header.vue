@@ -1,5 +1,5 @@
 <template>
-  <h4 class="header" :class="{ loading, [spacerClass]: spacerClass }">
+  <h4 class="header" :class="{ loading, [spacerClass]: spacerClass, [weight]: weight }">
     <template v-if="!loading"><slot /></template>
     <span v-else class="loading-placeholder"></span>
   </h4>
@@ -16,6 +16,10 @@ const props = defineProps({
   spacer: {
     type: [Boolean, String] as PropType<boolean | 'half'>,
     default: false,
+  },
+  weight: {
+    type: String as PropType<'bold' | 'normal'>,
+    default: 'bold',
   },
 });
 
@@ -39,6 +43,10 @@ const spacerClass = computed(() => {
   }
   &.spacer-half {
     margin-bottom: @spacer-half;
+  }
+
+  &.bold {
+    .header-bold();
   }
 }
 

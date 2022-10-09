@@ -243,7 +243,7 @@ const totalLoading = computed(() => {
       display: inline-block;
     }
     .value {
-      font-weight: bold;
+      font-weight: 500;
       margin-right: 20px;
     }
   }

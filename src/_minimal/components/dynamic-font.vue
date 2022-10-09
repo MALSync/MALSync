@@ -58,7 +58,7 @@ const style = computed(() => `${size.value}px`);
 <style lang="less" scoped>
 .dynamic {
   margin-top: 0;
-  font-weight: bold;
+  font-weight: 500;
   font-size: v-bind(style);
   line-height: 1.2;
 }

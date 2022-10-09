@@ -118,6 +118,7 @@ const title = computed(() => {
     .title {
       position: relative;
       margin-bottom: 10px;
+      font-weight: 500;
     }
   }
 

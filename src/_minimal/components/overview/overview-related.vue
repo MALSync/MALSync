@@ -51,7 +51,7 @@ defineProps({
   }
 
   .type {
-    font-weight: bold;
+    font-weight: 500;
   }
 
   .link {
