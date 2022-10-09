@@ -3,27 +3,27 @@
   "url": "https://animedao.to/",
   "testCases": [
     {
-      "url": "https://animedao.to/view/1453160353/",
+      "url": "https://animedao.to/view/5163760353/",
       "expected": {
         "sync": true,
         "title": "One Piece",
-        "identifier": "one-piece",
-        "overviewUrl": "https://animedao.to/anime/one-piece/",
-        "nextEpUrl": "https://animedao.to/view/1453160354/",
+        "identifier": "onepiece",
+        "overviewUrl": "https://animedao.to/anime/onepiece/",
+        "nextEpUrl": "https://animedao.to/view/5163760354/",
         "episode": 946,
         "uiSelector": false
       }
     },
     {
-      "url": "https://animedao.to/anime/one-piece/",
+      "url": "https://animedao.to/anime/onepiece/",
       "expected": {
         "sync": false,
         "title": "One Piece",
-        "identifier": "one-piece",
+        "identifier": "onepiece",
         "uiSelector": true,
         "epList": {
-          "3": "https://animedao.to/view/8368714507/",
-          "948": "https://animedao.to/view/8368760355/"
+          "3": "https://animedao.to/view/5163714507/",
+          "948": "https://animedao.to/view/5163760355/"
         }
       }
     }
