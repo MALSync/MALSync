@@ -34,12 +34,6 @@
               />
             </span>
           </div>
-          <div v-if="item.score">
-            {{ lang('search_Score') }}
-            <span class="value">
-              {{ item.score }}
-            </span>
-          </div>
         </div>
         <Header class="title">
           <StateDot :status="item.status" /><span>{{ item.title }}</span>
