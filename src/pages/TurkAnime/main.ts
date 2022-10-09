@@ -24,6 +24,7 @@ export const TurkAnime: pageInterface = {
       // "bolum-final" = "final/last episode"
 
       // Valid inputs:
+      // https://www.turkanime.co/video/kinsou-no-vermeil-gakeppuchi-majutsushi-wa-saikyou-no-yakusai-to-mahou-sekai-wo-tsukisusumu-6
       // https://www.turkanime.net/video/shingeki-no-kyojin-24-bolum
       // https://www.turkanime.net/video/shingeki-no-kyojin-25-bolum-final
 
@@ -39,19 +40,22 @@ export const TurkAnime: pageInterface = {
       // Expected output: shingeki-no-kyojin
 
       const animeNameWithEpisodeSlug = TurkAnime.overview!.getIdentifier(episodeURL);
+      // Expected output: "shingeki-no-kyojin-23"
+      // Expected output: "shingeki-no-kyojin-24-bolum"
+      // Expected output: "shingeki-no-kyojin-25-bolum-final"
 
       const episodeSlug = animeNameWithEpisodeSlug.replace(`${animeNameSlug}-`, '');
-      // Expected valid output: "24-bolum" | "25-bolum-final"
-      // Expected invalid output: "ova-3-bolum" | "5-bolum-part-2-pismanlik-yok"
+      // Expected valid output: "23" | "24-bolum" | "25-bolum-final"
+      // Expected invalid output: "1-" | "2-ova" | "ova-3-bolum" | "5-bolum-part-2-pismanlik-yok"
 
       const episodeNumberMatches = episodeSlug.match(
-        // https://regex101.com/r/1DEx05/2
-        /^(?<episodeNumber>\d+)-bolum(?:-final)?$/i,
+        // https://regex101.com/r/DFmqGL/1
+        /^\d+(?=$|-bolum(?:-final)?)/im,
       );
 
-      if (!episodeNumberMatches?.groups) return NaN;
+      if (!episodeNumberMatches?.length) return NaN;
 
-      return Number(episodeNumberMatches.groups.episodeNumber);
+      return Number(episodeNumberMatches[0]);
     },
     nextEpUrl() {
       const href = j.$("div.panel-footer a[href^='video']:nth-child(2)").attr('href');

@@ -81,6 +81,8 @@ export const nineAnime: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
 
+    nineAnime.domain = `${window.location.protocol}//${window.location.hostname}`;
+
     if (isWatch2Gether()) {
       if (utils.urlPart(window.location.href, 4) !== 'room') {
         con.error('not watch2gether room page');

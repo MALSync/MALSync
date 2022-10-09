@@ -50,7 +50,7 @@ export const AnimeOnsen: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), AnimeOnsen.domain);
       },
       elementEp(selector) {
-        return Number(j.$(selector).find('div.episode').data('episode'));
+        return Number(j.$(selector).data('episode'));
       },
     },
   },
@@ -108,6 +108,8 @@ export const AnimeOnsen: pageInterface = {
       // check if the document has completed loading.
       const [, pageType] = new URL(page.url).pathname.split('/');
       if (/^watch$/i.test(pageType)) return j.$('span.ao-player-metadata-title').length > 0;
+      if (/^details$/i.test(pageType))
+        return !j.$('div.episode-list > span.loading-placeholder').length;
       return document.readyState === 'complete';
     };
     const start = () => {

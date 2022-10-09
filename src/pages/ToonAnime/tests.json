@@ -1,0 +1,44 @@
+{
+  "title": "ToonAnime",
+  "url": "https://vvww.toonanime.cc/",
+  "testCases": [
+    {
+      "url": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-8-tv.html",
+      "expected": {
+        "sync": true,
+        "title": "Classroom of the Elite",
+        "identifier": "1852",
+        "overviewUrl": "https://vvww.toonanime.cc/1852-tv.html",
+        "nextEpUrl": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-9-t.html",
+        "episode": 8,
+        "uiSelector": false,
+        "epList": {
+          "1": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-1-t.html",
+          "4": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-4-t.html",
+          "6": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf/episode-6-t.html"
+        }
+      }
+    },
+    {
+      "url": "https://vvww.toonanime.cc/1855-jujutsu-kaisen-0-vostfr/film-tv.html",
+      "expected": {
+        "sync": true,
+        "title": "Jujutsu Kaisen 0",
+        "identifier": "1855",
+        "overviewUrl": "https://vvww.toonanime.cc/1855-tv.html",
+        "nextEpUrl": null,
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://vvww.toonanime.cc/1852-classroom-of-the-elite-vf-tv.html",
+      "expected": {
+        "sync": false,
+        "title": "Classroom of the Elite",
+        "identifier": "1852",
+        "uiSelector": true
+      }
+    }
+  ]
+}
