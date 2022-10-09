@@ -29,7 +29,12 @@
         <div>/</div>
         <div><MediaTotalEpisode :episode="item.totalEp" /></div>
         <div>
-          <MediaProgressPill :episode="item.progressEp" :text="item.progressText" mode="medium" />
+          <MediaProgressPill
+            :episode="item.progressEp"
+            :text="item.progressText"
+            mode="medium"
+            :watched-ep="item.watchedEp"
+          />
         </div>
       </div>
     </div>
