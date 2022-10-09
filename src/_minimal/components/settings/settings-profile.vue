@@ -1,5 +1,5 @@
 <template>
-  <Section spacer="half" direction="both">
+  <Section spacer="full">
     <ImageText :image="profileRequest.data?.picture" :href="profileRequest.data?.href">
       <template v-if="state === 'auth'">
         <Header>
@@ -25,7 +25,7 @@
           <TextIcon icon="sync">{{ lang('settings_profile_check') }}</TextIcon>
         </div>
         <MediaLink :href="parameters.listObj.authenticationUrl">
-          <TextIcon icon="login">{{ lang('settings_Authenticate') }}</TextIcon>
+          <TextIcon icon="login" class="link-hover">{{ lang('settings_Authenticate') }}</TextIcon>
         </MediaLink>
       </template>
     </ImageText>
@@ -101,5 +101,7 @@ const state = computed(() => {
 @import '../../less/_globals.less';
 .link-hover {
   .link();
+
+  color: var(--cl-light-text);
 }
 </style>
