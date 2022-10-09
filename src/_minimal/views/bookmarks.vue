@@ -76,7 +76,12 @@
         class="grid"
         :class="{ cached: cacheList.length && listRequest.loading }"
       >
-        <Grid :key="listTheme.name" :min-width="listTheme.width">
+        <Grid
+          :key="listTheme.name"
+          :min-width="listTheme.width"
+          class="grid-el"
+          :class="`type-${listTheme.name.replace(' ', '-').toLowerCase()}`"
+        >
           <TransitionStaggered :delay-duration="listTheme.transition">
             <component
               :is="listTheme.component"
@@ -378,6 +383,15 @@ async function openRandom(status, type) {
     opacity: 0.4;
     filter: grayscale(1);
     transition: none;
+  }
+
+  .grid-el {
+    &.type-tiles {
+      gap: 20px;
+      .__breakpoint-popup__({
+        gap: @spacer;
+      });
+    }
   }
 }
 
