@@ -19,6 +19,9 @@
         :type="parameters.type"
         :rewatching="listRequest.data ? listRequest.data?.seperateRewatching : false"
       />
+      <FormButton padding="pill" @click="refresh()">
+        <div class="material-icons" title="refresh">refresh</div>
+      </FormButton>
       <FormButton
         v-if="parameters.state === 6"
         padding="pill"
@@ -356,6 +359,10 @@ async function openRandom(status, type) {
   } else {
     utils.flashm('List is too small!');
   }
+}
+
+function refresh() {
+  listRequest.execute();
 }
 </script>
 
