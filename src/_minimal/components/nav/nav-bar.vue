@@ -23,7 +23,7 @@
       <span v-if="fullscreenFunction" class="material-icons link" @click="fullscreenFunction()"
         >fullscreen</span
       >
-      <span class="material-icons link" @click="closeWindow()">close</span>
+      <span class="material-icons link close-fix" @click="closeWindow()">close</span>
     </div>
   </div>
 </template>
@@ -102,6 +102,13 @@ const closeWindow = () => {
   .material-icons {
     font-size: 30px;
     height: 30px;
+    width: 30px;
+
+    &.close-fix {
+      font-size: 38px;
+      position: relative;
+      left: -4px;
+    }
   }
 
   .__breakpoint-popup__({
