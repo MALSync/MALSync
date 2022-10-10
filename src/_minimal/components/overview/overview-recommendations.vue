@@ -131,7 +131,7 @@ watch(
 }
 
 .text {
-  margin-top: @spacer-half;
+  margin-top: @spacer;
 }
 
 .head-dot {

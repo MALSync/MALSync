@@ -116,7 +116,7 @@ watch(
 }
 
 .text {
-  margin-top: @spacer-half;
+  margin-top: @spacer;
 }
 
 .skeleton-text {
