@@ -15,7 +15,7 @@ import MediaLink from '../media-link.vue';
 defineProps({
   title: {
     type: String,
-    required: true,
+    default: '',
   },
 });
 </script>

@@ -123,7 +123,7 @@ import HR from '../hr.vue';
 defineProps({
   title: {
     type: String,
-    required: true,
+    default: '',
   },
 });
 
