@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, Ref, ref } from 'vue';
+import { computed, inject, PropType, Ref, ref } from 'vue';
 
 const rootWindow = inject('rootWindow') as Window;
 
@@ -12,13 +12,17 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  sizes: {
+    type: Array as PropType<number[]>,
+    default: () => [25, 22, 20, 18],
+  },
+  doubleRowSizes: {
+    type: Array as PropType<number[]>,
+    default: () => [18, 16, 14, 12],
+  },
 });
 
 const target = ref(null) as Ref<HTMLElement | null>;
-
-const sizes = [25, 22, 20, 18];
-
-const doubleRowSizes = [18, 16, 14, 12];
 
 const length = computed(() => props.text.length);
 
@@ -27,7 +31,7 @@ const getCharWidth = (fontSize: number) => fontSize * 0.55;
 const size = computed(() => {
   const fieldWidth = target.value ? target.value.clientWidth : rootWindow.innerWidth - 310;
 
-  let found = sizes.find(fontSize => {
+  let found = props.sizes.find(fontSize => {
     const charWidth = getCharWidth(fontSize);
 
     if (charWidth * length.value < fieldWidth) {
@@ -37,7 +41,7 @@ const size = computed(() => {
   });
 
   if (!found) {
-    found = doubleRowSizes.find(fontSize => {
+    found = props.doubleRowSizes.find(fontSize => {
       const charWidth = getCharWidth(fontSize);
 
       if (charWidth * length.value < fieldWidth * 2) {
@@ -47,7 +51,7 @@ const size = computed(() => {
     });
   }
 
-  if (!found) return doubleRowSizes[doubleRowSizes.length - 1];
+  if (!found) return props.doubleRowSizes[props.doubleRowSizes.length - 1];
 
   return found;
 });

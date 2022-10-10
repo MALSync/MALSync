@@ -15,7 +15,7 @@
         </div>
       </div>
       <MediaLink :href="item.url" class="link" />
-      <DynamicFont class="title" :text="item.title" />
+      <DynamicFont class="title" :text="item.title" :sizes="[20]" :double-row-sizes="[20, 14]" />
       <MediaBar
         :watched-ep="item.watchedEp"
         :total-ep="item.totalEp"
