@@ -12,6 +12,7 @@ export function anilistOauth() {
         $('body').removeClass();
         $('body').addClass('success');
 
+        window.history.replaceState('', '', '/anilist/oauth');
         return;
       }
       error('No tokens found');
