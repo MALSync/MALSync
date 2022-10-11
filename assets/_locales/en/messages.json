@@ -1321,7 +1321,7 @@
     "description": "filler tooltip"
   },
   "settings_crash_report_text": {
-    "message": "Helps fix any bugs. No sensitive data will be sent",
+    "message": "Helps fixing bugs. No sensitive data will be sent",
     "description": "Crash report tooltip"
   },
   "filler_filler_confirm": {
