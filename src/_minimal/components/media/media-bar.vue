@@ -60,5 +60,11 @@ const bars = computed(() => {
   &.background {
     background-color: #eceff142;
   }
+
+  &.noBackground {
+    background-image: linear-gradient(90deg, #eceff142 0%, #eceff142 83%, transparent 95%);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 </style>

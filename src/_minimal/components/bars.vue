@@ -1,5 +1,5 @@
 <template>
-  <div class="bars" :class="{ background }">
+  <div class="bars" :class="{ background, noBackground: !background }">
     <div
       v-for="(el, index) in bars"
       :key="index"

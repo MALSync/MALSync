@@ -109,8 +109,7 @@ const title = computed(() => {
       .fullSize();
       .border-radius();
 
-      backdrop-filter: blur(10px);
-      background-color: #00000059;
+      background-color: #00000099;
       opacity: 1;
       transition: opacity @fast-transition;
     }
