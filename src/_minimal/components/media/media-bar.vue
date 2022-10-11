@@ -58,7 +58,7 @@ const bars = computed(() => {
 <style lang="less" scoped>
 .bars {
   &.background {
-    background-color: #eceff142;
+    background-color: #eceff142 !important;
   }
 
   &.noBackground {
