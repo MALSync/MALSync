@@ -13,6 +13,22 @@ function createIframe(page) {
 
     importAssets(head);
 
+    try {
+      // https://github.com/vuejs/core/issues/3933
+      iframe!.contentWindow!.performance.now = () => performance.now();
+      iframe!.contentWindow!.addEventListener(
+        'click',
+        function (e) {
+          Object.defineProperty(e, 'timeStamp', {
+            get: () => performance.now(),
+          });
+        },
+        true,
+      );
+    } catch (e) {
+      con.error(e);
+    }
+
     setTimeout(function () {
       minimalObj = new Minimal(
         j.$('#info-iframe').contents().find('html'),
