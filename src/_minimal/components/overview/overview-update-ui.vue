@@ -38,6 +38,7 @@
                   {{ picked }}{{ picked ? suffix : '' }}
                   <MediaProgressPill
                     v-if="progress"
+                    :watched-ep="Number(episode)"
                     :episode="progress.getCurrentEpisode()"
                     :text="progress.getPredictionText()"
                   />
