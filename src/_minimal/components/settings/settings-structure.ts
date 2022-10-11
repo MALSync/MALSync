@@ -85,7 +85,7 @@ export const structure: ConfObj[] = [
     children: estimation,
   },
   {
-    key: 'customDoamins',
+    key: 'customDomains',
     title: () => api.storage.lang('settings_custom_domains_button'),
     system: 'webextension',
     props: {
