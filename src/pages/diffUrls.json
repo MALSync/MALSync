@@ -76,7 +76,11 @@
     ],
     "Gogoanime": [
       "https://gogoanime.tel/*",
-      "https://gogoanime.ee/*"
+      "https://gogoanime.ee/*",
+      "https://gogoanime.dk/*"
+    ],
+    "MangaNato": [
+      "https://chapmanganato.com/*"
     ],
     "nineAnime": [
       "https://9anime.gs/watch/*",
@@ -87,6 +91,7 @@
       "https://www.tranimeizle.co/*"
     ],
     "iframe": [
+      "https://www.myvi.tv/embed/*",
       "https://fembed9hd.com/*",
       "https://plyr.in/*",
       "https://goload.io/streaming.php?*",
@@ -111,7 +116,8 @@
       "https://realfinanceblogcenter.com/e/*",
       "https://tinycat-voe-fashion.com/e/*",
       "https://rapid-cloud.co/*",
-      "https://filemoon.sx/e/*"
+      "https://filemoon.sx/e/*",
+      "https://mb.toonanime.xyz/dist/myt.html*"
     ]
   }
 }
