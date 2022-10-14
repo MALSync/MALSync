@@ -1,5 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
+const baseSyncUrl = 'https://www.disneyplus.com/fr-fr/video/';
+
 export const DisneyPlus: pageInterface = {
   name: 'Disney+',
   domain: 'www.disneyplus.com',
@@ -75,6 +77,22 @@ export const DisneyPlus: pageInterface = {
         .first()
         .after(j.html(selector));
     },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('div.slick-list > div.slick-track');
+      },
+      elementUrl(selector) {
+        return baseSyncUrl + selector.find('a').first().attr('data-gv2elementvalue') || '';
+      },
+      elementEp(selector) {
+        return (
+          Number(
+            selector.find('div.slick-slide.slick-active.slick-current').first().attr('data-index'),
+          ) + 1 || 0
+        );
+      },
+    },
   },
   init(page) {
     api.storage.addStyle(
@@ -104,6 +122,5 @@ export const DisneyPlus: pageInterface = {
         },
       );
     }
-    // });
   },
 };
