@@ -90,15 +90,14 @@ export const DisneyPlus: pageInterface = {
     function ready() {
       utils.waitUntilTrue(
         function () {
-          j.$('#unauth-navbar-target > img').on('load', () => {
-            console.log('here');
+          const temp = j.$('#unauth-navbar-target > img');
+          if (temp.prop('tagName') === 'IMG') {
             return true;
-          });
+          }
+          return false;
         },
         function () {
-          console.log('here two');
           const categories = j.$('div.sc-jOBXIr.fsZhRo').text();
-          console.log(categories);
           if (categories !== 'undefined' && categories.toLowerCase().includes('anime')) {
             page.handlePage();
           } else con.info('Not an Anime');
