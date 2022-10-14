@@ -27,7 +27,7 @@ export const DisneyPlus: pageInterface = {
     );
   },
   sync: {
-    getTitle() {
+    getTitle(url) {
       return j
         .$(
           'div.title-bug-area > div.title-bug-container > button.control-icon-btn.title-btn > div.title-field.body-copy',
@@ -35,12 +35,22 @@ export const DisneyPlus: pageInterface = {
         .text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 5);
-    },
-    getOverviewUrl() {
+      const temp = j.$('head > link[rel="canonical"]').attr('href');
+      if (
+        typeof temp !== 'undefined' &&
+        temp.split('/')[4] === 'series' &&
+        typeof temp.split('/')[5] !== 'undefined' &&
+        temp.split('/')[5].length > 0 &&
+        typeof temp.split('/')[6] !== 'undefined' &&
+        temp.split('/')[6].length > 0
+      )
+        return temp.split('/')[6];
       return '';
     },
-    getEpisode() {
+    getOverviewUrl(url) {
+      return j.$('head > link[rel="canonical"]').attr('href') || '';
+    },
+    getEpisode(url) {
       const temp = j
         .$(
           'div.title-bug-area > div.title-bug-container > button.control-icon-btn.title-btn > div.subtitle-field',
@@ -54,7 +64,7 @@ export const DisneyPlus: pageInterface = {
     },
   },
   overview: {
-    getTitle() {
+    getTitle(url) {
       return j.$('h1.h3.padding--bottom-6.padding--right-6.text-color--primary').text();
     },
     getIdentifier(url) {
@@ -71,19 +81,30 @@ export const DisneyPlus: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(() => {
-      if (document.title.includes('Code 41')) {
-        con.error('404');
-        return;
-      }
-      const categories = j
-        .$(
-          'p.body-copy.margin--0.text-color--primary > div.metadata.text-color--primary > div.sc-jOBXIr fsZhRo',
-        )
-        .text();
-      if (categories !== 'undefined' && categories.toLowerCase().includes('anime')) {
-        page.handlePage();
-      }
-      con.error('Not an Anime');
+      ready();
     });
+    utils.urlChangeDetect(() => {
+      ready();
+    });
+
+    function ready() {
+      utils.waitUntilTrue(
+        function () {
+          j.$('#unauth-navbar-target > img').on('load', () => {
+            console.log('here');
+            return true;
+          });
+        },
+        function () {
+          console.log('here two');
+          const categories = j.$('div.sc-jOBXIr.fsZhRo').text();
+          console.log(categories);
+          if (categories !== 'undefined' && categories.toLowerCase().includes('anime')) {
+            page.handlePage();
+          } else con.info('Not an Anime');
+        },
+      );
+    }
+    // });
   },
 };
