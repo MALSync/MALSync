@@ -1,0 +1,30 @@
+{
+  "title": "ADKami",
+  "url": "https://www.adkami.com/",
+  "testCases": [
+    {
+      "url": "https://www.adkami.com/anime/2361/5/1/2/1/",
+      "expected": {
+        "sync": true,
+        "title": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e",
+        "identifier": "2361-1-1",
+        "overviewUrl": "https://www.adkami.com/anime/2361/1/1/2/1/",
+        "episode": 5,
+        "nextEpUrl": "https://www.adkami.com/anime/2361/6/1/2/1/",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://www.adkami.com/anime/2361/8/1/2/2/",
+      "expected": {
+        "sync": true,
+        "title": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e Season 2",
+        "identifier": "2361-2-1",
+        "overviewUrl": "https://www.adkami.com/anime/2361/1/1/2/2/",
+        "episode": 8,
+        "nextEpUrl": "https://www.adkami.com/anime/2361/9/1/2/2/",
+        "uiSelector": true
+      }
+    }
+  ]
+}

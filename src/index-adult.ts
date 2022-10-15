@@ -6,6 +6,7 @@ import { getPlayerTime } from './utils/player';
 import { pages } from './pages-adult/pages';
 import { oauth } from './utils/oauth';
 import { floatClick } from './floatbutton/userscript';
+import { anilistOauth } from './anilist/oauth';
 
 function main() {
   if (window.location.href.indexOf('myanimelist.net') > -1) {
@@ -21,6 +22,8 @@ function main() {
     const simkl = new SimklClass(window.location.href);
   } else if (window.location.href.indexOf('malsync.moe/mal/oauth') > -1) {
     oauth();
+  } else if (window.location.href.indexOf('malsync.moe/anilist/oauth') > -1) {
+    anilistOauth();
   } else {
     let page;
     try {
