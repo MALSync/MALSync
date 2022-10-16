@@ -38,16 +38,7 @@ export const DisneyPlus: pageInterface = {
     },
     getIdentifier(url) {
       const temp = j.$('head > link[rel="canonical"]').attr('href');
-      if (
-        typeof temp !== 'undefined' &&
-        temp.split('/')[4] === 'series' &&
-        typeof temp.split('/')[5] !== 'undefined' &&
-        temp.split('/')[5].length > 0 &&
-        typeof temp.split('/')[6] !== 'undefined' &&
-        temp.split('/')[6].length > 0
-      )
-        return temp.split('/')[6];
-      return '';
+      return temp ? utils.urlPart(temp.toString(), 5) : '' || '';
     },
     getOverviewUrl(url) {
       return j.$('head > link[rel="canonical"]').attr('href') || '';
@@ -99,9 +90,11 @@ export const DisneyPlus: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(() => {
+      page.reset();
       ready();
     });
     utils.urlChangeDetect(() => {
+      page.reset();
       ready();
     });
 
