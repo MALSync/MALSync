@@ -11,7 +11,11 @@
     </Section>
     <div class="header-section">
       <Section spacer="half">
-        <Header :loading="metaRequest.loading" class="header-block">
+        <Header
+          :loading="metaRequest.loading"
+          class="header-block"
+          :class="{ hasTitle: metaRequest.data && metaRequest.data.alternativeTitle }"
+        >
           <div class="statusDotSection">
             <StateDot
               class="dot"
@@ -29,8 +33,21 @@
               <span class="material-icons">open_in_new</span>
             </MediaLink>
           </div>
-          <span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}</span>
+          <span @click="titleModal = true">
+            {{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}
+          </span>
         </Header>
+        <Modal v-if="metaRequest.data && metaRequest.data.alternativeTitle" v-model="titleModal">
+          <div class="alt-titles">
+            <div
+              v-for="altTitle in metaRequest.data.alternativeTitle"
+              :key="altTitle"
+              class="alt-title"
+            >
+              {{ altTitle }}
+            </div>
+          </div>
+        </Modal>
       </Section>
       <ErrorMeta :meta-request="metaRequest" />
       <Section v-if="metaRequest.data?.statistics?.length || metaRequest.loading" spacer="half">
@@ -132,6 +149,7 @@ import OverviewReviews from '../components/overview/overview-reviews.vue';
 import OverviewInfo from '../components/overview/overview-info.vue';
 import OverviewRecommendations from '../components/overview/overview-recommendations.vue';
 import OverviewRelated from '../components/overview/overview-related.vue';
+import Modal from '../components/modal.vue';
 import HR from '../components/hr.vue';
 import { NotFoundError, UrlNotSupportedError } from '../../_provider/Errors';
 import { getSingle } from '../../_provider/singleFactory';
@@ -143,6 +161,8 @@ const breakpoint = inject('breakpoint');
 
 const route = useRoute();
 const router = useRouter();
+
+const titleModal = ref(false);
 
 const hide = ref(true);
 setTimeout(() => {
@@ -265,6 +285,10 @@ const totalLoading = computed(() => {
       color: var(--cl-secondary);
     }
 
+    &.hasTitle {
+      .link();
+    }
+
     &:hover {
       .dot {
         display: none;
@@ -356,5 +380,17 @@ const totalLoading = computed(() => {
     }
 
   });
+}
+
+.alt-titles {
+  .border-radius();
+
+  background-color: var(--cl-foreground-solid);
+  color: var(--cl-text);
+  padding: 15px 10px;
+
+  .alt-title {
+    padding: 5px 15px;
+  }
 }
 </style>
