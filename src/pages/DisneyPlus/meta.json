@@ -1,5 +1,5 @@
 {
-  "search": "https://www.disneyplus.com/fr-fr/search?q={searchtermPlus}",
+  "search": "https://www.disneyplus.com/fr-fr/search",
   "urls": {
     "match": ["*://www.disneyplus.com/*"]
   }

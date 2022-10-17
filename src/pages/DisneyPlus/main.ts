@@ -1,13 +1,12 @@
 import { pageInterface } from '../pageInterface';
 
-const baseSyncUrl = 'https://www.disneyplus.com/fr-fr/video/';
+let baseSyncUrl;
 
 export const DisneyPlus: pageInterface = {
   name: 'Disney+',
   domain: 'www.disneyplus.com',
   languages: ['Many'],
   type: 'anime',
-  // database: 'DisneyPlus',
   // https://www.disneyplus.com/fr-fr/video/bb5f22e5-26dc-40ae-8630-24e626414392
   isSyncPage(url) {
     return (
@@ -71,21 +70,21 @@ export const DisneyPlus: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.slick-list > div.slick-track');
+        return j.$(
+          'div[data-testid="season-shelf"] > div.slick-slider.slick-initialized > div.slick-list > div.slick-track > div.slick-slide.slick-active',
+        );
       },
       elementUrl(selector) {
         return baseSyncUrl + selector.find('a').first().attr('data-gv2elementvalue') || '';
       },
       elementEp(selector) {
-        return (
-          Number(
-            selector.find('div.slick-slide.slick-active.slick-current').first().attr('data-index'),
-          ) + 1 || 0
-        );
+        return Number(selector.attr('data-index')) + 1 || 0;
       },
     },
   },
   init(page) {
+    if (baseSyncUrl === null)
+      baseSyncUrl = ` https://www.disneyplus.com/${utils.urlPart(page.url, 3)}/video/`;
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
@@ -110,6 +109,7 @@ export const DisneyPlus: pageInterface = {
           const categories = j.$('div.sc-jOBXIr.fsZhRo').text();
           if (categories !== 'undefined' && categories.toLowerCase().includes('anime')) {
             page.handlePage();
+            con.info('GooooOOooo');
           } else con.info('Not an Anime');
         },
       );
