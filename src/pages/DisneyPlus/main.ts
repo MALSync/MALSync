@@ -97,6 +97,7 @@ export const DisneyPlus: pageInterface = {
 
     function ready() {
       page.reset();
+      $('html').addClass('miniMAL-hide');
       utils.waitUntilTrue(
         function () {
           const temp = j.$('#unauth-navbar-target > img');
@@ -108,8 +109,8 @@ export const DisneyPlus: pageInterface = {
         function () {
           const categories = j.$('div.sc-jOBXIr.fsZhRo').text();
           if (categories !== 'undefined' && categories.toLowerCase().includes('anime')) {
+            $('html').removeClass('miniMAL-hide');
             page.handlePage();
-            con.info('GooooOOooo');
           } else con.info('Not an Anime');
         },
       );
