@@ -1,6 +1,7 @@
 {
   "title": "Kaguya",
   "url": "https://kaguya.live/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://kaguya.live/vi/anime/watch/124410",
