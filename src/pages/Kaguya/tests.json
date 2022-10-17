@@ -1,0 +1,28 @@
+{
+  "title": "Kaguya",
+  "url": "https://kaguya.live/",
+  "enabled": false,
+  "testCases": [
+    {
+      "url": "https://kaguya.live/vi/anime/watch/124410",
+      "expected": {
+        "sync": true,
+        "title": "Kanojo, Okarishimasu 2",
+        "identifier": "124410",
+        "overviewUrl": "https://kaguya.live/vi/anime/details/124410/kanojo-okarishimasu-2",
+        "nextEpUrl": "https://kaguya.live/anime/watch/124410/zoro/rent-a-girlfriend-2nd-season-15758$episode$92629",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kaguya.live/vi/anime/details/124410/kanojo-okarishimasu-2",
+      "expected": {
+        "sync": false,
+        "title": "Kanojo, Okarishimasu 2",
+        "identifier": "124410",
+        "uiSelector": true
+      }
+    }
+  ]
+}
