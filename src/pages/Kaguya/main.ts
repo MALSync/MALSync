@@ -1,3 +1,4 @@
+import { aniListToMal } from '../../_provider/AniList/helper';
 import { pageInterface } from '../pageInterface';
 
 let jsonData = {
@@ -36,6 +37,9 @@ export const Kaguya: pageInterface = {
     getEpisode() {
       return jsonData.episode || 0;
     },
+    getMalUrl(provider) {
+      return Kaguya.overview!.getMalUrl!(provider);
+    },
   },
   overview: {
     getTitle() {
@@ -47,9 +51,18 @@ export const Kaguya: pageInterface = {
     uiSelector(selector) {
       j.$('#mal-sync').first().after(j.html(selector));
     },
-    getMalUrl(provider) {
+    async getMalUrl(provider) {
       if (provider === 'ANILIST' && jsonData.aniId)
         return `https://anilist.co/anime/${jsonData.aniId}`;
+
+      if (jsonData.aniId) {
+        try {
+          const malId = await aniListToMal(jsonData.aniId, 'anime');
+          if (malId) return `https://myanimelist.net/anime/${malId}`;
+        } catch (e) {
+          // do nothing
+        }
+      }
 
       return false;
     },
