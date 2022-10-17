@@ -90,15 +90,14 @@ export const DisneyPlus: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(() => {
-      page.reset();
       ready();
     });
     utils.urlChangeDetect(() => {
-      page.reset();
       ready();
     });
 
     function ready() {
+      page.reset();
       utils.waitUntilTrue(
         function () {
           const temp = j.$('#unauth-navbar-target > img');
