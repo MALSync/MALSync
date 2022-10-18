@@ -88,8 +88,25 @@ export function initFloatButton(page, floatClick) {
       }
       if (j.$(e.target).hasClass('modal-kal')) {
         document.getElementById('info-popup')!.style.display = 'none';
-        j.$('.floatbutton').fadeIn();
+        showFloatbutton();
       }
     });
   }
+}
+
+let floatDebounce;
+
+export function showFloatbutton() {
+  clearTimeout(floatDebounce);
+  j.$('.floatbutton').fadeIn();
+}
+
+export function hideFloatbutton(instant = false) {
+  if (instant) {
+    j.$('.floatbutton').fadeOut();
+    return;
+  }
+  floatDebounce = setTimeout(() => {
+    j.$('.floatbutton').fadeOut();
+  }, 500);
 }

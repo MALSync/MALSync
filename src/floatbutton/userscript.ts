@@ -1,4 +1,5 @@
 import { Minimal } from '../minimal/minimalClass';
+import { hideFloatbutton, showFloatbutton } from './init';
 
 let minimalObj;
 
@@ -45,7 +46,7 @@ export function floatClick(page) {
   if (j.$('#info-popup').css('display') === 'none') {
     document.getElementById('info-popup')!.style.display = 'block';
     // fillIframe(url, currentMalData);
-    j.$('.floatbutton').fadeOut();
+    hideFloatbutton(true);
     if (!j.$('#info-iframe').length) {
       createIframe(page);
     } else if (typeof minimalObj !== 'undefined' && typeof page.malObj !== 'undefined') {
@@ -54,6 +55,6 @@ export function floatClick(page) {
     }
   } else {
     document.getElementById('info-popup')!.style.display = 'none';
-    j.$('.floatbutton').fadeIn();
+    showFloatbutton();
   }
 }
