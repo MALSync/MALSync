@@ -78,7 +78,7 @@ export function initFloatButton(page, floatClick) {
 
     j.$('#info-popup').after(j.html(floatbutton));
 
-    j.$('.open-info-popup').show();
+    if (!api.settings.get('floatButtonCorrection')) showFloatbutton();
     if (api.settings.get('autoCloseMinimal')) j.$('.modal-kal').css('pointer-events', 'initial');
 
     document.addEventListener('click', function (e) {
@@ -98,6 +98,7 @@ let floatDebounce;
 
 export function showFloatbutton() {
   clearTimeout(floatDebounce);
+  floatDebounce = null;
   j.$('.floatbutton').fadeIn();
 }
 
@@ -106,7 +107,10 @@ export function hideFloatbutton(instant = false) {
     j.$('.floatbutton').fadeOut();
     return;
   }
-  floatDebounce = setTimeout(() => {
-    j.$('.floatbutton').fadeOut();
-  }, 500);
+  if (!floatDebounce) {
+    floatDebounce = setTimeout(() => {
+      floatDebounce = null;
+      j.$('.floatbutton').fadeOut();
+    }, 500);
+  }
 }
