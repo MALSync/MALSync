@@ -42,19 +42,24 @@ function createIframe(page) {
 }
 
 export function floatClick(page) {
-  con.log('Open miniMAL');
-  if (j.$('#info-popup').css('display') === 'none') {
-    document.getElementById('info-popup')!.style.display = 'block';
-    // fillIframe(url, currentMalData);
-    hideFloatbutton(true);
-    if (!j.$('#info-iframe').length) {
-      createIframe(page);
-    } else if (typeof minimalObj !== 'undefined' && typeof page.malObj !== 'undefined') {
-      minimalObj.fillBase(page.malObj.url);
-      minimalObj.setPageSync(page);
-    }
+  if (api.settings.get('floatButtonCorrection')) {
+    con.log('Open correction');
+    page.openCorrectionUi();
   } else {
-    document.getElementById('info-popup')!.style.display = 'none';
-    showFloatbutton();
+    con.log('Open miniMAL');
+    if (j.$('#info-popup').css('display') === 'none') {
+      document.getElementById('info-popup')!.style.display = 'block';
+      // fillIframe(url, currentMalData);
+      hideFloatbutton(true);
+      if (!j.$('#info-iframe').length) {
+        createIframe(page);
+      } else if (typeof minimalObj !== 'undefined' && typeof page.malObj !== 'undefined') {
+        minimalObj.fillBase(page.malObj.url);
+        minimalObj.setPageSync(page);
+      }
+    } else {
+      document.getElementById('info-popup')!.style.display = 'none';
+      showFloatbutton();
+    }
   }
 }
