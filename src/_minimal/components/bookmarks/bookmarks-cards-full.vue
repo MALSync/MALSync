@@ -107,7 +107,6 @@ const title = computed(() => {
 
     .backdrop {
       .fullSize();
-      .border-radius();
 
       background-color: #00000099;
       opacity: 1;
