@@ -14,12 +14,22 @@ const props = defineProps({
   },
 });
 
+let animation = true;
+
+try {
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  animation = !mediaQuery.matches;
+} catch (e) {
+  con.error(e);
+}
+
 const transitionDuration = 150;
 
 let index = 0;
 let debounce;
 
 function beforeEnter(el) {
+  if (!animation) return;
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   nextTick().then(() => {
@@ -29,6 +39,7 @@ function beforeEnter(el) {
 }
 
 function enter(el) {
+  if (!animation) return;
   setTimeout(() => {
     clearTimeout(debounce);
     debounce = setTimeout(() => {
