@@ -1,5 +1,5 @@
 <template>
-  <div class="book-element">
+  <div class="book-element" :class="`state-${item.status}`">
     <div class="img">
       <ImageLazy :src="item.image" />
     </div>
@@ -51,7 +51,6 @@ import ImageLazy from '../image-lazy.vue';
 import MediaLink from '../media-link.vue';
 import MediaBar from '../media/media-bar.vue';
 import MediaTotalEpisode from '../media/media-total-episode.vue';
-import MediaProgress from '../media/media-progress.vue';
 import TextIcon from '../text-icon.vue';
 import DynamicFont from '../dynamic-font.vue';
 import Arrow from '../arrow.vue';
@@ -159,8 +158,16 @@ defineProps({
   }
 
   &:hover {
+    .border-radius();
+
     box-shadow: 0 5px 20px rgb(0 0 0 / 7%);
     background-color: var(--cl-backdrop);
+
+    each(@state-colors, {
+      &.state-@{key} {
+        background: linear-gradient(90deg, ~"var(--state-@{key})"0%, ~"var(--cl-backdrop)" 30%);
+      }
+    });
 
     .img {
       overflow: visible;
