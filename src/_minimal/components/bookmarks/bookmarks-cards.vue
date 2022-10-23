@@ -5,7 +5,7 @@
       :src="item.imageBanner ? item.imageBanner : item.imageLarge"
       mode="cover"
     />
-    <div class="gradient gradient-black" />
+    <div class="gradient" :class="`gradient-${item.status}`" />
     <MediaLink class="link" :href="item.url" />
     <div class="text">
       <div class="gradient-transition">
@@ -87,6 +87,9 @@ const episodeLang = utils.episode;
 
   .gradient {
     .fullSize();
+
+    opacity: 0;
+    transition: opacity @fast-transition;
   }
 
   .link {
@@ -133,6 +136,12 @@ const episodeLang = utils.episode;
     .value {
       padding-left: 5px;
       font-weight: 600;
+    }
+  }
+
+  &:hover {
+    .gradient {
+      opacity: 1;
     }
   }
 }
