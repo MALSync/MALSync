@@ -150,10 +150,12 @@ defineProps({
     font-size: 14px;
     display: flex;
     justify-content: space-between;
+    pointer-events: none;
     z-index: 2;
   }
 
   .bars {
+    pointer-events: none;
     height: 5px;
   }
 
