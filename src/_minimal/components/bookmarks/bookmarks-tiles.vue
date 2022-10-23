@@ -4,12 +4,14 @@
     <div class="gradient" :class="`gradient-${item.status}`" />
     <MediaLink class="link" :href="item.url" />
     <div class="on-hover">
+      <MediaPill :score="item.score" />
       <MediaPill
-        :score="item.score"
         :stream-url="item.streamUrl"
         :stream-icon="item.streamIcon"
         :watched-ep="item.watchedEp"
         :total-ep="item.totalEp"
+        :progress-ep="item.progressEp"
+        :progress-text="item.progressText"
       />
     </div>
   </div>

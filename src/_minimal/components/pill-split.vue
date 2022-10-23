@@ -36,7 +36,7 @@ defineProps({
 
   display: inline-flex;
   overflow: hidden;
-  background-color: #00000021;
+  background-color: #0000003b;
   backdrop-filter: blur(5px);
 
   &.reverse {

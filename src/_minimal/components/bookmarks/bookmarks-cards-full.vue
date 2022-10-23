@@ -12,6 +12,8 @@
           :stream-icon="item.streamIcon"
           :watched-ep="item.watchedEp"
           :total-ep="item.totalEp"
+          :progress-ep="item.progressEp"
+          :progress-text="item.progressText"
         />
       </div>
       <div class="bottomBox">

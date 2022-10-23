@@ -1,22 +1,20 @@
 <template>
-  <PillSplit
-    :left="Boolean(showEp || score)"
-    :right="Boolean(streamUrl)"
-    :reverse="showEp"
-    :color="showEp ? 'dark-background' : 'primary-dark'"
-  >
+  <PillSplit :right="Boolean(showEp || streamUrl)" :left="Boolean(score)">
     <template #left>
-      <div v-if="showEp">{{ watchedEp }} / <MediaTotalEpisode :episode="totalEp" /></div>
-      <TextIcon v-else icon="star">{{ score }}</TextIcon>
+      <TextIcon icon="star">{{ score }}</TextIcon>
     </template>
     <template #right>
       <div class="right-section">
         <MediaLink v-if="Boolean(streamUrl)" :href="streamUrl">
           <img class="streamIcon" :src="streamIcon" />
         </MediaLink>
-        <div v-if="!showEp && !score">
-          {{ watchedEp }}
-        </div>
+        <div v-if="showEp">{{ watchedEp }}/<MediaTotalEpisode :episode="totalEp" /></div>
+        <MediaProgressPill
+          :episode="progressEp"
+          :text="progressText"
+          mode="large"
+          :watched-ep="watchedEp"
+        />
       </div>
     </template>
   </PillSplit>
@@ -28,6 +26,7 @@ import PillSplit from '../pill-split.vue';
 import TextIcon from '../text-icon.vue';
 import MediaLink from '../media-link.vue';
 import MediaTotalEpisode from './media-total-episode.vue';
+import MediaProgressPill from './media-progress-pill.vue';
 
 const props = defineProps({
   watchedEp: {
@@ -59,6 +58,16 @@ const props = defineProps({
     optional: true,
     default: '',
   },
+  progressEp: {
+    type: Number,
+    optional: true,
+    default: null,
+  },
+  progressText: {
+    type: String,
+    optional: true,
+    default: '',
+  },
 });
 
 const showEp = computed(() =>
@@ -80,5 +89,9 @@ const showEp = computed(() =>
   vertical-align: sub;
   height: 18px;
   width: 18px;
+}
+
+.progress-pill {
+  margin: 0 !important;
 }
 </style>
