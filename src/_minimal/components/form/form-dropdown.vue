@@ -293,7 +293,7 @@ function keyDown(event: KeyboardEvent) {
   &.small .dropdown-pop {
     padding: 5px;
     &-default {
-      gap: 0;
+      gap: 5px;
       &-element {
         padding: 0 5px;
       }
