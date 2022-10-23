@@ -93,6 +93,6 @@ function favicon(url: string) {
 @import '../../less/_globals.less';
 
 .disabledWebsites {
-  margin: @spacer-half 0;
+  margin: 15px 0;
 }
 </style>

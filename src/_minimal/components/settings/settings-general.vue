@@ -96,7 +96,7 @@ if (properties.option) {
 @import '../../less/_globals.less';
 
 .option {
-  padding: @spacer-half 0;
+  padding: 15px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;

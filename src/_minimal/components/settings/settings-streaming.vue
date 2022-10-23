@@ -233,7 +233,7 @@ const orderMode = ref(false);
 <style lang="less" scoped>
 @import '../../less/_globals.less';
 .quicklinkedit {
-  padding: @spacer-half 0;
+  padding: 15px 0;
 }
 
 .grid {

@@ -113,6 +113,6 @@ watch(
 <style lang="less" scoped>
 @import '../../less/_globals.less';
 .custom-missing {
-  padding: @spacer-half 0;
+  padding: 15px 0;
 }
 </style>
