@@ -98,6 +98,8 @@ const episodeLang = utils.episode;
 
   .text {
     .fullSize();
+    --gradient-pr: rgba(36, 36, 36, 0.40);
+    --gradient-end: rgba(36, 36, 36, 0.859);
 
     display: flex;
     flex-direction: column;
@@ -106,12 +108,12 @@ const episodeLang = utils.episode;
     .gradient-transition {
       flex-grow: 1;
       padding: @spacer-half;
-      background: linear-gradient(rgb(255 255 255 / 0%) 30%, #0000003f 100%);
+      background: linear-gradient(rgb(255 255 255 / 0%) 30%, var(--gradient-pr) 100%);
     }
 
     .gradient-text {
       padding: @spacer-half;
-      background: linear-gradient(#0000003f 0%, #0000003f 115%);
+      background: linear-gradient(var(--gradient-pr) 0%, var(--gradient-end) 100%);
     }
   }
 
