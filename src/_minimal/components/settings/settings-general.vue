@@ -138,7 +138,8 @@ if (properties.option) {
     transform: translateY(-50%);
     left: 100%;
     margin-left: 15px;
-    width: 200px;
+    width: 40vw;
+    max-width: 500px;
     border-radius: 10px;
     text-align: center;
     background-color: var(--cl-foreground-solid);
