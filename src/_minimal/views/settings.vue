@@ -8,7 +8,7 @@
         >
           <div class="back-button">
             <Header weight="normal">
-              <TextIcon icon="arrow_back" mode="flex" background="round">
+              <TextIcon icon="arrow_back" mode="flex" background="round" spacer="big">
                 {{
                   components.parent
                     ? typeof components.parent.title === 'function'

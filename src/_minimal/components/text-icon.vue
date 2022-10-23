@@ -41,7 +41,7 @@ defineProps({
     default: '',
   },
   spacer: {
-    type: String as PropType<'small' | 'medium'>,
+    type: String as PropType<'small' | 'medium' | 'big'>,
     default: 'medium',
   },
 });
@@ -66,6 +66,15 @@ defineProps({
     }
     .after {
       margin-left: 5px;
+    }
+  }
+
+  &.big {
+    .before {
+      margin-right: 16px;
+    }
+    .after {
+      margin-left: 16px;
     }
   }
 
