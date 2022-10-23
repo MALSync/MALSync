@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="subtext score">
-      {{ item.score || '-' }}
+      {{ item.score || '' }}
     </div>
   </div>
 </template>
