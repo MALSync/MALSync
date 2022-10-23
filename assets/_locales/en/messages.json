@@ -718,8 +718,8 @@
     }
   },
   "settings_StreamingSite": {
-    "message": "Streaming Site Links",
-    "description": "Streaming Site Links"
+    "message": "Streaming links",
+    "description": "Streaming links"
   },
   "settings_StreamingSite_text": {
     "message": "If disabled, the streaming site will no longer appear in an anime’s sidebar on MyAnimeList/AniList/Kitsu/Simkl.",
@@ -818,7 +818,7 @@
     "description": "Display to the"
   },
   "settings_miniMAL_popup": {
-    "message": "Extension Popup",
+    "message": "Extension popup",
     "description": "Header of the settings section for the extension popup"
   },
   "settings_miniMAL_theme": {
@@ -858,7 +858,7 @@
     "description": "Link to donation page"
   },
   "settings_discord_join": {
-    "message": "Join our Discord Server",
+    "message": "Join our Discord server",
     "description": "Link to join discord"
   },
   "settings_help": {
@@ -878,7 +878,7 @@
     "description": "Option to sync list once a day in the background"
   },
   "settings_progress": {
-    "message": "Progress Estimation",
+    "message": "Progress estimation",
     "description": "Header of the section of progress estimation settings"
   },
   "settings_onsite": {
@@ -923,7 +923,7 @@
   },
 
   "settings_Video_Player": {
-    "message": "Video Player",
+    "message": "Video player",
     "description": "Video settings header"
   },
   "settings_Video_Fullscreen": {
