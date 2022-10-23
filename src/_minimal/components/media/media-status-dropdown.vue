@@ -60,3 +60,9 @@ watch(
   },
 );
 </script>
+
+<style lang="less" scoped>
+button {
+  border-radius: 15px;
+}
+</style>
