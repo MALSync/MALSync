@@ -106,12 +106,12 @@ const episodeLang = utils.episode;
     .gradient-transition {
       flex-grow: 1;
       padding: @spacer-half;
-      background: linear-gradient(rgb(255 255 255 / 0%) 30%, #00000030 100%);
+      background: linear-gradient(rgb(255 255 255 / 0%) 30%, #0000003f 100%);
     }
 
     .gradient-text {
       padding: @spacer-half;
-      background: linear-gradient(#00000030 0%, #00000030 115%);
+      background: linear-gradient(#0000003f 0%, #0000003f 115%);
     }
   }
 
