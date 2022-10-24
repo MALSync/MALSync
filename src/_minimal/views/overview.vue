@@ -370,8 +370,7 @@ const totalLoading = computed(() => {
     .additional-content {
       grid-column-start: 2;
       grid-row-start: 4;
-      grid-row-end: 6;
-      overflow: hidden;
+      grid-row-end: 7;
     }
 
     .info-section {
