@@ -98,8 +98,8 @@ const episodeLang = utils.episode;
 
   .text {
     .fullSize();
-    --gradient-pr: rgba(36, 36, 36, 0.40);
-    --gradient-end: rgba(36, 36, 36, 0.859);
+    --gradient-pr: rgb(36 36 36 / 40%);
+    --gradient-end: rgb(36 36 36 / 85.9%);
 
     display: flex;
     flex-direction: column;
