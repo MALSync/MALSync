@@ -7,7 +7,14 @@
     >
       <template #component>
         <div>
-          <template v-if="state === 'auth'">
+          <template v-if="profileRequest.error">
+            <div class="link-hover" @click="deauth()">
+              <TextIcon icon="eject" position="after" mode="flex" spacer="small">
+                <strong>{{ profileRequest.error }}</strong>
+              </TextIcon>
+            </div>
+          </template>
+          <template v-else-if="state === 'auth'">
             <div class="link-hover" @click="deauth()">
               <TextIcon icon="eject" position="after" mode="flex" spacer="small">
                 <strong>{{ profileRequest.data.username }}</strong>
