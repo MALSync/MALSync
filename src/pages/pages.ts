@@ -137,6 +137,7 @@ import { Vostfree } from './Vostfree/main';
 import { VoidScans } from './VoidScans/main';
 import { ToonAnime } from './ToonAnime/main';
 import { ADKami } from './ADKami/main';
+import { Kaguya } from './Kaguya/main';
 
 export const pages = {
   nineAnime,
@@ -278,4 +279,5 @@ export const pages = {
   VoidScans,
   ToonAnime,
   ADKami,
+  Kaguya,
 };

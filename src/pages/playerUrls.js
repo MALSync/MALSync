@@ -473,6 +473,7 @@ module.exports = {
       '*://dood.so/e/*',
       '*://dood.pm/e/*',
       '*://dood.wf/e/*',
+      '*://dood.re/e/*',
     ],
   },
   // animedao.to

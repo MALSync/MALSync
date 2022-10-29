@@ -36,6 +36,10 @@ export class SyncPage {
 
   public strongVolumes = false;
 
+  public videoSyncOffset = true;
+
+  public videoSyncInterval;
+
   constructor(
     public url,
     public pages,
@@ -151,9 +155,11 @@ export class SyncPage {
       if (progress < 100) {
         j.$('.ms-progress').css('width', `${progress}%`);
         j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
-      } else {
+      } else if (this.videoSyncOffset) {
         j.$('#malSyncProgress').addClass('ms-done');
         j.$('.flash.type-update .sync').click();
+      } else {
+        con.log('videoSyncOffset', progress);
       }
     }
     this.handleVideoResume(item, timeCb);
@@ -275,6 +281,12 @@ export class SyncPage {
     this.url = curUrl;
     this.browsingtime = Date.now();
     let tempSingle;
+
+    this.videoSyncOffset = false;
+    clearTimeout(this.videoSyncInterval);
+    this.videoSyncInterval = setTimeout(() => {
+      this.videoSyncOffset = true;
+    }, 10000);
 
     if (this.page.isSyncPage(this.url)) {
       this.loadUI();
