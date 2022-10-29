@@ -16,14 +16,14 @@ export const ReaperScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('h2').text().trim();
+      return j.$('div.text-center > p').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j.$('div > a[href*="/comics/"]').first().attr('href'),
+        j.$('.fa-list').closest('a[href*="/comics/"]').attr('href'),
         ReaperScans.domain,
       );
     },
@@ -37,10 +37,7 @@ export const ReaperScans: pageInterface = {
       return Number(temp[1]);
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(
-        j.$('div[x-data*="Next Chapter"]').first().find('a').attr('href'),
-        ReaperScans.domain,
-      );
+      return utils.absoluteLink(j.$('a:contains(Next)').attr('href'), ReaperScans.domain);
     },
   },
   overview: {
@@ -56,7 +53,7 @@ export const ReaperScans: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.pb-4 > div > ul > li');
+        return j.$('div.pb-4 > div > div > ul > li');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a').first().attr('href'), ReaperScans.domain);
