@@ -14,7 +14,7 @@ export type Review = {
 
 export async function reviewMeta(malUrl: string): Promise<Review[]> {
   const res: Review[] = [];
-  const response = await api.request.xhr('GET', `${malUrl}/reviews`);
+  const response = await api.request.xhr('GET', `${malUrl}/_/reviews`);
 
   try {
     const reviewSection = response.responseText

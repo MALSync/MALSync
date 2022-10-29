@@ -24,7 +24,7 @@ export type Recommendation = {
 
 export async function recommendationsMeta(malUrl: string): Promise<Recommendation[]> {
   const res: Recommendation[] = [];
-  const response = await api.request.xhr('GET', `${malUrl}/userrecs`);
+  const response = await api.request.xhr('GET', `${malUrl}/_/userrecs`);
 
   try {
     const recommendationsBlock = response.responseText
