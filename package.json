@@ -125,7 +125,7 @@
     "vue-dompurify-html": "^3.0.0",
     "vue3-lazyload": "^0.3.6",
     "vuedraggable": "^4.1.0",
-    "webext-patterns": "^1.1.1"
+    "webext-patterns": "^1.2.0"
   },
   "overrides": {
     "@vue/eslint-config-typescript": {
