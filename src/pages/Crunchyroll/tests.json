@@ -1,6 +1,6 @@
 {
   "title": "Crunchyroll",
-  "enabled": true,
+  "enabled": false,
   "url": "https://www.crunchyroll.com/",
   "testCases": [
     {
