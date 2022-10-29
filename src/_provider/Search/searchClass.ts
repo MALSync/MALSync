@@ -311,11 +311,10 @@ export class SearchClass {
     if (!matches || Object.keys(matches).length === 0) return false;
 
     const id = Object.keys(matches)[0];
-    const name = matches[id];
 
     let returnUrl = '';
 
-    if (id !== 'Not-Found') returnUrl = `https://myanimelist.net/${this.page.type}/${id}/${name}`;
+    if (id !== 'Not-Found') returnUrl = `https://myanimelist.net/${this.page.type}/${id}`;
 
     return {
       url: returnUrl,
