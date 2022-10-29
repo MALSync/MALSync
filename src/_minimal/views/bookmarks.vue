@@ -99,12 +99,14 @@
         <Empty />
       </Section>
       <Section v-if="listRequest.loading" class="spinner-wrap"><Spinner /></Section>
-      <Section
-        v-if="!listRequest.loading && listRequest.data && !listRequest.data!.isDone()"
-        class="spinner-wrap"
-      >
-        <Spinner />
-      </Section>
+      <transition :duration="100">
+        <Section
+          v-if="!listRequest.loading && listRequest.data && !listRequest.data!.isDone()"
+          class="spinner-wrap"
+        >
+          <Spinner />
+        </Section>
+      </transition>
     </template>
 
     <ErrorBookmarks :list-request="listRequest" />
