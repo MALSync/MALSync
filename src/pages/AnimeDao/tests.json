@@ -1,6 +1,7 @@
 {
   "title": "AnimeDao",
   "url": "https://animedao.to/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://animedao.to/view/5163760353/",
