@@ -36,19 +36,19 @@
       }
     },
     {
-      "url": "https://mangapark.net/title/75271_mission-yozakura-family/7273527_en_ch.136",
+      "url": "https://mangapark.net/title/75271-mission-yozakura-family/7273527-en-ch.136",
       "expected": {
         "sync": true,
         "title": "Mission: Yozakura Family",
         "identifier": "75271",
-        "overviewUrl": "https://mangapark.net/title/75271_mission-yozakura-family",
-        "nextEpUrl": "https://mangapark.net/title/75271_mission-yozakura-family/7296452_en_ch.137",
+        "overviewUrl": "https://mangapark.net/title/75271-mission-yozakura-family",
+        "nextEpUrl": "https://mangapark.net/title/75271-mission-yozakura-family/7296452-en-ch.137",
         "episode": 136,
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangapark.net/title/75271_mission-yozakura-family",
+      "url": "https://mangapark.net/title/75271-mission-yozakura-family",
       "expected": {
         "sync": false,
         "title": "Mission: Yozakura Family",
