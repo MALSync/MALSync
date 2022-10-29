@@ -67,6 +67,8 @@ const title = computed(() => {
 
   .img {
     .fullSize();
+
+    border-radius: 11px;
   }
 
   .gradient {

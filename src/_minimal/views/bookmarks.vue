@@ -289,7 +289,7 @@ const handleScroll = () => {
   // @ts-ignore
   if (
     rootWindow.pageYOffset + rootWindow.innerHeight >
-    rootDocument.documentElement.scrollHeight - 500
+    rootDocument.documentElement.scrollHeight - 600
   ) {
     loadNext();
   }

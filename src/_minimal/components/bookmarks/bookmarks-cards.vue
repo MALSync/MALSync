@@ -1,10 +1,6 @@
 <template>
   <div class="book-element">
-    <ImageFit
-      class="img"
-      :src="item.imageBanner ? item.imageBanner : item.imageLarge"
-      mode="cover"
-    />
+    <ImageFit class="img" :src="item.imageBanner ? item.imageBanner : item.imageLarge" />
     <div class="gradient" :class="`gradient-${item.status}`" />
     <MediaLink class="link" :href="item.url" />
     <div class="text">
@@ -51,7 +47,6 @@ import MediaLink from '../media-link.vue';
 import Header from '../header.vue';
 import StateDot from '../state-dot.vue';
 import MediaTotalEpisode from '../media/media-total-episode.vue';
-import MediaProgress from '../media/media-progress.vue';
 import MediaPill from '../media/media-pill.vue';
 import MediaPillProgress from '../media/media-pill-progress.vue';
 import MediaProgressPill from '../media/media-progress-pill.vue';
@@ -83,6 +78,8 @@ const episodeLang = utils.episode;
 
   .img {
     .fullSize();
+
+    border-radius: 11px;
   }
 
   .gradient {
