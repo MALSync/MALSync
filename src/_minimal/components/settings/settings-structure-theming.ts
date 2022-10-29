@@ -1,6 +1,7 @@
 import SettingsGeneral from './settings-general.vue';
 import ColorPreview from '../color-preview.vue';
 import { ConfObj } from '../../../_provider/definitions';
+import { themeOptions } from '../themes';
 
 export const theming: ConfObj[] = [
   {
@@ -14,6 +15,7 @@ export const theming: ConfObj[] = [
           { title: 'System', value: 'auto' },
           { title: 'Light', value: 'light' },
           { title: 'Dark', value: 'dark' },
+          ...themeOptions,
           { title: 'Custom', value: 'custom' },
         ],
       },

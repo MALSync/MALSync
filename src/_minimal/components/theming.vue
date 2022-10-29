@@ -5,6 +5,7 @@
 <script lang="ts" setup>
 import { computed, inject, watch } from 'vue';
 import { hexToHsl, HSL, Hsl } from '../../utils/color';
+import { getThemeByKey } from './themes';
 
 const rootHtml = inject('rootHtml') as HTMLElement;
 
@@ -29,8 +30,11 @@ const classes = computed(() => {
       if (new HSL(...hslColor.value).isDark()) cl.push('dark');
       if (api.settings.get('themeImage')) cl.push('backImage');
       break;
-    default:
+    default: {
+      const theme = getThemeByKey(api.settings.get('theme'));
+      if (theme && theme.base === 'dark') cl.push('dark');
       break;
+    }
   }
 
   return cl.join(' ');
@@ -51,6 +55,13 @@ const hslColorString = (color: Hsl, opacity = false) => {
 };
 
 const styles = computed(() => {
+  if (getThemeByKey(api.settings.get('theme'))) {
+    const theme = getThemeByKey(api.settings.get('theme'));
+    const c = theme.colors;
+    if (c.foreground && !c['foreground-solid']) c['foreground-solid'] = c.foreground;
+    const colors = Object.keys(c).map(key => `--cl-${key}: ${theme.colors[key]};`);
+    return colors.join(';');
+  }
   if (api.settings.get('theme') !== 'custom') return '';
   const s: string[] = [];
 
