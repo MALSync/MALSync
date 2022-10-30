@@ -1014,7 +1014,7 @@
         "description": "Please allow pop-ups for this website"
     },
     "minimalClass_versionMsg": {
-        "message": "Version $Version$  wurde installiert $Link$CHANGELOG$LinkEnd$",
+        "message": "Version $Version$ wurde installiert $Link$CHANGELOG$LinkEnd$",
         "description": "Update version",
         "placeholders": {
             "Version": {
