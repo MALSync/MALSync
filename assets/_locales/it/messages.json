@@ -875,10 +875,6 @@
         "message": "Disabilita lo script dell'estensione. Questo ti permette di avere sia l'estensione che lo script esterno attivi nello stesso momento.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies": {
-        "message": "Cookie Stretti",
-        "description": "Strict Cookies"
-    },
     "settings_StrictCookies_Text": {
         "message": "Questa opzione aggiunge il supporto per Firefox Multi-Account Containers. Ricordati di riavviare il browser dopo aver abilitato questa opzione.",
         "description": "Strict Cookies - Text"
@@ -894,10 +890,6 @@
     "settings_ClearCache": {
         "message": "Svuota la Cache",
         "description": "Clear Cache"
-    },
-    "settings_presenceHidePage": {
-        "message": "Mostra icona di MAL-Sync invece di quella della pagina",
-        "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
     },
     "settings_enabled": {
         "message": "Attivo",

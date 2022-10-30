@@ -875,10 +875,6 @@
         "message": "Lumpuhkan skrip konten. Ini membolehkan pengguna menggunakan extension dan userscript pada masa yang sama.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies": {
-        "message": "Ketatkan Kukis",
-        "description": "Strict Cookies"
-    },
     "settings_StrictCookies_Text": {
         "message": "Pilihan ini adalah untuk meningkatkan sokongan untuk Firefox Multi-Account Containers. Pastikan memuat semula  browser selepas mengaktifkan pilihan ini.",
         "description": "Strict Cookies - Text"
@@ -894,10 +890,6 @@
     "settings_ClearCache": {
         "message": "Bersihkan Cache",
         "description": "Clear Cache"
-    },
-    "settings_presenceHidePage": {
-        "message": "Tunjukkan ikon MAL-Sync sahaja, bukan ikon halaman",
-        "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
     },
     "settings_enabled": {
         "message": "Diaktifkan",

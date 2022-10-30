@@ -875,10 +875,6 @@
         "message": "Nonaktifkan skrip konten. Hal ini memungkinkan pengguna menggunakan ekstensi dan userscript secara bersamaan.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies_Text": {
-        "message": "Opsi ini untuk menambah dukungan terhadap Firefox Multi-Account Containers. Pastikan untuk memuat ulang peramban setelah mengaktifkan opsi ini.",
-        "description": "Strict Cookies - Text"
-    },
     "settings_highlightAllEp": {
         "message": "Soroti semua episode/bab",
         "description": "Highlight all Episodes/Chapters"

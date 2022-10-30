@@ -771,10 +771,6 @@
         "message": "Script içeriğini devre dışı bırakır. Bu da aynı zamanda userscript ve eklenti kullanmanı sağlar.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies_Text": {
-        "message": "Bu seçenek Firefox Multi-Account Containers desteğini aktif eder. Bu seçeneği etkinleştirdikten sonra tarayıcıyı yeniden başlattığınızdan emin olun",
-        "description": "Strict Cookies - Text"
-    },
     "settings_highlightAllEp": {
         "message": "Tüm Bölümleri işaretle",
         "description": "Highlight all Episodes/Chapters"

@@ -665,10 +665,6 @@
         "message": "Inaktiverar innehållsskriptet. Detta gör det möjligt att ha både tillägget och användarskriptet aktiverat samtidigt.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies_Text": {
-        "message": "Detta alternativ lägger till stöd för \"Firefox Multi-Account Containers\". Se till att starta om webbläsaren efter att ha aktiverat det här alternativet.",
-        "description": "Strict Cookies - Text"
-    },
     "settings_ClearCache": {
         "message": "Rensa cache",
         "description": "Clear Cache"

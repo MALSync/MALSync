@@ -875,10 +875,6 @@
         "message": "Отключает скрипты контента. Это делает возможным одновременную работу расширения и пользовательских скриптов.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies_Text": {
-        "message": "Эта опция добавляет поддержку Firefox Multi-Account Containers. Не забудьте перезапустить браузер прежде чем включать эту опцию.",
-        "description": "Strict Cookies - Text"
-    },
     "settings_highlightAllEp": {
         "message": "Выделить все серии/главы",
         "description": "Highlight all Episodes/Chapters"
