@@ -932,6 +932,5 @@ export function sortAlphabetically(a, b) {
 export function isDomainMatching(url, domain) {
   const urlObj = new URL(url);
   const { host } = urlObj;
-  const reg = new RegExp(`(^|^.+\\.)${domain.replace('.', '\\.')}$`, 'i');
-  return reg.test(host);
+  return host === domain || host.endsWith(`.${domain}`);
 }
