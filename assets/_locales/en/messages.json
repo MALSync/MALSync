@@ -718,8 +718,8 @@
     }
   },
   "settings_StreamingSite": {
-    "message": "Streaming links",
-    "description": "Streaming links"
+    "message": "Quick links",
+    "description": "Quick links"
   },
   "settings_StreamingSite_text": {
     "message": "If disabled, the streaming site will no longer appear in an anime’s sidebar on MyAnimeList/AniList/Kitsu/Simkl.",

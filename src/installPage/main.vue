@@ -100,6 +100,17 @@
 <style lang="less">
 @import '../_minimal/less/_main.less';
 
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: Montserrat, sans-serif;
+}
+
 p {
   font-size: 16px;
 }

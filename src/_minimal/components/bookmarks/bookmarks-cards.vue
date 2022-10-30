@@ -133,6 +133,8 @@ const episodeLang = utils.episode;
     gap: 20px;
     margin-bottom: 5px;
     .value {
+      display: inline-flex;
+      align-items: center;
       padding-left: 5px;
       font-weight: 600;
     }
