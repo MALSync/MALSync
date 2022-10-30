@@ -722,7 +722,7 @@
         "description": "Remap floating button to the correction UI"
     },
     "settings_miniMAL_floatButtonHide": {
-        "message": "Nascondi  il pulsante volante del menù di miniMAL",
+        "message": "Nascondi il pulsante volante del menù di miniMAL",
         "description": "Hide miniMAL floating menu button"
     },
     "settings_miniMAL_autoCloseMinimal": {
