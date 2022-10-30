@@ -1,6 +1,9 @@
 <template>
   <div class="book-element">
-    <ImageLazy class="img" :src="item.imageLarge" mode="cover" />
+    <div :style="`--text: ${styleText}`">
+      <ImageLazy class="img normal" :src="item.imageLarge" mode="cover" />
+      <ImageLazy class="img blurred" :src="item.imageLarge" mode="cover" />
+    </div>
     <div class="gradient" :class="`gradient-${item.status}`" />
     <MediaLink class="link" :href="item.url" :title="title" />
     <div class="text">
@@ -16,8 +19,7 @@
           :progress-text="item.progressText"
         />
       </div>
-      <div class="bottomBox">
-        <div class="backdrop"></div>
+      <div ref="text" class="bottomBox">
         <div class="title">{{ item.title }}</div>
         <MediaBar
           :watched-ep="item.watchedEp"
@@ -31,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, PropType, ref, Ref, watch } from 'vue';
 import { bookmarkItem } from '../../minimalClass';
 import MediaLink from '../media-link.vue';
 import MediaPill from '../media/media-pill.vue';
@@ -51,6 +53,40 @@ const title = computed(() => {
   const prog = props.item.progressEp ? `[${props.item.progressEp}]` : '';
   return `${props.item.watchedEp}/${t} ${prog}`;
 });
+
+const text = ref(null) as Ref<HTMLElement | null>;
+const textHeight = ref(0);
+
+const calcHeights = () => {
+  if (text.value) {
+    textHeight.value = text.value.clientHeight;
+  }
+};
+
+const resizeObserver = new ResizeObserver(() => {
+  calcHeights();
+});
+
+watch(
+  text,
+  value => {
+    if (value) resizeObserver.observe(value);
+  },
+  { immediate: true },
+);
+
+onMounted(() => {
+  nextTick(() => {
+    calcHeights();
+  });
+  calcHeights();
+});
+
+onBeforeUnmount(() => {
+  resizeObserver.disconnect();
+});
+
+const styleText = computed(() => `${textHeight.value}px`);
 </script>
 
 <style lang="less" scoped>
@@ -69,6 +105,15 @@ const title = computed(() => {
     .fullSize();
 
     border-radius: 11px;
+
+    &.normal {
+      clip-path: inset(0 0 var(--text) 0);
+    }
+
+    &.blurred {
+      filter: blur(8px) brightness(0.6);
+      clip-path: inset(calc(100% - var(--text)) 0 0 0);
+    }
   }
 
   .gradient {
@@ -101,21 +146,11 @@ const title = computed(() => {
   }
 
   .bottomBox {
-    .border-radius();
-
     position: relative;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     padding: 10px;
     overflow: hidden;
-
-    .backdrop {
-      .fullSize();
-
-      background-color: #00000099;
-      opacity: 1;
-      transition: opacity @fast-transition;
-    }
 
     .title {
       position: relative;
@@ -127,12 +162,17 @@ const title = computed(() => {
   &:hover {
     .img {
       filter: grayscale(1);
+
+      &.normal {
+        clip-path: inset(0 0 0 0);
+      }
+
+      &.blurred {
+        display: none;
+      }
     }
     .gradient {
       opacity: 1;
-    }
-    .backdrop {
-      opacity: 0;
     }
   }
 }
