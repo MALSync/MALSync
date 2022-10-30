@@ -37,6 +37,11 @@ export async function initShark() {
     return;
   }
 
+  if (window.location.host.includes('simkl.com') && utils.isFirefox()) {
+    con.info('Crash reports disabled for simkl.com');
+    return;
+  }
+
   Sentry.init({
     dsn: 'https://blood@shark.malsync.moe/1337',
     tunnel: 'https://api.malsync.moe/shark',

@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const LeviatanScans: pageInterface = {
   name: 'LeviatanScans',
-  domain: 'https://leviatanscans.com',
+  domain: 'https://en.leviatanscans.com',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
@@ -61,7 +61,7 @@ export const LeviatanScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$(j.$('.post-title h1')).text().trim();
+      return j.$(j.$('#manga-title > h1')).text().trim();
     },
     getIdentifier(url) {
       if (utils.urlPart(url, 3) === 'manga') {
@@ -70,9 +70,9 @@ export const LeviatanScans: pageInterface = {
       return utils.urlPart(url, 5);
     },
     uiSelector(selector) {
-      j.$('.c-page__content .c-blog__heading')
+      j.$('.c-page__content .profile-manga')
         .first()
-        .before(
+        .after(
           j.html(
             `<div id="malthing"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> <i class="icon ion-ios-star"></i> MAL-Sync</h2></div>${selector}</div>`,
           ),

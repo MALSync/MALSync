@@ -1,5 +1,5 @@
 {
-  "search": "https://9anime.to/search?keyword={searchtermPlus}",
+  "search": "https://9anime.to/filter?keyword={searchtermPlus}",
   "urls": {
     "match": [
       "*://*.9anime.to/watch/*",
@@ -39,7 +39,9 @@
       "*://*.9anime.club/watch/*",
       "*://*.9anime.club/watch2gether/*",
       "*://*.9anime.pl/watch/*",
-      "*://*.9anime.pl/watch2gether/*"
+      "*://*.9anime.pl/watch2gether/*",
+      "*://*.9anime.gs/watch/*",
+      "*://*.9anime.gs/watch2gether/*"
     ]
   }
 }

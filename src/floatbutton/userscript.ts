@@ -1,4 +1,5 @@
 import { Minimal } from '../_minimal/minimalClass';
+import { hideFloatbutton, showFloatbutton } from './init';
 
 let minimalObj: Minimal;
 
@@ -69,19 +70,23 @@ function createIframe(page) {
 }
 
 export function floatClick(page) {
-  con.log('Open miniMAL');
-  if (j.$('#info-popup').css('display') === 'none') {
-    document.getElementById('info-popup')!.style.display = 'block';
-    // fillIframe(url, currentMalData);
-    j.$('.floatbutton').fadeOut();
-    if (!j.$('#info-iframe').length) {
-      createIframe(page);
-    } else if (typeof minimalObj !== 'undefined' && typeof page.singleObj !== 'undefined') {
-      minimalObj.fill({ url: page.singleObj.getUrl() }, true);
-    }
+if (api.settings.get('floatButtonCorrection')) {
+    con.log('Open correction');
+    page.openCorrectionUi();
   } else {
-    document.getElementById('info-popup')!.style.display = 'none';
-    j.$('.floatbutton').fadeIn();
+    con.log('Open miniMAL');
+    if (j.$('#info-popup').css('display') === 'none') {
+      document.getElementById('info-popup')!.style.display = 'block';
+      hideFloatbutton(true);
+      if (!j.$('#info-iframe').length) {
+        createIframe(page);
+      } else if (typeof minimalObj !== 'undefined' && typeof page.singleObj !== 'undefined') {
+        minimalObj.fill({ url: page.singleObj.getUrl() }, true);
+      }
+    } else {
+      document.getElementById('info-popup')!.style.display = 'none';
+      showFloatbutton();
+    }
   }
 }
 

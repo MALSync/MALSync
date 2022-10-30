@@ -51,7 +51,7 @@ async function checkApi(page) {
         apiBase = url.split('/').splice(0, 4).join('/');
         itemId = utils.urlPart(url, 5);
         apiKey = await getApiKey();
-        setBase(apiBase);
+        await setBase(apiBase);
       }
     }
 
@@ -172,32 +172,39 @@ async function waitForBase() {
   });
 }
 
-async function testApi(retry = 0) {
-  let base = await getBase();
-  if (typeof base === 'undefined' || base === '') {
-    con.info('No base');
-    base = await waitForBase();
-  }
+async function prepareApi() {
+  const logger = con.m('Emby').m('Athentication');
+  logger.info('Start Authentication');
+  return getFromApiClient().catch(err => {
+    logger.error('ApiClient Failed', err);
+    logger.info('Waiting for Base');
+    return getFromPage().catch(async () => {
+      utils.flashm('Could not Authenticate');
+      throw 'Not Authenticated [Emby]';
+    });
+  });
+}
 
-  setBase(base);
+async function getFromApiClient() {
+  await utils.wait(2000);
+  await checkApiClient();
+  return testApi();
+}
 
-  return apiCall('/System/Info', null, base).then(async response => {
+async function getFromPage() {
+  const base = await waitForBase();
+  await setBase(base);
+  await askForApiKey();
+  return testApi();
+}
+
+async function testApi() {
+  return apiCall('/System/Info', null).then(async response => {
     if (response.status !== 200) {
       con.error('Not Authenticated');
-      setBase('');
-
-      if (retry < 1) {
-        try {
-          const apiC = await checkApiClient();
-          retry++;
-          if (apiC) return testApi(retry);
-        } catch (e) {
-          con.error('Could not get ApiClient', e);
-        }
-      }
+      await setBase('');
 
       throw 'Not Authenticated [Emby]';
-      return false;
     }
     return true;
   });
@@ -206,23 +213,24 @@ async function testApi(retry = 0) {
 async function checkApiClient() {
   return new Promise((resolve, reject) => {
     proxy.addProxy(async (caller: ScriptProxy) => {
-      const apiClient: any = proxy.getCaptureVariable('ApiClient');
-      con.m('apiClient').log(apiClient);
-      if (
-        apiClient &&
-        apiClient._serverInfo &&
-        apiClient._serverInfo.RemoteAddress &&
-        apiClient._serverInfo.AccessToken
-      ) {
-        const base = await getBase();
-        if (typeof base === 'undefined' || base === '') {
-          setBase(`${apiClient._serverInfo.RemoteAddress}/emby`);
+      try {
+        const apiClient: any = proxy.getCaptureVariable('ApiClient');
+        con.m('apiClient').log(apiClient);
+        if (
+          apiClient &&
+          apiClient._serverInfo &&
+          apiClient._serverInfo.RemoteAddress &&
+          apiClient._serverInfo.AccessToken
+        ) {
+          await setBase(`${apiClient._serverInfo.RemoteAddress}/emby`);
+          await setApiKey(apiClient._serverInfo.AccessToken);
+          resolve(true);
+          return;
         }
-        setApiKey(apiClient._serverInfo.AccessToken);
-        resolve(true);
-        return;
+        reject();
+      } catch (e) {
+        reject(e);
       }
-      reject();
     });
   });
 }
@@ -244,15 +252,7 @@ async function askForApiKey() {
       con.info('api', api);
       setApiKey(api);
       j.$(evt.target).parentsUntil('.flash').remove();
-      testApi()
-        .then(() => {
-          resolve(true);
-        })
-        .catch(async () => {
-          utils.flashm('Could not Authenticate');
-          await askForApiKey();
-          resolve(true);
-        });
+      resolve(true);
     });
     msg.find('.Cancel').click(function (evt) {
       j.$(evt.target).parentsUntil('.flash').remove();
@@ -320,12 +320,9 @@ export const Emby: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    testApi()
-      .catch(() => {
-        con.info('Not Authenticated');
-        return askForApiKey();
-      })
-      .then(() => {
+
+    j.$(document).ready(function () {
+      prepareApi().then(() => {
         con.info('Authenticated');
         utils.changeDetect(
           () => {
@@ -369,5 +366,6 @@ export const Emby: pageInterface = {
           }
         });
       });
+    });
   },
 };

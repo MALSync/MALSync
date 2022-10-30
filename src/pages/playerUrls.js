@@ -41,7 +41,7 @@ module.exports = {
     match: ['*://*.mail.ru/*'],
   },
   myvi: {
-    match: ['*://*.myvi.ru/*'],
+    match: ['*://*.myvi.ru/*', '*://www.myvi.tv/embed/*'],
   },
   sibnet: {
     match: ['*://*.sibnet.ru/*'],
@@ -79,6 +79,7 @@ module.exports = {
       '*://*.dutrag.com/*',
       '*://*.diasfem.com/*',
       '*://*.fembed-hd.com/*',
+      '*://*.fembed9hd.com/*',
     ],
   },
   youpload: {
@@ -313,6 +314,7 @@ module.exports = {
       '*://*.animixplay.to/goplyr.html*',
       '*://*.animixplay.to/player.html*',
       '*://*.plyr.link/*',
+      '*://*.plyr.in/*',
       '*://jzscuqezoqkcpvy.win/*',
       '*://v.cdnmix.org/*',
       '*://v.cachecow.eu/*',
@@ -390,6 +392,10 @@ module.exports = {
       '*://*.gogoplay.io/load.php?*',
       '*://*.gogoplay.io/loadserver.php?*',
       '*://*.gogoplay.io/embedplus*',
+      '*://*.gogohd.net/embedplus*',
+      '*://*.gogohd.net/streaming.php?*',
+      '*://*.gogohd.net/load.php?*',
+      '*://*.gogohd.net/loadserver.php?*',
     ],
   },
   // bs.to
@@ -451,6 +457,7 @@ module.exports = {
       '*://sbplay2.xyz/*',
       '*://sbfull.com/e/*',
       '*://ssbstream.net/*',
+      '*://streamsss.net/*',
     ],
   },
   // gogo
@@ -465,6 +472,8 @@ module.exports = {
       '*://dood.sh/e/*',
       '*://dood.so/e/*',
       '*://dood.pm/e/*',
+      '*://dood.wf/e/*',
+      '*://dood.re/e/*',
     ],
   },
   // animedao.to
@@ -538,6 +547,15 @@ module.exports = {
       '*://v-o-e-unblock.com/e/*',
       '*://audaciousdefaulthouse.com/e/*',
       '*://launchreliantcleaverriver.com/e/*',
+      '*://reputationsheriffkennethsand.com/e/*',
+      '*://fittingcentermondaysunday.com/e/*',
+      '*://voe.bar/e/*',
+      '*://housecardsummerbutton.com/e/*',
+      '*://fraudclatterflyingcar.com/e/*',
+      '*://bigclatterhomesguideservice.com/e/*',
+      '*://uptodatefinishconferenceroom.com/e/*',
+      '*://realfinanceblogcenter.com/e/*',
+      '*://tinycat-voe-fashion.com/e/*',
     ],
   },
   // animewho
@@ -617,7 +635,7 @@ module.exports = {
   },
   // zoro
   rapidstream: {
-    match: ['*://*.rapid-cloud.ru/*'],
+    match: ['*://*.rapid-cloud.ru/*', '*://*.rapid-cloud.co/*'],
   },
   // tenshi
   tenshi: {
@@ -733,5 +751,13 @@ module.exports = {
   // animeworld
   animeworld: {
     match: ['*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*'],
+  },
+  // 9anime
+  filemoon: {
+    match: ['*://filemoon.sx/e/*'],
+  },
+  // toonanime
+  toonvip: {
+    match: ['*://mb.toonanime.xyz/dist/myt.html*'],
   },
 };

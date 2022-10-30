@@ -191,7 +191,7 @@ export class AnilistClass {
               margin-top: 16px;
               font-size: 1.2rem;
               position: relative;
-
+              word-break: break-all;
             ">
               <img src="${utils.favicon(page.domain)}" height="16" width="16">
               <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${

@@ -217,4 +217,7 @@ export default {
     margin-left: 5px;
   }
 }
+.simkltvdetailonlineitemlinks {
+  word-break: break-all;
+}
 </style>

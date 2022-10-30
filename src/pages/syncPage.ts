@@ -1,6 +1,6 @@
 import { pageInterface, pageState } from './pageInterface';
 import { getSingle } from '../_provider/singleFactory';
-import { initFloatButton } from '../floatbutton/init';
+import { hideFloatbutton, initFloatButton, showFloatbutton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
 import { fullscreenNotification, getPlayerTime } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
@@ -35,6 +35,10 @@ export class SyncPage {
   public novel = false;
 
   public strongVolumes = false;
+
+  public videoSyncOffset = true;
+
+  public videoSyncInterval;
 
   constructor(
     public url,
@@ -151,9 +155,11 @@ export class SyncPage {
       if (progress < 100) {
         j.$('.ms-progress').css('width', `${progress}%`);
         j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
-      } else {
+      } else if (this.videoSyncOffset) {
         j.$('#malSyncProgress').addClass('ms-done');
         j.$('.flash.type-update .sync').click();
+      } else {
+        con.log('videoSyncOffset', progress);
       }
     }
     this.handleVideoResume(item, timeCb);
@@ -263,18 +269,34 @@ export class SyncPage {
     this.url = window.location.href;
     this.UILoaded = false;
     this.curState = undefined;
+    this.setSearchObj(undefined);
     $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+  }
+
+  setSearchObj(searchObj) {
+    if (searchObj) {
+      showFloatbutton();
+    } else if (api.settings.get('floatButtonCorrection')) {
+      hideFloatbutton();
+    }
+    this.searchObj = searchObj;
   }
 
   async handlePage(curUrl = window.location.href) {
     this.resetPlayerError();
     let state: pageState;
     this.curState = undefined;
-    this.searchObj = undefined;
+    this.setSearchObj(undefined);
     const This = this;
     this.url = curUrl;
     this.browsingtime = Date.now();
     let tempSingle;
+
+    this.videoSyncOffset = false;
+    clearTimeout(this.videoSyncInterval);
+    this.videoSyncInterval = setTimeout(() => {
+      this.videoSyncOffset = true;
+    }, 10000);
 
     if (this.page.isSyncPage(this.url)) {
       this.loadUI();
@@ -285,10 +307,8 @@ export class SyncPage {
         detectedEpisode: parseInt(`${this.page.sync.getEpisode(this.url)}`),
       };
 
-      this.searchObj = new SearchClass(
-        state.title,
-        this.novel ? 'novel' : this.page.type,
-        state.identifier,
+      this.setSearchObj(
+        new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
@@ -356,10 +376,8 @@ export class SyncPage {
         identifier: this.page.overview.getIdentifier(this.url),
       };
 
-      this.searchObj = new SearchClass(
-        state.title,
-        this.novel ? 'novel' : this.page.type,
-        state.identifier,
+      this.setSearchObj(
+        new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
@@ -1237,8 +1255,9 @@ export class SyncPage {
           };
 
           if (api.settings.get('presenceShowButtons')) {
-            let url = this.singleObj.getMalUrl();
-            if (!url && this.singleObj.shortName !== 'Local') url = this.singleObj.getDisplayUrl();
+            let url = null;
+            if (this.singleObj.shortName !== 'Local') url = this.singleObj.getDisplayUrl();
+            if (!url) url = this.singleObj.getMalUrl();
             if (!url && !presenceHidePage) url = this.singleObj.getStreamingUrl();
             if (url) {
               pres.presence.buttons = [

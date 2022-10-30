@@ -34,7 +34,9 @@ export const nineAnime: pageInterface = {
     },
     getEpisode(url) {
       if (isWatch2Gether()) {
-        return parseInt(j.$('div.info span.dot.ep').text().replace(/\D+/g, ''));
+        return parseInt(
+          j.$('div.info span.dot.ep .current-episode-name').text().replace(/\D+/g, ''),
+        );
       }
       return parseInt(j.$('ul.ep-range > li > a.active').attr('data-num')!);
     },
@@ -78,6 +80,8 @@ export const nineAnime: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+
+    nineAnime.domain = `${window.location.protocol}//${window.location.hostname}`;
 
     if (isWatch2Gether()) {
       if (utils.urlPart(window.location.href, 4) !== 'room') {

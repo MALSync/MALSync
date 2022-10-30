@@ -21,6 +21,7 @@ const aniUrls = { anilist: pageUrls.anilist };
 const kitsuUrls = { anilist: pageUrls.kitsu };
 const simklUrls = { anilist: pageUrls.simkl };
 const malsyncUrls = { anilist: pageUrls.malsync };
+const malsyncAnilistUrls = { anilist: pageUrls.malsyncAnilist };
 const malsyncPwaUrls = { anilist: pageUrls.malsyncPwa };
 
 const contentUrls = pageUrls;
@@ -42,6 +43,12 @@ var content_scripts = [
     matches: generateMatchExcludes(malsyncUrls).match,
     exclude_globs: generateMatchExcludes(malsyncUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-script.js'],
+    run_at: 'document_start',
+  },
+  {
+    matches: generateMatchExcludes(malsyncAnilistUrls).match,
+    exclude_globs: generateMatchExcludes(malsyncAnilistUrls).exclude,
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-anilist-script.js'],
     run_at: 'document_start',
   },
   {

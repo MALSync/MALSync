@@ -84,7 +84,7 @@ let authenticated = false;
 
 export const beta: pageInterface = {
   name: 'BetaCrunchyroll',
-  domain: 'https://beta.crunchyroll.com',
+  domain: 'https://www.crunchyroll.com',
   languages: [
     'English',
     'Spanish',
@@ -139,13 +139,13 @@ export const beta: pageInterface = {
     list: {
       offsetHandler: true,
       elementsSelector() {
-        return j.$('.episode-list .c-playable-card');
+        return j.$('.episode-list .card');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a').first().attr('href'), beta.domain);
       },
       elementEp(selector) {
-        const text = selector.find('.c-playable-card__title').first().text();
+        const text = selector.find('[class*="playable-card-static__title-link"]').first().text();
 
         const matches = text.match(/E(\d+)/);
 
@@ -183,7 +183,7 @@ export const beta: pageInterface = {
     utils.changeDetect(
       () => check(),
       () => {
-        const sesInfo = $('.season-info .c-text').first().text();
+        const sesInfo = $('.season-info').first().text();
         if (sesInfo) return sesInfo;
         return window.location.href;
       },
@@ -203,9 +203,9 @@ export const beta: pageInterface = {
             console.log('Waiting for page to load');
             clearInterval(placeholderInterval);
             placeholderInterval = utils.waitUntilTrue(
-              () => Boolean($('.episode-list .c-playable-card a').length),
+              () => Boolean($('.episode-list .card a').length),
               async () => {
-                const epUrl = $('.episode-list .c-playable-card a').first().attr('href');
+                const epUrl = $('.episode-list .card a').first().attr('href');
                 if (!epUrl) throw 'No Episode found on the page';
                 status.episode = await episode(getIdFromUrl(epUrl));
                 page.handlePage();
@@ -257,7 +257,7 @@ async function getAuthData() {
       }
     | undefined;
   if (!data) throw 'No auth Data found';
-  authObj.domain = data.apiDomain;
+  authObj.domain = (beta.domain as string) || data.apiDomain;
   authObj.clientId = data.accountAuthClientId;
   logger.log(authObj);
 }
@@ -310,7 +310,7 @@ async function getAuthPolicy() {
   const response = await apiCall('/index/v2', 'GET', { bearer: true });
   if (response.status !== 200) throw 'Could not get Policy';
   const data = JSON.parse(response.responseText) as {
-    cms_beta: {
+    cms_web: {
       bucket: string;
       policy: string;
       signature: string;
@@ -319,10 +319,10 @@ async function getAuthPolicy() {
     };
   };
 
-  authObj.bucket.path = data.cms_beta.bucket;
-  authObj.bucket.keyPairId = data.cms_beta.key_pair_id;
-  authObj.bucket.policy = data.cms_beta.policy;
-  authObj.bucket.signature = data.cms_beta.signature;
+  authObj.bucket.path = data.cms_web.bucket;
+  authObj.bucket.keyPairId = data.cms_web.key_pair_id;
+  authObj.bucket.policy = data.cms_web.policy;
+  authObj.bucket.signature = data.cms_web.signature;
 
   logger.log(authObj);
 }

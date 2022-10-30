@@ -31,6 +31,9 @@ module.exports = {
   malsync: {
     match: ['*://malsync.moe/mal/oauth*'],
   },
+  malsyncAnilist: {
+    match: ['*://malsync.moe/anilist/oauth*'],
+  },
   malsyncPwa: {
     match: ['*://malsync.moe/pwa*'],
   },
