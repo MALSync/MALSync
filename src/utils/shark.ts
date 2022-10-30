@@ -32,12 +32,12 @@ export async function initShark() {
     return;
   }
 
-  if (window.location.host.includes('wakanim.tv') && utils.isFirefox()) {
+  if (utils.isDomainMatching(window.location.href, 'wakanim.tv') && utils.isFirefox()) {
     con.info('Crash reports disabled for wakanim.tv');
     return;
   }
 
-  if (window.location.host.includes('simkl.com') && utils.isFirefox()) {
+  if (utils.isDomainMatching(window.location.href, 'simkl.com') && utils.isFirefox()) {
     con.info('Crash reports disabled for simkl.com');
     return;
   }

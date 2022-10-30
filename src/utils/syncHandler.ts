@@ -30,10 +30,10 @@ export function generateSync(
 }
 
 export function getType(url) {
-  if (url.indexOf('anilist.co') !== -1) return 'ANILIST';
-  if (url.indexOf('kitsu.io') !== -1) return 'KITSU';
-  if (url.indexOf('myanimelist.net') !== -1) return 'MAL';
-  if (url.indexOf('simkl.com') !== -1) return 'SIMKL';
+  if (utils.isDomainMatching(url, 'anilist.co')) return 'ANILIST';
+  if (utils.isDomainMatching(url, 'kitsu.io')) return 'KITSU';
+  if (utils.isDomainMatching(url, 'myanimelist.net')) return 'MAL';
+  if (utils.isDomainMatching(url, 'simkl.com')) return 'SIMKL';
   throw 'Type not found';
 }
 

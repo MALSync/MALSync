@@ -928,3 +928,10 @@ export function sortAlphabetically(a, b) {
   if (a.toLowerCase() > b.toLowerCase()) return 1;
   return 0;
 }
+
+export function isDomainMatching(url, domain) {
+  const urlObj = new URL(url);
+  const { host } = urlObj;
+  const reg = new RegExp(`(^|^.+\\.)${domain.replace('.', '\\.')}$`, 'i');
+  return reg.test(host);
+}

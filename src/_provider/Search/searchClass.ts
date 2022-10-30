@@ -261,7 +261,7 @@ export class SearchClass {
     ) {
       try {
         const temp = await this.pageSearch();
-        if (temp && !(temp.url.indexOf('myanimelist.net') !== -1) && temp.similarity.same) {
+        if (temp && !utils.isDomainMatching(temp.url, 'myanimelist.net') && temp.similarity.same) {
           this.logger.log('Ignore Firebase', result);
           result = temp;
         }
