@@ -13,32 +13,17 @@
   limitations under the License
 -->
   <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
-    <header
-      class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800"
-    >
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">
-          <img
-            id="iconimage"
-            height="32"
-            width="32"
-            src="https://github.com/MALSync/MALSync/blob/master/assets/icons/icon128.png?raw=true"
-          />Mal-Sync</span
-        >
-        <div class="mdl-layout-spacer"></div>
-      </div>
-    </header>
     <div class="demo-ribbon"></div>
     <main class="demo-main mdl-layout__content">
       <div class="demo-container mdl-grid">
-        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-        <div class="mdl-cell mdl-cell--8-col">
+        <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="mdl-cell mdl-cell--10-col">
           <div
             class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800"
           >
             <div class="section">
               <h3 class="noMarginTop mainHeader">
-                {{ lang('minimalClass_versionMsg_Text_1') }}
+                {{ lang('minimalClass_versionMsg_Text_1') }} 🎉
               </h3>
               <p>
                 <strong>
@@ -46,8 +31,8 @@
                 </strong>
               </p>
             </div>
-            <div class="section">
-              <h4>📂 {{ lang('installPage_Mode') }}</h4>
+            <div class="section" style="margin-bottom: 49px">
+              <h4 style="margin-bottom: 9px">📂 {{ lang('installPage_Mode') }}</h4>
               <template v-for="comp in tracking" :key="comp.key">
                 <SettingsRendering :comp="comp" />
               </template>
@@ -229,7 +214,7 @@ a {
 
 .demo-content {
   border-radius: 2px;
-  padding: 80px 56px;
+  padding: 25px 30px;
   margin-bottom: 80px;
 }
 
