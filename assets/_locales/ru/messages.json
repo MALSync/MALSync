@@ -494,7 +494,7 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "Если аниме/манга не  может быть найдена",
+        "message": "Если аниме/манга не может быть найдена",
         "description": "Anime/Manga not found in MAL"
     },
     "correction_NoEntry": {
@@ -956,7 +956,7 @@
         "description": "Message"
     },
     "updateCheck_NotificationHistory": {
-        "message": "История  уведомлений",
+        "message": "История уведомлений",
         "description": "Notification History"
     },
     "minimalApp_Overview": {
