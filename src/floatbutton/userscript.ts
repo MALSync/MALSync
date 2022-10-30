@@ -70,7 +70,7 @@ function createIframe(page) {
 }
 
 export function floatClick(page) {
-if (api.settings.get('floatButtonCorrection')) {
+  if (api.settings.get('floatButtonCorrection')) {
     con.log('Open correction');
     page.openCorrectionUi();
   } else {
