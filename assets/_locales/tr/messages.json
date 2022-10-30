@@ -383,16 +383,6 @@
             }
         }
     },
-    "prediction_Last": {
-        "message": "Son bölüm $time$ önce yayınlandı",
-        "description": "Text for last episode release time",
-        "placeholders": {
-            "time": {
-                "content": "$1",
-                "example": "2 days 1 hour"
-            }
-        }
-    },
     "prediction_Airing": {
         "message": "$time$'da yayınlanacak",
         "description": "Text for airing estimation",
@@ -781,10 +771,6 @@
         "message": "Script içeriğini devre dışı bırakır. Bu da aynı zamanda userscript ve eklenti kullanmanı sağlar.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies": {
-        "message": "Sıkı Çerezler",
-        "description": "Strict Cookies"
-    },
     "settings_StrictCookies_Text": {
         "message": "Bu seçenek Firefox Multi-Account Containers desteğini aktif eder. Bu seçeneği etkinleştirdikten sonra tarayıcıyı yeniden başlattığınızdan emin olun",
         "description": "Strict Cookies - Text"
@@ -800,10 +786,6 @@
     "settings_ClearCache": {
         "message": "Önbelleği Temizle",
         "description": "Clear Cache"
-    },
-    "settings_presenceHidePage": {
-        "message": "Sayfa ikonu yerine MAL-Sync ikonunu göster",
-        "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
     },
     "settings_shortcut_tooltip": {
         "message": "Sadece tek bir tuşa kısayol atamak tavsiye edilmiyor.",
