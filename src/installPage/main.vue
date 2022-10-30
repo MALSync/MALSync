@@ -36,60 +36,103 @@
           <div
             class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800"
           >
-            <h3 class="noMarginTop mainHeader">
-              {{ lang('minimalClass_versionMsg_Text_1') }}
-            </h3>
-            <h4>{{ lang('installPage_Mode') }}</h4>
-            <template v-for="comp in tracking" :key="comp.key">
-              <SettingsRendering :comp="comp" />
-            </template>
+            <div class="section">
+              <h3 class="noMarginTop mainHeader">
+                {{ lang('minimalClass_versionMsg_Text_1') }}
+              </h3>
+              <p>
+                <strong>
+                  Let’s do a simple briefing to get you started — takes less than a minute!
+                </strong>
+              </p>
+            </div>
+            <div class="section">
+              <h4>📂 {{ lang('installPage_Mode') }}</h4>
+              <template v-for="comp in tracking" :key="comp.key">
+                <SettingsRendering :comp="comp" />
+              </template>
+            </div>
 
-            <h4>{{ lang('installPage_Howto') }}</h4>
-            <p v-dompurify-html="lang('installPage_Howto_Description')"></p>
+            <div class="section">
+              <h4>🔁 {{ lang('installPage_Howto') }}</h4>
+              <p v-dompurify-html="lang('installPage_Howto_Description')"></p>
+              <p>
+                <strong>anime:</strong><br />
+                The sync waits until 85% of the video is watched.
+              </p>
+              <p>
+                <strong>For manga:</strong><br />
+                The sync happens on page load.
+              </p>
+              <p>
+                Synchronization can be configured in the
+                <a class="open-settings" href="#">settings</a> — feel free to customize it your way!
+              </p>
+            </div>
 
-            <h4>{{ lang('installPage_Wrong') }}</h4>
-            <p>{{ lang('installPage_Wrong_Description') }}</p>
-            <p class="correctionGif">
-              <img
-                id="hiddenimage"
-                height="338"
-                width="600"
-                src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/Wrong%20recognition.gif"
-                alt="Wrong recognition"
-              />
-            </p>
+            <div class="section">
+              <h4>⚒️ {{ lang('installPage_Wrong') }}</h4>
+              <p>{{ lang('installPage_Wrong_Description') }}</p>
+              <p class="correctionGif">
+                <img
+                  id="hiddenimage"
+                  height="338"
+                  width="600"
+                  src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/Wrong%20recognition.gif"
+                  alt="Wrong recognition"
+                />
+              </p>
+            </div>
 
-            <h4>Quicklinks</h4>
-            <SettingsStreaming />
+            <div class="section">
+              <h4>🔗 Choose preferred quicklinks — your favorite sites one-click away</h4>
+              <p>
+                Quicklinks, basically, are buttons that open up your streaming/reading site of
+                choice — they will be located on every overview page for any anime/manga.
+              </p>
+              <p>
+                For example, if you like to watch anime on Crunchyroll, then Crunchyroll’s quicklink
+                will appear on every anime page. It’s a convinient way to access your favorite sites
+                with just one click!
+              </p>
+              <SettingsStreaming />
+            </div>
 
-            <h4>{{ lang('minimalClass_versionMsg_Text_4') }}</h4>
-            <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
-              <img
-                alt="Filter List"
-                src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square"
-              />
-            </a>
-            <h4>{{ lang('minimalClass_versionMsg_Text_2') }}</h4>
-            <a target="_blank" href="https://discord.com/invite/cTH4yaw">
-              <img
-                alt="Discord"
-                src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA"
-              />
-            </a>
-            <a target="_blank" href="https://github.com/MALSync/MALSync/issues">
-              <img
-                alt="Github Issues"
-                src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white"
-              />
-            </a>
+            <div class="section">
+              <h4>📃 {{ lang('minimalClass_versionMsg_Text_4') }}</h4>
+              <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
+                <img
+                  alt="Filter List"
+                  src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square"
+                />
+              </a>
+            </div>
 
-            <h4>{{ lang('minimalClass_versionMsg_Text_3') }}</h4>
-            <a target="_blank" href="https://github.com/MALSync/MALSync">
-              <img
-                alt="Github"
-                src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github"
-              />
-            </a>
+            <div class="section">
+              <h4>💬 {{ lang('minimalClass_versionMsg_Text_2') }}</h4>
+              <a target="_blank" href="https://discord.com/invite/cTH4yaw">
+                <img
+                  alt="Discord"
+                  src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA"
+                />
+              </a>
+              <a target="_blank" href="https://github.com/MALSync/MALSync/issues">
+                <img
+                  alt="Github Issues"
+                  src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white"
+                />
+              </a>
+            </div>
+
+            <div>
+              <h4>🧑🏻‍💻 {{ lang('minimalClass_versionMsg_Text_3') }}</h4>
+              <a target="_blank" href="https://github.com/MALSync/MALSync">
+                <img
+                  alt="Github"
+                  src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -109,6 +152,23 @@ h5,
 h6,
 p {
   font-family: Montserrat, sans-serif;
+}
+
+h3 {
+  font-size: 32px;
+  line-height: 39px;
+  margin-bottom: 30px;
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+
+.section {
+  margin-bottom: 64px;
 }
 
 p {
@@ -179,10 +239,6 @@ a {
 
 .noMarginTop {
   margin-top: 0;
-}
-
-.mainHeader {
-  margin-bottom: 56px;
 }
 
 .syncExtended {
