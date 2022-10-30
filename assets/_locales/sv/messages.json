@@ -584,7 +584,7 @@
         "description": "miniMAL Height"
     },
     "settings_miniMAL_Width": {
-        "message": "Bredd (px /  %)",
+        "message": "Bredd (px / %)",
         "description": "miniMAL Width"
     },
     "settings_Shortcuts": {
@@ -764,7 +764,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "Du behöver bara öppna en episode eller ett kapitel på någon av dessa $Link1$supported pages$LinkEnd1$. Synkroniseringen väntar till ungefär 85% av videon innan den börjar Synca. För manga så syncas den medas du laddar upp sidorna. Detta kan ändras  i $Link2$settings$LinkEnd2$.",
+        "message": "Du behöver bara öppna en episode eller ett kapitel på någon av dessa $Link1$supported pages$LinkEnd1$. Synkroniseringen väntar till ungefär 85% av videon innan den börjar Synca. För manga så syncas den medas du laddar upp sidorna. Detta kan ändras i $Link2$settings$LinkEnd2$.",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -790,7 +790,7 @@
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
-        "message": "Du kan lätt ändra anslutningen \"som visad i gifen under\". Om nummret på episode inte stämmer så kan du  ändra det här också.",
+        "message": "Du kan lätt ändra anslutningen \"som visad i gifen under\". Om nummret på episode inte stämmer så kan du ändra det här också.",
         "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
