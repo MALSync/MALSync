@@ -32,7 +32,7 @@
           ]"
         />
       </Section>
-      <Grid class="provider-section">
+      <div class="provider-section">
         <div
           v-for="provider in (Object.values(providerList) as any[])"
           :key="provider.providerType"
@@ -52,7 +52,7 @@
             </div>
           </FormButton>
         </div>
-      </Grid>
+      </div>
     </Card>
 
     <Card v-if="syncRequest.loading" class="spinner-wrap"><Spinner /></Card>
@@ -339,6 +339,12 @@ updateBackgroundSyncState();
 
 .provider-section {
   align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 5px;
+  :deep(a) {
+    color: var(--cl-secondary);
+  }
 }
 
 .listDiff {
