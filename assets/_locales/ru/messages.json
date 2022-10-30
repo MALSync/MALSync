@@ -875,10 +875,6 @@
         "message": "Отключает скрипты контента. Это делает возможным одновременную работу расширения и пользовательских скриптов.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies": {
-        "message": "Ограничить cookie-файлы",
-        "description": "Strict Cookies"
-    },
     "settings_StrictCookies_Text": {
         "message": "Эта опция добавляет поддержку Firefox Multi-Account Containers. Не забудьте перезапустить браузер прежде чем включать эту опцию.",
         "description": "Strict Cookies - Text"
@@ -894,10 +890,6 @@
     "settings_ClearCache": {
         "message": "Очистить кэш",
         "description": "Clear Cache"
-    },
-    "settings_presenceHidePage": {
-        "message": "Показать иконку MAL-Sync вместе иконки страницы",
-        "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
     },
     "settings_enabled": {
         "message": "Включено",
