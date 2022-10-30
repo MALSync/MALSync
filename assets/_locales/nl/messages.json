@@ -292,7 +292,7 @@
         "description": "Start rereading manga message"
     },
     "syncPage_flashConfirm_Anime_Correct": {
-        "message": "Is \"$anime$\"  wat je zocht?",
+        "message": "Is \"$anime$\" wat je zocht?",
         "description": "Is anime correct",
         "placeholders": {
             "anime": {
