@@ -1,6 +1,6 @@
 import { pageInterface, pageState } from './pageInterface';
 import { getSingle } from '../_provider/singleFactory';
-import { initFloatButton } from '../floatbutton/init';
+import { hideFloatbutton, initFloatButton, showFloatbutton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
 import { fullscreenNotification, getPlayerTime } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
@@ -269,14 +269,24 @@ export class SyncPage {
     this.url = window.location.href;
     this.UILoaded = false;
     this.curState = undefined;
+    this.setSearchObj(undefined);
     $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+  }
+
+  setSearchObj(searchObj) {
+    if (searchObj) {
+      showFloatbutton();
+    } else if (api.settings.get('floatButtonCorrection')) {
+      hideFloatbutton();
+    }
+    this.searchObj = searchObj;
   }
 
   async handlePage(curUrl = window.location.href) {
     this.resetPlayerError();
     let state: pageState;
     this.curState = undefined;
-    this.searchObj = undefined;
+    this.setSearchObj(undefined);
     const This = this;
     this.url = curUrl;
     this.browsingtime = Date.now();
@@ -297,10 +307,8 @@ export class SyncPage {
         detectedEpisode: parseInt(`${this.page.sync.getEpisode(this.url)}`),
       };
 
-      this.searchObj = new SearchClass(
-        state.title,
-        this.novel ? 'novel' : this.page.type,
-        state.identifier,
+      this.setSearchObj(
+        new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
@@ -368,10 +376,8 @@ export class SyncPage {
         identifier: this.page.overview.getIdentifier(this.url),
       };
 
-      this.searchObj = new SearchClass(
-        state.title,
-        this.novel ? 'novel' : this.page.type,
-        state.identifier,
+      this.setSearchObj(
+        new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);

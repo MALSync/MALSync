@@ -61,6 +61,7 @@ import search from './components/search.vue';
 import inputButton from './components/inputButton.vue';
 import entry from './components/entry.vue';
 import rules from './components/rules.vue';
+import { hideFloatbutton, showFloatbutton } from '../../floatbutton/init';
 
 export default {
   components: {
@@ -97,9 +98,11 @@ export default {
   },
   created() {
     this.minimized = api.settings.get('minimizeBigPopup');
+    if (api.settings.get('floatButtonCorrection')) hideFloatbutton(true);
   },
   unmounted() {
     this.unmountFnc();
+    showFloatbutton();
   },
   methods: {
     lang: api.storage.lang,
