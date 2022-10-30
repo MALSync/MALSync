@@ -818,7 +818,7 @@
         "description": "Shown if no shortcut is set for an option"
     },
     "settings_introSkip": {
-        "message": "Atur durasi lewati lagu opening  selama ($seconds$ detik)",
+        "message": "Atur durasi lewati lagu opening selama ($seconds$ detik)",
         "description": "Skips video seconds",
         "placeholders": {
             "Seconds": {
@@ -1048,7 +1048,7 @@
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
-        "message": "Kamu dapat mengubahnya dengan mudah  relasi antara laman dan entri seperti yang ditunjukkan pada GIF berikut. Offset episode dapat diatur melalui halaman juga.",
+        "message": "Kamu dapat mengubahnya dengan mudah relasi antara laman dan entri seperti yang ditunjukkan pada GIF berikut. Offset episode dapat diatur melalui halaman juga.",
         "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
