@@ -118,7 +118,7 @@
     "dexie": "^3.2.2",
     "dompurify": "^2.3.10",
     "download-file": "^0.1.5",
-    "eventemitter2": "^6.4.5",
+    "eventemitter2": "^6.4.9",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "fuse.js": "^6.6.2",
     "hex-to-hsl": "^1.0.2",
