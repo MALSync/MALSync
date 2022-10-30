@@ -98,7 +98,6 @@ import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
-import { AnimeShitai } from './AnimeShitai/main';
 import { Japanread } from './Japanread/main';
 import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
@@ -116,7 +115,6 @@ import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
 import { tenshi } from './tenshi/main';
 import { shiro } from './shiro/main';
-import { Anistream } from './Anistream/main';
 import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
@@ -242,7 +240,6 @@ export const pages = {
   Guya,
   MangaHub,
   ComicK,
-  AnimeShitai,
   Japanread,
   Bentomanga,
   MangaSushi,
@@ -260,7 +257,6 @@ export const pages = {
   MangasOrigines,
   tenshi,
   shiro,
-  Anistream,
   BlueSolo,
   DisasterScans,
   DynastyScans,

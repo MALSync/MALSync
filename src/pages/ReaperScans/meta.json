@@ -1,6 +1,5 @@
 {
-  "search": "https://reaperscans.com/?s={searchtermPlus}&post_type=wp-manga",
   "urls": {
-    "match": ["*://reaperscans.com/series*"]
+    "match": ["*://reaperscans.com/comics/*"]
   }
 }

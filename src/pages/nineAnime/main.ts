@@ -34,7 +34,9 @@ export const nineAnime: pageInterface = {
     },
     getEpisode(url) {
       if (isWatch2Gether()) {
-        return parseInt(j.$('div.info span.dot.ep').text().replace(/\D+/g, ''));
+        return parseInt(
+          j.$('div.info span.dot.ep .current-episode-name').text().replace(/\D+/g, ''),
+        );
       }
       return parseInt(j.$('ul.ep-range > li > a.active').attr('data-num')!);
     },

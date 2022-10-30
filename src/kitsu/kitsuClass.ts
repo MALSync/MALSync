@@ -265,7 +265,7 @@ export class KitsuClass {
               padding: 8px 12px;
               width: 100%;
               font-size: 12px;
-
+              word-break: break-all;
             ">
               <img src="${utils.favicon(page.domain)}">
               <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${
