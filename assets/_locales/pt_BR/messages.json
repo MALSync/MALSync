@@ -500,7 +500,7 @@
         "description": "Episode Offset"
     },
     "correction_Offset_text": {
-        "message": "Insira o deslocamento de episódio, se um anime tem 12 episódios, mas usa os números 0-11 em vez de 1-12, basta digitar  \"+1\" no deslocamento de episódio.",
+        "message": "Insira o deslocamento de episódio, se um anime tem 12 episódios, mas usa os números 0-11 em vez de 1-12, basta digitar \"+1\" no deslocamento de episódio.",
         "description": "Episode Offset - Text"
     },
     "correction_WrongUrl": {
