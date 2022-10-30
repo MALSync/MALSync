@@ -534,7 +534,7 @@ export class SyncPage {
                     ${api.storage.lang('settings_custom_domains_missing_permissions_header')}
                   </span>
                   <div style="display: flex; justify-content: space-evenly">
-                    <a class="player-error-missing-permissions" href="https://malsync.moe/pwa#customDomains" style="display: none; margin: 10px; border-bottom: 2px solid #e13f7b;">
+                    <a class="player-error-missing-permissions" href="https://malsync.moe/pwa/#/settings/customDomains" style="display: none; margin: 10px; border-bottom: 2px solid #e13f7b;">
                       ${api.storage.lang('Add')}
                     </a>
                     <a href="https://discord.com/invite/cTH4yaw" style="display: block; margin: 10px">Help</a>

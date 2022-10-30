@@ -1,6 +1,6 @@
 setGlobals();
 import { expect } from 'chai';
-import * as sync from '../../../../src/minimal/minimalApp/listSync/syncHandler';
+import * as sync from '../../../../src/utils/syncHandler';
 import * as Api from '../../utils/apiStub';
 
 function setGlobals() {

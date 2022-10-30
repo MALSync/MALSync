@@ -9,6 +9,7 @@ import { generalSingleTests } from '../generalSingleTests.exclude';
 const state = {
   'local://crunchyroll/anime/nogamenolife': {
     name: 'Unknown',
+    image: 'image',
     tags: '',
     progress: 0,
     volumeprogress: 0,

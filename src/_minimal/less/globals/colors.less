@@ -1,0 +1,44 @@
+/* stylelint-disable prettier/prettier */
+
+@colors: {
+  text: #333333;
+  light-text: #828282;
+  primary: #4c8ff2;
+  primary-dark: #0052f7;
+  secondary: #eb5757;
+  secondary-text: #de0c0c;
+  dark-background: #313131;
+  border-hover: #4b4b4b;
+  backdrop: #ebebeb;
+  background: rgb(255 255 255 / var(--cl-opacity));
+  foreground: rgb(255 255 255 / var(--cl-opacity));
+  foreground-solid: rgb(255 255 255);
+  foreground-active: var(--cl-backdrop);
+  opacity: 1;
+  loading: 1;
+}
+
+@dark-colors: {
+  text: white;
+  light-text: #afafaf;
+  secondary: #eb5757;
+  secondary-text: #ff7c7c;
+  dark-background: #3b3b3b;
+  border-hover: white;
+  backdrop: #5e5e5e;
+  background: rgb(53 53 53 / var(--cl-opacity));
+  foreground: rgb(94 94 94 / var(--cl-opacity));
+  foreground-solid: rgb(94 94 94);
+  foreground-active: var(--cl-background);
+}
+
+@state-colors: {
+  0: grey;
+  1: #27ae60;
+  2: #56ccf2;
+  3: #f2994a;
+  4: #eb5757;
+  6: #bb6bd9;
+  23: #3492b1;
+  7: conic-gradient(var(--state-1), var(--state-2), var(--state-3), var(--state-4), var(--state-6), var(--state-1));
+}

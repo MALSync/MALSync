@@ -1,5 +1,5 @@
 {
   "material.css": "https://code.getmdl.io/1.3.0/material.indigo-pink.min.css",
   "materialFont.css": "https://fonts.googleapis.com/icon?family=Material+Icons",
-  "material.js": "https://code.getmdl.io/1.3.0/material.min.js"
+  "montserrat.css": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
 }

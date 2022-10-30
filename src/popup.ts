@@ -1,31 +1,11 @@
-import { Minimal } from './minimal/minimalClass';
+import { Minimal } from './_minimal/minimalClass';
 import { openMinimal } from './floatbutton/extension';
 import { initShark } from './utils/shark';
+import { isFirefox } from './utils/general';
 
 initShark();
 
-declare let componentHandler: any;
-
-document.getElementsByTagName('head')[0].onclick = function (e) {
-  try {
-    componentHandler.upgradeDom();
-  } catch (e2) {
-    console.log(e2);
-    setTimeout(function () {
-      componentHandler.upgradeDom();
-    }, 500);
-  }
-};
-
 api.settings.init().then(() => {
-  const minimalObj = new Minimal($('html'));
-
-  checkFill(minimalObj);
-
-  $(window).focus(() => {
-    checkFill(minimalObj);
-  });
-
   try {
     const mode = $('html').attr('mode');
     con.log('Mode', mode);
@@ -40,30 +20,30 @@ api.settings.init().then(() => {
   } catch (e) {
     con.error(e);
   }
+
+  const minimalObj = new Minimal($('html'));
+
+  checkFill(minimalObj, true);
+
+  $(window).focus(() => {
+    checkFill(minimalObj);
+  });
 });
 
-function isFirefox() {
-  if ($('#Mal-Sync-Popup').css('min-height') === '600px') return true;
-  return false;
-}
-
-function checkFill(minimalObj) {
+function checkFill(minimalObj: Minimal, home = false) {
   con.log('CheckFill');
   if (!chrome.tabs) {
     con.error('Can not check for tabs');
     return;
   }
-  chrome.tabs.query({ active: true }, function (tabs) {
+  chrome.tabs.query({ active: true }, tabs => {
     con.m('tabs').log(tabs);
     tabs.forEach(el => {
-      chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, function (response) {
-        setTimeout(() => {
-          if (typeof response !== 'undefined' && response.length) {
-            minimalObj.fillBase(response);
-          } else if ($('html').attr('mode') === 'popup') {
-            minimalObj.fillBase(null);
-          }
-        }, 500);
+      chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, response => {
+        if (response && response.url) {
+          con.log('Fill', response);
+          minimalObj.fill(response, home);
+        }
       });
     });
   });

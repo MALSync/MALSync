@@ -1,7 +1,9 @@
-import { Minimal } from '../minimal/minimalClass';
+import { Minimal } from '../_minimal/minimalClass';
 import { hideFloatbutton, showFloatbutton } from './init';
 
-let minimalObj;
+let minimalObj: Minimal;
+
+declare let GM_getResourceURL: any;
 
 function createIframe(page) {
   const iframe = document.createElement('iframe');
@@ -10,21 +12,47 @@ function createIframe(page) {
   iframe.onload = function () {
     const head = j.$('#info-iframe').contents().find('head');
 
-    api.storage.injectjsResource('material.js', head);
-    api.storage.updateDom(head);
+    importAssets(head);
 
-    api.storage.injectCssResource('material.css', head);
-    api.storage.injectCssResource('materialFont.css', head);
+    try {
+      // https://github.com/vuejs/core/issues/3933
+      iframe!.contentWindow!.performance.now = () => performance.now();
+      iframe!.contentWindow!.addEventListener(
+        'click',
+        function (e) {
+          Object.defineProperty(e, 'timeStamp', {
+            get: () => performance.now(),
+          });
+        },
+        true,
+      );
+    } catch (e) {
+      con.error(e);
+    }
 
     setTimeout(function () {
-      minimalObj = new Minimal(j.$('#info-iframe').contents().find('html'));
+      minimalObj = new Minimal(
+        j.$('#info-iframe').contents().find('html'),
+        () => {
+          document.getElementById('info-popup')!.style.display = 'none';
+          j.$('.floatbutton').fadeIn();
+        },
+        () => {
+          if (j.$('.modal-content-kal.fullscreen').length) {
+            j.$('.modal-content-kal').removeClass('fullscreen');
+            // @ts-ignore
+            j.$(this).find('i').text('fullscreen');
+          } else {
+            j.$('.modal-content-kal').addClass('fullscreen');
+            // @ts-ignore
+            j.$(this).find('i').text('fullscreen_exit');
+          }
+        },
+      );
       if (typeof page !== 'undefined') {
         if (typeof page.singleObj !== 'undefined') {
-          minimalObj.fillBase(page.singleObj.getUrl());
-        } else {
-          minimalObj.fillBase(null);
+          minimalObj.fill({ url: page.singleObj.getUrl() }, true);
         }
-        minimalObj.setPageSync(page);
       }
     }, 200);
   };
@@ -49,17 +77,48 @@ export function floatClick(page) {
     con.log('Open miniMAL');
     if (j.$('#info-popup').css('display') === 'none') {
       document.getElementById('info-popup')!.style.display = 'block';
-      // fillIframe(url, currentMalData);
       hideFloatbutton(true);
       if (!j.$('#info-iframe').length) {
         createIframe(page);
-      } else if (typeof minimalObj !== 'undefined' && typeof page.malObj !== 'undefined') {
-        minimalObj.fillBase(page.malObj.url);
-        minimalObj.setPageSync(page);
+      } else if (typeof minimalObj !== 'undefined' && typeof page.singleObj !== 'undefined') {
+        minimalObj.fill({ url: page.singleObj.getUrl() }, true);
       }
     } else {
       document.getElementById('info-popup')!.style.display = 'none';
       showFloatbutton();
     }
   }
+}
+
+export function importAssets(head) {
+  api.storage.injectCssResource(
+    '',
+    head,
+    `
+      /* fallback */
+      @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url(${GM_getResourceURL('materialFont.woff2')}) format('woff2');
+      }
+
+      .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+      }
+    `,
+  );
+  api.storage.injectCssResource('montserrat.css', head);
 }

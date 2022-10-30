@@ -1,14 +1,18 @@
 // eslint-disable-next-line import/no-unresolved
-const quicklinks = require('./quicklinks.json');
+export const quicklinks = require('./quicklinks.json');
+
+type QuicklinkGroup = 'home' | 'search' | 'link';
 
 interface Links {
   name: string;
   url: string;
+  fn?: (searchTerm: string) => string;
 }
 
 export interface Quicklink {
   name: string;
   domain: string;
+  group: QuicklinkGroup;
   links: Links[];
 }
 
@@ -98,13 +102,15 @@ async function fillFromApi(combined, type, id) {
   });
 }
 
-function simplifyObject(combined, type, searchterm, id): Quicklink[] {
+function simplifyObject(combined, type, title, id): Quicklink[] {
   return combined
     .filter(el => el.search && el.search[type])
     .map(el => {
       const links: Links[] = [];
+      let quickGroup: QuicklinkGroup;
 
       if (el.databaseLinks) {
+        quickGroup = 'link';
         Object.values(el.databaseLinks).forEach((db: any) => {
           links.push({
             name: db.title,
@@ -112,20 +118,24 @@ function simplifyObject(combined, type, searchterm, id): Quicklink[] {
           });
         });
       } else if (el.search[type] === 'home') {
+        quickGroup = 'home';
         links.push({
           name: 'Homepage',
           url: el.domain,
         });
       } else {
+        quickGroup = 'search';
         links.push({
           name: 'Quicksearch',
-          url: titleSearch(el.search[type], searchterm, id),
+          url: titleSearch(el.search[type], title, id),
+          fn: searchTerm => titleSearch(el.search[type], searchTerm, id),
         });
       }
 
       return {
         name: el.name,
         domain: el.domain,
+        group: quickGroup,
         links,
       };
     });

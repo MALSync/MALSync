@@ -24,8 +24,10 @@ export const search: searchInterface = async function (
             native
           }
           coverImage {
-            medium
+            large
+            extraLarge
           }
+          bannerImage
           type
           format
           averageScore
@@ -68,7 +70,9 @@ export const search: searchInterface = async function (
       malUrl: () => {
         return item.idMal ? `https://myanimelist.net/${type}/${item.idMal}` : null;
       },
-      image: item.coverImage.medium,
+      image: item.coverImage.large,
+      imageLarge: item.coverImage.extraLarge,
+      imageBanner: item.bannerImage,
       media_type: item.format
         ? (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' ')
         : '',

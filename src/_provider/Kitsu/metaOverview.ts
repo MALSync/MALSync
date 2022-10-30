@@ -107,8 +107,16 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private image() {
     this.meta.image =
-      this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.large
-        ? this.animeI().attributes.posterImage.large
+      this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.small
+        ? this.animeI().attributes.posterImage.small
+        : '';
+    this.meta.imageLarge =
+      this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.original
+        ? this.animeI().attributes.posterImage.original
+        : '';
+    this.meta.imageBanner =
+      this.animeI().attributes.coverImage && this.animeI().attributes.coverImage.large
+        ? this.animeI().attributes.coverImage.large
         : '';
   }
 
@@ -135,10 +143,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           const { name } = i.attributes;
 
           this.meta.characters.push({
-            img:
-              i.attributes.image !== null
-                ? i.attributes.image.original
-                : api.storage.assetUrl('questionmark.gif'),
+            img: i.attributes.image !== null ? i.attributes.image.original : '',
             name,
             url: `https://myanimelist.net/character/${i.attributes.malId}`,
           });
@@ -281,7 +286,6 @@ export class MetaOverview extends MetaOverviewAbstract {
             title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
             id: i.id,
             type: i.type,
-            statusTag: '',
           };
         }
       });

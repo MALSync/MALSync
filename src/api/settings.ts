@@ -1,4 +1,4 @@
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 export const settingsObj = {
   options: reactive({
@@ -23,6 +23,11 @@ export const settingsObj = {
     epPredictions: true,
 
     theme: 'auto',
+    themeSidebars: true,
+    themeColor: '#000000',
+    themeOpacity: 100,
+    themeImage: '',
+
     minimalWindow: false,
     posLeft: 'left',
     miniMALonMal: false,
@@ -32,7 +37,7 @@ export const settingsObj = {
     floatButtonHide: false,
     autoCloseMinimal: false,
     outWay: true,
-    miniMalWidth: '500px',
+    miniMalWidth: '550px',
     miniMalHeight: '90%',
     malThumbnail: 100,
     friendScore: true,
@@ -105,6 +110,10 @@ export const settingsObj = {
     malRefresh: '',
   }),
 
+  debounceArray: {},
+
+  isInit: ref(false),
+
   async init() {
     const tempSettings = [];
     for (const key in this.options) {
@@ -152,10 +161,13 @@ export const settingsObj = {
       }
     });
 
+    this.isInit.value = true;
+
     return this;
   },
 
   get(name: string) {
+    if (!this.isInit.value) throw 'Settings not initialized';
     return this.options[name];
   },
 
@@ -168,6 +180,15 @@ export const settingsObj = {
 
     this.options[name] = value;
     return api.storage.set(`settings/${name}`, value);
+  },
+
+  setDebounce(name: string, value: any) {
+    this.options[name] = value;
+    clearTimeout(this.debounceArray[name]);
+    this.debounceArray[name] = setTimeout(() => {
+      this.set(name, value);
+      delete this.debounceArray[name];
+    }, 1000);
   },
 
   async getAsync(name: string) {

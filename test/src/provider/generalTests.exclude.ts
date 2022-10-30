@@ -2,16 +2,6 @@ import { expect } from 'chai';
 import { NotAutenticatedError, ServerOfflineError } from '../../../src/_provider/Errors';
 
 export function generalListTests(userlist, elements, responses, options: ObjectAnyType = {}) {
-  it('Get List', function() {
-    const list = new userlist(7, 'anime');
-
-    return list.getCompleteList().then(list => {
-      list = removeFn(list);
-      expect(list).to.deep.include(elements[0]);
-      expect(list).to.deep.include(elements[1]);
-    });
-  });
-
   describe('Empty responses', async function() {
     Object.keys(responses).forEach(async function(index) {
       const value = responses[index].data;

@@ -21,7 +21,9 @@ export const search: searchInterface = async function (
           const malId = await simklIdToMal(item.ids.simkl_id);
           return malId ? `https://myanimelist.net/${type}/${malId}` : null;
         },
-        image: `https://simkl.in/posters/${item.poster}_cm.jpg`,
+        image: `https://simkl.in/posters/${item.poster}_ca.jpg`,
+        imageLarge: `https://simkl.in/posters/${item.poster}_m.jpg`,
+        imageBanner: `https://simkl.in/posters/${item.poster}_w.jpg`,
         media_type: item.type,
         isNovel: false,
         score: null,

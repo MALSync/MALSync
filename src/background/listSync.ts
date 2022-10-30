@@ -1,4 +1,4 @@
-import * as Sync from '../minimal/minimalApp/listSync/syncHandler';
+import * as Sync from '../utils/syncHandler';
 
 export function listSyncInit() {
   chrome.alarms.get('listSync', async function (a) {

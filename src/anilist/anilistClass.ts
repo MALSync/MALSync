@@ -153,11 +153,19 @@ export class AnilistClass {
     return '';
   }
 
+  getImage() {
+    return $('.header .cover').attr('src') || '';
+  }
+
+  getTitle() {
+    return $('h1').first().clone().children().remove().end().text().trim();
+  }
+
   malToKiss() {
     $(document).ready(() => {
       con.log('malToKiss');
       $('.mal_links').remove();
-      const title = $('h1').first().clone().children().remove().end().text().trim();
+      const title = this.getTitle();
 
       activeLinks(this.page!.type, this.page!.apiCacheKey, title).then(links => {
         let html = '';

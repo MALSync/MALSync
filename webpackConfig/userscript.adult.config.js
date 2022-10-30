@@ -7,6 +7,7 @@ const playerUrls = require('../src/pages-adult/playerUrls');
 const resourcesJson = require('./resourcesUserscript');
 const httpPermissionsJson = require('./httpPermissions.json');
 const { VueLoaderPlugin } = require('vue-loader');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const i18n = require('./utils/i18n');
 const pagesUtils = require('./utils/pages');
@@ -39,6 +40,7 @@ const metadata = {
     'GM_listValues',
     'GM_addStyle',
     'GM_getResourceText',
+    'GM_getResourceURL',
     'GM.xmlHttpRequest',
     'GM.getValue',
     'GM.setValue',
@@ -101,6 +103,7 @@ module.exports = {
         options: {
           customElement: true,
           shadowMode: true,
+          exposeFilename: true,
         },
       },
     ],
@@ -116,6 +119,17 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist'),
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        configFile: path.resolve(__dirname, '../tsconfig.json'),
+        extensions: {
+          vue: {
+            enabled: true,
+            compiler: '@vue/compiler-sfc',
+          },
+        },
+      },
+    }),
     new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),

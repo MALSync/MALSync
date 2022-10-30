@@ -4,6 +4,8 @@
   Manga = "manga"
 } */
 
+import { Component } from 'vue';
+
 export type contentType = 'anime' | 'manga';
 
 export enum status {
@@ -41,6 +43,8 @@ export type searchResult = {
   url: string;
   malUrl: () => Promise<string | null>;
   image: string;
+  imageLarge: string;
+  imageBanner?: string;
   media_type: string;
   isNovel: boolean;
   score: string;
@@ -58,3 +62,14 @@ export type searchInterface = (
   options?: {},
   sync?: boolean,
 ) => Promise<searchResult[]>;
+
+export interface ConfObj {
+  key: string;
+  title: string | (() => string);
+  system?: 'userscript' | 'webextension';
+  component: Component;
+  condition?: () => boolean;
+  change?: () => void;
+  props?: { [key: string]: any };
+  children?: ConfObj[];
+}

@@ -470,6 +470,8 @@ export function getStatusText(type: 'anime' | 'manga', state) {
       return api.storage.lang('UI_Status_Dropped');
     case 6:
       return api.storage.lang(`UI_Status_planTo_${type}`);
+    case 7:
+      return api.storage.lang(`UI_Status_All`);
     case 23:
       return api.storage.lang(`UI_Status_Rewatching_${type}`);
     default:
@@ -905,4 +907,30 @@ export function makeDomainCompatible(domain: string) {
   // Remove all after ?
   domain = domain.replace(/\?.*/, '?');
   return domain;
+}
+
+export async function clearCache() {
+  const cacheArray = await api.storage.list();
+  let deleted = 0;
+
+  j.$.each(cacheArray, function (index, cache) {
+    if (!utils.syncRegex.test(String(index)) && !/(^tagSettings\/.*)/.test(String(index))) {
+      api.storage.remove(String(index));
+      deleted++;
+    }
+  });
+
+  utils.flashm(`Cache Cleared [${deleted}]`);
+}
+
+export function sortAlphabetically(a, b) {
+  if (a.toLowerCase() < b.toLowerCase()) return -1;
+  if (a.toLowerCase() > b.toLowerCase()) return 1;
+  return 0;
+}
+
+export function isDomainMatching(url, domain) {
+  const urlObj = new URL(url);
+  const { host } = urlObj;
+  return host === domain || host.endsWith(`.${domain}`);
 }
