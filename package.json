@@ -122,7 +122,7 @@
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "fuse.js": "^6.6.2",
     "hex-to-hsl": "^1.0.2",
-    "jquery": "^3.6.0",
+    "jquery": "^3.6.1",
     "popper-max-size-modifier": "^0.2.0",
     "semver": "^7.3.7",
     "string-similarity": "^4.0.4",
