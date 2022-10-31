@@ -109,7 +109,7 @@
     "lint:ci": "npm run lint:less:ci && npm run lint:script:ci && npm run lint:vue"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.5",
+    "@popperjs/core": "^2.11.6",
     "@rushstack/eslint-patch": "^1.1.4",
     "@sentry/browser": "^7.17.2",
     "@types/chrome": "0.0.200",
