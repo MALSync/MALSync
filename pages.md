@@ -20,6 +20,13 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://www.adkami.com/"><img src="https://favicon.malsync.moe/?domain=https://www.adkami.com/"> ADKami</a></td>
+    <td>French</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://www.primevideo.com"><img src="https://favicon.malsync.moe/?domain=https://www.primevideo.com"> Amazon Prime Video</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
@@ -104,13 +111,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://www.anime-shitai.com"><img src="https://favicon.malsync.moe/?domain=https://www.anime-shitai.com"> AnimeShitai</a></td>
-    <td>German</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://animeshouse.net"><img src="https://favicon.malsync.moe/?domain=https://animeshouse.net"> AnimesHouse</a></td>
     <td>Portuguese</td>
     <td>:x:</td>
@@ -181,7 +181,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://animexin.xyz"><img src="https://favicon.malsync.moe/?domain=https://animexin.xyz"> AnimeXin</a></td>
+    <td><a href="https://animexinax.com"><img src="https://favicon.malsync.moe/?domain=https://animexinax.com"> AnimeXin</a></td>
     <td>English, Spanish, Indonesian, Portuguese, Turkish, Italian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -201,13 +201,6 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://Anistream.de"><img src="https://favicon.malsync.moe/?domain=https://Anistream.de"> Anistream</a></td>
-    <td>German</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
   </tr><tr>
     <td><a href="https://aniworld.to"><img src="https://favicon.malsync.moe/?domain=https://aniworld.to"> Aniworld</a></td>
     <td>German</td>
@@ -313,6 +306,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://kaguya.live"><img src="https://favicon.malsync.moe/?domain=https://kaguya.live"> Kaguya</a></td>
+    <td>Vietnamese, English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://www.kickassanime.ro"><img src="https://favicon.malsync.moe/?domain=https://www.kickassanime.ro"> KickAssAnime</a></td>
     <td>English</td>
@@ -447,6 +447,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://vvww.toonanime.cc"><img src="https://favicon.malsync.moe/?domain=https://vvww.toonanime.cc"> ToonAnime</a></td>
+    <td>French</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www.tranimeizle.net/"><img src="https://favicon.malsync.moe/?domain=https://www.tranimeizle.net/"> TRanimeizle</a></td>
     <td>Turkish</td>
     <td>:heavy_check_mark:</td>
@@ -474,6 +481,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://vostfree.cx"><img src="https://favicon.malsync.moe/?domain=https://vostfree.cx"> Vostfree</a></td>
+    <td>French</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://vrv.co"><img src="https://favicon.malsync.moe/?domain=https://vrv.co"> Vrv</a></td>
     <td>English, Spanish, Portuguese, French, German, Arabic, Italian, Russian</td>
@@ -547,7 +561,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://asurascans.com"><img src="https://favicon.malsync.moe/?domain=https://asurascans.com"> AsuraScans</a></td>
+    <td><a href="https://asura.gg"><img src="https://favicon.malsync.moe/?domain=https://asura.gg"> AsuraScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -680,7 +694,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://leviatanscans.com"><img src="https://favicon.malsync.moe/?domain=https://leviatanscans.com"> LeviatanScans</a></td>
+    <td><a href="https://en.leviatanscans.com"><img src="https://favicon.malsync.moe/?domain=https://en.leviatanscans.com"> LeviatanScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -971,6 +985,13 @@
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://void-scans.com"><img src="https://favicon.malsync.moe/?domain=https://void-scans.com"> VoidScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
