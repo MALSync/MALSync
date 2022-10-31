@@ -348,27 +348,27 @@
         "description": "Credentials wrong"
     },
     "bookmarksItem_Years": {
-        "message": "Tahun",
+        "message": "tahun",
         "description": "Years"
     },
     "bookmarksItem_Year": {
-        "message": "Tahun",
+        "message": "tahun",
         "description": "Year"
     },
     "bookmarksItem_Days": {
-        "message": "Hari",
+        "message": "hari",
         "description": "Days"
     },
     "bookmarksItem_Day": {
-        "message": "Hari",
+        "message": "hari",
         "description": "Day"
     },
     "bookmarksItem_Hours": {
-        "message": "Jam",
+        "message": "jam",
         "description": "Hours"
     },
     "bookmarksItem_Hour": {
-        "message": "Jam",
+        "message": "jam",
         "description": "Hour"
     },
     "bookmarksItem_mins": {
@@ -650,7 +650,7 @@
         }
     },
     "settings_StreamingSite": {
-        "message": "Tautan Situs Streaming",
+        "message": "Tautan Pintas",
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
@@ -1098,5 +1098,89 @@
     "nextEpShort_no_nextEp": {
         "message": "Tidak dapat menemukan episode selanjutnya",
         "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+    },
+    "Synchronize": {
+        "message": "Sinkronisasi",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "Memperbarui $page$ ke volume $epNr$",
+        "description": "Update MAL to volume 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flash_player_error": {
+        "message": "Player tidak ditemukan. Mohon untuk memperbarui secara manual di sini.",
+        "description": "Message if the video player could not be recognized"
+    },
+    "overview_Information": {
+        "message": "Informasi",
+        "description": "Header of the information section of the popup anime overview"
+    },
+    "settings_profile_no_login": {
+        "message": "Belum Masuk",
+        "description": "Text if not logged in"
+    },
+    "settings_profile_logged_via": {
+        "message": "Masuk melalui $provider$",
+        "description": "Info about which provider is used to login",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "Load": {
+        "message": "Memuat",
+        "description": "Button to load content"
+    },
+    "UI_Status_All": {
+        "message": "Semua",
+        "description": "Dropdown text to show all anime on the users list"
+    },
+    "UI_Rules": {
+        "message": "Peraturan",
+        "description": "Rules text for the correction UI"
+    },
+    "overview_Related": {
+        "message": "Terkait",
+        "description": "Header of the anime/manga relations section of the popup anime overview"
+    },
+    "overview_Streaming": {
+        "message": "Streaming",
+        "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "settings_profile_logout": {
+        "message": "Keluar",
+        "description": "Button to logout"
+    },
+    "settings_profile_check": {
+        "message": "Periksa",
+        "description": "Button to rechecks the login status"
+    },
+    "settings_StreamingSite_custom": {
+        "message": "Tautan pencarian khusus",
+        "description": "Header of the section where you can add your own custom search links"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "URL pencarian Anime",
+        "description": "Form field title to enter the search url for anime"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "URL pencarian manga",
+        "description": "Form field title to enter the search url for manga"
+    },
+    "settings_anilist_update_ui": {
+        "message": "Perbarui UI",
+        "description": "UI in the aniList sidebar to update episodes progress and the score"
     }
 }
