@@ -879,10 +879,6 @@
         "message": "Wyłącza skrypt treści. Umożliwia to jednoczesne włączenie rozszerzenia i skryptu użytkownika.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies_Text": {
-        "message": "Ta opcja dodaje obsługę dla Firefox Multi-Account Containers. Po włączeniu tej opcji ponownie uruchom przeglądarkę",
-        "description": "Strict Cookies - Text"
-    },
     "settings_highlightAllEp": {
         "message": "Podświetl wszystkie odcinki/rozdziały",
         "description": "Highlight all Episodes/Chapters"
