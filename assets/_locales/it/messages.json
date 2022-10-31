@@ -875,10 +875,6 @@
         "message": "Disabilita lo script dell'estensione. Questo ti permette di avere sia l'estensione che lo script esterno attivi nello stesso momento.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies_Text": {
-        "message": "Questa opzione aggiunge il supporto per Firefox Multi-Account Containers. Ricordati di riavviare il browser dopo aver abilitato questa opzione.",
-        "description": "Strict Cookies - Text"
-    },
     "settings_highlightAllEp": {
         "message": "Metti in evidenza tutti gli Episodi/Capitoli",
         "description": "Highlight all Episodes/Chapters"

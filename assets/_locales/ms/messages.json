@@ -875,10 +875,6 @@
         "message": "Lumpuhkan skrip konten. Ini membolehkan pengguna menggunakan extension dan userscript pada masa yang sama.",
         "description": "Userscript mode - Text"
     },
-    "settings_StrictCookies_Text": {
-        "message": "Pilihan ini adalah untuk meningkatkan sokongan untuk Firefox Multi-Account Containers. Pastikan memuat semula  browser selepas mengaktifkan pilihan ini.",
-        "description": "Strict Cookies - Text"
-    },
     "settings_highlightAllEp": {
         "message": "Sorot seluruh episod/bab",
         "description": "Highlight all Episodes/Chapters"
