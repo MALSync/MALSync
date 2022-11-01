@@ -129,7 +129,7 @@
     "vue": "^3.2.37",
     "vue-dompurify-html": "^3.0.0",
     "vue-router": "^4.1.6",
-    "vue-slider-component": "^4.1.0-beta.2",
+    "vue-slider-component": "^4.1.0-beta.5",
     "vue-tsc": "^0.40.13",
     "vue3-lazyload": "^0.3.6",
     "vuedraggable": "^4.1.0",
