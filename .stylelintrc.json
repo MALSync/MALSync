@@ -20,6 +20,7 @@
     "selector-id-pattern": null,
     "number-max-precision": null,
     "custom-property-empty-line-before": "never",
-    "color-hex-length": null
+    "color-hex-length": null,
+    "import-notation": null
   }
 }
