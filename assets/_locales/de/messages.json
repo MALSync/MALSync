@@ -1036,23 +1036,23 @@
         "description": "Update version - Text 1"
     },
     "minimalClass_versionMsg_Text_2": {
-        "message": "Hast du Fragen?",
+        "message": "Trete unserer Community, um Hilfe zu erhalten und neue Features vorzuschlagen",
         "description": "Update version - Text 2"
     },
     "minimalClass_versionMsg_Text_3": {
-        "message": "Quellcode öffnen:",
+        "message": "Schau dir unseren Open Source Code an",
         "description": "Update version - Text 3"
     },
     "minimalClass_versionMsg_Text_4": {
-        "message": "uBlock Nutzer bitte abonniert diese Filterliste! Dies behebt einige Probleme wie kaputte Bilder",
+        "message": "Abonniere die Filterliste (für uBlock Nutzer)",
         "description": "Update version - Text 4"
     },
     "installPage_Mode": {
-        "message": "Bitte wähle aus, welche Anime Datenbank du verwenden möchtest:",
+        "message": "Bitte wähle aus, welche Anime Datenbank du verwenden möchtest",
         "description": "Header for the MAL-sync provider dropdown"
     },
     "installPage_Howto": {
-        "message": "Wie wird es verwendet?",
+        "message": "Schau dir an wie MAL-Sync funktioniert",
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
@@ -1078,7 +1078,7 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Es wird mit dem falschen MAL-Eintrag synchronisiert?",
+        "message": "Finde heraus wie einen falschen MAL Eintrag beheben kannst",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
@@ -1188,5 +1188,119 @@
     "settings_custom_domains_missing_permissions_header": {
         "message": "Fehlende Berechtigungen erkannt",
         "description": "Section header for asking to allow missing domain permissions"
+    },
+    "settings_miscellaneous": {
+        "message": "Weiteres",
+        "description": "Header of the section of settings without specific theme"
+    },
+    "settings_listsync": {
+        "message": "Listen-Synchronisation",
+        "description": "Header of the section of List Sync settings"
+    },
+    "settings_progress": {
+        "message": "Fortschrittsanzeige",
+        "description": "Header of the section of progress estimation settings"
+    },
+    "settings_theming_sidebars": {
+        "message": "Seitenleiste",
+        "description": "Option to disable the sidebars in the extension popup"
+    },
+    "settings_theming_background_image": {
+        "message": "Hintergrundbild",
+        "description": "Option to select a custom background image for the extension popup"
+    },
+    "settings_theming_background_opacity": {
+        "message": "Hintergrundtransparenz",
+        "description": "Option to set the transparency of the UI in front of the background image"
+    },
+    "Synchronize": {
+        "message": "Synchronisieren",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "UI_Status_All": {
+        "message": "Alle",
+        "description": "Dropdown text to show all anime on the users list"
+    },
+    "overview_Information": {
+        "message": "Information",
+        "description": "Header of the information section of the popup anime overview"
+    },
+    "settings_profile_logged_via": {
+        "message": "Angemeldet über $provider$",
+        "description": "Info about which provider is used to login",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "settings_StreamingSite_custom": {
+        "message": "Eigene Suchplattformen",
+        "description": "Header of the section where you can add your own custom search links"
+    },
+    "settings_donate": {
+        "message": "Spenden",
+        "description": "Link to donation page"
+    },
+    "settings_help": {
+        "message": "Brauchst du Hilfe?",
+        "description": "Button that links to support"
+    },
+    "settings_listsync_background": {
+        "message": "Synchronisiere täglich im Hintergrund",
+        "description": "Option to sync list once a day in the background"
+    },
+    "settings_custom_domains_disclaimer": {
+        "message": "Bitte nur benutzen, wenn du weißt, was du tust!",
+        "description": "Text on the custom domain configuration page"
+    },
+    "settings_custom_domains_wrong": {
+        "message": "Konfiguration fehlerhaft!",
+        "description": "Error text if the configuration is not correct"
+    },
+    "Load": {
+        "message": "Laden",
+        "description": "Button to load content"
+    },
+    "overview_Related": {
+        "message": "Ähnlich",
+        "description": "Header of the anime/manga relations section of the popup anime overview"
+    },
+    "overview_Streaming": {
+        "message": "",
+        "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "settings_profile_no_login": {
+        "message": "Nicht angemeldet",
+        "description": "Text if not logged in"
+    },
+    "settings_profile_logout": {
+        "message": "Abmelden",
+        "description": "Button to logout"
+    },
+    "settings_profile_check": {
+        "message": "Überprüfen",
+        "description": "Button to rechecks the login status"
+    },
+    "settings_discord_join": {
+        "message": "Joine unserem Discord Server",
+        "description": "Link to join discord"
+    },
+    "settings_miniMAL_Display_Center": {
+        "message": "Mitte",
+        "description": "miniMAL Display Center"
+    },
+    "settings_miniMAL_pwa": {
+        "message": "PWA Webseite",
+        "description": "Link to the PWA version of the extension popup"
+    },
+    "settings_read_more": {
+        "message": "Mehr anzeigen",
+        "description": "Button to show more of the description"
+    },
+    "settings_read_less": {
+        "message": "Weniger anzeigen",
+        "description": "Button to show less the description"
     }
 }
