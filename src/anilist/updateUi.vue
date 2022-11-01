@@ -417,7 +417,7 @@ export default {
     }
 
     @keyframes loading-mal {
-      from {
+      0% {
         left: -200px;
         width: 30%;
       }
@@ -433,7 +433,7 @@ export default {
       95% {
         left: 120%;
       }
-      to {
+      100% {
         left: 100%;
       }
     }
