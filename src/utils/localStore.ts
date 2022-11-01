@@ -30,4 +30,4 @@ function checkLocalStorageIsAvailable() {
     con.info('Local storage is not available', e);
     return false;
   }
-};
+}

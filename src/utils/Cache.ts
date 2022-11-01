@@ -1,4 +1,4 @@
-import { localStore } from "./localStore";
+import { localStore } from './localStore';
 
 export class Cache {
   constructor(
