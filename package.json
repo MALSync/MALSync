@@ -21,7 +21,7 @@
     "@vue/compiler-sfc": "^3.2.39",
     "@vue/eslint-config-prettier": "^7.0.0",
     "archiver": "^5.3.1",
-    "bl": "^5.0.0",
+    "bl": "^5.1.0",
     "chai": "^4.3.6",
     "chrome-webstore-upload": "^1.0.0",
     "cross-env": "^7.0.3",
