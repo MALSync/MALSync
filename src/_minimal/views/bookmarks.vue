@@ -144,6 +144,7 @@ import Empty from '../components/empty.vue';
 import TextIcon from '../components/text-icon.vue';
 import FormButton from '../components/form/form-button.vue';
 import { urlToSlug } from '../../utils/slugs';
+import { localStore } from '../../utils/localStore';
 
 const rootWindow = inject('rootWindow') as Window;
 const rootDocument = inject('rootDocument') as Document;
@@ -196,7 +197,7 @@ watch(
 );
 
 const getSort = sortingOptions => {
-  const curSort = localStorage.getItem(`sort/${parameters.value.type}/${parameters.value.state}`);
+  const curSort = localStore.getItem(`sort/${parameters.value.type}/${parameters.value.state}`);
   if (curSort && sortingOptions.find(el => el.value === curSort.replace('_asc', '')))
     return curSort;
   return 'default';
@@ -334,7 +335,7 @@ const sort = computed({
     return getSort(sortingOptions.value);
   },
   set(value) {
-    localStorage.setItem(`sort/${parameters.value.type}/${parameters.value.state}`, value);
+    localStore.setItem(`sort/${parameters.value.type}/${parameters.value.state}`, value);
     listRequest.execute();
   },
 });

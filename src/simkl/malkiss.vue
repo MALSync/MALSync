@@ -127,6 +127,7 @@
 </template>
 
 <script lang="ts">
+import { localStore } from '../utils/localStore';
 import { removeFromOptions } from '../utils/quicklinksBuilder';
 
 const STORAGE_KEY = 'SIMKL-MAL-SYNC';
@@ -152,7 +153,7 @@ export default {
     },
   },
   created() {
-    const classes = JSON.parse(localStorage.getItem(STORAGE_KEY)!);
+    const classes = JSON.parse(localStore.getItem(STORAGE_KEY)!);
     if (classes) {
       this.classes = classes;
     }
@@ -191,7 +192,7 @@ export default {
       window.location.reload();
     },
     saveClasses() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.classes));
+      localStore.setItem(STORAGE_KEY, JSON.stringify(this.classes));
     },
   },
 };
