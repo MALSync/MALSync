@@ -1267,10 +1267,6 @@
         "message": "Ähnlich",
         "description": "Header of the anime/manga relations section of the popup anime overview"
     },
-    "overview_Streaming": {
-        "message": "",
-        "description": "Header of the streaming link section of the popup anime overview"
-    },
     "settings_profile_no_login": {
         "message": "Nicht angemeldet",
         "description": "Text if not logged in"
