@@ -132,12 +132,12 @@ import { removeFromOptions } from '../utils/quicklinksBuilder';
 const STORAGE_KEY = 'SIMKL-MAL-SYNC';
 export default {
   data: () => ({
-    streamUrl: undefined,
+    streamUrl: undefined as undefined | string,
     continueUrl: null,
     resumeUrl: null,
-    links: null,
-    pageSearch: null,
-    pageRelation: null,
+    links: null as any,
+    pageSearch: null as any,
+    pageRelation: null as any,
     classes: {
       minimized: true,
       search: false,

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="scoreModeStrategy">
     <template v-if="scoreModeStrategy.ui.module === 'input'">
       <inputNumber
         :label="label"
@@ -29,9 +29,11 @@
 </template>
 
 <script lang="ts">
+import { PropType } from 'vue';
 import inputDropdown from './input-dropdown.vue';
 import inputNumber from './input-number.vue';
 import inputClicker from './input-clicker.vue';
+import { ScoreModeStrategy } from '../_provider/ScoreMode/ScoreModeStrategy';
 
 export default {
   components: {
@@ -46,7 +48,7 @@ export default {
     },
     scoreModeStrategy: {
       default: null,
-      type: Object,
+      type: Object as PropType<ScoreModeStrategy | null>,
     },
     label: {
       default: '',

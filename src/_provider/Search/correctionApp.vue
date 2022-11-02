@@ -47,7 +47,7 @@
       <search
         :keyword="searchClass.getSanitizedTitel()"
         :type="searchClass.getNormalizedType()"
-        :sync-mode="syncMode"
+        :sync-mode="Boolean(syncMode)"
         :current-id="searchClass.getId()"
         @clicked="setPage($event.url, $event.id)"
       ></search>
@@ -71,10 +71,10 @@ export default {
     rules,
   },
   data: () => ({
-    inputOffset: 0,
+    inputOffset: 0 as number | '0',
     minimized: false,
     syncMode: null,
-    searchClass: null,
+    searchClass: null as any,
     unmountFnc: () => {
       // placeholder
     },

@@ -58,14 +58,16 @@
 </template>
 
 <script lang="ts">
+import { PropType } from 'vue';
 import { normalSearch } from '../../../utils/Search';
+import { searchResult } from '../../definitions';
 
 let searchTimeout;
 export default {
   components: {},
   props: {
     type: {
-      type: String,
+      type: String as PropType<'anime' | 'manga'>,
       default: 'anime',
     },
     keyword: {
@@ -83,7 +85,7 @@ export default {
   },
   data() {
     return {
-      items: [],
+      items: [] as searchResult[],
       loading: false,
       searchKeyword: '',
     };
