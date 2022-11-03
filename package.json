@@ -111,7 +111,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "@rushstack/eslint-patch": "^1.2.0",
-    "@sentry/browser": "^7.17.3",
+    "@sentry/browser": "^7.17.4",
     "@types/chrome": "0.0.200",
     "@vue/eslint-config-typescript": "^11.0.2",
     "async-mutex": "^0.4.0",
