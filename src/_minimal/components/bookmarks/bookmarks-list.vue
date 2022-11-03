@@ -177,9 +177,10 @@ defineProps({
       pointer-events: none;
       .lazy-image {
         .border-radius();
-        .box-shadow();
+        .big-shadow();
 
         left: -10px;
+        max-width: calc(100% + 10px);
       }
     }
   }
