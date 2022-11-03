@@ -190,7 +190,7 @@ export async function activeLinks(
 export function removeOptionKey(options, key) {
   if (!key) return options;
   return options.filter(el => {
-    if (el === key || (typeof el === 'object' && el.name === key)) return false;
+    if (!el || el === key || (typeof el === 'object' && el.name === key)) return false;
     return true;
   });
 }
