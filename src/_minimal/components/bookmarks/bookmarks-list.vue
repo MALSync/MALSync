@@ -4,7 +4,7 @@
       <ImageLazy :src="item.image" />
     </div>
     <div class="text-side">
-      <div class="top-text">
+      <div v-if="item.streamUrl || item.progressText" class="top-text">
         <MediaLink v-if="item.streamUrl" :href="item.streamUrl" class="stream">
           <TextIcon :src="item.streamIcon">
             <span class="stream-text">{{ lang(`overview_Continue_${item.type}`) }} <Arrow /></span>
@@ -103,11 +103,11 @@ defineProps({
     flex-grow: 1;
     flex-shrink: 1000;
     display: flex;
-    gap: 5px;
+    gap: 4px;
     flex-direction: column;
     justify-content: space-around;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 3px;
+    padding-bottom: 2px;
   }
 
   .stream:hover {
