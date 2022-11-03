@@ -383,7 +383,8 @@ function refresh() {
 .controls {
   display: flex;
   gap: @spacer-half;
-  height: 30px;
+  flex-wrap: wrap;
+  min-height: 30px;
 }
 
 .grid {
