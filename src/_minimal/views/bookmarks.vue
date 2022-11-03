@@ -82,6 +82,7 @@
         <Grid
           :key="listTheme.name"
           :min-width="listTheme.width"
+          :min-width-popup="listTheme.popupWidth"
           class="grid-el"
           :class="`type-${listTheme.name.replace(' ', '-').toLowerCase()}`"
         >

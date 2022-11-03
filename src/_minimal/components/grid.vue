@@ -12,10 +12,18 @@ const props = defineProps({
     type: Number,
     default: 100,
   },
+  minWidthPopup: {
+    type: Number,
+    default: null,
+  },
 });
 
 const width = computed(() => {
   return `${props.minWidth}px`;
+});
+
+const popupWidth = computed(() => {
+  return props.minWidthPopup ? `${props.minWidthPopup}px` : width.value;
 });
 </script>
 
@@ -26,5 +34,9 @@ const width = computed(() => {
   display: grid;
   grid-gap: @spacer;
   grid-template-columns: repeat(auto-fill, minmax(v-bind(width), 1fr));
+
+  .__breakpoint-popup__( {
+    grid-template-columns: repeat(auto-fill, minmax(v-bind(popupWidth), 1fr));
+  });
 }
 </style>
