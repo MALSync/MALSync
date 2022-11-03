@@ -106,8 +106,8 @@ defineProps({
     gap: 4px;
     flex-direction: column;
     justify-content: space-around;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: calc(5px + (@small-text / 2));
+    padding-bottom: calc(5px + (@small-text / 2));
     &.hasTop {
       padding-top: 3px;
       padding-bottom: 3px;
@@ -151,8 +151,8 @@ defineProps({
 
   .top-text {
     color: var(--cl-light-text);
-    font-size: 14px;
-    height: 14px;
+    font-size: @small-text;
+    height: @small-text;
     display: flex;
     justify-content: space-between;
     pointer-events: none;

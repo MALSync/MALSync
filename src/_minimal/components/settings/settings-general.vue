@@ -119,7 +119,7 @@ if (properties.option) {
 
 .tooltip {
   cursor: help;
-  font-size: 18px;
+  font-size: @normal-text;
   margin-left: 5px;
   vertical-align: bottom;
   position: relative;
@@ -130,7 +130,7 @@ if (properties.option) {
 
     content: attr(data-text);
     font-family: Montserrat, sans-serif;
-    font-size: 16px;
+    font-size: @normal-text;
     white-space: normal;
     z-index: 10;
     position: absolute;

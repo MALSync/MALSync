@@ -84,7 +84,7 @@ const options = computed(() => {
 
   background-color: var(--cl-primary);
   color: white;
-  font-size: 14px;
+  font-size: @small-text;
   padding: 2px 5px;
 }
 

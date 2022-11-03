@@ -35,8 +35,10 @@ const hasNewEps = computed(() => {
 </script>
 
 <style lang="less" scoped>
+@import '../../less/_globals.less';
+
 .progress-pill {
-  font-size: 12px;
+  font-size: @tiny-text;
   background-color: var(--cl-primary);
   color: white;
   padding: 0 5px;
@@ -44,7 +46,7 @@ const hasNewEps = computed(() => {
 
   &.medium,
   &.large {
-    font-size: 14px;
+    font-size: @small-text;
     margin-left: 3px;
     &.large {
       margin-left: 6px;

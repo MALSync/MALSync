@@ -119,7 +119,7 @@ const display = computed(() => {
   border: 2px solid var(--cl-backdrop);
   background-color: var(--cl-foreground);
   padding: 0 10px;
-  font-size: 16px;
+  font-size: @normal-text;
   overflow: hidden;
 
   &:hover {

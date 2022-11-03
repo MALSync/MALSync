@@ -136,7 +136,7 @@ function getTitle(item) {
   display: inline-block;
   border: 1px solid var(--cl-backdrop);
   background-color: var(--cl-foreground);
-  font-size: 14px;
+  font-size: @small-text;
   padding: 2px 5px;
   margin: 5px 0;
 }
