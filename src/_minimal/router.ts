@@ -88,7 +88,7 @@ const router = createRouter({
 });
 
 router.afterEach((to, from, failure) => {
-  if (!failure) setUrlObj(to.path);
+  if (!failure) setUrlObj(to.fullPath);
 });
 
 export default router;
