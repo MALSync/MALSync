@@ -321,7 +321,7 @@ updateBackgroundSyncState();
 @import '../../less/_globals.less';
 
 .list-sync {
-  margin: 15px 0;
+  margin: @spacer-half 0;
 }
 
 .provider {

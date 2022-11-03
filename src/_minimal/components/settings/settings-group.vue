@@ -68,6 +68,6 @@ defineProps({
 .overview-button {
   .click-move-down();
 
-  padding: 15px 0;
+  padding: @spacer-half 0;
 }
 </style>
