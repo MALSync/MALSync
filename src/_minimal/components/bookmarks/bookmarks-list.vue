@@ -3,7 +3,7 @@
     <div class="img">
       <ImageLazy :src="item.image" />
     </div>
-    <div class="text-side">
+    <div class="text-side" :class="{ hasTop: item.streamUrl || item.progressText }">
       <div v-if="item.streamUrl || item.progressText" class="top-text">
         <MediaLink v-if="item.streamUrl" :href="item.streamUrl" class="stream">
           <TextIcon :src="item.streamIcon">
@@ -106,8 +106,12 @@ defineProps({
     gap: 4px;
     flex-direction: column;
     justify-content: space-around;
-    padding-top: 3px;
-    padding-bottom: 2px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    &.hasTop {
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
   }
 
   .stream:hover {
@@ -148,6 +152,7 @@ defineProps({
   .top-text {
     color: var(--cl-light-text);
     font-size: 14px;
+    height: 14px;
     display: flex;
     justify-content: space-between;
     pointer-events: none;
