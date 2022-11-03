@@ -191,11 +191,11 @@ defineProps({
   }
 }
 
-.__breakpoint-small__( {
+@media screen and (max-width: 600px) {
   .stream-text {
     display: none;
   }
-});
+}
 
 .empty,
 .error {
