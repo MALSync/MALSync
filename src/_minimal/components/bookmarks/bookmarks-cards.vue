@@ -73,7 +73,7 @@ const episodeLang = utils.episode;
   position: relative;
   height: 240px;
   .__breakpoint-popup__( {
-    height: 170px;
+    height: 180px;
   });
 
   .img {
