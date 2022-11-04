@@ -17,7 +17,9 @@
       <MediaStatusDropdown
         v-model="parameters.state"
         :type="parameters.type"
-        :rewatching="listRequest.data ? listRequest.data?.seperateRewatching : false"
+        :rewatching="
+          listRequest.data ? listRequest.data?.seperateRewatching : parameters.state === 23
+        "
       />
       <FormButton padding="pill" @click="refresh()">
         <div class="material-icons m-pill" title="refresh">refresh</div>
