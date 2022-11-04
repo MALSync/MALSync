@@ -20,14 +20,14 @@
         :rewatching="listRequest.data ? listRequest.data?.seperateRewatching : false"
       />
       <FormButton padding="pill" @click="refresh()">
-        <div class="material-icons" title="refresh">refresh</div>
+        <div class="material-icons m-pill" title="refresh">refresh</div>
       </FormButton>
       <FormButton
         v-if="parameters.state === 6"
         padding="pill"
         @click="openRandom(6, parameters.type)"
       >
-        <div class="material-icons" title="random">shuffle</div>
+        <div class="material-icons m-pill" title="random">shuffle</div>
       </FormButton>
       <div style="flex-grow: 1"></div>
       <FormDropdown
@@ -413,4 +413,10 @@ function refresh() {
 .select-icon {
   display: flex;
 }
+
+.__breakpoint-popup__({
+  .m-pill {
+    font-size: 20px;
+  }
+});
 </style>
