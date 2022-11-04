@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 71 55" fill="none">
+  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 71 55" fill="none">
     <g clip-path="url(#clip0)">
       <path
         class="icon"

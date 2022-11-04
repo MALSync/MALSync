@@ -94,7 +94,7 @@ function getTitle(item) {
 @import '../../less/_globals.less';
 
 .flex {
-  grid-gap: 15px;
+  grid-gap: @spacer-half;
   display: flex;
   flex-direction: column;
 }

@@ -36,9 +36,9 @@ defineProps({
   display: flex;
   gap: 20px;
   .img {
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
+    width: calc(@normal-text * 6.25);
+    height: calc(@normal-text * 6.25);
+    min-width: calc(@normal-text * 6.25);
     border-radius: 50%;
     overflow: hidden;
     &-el {

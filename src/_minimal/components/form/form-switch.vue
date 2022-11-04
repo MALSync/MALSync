@@ -69,7 +69,8 @@ const id = Math.floor(Math.random() * 10000);
     .border-pill();
     .link();
 
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 5px 10px;
     margin: -2px;
     transition: background-color @fast-transition, color @fast-transition;

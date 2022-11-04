@@ -407,7 +407,7 @@ function refresh() {
 }
 
 .sortPlaceholder {
-  padding-top: 1px;
+  padding-top: 3px;
 }
 
 .select-icon {

@@ -12,7 +12,8 @@
           >
             <template #select="slotProps">
               <FormButton :tabindex="-1" :animation="false" padding="mini" class="dots">
-                <StateDot :status="Number(slotProps.value)" /> {{ slotProps.currentTitle }}
+                <StateDot :status="Number(slotProps.value)" :relative-height="true" />
+                {{ slotProps.currentTitle }}
               </FormButton>
             </template>
             <template #option="slotProps">

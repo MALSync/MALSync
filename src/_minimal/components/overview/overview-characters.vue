@@ -2,7 +2,7 @@
   <div v-if="characters.length">
     <Header :spacer="true">{{ lang('overview_Characters') }}</Header>
 
-    <Grid>
+    <Grid :min-width-popup="90">
       <MediaLink v-for="char in characters" :key="char.name" class="character" :href="char.url">
         <div class="cover">
           <ImageFit mode="cover" :src="char.img" />

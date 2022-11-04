@@ -1,5 +1,9 @@
 <template>
-  <div class="state-dot" :class="`state-${status}`" :title="state[status]" />
+  <div
+    class="state-dot"
+    :class="`state-${status} ${relativeHeight ? 'relative' : ''}`"
+    :title="state[status]"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -10,6 +14,10 @@ defineProps({
   status: {
     type: Number as PropType<state>,
     required: true,
+  },
+  relativeHeight: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>
@@ -22,6 +30,12 @@ defineProps({
   height: 16px;
   border-radius: 50%;
   margin-right: 0.5em;
+
+  &.relative {
+    min-width: 1em;
+    width: 1em;
+    height: 1em;
+  }
 
   &.state-0 {
     border: 1px solid var(--cl-text);
