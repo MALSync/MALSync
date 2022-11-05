@@ -148,6 +148,7 @@ export const structure: ConfObj[] = [
     props: {
       icon: 'forum',
       href: 'https://discord.com/invite/cTH4yaw',
+      special: 'discord',
     },
     component: SettingsGroup,
   },
