@@ -6,19 +6,19 @@
       </Header>
     </div>
   </MediaLink>
-  <router-link v-else-if="type === 'general'" :to="{ name: 'Settings', params: { path } }">
+  <Link v-else-if="type === 'general'" :to="{ name: 'Settings', params: { path } }">
     <div class="overview-button">
       <Header weight="normal">
         <TextIcon :icon="icon" mode="flex" spacer="big">{{ title }}</TextIcon>
       </Header>
     </div>
-  </router-link>
+  </Link>
   <div v-else>
     <SettingsGeneral component="button" :title="title">
       <template #component>
-        <router-link :to="{ name: 'Settings', params: { path } }">
+        <Link :to="{ name: 'Settings', params: { path } }">
           <FormButton v-bind="props" />
-        </router-link>
+        </Link>
       </template>
     </SettingsGeneral>
   </div>
@@ -31,6 +31,7 @@ import Header from '../header.vue';
 import SettingsGeneral from './settings-general.vue';
 import FormButton from '../form/form-button.vue';
 import MediaLink from '../media-link.vue';
+import Link from '../link.vue';
 
 defineProps({
   title: {

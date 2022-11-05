@@ -2,7 +2,7 @@
   <div id="header" :class="{ scrolled }">
     <div class="nav">
       <NavBack />
-      <router-link
+      <Link
         class="link"
         :to="{
           name: 'Bookmarks',
@@ -13,13 +13,13 @@
         <span class="material-icons">
           {{ route.name === 'Bookmarks' ? 'bookmarks' : 'bookmark' }}
         </span>
-      </router-link>
+      </Link>
 
       <NavSearch class="flex-grow" />
 
-      <router-link to="/settings" class="link">
+      <Link to="/settings" class="link">
         <span class="material-icons">settings</span>
-      </router-link>
+      </Link>
       <span v-if="fullscreenFunction" class="material-icons link" @click="fullscreenFunction()"
         >fullscreen</span
       >
@@ -34,6 +34,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { getStateContext, getTypeContext } from '../../utils/state';
 import NavSearch from './nav-search.vue';
 import NavBack from './nav-back.vue';
+import Link from '../link.vue';
 
 const scrolled = ref(false);
 
