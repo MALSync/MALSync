@@ -162,7 +162,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       type: this.type.toUpperCase(),
     };
 
-    return this.apiCall(query, variables, false);
+    return this.apiCall(query, variables, true);
   }
 
   private title(data) {
