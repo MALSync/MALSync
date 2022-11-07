@@ -122,6 +122,8 @@
     ]
   },
   "0.9.0": {
-    "iframe": []
+    "iframe": [
+      "https://sbanh.com/e/*"
+    ]
   }
 }

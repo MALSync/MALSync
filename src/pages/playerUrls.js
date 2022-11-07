@@ -458,6 +458,7 @@ module.exports = {
       '*://sbfull.com/e/*',
       '*://ssbstream.net/*',
       '*://streamsss.net/*',
+      '*://sbanh.com/e/*',
     ],
   },
   // gogo
