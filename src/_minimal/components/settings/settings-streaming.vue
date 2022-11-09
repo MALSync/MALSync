@@ -119,6 +119,7 @@ import Section from '../section.vue';
 import Header from '../header.vue';
 import CodeBlock from '../code-block.vue';
 import HR from '../hr.vue';
+import { localStore } from '../../../utils/localStore';
 
 defineProps({
   title: {
@@ -140,7 +141,7 @@ const model = computed({
   },
   set(value) {
     api.settings.set('quicklinks', value);
-    if (api.type === 'webextension') localStorage.clear();
+    if (api.type === 'webextension') localStore.clear();
   },
 });
 

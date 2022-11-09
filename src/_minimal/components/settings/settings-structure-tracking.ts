@@ -5,6 +5,7 @@ import SettingsLocalSyncExport from './settings-local-sync-export.vue';
 import SettingsDisabledWebsites from './settings-disabled-websites.vue';
 import SettingsGroup from './settings-group.vue';
 import SettingsHr from './settings-hr.vue';
+import { localStore } from '../../../utils/localStore';
 
 export const trackingSimple: ConfObj[] = [
   {
@@ -26,7 +27,7 @@ export const trackingSimple: ConfObj[] = [
     title: () => api.storage.lang('settings_Mode'),
     change: () => {
       utils.clearCache();
-      if (api.type === 'webextension') localStorage.clear();
+      if (api.type === 'webextension') localStore.clear();
     },
     props: {
       component: 'dropdown',
