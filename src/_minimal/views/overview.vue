@@ -14,7 +14,12 @@
         <Header
           :loading="metaRequest.loading"
           class="header-block"
-          :class="{ hasTitle: metaRequest.data && metaRequest.data.alternativeTitle }"
+          :class="{
+            hasTitle:
+              metaRequest.data &&
+              metaRequest.data.alternativeTitle &&
+              metaRequest.data.alternativeTitle.length,
+          }"
         >
           <div class="statusDotSection">
             <StateDot
@@ -37,10 +42,17 @@
             {{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}
           </span>
         </Header>
-        <Modal v-if="metaRequest.data && metaRequest.data.alternativeTitle" v-model="titleModal">
+        <Modal
+          v-if="
+            metaRequest.data &&
+            metaRequest.data.alternativeTitle &&
+            metaRequest.data.alternativeTitle.length
+          "
+          v-model="titleModal"
+        >
           <div class="alt-titles">
             <div
-              v-for="altTitle in metaRequest.data.alternativeTitle"
+              v-for="altTitle in [...new Set(metaRequest.data.alternativeTitle)]"
               :key="altTitle"
               class="alt-title"
             >

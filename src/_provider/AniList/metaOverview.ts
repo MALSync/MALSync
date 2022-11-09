@@ -162,7 +162,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       type: this.type.toUpperCase(),
     };
 
-    return this.apiCall(query, variables, false);
+    return this.apiCall(query, variables, true);
   }
 
   private title(data) {
@@ -187,7 +187,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (titles) {
       for (const prop in titles) {
         const el = data.data.Media.title[prop];
-        if (el !== this.meta.title && el) {
+        if (el) {
           this.meta.alternativeTitle.push(el);
         }
       }
