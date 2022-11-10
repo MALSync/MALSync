@@ -23,7 +23,7 @@ export class countAbove extends ModeAbstract<arguements> {
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i];
       const rect = element.getBoundingClientRect();
-      if (rect.bottom <= windowHeight) {
+      if (rect.bottom <= windowHeight && rect.width && rect.height) {
         inPort.push(element);
       }
     }
