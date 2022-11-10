@@ -19,15 +19,11 @@ export class countAbove extends ModeAbstract<arguements> {
 
   protected getElementInViewport(elements: JQuery<HTMLElement>) {
     const inPort: HTMLElement[] = [];
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i];
       const rect = element.getBoundingClientRect();
-      if (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-      ) {
+      if (rect.bottom <= windowHeight) {
         inPort.push(element);
       }
     }
@@ -38,13 +34,11 @@ export class countAbove extends ModeAbstract<arguements> {
   }
 
   protected countElementsAbove(elements: JQuery<HTMLElement>, element: HTMLElement) {
-    let count = 1; // start at 1 because the element itself is counted
+    let count = 0;
     for (let i = 0; i < elements.length; i++) {
       const el = elements[i];
-      // eslint-disable-next-line no-bitwise
-      if (element.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_PRECEDING) {
-        count++;
-      }
+      count++;
+      if (el === element) break;
     }
     return count;
   }
