@@ -78,6 +78,17 @@ export const Mangadex: pageInterface = {
     },
     readerConfig: [
       {
+        condition: '.md--progress-page .current',
+        current: {
+          selector: '.md--progress-page .current',
+          mode: 'text',
+        },
+        total: {
+          selector: '.md--progress-page:last-child',
+          mode: 'text',
+        },
+      },
+      {
         current: {
           selector: '.md--reader-pages img',
           mode: 'countAbove',
