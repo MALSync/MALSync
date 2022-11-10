@@ -20,10 +20,12 @@ export class countAbove extends ModeAbstract<arguements> {
   protected getElementInViewport(elements: JQuery<HTMLElement>) {
     const inPort: HTMLElement[] = [];
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i];
       const rect = element.getBoundingClientRect();
-      if (rect.bottom <= windowHeight && rect.width && rect.height) {
+      if (rect.bottom <= windowHeight && rect.left <= windowWidth && rect.width && rect.height) {
         inPort.push(element);
       }
     }
