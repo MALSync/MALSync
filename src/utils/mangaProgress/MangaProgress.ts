@@ -42,6 +42,19 @@ export class MangaProgress {
     return this.result;
   }
 
+  isSuccessful() {
+    return this.result !== null;
+  }
+
+  finished(): boolean {
+    const result = this.getProgress();
+    const percentage = 90;
+    if (result === null) return false;
+    const limit = Math.floor((result.total / 100) * percentage);
+    if (limit < 1) return true;
+    return result.current >= limit;
+  }
+
   execute() {
     this.result = this.applyConfig();
   }
