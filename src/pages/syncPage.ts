@@ -11,6 +11,7 @@ import { bloodTrail, Shark } from '../utils/shark';
 import { MissingDataError, MissingPlayerError } from '../utils/errors';
 import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
 import { hasMissingPermissions } from '../utils/customDomains';
+import { MangaProgress } from '../utils/mangaProgress/MangaProgress';
 
 declare let browser: any;
 
@@ -31,6 +32,8 @@ export class SyncPage {
   searchObj;
 
   singleObj;
+
+  mangaProgress: MangaProgress | undefined;
 
   public novel = false;
 
@@ -62,6 +65,11 @@ export class SyncPage {
       logger.info('Sync is disabled for this page', this.page.name);
       throw 'Stop Script';
     }
+
+    if (this.page.type === 'manga') {
+      this.mangaProgress = new MangaProgress(this.page.sync.readerConfig || []);
+    }
+
     emitter.on('syncPage_fillUi', () => this.fillUI());
   }
 
@@ -270,6 +278,7 @@ export class SyncPage {
     this.UILoaded = false;
     this.curState = undefined;
     this.setSearchObj(undefined);
+    if (this.mangaProgress) this.mangaProgress.stop();
     $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
   }
 
@@ -490,6 +499,10 @@ export class SyncPage {
             api.settings.get('checkForFiller')
           ) {
             this.checkForFiller(this.singleObj.getMalId(), this.singleObj.getEpisode());
+          }
+
+          if (this.mangaProgress) {
+            this.mangaProgress.start();
           }
 
           if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {

@@ -15,6 +15,8 @@ export class MangaProgress {
 
   protected result: mangaProgress | null = null;
 
+  protected interval;
+
   constructor(configs: mangaProgressConfig[]) {
     this.configs = configs;
   }
@@ -57,5 +59,17 @@ export class MangaProgress {
 
   execute() {
     this.result = this.applyConfig();
+  }
+
+  start() {
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
+      this.execute();
+      logger.log(this.finished(), this.getProgress());
+    }, 1000);
+  }
+
+  stop() {
+    clearInterval(this.interval);
   }
 }

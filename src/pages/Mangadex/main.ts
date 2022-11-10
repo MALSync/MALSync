@@ -76,6 +76,18 @@ export const Mangadex: pageInterface = {
         return `https://kitsu.io/manga/${mangaData.links.kt}`;
       return false;
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '.md--reader-pages img',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.md--reader-pages img',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {
