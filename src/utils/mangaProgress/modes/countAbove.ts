@@ -1,11 +1,11 @@
 import { ModeAbstract } from '../ModeAbstract';
 
-type arguements = {
+type arguments = {
   selector: string;
 };
 
-export class countAbove extends ModeAbstract<arguements> {
-  protected execute(args: arguements) {
+export class countAbove extends ModeAbstract<arguments> {
+  protected execute(args: arguments) {
     const elements = j.$(args.selector);
     if (elements.length === 0) throw new Error(`No element found for '${args.selector}'`);
 

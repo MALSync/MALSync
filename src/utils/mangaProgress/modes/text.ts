@@ -1,12 +1,12 @@
 import { ModeAbstract } from '../ModeAbstract';
 
-type arguements = {
+type arguments = {
   selector: string;
   regex?: string;
 };
 
-export class text extends ModeAbstract<arguements> {
-  execute(args: arguements) {
+export class text extends ModeAbstract<arguments> {
+  execute(args: arguments) {
     let textString = j.$(args.selector).first().text().trim();
     if (args.regex) {
       const regex = new RegExp(args.regex);
