@@ -2,7 +2,7 @@ import { ModeAbstract } from '../ModeAbstract';
 
 type arguements = {
   selector: string;
-  regex: string;
+  regex?: string;
 };
 
 export class text extends ModeAbstract<arguements> {

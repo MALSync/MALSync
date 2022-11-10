@@ -59,6 +59,18 @@ export function getInter(): pageInterface {
         if (href) return utils.absoluteLink(href, thisSelf.domain);
         return '';
       },
+      readerConfig: [
+        {
+          current: {
+            selector: '.pager-list-left .active',
+            mode: 'text',
+          },
+          total: {
+            selector: '.pager-list-left [data-page]:nth-last-child(2)',
+            mode: 'text',
+          },
+        },
+      ],
     },
     overview: {
       getTitle(url) {

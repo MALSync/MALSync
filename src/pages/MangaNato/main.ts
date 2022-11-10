@@ -49,6 +49,18 @@ export const MangaNato: pageInterface = {
         .first()
         .attr('href');
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '.container-chapter-reader img',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.container-chapter-reader img',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {
