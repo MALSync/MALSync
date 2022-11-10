@@ -52,6 +52,31 @@ export const MangaSee: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
+    readerConfig: [
+      {
+        condition: '.fa-columns',
+        current: {
+          selector: '.ImageGallery > .ng-scope',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.ImageGallery > .ng-scope',
+          mode: 'count',
+        },
+      },
+      {
+        condition: '.fa-arrows-alt-v',
+        current: {
+          selector: '[data-target="#PageModal"]',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+        total: {
+          selector: '.ImageGallery > .ng-scope',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {

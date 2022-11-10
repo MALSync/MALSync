@@ -1,4 +1,5 @@
-import { SyncPage } from './syncPage';
+import { mangaProgressConfig } from '../utils/mangaProgress/MangaProgress';
+import type { SyncPage } from './syncPage';
 
 export interface pageInterface {
   domain: string | string[];
@@ -20,6 +21,7 @@ export interface pageInterface {
     getMalUrl?: (
       provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL',
     ) => Promise<string | false> | string | false; // (optional) Return the MALUrl. Only really needs to be implemented if the page provides that info.
+    readerConfig?: mangaProgressConfig[]; // (optional) Usd to get the current reading progress of a manga chapter
   };
   overview?: {
     getTitle: (url: string) => string;
