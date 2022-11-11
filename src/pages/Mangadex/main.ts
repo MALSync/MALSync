@@ -80,12 +80,14 @@ export const Mangadex: pageInterface = {
       {
         condition: '.md--progress-page .current',
         current: {
-          selector: '.md--progress-page .current',
+          selector: '.md--progress-page .current:last-child',
           mode: 'text',
+          regex: '\\d+$',
         },
         total: {
           selector: '.md--progress-page:last-child',
           mode: 'text',
+          regex: '\\d+$',
         },
       },
       {
