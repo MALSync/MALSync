@@ -17,6 +17,10 @@ export class MangaProgress {
 
   protected interval;
 
+  protected stopPromise = () => {
+    // do nothing
+  };
+
   constructor(configs: mangaProgressConfig[]) {
     this.configs = configs;
   }
@@ -63,10 +67,26 @@ export class MangaProgress {
 
   start() {
     clearInterval(this.interval);
-    this.interval = setInterval(() => {
-      this.execute();
-      logger.log(this.finished(), this.getProgress());
-    }, 1000);
+    return new Promise<boolean>((resolve, reject) => {
+      this.stopPromise = () => resolve(false);
+      let resolved = false;
+      this.interval = setInterval(() => {
+        this.execute();
+
+        if (!this.isSuccessful()) {
+          clearInterval(this.interval);
+          reject(new Error('MangaProgress: Progress not found'));
+          return;
+        }
+
+        if (!resolved) {
+          resolved = true;
+          resolve(true);
+        }
+
+        logger.log(this.finished(), this.getProgress());
+      }, 1000);
+    });
   }
 
   stop() {

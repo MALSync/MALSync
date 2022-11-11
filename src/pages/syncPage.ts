@@ -500,7 +500,7 @@ export class SyncPage {
             this.checkForFiller(this.singleObj.getMalId(), this.singleObj.getEpisode());
           }
 
-          this.startSyncHandling(state, malUrl);
+          await this.startSyncHandling(state, malUrl);
         } else {
           logger.log('Nothing to Sync');
         }
@@ -510,12 +510,18 @@ export class SyncPage {
     }
   }
 
-  protected startSyncHandling(state, malUrl) {
+  protected async startSyncHandling(state, malUrl) {
+    let mangaProgressMode = false;
     if (this.mangaProgress) {
-      this.mangaProgress.start();
+      try {
+        mangaProgressMode = await this.mangaProgress.start();
+        if (!mangaProgressMode) return;
+      } catch (e) {
+        logger.error(e);
+      }
     }
 
-    if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
+    if (!mangaProgressMode && api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
       setTimeout(() => {
         this.sync(state);
       }, api.settings.get('delay') * 1000);
@@ -546,23 +552,37 @@ export class SyncPage {
         this.page.type === 'anime'
       ) {
         message = `
-      <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
-        <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
-      </div>
-      <div class="player-error" style="display: none; position: absolute; left: 0; right: 0; padding: 5px; bottom: 100%; color: rgb(255,64,129); background-color: #323232;">
-        <span class="player-error-default">${api.storage.lang('syncPage_flash_player_error')}</span>
-        <span class="player-error-missing-permissions" style="display: none; padding-top: 10px">
-          ${api.storage.lang('settings_custom_domains_missing_permissions_header')}
-        </span>
-        <div style="display: flex; justify-content: space-evenly">
-          <a class="player-error-missing-permissions" href="https://malsync.moe/pwa/#/settings/customDomains" style="display: none; margin: 10px; border-bottom: 2px solid #e13f7b;">
-            ${api.storage.lang('Add')}
-          </a>
-          <a href="https://discord.com/invite/cTH4yaw" style="display: block; margin: 10px">Help</a>
-        </div>
+          <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
+            <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
+          </div>
+          <div class="player-error" style="display: none; position: absolute; left: 0; right: 0; padding: 5px; bottom: 100%; color: rgb(255,64,129); background-color: #323232;">
+            <span class="player-error-default">${api.storage.lang('syncPage_flash_player_error')}</span>
+            <span class="player-error-missing-permissions" style="display: none; padding-top: 10px">
+              ${api.storage.lang('settings_custom_domains_missing_permissions_header')}
+            </span>
+            <div style="display: flex; justify-content: space-evenly">
+              <a class="player-error-missing-permissions" href="https://malsync.moe/pwa/#/settings/customDomains" style="display: none; margin: 10px; border-bottom: 2px solid #e13f7b;">
+                ${api.storage.lang('Add')}
+              </a>
+              <a href="https://discord.com/invite/cTH4yaw" style="display: block; margin: 10px">Help</a>
+            </div>
 
-      </div>
-    ${message}`;
+          </div>
+        ${message}`;
+        options = {
+          hoverInfo: true,
+          error: false,
+          type: 'update',
+          minimized: true,
+        };
+      }
+
+      if (mangaProgressMode) {
+        message = `
+          <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
+            <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
+          </div>
+        ${message}`;
         options = {
           hoverInfo: true,
           error: false,
