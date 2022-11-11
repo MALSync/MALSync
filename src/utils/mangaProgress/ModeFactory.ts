@@ -1,8 +1,9 @@
 import { text } from './modes/text';
 import { count } from './modes/count';
 import { countAbove } from './modes/countAbove';
+import { prop } from './modes/prop';
 
-const modes = { text, count, countAbove } as const;
+const modes = { text, count, countAbove, prop } as const;
 
 type Expand<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
 type modeValues = {
