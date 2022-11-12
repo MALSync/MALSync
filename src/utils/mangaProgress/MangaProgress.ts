@@ -10,6 +10,25 @@ export type mangaProgress = { current: number; total: number };
 
 const logger = con.m('MangaProgress');
 
+const alternativeReader: mangaProgressConfig[] = [
+  // AMR
+  {
+    condition: '#amrapp',
+    current: {
+      mode: 'text',
+      selector: '.amr-pages-nav .text-h6',
+      regex: '(\\d+) /',
+      group: 1,
+    },
+    total: {
+      mode: 'text',
+      selector: '.amr-pages-nav .text-h6',
+      regex: '/ (\\d+)',
+      group: 1,
+    },
+  },
+];
+
 export class MangaProgress {
   protected configs: mangaProgressConfig[];
 
@@ -22,7 +41,8 @@ export class MangaProgress {
   };
 
   constructor(configs: mangaProgressConfig[]) {
-    this.configs = configs;
+    this.configs = [...alternativeReader, ...configs];
+    logger.log('config', this.configs);
   }
 
   protected getProgressFromCollectors(config: mangaProgressConfig) {
