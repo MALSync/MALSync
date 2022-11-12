@@ -4,6 +4,7 @@ type arguments = {
   selector: string;
   property: string;
   regex?: string;
+  group?: number;
 };
 
 export class prop extends ModeAbstract<arguments> {
@@ -13,7 +14,7 @@ export class prop extends ModeAbstract<arguments> {
       const regex = new RegExp(args.regex);
       const match = textString.match(regex);
       if (match) {
-        [textString] = match;
+        textString = match[args.group || 0];
       }
     }
     const n = Number(textString);

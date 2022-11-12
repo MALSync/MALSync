@@ -3,6 +3,7 @@ import { ModeAbstract } from '../ModeAbstract';
 type arguments = {
   selector: string;
   regex?: string;
+  group?: number;
 };
 
 export class text extends ModeAbstract<arguments> {
@@ -12,7 +13,7 @@ export class text extends ModeAbstract<arguments> {
       const regex = new RegExp(args.regex);
       const match = textString.match(regex);
       if (match) {
-        [textString] = match;
+        textString = match[args.group || 0];
       }
     }
     const n = Number(textString);
