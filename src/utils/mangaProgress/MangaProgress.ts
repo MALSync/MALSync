@@ -115,7 +115,7 @@ export class MangaProgress {
   setProgress() {
     j.$('.ms-progress').css('width', `${this.progressPercentage()! * 100}%`);
     j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
-    if (this.finished()) {
+    if (this.finished() && j.$('#malSyncProgress').length) {
       j.$('#malSyncProgress').addClass('ms-done');
       j.$('.flash.type-update .sync').trigger('click');
       clearInterval(this.interval);
