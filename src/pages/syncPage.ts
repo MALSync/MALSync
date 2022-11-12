@@ -556,7 +556,9 @@ export class SyncPage {
             <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
           </div>
           <div class="player-error" style="display: none; position: absolute; left: 0; right: 0; padding: 5px; bottom: 100%; color: rgb(255,64,129); background-color: #323232;">
-            <span class="player-error-default">${api.storage.lang('syncPage_flash_player_error')}</span>
+            <span class="player-error-default">${api.storage.lang(
+              'syncPage_flash_player_error',
+            )}</span>
             <span class="player-error-missing-permissions" style="display: none; padding-top: 10px">
               ${api.storage.lang('settings_custom_domains_missing_permissions_header')}
             </span>
