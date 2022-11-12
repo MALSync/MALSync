@@ -52,11 +52,28 @@ export class MangaProgress {
     return this.result !== null;
   }
 
+  protected getLimit() {
+    const percentage = 90;
+    const result = this.getProgress();
+    if (result === null) return 0;
+    const limit = Math.floor((result.total / 100) * percentage);
+    return limit;
+  }
+
+  progressPercentage() {
+    const result = this.getProgress();
+    if (result === null) return null;
+    if (result.total === 0) return 0;
+    const res = result.current / this.getLimit();
+    if (res > 1) return 1;
+    if (res < 0) return 0;
+    return res;
+  }
+
   finished(): boolean {
     const result = this.getProgress();
-    const percentage = 90;
     if (result === null) return false;
-    const limit = Math.floor((result.total / 100) * percentage);
+    const limit = this.getLimit();
     if (limit < 1) return true;
     return result.current >= limit;
   }
@@ -84,12 +101,24 @@ export class MangaProgress {
           resolve(true);
         }
 
-        logger.log(this.finished(), this.getProgress());
+        this.setProgress();
+
+        logger.debug(this.finished(), this.getProgress());
       }, 1000);
     });
   }
 
   stop() {
     clearInterval(this.interval);
+  }
+
+  setProgress() {
+    j.$('.ms-progress').css('width', `${this.progressPercentage()! * 100}%`);
+    j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
+    if (this.finished()) {
+      j.$('#malSyncProgress').addClass('ms-done');
+      j.$('.flash.type-update .sync').trigger('click');
+      clearInterval(this.interval);
+    }
   }
 }

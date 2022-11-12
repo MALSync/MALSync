@@ -579,7 +579,7 @@ export class SyncPage {
 
       if (mangaProgressMode) {
         message = `
-          <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
+          <div id="malSyncProgress" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
             <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
           </div>
         ${message}`;
