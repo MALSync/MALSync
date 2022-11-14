@@ -67,7 +67,7 @@ export class SyncPage {
     }
 
     if (this.page.type === 'manga' && api.settings.get('readerTracking')) {
-      this.mangaProgress = new MangaProgress(this.page.sync.readerConfig || []);
+      this.mangaProgress = new MangaProgress(this.page.sync.readerConfig || [], this.page.name);
     }
 
     emitter.on('syncPage_fillUi', () => this.fillUI());

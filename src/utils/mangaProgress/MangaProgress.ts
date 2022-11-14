@@ -32,6 +32,8 @@ const alternativeReader: mangaProgressConfig[] = [
 export class MangaProgress {
   protected configs: mangaProgressConfig[];
 
+  protected page: string;
+
   protected result: mangaProgress | null = null;
 
   protected interval;
@@ -40,8 +42,9 @@ export class MangaProgress {
     // do nothing
   };
 
-  constructor(configs: mangaProgressConfig[]) {
+  constructor(configs: mangaProgressConfig[], page: string) {
     this.configs = [...alternativeReader, ...configs];
+    this.page = page;
     logger.log('config', this.configs);
   }
 
