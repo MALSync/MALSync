@@ -82,6 +82,15 @@ export const tracking: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'readerTracking',
+    title: () => api.storage.lang('settings_Mangasync_readerTracking'),
+    props: {
+      component: 'checkbox',
+      option: 'readerTracking',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'autoTrackingModemanga',
     title: () => api.storage.lang('settings_Mangasync'),
     props: () => ({

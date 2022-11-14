@@ -66,7 +66,7 @@ export class SyncPage {
       throw 'Stop Script';
     }
 
-    if (this.page.type === 'manga') {
+    if (this.page.type === 'manga' && api.settings.get('readerTracking')) {
       this.mangaProgress = new MangaProgress(this.page.sync.readerConfig || []);
     }
 
