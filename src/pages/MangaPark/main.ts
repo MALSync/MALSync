@@ -68,6 +68,31 @@ export const MangaPark: pageInterface = {
       }
       return '';
     },
+    readerConfig: [
+      {
+        condition: '#__next',
+        current: {
+          selector: '.cursor-pointer.relative',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.cursor-pointer.relative > span:first-child',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+      {
+        current: {
+          selector: '#viewer .item',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '#viewer .page-num',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {
