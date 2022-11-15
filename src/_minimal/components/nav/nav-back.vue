@@ -1,19 +1,32 @@
 <template>
   <span
-    v-if="display"
+    v-if="display && (hasPrevious || route.name === 'Bookmarks')"
     class="material-icons"
     :class="{ noAction: !hasPrevious }"
     @click="router.go(-1)"
     >arrow_back</span
   >
+  <Link
+    v-else-if="display"
+    class="material-icons"
+    :to="{
+      name: 'Bookmarks',
+      params: { type: getTypeContext().value, state: getStateContext().value },
+    }"
+  >
+    arrow_back
+  </Link>
 </template>
 
 <script lang="ts" setup>
 import { inject, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+import { getStateContext, getTypeContext } from '../../utils/state';
+import Link from '../link.vue';
 
 const rootWindow = inject('rootWindow') as Window;
 
+const route = useRoute();
 const router = useRouter();
 const display = document.documentElement.getAttribute('mode') === 'popup';
 const hasPrevious = ref(rootWindow.history.length > 1);
