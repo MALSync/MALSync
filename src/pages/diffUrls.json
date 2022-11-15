@@ -122,6 +122,9 @@
     ]
   },
   "0.9.0": {
+    "Gogoanime": [
+      "https://gogoanime.ar/*"
+    ],
     "iframe": [
       "https://sbanh.com/e/*"
     ]

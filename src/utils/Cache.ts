@@ -1,3 +1,5 @@
+import { localStore } from './localStore';
+
 export class Cache {
   constructor(
     protected key: string,
@@ -67,21 +69,21 @@ export class Cache {
   async setValue(result) {
     const save = { data: result, timestamp: new Date().getTime() };
     if (this.localStorage) {
-      return localStorage.setItem(this.key, JSON.stringify(save));
+      return localStore.setItem(this.key, JSON.stringify(save));
     }
     return api.storage.set(this.key, save);
   }
 
   async clearValue() {
     if (this.localStorage) {
-      return localStorage.removeItem(this.key);
+      return localStore.removeItem(this.key);
     }
     return api.storage.remove(this.key);
   }
 
   protected async getStorage() {
     if (this.localStorage) {
-      return JSON.parse(localStorage.getItem(this.key)!);
+      return JSON.parse(localStore.getItem(this.key)!);
     }
     return api.storage.get(this.key);
   }

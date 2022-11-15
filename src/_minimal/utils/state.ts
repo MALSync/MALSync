@@ -1,5 +1,6 @@
 import { ref, watch } from 'vue';
 import { Cache } from '../../utils/Cache';
+import { localStore } from '../../utils/localStore';
 
 const STORAGE_KEY = 'VUE-MAL-SYNC-V2';
 const typeContext = ref('anime');
@@ -45,9 +46,9 @@ async function init() {
 }
 
 export function getUrlObj() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+  return JSON.parse(localStore.getItem(STORAGE_KEY) || 'null');
 }
 
 export function setUrlObj(url: string) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ url, timestamp: Date.now() }));
+  localStore.setItem(STORAGE_KEY, JSON.stringify({ url, timestamp: Date.now() }));
 }

@@ -11,6 +11,7 @@ import { bloodTrail, Shark } from '../utils/shark';
 import { MissingDataError, MissingPlayerError } from '../utils/errors';
 import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
 import { hasMissingPermissions } from '../utils/customDomains';
+import { localStore } from '../utils/localStore';
 import { MangaProgress } from '../utils/mangaProgress/MangaProgress';
 
 declare let browser: any;
@@ -199,14 +200,14 @@ export class SyncPage {
     if (typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked) {
       if (this.curState.videoChecked > 1 && item.current > 10) {
         logger.debug('Set Resume', item.current);
-        localStorage.setItem(localSelector, item.current);
+        localStore.setItem(localSelector, item.current);
         this.curState.videoChecked = true;
         setTimeout(() => {
           if (this.curState) this.curState.videoChecked = 2;
         }, 10000);
       }
     } else {
-      const localItem = localStorage.getItem(localSelector);
+      const localItem = localStore.getItem(localSelector);
       logger.info('Resume', localItem);
       if (
         localItem !== null &&
