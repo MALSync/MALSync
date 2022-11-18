@@ -113,7 +113,11 @@ module.exports = {
     match: ['*://*.novelplanet.me/*'],
   },
   proxer: {
-    match: ['*://*.stream.proxer.me/*', '*://*.stream.proxer.net/*'],
+    match: [
+      '*://*.stream.proxer.me/*',
+      '*://*.stream.proxer.net/*',
+      '*://*.stream-service.proxer.me/*',
+    ],
   },
   Verystream: {
     match: ['*://verystream.com/*'],
@@ -747,7 +751,7 @@ module.exports = {
   },
   // simplyaweeb
   simplyaweeb: {
-    match: ['*://player.simplyaweeb.to/*'],
+    match: ['*://player.simplyaweeb.to/*', '*://stream.simplyaweeb.to/*'],
   },
   // animeworld
   animeworld: {
@@ -759,6 +763,6 @@ module.exports = {
   },
   // toonanime
   toonvip: {
-    match: ['*://mb.toonanime.xyz/dist/myt.html*'],
+    match: ['*://mb.toonanime.xyz/dist/*'],
   },
 };

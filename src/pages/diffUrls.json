@@ -126,7 +126,10 @@
       "https://gogoanime.ar/*"
     ],
     "iframe": [
-      "https://sbanh.com/e/*"
+      "https://stream-service.proxer.me/*",
+      "https://sbanh.com/e/*",
+      "https://stream.simplyaweeb.to/*",
+      "https://mb.toonanime.xyz/dist/*"
     ]
   }
 }
