@@ -77,25 +77,15 @@ export const Guya: pageInterface = {
     );
     let interval;
 
-    let urlWithoutPage = '';
-
-    utils.fullUrlChangeDetect(function () {
-      page.reset();
-      clearInterval(interval);
-      interval = utils.waitUntilTrue(
-        function () {
-          if (
+    utils.changeDetect(
+      () => {
+        page.reset();
+        clearInterval(interval);
+        interval = utils.waitUntilTrue(
+          () =>
             Guya.overview!.getTitle(window.location.href).length ||
-            Guya.sync.getTitle(window.location.href).length
-          ) {
-            return true;
-          }
-          return false;
-        },
-        function () {
-          if (window.location.href.split('/').slice(0, 7).join('/') !== urlWithoutPage) {
-            urlWithoutPage = window.location.href.split('/').slice(0, 7).join('/');
-
+            Guya.sync.getTitle(window.location.href).length,
+          () => {
             switch (window.location.href.split('/')[4]) {
               case 'mangadex':
                 Guya.database = 'Mangadex';
@@ -108,10 +98,12 @@ export const Guya: pageInterface = {
                 break;
             }
             page.handlePage();
-          }
-        },
-      );
-    });
+          },
+        );
+      },
+      () => window.location.href.split('/').slice(0, 7).join('/'),
+      true,
+    );
 
     j.$(document).on('click', 'div.series-content > div.btn-group', () => {
       page.handleList();
