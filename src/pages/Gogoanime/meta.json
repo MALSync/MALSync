@@ -26,22 +26,6 @@
       "*://*.gogoanime.ar/*",
       "*://*.gogoanimes.co/*",
       "*://*.animego.to/*"
-    ],
-    "exclude": [
-      "*gogoanime*.*/",
-      "*gogoanime*.*/*.html*",
-      "*gogoanime*.*/anime-List*",
-      "*gogoanime*.*/anime-list*",
-      "*gogoanime*.*/user*",
-      "*gogoanime*.*/genre/*",
-      "*gogoanime*.*/sub-category/*",
-      "*animego*.*/",
-      "*animego*.*/*.html*",
-      "*animego*.*/anime-List*",
-      "*animego*.*/anime-list*",
-      "*animego*.*/user*",
-      "*animego*.*/genre/*",
-      "*animego*.*/sub-category/*"
     ]
   }
 }
