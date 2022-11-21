@@ -3,7 +3,7 @@
     ref="triggerNode"
     class="dropdown"
     :class="`${size} ${disabled ? 'disabled' : ''}`"
-    @blur="open = false"
+    @blur="opens = false"
     @keydown.prevent="keyDown($event)"
   >
     <div class="selector" :class="{ animate }" @click="open = !open">
@@ -259,7 +259,8 @@ function keyDown(event: KeyboardEvent) {
     z-index: 9999;
     background-color: var(--cl-foreground-solid);
     padding: 15px 10px;
-    white-space: nowrap;
+    width: max-content;
+    white-space: normal;
     overflow-y: auto;
     overflow: overlay;
     &-default {
