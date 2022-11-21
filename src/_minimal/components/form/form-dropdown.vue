@@ -3,7 +3,7 @@
     ref="triggerNode"
     class="dropdown"
     :class="`${size} ${disabled ? 'disabled' : ''}`"
-    @blur="opens = false"
+    @blur="open = false"
     @keydown.prevent="keyDown($event)"
   >
     <div class="selector" :class="{ animate }" @click="open = !open">
