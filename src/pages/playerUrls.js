@@ -463,6 +463,7 @@ module.exports = {
       '*://ssbstream.net/*',
       '*://streamsss.net/*',
       '*://sbanh.com/e/*',
+      '*://sblongvu.com/e/*',
     ],
   },
   // gogo
