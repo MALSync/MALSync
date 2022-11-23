@@ -654,7 +654,7 @@
         }
     },
     "settings_StreamingSite": {
-        "message": "Adresy witryn strumieniowych",
+        "message": "Szybkie linki",
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
@@ -782,7 +782,7 @@
         "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
     },
     "settings_Video_Player": {
-        "message": "Odtwarzacz Wideo",
+        "message": "Odtwarzacz wideo",
         "description": "Video settings header"
     },
     "settings_Video_Fullscreen": {
@@ -1114,5 +1114,197 @@
     "nextEpShort_no_nextEp": {
         "message": "Nie odnaleziono następnego odcinka",
         "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+    },
+    "Synchronize": {
+        "message": "Synchronizuj",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "Zaktualizuj $page$ do tomu $epNr$",
+        "description": "Update MAL to volume 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flash_player_error": {
+        "message": "Nie wykryto odtwarzacza. Proszę ręcznie zaktualizować tutaj.",
+        "description": "Message if the video player could not be recognized"
+    },
+    "Load": {
+        "message": "Wczytaj",
+        "description": "Button to load content"
+    },
+    "UI_Status_All": {
+        "message": "Wszystko",
+        "description": "Dropdown text to show all anime on the users list"
+    },
+    "overview_Information": {
+        "message": "Informacje",
+        "description": "Header of the information section of the popup anime overview"
+    },
+    "overview_Related": {
+        "message": "Powiązanie",
+        "description": "Header of the anime/manga relations section of the popup anime overview"
+    },
+    "overview_Streaming": {
+        "message": "Stremowanie",
+        "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "settings_profile_no_login": {
+        "message": "Nie zalogowano",
+        "description": "Text if not logged in"
+    },
+    "settings_profile_logout": {
+        "message": "Wyloguj",
+        "description": "Button to logout"
+    },
+    "settings_profile_check": {
+        "message": "Sprawdź",
+        "description": "Button to rechecks the login status"
+    },
+    "settings_profile_logged_via": {
+        "message": "Zalogowano przez $provider$",
+        "description": "Info about which provider is used to login",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "settings_StreamingSite_custom": {
+        "message": "Niestandardowy adres wyszukiwania",
+        "description": "Header of the section where you can add your own custom search links"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "Adres wyszukiwania Anime",
+        "description": "Form field title to enter the search url for anime"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "Adres wyszukiwania Mangi",
+        "description": "Form field title to enter the search url for manga"
+    },
+    "settings_anilist_update_ui": {
+        "message": "Zaktualizuj interfejs",
+        "description": "UI in the aniList sidebar to update episodes progress and the score"
+    },
+    "settings_miniMAL_Display_Center": {
+        "message": "Centrum",
+        "description": "miniMAL Display Center"
+    },
+    "settings_miniMAL_pwa": {
+        "message": "Strona PWA",
+        "description": "Link to the PWA version of the extension popup"
+    },
+    "settings_donate": {
+        "message": "Wspomóż",
+        "description": "Link to donation page"
+    },
+    "settings_discord_join": {
+        "message": "Dołącz do naszego serwera Discord",
+        "description": "Link to join discord"
+    },
+    "settings_help": {
+        "message": "Potrzebujesz pomocy?",
+        "description": "Button that links to support"
+    },
+    "settings_miscellaneous": {
+        "message": "Pozostałe",
+        "description": "Header of the section of settings without specific theme"
+    },
+    "settings_listsync": {
+        "message": "Synchronizacja",
+        "description": "Header of the section of List Sync settings"
+    },
+    "settings_listsync_background": {
+        "message": "Synchronizuj raz dziennie w tle",
+        "description": "Option to sync list once a day in the background"
+    },
+    "settings_progress": {
+        "message": "Szacowanie postępu",
+        "description": "Header of the section of progress estimation settings"
+    },
+    "settings_onsite": {
+        "message": "Na stronie",
+        "description": "Header of the section to change onsite website appearance and features"
+    },
+    "settings_theming": {
+        "message": "Motyw",
+        "description": "Header of the theming section"
+    },
+    "settings_theming_sidebars": {
+        "message": "Panele boczne",
+        "description": "Option to disable the sidebars in the extension popup"
+    },
+    "settings_theming_color": {
+        "message": "Kolor motywu",
+        "description": "Option to select a custom theme color for the extension popup"
+    },
+    "settings_theming_background_image": {
+        "message": "Obraz tła",
+        "description": "Option to select a custom background image for the extension popup"
+    },
+    "settings_theming_background_opacity": {
+        "message": "Przezroczystość tła",
+        "description": "Option to set the transparency of the UI in front of the background image"
+    },
+    "settings_tracking": {
+        "message": "Śledzenie",
+        "description": "tracking settings header"
+    },
+    "settings_tracking_disabled": {
+        "message": "Śledzenie wyłączone",
+        "description": "Header for section with websites with disabled tracking"
+    },
+    "settings_presence_largeimage": {
+        "message": "Obraz prezentacji",
+        "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+    },
+    "settings_presence_largeimage_cover": {
+        "message": "Okładka",
+        "description": "Dropdown option to show the cover from mal on discord"
+    },
+    "settings_presence_largeimage_website": {
+        "message": "Ikona strony",
+        "description": "Dropdown option to show the server icon on discord"
+    },
+    "settings_presence_largeimage_malsync": {
+        "message": "Ikona Malsync",
+        "description": "Dropdown option to show the malsync icon on discord"
+    },
+    "settings_custom_domains_missing_permissions_header": {
+        "message": "Wykryto brak uprawnień",
+        "description": "Section header for asking to allow missing domain permissions"
+    },
+    "settings_custom_domains_missing_permissions_long": {
+        "message": "Nie przyznano jeszcze uprawnień do niektórych stron",
+        "description": "Asking to allow missing domain permissions"
+    },
+    "settings_custom_domains_disclaimer": {
+        "message": "Proszę używać tylko jeśli wiesz co robisz!",
+        "description": "Text on the custom domain configuration page"
+    },
+    "settings_custom_domains_wrong": {
+        "message": "Błędna konfiguracja!",
+        "description": "Error text if the configuration is not correct"
+    },
+    "settings_read_more": {
+        "message": "Czytaj więcej",
+        "description": "Button to show more of the description"
+    },
+    "settings_read_less": {
+        "message": "Czytaj mniej",
+        "description": "Button to show less the description"
+    },
+    "settings_presenceShowMalsync": {
+        "message": "Pokaż Mal-Sync w tytule prezentacji zamiast anime/mangi",
+        "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     }
 }

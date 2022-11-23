@@ -1098,5 +1098,13 @@
     "nextEpShort_no_nextEp": {
         "message": "Невозможно найти следующую серию",
         "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+    },
+    "Synchronize": {
+        "message": "Синхронизировать",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "Load": {
+        "message": "Загрузить",
+        "description": "Button to load content"
     }
 }

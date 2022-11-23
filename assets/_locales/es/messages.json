@@ -378,19 +378,19 @@
         "description": "Year"
     },
     "bookmarksItem_Days": {
-        "message": "Días",
+        "message": "días",
         "description": "Days"
     },
     "bookmarksItem_Day": {
-        "message": "Día",
+        "message": "día",
         "description": "Day"
     },
     "bookmarksItem_Hours": {
-        "message": "Horas",
+        "message": "horas",
         "description": "Hours"
     },
     "bookmarksItem_Hour": {
-        "message": "Hora",
+        "message": "hora",
         "description": "Hour"
     },
     "bookmarksItem_mins": {
@@ -672,7 +672,7 @@
         }
     },
     "settings_StreamingSite": {
-        "message": "Enlaces de sitios de streaming",
+        "message": "Enlaces rápidos",
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
@@ -1044,27 +1044,27 @@
         "description": "Update version - Text 1"
     },
     "minimalClass_versionMsg_Text_2": {
-        "message": "¿Tienes preguntas?",
+        "message": "Únete a nuestra comunidad, obtén ayuda y sugiere nuevas funciones",
         "description": "Update version - Text 2"
     },
     "minimalClass_versionMsg_Text_3": {
-        "message": "Código de fuente abierto:",
+        "message": "Consulte nuestro código abierto",
         "description": "Update version - Text 3"
     },
     "minimalClass_versionMsg_Text_4": {
-        "message": "¡Los usuarios de uBlock, por favor suscribirse a esta lista de filtros! Esto soluciona algunos problemas como imágenes rotas.",
+        "message": "Suscríbete a la lista de filtros (para usuarios de uBlock)",
         "description": "Update version - Text 4"
     },
     "installPage_Mode": {
-        "message": "Por favor, selecciona la base de datos de anime que deseas utilizar:",
+        "message": "Seleccione la base de datos de anime que desea utilizar",
         "description": "Header for the MAL-sync provider dropdown"
     },
     "installPage_Howto": {
-        "message": "¿Cómo utilizarlo?",
+        "message": "Entender cómo funciona MAL-Sync",
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "Simplemente abre un episodio o capítulo en cualquiera de las $Link1$páginas compatibles$LinkEnd1$. La sincronización espera hasta que se vea el 85% del vídeo. Para manga la sincronización sucede al cargar la página. Esto se puede cambiar en la $Link2$configuración $LinkEnd2$.",
+        "message": "La sincronización con la base de datos sólo se produce cuando abres un episodio o un capítulo en cualquiera de las $Link1$páginas soportadas$LinkEnd1$ - ¡no te preocupes, seguro que tenemos tu sitio web favorito en la lista!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -1086,11 +1086,11 @@
         }
     },
     "installPage_Wrong": {
-        "message": "¿Se sincroniza con la entrada incorrecta de MAL?",
+        "message": "Aprende a arreglar la entrada incorrecta de MAL",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
-        "message": "Puedes cambiar fácilmente la relación como se muestra en el siguiente gif. También se puede establecer un contador alternativo de episodios en esa página.",
+        "message": "Puedes cambiar fácilmente la relación como se muestra en el siguiente GIF. También se puede establecer un contador alternativo de episodios en esa página.",
         "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
@@ -1174,7 +1174,7 @@
         "description": "filler tooltip"
     },
     "settings_crash_report_text": {
-        "message": "Ayuda a reparar bugs. No se envían datos sensibles",
+        "message": "Ayuda a corregir errores. No se envían datos sensibles",
         "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
@@ -1188,5 +1188,151 @@
     "settings_custom_domains_position": {
         "message": "Posición",
         "description": "Position of the quicklinks"
+    },
+    "Synchronize": {
+        "message": "Sincronizar",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "Load": {
+        "message": "Cargar",
+        "description": "Button to load content"
+    },
+    "UI_Status_All": {
+        "message": "Todo",
+        "description": "Dropdown text to show all anime on the users list"
+    },
+    "overview_Information": {
+        "message": "Información",
+        "description": "Header of the information section of the popup anime overview"
+    },
+    "overview_Related": {
+        "message": "Relacionado",
+        "description": "Header of the anime/manga relations section of the popup anime overview"
+    },
+    "overview_Streaming": {
+        "message": "Streaming",
+        "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "settings_profile_no_login": {
+        "message": "Sesión No Iniciada",
+        "description": "Text if not logged in"
+    },
+    "settings_profile_logout": {
+        "message": "Cerrar Sesión",
+        "description": "Button to logout"
+    },
+    "settings_profile_check": {
+        "message": "Comprobar",
+        "description": "Button to rechecks the login status"
+    },
+    "settings_profile_logged_via": {
+        "message": "Conectado a través de $provider$",
+        "description": "Info about which provider is used to login",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "settings_StreamingSite_custom": {
+        "message": "Enlaces de búsqueda personalizados",
+        "description": "Header of the section where you can add your own custom search links"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "URL de búsqueda de anime",
+        "description": "Form field title to enter the search url for anime"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "URL de búsqueda de manga",
+        "description": "Form field title to enter the search url for manga"
+    },
+    "settings_miniMAL_Display_Center": {
+        "message": "Centrar",
+        "description": "miniMAL Display Center"
+    },
+    "settings_miniMAL_pwa": {
+        "message": "Sitio web PWA",
+        "description": "Link to the PWA version of the extension popup"
+    },
+    "settings_donate": {
+        "message": "Donar",
+        "description": "Link to donation page"
+    },
+    "settings_discord_join": {
+        "message": "Únete a nuestro servidor de Discord",
+        "description": "Link to join discord"
+    },
+    "settings_help": {
+        "message": "¿Necesitas ayuda?",
+        "description": "Button that links to support"
+    },
+    "settings_miscellaneous": {
+        "message": "Varios",
+        "description": "Header of the section of settings without specific theme"
+    },
+    "settings_listsync": {
+        "message": "Sincronización de Listas",
+        "description": "Header of the section of List Sync settings"
+    },
+    "settings_listsync_background": {
+        "message": "Sincronización diaria en segundo plano",
+        "description": "Option to sync list once a day in the background"
+    },
+    "settings_progress": {
+        "message": "Estimación del progreso",
+        "description": "Header of the section of progress estimation settings"
+    },
+    "settings_onsite": {
+        "message": "En el sitio",
+        "description": "Header of the section to change onsite website appearance and features"
+    },
+    "settings_theming": {
+        "message": "Tematización",
+        "description": "Header of the theming section"
+    },
+    "settings_theming_sidebars": {
+        "message": "Barras laterales",
+        "description": "Option to disable the sidebars in the extension popup"
+    },
+    "settings_theming_color": {
+        "message": "Color del Tema",
+        "description": "Option to select a custom theme color for the extension popup"
+    },
+    "settings_theming_background_image": {
+        "message": "Imagen de Fondo",
+        "description": "Option to select a custom background image for the extension popup"
+    },
+    "settings_theming_background_opacity": {
+        "message": "Opacidad del Fondo",
+        "description": "Option to set the transparency of the UI in front of the background image"
+    },
+    "settings_tracking": {
+        "message": "Seguimiento",
+        "description": "tracking settings header"
+    },
+    "settings_tracking_disabled": {
+        "message": "Seguimiento Desactivado",
+        "description": "Header for section with websites with disabled tracking"
+    },
+    "settings_custom_domains_missing_permissions_long": {
+        "message": "Algunos permisos de la página aún no están concedidos",
+        "description": "Asking to allow missing domain permissions"
+    },
+    "settings_custom_domains_disclaimer": {
+        "message": "Por favor, ¡utilícelo sólo si sabe lo que está haciendo!",
+        "description": "Text on the custom domain configuration page"
+    },
+    "settings_custom_domains_wrong": {
+        "message": "¡La configuración no es correcta!",
+        "description": "Error text if the configuration is not correct"
+    },
+    "settings_read_more": {
+        "message": "Leer Más",
+        "description": "Button to show more of the description"
+    },
+    "settings_read_less": {
+        "message": "Leer Menos",
+        "description": "Button to show less the description"
     }
 }
