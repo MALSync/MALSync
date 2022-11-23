@@ -1108,7 +1108,7 @@
         }
     },
     "Emby_Authenticate": {
-        "message": "MAL-Sync heeft een Emby API key nodig om te werken. Meer info $Link1$Here$Link2",
+        "message": "MAL-Sync heeft een Emby API key nodig om te werken. Meer info $Link1$Here$Link2$",
         "description": "Emby Authentication",
         "placeholders": {
             "Link1": {
