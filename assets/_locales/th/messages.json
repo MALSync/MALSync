@@ -322,7 +322,7 @@
         }
     },
     "syncPage_flashConfirm_offsetHandler_1": {
-        "message": "ตรวจพบตอนที่เป็นไปได้ของ $ calcoffseted $ ถูกตรวจพบ ถูกต้องแล้ว? ",
+        "message": "ตรวจพบตอนที่เป็นไปได้ของ $calcOffset$ ถูกตรวจพบ ถูกต้องแล้ว? ",
         "description": "offsetHandler Episode",
         "placeholders": {
             "calcOffset": {
