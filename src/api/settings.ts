@@ -3,6 +3,7 @@ import { reactive, ref } from 'vue';
 export const settingsObj = {
   options: reactive({
     autoTrackingModeanime: 'video',
+    readerTracking: true,
     autoTrackingModemanga: 'instant',
     enablePages: {},
     forceEn: false,

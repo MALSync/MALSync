@@ -43,6 +43,18 @@ export const Guya: pageInterface = {
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 6));
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '.ReaderImageWrapper',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.ReaderImageWrapper',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {

@@ -35,6 +35,18 @@ export const ComicK: pageInterface = {
       }
       return false;
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '.images-reader-container [id^="page"]',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.images-reader-container [id^="page"]',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {

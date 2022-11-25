@@ -42,6 +42,18 @@ export const MangaHub: pageInterface = {
     nextEpUrl(url) {
       return j.$('#mangareader ul.dropdown-menu li.active').next().find('a').attr('href');
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '#mangareader [src^="https://img.mghubcdn.com"]',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '#mangareader [src^="https://img.mghubcdn.com"]',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {

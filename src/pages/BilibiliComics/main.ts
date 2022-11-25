@@ -29,6 +29,20 @@ export const BilibiliComics: pageInterface = {
       }
       return ep;
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '.progress-indicator',
+          mode: 'text',
+          regex: '^\\d+',
+        },
+        total: {
+          selector: '.progress-indicator',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {

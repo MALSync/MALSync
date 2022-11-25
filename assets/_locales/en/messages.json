@@ -693,9 +693,13 @@
         "message": "Manual",
         "description": "Manual"
     },
+    "settings_Mangasync_readerTracking": {
+        "message": "Sync manga after 90% of the pages",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+    },
     "settings_Mangasync": {
-        "message": "Manga sync",
-        "description": "Manga sync"
+        "message": "Manga sync fallback",
+        "description": "Manga sync fallback in case the manga reader progress tracking does not work"
     },
     "settings_AutoTracking_Video": {
         "message": "Update on $videoDuration$% of video progress",

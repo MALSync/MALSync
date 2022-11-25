@@ -98,6 +98,20 @@ export const tracking: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'hr',
+    title: '',
+    component: SettingsHr,
+  },
+  {
+    key: 'readerTracking',
+    title: () => api.storage.lang('settings_Mangasync_readerTracking'),
+    props: {
+      component: 'checkbox',
+      option: 'readerTracking',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'videoDuration',
     title: () =>
       api.storage.lang('settings_AutoTracking_Video', [api.settings.get('videoDuration')]),
