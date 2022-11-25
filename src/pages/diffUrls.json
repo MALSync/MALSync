@@ -132,5 +132,8 @@
       "https://stream.simplyaweeb.to/*",
       "https://mb.toonanime.xyz/dist/*"
     ]
+  },
+  "0.9.1": {
+    "iframe": []
   }
 }
