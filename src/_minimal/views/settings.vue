@@ -2,7 +2,7 @@
   <div class="settings-block" :class="{ designed: !components.path.length }">
     <transition :name="components.path.length ? 'slide-in' : 'slide-out'">
       <div :key="components.path">
-        <router-link
+        <Link
           v-if="components.path.length"
           :to="{ name: 'Settings', params: { path: [components.path.slice(0, -1)] } }"
         >
@@ -19,7 +19,7 @@
               </TextIcon>
             </Header>
           </div>
-        </router-link>
+        </Link>
         <template v-for="comp in components.structure" :key="comp.key">
           <TransitionSlide>
             <SettingsRendering
@@ -41,6 +41,7 @@ import { computed, inject, PropType, watch } from 'vue';
 import { structure } from '../components/settings/settings-structure';
 import Header from '../components/header.vue';
 import TextIcon from '../components/text-icon.vue';
+import Link from '../components/link.vue';
 import { ConfObj } from '../../_provider/definitions';
 import TransitionSlide from '../components/transition-slide.vue';
 import SettingsDesigned from '../components/settings/settings-designed.vue';

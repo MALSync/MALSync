@@ -17,17 +17,19 @@
       <MediaStatusDropdown
         v-model="parameters.state"
         :type="parameters.type"
-        :rewatching="listRequest.data ? listRequest.data?.seperateRewatching : false"
+        :rewatching="
+          listRequest.data ? listRequest.data?.seperateRewatching : parameters.state === 23
+        "
       />
       <FormButton padding="pill" @click="refresh()">
-        <div class="material-icons" title="refresh">refresh</div>
+        <div class="material-icons m-pill" title="refresh">refresh</div>
       </FormButton>
       <FormButton
         v-if="parameters.state === 6"
         padding="pill"
         @click="openRandom(6, parameters.type)"
       >
-        <div class="material-icons" title="random">shuffle</div>
+        <div class="material-icons m-pill" title="random">shuffle</div>
       </FormButton>
       <div style="flex-grow: 1"></div>
       <FormDropdown
@@ -82,6 +84,7 @@
         <Grid
           :key="listTheme.name"
           :min-width="listTheme.width"
+          :min-width-popup="listTheme.popupWidth"
           class="grid-el"
           :class="`type-${listTheme.name.replace(' ', '-').toLowerCase()}`"
         >
@@ -407,10 +410,16 @@ function refresh() {
 }
 
 .sortPlaceholder {
-  padding-top: 1px;
+  padding-top: 3px;
 }
 
 .select-icon {
   display: flex;
 }
+
+.__breakpoint-popup__({
+  .m-pill {
+    font-size: 20px;
+  }
+});
 </style>

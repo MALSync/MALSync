@@ -6,7 +6,7 @@
         <div class="type">{{ relation.type }}</div>
         <div v-for="link in relation.links" :key="link.id" class="title">
           <MediaLink :href="link.url" class="link">
-            <StateDot :status="link.list ? link.list.status : 0" />
+            <StateDot :status="link.list ? link.list.status : 0" :relative-height="true" />
             <span>{{ link.title }}</span>
           </MediaLink>
         </div>

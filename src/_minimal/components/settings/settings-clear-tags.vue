@@ -102,6 +102,6 @@ async function cleanTags() {
 <style lang="less" scoped>
 @import '../../less/_globals.less';
 .clear-tags {
-  margin: 15px 0;
+  margin: @spacer-half 0;
 }
 </style>

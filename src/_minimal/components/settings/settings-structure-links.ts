@@ -50,16 +50,16 @@ export const links: ConfObj[] = [
     title: () => api.storage.lang('settings_custom_domains_position'),
     condition: () =>
       api.settings.get('syncMode') === 'ANILIST' || api.settings.get('syncMode') === 'MAL',
-    props: {
+    props: () => ({
       component: 'dropdown',
       option: 'quicklinksPosition',
       props: {
         options: [
-          { title: 'Default', value: 'default' },
-          { title: 'Below Information', value: 'below' },
+          { title: api.storage.lang('settings_progress_default'), value: 'default' },
+          { title: api.storage.lang('settings_custom_position_below'), value: 'below' },
         ],
       },
-    },
+    }),
     component: SettingsGeneral,
   },
   {

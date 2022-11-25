@@ -1326,5 +1326,9 @@
     "settings_custom_domains_position": {
         "message": "Position",
         "description": "Position of the quicklinks"
+    },
+    "settings_custom_position_below": {
+        "message": "Below Information",
+        "description": "Position of the quicklinks below the information section"
     }
 }

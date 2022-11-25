@@ -86,11 +86,12 @@ export function usePopper({ emit, popperNode, triggerNode, placement }) {
           phase: 'beforeWrite',
           requires: ['maxSize'],
           fn(props) {
-            const { height } = props.state.modifiersData.maxSize;
+            const { height, width } = props.state.modifiersData.maxSize;
 
             props.state.styles.popper = {
               ...props.state.styles.popper,
               maxHeight: `${height - 10}px`,
+              maxWidth: `${width - 20}px`,
             };
           },
         },

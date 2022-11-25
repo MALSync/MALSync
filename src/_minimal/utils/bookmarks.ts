@@ -8,6 +8,7 @@ const cards = {
   icon: 'view_agenda',
   component: BookmarksCards,
   width: 350,
+  popupWidth: 350,
   transition: 20,
 };
 const fullCards = {
@@ -15,6 +16,7 @@ const fullCards = {
   icon: 'view_module',
   component: BookmarksCardsFull,
   width: 191,
+  popupWidth: 160,
   transition: 20,
 };
 const list = {
@@ -22,6 +24,7 @@ const list = {
   icon: 'view_list',
   component: BookmarksList,
   width: 0,
+  popupWidth: 0,
   transition: 30,
 };
 const tiles = {
@@ -29,6 +32,7 @@ const tiles = {
   icon: 'apps',
   component: BookmarksTiles,
   width: 130,
+  popupWidth: 130,
   transition: 15,
 };
 

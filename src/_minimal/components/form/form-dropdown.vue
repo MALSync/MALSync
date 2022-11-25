@@ -259,7 +259,8 @@ function keyDown(event: KeyboardEvent) {
     z-index: 9999;
     background-color: var(--cl-foreground-solid);
     padding: 15px 10px;
-    white-space: nowrap;
+    width: max-content;
+    white-space: normal;
     overflow-y: auto;
     overflow: overlay;
     &-default {

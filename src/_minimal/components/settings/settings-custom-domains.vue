@@ -142,7 +142,7 @@ const removePermission = index => {
 <style lang="less" scoped>
 @import '../../less/_globals.less';
 .custom {
-  margin: 15px 0;
+  margin: @spacer-half 0;
 }
 
 .grid {

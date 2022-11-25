@@ -2,7 +2,8 @@
   <FormDropdown v-model="picked" :options="options" align-items="left">
     <template #select="slotProps">
       <FormButton :tabindex="-1" :animation="false" padding="pill">
-        <StateDot :status="(slotProps.value as number)" /> {{ slotProps.currentTitle }}
+        <StateDot :status="(slotProps.value as number)" :relative-height="true" />
+        {{ slotProps.currentTitle }}
       </FormButton>
     </template>
     <template #option="slotProps">

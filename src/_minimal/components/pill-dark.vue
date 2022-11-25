@@ -10,6 +10,7 @@
   .border-pill();
   .block-select();
 
+  white-space: nowrap;
   display: inline-block;
   padding: 5px 10px;
   color: white;

@@ -1,6 +1,6 @@
 <template>
   <span class="text-icon" :class="[mode, background, spacer].join(' ')">
-    <span v-if="icon && position === 'before' && icon === 'discord'" class="before">
+    <span v-if="icon && position === 'before' && icon === 'discord'" class="before discord">
       <SettingsDiscordIcon />
     </span>
     <span v-else-if="icon && position === 'before'" class="material-icons before">{{ icon }}</span>
@@ -88,6 +88,11 @@ defineProps({
     vertical-align: sub;
     height: 18px;
     width: 18px;
+  }
+
+  .discord {
+    display: flex;
+    align-items: center;
   }
 
   &.flex {
