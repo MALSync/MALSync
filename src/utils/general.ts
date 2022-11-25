@@ -132,7 +132,7 @@ export function fullUrlChangeDetect(callback, strip = false) {
   return Number(intervalId);
 }
 
-export function changeDetect(callback, func) {
+export function changeDetect(callback, func, immediate = false) {
   let currentPage = func();
   const intervalId = setInterval(function () {
     const temp = func();
@@ -141,6 +141,8 @@ export function changeDetect(callback, func) {
       callback();
     }
   }, 500);
+
+  if (immediate) callback();
 
   return Number(intervalId);
 }

@@ -213,7 +213,8 @@ export class MyAnimeListClass {
   }
 
   getTitle() {
-    return $('meta[property="og:title"]').first().attr('content')!.trim() || '';
+    const title = $('meta[property="og:title"]').first().attr('content')!.trim() || '';
+    return title.replace(/(^watch|episode \d*$)/gi, '').trim();
   }
 
   async malToKiss() {

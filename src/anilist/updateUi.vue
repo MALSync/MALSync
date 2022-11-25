@@ -226,7 +226,6 @@ export default {
       await this.update();
     },
     hide() {
-      this.$destroy();
       this.$el.remove();
       api.settings.set('anilistUpdateUi', false);
     },

@@ -1,4 +1,3 @@
-import { SafeError } from '../../utils/errors';
 import { pageInterface } from '../pageInterface';
 
 export const BilibiliComics: pageInterface = {
@@ -12,6 +11,9 @@ export const BilibiliComics: pageInterface = {
   isOverviewPage(url) {
     return Boolean(utils.urlPart(url, 3) === 'detail' && utils.urlPart(url, 4));
   },
+  getImage() {
+    return j.$('.manga-cover img').first().attr('src');
+  },
   sync: {
     getTitle(url) {
       return j.$('.manga-title').first().text().trim();
@@ -23,11 +25,15 @@ export const BilibiliComics: pageInterface = {
       return utils.absoluteLink(j.$('.manga-title').attr('href'), BilibiliComics.domain);
     },
     getEpisode(url) {
-      const ep = Number(j.$('.read-nav .episode').text().trim());
-      if (Number.isNaN(ep)) {
-        throw new SafeError('Cannot find episode number');
-      }
-      return ep;
+      const temp = j
+        .$('.read-nav .episode')
+        .text()
+        .trim()
+        .match(/(\d+)$/im);
+
+      if (!temp) return NaN;
+
+      return Number(temp[1]);
     },
     readerConfig: [
       {
@@ -57,10 +63,13 @@ export const BilibiliComics: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.list-data > button');
+        return j.$('.list-data .list-item');
       },
       elementEp(selector) {
         return Number(selector.find('.short-title').first().text());
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.attr('href'), BilibiliComics.domain);
       },
     },
   },
