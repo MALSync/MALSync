@@ -1,4 +1,3 @@
-import { SafeError } from '../../utils/errors';
 import { pageInterface } from '../pageInterface';
 
 export const BilibiliComics: pageInterface = {
