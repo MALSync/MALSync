@@ -29,11 +29,7 @@ export const DisneyPlus: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(
-          'div.title-bug-area > div.title-bug-container > button.control-icon-btn.title-btn > div.title-field.body-copy',
-        )
-        .text();
+      return j.$('div.title-field.body-copy').text();
     },
     getIdentifier(url) {
       const temp = j.$('head > link[rel="canonical"]').attr('href');
@@ -43,12 +39,7 @@ export const DisneyPlus: pageInterface = {
       return j.$('head > link[rel="canonical"]').attr('href') || '';
     },
     getEpisode(url) {
-      const temp = j
-        .$(
-          'div.title-bug-area > div.title-bug-container > button.control-icon-btn.title-btn > div.subtitle-field',
-        )
-        .text();
-
+      const temp = j.$('div.subtitle-field').text();
       if (typeof temp === 'undefined') return 0;
       const ep = temp.match(/S[1-9]:E([1-9])/);
       if (ep && ep.length > 1) return Number(ep[1]);
@@ -57,22 +48,18 @@ export const DisneyPlus: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('h1.h3.padding--bottom-6.padding--right-6.text-color--primary').text();
+      return j.$('h1').text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 5);
     },
     uiSelector(selector) {
-      j.$('div.sc-jOVcOr.joRMQj > div.sc-giOsra.blOJuP > div.sc-SFOxd.hvFhdy')
-        .first()
-        .after(j.html(selector));
+      j.$('div.sc-SFOxd.hvFhdy').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$(
-          'div[data-testid="season-shelf"] > div.slick-slider.slick-initialized > div.slick-list > div.slick-track > div.slick-slide.slick-active',
-        );
+        return j.$('div[data-testid="season-shelf"] div.slick-slide');
       },
       elementUrl(selector) {
         return baseSyncUrl + selector.find('a').first().attr('data-gv2elementvalue') || '';
