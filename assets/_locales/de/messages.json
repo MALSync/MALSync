@@ -52,7 +52,7 @@
         "description": "Cancel"
     },
     "updated": {
-        "message": "Aktualisieren",
+        "message": "Aktualisiert",
         "description": "Flash message that shows up after updating an anime/manga entry"
     },
     "removed": {
@@ -128,11 +128,11 @@
         "description": "Plan to Read"
     },
     "UI_Status_Rewatching_anime": {
-        "message": "Erneutes ansehen",
+        "message": "Erneutes Ansehen",
         "description": "Status to rewatch anime"
     },
     "UI_Status_Rewatching_manga": {
-        "message": "Erneutes lesen",
+        "message": "Erneutes Lesen",
         "description": "Status to reread manga"
     },
     "UI_Episode": {
@@ -264,7 +264,7 @@
         "description": "When update to MAL failes"
     },
     "syncPage_flashConfirm_complete": {
-        "message": "Als Abgeschlossen setzen?",
+        "message": "Als abgeschlossen setzen?",
         "description": "Question when last episode is synced"
     },
     "syncPage_flashConfirm_start_anime": {
@@ -350,7 +350,7 @@
         "description": "The token has been obtained and saved"
     },
     "kitsuClass_authentication_text": {
-        "message": "Um dich bei Kitsu anzumelden, musst du deine Zugangsdaten eingeben.<br> Diese werden nicht auf deinem Computer oder sonstwo gespeichert. <br> Die Daten werden ohne Umwege an kitsu gesendet und nur der zurückgegebene Zugangs Token wird gespeichert. <br>",
+        "message": "Um dich bei Kitsu anzumelden, musst du deine Zugangsdaten eingeben.<br> Diese werden nicht auf deinem Computer oder sonstwo gespeichert. <br> Die Daten werden ohne Umwege an kitsu gesendet und nur der zurückgegebene Zugangs-Token wird gespeichert. <br>",
         "description": "Authentication text in Kitsu"
     },
     "kitsuClass_authentication_Password": {
@@ -362,7 +362,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Der Token wurde gespeichert. Die Seite kann jetzt geschossen werden.",
+        "message": "Der Token wurde gespeichert. Die Seite kann jetzt geschlossen werden.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -402,11 +402,11 @@
         "description": "min"
     },
     "bookmarksItem_secs": {
-        "message": "sekunden",
+        "message": "Sekunden",
         "description": "seconds"
     },
     "bookmarksItem_sec": {
-        "message": "sekunde",
+        "message": "Sekunde",
         "description": "second"
     },
     "bookmarksItem_now": {
@@ -454,7 +454,7 @@
         }
     },
     "prediction_Last_manga": {
-        "message": "Letzte Kapitel vor $time$ veröffentlicht",
+        "message": "Letztes Kapitel vor $time$ veröffentlicht",
         "description": "Text for last chapter release time",
         "placeholders": {
             "time": {
@@ -496,19 +496,19 @@
         }
     },
     "correction_Offset": {
-        "message": "Episoden Offset",
+        "message": "Episoden-Offset",
         "description": "Episode Offset"
     },
     "correction_Offset_text": {
-        "message": "Bespiel: Falls eine 2. Staffel die Episoden 13-24 besitzt, kann durch den Offset von \"-12\" die richtige Episodennummer getrackt werden.",
+        "message": "Beispiel: Falls eine 2. Staffel die Episoden 13-24 besitzt, kann durch ein Offset von \"-12\" die richtige Episodennummer getrackt werden.",
         "description": "Episode Offset - Text"
     },
     "correction_WrongUrl": {
-        "message": "Ersetze diese URL nur wenn es auf einen falschen Anime/Manga zeigt.",
+        "message": "Ersetze diese URL nur, wenn es auf einen falschen Anime/Manga zeigt.",
         "description": "URL is Wrong"
     },
     "correction_Search": {
-        "message": "Verbesserungs Suche",
+        "message": "Verbesserungssuche",
         "description": "Correction Search"
     },
     "correction_Search_text": {
@@ -588,7 +588,7 @@
         "description": "Characters"
     },
     "overview_OpeningTheme": {
-        "message": "Titelmusik",
+        "message": "Titelmusik:",
         "description": "Opening Theme"
     },
     "overview_EndingTheme": {
@@ -632,7 +632,7 @@
         "description": "Button to Export Local storage fallback data"
     },
     "settings_Animesync": {
-        "message": "Anime sync",
+        "message": "Anime-Synchronisation",
         "description": "Anime sync"
     },
     "settings_Animesync_Video": {
@@ -1056,7 +1056,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "Öffne einfach eine Episode oder ein Kapitel auf einer der $Link1$unterstützen Seiten$LinkEnd1$. Die Synchronisation wartet, bis 85% des Videos angesehen wurden. Bei Mangas wird es beim Laden der Seite synchronisiert. Dies kann in den $Link2$Einstellungen$LinkEnd2$ geändert werden.",
+        "message": "Die Synchronisation mit der Datenbank erfolgt nur, wenn du eine Episode oder ein Kapitel auf einer der $Link1$unterstützen Seiten$LinkEnd1$ öffnest - keine Sorge, wir haben deine Lieblingsseite definitiv in unserer Liste!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -1082,7 +1082,7 @@
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
-        "message": "Du kannst die Beziehung ganz einfach ändern, wie in der gif unten gezeigt. Ein Episoden-Offset kann auch auf dieser Seite eingestellt werden.",
+        "message": "Du kannst die Beziehung ganz einfach ändern, wie in dem GIF unten gezeigt. Ein Episoden-Offset kann auch auf dieser Seite eingestellt werden.",
         "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
@@ -1298,5 +1298,41 @@
     "settings_read_less": {
         "message": "Weniger anzeigen",
         "description": "Button to show less the description"
+    },
+    "settings_onsite": {
+        "message": "Onsite",
+        "description": "Header of the section to change onsite website appearance and features"
+    },
+    "settings_theming": {
+        "message": "Theming",
+        "description": "Header of the theming section"
+    },
+    "settings_theming_color": {
+        "message": "Farbthema",
+        "description": "Option to select a custom theme color for the extension popup"
+    },
+    "overview_Streaming": {
+        "message": "Streaming",
+        "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "Anime-Such-URL",
+        "description": "Form field title to enter the search url for anime"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "Manga-Such-URL",
+        "description": "Form field title to enter the search url for manga"
+    },
+    "settings_tracking": {
+        "message": "Tracking",
+        "description": "tracking settings header"
+    },
+    "settings_tracking_disabled": {
+        "message": "Tracking deaktiviert",
+        "description": "Header for section with websites with disabled tracking"
+    },
+    "settings_custom_domains_missing_permissions_long": {
+        "message": "Einige Seitenberechtigungen sind noch nicht erteilt",
+        "description": "Asking to allow missing domain permissions"
     }
 }
