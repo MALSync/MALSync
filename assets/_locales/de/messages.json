@@ -684,7 +684,7 @@
         "description": "Thumbnails"
     },
     "settings_Thumbnails_text": {
-        "message": "Diese Option definiert die größe der Thumbnails auf MAL. Wie zum Beispiel für characters, people und recommendations",
+        "message": "Diese Option definiert die Größe der Thumbnails auf MAL, wie zum Beispiel für Charaktere, Personen und Empfehlungen.",
         "description": "Thumbnails - Text"
     },
     "settings_Thumbnails_Large": {
@@ -748,7 +748,7 @@
         "description": "Hide miniMAL floating menu button"
     },
     "settings_miniMAL_autoCloseMinimal": {
-        "message": "Schließe miniMAL beim klick außerhalb ",
+        "message": "Schließe miniMAL beim Klick außerhalb",
         "description": "Clicking outside closes miniMAL"
     },
     "settings_miniMAL_Display": {
@@ -850,11 +850,11 @@
         }
     },
     "settings_UpdateCheck": {
-        "message": "Update Check",
+        "message": "Update-Check",
         "description": "Update Check"
     },
     "settings_UpdateCheck_Text": {
-        "message": "Überprüft die Seiten auf neue Episoden im Hintergrund",
+        "message": "Überprüft im Hintergrund die Seiten auf neue Episoden.",
         "description": "Update Check - Text"
     },
     "settings_Interval": {
@@ -866,7 +866,7 @@
         "description": "Interval - Off"
     },
     "settings_Interval_Default_Anime": {
-        "message": "Default Anime",
+        "message": "Standard-Anime",
         "description": "Dropdown label for selecting the global progress anime source"
     },
     "settings_Interval_Default_Manga": {
@@ -922,7 +922,7 @@
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
-        "message": "Malsync Icon",
+        "message": "Malsync-Symbol",
         "description": "Dropdown option to show the malsync icon on discord"
     },
     "settings_enabled": {
@@ -946,7 +946,7 @@
         "description": "Dropdown option to use the default in the estimation for an anime/manga"
     },
     "settings_website_button": {
-        "message": "Websites",
+        "message": "Webseiten",
         "description": "Button that leads to the config page where individual pages can be disabled"
     },
     "settings_custom_domains_button": {
