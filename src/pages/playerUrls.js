@@ -562,6 +562,7 @@ module.exports = {
       '*://uptodatefinishconferenceroom.com/e/*',
       '*://realfinanceblogcenter.com/e/*',
       '*://tinycat-voe-fashion.com/e/*',
+      '*://20demidistance9elongations.com/e/*',
     ],
   },
   // animewho
