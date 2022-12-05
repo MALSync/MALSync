@@ -17,7 +17,7 @@ export const Puray: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('span.text-sm')
+        .$('span.underline')
         .first()
         .text()
         .replace(/\(.*?\)/g, '')
@@ -27,7 +27,7 @@ export const Puray: pageInterface = {
       return Puray.sync.getTitle(url);
     },
     getOverviewUrl(url) {
-      return j.$('span.text-sm').first().parent().prop('href');
+      return j.$('span.underline').first().parent().prop('href');
     },
     getEpisode(url) {
       return Number(j.$('span.text-lg').first().text().split('-')[0]);
