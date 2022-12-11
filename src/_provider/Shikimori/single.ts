@@ -14,8 +14,6 @@ export class Single extends SingleAbstract {
 
   private animeInfo?: helper.StatusRequest;
 
-  private displayUrl = '';
-
   shortName = 'Shiki';
 
   authenticationUrl = helper.authUrl;
@@ -143,16 +141,15 @@ export class Single extends SingleAbstract {
     const userId = await helper.userId();
 
     const metadata = await helper.apiCall({
-      path: `${this.type}s`,
-      parameter: { ids: this.ids.mal },
+      path: `${this.type}s/${this.ids.mal}`,
       type: 'GET',
     });
 
-    if (!metadata.length) {
+    if (!metadata.id) {
       throw new NotFoundError(this.url);
     }
 
-    [this.animeMeta] = metadata;
+    this.animeMeta = metadata;
 
     const rating = await helper.apiCall({
       path: `v2/user_rates`,
