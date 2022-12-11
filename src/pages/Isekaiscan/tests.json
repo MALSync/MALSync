@@ -1,0 +1,31 @@
+{
+  "title": "Isekaiscan",
+  "url": "https://isekaiscan.com/",
+  "testCases": [
+    {
+      "url": "https://isekaiscan.com/manga/isekai-nonbiri-nouka/",
+      "expected": {
+        "sync": false,
+        "title": "Isekai Nonbiri Nouka",
+        "identifier": "isekai-nonbiri-nouka",
+        "uiSelector": true,
+        "epList": {
+          "33": "https://isekaiscan.com/manga/isekai-nonbiri-nouka/chapter-33/",
+          "90": "https://isekaiscan.com/manga/isekai-nonbiri-nouka/chapter-90/"
+        }
+      }
+    },
+    {
+      "url": "https://isekaiscan.com/manga/isekai-nonbiri-nouka/chapter-135/",
+      "expected": {
+        "sync": true,
+        "title": "Isekai Nonbiri Nouka",
+        "identifier": "isekai-nonbiri-nouka",
+        "overviewUrl": "https://isekaiscan.com/manga/isekai-nonbiri-nouka/",
+        "nextEpUrl": "https://isekaiscan.com/manga/isekai-nonbiri-nouka/chapter-136/",
+        "episode": 135,
+        "uiSelector": false
+      }
+    }
+  ]
+}

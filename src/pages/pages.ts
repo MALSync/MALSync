@@ -141,6 +141,7 @@ import { Kaguya } from './Kaguya/main';
 import { Hdrezka } from './Hdrezka/main';
 import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
+import { Isekaiscan } from './Isekaiscan/main';
 
 export const pages = {
   nineAnime,
@@ -286,4 +287,5 @@ export const pages = {
   Hdrezka,
   ADN,
   Aniyan,
+  Isekaiscan,
 };
