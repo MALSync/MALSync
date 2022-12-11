@@ -120,7 +120,7 @@ export class UserList extends ListAbstract {
         title: meta.name,
         url: `${helper.domain}${meta.url}`,
         watchedEp: entry.target_type === 'Anime' ? entry.episodes : entry.chapters,
-        totalEp: 12,
+        totalEp: entry.target_type === 'Anime' ? meta.episodes : meta.chapters,
         status: helper.statusTranslate[entry.status],
         score: entry.score ? entry.score : 0,
         image: meta.image.original ? `${helper.domain}${meta.image.original}` : '',
