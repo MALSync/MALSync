@@ -1,5 +1,6 @@
 import { NotAutenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
 import { status } from '../definitions';
+import { Cache } from '../../utils/Cache';
 
 const clientId = 'z3NJ84kK9iy5NU6SnhdCDB38rr4-jFIJ67bMIUDzdoo';
 
@@ -131,8 +132,16 @@ export function userRequest(): Promise<userRequest> {
 }
 
 export async function userId() {
-  // TODO: Cache
+  const cacheObj = new Cache(`shiki/userId`, 4 * 60 * 60 * 1000);
+
+  if (await cacheObj.hasValue()) {
+    return cacheObj.getValue();
+  }
+
   const res = await userRequest();
+  if (res.id) {
+    cacheObj.setValue(res.id);
+  }
   return res.id;
 }
 
