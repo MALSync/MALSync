@@ -22,6 +22,7 @@ const kitsuUrls = { anilist: pageUrls.kitsu };
 const simklUrls = { anilist: pageUrls.simkl };
 const malsyncUrls = { anilist: pageUrls.malsync };
 const malsyncAnilistUrls = { anilist: pageUrls.malsyncAnilist };
+const malsyncShikiUrls = { shiki: pageUrls.malsyncShiki };
 const malsyncPwaUrls = { anilist: pageUrls.malsyncPwa };
 
 const contentUrls = pageUrls;
@@ -49,6 +50,12 @@ var content_scripts = [
     matches: generateMatchExcludes(malsyncAnilistUrls).match,
     exclude_globs: generateMatchExcludes(malsyncAnilistUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-anilist-script.js'],
+    run_at: 'document_start',
+  },
+  {
+    matches: generateMatchExcludes(malsyncShikiUrls).match,
+    exclude_globs: generateMatchExcludes(malsyncShikiUrls).exclude,
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-shiki-script.js'],
     run_at: 'document_start',
   },
   {

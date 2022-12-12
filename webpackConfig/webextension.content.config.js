@@ -41,6 +41,11 @@ let entry = {
     '..',
     'src/index-webextension/anilistOauth.ts',
   ),
+  'oauth-shiki-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/shikiOauth.ts',
+  ),
   'pwa-script': path.join(
     __dirname,
     '..',

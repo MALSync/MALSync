@@ -109,6 +109,8 @@ export const settingsObj = {
 
     malToken: '',
     malRefresh: '',
+
+    shikiToken: '',
   }),
 
   debounceArray: {},
