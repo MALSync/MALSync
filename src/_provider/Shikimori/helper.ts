@@ -144,6 +144,7 @@ export type StatusType =
   | 'on_hold'
   | 'dropped';
 
+// eslint-disable-next-line no-shadow
 export enum statusTranslate {
   'watching' = status.Watching,
   'planned' = status.PlanToWatch,
