@@ -12,6 +12,7 @@ import { initUserProgressScheduler } from './background/releaseProgress';
 import { pwa } from './floatbutton/userscriptPwa';
 import { databaseRequest, initDatabase } from './background/database';
 import { anilistOauth } from './anilist/oauth';
+import { shikiOauth } from './_provider/Shikimori/oauth';
 
 let page;
 
@@ -42,6 +43,11 @@ function main() {
     window.location.pathname === '/anilist/oauth'
   ) {
     anilistOauth();
+  } else if (
+    window.location.hostname === 'malsync.moe' &&
+    window.location.pathname === '/shikimori/oauth'
+  ) {
+    shikiOauth();
   } else if (window.location.hostname === 'malsync.moe' && window.location.pathname === '/pwa') {
     injectDb();
     pwa();
