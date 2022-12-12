@@ -12,7 +12,7 @@ const malRegex = /^https:\/\/myanimelist\.net\/(anime|manga)\/(\d+)(\/|$)/;
 const anilistRegex = /^https:\/\/anilist\.co\/(anime|manga)\/(\d+)(\/|$)/;
 const kitsuRegex = /^https:\/\/kitsu\.io\/(anime|manga)\/([^/]+)(\/|$)/;
 const simklRegex = /^https:\/\/simkl\.com\/(anime|manga)\/(\d+)(\/|$)/;
-const shikiRegex = /^https:\/\/shikimori\.one\/(animes|mangas|ranobe)\/\D*(\d+)/;
+const shikiRegex = /^https:\/\/shikimori\.one\/(animes|mangas|ranobe)\/\D?(\d+)/;
 const localRegex = /^local:\/\/([^/]+)\/(anime|manga)\/([^/]+)(\/|$)/;
 
 export function urlToSlug(url: string): slugObject {

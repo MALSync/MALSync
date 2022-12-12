@@ -6,9 +6,9 @@ export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
     this.logger = this.logger.m('Shiki');
-    if (url.match(/shikimori\.one\/(animes|mangas)\/\D*\d+/i)) {
+    if (url.match(/shikimori\.one\/(animes|mangas)\/\D?\d+/i)) {
       this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
-      const res = utils.urlPart(url, 4).match(/^\D*(\d+)/);
+      const res = utils.urlPart(url, 4).match(/^\D?(\d+)/);
       if (res && res[1]) {
         this.malId = Number(res[1]);
         return this;
