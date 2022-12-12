@@ -2,7 +2,7 @@ import { Minimal } from './_minimal/minimalClass';
 import { openMinimal } from './floatbutton/extension';
 import { initShark } from './utils/shark';
 import { isFirefox } from './utils/general';
-import router from './_minimal/router';
+import { router } from './_minimal/router';
 
 initShark();
 
@@ -23,7 +23,7 @@ api.settings.init().then(() => {
     con.error(e);
   }
 
-  router.afterEach((to, from, failure) => {
+  router().afterEach((to, from, failure) => {
     chrome.runtime.sendMessage({
       name: 'content',
       item: { action: 'pwaPath', data: { path: to.fullPath } },
