@@ -5,6 +5,7 @@ import { MetaOverview as MalApiMeta } from './MyAnimeList_api/metaOverview';
 import { MetaOverview as AniMeta } from './AniList/metaOverview';
 import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';
+import { MetaOverview as ShikiMeta } from './Shikimori/metaOverview';
 
 export function getOverview(url, type, syncMode = '') {
   if (!syncMode) {
@@ -22,6 +23,9 @@ export function getOverview(url, type, syncMode = '') {
   }
   if (syncMode === 'SIMKL') {
     return new SimklMeta(url);
+  }
+  if (syncMode === 'SHIKI') {
+    return new ShikiMeta(url);
   }
   if (syncMode === 'MAL') {
     return new MalMeta(url);

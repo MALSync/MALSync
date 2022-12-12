@@ -114,7 +114,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private statistics(data) {
-    if (data.meta.score)
+    if (data.meta.score && Number(data.meta.score))
       this.meta.statistics.push({
         title: 'Score:',
         body: data.meta.score,
