@@ -19,11 +19,11 @@ export class Single extends SingleAbstract {
   authenticationUrl = helper.authUrl;
 
   protected handleUrl(url) {
-    if (url.match(/shikimori\.one\/(animes|mangas)\/\d*/i)) {
+    if (url.match(/shikimori\.one\/(animes|mangas)\/\D*\d+/i)) {
       this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
-      const res = utils.urlPart(url, 4).match(/^\d+/g);
-      if (res) {
-        this.ids.mal = Number(res[0]);
+      const res = utils.urlPart(url, 4).match(/^\D+(\d+)/);
+      if (res && res[1]) {
+        this.ids.mal = Number(res[1]);
         return;
       }
     }
