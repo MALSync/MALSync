@@ -336,7 +336,7 @@
         }
     },
     "syncPage_flashConfirm_offsetHandler_1": {
-        "message": "Ein möglicher Episoden-Offset von $calcOffset$ wurde erkannt. Ist das Korrekt? ",
+        "message": "Ein möglicher Episoden-Offset von $calcOffset$ wurde erkannt. Ist das korrekt?",
         "description": "offsetHandler Episode",
         "placeholders": {
             "calcOffset": {
@@ -870,7 +870,7 @@
         "description": "Dropdown label for selecting the global progress anime source"
     },
     "settings_Interval_Default_Manga": {
-        "message": "Default Manga",
+        "message": "Standard-Manga",
         "description": "Dropdown label for selecting the global progress manga source"
     },
     "settings_ProgressCheck": {
@@ -890,11 +890,11 @@
         "description": "ETC"
     },
     "settings_Userscriptmode": {
-        "message": "Userscript modus",
+        "message": "Userscript-Modus",
         "description": "Userscript mode"
     },
     "settings_Userscriptmode_Text": {
-        "message": "Schaltet das content script aus. Dies ermöglicht es die Extension zusammen mit dem Userscript zu benutzen.",
+        "message": "Schaltet das Content-Script aus. Dies ermöglicht es, die Erweiterung zusammen mit dem Userscript zu benutzen.",
         "description": "Userscript mode - Text"
     },
     "settings_highlightAllEp": {
@@ -902,7 +902,7 @@
         "description": "Highlight all Episodes/Chapters"
     },
     "settings_highlightAllEp_Text": {
-        "message": "Diese Option hebt alle angesehenen Kapitel / Episoden in der Liste hervor, die du auf einigen Anime / Manga-Websites finden kannst",
+        "message": "Diese Option hebt alle angesehenen Kapitel/Episoden in der Liste hervor, die du auf einigen Anime-/Manga-Webseiten finden kannst",
         "description": "Highlight all Episodes/Chapters - Text"
     },
     "settings_ClearCache": {
@@ -918,7 +918,7 @@
         "description": "Dropdown option to show the cover from mal on discord"
     },
     "settings_presence_largeimage_website": {
-        "message": "Webseiten Icon",
+        "message": "Webseiten-Symbol",
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
@@ -942,7 +942,7 @@
         "description": "Dropdown option to disable the estimation for an anime/manga"
     },
     "settings_progress_default": {
-        "message": "Default",
+        "message": "Standard",
         "description": "Dropdown option to use the default in the estimation for an anime/manga"
     },
     "settings_website_button": {
@@ -950,7 +950,7 @@
         "description": "Button that leads to the config page where individual pages can be disabled"
     },
     "settings_custom_domains_button": {
-        "message": "Benutzerdefinierte Domains",
+        "message": "Benutzerdefinierte Domänen",
         "description": "Button that leads to the custom domain configuration page"
     },
     "settings_clean_tags_button": {
@@ -962,7 +962,7 @@
         "description": "Link button which links to more informations"
     },
     "settings_presenceShowButtons": {
-        "message": "Zeige den Button um einen Anime/Manga auf MAL oder einem anderen Anbieter anzusehen",
+        "message": "Zeige die Schaltfläche um einen Anime/Manga auf MAL oder einem anderen Anbieter anzusehen",
         "description": "Show button to view the anime/manga on MAL or another provider"
     },
     "settings_presenceShowMalsync": {
@@ -978,7 +978,7 @@
         "description": "Start Check"
     },
     "updateCheck_NotificationCheck": {
-        "message": "Benachrichtigungs Test",
+        "message": "Benachrichtigungstest",
         "description": "Notification Check"
     },
     "updateCheck_Episode": {
@@ -1010,7 +1010,7 @@
         "description": "Settings"
     },
     "minimalClass_Popup": {
-        "message": "bitte erlaube Popups für diese Webseite",
+        "message": "Bitte erlaube Popups für diese Webseite",
         "description": "Please allow pop-ups for this website"
     },
     "minimalClass_versionMsg": {
@@ -1032,31 +1032,31 @@
         }
     },
     "minimalClass_versionMsg_Text_1": {
-        "message": "Danke das du MAL-Sync installiert hast",
+        "message": "Danke, dass du MAL-Sync installiert hast",
         "description": "Update version - Text 1"
     },
     "minimalClass_versionMsg_Text_2": {
-        "message": "Trete unserer Community, um Hilfe zu erhalten und neue Features vorzuschlagen",
+        "message": "Trete unserer Community bei, um Hilfe zu erhalten und neue Features vorzuschlagen",
         "description": "Update version - Text 2"
     },
     "minimalClass_versionMsg_Text_3": {
-        "message": "Schau dir unseren Open Source Code an",
+        "message": "Schau dir unseren Open-Source-Code an",
         "description": "Update version - Text 3"
     },
     "minimalClass_versionMsg_Text_4": {
-        "message": "Abonniere die Filterliste (für uBlock Nutzer)",
+        "message": "Abonniere die Filterliste (für uBlock-Nutzer)",
         "description": "Update version - Text 4"
     },
     "installPage_Mode": {
-        "message": "Bitte wähle aus, welche Anime Datenbank du verwenden möchtest",
+        "message": "Bitte wähle aus, welche Anime-Datenbank du verwenden möchtest",
         "description": "Header for the MAL-sync provider dropdown"
     },
     "installPage_Howto": {
-        "message": "Schau dir an wie MAL-Sync funktioniert",
+        "message": "Schau dir an, wie MAL-Sync funktioniert",
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "Die Synchronisation mit der Datenbank erfolgt nur, wenn du eine Episode oder ein Kapitel auf einer der $Link1$unterstützen Seiten$LinkEnd1$ öffnest - keine Sorge, wir haben deine Lieblingsseite definitiv in unserer Liste!",
+        "message": "Die Synchronisation mit der Datenbank erfolgt nur, wenn du eine Episode oder ein Kapitel auf einer der $Link1$unterstützten Seiten$LinkEnd1$ öffnest - keine Sorge, wir haben deine Lieblingsseite definitiv in unserer Liste!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -1078,7 +1078,7 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Finde heraus wie einen falschen MAL Eintrag beheben kannst",
+        "message": "Finde heraus, wie du einen falschen MAL-Eintrag beheben kannst",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
@@ -1100,7 +1100,7 @@
         }
     },
     "Emby_Authenticate": {
-        "message": "MAL-Sync benötigt einen Emby-API-Schlüssel, um zu funktionieren. Mehr Infos $Link1$Hier$Link2$",
+        "message": "MAL-Sync benötigt einen Emby-API-Schlüssel, um zu funktionieren. Mehr Infos $Link1$hier$Link2$",
         "description": "Emby Authentication",
         "placeholders": {
             "Link1": {
@@ -1154,7 +1154,7 @@
         "description": "Error message if no next episode could be found after pressing the next episode shortcut"
     },
     "settings_filler": {
-        "message": "Prüfe auf Filler/Recap Episoden",
+        "message": "Prüfe auf Filler-/Recap-Episoden",
         "description": "Option to enable filler checking"
     },
     "settings_crash_report": {
@@ -1162,11 +1162,11 @@
         "description": "If to send crash reports"
     },
     "settings_filler_text": {
-        "message": "Dies überprüft ob eine Episode als Filler/Recap auf MyAnimeList markiert wurde.",
+        "message": "Dies überprüft, ob eine Episode als Filler/Recap auf MyAnimeList markiert wurde.",
         "description": "filler tooltip"
     },
     "settings_crash_report_text": {
-        "message": "Hilft uns Fehler zu beheben. Es werden keine sensiblen Daten gesendet",
+        "message": "Hilft uns Fehler zu beheben. Es werden keine sensiblen Daten gesendet.",
         "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
