@@ -564,6 +564,7 @@ module.exports = {
       '*://tinycat-voe-fashion.com/e/*',
       '*://20demidistance9elongations.com/e/*',
       '*://telyn610zoanthropy.com/e/*',
+      '*://toxitabellaeatrebates306.com/e/*',
     ],
   },
   // animewho
