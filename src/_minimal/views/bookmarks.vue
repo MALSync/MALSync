@@ -411,6 +411,7 @@ function refresh() {
 
 .sortPlaceholder {
   padding-top: 3px;
+  pointer-events: not-allowed;
 }
 
 .select-icon {
