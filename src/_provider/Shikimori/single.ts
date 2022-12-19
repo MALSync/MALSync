@@ -110,7 +110,7 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
-    return this.animeMeta!.russian || this.animeMeta!.name;
+    return helper.title(this.animeMeta!.russian, this.animeMeta!.name);
   }
 
   _getTotalEpisodes() {

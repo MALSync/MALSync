@@ -128,6 +128,13 @@ export function userRequest(): Promise<userRequest> {
   return apiCall({
     type: 'GET',
     path: 'users/whoami',
+  }).then(res => {
+    if (res.locale) {
+      api.settings.set('shikiOptions', {
+        locale: res.locale,
+      });
+    }
+    return res;
   });
 }
 
@@ -143,6 +150,14 @@ export async function userId() {
     cacheObj.setValue(res.id);
   }
   return res.id;
+}
+
+export function title(rus: string, eng: string, headline = false) {
+  const options = api.settings.get('shikiOptions');
+  const locale = options && options.locale ? options.locale : 'ru';
+  if (locale === 'ru') return rus || eng;
+  if (headline && eng && rus) return `${eng} / ${rus}`;
+  return eng || rus;
 }
 
 export type StatusType =

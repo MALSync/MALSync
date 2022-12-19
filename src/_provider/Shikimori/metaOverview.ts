@@ -68,7 +68,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private title(data) {
-    this.meta.title = data.meta.russian || data.meta.name;
+    this.meta.title = helper.title(data.meta.russian, data.meta.name, true);
   }
 
   private description(data) {
@@ -95,8 +95,11 @@ export class MetaOverview extends MetaOverviewAbstract {
         if (i.character && i.character.id) {
           this.meta.characters.push({
             img: i.character.image.original ? `${helper.domain}${i.character.image.original}` : '',
-            name: i.character.russian || i.character.name,
-            subtext: i.roles.length ? i.roles[0] : null,
+            name: helper.title(i.character.russian, i.character.name),
+            subtext: helper.title(
+              i.roles_russian.length ? i.roles_russian[0] : null,
+              i.roles.length ? i.roles[0] : null,
+            ),
             url: helper.domain + i.character.url,
           });
         }
@@ -179,7 +182,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       const authors: any = [];
       data.roles.forEach(i => {
         if (i.person && i.person.id) {
-          let text = i.person.russian || i.person.name;
+          let text = helper.title(i.person.russian, i.person.name);
           if (i.roles && i.roles.length) text += ` (${i.roles[0]})`;
 
           authors.push({
@@ -232,7 +235,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     data.related.forEach(element => {
       if (!links[element.relation]) {
         links[element.relation] = {
-          type: element.relation_russian || element.relation,
+          type: helper.title(element.relation_russian, element.relation),
           links: [],
         };
       }
@@ -246,7 +249,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
       links[element.relation].links.push({
         url: `${helper.domain}${meta.url}`,
-        title: meta.russian || meta.name,
+        title: helper.title(meta.russian, meta.name),
         type,
         id: meta.id,
       });

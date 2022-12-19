@@ -117,7 +117,7 @@ export class UserList extends ListAbstract {
         uid: entry.target_id,
         cacheKey: entry.target_id,
         type: entry.target_type === 'Anime' ? 'anime' : 'manga',
-        title: meta.name,
+        title: helper.title(meta.russian, meta.name),
         url: `${helper.domain}${meta.url}`,
         watchedEp: entry.target_type === 'Anime' ? entry.episodes : entry.chapters,
         totalEp: entry.target_type === 'Anime' ? meta.episodes : meta.chapters,

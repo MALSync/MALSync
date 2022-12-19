@@ -16,7 +16,7 @@ export const search: searchInterface = async function (
   return list.map(item => {
     return {
       id: item.id,
-      name: item.russian || item.name,
+      name: helper.title(item.russian, item.name),
       altNames: [item.name, item.russian].filter(el => el),
       url: helper.domain + item.url,
       malUrl: () => {

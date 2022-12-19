@@ -111,6 +111,9 @@ export const settingsObj = {
     malRefresh: '',
 
     shikiToken: '',
+    shikiOptions: {
+      locale: 'ru',
+    },
   }),
 
   debounceArray: {},
