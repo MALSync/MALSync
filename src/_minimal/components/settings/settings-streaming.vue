@@ -242,6 +242,10 @@ const orderMode = ref(false);
   justify-content: space-between;
   flex-wrap: wrap;
   gap: @spacer-half;
+
+  .__breakpoint-popup__({
+    justify-content: flex-start;
+  });
 }
 
 .row > td {
