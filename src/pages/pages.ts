@@ -139,6 +139,7 @@ import { Vostfree } from './Vostfree/main';
 import { VoidScans } from './VoidScans/main';
 import { ToonAnime } from './ToonAnime/main';
 import { ADKami } from './ADKami/main';
+import { DisneyPlus } from './DisneyPlus/main';
 
 export const pages = {
   nineAnime,
@@ -206,6 +207,7 @@ export const pages = {
   MangaFox,
   YayAnimes,
   DesuOnline,
+  DisneyPlus,
   Simplyaweeb,
   WuxiaWorld,
   LeviatanScans,

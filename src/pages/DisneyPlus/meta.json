@@ -1,0 +1,6 @@
+{
+  "search": "https://disney.content.edge.bamgrid.com/svc/search/disney/version/5.1/region/GB/audience/k-false,l-true/maturity/1850/language/fr-FR/queryType/ge/pageSize/30/query/{searchtermPlus}",
+  "urls": {
+    "match": ["*://www.disneyplus.com/*"]
+  }
+}

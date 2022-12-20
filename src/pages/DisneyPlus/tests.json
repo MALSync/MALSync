@@ -1,0 +1,25 @@
+{
+  "title": "DisneyPlus",
+  "url": "https://www.disneyplus.com/",
+  "testCases": [
+    {
+      "url": "https://www.disneyplus.com/fr-fr/video/bb5f22e5-26dc-40ae-8630-24e626414392",
+      "expected": {
+        "sync": true,
+        "title": "BLEACH: Thousand-Year Blood War",
+        "identifier": "bb5f22e5-26dc-40ae-8630-24e626414392",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.disneyplus.com/fr-fr/series/bleach-thousand-year-blood-war/4Afet1Q421gy",
+      "expected": {
+        "sync": false,
+        "title": "BLEACH: Thousand-Year Blood War",
+        "identifier": "4Afet1Q421gy",
+        "uiSelector": true
+      }
+    }
+  ]
+}
