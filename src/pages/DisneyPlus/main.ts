@@ -5,7 +5,7 @@ export const DisneyPlus: pageInterface = {
   domain: 'www.disneyplus.com',
   languages: ['Many'],
   type: 'anime',
-  database: 'DisneyPlus',
+  // database: 'DisneyPlus',
   // https://www.disneyplus.com/fr-fr/video/bb5f22e5-26dc-40ae-8630-24e626414392
   isSyncPage(url) {
     return (
@@ -75,7 +75,15 @@ export const DisneyPlus: pageInterface = {
         con.error('404');
         return;
       }
-      page.handlePage();
+      const categories = j
+        .$(
+          'p.body-copy.margin--0.text-color--primary > div.metadata.text-color--primary > div.sc-jOBXIr fsZhRo',
+        )
+        .text();
+      if (categories !== 'undefined' && categories.toLowerCase().includes('anime')) {
+        page.handlePage();
+      }
+      con.error('Not an Anime');
     });
   },
 };
