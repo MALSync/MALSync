@@ -134,6 +134,9 @@
     ]
   },
   "0.9.1": {
+    "ComicK": [
+      "https://comick.app/*"
+    ],
     "Gogoanime": [
       "https://gogoanime.bid/*"
     ],
