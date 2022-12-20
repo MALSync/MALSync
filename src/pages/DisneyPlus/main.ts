@@ -54,7 +54,8 @@ export const DisneyPlus: pageInterface = {
       return utils.urlPart(url, 5);
     },
     uiSelector(selector) {
-      j.$('div.sc-SFOxd.hvFhdy').first().after(j.html(selector));
+      console.log($('button[data-testid="play-button"]').parent())
+      j.$('button[data-testid="play-button"]').parent().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -70,8 +71,8 @@ export const DisneyPlus: pageInterface = {
     },
   },
   init(page) {
-    if (baseSyncUrl === null)
-      baseSyncUrl = ` https://www.disneyplus.com/${utils.urlPart(page.url, 3)}/video/`;
+    if (baseSyncUrl === undefined)
+      baseSyncUrl = `https://www.disneyplus.com/${utils.urlPart(page.url, 3)}/video/`;
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
@@ -94,7 +95,7 @@ export const DisneyPlus: pageInterface = {
           return false;
         },
         function () {
-          const categories = j.$('div.sc-jOBXIr.fsZhRo').text();
+          const categories = j.$('div.metadata > div.sc-jOVcOr').last().text();
           if (categories !== 'undefined' && categories.toLowerCase().includes('anime')) {
             $('html').removeClass('miniMAL-hide');
             page.handlePage();
