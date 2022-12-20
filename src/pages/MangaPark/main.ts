@@ -1,4 +1,5 @@
 import { pageInterface } from '../pageInterface';
+import { version5 } from './version5';
 
 export const MangaPark: pageInterface = {
   name: 'MangaPark',
@@ -67,6 +68,31 @@ export const MangaPark: pageInterface = {
       }
       return '';
     },
+    readerConfig: [
+      {
+        condition: '#__next',
+        current: {
+          selector: '.cursor-pointer.relative',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.cursor-pointer.relative > span:first-child',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+      {
+        current: {
+          selector: '#viewer .item',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '#viewer .page-num',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {
@@ -84,6 +110,16 @@ export const MangaPark: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
+      if ($('#__next').length) {
+        MangaPark.isSyncPage = version5.isSyncPage;
+        MangaPark.isOverviewPage = version5.isOverviewPage;
+        MangaPark.sync = version5.sync;
+        MangaPark.overview = version5.overview;
+        MangaPark.name = version5.name;
+        version5.init(page);
+        return;
+      }
+
       page.handlePage();
     });
   },

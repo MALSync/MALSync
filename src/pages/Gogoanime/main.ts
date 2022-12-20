@@ -7,30 +7,33 @@ export const Gogoanime: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (utils.urlPart(url, 3) === 'category') {
-      return false;
-    }
-    return true;
+    return Boolean(utils.urlPart(url, 3) !== 'category' && j.$('.anime_video_body').length);
+  },
+  isOverviewPage(url) {
+    return utils.urlPart(url, 3) === 'category';
   },
   sync: {
     getTitle(url) {
       return j.$('.anime-info a').first().text().trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 3).split('-episode')[0];
+      return Gogoanime.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return `${url.split('/').slice(0, 3).join('/')}/category/${Gogoanime.sync.getIdentifier(
-        url,
-      )}`;
+      return utils.absoluteLink(
+        j.$('.anime-info a[href*="/category/"]').first().attr('href'),
+        Gogoanime.domain,
+      );
     },
     getEpisode(url) {
-      return Number(utils.urlPart(url, 3).split('episode-')[1]);
+      const temp = utils.urlPart(url, 3).match(/episode-(\d+)/i);
+      if (!temp) return NaN;
+      return Number(temp[1]);
     },
     nextEpUrl(url) {
       const href = j.$('.anime_video_body_episodes_r a').last().attr('href');
       if (typeof href !== 'undefined') {
-        return Gogoanime.domain + href;
+        return utils.absoluteLink(href, Gogoanime.domain);
       }
       return '';
     },
@@ -82,31 +85,21 @@ export const Gogoanime: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    if (Gogoanime.isSyncPage(page.url)) {
-      j.$(document).ready(function () {
-        start();
-      });
-    } else {
-      con.log('noSync');
-      utils.waitUntilTrue(
-        function () {
-          return j.$('#episode_related').length;
-        },
-        function () {
-          start();
-        },
-      );
-    }
 
-    function start() {
+    j.$(document).ready(function () {
       Gogoanime.domain = `${window.location.protocol}//${window.location.hostname}`;
       page.handlePage();
+
+      utils.waitUntilTrue(
+        () => j.$('#episode_related').length,
+        () => page.handleList(),
+      );
 
       j.$('#episode_page').click(function () {
         setTimeout(function () {
           page.handleList();
         }, 500);
       });
-    }
+    });
   },
 };

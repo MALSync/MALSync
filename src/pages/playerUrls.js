@@ -113,7 +113,11 @@ module.exports = {
     match: ['*://*.novelplanet.me/*'],
   },
   proxer: {
-    match: ['*://*.stream.proxer.me/*', '*://*.stream.proxer.net/*'],
+    match: [
+      '*://*.stream.proxer.me/*',
+      '*://*.stream.proxer.net/*',
+      '*://*.stream-service.proxer.me/*',
+    ],
   },
   Verystream: {
     match: ['*://verystream.com/*'],
@@ -458,6 +462,8 @@ module.exports = {
       '*://sbfull.com/e/*',
       '*://ssbstream.net/*',
       '*://streamsss.net/*',
+      '*://sbanh.com/e/*',
+      '*://sblongvu.com/e/*',
     ],
   },
   // gogo
@@ -473,6 +479,7 @@ module.exports = {
       '*://dood.so/e/*',
       '*://dood.pm/e/*',
       '*://dood.wf/e/*',
+      '*://dood.re/e/*',
     ],
   },
   // animedao.to
@@ -555,6 +562,9 @@ module.exports = {
       '*://uptodatefinishconferenceroom.com/e/*',
       '*://realfinanceblogcenter.com/e/*',
       '*://tinycat-voe-fashion.com/e/*',
+      '*://20demidistance9elongations.com/e/*',
+      '*://telyn610zoanthropy.com/e/*',
+      '*://toxitabellaeatrebates306.com/e/*',
     ],
   },
   // animewho
@@ -745,7 +755,7 @@ module.exports = {
   },
   // simplyaweeb
   simplyaweeb: {
-    match: ['*://player.simplyaweeb.to/*'],
+    match: ['*://player.simplyaweeb.to/*', '*://stream.simplyaweeb.to/*'],
   },
   // animeworld
   animeworld: {
@@ -757,6 +767,6 @@ module.exports = {
   },
   // toonanime
   toonvip: {
-    match: ['*://mb.toonanime.xyz/dist/myt.html*'],
+    match: ['*://mb.toonanime.xyz/dist/*'],
   },
 };

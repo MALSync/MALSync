@@ -153,11 +153,19 @@ export class AnilistClass {
     return '';
   }
 
+  getImage() {
+    return $('.header .cover').attr('src') || '';
+  }
+
+  getTitle() {
+    return $('h1').first().clone().children().remove().end().text().trim();
+  }
+
   malToKiss() {
     $(document).ready(() => {
       con.log('malToKiss');
       $('.mal_links').remove();
-      const title = $('h1').first().clone().children().remove().end().text().trim();
+      const title = this.getTitle();
 
       activeLinks(this.page!.type, this.page!.apiCacheKey, title).then(links => {
         let html = '';
@@ -183,7 +191,7 @@ export class AnilistClass {
               margin-top: 16px;
               font-size: 1.2rem;
               position: relative;
-
+              word-break: break-all;
             ">
               <img src="${utils.favicon(page.domain)}" height="16" width="16">
               <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${

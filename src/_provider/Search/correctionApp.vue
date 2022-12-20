@@ -47,7 +47,7 @@
       <search
         :keyword="searchClass.getSanitizedTitel()"
         :type="searchClass.getNormalizedType()"
-        :sync-mode="syncMode"
+        :sync-mode="Boolean(syncMode)"
         :current-id="searchClass.getId()"
         @clicked="setPage($event.url, $event.id)"
       ></search>
@@ -61,6 +61,7 @@ import search from './components/search.vue';
 import inputButton from './components/inputButton.vue';
 import entry from './components/entry.vue';
 import rules from './components/rules.vue';
+import { hideFloatbutton, showFloatbutton } from '../../floatbutton/init';
 
 export default {
   components: {
@@ -70,10 +71,10 @@ export default {
     rules,
   },
   data: () => ({
-    inputOffset: 0,
+    inputOffset: 0 as number | '0',
     minimized: false,
     syncMode: null,
-    searchClass: null,
+    searchClass: null as any,
     unmountFnc: () => {
       // placeholder
     },
@@ -97,9 +98,11 @@ export default {
   },
   created() {
     this.minimized = api.settings.get('minimizeBigPopup');
+    if (api.settings.get('floatButtonCorrection')) hideFloatbutton(true);
   },
   unmounted() {
     this.unmountFnc();
+    showFloatbutton();
   },
   methods: {
     lang: api.storage.lang,

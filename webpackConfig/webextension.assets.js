@@ -198,7 +198,7 @@ mkdirp(path.join(__dirname, '../dist/webextension')).then(err => {
   );
 
   extra.copy(
-    path.join(__dirname, '../src/minimal/window.html'),
+    path.join(__dirname, '../src/_minimal/window.html'),
     path.join(__dirname, '../dist/webextension/window.html'),
     err => {
       if (err) {
@@ -209,7 +209,7 @@ mkdirp(path.join(__dirname, '../dist/webextension')).then(err => {
   );
 
   extra.copy(
-    path.join(__dirname, '../src/minimal/popup.html'),
+    path.join(__dirname, '../src/_minimal/popup.html'),
     path.join(__dirname, '../dist/webextension/popup.html'),
     err => {
       if (err) {
@@ -231,7 +231,7 @@ mkdirp(path.join(__dirname, '../dist/webextension')).then(err => {
   );
 
   extra.copy(
-    path.join(__dirname, '../src/minimal/settings.html'),
+    path.join(__dirname, '../src/_minimal/settings.html'),
     path.join(__dirname, '../dist/webextension/settings.html'),
     err => {
       if (err) {

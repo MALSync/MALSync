@@ -1,6 +1,7 @@
-[![img](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA)](https://discord.com/invite/cTH4yaw)
-[![img](https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/MALSync/MALSync/issues)
+[![Discord](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA)](https://discord.com/invite/cTH4yaw)
+[![Issues](https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/MALSync/MALSync/issues)
 [![CodeFactor](https://www.codefactor.io/repository/github/MALSync/MALSync/badge)](https://www.codefactor.io/repository/github/MALSync/MALSync)
+[![Translation status](https://translate.malsync.moe/widgets/mal-sync/-/extension/svg-badge.svg)](https://translate.malsync.moe/engage/mal-sync/)
 
 # MAL-Sync
 
@@ -118,7 +119,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.hidive.com"><img src="https://favicon.malsync.moe/?domain=https://www.hidive.com"> Hidive</a></td>
-                <td><a href="https://leviatanscans.com"><img src="https://favicon.malsync.moe/?domain=https://leviatanscans.com"> LeviatanScans</a></td>
+                <td><a href="https://en.leviatanscans.com"><img src="https://favicon.malsync.moe/?domain=https://en.leviatanscans.com"> LeviatanScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.primevideo.com"><img src="https://favicon.malsync.moe/?domain=https://www.primevideo.com"> Amazon Prime Video</a></td>
@@ -129,7 +130,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://lynxscans.com"><img src="https://favicon.malsync.moe/?domain=https://lynxscans.com"> LynxScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animexin.xyz"><img src="https://favicon.malsync.moe/?domain=https://animexin.xyz"> AnimeXin</a></td>
+                <td><a href="https://animexinax.com"><img src="https://favicon.malsync.moe/?domain=https://animexinax.com"> AnimeXin</a></td>
                 <td><a href="https://skscans.com"><img src="https://favicon.malsync.moe/?domain=https://skscans.com"> SKScans</a></td>
                 <td></td>
               </tr><tr>
@@ -162,7 +163,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animeid.tv"><img src="https://favicon.malsync.moe/?domain=https://www.animeid.tv"> AnimeId</a></td>
-                <td><a href="https://asurascans.com"><img src="https://favicon.malsync.moe/?domain=https://asurascans.com"> AsuraScans</a></td>
+                <td><a href="https://asura.gg"><img src="https://favicon.malsync.moe/?domain=https://asura.gg"> AsuraScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animixplay.to"><img src="https://favicon.malsync.moe/?domain=https://animixplay.to"> AniMixPlay</a></td>
@@ -237,59 +238,67 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://mangas-origines.fr/"><img src="https://favicon.malsync.moe/?domain=https://mangas-origines.fr/"> MangasOrigines</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.anime-shitai.com"><img src="https://favicon.malsync.moe/?domain=https://www.anime-shitai.com"> AnimeShitai</a></td>
+                <td><a href="https://zoro.to"><img src="https://favicon.malsync.moe/?domain=https://zoro.to"> Zoro</a></td>
                 <td><a href="https://www.bluesolo.org"><img src="https://favicon.malsync.moe/?domain=https://www.bluesolo.org"> BlueSolo</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://zoro.to"><img src="https://favicon.malsync.moe/?domain=https://zoro.to"> Zoro</a></td>
+                <td><a href="https://www.funimation.com"><img src="https://favicon.malsync.moe/?domain=https://www.funimation.com"> Funimation</a></td>
                 <td><a href="https://disasterscans.com"><img src="https://favicon.malsync.moe/?domain=https://disasterscans.com"> DisasterScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.funimation.com"><img src="https://favicon.malsync.moe/?domain=https://www.funimation.com"> Funimation</a></td>
+                <td><a href="https://beta.kitsune.tv"><img src="https://favicon.malsync.moe/?domain=https://beta.kitsune.tv"> Kitsune</a></td>
                 <td><a href="https://dynasty-scans.com"><img src="https://favicon.malsync.moe/?domain=https://dynasty-scans.com"> DynastyScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://beta.kitsune.tv"><img src="https://favicon.malsync.moe/?domain=https://beta.kitsune.tv"> Kitsune</a></td>
+                <td><a href="https://animesonline.org"><img src="https://favicon.malsync.moe/?domain=https://animesonline.org"> AnimesOnline</a></td>
                 <td><a href="https://sugarbbscan.com/"><img src="https://favicon.malsync.moe/?domain=https://sugarbbscan.com/"> SugarBabies</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animesonline.org"><img src="https://favicon.malsync.moe/?domain=https://animesonline.org"> AnimesOnline</a></td>
+                <td><a href="https://tenshi.moe"><img src="https://favicon.malsync.moe/?domain=https://tenshi.moe"> tenshi</a></td>
                 <td><a href="https://Alpha-Scans.org"><img src="https://favicon.malsync.moe/?domain=https://Alpha-Scans.org"> AlphaScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://tenshi.moe"><img src="https://favicon.malsync.moe/?domain=https://tenshi.moe"> tenshi</a></td>
+                <td><a href="https://shiro.is"><img src="https://favicon.malsync.moe/?domain=https://shiro.is"> shiro</a></td>
                 <td><a href="https://www.amascan.com"><img src="https://favicon.malsync.moe/?domain=https://www.amascan.com"> AMAScan</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://shiro.is"><img src="https://favicon.malsync.moe/?domain=https://shiro.is"> shiro</a></td>
+                <td><a href="https://aniworld.to"><img src="https://favicon.malsync.moe/?domain=https://aniworld.to"> Aniworld</a></td>
                 <td><a href="https://www.bilibilicomics.com"><img src="https://favicon.malsync.moe/?domain=https://www.bilibilicomics.com"> BilibiliComics</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://Anistream.de"><img src="https://favicon.malsync.moe/?domain=https://Anistream.de"> Anistream</a></td>
+                <td><a href="https://betteranime.net"><img src="https://favicon.malsync.moe/?domain=https://betteranime.net"> BetterAnime</a></td>
                 <td><a href="https://mangareader.to"><img src="https://favicon.malsync.moe/?domain=https://mangareader.to"> MangaReader</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://aniworld.to"><img src="https://favicon.malsync.moe/?domain=https://aniworld.to"> Aniworld</a></td>
+                <td><a href="https://animeonsen.xyz"><img src="https://favicon.malsync.moe/?domain=https://animeonsen.xyz"> AnimeOnsen</a></td>
                 <td><a href="https://muitomanga.com"><img src="https://favicon.malsync.moe/?domain=https://muitomanga.com"> MuitoMangá</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://betteranime.net"><img src="https://favicon.malsync.moe/?domain=https://betteranime.net"> BetterAnime</a></td>
+                <td><a href="https://puray.moe"><img src="https://favicon.malsync.moe/?domain=https://puray.moe"> Puray</a></td>
                 <td><a href="https://realmscans.com"><img src="https://favicon.malsync.moe/?domain=https://realmscans.com"> RealmScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animeonsen.xyz"><img src="https://favicon.malsync.moe/?domain=https://animeonsen.xyz"> AnimeOnsen</a></td>
+                <td><a href="https://www.animetoast.cc"><img src="https://favicon.malsync.moe/?domain=https://www.animetoast.cc"> Animetoast</a></td>
                 <td><a href="https://luminousscans.com"><img src="https://favicon.malsync.moe/?domain=https://luminousscans.com"> LuminousScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://puray.moe"><img src="https://favicon.malsync.moe/?domain=https://puray.moe"> Puray</a></td>
+                <td><a href="https://www.animeworld.tv"><img src="https://favicon.malsync.moe/?domain=https://www.animeworld.tv"> Animeworld</a></td>
                 <td><a href="https://mangabuddy.com"><img src="https://favicon.malsync.moe/?domain=https://mangabuddy.com"> MangaBuddy</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.animetoast.cc"><img src="https://favicon.malsync.moe/?domain=https://www.animetoast.cc"> Animetoast</a></td>
+                <td><a href="https://vostfree.cx"><img src="https://favicon.malsync.moe/?domain=https://vostfree.cx"> Vostfree</a></td>
+                <td><a href="https://void-scans.com"><img src="https://favicon.malsync.moe/?domain=https://void-scans.com"> VoidScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://vvww.toonanime.cc"><img src="https://favicon.malsync.moe/?domain=https://vvww.toonanime.cc"> ToonAnime</a></td>
                 <td></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.animeworld.tv"><img src="https://favicon.malsync.moe/?domain=https://www.animeworld.tv"> Animeworld</a></td>
+                <td><a href="https://www.adkami.com/"><img src="https://favicon.malsync.moe/?domain=https://www.adkami.com/"> ADKami</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://kaguya.live"><img src="https://favicon.malsync.moe/?domain=https://kaguya.live"> Kaguya</a></td>
                 <td></td>
                 <td></td>
               </tr>

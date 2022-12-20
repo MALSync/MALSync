@@ -33,13 +33,15 @@ function messageAniListListener(anilist) {
       if (msg.action === 'TabMalUrl') {
         logger.info('miniMAL');
         anilist.getMalUrl().then(malUrl => {
-          if (malUrl !== '') {
-            logger.log('TabMalUrl Message', malUrl);
-            sendResponse(malUrl);
-          } else if (api.settings.get('syncMode') === 'ANILIST') {
-            logger.log('TabUrl Message', anilist.url);
-            sendResponse(anilist.url);
+          const res = {
+            url: malUrl,
+            image: anilist.getImage(),
+            title: anilist.getTitle(),
+          };
+          if (!malUrl && api.settings.get('syncMode') === 'ANILIST') {
+            res.url = anilist.url;
           }
+          sendResponse(res);
         });
         return true;
       }

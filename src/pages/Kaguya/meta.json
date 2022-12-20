@@ -1,0 +1,6 @@
+{
+  "search": "https://kaguya.live/browse?keyword={searchtermPlus}",
+  "urls": {
+    "match": ["*://kaguya.live/*"]
+  }
+}

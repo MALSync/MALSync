@@ -1,7 +1,7 @@
 import * as definitions from './definitions';
 
 import { Progress } from '../utils/progress';
-import { getProgressTypeList, predictionXhrGET } from '../background/releaseProgress';
+import { predictionXhrGET } from '../background/releaseProgress';
 
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
@@ -190,15 +190,12 @@ export abstract class SingleAbstract {
     this.options = null;
   }
 
-  protected progress: boolean | Progress = false;
+  protected progress: false | Progress = false;
 
   protected progressXhr;
 
-  protected prList: { key: string; label: string }[] = [];
-
   public async initProgress() {
     const xhr = await predictionXhrGET(this.getType()!, this.getApiCacheKey());
-    this.prList = await getProgressTypeList(this.getType()!);
     return new Progress(this.getCacheKey(), this.getType()!)
       .init({
         uid: this.getCacheKey(),
@@ -211,6 +208,7 @@ export abstract class SingleAbstract {
         xhr,
       })
       .then(progress => {
+        this.updateProgress = false;
         this.progress = progress;
         this.progressXhr = xhr;
       });
@@ -221,26 +219,48 @@ export abstract class SingleAbstract {
     return this.progress;
   }
 
-  public getProgressOptions() {
-    const op: { value: string; key: string }[] = [];
+  public getProgressFormated() {
+    const op: {
+      label: string;
+      key: string;
+      state: 'complete' | 'ongoing' | 'dropped' | 'discontinued';
+      type: 'dub' | 'sub';
+      dropped: boolean;
+      episode: Number;
+      lastEp?: {
+        total: number;
+        timestamp?: number;
+      };
+      predicition?: {
+        timestamp: number;
+        probability: 'low' | 'medium' | 'high';
+      };
+    }[] = [];
+    const languageNames = new Intl.DisplayNames('en', { type: 'language' });
+    con.log(this.progressXhr);
     if (this.progressXhr && Object.keys(this.progressXhr).length) {
       this.progressXhr.forEach(el => {
-        if (el.state === 'complete') return;
-        let val = `${el.lang.toUpperCase()} (${el.type.toUpperCase()})`;
-        if (this.prList && this.prList.length) {
-          const tTemp = this.prList.find(p => p.key === el.id);
-          if (tTemp) val = tTemp.label;
-        }
-        if (el.title) val = el.title;
-        if (el.lastEp && el.lastEp.total) val += ` EP${el.lastEp.total}`;
-        if (el.state === 'dropped') val += ` Incomplete`;
         op.push({
+          type: el.type,
           key: el.id,
-          value: val,
+          state: el.state,
+          label: languageNames.of(el.lang.replace(/^jp$/, 'ja')) || el.lang,
+          dropped: el.state === 'dropped' || el.state === 'discontinued',
+          episode: el.lastEp && el.lastEp.total ? el.lastEp.total : 0,
+          lastEp: el.lastEp,
+          predicition: el.prediction,
         });
       });
     }
     return op;
+  }
+
+  public getProgressOptions() {
+    return this.getProgressFormated().filter(el => el.state !== 'complete');
+  }
+
+  public getProgressCompleted() {
+    return this.getProgressFormated().filter(el => el.state === 'complete');
   }
 
   private updateProgress = false;
@@ -258,6 +278,35 @@ export abstract class SingleAbstract {
       this.options.p = mode;
       this.updateProgress = true;
     }
+    if (!api.settings.get('malTags')) {
+      utils
+        .setEntrySettings(this.type, this.getCacheKey(), this.options, this._getTags())
+        .then(() => this.initProgress());
+    }
+  }
+
+  public getProgressKey() {
+    let mode = this.getProgressMode();
+
+    if (!mode) {
+      if (this.getType() === 'anime') {
+        mode = api.settings.get('progressIntervalDefaultAnime');
+      } else {
+        mode = api.settings.get('progressIntervalDefaultManga');
+      }
+    }
+
+    if (!mode) return null;
+
+    const res = /^([^/]*)\/(.*)$/.exec(mode);
+
+    if (!res) return null;
+
+    return {
+      key: mode,
+      lang: res[1],
+      type: res[2],
+    };
   }
 
   public getPageRelations(): { name: string; icon: string; link: string }[] {
@@ -399,7 +448,10 @@ export abstract class SingleAbstract {
   }
 
   public isDirty(): boolean {
-    return JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl());
+    return (
+      JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl()) ||
+      this.updateProgress
+    );
   }
 
   public undo(): Promise<void> {
@@ -460,15 +512,7 @@ export abstract class SingleAbstract {
 
   public getMalUrl(): string | null {
     if (!Number.isNaN(this.ids.mal)) {
-      let title;
-      try {
-        title = this.getTitle().replace(/\//, '_');
-      } catch (e) {
-        con.error('no title found');
-      }
-      return `https://myanimelist.net/${this.getType()}/${this.ids.mal}/${encodeURIComponent(
-        title,
-      )}`;
+      return `https://myanimelist.net/${this.getType()}/${this.ids.mal}`;
     }
     return null;
   }

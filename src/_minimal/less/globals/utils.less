@@ -1,0 +1,32 @@
+.fullSize() {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.link() {
+  cursor: pointer;
+}
+
+.block-select() {
+  user-select: none;
+}
+
+.stop-click-through() {
+  pointer-events: all;
+}
+
+.flex-row(@gap: @spacer) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: @gap;
+
+  .flex-grow {
+    flex-grow: 1;
+  }
+}

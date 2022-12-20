@@ -5,9 +5,9 @@ export class UserList extends ListAbstract {
 
   authenticationUrl = 'https://myanimelist.net/login.php';
 
-  async getUsername() {
+  async getUserObject() {
     throw 'no';
-    return Promise.resolve('');
+    return Promise.resolve({ username: '', picture: '', href: '' });
     /*
     const url = 'https://myanimelist.net/panel.php?go=export&hideLayout';
     const response = await api.request.xhr('GET', url);

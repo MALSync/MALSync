@@ -7,12 +7,15 @@
     "moduleResolution": "node",
     "target": "es6",
     "lib": ["es5", "es6", "es2015.collection", "es2015.iterable", "dom"],
-    "jsx": "react",
+    "jsx": "preserve",
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
     "useUnknownInCatchVariables": false,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
+  "include": ["**/*.ts", "src/**/*.vue"],
   "exclude": [
     "dist",
     "**/*.test.ts",

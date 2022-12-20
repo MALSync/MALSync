@@ -238,11 +238,19 @@ export class KitsuClass {
     }
   }
 
+  getImage() {
+    return j.$('.media-poster img').attr('src') || '';
+  }
+
+  getTitle() {
+    return $('meta[property="og:title"]').attr('content') || '';
+  }
+
   malToKiss() {
     $(document).ready(() => {
       con.log('malToKiss');
       $('.mal_links').remove();
-      const title = $('meta[property="og:title"]').attr('content')!;
+      const title = this.getTitle();
 
       activeLinks(this.page!.type, this.page!.apiCacheKey, title).then(links => {
         let html = '';
@@ -265,7 +273,7 @@ export class KitsuClass {
               padding: 8px 12px;
               width: 100%;
               font-size: 12px;
-
+              word-break: break-all;
             ">
               <img src="${utils.favicon(page.domain)}">
               <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${

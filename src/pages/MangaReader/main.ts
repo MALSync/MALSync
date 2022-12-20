@@ -53,6 +53,29 @@ export const MangaReader: pageInterface = {
         return `https://anilist.co/manga/${jsonData.anilist_id}`;
       return false;
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '.hoz-current-index',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+        total: {
+          selector: '.hoz-total-image',
+          mode: 'text',
+        },
+      },
+      {
+        current: {
+          selector: '.iv-card',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.iv-card',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {

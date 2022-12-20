@@ -6,7 +6,6 @@ export function createApp(
   selector: string | HTMLElement,
   option?: { shadowDom?: boolean; use?: (vue: App) => void },
 ) {
-  const componentStyles = getAllStyles(component).join('\n');
   const app = vueCreateApp(component);
   app.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
 
@@ -27,42 +26,40 @@ export function createApp(
       shadowRoot = rootElement.attachShadow({ mode: 'open' });
     }
 
-    if (componentStyles) {
-      shadowRoot.appendChild(createStyleTag(componentStyles));
-    }
-
     rootElement = shadowRoot.appendChild(document.createElement('div'));
   }
 
-  const root = app.mount(rootElement);
+  const loadedStyles: { [key: string]: boolean } = {};
 
-  // inject Styles
-  if (componentStyles && (!option || !option.shadowDom)) {
-    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
-    root.$el.after(createStyleTag(componentStyles));
-  }
+  app.mixin({
+    beforeCreate() {
+      if (this.$options.styles && !loadedStyles[this.$options.__file]) {
+        rootElement!.appendChild(
+          createStyleTag(this.$options.styles.join('\n'), this.$options.__file),
+        );
+        loadedStyles[this.$options.__file] = true;
+      }
+    },
+    methods: {
+      lang: api.storage.lang,
+      getOption: value => api.settings.get(value),
+    },
+  });
+
+  app.directive('visible', (el, binding) => {
+    el.style.visibility = binding.value ? 'visible' : 'hidden';
+  });
+
+  const root = app.mount(rootElement);
 
   return root;
 }
 
-function createStyleTag(styleString: string) {
+function createStyleTag(styleString: string, name = '') {
   const style = document.createElement('style');
   style.type = 'text/css';
+  style.setAttribute('data-name', name);
   const styleText = document.createTextNode(styleString);
   style.appendChild(styleText);
   return style;
-}
-
-function getAllStyles(component): string[] {
-  const styles: string[] = [];
-  if (component.styles) {
-    styles.push(...component.styles);
-  }
-  if (component.components) {
-    for (const key in component.components) {
-      const subComponent = component.components[key];
-      styles.push(...getAllStyles(subComponent));
-    }
-  }
-  return styles;
 }

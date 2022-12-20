@@ -1,0 +1,39 @@
+.root-variables(@array, @domain) {
+  each(@array, {
+      --@{domain}-@{key}: @value;
+    }
+
+  );
+}
+
+:root {
+  .root-variables(@colors, cl);
+  .root-variables(@state-colors, state);
+  --size-spacer: 30px;
+  --size-spacer-half: 15px;
+  --base-font-size: 1rem;
+  .__breakpoint-popup__( {
+    --size-spacer: 15px;
+    --size-spacer-half: 10px;
+    --base-font-size: 0.875rem;
+  });
+}
+
+html.dark {
+  .root-variables(@dark-colors, cl);
+}
+
+@media (prefers-color-scheme: dark) {
+  html.auto {
+    .root-variables(@dark-colors, cl);
+  }
+}
+
+each(@state-colors, {
+  .gradient-@{key} {
+    background: linear-gradient(360deg, ~"var(--state-@{key})"0%, rgba(255, 255, 255, 0) 116.33%);
+  }
+})
+  .gradient-black {
+  background: linear-gradient(rgb(255 255 255 / 0%) 30%, black 110.33%);
+}

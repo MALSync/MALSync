@@ -24,7 +24,7 @@ export const MonosChinos: pageInterface = {
       return MonosChinos.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return j.$('.playlist').first().parent().attr('href') || '';
+      return j.$('.lista a').first().attr('href') || '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');

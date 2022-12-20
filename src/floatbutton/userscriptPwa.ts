@@ -1,27 +1,12 @@
-import { Minimal } from '../minimal/minimalClass';
-
-declare let componentHandler: any;
+import { Minimal } from '../_minimal/minimalClass';
+import { importAssets } from './userscript';
 
 export function pwa() {
   $(document).ready(async function () {
-    document.getElementsByTagName('head')[0].onclick = function (e) {
-      try {
-        componentHandler.upgradeDom();
-      } catch (e2) {
-        console.log(e2);
-        setTimeout(function () {
-          componentHandler.upgradeDom();
-        }, 500);
-      }
-    };
     const head = j.$('head');
-    api.storage.injectjsResource('material.js', head);
-    api.storage.updateDom(head);
+    importAssets(head);
 
-    api.storage.injectCssResource('material.css', head);
-    api.storage.injectCssResource('materialFont.css', head);
-
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const minimalObj = new Minimal($('html'));
-    minimalObj.fillBase(null);
   });
 }

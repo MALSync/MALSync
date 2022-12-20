@@ -1,0 +1,17 @@
+.__breakpoint-desktop__(@rules) {
+  @media screen and (min-width: 900px) {
+    @rules();
+  }
+}
+
+.__breakpoint-small__(@rules) {
+  @media screen and (max-width: 499px) {
+    @rules();
+  }
+}
+
+.__breakpoint-popup__(@rules) {
+  @media screen and (max-width: 600px) {
+    @rules();
+  }
+}

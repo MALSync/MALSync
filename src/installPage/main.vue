@@ -13,160 +13,111 @@
   limitations under the License
 -->
   <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
-    <header
-      class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800"
-    >
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">
-          <img
-            id="iconimage"
-            height="32"
-            width="32"
-            src="https://github.com/MALSync/MALSync/blob/master/assets/icons/icon128.png?raw=true"
-          />Mal-Sync</span
-        >
-        <div class="mdl-layout-spacer"></div>
-      </div>
-    </header>
     <div class="demo-ribbon"></div>
     <main class="demo-main mdl-layout__content">
       <div class="demo-container mdl-grid">
-        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-        <div class="mdl-cell mdl-cell--8-col">
+        <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="mdl-cell mdl-cell--10-col">
           <div
             class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800"
           >
-            <h3 class="noMarginTop mainHeader">
-              {{ lang('minimalClass_versionMsg_Text_1') }}
-            </h3>
-            <h4>{{ lang('installPage_Mode') }}</h4>
-            <span class="mdl-list__item-secondary-action">
-              <select
-                id="syncMode"
-                v-model="syncMode"
-                name="myinfo_score"
-                class="inputtext mdl-textfield__input"
-                style="outline: none"
-              >
-                <option value="" disabled selected hidden>-- {{ lang('Select') }} --</option>
-                <option value="MAL">MyAnimeList</option>
-                <option value="ANILIST">AniList</option>
-                <option value="KITSU">Kitsu</option>
-                <option value="SIMKL">Simkl</option>
-              </select>
-            </span>
-            <div v-if="options.syncMode !== ''" class="syncExtended">
-              <li v-if="options.syncMode == 'SIMKL'" class="mdl-list__item">
-                <span class="mdl-list__item-primary-content"> Simkl </span>
-                <span class="mdl-list__item-secondary-action">
-                  <a
-                    target="_blank"
-                    href="https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/"
-                    >{{ lang('settings_Authenticate') }}</a
-                  >
-                </span>
-              </li>
-              <dropdown
-                v-if="options.syncMode == 'SIMKL'"
-                option="syncModeSimkl"
-                text="Manga Sync Mode"
-              >
-                <option value="MAL">MyAnimeList</option>
-                <option value="ANILIST">AniList</option>
-                <option value="KITSU">Kitsu</option>
-              </dropdown>
-              <li
-                v-if="
-                  options.syncMode == 'MAL' ||
-                  (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'MAL')
-                "
-                class="mdl-list__item"
-              >
-                <span class="mdl-list__item-primary-content"> MyAnimeList </span>
-                <span class="mdl-list__item-secondary-action">
-                  <a target="_blank" href="https://malsync.moe/mal/oauth">{{
-                    lang('settings_Authenticate')
-                  }}</a>
-                </span>
-              </li>
-              <li
-                v-if="
-                  options.syncMode == 'ANILIST' ||
-                  (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')
-                "
-                class="mdl-list__item"
-              >
-                <span class="mdl-list__item-primary-content"> AniList </span>
-                <span class="mdl-list__item-secondary-action">
-                  <a
-                    target="_blank"
-                    href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token"
-                    >{{ lang('settings_Authenticate') }}</a
-                  >
-                </span>
-              </li>
-              <li
-                v-if="
-                  options.syncMode == 'KITSU' ||
-                  (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')
-                "
-                class="mdl-list__item"
-              >
-                <span class="mdl-list__item-primary-content"> Kitsu </span>
-                <span class="mdl-list__item-secondary-action">
-                  <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{
-                    lang('settings_Authenticate')
-                  }}</a>
-                </span>
-              </li>
+            <div class="section">
+              <h3 class="noMarginTop mainHeader">
+                {{ lang('minimalClass_versionMsg_Text_1') }} 🎉
+              </h3>
+              <p>
+                <strong>
+                  Let’s do a simple briefing to get you started — takes less than a minute!
+                </strong>
+              </p>
+            </div>
+            <div class="section" style="margin-bottom: 49px">
+              <h4 style="margin-bottom: 9px">📂 {{ lang('installPage_Mode') }}</h4>
+              <template v-for="comp in tracking" :key="comp.key">
+                <SettingsRendering :comp="comp" />
+              </template>
             </div>
 
-            <h4>{{ lang('installPage_Howto') }}</h4>
-            <p v-dompurify-html="lang('installPage_Howto_Description')"></p>
+            <div class="section">
+              <h4>🔁 {{ lang('installPage_Howto') }}</h4>
+              <p v-dompurify-html="lang('installPage_Howto_Description')"></p>
+              <p>
+                <strong>anime:</strong><br />
+                The sync waits until 85% of the video is watched.
+              </p>
+              <p>
+                <strong>For manga:</strong><br />
+                The sync happens on page load.
+              </p>
+              <p>
+                Synchronization can be configured in the
+                <a class="open-settings" href="#">settings</a> — feel free to customize it your way!
+              </p>
+            </div>
 
-            <h4>{{ lang('installPage_Wrong') }}</h4>
-            <p>{{ lang('installPage_Wrong_Description') }}</p>
-            <p class="correctionGif">
-              <img
-                id="hiddenimage"
-                height="338"
-                width="600"
-                src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/Wrong%20recognition.gif"
-                alt="Wrong recognition"
-              />
-            </p>
+            <div class="section">
+              <h4>⚒️ {{ lang('installPage_Wrong') }}</h4>
+              <p>{{ lang('installPage_Wrong_Description') }}</p>
+              <p class="correctionGif">
+                <img
+                  id="hiddenimage"
+                  height="338"
+                  width="600"
+                  src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/Wrong%20recognition.gif"
+                  alt="Wrong recognition"
+                />
+              </p>
+            </div>
 
-            <h4>Quicklinks</h4>
-            <quicklinksEdit />
+            <div class="section">
+              <h4>🔗 Choose preferred quicklinks — your favorite sites one-click away</h4>
+              <p>
+                Quicklinks, basically, are buttons that open up your streaming/reading site of
+                choice — they will be located on every overview page for any anime/manga.
+              </p>
+              <p>
+                For example, if you like to watch anime on Crunchyroll, then Crunchyroll’s quicklink
+                will appear on every anime page. It’s a convinient way to access your favorite sites
+                with just one click!
+              </p>
+              <SettingsStreaming />
+            </div>
 
-            <h4>{{ lang('minimalClass_versionMsg_Text_4') }}</h4>
-            <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
-              <img
-                alt="Filter List"
-                src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square"
-              />
-            </a>
-            <h4>{{ lang('minimalClass_versionMsg_Text_2') }}</h4>
-            <a target="_blank" href="https://discord.com/invite/cTH4yaw">
-              <img
-                alt="Discord"
-                src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA"
-              />
-            </a>
-            <a target="_blank" href="https://github.com/MALSync/MALSync/issues">
-              <img
-                alt="Github Issues"
-                src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white"
-              />
-            </a>
+            <div class="section">
+              <h4>📃 {{ lang('minimalClass_versionMsg_Text_4') }}</h4>
+              <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
+                <img
+                  alt="Filter List"
+                  src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square"
+                />
+              </a>
+            </div>
 
-            <h4>{{ lang('minimalClass_versionMsg_Text_3') }}</h4>
-            <a target="_blank" href="https://github.com/MALSync/MALSync">
-              <img
-                alt="Github"
-                src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github"
-              />
-            </a>
+            <div class="section">
+              <h4>💬 {{ lang('minimalClass_versionMsg_Text_2') }}</h4>
+              <a target="_blank" href="https://discord.com/invite/cTH4yaw">
+                <img
+                  alt="Discord"
+                  src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA"
+                />
+              </a>
+              <a target="_blank" href="https://github.com/MALSync/MALSync/issues">
+                <img
+                  alt="Github Issues"
+                  src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white"
+                />
+              </a>
+            </div>
+
+            <div>
+              <h4>🧑🏻‍💻 {{ lang('minimalClass_versionMsg_Text_3') }}</h4>
+              <a target="_blank" href="https://github.com/MALSync/MALSync">
+                <img
+                  alt="Github"
+                  src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -175,8 +126,42 @@
 </template>
 
 <style lang="less">
+@import '../_minimal/less/_main.less';
+
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: Montserrat, sans-serif;
+}
+
+h3 {
+  font-size: 32px;
+  line-height: 39px;
+  margin-bottom: 30px;
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+
+.section {
+  margin-bottom: 64px;
+}
+
 p {
   font-size: 16px;
+}
+
+a {
+  color: rgb(255 64 129);
 }
 
 #iconimage {
@@ -229,7 +214,7 @@ p {
 
 .demo-content {
   border-radius: 2px;
-  padding: 80px 56px;
+  padding: 25px 30px;
   margin-bottom: 80px;
 }
 
@@ -241,77 +226,28 @@ p {
   margin-top: 0;
 }
 
-.mainHeader {
-  margin-bottom: 56px;
-}
-
 .syncExtended {
   background-color: #f9f9f9;
   border: 1px solid rgb(0 0 0 / 12%);
   border-top: none;
 }
-
-#quicklinkedit {
-  background-color: #f9f9f9;
-  border: 1px solid rgb(0 0 0 / 12%);
-
-  .backbutton-settings,
-  .custom {
-    display: none;
-  }
-  .quicklinks {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 15px;
-    .quicklink {
-      opacity: 0.5;
-      font-size: 13px;
-      cursor: pointer;
-      &.active {
-        opacity: 1;
-      }
-      &.home {
-        background-color: #ff6767;
-      }
-      &.search {
-        background-color: #e4e461;
-      }
-      &.database {
-        background-color: #90e963;
-      }
-      &.custom {
-        background-color: white;
-      }
-    }
-  }
-  .darkbox {
-    background-color: #0000002b;
-    padding: 5px;
-  }
-  td {
-    padding: 7px 2px;
-  }
-}
 </style>
 
 <script lang="ts">
-import quicklinksEdit from '../minimal/minimalApp/components/quicklinksEdit.vue';
-import dropdown from '../minimal/minimalApp/components/settingsDropdown.vue';
-
-declare const componentHandler: {
-  upgradeDom: () => void;
-};
+import SettingsRendering from '../_minimal/components/settings/settings-rendering.vue';
+import { trackingSimple } from '../_minimal/components/settings/settings-structure-tracking';
+import SettingsStreaming from '../_minimal/components/settings/settings-streaming.vue';
 
 export default {
   components: {
-    dropdown,
-    quicklinksEdit,
+    SettingsStreaming,
+    SettingsRendering,
   },
   data: () => ({
     options: api.settings.options,
     show: false,
     mode: '',
+    tracking: trackingSimple,
   }),
   computed: {
     syncMode: {
@@ -327,8 +263,6 @@ export default {
   },
   watch: {},
   mounted() {
-    componentHandler.upgradeDom();
-
     const settingsEl = document.getElementsByClassName('open-settings')[0];
     settingsEl.addEventListener('click', () => {
       con.log('Open Settings');

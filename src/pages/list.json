@@ -220,7 +220,7 @@
     "name": "AnimesHouse"
   },
   {
-    "domain": "https://animexin.xyz",
+    "domain": "https://animexinax.com",
     "type": "anime",
     "name": "AnimeXin"
   },
@@ -335,7 +335,7 @@
     "name": "WuxiaWorld"
   },
   {
-    "domain": "https://leviatanscans.com",
+    "domain": "https://en.leviatanscans.com",
     "type": "manga",
     "name": "LeviatanScans"
   },
@@ -415,7 +415,7 @@
     "name": "bs.to"
   },
   {
-    "domain": "https://asurascans.com",
+    "domain": "https://asura.gg",
     "type": "manga",
     "name": "AsuraScans"
   },
@@ -498,11 +498,6 @@
     "domain": "https://comick.fun",
     "type": "manga",
     "name": "ComicK"
-  },
-  {
-    "domain": "https://www.anime-shitai.com",
-    "type": "anime",
-    "name": "AnimeShitai"
   },
   {
     "domain": "https://www.japanread.cc/",
@@ -588,11 +583,6 @@
     "domain": "https://shiro.is",
     "type": "anime",
     "name": "shiro"
-  },
-  {
-    "domain": "https://Anistream.de",
-    "type": "anime",
-    "name": "Anistream"
   },
   {
     "domain": "https://www.bluesolo.org",
@@ -683,5 +673,30 @@
     "domain": "https://mangabuddy.com",
     "type": "manga",
     "name": "MangaBuddy"
+  },
+  {
+    "domain": "https://vostfree.cx",
+    "type": "anime",
+    "name": "Vostfree"
+  },
+  {
+    "domain": "https://void-scans.com",
+    "type": "manga",
+    "name": "VoidScans"
+  },
+  {
+    "domain": "https://vvww.toonanime.cc",
+    "type": "anime",
+    "name": "ToonAnime"
+  },
+  {
+    "domain": "https://www.adkami.com/",
+    "type": "anime",
+    "name": "ADKami"
+  },
+  {
+    "domain": "https://kaguya.live",
+    "type": "anime",
+    "name": "Kaguya"
   }
 ]

@@ -7,7 +7,7 @@ export class UserList extends ListAbstract {
 
   authenticationUrl = 'https://kitsu.io/404?mal-sync=authentication';
 
-  async getUsername() {
+  async getUserObject() {
     const user = await this.userRequest();
 
     const opt = api.settings.get('kitsuOptions');
@@ -16,6 +16,11 @@ export class UserList extends ListAbstract {
     opt.ratingSystem = user.attributes.ratingSystem;
     api.settings.set('kitsuOptions', opt);
 
+    return {
+      username: user.attributes.name,
+      picture: user.attributes.avatar?.large || '',
+      href: `https://kitsu.io/users/${user.attributes.slug}`,
+    };
     return user.attributes.name;
   }
 
@@ -123,7 +128,7 @@ export class UserList extends ListAbstract {
           this.listType
         }.mappings,${this.listType}.mappings.item&fields[${
           this.listType
-        }]=slug,titles,canonicalTitle,averageRating,posterImage,${
+        }]=slug,titles,canonicalTitle,averageRating,posterImage,coverImage,${
           this.listType === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
         }`,
       )
@@ -177,8 +182,16 @@ export class UserList extends ListAbstract {
           status: helper.translateList(list.attributes.status),
           score: Math.round(list.attributes.ratingTwenty / 2),
           image:
-            el.attributes.posterImage && el.attributes.posterImage.large
-              ? el.attributes.posterImage.large
+            el.attributes.posterImage && el.attributes.posterImage.small
+              ? el.attributes.posterImage.small
+              : '',
+          imageLarge:
+            el.attributes.posterImage && el.attributes.posterImage.original
+              ? el.attributes.posterImage.original
+              : '',
+          imageBanner:
+            el.attributes.coverImage && el.attributes.coverImage.large
+              ? el.attributes.coverImage.large
               : '',
           tags: list.attributes.notes,
           airingState: el.anime_airing_status,
@@ -198,8 +211,16 @@ export class UserList extends ListAbstract {
           status: helper.translateList(list.attributes.status),
           score: Math.round(list.attributes.ratingTwenty / 2),
           image:
-            el.attributes.posterImage && el.attributes.posterImage.large
-              ? el.attributes.posterImage.large
+            el.attributes.posterImage && el.attributes.posterImage.small
+              ? el.attributes.posterImage.small
+              : '',
+          imageLarge:
+            el.attributes.posterImage && el.attributes.posterImage.original
+              ? el.attributes.posterImage.original
+              : '',
+          imageBanner:
+            el.attributes.coverImage && el.attributes.coverImage.large
+              ? el.attributes.coverImage.large
               : '',
           tags: list.attributes.notes,
           airingState: el.anime_airing_status,

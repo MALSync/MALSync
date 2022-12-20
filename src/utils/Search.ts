@@ -62,6 +62,7 @@ async function localSearch(searchterm: string, type: 'anime' | 'manga'): Promise
       url: el.item.url,
       malUrl: () => Promise.resolve(null),
       image: el.item.image,
+      imageLarge: el.item.image,
       media_type: el.item.type,
       isNovel: false,
       score: '',

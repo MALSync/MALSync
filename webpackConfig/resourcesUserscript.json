@@ -1,5 +1,4 @@
 {
-  "material.css": "https://code.getmdl.io/1.3.0/material.indigo-pink.min.css",
-  "materialFont.css": "https://fonts.googleapis.com/icon?family=Material+Icons",
-  "material.js": "https://raw.githubusercontent.com/MALSync/MALSync/master/package/materialDesignLite.js"
+  "materialFont.woff2": "https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2",
+  "montserrat.css": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
 }

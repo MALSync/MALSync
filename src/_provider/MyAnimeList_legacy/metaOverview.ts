@@ -50,7 +50,8 @@ export class MetaOverview extends MetaOverviewAbstract {
     try {
       title = data
         .split('itemprop="name">')[1]
-        .split('<')[0]
+        .split('</')[0]
+        .split('<br')[0]
         .replace(/&quot;/g, '"')
         .replace(/&#039;/g, "'");
     } catch (e) {
@@ -71,12 +72,18 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private image(data) {
     let image = '';
+    let imageLarge = '';
     try {
       image = data.split('property="og:image"')[1].split('content="')[1].split('"')[0];
+      if (image) {
+        const ending = image.split('.').pop();
+        imageLarge = image.replace(`.${ending}`, `l.${ending}`);
+      }
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
     this.meta.image = image;
+    this.meta.imageLarge = imageLarge ?? image;
   }
 
   private alternativeTitle(data) {
@@ -112,7 +119,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         if (charImg && regexDimensions.test(charImg)) {
           charImg = charImg.replace(regexDimensions, '');
         } else {
-          charImg = api.storage.assetUrl('questionmark.gif');
+          charImg = '';
         }
 
         charImg = utils.handleMalImages(charImg);
@@ -332,8 +339,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       const relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
       const related = j.$.parseHTML(relatedBlock);
       j.$.each(j.$(related).filter('table').find('tr'), function (index, value) {
-        const links: { url: string; title: string; statusTag: string; type: string; id: number }[] =
-          [];
+        const links: { url: string; title: string; type: string; id: number }[] = [];
         j.$(value)
           .find('.borderClass')
           .last()
@@ -347,7 +353,6 @@ export class MetaOverview extends MetaOverviewAbstract {
                 title: j.$(valueB).text(),
                 type: utils.urlPart(url, 3),
                 id: Number(utils.urlPart(url, 4)),
-                statusTag: '',
               });
             }
           });

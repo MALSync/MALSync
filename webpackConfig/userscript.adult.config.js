@@ -7,6 +7,7 @@ const playerUrls = require('../src/pages-adult/playerUrls');
 const resourcesJson = require('./resourcesUserscript');
 const httpPermissionsJson = require('./httpPermissions.json');
 const { VueLoaderPlugin } = require('vue-loader');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const i18n = require('./utils/i18n');
 const pagesUtils = require('./utils/pages');
@@ -25,7 +26,7 @@ const metadata = {
   name: `${package['productName']} Adult [FateXXXBlood Edition]`,
   namespace: 'https://greasyfork.org/users/92233',
   description: package['description'],
-  version: '0.2.16',
+  version: '0.3.0',
   author: package['author'],
   license: 'GPL-3.0',
   iconURL: 'https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png',
@@ -39,13 +40,14 @@ const metadata = {
     'GM_listValues',
     'GM_addStyle',
     'GM_getResourceText',
+    'GM_getResourceURL',
     'GM.xmlHttpRequest',
     'GM.getValue',
     'GM.setValue',
   ],
   match: generateMatchExcludes(pageUrls).match.concat(generateMatchExcludes(playerUrls).match),
   exclude: generateMatchExcludes(pageUrls).exclude,
-  'require ': 'http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
+  'require': 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js#sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=',
   resource: generateResources(),
   'run-at': 'document_start',
   connect: [
@@ -101,6 +103,7 @@ module.exports = {
         options: {
           customElement: true,
           shadowMode: true,
+          exposeFilename: true,
         },
       },
     ],
@@ -116,6 +119,17 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist'),
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        configFile: path.resolve(__dirname, '../tsconfig.json'),
+        extensions: {
+          vue: {
+            enabled: true,
+            compiler: '@vue/compiler-sfc',
+          },
+        },
+      },
+    }),
     new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),

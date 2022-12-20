@@ -46,6 +46,32 @@ export const bato: pageInterface = {
       }
       return '';
     },
+    readerConfig: [
+      {
+        condition: '.item:nth-child(2)',
+        current: {
+          selector: '#viewer > .item',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.page-num',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+      {
+        current: {
+          selector: '.page-num',
+          mode: 'text',
+          regex: '^\\d+',
+        },
+        total: {
+          selector: '.page-num',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {

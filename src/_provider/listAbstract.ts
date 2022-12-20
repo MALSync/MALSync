@@ -18,6 +18,8 @@ export interface listElement {
   status: number;
   score: number;
   image: string;
+  imageLarge: string;
+  imageBanner?: string;
   tags: string;
   airingState: number;
   fn: {
@@ -129,7 +131,7 @@ export abstract class ListAbstract {
 
     await this.getNext();
 
-    if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
+    if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 24));
 
     this.firstLoaded = true;
 
@@ -184,11 +186,17 @@ export abstract class ListAbstract {
     }
   }
 
-  abstract getUsername(): Promise<string> | string;
+  public getUsername() {
+    return this.getUserObject().then(user => user.username);
+  }
+
+  abstract getUserObject(): Promise<{ username: string; picture: string; href: string }>;
 
   abstract _getSortingOptions(): { icon: string; title: string; value: string; asc?: boolean }[];
 
-  getSortingOptions(tree = false): { icon: string; title: string; value: string; child?: any }[] {
+  getSortingOptions(
+    simple = false,
+  ): { icon: string; title: string; value: string; asc?: boolean }[] {
     const res = [
       {
         icon: 'filter_list',
@@ -207,19 +215,16 @@ export abstract class ListAbstract {
 
     const options = this._getSortingOptions();
     options.forEach(el => {
-      if (el.asc) {
-        const asc = { ...el };
-        delete asc.asc;
-        asc.value += '_asc';
-        asc.title += ' Ascending';
-        if (tree) {
-          // @ts-ignore
-          el.child = asc;
-        } else {
+      if (!simple) {
+        if (el.asc) {
+          const asc = { ...el };
+          delete asc.asc;
+          asc.value += '_asc';
+          asc.title += ' Ascending';
           res.push(asc);
         }
+        delete el.asc;
       }
-      delete el.asc;
       res.push(el);
     });
     return res;
