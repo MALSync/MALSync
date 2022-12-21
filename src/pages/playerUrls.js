@@ -29,6 +29,7 @@ module.exports = {
       '*://*.vidstreaming.me/*',
       '*://*.vidstreamingvw.xyz/*',
       '*://*.vidstreaming1.xyz/*',
+      '*://*.vidstreaming.link/*',
     ],
   },
   xstreamcdn: {
@@ -400,6 +401,10 @@ module.exports = {
       '*://*.gogohd.net/streaming.php?*',
       '*://*.gogohd.net/load.php?*',
       '*://*.gogohd.net/loadserver.php?*',
+      '*://*.gogohd.pro/embedplus*',
+      '*://*.gogohd.pro/streaming.php?*',
+      '*://*.gogohd.pro/load.php?*',
+      '*://*.gogohd.pro/loadserver.php?*',
     ],
   },
   // bs.to
@@ -768,5 +773,9 @@ module.exports = {
   // toonanime
   toonvip: {
     match: ['*://mb.toonanime.xyz/dist/*'],
+  },
+  // animedao
+  animedao: {
+    match: ['*://animedao.to/redirect/*'],
   },
 };

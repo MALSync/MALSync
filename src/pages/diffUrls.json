@@ -141,9 +141,15 @@
       "https://gogoanime.bid/*"
     ],
     "iframe": [
+      "https://vidstreaming.link/*",
+      "https://gogohd.pro/embedplus*",
+      "https://gogohd.pro/streaming.php?*",
+      "https://gogohd.pro/load.php?*",
+      "https://gogohd.pro/loadserver.php?*",
       "https://20demidistance9elongations.com/e/*",
       "https://telyn610zoanthropy.com/e/*",
-      "https://toxitabellaeatrebates306.com/e/*"
+      "https://toxitabellaeatrebates306.com/e/*",
+      "https://animedao.to/redirect/*"
     ]
   }
 }
