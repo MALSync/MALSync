@@ -109,6 +109,11 @@ export const settingsObj = {
 
     malToken: '',
     malRefresh: '',
+
+    shikiToken: '',
+    shikiOptions: {
+      locale: 'ru',
+    },
   }),
 
   debounceArray: {},

@@ -12,6 +12,7 @@ import { initUserProgressScheduler } from './background/releaseProgress';
 import { pwa } from './floatbutton/userscriptPwa';
 import { databaseRequest, initDatabase } from './background/database';
 import { anilistOauth } from './anilist/oauth';
+import { shikiOauth } from './_provider/Shikimori/oauth';
 
 let page;
 
@@ -34,15 +35,23 @@ function main() {
     const simkl = new SimklClass(window.location.href);
   } else if (
     window.location.hostname === 'malsync.moe' &&
-    window.location.pathname === '/mal/oauth'
+    window.location.pathname.startsWith('/mal/oauth')
   ) {
     oauth();
   } else if (
     window.location.hostname === 'malsync.moe' &&
-    window.location.pathname === '/anilist/oauth'
+    window.location.pathname.startsWith('/anilist/oauth')
   ) {
     anilistOauth();
-  } else if (window.location.hostname === 'malsync.moe' && window.location.pathname === '/pwa') {
+  } else if (
+    window.location.hostname === 'malsync.moe' &&
+    window.location.pathname.startsWith('/shikimori/oauth')
+  ) {
+    shikiOauth();
+  } else if (
+    window.location.hostname === 'malsync.moe' &&
+    window.location.pathname.startsWith('/pwa')
+  ) {
     injectDb();
     pwa();
   } else {

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router';
 import Bookmarks from './views/bookmarks.vue';
 import Overview from './views/overview.vue';
 import Settings from './views/settings.vue';
@@ -72,23 +72,28 @@ const scrollUntilTrue = (scrollPosition: number) => {
   }, 100);
 };
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    clearInterval(scrollUntilDebounce);
-    if (savedPosition) {
-      if (to.name === 'Bookmarks' && savedPosition.top) {
-        scrollUntilTrue(savedPosition.top);
-      }
-      return savedPosition;
-    }
-    return { top: 0 };
-  },
-});
+let tempRouter: Router | null = null;
 
-router.afterEach((to, from, failure) => {
-  if (!failure) setUrlObj(to.fullPath);
-});
+export function router() {
+  if (!tempRouter) {
+    tempRouter = createRouter({
+      history: createWebHashHistory(),
+      routes,
+      scrollBehavior(to, from, savedPosition) {
+        clearInterval(scrollUntilDebounce);
+        if (savedPosition) {
+          if (to.name === 'Bookmarks' && savedPosition.top) {
+            scrollUntilTrue(savedPosition.top);
+          }
+          return savedPosition;
+        }
+        return { top: 0 };
+      },
+    });
 
-export default router;
+    tempRouter.afterEach((to, from, failure) => {
+      if (!failure) setUrlObj(to.fullPath);
+    });
+  }
+  return tempRouter;
+}

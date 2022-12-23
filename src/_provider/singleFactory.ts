@@ -6,6 +6,7 @@ import { Single as MalApiSingle } from './MyAnimeList_api/single';
 import { Single as SnilistSingle } from './AniList/single';
 import { Single as SitsuSingle } from './Kitsu/single';
 import { Single as SimklSingle } from './Simkl/single';
+import { Single as ShikiSingle } from './Shikimori/single';
 import { Single as LocalSingle } from './Local/single';
 
 export function getSingle(url: string) {
@@ -27,6 +28,9 @@ export function getSingle(url: string) {
   }
   if (syncMode === 'SIMKL') {
     return new SimklSingle(url);
+  }
+  if (syncMode === 'SHIKI') {
+    return new ShikiSingle(url);
   }
   throw 'Unknown sync mode';
 }

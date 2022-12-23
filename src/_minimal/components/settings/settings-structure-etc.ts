@@ -6,7 +6,7 @@ import SettingsClearTags from './settings-clear-tags.vue';
 export const etc: ConfObj[] = [
   {
     key: 'forceEn',
-    title: 'Force english',
+    title: 'Force English',
     props: {
       component: 'checkbox',
       option: 'forceEn',

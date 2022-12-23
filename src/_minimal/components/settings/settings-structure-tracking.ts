@@ -34,11 +34,12 @@ export const trackingSimple: ConfObj[] = [
       option: 'syncMode',
       props: {
         options: [
-          { title: 'MyAnimeList API (Hybrid)', value: 'MAL' },
+          { title: 'MyAnimeList', value: 'MAL' },
           { title: 'AniList', value: 'ANILIST' },
           { title: 'Kitsu', value: 'KITSU' },
           { title: 'Simkl', value: 'SIMKL' },
-          { title: 'MyAnimeList API (Full) (BETA)', value: 'MALAPI' },
+          { title: 'Shikimori', value: 'SHIKI' },
+          { title: 'MyAnimeList (API) [WORSE]', value: 'MALAPI' },
         ],
       },
     },

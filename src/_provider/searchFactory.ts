@@ -4,6 +4,7 @@ import { search as malApiSearch } from './MyAnimeList_api/search';
 import { search as aniSearch } from './AniList/search';
 import { search as kitsuSearch } from './Kitsu/search';
 import { search as simklSearch } from './Simkl/search';
+import { search as shikiSearch } from './Shikimori/search';
 
 export function search(
   keyword,
@@ -24,6 +25,9 @@ export function search(
   }
   if (syncMode === 'SIMKL') {
     return simklSearch(keyword, type, options, sync);
+  }
+  if (syncMode === 'SHIKI') {
+    return shikiSearch(keyword, type, options, sync);
   }
   if (syncMode === 'MALAPI') {
     return malApiSearch(keyword, type, options, sync);

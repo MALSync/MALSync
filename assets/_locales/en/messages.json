@@ -1214,7 +1214,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "The sync with the database happens only when you open an episode or chapter on any of the $Link1$supported pages$LinkEnd1$ — no worries, we definitely have you favorite website in the list!",
+        "message": "The sync with the database happens only when you open an episode or chapter on any of the $Link1$supported pages$LinkEnd1$ — no worries, we definitely have your favorite website in the list!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {

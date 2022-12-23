@@ -42,7 +42,7 @@
               <h4>🔁 {{ lang('installPage_Howto') }}</h4>
               <p v-dompurify-html="lang('installPage_Howto_Description')"></p>
               <p>
-                <strong>anime:</strong><br />
+                <strong>For anime:</strong><br />
                 The sync waits until 85% of the video is watched.
               </p>
               <p>

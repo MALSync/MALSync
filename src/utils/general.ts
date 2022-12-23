@@ -936,3 +936,8 @@ export function isDomainMatching(url, domain) {
   const { host } = urlObj;
   return host === domain || host.endsWith(`.${domain}`);
 }
+
+export function upperCaseFirstLetter(string) {
+  if (!string || string.length < 2) return string;
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

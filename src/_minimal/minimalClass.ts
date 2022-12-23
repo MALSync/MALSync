@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { createApp } from '../utils/Vue';
 import minimalApp from './minimalApp.vue';
 import { status } from '../_provider/definitions';
-import router from './router';
+import { router } from './router';
 import { Progress } from '../utils/progress';
 import { urlToSlug } from '../utils/slugs';
 
@@ -22,7 +22,7 @@ export class Minimal {
     this.minimal.find('body').append(j.html('<div id="minimalApp"></div>'));
     this.minimalVue = createApp(minimalApp, this.minimal.find('#minimalApp').get(0), {
       use: vue => {
-        vue.use(router);
+        vue.use(router());
         vue.provide('fill', this.fillState);
         vue.provide('closeFunction', closeFunction);
         vue.provide('fullscreenFunction', fullscreenFunction);
@@ -38,7 +38,7 @@ export class Minimal {
     if (data.url && home) {
       const slugObj = urlToSlug(data.url);
       if (slugObj && slugObj.path) {
-        router.push({ name: 'Overview', params: slugObj.path });
+        router().push({ name: 'Overview', params: slugObj.path });
         return;
       }
     }
