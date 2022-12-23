@@ -1,7 +1,0 @@
-{
-  "search": "https://alpha-scans.org/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://alpha-scans.org/*"]
-  }
-}
-  

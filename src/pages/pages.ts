@@ -117,7 +117,6 @@ import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
 import { SugarBabies } from './SugarBabies/main';
-import { AlphaScans } from './AlphaScans/main';
 import { Aniworld } from './Aniworld/main';
 import { BetterAnime } from './BetterAnime/main';
 import { AMAScan } from './AMAScan/main';
@@ -257,7 +256,6 @@ export const pages = {
   DisasterScans,
   DynastyScans,
   SugarBabies,
-  AlphaScans,
   Aniworld,
   BetterAnime,
   AMAScan,
