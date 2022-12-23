@@ -69,7 +69,6 @@ import { LynxScans } from './LynxScans/main';
 import { SKScans } from './SKScans/main';
 import { ZeroScans } from './ZeroScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
-import { KireiCake } from './KireiCake/main';
 import { SenseScans } from './SenseScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
@@ -207,7 +206,6 @@ export const pages = {
   SKScans,
   ZeroScans,
   DeathTollScans,
-  KireiCake,
   SenseScans,
   ManhuaPlus,
   Readm,
