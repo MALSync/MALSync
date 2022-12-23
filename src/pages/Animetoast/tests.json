@@ -3,14 +3,14 @@
     "url": "https://www.animetoast.cc/",
     "testCases": [
       {
-        "url": "https://www.animetoast.cc/vinland-saga-ger-sub/?link=81",
+        "url": "https://www.animetoast.cc/vinland-saga-ger-sub/?link=9",
         "expected": {
           "sync": true,
           "title": "Vinland Saga",
           "identifier": "vinland-saga-ger-sub",
           "overviewUrl": "https://www.animetoast.cc/vinland-saga-ger-sub",
           "episode": 10,
-          "nextEpUrl": "https://www.animetoast.cc/vinland-saga-ger-sub/?link=82",
+          "nextEpUrl": "https://www.animetoast.cc/vinland-saga-ger-sub/?link=10",
           "uiSelector": true
         }
       },
