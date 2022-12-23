@@ -15,7 +15,6 @@ import { Proxer } from './Proxer/main';
 import { Aniflix } from './Aniflix/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { Wakanim } from './Wakanim/main';
-import { AnimeIndo } from './AnimeIndo/main';
 import { Shinden } from './Shinden/main';
 import { Voiranime } from './Voiranime/main';
 import { VIZ } from './VIZ/main';
@@ -156,7 +155,6 @@ export const pages = {
   Plex,
   Aniflix,
   KickAssAnime,
-  AnimeIndo,
   Shinden,
   Voiranime,
   MangaNato,
