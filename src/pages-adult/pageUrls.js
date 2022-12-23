@@ -14,9 +14,6 @@ module.exports = {
   hanime: {
     match: ['*://*.hanime.tv/*'],
   },
-  HentaiHaven: {
-    match: ['*://hentaihaven.org/*'],
-  },
   Hentaigasm: {
     match: ['*://hentaigasm.com/*'],
   },
