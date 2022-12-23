@@ -315,12 +315,8 @@ module.exports = {
   // animixplay
   animixplay: {
     match: [
-      '*://*.animixplay.to/api/live*',
-      '*://*.animixplay.to/goplyr.html*',
-      '*://*.animixplay.to/player.html*',
       '*://*.plyr.link/*',
       '*://*.plyr.in/*',
-      '*://jzscuqezoqkcpvy.win/*',
       '*://v.cdnmix.org/*',
       '*://v.cachecow.eu/*',
       '*://v.vvid.cc/*',
@@ -628,16 +624,6 @@ module.exports = {
   // animixplay
   kimanime: {
     match: ['*://kimanime.ru/AnimeIframe/*'],
-  },
-  // animixplay
-  github: {
-    match: [
-      '*://akaneshinjou.github.io/*',
-      '*://akane-shinjou.github.io/*',
-      '*://andhaetg.github.io/*',
-      '*://akaneshinjou.netlify.app/*',
-      '*://anfruete.github.io/*',
-    ],
   },
   // zoro
   vidcloud: {

@@ -54,7 +54,6 @@ export const settingsObj = {
       'MangaFox',
       'MangaSee',
       'YugenAnime',
-      'AniMixPlay',
       'Zoro',
       'Funimation',
       'Hulu',

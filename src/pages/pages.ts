@@ -56,7 +56,6 @@ import { AnimeStreamingFR } from './AnimeStreamingFR/main';
 import { Scantrad } from './Scantrad/main';
 import { Furyosquad } from './Furyosquad/main';
 import { AnimeId } from './AnimeId/main';
-import { AniMixPlay } from './AniMixPlay/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
 import { AnimeUnity } from './AnimeUnity/main';
 import { MangaHere } from './MangaHere/main';
@@ -198,7 +197,6 @@ export const pages = {
   Scantrad,
   Furyosquad,
   AnimeId,
-  AniMixPlay,
   MyAnimeListVideo,
   AnimeUnity,
   MangaHere,
