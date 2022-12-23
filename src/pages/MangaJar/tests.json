@@ -3,27 +3,27 @@
   "url": "https://mangajar.com/",
   "testCases": [
     {
-      "url": "https://mangajar.com/manga/solo-leveling-abs3y4P/chapter/120",
+      "url": "https://mangajar.com/manga/solo-leveling-abs3Top/chapter/120",
       "expected": {
         "sync": true,
         "title": "Solo Leveling",
-        "identifier": "solo-leveling-abs3y4P",
-        "overviewUrl": "https://mangajar.com/manga/solo-leveling-abs3y4P",
-        "nextEpUrl": "https://mangajar.com/manga/solo-leveling-abs3y4P/chapter/121",
+        "identifier": "solo-leveling-abs3Top",
+        "overviewUrl": "https://mangajar.com/manga/solo-leveling-abs3Top",
+        "nextEpUrl": "https://mangajar.com/manga/solo-leveling-abs3Top/chapter/121",
         "episode": 120,
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangajar.com/manga/solo-leveling-abs3y4P",
+      "url": "https://mangajar.com/manga/solo-leveling-abs3Top",
       "expected": {
         "sync": false,
         "title": "Solo Leveling",
-        "identifier": "solo-leveling-abs3y4P",
+        "identifier": "solo-leveling-abs3Top",
         "uiSelector": true,
         "epList": {
-          "5": "https://mangajar.com/manga/solo-leveling-abs3y4P/chapter/5",
-          "126": "https://mangajar.com/manga/solo-leveling-abs3y4P/chapter/126"
+          "5": "https://mangajar.com/manga/solo-leveling-abs3Top/chapter/5",
+          "126": "https://mangajar.com/manga/solo-leveling-abs3Top/chapter/126"
         }
       }
     }
