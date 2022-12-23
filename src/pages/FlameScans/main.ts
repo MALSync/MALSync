@@ -16,10 +16,18 @@ export const FlameScans: pageInterface = {
       return j.$('.chapterbody .headpost a').text().trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(FlameScans.sync.getOverviewUrl(url), 4);
+      return replaceId(utils.urlPart(FlameScans.sync.getOverviewUrl(url), 4));
     },
     getOverviewUrl(url) {
-      return j.$('.chapterbody .headpost a').attr('href') || '';
+      const overviewUrl = j.$('.chapterbody .headpost a').attr('href') || '';
+
+      const temp = overviewUrl.split('/');
+
+      if (temp[3] === 'series') return overviewUrl;
+
+      temp.splice(3, 1);
+
+      return temp.join('/');
     },
     getEpisode(url) {
       const elementEpN = j.$('select#chapter option[selected="selected"]').first().text();
@@ -33,9 +41,15 @@ export const FlameScans: pageInterface = {
     nextEpUrl(url) {
       const next = j.$('a.ch-next-btn').attr('href');
 
-      if (next === '#/next/') return undefined;
+      if (!next || next === '#/next/') return undefined;
 
-      return next;
+      const temp = next.split('/');
+
+      if (temp[3] === 'manga') return next;
+
+      temp.splice(3, 1);
+
+      return temp.join('/');
     },
   },
   overview: {
@@ -43,7 +57,10 @@ export const FlameScans: pageInterface = {
       return j.$('h1.entry-title').text().trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4).replace(/^\d+-/g, '');
+      if (utils.urlPart(url, 3) === 'series') {
+        return replaceId(utils.urlPart(url, 4));
+      }
+      return replaceId(utils.urlPart(url, 5));
     },
     uiSelector(selector) {
       j.$('.second-half .right-side .bixbox')
@@ -82,7 +99,7 @@ export const FlameScans: pageInterface = {
         con.error('404');
         return;
       }
-      if (utils.urlPart(page.url, 3) === 'series' && utils.urlPart(page.url, 4) !== '') {
+      if (j.$('h1.entry-title').length && j.$('.epcheck').length) {
         page.handlePage();
       }
       if (j.$('div#content.readercontent').length) {
@@ -101,3 +118,7 @@ export const FlameScans: pageInterface = {
     });
   },
 };
+
+function replaceId(id: string) {
+  return id.replace(/^\d+-/g, '');
+}
