@@ -99,7 +99,6 @@ import { ComicK } from './ComicK/main';
 import { Japanread } from './Japanread/main';
 import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
-import { ArangScans } from './ArangScans/main';
 import { HunlightScans } from './HunlightScans/main';
 import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
@@ -238,7 +237,6 @@ export const pages = {
   Japanread,
   Bentomanga,
   MangaSushi,
-  ArangScans,
   HunlightScans,
   TritiniaScans,
   ReadManhua,
