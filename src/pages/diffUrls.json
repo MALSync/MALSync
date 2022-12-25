@@ -142,6 +142,7 @@
     ],
     "iframe": [
       "https://vidstreaming.link/*",
+      "https://veestream.net/e/*",
       "https://gogohd.pro/embedplus*",
       "https://gogohd.pro/streaming.php?*",
       "https://gogohd.pro/load.php?*",
