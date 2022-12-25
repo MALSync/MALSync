@@ -227,6 +227,10 @@ module.exports = {
   pstream: {
     match: ['*://*.pstream.net/e/*'],
   },
+  // Neko-sama
+  veestream: {
+    match: ['*://veestream.net/e/*'],
+  },
   // Animeultima
   animefever: {
     match: ['*://*.animefever.tv/embed/*'],
