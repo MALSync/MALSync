@@ -13,7 +13,7 @@
   "devDependencies": {
     "@sentry/webpack-plugin": "^1.20.0",
     "@types/chai": "^4.3.4",
-    "@types/jquery": "^3.5.14",
+    "@types/jquery": "^3.5.16",
     "@types/mocha": "^10.0.1",
     "@types/node": "^16.0.0",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
@@ -122,7 +122,7 @@
     "fork-ts-checker-webpack-plugin": "^7.2.14",
     "fuse.js": "^6.6.2",
     "hex-to-hsl": "^1.0.2",
-    "jquery": "^3.6.2",
+    "jquery": "^3.6.3",
     "popper-max-size-modifier": "^0.2.0",
     "semver": "^7.3.8",
     "string-similarity": "^4.0.4",
