@@ -574,6 +574,7 @@ module.exports = {
       '*://20demidistance9elongations.com/e/*',
       '*://telyn610zoanthropy.com/e/*',
       '*://toxitabellaeatrebates306.com/e/*',
+      '*://greaseball6eventual20.com/e/*',
     ],
   },
   // animewho
