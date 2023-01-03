@@ -64,6 +64,10 @@ export class Single extends SingleAbstract {
     this.animeInfo.my_list_status.status = helper.animeStatus[status];
   }
 
+  increaseRewatchCount(): void {
+    this.animeInfo.my_list_status.num_times_rewatched++;
+  }
+
   _getScore() {
     return this.animeInfo.my_list_status.score;
   }

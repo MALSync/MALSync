@@ -563,6 +563,8 @@ export abstract class SingleAbstract {
     return null;
   }
 
+  public increaseRewatchCount(): void {} //@ts-ignore
+
   getStateEl() {
     return {
       onList: this.isOnList(),
