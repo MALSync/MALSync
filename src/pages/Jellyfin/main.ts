@@ -91,8 +91,9 @@ async function checkItemId(page, id, curUrl = '', video = false) {
           const genres: any = JSON.parse(response2.responseText);
           con.log('genres', genres);
           if (
-            genres.Path.includes('Anime') ||
-            genres.GenreItems.find(genre => genre.Name.toLowerCase() === 'anime')
+            genres.Path.toLowerCase().includes('anime') ||
+            genres.GenreItems.find(genre => genre.Name.toLowerCase() === 'anime') ||
+            genres.Tags.find(tag => tag.toLowerCase() === 'anime')
           ) {
             con.info('Anime detected');
             if (curUrl) {
