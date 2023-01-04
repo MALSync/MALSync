@@ -65,10 +65,9 @@ export class Single extends SingleAbstract {
   }
 
   increaseRewatchCount(): void {
-    if (this.type === "manga") {
+    if (this.type === 'manga') {
       this.animeInfo.my_list_status.num_times_reread++;
-    }
-    else {
+    } else {
       this.animeInfo.my_list_status.num_times_rewatched++;
     }
   }

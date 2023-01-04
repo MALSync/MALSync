@@ -564,7 +564,7 @@ export abstract class SingleAbstract {
   }
 
   public increaseRewatchCount(): void {
-    //do nothing
+    //  do nothing
   }
 
   getStateEl() {
@@ -699,7 +699,7 @@ export abstract class SingleAbstract {
       .then(res => {
         if (res) {
           this.setStatus(definitions.status.Completed);
-          this.increaseRewatchCount()
+          this.increaseRewatchCount();
         }
         return res;
       });
