@@ -1,0 +1,36 @@
+{
+  "title": "Hdrezka",
+  "url": "https://hdrezka.ag/",
+  "testCases": [
+    {
+      "url": "https://hdrezka.ag/animation/adventures/21251-net-igry-net-zhizni-2014.html#t:89-s:1-e:5",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life",
+        "identifier": "21251-net-igry-net-zhizni-2014.html",
+        "overviewUrl": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html",
+        "nextEpUrl": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html#t:89-s:1-e:6",
+        "episode": 5,
+        "uiSelector": true,
+        "epList": {
+          "2": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html#t:89-s:1-e:2"
+        }
+      }
+    },
+    {
+      "url": "https://hdrezka.ag/animation/adventures/21251-net-igry-net-zhizni-2014.html",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life",
+        "identifier": "21251-net-igry-net-zhizni-2014.html",
+        "overviewUrl": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html",
+        "nextEpUrl": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html#t:89-s:1-e:2",
+        "episode": 1,
+        "uiSelector": true,
+        "epList": {
+          "7": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html#t:89-s:1-e:7"
+        }
+      }
+    }
+  ]
+}
