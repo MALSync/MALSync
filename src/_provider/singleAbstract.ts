@@ -563,7 +563,9 @@ export abstract class SingleAbstract {
     return null;
   }
 
-  public increaseRewatchCount(): void {} //@ts-ignore
+  public increaseRewatchCount(): void {
+    //do nothing
+  }
 
   getStateEl() {
     return {
