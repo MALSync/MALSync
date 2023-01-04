@@ -52,7 +52,7 @@
         "description": "Cancel"
     },
     "updated": {
-        "message": "Aktualisieren",
+        "message": "Aktualisiert",
         "description": "Flash message that shows up after updating an anime/manga entry"
     },
     "removed": {
@@ -128,11 +128,11 @@
         "description": "Plan to Read"
     },
     "UI_Status_Rewatching_anime": {
-        "message": "Erneutes ansehen",
+        "message": "Erneutes Ansehen",
         "description": "Status to rewatch anime"
     },
     "UI_Status_Rewatching_manga": {
-        "message": "Erneutes lesen",
+        "message": "Erneutes Lesen",
         "description": "Status to reread manga"
     },
     "UI_Episode": {
@@ -264,7 +264,7 @@
         "description": "When update to MAL failes"
     },
     "syncPage_flashConfirm_complete": {
-        "message": "Als Abgeschlossen setzen?",
+        "message": "Als abgeschlossen setzen?",
         "description": "Question when last episode is synced"
     },
     "syncPage_flashConfirm_start_anime": {
@@ -272,11 +272,11 @@
         "description": "Start watching anime message"
     },
     "syncPage_flashConfirm_rewatch_finish_anime": {
-        "message": "Als Abgeschlossen setzen?",
+        "message": "Als abgeschlossen setzen?",
         "description": "Finish rewatching anime message"
     },
     "syncPage_flashConfirm_rewatch_finish_manga": {
-        "message": "Als Abgeschlossen setzen?",
+        "message": "Als abgeschlossen setzen?",
         "description": "Finish rereading manga message"
     },
     "syncPage_flashConfirm_start_manga": {
@@ -336,7 +336,7 @@
         }
     },
     "syncPage_flashConfirm_offsetHandler_1": {
-        "message": "Ein möglicher Episoden Offset von $calcOffset$ wurde erkannt. Ist das Korrekt?",
+        "message": "Ein möglicher Episoden-Offset von $calcOffset$ wurde erkannt. Ist das korrekt?",
         "description": "offsetHandler Episode",
         "placeholders": {
             "calcOffset": {
@@ -346,11 +346,11 @@
         }
     },
     "anilistClass_authentication": {
-        "message": "Der Token wurde gespeichert. Die Seite kann jetzt geschossen werden.",
+        "message": "Der Token wurde gespeichert. Die Seite kann jetzt geschlossen werden.",
         "description": "The token has been obtained and saved"
     },
     "kitsuClass_authentication_text": {
-        "message": "Um dich bei Kitsu anzumelden, musst du deine Zugangsdaten eingeben.<br> Diese werden nicht auf deinem Computer oder sonstwo gespeichert. <br> Die Daten werden ohne Umwege an kitsu gesendet und nur der zurückgegebene Zugangs Token wird gespeichert. <br>",
+        "message": "Um dich bei Kitsu anzumelden, musst du deine Zugangsdaten eingeben.<br> Diese werden nicht auf deinem Computer oder sonstwo gespeichert. <br> Die Daten werden ohne Umwege an kitsu gesendet und nur der zurückgegebene Zugangs-Token wird gespeichert. <br>",
         "description": "Authentication text in Kitsu"
     },
     "kitsuClass_authentication_Password": {
@@ -362,7 +362,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Der Token wurde gespeichert. Die Seite kann jetzt geschossen werden.",
+        "message": "Der Token wurde gespeichert. Die Seite kann jetzt geschlossen werden.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -402,11 +402,11 @@
         "description": "min"
     },
     "bookmarksItem_secs": {
-        "message": "sekunden",
+        "message": "Sekunden",
         "description": "seconds"
     },
     "bookmarksItem_sec": {
-        "message": "sekunde",
+        "message": "Sekunde",
         "description": "second"
     },
     "bookmarksItem_now": {
@@ -454,7 +454,7 @@
         }
     },
     "prediction_Last_manga": {
-        "message": "Letzte Kapitel vor $time$ veröffentlicht",
+        "message": "Letztes Kapitel vor $time$ veröffentlicht",
         "description": "Text for last chapter release time",
         "placeholders": {
             "time": {
@@ -496,19 +496,19 @@
         }
     },
     "correction_Offset": {
-        "message": "Episoden Offset",
+        "message": "Episoden-Offset",
         "description": "Episode Offset"
     },
     "correction_Offset_text": {
-        "message": "Bespiel: Falls eine 2. Staffel die Episoden 13-24 besitzt, kann durch den Offset von \"-12\" die richtige Episodennummer getrackt werden.",
+        "message": "Beispiel: Falls eine 2. Staffel die Episoden 13-24 besitzt, kann durch ein Offset von \"-12\" die richtige Episodennummer getrackt werden.",
         "description": "Episode Offset - Text"
     },
     "correction_WrongUrl": {
-        "message": "Ersetze diese URL nur wenn es auf einen falschen Anime/Manga zeigt.",
+        "message": "Ersetze diese URL nur, wenn es auf einen falschen Anime/Manga zeigt.",
         "description": "URL is Wrong"
     },
     "correction_Search": {
-        "message": "Verbesserungs Suche",
+        "message": "Verbesserungssuche",
         "description": "Correction Search"
     },
     "correction_Search_text": {
@@ -524,7 +524,7 @@
         "description": "No entry on MyAnimeList"
     },
     "correction_NewOffset": {
-        "message": "Neuen Offset ($offset$) gesetzt",
+        "message": "Neuer Offset ($offset$) gesetzt.",
         "description": "New Offset",
         "placeholders": {
             "offset": {
@@ -588,7 +588,7 @@
         "description": "Characters"
     },
     "overview_OpeningTheme": {
-        "message": "Titelmusik",
+        "message": "Titelmusik:",
         "description": "Opening Theme"
     },
     "overview_EndingTheme": {
@@ -620,7 +620,7 @@
         "description": "Authenticate"
     },
     "settings_LocalSync": {
-        "message": "Lokaler Speicher fallback",
+        "message": "Lokaler Speicher Fallback",
         "description": "Option to activate the local storage fallback sync"
     },
     "settings_LocalSync_Import": {
@@ -632,7 +632,7 @@
         "description": "Button to Export Local storage fallback data"
     },
     "settings_Animesync": {
-        "message": "Anime sync",
+        "message": "Anime Sync",
         "description": "Anime sync"
     },
     "settings_Animesync_Video": {
@@ -648,7 +648,7 @@
         "description": "Manual"
     },
     "settings_Mangasync": {
-        "message": "Manga sync",
+        "message": "Manga Sync Fallback",
         "description": "Manga sync"
     },
     "settings_AutoTracking_Video": {
@@ -662,7 +662,7 @@
         }
     },
     "settings_AutoTracking_Instant": {
-        "message": "Verzögere die instante Aktualisierung um $delay$ Sekunden",
+        "message": "Verzögere die sofortige Aktualisierung um $delay$ Sekunden",
         "description": "Delay instant autotracking",
         "placeholders": {
             "delay": {
@@ -672,7 +672,7 @@
         }
     },
     "settings_StreamingSite": {
-        "message": "Streaming Seiten Links",
+        "message": "Quicklinks",
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
@@ -684,7 +684,7 @@
         "description": "Thumbnails"
     },
     "settings_Thumbnails_text": {
-        "message": "Diese Option definiert die größe der Thumbnails auf MAL. Wie zum Beispiel für characters, people und recommendations",
+        "message": "Diese Option definiert die Größe der Thumbnails auf MAL, wie zum Beispiel für Charaktere, Personen und Empfehlungen.",
         "description": "Thumbnails - Text"
     },
     "settings_Thumbnails_Large": {
@@ -724,7 +724,7 @@
         "description": "Continue watching links"
     },
     "settings_malResume": {
-        "message": "Links für die Episoden Wiederaufnahme",
+        "message": "Links für die Episodenwiederaufnahme",
         "description": "Resume watching links"
     },
     "settings_usedPage": {
@@ -740,15 +740,15 @@
         "description": "Shows an 'action required' popup hidding big popups"
     },
     "settings_miniMAL_floatButtonCorrection": {
-        "message": "Der miniMAL button öffnet die Korrekturoberfläche",
+        "message": "Der miniMAL-Button öffnet die Korrekturoberfläche",
         "description": "Remap floating button to the correction UI"
     },
     "settings_miniMAL_floatButtonHide": {
-        "message": "Verstecke den miniMAL Menü Button",
+        "message": "Verstecke den miniMAL-Button",
         "description": "Hide miniMAL floating menu button"
     },
     "settings_miniMAL_autoCloseMinimal": {
-        "message": "Schließe miniMAL beim klick außerhalb ",
+        "message": "Schließe miniMAL beim Klick außerhalb",
         "description": "Clicking outside closes miniMAL"
     },
     "settings_miniMAL_Display": {
@@ -850,11 +850,11 @@
         }
     },
     "settings_UpdateCheck": {
-        "message": "Update Check",
+        "message": "Update-Check",
         "description": "Update Check"
     },
     "settings_UpdateCheck_Text": {
-        "message": "Überprüft die Seiten auf neue Episoden im Hintergrund",
+        "message": "Überprüft im Hintergrund die Seiten auf neue Episoden.",
         "description": "Update Check - Text"
     },
     "settings_Interval": {
@@ -866,11 +866,11 @@
         "description": "Interval - Off"
     },
     "settings_Interval_Default_Anime": {
-        "message": "Default Anime",
+        "message": "Standard-Anime",
         "description": "Dropdown label for selecting the global progress anime source"
     },
     "settings_Interval_Default_Manga": {
-        "message": "Default Manga",
+        "message": "Standard-Manga",
         "description": "Dropdown label for selecting the global progress manga source"
     },
     "settings_ProgressCheck": {
@@ -890,11 +890,11 @@
         "description": "ETC"
     },
     "settings_Userscriptmode": {
-        "message": "Userscript modus",
+        "message": "Userscript-Modus",
         "description": "Userscript mode"
     },
     "settings_Userscriptmode_Text": {
-        "message": "Schaltet das content script aus. Dies ermöglicht es die Extension zusammen mit dem Userscript zu benutzen.",
+        "message": "Schaltet das Content-Script aus. Dies ermöglicht es, die Erweiterung zusammen mit dem Userscript zu benutzen.",
         "description": "Userscript mode - Text"
     },
     "settings_highlightAllEp": {
@@ -902,7 +902,7 @@
         "description": "Highlight all Episodes/Chapters"
     },
     "settings_highlightAllEp_Text": {
-        "message": "Diese Option hebt alle angesehenen Kapitel / Episoden in der Liste hervor, die du auf einigen Anime / Manga-Websites finden kannst",
+        "message": "Diese Option hebt alle angesehenen Kapitel/Episoden in der Liste hervor, die du auf einigen Anime-/Manga-Webseiten finden kannst",
         "description": "Highlight all Episodes/Chapters - Text"
     },
     "settings_ClearCache": {
@@ -918,11 +918,11 @@
         "description": "Dropdown option to show the cover from mal on discord"
     },
     "settings_presence_largeimage_website": {
-        "message": "Webseiten Icon",
+        "message": "Webseiten-Symbol",
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
-        "message": "Malsync Icon",
+        "message": "Malsync-Symbol",
         "description": "Dropdown option to show the malsync icon on discord"
     },
     "settings_enabled": {
@@ -942,15 +942,15 @@
         "description": "Dropdown option to disable the estimation for an anime/manga"
     },
     "settings_progress_default": {
-        "message": "Default",
+        "message": "Standard",
         "description": "Dropdown option to use the default in the estimation for an anime/manga"
     },
     "settings_website_button": {
-        "message": "Websites",
+        "message": "Webseiten",
         "description": "Button that leads to the config page where individual pages can be disabled"
     },
     "settings_custom_domains_button": {
-        "message": "Benutzerdefinierte Domains",
+        "message": "Benutzerdefinierte Domänen",
         "description": "Button that leads to the custom domain configuration page"
     },
     "settings_clean_tags_button": {
@@ -962,7 +962,7 @@
         "description": "Link button which links to more informations"
     },
     "settings_presenceShowButtons": {
-        "message": "Zeige den Button um einen Anime/Manga auf MAL oder einem anderen Anbieter anzusehen",
+        "message": "Zeige die Schaltfläche um einen Anime/Manga auf MAL oder einem anderen Anbieter anzusehen",
         "description": "Show button to view the anime/manga on MAL or another provider"
     },
     "settings_presenceShowMalsync": {
@@ -978,7 +978,7 @@
         "description": "Start Check"
     },
     "updateCheck_NotificationCheck": {
-        "message": "Benachrichtigungs Test",
+        "message": "Benachrichtigungstest",
         "description": "Notification Check"
     },
     "updateCheck_Episode": {
@@ -1010,7 +1010,7 @@
         "description": "Settings"
     },
     "minimalClass_Popup": {
-        "message": "bitte erlaube Popups für diese Webseite",
+        "message": "Bitte erlaube Popups für diese Webseite",
         "description": "Please allow pop-ups for this website"
     },
     "minimalClass_versionMsg": {
@@ -1032,31 +1032,31 @@
         }
     },
     "minimalClass_versionMsg_Text_1": {
-        "message": "Danke das du MAL-Sync installiert hast",
+        "message": "Danke, dass du MAL-Sync installiert hast",
         "description": "Update version - Text 1"
     },
     "minimalClass_versionMsg_Text_2": {
-        "message": "Trete unserer Community, um Hilfe zu erhalten und neue Features vorzuschlagen",
+        "message": "Trete unserer Community bei, um Hilfe zu erhalten und neue Features vorzuschlagen",
         "description": "Update version - Text 2"
     },
     "minimalClass_versionMsg_Text_3": {
-        "message": "Schau dir unseren Open Source Code an",
+        "message": "Schau dir unseren Open-Source-Code an",
         "description": "Update version - Text 3"
     },
     "minimalClass_versionMsg_Text_4": {
-        "message": "Abonniere die Filterliste (für uBlock Nutzer)",
+        "message": "Abonniere die Filterliste (für uBlock-Nutzer)",
         "description": "Update version - Text 4"
     },
     "installPage_Mode": {
-        "message": "Bitte wähle aus, welche Anime Datenbank du verwenden möchtest",
+        "message": "Bitte wähle aus, welche Anime-Datenbank du verwenden möchtest",
         "description": "Header for the MAL-sync provider dropdown"
     },
     "installPage_Howto": {
-        "message": "Schau dir an wie MAL-Sync funktioniert",
+        "message": "Schau dir an, wie MAL-Sync funktioniert",
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "Öffne einfach eine Episode oder ein Kapitel auf einer der $Link1$unterstützen Seiten$LinkEnd1$. Die Synchronisation wartet, bis 85% des Videos angesehen wurden. Bei Mangas wird es beim Laden der Seite synchronisiert. Dies kann in den $Link2$Einstellungen$LinkEnd2$ geändert werden.",
+        "message": "Die Synchronisation mit der Datenbank erfolgt nur, wenn du eine Episode oder ein Kapitel auf einer der $Link1$unterstützten Seiten$LinkEnd1$ öffnest - keine Sorge, wir haben deine Lieblingsseite definitiv in unserer Liste!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -1078,11 +1078,11 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Finde heraus wie einen falschen MAL Eintrag beheben kannst",
+        "message": "Finde heraus, wie du einen falschen MAL-Eintrag beheben kannst",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
-        "message": "Du kannst die Beziehung ganz einfach ändern, wie in der gif unten gezeigt. Ein Episoden-Offset kann auch auf dieser Seite eingestellt werden.",
+        "message": "Du kannst die Beziehung ganz einfach ändern, wie in dem GIF unten gezeigt. Ein Episoden-Offset kann auch auf dieser Seite eingestellt werden.",
         "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
@@ -1100,7 +1100,7 @@
         }
     },
     "Emby_Authenticate": {
-        "message": "MAL-Sync benötigt einen Emby-API-Schlüssel, um zu funktionieren. Mehr Infos $Link1$Hier$Link2$",
+        "message": "MAL-Sync benötigt einen Emby-API-Schlüssel, um zu funktionieren. Mehr Infos $Link1$hier$Link2$",
         "description": "Emby Authentication",
         "placeholders": {
             "Link1": {
@@ -1154,7 +1154,7 @@
         "description": "Error message if no next episode could be found after pressing the next episode shortcut"
     },
     "settings_filler": {
-        "message": "Prüfe auf Filler/Recap Episoden",
+        "message": "Prüfe auf Filler-/Recap-Episoden",
         "description": "Option to enable filler checking"
     },
     "settings_crash_report": {
@@ -1162,11 +1162,11 @@
         "description": "If to send crash reports"
     },
     "settings_filler_text": {
-        "message": "Dies überprüft ob eine Episode als Filler/Recap auf MyAnimeList markiert wurde.",
+        "message": "Dies überprüft, ob eine Episode als Filler/Recap auf MyAnimeList markiert wurde.",
         "description": "filler tooltip"
     },
     "settings_crash_report_text": {
-        "message": "Hilft uns Fehler zu beheben. Es werden keine sensiblen Daten gesendet",
+        "message": "Hilft uns Fehler zu beheben. Es werden keine sensiblen Daten gesendet.",
         "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
@@ -1182,7 +1182,7 @@
         "description": "Position of the quicklinks"
     },
     "settings_anilist_update_ui": {
-        "message": "Aktualisierungs UI",
+        "message": "Aktualisierungs-UI",
         "description": "UI in the aniList sidebar to update episodes progress and the score"
     },
     "settings_custom_domains_missing_permissions_header": {
@@ -1288,7 +1288,7 @@
         "description": "miniMAL Display Center"
     },
     "settings_miniMAL_pwa": {
-        "message": "PWA Webseite",
+        "message": "PWA-Webseite",
         "description": "Link to the PWA version of the extension popup"
     },
     "settings_read_more": {
@@ -1298,5 +1298,49 @@
     "settings_read_less": {
         "message": "Weniger anzeigen",
         "description": "Button to show less the description"
+    },
+    "settings_onsite": {
+        "message": "Onsite",
+        "description": "Header of the section to change onsite website appearance and features"
+    },
+    "settings_theming": {
+        "message": "Theming",
+        "description": "Header of the theming section"
+    },
+    "settings_theming_color": {
+        "message": "Farbthema",
+        "description": "Option to select a custom theme color for the extension popup"
+    },
+    "overview_Streaming": {
+        "message": "Streaming",
+        "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "Anime-Such-URL",
+        "description": "Form field title to enter the search url for anime"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "Manga-Such-URL",
+        "description": "Form field title to enter the search url for manga"
+    },
+    "settings_tracking": {
+        "message": "Tracking",
+        "description": "tracking settings header"
+    },
+    "settings_tracking_disabled": {
+        "message": "Tracking deaktiviert",
+        "description": "Header for section with websites with disabled tracking"
+    },
+    "settings_custom_domains_missing_permissions_long": {
+        "message": "Einige Seitenberechtigungen sind noch nicht erteilt",
+        "description": "Asking to allow missing domain permissions"
+    },
+    "settings_Mangasync_readerTracking": {
+        "message": "Synchronisiere Manga nach 90% der Seiten",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+    },
+    "settings_custom_position_below": {
+        "message": "Unter Information",
+        "description": "Position of the quicklinks below the information section"
     }
 }

@@ -652,7 +652,7 @@
         "description": "Manga sync"
     },
     "settings_AutoTracking_Video": {
-        "message": "Actualizar cuando el progreso del video sea de $videoDuration$% ",
+        "message": "Actualizar cuando el progreso del video sea de $videoDuration$%",
         "description": "Update Episode of video progress",
         "placeholders": {
             "videoDuration": {
@@ -1214,11 +1214,11 @@
         "description": "Header of the streaming link section of the popup anime overview"
     },
     "settings_profile_no_login": {
-        "message": "Sesión No Iniciada",
+        "message": "Sesión no iniciada",
         "description": "Text if not logged in"
     },
     "settings_profile_logout": {
-        "message": "Cerrar Sesión",
+        "message": "Cerrar sesión",
         "description": "Button to logout"
     },
     "settings_profile_check": {
