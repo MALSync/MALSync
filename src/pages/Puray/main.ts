@@ -17,7 +17,7 @@ export const Puray: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('span.text-sm')
+        .$('[href^="/anime/"]')
         .first()
         .text()
         .replace(/\(.*?\)/g, '')
@@ -27,7 +27,7 @@ export const Puray: pageInterface = {
       return Puray.sync.getTitle(url);
     },
     getOverviewUrl(url) {
-      return j.$('span.text-sm').first().parent().prop('href');
+      return j.$('[href^="/anime/"]').first().prop('href');
     },
     getEpisode(url) {
       return Number(j.$('span.text-lg').first().text().split('-')[0]);
@@ -38,21 +38,18 @@ export const Puray: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
 
+    let inter;
+
     utils.fullUrlChangeDetect(function () {
       page.reset();
       check();
     });
+
     function check() {
-      utils.waitUntilTrue(
-        function () {
-          if (j.$('#spinner').length) {
-            return false;
-          }
-          return true;
-        },
-        function () {
-          page.handlePage();
-        },
+      clearInterval(inter);
+      inter = utils.waitUntilTrue(
+        () => Puray.sync.getIdentifier(page.url),
+        () => page.handlePage(),
       );
     }
   },
