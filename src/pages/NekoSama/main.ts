@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const NekoSama: pageInterface = {
   name: 'NekoSama',
-  domain: 'https://www.neko-sama.fr',
+  domain: 'https://neko-sama.fr',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
@@ -52,7 +52,10 @@ export const NekoSama: pageInterface = {
 
   overview: {
     getTitle(url) {
-      return utils.getBaseText($('#head > div.content > div > div > div > h1'));
+      return utils
+        .getBaseText($('#head > div.content > div > div > div > h1'))
+        .split(' VOSTFR')[0]
+        .split(' VF')[0];
     },
     getIdentifier(url) {
       return NekoSama.sync.getIdentifier(url);
@@ -71,7 +74,7 @@ export const NekoSama: pageInterface = {
         return utils.absoluteLink(selector.find('a').first().attr('href'), NekoSama.domain);
       },
       elementEp(selector) {
-        return Number(selector.find('a').first().text().replace(/\D+/, ''));
+        return Number(selector.find('a').first().find('span.episode').text().replace(/\D+/, ''));
       },
     },
   },
