@@ -1,5 +1,6 @@
 {
   "search": "https://comick.app/search?q={searchterm}",
+  "searchDatabase": "Comick",
   "urls": {
     "match": ["*://comick.app/*"]
   }
