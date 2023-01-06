@@ -1,27 +1,66 @@
 {
   "title": "NekoSama",
-  "url": "https://www.neko-sama.fr/",
+  "url": "https://neko-sama.fr/",
   "testCases": [
     {
-      "url": "https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vostfr",
+      "url": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vostfr",
       "expected": {
         "sync": true,
         "title": "Fullmetal Alchemist: Brotherhood",
         "identifier": "3458",
-        "overviewUrl": "https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist",
-        "nextEpUrl": "https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04-vostfr",
+        "overviewUrl": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-vostfr",
+        "nextEpUrl": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04-vostfr",
         "episode": 3,
         "uiSelector": false
       }
     },
     {
-      "url": "https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist",
+      "url": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vf",
+      "expected": {
+        "sync": true,
+        "title": "Fullmetal Alchemist: Brotherhood",
+        "identifier": "3458",
+        "overviewUrl": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-vf",
+        "nextEpUrl": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04-vf",
+        "episode": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-vostfr",
       "expected": {
         "sync": false,
-        "title": "Fullmetal Alchemist: Brotherhood ",
+        "title": "Fullmetal Alchemist: Brotherhood",
         "identifier": "3458",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "3": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vostfr"
+        }
       }
-    }
+    },
+    {
+      "url": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-vf",
+      "expected": {
+        "sync": false,
+        "title": "Fullmetal Alchemist: Brotherhood",
+        "identifier": "3458",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vf"
+        }
+      }
+    },
+    {
+      "url": "https://neko-sama.fr/anime/info/19050-4-nin-wa-sorezore-uso-wo-tsuku-vostfr",
+      "expected": {
+        "sync": false,
+        "title": "4-nin wa Sorezore Uso wo Tsuku",
+        "identifier": "19050",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://neko-sama.fr/anime/episode/19050-4-nin-wa-sorezore-uso-wo-tsuku-02-vostfr"
+        }
+      }
+    },
   ]
 }

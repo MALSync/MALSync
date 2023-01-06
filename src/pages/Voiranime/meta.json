@@ -1,4 +1,5 @@
 {
+  "search": "https://voiranime.com/?s={searchtermPlus}",
   "urls": {
     "match": ["*://voiranime.com/*"]
   }

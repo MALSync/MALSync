@@ -142,6 +142,7 @@
     ],
     "iframe": [
       "https://vidstreaming.link/*",
+      "https://veestream.net/e/*",
       "https://gogohd.pro/embedplus*",
       "https://gogohd.pro/streaming.php?*",
       "https://gogohd.pro/load.php?*",
@@ -149,6 +150,7 @@
       "https://20demidistance9elongations.com/e/*",
       "https://telyn610zoanthropy.com/e/*",
       "https://toxitabellaeatrebates306.com/e/*",
+      "https://greaseball6eventual20.com/e/*",
       "https://animedao.to/redirect/*"
     ]
   }

@@ -348,7 +348,7 @@
         }
     },
     "syncPage_flashConfirm_offsetHandler_1": {
-        "message": "A possible Episode offset of $calcOffset$ was detected. Is that correct? ",
+        "message": "A possible episode offset of $calcOffset$ was detected. Is that correct?",
         "description": "offsetHandler Episode",
         "placeholders": {
             "calcOffset": {
@@ -1316,7 +1316,7 @@
         "description": "filler tooltip"
     },
     "settings_crash_report_text": {
-        "message": "Helps fixing bugs. No sensitive data will be sent",
+        "message": "Helps fixing bugs. No sensitive data will be sent.",
         "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
