@@ -96,7 +96,7 @@
       <Section class="stream-section">
         <OverviewStreaming
           :type="props.type as 'anime'"
-          :cache-key="singleRequest.data && !totalLoading ? singleRequest.data!.getCacheKey() : null"
+          :cache-key="singleRequest.data && !totalLoading ? singleRequest.data!.getCacheKey() : ''"
           :title="singleRequest.data ? singleRequest.data!.getTitle() : ''"
           :alternative-title="metaRequest.data?.alternativeTitle"
         />
