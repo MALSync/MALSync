@@ -73,6 +73,10 @@ export abstract class SingleAbstract {
     return this.getKey(['ANILIST']);
   }
 
+  public getRulesCacheKey(): string | number {
+    return this.getKey(['ANILIST', 'KITSU'], false);
+  }
+
   abstract _setStatus(status: definitions.status): void;
 
   public setStatus(status: definitions.status): SingleAbstract {
