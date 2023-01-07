@@ -45,7 +45,7 @@ export class Single extends SingleAbstract {
   }
 
   getCacheKey() {
-    return helper.getCacheKey(this.ids.mal, this.ids.simkl);
+    return this.getKey(['SIMKL']);
   }
 
   getPageId() {

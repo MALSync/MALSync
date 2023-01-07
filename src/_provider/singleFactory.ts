@@ -35,7 +35,7 @@ export function getSingle(url: string) {
   throw 'Unknown sync mode';
 }
 
-export async function getCacheKey(url: string): Promise<{ cacheKey: string; singleObj? }> {
+export async function getCacheKey(url: string): Promise<{ cacheKey: string | number; singleObj? }> {
   if (/^https:\/\/myanimelist.net\/(anime|manga)\/\d+(\/|$)/.test(url)) {
     return {
       cacheKey: url.split('/')[4],
