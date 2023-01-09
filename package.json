@@ -116,7 +116,7 @@
     "@vue/eslint-config-typescript": "^11.0.2",
     "async-mutex": "^0.4.0",
     "dexie": "^3.2.2",
-    "dompurify": "^2.4.1",
+    "dompurify": "^2.4.3",
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.5",
     "fork-ts-checker-webpack-plugin": "^7.2.14",
