@@ -8,15 +8,38 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '16.x'
+        cache: 'npm'
+    - name: install
+      run: |
+        npm ci
+    - name: Build
+      run: |
+        npm run build
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+        cache: 'npm'
     - name: install
       run: |
         npm ci
     - name: Lint
       run: |
         npm run lint:ci
-    - name: Build
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+        cache: 'npm'
+    - name: install
       run: |
-        npm run build
+        npm ci
     - name: Tests
       run: |
         npm run test:ts:ci
