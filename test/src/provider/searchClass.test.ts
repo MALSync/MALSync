@@ -257,22 +257,22 @@ describe('Mal Search', function() {
   it('Kissanime', async function() {
     this.timeout(10000);
     const searchObj = new SearchClass(
-      'Fate/kaleid liner PRISMA ILLYA',
+      'AZUMANGA DAIOH: GEKIJOU TANPEN',
       'anime',
-      'Fate-kaleid-liner-Prisma-Illya',
+      'azumanga-daioh-gekijou-tanpen',
     );
     searchObj.setPage({
       database: 'Kissanime',
       type: 'anime',
     });
     expect(await searchObj.malSearch()).to.eql({
-      id: 14829,
-      url: 'https://myanimelist.net/anime/14829/Fate_kaleid_liner_Prisma☆Illya',
+      id: 659,
+      url: 'https://myanimelist.net/anime/659/Azumanga_Daiou__Gekijou_Tanpen',
       offset: 0,
       provider: 'mal',
       similarity: {
         same: true,
-        value: 0.9433962264150944,
+        value: 0.9230769230769231,
       },
     });
   });
