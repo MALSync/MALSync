@@ -40,6 +40,10 @@ jobs:
     - name: install
       run: |
         npm ci
+    - name: Build
+      run: |
+        npm run build:webextension:assets
+        npm run build:webextension:content:build
     - name: Tests
       run: |
         npm run test:ts:ci
