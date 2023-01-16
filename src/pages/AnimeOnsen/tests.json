@@ -1,27 +1,27 @@
 {
   "title": "AnimeOnsen",
-  "url": "https://animeonsen.xyz",
+  "url": "https://www.animeonsen.xyz",
   "testCases": [
     {
-      "url": "https://animeonsen.xyz/details/OnVssnwZa0zIY601",
+      "url": "https://www.animeonsen.xyz/details/OnVssnwZa0zIY601",
       "expected": {
         "sync": false,
         "title": "Demon Slayer",
         "identifier": "OnVssnwZa0zIY601",
         "uiSelector": true,
         "epList": {
-          "6": "https://animeonsen.xyz/watch/OnVssnwZa0zIY601?episode=6"
+          "6": "https://www.animeonsen.xyz/watch/OnVssnwZa0zIY601?episode=6"
         }
       }
     },
     {
-      "url": "https://animeonsen.xyz/watch/OnVssnwZa0zIY601?episode=5",
+      "url": "https://www.animeonsen.xyz/watch/OnVssnwZa0zIY601?episode=5",
       "expected": {
         "sync": true,
         "title": "Demon Slayer",
         "identifier": "OnVssnwZa0zIY601",
-        "overviewUrl": "https://animeonsen.xyz/details/OnVssnwZa0zIY601",
-        "nextEpUrl": "https://animeonsen.xyz/watch/OnVssnwZa0zIY601?episode=6",
+        "overviewUrl": "https://www.animeonsen.xyz/details/OnVssnwZa0zIY601",
+        "nextEpUrl": "https://www.animeonsen.xyz/watch/OnVssnwZa0zIY601?episode=6",
         "episode": 5,
         "uiSelector": false
       }
