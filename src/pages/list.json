@@ -698,5 +698,10 @@
     "domain": "https://kaguya.live",
     "type": "anime",
     "name": "Kaguya"
+  },
+  {
+    "domain":"https://animationdigitalnetwork.fr",
+    "type":"anime",
+    "name":"ADN"
   }
 ]

@@ -126,4 +126,7 @@ module.exports = {
   streamcherry: {
     match: ['*://streamcherry.com/embed/*'],
   },
+  ADN: {
+    match: ['*://animationdigitalnetwork.fr/*'],
+  },
 };
