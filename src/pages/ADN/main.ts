@@ -10,7 +10,7 @@ export const ADN: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    if ($('div[data-testid="img-testid"]').length) return true;
+    if ($('div[data-testid="downline-content-test-id"]').length) return true;
     return false;
   },
   sync: {
@@ -24,7 +24,7 @@ export const ADN: pageInterface = {
       return `${ADN.domain}/video/${ADN.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      return Number(j.$('div[data-testid="player-content"] h1 span').text().split(' ')[2]);
+      return Number(utils.urlPart(url, 5)?.split('-')[2]);
     },
   },
   overview: {
