@@ -1,34 +1,34 @@
 {
-  "title": "Voiranime",
-  "url": "http://voiranime.com",
+  "title": "ADN",
+  "url": "https://animationdigitalnetwork.fr",
   "enabled": false,
   "testCases": [
     {
-      "url": "https://voiranime.com/anime/no-game-no-life/no-game-no-life-06-vostfr/",
+      "url": "https://animationdigitalnetwork.fr/video/no-game-no-life/5008-episode-6-un-coup-interesting",
       "expected": {
         "sync": true,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
-        "overviewUrl": "https://voiranime.com/anime/no-game-no-life",
-        "nextEpUrl": "https://voiranime.com/anime/no-game-no-life/no-game-no-life-07-vostfr/",
+        "overviewUrl": "https://animationdigitalnetwork.fr/video/no-game-no-life",
+        "nextEpUrl": "https://animationdigitalnetwork.fr/video/no-game-no-life/5009-episode-7-sacrifice",
         "episode": 6,
         "uiSelector": false
       }
     },
     {
-      "url": "https://voiranime.com/anime/boku-no-hero-academia-2/boku-no-hero-academia-my-hero-academia-saison-2-04-vostfr/",
+      "url": "https://animationdigitalnetwork.fr/video/nichijo-my-ordinary-life/20665-episode-4-nichijo-episode-4",
       "expected": {
         "sync": true,
-        "title": "Boku no Hero Academia 2",
-        "identifier": "boku-no-hero-academia-2",
-        "overviewUrl": "https://voiranime.com/anime/boku-no-hero-academia-2",
-        "nextEpUrl": "https://voiranime.com/anime/boku-no-hero-academia-2/boku-no-hero-academia-my-hero-academia-saison-2-05-vostfr/",
+        "title": "Nichijô - My Ordinary Life",
+        "identifier": "nichijo-my-ordinary-life",
+        "overviewUrl": "https://animationdigitalnetwork.fr/video/nichijo-my-ordinary-life",
+        "nextEpUrl": "https://animationdigitalnetwork.fr/video/nichijo-my-ordinary-life/20666-episode-5-nichijo-episode-5",
         "episode": 4,
         "uiSelector": false
       }
     },
     {
-      "url": "https://voiranime.com/anime/no-game-no-life/",
+      "url": "https://animationdigitalnetwork.fr/video/no-game-no-life",
       "expected": {
         "sync": false,
         "title": "No Game No Life",
@@ -37,28 +37,16 @@
       }
     },
     {
-      "url": "https://voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav2-vostfr/",
+      "url": "https://animationdigitalnetwork.fr/video/hunter-x-hunter-2011/3533-episode-70-volonte-et-amitie",
       "expected": {
         "sync": true,
-        "title": "Kujibiki Unbalance ",
-        "identifier": "kujibiki-unbalance",
-        "overviewUrl": "https://voiranime.com/anime/kujibiki-unbalance/",
-        "nextEpUrl": "https://voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav3-vostfr/",
+        "title": "Hunter x Hunter (2011)",
+        "identifier": "hunter-x-hunter-2011",
+        "overviewUrl": "https://animationdigitalnetwork.fr/video/hunter-x-hunter-2011",
+        "nextEpUrl": "https://animationdigitalnetwork.fr/video/hunter-x-hunter-2011/3534-episode-71-negociation-et-transaction",
         "episode": 2,
         "uiSelector": false
      }
-   },
-    {
-      "url": "https://voiranime.com/anime/kujibiki-unbalance/",
-      "expected": {
-        "sync": false,
-        "title": "Kujibiki Unbalance",
-        "identifier": "kujibiki-unbalance",
-        "uiSelector": true,
-        "epList": {
-          "3": "https://voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav3-vostfr/"
-        }
-      }
-    },
+   }
   ]
 }
