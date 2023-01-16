@@ -11,7 +11,7 @@ type modeValues = {
     {
       mode: Property;
       // @ts-ignore
-    } & Parameters<InstanceType<typeof modes[Property]>['execute']>[0]
+    } & Parameters<InstanceType<(typeof modes)[Property]>['execute']>[0]
   >;
 };
 export type collectorConfig = modeValues[keyof modeValues];
