@@ -231,6 +231,10 @@ module.exports = {
   veestream: {
     match: ['*://veestream.net/e/*'],
   },
+  // Neko-sama
+  fusevideo: {
+    match: ['*://fusevideo.net/e/*'],
+  },
   // Animeultima
   animefever: {
     match: ['*://*.animefever.tv/embed/*'],
