@@ -134,6 +134,9 @@
     ]
   },
   "0.9.1": {
+    "AnimeOnsen": [
+      "https://www.animeonsen.xyz/*"
+    ],
     "ComicK": [
       "https://comick.app/*"
     ],
@@ -143,6 +146,7 @@
     "iframe": [
       "https://vidstreaming.link/*",
       "https://veestream.net/e/*",
+      "https://fusevideo.net/e/*",
       "https://gogohd.pro/embedplus*",
       "https://gogohd.pro/streaming.php?*",
       "https://gogohd.pro/load.php?*",
