@@ -40,7 +40,7 @@ export const ADN: pageInterface = {
     list: {
       offsetHandler: true,
       elementsSelector() {
-        return j.$('div[data-testid="default-layout"] ul li[itemtype] div');
+        return j.$('div[data-testid="default-layout"] ul li[itemtype] > div');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a').attr('href'), ADN.domain);
@@ -51,13 +51,19 @@ export const ADN: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    const handlePage = () => {
+      api.storage.addStyle(
+        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+      );
+      page.handlePage();
+    };
+    utils.waitUntilTrue(
+      () => {
+        if (j.$('div[data-testid="comments-panel"]').length) return true;
+        return false;
+      },
+      handlePage,
+      600,
     );
-    j.$(document).ready(function () {
-      if ($('div[data-testid="comments-panel"]').length) {
-        page.handlePage();
-      }
-    });
   },
 };
