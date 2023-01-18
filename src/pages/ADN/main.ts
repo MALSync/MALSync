@@ -1,5 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
+const style = require('!to-string-loader!css-loader!less-loader!./style.less');
+
 export const ADN: pageInterface = {
   name: 'ADN',
   domain: 'https://animationdigitalnetwork.fr/',
@@ -24,7 +26,7 @@ export const ADN: pageInterface = {
       return `${ADN.domain}/video/${ADN.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      return Number(utils.urlPart(url, 5)?.split('-')[2]);
+      return Number(utils.urlPart(url, 5) ? utils.urlPart(url, 5).split('-')[2] : '');
     },
   },
   overview: {
@@ -35,10 +37,19 @@ export const ADN: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('div[data-testid="default-layout"] h2').first().before(j.html(selector));
+      utils.waitUntilTrue(
+        () => {
+          if (j.$('div[data-testid="viewbar-progress"]').length) return true;
+          return false;
+        },
+        () => {
+          j.$('div[data-testid="default-layout"] h2').first().before(j.html(selector));
+        },
+        100,
+      );
     },
     list: {
-      offsetHandler: true,
+      offsetHandler: false,
       elementsSelector() {
         return j.$('div[data-testid="default-layout"] ul li[itemtype] > div');
       },
@@ -52,10 +63,16 @@ export const ADN: pageInterface = {
   },
   init(page) {
     const handlePage = () => {
-      api.storage.addStyle(
-        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-      );
+      api.storage.addStyle(style.toString());
       page.handlePage();
+      utils.changeDetect(
+        () => {
+          page.handleList(true, 3);
+        },
+        () => {
+          return j.$('div[data-testid="default-layout"] ul li[itemtype]').first().parent();
+        },
+      );
     };
     utils.waitUntilTrue(
       () => {
@@ -63,7 +80,7 @@ export const ADN: pageInterface = {
         return false;
       },
       handlePage,
-      600,
+      1000,
     );
   },
 };

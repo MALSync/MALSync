@@ -785,7 +785,4 @@ module.exports = {
   animedao: {
     match: ['*://animedao.to/redirect/*'],
   },
-  ADN: {
-    match: ['*://animationdigitalnetwork.fr/*'],
-  },
 };
