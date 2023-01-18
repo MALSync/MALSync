@@ -1,10 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
-const style = require('!to-string-loader!css-loader!less-loader!./style.less');
-
 export const ADN: pageInterface = {
   name: 'ADN',
-  domain: 'https://animationdigitalnetwork.fr/',
+  domain: 'https://animationdigitalnetwork.fr',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
@@ -26,7 +24,10 @@ export const ADN: pageInterface = {
       return `${ADN.domain}/video/${ADN.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      return Number(utils.urlPart(url, 5) ? utils.urlPart(url, 5).split('-')[2] : '');
+      const temp = url.match(/episode-(\d+)/i);
+      con.log(temp);
+      if (!temp) return NaN;
+      return Number(temp[1]);
     },
   },
   overview: {
@@ -45,7 +46,7 @@ export const ADN: pageInterface = {
         () => {
           j.$('div[data-testid="default-layout"] h2').first().before(j.html(selector));
         },
-        100,
+        10000,
       );
     },
     list: {
@@ -57,13 +58,15 @@ export const ADN: pageInterface = {
         return utils.absoluteLink(selector.find('a').attr('href'), ADN.domain);
       },
       elementEp(selector) {
-        return Number(selector.find('h3').first().text().split(' ').pop() || '');
+        return ADN.sync.getEpisode(selector.find('a').attr('href') || '');
       },
     },
   },
   init(page) {
     const handlePage = () => {
-      api.storage.addStyle(style.toString());
+      api.storage.addStyle(
+        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+      );
       page.handlePage();
       utils.changeDetect(
         () => {
