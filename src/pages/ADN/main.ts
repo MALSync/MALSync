@@ -57,7 +57,7 @@ export const ADN: pageInterface = {
         return utils.absoluteLink(selector.find('a').attr('href'), ADN.domain);
       },
       elementEp(selector) {
-        return Number(selector.find('h3').first().text().split(' ').pop() || '');
+        return ADN.sync.getEpisode(selector.find('a').attr('href') || '');
       },
     },
   },
