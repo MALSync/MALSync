@@ -26,7 +26,7 @@ export const ADN: pageInterface = {
     getEpisode(url) {
       const temp = url.match(/episode-(\d+)/i);
       con.log(temp);
-      if (!temp) return NaN;
+      if (!temp) return 1;
       return Number(temp[1]);
     },
   },
