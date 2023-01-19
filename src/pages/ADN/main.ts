@@ -6,12 +6,10 @@ export const ADN: pageInterface = {
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    if ($('div[data-testid="video-player"]').length) return true;
-    return false;
+    return Boolean($('div[data-testid="video-player"]').length);
   },
   isOverviewPage(url) {
-    if ($('a[data-testid="watchlist-button"]').length) return true;
-    return false;
+    return Boolean($('a[data-testid="watchlist-button"]').length);
   },
   sync: {
     getTitle(url) {
@@ -37,16 +35,7 @@ export const ADN: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      utils.waitUntilTrue(
-        () => {
-          if (j.$('div[data-testid="viewbar-progress"]').length) return true;
-          return false;
-        },
-        () => {
-          j.$('div[data-testid="default-layout"] h2').first().before(j.html(selector));
-        },
-        10000,
-      );
+      j.$('div[data-testid="default-layout"] h2').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -77,10 +66,10 @@ export const ADN: pageInterface = {
       );
     };
     utils.waitUntilTrue(
-      () => {
-        if (j.$('div[data-testid="comments-panel"]').length) return true;
-        return false;
-      },
+      () =>
+        Boolean(j.$('div[data-testid="comments-panel"]').length) &&
+        (Boolean(j.$('div[data-testid="video-player"]').length) ||
+          Boolean(j.$('div[data-testid="viewbar-progress"]').length)),
       handlePage,
       1000,
     );
