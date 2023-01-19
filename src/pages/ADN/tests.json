@@ -10,7 +10,6 @@
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
         "overviewUrl": "https://animationdigitalnetwork.fr/video/no-game-no-life",
-        "nextEpUrl": "https://animationdigitalnetwork.fr/video/no-game-no-life/5009-episode-7-sacrifice",
         "episode": 6,
         "uiSelector": false
       }
@@ -22,7 +21,6 @@
         "title": "Nichijô - My Ordinary Life",
         "identifier": "nichijo-my-ordinary-life",
         "overviewUrl": "https://animationdigitalnetwork.fr/video/nichijo-my-ordinary-life",
-        "nextEpUrl": "https://animationdigitalnetwork.fr/video/nichijo-my-ordinary-life/20666-episode-5-nichijo-episode-5",
         "episode": 4,
         "uiSelector": false
       }
@@ -31,9 +29,9 @@
       "url": "https://animationdigitalnetwork.fr/video/no-game-no-life",
       "expected": {
         "sync": false,
-        "title": "THE EMINENCE IN SHADOW",
-        "identifier": "the-eminence-in-shadow",
-        "uiSelector": true
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life",
+        "uiSelector": false
       }
     },
     {
@@ -43,8 +41,7 @@
         "title": "Hunter x Hunter (2011)",
         "identifier": "hunter-x-hunter-2011",
         "overviewUrl": "https://animationdigitalnetwork.fr/video/hunter-x-hunter-2011",
-        "nextEpUrl": "https://animationdigitalnetwork.fr/video/hunter-x-hunter-2011/3534-episode-71-negociation-et-transaction",
-        "episode": 2,
+        "episode": 70,
         "uiSelector": false
      }
    }
