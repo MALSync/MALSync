@@ -31,7 +31,7 @@
         "sync": false,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
-        "uiSelector": false
+        "uiSelector": true
       }
     },
     {
