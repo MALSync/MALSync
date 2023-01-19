@@ -10,7 +10,7 @@ export const ADN: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    if ($('div[data-testid="downline-content-test-id"]').length) return true;
+    if ($('a[data-testid="watchlist-button"]').length) return true;
     return false;
   },
   sync: {
@@ -72,7 +72,7 @@ export const ADN: pageInterface = {
           page.handleList(true, 3);
         },
         () => {
-          return j.$('div[data-testid="default-layout"] ul li[itemtype]').first().parent();
+          return j.$('div[data-testid="default-layout"] ul li[itemtype] > div > a').attr('href');
         },
       );
     };
