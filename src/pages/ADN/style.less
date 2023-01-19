@@ -1,5 +1,7 @@
 @import './../pages';
 
+@activeEp: transparent;
+
 #flashinfo-div {
   z-index: 100 !important;
 }
@@ -31,9 +33,13 @@
 #malp #malEpisodes,
 #malp span {
   float: none;
-  display: flex !important;
+  display: flex;
   justify-content: space-between;
   border-radius: 0;
   margin-top: 0;
   font: inherit;
+}
+
+.mal-sync-active div:has(img) {
+  outline: 3px solid #0095ff;
 }
