@@ -1,6 +1,6 @@
 {
-  "search": "https://animeonsen.xyz/search/{searchterm}",
+  "search": "https://www.animeonsen.xyz/search/{searchterm}",
   "urls": {
-    "match": ["*://animeonsen.xyz/*"]
+    "match": ["*://animeonsen.xyz/*", "*://www.animeonsen.xyz/*"]
   }
 }

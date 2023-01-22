@@ -64,6 +64,14 @@ export class Single extends SingleAbstract {
     this.animeInfo.my_list_status.status = helper.animeStatus[status];
   }
 
+  increaseRewatchCount(): void {
+    if (this.type === 'manga') {
+      this.animeInfo.my_list_status.num_times_reread++;
+    } else {
+      this.animeInfo.my_list_status.num_times_rewatched++;
+    }
+  }
+
   _getScore() {
     return this.animeInfo.my_list_status.score;
   }
@@ -183,7 +191,7 @@ export class Single extends SingleAbstract {
       type: 'GET',
       path: `${this.type}/${this.ids.mal}`,
       fields: [
-        'my_list_status{tags,is_rewatching,is_rereading,start_date,finish_date}',
+        'my_list_status{tags,is_rewatching,is_rereading,num_times_rewatched,num_times_reread,start_date,finish_date}',
         'num_episodes',
         'mean',
         // Manga

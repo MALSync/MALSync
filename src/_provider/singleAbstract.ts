@@ -563,6 +563,10 @@ export abstract class SingleAbstract {
     return null;
   }
 
+  public increaseRewatchCount(): void {
+    //  do nothing
+  }
+
   getStateEl() {
     return {
       onList: this.isOnList(),
@@ -693,7 +697,10 @@ export abstract class SingleAbstract {
         'complete',
       )
       .then(res => {
-        if (res) this.setStatus(definitions.status.Completed);
+        if (res) {
+          this.setStatus(definitions.status.Completed);
+          this.increaseRewatchCount();
+        }
         return res;
       });
   }

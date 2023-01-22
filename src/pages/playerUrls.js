@@ -231,6 +231,10 @@ module.exports = {
   veestream: {
     match: ['*://veestream.net/e/*'],
   },
+  // Neko-sama
+  fusevideo: {
+    match: ['*://fusevideo.net/e/*'],
+  },
   // Animeultima
   animefever: {
     match: ['*://*.animefever.tv/embed/*'],
@@ -571,6 +575,8 @@ module.exports = {
       '*://telyn610zoanthropy.com/e/*',
       '*://toxitabellaeatrebates306.com/e/*',
       '*://greaseball6eventual20.com/e/*',
+      '*://745mingiestblissfully.com/e/*',
+      '*://19turanosephantasia.com/e/*',
     ],
   },
   // animewho

@@ -134,6 +134,9 @@
     ]
   },
   "0.9.1": {
+    "AnimeOnsen": [
+      "https://www.animeonsen.xyz/*"
+    ],
     "ComicK": [
       "https://comick.app/*"
     ],
@@ -143,6 +146,7 @@
     "iframe": [
       "https://vidstreaming.link/*",
       "https://veestream.net/e/*",
+      "https://fusevideo.net/e/*",
       "https://gogohd.pro/embedplus*",
       "https://gogohd.pro/streaming.php?*",
       "https://gogohd.pro/load.php?*",
@@ -151,6 +155,8 @@
       "https://telyn610zoanthropy.com/e/*",
       "https://toxitabellaeatrebates306.com/e/*",
       "https://greaseball6eventual20.com/e/*",
+      "https://745mingiestblissfully.com/e/*",
+      "https://19turanosephantasia.com/e/*",
       "https://animedao.to/redirect/*"
     ]
   }
