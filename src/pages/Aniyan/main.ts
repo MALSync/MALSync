@@ -19,9 +19,9 @@ export const Aniyan: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('.pag_episodes > .item:nth-child(2) > a').attr('title');
+      return j.$('.pag_episodes > .item:nth-child(2) > a').attr('title') || '';
     },
-    getIdentifier(url) {
+    getIdentifier(url){
       return Aniyan.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
