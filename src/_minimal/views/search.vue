@@ -118,7 +118,7 @@ const formatItem = (item: searchResult): bookmarkItem => {
     status: item.list ? item.list.status : 0,
     score: item.list ? item.list.score : item.score,
     watchedEp: item.list ? item.list.episode : 0,
-    totalEp: 0,
+    totalEp: item.totalEp || 0,
   };
 };
 </script>

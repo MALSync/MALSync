@@ -28,6 +28,7 @@ export const search: searchInterface = async function (
       isNovel: item.kind === 'light_novel',
       score: Number(item.score) ? item.score : '',
       year: item.aired_on,
+      totalEp: item.episodes || item.chapters || 0,
     };
   });
 };
