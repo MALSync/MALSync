@@ -44,7 +44,7 @@ export const Aniyan: pageInterface = {
 function getEpisode(text) {
   if (text.length === 0) return NaN;
 
-  const matches = text.match(/(episódio|episodio)\s*\d+/gim);
+  const matches = text.match(/(:E)\s*\d+/gim);
 
   if (!matches || matches.length === 0) return 1;
 
