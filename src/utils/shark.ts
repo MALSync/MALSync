@@ -47,27 +47,14 @@ export async function initShark() {
     tunnel: 'https://api.malsync.moe/shark',
     transport: makeFakeFetchTransport as any,
     release: `malsync@${api.storage.version()}`,
-    integrations: [new Sentry.Integrations.Breadcrumbs({ console: false, dom: false })],
+    integrations: [
+      new Sentry.Integrations.Breadcrumbs({ console: false, dom: false }),
+      new Sentry.Integrations.GlobalHandlers({ onerror: false, onunhandledrejection: false })
+    ],
     // eslint-disable-next-line no-undef
     environment: env.CONTEXT,
     autoSessionTracking: false,
     ignoreErrors: ['SafeError'],
-    beforeSend(event) {
-      if (!isEventImportant(event)) return null;
-
-      if (
-        event.exception &&
-        event.exception.values &&
-        event.exception.values[0] &&
-        event.exception.values[0].stacktrace &&
-        event.exception.values[0].stacktrace.frames &&
-        event.exception.values[0].stacktrace.frames[0] &&
-        event.exception.values[0].stacktrace.frames[0].filename === '~/vendor/material.js'
-      ) {
-        return null;
-      }
-      return event;
-    },
   });
 
   Sentry.configureScope(scope => {
@@ -103,25 +90,4 @@ export function bloodTrail(options: Sentry.Breadcrumb) {
   } catch (e) {
     console.error(e);
   }
-}
-
-function isEventImportant(event): boolean {
-  if (utils.isFirefox()) {
-    // Firefox
-    if (event && event.exception && event.exception.values) {
-      return event.exception.values.some(val => {
-        if (val && val.stacktrace && val.stacktrace.frames) {
-          return val.stacktrace.frames.some(frame => {
-            if (frame.filename && /(content\/|background.js|i18n.js)/.test(frame.filename)) {
-              return true;
-            }
-            return false;
-          });
-        }
-        return false;
-      });
-    }
-  }
-
-  return true;
 }
