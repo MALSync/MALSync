@@ -49,7 +49,7 @@ export async function initShark() {
     release: `malsync@${api.storage.version()}`,
     integrations: [
       new Sentry.Integrations.Breadcrumbs({ console: false, dom: false }),
-      new Sentry.Integrations.GlobalHandlers({ onerror: false, onunhandledrejection: false })
+      new Sentry.Integrations.GlobalHandlers({ onerror: false, onunhandledrejection: false }),
     ],
     // eslint-disable-next-line no-undef
     environment: env.CONTEXT,
