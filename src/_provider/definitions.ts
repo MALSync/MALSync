@@ -49,6 +49,7 @@ export type searchResult = {
   isNovel: boolean;
   score: string;
   year: string;
+  totalEp?: number;
   list?: {
     status: status;
     score: score;

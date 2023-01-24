@@ -30,7 +30,14 @@ export const search: searchInterface = async function (
     .apiCall({
       type: 'GET',
       path: `${type}?q=${keyword}&limit=15&nsfw=true`,
-      fields: ['start_date', 'mean', 'alternative_titles', 'media_type'],
+      fields: [
+        'start_date',
+        'mean',
+        'alternative_titles',
+        'media_type',
+        'num_episodes',
+        'num_chapters',
+      ],
     })
     .then(json => {
       const resItems: any = [];
@@ -62,6 +69,7 @@ export const search: searchInterface = async function (
           isNovel: item.node.media_type.toLowerCase().includes('novel'),
           score: item.node.mean,
           year: item.node.start_date,
+          totalEp: item.node.num_episodes || item.node.num_chapters || 0,
         });
       });
 
