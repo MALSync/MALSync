@@ -6,38 +6,22 @@
   z-index: 100 !important;
 }
 
-#malp select,
-#malp malp-group-value-section {
-  margin-top: -2px !important;
-}
-
-#malp,
-#malp select,
-#malp option,
-#malp a,
-#malp p,
-#malp input,
-#malp span {
-  color: white !important;
-  background-color: #303132 !important;
-  font: inherit;
-  display: block;
+#malp > span > span > * {
   font-weight: lighter;
   font-size: 1.1em;
   line-height: 1.3em;
   text-align: justify;
   hyphens: auto;
+  margin: 0;
 }
 
-#malp #malVolumes,
-#malp #malEpisodes,
-#malp span {
-  float: none;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 0;
-  margin-top: 0;
-  font: inherit;
+#malp > span > span input,
+#malp > span > span span,
+#malp > span > span select,
+#malp > span > span option,
+#malp > span > span a {
+  color: white !important;
+  background-color: #303132 !important;
 }
 
 .mal-sync-active div:has(img) {

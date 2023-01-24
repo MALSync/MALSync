@@ -1,4 +1,5 @@
 {
+  "search": "https://animationdigitalnetwork.fr/video?search={searchterm}",
   "urls": {
     "match": ["*://animationdigitalnetwork.fr/*"]
   }
