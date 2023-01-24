@@ -91,7 +91,7 @@ export function usePopper({ emit, popperNode, triggerNode, placement }) {
             props.state.styles.popper = {
               ...props.state.styles.popper,
               maxHeight: `${height - 10}px`,
-              maxWidth: `${width - 20}px`,
+              maxWidth: `min(calc(100vw - 30px), ${width}px)`,
             };
           },
         },
