@@ -1,6 +1,0 @@
-{
-  "search": "https://tenshi.moe/anime?q={searchtermPlus}",
-  "urls": {
-    "match": ["*://tenshi.moe/anime/*"]
-  }
-}

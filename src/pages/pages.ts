@@ -109,7 +109,6 @@ import { Kitsune } from './Kitsune/main';
 import { AnimesOnline } from './AnimesOnline/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
-import { tenshi } from './tenshi/main';
 import { shiro } from './shiro/main';
 import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
@@ -133,6 +132,7 @@ import { ToonAnime } from './ToonAnime/main';
 import { ADKami } from './ADKami/main';
 import { Kaguya } from './Kaguya/main';
 import { Hdrezka } from './Hdrezka/main';
+import { marin } from './marin/main';
 
 export const pages = {
   nineAnime,
@@ -246,7 +246,6 @@ export const pages = {
   AnimesOnline,
   LHTranslation,
   MangasOrigines,
-  tenshi,
   shiro,
   BlueSolo,
   DisasterScans,
@@ -270,4 +269,5 @@ export const pages = {
   ADKami,
   Kaguya,
   Hdrezka,
+  marin,
 };

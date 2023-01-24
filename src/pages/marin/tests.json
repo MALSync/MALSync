@@ -1,28 +1,28 @@
 {
-  "title": "tenshi",
-  "url": "https://tenshi.moe/",
+  "title": "marin",
+  "url": "https://marin.moe/",
   "testCases": [
     {
-      "url": "https://tenshi.moe/anime/jtch7eba",
+      "url": "https://marin.moe/anime/jtch7eba",
       "expected": {
         "sync": false,
         "title": "Mahouka Koukou no Rettousei",
         "identifier": "jtch7eba",
         "uiSelector": true,
         "epList": {
-          "16": "https://tenshi.moe/anime/jtch7eba/16"
+          "16": "https://marin.moe/anime/jtch7eba/16"
         }
       }
     },
     {
-      "url": "https://tenshi.moe/anime/jtch7eba/25",
+      "url": "https://marin.moe/anime/jtch7eba/25",
       "expected": {
         "sync": true,
         "title": "Mahouka Koukou no Rettousei",
         "identifier": "jtch7eba",
         "episode": 25,
-        "overviewUrl": "https://tenshi.moe/anime/jtch7eba",
-        "nextEpUrl": "https://tenshi.moe/anime/jtch7eba/26",
+        "overviewUrl": "https://marin.moe/anime/jtch7eba",
+        "nextEpUrl": "https://marin.moe/anime/jtch7eba/26",
         "uiSelector": false
       }
     }

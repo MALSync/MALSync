@@ -63,7 +63,7 @@ export const settingsObj = {
       'VIZ',
       'MangaPlus',
       'MangaReader',
-      'tenshi',
+      'marin',
     ],
     quicklinksPosition: 'default',
 

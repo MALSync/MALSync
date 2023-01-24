@@ -648,10 +648,6 @@ module.exports = {
   rapidstream: {
     match: ['*://*.rapid-cloud.ru/*', '*://*.rapid-cloud.co/*'],
   },
-  // tenshi
-  tenshi: {
-    match: ['*://tenshi.moe/embed?v=*'],
-  },
   // shiro
   shiro: {
     match: ['*://shiro.is/e/*'],
