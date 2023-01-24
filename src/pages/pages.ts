@@ -139,6 +139,7 @@ import { ToonAnime } from './ToonAnime/main';
 import { ADKami } from './ADKami/main';
 import { Kaguya } from './Kaguya/main';
 import { Hdrezka } from './Hdrezka/main';
+import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 
 export const pages = {
@@ -283,5 +284,6 @@ export const pages = {
   ADKami,
   Kaguya,
   Hdrezka,
+  ADN,
   Aniyan,
 };

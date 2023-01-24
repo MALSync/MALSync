@@ -1,0 +1,49 @@
+{
+  "title": "ADN",
+  "url": "https://animationdigitalnetwork.fr",
+  "enabled": true,
+  "testCases": [
+    {
+      "url": "https://animationdigitalnetwork.fr/video/no-game-no-life/5008-episode-6-un-coup-interesting",
+      "expected": {
+        "sync": true,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life",
+        "overviewUrl": "https://animationdigitalnetwork.fr/video/no-game-no-life",
+        "episode": 6,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animationdigitalnetwork.fr/video/nichijo-my-ordinary-life/20665-episode-4-nichijo-episode-4",
+      "expected": {
+        "sync": true,
+        "title": "Nichijô - My Ordinary Life",
+        "identifier": "nichijo-my-ordinary-life",
+        "overviewUrl": "https://animationdigitalnetwork.fr/video/nichijo-my-ordinary-life",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animationdigitalnetwork.fr/video/no-game-no-life",
+      "expected": {
+        "sync": false,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animationdigitalnetwork.fr/video/hunter-x-hunter-2011/3533-episode-70-volonte-et-amitie",
+      "expected": {
+        "sync": true,
+        "title": "Hunter x Hunter (2011)",
+        "identifier": "hunter-x-hunter-2011",
+        "overviewUrl": "https://animationdigitalnetwork.fr/video/hunter-x-hunter-2011",
+        "episode": 70,
+        "uiSelector": false
+     }
+   }
+  ]
+}
