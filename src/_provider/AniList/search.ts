@@ -17,6 +17,8 @@ export const search: searchInterface = async function (
           id
           siteUrl
           idMal
+          episodes
+          chapters
           title {
             userPreferred
             romaji
@@ -79,6 +81,7 @@ export const search: searchInterface = async function (
       isNovel: item.format === 'NOVEL',
       score: item.averageScore,
       year: item.startDate.year,
+      totalEp: item.episodes || item.chapters || 0,
     });
   });
 

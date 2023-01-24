@@ -577,6 +577,7 @@ module.exports = {
       '*://greaseball6eventual20.com/e/*',
       '*://745mingiestblissfully.com/e/*',
       '*://19turanosephantasia.com/e/*',
+      '*://30sensualizeexpression.com/e/*',
     ],
   },
   // animewho

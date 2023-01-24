@@ -10,7 +10,9 @@ export const search: searchInterface = async function (
   return helper
     .apiCall(
       'GET',
-      `https://kitsu.io/api/edge/${type}?filter[text]=${keyword}&page[limit]=10&page[offset]=0&fields[${type}]=id,slug,titles,averageRating,startDate,posterImage,coverImage,subtype`,
+      `https://kitsu.io/api/edge/${type}?filter[text]=${keyword}&page[limit]=10&page[offset]=0&fields[${type}]=id,slug,titles,averageRating,startDate,posterImage,coverImage,subtype,${
+        type === 'anime' ? 'episodeCount' : 'chapterCount'
+      }`,
       {},
     )
     .then(res => {
@@ -43,6 +45,7 @@ export const search: searchInterface = async function (
           isNovel: item.attributes.subtype === 'novel',
           score: item.attributes.averageRating,
           year: item.attributes.startDate,
+          totalEp: item.attributes.episodeCount || item.attributes.chapterCount || 0,
         });
       });
       return resItems;
