@@ -65,7 +65,7 @@ function getTitle(text) {
   return `${matches[1]}`;
 }
 function getIdentifiers(text, texttwo) {
-  if (text.length === 0 || texttwo.length) return '';
+  if (text.length === 0 || texttwo.length === 0) return '';
   const regex = /(.*?) - T([0-9]+):E([0-9]+)/gim;
   const matches = regex.exec(texttwo);
 
