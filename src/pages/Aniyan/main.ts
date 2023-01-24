@@ -16,7 +16,7 @@ export const Aniyan: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return getTitle(j.$('.anipage_tituloep > h1').text().replace(/\s+/g, ' '));
+      return getTitle(j.$('.anipage_tituloep > h1').text().replace(/\s+/g, ' ')) ?? '';
     },
     getIdentifier(url) {
       return getIdentifiers(
@@ -54,22 +54,22 @@ function getEpisode(text) {
   return Number(matches[0].replace(/\D+/g, ''));
 }
 function getTitle(text) {
-  if (text.length === 0) return 'N/A1';
+  if (text.length === 0) return '';
   const regex = /(.*?) - T([0-9]+):E([0-9]+)/gim;
   const matches = regex.exec(text);
 
-  if (!matches || matches.length === 0) return 'N/A2';
+  if (!matches || matches.length === 0) return '';
   if (matches[2] && matches[2] > '1') {
     return `${matches[1]} Season ${matches[2]}`;
   }
   return `${matches[1]}`;
 }
 function getIdentifiers(text, texttwo) {
-  if (text.length === 0) return 'N/A';
+  if (text.length === 0 || texttwo.length) return '';
   const regex = /(.*?) - T([0-9]+):E([0-9]+)/gim;
   const matches = regex.exec(texttwo);
 
-  if (!matches || matches.length === 0) return 'N/A';
+  if (!matches || matches.length === 0) return '';
 
   if (matches[2] && matches[2] > '1') {
     return `${text}?s=${matches[2]}`;
