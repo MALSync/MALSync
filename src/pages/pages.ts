@@ -270,7 +270,7 @@ export const pages = {
   ToonAnime,
   ADKami,
   Kaguya,
-  Hdrezka.
+  Hdrezka,
   ADN,
   Aniyan,
   marin,
