@@ -862,7 +862,7 @@
         "description": "Update version - Text 3"
     },
     "minimalClass_versionMsg_Text_4": {
-        "message": "uBlock kullanıcıları lütfen bu filtreler listesine abone olun! Bu bozuk resimler gibi problemleri çözer",
+        "message": "Filtre listesine abone olun (uBlock kullanıcıları için)",
         "description": "Update version - Text 4"
     },
     "installPage_Mode": {
@@ -874,7 +874,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "Sadece desteklenen sitelerden $Link1$supported pages$LinkEnd1$ bir bölüm yada manga bölümü açın. Senkronize işlemi videonun %85'inin izlenmesini bekler. Mangalar için sayfaların yüklenmesini bekler. Bu ayar burdan değiştirilebilir $Link2$settings$LinkEnd2$.",
+        "message": "Veritabanı ile senkronizayon sadece $Link1$desteklenen sitelerden$LinkEnd1$ bölüm açtığınızda gerçekleşir - merak etmeyin, yüksek ihtimal favori siteniz listemizde vardır!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -900,11 +900,11 @@
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
-        "message": "Kolaylıkla anime ilişkilerini alttaki GIF'te gösterildiği gibi değiştirebilirsiniz. Bir bölüm dengelemesini de bu sayfadan ayarlayabilirsiniz.",
+        "message": "Kolaylıkla anime ilişkilerini alttaki GIF'te gösterildiği gibi değiştirebilirsiniz. Bir bölüm kaymasını da bu sayfadan ayarlayabilirsiniz.",
         "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
-        "message": "Lütfen doğrulamayı yapın $Link1$Here$Link2$",
+        "message": "Lütfen $Link1$buradan$Link2$doğrulamayı halledin",
         "description": "Update version - Text 3",
         "placeholders": {
             "Link1": {
@@ -918,7 +918,7 @@
         }
     },
     "Emby_Authenticate": {
-        "message": "MAL-Sync çalışması için bir Emby API anahtarına ihtiyaç duyar. Daha fazla bilgi için $Link1$Here$Link2$",
+        "message": "MAL-Sync çalışması için bir Emby API anahtarına ihtiyaç duyar. Daha fazla bilgi için $Link1$şuraya tıklayın$Link2$",
         "description": "Emby Authentication",
         "placeholders": {
             "Link1": {
@@ -932,7 +932,7 @@
         }
     },
     "Error_Authenticate": {
-        "message": "Lütfen doğrulamayı yapın $Link1$Here$Link2$",
+        "message": "Lütfen $Link1$şuradan$Link2$doğrulamayı halledin",
         "description": "Update version - Text 3",
         "placeholders": {
             "Link1": {
@@ -1012,7 +1012,7 @@
         "description": "Button to load content"
     },
     "Anime": {
-        "message": "Anime",
+        "message": "anime",
         "description": "General translation of anime for places like drop downs"
     },
     "Manga": {
@@ -1302,5 +1302,45 @@
     "settings_more_info": {
         "message": "Daha fazla bilgi",
         "description": "Link button which links to more informations"
+    },
+    "filler_recap_confirm": {
+        "message": "Bu bölüm MyAnimeList'te recap olarak işaretlendi, geçmek istiyor musun?",
+        "description": "Question if the user wants to skip the recap"
+    },
+    "settings_custom_domains_position": {
+        "message": "Pozisyon",
+        "description": "Position of the quicklinks"
+    },
+    "settings_custom_position_below": {
+        "message": "Alttaki Bilgiler",
+        "description": "Position of the quicklinks below the information section"
+    },
+    "discord_rpc_view_anime": {
+        "message": "Anime'yi İncele",
+        "description": "Discord view anime button"
+    },
+    "discord_rpc_view_manga": {
+        "message": "Manga'yı İncele",
+        "description": "Discord view manga button"
+    },
+    "settings_filler": {
+        "message": "Filler/recap bölümleri var mı diye kontrol et",
+        "description": "Option to enable filler checking"
+    },
+    "settings_crash_report": {
+        "message": "Hata raporlarını gönder",
+        "description": "If to send crash reports"
+    },
+    "settings_filler_text": {
+        "message": "BU, bölümün MyAnimeList'de filler/recap olarak işaretlenip işaretlenmediğine bakacak",
+        "description": "filler tooltip"
+    },
+    "settings_crash_report_text": {
+        "message": "Bugları düzeltmekte yardımcı oluyor, hiçbir hassas data gönderilmeyecektir.",
+        "description": "Crash report tooltip"
+    },
+    "filler_filler_confirm": {
+        "message": "Bu bölüm MyAnimeList'te filler olarak işaretlendi, geçmek istiyor musun?",
+        "description": "Question if the user wants to skip the filler"
     }
 }
