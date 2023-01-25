@@ -40,7 +40,7 @@ export const marin: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#tab-menus').first().parent().before(j.html(selector));
+      j.$('#tab-menus').first().parent().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
