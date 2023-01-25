@@ -1,0 +1,66 @@
+{
+    "Add": {
+        "message": "Přidat",
+        "description": "Button to add an anime/manga to user list"
+    },
+    "Update": {
+        "message": "Aktualizovat",
+        "description": "Update"
+    },
+    "Synchronize": {
+        "message": "Synchronizovat",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "Remove": {
+        "message": "Odstranit",
+        "description": "Button for removing entry from MAL..."
+    },
+    "Select": {
+        "message": "Vybrat",
+        "description": "Select"
+    },
+    "Yes": {
+        "message": "Ano",
+        "description": "Yes"
+    },
+    "Ok": {
+        "message": "OK",
+        "description": "Ok"
+    },
+    "No": {
+        "message": "Ne",
+        "description": "No"
+    },
+    "Cancel": {
+        "message": "Zrušit",
+        "description": "Cancel"
+    },
+    "close": {
+        "message": "zavřít",
+        "description": "close"
+    },
+    "Anime": {
+        "message": "Anime",
+        "description": "General translation of anime for places like drop downs"
+    },
+    "Manga": {
+        "message": "Manga",
+        "description": "General translation of manga for places like drop downs"
+    },
+    "Package_Description": {
+        "message": "Integruje MyAnimeList/AniList/Kitsu/Simkl do různých stránek s automatickým aktualizováním sledování.",
+        "description": "Description MALSync"
+    },
+    "syncPage_flashConfirm_start_manga": {
+        "message": "Začít číst?",
+        "description": "Start reading manga message"
+    },
+    "UI_Rules": {
+        "message": "Pravidla",
+        "description": "Rules text for the correction UI"
+    },
+    "syncPage_flashConfirm_start_anime": {
+        "message": "Začít sledovat?",
+        "description": "Start watching anime message"
+    }
+}
