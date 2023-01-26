@@ -64,7 +64,7 @@ export const settingsObj = {
       'MangaPlus',
       'MangaReader',
       'marin',
-      'Comick',
+      'ComicK',
     ],
     quicklinksPosition: 'default',
 
