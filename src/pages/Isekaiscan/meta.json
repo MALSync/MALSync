@@ -1,0 +1,6 @@
+{
+  "search": "https://isekaiscan.com/?s={searchtermPlus}&post_type=wp-manga",
+  "urls": {
+    "match": ["*://isekaiscan.com/manga*"]
+  }
+}

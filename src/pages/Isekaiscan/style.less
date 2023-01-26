@@ -1,0 +1,53 @@
+@import './../pages';
+
+@textColor: inherit !important;
+@inputBackground: #222;
+@activeEp: transparent;
+
+#malp {
+  margin: 0;
+  margin-bottom: 38px;
+}
+
+#malthing {
+  margin-bottom: 38px;
+}
+
+#malp {
+  * {
+    float: left;
+    margin-right: 5px;
+  }
+
+  #MalInfo {
+    float: none;
+    display: flex;
+  }
+
+  #MalData {
+    float: none;
+  }
+
+  select option {
+    background-color: #fff !important;
+  }
+
+  #malStatus,
+  #malUserRating,
+  #malEpisodes,
+  #malVolumes,
+  #malEpisodes {
+    line-height: normal;
+    inline-size: auto;
+  }
+
+  #malTotalVol,
+  #malTotalCha {
+    float: none;
+  }
+}
+
+.mal-sync-active a {
+  border-left: 4px solid #005104;
+  padding-left: 5px !important;
+}
