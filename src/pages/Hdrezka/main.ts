@@ -6,7 +6,7 @@ export const Hdrezka: pageInterface = {
   languages: ['Russian'],
   type: 'anime',
   isSyncPage(url) {
-    return Boolean(Hdrezka.sync.getIdentifier(url));
+    return Boolean(Hdrezka.sync.getIdentifier(url)) && Hdrezka.sync.getIdentifier(url) !== 'page';
   },
   isOverviewPage(url) {
     return false;
@@ -78,7 +78,7 @@ export const Hdrezka: pageInterface = {
           page.handlePage();
         },
         () => {
-          return Hdrezka.sync.getEpisode(window.location.href);
+          return Hdrezka.sync.getEpisode(window.location.href) || '';
         },
         true,
       );
