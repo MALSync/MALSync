@@ -1,9 +1,9 @@
 {
   "title": "ComicK",
-  "url": "https://comick.fun/",
+  "url": "https://comick.app/",
   "testCases": [
     {
-      "url": "https://comick.fun/comic/mahouka-koukou-no-rettousei-raihousha-hen",
+      "url": "https://comick.app/comic/mahouka-koukou-no-rettousei-raihousha-hen",
       "expected": {
         "sync": false,
         "title": "Mahouka Koukou no Rettousei - Raihousha-hen",
@@ -12,12 +12,12 @@
       }
     },
     {
-      "url": "https://comick.fun/comic/mahouka-koukou-no-rettousei-raihousha-hen/4zgN2-chapter-12-en",
+      "url": "https://comick.app/comic/mahouka-koukou-no-rettousei-raihousha-hen/4zgN2-chapter-12-en",
       "expected": {
         "sync": true,
         "title": "Mahouka Koukou no Rettousei - Raihousha-hen",
         "identifier": 15142,
-        "overviewUrl": "https://comick.fun/comic/mahouka-koukou-no-rettousei-raihousha-hen",
+        "overviewUrl": "https://comick.app/comic/mahouka-koukou-no-rettousei-raihousha-hen",
         "episode": 12,
         "uiSelector": false
       }

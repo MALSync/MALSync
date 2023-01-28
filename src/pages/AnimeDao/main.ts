@@ -8,7 +8,7 @@ export const AnimeDao: pageInterface = {
   type: 'anime',
   isSyncPage(url) {
     if (
-      url.split('/')[3] === 'view' &&
+      url.split('/')[3] === 'watch' &&
       url.split('/')[4] !== undefined &&
       url.split('/')[4].length
     ) {

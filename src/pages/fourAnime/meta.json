@@ -1,6 +1,0 @@
-{
-  "search": "https://4anime.to/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://4anime.to/*"]
-  }
-}

@@ -806,7 +806,7 @@ export class SyncPage {
   }
 
   fillUI() {
-    j.$('.MalLogin').css('display', 'initial');
+    j.$('.MalLogin').css('display', '');
     j.$('#AddMalDiv, #LoginMalDiv').remove();
 
     j.$('#malRating').attr('href', this.singleObj.getDisplayUrl());

@@ -117,8 +117,11 @@ export const beta: pageInterface = {
       return Number(status.episode!.episode_metadata.episode_number) || 1;
     },
     nextEpUrl(url) {
-      if ($('.up-next-title').length && $('.up-next-title').first().attr('href')) {
-        return utils.absoluteLink($('.up-next-title').first().attr('href'), beta.domain);
+      if (
+        $('[data-t="next-episode"] a').length &&
+        $('[data-t="next-episode"] a').first().attr('href')
+      ) {
+        return utils.absoluteLink($('[data-t="next-episode"] a').first().attr('href'), beta.domain);
       }
       return '';
     },

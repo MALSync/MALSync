@@ -1,0 +1,6 @@
+{
+  "search": "https://marin.moe/anime?search={searchterm}",
+  "urls": {
+    "match": ["*://marin.moe/*"]
+  }
+}

@@ -1,5 +1,0 @@
-{
-  "urls": {
-    "match": ["*://*.animestrue.net/anime/*/temporada*", "*://*.animestrue.site/anime/*/temporada*"]
-  }
-}

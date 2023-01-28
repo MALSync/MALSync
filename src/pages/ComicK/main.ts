@@ -4,7 +4,7 @@ let jsonData;
 
 export const ComicK: pageInterface = {
   name: 'ComicK',
-  domain: 'https://comick.fun',
+  domain: 'https://comick.app',
   languages: ['Many'],
   type: 'manga',
   isSyncPage(url) {

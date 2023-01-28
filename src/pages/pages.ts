@@ -15,7 +15,6 @@ import { Proxer } from './Proxer/main';
 import { Aniflix } from './Aniflix/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { Wakanim } from './Wakanim/main';
-import { AnimeIndo } from './AnimeIndo/main';
 import { Shinden } from './Shinden/main';
 import { Voiranime } from './Voiranime/main';
 import { VIZ } from './VIZ/main';
@@ -56,7 +55,6 @@ import { AnimeStreamingFR } from './AnimeStreamingFR/main';
 import { Scantrad } from './Scantrad/main';
 import { Furyosquad } from './Furyosquad/main';
 import { AnimeId } from './AnimeId/main';
-import { AniMixPlay } from './AniMixPlay/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
 import { AnimeUnity } from './AnimeUnity/main';
 import { MangaHere } from './MangaHere/main';
@@ -71,7 +69,6 @@ import { LynxScans } from './LynxScans/main';
 import { SKScans } from './SKScans/main';
 import { ZeroScans } from './ZeroScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
-import { KireiCake } from './KireiCake/main';
 import { SenseScans } from './SenseScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
@@ -101,7 +98,6 @@ import { ComicK } from './ComicK/main';
 import { Japanread } from './Japanread/main';
 import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
-import { ArangScans } from './ArangScans/main';
 import { HunlightScans } from './HunlightScans/main';
 import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
@@ -113,16 +109,13 @@ import { Kitsune } from './Kitsune/main';
 import { AnimesOnline } from './AnimesOnline/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
-import { tenshi } from './tenshi/main';
 import { shiro } from './shiro/main';
 import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
 import { SugarBabies } from './SugarBabies/main';
-import { AlphaScans } from './AlphaScans/main';
 import { Aniworld } from './Aniworld/main';
 import { BetterAnime } from './BetterAnime/main';
-import { AMAScan } from './AMAScan/main';
 import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
@@ -141,6 +134,7 @@ import { Kaguya } from './Kaguya/main';
 import { Hdrezka } from './Hdrezka/main';
 import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
+import { marin } from './marin/main';
 import { Isekaiscan } from './Isekaiscan/main';
 
 export const pages = {
@@ -161,7 +155,6 @@ export const pages = {
   Plex,
   Aniflix,
   KickAssAnime,
-  AnimeIndo,
   Shinden,
   Voiranime,
   MangaNato,
@@ -202,7 +195,6 @@ export const pages = {
   Scantrad,
   Furyosquad,
   AnimeId,
-  AniMixPlay,
   MyAnimeListVideo,
   AnimeUnity,
   MangaHere,
@@ -217,7 +209,6 @@ export const pages = {
   SKScans,
   ZeroScans,
   DeathTollScans,
-  KireiCake,
   SenseScans,
   ManhuaPlus,
   Readm,
@@ -247,7 +238,6 @@ export const pages = {
   Japanread,
   Bentomanga,
   MangaSushi,
-  ArangScans,
   HunlightScans,
   TritiniaScans,
   ReadManhua,
@@ -259,16 +249,13 @@ export const pages = {
   AnimesOnline,
   LHTranslation,
   MangasOrigines,
-  tenshi,
   shiro,
   BlueSolo,
   DisasterScans,
   DynastyScans,
   SugarBabies,
-  AlphaScans,
   Aniworld,
   BetterAnime,
-  AMAScan,
   BilibiliComics,
   MangaReader,
   AnimeOnsen,
@@ -287,5 +274,6 @@ export const pages = {
   Hdrezka,
   ADN,
   Aniyan,
+  marin,
   Isekaiscan,
 };

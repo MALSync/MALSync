@@ -68,6 +68,16 @@ export const Mangadex: pageInterface = {
     getVolume(url) {
       return parseInt(chapterData.volume);
     },
+    nextEpUrl(url) {
+      const dir = $('.rtl').length ? 'left' : 'right';
+      const chev = j.$(`a[href*="/chapter/"] .feather-chevron-${dir}`).first();
+      if (!chev.length) return '';
+
+      const path = chev.closest('a[href*="/chapter/"]').first().attr('href');
+      if (!path) return '';
+
+      return utils.absoluteLink(path, Mangadex.domain);
+    },
     getMalUrl(provider) {
       if (mangaData.links?.mal) return `https://myanimelist.net/manga/${mangaData.links.mal}`;
       if (provider === 'ANILIST' && mangaData.links?.al)

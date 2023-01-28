@@ -50,6 +50,7 @@
   #malEpisodes {
     text-align: center;
     border-bottom-width: 1px;
+
     &:focus {
       border-color: @textColor;
     }
@@ -80,28 +81,83 @@
         left: -200px;
         width: 30%;
       }
+
       50% {
         width: 30%;
       }
+
       70% {
         width: 70%;
       }
+
       80% {
         left: 50%;
       }
+
       95% {
         left: 120%;
       }
+
       100% {
         left: 100%;
       }
     }
   }
+
   &.ms-done {
     .ms-progress {
       width: 100% !important;
       background-color: #ff4081 !important;
       transition: background-color 1s !important;
+    }
+  }
+}
+
+.boxStyle(@bg) {
+  @gap: 10px;
+
+  #MalData {
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: @gap;
+
+    .malp-group {
+      display: flex;
+      flex-direction: column !important;
+
+      & > .malp-group-field,
+      & > .malp-group-value-section {
+        flex-grow: 1;
+        background-color: @bg !important;
+        border-radius: 4px;
+        padding: 4px 8px !important;
+      }
+    }
+
+    option {
+      background-color: @bg !important;
+    }
+
+    .malp-group-label {
+      display: block !important;
+    }
+
+    .malp-group-label {
+      display: block !important;
+      font-size: 12px !important;
+    }
+
+    #AddMalDiv {
+      margin-left: @gap;
+      display: inline-block !important;
+      font-size: 0;
+      background-color: @bg !important;
+      border-radius: 4px;
+      padding: 4px 8px !important;
+
+      #AddMal {
+        font-size: 16px;
+      }
     }
   }
 }

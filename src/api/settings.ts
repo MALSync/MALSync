@@ -54,7 +54,6 @@ export const settingsObj = {
       'MangaFox',
       'MangaSee',
       'YugenAnime',
-      'AniMixPlay',
       'Zoro',
       'Funimation',
       'Hulu',
@@ -64,7 +63,8 @@ export const settingsObj = {
       'VIZ',
       'MangaPlus',
       'MangaReader',
-      'tenshi',
+      'marin',
+      'ComicK',
     ],
     quicklinksPosition: 'default',
 

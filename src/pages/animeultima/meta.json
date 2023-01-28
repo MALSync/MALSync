@@ -1,5 +1,0 @@
-{
-  "urls": {
-    "match": ["*://*.animeultima.eu/a/*", "*://*.animeultima.to/a/*"]
-  }
-}
