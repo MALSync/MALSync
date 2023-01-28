@@ -42,7 +42,7 @@ export class Single extends SingleAbstract {
   }
 
   getCacheKey() {
-    return helper.getCacheKey(this.ids.mal, this.ids.kitsu.id);
+    return this.getKey(['KITSU']);
   }
 
   getPageId() {

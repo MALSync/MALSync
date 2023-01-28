@@ -7,6 +7,7 @@ import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
 import { errorMessage as _errorMessage } from './Errors';
 import { point10 } from './ScoreMode/point10';
+import { SyncTypes } from './helper';
 
 Object.seal(emitter);
 
@@ -69,15 +70,11 @@ export abstract class SingleAbstract {
   public abstract getPageId();
 
   public getApiCacheKey(): string | number {
-    if (this.ids.mal) {
-      return this.ids.mal;
-    }
+    return this.getKey(['ANILIST']);
+  }
 
-    if (this.ids.ani) {
-      return `anilist:${this.ids.ani}`;
-    }
-
-    return '';
+  public getRulesCacheKey(): string | number {
+    return this.getKey(['ANILIST', 'KITSU'], false);
   }
 
   abstract _setStatus(status: definitions.status): void;
@@ -755,6 +752,14 @@ export abstract class SingleAbstract {
 
   public getStatusCheckboxValue() {
     return this.getStatus();
+  }
+
+  public getKey(allowed: SyncTypes[], forceMal = true) {
+    if (forceMal && this.ids.mal) return this.ids.mal;
+    if (this.ids.ani && allowed.includes('ANILIST')) return `anilist:${this.ids.ani}`;
+    if (this.ids.kitsu.id && allowed.includes('KITSU')) return `kitsu:${this.ids.kitsu.id}`;
+    if (this.ids.simkl && allowed.includes('SIMKL')) return `simkl:${this.ids.simkl}`;
+    return this.ids.mal;
   }
 
   public getLastError() {

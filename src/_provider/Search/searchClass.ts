@@ -6,7 +6,7 @@ import { compareTwoStrings } from 'string-similarity';
 
 import { search as pageSearch } from '../searchFactory';
 import { Single as LocalSingle } from '../Local/single';
-import { getCacheKey } from '../singleFactory';
+import { getRulesCacheKey } from '../singleFactory';
 import { RulesClass } from './rulesClass';
 
 import { getSyncMode } from '../helper';
@@ -594,9 +594,9 @@ export class SearchClass {
     const url = this.getUrl();
     logger.log('Url', url);
     if (url) {
-      const cacheKeyObj = await getCacheKey(url);
+      const cacheKeyObj = await getRulesCacheKey(url);
       logger.log('Cachekey', cacheKeyObj);
-      this.rules = await new RulesClass(cacheKeyObj.cacheKey, this.getNormalizedType()).init();
+      this.rules = await new RulesClass(cacheKeyObj.rulesCacheKey, this.getNormalizedType()).init();
       return cacheKeyObj.singleObj;
     }
     return undefined;

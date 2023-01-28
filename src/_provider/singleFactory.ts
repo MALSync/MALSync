@@ -35,28 +35,24 @@ export function getSingle(url: string) {
   throw 'Unknown sync mode';
 }
 
-export async function getCacheKey(url: string): Promise<{ cacheKey: string; singleObj? }> {
-  if (/^https:\/\/myanimelist.net\/(anime|manga)\/\d+(\/|$)/.test(url)) {
-    return {
-      cacheKey: url.split('/')[4],
-    };
-  }
-
-  const cacheObj = new Cache(`cacheKey/${url}`, 7 * 24 * 60 * 60 * 1000);
+export async function getRulesCacheKey(
+  url: string,
+): Promise<{ rulesCacheKey: string | number; singleObj? }> {
+  const cacheObj = new Cache(`rulesCacheKey/${url}`, 7 * 24 * 60 * 60 * 1000);
 
   if (await cacheObj.hasValue()) {
     return cacheObj.getValue().then(res => {
       return {
-        cacheKey: res,
+        rulesCacheKey: res,
       };
     });
   }
 
   const singleObj = getSingle(url);
   await singleObj.update();
-  cacheObj.setValue(singleObj.getCacheKey());
+  cacheObj.setValue(singleObj.getRulesCacheKey());
   return {
-    cacheKey: singleObj.getCacheKey(),
+    rulesCacheKey: singleObj.getRulesCacheKey(),
     singleObj,
   };
 }

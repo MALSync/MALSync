@@ -38,7 +38,7 @@ export class Single extends SingleAbstract {
   }
 
   getCacheKey() {
-    return helper.getCacheKey(this.ids.mal, this.ids.ani);
+    return this.getKey(['ANILIST']);
   }
 
   getPageId() {
