@@ -413,6 +413,10 @@ module.exports = {
       '*://*.gogohd.pro/streaming.php?*',
       '*://*.gogohd.pro/load.php?*',
       '*://*.gogohd.pro/loadserver.php?*',
+      '*://*.gembedhd.com/embedplus*',
+      '*://*.gembedhd.com/streaming.php?*',
+      '*://*.gembedhd.com/load.php?*',
+      '*://*.gembedhd.com/loadserver.php?*',
     ],
   },
   // bs.to
