@@ -338,6 +338,6 @@ miniMAL (Extension Popup)
 
 Then let me know on [Discord](https://discord.com/invite/cTH4yaw).
 
-How to build? [Wiki](https://github.com/MALSync/MALSync/wiki/Build)
+How to add a new page? How to build? [Wiki](https://github.com/MALSync/MALSync/wiki/Build)
 
 You can't code, but want to help? [Donations](https://github.com/MALSync/MALSync/wiki/Donations)
