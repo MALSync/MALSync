@@ -14,8 +14,6 @@ This is an complementary script for <a href="https://github.com/MALSync/MALSync"
             </tr><tr>
               <td><a href="http://hentaigasm.com"><img src="https://favicon.malsync.moe/?domain=http://hentaigasm.com"> Hentaigasm</a></td>
             </tr><tr>
-              <td><a href="https://hentaihaven.org"><img src="https://favicon.malsync.moe/?domain=https://hentaihaven.org"> HentaiHaven</a></td>
-            </tr><tr>
               <td><a href="http://kisshentai.net"><img src="https://favicon.malsync.moe/?domain=http://kisshentai.net"> KissHentai</a></td>
             </tr><tr>
               <td><a href="https://nhentai.net"><img src="https://favicon.malsync.moe/?domain=https://nhentai.net"> Nhentai</a></td>

@@ -1,46 +1,4 @@
 {
-  "0.8.20": {
-    "DreamSub": [
-      "https://dreamsub.me/*"
-    ],
-    "Gogoanime": [
-      "https://gogoanime.sk/*"
-    ],
-    "nineAnime": [
-      "https://9anime.pl/watch/*"
-    ],
-    "iframe": [
-      "https://goload.pro/streaming.php?*",
-      "https://goload.pro/load.php?*",
-      "https://goload.pro/loadserver.php?*",
-      "https://goload.pro/embedplus*",
-      "https://vidstreamz.online/e/*",
-      "https://vizcloud.ru/e/*",
-      "https://vizcloud2.ru/e/*",
-      "https://vizcloud2.online/e/*",
-      "https://vizcloud.online/e/*",
-      "https://vizstream.ru/e/*",
-      "https://vizcloud.xyz/e/*",
-      "https://vizcloud.live/embed/*",
-      "https://vizcloud.live/e/*",
-      "https://vizcloud.digital/embed/*",
-      "https://vizcloud.digital/e/*",
-      "https://vizcloud.cloud/embed/*",
-      "https://vizcloud.cloud/e/*",
-      "https://dood.video/*",
-      "https://dood.pm/e/*",
-      "https://www.aparat.com/video/video/embed/*",
-      "https://voe.sx/e/*",
-      "https://voe-unblock.com/e/*",
-      "https://voe-unblock.net/e/*",
-      "https://voeunblock.com/e/*",
-      "https://voeunblock1.com/e/*",
-      "https://voeunblock2.com/e/*",
-      "https://kaast1.com/*",
-      "https://kanra.dev/*",
-      "https://player.simplyaweeb.to/*"
-    ]
-  },
   "0.8.21": {
     "Gogoanime": [
       "https://gogoanime.lu/*"
@@ -164,5 +122,8 @@
       "https://30sensualizeexpression.com/e/*",
       "https://animedao.to/redirect/*"
     ]
+  },
+  "0.9.2": {
+    "iframe": []
   }
 }

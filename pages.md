@@ -27,6 +27,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://animationdigitalnetwork.fr"><img src="https://favicon.malsync.moe/?domain=https://animationdigitalnetwork.fr"> ADN</a></td>
+    <td>French</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www.primevideo.com"><img src="https://favicon.malsync.moe/?domain=https://www.primevideo.com"> Amazon Prime Video</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
@@ -78,13 +85,6 @@
   </tr><tr>
     <td><a href="https://www.animeid.tv"><img src="https://favicon.malsync.moe/?domain=https://www.animeid.tv"> AnimeId</a></td>
     <td>Spanish</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://animeindo.net"><img src="https://favicon.malsync.moe/?domain=https://animeindo.net"> AnimeIndo</a></td>
-    <td>Indonesian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -195,19 +195,19 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://animixplay.to"><img src="https://favicon.malsync.moe/?domain=https://animixplay.to"> AniMixPlay</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://aniworld.to"><img src="https://favicon.malsync.moe/?domain=https://aniworld.to"> Aniworld</a></td>
     <td>German</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://aniyan.net"><img src="https://favicon.malsync.moe/?domain=https://aniyan.net"> Aniyan</a></td>
+    <td>Portuguese</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://betteranime.net"><img src="https://favicon.malsync.moe/?domain=https://betteranime.net"> BetterAnime</a></td>
     <td>Portuguese</td>
@@ -279,6 +279,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://hdrezka.ag"><img src="https://favicon.malsync.moe/?domain=https://hdrezka.ag"> Hdrezka</a></td>
+    <td>Russian</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www.hidive.com"><img src="https://favicon.malsync.moe/?domain=https://www.hidive.com"> Hidive</a></td>
     <td>English, Spanish, Portuguese, French, German, Arabic, Italian, Russian</td>
     <td>:heavy_check_mark:</td>
@@ -328,6 +335,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://marin.moe"><img src="https://favicon.malsync.moe/?domain=https://marin.moe"> marin</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://moeclip.com"><img src="https://favicon.malsync.moe/?domain=https://moeclip.com"> moeclip</a></td>
     <td>Indonesian</td>
     <td>:heavy_check_mark:</td>
@@ -349,7 +363,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://www.neko-sama.fr"><img src="https://favicon.malsync.moe/?domain=https://www.neko-sama.fr"> NekoSama</a></td>
+    <td><a href="https://neko-sama.fr"><img src="https://favicon.malsync.moe/?domain=https://neko-sama.fr"> NekoSama</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -432,13 +446,6 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
-  </tr><tr>
-    <td><a href="https://tenshi.moe"><img src="https://favicon.malsync.moe/?domain=https://tenshi.moe"> tenshi</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://tioanime.com"><img src="https://favicon.malsync.moe/?domain=https://tioanime.com"> tioanime</a></td>
     <td>Spanish</td>
@@ -540,27 +547,6 @@
     </thead>
     <tbody>
       <tr>
-    <td><a href="https://Alpha-Scans.org"><img src="https://favicon.malsync.moe/?domain=https://Alpha-Scans.org"> AlphaScans</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://www.amascan.com"><img src="https://favicon.malsync.moe/?domain=https://www.amascan.com"> AMAScan</a></td>
-    <td>Portuguese</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://arangscans.org"><img src="https://favicon.malsync.moe/?domain=https://arangscans.org"> ArangScans</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://asura.gg"><img src="https://favicon.malsync.moe/?domain=https://asura.gg"> AsuraScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -596,7 +582,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://comick.fun"><img src="https://favicon.malsync.moe/?domain=https://comick.fun"> ComicK</a></td>
+    <td><a href="https://comick.app"><img src="https://favicon.malsync.moe/?domain=https://comick.app"> ComicK</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -666,6 +652,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://isekaiscan.com"><img src="https://favicon.malsync.moe/?domain=https://isekaiscan.com"> Isekaiscan</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www.japanread.cc/"><img src="https://favicon.malsync.moe/?domain=https://www.japanread.cc/"> Japanread</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
@@ -675,13 +668,6 @@
   </tr><tr>
     <td><a href="https://www.japscan.ws"><img src="https://favicon.malsync.moe/?domain=https://www.japscan.ws"> JapScan</a></td>
     <td>French</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://reader.kireicake.com"><img src="https://favicon.malsync.moe/?domain=https://reader.kireicake.com"> KireiCake</a></td>
-    <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -746,7 +732,7 @@
     <td><a href="https://www.mangadex.org"><img src="https://favicon.malsync.moe/?domain=https://www.mangadex.org"> Mangadex</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
-    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
