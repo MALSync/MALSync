@@ -69,7 +69,8 @@ export const Mangadex: pageInterface = {
       return parseInt(chapterData.volume);
     },
     nextEpUrl(url) {
-      const chev = j.$('a[href*="/chapter/"] .feather-chevron-right').first();
+      const dir = $('.rtl').length ? 'left' : 'right';
+      const chev = j.$(`a[href*="/chapter/"] .feather-chevron-${dir}`).first();
       if (!chev.length) return '';
 
       const path = chev.closest('a[href*="/chapter/"]').first().attr('href');
