@@ -820,7 +820,7 @@
         "description": "Text for the correction ui shortcut"
     },
     "settings_Shortcuts_Sync": {
-        "message": "Setzte die Episode/Kapitel als gelesen",
+        "message": "Setze Episode/Kapitel als gelesen",
         "description": "Text for the sync ui shortcut"
     },
     "settings_Shortcuts_Next_Episode": {
