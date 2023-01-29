@@ -12,7 +12,7 @@
         "description": "Help"
     },
     "Update": {
-        "message": "Mise à jour",
+        "message": "Mettre à jour",
         "description": "Update"
     },
     "Add": {
@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Intègre MyAnimeList/AniList/Kitsu/Simkl à de nombreux sites, avec un suivi automatique des épisodes.",
+        "message": "Intègre MyAnimeList/AniList/Kitsu/Simkl/Shikimori à de nombreux sites, avec un suivi automatique des épisodes.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -1256,7 +1256,7 @@
         "description": "Header of the section where you can add your own custom search links"
     },
     "settings_miniMAL_pwa": {
-        "message": "application web progressive",
+        "message": "Application web progressive",
         "description": "Link to the PWA version of the extension popup"
     },
     "settings_listsync": {
