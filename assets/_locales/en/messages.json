@@ -100,7 +100,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
+        "message": "Integrates MyAnimeList/AniList/Kitsu/Simkl/Shikimori into various sites, with auto episode tracking.",
         "description": "Description MALSync"
     },
     "UI_Status": {
