@@ -582,6 +582,7 @@ module.exports = {
       '*://745mingiestblissfully.com/e/*',
       '*://19turanosephantasia.com/e/*',
       '*://30sensualizeexpression.com/e/*',
+      '*://321naturelikefurfuroid.com/e/*',
     ],
   },
   // animewho
