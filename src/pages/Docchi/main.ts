@@ -6,7 +6,7 @@ export const Docchi: pageInterface = {
   languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
-    if(url.split('/')[5]){
+    if (url.split('/')[5]) {
       return true;
     }
     return false;
@@ -26,9 +26,14 @@ export const Docchi: pageInterface = {
     },
     nextEpUrl(url) {
       const href = j.$('a[mal_sync="title"]').attr('href');
-      const episode = Number(j.$('a[mal_sync="episode"]').text())+1;
+      const episode = Number(j.$('a[mal_sync="episode"]').text()) + 1;
 
       return utils.absoluteLink(`${href}/${episode}`, Docchi.domain);
+    },
+    getMalUrl(provider) {
+      return `https://myanimelist.net/anime/${j
+        .$('a[mal_sync="episode"]')
+        .attr('mal_sync_mal_id')}`;
     },
   },
   overview: {
@@ -41,16 +46,21 @@ export const Docchi: pageInterface = {
     uiSelector(selector) {
       j.$('div[mal_sync="episodes_list"]').before(j.html(selector));
     },
+    getMalUrl(provider) {
+      return `https://myanimelist.net/anime/${j
+        .$('a[mal_sync="episode"]')
+        .attr('mal_sync_mal_id')}`;
+    },
     list: {
       offsetHandler: false,
       elementsSelector() {
         return j.$('div[mal_sync="episodes"]');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(j.$(selector).find("a").attr('href'), Docchi.domain);
+        return utils.absoluteLink(j.$(selector).find('a').attr('href'), Docchi.domain);
       },
       elementEp(selector) {
-        const ep = Number(j.$(selector).find('p.undefined.p-0.m-0').text().split(" ")[1]);
+        const ep = Number(j.$(selector).find('p.undefined.p-0.m-0').text().split(' ')[1]);
         return ep;
       },
     },

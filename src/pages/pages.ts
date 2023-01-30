@@ -277,5 +277,5 @@ export const pages = {
   Aniyan,
   marin,
   Isekaiscan,
-  Docchi
+  Docchi,
 };
