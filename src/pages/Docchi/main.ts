@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Docchi: pageInterface = {
   name: 'Docchi',
-  domain: 'https://docchi.pl/',
+  domain: 'https://docchi.pl',
   languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
