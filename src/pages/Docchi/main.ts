@@ -28,7 +28,7 @@ export const Docchi: pageInterface = {
       const href = j.$('a[mal_sync="title"]').attr('href');
       const episode = Number(j.$('a[mal_sync="episode"]').text())+1;
 
-      return utils.absoluteLink(`${href}${episode}`, Docchi.domain);
+      return utils.absoluteLink(`${href}/${episode}`, Docchi.domain);
     },
   },
   overview: {
