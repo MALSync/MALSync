@@ -777,4 +777,8 @@ module.exports = {
   animedao: {
     match: ['*://animedao.to/redirect/*'],
   },
+  // aniyan
+  aniyan: {
+    match: ['*://aniyan.net/jwplayer/*'],
+  },
 };
