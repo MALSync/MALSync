@@ -808,7 +808,7 @@
         "description": "Auto fullscreen toggle"
     },
     "settings_Video_Resume": {
-        "message": "Auto fortsetzen",
+        "message": "Auto Fortsetzen",
         "description": "Auto resume video where you left off toggle"
     },
     "settings_autoNextEp": {
