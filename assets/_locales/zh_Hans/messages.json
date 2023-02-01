@@ -702,5 +702,49 @@
     "installPage_Mode": {
         "message": "选择您要使用的动漫数据库",
         "description": "Header for the MAL-sync provider dropdown"
+    },
+    "Package_Description": {
+        "message": "将MyAnimeList/AniList/Kitsu/Simkl集成一体并具备剧集自动跟踪功能。",
+        "description": "Description MALSync"
+    },
+    "UI_Rules": {
+        "message": "规则",
+        "description": "Rules text for the correction UI"
+    },
+    "syncPage_flashm_resumeMsg": {
+        "message": "$time$后恢复",
+        "description": "Video resume message",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "13:37"
+            }
+        }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+        "message": "检测到$calcOffset$可能出现集数偏移。对吗？",
+        "description": "offsetHandler Episode",
+        "placeholders": {
+            "calcOffset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "kitsuClass_authentication_text": {
+        "message": "如果使用Kitsu登录，那么需要输入帐户的电子邮件与密码。<br>您的凭据不会存储在您的计算机或其他任何地方。<br>它们会直接发送到 Kitsu。仅保存返回的访问令牌。<br>",
+        "description": "Authentication text in Kitsu"
+    },
+    "correction_Offset_text": {
+        "message": "输入集数偏移值，假设动画有12集，但只使用0-11而非1-12，那么只需在剧集偏移值中输入“+1”。",
+        "description": "Episode Offset - Text"
+    },
+    "correction_WrongUrl": {
+        "message": "只有当在导向MAL上错误的动画页面时才更改此URL。",
+        "description": "URL is Wrong"
+    },
+    "correction_Search": {
+        "message": "搜索更正",
+        "description": "Correction Search"
     }
 }
