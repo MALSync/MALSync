@@ -413,6 +413,10 @@ module.exports = {
       '*://*.gembedhd.com/streaming.php?*',
       '*://*.gembedhd.com/load.php?*',
       '*://*.gembedhd.com/loadserver.php?*',
+      '*://*.playgo1.cc/embedplus*',
+      '*://*.playgo1.cc/streaming.php?*',
+      '*://*.playgo1.cc/load.php?*',
+      '*://*.playgo1.cc/loadserver.php?*',
     ],
   },
   // bs.to
