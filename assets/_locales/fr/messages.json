@@ -1342,5 +1342,21 @@
     "settings_read_more": {
         "message": "Afficher la suite",
         "description": "Button to show more of the description"
+    },
+    "settings_theming_theme_system": {
+        "message": "Système",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "Clair",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Sombre",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Personnalisé",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
     }
 }
