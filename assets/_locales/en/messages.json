@@ -909,6 +909,22 @@
         "message": "Background Opacity",
         "description": "Option to set the transparency of the UI in front of the background image"
     },
+    "settings_theming_theme_system": {
+        "message": "System",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "Light",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Dark",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Custom",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
     "settings_Shortcuts": {
         "message": "Shortcuts",
         "description": "Shortcuts"
