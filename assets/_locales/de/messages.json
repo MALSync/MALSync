@@ -1342,5 +1342,21 @@
     "settings_custom_position_below": {
         "message": "Unter Information",
         "description": "Position of the quicklinks below the information section"
+    },
+    "settings_theming_theme_system": {
+        "message": "System",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "Hell",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Dunkel",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Benutzerdefiniert",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
     }
 }
