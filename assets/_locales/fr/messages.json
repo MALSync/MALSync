@@ -1358,5 +1358,21 @@
     "settings_theming_theme_custom": {
         "message": "Personnalisé",
         "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "list_sorting_unread": {
+        "message": "Non-lus",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "list_sorting_alpha": {
+        "message": "Alphabétique",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "list_sorting_history": {
+        "message": "Date de mise à jour",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "list_sorting_score": {
+        "message": "Note",
+        "description": "Dropdown option to sort list by score"
     }
 }
