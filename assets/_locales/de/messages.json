@@ -1264,7 +1264,7 @@
         "description": "Button to load content"
     },
     "overview_Related": {
-        "message": "Ähnlich",
+        "message": "Verwandt",
         "description": "Header of the anime/manga relations section of the popup anime overview"
     },
     "settings_profile_no_login": {
@@ -1358,5 +1358,21 @@
     "settings_theming_theme_custom": {
         "message": "Benutzerdefiniert",
         "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "list_sorting_alpha": {
+        "message": "Alphabetisch",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "list_sorting_unread": {
+        "message": "Ungelesen",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "list_sorting_history": {
+        "message": "Zuletzt aktualisiert",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "list_sorting_score": {
+        "message": "Punktzahl",
+        "description": "Dropdown option to sort list by score"
     }
 }
