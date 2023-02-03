@@ -27,17 +27,17 @@ export class UserList extends ListAbstract {
     return [
       {
         icon: 'sort_by_alpha',
-        title: 'Alphabetic',
+        title: api.storage.lang('list_sorting_alpha'),
         value: 'alpha',
       },
       {
         icon: 'history',
-        title: 'Last Updated',
+        title: api.storage.lang('list_sorting_history'),
         value: 'updated',
       },
       {
         icon: 'score',
-        title: 'Score',
+        title: api.storage.lang('list_sorting_score'),
         value: 'score',
       },
     ];

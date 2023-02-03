@@ -200,7 +200,7 @@ export abstract class ListAbstract {
     const res = [
       {
         icon: 'filter_list',
-        title: 'Default',
+        title: api.storage.lang('settings_progress_default'),
         value: 'default',
       },
     ];
@@ -208,7 +208,7 @@ export abstract class ListAbstract {
     if (this.status === 1 && this.listType === 'manga') {
       res.push({
         icon: 'adjust',
-        title: 'Unread',
+        title: api.storage.lang('list_sorting_unread'),
         value: 'unread',
       });
     }
