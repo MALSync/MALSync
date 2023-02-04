@@ -374,7 +374,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Token saved you can close this page now",
+        "message": "Token saved, you can close this page now.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
