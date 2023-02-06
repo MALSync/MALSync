@@ -587,6 +587,7 @@ module.exports = {
       '*://19turanosephantasia.com/e/*',
       '*://30sensualizeexpression.com/e/*',
       '*://321naturelikefurfuroid.com/e/*',
+      '*://449unceremoniousnasoseptal.com/e/*',
     ],
   },
   // animewho
