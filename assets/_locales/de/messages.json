@@ -1372,7 +1372,7 @@
         "description": "Dropdown option to sort list by last updated"
     },
     "list_sorting_score": {
-        "message": "Punktzahl",
+        "message": "Bewertung",
         "description": "Dropdown option to sort list by score"
     }
 }
