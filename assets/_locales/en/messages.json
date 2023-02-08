@@ -628,7 +628,7 @@
         "description": "Dropdown option to sort list alphabetic"
     },
     "list_sorting_history": {
-        "message": "Last Updated",
+        "message": "Last updated",
         "description": "Dropdown option to sort list by last updated"
     },
     "list_sorting_score": {
