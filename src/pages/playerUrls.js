@@ -81,6 +81,8 @@ module.exports = {
       '*://*.diasfem.com/*',
       '*://*.fembed-hd.com/*',
       '*://*.fembed9hd.com/*',
+      '*://suzihaza.com/v/*',
+      '*://vanfem.com/v/*',
     ],
   },
   youpload: {
@@ -701,7 +703,11 @@ module.exports = {
   },
   // turkanime
   turkanime: {
-    match: ['*://*.turkanime.net/player/*', '*://*.turkanime.co/player/*'],
+    match: [
+      '*://*.turkanime.net/player/*',
+      '*://*.turkanime.co/player/*',
+      '*://*.turkanime.co/embed/*',
+    ],
   },
   // turkanime
   cozyplayer: {
