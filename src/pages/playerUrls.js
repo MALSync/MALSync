@@ -590,6 +590,7 @@ module.exports = {
       '*://30sensualizeexpression.com/e/*',
       '*://321naturelikefurfuroid.com/e/*',
       '*://449unceremoniousnasoseptal.com/e/*',
+      '*://guidon40hyporadius9.com/e/*',
     ],
   },
   // animewho
