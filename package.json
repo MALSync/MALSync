@@ -53,7 +53,7 @@
     "serialize-javascript": "^6.0.1",
     "style-loader": "^3.3.1",
     "stylelint": "^14.16.1",
-    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-prettier": "^2.0.0",
