@@ -32,28 +32,52 @@ export const TurkAnime: pageInterface = {
       // https://www.turkanime.net/video/shingeki-no-kyojin-ova-3-bolum
       // https://www.turkanime.net/video/shingeki-no-kyojin-ova-5-bolum-part-2-pismanlik-yok
 
+      /**
+       * expected output:
+       * ```
+       * 'shingeki-no-kyojin'
+       * ```
+       */
       const animeNameSlug = TurkAnime.overview!.getIdentifier(
-        TurkAnime.isSyncPage(window.location.href) //
+        TurkAnime.isSyncPage(window.location.href)
           ? TurkAnime.sync.getOverviewUrl('')
           : window.location.href,
       );
-      // Expected output: shingeki-no-kyojin
 
+      /**
+       * expected output:
+       * ```
+       * 'shingeki-no-kyojin-23'
+       * 'shingeki-no-kyojin-24-bolum'
+       * 'shingeki-no-kyojin-25-bolum-final'
+       * 'black-clover-tv-132-bolum'
+       * 'black-clover-tv-170-bolum-final'
+       * ```
+       */
       const animeNameWithEpisodeSlug = TurkAnime.overview!.getIdentifier(episodeURL);
-      // Expected output: "shingeki-no-kyojin-23"
-      // Expected output: "shingeki-no-kyojin-24-bolum"
-      // Expected output: "shingeki-no-kyojin-25-bolum-final"
 
-      const episodeSlug = animeNameWithEpisodeSlug.replace(`${animeNameSlug}-`, '');
-      // Expected valid output: "23" | "24-bolum" | "25-bolum-final"
-      // Expected invalid output: "1-" | "2-ova" | "ova-3-bolum" | "5-bolum-part-2-pismanlik-yok"
+      /**
+       * valid output:
+       * ```
+       * '23' | '24-bolum' | '25-bolum-final'
+       * ```
+       *
+       * invalid output:
+       * ```
+       * '1-' | '2-ova' | 'ova-3-bolum' | '5-bolum-part-2-pismanlik-yok'
+       * ```
+       */
+      const episodeSlug = animeNameWithEpisodeSlug.replace(
+        new RegExp(`${animeNameSlug}.*?-(?=\\d)`),
+        '',
+      );
 
       const episodeNumberMatches = episodeSlug.match(
         // https://regex101.com/r/DFmqGL/1
         /^\d+(?=$|-bolum(?:-final)?)/im,
       );
 
-      if (!episodeNumberMatches?.length) return NaN;
+      if (!episodeNumberMatches || !episodeNumberMatches.length) return NaN;
 
       return Number(episodeNumberMatches[0]);
     },
