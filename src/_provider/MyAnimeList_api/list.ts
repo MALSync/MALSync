@@ -93,7 +93,7 @@ export class UserList extends ListAbstract {
       type: 'GET',
       path: `users/@me/${this.listType}list?nsfw=true&limit=${this.limit}&offset=${this.offset}${curSt}${sorting}`,
       fields: [
-        'list_status{tags,is_rewatching,is_rereading,start_date,finish_date}',
+        'list_status%7Btags,is_rewatching,is_rereading,start_date,finish_date%7D',
         'num_episodes',
         'num_chapters',
         'num_volumes',
