@@ -3,62 +3,73 @@
   "url": "https://neko-sama.fr/",
   "testCases": [
     {
-      "url": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vostfr",
+      "url": "https://neko-sama.fr/anime/episode/19080-tomo-chan-wa-onnanoko-07_vostfr",
+      "expected": {
+        "sync": true,
+        "title": "Tomo-chan Is a Girl!",
+        "identifier": "19080",
+        "overviewUrl": "https://neko-sama.fr/anime/info/19080-tomo-chan-wa-onnanoko_vostfr",
+        "episode": 7,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03_vostfr",
       "expected": {
         "sync": true,
         "title": "Fullmetal Alchemist: Brotherhood",
         "identifier": "3458",
-        "overviewUrl": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-vostfr",
-        "nextEpUrl": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04-vostfr",
+        "overviewUrl": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist_vostfr",
+        "nextEpUrl": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04_vostfr",
         "episode": 3,
         "uiSelector": false
       }
     },
     {
-      "url": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vf",
+      "url": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03_vf",
       "expected": {
         "sync": true,
         "title": "Fullmetal Alchemist: Brotherhood",
         "identifier": "3458",
-        "overviewUrl": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-vf",
-        "nextEpUrl": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04-vf",
+        "overviewUrl": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist_vf",
+        "nextEpUrl": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04_vf",
         "episode": 3,
         "uiSelector": false
       }
     },
     {
-      "url": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-vostfr",
+      "url": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist_vostfr",
       "expected": {
         "sync": false,
         "title": "Fullmetal Alchemist: Brotherhood",
         "identifier": "3458",
         "uiSelector": true,
         "epList": {
-          "3": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vostfr"
+          "3": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03_vostfr"
         }
       }
     },
     {
-      "url": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-vf",
+      "url": "https://neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist_vf",
       "expected": {
         "sync": false,
         "title": "Fullmetal Alchemist: Brotherhood",
         "identifier": "3458",
         "uiSelector": true,
         "epList": {
-          "3": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vf"
+          "3": "https://neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03_vf"
         }
       }
     },
     {
-      "url": "https://neko-sama.fr/anime/info/19050-4-nin-wa-sorezore-uso-wo-tsuku-vostfr",
+      "url": "https://neko-sama.fr/anime/info/19050-4-nin-wa-sorezore-uso-wo-tsuku_vostfr",
       "expected": {
         "sync": false,
         "title": "4-nin wa Sorezore Uso wo Tsuku",
         "identifier": "19050",
         "uiSelector": true,
         "epList": {
-          "2": "https://neko-sama.fr/anime/episode/19050-4-nin-wa-sorezore-uso-wo-tsuku-02-vostfr"
+          "2": "https://neko-sama.fr/anime/episode/19050-4-nin-wa-sorezore-uso-wo-tsuku-02_vostfr"
         }
       }
     },
