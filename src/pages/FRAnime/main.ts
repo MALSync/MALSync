@@ -13,7 +13,9 @@ export const FRAnime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      const videoSchema = JSON.parse($('div > script[type="application/ld+json"]:contains("VideoObject")').first().text())
+      const videoSchema = JSON.parse(
+        $('div > script[type="application/ld+json"]:contains("VideoObject")').first().text(),
+      );
       const parsedUrl = new URL(url);
       const season = parsedUrl.searchParams.get('s');
 
