@@ -42,7 +42,7 @@ module.exports = {
     match: ['*://*.mail.ru/*'],
   },
   myvi: {
-    match: ['*://*.myvi.ru/*', '*://www.myvi.tv/embed/*'],
+    match: ['*://*.myvi.ru/*', '*://*.myvi.tv/*'],
   },
   sibnet: {
     match: ['*://*.sibnet.ru/*'],
