@@ -1,0 +1,27 @@
+{
+  "title": "AnimeSub",
+  "url": "http://animesub.lt",
+  "testCases": [
+    {
+      "url": "https://animesub.lt/anime/Barakamon",
+      "expected": {
+        "sync": false,
+        "title": "Barakamon",
+        "identifier": "17301",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animesub.lt/anime/tokyo-revengers-seiya-kessen-hen/#/1-epizodas?type=subbed",
+      "expected": {
+        "sync": true,
+        "title": "Tokyo Revengers: Seiya Kessen-hen",
+        "identifier": "24276",
+        "episode": 1,
+        "overviewUrl": "https://animesub.lt/anime/tokyo-revengers-seiya-kessen-hen/",
+        "nextEpUrl": "https://animesub.lt/anime/tokyo-revengers-seiya-kessen-hen/#/2-epizodas?type=subbed",
+        "uiSelector": true
+      }
+    }
+  ]
+}

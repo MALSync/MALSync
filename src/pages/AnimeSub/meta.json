@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://animesub.lt/anime/*"]
+  }
+}
