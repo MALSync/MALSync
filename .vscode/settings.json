@@ -8,5 +8,9 @@
   "stylelint.validate": ["css", "scss", "vue", "less"],
   "less.validate": false,
   "scss.validate": false,
-  "vetur.validation.template": false
+  "vetur.validation.template": false,
+  "conventionalCommits.scopes": [
+    "turkanime",
+    "tranimeizle"
+  ]
 }

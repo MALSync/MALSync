@@ -115,17 +115,32 @@ export const TRanimeizle: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: () => j.$('.animeDetail-items li.episodeBtn'),
-      elementUrl: (selector: JQuery<HTMLElement>) => {
+      elementsSelector: () => j.$('.animeDetail-playlist > .animeDetail-items > ol > li'),
+      elementUrl: ($element: JQuery<HTMLElement>) => {
         // episodeSlug: plunderer-1-bolum-izle
-        const episodeSlug: string = selector.data('slug');
+        const episodeSlug: string = $element.data('slug');
+
+        if (!episodeSlug) {
+          throw Error('Unable to get slug from element');
+        }
 
         return `${TRanimeizle.domain}/${episodeSlug}`;
       },
       elementEp: (episodeElement: JQuery<HTMLElement>) => {
-        const episodeMeta = $(`meta[itemprop="episodeNumber"]`, episodeElement);
+        const slug = episodeElement.children().first().attr('href');
 
-        return Number(episodeMeta.attr('content'));
+        if (!slug) {
+          throw Error('Unable to get slug');
+        }
+
+        // https://regex101.com/r/KlUgJd/1
+        const matches = slug.match(/.*?-(\d{1,})-bolum-izle/) || [];
+
+        if (!matches) {
+          throw Error('Unable to find episode number');
+        }
+
+        return Number(matches[1]);
       },
     },
   },
