@@ -419,6 +419,10 @@ module.exports = {
       '*://*.playgo1.cc/streaming.php?*',
       '*://*.playgo1.cc/load.php?*',
       '*://*.playgo1.cc/loadserver.php?*',
+      '*://*.anihdplay.com/embedplus*',
+      '*://*.anihdplay.com/streaming.php?*',
+      '*://*.anihdplay.com/load.php?*',
+      '*://*.anihdplay.com/loadserver.php?*',
     ],
   },
   // bs.to
