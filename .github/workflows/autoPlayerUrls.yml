@@ -1,0 +1,33 @@
+name: "autoPlayerUrls"
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  main:
+    name: main
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        ref: master
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+
+    - name: Build
+      run: npm install
+
+    - name: Run
+      run: npm run build:autoPlayerUrls
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
+      with:
+        commit-message: Auto PlayerUrls
+        branch: auto-player-urls
+        delete-branch: true
+        title: 'Auto PlayerUrls'
