@@ -1,5 +1,5 @@
 {
-  "search": "https://www.animelon.com/search?searchTerm={searchtermPlus}",
+  "search": "https://www.animelon.com/search?searchTerm={searchTerm}",
   "urls": {
     "match": ["*://www.animelon.com/*", "*://animelon.com/*"]
   }
