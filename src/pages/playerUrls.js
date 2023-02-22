@@ -800,4 +800,8 @@ module.exports = {
   aniyan: {
     match: ['*://aniyan.net/jwplayer/*'],
   },
+  // animelon
+  animelon: {
+    match: ['*://*.googlevideo.com/videoplayback?*'],
+  },
 };

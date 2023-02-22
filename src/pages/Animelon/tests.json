@@ -1,0 +1,29 @@
+{
+  "title": "Animelon",
+  "url": "https://www.animelon.com/",
+  "testCases": [
+    {
+      "url": "https://animelon.com/series/Fullmetal%20Alchemist:%20Brotherhood",
+      "expected": {
+        "sync": false,
+        "title": "Fullmetal Alchemist: Brotherhood",
+        "identifier": "Fullmetal%20Alchemist:%20Brotherhood",
+        "uiSelector": true,
+        "epList": {
+          "7": "https://animelon.com/video/57a0299f8429c2b1426e09e5"
+        }
+      }
+    },
+    {
+      "url": "https://animelon.com/video/57a0299f8429c2b1426e09e5",
+      "expected": {
+        "sync": true,
+        "title": "Fullmetal Alchemist: Brotherhood",
+        "identifier": "Fullmetal%20Alchemist:%20Brotherhood",
+        "overviewUrl": "https://animelon.com/series/Fullmetal%20Alchemist:%20Brotherhood",
+        "episode": 7,
+        "uiSelector": false
+      }
+    }
+  ]
+}
