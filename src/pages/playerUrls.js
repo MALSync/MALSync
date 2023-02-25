@@ -599,6 +599,7 @@ module.exports = {
       '*://guidon40hyporadius9.com/e/*',
       '*://cyamidpulverulence530.com/e/*',
       '*://boonlessbestselling244.com/e/*',
+      '*://antecoxalbobbing1010.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
