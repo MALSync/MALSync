@@ -124,6 +124,11 @@
     ]
   },
   "0.9.2": {
+    "Zoro": [
+      "https://zoro.moe/*",
+      "https://zoro.sx/*",
+      "https://zoro.pm/*"
+    ],
     "iframe": [
       "https://suzihaza.com/v/*",
       "https://vanfem.com/v/*",

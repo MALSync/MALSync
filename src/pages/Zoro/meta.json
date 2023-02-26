@@ -1,6 +1,11 @@
 {
   "search": "https://zoro.to/search?keyword={searchtermPlus}",
   "urls": {
-    "match": ["*://zoro.to/*"]
+    "match": [
+      "*://zoro.to/*",
+      "*://zoro.moe/*",
+      "*://zoro.sx/*",
+      "*://zoro.pm/*"
+    ]
   }
 }
