@@ -1,4 +1,4 @@
-name: "autoPlayerUrls"
+name: "autoUrls"
 
 on:
   schedule:
@@ -22,12 +22,13 @@ jobs:
       run: npm install
 
     - name: Run
-      run: npm run build:autoPlayerUrls
+      run: npm run build:autoUrls
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:
-        commit-message: Auto PlayerUrls
-        branch: auto-player-urls
+        commit-message: Auto Urls
+        branch: auto-urls
         delete-branch: true
-        title: 'Auto PlayerUrls'
+        title: 'Auto Urls'
+        body: 'Automatically added Urls'
