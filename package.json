@@ -82,7 +82,7 @@
     "build:webextension:assets": "node webpackConfig/webextension.assets.js",
     "build:descriptions": "node webpackConfig/descriptions.js && npm run build:missingPermissions",
     "build:missingPermissions": "node webpackConfig/missingPermissions.js",
-    "build:autoPlayerUrls": "node webpackConfig/autoPlayerUrls.mjs && npm run build:missingPermissions",
+    "build:autoUrls": "node webpackConfig/autoUrls.mjs && npm run build:missingPermissions",
     "package": "npm run package:webextension",
     "package:webextension": "node package/webextension.js",
     "package:firefox": "node node_modules/web-ext/bin/web-ext sign -a dist -s dist/webextension --api-key $SIGN_KEY --api-secret $SIGN_SECRET --id $SIGN_ID",
