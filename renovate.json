@@ -3,6 +3,11 @@
   "extends": ["config:base", ":disableDependencyDashboard"],
   "packageRules": [
     {
+      "matchPackagePatterns": ["eslint/*", "@types/*"],
+      "rangeStrategy": "bump",
+      "automerge": true
+    },
+    {
       "matchPackagePatterns": ["*"],
       "rangeStrategy": "bump"
     }
