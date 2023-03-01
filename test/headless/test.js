@@ -1,7 +1,7 @@
 const { expect } = require('chai');
-const puppeteer = require('puppeteer-extra');
-const pluginStealth = require('puppeteer-extra-plugin-stealth');
-const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
+const puppeteer = require('puppeteer');
+const { PuppeteerBlocker } = require('@cliqz/adblocker-puppeteer');
+const fetch = require('cross-fetch');
 
 const fs = require('fs');
 const dir = require('node-dir');
@@ -29,14 +29,11 @@ const mode = {
 
 if (process.env.CI && !changedFiles.length) mode.quiet = true;
 
-puppeteer.use(pluginStealth());
-puppeteer.use(AdblockerPlugin());
-
 async function getBrowser(headless = true) {
   if (browser && headless) return browser;
   if (browserFull && !headless) return browserFull;
 
-  const tempBrowser = await puppeteer.launch({ headless });
+  const tempBrowser = await puppeteer.launch({ headless: headless ? 'new' : false });
   if (headless) {
     browser = tempBrowser;
   } else {
@@ -262,6 +259,10 @@ async function loopEl(testPage, headless = true) {
   if (!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
   const b = await getBrowser(headless);
   const page = await b.newPage();
+
+  const blocker = await PuppeteerBlocker.fromPrebuiltAdsAndTracking(fetch);
+  await blocker.enableBlockingInPage(page);
+
   await page.setViewport({ width: 1920, height: 1080 });
 
   try {
