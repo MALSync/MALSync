@@ -1,0 +1,31 @@
+{
+  "title": "FMTeam",
+  "url": "https://fmteam.fr/",
+  "testCases": [
+    {
+      "url": "https://fmteam.fr/read/batuque/fr/0/1/",
+      "expected": {
+        "sync": true,
+        "title": "Batuque",
+        "identifier": "batuque",
+        "overviewUrl": "https://fmteam.fr/series/batuque/",
+        "nextEpUrl": "https://fmteam.fr/read/batuque/fr/0/2/",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://fmteam.fr/series/batuque/",
+      "expected": {
+        "sync": false,
+        "title": "Batuque",
+        "identifier": "batuque",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://fmteam.fr/read/batuque/fr/0/5/",
+          "10": "https://fmteam.fr/read/batuque/fr/0/10/"
+        }
+      }
+    }
+  ]
+}
