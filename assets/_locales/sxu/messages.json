@@ -1,0 +1,54 @@
+{
+    "Update": {
+        "message": "Aggdualisier",
+        "description": "Update"
+    },
+    "Reset": {
+        "message": "Zurüggsetzn",
+        "description": "Reset"
+    },
+    "Synchronize": {
+        "message": "Sünkronisier",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "Yes": {
+        "message": "Nu",
+        "description": "Yes"
+    },
+    "Ok": {
+        "message": "Nu",
+        "description": "Ok"
+    },
+    "No": {
+        "message": "Ne",
+        "description": "No"
+    },
+    "Cancel": {
+        "message": "Abbreschn",
+        "description": "Cancel"
+    },
+    "NothingFound": {
+        "message": "Nüscht gefundn",
+        "description": "Nothing Found"
+    },
+    "NoEntries": {
+        "message": "Keene Eintreesche",
+        "description": "No Entries"
+    },
+    "Not_Found": {
+        "message": "Nisch gefundn!",
+        "description": "Anime/Manga Not Found"
+    },
+    "Show": {
+        "message": "Zeisch",
+        "description": "Show"
+    },
+    "Add": {
+        "message": "Hinzufüschn",
+        "description": "Button to add an anime/manga to user list"
+    },
+    "updated": {
+        "message": "Aggdualisierd",
+        "description": "Flash message that shows up after updating an anime/manga entry"
+    }
+}
