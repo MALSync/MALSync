@@ -52,7 +52,6 @@ import { manhuafast } from './manhuafast/main';
 import { TRanimeizle } from './TRanimeizle/main';
 import { Anihub } from './Anihub/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
-import { Scantrad } from './Scantrad/main';
 import { Furyosquad } from './Furyosquad/main';
 import { AnimeId } from './AnimeId/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
@@ -192,7 +191,6 @@ export const pages = {
   TRanimeizle,
   Anihub,
   AnimeStreamingFR,
-  Scantrad,
   Furyosquad,
   AnimeId,
   MyAnimeListVideo,
