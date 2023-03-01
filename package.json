@@ -55,7 +55,7 @@
     "stylelint": "^15.2.0",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard": "^30.0.1",
-    "stylelint-prettier": "^2.0.0",
+    "stylelint-prettier": "^3.0.0",
     "terser-webpack-plugin": "^5.3.6",
     "to-string-loader": "github:gajus/to-string-loader",
     "ts-loader": "^9.4.2",
