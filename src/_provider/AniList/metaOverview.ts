@@ -180,7 +180,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       type: this.type.toUpperCase(),
     };
 
-    return this.apiCall(query, variables, true);
+    return this.apiCall(query, variables);
   }
 
   private title(data) {

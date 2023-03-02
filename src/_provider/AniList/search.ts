@@ -10,7 +10,7 @@ export const search: searchInterface = async function (
 ) {
   const query = `
     query ($search: String) {
-      ${type}: Page (perPage: 10) {
+      ${type}: Page (perPage: 25) {
         pageInfo {
           total
         }
@@ -47,19 +47,7 @@ export const search: searchInterface = async function (
     search: keyword,
   };
 
-  const response = await api.request.xhr('POST', {
-    url: 'https://graphql.anilist.co',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    data: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
-
-  const res = parseJson(response.responseText);
+  const res = await helper.apiCall(query, variables, false);
   con.log(res);
 
   const resItems: any = [];
