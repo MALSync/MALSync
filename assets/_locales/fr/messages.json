@@ -346,11 +346,11 @@
         }
     },
     "anilistClass_authentication": {
-        "message": "Token sauvegardé, vous pouvez fermer cette page maintenant",
+        "message": "Jeton sauvegardé, vous pouvez fermer cette page maintenant",
         "description": "The token has been obtained and saved"
     },
     "kitsuClass_authentication_text": {
-        "message": "Pour vous connecter avec Kitsu, vous devez entrer l'e-mail de votre compte ainsi que le mot de passe.<br>Vos identifiants ne sont pas stockés sur votre ordinateur ou nulle part ailleurs.<br>Ils sont directement envoyés a Kitsu. Seul le token de connexion est sauvegardé.<br>",
+        "message": "Pour vous connecter avec Kitsu, vous devez entrer l'e-mail de votre compte ainsi que le mot de passe.<br>Vos identifiants ne sont pas stockés sur votre ordinateur ou nulle part ailleurs.<br>Ils sont directement envoyés a Kitsu. Seul le jeton de connexion est sauvegardé.<br>",
         "description": "Authentication text in Kitsu"
     },
     "kitsuClass_authentication_Password": {
@@ -362,7 +362,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Token sauvegardé, vous pouvez fermer cette page maintenant",
+        "message": "Jeton sauvegardé, vous pouvez fermer cette page maintenant.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
