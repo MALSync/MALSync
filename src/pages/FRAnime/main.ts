@@ -24,11 +24,7 @@ export const FRAnime: pageInterface = {
       return videoSchema.name;
     },
     getIdentifier(url) {
-      return `${FRAnime.sync
-        .getTitle(url)
-        .toLowerCase()
-        .split(' ')
-        .join('-')}-e${FRAnime.sync.getEpisode(url)}`;
+      return `${FRAnime.sync.getTitle(url).toLowerCase().split(' ').join('-')}`;
     },
     getOverviewUrl(url) {
       const parsedUrl = new URL(url);
@@ -85,7 +81,8 @@ export const FRAnime: pageInterface = {
     utils.waitUntilTrue(
       () =>
         Boolean(j.$('#root')) &&
-        (Boolean(j.$('#episode')) || Boolean(j.$('h1').next('div').find('select').length)),
+        (Boolean(j.$('#episode')) || Boolean(j.$('h1').next('div').find('select').length)) &&
+        Boolean($('div > script[type="application/ld+json"]:contains("VideoObject")').first()),
       handlePage,
       1000,
     );
