@@ -1,0 +1,34 @@
+name: "autoUrls"
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  main:
+    name: main
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        ref: master
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+
+    - name: Build
+      run: npm install
+
+    - name: Run
+      run: npm run build:autoUrls
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
+      with:
+        commit-message: Auto Urls
+        branch: auto-urls
+        delete-branch: true
+        title: 'Auto Urls'
+        body: 'Automatically added Urls'

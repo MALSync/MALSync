@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integriert MyAnimeList/AniList/Kitsu/Simkl auf diversen Seiten mit automatischer Episodenverfolgung.",
+        "message": "Integriert MyAnimeList/AniList/Kitsu/Simkl/Shikimori auf diversen Seiten mit automatischer Episodenverfolgung.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -808,7 +808,7 @@
         "description": "Auto fullscreen toggle"
     },
     "settings_Video_Resume": {
-        "message": "Auto fortsetzen",
+        "message": "Auto Fortsetzen",
         "description": "Auto resume video where you left off toggle"
     },
     "settings_autoNextEp": {
@@ -820,7 +820,7 @@
         "description": "Text for the correction ui shortcut"
     },
     "settings_Shortcuts_Sync": {
-        "message": "Setzte die Episode/Kapitel als gelesen",
+        "message": "Setze Episode/Kapitel als gelesen",
         "description": "Text for the sync ui shortcut"
     },
     "settings_Shortcuts_Next_Episode": {
@@ -1264,7 +1264,7 @@
         "description": "Button to load content"
     },
     "overview_Related": {
-        "message": "Ähnlich",
+        "message": "Verwandt",
         "description": "Header of the anime/manga relations section of the popup anime overview"
     },
     "settings_profile_no_login": {
@@ -1342,5 +1342,37 @@
     "settings_custom_position_below": {
         "message": "Unter Information",
         "description": "Position of the quicklinks below the information section"
+    },
+    "settings_theming_theme_system": {
+        "message": "System",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "Hell",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Dunkel",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Benutzerdefiniert",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "list_sorting_alpha": {
+        "message": "Alphabetisch",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "list_sorting_unread": {
+        "message": "Ungelesen",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "list_sorting_history": {
+        "message": "Zuletzt aktualisiert",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "list_sorting_score": {
+        "message": "Bewertung",
+        "description": "Dropdown option to sort list by score"
     }
 }

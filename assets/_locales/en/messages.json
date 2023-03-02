@@ -100,7 +100,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
+        "message": "Integrates MyAnimeList/AniList/Kitsu/Simkl/Shikimori into various sites, with auto episode tracking.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -374,7 +374,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Token saved you can close this page now",
+        "message": "Token saved, you can close this page now.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -628,7 +628,7 @@
         "description": "Dropdown option to sort list alphabetic"
     },
     "list_sorting_history": {
-        "message": "Last Updated",
+        "message": "Last updated",
         "description": "Dropdown option to sort list by last updated"
     },
     "list_sorting_score": {

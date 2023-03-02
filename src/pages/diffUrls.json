@@ -124,6 +124,17 @@
     ]
   },
   "0.9.2": {
+    "Voiranime": [
+      "https://v2.voiranime.com/*"
+    ],
+    "YugenAnime": [
+      "https://yugenanime.ro/*"
+    ],
+    "Zoro": [
+      "https://zoro.moe/*",
+      "https://zoro.sx/*",
+      "https://zoro.pm/*"
+    ],
     "iframe": [
       "https://suzihaza.com/v/*",
       "https://vanfem.com/v/*",
@@ -131,9 +142,18 @@
       "https://playgo1.cc/streaming.php?*",
       "https://playgo1.cc/load.php?*",
       "https://playgo1.cc/loadserver.php?*",
+      "https://anihdplay.com/embedplus*",
+      "https://anihdplay.com/streaming.php?*",
+      "https://anihdplay.com/load.php?*",
+      "https://anihdplay.com/loadserver.php?*",
+      "https://sbchill.com/e/*",
       "https://321naturelikefurfuroid.com/e/*",
       "https://449unceremoniousnasoseptal.com/e/*",
       "https://guidon40hyporadius9.com/e/*",
+      "https://cyamidpulverulence530.com/e/*",
+      "https://boonlessbestselling244.com/e/*",
+      "https://antecoxalbobbing1010.com/e/*",
+      "https://yugenanime.ro/e/*",
       "https://www.turkanime.co/embed/*",
       "https://aniyan.net/jwplayer/*"
     ]

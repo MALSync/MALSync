@@ -1,0 +1,750 @@
+{
+    "Show": {
+        "message": "展开",
+        "description": "Show"
+    },
+    "Help": {
+        "message": "帮助",
+        "description": "Help"
+    },
+    "Update": {
+        "message": "更新",
+        "description": "Update"
+    },
+    "Add": {
+        "message": "添加",
+        "description": "Button to add an anime/manga to user list"
+    },
+    "Reset": {
+        "message": "重置",
+        "description": "Reset"
+    },
+    "Synchronize": {
+        "message": "同步",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "Remove": {
+        "message": "移除",
+        "description": "Button for removing entry from MAL..."
+    },
+    "Loading": {
+        "message": "加载中",
+        "description": "Loading"
+    },
+    "Load": {
+        "message": "加载",
+        "description": "Button to load content"
+    },
+    "Select": {
+        "message": "选择",
+        "description": "Select"
+    },
+    "Yes": {
+        "message": "是",
+        "description": "Yes"
+    },
+    "No": {
+        "message": "否",
+        "description": "No"
+    },
+    "Cancel": {
+        "message": "取消",
+        "description": "Cancel"
+    },
+    "updated": {
+        "message": "已上传",
+        "description": "Flash message that shows up after updating an anime/manga entry"
+    },
+    "removed": {
+        "message": "已移除",
+        "description": "Flash message that shows up after removing an anime/manga entry from user list"
+    },
+    "fullscreen": {
+        "message": "全屏",
+        "description": "fullscreen"
+    },
+    "close": {
+        "message": "关闭",
+        "description": "close"
+    },
+    "All": {
+        "message": "全选",
+        "description": "All"
+    },
+    "Anime": {
+        "message": "动画",
+        "description": "General translation of anime for places like drop downs"
+    },
+    "Manga": {
+        "message": "漫画",
+        "description": "General translation of manga for places like drop downs"
+    },
+    "UI_Status": {
+        "message": "状态：",
+        "description": "Status"
+    },
+    "UI_Status_All": {
+        "message": "所有",
+        "description": "Dropdown text to show all anime on the users list"
+    },
+    "UI_Status_watching_anime": {
+        "message": "观看中",
+        "description": "Watching"
+    },
+    "UI_Status_Completed": {
+        "message": "已看完",
+        "description": "Completed"
+    },
+    "UI_Status_OnHold": {
+        "message": "搁置中",
+        "description": "On-Hold"
+    },
+    "UI_Status_Dropped": {
+        "message": "弃坑",
+        "description": "Dropped"
+    },
+    "UI_Status_planTo_anime": {
+        "message": "计划观看",
+        "description": "Plan to Watch"
+    },
+    "UI_Status_planTo_manga": {
+        "message": "计划阅读",
+        "description": "Plan to Read"
+    },
+    "UI_Status_Rewatching_anime": {
+        "message": "重看中",
+        "description": "Status to rewatch anime"
+    },
+    "UI_Status_watching_manga": {
+        "message": "阅读中",
+        "description": "Reading"
+    },
+    "UI_Status_Rewatching_manga": {
+        "message": "重读中",
+        "description": "Status to reread manga"
+    },
+    "UI_Episode": {
+        "message": "集数：",
+        "description": "Episode"
+    },
+    "UI_Volume": {
+        "message": "卷数：",
+        "description": "Volume"
+    },
+    "UI_Chapter": {
+        "message": "章节：",
+        "description": "Chapter"
+    },
+    "UI_Score": {
+        "message": "你的评分：",
+        "description": "Score"
+    },
+    "Search": {
+        "message": "搜索",
+        "description": "Button to open the site search links on mal, anilist ..."
+    },
+    "Ok": {
+        "message": "好的",
+        "description": "Ok"
+    },
+    "NothingFound": {
+        "message": "搜索结果为空",
+        "description": "Nothing Found"
+    },
+    "Not_Found": {
+        "message": "未发现！",
+        "description": "Anime/Manga Not Found"
+    },
+    "NoEntries": {
+        "message": "无条目",
+        "description": "No Entries"
+    },
+    "UI_Score_Not_Rated": {
+        "message": "未评分",
+        "description": "Text if nothing is selected in the rating dropdown"
+    },
+    "UI_Score_Masterpiece": {
+        "message": "(10) 神作",
+        "description": "Masterpiece - Score"
+    },
+    "UI_Score_Great": {
+        "message": "(9) 优秀",
+        "description": "Great - Score"
+    },
+    "UI_Score_VeryGood": {
+        "message": "(8) 非常好",
+        "description": "Very Good - Score"
+    },
+    "UI_Score_Good": {
+        "message": "(7) 好",
+        "description": "Good - Score"
+    },
+    "UI_Score_Average": {
+        "message": "(5) 平庸",
+        "description": "Average - Score"
+    },
+    "UI_Score_Bad": {
+        "message": "(4) 差",
+        "description": "Bad - Score"
+    },
+    "UI_Score_VeryBad": {
+        "message": "(3) 非常差",
+        "description": "Very Bad - Score"
+    },
+    "UI_Score_Fine": {
+        "message": "(6) 良",
+        "description": "Fine - Score"
+    },
+    "UI_Score_Horrible": {
+        "message": "(2) 劣",
+        "description": "Horrible - Score"
+    },
+    "UI_Score_Appalling": {
+        "message": "(1) 粪",
+        "description": "Appalling - Score"
+    },
+    "syncPage_flashm_sync_anime": {
+        "message": "更新$page$至$epNr$集",
+        "description": "Update MAL to episode 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga": {
+        "message": "更新$page$至$epNr$章",
+        "description": "Update MAL to chapter 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "更新$page$至$epNr$卷",
+        "description": "Update MAL to volume 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_undefined_undo": {
+        "message": "撤销",
+        "description": "Undo button on 'synced' message"
+    },
+    "syncPage_flashm_failded": {
+        "message": "上传出错",
+        "description": "When update to MAL failes"
+    },
+    "syncPage_flashConfirm_complete": {
+        "message": "设为“已看完”？",
+        "description": "Question when last episode is synced"
+    },
+    "syncPage_flashConfirm_start_anime": {
+        "message": "开始观看？",
+        "description": "Start watching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_finish_anime": {
+        "message": "结束重看？",
+        "description": "Finish rewatching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_finish_manga": {
+        "message": "结束重读？",
+        "description": "Finish rereading manga message"
+    },
+    "syncPage_flashConfirm_start_manga": {
+        "message": "开始阅读？",
+        "description": "Start reading manga message"
+    },
+    "syncPage_flashConfirm_rewatch_start_manga": {
+        "message": "重读漫画？",
+        "description": "Start rereading manga message"
+    },
+    "syncPage_flash_player_error": {
+        "message": "未检测到播放器。请在此手动更新。",
+        "description": "Message if the video player could not be recognized"
+    },
+    "syncPage_malObj_addAnime": {
+        "message": "添加至$page$",
+        "description": "add anime",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "AniList"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_anime": {
+        "message": "$episode$集",
+        "description": "Next episode message on streaming overview pages",
+        "placeholders": {
+            "episode": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_manga": {
+        "message": "$chapter$章",
+        "description": "Next chapter message on streaming overview pages",
+        "placeholders": {
+            "chapter": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "kitsuClass_authentication_Password": {
+        "message": "密码",
+        "description": "Password"
+    },
+    "syncPage_flashm_sync_undefined_wrong": {
+        "message": "出错？",
+        "description": "Wrong/correction button on 'synced' message"
+    },
+    "syncPage_flashConfirm_Anime_Correct": {
+        "message": "是\"$anime$\"吗？",
+        "description": "Is anime correct",
+        "placeholders": {
+            "anime": {
+                "content": "$1",
+                "example": "No Game No Life"
+            }
+        }
+    },
+    "kitsuClass_authentication_Login": {
+        "message": "登陆",
+        "description": "Login"
+    },
+    "kitsuClass_authentication_Success": {
+        "message": "令牌已保存，您现在可以关闭此页面",
+        "description": "Authentication success"
+    },
+    "kitsuClass_authentication_Wrong": {
+        "message": "凭据出错",
+        "description": "Credentials wrong"
+    },
+    "bookmarksItem_Years": {
+        "message": "年",
+        "description": "years"
+    },
+    "bookmarksItem_Year": {
+        "message": "年",
+        "description": "year"
+    },
+    "bookmarksItem_Days": {
+        "message": "日",
+        "description": "days"
+    },
+    "bookmarksItem_Day": {
+        "message": "日",
+        "description": "day"
+    },
+    "bookmarksItem_Hours": {
+        "message": "小时",
+        "description": "hours"
+    },
+    "bookmarksItem_Hour": {
+        "message": "小时",
+        "description": "hour"
+    },
+    "bookmarksItem_min": {
+        "message": "分钟",
+        "description": "min"
+    },
+    "bookmarksItem_secs": {
+        "message": "秒",
+        "description": "seconds"
+    },
+    "bookmarksItem_sec": {
+        "message": "秒",
+        "description": "second"
+    },
+    "bookmarksItem_now": {
+        "message": "现在",
+        "description": "Now"
+    },
+    "bookmarksItem_ago": {
+        "message": "$time$前",
+        "description": "Text for time in the past",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_anime": {
+        "message": "最后一集在$time$前发布",
+        "description": "Text for last episode release time",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Episode_manga": {
+        "message": "下一章预计在$time$发布",
+        "description": "Text for next chapter estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_manga": {
+        "message": "最后一章在$time$前发布",
+        "description": "Text for last chapter release time",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_next": {
+        "message": "下一集在$time$发布",
+        "description": "Short Form Text for next episode/episode estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_incomplete": {
+        "message": "未完成",
+        "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
+    },
+    "prediction_ongoing": {
+        "message": "连载中",
+        "description": "Header for the ongoing section in the translation/airing progress section"
+    },
+    "prediction_complete": {
+        "message": "已发布完",
+        "description": "Header for the complete translation/airing section"
+    },
+    "prediction_Airing": {
+        "message": "$time$播出",
+        "description": "Text for airing estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "correction_NoMal": {
+        "message": "如果在MAL上找不到动画/漫画",
+        "description": "Anime/Manga not found in MAL"
+    },
+    "correction_NoEntry": {
+        "message": "MyAnimeList无此条目",
+        "description": "No entry on MyAnimeList"
+    },
+    "overview_Continue_anime": {
+        "message": "继续观看",
+        "description": "Continue watching"
+    },
+    "overview_Continue_manga": {
+        "message": "继续阅读",
+        "description": "Continue reading"
+    },
+    "overview_Next_Episode_anime": {
+        "message": "下一集",
+        "description": "Next Episode"
+    },
+    "overview_Next_Episode_manga": {
+        "message": "下一章",
+        "description": "Next Chapter"
+    },
+    "overview_EditDetails": {
+        "message": "编辑详细信息",
+        "description": "Edit Details"
+    },
+    "overview_Characters": {
+        "message": "角色",
+        "description": "Characters"
+    },
+    "overview_Related": {
+        "message": "相关作品",
+        "description": "Header of the anime/manga relations section of the popup anime overview"
+    },
+    "overview_Streaming": {
+        "message": "流媒体",
+        "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "overview_EndingTheme": {
+        "message": "片尾曲：",
+        "description": "Ending Theme"
+    },
+    "search_Type": {
+        "message": "分类：",
+        "description": "Type"
+    },
+    "search_Score": {
+        "message": "分数：",
+        "description": "Score"
+    },
+    "search_Year": {
+        "message": "年份：",
+        "description": "Year"
+    },
+    "settings_profile_no_login": {
+        "message": "没有登录",
+        "description": "Text if not logged in"
+    },
+    "settings_profile_logout": {
+        "message": "登出",
+        "description": "Button to logout"
+    },
+    "settings_profile_check": {
+        "message": "检查",
+        "description": "Button to rechecks the login status"
+    },
+    "settings_profile_logged_via": {
+        "message": "通过$provider$登录",
+        "description": "Info about which provider is used to login",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "settings_LocalSync_Import": {
+        "message": "导入",
+        "description": "Button to import local storage fallback data"
+    },
+    "settings_LocalSync_Export": {
+        "message": "导出",
+        "description": "Button to Export Local storage fallback data"
+    },
+    "settings_Animesync": {
+        "message": "同步动画",
+        "description": "Anime sync"
+    },
+    "settings_Animesync_Video": {
+        "message": "视频",
+        "description": "Video"
+    },
+    "settings_Animesync_Manual": {
+        "message": "手动",
+        "description": "Manual"
+    },
+    "settings_StreamingSite_custom": {
+        "message": "自定义搜索链接",
+        "description": "Header of the section where you can add your own custom search links"
+    },
+    "settings_Thumbnails": {
+        "message": "缩略图",
+        "description": "Thumbnails"
+    },
+    "settings_FriendScore": {
+        "message": "详情页好友评分",
+        "description": "Friend scores on detail page"
+    },
+    "settings_StreamingSite": {
+        "message": "快捷链接",
+        "description": "Quicklinks"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "动漫搜索网址",
+        "description": "Form field title to enter the search url for anime"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "漫画搜索网址",
+        "description": "Form field title to enter the search url for manga"
+    },
+    "settings_Thumbnails_Large": {
+        "message": "大缩略图",
+        "description": "Thumbnails Large"
+    },
+    "settings_Thumbnails_Medium": {
+        "message": "中等缩略图",
+        "description": "Thumbnails Medium"
+    },
+    "settings_Thumbnails_Small": {
+        "message": "小缩略图",
+        "description": "Thumbnails Small"
+    },
+    "minimalClass_versionMsg_Text_2": {
+        "message": "加入我们的社区，获得帮助并建议新功能",
+        "description": "Update version - Text 2"
+    },
+    "minimalClass_versionMsg_Text_3": {
+        "message": "查看我们的开源代码",
+        "description": "Update version - Text 3"
+    },
+    "installPage_Howto": {
+        "message": "了解MAL-Sync的工作原理",
+        "description": "Header for how to use section"
+    },
+    "Anilist_Authenticate": {
+        "message": "请点击$Link1$这里$Link2$认证",
+        "description": "Update version - Text 3",
+        "placeholders": {
+            "Link1": {
+                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "Error_Authenticate": {
+        "message": "请点击$Link1$这里$Link2$认证",
+        "description": "Update version - Text 3",
+        "placeholders": {
+            "Link1": {
+                "content": "<a target=\"_blank\" href=\"$1\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "Discord_rpc_browsing": {
+        "message": "浏览$Page$",
+        "description": "Discord rich Presence text if on overview page",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "Mangadex"
+            }
+        }
+    },
+    "discord_rpc_view_anime": {
+        "message": "观看动画",
+        "description": "Discord view anime button"
+    },
+    "discord_rpc_view_manga": {
+        "message": "观看漫画",
+        "description": "Discord view manga button"
+    },
+    "nextEpShort_no_nextEp": {
+        "message": "无法搜索到下一集",
+        "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+    },
+    "settings_crash_report": {
+        "message": "发送崩溃报告",
+        "description": "If to send crash reports"
+    },
+    "syncPage_flashConfirm_rewatch_start_anime": {
+        "message": "重看动画？",
+        "description": "Start rewatching anime message"
+    },
+    "bookmarksItem_mins": {
+        "message": "分钟",
+        "description": "mins"
+    },
+    "prediction_Episode_anime": {
+        "message": "下一集预计在$time$发布",
+        "description": "Text for next episode estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "overview_OpeningTheme": {
+        "message": "片头曲：",
+        "description": "Opening Theme"
+    },
+    "settings_Authenticate": {
+        "message": "认证",
+        "description": "Authenticate"
+    },
+    "settings_Mangasync": {
+        "message": "回退漫画同步",
+        "description": "Manga sync fallback in case the manga reader progress tracking does not work"
+    },
+    "settings_epPredictions": {
+        "message": "预计集数",
+        "description": "Estimate episode number"
+    },
+    "anilistClass_authentication": {
+        "message": "令牌已保存，您现在可以关闭此页面",
+        "description": "The token has been obtained and saved"
+    },
+    "minimalApp_Settings": {
+        "message": "设定",
+        "description": "Settings"
+    },
+    "minimalClass_versionMsg_Text_1": {
+        "message": "感谢您安装MAL-Sync",
+        "description": "Update version - Text 1"
+    },
+    "installPage_Mode": {
+        "message": "选择您要使用的动漫数据库",
+        "description": "Header for the MAL-sync provider dropdown"
+    },
+    "Package_Description": {
+        "message": "将MyAnimeList/AniList/Kitsu/Simkl集成一体并具备剧集自动跟踪功能。",
+        "description": "Description MALSync"
+    },
+    "UI_Rules": {
+        "message": "规则",
+        "description": "Rules text for the correction UI"
+    },
+    "syncPage_flashm_resumeMsg": {
+        "message": "$time$后恢复",
+        "description": "Video resume message",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "13:37"
+            }
+        }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+        "message": "检测到$calcOffset$可能出现集数偏移。对吗？",
+        "description": "offsetHandler Episode",
+        "placeholders": {
+            "calcOffset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "kitsuClass_authentication_text": {
+        "message": "如果使用Kitsu登录，那么需要输入帐户的电子邮件与密码。<br>您的凭据不会存储在您的计算机或其他任何地方。<br>它们会直接发送到 Kitsu。仅保存返回的访问令牌。<br>",
+        "description": "Authentication text in Kitsu"
+    },
+    "correction_Offset_text": {
+        "message": "输入集数偏移值，假设动画有12集，但只使用0-11而非1-12，那么只需在剧集偏移值中输入“+1”。",
+        "description": "Episode Offset - Text"
+    },
+    "correction_WrongUrl": {
+        "message": "只有当在导向MAL上错误的动画页面时才更改此URL。",
+        "description": "URL is Wrong"
+    },
+    "correction_Search": {
+        "message": "搜索更正",
+        "description": "Correction Search"
+    }
+}

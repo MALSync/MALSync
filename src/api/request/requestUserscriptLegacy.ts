@@ -46,6 +46,9 @@ export const requestUserscriptLegacy: requestInterface = {
         request.headers = url.headers;
         request.data = url.data;
       }
+
+      request.url = encodeURI(request.url as string);
+
       // @ts-ignore
       if (request.url.includes('malsync.moe')) {
         // @ts-ignore

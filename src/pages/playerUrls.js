@@ -419,6 +419,11 @@ module.exports = {
       '*://*.playgo1.cc/streaming.php?*',
       '*://*.playgo1.cc/load.php?*',
       '*://*.playgo1.cc/loadserver.php?*',
+      '*://*.anihdplay.com/embedplus*',
+      '*://*.anihdplay.com/streaming.php?*',
+      '*://*.anihdplay.com/load.php?*',
+      '*://*.anihdplay.com/loadserver.php?*',
+      // auto-gogostream-replace-dont-remove
     ],
   },
   // bs.to
@@ -483,6 +488,7 @@ module.exports = {
       '*://streamsss.net/*',
       '*://sbanh.com/e/*',
       '*://sblongvu.com/e/*',
+      '*://sbchill.com/e/*',
     ],
   },
   // gogo
@@ -591,6 +597,10 @@ module.exports = {
       '*://321naturelikefurfuroid.com/e/*',
       '*://449unceremoniousnasoseptal.com/e/*',
       '*://guidon40hyporadius9.com/e/*',
+      '*://cyamidpulverulence530.com/e/*',
+      '*://boonlessbestselling244.com/e/*',
+      '*://antecoxalbobbing1010.com/e/*',
+      // auto-voe-replace-dont-remove
     ],
   },
   // animewho
@@ -615,7 +625,7 @@ module.exports = {
   },
   // yugenanime
   yugenanime: {
-    match: ['*://yugenani.me/e/*', '*://yugen.to/e/*'],
+    match: ['*://yugenani.me/e/*', '*://yugen.to/e/*', '*://yugenanime.ro/e/*'],
   },
   // kickassanime
   kaaplay: {
@@ -792,5 +802,9 @@ module.exports = {
   // aniyan
   aniyan: {
     match: ['*://aniyan.net/jwplayer/*'],
+  },
+  // animelon
+  animelon: {
+    match: ['*://*.googlevideo.com/videoplayback?*'],
   },
 };

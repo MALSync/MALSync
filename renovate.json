@@ -1,7 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base", ":disableDependencyDashboard"],
+  "automergeType": "branch",
   "packageRules": [
+    {
+      "matchPackagePatterns": ["eslint/*", "@types/*"],
+      "rangeStrategy": "bump",
+      "automerge": true
+    },
     {
       "matchPackagePatterns": ["*"],
       "rangeStrategy": "bump"
