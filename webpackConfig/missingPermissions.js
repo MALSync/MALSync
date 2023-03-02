@@ -23,11 +23,11 @@ async function main() {
 
   const version = manifest.version;
   const oldUrls = getUrls(manifest);
-  const diffUrls = getDiff(oldUrls);
   const descFile = path.join(__dirname, '../src/pages/diffUrls.json');
-  console.log(version, diffUrls);
   fs.readFile(descFile, 'utf8', function(err, data) {
     const currentData = JSON.parse(data);
+    const diffUrls = getDiff(oldUrls, currentData[version]);
+    console.log(version, diffUrls);
     currentData[version] = diffUrls;
 
     if(Object.keys(currentData).length > 5) {
@@ -44,7 +44,7 @@ async function main() {
   });
 }
 
-function getDiff(oldUrls) {
+function getDiff(oldUrls, oldDiff) {
   res = {};
 
   const oldPages = fs.readdirSync(path.join(__dirname, '../dist/lastExtension/content'))
@@ -68,7 +68,17 @@ function getDiff(oldUrls) {
   res['iframe'] = pagesUtils
     .generateMatchExcludes(playerUrls)
     .match.filter(el => !oldUrls.includes(el))
-    .map(el => formatUrls(el));
+    .map(el => {
+      if(oldDiff && oldDiff.iframe && el.startsWith('*://*.')) {
+        for(const old of oldDiff.iframe) {
+          if(old.endsWith("." + el.replace('*://*.', ''))) {
+            return old;
+          }
+        }
+      }
+
+      return formatUrls(el)
+    });
 
   return res;
 }
