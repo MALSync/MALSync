@@ -303,7 +303,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             i.node.first_name ?? ''
           }`,
           url: `https://myanimelist.net/people/${i.node.id}`,
-          subtext: i.role ? `(${i.role})` : '',
+          subtext: i.role || '',
         });
       });
       if (authors.length)

@@ -148,6 +148,24 @@ export class MetaOverview extends MetaOverviewAbstract {
                 }
             }
         }
+        ${
+          this.type === 'manga'
+            ? `
+        staff {
+            edges {
+                id
+                role
+                node {
+                    siteUrl
+                    name {
+                        userPreferred
+                    }
+                }
+            }
+        }
+          `
+            : ''
+        }
         source(version: 2)
         genres
         externalLinks {
@@ -325,6 +343,30 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: 'Studios:',
         body: studios,
       });
+
+    if (data.data.Media.staff && data.data.Media.staff.edges.length) {
+      const authors: any[] = [];
+      data.data.Media.staff.edges
+        .filter(author => {
+          return !['Editing', 'Translator', 'Lettering', 'Touch-up'].find(ignore =>
+            author.role.toLowerCase().includes(ignore.toLowerCase()),
+          );
+        })
+        .forEach(author => {
+          const role = author.role.replace(/(original|design)/gi, '').trim();
+
+          authors.push({
+            text: author.node.name.userPreferred,
+            url: author.node.siteUrl,
+            subtext: role || '',
+          });
+        });
+      if (authors.length)
+        this.meta.info.push({
+          title: 'Authors:',
+          body: authors,
+        });
+    }
 
     if (data.data.Media.source) {
       let source = data.data.Media.source.toLowerCase().replace('_', ' ');
