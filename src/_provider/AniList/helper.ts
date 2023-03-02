@@ -149,3 +149,8 @@ export function apiCall(query, variables, authentication = true) {
       return res;
     });
 }
+
+export function imgCheck(url: string) {
+  if (!url || url.endsWith('/default.jpg')) return '';
+  return url;
+}

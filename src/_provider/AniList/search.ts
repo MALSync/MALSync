@@ -1,5 +1,6 @@
 import { searchInterface } from '../definitions';
 import { parseJson } from '../Errors';
+import * as helper from './helper';
 
 export const search: searchInterface = async function (
   keyword,
@@ -72,9 +73,9 @@ export const search: searchInterface = async function (
       malUrl: () => {
         return item.idMal ? `https://myanimelist.net/${type}/${item.idMal}` : null;
       },
-      image: item.coverImage.large,
-      imageLarge: item.coverImage.extraLarge,
-      imageBanner: item.bannerImage,
+      image: helper.imgCheck(item.coverImage.large),
+      imageLarge: helper.imgCheck(item.coverImage.extraLarge),
+      imageBanner: helper.imgCheck(item.bannerImage),
       media_type: item.format
         ? (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' ')
         : '',

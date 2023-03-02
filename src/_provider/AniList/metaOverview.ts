@@ -194,10 +194,10 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private image(data) {
-    const image = data?.data?.Media?.coverImage?.large;
+    const image = helper.imgCheck(data?.data?.Media?.coverImage?.large);
     if (image) this.meta.image = image;
-    this.meta.imageLarge = data?.data?.Media?.coverImage?.extraLarge || image;
-    this.meta.imageBanner = data?.data?.Media?.bannerImage;
+    this.meta.imageLarge = helper.imgCheck(data?.data?.Media?.coverImage?.extraLarge) || image;
+    this.meta.imageBanner = helper.imgCheck(data?.data?.Media?.bannerImage);
   }
 
   private alternativeTitle(data) {
@@ -227,7 +227,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           role = i.role.charAt(0).toUpperCase() + i.role.slice(1).toLowerCase();
         }
         this.meta.characters.push({
-          img: i.node.image.large,
+          img: helper.imgCheck(i.node.image.large),
           name,
           subtext: role,
           url: i.node.siteUrl,
