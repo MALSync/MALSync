@@ -353,7 +353,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           );
         })
         .forEach(author => {
-          const role = author.role.replace(/(original|design)/gi, '').trim();
+          const role = author.role.replace(/(original|design|\([^)]*\))/gi, '').trim();
 
           authors.push({
             text: author.node.name.userPreferred,
