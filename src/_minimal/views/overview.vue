@@ -126,9 +126,14 @@
           </Section>
           <HR />
         </template>
-        <template v-if="singleRequest.data?.getMalUrl()">
+        <template
+          v-if="metaRequest.data!.recommendations && metaRequest.data!.recommendations.length || singleRequest.data?.getMalUrl()"
+        >
           <Section>
-            <OverviewRecommendations :mal-url="singleRequest.data!.getMalUrl()!" />
+            <OverviewRecommendations
+              :recommendations="metaRequest.data!.recommendations"
+              :mal-url="singleRequest.data!.getMalUrl()!"
+            />
           </Section>
         </template>
       </Section>

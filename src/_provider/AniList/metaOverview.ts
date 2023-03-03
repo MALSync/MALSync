@@ -1,4 +1,4 @@
-import { MetaOverviewAbstract, Review } from '../metaOverviewAbstract';
+import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 
@@ -46,6 +46,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.info(data);
     this.related(data);
     this.reviews(data);
+    this.recommendations(data);
 
     this.logger.log('Res', this.meta);
   }
@@ -81,7 +82,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           english
           native
         }
-        characters (perPage: 6, sort: [ROLE, ID]) {
+        characters (perPage: 8, sort: [ROLE, ID]) {
             edges {
                 id
                 role
@@ -163,6 +164,20 @@ export class MetaOverview extends MetaOverviewAbstract {
                     }
                 }
 
+            }
+        }
+        recommendations {
+            nodes {
+                rating
+                mediaRecommendation {
+                    title {
+                        userPreferred
+                    }
+                    siteUrl
+                    coverImage {
+                        large
+                    }
+                }
             }
         }
         ${
@@ -462,6 +477,20 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     });
     this.meta.reviews = reviews;
+  }
+
+  private recommendations(data) {
+    const recommendations: Recommendation[] = [];
+    data.data.Media.recommendations.nodes.forEach(i => {
+      recommendations.push({
+        entry: {
+          title: i.mediaRecommendation.title.userPreferred,
+          url: i.mediaRecommendation.siteUrl,
+          image: i.mediaRecommendation.coverImage.large,
+        },
+      });
+    });
+    this.meta.recommendations = recommendations;
   }
 
   protected apiCall = helper.apiCall;

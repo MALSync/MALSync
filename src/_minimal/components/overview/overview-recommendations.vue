@@ -3,7 +3,7 @@
     <Header :spacer="true">{{ lang('minimalApp_Recommendations') }}</Header>
     <Card
       v-if="metaRequest.loading || (!metaRequest.loading && !parameters.load && !metaRequest.cache)"
-      class="grid"
+      class="grid-sp"
     >
       <div class="loading-placeholder">
         <ImageText href="" image="" :loading="true">
@@ -29,8 +29,8 @@
         </div>
       </div>
     </Card>
-    <div v-if="!metaRequest.loading && metaRequest.data && metaRequest.data.length" class="grid">
-      <Pagination :entries-per-page="3" :elements="metaRequest.data">
+    <div v-if="!metaRequest.loading && data && data.length" :class="{ 'grid-sp': data[0].body }">
+      <Pagination v-if="data[0].body" :entries-per-page="3" :elements="data">
         <template #elements="{ elements }">
           <Section v-for="(rec, index) in elements" :key="rec.entry.url">
             <HR v-if="index" size="thin" />
@@ -65,15 +65,38 @@
           </Section>
         </template>
       </Pagination>
+      <Pagination v-else :entries-per-page="breakpoint === 'desktop' ? 6 : 4" :elements="data">
+        <template #elements="{ elements }">
+          <Section>
+            <Grid :min-width-popup="100" :min-width="140">
+              <MediaLink
+                v-for="rec in elements"
+                :key="rec.entry.title"
+                class="rec"
+                :href="rec.entry.url"
+              >
+                <div class="rec-cover">
+                  <ImageFit mode="cover" :src="rec.entry.image" />
+                </div>
+                <div>
+                  <div class="rec-name">
+                    <TextCutoff>{{ rec.entry.title }}</TextCutoff>
+                  </div>
+                </div>
+              </MediaLink>
+            </Grid>
+          </Section>
+        </template>
+      </Pagination>
     </div>
-    <Section v-if="!metaRequest.loading && metaRequest.data && !metaRequest.data.length">
+    <Section v-if="!metaRequest.loading && data && !data.length">
       <Empty :card="true" icon="egg_alt" />
     </Section>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, PropType, inject } from 'vue';
 import { createRequest } from '../../utils/reactive';
 import Header from '../header.vue';
 import { recommendationsMeta } from './overview-recommendations-meta';
@@ -88,8 +111,18 @@ import Empty from '../empty.vue';
 import Card from '../card.vue';
 import TextIcon from '../text-icon.vue';
 import StateDot from '../state-dot.vue';
+import ImageFit from '../image-fit.vue';
+import Grid from '../grid.vue';
+import TextCutoff from '../text-cutoff.vue';
+import { Recommendation } from '../../../_provider/metaOverviewAbstract';
+
+const breakpoint = inject('breakpoint');
 
 const props = defineProps({
+  recommendations: {
+    type: Array as PropType<Recommendation[]>,
+    default: () => [],
+  },
   malUrl: {
     type: String,
     required: true,
@@ -117,6 +150,10 @@ watch(
     parameters.value.load = false;
   },
 );
+
+const data = computed(() =>
+  props.recommendations && props.recommendations.length ? props.recommendations : metaRequest.data,
+);
 </script>
 
 <style lang="less" scoped>
@@ -126,7 +163,7 @@ watch(
   white-space: pre-line;
 }
 
-.grid {
+.grid-sp {
   padding: 10px !important;
 }
 
@@ -137,6 +174,14 @@ watch(
 .head-dot {
   display: flex;
   align-items: center;
+}
+
+.rec-cover {
+  .click-move-down();
+}
+.rec-name {
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .skeleton-text {

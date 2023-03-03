@@ -66,11 +66,11 @@ export type Recommendation = {
       episode: number;
     };
   };
-  user: {
+  user?: {
     name: string;
     href: string;
   };
-  body: {
+  body?: {
     text: string;
     more: {
       url: string;
