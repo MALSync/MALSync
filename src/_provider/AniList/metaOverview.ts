@@ -1,4 +1,4 @@
-import { MetaOverviewAbstract } from '../metaOverviewAbstract';
+import { MetaOverviewAbstract, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 
@@ -45,6 +45,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.statistics(data);
     this.info(data);
     this.related(data);
+    this.reviews(data);
 
     this.logger.log('Res', this.meta);
   }
@@ -146,6 +147,22 @@ export class MetaOverview extends MetaOverviewAbstract {
                     id
                     name
                 }
+            }
+        }
+        reviews {
+            nodes {
+                rating
+                createdAt
+                score
+                body(asHtml: false)
+                user {
+                    name
+                    siteUrl
+                    avatar {
+                      medium
+                    }
+                }
+
             }
         }
         ${
@@ -425,6 +442,26 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     });
     this.meta.related = Object.keys(links).map(key => links[key]);
+  }
+
+  private reviews(data) {
+    const reviews: Review[] = [];
+    data.data.Media.reviews.nodes.forEach(i => {
+      reviews.push({
+        body: {
+          people: i.rating,
+          date: i.createdAt,
+          rating: i.score,
+          text: i.body,
+        },
+        user: {
+          name: i.user.name,
+          image: i.user.avatar.medium,
+          href: i.user.siteUrl,
+        },
+      });
+    });
+    this.meta.reviews = reviews;
   }
 
   protected apiCall = helper.apiCall;

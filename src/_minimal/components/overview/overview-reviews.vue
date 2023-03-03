@@ -29,8 +29,8 @@
         </div>
       </div>
     </Card>
-    <div v-if="!metaRequest.loading && metaRequest.data && metaRequest.data.length" class="grid">
-      <Pagination :entries-per-page="3" :elements="metaRequest.data">
+    <div v-if="!metaRequest.loading && data && data.length" class="grid">
+      <Pagination :entries-per-page="3" :elements="data">
         <template #elements="{ elements }">
           <Section v-for="(review, index) in elements" :key="review.user.name">
             <HR v-if="index" size="thin" />
@@ -53,14 +53,14 @@
         </template>
       </Pagination>
     </div>
-    <Section v-if="!metaRequest.loading && metaRequest.data && !metaRequest.data.length">
+    <Section v-if="!metaRequest.loading && data && !data.length">
       <Empty :card="true" />
     </Section>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, PropType } from 'vue';
 import { createRequest } from '../../utils/reactive';
 import Header from '../header.vue';
 import { reviewMeta } from './overview-reviews-meta';
@@ -73,8 +73,13 @@ import ImageText from '../image-text.vue';
 import HR from '../hr.vue';
 import Empty from '../empty.vue';
 import Card from '../card.vue';
+import { Review } from '../../../_provider/metaOverviewAbstract';
 
 const props = defineProps({
+  reviews: {
+    type: Array as PropType<Review[]>,
+    default: () => [],
+  },
   malUrl: {
     type: String,
     required: true,
@@ -101,6 +106,10 @@ watch(
   () => {
     parameters.value.load = false;
   },
+);
+
+const data = computed(() =>
+  props.reviews && props.reviews.length ? props.reviews : metaRequest.data,
 );
 </script>
 
