@@ -1,26 +1,4 @@
-export type Recommendation = {
-  entry: {
-    title: string;
-    url: string;
-    image: string;
-    list?: {
-      status: number;
-      score: number;
-      episode: number;
-    };
-  };
-  user: {
-    name: string;
-    href: string;
-  };
-  body: {
-    text: string;
-    more: {
-      url: string;
-      number: number;
-    };
-  };
-};
+import { Recommendation } from '../../../_provider/metaOverviewAbstract';
 
 export async function recommendationsMeta(malUrl: string): Promise<Recommendation[]> {
   const res: Recommendation[] = [];
