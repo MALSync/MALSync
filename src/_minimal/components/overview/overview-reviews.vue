@@ -2,7 +2,10 @@
   <div :class="{ stopLoading: !metaRequest.loading }">
     <Header :spacer="true">{{ lang('minimalApp_Reviews') }}</Header>
     <Card
-      v-if="metaRequest.loading || (!metaRequest.loading && !parameters.load && !metaRequest.cache)"
+      v-if="
+        metaRequest.loading ||
+        (!metaRequest.loading && !parameters.load && !metaRequest.cache && !reviews.length)
+      "
       class="grid"
     >
       <div class="loading-placeholder">
@@ -29,7 +32,10 @@
         </div>
       </div>
     </Card>
-    <div v-if="!metaRequest.loading && data && data.length" class="grid">
+    <div
+      v-if="!metaRequest.loading && data && data.length"
+      :class="{ grid: !metaRequest.cache && !reviews.length }"
+    >
       <Pagination :entries-per-page="3" :elements="data">
         <template #elements="{ elements }">
           <Section v-for="(review, index) in elements" :key="review.user.name">
