@@ -53,7 +53,15 @@
               </div>
             </ImageText>
             <div class="text">
-              <Description :height="150">{{ review.body.text }}</Description>
+              <Description :height="150">
+                <div
+                  v-dompurify-html:noMedia="cleanDescription(review.body.text)"
+                  class="description-html"
+                  :class="{
+                    preLine: !(review.body.text.includes('<br') || review.body.text.includes('<p')),
+                  }"
+                />
+              </Description>
             </div>
           </Section>
         </template>
@@ -117,6 +125,11 @@ watch(
 const data = computed(() =>
   props.reviews && props.reviews.length ? props.reviews : metaRequest.data,
 );
+
+const cleanDescription = desc => {
+  if (!desc) return '';
+  return desc.replace(/(< *\/? *br *\/? *>(\r|\n| )*){2,}/gim, '<br /><br />');
+};
 </script>
 
 <style lang="less" scoped>
@@ -132,6 +145,13 @@ const data = computed(() =>
 
 .text {
   margin-top: @spacer;
+}
+
+.description-html {
+  white-space: initial;
+  &.preLine {
+    white-space: pre-line;
+  }
 }
 
 .skeleton-text {

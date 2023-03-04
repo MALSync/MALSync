@@ -155,7 +155,7 @@ export class MetaOverview extends MetaOverviewAbstract {
                 rating
                 createdAt
                 score
-                body(asHtml: false)
+                body(asHtml: true)
                 user {
                     name
                     siteUrl

@@ -7,7 +7,12 @@ export function createApp(
   option?: { shadowDom?: boolean; use?: (vue: App) => void },
 ) {
   const app = vueCreateApp(component);
-  app.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
+  app.use(VueDOMPurifyHTML, {
+    default: { ADD_ATTR: ['target'] },
+    namedConfigurations: {
+      noMedia: { FORBID_TAGS: ['img', 'svg', 'picture', 'video', 'audio'] },
+    },
+  });
 
   if (option && option.use) {
     option.use(app);
