@@ -166,7 +166,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
             }
         }
-        recommendations {
+        recommendations (sort: [RATING_DESC]) {
             nodes {
                 rating
                 mediaRecommendation {
@@ -488,6 +488,9 @@ export class MetaOverview extends MetaOverviewAbstract {
           url: i.mediaRecommendation.siteUrl,
           image: i.mediaRecommendation.coverImage.large,
         },
+        stats: {
+          users: i.rating,
+        }
       });
     });
     this.meta.recommendations = recommendations;

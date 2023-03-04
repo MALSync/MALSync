@@ -83,6 +83,13 @@
               >
                 <div class="rec-cover">
                   <ImageFit mode="cover" :src="rec.entry.image" />
+                  <PillSplit v-if="rec.stats" class="users" :left="false">
+                    <template #right>
+                      <TextIcon icon="people" position="before" spacer="small">
+                        {{ rec.stats.users }}
+                      </TextIcon>
+                    </template>
+                  </PillSplit>
                 </div>
                 <div>
                   <div class="rec-name">
@@ -121,6 +128,7 @@ import ImageFit from '../image-fit.vue';
 import Grid from '../grid.vue';
 import TextCutoff from '../text-cutoff.vue';
 import { Recommendation } from '../../../_provider/metaOverviewAbstract';
+import PillSplit from '../pill-split.vue';
 
 const breakpoint = inject('breakpoint');
 
@@ -184,6 +192,14 @@ const data = computed(() =>
 
 .rec-cover {
   .click-move-down();
+
+  position: relative;
+
+  .users {
+    position: absolute;
+    top: var(--size-spacer-half);
+    left: var(--size-spacer-half);
+  }
 }
 .rec-name {
   font-weight: bold;

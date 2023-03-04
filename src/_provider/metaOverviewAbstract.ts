@@ -66,6 +66,9 @@ export type Recommendation = {
       episode: number;
     };
   };
+  stats?: {
+    users: string;
+  };
   user?: {
     name: string;
     href: string;
