@@ -74,7 +74,7 @@
       <Pagination v-else :entries-per-page="breakpoint === 'desktop' ? 6 : 4" :elements="data">
         <template #elements="{ elements }">
           <Section>
-            <Grid :min-width-popup="100" :min-width="140">
+            <Grid :min-width-popup="100" :min-width="130">
               <MediaLink
                 v-for="rec in elements"
                 :key="rec.entry.title"
