@@ -1,20 +1,20 @@
-const webpack = require('webpack');
-const path = require('path');
+import { NormalModuleReplacementPlugin, ProvidePlugin, DefinePlugin } from 'webpack';
+import { resolve as _resolve, join } from 'path';
 const appTarget = process.env.APP_TARGET || 'general';
-const SentryWebpackPlugin = require('@sentry/webpack-plugin');
-const packageJson = require('../package.json');
+import SentryWebpackPlugin from '@sentry/webpack-plugin';
+import { version } from '../package.json';
 
 plugins = [
-  new webpack.NormalModuleReplacementPlugin(/(.*)-general/, function(resource) {
+  new NormalModuleReplacementPlugin(/(.*)-general/, function(resource) {
     resource.request = resource.request.replace(/-general/, `-${appTarget}`);
   }),
-  new webpack.ProvidePlugin({
-    con: path.resolve(__dirname, './../src/utils/consoleBG'),
-    utils: path.resolve(__dirname, './../src/utils/general'),
-    api: path.resolve(__dirname, './../src/api/webextension'),
-    j: path.resolve(__dirname, './../src/utils/j'),
+  new ProvidePlugin({
+    con: _resolve(__dirname, './../src/utils/consoleBG'),
+    utils: _resolve(__dirname, './../src/utils/general'),
+    api: _resolve(__dirname, './../src/api/webextension'),
+    j: _resolve(__dirname, './../src/utils/j'),
   }),
-  new webpack.DefinePlugin({
+  new DefinePlugin({
     env: JSON.stringify({
       CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
     }),
@@ -28,7 +28,7 @@ if (process.env.SENTRY_AUTH_TOKEN) {
       authToken: process.env.SENTRY_AUTH_TOKEN,
       org: 'shark',
       project: 'malsync',
-      release: `malsync@${packageJson.version}`,
+      release: `malsync@${version}`,
       include: 'dist/webextension',
       ignore: ['node_modules', 'webpack.config.js'],
       setCommits: {
@@ -38,27 +38,25 @@ if (process.env.SENTRY_AUTH_TOKEN) {
   );
 }
 
-module.exports = {
-  entry: {
-    index: path.join(__dirname, '..', 'src/background.ts'),
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  devtool: 'source-map',
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  mode: 'development',
-  output: {
-    filename: 'background.js',
-    path: path.resolve(__dirname, '..', 'dist', 'webextension'),
-  },
-  plugins: plugins,
+export const entry = {
+  index: join(__dirname, '..', 'src/background.ts'),
 };
+export const module = {
+  rules: [
+    {
+      test: /\.tsx?$/,
+      use: 'ts-loader',
+      exclude: /node_modules/,
+    },
+  ],
+};
+export const devtool = 'source-map';
+export const resolve = {
+  extensions: ['.tsx', '.ts', '.js'],
+};
+export const mode = 'development';
+export const output = {
+  filename: 'background.js',
+  path: _resolve(__dirname, '..', 'dist', 'webextension'),
+};
+export const plugins = plugins;

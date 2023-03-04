@@ -1,25 +1,23 @@
-const pagesUtils = require('./pages');
+import { meta as _meta } from './pages';
 
 require('ts-node').register({
   project: './tsconfig.node.json',
   files: './globals.d.ts',
 });
-const ts = require('./tsProxy');
+import { open as _open } from './tsProxy';
 
-module.exports = {
-  open: ts.open,
-  pages: function(path = '../../src/pages/pages.ts') {
-    const pages = ts.open(path).pages;
-    return pages;
-  },
-  completePages: function() {
-    const pages = ts.open('../../src/pages/pages.ts').pages;
-    return Object.keys(pages).map(key => {
-      return {
-        key,
-        main: pages[key],
-        meta: pagesUtils.meta(key),
-      };
-    });
-  },
-};
+export const open = _open;
+export function pages(path = '../../src/pages/pages.ts') {
+  const pages = _open(path).pages;
+  return pages;
+}
+export function completePages() {
+  const pages = _open('../../src/pages/pages.ts').pages;
+  return Object.keys(pages).map(key => {
+    return {
+      key,
+      main: pages[key],
+      meta: _meta(key),
+    };
+  });
+}
