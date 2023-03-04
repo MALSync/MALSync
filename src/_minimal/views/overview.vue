@@ -121,7 +121,7 @@
           <Section>
             <OverviewReviews
               :reviews="metaRequest.data!.reviews"
-              :mal-url="singleRequest.data!.getMalUrl()!"
+              :mal-url="singleRequest.data ? singleRequest.data!.getMalUrl()! : ''"
             />
           </Section>
           <HR />
@@ -132,7 +132,7 @@
           <Section>
             <OverviewRecommendations
               :recommendations="metaRequest.data!.recommendations"
-              :mal-url="singleRequest.data!.getMalUrl()!"
+              :mal-url="singleRequest.data ? singleRequest.data!.getMalUrl()! : ''"
             />
           </Section>
         </template>
