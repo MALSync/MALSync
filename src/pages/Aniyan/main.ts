@@ -52,6 +52,18 @@ export const Aniyan: pageInterface = {
     getMalUrl(provider) {
       return Aniyan.sync.getMalUrl!(provider);
     },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('ul.episodios .episodes');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.find('div div.season_m a').attr('href'), Aniyan.domain);
+      },
+      elementEp(selector) {
+        return Number(selector.attr('episode'));
+      },
+    },
   },
   init(page) {
     api.storage.addStyle(
