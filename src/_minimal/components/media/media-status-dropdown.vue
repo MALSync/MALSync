@@ -3,7 +3,7 @@
     <template #select="slotProps">
       <FormButton :tabindex="-1" :animation="false" padding="pill">
         <StateDot :status="(slotProps.value as number)" :relative-height="true" />
-        {{ slotProps.currentTitle }}
+        <span class="progress-text">{{ slotProps.currentTitle }}</span>
       </FormButton>
     </template>
     <template #option="slotProps">
@@ -63,7 +63,15 @@ watch(
 </script>
 
 <style lang="less" scoped>
+@import '../../less/_globals.less';
+
 button {
   border-radius: 15px;
 }
+
+.__breakpoint-small__( {
+  .progress-text {
+    display: none;
+  }
+});
 </style>
