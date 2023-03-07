@@ -135,6 +135,14 @@
       "https://zoro.sx/*",
       "https://zoro.pm/*"
     ],
+    "nineAnime": [
+      "https://mangafire.to/watch/*",
+      "https://mangafire.to/watch2gether/*",
+      "https://fmovies.to/watch/*",
+      "https://fmovies.to/watch2gether/*",
+      "https://gogoanime.page/watch/*",
+      "https://gogoanime.page/watch2gether/*"
+    ],
     "iframe": [
       "https://suzihaza.com/v/*",
       "https://vanfem.com/v/*",

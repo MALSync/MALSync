@@ -41,7 +41,13 @@
       "*://*.9anime.pl/watch/*",
       "*://*.9anime.pl/watch2gether/*",
       "*://*.9anime.gs/watch/*",
-      "*://*.9anime.gs/watch2gether/*"
+      "*://*.9anime.gs/watch2gether/*",
+      "*://*.mangafire.to/watch/*",
+      "*://*.mangafire.to/watch2gether/*",
+      "*://*.fmovies.to/watch/*",
+      "*://*.fmovies.to/watch2gether/*",
+      "*://*.gogoanime.page/watch/*",
+      "*://*.gogoanime.page/watch2gether/*"
     ]
   }
 }
