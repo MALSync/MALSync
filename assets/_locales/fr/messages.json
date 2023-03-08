@@ -1,6 +1,6 @@
 {
     "Search": {
-        "message": "Recherche sur le site",
+        "message": "Rechercher sur le site",
         "description": "Button to open the site search links on mal, anilist ..."
     },
     "Show": {
@@ -652,7 +652,7 @@
         "description": "Manga sync"
     },
     "settings_AutoTracking_Video": {
-        "message": "Mise à jour après $videoDuration$% de visionnage",
+        "message": "Mettre à jour après $videoDuration$% de visionnage",
         "description": "Update Episode of video progress",
         "placeholders": {
             "videoDuration": {
@@ -662,7 +662,7 @@
         }
     },
     "settings_AutoTracking_Instant": {
-        "message": "Retarde la détection instantanée de $delay$ secondes",
+        "message": "Retarder la détection instantanée de $delay$ secondes",
         "description": "Delay instant autotracking",
         "placeholders": {
             "delay": {
@@ -708,7 +708,7 @@
         "description": "Friend scores on detail page"
     },
     "settings_epPredictions": {
-        "message": "Nombre d'épisodes estimé",
+        "message": "Estimer le nombre d'épisodes",
         "description": "Estimate episode number"
     },
     "settings_malTags": {
@@ -720,11 +720,11 @@
         "description": "Use Tags/Notes - Text"
     },
     "settings_malContinue": {
-        "message": "Continuer de regarder liens",
+        "message": "Liens « continuer de regarder »",
         "description": "Continue watching links"
     },
     "settings_malResume": {
-        "message": "Reprendre regarder liens",
+        "message": "Liens « reprendre le visionnage »",
         "description": "Resume watching links"
     },
     "settings_usedPage": {
@@ -808,15 +808,15 @@
         "description": "Video settings header"
     },
     "settings_Video_Fullscreen": {
-        "message": "Auto Plein écran",
+        "message": "Passer automatiquement en plein écran",
         "description": "Auto fullscreen toggle"
     },
     "settings_Video_Resume": {
-        "message": "Auto reprise",
+        "message": "Reprendre automatiquement la lecture",
         "description": "Auto resume video where you left off toggle"
     },
     "settings_autoNextEp": {
-        "message": "Lecture automatique du prochain épisode",
+        "message": "Lire automatiquement le prochain épisode",
         "description": "Autoplays the next episode after the video ends"
     },
     "settings_Shortcuts_Correction": {
@@ -824,7 +824,7 @@
         "description": "Text for the correction ui shortcut"
     },
     "settings_Shortcuts_Sync": {
-        "message": "Marqué épisode/chapitre comme lu",
+        "message": "Marquer l’épisode/le chapitre comme lu",
         "description": "Text for the sync ui shortcut"
     },
     "settings_Shortcuts_Next_Episode": {
@@ -844,7 +844,7 @@
         "description": "Shown if no shortcut is set for an option"
     },
     "settings_introSkip": {
-        "message": "Définir la durée de l'opening qui va être passé ($Seconds$ seconds)",
+        "message": "Définir la durée de l'opening qui va être passé ($Seconds$ secondes)",
         "description": "Skips video seconds",
         "placeholders": {
             "Seconds": {
@@ -870,11 +870,11 @@
         "description": "Interval - Off"
     },
     "settings_Interval_Default_Anime": {
-        "message": "Par défaut anime",
+        "message": "Source par défaut (Anime)",
         "description": "Dropdown label for selecting the global progress anime source"
     },
     "settings_Interval_Default_Manga": {
-        "message": "Par défaut manga",
+        "message": "Source par défaut (Manga)",
         "description": "Dropdown label for selecting the global progress manga source"
     },
     "settings_ProgressCheck": {
