@@ -4,7 +4,7 @@ import wrapper from './utils/WrapperPlugin';
 import package from '../package.json';
 import pageUrls from '../src/pages-adult/pageUrls';
 import playerUrls from '../src/pages-adult/playerUrls';
-import resourcesJson from './resourcesUserscript';
+import resourcesJson from './resources.json
 import { map } from './httpPermissions.json';
 import { VueLoaderPlugin } from 'vue-loader';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
