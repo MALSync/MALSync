@@ -1,12 +1,12 @@
-const { expect } = require('chai');
-const puppeteer = require('puppeteer');
-const { PuppeteerBlocker } = require('@cliqz/adblocker-puppeteer');
-const fetch = require('cross-fetch');
+import { expect } from 'chai';
+import { launch } from 'puppeteer';
+import { PuppeteerBlocker } from '@cliqz/adblocker-puppeteer';
+import fetch from 'cross-fetch';
 
-const fs = require('fs');
-const dir = require('node-dir');
+import { readFileSync, readFile, writeFile } from 'fs';
+import { readFiles } from 'node-dir';
 
-const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
+const script = readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
 
 const testsArray = [];
 let changedFiles = [];
@@ -33,7 +33,7 @@ async function getBrowser(headless = true) {
   if (browser && headless) return browser;
   if (browserFull && !headless) return browserFull;
 
-  const tempBrowser = await puppeteer.launch({ headless: headless ? 'new' : false });
+  const tempBrowser = await launch({ headless: headless ? 'new' : false });
   if (headless) {
     browser = tempBrowser;
   } else {
@@ -151,7 +151,7 @@ async function singleCase(block, test, page, retry = 0) {
 
   await page
     .addScriptTag({
-      content: fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'),
+      content: readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'),
     })
     .catch(() => {
       throw 'jquery could not be loaded';
@@ -286,7 +286,7 @@ async function loopEl(testPage, headless = true) {
 
 async function initTestsArray() {
   new Promise((resolve, reject) => {
-    dir.readFiles(
+    readFiles(
       `${__dirname}/../../src/`,
       {
         match: /^tests.json$/,
@@ -337,13 +337,13 @@ async function initTestsArray() {
 }
 
 async function resetOnline(path) {
-  fs.readFile(path, 'utf8', function(err, data) {
+  readFile(path, 'utf8', function(err, data) {
     if (err) {
       return console.log(err);
     }
     const result = data.replace(/"offline" *: *true *,/g, `"offline": false,`);
 
-    fs.writeFile(path, result, 'utf8', function(err) {
+    writeFile(path, result, 'utf8', function(err) {
       if (err) return console.log(err);
     });
   });

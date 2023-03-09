@@ -15,7 +15,7 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "src/**/*.vue"],
+  "include": ["**/*.ts", "src/**/*.vue", "test/headless/test.js"],
   "exclude": [
     "dist",
     "**/*.test.ts",

@@ -1,13 +1,13 @@
-const archiver = require('archiver');
-const fs = require('fs');
-const path = require('path');
+import archiver from 'archiver';
+import { createWriteStream } from 'fs';
+import { join } from 'path';
 
-const dist = path.join(__dirname, '../dist');
+const dist = join(__dirname, '../dist');
 
-const output = fs.createWriteStream(path.join(dist, '/webextension.zip'));
+const output = createWriteStream(join(dist, '/webextension.zip'));
 const archive = archiver('zip', {
   zlib: { level: 9 },
 });
 archive.pipe(output);
-archive.directory(path.join(dist, 'webextension'), false);
+archive.directory(join(dist, 'webextension'), false);
 archive.finalize();
