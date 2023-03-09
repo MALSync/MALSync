@@ -1,4 +1,4 @@
-export function initFloatButton(page, floatClick) {
+export function initFloatButton({ page, floatClick }: { page; floatClick; }): void {
   const posLeft = api.settings.get('posLeft');
   const miniMalWidth = api.settings.get('miniMalWidth');
   const miniMalHeight = api.settings.get('miniMalHeight');

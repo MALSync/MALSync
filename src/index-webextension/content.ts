@@ -7,7 +7,7 @@ import { initShark } from '../utils/shark';
 
 initShark();
 
-let lastFocus;
+let lastFocus: number;
 
 declare let _Page: pageInterface;
 

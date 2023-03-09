@@ -4,7 +4,7 @@ import { initShark } from '../utils/shark';
 
 initShark();
 
-let lastFocus;
+let lastFocus: number;
 
 function main() {
   if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
