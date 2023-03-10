@@ -3,6 +3,7 @@
     "development"
   ],
   "hints": {
-    "typescript-config/consistent-casing": "default"
+    "typescript-config/consistent-casing": "off",
+    "meta-viewport": "off"
   }
 }
