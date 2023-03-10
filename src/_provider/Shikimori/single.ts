@@ -18,7 +18,7 @@ export class Single extends SingleAbstract {
 
   authenticationUrl = helper.authUrl;
 
-  protected handleUrl(url) {
+  protected handleUrl(url: string) {
     if (url.match(/shikimori\.one\/(animes|mangas|ranobe)\/\D?\d+/i)) {
       this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
       const res = utils.urlPart(url, 4).match(/^\D?(\d+)/);

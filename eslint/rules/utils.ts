@@ -34,7 +34,5 @@ function isjQuery(node) {
   return id && id.name.startsWith('$')
 }
 
-module.exports = {
-  traverse: traverse,
-  isjQuery: isjQuery
-}
+export const traverse = traverse;
+export const isjQuery = isjQuery;

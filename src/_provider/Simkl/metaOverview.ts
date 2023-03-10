@@ -3,7 +3,7 @@ import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
-  constructor(url) {
+  constructor(url: string) {
     super(url);
     this.logger = this.logger.m('Simkl');
 

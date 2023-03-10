@@ -1,6 +1,6 @@
 'use strict';
 
-const utils = require('./utils.js')
+import { isjQuery } from './utils';
 
 const postUnsave = [
   'after',
@@ -17,7 +17,7 @@ const preUnsave = [
   'prependTo',
 ]
 
-module.exports = function (context) {
+export default function (context) {
   return {
     CallExpression: function (node) {
       if (node.callee.type !== 'MemberExpression') return
@@ -31,14 +31,14 @@ module.exports = function (context) {
           node.arguments[0].callee.object.name === 'j' &&
           node.arguments[0].callee.property.name === 'html'
         ) return
-        if (utils.isjQuery(node)) {
+        if (isjQuery(node)) {
           context.report({
             node: node,
             message: `$.${node.callee.property.name} is potentially dangerous. Use "$.${node.callee.property.name}(j.html(html))" instead`
           })
         }
       } else if (preUnsave.includes(node.callee.property.name)){
-        if (utils.isjQuery(node)) {
+        if (isjQuery(node)) {
           context.report({
             node: node,
             message: `$.${node.callee.property.name} is potentially dangerous. Use something else instead`
@@ -50,4 +50,4 @@ module.exports = function (context) {
   }
 }
 
-module.exports.schema = []
+export const schema = []
