@@ -9,13 +9,13 @@ export const MangasOrigines: pageInterface = {
     return $('div.wp-manga-nav').length > 0;
   },
   sync: {
-    getTitle(url) {
+    getTitle() {
       return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2]).text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl(url) {
+    getOverviewUrl() {
       return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2]).attr('href') || '';
     },
     getEpisode(url) {
@@ -27,29 +27,27 @@ export const MangasOrigines: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl(url) {
+    nextEpUrl() {
       return j
-        .$(
-          'div.entry-header.header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page',
-        )
-        .attr('href');
+        .$("select.single-chapter-select > option:contains('Chapitre')")
+        .first()
+        .parent()
+        .find(':selected')
+        .prev()
+        .attr('data-redirect');
     },
   },
   overview: {
-    getTitle(url) {
+    getTitle() {
       return j.$('ol.breadcrumb li a').last().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.c-page__content div.c-blog__heading')
-        .first()
-        .before(
-          j.html(
-            `<div id="malthing"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> <i class="icon ion-ios-star"></i> MAL-Sync</h2></div>${selector}</div>`,
-          ),
-        );
+      j.$('.tab-summary').after(
+        j.html(`<div class="malsync"> <h4> MAL-Sync </h4> ${selector}</div>`),
+      );
     },
     list: {
       offsetHandler: false,
@@ -68,17 +66,13 @@ export const MangasOrigines: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(function () {
-      if (
-        page.url.split('/')[3] === 'catalogue' &&
-        page.url.split('/')[4] !== undefined &&
-        page.url.split('/')[4].length > 0
-      ) {
+    j.$(document).ready(() => {
+      if (page.url.split('/')[3] === 'manga') {
         utils.waitUntilTrue(
-          function () {
-            return !!(j.$('ul > li.wp-manga-chapter').length || j.$('div.wp-manga-nav').length);
+          () => {
+            return j.$('ul.version-chap').length || j.$('select.single-chapter-select').length;
           },
-          function () {
+          () => {
             page.handlePage();
           },
         );
