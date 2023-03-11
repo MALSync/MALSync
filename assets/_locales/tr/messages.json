@@ -312,7 +312,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Token kaydedildi sayfayı kapatabilirsin",
+        "message": "Token kaydedildi, sayfayı kapatabilirsin.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -1342,5 +1342,37 @@
     "filler_filler_confirm": {
         "message": "Bu bölüm MyAnimeList'te filler olarak işaretlendi, geçmek istiyor musun?",
         "description": "Question if the user wants to skip the filler"
+    },
+    "list_sorting_history": {
+        "message": "En son güncellenenler",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "settings_theming_theme_system": {
+        "message": "Sistem",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "Beyaz",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Siyah",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Özel",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "list_sorting_unread": {
+        "message": "Okunmadı",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "list_sorting_alpha": {
+        "message": "Alfabetik",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "list_sorting_score": {
+        "message": "Skor",
+        "description": "Dropdown option to sort list by score"
     }
 }
