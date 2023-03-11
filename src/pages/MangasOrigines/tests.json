@@ -3,27 +3,27 @@
   "url": "https://mangas-origines.fr/",
   "testCases": [
     {
-      "url": "https://mangas-origines.fr/catalogue/kill-the-hero/chapitre-54/",
+      "url": "https://mangas-origines.fr/manga/111155-solo-leveling/chapitre-170/",
       "expected": {
         "sync": true,
-        "title": "Kill The Hero",
-        "identifier": "kill-the-hero",
-        "overviewUrl": "https://mangas-origines.fr/catalogue/kill-the-hero/",
-        "nextEpUrl": "https://mangas-origines.fr/catalogue/kill-the-hero/chapitre-55/",
-        "episode": 54,
+        "title": "Solo Leveling",
+        "identifier": "111155-solo-leveling",
+        "overviewUrl": "https://mangas-origines.fr/manga/111155-solo-leveling/",
+        "nextEpUrl": "https://mangas-origines.fr/manga/111155-solo-leveling/chapitre-171/",
+        "episode": 170,
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangas-origines.fr/manga/kill-the-hero/",
+      "url": "https://mangas-origines.fr/manga/111155-solo-leveling/",
       "expected": {
         "sync": false,
-        "title": "Kill The Hero",
-        "identifier": "kill-the-hero",
+        "title": "Solo Leveling",
+        "identifier": "111155-solo-leveling",
         "uiSelector": true,
         "epList": {
-          "59": "https://mangas-origines.fr/catalogue/kill-the-hero/chapitre-59/",
-          "32": "https://mangas-origines.fr/catalogue/kill-the-hero/chapitre-32/"
+          "59": "https://mangas-origines.fr/manga/111155-solo-leveling/chapitre-59/",
+          "32": "https://mangas-origines.fr/manga/111155-solo-leveling/chapitre-32/"
         }
       }
     }

@@ -124,6 +124,10 @@
     ]
   },
   "0.9.2": {
+    "Gogoanime": [
+      "https://gogoanime.gr/*",
+      "https://gogoanime.llc/*"
+    ],
     "Voiranime": [
       "https://v2.voiranime.com/*"
     ],
@@ -153,9 +157,11 @@
       "https://cyamidpulverulence530.com/e/*",
       "https://boonlessbestselling244.com/e/*",
       "https://antecoxalbobbing1010.com/e/*",
+      "https://matriculant401merited.com/e/*",
       "https://yugenanime.ro/e/*",
       "https://www.turkanime.co/embed/*",
-      "https://aniyan.net/jwplayer/*"
+      "https://aniyan.net/jwplayer/*",
+      "https://googlevideo.com/videoplayback?*"
     ]
   }
 }

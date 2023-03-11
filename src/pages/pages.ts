@@ -30,7 +30,6 @@ import { tmofans } from './tmofans/main';
 import { unionmangas } from './unionmangas/main';
 import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
-import { Goyabu } from './Goyabu/main';
 import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
@@ -136,6 +135,7 @@ import { Aniyan } from './Aniyan/main';
 import { marin } from './marin/main';
 import { Isekaiscan } from './Isekaiscan/main';
 import { FMTeam } from './FMTeam/main';
+import { Animelon } from './Animelon/main';
 
 export const pages = {
   nineAnime,
@@ -170,7 +170,6 @@ export const pages = {
   unionmangas,
   MangaPlus,
   JapScan,
-  Goyabu,
   AnimesVision,
   Hulu,
   Hidive,
@@ -276,4 +275,5 @@ export const pages = {
   marin,
   Isekaiscan,
   FMTeam,
+  Animelon,
 };

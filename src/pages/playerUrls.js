@@ -600,6 +600,7 @@ module.exports = {
       '*://cyamidpulverulence530.com/e/*',
       '*://boonlessbestselling244.com/e/*',
       '*://antecoxalbobbing1010.com/e/*',
+      '*://matriculant401merited.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -802,5 +803,9 @@ module.exports = {
   // aniyan
   aniyan: {
     match: ['*://aniyan.net/jwplayer/*'],
+  },
+  // animelon
+  animelon: {
+    match: ['*://*.googlevideo.com/videoplayback?*'],
   },
 };

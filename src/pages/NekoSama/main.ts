@@ -13,7 +13,7 @@ export const NekoSama: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('.details > div > h1 > a').text();
+      return j.$('.details > div > h1 > a').text() || j.$('.details > div > h2 > a').text();
     },
     getIdentifier(url) {
       const urlPart5 = utils.urlPart(url, 5);
@@ -27,7 +27,12 @@ export const NekoSama: pageInterface = {
       return identifierMatches[0];
     },
     getOverviewUrl(url) {
-      return NekoSama.domain + (j.$('.details > div > h1 > a').attr('href') || '');
+      return (
+        NekoSama.domain +
+        (j.$('.details > div > h1 > a').attr('href') ||
+          j.$('.details > div > h2 > a').attr('href') ||
+          '')
+      );
     },
     getEpisode(url) {
       const headerElementText = j
@@ -36,7 +41,7 @@ export const NekoSama: pageInterface = {
 
       if (!headerElementText) return NaN;
 
-      return Number(headerElementText.split(' Episode ').pop());
+      return Number(headerElementText.split('Episode ').pop());
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
