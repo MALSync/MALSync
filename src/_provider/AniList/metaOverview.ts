@@ -397,7 +397,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         });
       if (authors.length)
         this.meta.info.push({
-          title: 'Authors:',
+          title: api.storage.lang('overview_sidebar_Authors'),
           body: authors,
         });
     }
