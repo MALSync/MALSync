@@ -749,6 +749,10 @@
         "message": "Custom search links",
         "description": "Header of the section where you can add your own custom search links"
     },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "Name",
+        "description": "Placeholder text the field that sets the custom url name"
+    },
     "settings_StreamingSite_custom_url_anime": {
         "message": "Anime search URL",
         "description": "Form field title to enter the search url for anime"
