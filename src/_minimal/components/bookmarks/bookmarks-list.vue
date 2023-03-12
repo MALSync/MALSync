@@ -54,7 +54,7 @@ import MediaLink from '../media-link.vue';
 import MediaBar from '../media/media-bar.vue';
 import MediaTotalEpisode from '../media/media-total-episode.vue';
 import TextIcon from '../text-icon.vue';
-import TextCutoff from '../text-cutoff.vue' ;
+import TextCutoff from '../text-cutoff.vue';
 import DynamicFont from '../dynamic-font.vue';
 import Arrow from '../arrow.vue';
 import MediaProgressPill from '../media/media-progress-pill.vue';

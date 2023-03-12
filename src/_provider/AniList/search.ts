@@ -1,5 +1,4 @@
 import { searchInterface } from '../definitions';
-import { parseJson } from '../Errors';
 import * as helper from './helper';
 
 export const search: searchInterface = async function (

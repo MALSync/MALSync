@@ -492,7 +492,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         },
         stats: {
           users: i.rating,
-        }
+        },
       });
     });
     this.meta.recommendations = recommendations;
