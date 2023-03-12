@@ -100,7 +100,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     if (data.ratings.mal && data.ratings.mal.rating)
       this.meta.statistics.push({
-        title: 'MAL Score:',
+        title: api.storage.lang('overview_sidebar_Mal_Score'),
         body: data.ratings.mal.rating,
       });
 
@@ -111,7 +111,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     if (data.ratings.simkl.votes)
       this.meta.statistics.push({
-        title: 'Votes:',
+        title: api.storage.lang('overview_sidebar_Votes'),
         body: data.ratings.simkl.votes,
       });
   }
@@ -137,7 +137,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.year && data.year)
       this.meta.info.push({
-        title: 'Year:',
+        title: api.storage.lang('overview_sidebar_Season'),
         body: [{ text: data.year }],
       });
 
@@ -149,7 +149,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.network && data.network)
       this.meta.info.push({
-        title: 'Licensor:',
+        title: api.storage.lang('overview_sidebar_Licensor'),
         body: [{ text: data.network }],
       });
 

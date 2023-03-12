@@ -227,7 +227,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.data.Media.favourites)
       this.meta.statistics.push({
-        title: 'Favourites:',
+        title: api.storage.lang('overview_sidebar_Favorites'),
         body: data.data.Media.favourites,
       });
 
@@ -308,7 +308,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       season = season.charAt(0).toUpperCase() + season.slice(1);
       if (data.data.Media.endDate.year) season += ` ${data.data.Media.endDate.year}`;
       this.meta.info.push({
-        title: 'Season:',
+        title: api.storage.lang('overview_sidebar_Season'),
         body: [{ text: season }],
       });
     }
@@ -360,7 +360,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     });
     if (external.length)
       this.meta.info.push({
-        title: 'External Links:',
+        title: api.storage.lang('overview_sidebar_external_links'),
         body: external,
       });
   }

@@ -176,7 +176,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.num_scoring_users)
       this.meta.statistics.push({
-        title: 'Rated:',
+        title: api.storage.lang('overview_sidebar_Votes'),
         body: data.num_scoring_users.toLocaleString(),
       });
   }
@@ -209,24 +209,24 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.num_chapters) {
       this.meta.info.push({
-        title: 'Chapters:',
+        title: api.storage.lang('overview_sidebar_Chapters'),
         body: [{ text: data.num_chapters }],
       });
     } else if (data.num_chapters === 0) {
       this.meta.info.push({
-        title: 'Chapters:',
+        title: api.storage.lang('overview_sidebar_Chapters'),
         body: [{ text: 'Unknown' }],
       });
     }
 
     if (data.num_volumes) {
       this.meta.info.push({
-        title: 'Volumes:',
+        title: api.storage.lang('overview_sidebar_Volumes'),
         body: [{ text: data.num_volumes }],
       });
     } else if (data.num_volumes === 0) {
       this.meta.info.push({
-        title: 'Volumes:',
+        title: api.storage.lang('overview_sidebar_Volumes'),
         body: [{ text: 'Unknown' }],
       });
     }
@@ -249,7 +249,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         format += '?';
       }
       this.meta.info.push({
-        title: 'Aired:',
+        title: api.storage.lang('overview_sidebar_Aired'),
         body: [{ text: format }],
       });
     }
@@ -259,7 +259,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (data.start_season.season) format += `${data.start_season.season} `;
       if (data.start_season.year) format += data.start_season.year;
       this.meta.info.push({
-        title: 'Premiered:',
+        title: api.storage.lang('overview_sidebar_Season'),
         body: [
           {
             url: `https://myanimelist.net/${this.type}/season/${data.start_season.year}/${data.start_season.season}`,
@@ -308,7 +308,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
       if (authors.length)
         this.meta.info.push({
-          title: 'Authors:',
+          title: api.storage.lang('overview_sidebar_Authors'),
           body: authors,
         });
     }
@@ -361,7 +361,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
       if (serialization.length)
         this.meta.info.push({
-          title: 'Serialization:',
+          title: api.storage.lang('overview_sidebar_Serialization'),
           body: serialization,
         });
     }

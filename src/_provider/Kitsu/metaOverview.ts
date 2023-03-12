@@ -270,7 +270,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeI().attributes.totalLength !== null
     )
       this.meta.info.push({
-        title: 'Total playtime:',
+        title: api.storage.lang('overview_sidebar_Total_Playtime'),
         body: [{ text: `${this.animeI().attributes.totalLength} mins` }],
       });
   }
