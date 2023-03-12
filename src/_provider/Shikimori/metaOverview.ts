@@ -156,7 +156,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   private info(data) {
     if (data.meta.kind)
       this.meta.info.push({
-        title: api.storage.lang("overview_sidebar_Format"),
+        title: api.storage.lang('overview_sidebar_Format'),
         body: [{ text: utils.upperCaseFirstLetter(data.meta.kind) }],
       });
 

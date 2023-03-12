@@ -186,7 +186,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       let format = this.animeI().attributes.subtype.toLowerCase().replace('_', ' ');
       format = format.charAt(0).toUpperCase() + format.slice(1);
       this.meta.info.push({
-        title: api.storage.lang("overview_sidebar_Format"),
+        title: api.storage.lang('overview_sidebar_Format'),
         body: [{ text: format }],
       });
     }

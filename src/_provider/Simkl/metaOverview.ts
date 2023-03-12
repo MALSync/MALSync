@@ -119,7 +119,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   private info(data) {
     if (data.anime_type && data.anime_type)
       this.meta.info.push({
-        title: api.storage.lang("overview_sidebar_Format"),
+        title: api.storage.lang('overview_sidebar_Format'),
         body: [{ text: data.anime_type }],
       });
 

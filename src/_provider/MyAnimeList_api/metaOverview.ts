@@ -185,7 +185,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.media_type) {
       const format = mediaTypeDefinition[data.media_type];
       this.meta.info.push({
-        title: api.storage.lang("overview_sidebar_Format"),
+        title: api.storage.lang('overview_sidebar_Format'),
         body: [
           {
             text: format ?? data.media_type,

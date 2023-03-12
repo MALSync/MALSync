@@ -257,7 +257,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       let format = data.data.Media.format.toLowerCase().replace('_', ' ');
       format = format.charAt(0).toUpperCase() + format.slice(1);
       this.meta.info.push({
-        title: api.storage.lang("overview_sidebar_Format"),
+        title: api.storage.lang('overview_sidebar_Format'),
         body: [{ text: format }],
       });
     }
