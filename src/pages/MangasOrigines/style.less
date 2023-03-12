@@ -1,44 +1,46 @@
 @import './../pages';
 
-@textColor: #888 !important;
-@activeEp: #0e1d35;
+@textColor: white !important;
+@activeEp: #c3475e;
 
-#malthing {
-  margin-bottom: 38px;
+.malsync {
+  background: #141414;
+  border-radius: 0.5em;
+  padding: 1em;
+  margin-top: 2rem;
+
+  #malp {
+    #MalData {
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+    .malp-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .malp-group-value-section {
+        display: flex;
+        gap: 4px;
+      }
+    }
+
+    select option {
+      color: white !important;
+    }
+  }
 }
 
-#malp {
+.mal-sync-active {
+  background-color: @activeEp !important;
   * {
-    float: left;
-    margin-right: 5px;
+    color: @textColor !important;
   }
-  #MalInfo {
-    float: none;
-    display: flex;
-  }
-  #MalData {
-    float: none;
-  }
-  input {
-    background-color: transparent !important;
-  }
-  select {
-    background-color: transparent !important;
-  }
-  select option {
-    background-color: #222225 !important;
-    color: white;
-  }
-  #malStatus,
-  #malUserRating,
-  #malEpisodes,
-  #malVolumes,
-  #malEpisodes {
-    line-height: normal;
-    inline-size: auto;
-  }
-  #malTotalVol,
-  #malTotalCha {
-    float: none;
+
+  // Make the new chapter image tag white
+  .c-new-tag {
+    filter: brightness(0) invert(1);
   }
 }
