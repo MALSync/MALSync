@@ -5,11 +5,14 @@ import { UserList } from '../_provider/AniList/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import updateUi from './updateUi.vue';
 import { waitForPageToBeVisible } from '../utils/general';
+import { NotAutenticatedError } from '../_provider/Errors';
 
 export class AnilistClass {
   page: any = null;
 
   private vueEl;
+
+  protected authError = false;
 
   constructor(public url: string) {
     let first = true;
@@ -301,6 +304,7 @@ export class AnilistClass {
   private tempMangalist: any = null;
 
   bookmarks() {
+    if (this.authError) return;
     const This = this;
     $(document).ready(() => {
       $('.list-entries .entry, .list-entries .entry-card')
@@ -342,6 +346,7 @@ export class AnilistClass {
           fullListCallback(list);
         })
         .catch(e => {
+          if (e instanceof NotAutenticatedError) this.authError = true;
           con.error(e);
           listProvider.flashmError(e);
         });
