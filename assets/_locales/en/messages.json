@@ -1379,20 +1379,6 @@
         "message": "You can easily change the relation like shown in the GIF below. An episode offset can be set on that page too.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Please Authenticate $Link1$Here$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "MAL-Sync needs an Emby API key to work. More infos $Link1$Here$Link2$",
         "description": "Emby Authentication",
