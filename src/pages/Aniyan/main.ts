@@ -8,7 +8,7 @@ export const Aniyan: pageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    return jsonData.page && jsonData.page === 'episode';
+    return jsonData.page && (jsonData.page === 'episode' || jsonData.page === 'movie');
   },
   isOverviewPage(url) {
     return jsonData.page && jsonData.page === 'anime';
@@ -31,6 +31,11 @@ export const Aniyan: pageInterface = {
         return jsonData.next_episode_url;
       }
       return '';
+    },
+    uiSelector(selector) {
+      if (jsonData.page === 'movie') {
+        Aniyan.overview!.uiSelector!(selector);
+      }
     },
     getMalUrl(provider) {
       if (jsonData.myanimelist_id)
