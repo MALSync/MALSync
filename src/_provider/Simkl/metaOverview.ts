@@ -95,23 +95,23 @@ export class MetaOverview extends MetaOverviewAbstract {
   private statistics(data) {
     if (data.ratings.simkl.rating)
       this.meta.statistics.push({
-        title: 'Score:',
+        title: api.storage.lang('overview_sidebar_Score'),
         body: data.ratings.simkl.rating,
       });
     if (data.ratings.mal && data.ratings.mal.rating)
       this.meta.statistics.push({
-        title: 'MAL Score:',
+        title: api.storage.lang('overview_sidebar_Mal_Score'),
         body: data.ratings.mal.rating,
       });
 
     if (data.rank && data.rank)
       this.meta.statistics.push({
-        title: 'Ranked:',
+        title: api.storage.lang('overview_sidebar_Ranked'),
         body: `#${data.rank}`,
       });
     if (data.ratings.simkl.votes)
       this.meta.statistics.push({
-        title: 'Votes:',
+        title: api.storage.lang('overview_sidebar_Votes'),
         body: data.ratings.simkl.votes,
       });
   }
@@ -119,37 +119,37 @@ export class MetaOverview extends MetaOverviewAbstract {
   private info(data) {
     if (data.anime_type && data.anime_type)
       this.meta.info.push({
-        title: 'Type:',
+        title: api.storage.lang('overview_sidebar_Format'),
         body: [{ text: data.anime_type }],
       });
 
     if (data.total_episodes && data.total_episodes)
       this.meta.info.push({
-        title: 'Episodes:',
+        title: api.storage.lang('overview_sidebar_Episodes'),
         body: [{ text: data.total_episodes }],
       });
 
     if (data.status && data.status)
       this.meta.info.push({
-        title: 'Status:',
+        title: api.storage.lang('overview_sidebar_Status'),
         body: [{ text: data.status }],
       });
 
     if (data.year && data.year)
       this.meta.info.push({
-        title: 'Year:',
+        title: api.storage.lang('overview_sidebar_Season'),
         body: [{ text: data.year }],
       });
 
     if (data.airs && data.airs)
       this.meta.info.push({
-        title: 'Broadcast:',
+        title: api.storage.lang('overview_sidebar_Broadcast'),
         body: [{ text: `${data.airs.day} at ${data.airs.time}` }],
       });
 
     if (data.network && data.network)
       this.meta.info.push({
-        title: 'Licensor:',
+        title: api.storage.lang('overview_sidebar_Licensor'),
         body: [{ text: data.network }],
       });
 
@@ -164,19 +164,19 @@ export class MetaOverview extends MetaOverviewAbstract {
     });
     if (genres.length)
       this.meta.info.push({
-        title: 'Genres:',
+        title: api.storage.lang('overview_sidebar_Genres'),
         body: genres,
       });
 
     if (data.runtime && data.runtime)
       this.meta.info.push({
-        title: 'Duration:',
+        title: api.storage.lang('overview_sidebar_Duration'),
         body: [{ text: `${data.runtime}mins` }],
       });
 
     if (data.certification && data.certification)
       this.meta.info.push({
-        title: 'Rating:',
+        title: api.storage.lang('overview_sidebar_Rating'),
         body: [{ text: data.certification }],
       });
   }
