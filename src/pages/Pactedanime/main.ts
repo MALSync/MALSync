@@ -14,7 +14,7 @@ let jsonData: null | {
 
 export const Pactedanime: pageInterface = {
   name: 'Pactedanime',
-  domain: 'https://pactedanime.com/',
+  domain: 'https://pactedanime.com',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
