@@ -69,10 +69,6 @@ export class AnilistClass {
       },
     );
 
-    if (this.url.indexOf('access_token=') > -1) {
-      this.init();
-    }
-
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
@@ -80,10 +76,6 @@ export class AnilistClass {
 
   async init() {
     await waitForPageToBeVisible();
-
-    if (this.url.indexOf('access_token=') > -1) {
-      this.authentication();
-    }
 
     const urlpart = utils.urlPart(this.url, 3);
     if (urlpart === 'anime' || urlpart === 'manga') {
@@ -112,35 +104,6 @@ export class AnilistClass {
         type: urlpart4.substring(0, 5),
       };
       this.bookmarks();
-    }
-  }
-
-  async authentication() {
-    try {
-      utils.checkDoubleExecution();
-    } catch (e) {
-      con.error(e);
-    }
-    const tokens = /access_token=[^&]+/gi.exec(this.url);
-    if (tokens !== null && typeof tokens[0] !== 'undefined' && tokens[0]) {
-      const token = tokens[0].toString().replace(/access_token=/gi, '');
-      con.log('Token Found', token);
-
-      await api.settings.set('anilistToken', token);
-
-      $(document).ready(function () {
-        $('.page-content .container').html(
-          j.html(
-            `
-          <div style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px;">
-            <h1>MAL-Sync</h1>
-            <br>
-            ${api.storage.lang('anilistClass_authentication')}
-          </div>
-        `,
-          ),
-        );
-      });
     }
   }
 
