@@ -1,6 +1,7 @@
 import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import { timestampToShortDate } from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -467,7 +468,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       reviews.push({
         body: {
           people: i.rating,
-          date: i.createdAt,
+          date: timestampToShortDate(i.createdAt * 1000),
           rating: i.score,
           text: i.body,
         },
