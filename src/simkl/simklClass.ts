@@ -1,6 +1,5 @@
 import { createApp } from '../utils/Vue';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
-import { UserList } from '../_provider/Simkl/list';
 import * as helper from '../provider/Simkl/helper';
 import malkiss from './malkiss.vue';
 import { activeLinks } from '../utils/quicklinksBuilder';
