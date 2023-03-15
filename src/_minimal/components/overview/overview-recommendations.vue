@@ -71,7 +71,12 @@
           </Section>
         </template>
       </Pagination>
-      <Pagination v-else :entries-per-page="breakpoint === 'desktop' ? 6 : 4" :elements="data">
+      <Pagination
+        v-else
+        :entries-per-page="breakpoint === 'desktop' ? 6 : 4"
+        :elements="data"
+        :open-all="true"
+      >
         <template #elements="{ elements }">
           <Section>
             <Grid :min-width-popup="100" :min-width="130">
