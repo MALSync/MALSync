@@ -161,7 +161,8 @@
       "https://yugenanime.ro/e/*",
       "https://www.turkanime.co/embed/*",
       "https://aniyan.net/jwplayer/*",
-      "https://googlevideo.com/videoplayback?*"
+      "https://googlevideo.com/videoplayback?*",
+      "https://streamhide.to/e/*"
     ]
   }
 }
