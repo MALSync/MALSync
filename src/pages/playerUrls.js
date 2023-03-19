@@ -808,4 +808,8 @@ module.exports = {
   animelon: {
     match: ['*://*.googlevideo.com/videoplayback?*'],
   },
+  // voiranime
+  streamhide: {
+    match: ['*://*.streamhide.to/e/*'],
+  },
 };
