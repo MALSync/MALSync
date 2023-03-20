@@ -541,7 +541,11 @@ module.exports = {
   },
   // animewho voiranime
   vidmoly: {
-    match: ['*://vidmoly.me/*', '*://vidmoly.to/*'],
+    match: [
+      '*://vidmoly.me/*',
+      '*://vidmoly.to/*',
+      // auto-vidmoly-replace-dont-remove
+    ],
   },
   // animewho
   upstream: {
