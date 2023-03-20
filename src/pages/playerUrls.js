@@ -539,9 +539,9 @@ module.exports = {
   saruch: {
     match: ['*://saruch.co/*'],
   },
-  // animewho
+  // animewho voiranime
   vidmoly: {
-    match: ['*://vidmoly.me/*'],
+    match: ['*://vidmoly.me/*', '*://vidmoly.to/*'],
   },
   // animewho
   upstream: {
