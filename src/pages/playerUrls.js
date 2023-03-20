@@ -601,6 +601,7 @@ module.exports = {
       '*://boonlessbestselling244.com/e/*',
       '*://antecoxalbobbing1010.com/e/*',
       '*://matriculant401merited.com/e/*',
+      '*://scatch176duplicities.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
