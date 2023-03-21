@@ -137,6 +137,7 @@ import { Isekaiscan } from './Isekaiscan/main';
 import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
+import { MangaFire } from './MangaFire/main';
 
 export const pages = {
   nineAnime,
@@ -278,4 +279,5 @@ export const pages = {
   FRAnime,
   FMTeam,
   Animelon,
+  MangaFire,
 };
