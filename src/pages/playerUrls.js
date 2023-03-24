@@ -465,6 +465,8 @@ module.exports = {
       '*://vizcloud.store/e/*',
       '*://vizcloud.site/embed/*',
       '*://vizcloud.site/e/*',
+      '*://vizcloud.co/embed/*',
+      '*://vizcloud.co/e/*',
     ],
   },
   // gogo
