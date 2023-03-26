@@ -55,7 +55,7 @@ export async function indexUpdate() {
   const globalMode = await api.settings.getAsync('syncMode');
   for (let i = 0; i < types.length; i++) {
     const type = types[i] as 'anime' | 'manga';
-    const state = await getKey(`update_${type}`);
+    const state = (await getKey(`update_${type}`)) as number;
     const mode = await getKey(`update_mode_${type}`);
 
     if (!state || state < Date.now() - UPDATE_INTERVAL || mode !== globalMode) {

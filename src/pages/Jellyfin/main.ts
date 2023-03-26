@@ -61,9 +61,9 @@ async function checkApi(page) {
 
 async function urlChange(page) {
   $('html').addClass('miniMAL-hide');
-  if (window.location.href.indexOf('id=') !== -1) {
+  if (window.location.href.includes('id=')) {
     const id = utils.urlParam(window.location.href, 'id');
-    checkItemId(page, id);
+    await checkItemId(page, id);
   }
 }
 
@@ -360,11 +360,13 @@ export const Jellyfin: pageInterface = {
           return src;
         },
       );
-      utils.urlChangeDetect(function () {
-        if (!(window.location.href.indexOf('video') !== -1)) {
-          page.reset();
-          urlChange(page);
-        }
+      utils.urlChangeDetect(() => {
+        const newUrl = window.location.href;
+        // We don't need to reset state when switching to the video player or if a dialog pops up
+        if (newUrl.includes('/video') || newUrl.includes('/dialog')) return;
+
+        page.reset();
+        urlChange(page);
       });
       j.$(document).ready(function () {
         utils.waitUntilTrue(

@@ -42,7 +42,7 @@ module.exports = {
     match: ['*://*.mail.ru/*'],
   },
   myvi: {
-    match: ['*://*.myvi.ru/*', '*://www.myvi.tv/embed/*'],
+    match: ['*://*.myvi.ru/*', '*://*.myvi.tv/*'],
   },
   sibnet: {
     match: ['*://*.sibnet.ru/*'],
@@ -465,6 +465,8 @@ module.exports = {
       '*://vizcloud.store/e/*',
       '*://vizcloud.site/embed/*',
       '*://vizcloud.site/e/*',
+      '*://vizcloud.co/embed/*',
+      '*://vizcloud.co/e/*',
     ],
   },
   // gogo
@@ -539,9 +541,9 @@ module.exports = {
   saruch: {
     match: ['*://saruch.co/*'],
   },
-  // animewho
+  // animewho voiranime
   vidmoly: {
-    match: ['*://vidmoly.me/*'],
+    match: ['*://vidmoly.me/*', '*://vidmoly.to/*'],
   },
   // animewho
   upstream: {
@@ -601,6 +603,7 @@ module.exports = {
       '*://boonlessbestselling244.com/e/*',
       '*://antecoxalbobbing1010.com/e/*',
       '*://matriculant401merited.com/e/*',
+      '*://scatch176duplicities.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -807,5 +810,9 @@ module.exports = {
   // animelon
   animelon: {
     match: ['*://*.googlevideo.com/videoplayback?*'],
+  },
+  // voiranime
+  streamhide: {
+    match: ['*://*.streamhide.to/e/*'],
   },
 };
