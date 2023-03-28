@@ -1,6 +1,6 @@
 {
   "title": "AnimeSama",
-  "url": "https://anime-sama.fr/",
+  "url": "https://anime-sama.fr",
   "enabled": true,
   "testCases": [
     {
@@ -9,6 +9,7 @@
         "sync": true,
         "title": "Love Live! Sunshine!!",
         "identifier": "love-live-sunshine",
+        "overviewUrl": "https://anime-sama.fr/catalogue/love-live-sunshine",
         "episode": 1,
         "uiSelector": false
       }
