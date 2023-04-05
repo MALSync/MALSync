@@ -1,7 +1,7 @@
 /**
  * @type {import("eslint").Linter.RulesRecord}
  */
-const COMMON_RULES = {
+const COMMON_RULES: import("eslint").Linter.RulesRecord = {
   // Import rules
   'import/no-webpack-loader-syntax': 'off',
   'import/prefer-default-export': 'off',
@@ -49,7 +49,7 @@ const COMMON_RULES = {
 /**
  * @type {import("eslint").Linter.Config}
  */
-export const env = {
+export const env: import("eslint").Linter.Config = {
   es6: true,
   greasemonkey: true,
   jquery: true,
