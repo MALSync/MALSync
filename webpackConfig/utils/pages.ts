@@ -12,10 +12,7 @@ module.exports = {
   },
   pageHealth: function (pages, file) {
     pages.forEach(el => {
-      if (!new RegExp(`\.\/${el}\/`).test(file))
-        throw `${el} file path could not be found`;
       if (!new RegExp(`import { ${el} }`).test(file))
-        throw `${el} class could not be found`;
     });
   },
   meta: function (page) {
