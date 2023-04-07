@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import { launch } from 'puppeteer';
 import { PuppeteerBlocker } from '@cliqz/adblocker-puppeteer';
 import fetch from 'cross-fetch';
-
 import { readFileSync, readFile, writeFile } from 'fs';
 import { readFiles } from 'node-dir';
 

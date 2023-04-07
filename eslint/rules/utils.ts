@@ -1,6 +1,6 @@
 'use strict';
 
-function traverse(node) {
+function traverse(node: { type: any; callee: any; object: any; }) {
   while (node) {
     switch (node.type) {
       case 'CallExpression':
