@@ -14,7 +14,7 @@ import { databaseRequest, initDatabase } from './background/database';
 import { anilistOauth } from './anilist/oauth';
 import { shikiOauth } from './_provider/Shikimori/oauth';
 
-let page;
+let page: SyncPage;
 
 function main() {
   if (utils.isDomainMatching(window.location.href, 'myanimelist.net')) {

@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/browser';
 
-const normalizeUrl = url => {
+const normalizeUrl = (url: string) => {
   return url.replace(/(webpack_require__@)?(moz|chrome)-extension:\/\/[^/]+\//, '~/');
 };
 

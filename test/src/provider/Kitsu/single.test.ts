@@ -1,4 +1,4 @@
- import { expect } from 'chai';
+import { expect } from 'chai';
 import * as request from 'request';
 import { Single } from '../../../../src/_provider/Kitsu/single';
 import * as utils from '../../../../src/utils/general';

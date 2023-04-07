@@ -1,4 +1,4 @@
-let inter;
+let inter: string | number | NodeJS.Timeout | undefined;
 
 const logger = con.m('Player');
 

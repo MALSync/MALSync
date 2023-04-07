@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 export class MissingPlayerError extends Error {
-  public url;
+  public url: string;
 
   constructor(url: string) {
     const parts = url.split('/');

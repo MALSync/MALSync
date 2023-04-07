@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-export const quicklinks = require('./quicklinks.json');
+import quicklinks from './quicklinks.json';
 
 type QuicklinkGroup = 'home' | 'search' | 'link';
 
