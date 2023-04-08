@@ -22,6 +22,7 @@
     "custom-property-empty-line-before": "never",
     "color-hex-length": null,
     "import-notation": null,
-    "declaration-block-no-redundant-longhand-properties": null
+    "declaration-block-no-redundant-longhand-properties": null,
+    "media-feature-range-notation": "prefix"
   }
 }
