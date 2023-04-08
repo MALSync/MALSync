@@ -134,6 +134,7 @@ import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 import { marin } from './marin/main';
 import { Isekaiscan } from './Isekaiscan/main';
+import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 
@@ -274,6 +275,7 @@ export const pages = {
   Aniyan,
   marin,
   Isekaiscan,
+  FRAnime,
   FMTeam,
   Animelon,
 };

@@ -7,12 +7,12 @@
           v-show="i.value"
           :key="i.value"
           class="el-rate__item"
-          :class="{ active: i.value <= picked, hoverActive: i.value <= hoverValue }"
+          :class="{ active: i.value <= picked, hoverActive: (i.value as number) <= hoverValue }"
           @click="Number(picked) !== Number(i.value) ? (picked = i.value) : (picked = 0)"
           @mouseover="hoverValue = Number(i.value)"
           @mouseout="hoverValue = 0"
         >
-          {{ i.value <= picked || i.value <= hoverValue ? '★' : '☆' }}
+          {{ i.value <= picked || (i.value as number) <= hoverValue ? '★' : '☆' }}
         </span>
       </div>
     </div>

@@ -1,0 +1,6 @@
+{
+  "search": "https://franime.fr/recherche?search={searchtermPlus}",
+  "urls": {
+    "match": ["*://franime.fr/*"]
+  }
+}
