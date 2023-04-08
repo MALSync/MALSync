@@ -104,7 +104,7 @@ export function getCacheKey(id, kitsuId) {
   return id;
 }
 
-export function apiCall(query, variables, requiresAuthentication = true) {
+export async function apiCall(query, variables, requiresAuthentication = true) {
   if (requiresAuthentication && !api.settings.get('anilistToken')) {
     throw new NotAutenticatedError('No token found');
   }
