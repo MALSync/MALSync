@@ -61,7 +61,7 @@
     "js-tokens": "^8.0.1",
     "less": "^4.1.3",
     "less-loader": "^11.1.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "manifold": "^3.1.0",
     "minimist": ">=1.2.8",
     "mkdirp": "^1.0.4",
