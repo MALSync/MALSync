@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-// import quicklinks from './quicklinks.json';
+import quicklinks from './quicklinks.json';
 
 type QuicklinkGroup = 'home' | 'search' | 'link';
 
