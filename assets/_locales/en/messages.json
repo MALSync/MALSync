@@ -743,6 +743,10 @@
         "message": "Score",
         "description": "Dropdown option to sort list by score"
     },
+    "list_sorting_airing_date": {
+        "message": "Airing date",
+        "description": "Dropdown option to sort list by airing date"
+    },
     "search_Type": {
         "message": "Type:",
         "description": "Type"
