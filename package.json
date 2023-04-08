@@ -59,7 +59,7 @@
     "ts-loader": "^9.4.2",
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.2",
+    "typescript": "^5.0.4",
     "vue-loader": "^17.0.1",
     "web-ext": "^7.5.0",
     "webpack": "^5.78.0",
