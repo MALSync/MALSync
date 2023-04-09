@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import { flashm } from '../../utils/general';
 import { ScriptProxy } from '../../utils/scriptProxy';
 import { pageInterface } from '../pageInterface';
@@ -16,6 +17,13 @@ proxy.addCaptureVariable(
 );
 
 let item: any;
+
+class SessionsError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'SessionsError';
+  }
+}
 
 async function getApiKey() {
   return api.storage.get('Jellyfin_Api_Key');
@@ -83,7 +91,7 @@ async function checkItemId(page, id, curUrl = '', video = false) {
     case 'Episode':
       con.m('Episode').log(data);
 
-      if (!video) {
+      if (!video || !$('video').first().attr('src')) {
         throw 'Execute Episode only on video';
       }
 
@@ -97,7 +105,7 @@ async function checkItemId(page, id, curUrl = '', video = false) {
     case 'Movie':
       con.m('Movie').log(data);
 
-      if (!video) {
+      if (!video || !$('video').first().attr('src')) {
         throw 'Execute Movie only on video';
       }
 
@@ -162,16 +170,25 @@ async function isAnime(seriesId: string) {
 async function returnPlayingItemId() {
   const deviceId = await getDeviceId();
   const userId = await getUser();
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('');
-    }, 10000);
-  }).then(async () => {
-    return getSession(deviceId, userId).then(sess => {
-      con.log('Now Playing', sess.NowPlayingItem);
-      return sess.NowPlayingItem.Id;
-    });
-  });
+  let i = 0;
+  while ($('video').first().attr('src') && i < 10) {
+    con.m('playing').log('Waiting for session');
+    try {
+      const ses = await getSession(deviceId, userId).then(sess => {
+        con.log('Now Playing', sess.NowPlayingItem);
+        return sess.NowPlayingItem.Id;
+      });
+      return ses;
+    } catch (error) {
+      if (error.name !== 'SessionsError') {
+        throw error;
+      }
+    }
+    await utils.wait(5000);
+    i++;
+  }
+
+  throw new SessionsError('No Session');
 }
 
 async function getSession(deviceId, userId, user = true) {
@@ -199,7 +216,7 @@ async function parseSession(data, deviceId, userId, user) {
       con.m('Session').m(user).log('Fallback to request without ControllableByUserId');
       return getSession(deviceId, userId, false);
     }
-    throw 'Could not get session';
+    throw new SessionsError('Could not get session');
   }
   con.m('Session').log('found', data);
   return data[0];
