@@ -51,7 +51,6 @@ import { manhuafast } from './manhuafast/main';
 import { TRanimeizle } from './TRanimeizle/main';
 import { Anihub } from './Anihub/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
-import { Scantrad } from './Scantrad/main';
 import { Furyosquad } from './Furyosquad/main';
 import { AnimeId } from './AnimeId/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
@@ -134,6 +133,8 @@ import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 import { marin } from './marin/main';
 import { Isekaiscan } from './Isekaiscan/main';
+import { FRAnime } from './FRAnime/main';
+import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 
 export const pages = {
@@ -190,7 +191,6 @@ export const pages = {
   TRanimeizle,
   Anihub,
   AnimeStreamingFR,
-  Scantrad,
   Furyosquad,
   AnimeId,
   MyAnimeListVideo,
@@ -273,5 +273,7 @@ export const pages = {
   Aniyan,
   marin,
   Isekaiscan,
+  FRAnime,
+  FMTeam,
   Animelon,
 };

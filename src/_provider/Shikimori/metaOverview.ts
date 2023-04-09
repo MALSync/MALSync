@@ -119,7 +119,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   private statistics(data) {
     if (data.meta.score && Number(data.meta.score))
       this.meta.statistics.push({
-        title: 'Score:',
+        title: api.storage.lang('overview_sidebar_Score'),
         body: data.meta.score,
       });
 
@@ -156,25 +156,25 @@ export class MetaOverview extends MetaOverviewAbstract {
   private info(data) {
     if (data.meta.kind)
       this.meta.info.push({
-        title: 'Format:',
+        title: api.storage.lang('overview_sidebar_Format'),
         body: [{ text: utils.upperCaseFirstLetter(data.meta.kind) }],
       });
 
     if (data.meta.duration)
       this.meta.info.push({
-        title: 'Episode Duration:',
+        title: api.storage.lang('overview_sidebar_Duration'),
         body: [{ text: `${data.meta.duration} mins` }],
       });
 
     if (data.meta.status)
       this.meta.info.push({
-        title: 'Status:',
+        title: api.storage.lang('overview_sidebar_Status'),
         body: [{ text: utils.upperCaseFirstLetter(data.meta.status) }],
       });
 
     if (data.meta.aired_on)
       this.meta.info.push({
-        title: 'Start Date:',
+        title: api.storage.lang('overview_sidebar_Start_Date'),
         body: [{ text: data.meta.aired_on }],
       });
 
@@ -210,7 +210,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
       if (studios.length)
         this.meta.info.push({
-          title: 'Studios:',
+          title: api.storage.lang('overview_sidebar_Studios'),
           body: studios,
         });
     }
@@ -224,7 +224,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     });
     if (genres.length)
       this.meta.info.push({
-        title: 'Genres:',
+        title: api.storage.lang('overview_sidebar_Genres'),
         body: genres,
       });
   }
