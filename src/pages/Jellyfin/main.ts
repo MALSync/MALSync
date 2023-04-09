@@ -81,7 +81,7 @@ async function checkItemId(page, id, curUrl = '', video = false) {
 
   switch (tempItem.Type) {
     case 'Episode':
-      con.log('Episode', data);
+      con.m('Episode').log(data);
 
       if (!video) {
         throw 'Execute Episode only on video';
@@ -90,18 +90,24 @@ async function checkItemId(page, id, curUrl = '', video = false) {
       seriesId = tempItem.SeriesId;
       break;
     case 'Season':
-      con.log('Season', data);
+      con.m('Season').log(data);
 
       seriesId = tempItem.SeriesId;
       break;
     case 'Movie':
-      con.log('Movie', data);
+      con.m('Movie').log(data);
+
+      if (!video) {
+        throw 'Execute Movie only on video';
+      }
+
+      seriesId = tempItem.SeriesId || tempItem.Id;
       break;
     case 'Series':
-      con.log('Series', data);
+      con.m('Series').log(data);
       break;
     default:
-      con.log('Not recognized', data);
+      con.m('Not recognized').log(data);
   }
 
   if (!seriesId) {
@@ -127,8 +133,14 @@ async function checkItemId(page, id, curUrl = '', video = false) {
   return true;
 }
 
+const isAnimeCache = {};
+
 async function isAnime(seriesId: string) {
   const logger = con.m('isAnime').m(seriesId);
+  if (seriesId in isAnimeCache) {
+    logger.m('cached').log(isAnimeCache[seriesId]);
+    return isAnimeCache[seriesId];
+  }
   const reqUrl = `/Items/${seriesId}`;
   return apiCall(reqUrl, true).then(response => {
     const meta: any = JSON.parse(response.responseText);
@@ -142,6 +154,7 @@ async function isAnime(seriesId: string) {
       isAnimeBool = true;
     }
     logger.log('isAnime', isAnimeBool);
+    isAnimeCache[seriesId] = isAnimeBool;
     return isAnimeBool;
   });
 }
@@ -337,13 +350,16 @@ export const Jellyfin: pageInterface = {
   languages: ['Many'],
   type: 'anime',
   isSyncPage(url) {
-    if (item.Type === 'Episode') {
+    if (item.Type === 'Episode' || item.Type === 'Movie') {
       return true;
     }
     return false;
   },
   sync: {
     getTitle(url) {
+      if (item.Type === 'Movie') {
+        return item.Name;
+      }
       return (
         item.SeriesName + (item.ParentIndexNumber > 1 ? ` Season ${item.ParentIndexNumber}` : '')
       );
