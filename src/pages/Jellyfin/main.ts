@@ -68,53 +68,81 @@ async function urlChange(page) {
 }
 
 async function checkItemId(page, id, curUrl = '', video = false) {
-  let reqUrl = `/Items?ids=${id}`;
-  // eslint-disable-next-line consistent-return
-  apiCall(reqUrl, true).then(response => {
-    const data = JSON.parse(response.responseText);
-    if (!data.Items.length) {
-      return checkIfAuthIsUpToDate();
-    }
-    switch (data.Items[0].Type) {
-      case 'Episode':
-      case 'Season':
-        if (data.Items[0].Type === 'Episode' && !video) {
-          con.log('Execute Episode only on video');
-          // eslint-disable-next-line consistent-return
-          return;
-        }
+  const reqUrl = `/Items?ids=${id}`;
+  const response = await apiCall(reqUrl, true);
+  const data = JSON.parse(response.responseText);
+  if (!data.Items.length) {
+    return checkIfAuthIsUpToDate();
+  }
 
-        con.log('Season', data);
-        item = data.Items[0];
-        reqUrl = `/Items/${item.SeriesId}`;
-        apiCall(reqUrl, true).then(response2 => {
-          const genres: any = JSON.parse(response2.responseText);
-          con.log('genres', genres);
-          if (
-            genres.Path.toLowerCase().includes('anime') ||
-            genres.GenreItems.find(genre => genre.Name.toLowerCase() === 'anime') ||
-            genres.Tags.find(tag => tag.toLowerCase() === 'anime')
-          ) {
-            con.info('Anime detected');
-            if (curUrl) {
-              page.url = curUrl;
-              page.handlePage(page.url);
-            } else {
-              page.handlePage();
-            }
+  let seriesId;
 
-            $('html').removeClass('miniMAL-hide');
-          } else {
-            con.error('Not an Anime');
-          }
-        });
-        break;
-      case 'Series':
-        con.log('Series', data);
-        break;
-      default:
-        con.log('Not recognized', data);
+  const tempItem = data.Items[0];
+
+  switch (tempItem.Type) {
+    case 'Episode':
+      con.log('Episode', data);
+
+      if (!video) {
+        throw 'Execute Episode only on video';
+      }
+
+      seriesId = tempItem.SeriesId;
+      break;
+    case 'Season':
+      con.log('Season', data);
+
+      seriesId = tempItem.SeriesId;
+      break;
+    case 'Movie':
+      con.log('Movie', data);
+      break;
+    case 'Series':
+      con.log('Series', data);
+      break;
+    default:
+      con.log('Not recognized', data);
+  }
+
+  if (!seriesId) {
+    throw 'No series id found';
+  }
+
+  if (!(await isAnime(seriesId))) {
+    throw 'Not an Anime';
+  }
+
+  item = tempItem;
+
+  con.info('Anime detected');
+  if (curUrl) {
+    page.url = curUrl;
+    page.handlePage(page.url);
+  } else {
+    page.handlePage();
+  }
+
+  $('html').removeClass('miniMAL-hide');
+
+  return true;
+}
+
+async function isAnime(seriesId: string) {
+  const logger = con.m('isAnime').m(seriesId);
+  const reqUrl = `/Items/${seriesId}`;
+  return apiCall(reqUrl, true).then(response => {
+    const meta: any = JSON.parse(response.responseText);
+    logger.log('meta', meta);
+    let isAnimeBool = false;
+    if (
+      meta.Path.toLowerCase().includes('anime') ||
+      meta.GenreItems.find(genre => genre.Name.toLowerCase() === 'anime') ||
+      meta.Tags.find(tag => tag.toLowerCase() === 'anime')
+    ) {
+      isAnimeBool = true;
     }
+    logger.log('isAnime', isAnimeBool);
+    return isAnimeBool;
   });
 }
 
