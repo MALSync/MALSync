@@ -11,6 +11,13 @@ async function voe() {
     addPlayerUrls('voe', [url.hostname + '/e/*']);
 }
 
+async function vidmoly() {
+    const response = await fetch("https://vidmoly.me/embed-1abcdefghi1j.html", {redirect: 'manual'})
+    const url = new URL(response.headers.get("Location"));
+
+    addPlayerUrls('vidmoly', [url.hostname + '/*']);
+}
+
 async function gogostream() {
     const response = await fetch("https://gogoanime.tel/no-game-no-life-episode-9");
     const body = await response.text();
@@ -112,6 +119,7 @@ function addPlayerUrls(key, urls) {
 
 async function start() {
     await voe();
+    await vidmoly();
     await gogostream();
     await nineanime();
     await zoro();

@@ -138,6 +138,7 @@ import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 import { Pactedanime } from './Pactedanime/main';
+import { projectsuki } from './projectsuki/main';
 
 export const pages = {
   nineAnime,
@@ -280,4 +281,5 @@ export const pages = {
   FMTeam,
   Animelon,
   Pactedanime,
+  projectsuki,
 };
