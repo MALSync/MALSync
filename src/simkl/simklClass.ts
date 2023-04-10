@@ -1,6 +1,5 @@
 import { createApp } from '../utils/Vue';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
-import { UserList } from '../_provider/Simkl/list';
 import * as helper from '../provider/Simkl/helper';
 import malkiss from './malkiss.vue';
 import { activeLinks } from '../utils/quicklinksBuilder';
@@ -77,26 +76,6 @@ export class SimklClass {
       this.streamingUI();
       this.malToKiss();
       this.pageRelation();
-      return;
-    }
-
-    if ((urlpart === 'anime' || urlpart === 'manga') && url2part === 'all') {
-      this.page = {
-        page: 'bookmarks',
-        type: urlpart,
-      };
-      this.bookmarksAnime();
-    }
-
-    if (url2part === 'anime' || url2part === 'manga') {
-      const status = utils.urlPart(this.url, 5);
-      if (status === 'watching') {
-        this.page = {
-          page: 'bookmarks',
-          type: url2part,
-        };
-        this.bookmarksProfile();
-      }
     }
   }
 
@@ -205,145 +184,5 @@ export class SimklClass {
   async pageRelation() {
     await this.page.malObj.fillRelations();
     this.malkiss.pageRelation = this.page.malObj.getPageRelations();
-  }
-
-  bookmarksProfile() {
-    const listProvider: UserList = new UserList(1, this.page!.type);
-
-    listProvider
-      .getCompleteList()
-      .then(list => {
-        $.each(list, async (index, en) => {
-          con.log('en', en);
-          const element = $(`a[href^="/${this.page!.type}/${en.uid}"]`);
-          if (!element || element.hasClass('malSyncDone2')) return;
-          element.addClass('malSyncDone2');
-
-          if (en.options && en.options.u) {
-            con.log(en.options.u);
-            element.after(
-              j.html(`
-            <a class="mal-sync-stream mal-rem" onclick="event.stopPropagation();" title="${
-              en.options.u.split('/')[2]
-            }" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px;" href="${
-                en.options.u
-              }">
-              <img src="${utils.favicon(en.options.u.split('/')[2])}">
-            </a>`),
-            );
-
-            const resumeUrlObj = en.options.r;
-            const continueUrlObj = en.options.c;
-
-            const curEp = en.watchedEp;
-
-            con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-            if (continueUrlObj && continueUrlObj.ep === curEp + 1) {
-              element.parent().append(
-                j.html(
-                  `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${
-                    continueUrlObj.url
-                  }">
-                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
-              </a>`,
-                ),
-              );
-            } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
-              element.parent().append(
-                j.html(
-                  `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${
-                    resumeUrlObj.url
-                  }">
-                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
-              </a>`,
-                ),
-              );
-            }
-          }
-        });
-      })
-      .catch(e => {
-        con.error(e);
-        listProvider.flashmError(e);
-      });
-  }
-
-  bookmarksAnime() {
-    const listProvider: UserList = new UserList(1, this.page!.type);
-
-    listProvider
-      .getCompleteList()
-      .then(list => {
-        exec();
-
-        this.interval2 = utils.changeDetect(
-          () => {
-            exec();
-          },
-          () => {
-            return (
-              $('#tv_best_left_addContainer li').length +
-              $('#tv_best_left_addContainer > div').height()!
-            );
-          },
-        );
-
-        function exec() {
-          con.info('list');
-          $.each(list, async (index, en) => {
-            const element = $(`#c${en.uid}`);
-            if (!element || !element.length || element.hasClass('malSyncDone2')) return;
-            element.addClass('malSyncDone2').css('position', 'relative');
-
-            if (en.options && en.options.u) {
-              con.log(en.options.u);
-              element.append(
-                j.html(`
-              <a class="mal-sync-stream mal-rem" onclick="event.stopPropagation();" title="${
-                en.options.u.split('/')[2]
-              }" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 0; background-color: #00000057; padding: 5px;" href="${
-                  en.options.u
-                }">
-                <img src="${utils.favicon(en.options.u.split('/')[2])}">
-              </a>`),
-              );
-
-              const resumeUrlObj = en.options.r;
-              const continueUrlObj = en.options.c;
-
-              const curEp = en.watchedEp;
-
-              con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-              if (continueUrlObj && continueUrlObj.ep === curEp + 1) {
-                element.append(
-                  j.html(
-                    `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${
-                      continueUrlObj.url
-                    }">
-                  <img src="${api.storage.assetUrl(
-                    'double-arrow-16px.png',
-                  )}" width="16" height="16">
-                </a>`,
-                  ),
-                );
-              } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
-                element.append(
-                  j.html(
-                    `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${
-                      resumeUrlObj.url
-                    }">
-                  <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
-                </a>`,
-                  ),
-                );
-              }
-            }
-          });
-        }
-      })
-      .catch(e => {
-        con.error(e);
-        listProvider.flashmError(e);
-      });
   }
 }

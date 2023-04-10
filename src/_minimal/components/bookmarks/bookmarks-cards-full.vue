@@ -20,7 +20,9 @@
         />
       </div>
       <div ref="text" class="bottomBox">
-        <div class="title">{{ item.title }}</div>
+        <div class="title">
+          <TextCutoff>{{ item.title }}</TextCutoff>
+        </div>
         <MediaBar
           :watched-ep="item.watchedEp"
           :total-ep="item.totalEp"
@@ -40,6 +42,7 @@ import MediaPill from '../media/media-pill.vue';
 import MediaPillProgress from '../media/media-pill-progress.vue';
 import ImageLazy from '../image-lazy.vue';
 import MediaBar from '../media/media-bar.vue';
+import TextCutoff from '../text-cutoff.vue';
 
 const props = defineProps({
   item: {
@@ -51,7 +54,7 @@ const props = defineProps({
 const title = computed(() => {
   const t = props.item.totalEp ? props.item.totalEp : '?';
   const prog = props.item.progressEp ? `[${props.item.progressEp}]` : '';
-  return `${props.item.watchedEp}/${t} ${prog}`;
+  return `${props.item.watchedEp}/${t} ${prog} ${props.item.title}`;
 });
 
 const text = ref(null) as Ref<HTMLElement | null>;

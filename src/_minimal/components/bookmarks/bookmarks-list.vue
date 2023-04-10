@@ -15,7 +15,9 @@
         </div>
       </div>
       <MediaLink :href="item.url" class="link" />
-      <DynamicFont class="title" :text="item.title" :sizes="[20]" :double-row-sizes="[20, 14]" />
+      <TextCutoff>
+        <DynamicFont class="title" :text="item.title" :sizes="[20]" :double-row-sizes="[20, 14]" />
+      </TextCutoff>
       <MediaBar
         :watched-ep="item.watchedEp"
         :total-ep="item.totalEp"
@@ -52,6 +54,7 @@ import MediaLink from '../media-link.vue';
 import MediaBar from '../media/media-bar.vue';
 import MediaTotalEpisode from '../media/media-total-episode.vue';
 import TextIcon from '../text-icon.vue';
+import TextCutoff from '../text-cutoff.vue';
 import DynamicFont from '../dynamic-font.vue';
 import Arrow from '../arrow.vue';
 import MediaProgressPill from '../media/media-progress-pill.vue';
@@ -135,6 +138,9 @@ defineProps({
 
     &.score {
       width: 50px;
+      .__breakpoint-small__({
+        display: none;
+      });
     }
   }
 
@@ -147,6 +153,9 @@ defineProps({
     justify-content: center;
     text-align: center;
     gap: 5px;
+    .__breakpoint-small__({
+      display: none;
+    });
   }
 
   .top-text {

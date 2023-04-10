@@ -28,13 +28,22 @@ export const ReaperScans: pageInterface = {
       );
     },
     getEpisode(url) {
-      const episodePart = utils.urlPart(url, 6);
+      let temp = 0;
 
-      const temp = episodePart.match(/chapter-(\d+)/i);
+      const titlePart = document.title.match(/chapter (\d+)/i);
+
+      if (titlePart && titlePart[1]) {
+        temp = Number(titlePart[1]);
+      }
+
+      if (!temp) {
+        const episodePart = utils.urlPart(url, 6).match(/chapter-(\d+)/i);
+        if (episodePart) temp = Number(episodePart[1]);
+      }
 
       if (!temp) return 0;
 
-      return Number(temp[1]);
+      return temp;
     },
     nextEpUrl(url) {
       return utils.absoluteLink(j.$('a:contains(Next)').attr('href'), ReaperScans.domain);

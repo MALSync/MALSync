@@ -599,20 +599,6 @@
         "message": "了解MAL-Sync的工作原理",
         "description": "Header for how to use section"
     },
-    "Anilist_Authenticate": {
-        "message": "请点击$Link1$这里$Link2$认证",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Error_Authenticate": {
         "message": "请点击$Link1$这里$Link2$认证",
         "description": "Update version - Text 3",
