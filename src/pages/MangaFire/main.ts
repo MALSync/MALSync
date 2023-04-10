@@ -132,7 +132,7 @@ export const MangaFire: pageInterface = {
 
     utils.changeDetect(
       () => page.handleList(),
-      () => j.$('.dropdown-toggle > div:nth-child(1) > span:nth-child(3)').text(),
+      () => j.$('.dropdown.language').text(),
     );
 
     function check() {
