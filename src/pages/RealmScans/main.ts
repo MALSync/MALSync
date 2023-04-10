@@ -14,7 +14,7 @@ export function getInter(): pageInterface {
       return j.$('div.allc').length > 0;
     },
     isOverviewPage(url) {
-      if (utils.urlPart(url, 4) === 'series' && utils.urlPart(url, 5)) return true;
+      if (utils.urlPart(url, 3) === 'series' && utils.urlPart(url, 4)) return true;
       return false;
     },
     getImage() {
@@ -31,7 +31,7 @@ export function getInter(): pageInterface {
         return j.$('.ts-breadcrumb li:nth-child(2) a').attr('href') || '';
       },
       getEpisode(url) {
-        const episodePart = utils.urlPart(url, 4);
+        const episodePart = utils.urlPart(url, 3);
 
         const temp = episodePart.match(/-chapter-(\d+)/im);
 
@@ -50,7 +50,7 @@ export function getInter(): pageInterface {
         return j.$('#titlemove [itemprop="name"]').text();
       },
       getIdentifier(url) {
-        return utils.urlPart(url, 5);
+        return utils.urlPart(url, 4);
       },
       uiSelector(selector) {
         j.$('#series-history').first().after(j.html(selector));
