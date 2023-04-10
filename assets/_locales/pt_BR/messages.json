@@ -1089,20 +1089,6 @@
         "message": "Você pode facilmente mudar a relação como mostrado no GIF abaixo. Um deslocamento de episódio também pode ser definido nessa página.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Por favor autentique $Link1$Aqui$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "O MAL-Sync precisa de acesso ao API do Emby para funcionar. Mais informação $Link1$Aqui$Link2$",
         "description": "Emby Authentication",
