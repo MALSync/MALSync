@@ -59,7 +59,6 @@ import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { YayAnimes } from './YayAnimes/main';
 import { DesuOnline } from './DesuOnline/main';
-import { Simplyaweeb } from './Simplyaweeb/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
 import { LeviatanScans } from './LeviatanScans/main';
 import { ReaperScans } from './ReaperScans/main';
@@ -202,7 +201,6 @@ export const pages = {
   MangaFox,
   YayAnimes,
   DesuOnline,
-  Simplyaweeb,
   WuxiaWorld,
   LeviatanScans,
   ReaperScans,

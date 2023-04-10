@@ -787,10 +787,6 @@ module.exports = {
   kanra: {
     match: ['*://kanra.dev/*'],
   },
-  // simplyaweeb
-  simplyaweeb: {
-    match: ['*://player.simplyaweeb.to/*', '*://stream.simplyaweeb.to/*'],
-  },
   // animeworld
   animeworld: {
     match: ['*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*'],
