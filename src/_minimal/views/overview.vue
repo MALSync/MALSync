@@ -115,15 +115,25 @@
           </Section>
           <HR />
         </template>
-        <template v-if="singleRequest.data?.getMalUrl()">
+        <template
+          v-if="metaRequest.data!.reviews && metaRequest.data!.reviews.length || singleRequest.data?.getMalUrl()"
+        >
           <Section>
-            <OverviewReviews :mal-url="singleRequest.data!.getMalUrl()!" />
+            <OverviewReviews
+              :reviews="metaRequest.data!.reviews"
+              :mal-url="singleRequest.data ? singleRequest.data!.getMalUrl()! : ''"
+            />
           </Section>
           <HR />
         </template>
-        <template v-if="singleRequest.data?.getMalUrl()">
+        <template
+          v-if="metaRequest.data!.recommendations && metaRequest.data!.recommendations.length || singleRequest.data?.getMalUrl()"
+        >
           <Section>
-            <OverviewRecommendations :mal-url="singleRequest.data!.getMalUrl()!" />
+            <OverviewRecommendations
+              :recommendations="metaRequest.data!.recommendations"
+              :mal-url="singleRequest.data ? singleRequest.data!.getMalUrl()! : ''"
+            />
           </Section>
         </template>
       </Section>

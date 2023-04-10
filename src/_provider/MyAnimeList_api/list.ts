@@ -40,6 +40,11 @@ export class UserList extends ListAbstract {
         title: api.storage.lang('list_sorting_score'),
         value: 'score',
       },
+      {
+        icon: 'calendar_month',
+        title: api.storage.lang('list_sorting_airing_date'),
+        value: 'airing_date',
+      },
     ];
   }
 
@@ -51,6 +56,8 @@ export class UserList extends ListAbstract {
         return 'list_updated_at';
       case 'score':
         return 'list_score';
+      case 'airing_date':
+        return `${this.listType}_start_date`;
       default:
         if (this.status === 1) return this.getOrder('updated');
         if (this.status === 6) return this.getOrder('updated');

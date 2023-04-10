@@ -5,10 +5,15 @@ export function errorHandling(res, silent = false): any {
       switch (error.status) {
         case 400:
           if (!silent) {
-            utils.flashm(api.storage.lang('Anilist_Authenticate'), {
-              error: true,
-              type: 'error',
-            });
+            utils.flashm(
+              api.storage.lang('Error_Authenticate', [
+                'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token',
+              ]),
+              {
+                error: true,
+                type: 'error',
+              },
+            );
             return 'noLogin';
             break;
           }

@@ -104,12 +104,19 @@ export function getCacheKey(id, kitsuId) {
   return id;
 }
 
-export function apiCall(query, variables, authentication = true) {
+export async function apiCall(query, variables, requiresAuthentication = true) {
+  if (requiresAuthentication && !api.settings.get('anilistToken')) {
+    throw new NotAutenticatedError('No token found');
+  }
+
   const headers: any = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
   };
-  if (authentication) headers.Authorization = `Bearer ${api.settings.get('anilistToken')}`;
+
+  if (api.settings.get('anilistToken'))
+    headers.Authorization = `Bearer ${api.settings.get('anilistToken')}`;
+
   return api.request
     .xhr('POST', {
       url: 'https://graphql.anilist.co',
@@ -136,6 +143,10 @@ export function apiCall(query, variables, authentication = true) {
         const error = res.errors[0];
         switch (error.status) {
           case 400:
+            if (error.message === 'Invalid token' && !requiresAuthentication) {
+              api.settings.set('anilistToken', null);
+              return apiCall(query, variables, requiresAuthentication);
+            }
             if (error.message === 'validation') throw new Error('Wrong request format');
             if (error.message.includes('invalid')) throw new Error('Wrong request format');
             throw new NotAutenticatedError(error.message);
@@ -148,4 +159,9 @@ export function apiCall(query, variables, authentication = true) {
 
       return res;
     });
+}
+
+export function imgCheck(url: string) {
+  if (!url || url.endsWith('/default.jpg')) return '';
+  return url;
 }

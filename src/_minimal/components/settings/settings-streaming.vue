@@ -141,7 +141,7 @@ function stateNumber(link) {
 
 const model = computed({
   get() {
-    return api.settings.get('quicklinks');
+    return api.settings.get('quicklinks').filter(el => optionToCombined(el));
   },
   set(value) {
     api.settings.set('quicklinks', value);
