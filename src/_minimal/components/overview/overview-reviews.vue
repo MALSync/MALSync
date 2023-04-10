@@ -2,7 +2,10 @@
   <div :class="{ stopLoading: !metaRequest.loading }">
     <Header :spacer="true">{{ lang('minimalApp_Reviews') }}</Header>
     <Card
-      v-if="metaRequest.loading || (!metaRequest.loading && !parameters.load && !metaRequest.cache)"
+      v-if="
+        metaRequest.loading ||
+        (!metaRequest.loading && !parameters.load && !metaRequest.cache && !reviews.length)
+      "
       class="grid"
     >
       <div class="loading-placeholder">
@@ -29,8 +32,11 @@
         </div>
       </div>
     </Card>
-    <div v-if="!metaRequest.loading && metaRequest.data && metaRequest.data.length" class="grid">
-      <Pagination :entries-per-page="3" :elements="metaRequest.data">
+    <div
+      v-if="!metaRequest.loading && data && data.length"
+      :class="{ grid: !metaRequest.cache && !reviews.length }"
+    >
+      <Pagination :entries-per-page="3" :elements="data">
         <template #elements="{ elements }">
           <Section v-for="(review, index) in elements" :key="review.user.name">
             <HR v-if="index" size="thin" />
@@ -47,20 +53,28 @@
               </div>
             </ImageText>
             <div class="text">
-              <Description :height="150">{{ review.body.text }}</Description>
+              <Description :height="150">
+                <div
+                  v-dompurify-html:noMedia="cleanDescription(review.body.text)"
+                  class="description-html"
+                  :class="{
+                    preLine: !(review.body.text.includes('<br') || review.body.text.includes('<p')),
+                  }"
+                />
+              </Description>
             </div>
           </Section>
         </template>
       </Pagination>
     </div>
-    <Section v-if="!metaRequest.loading && metaRequest.data && !metaRequest.data.length">
+    <Section v-if="!metaRequest.loading && data && !data.length">
       <Empty :card="true" />
     </Section>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, PropType } from 'vue';
 import { createRequest } from '../../utils/reactive';
 import Header from '../header.vue';
 import { reviewMeta } from './overview-reviews-meta';
@@ -73,8 +87,13 @@ import ImageText from '../image-text.vue';
 import HR from '../hr.vue';
 import Empty from '../empty.vue';
 import Card from '../card.vue';
+import { Review } from '../../../_provider/metaOverviewAbstract';
 
 const props = defineProps({
+  reviews: {
+    type: Array as PropType<Review[]>,
+    default: () => [],
+  },
   malUrl: {
     type: String,
     required: true,
@@ -102,6 +121,15 @@ watch(
     parameters.value.load = false;
   },
 );
+
+const data = computed(() =>
+  props.reviews && props.reviews.length ? props.reviews : metaRequest.data,
+);
+
+const cleanDescription = desc => {
+  if (!desc) return '';
+  return desc.replace(/(< *\/? *br *\/? *>(\r|\n| )*){2,}/gim, '<br /><br />');
+};
 </script>
 
 <style lang="less" scoped>
@@ -117,6 +145,13 @@ watch(
 
 .text {
   margin-top: @spacer;
+}
+
+.description-html {
+  white-space: initial;
+  &.preLine {
+    white-space: pre-line;
+  }
 }
 
 .skeleton-text {

@@ -1051,20 +1051,6 @@
         "message": "คุณสามารถเปลี่ยนความสัมพันธ์ที่แสดงใน GIF ด้านล่างได้อย่างง่ายดาย ตอนที่ ออฟเซ็ต สามารถตั้งค่าได้ในหน้านั้นด้วย",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "กรุณารับรองความถูกต้อง $Link1$Here$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "MAL-Sync ต้องการการตรวจสอบสิทธิ์ในการทำงาน ข้อมูลเพิ่มเติม $Link1$Here$Link2$",
         "description": "Emby Authentication",

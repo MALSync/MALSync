@@ -1039,20 +1039,6 @@
         "message": "Вы можете легко исправлять ошибки в трекинге как, например, на гифке показанной ниже. Смещение серий также может быть установлено на любой странице где вы смотрите аниме.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Пожалуйста авторизуйте $Link1$здесь$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "Для работы MAL–Sync нужно ключ Emby API. Больше информации $Link1$Here$Link2$",
         "description": "Emby Authentication",

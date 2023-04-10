@@ -119,7 +119,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return this.animeInfo.coverImage.large;
+    return helper.imgCheck(this.animeInfo.coverImage.large);
   }
 
   _getRating() {

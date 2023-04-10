@@ -2,11 +2,14 @@ import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { UserList } from '../_provider/Kitsu/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import { waitForPageToBeVisible } from '../utils/general';
+import { NotAutenticatedError } from '../_provider/Errors';
 
 export class KitsuClass {
   page: any = null;
 
   same = false;
+
+  protected authError = false;
 
   constructor(public url: string) {
     let oldUrl = window.location.href.split('/').slice(0, 5).join('/');
@@ -329,6 +332,7 @@ export class KitsuClass {
   private tempMangalist: any = null;
 
   bookmarks() {
+    if (this.authError) return;
     const This = this;
     $(document).ready(() => {
       if (this.page!.type === 'anime') {
@@ -354,6 +358,7 @@ export class KitsuClass {
           fullListCallback(list);
         })
         .catch(e => {
+          if (e instanceof NotAutenticatedError) this.authError = true;
           con.error(e);
           listProvider.flashmError(e);
         });

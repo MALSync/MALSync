@@ -59,7 +59,6 @@ import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { YayAnimes } from './YayAnimes/main';
 import { DesuOnline } from './DesuOnline/main';
-import { Simplyaweeb } from './Simplyaweeb/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
 import { LeviatanScans } from './LeviatanScans/main';
 import { ReaperScans } from './ReaperScans/main';
@@ -138,6 +137,8 @@ import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 import { MangaFire } from './MangaFire/main';
+import { Pactedanime } from './Pactedanime/main';
+import { projectsuki } from './projectsuki/main';
 
 export const pages = {
   nineAnime,
@@ -201,7 +202,6 @@ export const pages = {
   MangaFox,
   YayAnimes,
   DesuOnline,
-  Simplyaweeb,
   WuxiaWorld,
   LeviatanScans,
   ReaperScans,
@@ -280,4 +280,6 @@ export const pages = {
   FMTeam,
   Animelon,
   MangaFire,
+  Pactedanime,
+  projectsuki,
 };

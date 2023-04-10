@@ -1,16 +1,4 @@
-export type Review = {
-  user: {
-    name: string;
-    image: string;
-    href: string;
-  };
-  body: {
-    people: number;
-    date: string;
-    rating: number;
-    text: string;
-  };
-};
+import { Review } from '../../../_provider/metaOverviewAbstract';
 
 export async function reviewMeta(malUrl: string): Promise<Review[]> {
   const res: Review[] = [];

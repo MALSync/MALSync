@@ -465,6 +465,8 @@ module.exports = {
       '*://vizcloud.store/e/*',
       '*://vizcloud.site/embed/*',
       '*://vizcloud.site/e/*',
+      '*://vizcloud.co/embed/*',
+      '*://vizcloud.co/e/*',
     ],
   },
   // gogo
@@ -541,7 +543,11 @@ module.exports = {
   },
   // animewho voiranime
   vidmoly: {
-    match: ['*://vidmoly.me/*', '*://vidmoly.to/*'],
+    match: [
+      '*://vidmoly.me/*',
+      '*://vidmoly.to/*',
+      // auto-vidmoly-replace-dont-remove
+    ],
   },
   // animewho
   upstream: {
@@ -780,10 +786,6 @@ module.exports = {
   // goyabu
   kanra: {
     match: ['*://kanra.dev/*'],
-  },
-  // simplyaweeb
-  simplyaweeb: {
-    match: ['*://player.simplyaweeb.to/*', '*://stream.simplyaweeb.to/*'],
   },
   // animeworld
   animeworld: {
