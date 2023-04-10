@@ -53,6 +53,7 @@ export const settingsObj = {
       'MangaNato',
       'MangaFox',
       'MangaSee',
+      'MangaFire',
       'YugenAnime',
       'Zoro',
       'Funimation',

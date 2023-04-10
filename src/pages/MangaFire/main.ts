@@ -20,6 +20,7 @@ let jsonData: MangaFireSyncData;
 export const MangaFire: pageInterface = {
   name: 'MangaFire',
   domain: 'https://mangafire.to',
+  database: 'MangaFire',
   languages: ['English', 'Japanese', 'French', 'Spanish', 'Portuguese'],
   type: 'manga',
   isSyncPage(url) {
@@ -33,7 +34,7 @@ export const MangaFire: pageInterface = {
       return utils.htmlDecode(jsonData.name);
     },
     getIdentifier(url) {
-      return jsonData.manga_id;
+      return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
       return jsonData.manga_url;
@@ -98,7 +99,7 @@ export const MangaFire: pageInterface = {
       return utils.htmlDecode(jsonData.name);
     },
     getIdentifier(url) {
-      return jsonData.manga_id;
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$(jsonData.selector_position!).append(j.html(selector));
