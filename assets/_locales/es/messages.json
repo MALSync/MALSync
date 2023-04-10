@@ -1093,20 +1093,6 @@
         "message": "Puedes cambiar fácilmente la relación como se muestra en el siguiente GIF. También se puede establecer un contador alternativo de episodios en esa página.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Por favor, identifícate $Link1$aquí$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "MAL-Sync necesita una clave de la API de Emby para funcionar. Más info $Link1$aquí$Link2$",
         "description": "Emby Authentication",

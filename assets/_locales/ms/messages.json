@@ -1039,20 +1039,6 @@
         "message": "Anda boleh menukar hubungan antara halaman dan entri seperti yang ditunjukkan dalam GIF berikut. Offset episod juga boleh ditetapkan melalui halaman juga.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Sila sahkan $Link1$disini$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "MAL-Sync memerlukan Key API Emby untuk berfungsi. Maklumat lanjut $Link1$di sini$Link2$",
         "description": "Emby Authentication",
