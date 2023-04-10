@@ -7,8 +7,8 @@
   "version": "0.9.2",
   "description": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
   "engines": {
-    "npm": "^7.10.0",
-    "node": "16.0.0"
+    "npm": "^8.19.4",
+    "node": "16.20.0"
   },
   "devDependencies": {
     "@cliqz/adblocker-puppeteer": "^1.26.5",
@@ -61,7 +61,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
     "vue-loader": "^17.0.1",
-    "web-ext": "^7.5.0",
+    "web-ext": "^0.0.1",
     "webpack": "^5.78.0",
     "webpack-cli": "^5.0.1"
   },
