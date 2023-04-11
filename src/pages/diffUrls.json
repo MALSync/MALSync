@@ -1,27 +1,4 @@
 {
-  "0.8.21": {
-    "Gogoanime": [
-      "https://gogoanime.lu/*"
-    ],
-    "iframe": [
-      "https://vidstreaming1.xyz/*",
-      "https://vizcloud.store/embed/*",
-      "https://vizcloud.store/e/*",
-      "https://vizcloud.site/embed/*",
-      "https://vizcloud.site/e/*",
-      "https://sbfull.com/e/*",
-      "https://voeunblock3.com/e/*",
-      "https://voeunbl0ck.com/e/*",
-      "https://voeunblck.com/e/*",
-      "https://voeunblk.com/e/*",
-      "https://voe-un-block.com/e/*",
-      "https://voeun-block.net/e/*",
-      "https://un-block-voe.net/e/*",
-      "https://v-o-e-unblock.com/e/*",
-      "https://audaciousdefaulthouse.com/e/*",
-      "https://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*"
-    ]
-  },
   "0.8.22": {
     "Aniflix": [
       "https://aniflix.cc/*"
@@ -172,5 +149,8 @@
       "https://googlevideo.com/videoplayback?*",
       "https://streamhide.to/e/*"
     ]
+  },
+  "0.9.3": {
+    "iframe": []
   }
 }
