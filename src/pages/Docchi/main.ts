@@ -48,7 +48,7 @@ export const Docchi: pageInterface = {
     },
     getMalUrl(provider) {
       return `https://myanimelist.net/anime/${j
-        .$('a[mal_sync="episode"]')
+        .$('a[mal_sync="mal_id"]')
         .attr('mal_sync_mal_id')}`;
     },
     list: {

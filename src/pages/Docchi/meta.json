@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://docchi.pl/anime/*"]
+    "match": ["*://docchi.pl/*"]
   }
 }
