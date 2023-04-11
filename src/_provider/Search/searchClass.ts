@@ -583,6 +583,9 @@ export class SearchClass {
     if (this.page.database === 'Crunchyroll') {
       return encodeURIComponent(title.toLowerCase().split('#')[0]).replace(/\./g, '%2E');
     }
+    if (this.page.database === 'MangaFire') {
+      return encodeURIComponent(title.toLowerCase().split('#')[0]);
+    }
     return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
   }
 
