@@ -124,6 +124,9 @@
     ]
   },
   "0.9.2": {
+    "BlueSolo": [
+      "https://bluesolo.org/manga/*"
+    ],
     "Gogoanime": [
       "https://gogoanime.gr/*",
       "https://gogoanime.llc/*"
