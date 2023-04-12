@@ -785,20 +785,6 @@
         "message": "Du kan lätt ändra anslutningen \"som visad i gifen under\". Om nummret på episode inte stämmer så kan du ändra det här också.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Vänligen autentisera $Link1$här$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "MAL-Sync behöver en Emby API nyckel för att fungera. Mer info $Link1$här$Link2$",
         "description": "Emby Authentication",

@@ -10,7 +10,7 @@ export const search: searchInterface = async function (
   return helper
     .apiCall(
       'GET',
-      `https://kitsu.io/api/edge/${type}?filter[text]=${keyword}&page[limit]=10&page[offset]=0&fields[${type}]=id,slug,titles,averageRating,startDate,posterImage,coverImage,subtype,${
+      `https://kitsu.io/api/edge/${type}?filter[text]=${keyword}&page[limit]=20&page[offset]=0&fields[${type}]=id,slug,titles,averageRating,startDate,posterImage,coverImage,subtype,${
         type === 'anime' ? 'episodeCount' : 'chapterCount'
       }`,
       {},

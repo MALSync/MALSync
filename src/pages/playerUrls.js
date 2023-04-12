@@ -543,7 +543,11 @@ module.exports = {
   },
   // animewho voiranime
   vidmoly: {
-    match: ['*://vidmoly.me/*', '*://vidmoly.to/*'],
+    match: [
+      '*://vidmoly.me/*',
+      '*://vidmoly.to/*',
+      // auto-vidmoly-replace-dont-remove
+    ],
   },
   // animewho
   upstream: {
@@ -633,7 +637,7 @@ module.exports = {
   },
   // kickassanime
   kaaplay: {
-    match: ['*://kaa-play.com/*', '*://kaa-play.me/*', '*://kaaplayer.com/*'],
+    match: ['*://kaa-play.com/*', '*://kaa-play.me/*', '*://kaaplayer.com/*', '*://kaavid.com/*'],
   },
   // kickassanime
   betaplayer: {
@@ -782,10 +786,6 @@ module.exports = {
   // goyabu
   kanra: {
     match: ['*://kanra.dev/*'],
-  },
-  // simplyaweeb
-  simplyaweeb: {
-    match: ['*://player.simplyaweeb.to/*', '*://stream.simplyaweeb.to/*'],
   },
   // animeworld
   animeworld: {

@@ -1,0 +1,32 @@
+{
+    "title": "MangaFire",
+    "url": "https://mangafire.to/",
+    "testCases": [
+      {
+        "url": "https://mangafire.to/manga/solo-leveling.52x0",
+        "expected": {
+          "sync": false,
+          "title": "Solo Leveling",
+          "identifier": 743,
+          "uiSelector": true,
+          "epList": {
+            "4": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-4",
+            "169": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-169"
+          }
+        }
+      },
+      {
+        "url": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-168",
+        "expected": {
+          "sync": true,
+          "title": "Solo Leveling",
+          "identifier": 743,
+          "overviewUrl": "https://mangafire.to/manga/solo-leveling.52x0",
+          "nextEpUrl": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-169",
+          "episode": 168,
+          "uiSelector": false
+        }
+      }
+    ]
+  }
+  

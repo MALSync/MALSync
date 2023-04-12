@@ -1085,20 +1085,6 @@
         "message": "Du kannst die Beziehung ganz einfach ändern, wie in dem GIF unten gezeigt. Ein Episoden-Offset kann auch auf dieser Seite eingestellt werden.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Bitte authentifiziere dich $Link1$hier$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "MAL-Sync benötigt einen Emby-API-Schlüssel, um zu funktionieren. Mehr Infos $Link1$hier$Link2$",
         "description": "Emby Authentication",
@@ -1374,5 +1360,117 @@
     "list_sorting_score": {
         "message": "Bewertung",
         "description": "Dropdown option to sort list by score"
+    },
+    "overview_sidebar_Score": {
+        "message": "Bewertung:",
+        "description": "Info table on overview - Score: 7.65"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "Rang:",
+        "description": "Info table on overview - Ranked: #317"
+    },
+    "overview_sidebar_Format": {
+        "message": "Format:",
+        "description": "Info table on overview - Format: Movie"
+    },
+    "overview_sidebar_Status": {
+        "message": "Status:",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Genres": {
+        "message": "Genres:",
+        "description": "Info table on overview - Genres: Action"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "Beliebtheit:",
+        "description": "Info table on overview - Popularity: #15"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "Startdatum:",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "Enddatum:",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "Vorlage:",
+        "description": "Info table on overview - Source: Light Novel"
+    },
+    "overview_sidebar_Members": {
+        "message": "Mitglieder:",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "Übertragung:",
+        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+    },
+    "overview_sidebar_Studios": {
+        "message": "Studios:",
+        "description": "Info table on overview - Studios: Madhouse"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "Episoden:",
+        "description": "Info table on overview - Episodes: 12"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "Kapitel:",
+        "description": "Info table on overview - Chapters: 12"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "Bände:",
+        "description": "Info table on overview - Volumes: 12"
+    },
+    "overview_sidebar_Rating": {
+        "message": "Altersfreigabe:",
+        "description": "Info table on overview - Rating: PG-13"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "Favoriten:",
+        "description": "Info table on overview - Favorites: 15423"
+    },
+    "overview_sidebar_Season": {
+        "message": "Saison:",
+        "description": "Info table on overview - Season: Spring 2014"
+    },
+    "overview_sidebar_external_links": {
+        "message": "Externe Links:",
+        "description": "Info table on overview - External Links: Official Site, Hulu"
+    },
+    "overview_sidebar_Votes": {
+        "message": "Stimmen:",
+        "description": "Info table on overview - Votes: 1423"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "Lizenzgeber:",
+        "description": "Info table on overview - Licensor: AT-X"
+    },
+    "overview_sidebar_Aired": {
+        "message": "Ausgestrahlt:",
+        "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
+    },
+    "overview_sidebar_Authors": {
+        "message": "Autoren:",
+        "description": "Info table on overview - Authors: Kamiya, Yuu"
+    },
+    "overview_sidebar_Duration": {
+        "message": "Dauer:",
+        "description": "Info table on overview - Duration: 23 min"
+    },
+    "overview_sidebar_Serialization": {
+        "message": "Publikation:",
+        "description": "Info table on overview - Serialization: Big Comic Original"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "MAL-Bewertung:",
+        "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "Gesamtspielzeit:",
+        "description": "Info table on overview - Total Playtime: 276 mins"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "Name",
+        "description": "Placeholder text the field that sets the custom url name"
     }
 }

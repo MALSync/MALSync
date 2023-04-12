@@ -1,22 +1,13 @@
 @import './../pages';
 
-body:not(.dark) {
-  .mal-sync-active {
-    background-color: lightblue;
-  }
-  #malp select option {
-    color: black !important;
-    background-color: #e7dba3 !important;
-  }
-}
-body.dark {
-  .mal-sync-active {
-    background-color: blue;
-  }
-  #malp * {
-    color: white !important;
-  }
-  #malp select option {
-    background-color: black !important;
+@textColor: inherit;
+
+#malp {
+  .boxStyle(#1e1e1e);
+
+  margin-bottom: 10px;
+
+  .info {
+    background-color: inherit !important;
   }
 }

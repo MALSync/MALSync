@@ -1047,20 +1047,6 @@
         "message": "Możesz łatwo zmienić relację, jak pokazano na poniższym gifie. Przesunięcie odcinka można również ustawić na tej stronie.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Proszę uwierzytelnić $Link1$Tutaj$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "MAL-Sync potrzebuje klucza API Emby do działania. Więcej informacji $Link1$Tutaj$Link2$",
         "description": "Emby Authentication",

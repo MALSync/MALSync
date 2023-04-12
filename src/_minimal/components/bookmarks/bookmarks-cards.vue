@@ -2,7 +2,7 @@
   <div class="book-element">
     <ImageFit class="img" :src="item.imageBanner ? item.imageBanner : item.imageLarge" />
     <div class="gradient" :class="`gradient-${item.status}`" />
-    <MediaLink class="link" :href="item.url" />
+    <MediaLink class="link" :href="item.url" :title="item.title" />
     <div class="text">
       <div class="gradient-transition">
         <div class="top-text">
@@ -32,7 +32,9 @@
           </div>
         </div>
         <Header class="title">
-          <StateDot :status="item.status" /><span>{{ item.title }}</span>
+          <StateDot :status="item.status" /><span>
+            <TextCutoff :lines="breakpoint === 'desktop' ? 3 : 2">{{ item.title }}</TextCutoff>
+          </span>
         </Header>
       </div>
     </div>
@@ -40,7 +42,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue';
+import { inject, PropType } from 'vue';
 import { bookmarkItem } from '../../minimalClass';
 import ImageFit from '../image-fit.vue';
 import MediaLink from '../media-link.vue';
@@ -50,6 +52,7 @@ import MediaTotalEpisode from '../media/media-total-episode.vue';
 import MediaPill from '../media/media-pill.vue';
 import MediaPillProgress from '../media/media-pill-progress.vue';
 import MediaProgressPill from '../media/media-progress-pill.vue';
+import TextCutoff from '../text-cutoff.vue';
 
 defineProps({
   item: {
@@ -57,6 +60,8 @@ defineProps({
     required: true,
   },
 });
+
+const breakpoint = inject('breakpoint');
 
 const episodeLang = utils.episode;
 </script>

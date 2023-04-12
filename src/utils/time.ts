@@ -192,3 +192,13 @@ export function timestampToShortTime(tm: number, ago = true): string {
 
   return short;
 }
+
+export function timestampToShortDate(ts: number): string {
+  const date = new Date(ts);
+
+  const monthAbbreviation = date.toLocaleString('default', { month: 'short' });
+  const dayOfMonth = date.getDate();
+  const year = date.getFullYear();
+
+  return `${monthAbbreviation} ${dayOfMonth}, ${year}`;
+}

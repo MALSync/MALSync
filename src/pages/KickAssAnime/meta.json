@@ -1,7 +1,7 @@
 {
-  "search": "https://www2.kickassanime.ro/search?q={searchterm}",
   "urls": {
     "match": [
+      "*://*.kaas.am/*",
       "*://*.kickassanime.io/anime/*",
       "*://*.kickassanime.ru/anime/*",
       "*://*.kickassanime.rs/anime/*",

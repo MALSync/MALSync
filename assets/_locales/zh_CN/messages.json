@@ -599,20 +599,6 @@
         "message": "了解MAL-Sync的工作原理",
         "description": "Header for how to use section"
     },
-    "Anilist_Authenticate": {
-        "message": "请点击$Link1$这里$Link2$认证",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Error_Authenticate": {
         "message": "请点击$Link1$这里$Link2$认证",
         "description": "Update version - Text 3",
@@ -746,5 +732,251 @@
     "correction_Search": {
         "message": "搜索更正",
         "description": "Correction Search"
+    },
+    "correction_DBRequest": {
+        "message": "提交数据库更正请求？",
+        "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
+    },
+    "settings_General": {
+        "message": "整体",
+        "description": "General"
+    },
+    "settings_Mode": {
+        "message": "模式",
+        "description": "Mode"
+    },
+    "settings_Mangasync_readerTracking": {
+        "message": "漫画阅读到90%时同步",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+    },
+    "settings_AutoTracking_Video": {
+        "message": "动画观看到$videoDuration$%时上传",
+        "description": "Update Episode of video progress",
+        "placeholders": {
+            "videoDuration": {
+                "content": "$1",
+                "example": "85"
+            }
+        }
+    },
+    "settings_Thumbnails_text": {
+        "message": "该选项用于调整MyAnimeList上缩略图的大小，例如：角色、人物、推荐等的缩略图。",
+        "description": "Thumbnails - Text"
+    },
+    "settings_Thumbnails_Default": {
+        "message": "MAL默认设置",
+        "description": "Thumbnails MAL Default"
+    },
+    "settings_malTags": {
+        "message": "使用标签/注释",
+        "description": "Use Tags/Notes"
+    },
+    "settings_anilist_update_ui": {
+        "message": "更新界面",
+        "description": "UI in the aniList sidebar to update episodes progress and the score"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "排名：",
+        "description": "Info table on overview - Ranked: #317"
+    },
+    "overview_sidebar_Status": {
+        "message": "状态：",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Genres": {
+        "message": "类型：",
+        "description": "Info table on overview - Genres: Action"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "播出日期：",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "完结日期：",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "出处：",
+        "description": "Info table on overview - Source: Light Novel"
+    },
+    "overview_sidebar_Members": {
+        "message": "成员：",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Studios": {
+        "message": "制作公司：",
+        "description": "Info table on overview - Studios: Madhouse"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "集数：",
+        "description": "Info table on overview - Episodes: 12"
+    },
+    "overview_sidebar_Season": {
+        "message": "季度：",
+        "description": "Info table on overview - Season: Spring 2014"
+    },
+    "overview_sidebar_external_links": {
+        "message": "外部链接：",
+        "description": "Info table on overview - External Links: Official Site, Hulu"
+    },
+    "overview_sidebar_Votes": {
+        "message": "投票数：",
+        "description": "Info table on overview - Votes: 1423"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "许可放：",
+        "description": "Info table on overview - Licensor: AT-X"
+    },
+    "overview_sidebar_Aired": {
+        "message": "播出日期：",
+        "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
+    },
+    "overview_sidebar_Authors": {
+        "message": "作者：",
+        "description": "Info table on overview - Authors: Kamiya, Yuu"
+    },
+    "overview_sidebar_Duration": {
+        "message": "时长：",
+        "description": "Info table on overview - Duration: 23 min"
+    },
+    "settings_miniMAL_Height": {
+        "message": "高（px/%）",
+        "description": "miniMAL Height"
+    },
+    "settings_miniMAL_Width": {
+        "message": "宽（px/%）",
+        "description": "miniMAL Width"
+    },
+    "settings_miniMAL_pwa": {
+        "message": "PWA页面",
+        "description": "Link to the PWA version of the extension popup"
+    },
+    "settings_donate": {
+        "message": "捐款",
+        "description": "Link to donation page"
+    },
+    "settings_discord_join": {
+        "message": "加入我们Discord服务器",
+        "description": "Link to join discord"
+    },
+    "settings_help": {
+        "message": "需要帮助？",
+        "description": "Button that links to support"
+    },
+    "settings_listsync": {
+        "message": "同步列表",
+        "description": "Header of the section of List Sync settings"
+    },
+    "settings_listsync_background": {
+        "message": "每日后台同步",
+        "description": "Option to sync list once a day in the background"
+    },
+    "settings_theming_sidebars": {
+        "message": "侧边栏",
+        "description": "Option to disable the sidebars in the extension popup"
+    },
+    "settings_theming_color": {
+        "message": "主题色",
+        "description": "Option to select a custom theme color for the extension popup"
+    },
+    "settings_theming_background_image": {
+        "message": "背景图",
+        "description": "Option to select a custom background image for the extension popup"
+    },
+    "settings_theming_theme_system": {
+        "message": "系统",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "亮色",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_dark": {
+        "message": "暗色",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "settings_miniMAL_Open": {
+        "message": "打开miniMAL",
+        "description": "miniMAL Open"
+    },
+    "settings_miniMAL_NotSet": {
+        "message": "未设置",
+        "description": "miniMAL Not Set"
+    },
+    "settings_Video_Player": {
+        "message": "视频播放器",
+        "description": "Video settings header"
+    },
+    "settings_Video_Fullscreen": {
+        "message": "自动全屏",
+        "description": "Auto fullscreen toggle"
+    },
+    "settings_autoNextEp": {
+        "message": "自动播放下集",
+        "description": "Autoplays the next episode after the video ends"
+    },
+    "overview_sidebar_Score": {
+        "message": "评分：",
+        "description": "Info table on overview - Score: 7.65"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "MAL评分：",
+        "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "名气：",
+        "description": "Info table on overview - Popularity: #15"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "放送日期：",
+        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "章节：",
+        "description": "Info table on overview - Chapters: 12"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "卷数：",
+        "description": "Info table on overview - Volumes: 12"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "收藏数：",
+        "description": "Info table on overview - Favorites: 15423"
+    },
+    "settings_miniMAL_Display_Right": {
+        "message": "右侧",
+        "description": "miniMAL Display Right"
+    },
+    "settings_miscellaneous": {
+        "message": "杂项",
+        "description": "Header of the section of settings without specific theme"
+    },
+    "list_sorting_unread": {
+        "message": "未读",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "list_sorting_score": {
+        "message": "评分",
+        "description": "Dropdown option to sort list by score"
+    },
+    "settings_miniMAL_theme": {
+        "message": "主题",
+        "description": "Label for the theme switch dropdown (light/dark theme)"
+    },
+    "settings_miniMAL_Display_Left": {
+        "message": "左侧",
+        "description": "miniMAL Display Left"
+    },
+    "settings_miniMAL_Display_Center": {
+        "message": "中间",
+        "description": "miniMAL Display Center"
+    },
+    "settings_theming_theme_custom": {
+        "message": "自定义",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "settings_Shortcuts_Sync": {
+        "message": "设集/章为已读",
+        "description": "Text for the sync ui shortcut"
     }
 }
