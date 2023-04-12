@@ -29,7 +29,7 @@ export const AnimeSama: pageInterface = {
       return identifier;
     },
     getOverviewUrl(url) {
-      return `${AnimeSama.domain}/catalogue/${AnimeSama.sync.getIdentifier(url)}`;
+      return `${AnimeSama.domain}/catalogue/${utils.urlPart(url, 4)}`;
     },
     getEpisode(_) {
       const temp = j
