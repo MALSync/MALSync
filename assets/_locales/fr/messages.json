@@ -1472,5 +1472,9 @@
     "overview_sidebar_Total_Playtime": {
         "message": "Durée totale :",
         "description": "Info table on overview - Total Playtime: 276 mins"
+    },
+    "list_sorting_airing_date": {
+        "message": "Date de diffusion",
+        "description": "Dropdown option to sort list by airing date"
     }
 }
