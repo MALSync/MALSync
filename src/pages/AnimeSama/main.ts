@@ -10,10 +10,23 @@ export const AnimeSama: pageInterface = {
   },
   sync: {
     getTitle(_) {
-      return j.$('#titreOeuvre').text().trim();
+      let titre = j.$('#titreOeuvre').text().trim();
+      const saison = j.$('#avOeuvre').text().trim();
+      const film = j.$('#selectEpisodes').val();
+      if (saison === 'Film' && film) titre += ` ${saison} ${film}`;
+      else if (saison !== 'Saison 1') titre += ` ${saison}`;
+      return titre;
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      let identifier = utils.urlPart(url, 4) || '';
+      if (
+        identifier !== '' &&
+        utils.urlPart(url, 5) &&
+        utils.urlPart(url, 5).startsWith('saison')
+      ) {
+        identifier += `/${utils.urlPart(url, 5)}`;
+      }
+      return identifier;
     },
     getOverviewUrl(url) {
       return `${AnimeSama.domain}/catalogue/${AnimeSama.sync.getIdentifier(url)}`;
