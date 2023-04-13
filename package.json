@@ -13,6 +13,7 @@
   "devDependencies": {
     "@cliqz/adblocker-puppeteer": "^1.26.5",
     "@sentry/webpack-plugin": "^1.20.0",
+    "@types/archiver": "^5.3.2",
     "@types/chai": "^4.3.4",
     "@types/jquery": "^3.5.14",
     "@types/mocha": "^10.0.1",
@@ -25,6 +26,7 @@
     "bl": "^6.0.0",
     "chai": "^4.3.7",
     "chrome-webstore-upload": "^1.0.0",
+    "chrome-webstore-upload-cli": "^2.2.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
     "dot-prop": "^7.2.0",
