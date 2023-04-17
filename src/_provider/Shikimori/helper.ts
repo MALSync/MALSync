@@ -4,11 +4,11 @@ import { Cache } from '../../utils/Cache';
 
 const clientId = 'z3NJ84kK9iy5NU6SnhdCDB38rr4-jFIJ67bMIUDzdoo';
 
-export const authUrl = `https://shikimori.one/oauth/authorize?client_id=${clientId}&redirect_uri=https%3A%2F%2Fmalsync.moe%2Fshikimori%2Foauth&response_type=code&scope=user_rates`;
+export const authUrl = `https://shikimori.me/oauth/authorize?client_id=${clientId}&redirect_uri=https%3A%2F%2Fmalsync.moe%2Fshikimori%2Foauth&response_type=code&scope=user_rates`;
 
-const apiDomain = 'https://shikimori.one/api/';
+const apiDomain = 'https://shikimori.me/api/';
 
-export const domain = 'https://shikimori.one';
+export const domain = 'https://shikimori.me';
 
 export async function apiCall(options: {
   type: 'GET' | 'PUT' | 'DELETE' | 'POST';
@@ -47,7 +47,7 @@ export async function apiCall(options: {
 
   if (options.auth) {
     delete headers.Authorization;
-    url = 'https://shikimori.one/oauth/token';
+    url = 'https://shikimori.me/oauth/token';
   }
 
   return api.request
