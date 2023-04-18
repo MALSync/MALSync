@@ -151,6 +151,9 @@
     ]
   },
   "0.9.3": {
+    "Gogoanime": [
+      "https://gogoanime.cl/*"
+    ],
     "iframe": []
   }
 }
