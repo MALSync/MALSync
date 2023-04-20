@@ -41,7 +41,9 @@
       "*://*.9anime.pl/watch/*",
       "*://*.9anime.pl/watch2gether/*",
       "*://*.9anime.gs/watch/*",
-      "*://*.9anime.gs/watch2gether/*"
+      "*://*.9anime.gs/watch2gether/*",
+      "*://*.9animehq.to/watch/*",
+      "*://*.9animehq.to/watch2gether/*"
     ]
   }
 }

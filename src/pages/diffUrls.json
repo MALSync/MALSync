@@ -151,6 +151,13 @@
     ]
   },
   "0.9.3": {
+    "Gogoanime": [
+      "https://gogoanime.cl/*"
+    ],
+    "nineAnime": [
+      "https://9animehq.to/watch/*",
+      "https://9animehq.to/watch2gether/*"
+    ],
     "iframe": []
   }
 }
