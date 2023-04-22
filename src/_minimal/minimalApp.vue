@@ -1,7 +1,7 @@
 <template>
   <Theming />
   <MediaModal />
-  <NavBar />
+  <NavBar v-if="rootHtml.getAttribute('mode') !== 'install'" />
   <div class="content">
     <router-view v-slot="{ Component, route }">
       <transition

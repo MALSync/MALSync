@@ -14,7 +14,8 @@ const hslColor = computed(() => hexToHsl(api.settings.get('themeColor')));
 const classes = computed(() => {
   const cl: string[] = [];
 
-  if (!api.settings.get('themeSidebars')) cl.push('no-sidebar');
+  if (!api.settings.get('themeSidebars') || rootHtml.getAttribute('mode') === 'install')
+    cl.push('no-sidebar');
 
   switch (api.settings.get('theme')) {
     case 'dark':
