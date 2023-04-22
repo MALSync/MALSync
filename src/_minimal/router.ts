@@ -3,6 +3,7 @@ import Bookmarks from './views/bookmarks.vue';
 import Overview from './views/overview.vue';
 import Settings from './views/settings.vue';
 import Search from './views/search.vue';
+import Install from './views/install.vue';
 import NotFound from './views/notFound.vue';
 import { getUrlObj, setUrlObj } from './utils/state';
 
@@ -55,6 +56,11 @@ const routes: Array<RouteRecordRaw> = [
     props: {
       type: String,
     },
+  },
+  {
+    path: '/install',
+    name: 'Install',
+    component: Install,
   },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ];
