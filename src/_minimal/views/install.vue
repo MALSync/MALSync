@@ -6,16 +6,18 @@
           <component :is="page.component" />
         </div>
         <div style="width: 1000px; flex-grow: 1"></div>
-        <component :is="!page.card ? Card : 'div'" class="button-section">
-          <FormButton v-if="current" class="open-button" @click="current--"> Back </FormButton>
-          <FormButton
-            v-if="!lastPage"
-            class="open-button button-next"
-            color="primary"
-            @click="current++"
-          >
-            Next
-          </FormButton>
+        <component :is="!page.card ? Card : 'div'">
+          <div class="button-section">
+            <FormButton v-if="current" class="open-button" @click="current--"> Back </FormButton>
+            <FormButton
+              v-if="!lastPage"
+              class="open-button button-next"
+              color="primary"
+              @click="current++"
+            >
+              Next
+            </FormButton>
+          </div>
         </component>
       </div>
     </component>
@@ -30,6 +32,7 @@ import installStart from '../components/install/install-start.vue';
 import installHow from '../components/install/install-how.vue';
 import installCorrect from '../components/install/install-correct.vue';
 import installLinks from '../components/install/install-links.vue';
+import installProvider from '../components/install/install-provider.vue';
 import Section from '../components/section.vue';
 
 const pages = [
@@ -52,6 +55,11 @@ const pages = [
     component: installLinks,
     card: false,
     limited: false,
+  },
+  {
+    component: installProvider,
+    card: true,
+    limited: true,
   },
 ];
 
