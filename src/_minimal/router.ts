@@ -98,7 +98,7 @@ export function router() {
     });
 
     tempRouter.afterEach((to, from, failure) => {
-      if (!failure) setUrlObj(to.fullPath);
+      if (!failure && to.name !== 'Install') setUrlObj(to.fullPath);
     });
   }
   return tempRouter;
