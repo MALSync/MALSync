@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="how">
     <Header :spacer="true"> 🔁 {{ lang('installPage_Howto') }}</Header>
     <Section>
       <p v-dompurify-html="lang('installPage_Howto_Description')"></p>
@@ -23,4 +23,13 @@ import Header from '../header.vue';
 import Section from '../section.vue';
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.how::v-deep a {
+  color: var(--cl-secondary-text);
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--cl-secondary);
+  }
+}
+</style>

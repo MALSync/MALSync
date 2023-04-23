@@ -1,7 +1,7 @@
 <template>
   <Section class="block-wrapper">
     <component :is="page.card ? Card : 'div'" class="">
-      <div class="block-section">
+      <div class="block-section" :class="{ limited: page.limited }">
         <div>
           <component :is="page.component" />
         </div>
@@ -36,18 +36,22 @@ const pages = [
   {
     component: installStart,
     card: true,
+    limited: true,
   },
   {
     component: installHow,
     card: true,
+    limited: true,
   },
   {
     component: installCorrect,
     card: true,
+    limited: true,
   },
   {
     component: installLinks,
     card: false,
+    limited: false,
   },
 ];
 
@@ -68,11 +72,14 @@ const lastPage = computed(() => current.value === pages.length - 1);
 }
 
 .block-section {
-  max-width: 650px;
   min-height: 520px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  &.limited {
+    max-width: 650px;
+  }
 }
 
 .button-section {
