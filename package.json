@@ -46,7 +46,7 @@
     "node-dir": "^0.1.17",
     "postcss-html": "^1.5.0",
     "postcss-less": "^6.0.0",
-    "prettier": "^2.8.7",
+    "prettier": "^2.8.8",
     "puppeteer": "^19.10.1",
     "serialize-javascript": "^6.0.1",
     "style-loader": "^3.3.1",
