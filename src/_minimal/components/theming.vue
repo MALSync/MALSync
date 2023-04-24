@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import { computed, inject, watch } from 'vue';
 import { hexToHsl, HSL, Hsl } from '../../utils/color';
-import { getThemeByKey } from './themes';
+import { Theme, getThemeByKey } from './themes';
 
 const rootHtml = inject('rootHtml') as HTMLElement;
 
@@ -16,7 +16,12 @@ const themeConfig = () => {
     themeImage: api.settings.get('themeImage'),
     themeOpacity: api.settings.get('themeOpacity'),
     themeColor: api.settings.get('themeColor'),
+    predefined: null as null | Theme,
   };
+
+  if (conf.theme && !['dark', 'light', 'auto', 'custom'].includes(conf.theme)) {
+    conf.predefined = getThemeByKey(conf.theme);
+  }
 
   return conf;
 };
@@ -42,8 +47,7 @@ const classes = computed(() => {
       if (config.themeImage) cl.push('backImage');
       break;
     default: {
-      const theme = getThemeByKey(config.theme);
-      if (theme && theme.base === 'dark') cl.push('dark');
+      if (config.predefined && config.predefined.base === 'dark') cl.push('dark');
       break;
     }
   }
@@ -68,8 +72,8 @@ const hslColorString = (color: Hsl, opacity = false) => {
 const styles = computed(() => {
   const config = themeConfig();
 
-  if (getThemeByKey(config.theme)) {
-    const theme = getThemeByKey(config.theme);
+  if (config.predefined) {
+    const theme = config.predefined;
     const c = theme.colors;
     if (c.foreground && !c['foreground-solid']) c['foreground-solid'] = c.foreground;
     const colors = Object.keys(c).map(key => `--cl-${key}: ${theme.colors[key]};`);
