@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import { computed, inject, watch } from 'vue';
 import { hexToHsl, HSL, Hsl } from '../../utils/color';
-import { Theme, getThemeByKey } from './themes';
+import { Theme, getThemeByKey, themeOverrides } from './themes';
 
 const rootHtml = inject('rootHtml') as HTMLElement;
 
@@ -13,20 +13,27 @@ const themeConfig = () => {
   const conf = {
     theme: api.settings.get('theme'),
     sidebars: api.settings.get('themeSidebars'),
-    themeImage: api.settings.get('themeImage'),
-    themeOpacity: api.settings.get('themeOpacity'),
-    themeColor: api.settings.get('themeColor'),
+    image: api.settings.get('themeImage'),
+    opacity: api.settings.get('themeOpacity'),
+    color: api.settings.get('themeColor'),
     predefined: null as null | Theme,
   };
 
   if (conf.theme && !['dark', 'light', 'auto', 'custom'].includes(conf.theme)) {
     conf.predefined = getThemeByKey(conf.theme);
+    if (conf.predefined && conf.predefined.overrides) {
+      for (const i in themeOverrides) {
+        const key = themeOverrides[i];
+        if (typeof conf.predefined.overrides[key] !== 'undefined')
+          conf[key] = conf.predefined.overrides[key];
+      }
+    }
   }
 
   return conf;
 };
 
-const hslColor = computed(() => hexToHsl(themeConfig().themeColor));
+const hslColor = computed(() => hexToHsl(themeConfig().color));
 
 const classes = computed(() => {
   const cl: string[] = [];
@@ -44,7 +51,7 @@ const classes = computed(() => {
     case 'custom':
       cl.push('custom');
       if (new HSL(...hslColor.value).isDark()) cl.push('dark');
-      if (config.themeImage) cl.push('backImage');
+      if (config.image) cl.push('backImage');
       break;
     default: {
       if (config.predefined && config.predefined.base === 'dark') cl.push('dark');
@@ -106,9 +113,9 @@ const styles = computed(() => {
   s.push(`--cl-secondary-text: ${hslColorString(secondaryText.toHsl())}`);
   s.push(`--cl-light-text: ${hslColorString(lightText.toHsl())}`);
 
-  if (config.themeImage) {
-    s.push(`--cl-back-image: url('${config.themeImage}')`);
-    s.push(`--cl-opacity: ${config.themeOpacity / 100}`);
+  if (config.image) {
+    s.push(`--cl-back-image: url('${config.image}')`);
+    s.push(`--cl-opacity: ${config.opacity / 100}`);
   }
 
   return s.join(';');
