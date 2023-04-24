@@ -14,7 +14,7 @@
     :href="slugObj.url"
     class="media-link"
     :class="[color].join(' ')"
-    target="_blank"
+    :target="target"
     rel="noopener"
   >
     <slot />
@@ -38,6 +38,10 @@ const props = defineProps({
   color: {
     type: String as PropType<'primary' | 'secondary' | 'none'>,
     default: 'none',
+  },
+  target: {
+    type: String,
+    default: '_blank',
   },
 });
 

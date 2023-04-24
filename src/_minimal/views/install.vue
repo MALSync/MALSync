@@ -1,12 +1,10 @@
 <template>
   <Section class="block-wrapper">
-    <component :is="page.card ? Card : 'div'" class="">
+    <component :is="page.card ? Card : 'div'" style="max-width: 100%">
       <div class="block-section" :class="{ limited: page.limited }">
-        <div>
-          <component :is="page.component" />
-        </div>
-        <div style="width: 1000px; flex-grow: 1"></div>
-        <component :is="!page.card ? Card : 'div'">
+        <component :is="page.component" @back="current--" />
+        <div :style="`width: 1000px; flex-grow: ${page.buttons ? '1' : '0'}`"></div>
+        <component :is="!page.card ? Card : 'div'" v-if="page.buttons">
           <div class="button-section">
             <FormButton v-if="current" class="open-button" @click="current--"> Back </FormButton>
             <FormButton
@@ -33,6 +31,7 @@ import installHow from '../components/install/install-how.vue';
 import installCorrect from '../components/install/install-correct.vue';
 import installLinks from '../components/install/install-links.vue';
 import installProvider from '../components/install/install-provider.vue';
+import installLogin from '../components/install/install-login.vue';
 import Section from '../components/section.vue';
 
 const pages = [
@@ -40,26 +39,37 @@ const pages = [
     component: installStart,
     card: true,
     limited: true,
+    buttons: true,
   },
   {
     component: installHow,
     card: true,
     limited: true,
+    buttons: true,
   },
   {
     component: installCorrect,
     card: true,
     limited: true,
+    buttons: true,
   },
   {
     component: installLinks,
     card: false,
     limited: false,
+    buttons: true,
   },
   {
     component: installProvider,
     card: true,
     limited: true,
+    buttons: true,
+  },
+  {
+    component: installLogin,
+    card: true,
+    limited: true,
+    buttons: false,
   },
 ];
 
@@ -90,12 +100,14 @@ const lastPage = computed(() => current.value === pages.length - 1);
   }
 }
 
-.button-section {
+.block-wrapper:deep(.button-section) {
   display: flex;
   justify-content: flex-start;
   gap: 15px;
+  width: 100%;
 
   .button-next {
+    width: 100%;
     flex-grow: 1;
   }
 }
