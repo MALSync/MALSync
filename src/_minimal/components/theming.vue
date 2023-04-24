@@ -9,15 +9,27 @@ import { getThemeByKey } from './themes';
 
 const rootHtml = inject('rootHtml') as HTMLElement;
 
-const hslColor = computed(() => hexToHsl(api.settings.get('themeColor')));
+const themeConfig = () => {
+  const conf = {
+    theme: api.settings.get('theme'),
+    sidebars: api.settings.get('themeSidebars'),
+    themeImage: api.settings.get('themeImage'),
+    themeOpacity: api.settings.get('themeOpacity'),
+    themeColor: api.settings.get('themeColor'),
+  };
+
+  return conf;
+};
+
+const hslColor = computed(() => hexToHsl(themeConfig().themeColor));
 
 const classes = computed(() => {
   const cl: string[] = [];
+  const config = themeConfig();
 
-  if (!api.settings.get('themeSidebars') || rootHtml.getAttribute('mode') === 'install')
-    cl.push('no-sidebar');
+  if (!config.sidebars) cl.push('no-sidebar');
 
-  switch (api.settings.get('theme')) {
+  switch (config.theme) {
     case 'dark':
       cl.push('dark');
       break;
@@ -27,10 +39,10 @@ const classes = computed(() => {
     case 'custom':
       cl.push('custom');
       if (new HSL(...hslColor.value).isDark()) cl.push('dark');
-      if (api.settings.get('themeImage')) cl.push('backImage');
+      if (config.themeImage) cl.push('backImage');
       break;
     default: {
-      const theme = getThemeByKey(api.settings.get('theme'));
+      const theme = getThemeByKey(config.theme);
       if (theme && theme.base === 'dark') cl.push('dark');
       break;
     }
@@ -54,14 +66,16 @@ const hslColorString = (color: Hsl, opacity = false) => {
 };
 
 const styles = computed(() => {
-  if (getThemeByKey(api.settings.get('theme'))) {
-    const theme = getThemeByKey(api.settings.get('theme'));
+  const config = themeConfig();
+
+  if (getThemeByKey(config.theme)) {
+    const theme = getThemeByKey(config.theme);
     const c = theme.colors;
     if (c.foreground && !c['foreground-solid']) c['foreground-solid'] = c.foreground;
     const colors = Object.keys(c).map(key => `--cl-${key}: ${theme.colors[key]};`);
     return colors.join(';');
   }
-  if (api.settings.get('theme') !== 'custom') return '';
+  if (config.theme !== 'custom') return '';
   const s: string[] = [];
 
   const base = new HSL(...hslColor.value);
@@ -88,9 +102,9 @@ const styles = computed(() => {
   s.push(`--cl-secondary-text: ${hslColorString(secondaryText.toHsl())}`);
   s.push(`--cl-light-text: ${hslColorString(lightText.toHsl())}`);
 
-  if (api.settings.get('themeImage')) {
-    s.push(`--cl-back-image: url('${api.settings.get('themeImage')}')`);
-    s.push(`--cl-opacity: ${api.settings.get('themeOpacity') / 100}`);
+  if (config.themeImage) {
+    s.push(`--cl-back-image: url('${config.themeImage}')`);
+    s.push(`--cl-opacity: ${config.themeOpacity / 100}`);
   }
 
   return s.join(';');

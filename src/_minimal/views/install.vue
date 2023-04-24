@@ -1,6 +1,7 @@
 <template>
   <Section class="block-wrapper">
     <component :is="page.card ? Card : 'div'" style="max-width: 100%">
+      <div class="progress-bar" :style="`width: ${progress}%`"></div>
       <div class="block-section" :class="{ limited: page.limited }">
         <component :is="page.component" @back="current--" />
         <div :style="`width: 1000px; flex-grow: ${page.buttons ? '1' : '0'}`"></div>
@@ -77,6 +78,8 @@ const current = ref(0);
 
 const page = computed(() => pages[current.value]);
 const lastPage = computed(() => current.value === pages.length - 1);
+
+const progress = computed(() => ((current.value + 1) / pages.length) * 100);
 </script>
 
 <style lang="less" scoped>
@@ -110,5 +113,14 @@ const lastPage = computed(() => current.value === pages.length - 1);
     width: 100%;
     flex-grow: 1;
   }
+}
+
+.progress-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 5px;
+  background-color: var(--cl-primary);
+  transition: width 0.3s ease-in-out;
 }
 </style>
