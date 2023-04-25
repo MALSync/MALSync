@@ -83,6 +83,7 @@ const styles = computed(() => {
     const theme = config.predefined;
     const c = theme.colors;
     if (c.foreground && !c['foreground-solid']) c['foreground-solid'] = c.foreground;
+    if (c.background && !c['background-solid']) c['background-solid'] = c.background;
     const colors = Object.keys(c).map(key => `--cl-${key}: ${theme.colors[key]};`);
     return colors.join(';');
   }
@@ -105,6 +106,7 @@ const styles = computed(() => {
   }
 
   s.push(`--cl-background: ${hslColorString(base.toHsl(), true)}`);
+  s.push(`--cl-background-solid: ${hslColorString(base.toHsl(), false)}`);
   s.push(`--cl-backdrop: ${hslColorString(backdrop.toHsl())}`);
   s.push(`--cl-foreground: ${hslColorString(foreground.toHsl(), true)}`);
   s.push(`--cl-foreground-solid: ${hslColorString(foreground.toHsl())}`);

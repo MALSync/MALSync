@@ -25,8 +25,8 @@ defineProps({
   background-color: var(--cl-backdrop);
 
   .inner-card {
-    --cl-foreground: var(--cl-background);
-    --cl-backdrop: var(--cl-background);
+    --cl-foreground: var(--cl-background-solid);
+    --cl-backdrop: var(--cl-background-solid);
   }
 
   &.border-secondary {
