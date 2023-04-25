@@ -93,7 +93,7 @@ const progress = computed(() => (current.value / (pages.length - 1)) * 100);
 }
 
 .block-section {
-  min-height: 520px;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
