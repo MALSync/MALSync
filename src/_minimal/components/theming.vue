@@ -19,6 +19,8 @@ const themeConfig = () => {
     predefined: null as null | Theme,
   };
 
+  if (rootHtml.getAttribute('mode') === 'install') conf.theme = 'installTheme';
+
   if (conf.theme && !['dark', 'light', 'auto', 'custom'].includes(conf.theme)) {
     conf.predefined = getThemeByKey(conf.theme);
     if (conf.predefined && conf.predefined.overrides) {
@@ -55,6 +57,7 @@ const classes = computed(() => {
       break;
     default: {
       if (config.predefined && config.predefined.base === 'dark') cl.push('dark');
+      if (config.image) cl.push('backImage');
       break;
     }
   }
@@ -84,7 +87,18 @@ const styles = computed(() => {
     const c = theme.colors;
     if (c.foreground && !c['foreground-solid']) c['foreground-solid'] = c.foreground;
     if (c.background && !c['background-solid']) c['background-solid'] = c.background;
+
+    if (theme.overrides && theme.overrides.image) {
+      c.background = hslColorString(hexToHsl(c.background), true);
+    }
+
     const colors = Object.keys(c).map(key => `--cl-${key}: ${theme.colors[key]};`);
+
+    if (theme.overrides && theme.overrides.image) {
+      colors.push(`--cl-back-image: url('${theme.overrides.image}')`);
+      colors.push(`--cl-opacity: ${config.opacity / 100}`);
+    }
+
     return colors.join(';');
   }
   if (config.theme !== 'custom') return '';

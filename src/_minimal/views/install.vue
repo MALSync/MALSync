@@ -79,7 +79,7 @@ const current = ref(0);
 const page = computed(() => pages[current.value]);
 const lastPage = computed(() => current.value === pages.length - 1);
 
-const progress = computed(() => ((current.value + 1) / pages.length) * 100);
+const progress = computed(() => (current.value / (pages.length - 1)) * 100);
 </script>
 
 <style lang="less" scoped>

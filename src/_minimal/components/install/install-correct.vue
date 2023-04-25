@@ -21,4 +21,9 @@ import Header from '../header.vue';
 import Section from '../section.vue';
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+#hiddenimage {
+  width: 100%;
+  height: auto;
+}
+</style>
