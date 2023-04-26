@@ -3,13 +3,15 @@
     <FormButton
       v-for="option in options"
       :key="option.value"
-      padding="large"
+      padding="pill"
       class="multi-select-button"
       :color="compareFunc(option.value, picked) && !ignore ? 'secondary' : 'default'"
       :class="{ active: compareFunc(option.value, picked) }"
       @click="select(option)"
     >
-      <TextIcon :icon="compareFunc(option.value, picked) && !ignore ? 'done' : 'arrow_right'">
+      <TextIcon
+        :icon="compareFunc(option.value, picked) && !ignore ? 'done' : 'check_box_outline_blank'"
+      >
         {{ option.title || option.label }}
       </TextIcon>
     </FormButton>
