@@ -76,7 +76,6 @@
 
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, onMounted } from 'vue';
-import ImageText from '../image-text.vue';
 import Header from '../header.vue';
 import { createRequest } from '../../utils/reactive';
 import { getListbyType } from '../../../_provider/listFactory';
@@ -84,11 +83,9 @@ import { NotAutenticatedError } from '../../../_provider/Errors';
 import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
 import Section from '../section.vue';
-import Link from '../link.vue';
 import ImageLazy from '../image-lazy.vue';
 import FormButton from '../form/form-button.vue';
 import Spinner from '../spinner.vue';
-import PillDark from '../pill-dark.vue';
 
 defineProps({
   title: {

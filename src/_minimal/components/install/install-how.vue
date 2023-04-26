@@ -12,7 +12,8 @@
         The sync happens on page load.
       </p>
       <p>
-        Synchronization can be configured in the settings later — feel free to customize it your way!
+        Synchronization can be configured in the settings later — feel free to customize it your
+        way!
       </p>
     </Section>
   </div>
