@@ -1,6 +1,6 @@
 {
-  "search": "https://kaguya.live/browse?keyword={searchtermPlus}",
+  "search": "https://kaguya.app/browse?keyword={searchtermPlus}",
   "urls": {
-    "match": ["*://kaguya.live/*"]
+    "match": ["*://kaguya.app/*"]
   }
 }
