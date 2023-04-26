@@ -423,6 +423,10 @@ module.exports = {
       '*://*.anihdplay.com/streaming.php?*',
       '*://*.anihdplay.com/load.php?*',
       '*://*.anihdplay.com/loadserver.php?*',
+      '*://*.playtaku.net/embedplus*',
+      '*://*.playtaku.net/streaming.php?*',
+      '*://*.playtaku.net/load.php?*',
+      '*://*.playtaku.net/loadserver.php?*',
       // auto-gogostream-replace-dont-remove
     ],
   },

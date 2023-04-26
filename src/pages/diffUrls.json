@@ -159,6 +159,10 @@
       "https://9animehq.to/watch2gether/*"
     ],
     "iframe": [
+      "https://playtaku.net/embedplus*",
+      "https://playtaku.net/streaming.php?*",
+      "https://playtaku.net/load.php?*",
+      "https://playtaku.net/loadserver.php?*",
       "https://35volitantplimsoles5.com/e/*"
     ]
   }
