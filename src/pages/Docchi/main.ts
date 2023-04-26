@@ -31,9 +31,13 @@ export const Docchi: pageInterface = {
       return utils.absoluteLink(`${href}/${episode}`, Docchi.domain);
     },
     getMalUrl(provider) {
-      return `https://myanimelist.net/anime/${j
-        .$('a[mal_sync="episode"]')
-        .attr('mal_sync_mal_id')}`;
+      const malID = j.$('span[mal_sync="mal_id"]').attr('mal_sync_mal_id');
+
+      if (malID) {
+        return `https://myanimelist.net/anime/${malID}`;
+      }
+
+      return false;
     },
   },
   overview: {
@@ -47,9 +51,13 @@ export const Docchi: pageInterface = {
       j.$('div[mal_sync="episodes_list"]').before(j.html(selector));
     },
     getMalUrl(provider) {
-      return `https://myanimelist.net/anime/${j
-        .$('a[mal_sync="mal_id"]')
-        .attr('mal_sync_mal_id')}`;
+      const malID = j.$('span[mal_sync="mal_id"]').attr('mal_sync_mal_id');
+
+      if (malID) {
+        return `https://myanimelist.net/anime/${malID}`;
+      }
+
+      return false;
     },
     list: {
       offsetHandler: false,
