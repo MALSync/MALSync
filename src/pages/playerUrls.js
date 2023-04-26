@@ -495,6 +495,7 @@ module.exports = {
       '*://sbanh.com/e/*',
       '*://sblongvu.com/e/*',
       '*://sbchill.com/e/*',
+      '*://sbone.pro/e/*',
     ],
   },
   // gogo
