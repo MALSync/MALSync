@@ -1376,7 +1376,7 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Learn how to fix the wrong MAL entry",
+        "message": "Learn how to fix wrong MAL relations",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
