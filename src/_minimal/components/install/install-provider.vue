@@ -3,7 +3,7 @@
     <Header :spacer="true"> 📂 {{ lang('installPage_Mode') }} </Header>
     <Section>
       <p>
-        <SettingsRendering :comp="comp" />
+        <SettingsRendering :comp="comp" @click="$emit('next')" />
       </p>
     </Section>
   </div>
@@ -15,6 +15,8 @@ import Section from '../section.vue';
 import SettingsRendering from '../settings/settings-rendering.vue';
 import { providerOptions } from '../settings/settings-structure-tracking';
 import SettingsGeneral from '../settings/settings-general.vue';
+
+defineEmits(['next', 'back']);
 
 const comp = {
   key: 'syncMode',

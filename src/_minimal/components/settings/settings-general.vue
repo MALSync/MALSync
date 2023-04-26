@@ -11,7 +11,13 @@
     </div>
     <div :class="`type-${component} ${labelSection ? 'component' : 'only-component'}`">
       <slot name="component">
-        <component :is="components[component]" v-bind="props" v-model="model"><slot /></component>
+        <component
+          :is="components[component]"
+          v-bind="props"
+          v-model="model"
+          @click="$emit('click')"
+          ><slot
+        /></component>
       </slot>
     </div>
   </div>
@@ -42,7 +48,7 @@ const components = {
   multiSelect: FormMultiSelect,
 };
 
-const emit = defineEmits(['change']);
+const emit = defineEmits(['change', 'click']);
 
 const properties = defineProps({
   title: {

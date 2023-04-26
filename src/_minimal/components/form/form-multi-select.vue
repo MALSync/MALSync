@@ -56,7 +56,7 @@ const props = defineProps({
 
 const ignore = ref(props.ignoreSelect);
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'click']);
 
 const picked = ref(props.modelValue);
 const open = ref(false);
@@ -64,6 +64,7 @@ const select = (option: Option) => {
   picked.value = option.value;
   open.value = false;
   ignore.value = false;
+  emit('click');
 };
 
 watch(picked, value => {

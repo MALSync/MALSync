@@ -3,13 +3,13 @@
     <component :is="page.card ? Card : 'div'" style="max-width: 100%">
       <div class="progress-bar" :style="`width: ${progress}%`"></div>
       <div class="block-section" :class="{ limited: page.limited }">
-        <component :is="page.component" @back="current--" />
+        <component :is="page.component" @back="current--" @next="current++" />
         <div :style="`width: 1000px; flex-grow: ${page.buttons ? '1' : '0'}`"></div>
         <component :is="!page.card ? Card : 'div'" v-if="page.buttons">
           <div class="button-section">
             <FormButton v-if="current" class="open-button" @click="current--"> Back </FormButton>
             <FormButton
-              v-if="!lastPage"
+              v-if="!lastPage && page.buttons !== 'back'"
               class="open-button button-next"
               color="primary"
               @click="current++"
@@ -64,7 +64,7 @@ const pages = [
     component: installProvider,
     card: true,
     limited: true,
-    buttons: true,
+    buttons: 'back',
   },
   {
     component: installLogin,
