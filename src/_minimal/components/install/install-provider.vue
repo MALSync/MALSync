@@ -3,7 +3,7 @@
     <Header :spacer="true"> 📂 {{ lang('installPage_Mode') }} </Header>
     <Section>
       <p>
-        <SettingsRendering :comp="comp" @click="$emit('next')" />
+        <SettingsRendering :comp="comp" @click="clickHandler" />
       </p>
     </Section>
   </div>
@@ -16,7 +16,7 @@ import SettingsRendering from '../settings/settings-rendering.vue';
 import { providerOptions } from '../settings/settings-structure-tracking';
 import SettingsGeneral from '../settings/settings-general.vue';
 
-defineEmits(['next', 'back']);
+const emit = defineEmits(['next', 'back']);
 
 const comp = {
   key: 'syncMode',
@@ -32,6 +32,10 @@ const comp = {
   },
   component: SettingsGeneral,
 };
+
+function clickHandler() {
+  setTimeout(() => emit('next'), 100);
+}
 </script>
 
 <style lang="less" scoped></style>
