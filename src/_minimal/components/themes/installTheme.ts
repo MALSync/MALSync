@@ -1,7 +1,7 @@
 import type { Theme } from './index';
 import { nordtheme } from './nordtheme';
 
-const { colors } = nordtheme;
+const colors = { ...nordtheme.colors };
 colors['secondary-text'] = '#f24b00';
 colors.backdrop = '#2e3440f2';
 
