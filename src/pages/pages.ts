@@ -3,7 +3,6 @@ import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
 import { Gogoanime } from './Gogoanime/main';
 import { TurkAnime } from './TurkAnime/main';
-import { Twistmoe } from './Twistmoe/main';
 import { Emby } from './Emby/main';
 import { Plex } from './Plex/main';
 import { Netflix } from './Netflix/main';
@@ -145,7 +144,6 @@ export const pages = {
   Vrv,
   Mangadex,
   Gogoanime,
-  Twistmoe,
   TurkAnime,
   animepahe,
   Netflix,
