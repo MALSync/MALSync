@@ -94,7 +94,6 @@ import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
 import { Funimation } from './Funimation/main';
 import { Kitsune } from './Kitsune/main';
-import { AnimesOnline } from './AnimesOnline/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
 import { shiro } from './shiro/main';
@@ -228,7 +227,6 @@ export const pages = {
   Zoro,
   Funimation,
   Kitsune,
-  AnimesOnline,
   LHTranslation,
   MangasOrigines,
   shiro,

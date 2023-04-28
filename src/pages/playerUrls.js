@@ -666,10 +666,6 @@ module.exports = {
   animato: {
     match: ['*://animato.me/embed/*'],
   },
-  // animeshd
-  AnimesOnline: {
-    match: ['*://animesonline.org/*/*id=*', '*://player.animeshd.org/koplay/*', '*://oppais.org/*'],
-  },
   // animixplay
   kimanime: {
     match: ['*://kimanime.ru/AnimeIframe/*'],
@@ -760,14 +756,6 @@ module.exports = {
   // kickassanime
   maverickki: {
     match: ['*://maverickki.com/*'],
-  },
-  // animesonline
-  rustream: {
-    match: ['*://secvideo1.online/*'],
-  },
-  // animesonline
-  gdplayer: {
-    match: ['*://gdplayer.top/*'],
   },
   // animixplay
   yfvf: {
