@@ -66,7 +66,6 @@ import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
 import { YugenAnime } from './YugenAnime/main';
 import { MangaSee } from './MangaSee/main';
-import { AnimeTribes } from './AnimeTribes/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
 import { AsuraScans } from './AsuraScans/main';
@@ -201,7 +200,6 @@ export const pages = {
   tioanime,
   YugenAnime,
   MangaSee,
-  AnimeTribes,
   Okanime,
   BSTO,
   AsuraScans,
