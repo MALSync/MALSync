@@ -99,7 +99,6 @@ import { MangasOrigines } from './MangasOrigines/main';
 import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
-import { SugarBabies } from './SugarBabies/main';
 import { Aniworld } from './Aniworld/main';
 import { BetterAnime } from './BetterAnime/main';
 import { BilibiliComics } from './BilibiliComics/main';
@@ -231,7 +230,6 @@ export const pages = {
   BlueSolo,
   DisasterScans,
   DynastyScans,
-  SugarBabies,
   Aniworld,
   BetterAnime,
   BilibiliComics,
