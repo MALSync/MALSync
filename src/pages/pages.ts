@@ -46,7 +46,6 @@ import { Samehadaku } from './Samehadaku/main';
 import { mangatx } from './mangatx/main';
 import { manhuafast } from './manhuafast/main';
 import { TRanimeizle } from './TRanimeizle/main';
-import { Anihub } from './Anihub/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
 import { Furyosquad } from './Furyosquad/main';
 import { AnimeId } from './AnimeId/main';
@@ -186,7 +185,6 @@ export const pages = {
   mangatx,
   manhuafast,
   TRanimeizle,
-  Anihub,
   AnimeStreamingFR,
   Furyosquad,
   AnimeId,
