@@ -81,7 +81,6 @@ import { AnimeWho } from './AnimeWho/main';
 import { AnimeSuge } from './AnimeSuge/main';
 import { Toonily } from './Toonily/main';
 import { Fumetsu } from './Fumetsu/main';
-import { NonstopScans } from './NonstopScans/main';
 import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
@@ -218,7 +217,6 @@ export const pages = {
   AnimeSuge,
   Toonily,
   Fumetsu,
-  NonstopScans,
   FrixySubs,
   Guya,
   MangaHub,
