@@ -96,7 +96,6 @@ import { Funimation } from './Funimation/main';
 import { Kitsune } from './Kitsune/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
-import { shiro } from './shiro/main';
 import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
@@ -229,7 +228,6 @@ export const pages = {
   Kitsune,
   LHTranslation,
   MangasOrigines,
-  shiro,
   BlueSolo,
   DisasterScans,
   DynastyScans,

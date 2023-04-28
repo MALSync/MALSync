@@ -682,10 +682,6 @@ module.exports = {
   rapidstream: {
     match: ['*://*.rapid-cloud.ru/*', '*://*.rapid-cloud.co/*'],
   },
-  // shiro
-  shiro: {
-    match: ['*://shiro.is/e/*'],
-  },
   // 9anime
   videovard: {
     match: ['*://videovard.sx/*', '*://videovard.to/*'],
