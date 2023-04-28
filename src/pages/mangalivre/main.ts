@@ -1,7 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
 export const mangalivre: pageInterface = {
-  name: 'mangalivre',
+  name: 'Mangá Livre',
   domain: 'https://mangalivre.net',
   languages: ['Portuguese'],
   type: 'manga',
