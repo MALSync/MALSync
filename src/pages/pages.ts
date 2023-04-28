@@ -61,7 +61,6 @@ import { LynxScans } from './LynxScans/main';
 import { SKScans } from './SKScans/main';
 import { ZeroScans } from './ZeroScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
-import { SenseScans } from './SenseScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
@@ -197,7 +196,6 @@ export const pages = {
   SKScans,
   ZeroScans,
   DeathTollScans,
-  SenseScans,
   ManhuaPlus,
   Readm,
   tioanime,
