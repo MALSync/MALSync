@@ -110,7 +110,7 @@
     "@popperjs/core": "^2.11.7",
     "@rushstack/eslint-patch": "^1.2.0",
     "@sentry/browser": "^7.29.0",
-    "@types/chrome": "0.0.233",
+    "@types/chrome": "0.0.234",
     "@vue/eslint-config-typescript": "^11.0.3",
     "async-mutex": "^0.4.0",
     "dexie": "^3.2.3",
