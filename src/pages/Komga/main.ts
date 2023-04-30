@@ -138,9 +138,7 @@ export const Komga: pageInterface = {
     function isVolume(jn) {
       if (jn.metadata && jn.metadata.tags && jn.metadata.tags.length) {
         const lowerArray = jn.metadata.tags.map(el => el.toLowerCase());
-        if (lowerArray.includes('volume') || lowerArray.includes('volumes')) {
-          return true;
-        }
+        if (lowerArray.includes('volume') || lowerArray.includes('volumes')) return true;
       }
       return false;
     }
