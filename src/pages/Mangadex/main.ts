@@ -101,6 +101,19 @@ export const Mangadex: pageInterface = {
         },
       },
       {
+        condition: '.md--reader-progress .page-number',
+        current: {
+          selector: '.md--reader-progress .page-number:first-child',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+        total: {
+          selector: '.md--reader-progress .page-number:last-child',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+      {
         current: {
           selector: '.md--reader-pages img',
           mode: 'countAbove',
