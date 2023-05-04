@@ -83,6 +83,7 @@ module.exports = {
       '*://*.fembed9hd.com/*',
       '*://suzihaza.com/v/*',
       '*://vanfem.com/v/*',
+      // auto-gogofembed-replace-dont-remove
     ],
   },
   youpload: {
@@ -496,6 +497,7 @@ module.exports = {
       '*://sblongvu.com/e/*',
       '*://sbchill.com/e/*',
       '*://sbone.pro/e/*',
+      // auto-gogostreamsb-replace-dont-remove
     ],
   },
   // gogo
@@ -513,6 +515,7 @@ module.exports = {
       '*://dood.wf/e/*',
       '*://dood.re/e/*',
       '*://dooood.com/e/*',
+      // auto-gogodood-replace-dont-remove
     ],
   },
   // animedao.to
