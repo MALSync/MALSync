@@ -513,6 +513,7 @@ module.exports = {
       '*://dood.pm/e/*',
       '*://dood.wf/e/*',
       '*://dood.re/e/*',
+      // auto-gogodood-replace-dont-remove
     ],
   },
   // animedao.to

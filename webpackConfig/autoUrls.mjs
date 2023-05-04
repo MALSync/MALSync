@@ -40,6 +40,13 @@ async function gogostream() {
     addPlayerUrls('gogostreamsb', [
         streamsb.hostname + '/e/*',
     ]);
+
+    
+    const dood = new URL($('.anime_muti_link .doodstream [data-video]').attr('data-video'));
+
+    addPlayerUrls('gogodood', [
+        dood.hostname + '/e/*',
+    ]);
 }
 
 // pages
