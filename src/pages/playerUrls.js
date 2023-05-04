@@ -497,6 +497,7 @@ module.exports = {
       '*://sblongvu.com/e/*',
       '*://sbchill.com/e/*',
       '*://sbone.pro/e/*',
+      '*://sbani.pro/e/*',
       // auto-gogostreamsb-replace-dont-remove
     ],
   },
