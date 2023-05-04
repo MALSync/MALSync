@@ -36,16 +36,19 @@ async function gogostream() {
     const $ = cheerio.load(body);
 
     const streamsb = new URL($('.anime_muti_link .streamsb [data-video]').attr('data-video'));
-
     addPlayerUrls('gogostreamsb', [
         streamsb.hostname + '/e/*',
     ]);
 
     
     const dood = new URL($('.anime_muti_link .doodstream [data-video]').attr('data-video'));
-
     addPlayerUrls('gogodood', [
         dood.hostname + '/e/*',
+    ]);
+
+    const fembed = new URL($('.anime_muti_link .xstreamcdn [data-video]').attr('data-video'));
+    addPlayerUrls('gogofembed', [
+        '*.' + fembed.hostname + '/*',
     ]);
 }
 

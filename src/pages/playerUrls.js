@@ -83,6 +83,7 @@ module.exports = {
       '*://*.fembed9hd.com/*',
       '*://suzihaza.com/v/*',
       '*://vanfem.com/v/*',
+      // auto-gogofembed-replace-dont-remove
     ],
   },
   youpload: {
