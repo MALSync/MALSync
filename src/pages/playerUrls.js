@@ -514,6 +514,7 @@ module.exports = {
       '*://dood.pm/e/*',
       '*://dood.wf/e/*',
       '*://dood.re/e/*',
+      '*://dooood.com/e/*',
       // auto-gogodood-replace-dont-remove
     ],
   },
@@ -617,6 +618,7 @@ module.exports = {
       '*://matriculant401merited.com/e/*',
       '*://scatch176duplicities.com/e/*',
       '*://35volitantplimsoles5.com/e/*',
+      '*://tummulerviolableness.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
