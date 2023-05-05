@@ -67,6 +67,14 @@
         "message": "Removed",
         "description": "Flash message that shows up after removing an anime/manga entry from user list"
     },
+    "next": {
+        "message": "Next",
+        "description": "Next button"
+    },
+    "back": {
+        "message": "Back",
+        "description": "Back button"
+    },
     "NothingFound": {
         "message": "Nothing Found",
         "description": "Nothing Found"
@@ -1322,6 +1330,10 @@
     "minimalClass_versionMsg_Text_1": {
         "message": "Thank you for installing MAL-Sync",
         "description": "Update version - Text 1"
+    },
+    "installPage_Start_Description": {
+        "message": "Let’s do a simple briefing to get you started - takes less than a minute!",
+        "description": "Start description text"
     },
     "installPage_Mode": {
         "message": "Select which anime database you want to use",

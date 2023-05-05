@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="button-section" style="visibility: hidden">
-        <FormButton color="default" @click="$emit('back')"> Back </FormButton>
+        <FormButton color="default" @click="$emit('back')"> {{ lang('back') }} </FormButton>
         <MediaLink :href="parameters.listObj.authenticationUrl" class="button-next">
           <FormButton color="secondary" class="button-next">
             <TextIcon icon="login">{{ lang('settings_Authenticate') }}</TextIcon>

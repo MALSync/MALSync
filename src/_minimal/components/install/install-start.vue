@@ -3,7 +3,7 @@
     <Header :spacer="true"> 🎉 {{ lang('minimalClass_versionMsg_Text_1') }} </Header>
     <Section>
       <p>
-        <strong> Let’s do a simple briefing to get you started — takes less than a minute! </strong>
+        <strong> {{ lang('installPage_Start_Description').replace('-', '—') }} </strong>
       </p>
     </Section>
   </div>

@@ -7,14 +7,16 @@
         <div :style="`width: 1000px; flex-grow: ${page.buttons ? '1' : '0'}`"></div>
         <component :is="!page.card ? Card : 'div'" v-if="page.buttons">
           <div class="button-section">
-            <FormButton v-if="current" class="open-button" @click="current--"> Back </FormButton>
+            <FormButton v-if="current" class="open-button" @click="current--">
+              {{ lang('back') }}
+            </FormButton>
             <FormButton
               v-if="!lastPage && page.buttons !== 'back'"
               class="open-button button-next"
               color="primary"
               @click="current++"
             >
-              Next
+              {{ lang('next') }}
             </FormButton>
           </div>
         </component>
