@@ -1344,7 +1344,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "The sync with the database happens only when you open an episode or chapter on any of the $Link1$supported pages$LinkEnd1$ — no worries, we definitely have your favorite website in the list!",
+        "message": "The sync with the database only happens when you open an episode or chapter on any of the $Link1$supported pages$LinkEnd1$ — no worries, we definitely have your favorite website in the list!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -1356,6 +1356,18 @@
                 "example": "</a>"
             }
         }
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "The sync waits until 85% of the video is watched.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "The sync happens on page load and for a few pages it waits until 80% of the chapter is read.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "Synchronization can be configured in the settings later - feel free to customize it your way!",
+        "description": "The synchronization settings can be changed later"
     },
     "installPage_Wrong": {
         "message": "Learn how to fix wrong MAL relations",

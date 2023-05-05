@@ -4,16 +4,15 @@
     <Section>
       <p v-dompurify-html="lang('installPage_Howto_Description')"></p>
       <p>
-        <strong>For anime:</strong><br />
-        The sync waits until 85% of the video is watched.
+        <strong>{{ lang('Anime') }}:</strong><br />
+        {{ lang('installPage_Howto_Anime_Description') }}
       </p>
       <p>
-        <strong>For manga:</strong><br />
-        The sync happens on page load.
+        <strong>{{ lang('Manga') }}:</strong><br />
+        {{ lang('installPage_Howto_Manga_Description') }}
       </p>
       <p>
-        Synchronization can be configured in the settings later — feel free to customize it your
-        way!
+        {{ lang('installPage_Howto_Notes').replace('-', '—') }}
       </p>
     </Section>
   </div>
