@@ -66,6 +66,12 @@ export async function apiCall(options: {
         res = JSON.parse(response.responseText);
       }
 
+      if (response.status === 401) {
+        if (options.auth) throw new NotAutenticatedError(res.message ?? res.error);
+        await refreshToken(token.refresh_token);
+        return apiCall(options);
+      }
+
       if (res && res.error) {
         switch (res.error) {
           case 'forbidden':
