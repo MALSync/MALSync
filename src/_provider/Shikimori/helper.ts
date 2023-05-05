@@ -4,11 +4,11 @@ import { Cache } from '../../utils/Cache';
 
 const clientId = 'z3NJ84kK9iy5NU6SnhdCDB38rr4-jFIJ67bMIUDzdoo';
 
-export const authUrl = `https://shikimori.one/oauth/authorize?client_id=${clientId}&redirect_uri=https%3A%2F%2Fmalsync.moe%2Fshikimori%2Foauth&response_type=code&scope=user_rates`;
+export const authUrl = `https://shikimori.me/oauth/authorize?client_id=${clientId}&redirect_uri=https%3A%2F%2Fmalsync.moe%2Fshikimori%2Foauth&response_type=code&scope=user_rates`;
 
-const apiDomain = 'https://shikimori.one/api/';
+const apiDomain = 'https://shikimori.me/api/';
 
-export const domain = 'https://shikimori.one';
+export const domain = 'https://shikimori.me';
 
 export async function apiCall(options: {
   type: 'GET' | 'PUT' | 'DELETE' | 'POST';
@@ -47,7 +47,7 @@ export async function apiCall(options: {
 
   if (options.auth) {
     delete headers.Authorization;
-    url = 'https://shikimori.one/oauth/token';
+    url = 'https://shikimori.me/oauth/token';
   }
 
   return api.request
@@ -64,6 +64,12 @@ export async function apiCall(options: {
       let res: any = null;
       if (response.responseText) {
         res = JSON.parse(response.responseText);
+      }
+
+      if (response.status === 401) {
+        if (options.auth) throw new NotAutenticatedError(res.message ?? res.error);
+        await refreshToken(token.refresh_token);
+        return apiCall(options);
       }
 
       if (res && res.error) {
@@ -117,7 +123,12 @@ export function authRequest(data: { code: string } | { refresh_token: string }) 
 }
 
 async function refreshToken(refresh_token: string) {
-  const res = authRequest({ refresh_token });
+  const res = await authRequest({ refresh_token }).catch(err => {
+    if (err.message === 'invalid_request') {
+      api.settings.set('shikiToken', '');
+    }
+    throw err;
+  });
   await api.settings.set('shikiToken', {
     access_token: res.access_token,
     refresh_token: res.refresh_token,
