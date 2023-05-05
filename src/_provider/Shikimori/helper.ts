@@ -117,7 +117,12 @@ export function authRequest(data: { code: string } | { refresh_token: string }) 
 }
 
 async function refreshToken(refresh_token: string) {
-  const res = authRequest({ refresh_token });
+  const res = await authRequest({ refresh_token }).catch(err => {
+    if (err.message === 'invalid_request') {
+      api.settings.set('shikiToken', '');
+    }
+    throw err;
+  });
   await api.settings.set('shikiToken', {
     access_token: res.access_token,
     refresh_token: res.refresh_token,
