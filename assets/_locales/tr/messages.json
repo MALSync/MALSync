@@ -64,7 +64,7 @@
         "description": "All"
     },
     "Package_Description": {
-        "message": "MAL/AniList/Kitsu/Simkl'yu otomatik bölüm takibi ile çeşitli sitelere entegre eder.",
+        "message": "MAL/AniList/Kitsu/Simkl/Shikimori'yi otomatik bölüm takibi ile çeşitli sitelere entegre eder.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -312,7 +312,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Token kaydedildi sayfayı kapatabilirsin",
+        "message": "Token kaydedildi, sayfayı kapatabilirsin.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -903,20 +903,6 @@
         "message": "Kolaylıkla anime ilişkilerini alttaki GIF'te gösterildiği gibi değiştirebilirsiniz. Bir bölüm kaymasını da bu sayfadan ayarlayabilirsiniz.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Lütfen $Link1$buradan$Link2$doğrulamayı halledin",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "MAL-Sync çalışması için bir Emby API anahtarına ihtiyaç duyar. Daha fazla bilgi için $Link1$şuraya tıklayın$Link2$",
         "description": "Emby Authentication",
@@ -1342,5 +1328,37 @@
     "filler_filler_confirm": {
         "message": "Bu bölüm MyAnimeList'te filler olarak işaretlendi, geçmek istiyor musun?",
         "description": "Question if the user wants to skip the filler"
+    },
+    "list_sorting_history": {
+        "message": "En son güncellenenler",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "settings_theming_theme_system": {
+        "message": "Sistem",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "Beyaz",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Siyah",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Özel",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "list_sorting_unread": {
+        "message": "Okunmadı",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "list_sorting_alpha": {
+        "message": "Alfabetik",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "list_sorting_score": {
+        "message": "Skor",
+        "description": "Dropdown option to sort list by score"
     }
 }

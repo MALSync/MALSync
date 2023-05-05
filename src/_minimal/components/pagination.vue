@@ -19,11 +19,16 @@ const props = defineProps({
     type: Number,
     default: 10,
   },
+  openAll: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const page = ref(1);
 
 const pageElements = computed(() => {
+  if (props.openAll && page.value > 1) return props.elements;
   const start = (page.value - 1) * props.entriesPerPage;
   const end = start + props.entriesPerPage;
   return props.elements.slice(0, end);

@@ -1,0 +1,30 @@
+{
+  "title": "projectsuki",
+  "url": "https://projectsuki.com",
+  "testCases": [
+    {
+      "url": "https://projectsuki.com/read/207974/23627/1",
+      "expected": {
+        "sync": true,
+        "title": "Return Past Life Regressor (2022)",
+        "identifier": "207974",
+        "overviewUrl": "https://projectsuki.com/book/207974",
+        "nextEpUrl": "https://projectsuki.com/read/207974/23628/1",
+        "episode": 15,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://projectsuki.com/read/191537/21781/1",
+      "expected": {
+        "sync": true,
+        "title": "Return Tale of a Scribe Who Retires to the Countryside",
+        "identifier": "191537",
+        "overviewUrl": "https://projectsuki.com/book/191537",
+        "nextEpUrl": "https://projectsuki.com/read/191537/21829/1",
+        "episode": 139,
+        "uiSelector": true
+      }
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   <div class="book-element">
     <ImageLazy class="img" :src="item.image" mode="cover" />
     <div class="gradient" :class="`gradient-${item.status}`" />
-    <MediaLink class="link" :href="item.url" />
+    <MediaLink class="link" :href="item.url" :title="item.title" />
     <div class="on-hover">
       <MediaPill :score="item.score" />
       <MediaPill

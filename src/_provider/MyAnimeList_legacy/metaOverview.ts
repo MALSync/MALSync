@@ -198,7 +198,10 @@ export class MetaOverview extends MetaOverviewAbstract {
         } else if (aTags.length === textTags.length) {
           body = aTags.map((i, el) => {
             // @ts-ignore
-            el.subtext = textTags[i].trim();
+            el.subtext = textTags[i]
+              .trim()
+              .replace(/(^\(|\)$)/gi, '')
+              .trim();
             return el;
           });
         } else {

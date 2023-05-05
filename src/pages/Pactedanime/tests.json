@@ -1,0 +1,18 @@
+{
+    "title": "Pactedanime",
+    "url": "https://pactedanime.com",
+    "testCases": [
+      {
+        "url": "https://pactedanime.com/episodes/arifureta-from-commonplace-to-worlds-strongest-1x2/",
+        "expected": {
+          "sync": true,
+          "title": "Arifureta: From Commonplace to World’s Strongest",
+          "identifier": "Arifureta: From Commonplace to World’s Strongest",
+          "overviewUrl": "https://pactedanime.com/anime/arifureta-from-commonplace-to-worlds-strongest/",
+          "nextEpUrl": "https://pactedanime.com/episodes/arifureta-from-commonplace-to-worlds-strongest-1x3/",
+          "episode": 2,
+          "uiSelector": false
+        }
+      }
+    ]
+  }

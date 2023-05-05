@@ -155,25 +155,25 @@ export class MetaOverview extends MetaOverviewAbstract {
   private statistics() {
     if (this.animeI().attributes.averageRating !== null)
       this.meta.statistics.push({
-        title: 'Score:',
+        title: api.storage.lang('overview_sidebar_Score'),
         body: this.animeI().attributes.averageRating,
       });
 
     if (this.animeI().attributes.ratingRank !== null)
       this.meta.statistics.push({
-        title: 'Ranked:',
+        title: api.storage.lang('overview_sidebar_Ranked'),
         body: `#${this.animeI().attributes.ratingRank}`,
       });
 
     if (this.animeI().attributes.popularityRank !== null)
       this.meta.statistics.push({
-        title: 'Popularity:',
+        title: api.storage.lang('overview_sidebar_Popularity'),
         body: `#${this.animeI().attributes.popularityRank}`,
       });
 
     if (this.animeI().attributes.userCount !== null)
       this.meta.statistics.push({
-        title: 'Members:',
+        title: api.storage.lang('overview_sidebar_Members'),
         body: this.animeI().attributes.userCount,
       });
   }
@@ -186,7 +186,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       let format = this.animeI().attributes.subtype.toLowerCase().replace('_', ' ');
       format = format.charAt(0).toUpperCase() + format.slice(1);
       this.meta.info.push({
-        title: 'Format:',
+        title: api.storage.lang('overview_sidebar_Format'),
         body: [{ text: format }],
       });
     }
@@ -196,7 +196,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeI().attributes.episodeCount !== null
     )
       this.meta.info.push({
-        title: 'Episodes:',
+        title: api.storage.lang('overview_sidebar_Episodes'),
         body: [{ text: this.animeI().attributes.episodeCount }],
       });
 
@@ -205,7 +205,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeI().attributes.episodeLength !== null
     )
       this.meta.info.push({
-        title: 'Episode Duration:',
+        title: api.storage.lang('overview_sidebar_Duration'),
         body: [{ text: `${this.animeI().attributes.episodeLength} mins` }],
       });
 
@@ -216,7 +216,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       let status = this.animeI().attributes.status.toLowerCase().replace('_', ' ');
       status = status.charAt(0).toUpperCase() + status.slice(1);
       this.meta.info.push({
-        title: 'Status:',
+        title: api.storage.lang('overview_sidebar_Status'),
         body: [{ text: status }],
       });
     }
@@ -226,7 +226,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeI().attributes.startDate !== null
     )
       this.meta.info.push({
-        title: 'Start Date:',
+        title: api.storage.lang('overview_sidebar_Start_Date'),
         body: [{ text: this.animeI().attributes.startDate }],
       });
 
@@ -235,7 +235,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeI().attributes.endDate !== null
     )
       this.meta.info.push({
-        title: 'Start Date:',
+        title: api.storage.lang('overview_sidebar_End_Date'),
         body: [{ text: this.animeI().attributes.endDate }],
       });
 
@@ -252,7 +252,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
     if (genres.length)
       this.meta.info.push({
-        title: 'Genres:',
+        title: api.storage.lang('overview_sidebar_Genres'),
         body: genres,
       });
 
@@ -261,7 +261,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeI().attributes.ageRating !== null
     )
       this.meta.info.push({
-        title: 'Rating:',
+        title: api.storage.lang('overview_sidebar_Rating'),
         body: [{ text: this.animeI().attributes.ageRating }],
       });
 
@@ -270,7 +270,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeI().attributes.totalLength !== null
     )
       this.meta.info.push({
-        title: 'Total playtime:',
+        title: api.storage.lang('overview_sidebar_Total_Playtime'),
         body: [{ text: `${this.animeI().attributes.totalLength} mins` }],
       });
   }

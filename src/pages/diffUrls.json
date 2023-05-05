@@ -1,27 +1,4 @@
 {
-  "0.8.21": {
-    "Gogoanime": [
-      "https://gogoanime.lu/*"
-    ],
-    "iframe": [
-      "https://vidstreaming1.xyz/*",
-      "https://vizcloud.store/embed/*",
-      "https://vizcloud.store/e/*",
-      "https://vizcloud.site/embed/*",
-      "https://vizcloud.site/e/*",
-      "https://sbfull.com/e/*",
-      "https://voeunblock3.com/e/*",
-      "https://voeunbl0ck.com/e/*",
-      "https://voeunblck.com/e/*",
-      "https://voeunblk.com/e/*",
-      "https://voe-un-block.com/e/*",
-      "https://voeun-block.net/e/*",
-      "https://un-block-voe.net/e/*",
-      "https://v-o-e-unblock.com/e/*",
-      "https://audaciousdefaulthouse.com/e/*",
-      "https://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*"
-    ]
-  },
   "0.8.22": {
     "Aniflix": [
       "https://aniflix.cc/*"
@@ -124,8 +101,79 @@
     ]
   },
   "0.9.2": {
+    "Gogoanime": [
+      "https://gogoanime.gr/*",
+      "https://gogoanime.llc/*"
+    ],
+    "MangasOrigines": [
+      "https://mangas-origines.fr/manga*"
+    ],
+    "Voiranime": [
+      "https://v2.voiranime.com/*"
+    ],
+    "YugenAnime": [
+      "https://yugenanime.ro/*"
+    ],
+    "Zoro": [
+      "https://zoro.moe/*",
+      "https://zoro.sx/*",
+      "https://zoro.pm/*"
+    ],
     "iframe": [
-      "https://321naturelikefurfuroid.com/e/*"
+      "https://myvi.tv/*",
+      "https://suzihaza.com/v/*",
+      "https://vanfem.com/v/*",
+      "https://playgo1.cc/embedplus*",
+      "https://playgo1.cc/streaming.php?*",
+      "https://playgo1.cc/load.php?*",
+      "https://playgo1.cc/loadserver.php?*",
+      "https://anihdplay.com/embedplus*",
+      "https://anihdplay.com/streaming.php?*",
+      "https://anihdplay.com/load.php?*",
+      "https://anihdplay.com/loadserver.php?*",
+      "https://vizcloud.co/embed/*",
+      "https://vizcloud.co/e/*",
+      "https://sbchill.com/e/*",
+      "https://vidmoly.to/*",
+      "https://321naturelikefurfuroid.com/e/*",
+      "https://449unceremoniousnasoseptal.com/e/*",
+      "https://guidon40hyporadius9.com/e/*",
+      "https://cyamidpulverulence530.com/e/*",
+      "https://boonlessbestselling244.com/e/*",
+      "https://antecoxalbobbing1010.com/e/*",
+      "https://matriculant401merited.com/e/*",
+      "https://scatch176duplicities.com/e/*",
+      "https://yugenanime.ro/e/*",
+      "https://www.turkanime.co/embed/*",
+      "https://aniyan.net/jwplayer/*",
+      "https://googlevideo.com/videoplayback?*",
+      "https://streamhide.to/e/*"
+    ]
+  },
+  "0.9.3": {
+    "Gogoanime": [
+      "https://gogoanime.cl/*"
+    ],
+    "Kaguya": [
+      "https://kaguya.app/*"
+    ],
+    "Voiranime": [
+      "https://v3.voiranime.com/*"
+    ],
+    "nineAnime": [
+      "https://9animehq.to/watch/*",
+      "https://9animehq.to/watch2gether/*"
+    ],
+    "iframe": [
+      "https://playtaku.net/embedplus*",
+      "https://playtaku.net/streaming.php?*",
+      "https://playtaku.net/load.php?*",
+      "https://playtaku.net/loadserver.php?*",
+      "https://sbone.pro/e/*",
+      "https://sbani.pro/e/*",
+      "https://dooood.com/e/*",
+      "https://35volitantplimsoles5.com/e/*",
+      "https://tummulerviolableness.com/e/*"
     ]
   }
 }

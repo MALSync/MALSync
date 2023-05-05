@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://www.bluesolo.org/manga/*"]
+    "match": ["*://*.bluesolo.org/manga/*"]
   }
 }

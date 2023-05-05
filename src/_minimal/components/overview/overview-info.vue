@@ -12,6 +12,7 @@
             <span v-else>
               {{ link.text }}
             </span>
+            <span v-if="link.subtext" class="subtext">({{ link.subtext }})</span>
             <span v-if="Number(index) + 1 < item.body.length">, </span>
           </template>
         </div>
@@ -145,5 +146,10 @@ function getTitle(item) {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.subtext {
+  margin-left: 3px;
+  font-size: @small-text;
 }
 </style>

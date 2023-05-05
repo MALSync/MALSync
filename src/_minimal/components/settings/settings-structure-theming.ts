@@ -7,19 +7,19 @@ export const theming: ConfObj[] = [
   {
     key: 'theme',
     title: () => api.storage.lang('settings_miniMAL_theme'),
-    props: {
+    props: () => ({
       component: 'dropdown',
       option: 'theme',
       props: {
         options: [
-          { title: 'System', value: 'auto' },
-          { title: 'Light', value: 'light' },
-          { title: 'Dark', value: 'dark' },
+          { title: api.storage.lang('settings_theming_theme_system'), value: 'auto' },
+          { title: api.storage.lang('settings_theming_theme_light'), value: 'light' },
+          { title: api.storage.lang('settings_theming_theme_dark'), value: 'dark' },
           ...themeOptions,
-          { title: 'Custom', value: 'custom' },
+          { title: api.storage.lang('settings_theming_theme_custom'), value: 'custom' },
         ],
       },
-    },
+    }),
     component: SettingsGeneral,
   },
   {

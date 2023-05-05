@@ -26,7 +26,10 @@
       "*://*.gogoanime.ar/*",
       "*://*.gogoanime.bid/*",
       "*://*.gogoanimes.co/*",
-      "*://*.animego.to/*"
+      "*://*.animego.to/*",
+      "*://*.gogoanime.gr/*",
+      "*://*.gogoanime.llc/*",
+      "*://*.gogoanime.cl/*"
     ]
   }
 }

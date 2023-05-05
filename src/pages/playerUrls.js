@@ -42,7 +42,7 @@ module.exports = {
     match: ['*://*.mail.ru/*'],
   },
   myvi: {
-    match: ['*://*.myvi.ru/*', '*://www.myvi.tv/embed/*'],
+    match: ['*://*.myvi.ru/*', '*://*.myvi.tv/*'],
   },
   sibnet: {
     match: ['*://*.sibnet.ru/*'],
@@ -81,6 +81,9 @@ module.exports = {
       '*://*.diasfem.com/*',
       '*://*.fembed-hd.com/*',
       '*://*.fembed9hd.com/*',
+      '*://suzihaza.com/v/*',
+      '*://vanfem.com/v/*',
+      // auto-gogofembed-replace-dont-remove
     ],
   },
   youpload: {
@@ -413,6 +416,19 @@ module.exports = {
       '*://*.gembedhd.com/streaming.php?*',
       '*://*.gembedhd.com/load.php?*',
       '*://*.gembedhd.com/loadserver.php?*',
+      '*://*.playgo1.cc/embedplus*',
+      '*://*.playgo1.cc/streaming.php?*',
+      '*://*.playgo1.cc/load.php?*',
+      '*://*.playgo1.cc/loadserver.php?*',
+      '*://*.anihdplay.com/embedplus*',
+      '*://*.anihdplay.com/streaming.php?*',
+      '*://*.anihdplay.com/load.php?*',
+      '*://*.anihdplay.com/loadserver.php?*',
+      '*://*.playtaku.net/embedplus*',
+      '*://*.playtaku.net/streaming.php?*',
+      '*://*.playtaku.net/load.php?*',
+      '*://*.playtaku.net/loadserver.php?*',
+      // auto-gogostream-replace-dont-remove
     ],
   },
   // bs.to
@@ -454,6 +470,8 @@ module.exports = {
       '*://vizcloud.store/e/*',
       '*://vizcloud.site/embed/*',
       '*://vizcloud.site/e/*',
+      '*://vizcloud.co/embed/*',
+      '*://vizcloud.co/e/*',
     ],
   },
   // gogo
@@ -477,6 +495,10 @@ module.exports = {
       '*://streamsss.net/*',
       '*://sbanh.com/e/*',
       '*://sblongvu.com/e/*',
+      '*://sbchill.com/e/*',
+      '*://sbone.pro/e/*',
+      '*://sbani.pro/e/*',
+      // auto-gogostreamsb-replace-dont-remove
     ],
   },
   // gogo
@@ -493,6 +515,8 @@ module.exports = {
       '*://dood.pm/e/*',
       '*://dood.wf/e/*',
       '*://dood.re/e/*',
+      '*://dooood.com/e/*',
+      // auto-gogodood-replace-dont-remove
     ],
   },
   // animedao.to
@@ -527,9 +551,13 @@ module.exports = {
   saruch: {
     match: ['*://saruch.co/*'],
   },
-  // animewho
+  // animewho voiranime
   vidmoly: {
-    match: ['*://vidmoly.me/*'],
+    match: [
+      '*://vidmoly.me/*',
+      '*://vidmoly.to/*',
+      // auto-vidmoly-replace-dont-remove
+    ],
   },
   // animewho
   upstream: {
@@ -583,6 +611,16 @@ module.exports = {
       '*://19turanosephantasia.com/e/*',
       '*://30sensualizeexpression.com/e/*',
       '*://321naturelikefurfuroid.com/e/*',
+      '*://449unceremoniousnasoseptal.com/e/*',
+      '*://guidon40hyporadius9.com/e/*',
+      '*://cyamidpulverulence530.com/e/*',
+      '*://boonlessbestselling244.com/e/*',
+      '*://antecoxalbobbing1010.com/e/*',
+      '*://matriculant401merited.com/e/*',
+      '*://scatch176duplicities.com/e/*',
+      '*://35volitantplimsoles5.com/e/*',
+      '*://tummulerviolableness.com/e/*',
+      // auto-voe-replace-dont-remove
     ],
   },
   // animewho
@@ -607,11 +645,11 @@ module.exports = {
   },
   // yugenanime
   yugenanime: {
-    match: ['*://yugenani.me/e/*', '*://yugen.to/e/*'],
+    match: ['*://yugenani.me/e/*', '*://yugen.to/e/*', '*://yugenanime.ro/e/*'],
   },
   // kickassanime
   kaaplay: {
-    match: ['*://kaa-play.com/*', '*://kaa-play.me/*', '*://kaaplayer.com/*'],
+    match: ['*://kaa-play.com/*', '*://kaa-play.me/*', '*://kaaplayer.com/*', '*://kaavid.com/*'],
   },
   // kickassanime
   betaplayer: {
@@ -695,7 +733,11 @@ module.exports = {
   },
   // turkanime
   turkanime: {
-    match: ['*://*.turkanime.net/player/*', '*://*.turkanime.co/player/*'],
+    match: [
+      '*://*.turkanime.net/player/*',
+      '*://*.turkanime.co/player/*',
+      '*://*.turkanime.co/embed/*',
+    ],
   },
   // turkanime
   cozyplayer: {
@@ -757,10 +799,6 @@ module.exports = {
   kanra: {
     match: ['*://kanra.dev/*'],
   },
-  // simplyaweeb
-  simplyaweeb: {
-    match: ['*://player.simplyaweeb.to/*', '*://stream.simplyaweeb.to/*'],
-  },
   // animeworld
   animeworld: {
     match: ['*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*'],
@@ -776,5 +814,17 @@ module.exports = {
   // animedao
   animedao: {
     match: ['*://animedao.to/redirect/*'],
+  },
+  // aniyan
+  aniyan: {
+    match: ['*://aniyan.net/jwplayer/*'],
+  },
+  // animelon
+  animelon: {
+    match: ['*://*.googlevideo.com/videoplayback?*'],
+  },
+  // voiranime
+  streamhide: {
+    match: ['*://*.streamhide.to/e/*'],
   },
 };

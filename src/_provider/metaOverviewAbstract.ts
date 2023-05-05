@@ -51,7 +51,50 @@ export interface Overview {
       };
     }[];
   }[];
+  recommendations?: Recommendation[];
+  reviews?: Review[];
 }
+
+export type Recommendation = {
+  entry: {
+    title: string;
+    url: string;
+    image: string;
+    list?: {
+      status: number;
+      score: number;
+      episode: number;
+    };
+  };
+  stats?: {
+    users: string;
+  };
+  user?: {
+    name: string;
+    href: string;
+  };
+  body?: {
+    text: string;
+    more: {
+      url: string;
+      number: number;
+    };
+  };
+};
+
+export type Review = {
+  user: {
+    name: string;
+    image: string;
+    href: string;
+  };
+  body: {
+    people: number;
+    date: string;
+    rating: number;
+    text: string;
+  };
+};
 
 export abstract class MetaOverviewAbstract {
   constructor(protected url: string) {

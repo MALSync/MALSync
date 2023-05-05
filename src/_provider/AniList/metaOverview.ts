@@ -1,6 +1,7 @@
-import { MetaOverviewAbstract } from '../metaOverviewAbstract';
+import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import { timestampToShortDate } from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -45,6 +46,8 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.statistics(data);
     this.info(data);
     this.related(data);
+    this.reviews(data);
+    this.recommendations(data);
 
     this.logger.log('Res', this.meta);
   }
@@ -80,7 +83,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           english
           native
         }
-        characters (perPage: 6, sort: [ROLE, ID]) {
+        characters (perPage: 8, sort: [ROLE, ID]) {
             edges {
                 id
                 role
@@ -148,6 +151,54 @@ export class MetaOverview extends MetaOverviewAbstract {
                 }
             }
         }
+        reviews {
+            nodes {
+                rating
+                createdAt
+                score
+                body(asHtml: true)
+                user {
+                    name
+                    siteUrl
+                    avatar {
+                      medium
+                    }
+                }
+
+            }
+        }
+        recommendations (sort: [RATING_DESC]) {
+            nodes {
+                rating
+                mediaRecommendation {
+                    title {
+                        userPreferred
+                    }
+                    siteUrl
+                    coverImage {
+                        large
+                    }
+                }
+            }
+        }
+        ${
+          this.type === 'manga'
+            ? `
+        staff {
+            edges {
+                id
+                role
+                node {
+                    siteUrl
+                    name {
+                        userPreferred
+                    }
+                }
+            }
+        }
+          `
+            : ''
+        }
         source(version: 2)
         genres
         externalLinks {
@@ -162,7 +213,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       type: this.type.toUpperCase(),
     };
 
-    return this.apiCall(query, variables, true);
+    return this.apiCall(query, variables);
   }
 
   private title(data) {
@@ -176,10 +227,10 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private image(data) {
-    const image = data?.data?.Media?.coverImage?.large;
+    const image = helper.imgCheck(data?.data?.Media?.coverImage?.large);
     if (image) this.meta.image = image;
-    this.meta.imageLarge = data?.data?.Media?.coverImage?.extraLarge || image;
-    this.meta.imageBanner = data?.data?.Media?.bannerImage;
+    this.meta.imageLarge = helper.imgCheck(data?.data?.Media?.coverImage?.extraLarge) || image;
+    this.meta.imageBanner = helper.imgCheck(data?.data?.Media?.bannerImage);
   }
 
   private alternativeTitle(data) {
@@ -209,7 +260,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           role = i.role.charAt(0).toUpperCase() + i.role.slice(1).toLowerCase();
         }
         this.meta.characters.push({
-          img: i.node.image.large,
+          img: helper.imgCheck(i.node.image.large),
           name,
           subtext: role,
           url: i.node.siteUrl,
@@ -221,19 +272,19 @@ export class MetaOverview extends MetaOverviewAbstract {
   private statistics(data) {
     if (data.data.Media.averageScore)
       this.meta.statistics.push({
-        title: 'Score:',
+        title: api.storage.lang('overview_sidebar_Score'),
         body: data.data.Media.averageScore,
       });
 
     if (data.data.Media.favourites)
       this.meta.statistics.push({
-        title: 'Favourites:',
+        title: api.storage.lang('overview_sidebar_Favorites'),
         body: data.data.Media.favourites,
       });
 
     if (data.data.Media.popularity)
       this.meta.statistics.push({
-        title: 'Popularity:',
+        title: api.storage.lang('overview_sidebar_Popularity'),
         body: data.data.Media.popularity,
       });
 
@@ -241,6 +292,8 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (this.meta.statistics.length < 4 && i.allTime) {
         let title = `${i.context.replace('all time', '').trim()}:`;
         title = title.charAt(0).toUpperCase() + title.slice(1);
+
+        if (title === 'Highest rated:') title = api.storage.lang('overview_sidebar_Ranked');
 
         this.meta.statistics.push({
           title,
@@ -255,20 +308,20 @@ export class MetaOverview extends MetaOverviewAbstract {
       let format = data.data.Media.format.toLowerCase().replace('_', ' ');
       format = format.charAt(0).toUpperCase() + format.slice(1);
       this.meta.info.push({
-        title: 'Format:',
+        title: api.storage.lang('overview_sidebar_Format'),
         body: [{ text: format }],
       });
     }
 
     if (data.data.Media.episodes)
       this.meta.info.push({
-        title: 'Episodes:',
+        title: api.storage.lang('overview_sidebar_Episodes'),
         body: [{ text: data.data.Media.episodes }],
       });
 
     if (data.data.Media.duration)
       this.meta.info.push({
-        title: 'Episode Duration:',
+        title: api.storage.lang('overview_sidebar_Duration'),
         body: [{ text: `${data.data.Media.duration} mins` }],
       });
 
@@ -276,14 +329,14 @@ export class MetaOverview extends MetaOverviewAbstract {
       let status = data.data.Media.status.toLowerCase().replace('_', ' ');
       status = status.charAt(0).toUpperCase() + status.slice(1);
       this.meta.info.push({
-        title: 'Status:',
+        title: api.storage.lang('overview_sidebar_Status'),
         body: [{ text: status }],
       });
     }
 
     if (data.data.Media.startDate.year)
       this.meta.info.push({
-        title: 'Start Date:',
+        title: api.storage.lang('overview_sidebar_Start_Date'),
         body: [
           {
             text: `${data.data.Media.startDate.year}-${data.data.Media.startDate.month}-${data.data.Media.startDate.day}`,
@@ -293,7 +346,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.data.Media.endDate.year)
       this.meta.info.push({
-        title: 'End Date:',
+        title: api.storage.lang('overview_sidebar_End_Date'),
         body: [
           {
             text: `${data.data.Media.endDate.year}-${data.data.Media.endDate.month}-${data.data.Media.endDate.day}`,
@@ -306,7 +359,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       season = season.charAt(0).toUpperCase() + season.slice(1);
       if (data.data.Media.endDate.year) season += ` ${data.data.Media.endDate.year}`;
       this.meta.info.push({
-        title: 'Season:',
+        title: api.storage.lang('overview_sidebar_Season'),
         body: [{ text: season }],
       });
     }
@@ -322,15 +375,39 @@ export class MetaOverview extends MetaOverviewAbstract {
     });
     if (studios.length)
       this.meta.info.push({
-        title: 'Studios:',
+        title: api.storage.lang('overview_sidebar_Studios'),
         body: studios,
       });
+
+    if (data.data.Media.staff && data.data.Media.staff.edges.length) {
+      const authors: any[] = [];
+      data.data.Media.staff.edges
+        .filter(author => {
+          return !['Editing', 'Translator', 'Lettering', 'Touch-up'].find(ignore =>
+            author.role.toLowerCase().includes(ignore.toLowerCase()),
+          );
+        })
+        .forEach(author => {
+          const role = author.role.replace(/(original|design|\([^)]*\))/gi, '').trim();
+
+          authors.push({
+            text: author.node.name.userPreferred,
+            url: author.node.siteUrl,
+            subtext: role || '',
+          });
+        });
+      if (authors.length)
+        this.meta.info.push({
+          title: api.storage.lang('overview_sidebar_Authors'),
+          body: authors,
+        });
+    }
 
     if (data.data.Media.source) {
       let source = data.data.Media.source.toLowerCase().replace('_', ' ');
       source = source.charAt(0).toUpperCase() + source.slice(1);
       this.meta.info.push({
-        title: 'Source:',
+        title: api.storage.lang('overview_sidebar_Source'),
         body: [{ text: source }],
       });
     }
@@ -344,7 +421,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         });
       });
       this.meta.info.push({
-        title: 'Genres:',
+        title: api.storage.lang('overview_sidebar_Genres'),
         body: gen,
       });
     }
@@ -358,7 +435,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     });
     if (external.length)
       this.meta.info.push({
-        title: 'External Links:',
+        title: api.storage.lang('overview_sidebar_external_links'),
         body: external,
       });
   }
@@ -383,6 +460,43 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     });
     this.meta.related = Object.keys(links).map(key => links[key]);
+  }
+
+  private reviews(data) {
+    const reviews: Review[] = [];
+    data.data.Media.reviews.nodes.forEach(i => {
+      reviews.push({
+        body: {
+          people: i.rating,
+          date: timestampToShortDate(i.createdAt * 1000),
+          rating: i.score,
+          text: i.body,
+        },
+        user: {
+          name: i.user.name,
+          image: i.user.avatar.medium,
+          href: i.user.siteUrl,
+        },
+      });
+    });
+    this.meta.reviews = reviews;
+  }
+
+  private recommendations(data) {
+    const recommendations: Recommendation[] = [];
+    data.data.Media.recommendations.nodes.forEach(i => {
+      recommendations.push({
+        entry: {
+          title: i.mediaRecommendation.title.userPreferred,
+          url: i.mediaRecommendation.siteUrl,
+          image: i.mediaRecommendation.coverImage.large,
+        },
+        stats: {
+          users: i.rating,
+        },
+      });
+    });
+    this.meta.recommendations = recommendations;
   }
 
   protected apiCall = helper.apiCall;

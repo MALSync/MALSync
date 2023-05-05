@@ -24,6 +24,7 @@ const open = ref(false);
 .horizontal-scroller {
   white-space: nowrap;
   overflow: hidden;
+
   @media (hover: none) {
     @gradient: linear-gradient(270deg, transparent, #000 100px);
 

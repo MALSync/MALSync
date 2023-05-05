@@ -2,23 +2,23 @@
   "title": "kickassanime",
   "url": "https://www.kickassanime.ro/",
   "testCases": [
-    // {
-    //   url: 'https://www17.kickassanime.ro/anime/overlord-iii-954770/episode-10-439507',
-    //   expected: {
-    //     sync: true,
-    //     title: 'Overlord III',
-    //     identifier: 'overlord-iii-954770',
-    //     overviewUrl: 'https://www17.kickassanime.ro/anime/overlord-iii-954770',
-    //     episode: 10,
-    //     uiSelector: false,
-    //   }
-    // },
     {
-      "url": "https://www.kickassanime.ro/anime/overlord-iii-591772",
+      "url": "https://kaas.am/overlord-iii-5092/ep-10-9b9161",
+      "expected": {
+        "sync": true,
+        "title": "Overlord III",
+        "identifier": "overlord-iii-5092",
+        "overviewUrl": "https://kaas.am/overlord-iii-5092",
+        "episode": 10,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kaas.am/overlord-iii-5092",
       "expected": {
         "sync": false,
         "title": "Overlord III",
-        "identifier": "overlord-iii-591772",
+        "identifier": "overlord-iii-5092",
         "uiSelector": true
       }
     }

@@ -10,7 +10,7 @@ let jsonData = {
 
 export const Kaguya: pageInterface = {
   name: 'Kaguya',
-  domain: 'https://kaguya.live',
+  domain: 'https://kaguya.app',
   languages: ['Vietnamese', 'English'],
   type: 'anime',
   isSyncPage(url) {

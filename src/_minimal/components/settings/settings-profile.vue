@@ -7,7 +7,13 @@
             {{ profileRequest.data.username }}
           </MediaLink>
         </Header>
-        <div>{{ lang('settings_profile_logged_via', [parameters.listObj.name]) }}</div>
+        <div>
+          <Link :to="{ name: 'Settings', params: { path: ['tracking', 'syncMode'] } }">
+            <TextIcon icon="keyboard_arrow_down" position="after" mode="flex">
+              {{ lang('settings_profile_logged_via', [parameters.listObj.name]) }}
+            </TextIcon>
+          </Link>
+        </div>
         <div class="link-hover" @click="deauth()">
           <TextIcon icon="eject" position="after" mode="flex">
             {{ lang('settings_profile_logout') }}
@@ -16,17 +22,32 @@
       </template>
       <template v-if="state === 'loading'">
         <Header> {{ lang('Loading') }} </Header>
-        <div>{{ parameters.listObj.name }}</div>
+        <div>
+          <Link :to="{ name: 'Settings', params: { path: ['tracking', 'syncMode'] } }">
+            <TextIcon icon="keyboard_arrow_down" position="after" mode="flex">
+              {{ parameters.listObj.name }}
+            </TextIcon>
+          </Link>
+        </div>
         <div>--</div>
       </template>
       <template v-if="state === 'noAuth'">
         <Header>{{ lang('settings_profile_no_login') }}</Header>
-        <div class="link-hover" @click="profileRequest.execute()">
-          <TextIcon icon="sync">{{ lang('settings_profile_check') }}</TextIcon>
+        <div>
+          <Link :to="{ name: 'Settings', params: { path: ['tracking', 'syncMode'] } }">
+            <TextIcon icon="keyboard_arrow_down" position="after" mode="flex">
+              {{ parameters.listObj.name }}
+            </TextIcon>
+          </Link>
         </div>
-        <MediaLink :href="parameters.listObj.authenticationUrl">
-          <TextIcon icon="login" class="link-hover">{{ lang('settings_Authenticate') }}</TextIcon>
-        </MediaLink>
+        <div class="button-flex">
+          <div class="link-hover" @click="profileRequest.execute()">
+            <TextIcon icon="sync">{{ lang('settings_profile_check') }}</TextIcon>
+          </div>
+          <MediaLink :href="parameters.listObj.authenticationUrl">
+            <TextIcon icon="login" class="link-hover">{{ lang('settings_Authenticate') }}</TextIcon>
+          </MediaLink>
+        </div>
       </template>
     </ImageText>
   </Section>
@@ -42,6 +63,7 @@ import { NotAutenticatedError } from '../../../_provider/Errors';
 import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
 import Section from '../section.vue';
+import Link from '../link.vue';
 
 defineProps({
   title: {
@@ -103,5 +125,10 @@ const state = computed(() => {
   .link();
 
   color: var(--cl-light-text);
+}
+
+.button-flex {
+  display: flex;
+  gap: 15px;
 }
 </style>

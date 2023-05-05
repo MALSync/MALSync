@@ -79,7 +79,11 @@
       <HR />
 
       <Section spacer="half">
-        <FormText v-model="customName" placeholder="Name" class="custom-field" />
+        <FormText
+          v-model="customName"
+          :placeholder="lang('settings_StreamingSite_custom_url_name')"
+          class="custom-field"
+        />
       </Section>
       <Section spacer="half">
         <FormText
@@ -137,7 +141,7 @@ function stateNumber(link) {
 
 const model = computed({
   get() {
-    return api.settings.get('quicklinks');
+    return api.settings.get('quicklinks').filter(el => optionToCombined(el));
   },
   set(value) {
     api.settings.set('quicklinks', value);

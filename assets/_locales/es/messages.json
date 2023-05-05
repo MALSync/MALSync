@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integra MyAnimeList/AniList/Kitsu/Simkl con varios sitios, incluye seguimiento automático de episodios.",
+        "message": "Integra MyAnimeList/AniList/Kitsu/Simkl/Shikimori entre varios sitios,con auto seguidor de episodios.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -336,7 +336,7 @@
         }
     },
     "syncPage_flashConfirm_offsetHandler_1": {
-        "message": "Un episodio posiblemente contado de forma alternativa como $calcOffset$ ha sido detectado. ¿Es esto correcto? ",
+        "message": "Un episodio posiblemente contado de forma alternativa como $calcOffset$ ha sido detectado. ¿Es esto correcto?",
         "description": "offsetHandler Episode",
         "placeholders": {
             "calcOffset": {
@@ -362,7 +362,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Token guardado, puedes cerrar esta página ahora",
+        "message": "Token guardado, puedes cerrar esta página ahora.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -500,7 +500,7 @@
         "description": "Episode Offset"
     },
     "correction_Offset_text": {
-        "message": "Introduce el episodio desfase del contador, si un anime tiene 12 episodios pero usa los números 0-11 en lugar de 1-12, simplemente escribe \"+1\" en el contador alternativo",
+        "message": "Introduce el episodio desfase del contador, si un anime tiene 12 episodios pero usa los números 0-11 en lugar de 1-12, simplemente escribe \"+1\" en el contador alternativo.",
         "description": "Episode Offset - Text"
     },
     "correction_WrongUrl": {
@@ -648,7 +648,7 @@
         "description": "Manual"
     },
     "settings_Mangasync": {
-        "message": "Sincronización de manga",
+        "message": "Retroceder sincronización de manga",
         "description": "Manga sync"
     },
     "settings_AutoTracking_Video": {
@@ -938,7 +938,7 @@
         "description": "Shows this message if the users has only a single key set as shortcut"
     },
     "settings_progress_dropdown": {
-        "message": "Fuente de la estimación",
+        "message": "Estimación de fuente:",
         "description": "Text over the dropdown to select the Episode estimation/prediction source"
     },
     "settings_progress_disabled": {
@@ -1093,20 +1093,6 @@
         "message": "Puedes cambiar fácilmente la relación como se muestra en el siguiente GIF. También se puede establecer un contador alternativo de episodios en esa página.",
         "description": "Description of the wrong section on the install page"
     },
-    "Anilist_Authenticate": {
-        "message": "Por favor, identifícate $Link1$aquí$Link2$",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
     "Emby_Authenticate": {
         "message": "MAL-Sync necesita una clave de la API de Emby para funcionar. Más info $Link1$aquí$Link2$",
         "description": "Emby Authentication",
@@ -1174,7 +1160,7 @@
         "description": "filler tooltip"
     },
     "settings_crash_report_text": {
-        "message": "Ayuda a corregir errores. No se envían datos sensibles",
+        "message": "Ayuda a corregir errores. No se envían datos sensibles.",
         "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
@@ -1334,5 +1320,157 @@
     "settings_read_less": {
         "message": "Leer Menos",
         "description": "Button to show less the description"
+    },
+    "settings_theming_theme_system": {
+        "message": "Sistema",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "Claro",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Personalizar",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Oscuro",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "Puntuación MAL:",
+        "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "Ranking:",
+        "description": "Info table on overview - Ranked: #317"
+    },
+    "overview_sidebar_Format": {
+        "message": "Formato:",
+        "description": "Info table on overview - Format: Movie"
+    },
+    "overview_sidebar_Status": {
+        "message": "Estado:",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Genres": {
+        "message": "Género:",
+        "description": "Info table on overview - Genres: Action"
+    },
+    "overview_sidebar_Rating": {
+        "message": "Clasificación:",
+        "description": "Info table on overview - Rating: PG-13"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "Popularidad:",
+        "description": "Info table on overview - Popularity: #15"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "Fecha de comienzo:",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "Fecha de finalización:",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "Fuente:",
+        "description": "Info table on overview - Source: Light Novel"
+    },
+    "overview_sidebar_Members": {
+        "message": "Miembros:",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Studios": {
+        "message": "Estudio:",
+        "description": "Info table on overview - Studios: Madhouse"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "Episodios:",
+        "description": "Info table on overview - Episodes: 12"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "Capítulos:",
+        "description": "Info table on overview - Chapters: 12"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "Volúmenes:",
+        "description": "Info table on overview - Volumes: 12"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "Tiempo total:",
+        "description": "Info table on overview - Total Playtime: 276 mins"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "Favoritos:",
+        "description": "Info table on overview - Favorites: 15423"
+    },
+    "overview_sidebar_Season": {
+        "message": "Temporada:",
+        "description": "Info table on overview - Season: Spring 2014"
+    },
+    "overview_sidebar_external_links": {
+        "message": "Sitios externos:",
+        "description": "Info table on overview - External Links: Official Site, Hulu"
+    },
+    "overview_sidebar_Votes": {
+        "message": "Votos:",
+        "description": "Info table on overview - Votes: 1423"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "Licencia:",
+        "description": "Info table on overview - Licensor: AT-X"
+    },
+    "overview_sidebar_Aired": {
+        "message": "Publicado:",
+        "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
+    },
+    "overview_sidebar_Authors": {
+        "message": "Autores:",
+        "description": "Info table on overview - Authors: Kamiya, Yuu"
+    },
+    "overview_sidebar_Serialization": {
+        "message": "Serialización:",
+        "description": "Info table on overview - Serialization: Big Comic Original"
+    },
+    "overview_sidebar_Duration": {
+        "message": "Duración:",
+        "description": "Info table on overview - Duration: 23 min"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "Nombre",
+        "description": "Placeholder text the field that sets the custom url name"
+    },
+    "settings_custom_position_below": {
+        "message": "Información a bajo",
+        "description": "Position of the quicklinks below the information section"
+    },
+    "list_sorting_unread": {
+        "message": "No leido",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "list_sorting_alpha": {
+        "message": "Alfabético",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "list_sorting_history": {
+        "message": "Última actualización",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "list_sorting_score": {
+        "message": "Puntuación",
+        "description": "Dropdown option to sort list by score"
+    },
+    "overview_sidebar_Score": {
+        "message": "Puntuación:",
+        "description": "Info table on overview - Score: 7.65"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "Emisión:",
+        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+    },
+    "settings_Mangasync_readerTracking": {
+        "message": "Sincronizar manga después de 90% de las páginas",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
     }
 }

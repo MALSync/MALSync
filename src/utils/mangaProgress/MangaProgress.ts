@@ -155,13 +155,13 @@ export class MangaProgress {
       res = await cacheObj.getValue();
     } else {
       const url = `https://api.malsync.moe/static/reader/${this.page}`;
-      const request = await api.request.xhr('GET', url).then(async response => {
+      res = await api.request.xhr('GET', url).then(async response => {
         if (response.status === 200 && response.responseText) {
           return JSON.parse(response.responseText);
         }
         return null;
       });
-      await cacheObj.setValue(request);
+      await cacheObj.setValue(res);
     }
 
     if (res) {

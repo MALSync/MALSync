@@ -1,0 +1,908 @@
+{
+    "Show": {
+        "message": "देखाउनुहोस्",
+        "description": "Show"
+    },
+    "Help": {
+        "message": "मदद",
+        "description": "Help"
+    },
+    "Add": {
+        "message": "थप्नुहोस्",
+        "description": "Button to add an anime/manga to user list"
+    },
+    "Reset": {
+        "message": "रिसेट गर्नुहोस्",
+        "description": "Reset"
+    },
+    "Remove": {
+        "message": "हटाउनुहोस्",
+        "description": "Button for removing entry from MAL..."
+    },
+    "Load": {
+        "message": "लोड गर्नुहोस्",
+        "description": "Button to load content"
+    },
+    "Yes": {
+        "message": "हो",
+        "description": "Yes"
+    },
+    "Ok": {
+        "message": "हुन्छ",
+        "description": "Ok"
+    },
+    "No": {
+        "message": "होइन",
+        "description": "No"
+    },
+    "Cancel": {
+        "message": "रद्द गर्नुहोस्",
+        "description": "Cancel"
+    },
+    "removed": {
+        "message": "हटाइयो",
+        "description": "Flash message that shows up after removing an anime/manga entry from user list"
+    },
+    "NothingFound": {
+        "message": "केही फेला परेन",
+        "description": "Nothing Found"
+    },
+    "Not_Found": {
+        "message": "फेला परेन!",
+        "description": "Anime/Manga Not Found"
+    },
+    "NoEntries": {
+        "message": "कुनै इन्ट्री छैन",
+        "description": "No Entries"
+    },
+    "fullscreen": {
+        "message": "फुलस्क्रिन",
+        "description": "fullscreen"
+    },
+    "close": {
+        "message": "बन्द गर्नुहोस्",
+        "description": "close"
+    },
+    "All": {
+        "message": "सबै",
+        "description": "All"
+    },
+    "Manga": {
+        "message": "माङ्गा",
+        "description": "General translation of manga for places like drop downs"
+    },
+    "UI_Status": {
+        "message": "स्थिति:",
+        "description": "Status"
+    },
+    "UI_Status_All": {
+        "message": "सबै",
+        "description": "Dropdown text to show all anime on the users list"
+    },
+    "UI_Status_watching_anime": {
+        "message": "हेर्दै",
+        "description": "Watching"
+    },
+    "UI_Status_watching_manga": {
+        "message": "पढ्दै",
+        "description": "Reading"
+    },
+    "UI_Status_Completed": {
+        "message": "समाप्त",
+        "description": "Completed"
+    },
+    "UI_Status_Dropped": {
+        "message": "छोडिसकेको",
+        "description": "Dropped"
+    },
+    "UI_Status_planTo_anime": {
+        "message": "हेर्ने योजना",
+        "description": "Plan to Watch"
+    },
+    "UI_Status_planTo_manga": {
+        "message": "पढ्ने योजना",
+        "description": "Plan to Read"
+    },
+    "UI_Status_Rewatching_manga": {
+        "message": "पुन: पढ्दै",
+        "description": "Status to reread manga"
+    },
+    "UI_Episode": {
+        "message": "एपिसोड:",
+        "description": "Episode"
+    },
+    "UI_Volume": {
+        "message": "खण्ड:",
+        "description": "Volume"
+    },
+    "UI_Chapter": {
+        "message": "अध्याय:",
+        "description": "Chapter"
+    },
+    "UI_Score": {
+        "message": "तपाईंको स्कोर:",
+        "description": "Score"
+    },
+    "UI_Score_Great": {
+        "message": "(९) महान",
+        "description": "Great - Score"
+    },
+    "UI_Score_Good": {
+        "message": "(७) राम्रो",
+        "description": "Good - Score"
+    },
+    "UI_Score_Fine": {
+        "message": "(६) ठीक-ठाक",
+        "description": "Fine - Score"
+    },
+    "UI_Score_Masterpiece": {
+        "message": "(१०) उत्कृष्ट",
+        "description": "Masterpiece - Score"
+    },
+    "UI_Score_Average": {
+        "message": "(५) औसत",
+        "description": "Average - Score"
+    },
+    "UI_Score_Bad": {
+        "message": "(४) खराब",
+        "description": "Bad - Score"
+    },
+    "UI_Score_VeryBad": {
+        "message": "(३) धेरै खराब",
+        "description": "Very Bad - Score"
+    },
+    "UI_Score_Horrible": {
+        "message": "(२) भयानक",
+        "description": "Horrible - Score"
+    },
+    "UI_Score_Appalling": {
+        "message": "(१) भयंकर",
+        "description": "Appalling - Score"
+    },
+    "UI_Rules": {
+        "message": "नियमहरू",
+        "description": "Rules text for the correction UI"
+    },
+    "syncPage_flashm_sync_anime": {
+        "message": "$page$ लाई एपिसोड $epNr$ मा अपडेट गर्नुहोस्",
+        "description": "Update MAL to episode 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "$page$ लाई खण्ड $epNr$ मा अपडेट गर्नुहोस्",
+        "description": "Update MAL to volume 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_undefined_undo": {
+        "message": "अन्डू गर्नुहोस्",
+        "description": "Undo button on 'synced' message"
+    },
+    "syncPage_flashm_sync_undefined_wrong": {
+        "message": "गलत हो?",
+        "description": "Wrong/correction button on 'synced' message"
+    },
+    "syncPage_flashm_failded": {
+        "message": "अपडेट असफल भयो",
+        "description": "When update to MAL failes"
+    },
+    "syncPage_flashConfirm_complete": {
+        "message": "समाप्त भएको रूपमा सेट गर्ने हो?",
+        "description": "Question when last episode is synced"
+    },
+    "syncPage_flashConfirm_start_anime": {
+        "message": "हेर्न सुरु गर्ने हो?",
+        "description": "Start watching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_finish_manga": {
+        "message": "पुन: पढ्ने सक्यो?",
+        "description": "Finish rereading manga message"
+    },
+    "syncPage_flashConfirm_start_manga": {
+        "message": "पढ्न सुरु गर्ने हो?",
+        "description": "Start reading manga message"
+    },
+    "syncPage_flashConfirm_rewatch_start_anime": {
+        "message": "एनिमे पुन: हेर्ने हो?",
+        "description": "Start rewatching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_start_manga": {
+        "message": "माङ्गा पुन: पढ्ने हो?",
+        "description": "Start rereading manga message"
+    },
+    "syncPage_malObj_addAnime": {
+        "message": "$page$ मा थप्नुहोस्",
+        "description": "add anime",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "AniList"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_manga": {
+        "message": "अध्याय $chapter$",
+        "description": "Next chapter message on streaming overview pages",
+        "placeholders": {
+            "chapter": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "anilistClass_authentication": {
+        "message": "टोकन बचत गरियो। तपाईं अब यो पृष्ठ बन्द गर्न सक्नुहुन्छ",
+        "description": "The token has been obtained and saved"
+    },
+    "kitsuClass_authentication_Password": {
+        "message": "पासवर्ड",
+        "description": "Password"
+    },
+    "kitsuClass_authentication_Login": {
+        "message": "लगइन",
+        "description": "Login"
+    },
+    "kitsuClass_authentication_Success": {
+        "message": "टोकन बचत गरियो। तपाईं अब यो पृष्ठ बन्द गर्न सक्नुहुन्छ।",
+        "description": "Authentication success"
+    },
+    "kitsuClass_authentication_Wrong": {
+        "message": "प्रमाण गलत छ",
+        "description": "Credentials wrong"
+    },
+    "bookmarksItem_Years": {
+        "message": "वर्ष",
+        "description": "years"
+    },
+    "bookmarksItem_Year": {
+        "message": "वर्ष",
+        "description": "year"
+    },
+    "bookmarksItem_Days": {
+        "message": "दिनहरू",
+        "description": "days"
+    },
+    "bookmarksItem_Day": {
+        "message": "दिन",
+        "description": "day"
+    },
+    "bookmarksItem_Hours": {
+        "message": "घण्टा",
+        "description": "hours"
+    },
+    "bookmarksItem_Hour": {
+        "message": "घण्टा",
+        "description": "hour"
+    },
+    "bookmarksItem_mins": {
+        "message": "मिनेट",
+        "description": "mins"
+    },
+    "bookmarksItem_secs": {
+        "message": "सेकेन्ड",
+        "description": "seconds"
+    },
+    "bookmarksItem_sec": {
+        "message": "सेकेन्ड",
+        "description": "second"
+    },
+    "bookmarksItem_now": {
+        "message": "अहिले",
+        "description": "Now"
+    },
+    "prediction_Episode_anime": {
+        "message": "अर्को एपिसोड आउने अनुमान : $time$",
+        "description": "Text for next episode estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Episode_manga": {
+        "message": "अर्को अध्याय $time$ मा अनुमानित",
+        "description": "Text for next chapter estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_manga": {
+        "message": "पछिल्लो अध्याय $time$ पहिले जारी गरियो",
+        "description": "Text for last chapter release time",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_ongoing": {
+        "message": "जारी छ",
+        "description": "Header for the ongoing section in the translation/airing progress section"
+    },
+    "prediction_complete": {
+        "message": "समाप्त",
+        "description": "Header for the complete translation/airing section"
+    },
+    "prediction_Airing": {
+        "message": "$time$ मा प्रसारण",
+        "description": "Text for airing estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "correction_Offset": {
+        "message": "एपिसोड अफसेट",
+        "description": "Episode Offset"
+    },
+    "correction_Search": {
+        "message": "सही खोज्नुहोस्",
+        "description": "Correction Search"
+    },
+    "correction_NoMal": {
+        "message": "यदि एनिमे वा माङ्गा MAL मा फेला पार्न सकिँदैन",
+        "description": "Anime/Manga not found in MAL"
+    },
+    "correction_NoEntry": {
+        "message": "MyAnimeList मा कुनै इन्ट्री छैन",
+        "description": "No entry on MyAnimeList"
+    },
+    "correction_NewOffset": {
+        "message": "नयाँ अफसेट ($offset$) सेट।",
+        "description": "New Offset",
+        "placeholders": {
+            "offset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "correction_OffsetReset": {
+        "message": "अफसेट रिसेट गर्नुहोस्",
+        "description": "Offset reset"
+    },
+    "correction_NewUrl": {
+        "message": "नयाँ URL '$malUrl$' सेट।",
+        "description": "New URL",
+        "placeholders": {
+            "malUrl": {
+                "content": "$1",
+                "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            }
+        }
+    },
+    "correction_NewUrlReset": {
+        "message": "MyAnimeList URL रिसेट",
+        "description": "URL reset"
+    },
+    "overview_Continue_anime": {
+        "message": "हेर्न जारी राख्नुहोस्",
+        "description": "Continue watching"
+    },
+    "overview_Continue_manga": {
+        "message": "पढ्न जारी राख्नुहोस्",
+        "description": "Continue reading"
+    },
+    "overview_Next_Episode_anime": {
+        "message": "अर्को एपिसोड",
+        "description": "Next Episode"
+    },
+    "overview_Resume_Episode_anime": {
+        "message": "एपिसोड हेर्न जारी राख्नुहोस्",
+        "description": "Resume Episode"
+    },
+    "overview_Resume_Episode_manga": {
+        "message": "अध्याय पढ्न जारी राख्नुहोस्",
+        "description": "Resume Chapter"
+    },
+    "overview_Characters": {
+        "message": "पात्रहरू",
+        "description": "Characters"
+    },
+    "overview_Information": {
+        "message": "जानकारी",
+        "description": "Header of the information section of the popup anime overview"
+    },
+    "overview_Related": {
+        "message": "सम्बन्धित",
+        "description": "Header of the anime/manga relations section of the popup anime overview"
+    },
+    "overview_Streaming": {
+        "message": "स्ट्रिमिङ",
+        "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "overview_OpeningTheme": {
+        "message": "सुरुको गीत:",
+        "description": "Opening Theme"
+    },
+    "overview_EndingTheme": {
+        "message": "अन्तको गीत:",
+        "description": "Ending Theme"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "MAL स्कोर:",
+        "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "overview_sidebar_Format": {
+        "message": "प्रकार:",
+        "description": "Info table on overview - Format: Movie"
+    },
+    "overview_sidebar_Status": {
+        "message": "स्तिथि:",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Genres": {
+        "message": "जानरा:",
+        "description": "Info table on overview - Genres: Action"
+    },
+    "overview_sidebar_Rating": {
+        "message": "मूल्याङ्कन:",
+        "description": "Info table on overview - Rating: PG-13"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "लोकप्रियता:",
+        "description": "Info table on overview - Popularity: #15"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "समाप्त गरेको मिति:",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "स्रोत:",
+        "description": "Info table on overview - Source: Light Novel"
+    },
+    "overview_sidebar_Members": {
+        "message": "सदस्यहरू:",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "प्रसारण:",
+        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+    },
+    "overview_sidebar_Studios": {
+        "message": "स्टुडियो:",
+        "description": "Info table on overview - Studios: Madhouse"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "एपिसोड:",
+        "description": "Info table on overview - Episodes: 12"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "अध्याय:",
+        "description": "Info table on overview - Chapters: 12"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "खण्ड:",
+        "description": "Info table on overview - Volumes: 12"
+    },
+    "overview_sidebar_Season": {
+        "message": "सिजन:",
+        "description": "Info table on overview - Season: Spring 2014"
+    },
+    "overview_sidebar_external_links": {
+        "message": "बाहिरी लिङ्कहरू:",
+        "description": "Info table on overview - External Links: Official Site, Hulu"
+    },
+    "overview_sidebar_Votes": {
+        "message": "भोट:",
+        "description": "Info table on overview - Votes: 1423"
+    },
+    "overview_sidebar_Aired": {
+        "message": "प्रसारित:",
+        "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
+    },
+    "overview_sidebar_Authors": {
+        "message": "लेखक(हरू):",
+        "description": "Info table on overview - Authors: Kamiya, Yuu"
+    },
+    "overview_sidebar_Serialization": {
+        "message": "सिरियलाइजेशन:",
+        "description": "Info table on overview - Serialization: Big Comic Original"
+    },
+    "list_sorting_unread": {
+        "message": "नपढिएको",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "list_sorting_history": {
+        "message": "पछिल्लो पटक अपडेट गरिएको",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "list_sorting_score": {
+        "message": "स्कोर",
+        "description": "Dropdown option to sort list by score"
+    },
+    "search_Score": {
+        "message": "स्कोर:",
+        "description": "Score"
+    },
+    "search_Year": {
+        "message": "वर्ष:",
+        "description": "Year"
+    },
+    "settings_Mode": {
+        "message": "मोड",
+        "description": "Mode"
+    },
+    "settings_profile_no_login": {
+        "message": "लगइन गरिएको छैन",
+        "description": "Text if not logged in"
+    },
+    "settings_profile_logout": {
+        "message": "लगआउट",
+        "description": "Button to logout"
+    },
+    "settings_LocalSync_Import": {
+        "message": "आयात गर्नुहोस्",
+        "description": "Button to import local storage fallback data"
+    },
+    "settings_LocalSync_Export": {
+        "message": "निर्यात गर्नुहोस्",
+        "description": "Button to Export Local storage fallback data"
+    },
+    "settings_Animesync": {
+        "message": "एनिमे सिंक",
+        "description": "Anime sync"
+    },
+    "settings_Animesync_Instant": {
+        "message": "तुरन्त",
+        "description": "Instant"
+    },
+    "settings_Mangasync": {
+        "message": "माङ्गा सिंक फलब्याक",
+        "description": "Manga sync fallback in case the manga reader progress tracking does not work"
+    },
+    "settings_AutoTracking_Video": {
+        "message": "भिडियो प्रगतिको $videoDuration$% मा अपडेट गर्नुहोस्",
+        "description": "Update Episode of video progress",
+        "placeholders": {
+            "videoDuration": {
+                "content": "$1",
+                "example": "85"
+            }
+        }
+    },
+    "settings_StreamingSite": {
+        "message": "छिटो लिंकहरू",
+        "description": "Quicklinks"
+    },
+    "settings_StreamingSite_custom": {
+        "message": "कस्टम खोज्ने लिंकहरु",
+        "description": "Header of the section where you can add your own custom search links"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "नाम",
+        "description": "Placeholder text the field that sets the custom url name"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "एनिमे खोज्ने URL",
+        "description": "Form field title to enter the search url for anime"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "माङ्गा खोज्ने URL",
+        "description": "Form field title to enter the search url for manga"
+    },
+    "settings_Thumbnails": {
+        "message": "थम्बनेलहरू",
+        "description": "Thumbnails"
+    },
+    "settings_Thumbnails_Large": {
+        "message": "ठुलो",
+        "description": "Thumbnails Large"
+    },
+    "settings_Thumbnails_Medium": {
+        "message": "ठिक्कको",
+        "description": "Thumbnails Medium"
+    },
+    "settings_Thumbnails_Small": {
+        "message": "सानो",
+        "description": "Thumbnails Small"
+    },
+    "settings_Thumbnails_Default": {
+        "message": "MAL को पूर्वनिर्धारित",
+        "description": "Thumbnails MAL Default"
+    },
+    "settings_FriendScore": {
+        "message": "विवरण पृष्ठमा साथीहरुको स्कोर",
+        "description": "Friend scores on detail page"
+    },
+    "settings_epPredictions": {
+        "message": "अनुमानित एपिसोड नम्बर",
+        "description": "Estimate episode number"
+    },
+    "settings_malTags": {
+        "message": "ट्याग/नोटहरू प्रयोग गर्नुहोस्",
+        "description": "Use Tags/Notes"
+    },
+    "Search": {
+        "message": "साइट खोज्नुहोस्",
+        "description": "Button to open the site search links on mal, anilist ..."
+    },
+    "Update": {
+        "message": "अपडेट गर्नुहोस्",
+        "description": "Update"
+    },
+    "Synchronize": {
+        "message": "सिंक गर्नुहोस्",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "Loading": {
+        "message": "लोड गर्दै",
+        "description": "Loading"
+    },
+    "Select": {
+        "message": "चयन गर्नुहोस्",
+        "description": "Select"
+    },
+    "updated": {
+        "message": "अपडेट गरियो",
+        "description": "Flash message that shows up after updating an anime/manga entry"
+    },
+    "Anime": {
+        "message": "एनिमे",
+        "description": "General translation of anime for places like drop downs"
+    },
+    "Package_Description": {
+        "message": "MyAnimeList, AniList, Kitsu, Simkl, Shikimori लाई स्वत: एपिसोड ट्र्याकिङको साथ विभिन्न साइटहरूमा एकीकृत गर्दछ।",
+        "description": "Description MALSync"
+    },
+    "UI_Status_OnHold": {
+        "message": "अन्तरालमा छ",
+        "description": "On-Hold"
+    },
+    "UI_Status_Rewatching_anime": {
+        "message": "पुन: हेर्दै",
+        "description": "Status to rewatch anime"
+    },
+    "UI_Score_Not_Rated": {
+        "message": "मूल्याङ्कन गरिएको छैन",
+        "description": "Text if nothing is selected in the rating dropdown"
+    },
+    "UI_Score_VeryGood": {
+        "message": "(८) धेरै राम्रो",
+        "description": "Very Good - Score"
+    },
+    "syncPage_flashm_resumeMsg": {
+        "message": "$time$ मा पुन: सुरु गर्नुहोस्",
+        "description": "Video resume message",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "13:37"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga": {
+        "message": "$page$ लाई अध्याय $epNr$ मा अपडेट गर्नुहोस्",
+        "description": "Update MAL to chapter 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashConfirm_rewatch_finish_anime": {
+        "message": "पुन: हेर्ने सक्यो?",
+        "description": "Finish rewatching anime message"
+    },
+    "syncPage_flashConfirm_Anime_Correct": {
+        "message": "के \"$anime$\" सही छ?",
+        "description": "Is anime correct",
+        "placeholders": {
+            "anime": {
+                "content": "$1",
+                "example": "No Game No Life"
+            }
+        }
+    },
+    "syncPage_flash_player_error": {
+        "message": "भिडियो प्लेयर फेला परेन। कृपया यसलाई म्यानुअल रूपमा यहाँ अपडेट गर्नुहोस्।",
+        "description": "Message if the video player could not be recognized"
+    },
+    "syncPage_malObj_nextEp_anime": {
+        "message": "एपिसोड $episode$",
+        "description": "Next episode message on streaming overview pages",
+        "placeholders": {
+            "episode": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+        "message": "$calcOffset$ को सम्भावित एपिसोड अफसेट पत्ता लाग्यो। के यो सही हो?",
+        "description": "offsetHandler Episode",
+        "placeholders": {
+            "calcOffset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "kitsuClass_authentication_text": {
+        "message": "Kitsu मा लगइन गर्न, तपाईंले आफ्नो खाताको इ-मेल र पासवर्ड प्रविष्ट गर्न आवश्यक छ।<br>तपाईंको प्रमाणहरू तपाईंको कम्प्युटर वा अन्य कतै भण्डार गरिएको छैन।<br>तिनीहरू सिधै Kitsu मा पठाइन्छ। फर्काइएको एक्सेस टोकन मात्र सुरक्षित गरिएको छ।<br>",
+        "description": "Authentication text in Kitsu"
+    },
+    "bookmarksItem_min": {
+        "message": "मिनेट",
+        "description": "min"
+    },
+    "bookmarksItem_ago": {
+        "message": "$time$ पहिले",
+        "description": "Text for time in the past",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_anime": {
+        "message": "पछिल्लो एपिसोड $time$ पहिले रिलीज भयो",
+        "description": "Text for last episode release time",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_next": {
+        "message": "अर्को $time$ मा",
+        "description": "Short Form Text for next episode/episode estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_incomplete": {
+        "message": "समाप्त नभएको",
+        "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
+    },
+    "correction_Offset_text": {
+        "message": "एपिसोड अफसेट इनपुट गर्नुहोस्। यदि एनिमेसमा 12 एपिसोडहरू छन्, तर 1-12 को सट्टा 0-11 नम्बरहरू प्रयोग भएको छ भने, तपाईंले एपिसोड अफसेटमा \"+1\" टाइप गर्नुहोस्।",
+        "description": "Episode Offset - Text"
+    },
+    "correction_WrongUrl": {
+        "message": "यो URL लाई MAL मा गलत एनिमे पृष्ठ देखाएमा मात्र परिवर्तन गर्नुहोस्।",
+        "description": "URL is Wrong"
+    },
+    "correction_Search_text": {
+        "message": "तपाईंले माथि देखाइएको MyAnimeList URL लाई सच्याउन आवश्यक हुँदा यो फिल्ड एनिमे फेला पार्नको लागि हो।<br>खोज गर्नको लागि, केवल एनिमको नाम टाइप गर्न सुरु गर्नुहोस्, र तपाईंले टाइप गर्दा परिणामहरू सहितको सूची स्वतः देखा पर्नेछ।",
+        "description": "Search text"
+    },
+    "correction_DBRequest": {
+        "message": "के तपाइँ डाटाबेस सुधार अनुरोध दिन चाहनुहुन्छ?",
+        "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
+    },
+    "overview_Next_Episode_manga": {
+        "message": "अर्को अध्याय",
+        "description": "Next Chapter"
+    },
+    "overview_EditDetails": {
+        "message": "विवरण सम्पादन गर्नुहोस्",
+        "description": "Edit Details"
+    },
+    "overview_sidebar_Score": {
+        "message": "स्कोर:",
+        "description": "Info table on overview - Score: 7.65"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "सुरु गरेको मिति:",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "कुल प्लेटाइम:",
+        "description": "Info table on overview - Total Playtime: 276 mins"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "मनपर्नेहरू:",
+        "description": "Info table on overview - Favorites: 15423"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "इजाजतपत्रदाता:",
+        "description": "Info table on overview - Licensor: AT-X"
+    },
+    "overview_sidebar_Duration": {
+        "message": "समयावधि:",
+        "description": "Info table on overview - Duration: 23 min"
+    },
+    "list_sorting_alpha": {
+        "message": "वर्णमाला अनुसार",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "search_Type": {
+        "message": "प्रकार:",
+        "description": "Type"
+    },
+    "settings_General": {
+        "message": "सामान्य",
+        "description": "General"
+    },
+    "settings_Authenticate": {
+        "message": "प्रमाणीकरण गर्नुहोस्",
+        "description": "Authenticate"
+    },
+    "settings_profile_check": {
+        "message": "चेक",
+        "description": "Button to rechecks the login status"
+    },
+    "settings_profile_logged_via": {
+        "message": "$provider$ मार्फत लग इन गरियो",
+        "description": "Info about which provider is used to login",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "settings_LocalSync": {
+        "message": "लोकल भण्डारण फलब्याक",
+        "description": "Option to activate the local storage fallback sync"
+    },
+    "settings_Animesync_Video": {
+        "message": "भिडियो",
+        "description": "Video"
+    },
+    "settings_Animesync_Manual": {
+        "message": "म्यानुअल",
+        "description": "Manual"
+    },
+    "settings_Mangasync_readerTracking": {
+        "message": "अध्यायको पृष्ठहरूको 90% पछि माङ्गा सिंक गर्नुहोस्",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+    },
+    "settings_AutoTracking_Instant": {
+        "message": "तत्काल स्वतः ट्र्याकिङलाई $delay$ सेकेन्डले ढिलाइ गर्नुहोस्",
+        "description": "Delay instant autotracking",
+        "placeholders": {
+            "delay": {
+                "content": "$1",
+                "example": "15"
+            }
+        }
+    },
+    "settings_StreamingSite_text": {
+        "message": "यदि असक्षम पारियो भने, स्ट्रिमिङ साइट MyAnimeList, AniList, Kitsu, Simkl मा एनिमे को साइडबारमा देखिने छैन।",
+        "description": "Streaming Site Links - Text"
+    },
+    "settings_Thumbnails_text": {
+        "message": "यो विकल्प MyAnimeList मा थम्बनेलहरू रिसाइज गर्नको लागि हो। उदाहरणका लागि – पात्रहरु, व्यक्तिहरू, सिफारिसहरू, इत्यादिको थम्बनेलहरू।",
+        "description": "Thumbnails - Text"
+    },
+    "settings_malContinue": {
+        "message": "हेर्न जारी राख्ने लिंकहरु",
+        "description": "Continue watching links"
+    }
+}
