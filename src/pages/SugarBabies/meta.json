@@ -1,6 +1,0 @@
-{
-  "search": "https://sugarbbscan.com/?s={searchtermPlus}&post_type=wp-manga",
-  "urls": {
-    "match": ["*://sugarbbscan.com/series*"]
-  }
-}
