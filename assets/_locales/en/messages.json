@@ -75,6 +75,10 @@
         "message": "Back",
         "description": "Back button"
     },
+    "start": {
+        "message": "Start",
+        "description": "Start button"
+    },
     "NothingFound": {
         "message": "Nothing Found",
         "description": "Nothing Found"
@@ -1388,6 +1392,16 @@
     "installPage_Description_paragraph2": {
         "message": "For example, if you like to watch anime on Crunchyroll, then Crunchyroll’s quicklink will appear on every anime page. It’s a convinient way to access your favorite sites with just one click!",
         "description": "paragraph two of the description"
+    },
+    "installPage_Login_Successful": {
+        "message": "Fantastic, $Username$! You're now authenticated and ready to go.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
     },
     "Emby_Authenticate": {
         "message": "MAL-Sync needs an Emby API key to work. More infos $Link1$Here$Link2$",

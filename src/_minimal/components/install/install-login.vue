@@ -8,7 +8,7 @@
         </div>
         <div>
           <FormButton padding="mini" :animation="false">
-            Fantastic, {{ profileRequest.data.username }}! You're now authenticated and ready to go.
+            {{ lang('installPage_Login_Successful', [profileRequest.data.username]) }}
           </FormButton>
         </div>
       </div>
@@ -20,7 +20,7 @@
         </MediaLink>
         <MediaLink href="https://malsync.moe/pwa/" class="button-next" target="">
           <FormButton color="primary" class="button-next">
-            <TextIcon icon="play_arrow">Start</TextIcon>
+            <TextIcon icon="play_arrow">{{ lang('start') }}</TextIcon>
           </FormButton>
         </MediaLink>
       </div>
