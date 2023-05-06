@@ -22,11 +22,11 @@ export const AnimeOnegai: pageInterface = {
     return false;
   },
   getImage() {
-    return $('div > img.img-poster').attr('src');
+    return $('img.img-poster').attr('src');
   },
   sync: {
     getTitle(url) {
-      return j.$('div.backButtonAssetInfo > div > small').text().trim();
+      return j.$('.backButtonAssetInfo small').text().trim();
     },
     getIdentifier(url) {
       return id;
@@ -35,20 +35,14 @@ export const AnimeOnegai: pageInterface = {
       return OVurl;
     },
     getEpisode(url) {
-      let Epi = j.$('div.backButtonAssetInfo > h2').text();
-      const Pos = Epi.toUpperCase().indexOf('EP');
-      if (Pos !== -1) {
-        Epi = Epi.slice(Pos);
-      }
-      return Number(Epi.replace(/\D/g, '').trim());
-    },
-    uiSelector(selector) {
-      j.$('div.backButton > div.backButtonAssetInfo > ').first().after(j.html(selector));
+      const temp = j.$('.backButtonAssetInfo h2').text().match(/EP\.\s*(\d+)/i);
+      if (!temp) return 0;
+      return Number(temp[1]);
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('div.info > div > h3').text().trim();
+      return j.$('.info h3').text().trim();
     },
     getIdentifier(url) {
       return id;
@@ -59,21 +53,18 @@ export const AnimeOnegai: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.carouselCSS > div > div.tile');
+        return j.$('.carouselCSS .tile');
       },
       elementUrl(selector) {
         return utils.absoluteLink(
-          selector.find('.details > .bottom > a').attr('href'),
+          selector.find('.details .bottom a').attr('href'),
           AnimeOnegai.domain,
         );
       },
       elementEp(selector) {
-        return Number(selector.find('.details > .bottom > p').text().replace(/\D/g, '').trim());
-      },
-      getTotal() {
-        return Number(
-          j.$('div.container-full > div.row > div.col-md > h4').text().replace(/\D/g, '').trim(),
-        );
+        const temp = selector.find('.details .bottom p').text().match(/EP\.\s*(\d+)/i);
+        if (!temp) return 0;
+        return Number(temp[1]);
       },
     },
   },
@@ -82,18 +73,18 @@ export const AnimeOnegai: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      conseguir(page);
+      getData(page);
     });
     utils.urlChangeDetect(function () {
-      conseguir(page);
+      getData(page);
     });
   },
 };
 
-function conseguir(page) {
+function getData(page) {
   clearInterval(Interval);
   Interval = utils.waitUntilTrue(
-    carga,
+    checkLoad,
     async function () {
       page.reset();
       await globals(window.location.href);
@@ -103,11 +94,11 @@ function conseguir(page) {
   );
 }
 
-function carga() {
+function checkLoad() {
   if (
-    j.$('div.info > div > h3').text().trim().length > 0 || // Overview data check
+    AnimeOnegai.overview!.getTitle(window.location.href).length > 0 || // Overview data check
     (AnimeOnegai.sync.getTitle(window.location.href).length > 0 &&
-      AnimeOnegai.sync.getEpisode(window.location.href).toString().length > 0) || // Sync data check
+      AnimeOnegai.sync.getEpisode(window.location.href) > 0) || // Sync data check
     utils.urlPart(window.location.href, 5) === 'home' // Home check
   ) {
     return true;
