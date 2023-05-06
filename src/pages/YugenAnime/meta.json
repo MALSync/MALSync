@@ -1,6 +1,6 @@
 {
   "search": "https://yugenanime.ro/search/?q={searchtermPlus}",
   "urls": {
-    "match": ["*://yugenani.me/*", "*://yugen.to/*", "*://yugenanime.ro/*"]
+    "match": ["*://yugenani.me/*", "*://yugen.to/*", "*://yugenanime.ro/*", "*://yugenanime.tv/*"]
   }
 }
