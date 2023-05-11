@@ -35,7 +35,10 @@ export const AnimeOnegai: pageInterface = {
       return OVurl;
     },
     getEpisode(url) {
-      const temp = j.$('.backButtonAssetInfo h2').text().match(/EP\.\s*(\d+)/i);
+      const temp = j
+        .$('.backButtonAssetInfo h2')
+        .text()
+        .match(/EP\.\s*(\d+)/i);
       if (!temp) return 0;
       return Number(temp[1]);
     },
@@ -62,7 +65,10 @@ export const AnimeOnegai: pageInterface = {
         );
       },
       elementEp(selector) {
-        const temp = selector.find('.details .bottom p').text().match(/EP\.\s*(\d+)/i);
+        const temp = selector
+          .find('.details .bottom p')
+          .text()
+          .match(/EP\.\s*(\d+)/i);
         if (!temp) return 0;
         return Number(temp[1]);
       },
