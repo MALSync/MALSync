@@ -49,7 +49,7 @@ export async function apiCall(options: {
       } catch (e) {
         if (checkIfBanned(response.responseText)) {
           throw new Error(
-            `Your IP has been banned on MAL, change your IP or wait for it to get unbanned`,
+            `Your IP has been banned on MAL, change your IP or wait for it to get unbanned. A temporary outage of MAL could also be a reason.`,
           );
         }
         throw e;
@@ -104,7 +104,7 @@ async function refreshToken(logger) {
       } catch (e) {
         if (checkIfBanned(res.responseText)) {
           throw new Error(
-            `Your IP has been banned on MAL, change your IP or wait for it to get unbanned`,
+            `Your IP has been banned on MAL, change your IP or wait for it to get unbanned. A temporary outage of MAL could also be a reason.`,
           );
         }
         throw e;

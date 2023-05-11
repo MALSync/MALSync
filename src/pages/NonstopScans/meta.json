@@ -1,6 +1,0 @@
-{
-  "search": "https://www.nonstopscans.com/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://www.nonstopscans.com/*"]
-  }
-}

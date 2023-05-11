@@ -61,7 +61,10 @@ export const MangaFire: pageInterface = {
       const temp =
         jsonData.next_chapter_url!.match(/https:\/\/mangafire.to\/read\/.+/im) ||
         jsonData.next_volume_url!.match(/https:\/\/mangafire.to\/read\/.+/im);
-      return temp![0];
+
+      if (!temp) return undefined;
+
+      return temp[0];
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) return `https://myanimelist.net/manga/${jsonData.mal_id}`;
