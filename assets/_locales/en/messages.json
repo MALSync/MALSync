@@ -941,9 +941,17 @@
         "message": "Update UI",
         "description": "UI in the aniList sidebar to update episodes progress and the score"
     },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Allows to quickly update your episode count, rating and status on AniList without having to open the popover.",
+        "description": "Tooltip for the Update UI option"
+    },
     "settings_miniMAL_floatButtonStealth": {
         "message": "Stealth UI mode",
         "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Makes the progress indicator (at the bottom of your screen) transparent by default and makes it hide itself faster",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
     },
     "settings_miniMAL_minimizeBigPopup": {
         "message": "Minimize big pop-ups",

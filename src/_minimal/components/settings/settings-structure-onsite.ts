@@ -6,10 +6,11 @@ export const onsite: ConfObj[] = [
   {
     key: 'floatButtonStealth',
     title: () => api.storage.lang('settings_miniMAL_floatButtonStealth'),
-    props: {
+    props: () => ({
       component: 'checkbox',
+      tooltip: api.storage.lang('settings_miniMAL_floatButtonStealth_tooltip'),
       option: 'floatButtonStealth',
-    },
+    }),
     component: SettingsGeneral,
   },
   {
@@ -91,10 +92,11 @@ export const onsite: ConfObj[] = [
   {
     key: 'anilistUpdateUi',
     title: () => api.storage.lang('settings_anilist_update_ui'),
-    props: {
+    props: () => ({
       component: 'checkbox',
+      tooltip: api.storage.lang('settings_anilist_update_ui_tooltip'),
       option: 'anilistUpdateUi',
-    },
+    }),
     component: SettingsGeneral,
   },
 ];
