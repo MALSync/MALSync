@@ -957,6 +957,10 @@
         "message": "Minimize big pop-ups",
         "description": "Shows an 'action required' popup hidding big popups"
     },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "Minimizes big prompt boxes in MAL-Sync, which would cover most of the screen, behind a click.",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
     "settings_miniMAL_floatButtonCorrection": {
         "message": "Remap floating button to the correction UI",
         "description": "Remap floating button to the correction UI"

@@ -16,10 +16,11 @@ export const onsite: ConfObj[] = [
   {
     key: 'minimizeBigPopup',
     title: () => api.storage.lang('settings_miniMAL_minimizeBigPopup'),
-    props: {
+    props: () => ({
       component: 'checkbox',
+      tooltip: api.storage.lang('settings_miniMAL_minimizeBigPopup_tooltip'),
       option: 'minimizeBigPopup',
-    },
+    }),
     component: SettingsGeneral,
   },
   {

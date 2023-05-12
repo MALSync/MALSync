@@ -9,6 +9,8 @@ export const video: ConfObj[] = [
     props: {
       component: 'checkbox',
       option: 'autofull',
+      infoLink:
+        'https://github.com/MALSync/MALSync/wiki/Troubleshooting#auto-fullscreen-doesnt-work',
     },
     component: SettingsGeneral,
   },
