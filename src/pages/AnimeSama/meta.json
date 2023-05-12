@@ -1,0 +1,6 @@
+{
+  "search": "https://anime-sama.fr/catalogue/",
+  "urls": {
+    "match": ["*://anime-sama.fr/*"]
+  }
+}

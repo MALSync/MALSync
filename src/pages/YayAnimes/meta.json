@@ -1,6 +1,0 @@
-{
-  "search": "https://yayanimes.net/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://yayanimes.net/*"]
-  }
-}

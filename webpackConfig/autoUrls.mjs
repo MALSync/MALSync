@@ -24,13 +24,31 @@ async function gogostream() {
 
     const iframe = body.match(/<iframe\s+src="(.+?streaming\.php.+?)"/i);
 
-    const url = new URL((iframe[1].startsWith('//') ? "https:" : '') + iframe[1]);
+    const gogostream = new URL((iframe[1].startsWith('//') ? "https:" : '') + iframe[1]);
 
     addPlayerUrls('gogostream', [
-        '*.' + url.hostname + '/embedplus*',
-        '*.' + url.hostname + '/streaming.php?*',
-        '*.' + url.hostname + '/load.php?*',
-        '*.' + url.hostname + '/loadserver.php?*',
+        '*.' + gogostream.hostname + '/embedplus*',
+        '*.' + gogostream.hostname + '/streaming.php?*',
+        '*.' + gogostream.hostname + '/load.php?*',
+        '*.' + gogostream.hostname + '/loadserver.php?*',
+    ]);
+
+    const $ = cheerio.load(body);
+
+    const streamsb = new URL($('.anime_muti_link .streamsb [data-video]').attr('data-video'));
+    addPlayerUrls('gogostreamsb', [
+        streamsb.hostname + '/e/*',
+    ]);
+
+    
+    const dood = new URL($('.anime_muti_link .doodstream [data-video]').attr('data-video'));
+    addPlayerUrls('gogodood', [
+        dood.hostname + '/e/*',
+    ]);
+
+    const fembed = new URL($('.anime_muti_link .xstreamcdn [data-video]').attr('data-video'));
+    addPlayerUrls('gogofembed', [
+        '*.' + fembed.hostname + '/*',
     ]);
 }
 

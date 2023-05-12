@@ -83,6 +83,7 @@ module.exports = {
       '*://*.fembed9hd.com/*',
       '*://suzihaza.com/v/*',
       '*://vanfem.com/v/*',
+      // auto-gogofembed-replace-dont-remove
     ],
   },
   youpload: {
@@ -423,6 +424,10 @@ module.exports = {
       '*://*.anihdplay.com/streaming.php?*',
       '*://*.anihdplay.com/load.php?*',
       '*://*.anihdplay.com/loadserver.php?*',
+      '*://*.playtaku.net/embedplus*',
+      '*://*.playtaku.net/streaming.php?*',
+      '*://*.playtaku.net/load.php?*',
+      '*://*.playtaku.net/loadserver.php?*',
       // auto-gogostream-replace-dont-remove
     ],
   },
@@ -491,6 +496,9 @@ module.exports = {
       '*://sbanh.com/e/*',
       '*://sblongvu.com/e/*',
       '*://sbchill.com/e/*',
+      '*://sbone.pro/e/*',
+      '*://sbani.pro/e/*',
+      // auto-gogostreamsb-replace-dont-remove
     ],
   },
   // gogo
@@ -507,6 +515,8 @@ module.exports = {
       '*://dood.pm/e/*',
       '*://dood.wf/e/*',
       '*://dood.re/e/*',
+      '*://dooood.com/e/*',
+      // auto-gogodood-replace-dont-remove
     ],
   },
   // animedao.to
@@ -608,6 +618,9 @@ module.exports = {
       '*://antecoxalbobbing1010.com/e/*',
       '*://matriculant401merited.com/e/*',
       '*://scatch176duplicities.com/e/*',
+      '*://35volitantplimsoles5.com/e/*',
+      '*://tummulerviolableness.com/e/*',
+      '*://tubelessceliolymph.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -660,10 +673,6 @@ module.exports = {
   animato: {
     match: ['*://animato.me/embed/*'],
   },
-  // animeshd
-  AnimesOnline: {
-    match: ['*://animesonline.org/*/*id=*', '*://player.animeshd.org/koplay/*', '*://oppais.org/*'],
-  },
   // animixplay
   kimanime: {
     match: ['*://kimanime.ru/AnimeIframe/*'],
@@ -679,10 +688,6 @@ module.exports = {
   // zoro
   rapidstream: {
     match: ['*://*.rapid-cloud.ru/*', '*://*.rapid-cloud.co/*'],
-  },
-  // shiro
-  shiro: {
-    match: ['*://shiro.is/e/*'],
   },
   // 9anime
   videovard: {
@@ -754,14 +759,6 @@ module.exports = {
   // kickassanime
   maverickki: {
     match: ['*://maverickki.com/*'],
-  },
-  // animesonline
-  rustream: {
-    match: ['*://secvideo1.online/*'],
-  },
-  // animesonline
-  gdplayer: {
-    match: ['*://gdplayer.top/*'],
   },
   // animixplay
   yfvf: {
