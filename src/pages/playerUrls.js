@@ -428,6 +428,10 @@ module.exports = {
       '*://*.playtaku.net/streaming.php?*',
       '*://*.playtaku.net/load.php?*',
       '*://*.playtaku.net/loadserver.php?*',
+      '*://*.playtaku.online/embedplus*',
+      '*://*.playtaku.online/streaming.php?*',
+      '*://*.playtaku.online/load.php?*',
+      '*://*.playtaku.online/loadserver.php?*',
       // auto-gogostream-replace-dont-remove
     ],
   },
