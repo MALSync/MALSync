@@ -625,6 +625,7 @@ module.exports = {
       '*://35volitantplimsoles5.com/e/*',
       '*://tummulerviolableness.com/e/*',
       '*://tubelessceliolymph.com/e/*',
+      '*://availedsmallest.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
