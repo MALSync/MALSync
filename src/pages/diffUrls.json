@@ -157,15 +157,18 @@
     "Kaguya": [
       "https://kaguya.app/*"
     ],
+    "nineAnime": [
+      "https://9animehq.to/watch/*",
+      "https://9animehq.to/watch2gether/*"
+    ],
     "Voiranime": [
       "https://v3.voiranime.com/*"
     ],
     "YugenAnime": [
       "https://yugenanime.tv/*"
     ],
-    "nineAnime": [
-      "https://9animehq.to/watch/*",
-      "https://9animehq.to/watch2gether/*"
+    "Zoro": [
+      "https://sanji.to/*"
     ],
     "iframe": [
       "https://playtaku.net/embedplus*",
