@@ -5,7 +5,7 @@ import path from 'path';
 
 // players
 async function voe() {
-    const response = await fetch("https://voe.sx/e/0123456789ab", {redirect: 'manual'})
+    const response = await fetch('https://voe.sx/e/x63dioldjm1y', { redirect: 'manual' });
     const url = new URL(response.headers.get("Location"));
 
     addPlayerUrls('voe', [url.hostname + '/e/*']);
