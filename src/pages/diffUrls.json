@@ -157,10 +157,6 @@
     "Kaguya": [
       "https://kaguya.app/*"
     ],
-    "nineAnime": [
-      "https://9animehq.to/watch/*",
-      "https://9animehq.to/watch2gether/*"
-    ],
     "Voiranime": [
       "https://v3.voiranime.com/*"
     ],
@@ -169,6 +165,10 @@
     ],
     "Zoro": [
       "https://sanji.to/*"
+    ],
+    "nineAnime": [
+      "https://9animehq.to/watch/*",
+      "https://9animehq.to/watch2gether/*"
     ],
     "iframe": [
       "https://playtaku.net/embedplus*",
@@ -179,6 +179,10 @@
       "https://playtaku.online/streaming.php?*",
       "https://playtaku.online/load.php?*",
       "https://playtaku.online/loadserver.php?*",
+      "https://gotaku1.com/embedplus*",
+      "https://gotaku1.com/streaming.php?*",
+      "https://gotaku1.com/load.php?*",
+      "https://gotaku1.com/loadserver.php?*",
       "https://sbone.pro/e/*",
       "https://sbani.pro/e/*",
       "https://dooood.com/e/*",
