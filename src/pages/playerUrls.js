@@ -630,6 +630,7 @@ module.exports = {
       '*://tummulerviolableness.com/e/*',
       '*://tubelessceliolymph.com/e/*',
       '*://availedsmallest.com/e/*',
+      '*://counterclockwisejacky.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
