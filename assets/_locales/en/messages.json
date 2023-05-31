@@ -1443,6 +1443,16 @@
             }
         }
     },
+    "Error_Blocked": {
+        "message": "Your IP has been banned on $Page$, change your IP or wait for it to get unbanned. A temporary outage could also be a reason.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
     "Discord_rpc_browsing": {
         "message": "Browsing $Page$",
         "description": "Discord rich Presence text if on overview page",
