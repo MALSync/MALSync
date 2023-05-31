@@ -428,6 +428,14 @@ module.exports = {
       '*://*.playtaku.net/streaming.php?*',
       '*://*.playtaku.net/load.php?*',
       '*://*.playtaku.net/loadserver.php?*',
+      '*://*.playtaku.online/embedplus*',
+      '*://*.playtaku.online/streaming.php?*',
+      '*://*.playtaku.online/load.php?*',
+      '*://*.playtaku.online/loadserver.php?*',
+      '*://*.gotaku1.com/embedplus*',
+      '*://*.gotaku1.com/streaming.php?*',
+      '*://*.gotaku1.com/load.php?*',
+      '*://*.gotaku1.com/loadserver.php?*',
       // auto-gogostream-replace-dont-remove
     ],
   },
@@ -621,6 +629,8 @@ module.exports = {
       '*://35volitantplimsoles5.com/e/*',
       '*://tummulerviolableness.com/e/*',
       '*://tubelessceliolymph.com/e/*',
+      '*://availedsmallest.com/e/*',
+      '*://counterclockwisejacky.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -646,7 +656,12 @@ module.exports = {
   },
   // yugenanime
   yugenanime: {
-    match: ['*://yugenani.me/e/*', '*://yugen.to/e/*', '*://yugenanime.ro/e/*'],
+    match: [
+      '*://yugenani.me/e/*',
+      '*://yugen.to/e/*',
+      '*://yugenanime.ro/e/*',
+      '*://yugenanime.tv/e/*',
+    ],
   },
   // kickassanime
   kaaplay: {
