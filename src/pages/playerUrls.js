@@ -631,6 +631,7 @@ module.exports = {
       '*://tubelessceliolymph.com/e/*',
       '*://availedsmallest.com/e/*',
       '*://counterclockwisejacky.com/e/*',
+      '*://monorhinouscassaba.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
