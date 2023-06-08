@@ -1,0 +1,6 @@
+{
+  "search": "https://1stkissmanga.me/?s={searchtermPlus}",
+  "urls": {
+    "match": ["*://1stkissmanga.me/*"]
+  }
+}
