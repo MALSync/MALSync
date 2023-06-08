@@ -9,6 +9,10 @@ export const AnimeSub: pageInterface = {
     if (window.location.href.split('/')[6] !== '') return true;
     return false;
   },
+  isOverviewPage() {
+    if (window.location.href.split('/')[6] === '') return true;
+    return false;
+  },
   sync: {
     getTitle(url) {
       return AnimeSub.overview!.getTitle!(url);
@@ -36,7 +40,7 @@ export const AnimeSub: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j.$('body > div.container.post-anime > div > div:nth-child(1) > h1').text().trim();
+      return j.$('.anime-title').text().trim();
     },
     getIdentifier() {
       return getId()!;
@@ -45,17 +49,7 @@ export const AnimeSub: pageInterface = {
       j.$('.viewer').after(j.html(selector));
     },
     getMalUrl(provider) {
-      if (provider === 'MAL') {
-        const id = malId(provider);
-        if (!id) return false;
-        return `https://myanimelist.net/anime/${id}`;
-      }
-      if (provider === 'ANILIST') {
-        const id = malId(provider);
-        if (!id) return false;
-        return `https://anilist.co/anime/${id}`;
-      }
-      return false;
+      return j.$('a[href^="https://myanimelist.net/anime/"]').attr('href') || '';
     },
   },
   init(page) {
@@ -64,7 +58,7 @@ export const AnimeSub: pageInterface = {
     );
     utils.waitUntilTrue(
       function () {
-        return j.$('body > div.container.post-anime > div > div:nth-child(1) > h1').length;
+        return j.$('.anime-title').length;
       },
       function () {
         page.handlePage();
@@ -85,16 +79,10 @@ function getId() {
 function malId(provider) {
   let id;
   if (provider === 'MAL') {
-    id = j
-      .$('div.column.col-12.meta > div > div:nth-last-child(1) > div > span.info > a:nth-child(1)')
-      ?.attr('href')
-      ?.split('anime/')[1];
+    id = j.$('a[href^="https://myanimelist.net/anime/"]')?.attr('href')?.split('anime/')[1];
   }
   if (provider === 'ANILIST') {
-    id = j
-      .$('div.column.col-12.meta > div > div:nth-last-child(1) > div > span.info > a:nth-child(2)')
-      ?.attr('href')
-      ?.split('anime/')[1];
+    id = j.$('a[href^="https://anilist.co/anime/"]')?.attr('href')?.split('anime/')[1];
   }
   if (id) return id;
   return undefined;
