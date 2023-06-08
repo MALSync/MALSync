@@ -152,7 +152,8 @@
   },
   "0.9.3": {
     "Gogoanime": [
-      "https://gogoanime.cl/*"
+      "https://gogoanime.cl/*",
+      "https://gogoanime.hu/*"
     ],
     "Kaguya": [
       "https://kaguya.app/*"

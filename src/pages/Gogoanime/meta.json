@@ -29,7 +29,8 @@
       "*://*.animego.to/*",
       "*://*.gogoanime.gr/*",
       "*://*.gogoanime.llc/*",
-      "*://*.gogoanime.cl/*"
+      "*://*.gogoanime.cl/*",
+      "*://*.gogoanime.hu/*"
     ]
   }
 }
