@@ -104,6 +104,21 @@ async function gogoanime() {
     }
 }
 
+async function kickassanime() {
+    const response = await fetch("https://kickassanimes.info");
+    const body = await response.text();
+
+    const $ = cheerio.load(body);
+
+    const urls = $('div.container a.button').map((i,el) =>  new URL($(el).attr('href'))).get();
+
+    for(let url of urls) {
+        addpageUrls('KickAssAnime', [
+            "*://*." + url.hostname + "/*",
+        ])
+    }
+}
+
 
 function addpageUrls(page, urls) {
     let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
@@ -142,6 +157,7 @@ async function start() {
     await nineanime();
     await zoro();
     await gogoanime();
+    await kickassanime();
 }
 
 start();

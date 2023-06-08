@@ -158,6 +158,16 @@
     "Kaguya": [
       "https://kaguya.app/*"
     ],
+    "KickAssAnime": [
+      "https://kaas.ro/*",
+      "https://kaas.to/*",
+      "https://kickassanime.ro/*",
+      "https://kickassanime.am/*"
+    ],
+    "nineAnime": [
+      "https://9animehq.to/watch/*",
+      "https://9animehq.to/watch2gether/*"
+    ],
     "Voiranime": [
       "https://v3.voiranime.com/*"
     ],
@@ -166,10 +176,6 @@
     ],
     "Zoro": [
       "https://sanji.to/*"
-    ],
-    "nineAnime": [
-      "https://9animehq.to/watch/*",
-      "https://9animehq.to/watch2gether/*"
     ],
     "iframe": [
       "https://playtaku.net/embedplus*",
@@ -193,7 +199,8 @@
       "https://availedsmallest.com/e/*",
       "https://counterclockwisejacky.com/e/*",
       "https://monorhinouscassaba.com/e/*",
-      "https://yugenanime.tv/e/*"
+      "https://yugenanime.tv/e/*",
+      "https://vidnethub.net/*"
     ]
   }
 }

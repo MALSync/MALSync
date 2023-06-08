@@ -666,7 +666,13 @@ module.exports = {
   },
   // kickassanime
   kaaplay: {
-    match: ['*://kaa-play.com/*', '*://kaa-play.me/*', '*://kaaplayer.com/*', '*://kaavid.com/*'],
+    match: [
+      '*://kaa-play.com/*',
+      '*://kaa-play.me/*',
+      '*://kaaplayer.com/*',
+      '*://kaavid.com/*',
+      '*://vidnethub.net/*',
+    ],
   },
   // kickassanime
   betaplayer: {
