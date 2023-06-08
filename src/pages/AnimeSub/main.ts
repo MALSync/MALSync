@@ -75,15 +75,3 @@ function getId() {
   if (id) return id;
   return undefined;
 }
-
-function malId(provider) {
-  let id;
-  if (provider === 'MAL') {
-    id = j.$('a[href^="https://myanimelist.net/anime/"]')?.attr('href')?.split('anime/')[1];
-  }
-  if (provider === 'ANILIST') {
-    id = j.$('a[href^="https://anilist.co/anime/"]')?.attr('href')?.split('anime/')[1];
-  }
-  if (id) return id;
-  return undefined;
-}
