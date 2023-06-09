@@ -27,26 +27,36 @@
       </slot>
     </div>
     <div v-show="open" ref="popperNode" class="dropdown-pop">
-      <div class="dropdown-pop-default" :style="`text-align: ${alignItems}`">
-        <div
-          v-for="option in options"
-          :key="option.value"
-          class="dropdown-pop-default-element"
-          :class="{ active: compareFunc(option.value, picked), focus: activeKey === option.value }"
-          @click="select(option)"
-          @mouseover="activeKey = option.value"
-        >
-          <slot name="option" :option="option">
-            {{ option.title || option.label }}
-          </slot>
+      <OverlayScrollbarsComponent
+        class="dropdown-pop-scroll"
+        :options="{ scrollbars: { theme: 'os-theme-custom' } }"
+        defer
+      >
+        <div class="dropdown-pop-default" :style="`text-align: ${alignItems}`">
+          <div
+            v-for="option in options"
+            :key="option.value"
+            class="dropdown-pop-default-element"
+            :class="{
+              active: compareFunc(option.value, picked),
+              focus: activeKey === option.value,
+            }"
+            @click="select(option)"
+            @mouseover="activeKey = option.value"
+          >
+            <slot name="option" :option="option">
+              {{ option.title || option.label }}
+            </slot>
+          </div>
         </div>
-      </div>
+      </OverlayScrollbarsComponent>
     </div>
   </button>
 </template>
 
 <script lang="ts" setup>
 import { computed, PropType, ref, watch, nextTick } from 'vue';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
 import FormButton from './form-button.vue';
 import TextIcon from '../text-icon.vue';
 import { usePopper } from '../../composables/popper';
@@ -257,12 +267,15 @@ function keyDown(event: KeyboardEvent) {
 
     position: absolute;
     z-index: 9999;
-    background-color: var(--cl-foreground-solid);
-    padding: 15px 10px;
     width: max-content;
     white-space: normal;
-    overflow-y: auto;
-    overflow: overlay;
+    display: flex;
+    overflow: hidden;
+    &-scroll {
+      padding: 15px 10px;
+      background-color: var(--cl-foreground-solid);
+    }
+
     &-default {
       .link();
 
