@@ -164,10 +164,6 @@
       "https://kickassanime.ro/*",
       "https://kickassanime.am/*"
     ],
-    "nineAnime": [
-      "https://9animehq.to/watch/*",
-      "https://9animehq.to/watch2gether/*"
-    ],
     "Voiranime": [
       "https://v3.voiranime.com/*"
     ],
@@ -176,6 +172,10 @@
     ],
     "Zoro": [
       "https://sanji.to/*"
+    ],
+    "nineAnime": [
+      "https://9animehq.to/watch/*",
+      "https://9animehq.to/watch2gether/*"
     ],
     "iframe": [
       "https://playtaku.net/embedplus*",
