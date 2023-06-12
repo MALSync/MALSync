@@ -12,7 +12,7 @@ function isChapterPage(url: string): boolean {
 export const FirstKiss: pageInterface = {
   name: '1stKissManga',
   domain: 'https://1stkissmanga.me',
-  languages: ['en-US'],
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (isChapterPage(url)) {
