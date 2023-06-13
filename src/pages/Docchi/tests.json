@@ -3,26 +3,26 @@
   "url": "https://docchi.pl",
   "testCases": [
     {
-      "url": "https://docchi.pl/anime/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu/2",
+      "url": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu/2",
       "expected": {
         "sync": true,
         "title": "Rougo ni Sonaete Isekai de 8-manmai no Kinka wo Tamemasu",
         "identifier": "rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
-        "overviewUrl": "https://docchi.pl/anime/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
-        "nextEpUrl": "https://docchi.pl/anime/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu/3",
+        "overviewUrl": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
+        "nextEpUrl": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu/3",
         "episode": 2,
         "uiSelector": false
       }
     },
     {
-      "url": "https://docchi.pl/anime/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
+      "url": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
       "expected": {
         "sync": false,
         "title": "Rougo ni Sonaete Isekai de 8-manmai no Kinka wo Tamemasu",
         "identifier": "rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
         "uiSelector": true,
         "epList": {
-          "1": "https://docchi.pl/anime/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu/1"
+          "1": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu/1"
         }
       }
     }
