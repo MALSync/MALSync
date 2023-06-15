@@ -967,39 +967,9 @@
         "message": "Per favore permetti i popup su questo sito",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Aggiornato alla versione $Version$ $Link$CAMBIAMENTI$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Grazie per aver installato MAL-Sync",
         "description": "Update version - Text 1"
-    },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Domande?",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Codice Open Source:",
-        "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Utenti di uBlock iscrivetevi a questo filtro! Corregge alcuni problemi come le immagini che non caricano.",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Seleziona il database di anime che vuoi usare",

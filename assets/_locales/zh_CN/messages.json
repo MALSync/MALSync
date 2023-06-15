@@ -587,14 +587,6 @@
         "message": "小缩略图",
         "description": "Thumbnails Small"
     },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "加入我们的社区，获得帮助并建议新功能",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "查看我们的开源代码",
-        "description": "Update version - Text 3"
-    },
     "installPage_Howto": {
         "message": "了解MAL-Sync的工作原理",
         "description": "Header for how to use section"

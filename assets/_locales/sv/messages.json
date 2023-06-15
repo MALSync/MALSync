@@ -713,39 +713,9 @@
         "message": "Vänligen tillåt pop-ups för denna webbsida",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Uppdaterad till version $Version$ $Link$ÄNDRINGSLOGG$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Tack för att du installerar MAL-Sync",
         "description": "Update version - Text 1"
-    },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Har du några frågor?",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Öppen källkod:",
-        "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "uBlock användare, prenumerera gärna på denna filter lista! Detta fixar några problem som t.ex. trasiga bilder",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Var snäll och välj vilken Anime databas du vill använda:",
