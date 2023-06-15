@@ -131,9 +131,7 @@ export async function apiCall(query, variables, requiresAuthentication = true) {
         throw new ServerOfflineError(`Server Offline status: ${response.status}`);
       }
       if (response.status === 403) {
-        throw new Error(
-          `Your IP has been banned on ANILIST, change your IP or wait for it to get unbanned`,
-        );
+        throw new Error(api.storage.lang('Error_Blocked', ['AniList']));
       }
 
       const res = parseJson(response.responseText);

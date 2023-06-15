@@ -67,6 +67,18 @@
         "message": "Removed",
         "description": "Flash message that shows up after removing an anime/manga entry from user list"
     },
+    "next": {
+        "message": "Next",
+        "description": "Next button"
+    },
+    "back": {
+        "message": "Back",
+        "description": "Back button"
+    },
+    "start": {
+        "message": "Start",
+        "description": "Start button"
+    },
     "NothingFound": {
         "message": "Nothing Found",
         "description": "Nothing Found"
@@ -929,12 +941,24 @@
         "message": "Update UI",
         "description": "UI in the aniList sidebar to update episodes progress and the score"
     },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Allows to quickly update your episode count, rating and status on AniList without having to open the popover.",
+        "description": "Tooltip for the Update UI option"
+    },
     "settings_miniMAL_floatButtonStealth": {
         "message": "Stealth UI mode",
         "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
     },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Makes the progress indicator (at the bottom of your screen) transparent by default and makes it hide itself faster",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
     "settings_miniMAL_minimizeBigPopup": {
         "message": "Minimize big pop-ups",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "Minimizes big prompt boxes in MAL-Sync, which would cover most of the screen, behind a click.",
         "description": "Shows an 'action required' popup hidding big popups"
     },
     "settings_miniMAL_floatButtonCorrection": {
@@ -1319,39 +1343,13 @@
         "message": "Please allow pop-ups for this website",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Updated to version $Version$ $Link$CHANGELOG$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Thank you for installing MAL-Sync",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Join our community, get help, and suggest new features",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Check out our open source code",
-        "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Subscribe to the filter list (for uBlock users)",
-        "description": "Update version - Text 4"
+    "installPage_Start_Description": {
+        "message": "Let’s do a simple briefing to get you started - takes less than a minute!",
+        "description": "Start description text"
     },
     "installPage_Mode": {
         "message": "Select which anime database you want to use",
@@ -1362,7 +1360,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "The sync with the database happens only when you open an episode or chapter on any of the $Link1$supported pages$LinkEnd1$ — no worries, we definitely have your favorite website in the list!",
+        "message": "The sync with the database only happens when you open an episode or chapter on any of the $Link1$supported pages$LinkEnd1$ — no worries, we definitely have your favorite website in the list!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -1375,13 +1373,47 @@
             }
         }
     },
+    "installPage_Howto_Anime_Description": {
+        "message": "The sync waits until 85% of the video is watched.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "The sync happens on page load and for a few pages it waits until 80% of the chapter is read.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "Synchronization can be configured in the settings later - feel free to customize it your way!",
+        "description": "The synchronization settings can be changed later"
+    },
     "installPage_Wrong": {
-        "message": "Learn how to fix the wrong MAL entry",
+        "message": "How to fix an incorrect detected anime or manga",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
         "message": "You can easily change the relation like shown in the GIF below. An episode offset can be set on that page too.",
         "description": "Description of the wrong section on the install page"
+    },
+    "installPage_Links": {
+        "message": "Choose preferred quicklinks - your favorite sites one-click away",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "Quicklinks, basically, are buttons that open up your streaming/reading site of choice - they will be located on every overview page for any anime/manga.",
+        "description": "paragraph one of the description"
+    },
+    "installPage_Description_paragraph2": {
+        "message": "For example, if you like to watch anime on Crunchyroll, then Crunchyroll’s quicklink will appear on every anime page. It’s a convinient way to access your favorite sites with just one click!",
+        "description": "paragraph two of the description"
+    },
+    "installPage_Login_Successful": {
+        "message": "Fantastic, $Username$! You're now authenticated and ready to go.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
     },
     "Emby_Authenticate": {
         "message": "MAL-Sync needs an Emby API key to work. More infos $Link1$Here$Link2$",
@@ -1408,6 +1440,16 @@
             "Link2": {
                 "content": "</a>",
                 "example": "</a>"
+            }
+        }
+    },
+    "Error_Blocked": {
+        "message": "Your IP has been banned on $Page$, change your IP or wait for it to get unbanned. A temporary outage could also be a reason.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
             }
         }
     },

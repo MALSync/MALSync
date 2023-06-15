@@ -5,18 +5,45 @@
 <script lang="ts" setup>
 import { computed, inject, watch } from 'vue';
 import { hexToHsl, HSL, Hsl } from '../../utils/color';
-import { getThemeByKey } from './themes';
+import { Theme, getThemeByKey, themeOverrides } from './themes';
 
 const rootHtml = inject('rootHtml') as HTMLElement;
 
-const hslColor = computed(() => hexToHsl(api.settings.get('themeColor')));
+const themeConfig = () => {
+  const conf = {
+    theme: api.settings.get('theme'),
+    sidebars: api.settings.get('themeSidebars'),
+    image: api.settings.get('themeImage'),
+    opacity: api.settings.get('themeOpacity'),
+    color: api.settings.get('themeColor'),
+    predefined: null as null | Theme,
+  };
+
+  if (rootHtml.getAttribute('mode') === 'install') conf.theme = 'installTheme';
+
+  if (conf.theme && !['dark', 'light', 'auto', 'custom'].includes(conf.theme)) {
+    conf.predefined = getThemeByKey(conf.theme);
+    if (conf.predefined && conf.predefined.overrides) {
+      for (const i in themeOverrides) {
+        const key = themeOverrides[i];
+        if (typeof conf.predefined.overrides[key] !== 'undefined')
+          conf[key] = conf.predefined.overrides[key];
+      }
+    }
+  }
+
+  return conf;
+};
+
+const hslColor = computed(() => hexToHsl(themeConfig().color));
 
 const classes = computed(() => {
   const cl: string[] = [];
+  const config = themeConfig();
 
-  if (!api.settings.get('themeSidebars')) cl.push('no-sidebar');
+  if (!config.sidebars) cl.push('no-sidebar');
 
-  switch (api.settings.get('theme')) {
+  switch (config.theme) {
     case 'dark':
       cl.push('dark');
       break;
@@ -26,11 +53,11 @@ const classes = computed(() => {
     case 'custom':
       cl.push('custom');
       if (new HSL(...hslColor.value).isDark()) cl.push('dark');
-      if (api.settings.get('themeImage')) cl.push('backImage');
+      if (config.image) cl.push('backImage');
       break;
     default: {
-      const theme = getThemeByKey(api.settings.get('theme'));
-      if (theme && theme.base === 'dark') cl.push('dark');
+      if (config.predefined && config.predefined.base === 'dark') cl.push('dark');
+      if (config.image) cl.push('backImage');
       break;
     }
   }
@@ -53,14 +80,28 @@ const hslColorString = (color: Hsl, opacity = false) => {
 };
 
 const styles = computed(() => {
-  if (getThemeByKey(api.settings.get('theme'))) {
-    const theme = getThemeByKey(api.settings.get('theme'));
+  const config = themeConfig();
+
+  if (config.predefined) {
+    const theme = config.predefined;
     const c = theme.colors;
     if (c.foreground && !c['foreground-solid']) c['foreground-solid'] = c.foreground;
+    if (c.background && !c['background-solid']) c['background-solid'] = c.background;
+
+    if (theme.overrides && theme.overrides.image) {
+      c.background = hslColorString(hexToHsl(c.background), true);
+    }
+
     const colors = Object.keys(c).map(key => `--cl-${key}: ${theme.colors[key]};`);
+
+    if (theme.overrides && theme.overrides.image) {
+      colors.push(`--cl-back-image: url('${theme.overrides.image}')`);
+      colors.push(`--cl-opacity: ${config.opacity / 100}`);
+    }
+
     return colors.join(';');
   }
-  if (api.settings.get('theme') !== 'custom') return '';
+  if (config.theme !== 'custom') return '';
   const s: string[] = [];
 
   const base = new HSL(...hslColor.value);
@@ -79,6 +120,7 @@ const styles = computed(() => {
   }
 
   s.push(`--cl-background: ${hslColorString(base.toHsl(), true)}`);
+  s.push(`--cl-background-solid: ${hslColorString(base.toHsl(), false)}`);
   s.push(`--cl-backdrop: ${hslColorString(backdrop.toHsl())}`);
   s.push(`--cl-foreground: ${hslColorString(foreground.toHsl(), true)}`);
   s.push(`--cl-foreground-solid: ${hslColorString(foreground.toHsl())}`);
@@ -87,9 +129,9 @@ const styles = computed(() => {
   s.push(`--cl-secondary-text: ${hslColorString(secondaryText.toHsl())}`);
   s.push(`--cl-light-text: ${hslColorString(lightText.toHsl())}`);
 
-  if (api.settings.get('themeImage')) {
-    s.push(`--cl-back-image: url('${api.settings.get('themeImage')}')`);
-    s.push(`--cl-opacity: ${api.settings.get('themeOpacity') / 100}`);
+  if (config.image) {
+    s.push(`--cl-back-image: url('${config.image}')`);
+    s.push(`--cl-opacity: ${config.opacity / 100}`);
   }
 
   return s.join(';');

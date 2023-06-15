@@ -227,7 +227,7 @@ mkdirp(path.join(__dirname, '../dist/webextension')).then(err => {
   );
 
   extra.copy(
-    path.join(__dirname, '../src/installPage/install.html'),
+    path.join(__dirname, '../src/_minimal/install.html'),
     path.join(__dirname, '../dist/webextension/install.html'),
     err => {
       if (err) {
