@@ -1025,10 +1025,6 @@
         "message": "Gracias por instalar MAL-Sync",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Consulte nuestro código abierto",
-        "description": "Update version - Text 3"
-    },
     "installPage_Mode": {
         "message": "Seleccione la base de datos de anime que desea utilizar",
         "description": "Header for the MAL-sync provider dropdown"

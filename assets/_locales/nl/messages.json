@@ -1025,10 +1025,6 @@
         "message": "Bedankt voor het installeren van MAL-Sync",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Open Source Code:",
-        "description": "Update version - Text 3"
-    },
     "installPage_Mode": {
         "message": "Kies alstublieft welke Anime database u wilt gebruiken:",
         "description": "Header for the MAL-sync provider dropdown"

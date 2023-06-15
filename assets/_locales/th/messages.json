@@ -983,10 +983,6 @@
         "message": "ขอบคุณสำหรับการติดตั้ง MAL-Sync",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "โอเพ่นซอร์สโค้ด:",
-        "description": "Update version - Text 3"
-    },
     "installPage_Mode": {
         "message": "โปรดเลือกฐานข้อมูลอะนิเมะที่คุณต้องการใช้:",
         "description": "Header for the MAL-sync provider dropdown"

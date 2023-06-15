@@ -717,10 +717,6 @@
         "message": "Tack för att du installerar MAL-Sync",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Öppen källkod:",
-        "description": "Update version - Text 3"
-    },
     "installPage_Mode": {
         "message": "Var snäll och välj vilken Anime databas du vill använda:",
         "description": "Header for the MAL-sync provider dropdown"

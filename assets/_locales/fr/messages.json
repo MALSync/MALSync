@@ -1025,10 +1025,6 @@
         "message": "Merci d'avoir installé MAL-Sync",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Consultez le code source de ce logiciel libre",
-        "description": "Update version - Text 3"
-    },
     "installPage_Mode": {
         "message": "Sélectionner la base de données d'animes à utiliser",
         "description": "Header for the MAL-sync provider dropdown"

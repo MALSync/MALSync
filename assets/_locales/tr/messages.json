@@ -835,10 +835,6 @@
         "message": "MAL-Sync'i indirdiğiniz için teşekkürler",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Açık kaynak kodumuzu kontrol edin",
-        "description": "Update version - Text 3"
-    },
     "installPage_Mode": {
         "message": "Hangi anime veritabanını kullanmak istediğinizi seçin",
         "description": "Header for the MAL-sync provider dropdown"

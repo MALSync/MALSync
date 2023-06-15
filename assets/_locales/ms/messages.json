@@ -971,10 +971,6 @@
         "message": "Terima kasih kerana telah memasang MAL-Sync",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Lihat kod sumber terbuka kami",
-        "description": "Update version - Text 3"
-    },
     "installPage_Mode": {
         "message": "Sila pilih pangkalan data anime yang akan anda gunakan",
         "description": "Header for the MAL-sync provider dropdown"
