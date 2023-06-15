@@ -1496,7 +1496,7 @@
         "description": "paragraph one of the description"
     },
     "installPage_Description_paragraph2": {
-        "message": "Par exemple, si vous aimez regarder des anime sur Crunchyroll, vous pouvez ajouter un raccourci vers Crunchyroll qui apparaitra alors sur chaque page d’anime. C’est une manière pratique d’accéder à vos sites favoris en un seul clic !",
+        "message": "Par exemple, si vous aimez regarder des anime sur Crunchyroll, vous pouvez ajouter un raccourci vers Crunchyroll qui apparaîtra alors sur chaque page d’anime. C’est une manière pratique d’accéder à vos sites favoris en un seul clic !",
         "description": "paragraph two of the description"
     },
     "installPage_Login_Successful": {
@@ -1506,6 +1506,16 @@
             "Username": {
                 "content": "$1",
                 "example": "lolamtisch"
+            }
+        }
+    },
+    "Error_Blocked": {
+        "message": "Votre adresse IP a été bannie par $Page$. Changez d’adresse IP ou attendez qu’elle soit dé-bannie. Ce message peut également s’afficher en cas de panne temporaire du site.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
             }
         }
     }
