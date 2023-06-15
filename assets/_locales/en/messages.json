@@ -1386,7 +1386,7 @@
         "description": "The synchronization settings can be changed later"
     },
     "installPage_Wrong": {
-        "message": "Learn how to fix wrong MAL relations",
+        "message": "How to fix an incorrect detected anime or manga",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
