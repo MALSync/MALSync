@@ -148,7 +148,7 @@ export const beta: pageInterface = {
         return utils.absoluteLink(selector.find('a').first().attr('href'), beta.domain);
       },
       elementEp(selector) {
-        const text = selector.find('[class*="playable-card-static__title-link"]').first().text();
+        const text = selector.find('[class*="playable-card__title-link"]').first().text();
 
         const matches = text.match(/E(\d+)/);
 
