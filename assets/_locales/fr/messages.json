@@ -1021,39 +1021,13 @@
         "message": "Veuillez autoriser les pop-ups pour ce site",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Mis à jour vers la version $Version$ $Link$CHANGELOG$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Merci d'avoir installé MAL-Sync",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Rejoignez notre communauté, obtenez de l’aide, et suggérer de nouvelles fonctionnalités",
-        "description": "Update version - Text 2"
-    },
     "minimalClass_versionMsg_Text_3": {
         "message": "Consultez le code source de ce logiciel libre",
         "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Importez la liste de filtres (pour les utilisateurs de uBlock Origin)",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Sélectionner la base de données d'animes à utiliser",

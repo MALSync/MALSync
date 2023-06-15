@@ -967,39 +967,13 @@
         "message": "Пожалуйста, разрешите всплывающие окна на этом сайте",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Обновились до версии $Version$ — $Link$Список изменений$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Спасибо за установку MAL-Sync",
         "description": "Update version - Text 1"
     },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Есть вопросы?",
-        "description": "Update version - Text 2"
-    },
     "minimalClass_versionMsg_Text_3": {
         "message": "Открытый исходный код:",
         "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Пользователям uBlock рекомендуется подписаться на этот список фильтров! Данная подписка исправляет некоторые проблемы, которые могут возникнуть во время просмотра аниме или чтения манги (например «битые» изображения).",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Пожалуйста выберите какой сайт для трекинга вы хотите использовать:",
