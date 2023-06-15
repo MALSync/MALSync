@@ -1034,7 +1034,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "La synchronisation de la base de données se fait lorsque vous regardez un épisode ou un chapitre de n'importe lequel des $Link1$sites supportés$LinkEnd1$ – pas d’inquiétude, il y a probablement déjà votre site préféré dans notre liste !",
+        "message": "La synchronisation de la base de données se fait uniquement lorsque vous regardez un épisode ou un chapitre de n'importe lequel des $Link1$sites supportés$LinkEnd1$ – pas d’inquiétude, il y a probablement déjà votre site préféré dans notre liste !",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -1056,7 +1056,7 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Apprenez à corriger l’entrée de MAL qui a été détectée",
+        "message": "Comment corriger un anime ou un manga mal détecté",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
@@ -1446,5 +1446,67 @@
     "list_sorting_airing_date": {
         "message": "Date de diffusion",
         "description": "Dropdown option to sort list by airing date"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Permet de mettre à jour rapidement le nombre d’épisodes visionnés, la note et le statut sur AniList sans avoir à ouvrir le menu contextuel.",
+        "description": "Tooltip for the Update UI option"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Permet de rendre l’indicateur de progression (en bas de votre écran) transparent par défaut et de le faire disparaître plus rapidement",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
+    "next": {
+        "message": "Suivant",
+        "description": "Next button"
+    },
+    "back": {
+        "message": "Retour",
+        "description": "Back button"
+    },
+    "start": {
+        "message": "Commencer",
+        "description": "Start button"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "Minimise les menus de MAL-Sync qui couvrent une grande partie de l’écran.",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "La synchronisation ne se fait que lorsque 85 % de la vidéo a été visionnée.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "La synchronisation se fait au chargement de la page, mais pour quelques pages elle se fait lorsque 80 % du chapitre est lu.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "La synchronisation peut être configurée plus tard dans les paramètre - vous êtes libre de la personnaliser à votre façon !",
+        "description": "The synchronization settings can be changed later"
+    },
+    "installPage_Start_Description": {
+        "message": "Faisons le point pour vous aider à démarrer - cela prendra moins d'une minute !",
+        "description": "Start description text"
+    },
+    "installPage_Links": {
+        "message": "Choisissez vos raccourcis préférés - vos sites favoris à un seul clic",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "Les raccourcis sont des boutons qui permettent d’accéder aux sites de streaming/lecture de votre choix - ils sont situés sur les pages d’aperçu pour chaque anime/manga.",
+        "description": "paragraph one of the description"
+    },
+    "installPage_Description_paragraph2": {
+        "message": "Par exemple, si vous aimez regarder des anime sur Crunchyroll, vous pouvez ajouter un raccourci vers Crunchyroll qui apparaitra alors sur chaque page d’anime. C’est une manière pratique d’accéder à vos sites favoris en un seul clic !",
+        "description": "paragraph two of the description"
+    },
+    "installPage_Login_Successful": {
+        "message": "Fantastique, $Username$ ! Vous êtes a présent connecté.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
     }
 }
