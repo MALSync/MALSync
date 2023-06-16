@@ -1446,5 +1446,25 @@
     "list_sorting_airing_date": {
         "message": "Ausstrahlungsdatum",
         "description": "Dropdown option to sort list by airing date"
+    },
+    "next": {
+        "message": "Nächste",
+        "description": "Next button"
+    },
+    "back": {
+        "message": "Vorherige",
+        "description": "Back button"
+    },
+    "start": {
+        "message": "Start",
+        "description": "Start button"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Erlaubt Episodenanzahl, Bewertung und Status auf AniList schnell zu aktualisieren, ohne das Popover öffnen zu müssen.",
+        "description": "Tooltip for the Update UI option"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Macht den Fortschrittsindikator (am unteren Bildschirmrand) standardmäßig transparent und lässt diesen schneller verschwinden",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
     }
 }
