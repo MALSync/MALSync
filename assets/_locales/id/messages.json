@@ -967,39 +967,9 @@
         "message": "Mohon untuk aktifkan pop-up di situs ini",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Diperbarui ke versi $Version$ $Link$Riwayat Perubahan$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Terimakasih untuk telah memasang MAL-Sync",
         "description": "Update version - Text 1"
-    },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Gabung komunitas kami, dapatkan bantuan, dan sarankan fitur baru",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Lihat kode sumber terbuka kami",
-        "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Subscribe daftar penyaringan (untuk pengguna uBlock)",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Pilih database anime yang kamu ingin gunakan",

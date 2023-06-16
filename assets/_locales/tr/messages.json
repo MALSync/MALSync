@@ -831,39 +831,9 @@
         "message": "Lütfen bu websitesi için pop-uplara izin verin",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "$Version$ Sürümüne güncellendi. $Link$Değişiklikler$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "MAL-Sync'i indirdiğiniz için teşekkürler",
         "description": "Update version - Text 1"
-    },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Topluluğumuza katıl, yeni özellikler öner, ve yardım al",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Açık kaynak kodumuzu kontrol edin",
-        "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Filtre listesine abone olun (uBlock kullanıcıları için)",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Hangi anime veritabanını kullanmak istediğinizi seçin",

@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, PropType } from 'vue';
+import { PropType } from 'vue';
 import SettingsDiscordIcon from './settings/settings-discord-icon.vue';
 
 defineProps({

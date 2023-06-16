@@ -84,7 +84,7 @@ export const Docchi: pageInterface = {
     });
     function ready() {
       page.reset();
-      if (page.url.split('/')[3] === 'anime') {
+      if (page.url.split('/')[3] === 'series' || page.url.split('/')[3] === 'hentai') {
         if (Docchi.isSyncPage(page.url)) {
           utils.waitUntilTrue(
             function () {

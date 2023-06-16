@@ -12,6 +12,8 @@ jobs:
     - name: install
       run: |
         npm ci
+      env:
+        PUPPETEER_SKIP_DOWNLOAD: 'true'
     - name: Build
       run: |
         npm run build
@@ -26,6 +28,8 @@ jobs:
     - name: install
       run: |
         npm ci
+      env:
+        PUPPETEER_SKIP_DOWNLOAD: 'true'
     - name: Lint
       run: |
         npm run lint:ci
@@ -40,6 +44,8 @@ jobs:
     - name: install
       run: |
         npm ci
+      env:
+        PUPPETEER_SKIP_DOWNLOAD: 'true'
     - name: Build
       run: |
         npm run build:webextension:assets

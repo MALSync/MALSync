@@ -1,0 +1,6 @@
+{
+  "search": "https://www.animeonegai.com/es/search?q={searchterm}",
+  "urls": {
+    "match": ["*://animeonegai.com/*","*://www.animeonegai.com/*"]
+  }
+}

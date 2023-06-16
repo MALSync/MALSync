@@ -129,6 +129,7 @@ import { AnimeSama } from './AnimeSama/main';
 import { MangaFire } from './MangaFire/main';
 import { Pactedanime } from './Pactedanime/main';
 import { projectsuki } from './projectsuki/main';
+import { AnimeOnegai } from './AnimeOnegai/main';
 import { FirstKiss } from './FirstKiss/main';
 
 export const pages = {
@@ -263,5 +264,6 @@ export const pages = {
   MangaFire,
   Pactedanime,
   projectsuki,
+  AnimeOnegai,
   FirstKiss,
 };

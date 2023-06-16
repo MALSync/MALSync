@@ -100,7 +100,7 @@ export class SearchClass {
   }
 
   getOffset(): number {
-    if (this.state) {
+    if (this.state && this.state.offset) {
       return this.state.offset;
     }
     return 0;

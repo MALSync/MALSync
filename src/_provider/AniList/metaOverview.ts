@@ -485,6 +485,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   private recommendations(data) {
     const recommendations: Recommendation[] = [];
     data.data.Media.recommendations.nodes.forEach(i => {
+      if (!i.mediaRecommendation) return;
       recommendations.push({
         entry: {
           title: i.mediaRecommendation.title.userPreferred,

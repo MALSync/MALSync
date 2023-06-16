@@ -1013,39 +1013,9 @@
         "message": "Bitte erlaube Popups für diese Webseite",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Version $Version$ wurde installiert $Link$CHANGELOG$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Danke, dass du MAL-Sync installiert hast",
         "description": "Update version - Text 1"
-    },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Trete unserer Community bei, um Hilfe zu erhalten und neue Features vorzuschlagen",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Schau dir unseren Open-Source-Code an",
-        "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Abonniere die Filterliste (für uBlock-Nutzer)",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Bitte wähle aus, welche Anime-Datenbank du verwenden möchtest",
@@ -1472,5 +1442,9 @@
     "settings_StreamingSite_custom_url_name": {
         "message": "Name",
         "description": "Placeholder text the field that sets the custom url name"
+    },
+    "list_sorting_airing_date": {
+        "message": "Ausstrahlungsdatum",
+        "description": "Dropdown option to sort list by airing date"
     }
 }
