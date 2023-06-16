@@ -129,6 +129,7 @@ import { AnimeSama } from './AnimeSama/main';
 import { MangaFire } from './MangaFire/main';
 import { Pactedanime } from './Pactedanime/main';
 import { projectsuki } from './projectsuki/main';
+import { AnimeOnegai } from './AnimeOnegai/main';
 
 export const pages = {
   nineAnime,
@@ -262,4 +263,5 @@ export const pages = {
   MangaFire,
   Pactedanime,
   projectsuki,
+  AnimeOnegai,
 };
