@@ -6,7 +6,11 @@ const SELECTED_CHAPTER_SELECTOR =
 const URL_MANGA_ID_INDEX = 4;
 
 function isChapterPage(url: string): boolean {
-  return url.split('/')[5].startsWith('chapter');
+  return utils.urlPart(url, 5).startsWith('chapter');
+}
+
+function isOverviewPage(url: string): boolean {
+  return utils.urlPart(url, 3) === 'manga' && !isChapterPage(url);
 }
 
 export const FirstKiss: pageInterface = {
@@ -15,10 +19,10 @@ export const FirstKiss: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (isChapterPage(url)) {
-      return true;
-    }
-    return false;
+    return Boolean(isChapterPage(url));
+  },
+  isOverviewPage(url) {
+    return Boolean(isOverviewPage(url));
   },
   sync: {
     getTitle(url) {
@@ -67,7 +71,7 @@ export const FirstKiss: pageInterface = {
       return utils.urlPart(url, URL_MANGA_ID_INDEX) || '';
     },
     uiSelector(selector) {
-      j.$('h1').first();
+      j.$('h1').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -91,7 +95,7 @@ export const FirstKiss: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      if (isChapterPage(page.url)) {
+      if (isChapterPage(page.url) || isOverviewPage(page.url)) {
         page.handlePage();
       }
     });
