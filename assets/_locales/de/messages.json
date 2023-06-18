@@ -1048,7 +1048,7 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Finde heraus, wie du einen falschen MAL-Eintrag beheben kannst",
+        "message": "So behebst du einen falsch erkannten Anime oder Manga",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
@@ -1466,5 +1466,57 @@
     "settings_miniMAL_floatButtonStealth_tooltip": {
         "message": "Macht den Fortschrittsindikator (am unteren Bildschirmrand) standardmäßig transparent und lässt diesen schneller verschwinden",
         "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
+    "installPage_Description_paragraph2": {
+        "message": "Zum Beispiel, wenn du einen Anime auf Crunchyroll schauen möchtest, dann wird Crunchyrolls Quicklink auf jeder Animeseite erscheinen. Es ist eine bequeme Möglichkeit, um deine Lieblingsseiten mit nur einem Klick zu erreichen!",
+        "description": "paragraph two of the description"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "Minimiert große Eingabeaufforderungsfelder in MAL-Sync, die den größten Teil des Bildschirms einnehmen würden, hinter einem Klick.",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "installPage_Links": {
+        "message": "Wähle bevorzugte Quicklinks - deine Lieblingsseiten nur einen Klick entfernt",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "Quicklinks sind im Prinzip Schaltflächen, welche die Streaming-/Lese-Seite deiner Wahl öffnen - sie werden sich auf jeder Übersichtsseite jedes Anime/Manga befinden.",
+        "description": "paragraph one of the description"
+    },
+    "installPage_Login_Successful": {
+        "message": "Fantastisch, $Username$! Du bist jetzt authentifiziert and bereit loszulegen.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
+    },
+    "Error_Blocked": {
+        "message": "Deine IP wurde auf $Page$ gebannt, wechsle deine IP oder warte darauf, dass sie entbannt wird. Ein vorübergehender Ausfall könnte ebenfalls der Grund sein.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "installPage_Start_Description": {
+        "message": "Lass uns ein einfaches Briefing durchführen, um den Einstieg zu erleichtern - es dauert weniger als eine Minute!",
+        "description": "Start description text"
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "Die Synchronisation wartet bis 85% des Videos gesehen wurden.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "Die Synchronisation erfolgt beim Laden der Seite und auf manchen Seiten wird gewartet, bis 80% des Kapitels gelesen wurden.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "Die Synchronisation kann später in den Einstellungen konfiguriert werden - passe sie gerne deinen Wünschen an!",
+        "description": "The synchronization settings can be changed later"
     }
 }
