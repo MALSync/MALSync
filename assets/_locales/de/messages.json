@@ -1512,7 +1512,7 @@
         "description": "When the sync is executed for anime"
     },
     "installPage_Howto_Manga_Description": {
-        "message": "Die Synchronisation erfolgt beim Laden der Seite und auf manchen Seiten wird gewartet, bis 80% des Kapitels gelesen wurden.",
+        "message": "Die Synchronisation erfolgt beim Laden der Seite und auf manchen Seiten wird gewartet, bis 80% des Kapitels gelesen wurde.",
         "description": "When the sync is executed for manga"
     },
     "installPage_Howto_Notes": {
