@@ -1,0 +1,28 @@
+{
+  "title": "AnimeKO",
+  "url": "https://animeko.co/",
+  "testCases": [
+    {
+      "url": "http://animeko.co/skip-to-loafer-episode-01-vostfr",
+      "expected": {
+        "sync": true,
+        "title": "Skip to Loafer",
+        "identifier": "skip-to-loafer",
+        "overviewUrl": "http://animeko.co/anime/skip-to-loafer",
+        "episode": 1,
+        "nextEpUrl": "http://animeko.co/skip-to-loafer-episode-02-vostfr",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "http://animeko.co/anime/skip-to-loafer",
+      "expected": {
+        "sync": false,
+        "title": "Skip to Loafer",
+        "identifier": "skip-to-loafer",
+        "overviewUrl": "http://animeko.co/anime/skip-to-loafer",
+        "uiSelector": false
+      }
+    }
+  ]
+}
