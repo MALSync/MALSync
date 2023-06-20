@@ -151,6 +151,9 @@
     ]
   },
   "0.9.3": {
+    "Animeworld": [
+      "https://animeworld.so/play/*"
+    ],
     "Gogoanime": [
       "https://gogoanime.cl/*",
       "https://gogoanime.hu/*"
@@ -202,7 +205,8 @@
       "https://urochsunloath.com/e/*",
       "https://simpulumlamerop.com/e/*",
       "https://yugenanime.tv/e/*",
-      "https://vidnethub.net/*"
+      "https://vidnethub.net/*",
+      "https://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*"
     ]
   }
 }
