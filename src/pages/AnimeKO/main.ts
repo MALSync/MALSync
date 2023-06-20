@@ -4,7 +4,7 @@ let jsonData;
 
 export const AnimeKO: pageInterface = {
   name: 'AnimeKO',
-  domain: 'https://animeko.co/',
+  domain: 'https://animeko.co',
   languages: ['French'],
   type: 'anime',
   isOverviewPage() {
@@ -18,10 +18,7 @@ export const AnimeKO: pageInterface = {
       return j.$('.small-card h2').text().trim();
     },
     getIdentifier(url) {
-      return utils
-        .absoluteLink(j.$('.small-card h2 a').attr('href'), AnimeKO.domain)
-        .split('/')
-        .pop();
+      return AnimeKO.overview!.getIdentifier(AnimeKO.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(j.$('.small-card h2 a').attr('href'), AnimeKO.domain);

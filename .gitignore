@@ -48,5 +48,3 @@ src/utils/quicklinks.json
 
 # IDE
 .idea
-package.json
-package-lock.json
