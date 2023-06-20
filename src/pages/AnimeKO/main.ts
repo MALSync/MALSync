@@ -4,7 +4,7 @@ let jsonData;
 
 export const AnimeKO: pageInterface = {
   name: 'AnimeKO',
-  domain: 'https://animeko.co',
+  domain: 'https://animeko.co/',
   languages: ['French'],
   type: 'anime',
   isOverviewPage() {
@@ -30,10 +30,16 @@ export const AnimeKO: pageInterface = {
       return Number(j.$('.player-releases :selected').text().split(' ')[1]);
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(j.$('.btn-next').attr('href'), AnimeKO.domain);
+      if (j.$('.btn-next').length) {
+        return utils.absoluteLink(j.$('.btn-next').attr('href'), AnimeKO.domain);
+      }
+      return '';
     },
     getMalUrl(provider) {
-      return 'https://myanimelist.net/anime/' + jsonData.mal_id;
+      if (jsonData.mal_id) {
+        return 'https://myanimelist.net/anime/' + jsonData.mal_id;
+      }
+      return false;
     },
   },
   overview: {
@@ -44,7 +50,10 @@ export const AnimeKO: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getMalUrl() {
-      return 'https://myanimelist.net/anime/' + jsonData.mal_id;
+      if (jsonData.mal_id) {
+        return 'https://myanimelist.net/anime/' + jsonData.mal_id;
+      }
+      return false;
     },
     uiSelector(selector) {
       j.$('.showcase');
@@ -52,7 +61,7 @@ export const AnimeKO: pageInterface = {
     list: {
       offsetHandler: true,
       elementsSelector() {
-        return j.$('.small-card');
+        return j.$('.showcase-small-cards .small-card');
       },
       elementEp(selector) {
         return Number(selector.find('span.badge-number').text());
@@ -67,16 +76,10 @@ export const AnimeKO: pageInterface = {
       api.storage.addStyle(
         require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
       );
-      j.$(function () {
-        if (j.$('#malsync').length) {
-          jsonData = JSON.parse(j.$('#malsync').text());
-        }
-      });
+      if (j.$('#malsync').length) {
+        jsonData = JSON.parse(j.$('#malsync').text());
+      }
       page.handlePage();
-      utils.urlChangeDetect(function () {
-        page.reset();
-        page.handlePage();
-      });
     });
   },
 };
