@@ -32,9 +32,12 @@ export const AnimeKO: pageInterface = {
       }
       return '';
     },
+    uiSelector(selector) {
+      j.$('.iframe-wrap').after(j.html(selector));
+    },
     getMalUrl(provider) {
       if (jsonData.mal_id) {
-        return 'https://myanimelist.net/anime/' + jsonData.mal_id;
+        return `https://myanimelist.net/anime/${jsonData.mal_id}`;
       }
       return false;
     },
@@ -48,12 +51,12 @@ export const AnimeKO: pageInterface = {
     },
     getMalUrl() {
       if (jsonData.mal_id) {
-        return 'https://myanimelist.net/anime/' + jsonData.mal_id;
+        return `https://myanimelist.net/anime/${jsonData.mal_id}`;
       }
       return false;
     },
     uiSelector(selector) {
-      j.$('.showcase');
+      j.$('.showcase-details').children().before(j.html(selector));
     },
     list: {
       offsetHandler: true,
