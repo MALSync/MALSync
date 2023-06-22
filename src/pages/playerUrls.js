@@ -810,7 +810,10 @@ module.exports = {
   },
   // animeworld
   animeworld: {
-    match: ['*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*'],
+    match: [
+      '*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*',
+      '*://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*',
+    ],
   },
   // 9anime
   filemoon: {
