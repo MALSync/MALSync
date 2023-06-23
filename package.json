@@ -50,7 +50,7 @@
     "puppeteer": "^20.7.3",
     "serialize-javascript": "^6.0.1",
     "style-loader": "^3.3.3",
-    "stylelint": "^15.8.0",
+    "stylelint": "^15.9.0",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard": "^33.0.0",
     "stylelint-prettier": "^3.0.0",
