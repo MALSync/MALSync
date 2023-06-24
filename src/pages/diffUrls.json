@@ -176,10 +176,6 @@
     "Zoro": [
       "https://sanji.to/*"
     ],
-    "nineAnime": [
-      "https://9animehq.to/watch/*",
-      "https://9animehq.to/watch2gether/*"
-    ],
     "iframe": [
       "https://playtaku.net/embedplus*",
       "https://playtaku.net/streaming.php?*",
