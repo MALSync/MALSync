@@ -11,7 +11,7 @@
         "overviewUrl": "https://animeko.co/anime/skip-to-loafer",
         "episode": 1,
         "nextEpUrl": "https://animeko.co/skip-to-loafer-episode-02-vostfr",
-        "uiSelector": false
+        "uiSelector": true
       }
     },
     {
@@ -21,7 +21,7 @@
         "title": "Skip to Loafer",
         "identifier": "skip-to-loafer",
         "overviewUrl": "https://animeko.co/anime/skip-to-loafer",
-        "uiSelector": false
+        "uiSelector": true
       }
     }
   ]
