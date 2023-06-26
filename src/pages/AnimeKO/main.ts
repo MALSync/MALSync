@@ -32,9 +32,6 @@ export const AnimeKO: pageInterface = {
       }
       return '';
     },
-    uiSelector(selector) {
-      j.$('.iframe-wrap').after(j.html(selector));
-    },
     getMalUrl(provider) {
       if (jsonData.mal_id) {
         return `https://myanimelist.net/anime/${jsonData.mal_id}`;
@@ -59,7 +56,7 @@ export const AnimeKO: pageInterface = {
       j.$('.showcase-details').children().before(j.html(selector));
     },
     list: {
-      offsetHandler: true,
+      offsetHandler: false,
       elementsSelector() {
         return j.$('.showcase-small-cards .small-card');
       },

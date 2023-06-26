@@ -1,6 +1,6 @@
 @import './../pages';
 
-@textColor: white;
+@textColor: #e2e8f0;
 
 #MalData {
   margin: 10px;
@@ -11,7 +11,14 @@
 
 #malp select option {
   color: black !important;
-  background-color: white !important;
+  background-color: #e2e8f0 !important;
+}
+
+#malp .info {
+  color: #e2e8f0 !important;
+}
+#malp .malp-group-field {
+  color: #3182ce !important;
 }
 
 .floatbutton {
@@ -20,6 +27,14 @@
 }
 
 .mal-sync-active {
-  background-color: #4A148C;
-  border-radius: 0.2em;
+  background: none;
+}
+
+.mal-sync-active .img-link:before, .mal-sync-active .img-link:after {
+  border-radius: 0.25em;
+}
+
+.mal-sync-active .img-link {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 5px 3px #ffeb3b;
 }
