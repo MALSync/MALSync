@@ -156,7 +156,8 @@
     ],
     "Gogoanime": [
       "https://gogoanime.cl/*",
-      "https://gogoanime.hu/*"
+      "https://gogoanime.hu/*",
+      "https://gogoanime.vet/*"
     ],
     "Kaguya": [
       "https://kaguya.app/*"
@@ -175,6 +176,10 @@
     ],
     "Zoro": [
       "https://sanji.to/*"
+    ],
+    "nineAnime": [
+      "https://9anime.ph/watch/*",
+      "https://9anime.ph/watch2gether/*"
     ],
     "iframe": [
       "https://playtaku.net/embedplus*",
