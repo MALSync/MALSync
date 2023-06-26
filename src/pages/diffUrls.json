@@ -172,7 +172,8 @@
       "https://kickassanime.am/*"
     ],
     "Voiranime": [
-      "https://v3.voiranime.com/*"
+      "https://v3.voiranime.com/*",
+      "https://v4.voiranime.com/*"
     ],
     "YugenAnime": [
       "https://yugenanime.tv/*"
