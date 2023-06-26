@@ -131,6 +131,7 @@ import { Pactedanime } from './Pactedanime/main';
 import { projectsuki } from './projectsuki/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
 import { FirstKiss } from './FirstKiss/main';
+import { Animeflix } from './Animeflix/main';
 
 export const pages = {
   nineAnime,
@@ -266,4 +267,5 @@ export const pages = {
   projectsuki,
   AnimeOnegai,
   FirstKiss,
+  Animeflix,
 };

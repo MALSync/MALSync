@@ -1,0 +1,7 @@
+{
+    "search": "https://animeflix.live/search/{searchterm}",
+    "urls": {
+      "match": ["*://animeflix.live/*"]
+    }
+  }
+  
