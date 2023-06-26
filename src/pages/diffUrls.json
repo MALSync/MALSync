@@ -151,6 +151,9 @@
     ]
   },
   "0.9.3": {
+    "AnimeUnity": [
+      "https://www.animeunity.cc/anime/*"
+    ],
     "Animeworld": [
       "https://www.animeworld.so/play/*"
     ],
