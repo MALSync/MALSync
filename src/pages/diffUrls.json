@@ -151,12 +151,16 @@
     ]
   },
   "0.9.3": {
+    "AnimeUnity": [
+      "https://www.animeunity.cc/anime/*"
+    ],
     "Animeworld": [
       "https://www.animeworld.so/play/*"
     ],
     "Gogoanime": [
       "https://gogoanime.cl/*",
-      "https://gogoanime.hu/*"
+      "https://gogoanime.hu/*",
+      "https://gogoanime.vet/*"
     ],
     "Kaguya": [
       "https://kaguya.app/*"
@@ -168,7 +172,8 @@
       "https://kickassanime.am/*"
     ],
     "Voiranime": [
-      "https://v3.voiranime.com/*"
+      "https://v3.voiranime.com/*",
+      "https://v4.voiranime.com/*"
     ],
     "YugenAnime": [
       "https://yugenanime.tv/*"
@@ -177,8 +182,8 @@
       "https://sanji.to/*"
     ],
     "nineAnime": [
-      "https://9animehq.to/watch/*",
-      "https://9animehq.to/watch2gether/*"
+      "https://9anime.ph/watch/*",
+      "https://9anime.ph/watch2gether/*"
     ],
     "iframe": [
       "https://playtaku.net/embedplus*",
@@ -204,6 +209,7 @@
       "https://monorhinouscassaba.com/e/*",
       "https://urochsunloath.com/e/*",
       "https://simpulumlamerop.com/e/*",
+      "https://sizyreelingly.com/e/*",
       "https://yugenanime.tv/e/*",
       "https://vidnethub.net/*",
       "https://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*"
