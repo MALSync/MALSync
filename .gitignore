@@ -45,3 +45,6 @@ bwd/
 dist/
 
 src/utils/quicklinks.json
+
+# IDE
+.idea
