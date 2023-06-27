@@ -840,4 +840,8 @@ module.exports = {
   streamhide: {
     match: ['*://*.streamhide.to/e/*'],
   },
+  // animeflix
+  animeflix: {
+    match: ['*://api.animeflix.live/*'],
+  },
 };
