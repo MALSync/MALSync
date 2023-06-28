@@ -14,17 +14,6 @@ export const etc: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
-    key: 'crashReport',
-    title: () => api.storage.lang('settings_crash_report'),
-    system: 'webextension',
-    props: () => ({
-      component: 'checkbox',
-      tooltip: api.storage.lang('settings_crash_report_text'),
-      option: 'crashReport',
-    }),
-    component: SettingsGeneral,
-  },
-  {
     key: 'cleanTagsUi',
     title: () => api.storage.lang('settings_clean_tags_button'),
     props: () => ({

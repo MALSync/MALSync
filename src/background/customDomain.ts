@@ -1,6 +1,4 @@
-import { CustomDomainError } from '../utils/errors';
 import { isIframeUrl } from '../utils/manifest';
-import { Shark } from '../utils/shark';
 
 const logger = con.m('Custom Domain');
 
@@ -93,11 +91,6 @@ function singleListener(domainConfig: domainType) {
       url: [{ originAndPathMatches: fixDomain }],
     });
   } catch (e) {
-    Shark.captureException(new CustomDomainError(e), {
-      tags: {
-        domain: domainConfig.domain,
-      },
-    });
     logger.error(`Could not add listener for ${fixDomain}`, e);
     return;
   }

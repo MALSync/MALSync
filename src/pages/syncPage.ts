@@ -7,7 +7,6 @@ import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
 import { isIframeUrl } from '../utils/manifest';
-import { bloodTrail, Shark } from '../utils/shark';
 import { MissingDataError, MissingPlayerError } from '../utils/errors';
 import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
 import { hasMissingPermissions } from '../utils/customDomains';
@@ -364,11 +363,6 @@ export class SyncPage {
         });
       }
       logger.m('Sync', 'green').log(state);
-      bloodTrail({
-        category: 'info',
-        message: 'Sync',
-        data: state,
-      });
     } else {
       if (typeof this.page.overview === 'undefined') {
         logger.log('No overview definition');
@@ -404,15 +398,6 @@ export class SyncPage {
       }
 
       logger.m('Overview', 'green').log(state);
-      bloodTrail({
-        category: 'info',
-        message: 'Overview',
-        data: state,
-      });
-    }
-
-    if (!state.identifier || !state.title) {
-      Shark.captureException(new MissingDataError(this.page.name));
     }
 
     this.curState = state;
@@ -619,8 +604,6 @@ export class SyncPage {
             .filter(el => !isIframeUrl(el));
 
           con.log('No Player found', iframes);
-
-          iframes.forEach(el => Shark.captureException(new MissingPlayerError(el!)));
         }, 5 * 60 * 1000);
       }
 

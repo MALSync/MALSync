@@ -6,9 +6,6 @@ import { initCustomDomain, cleanupCustomDomains } from './background/customDomai
 import { sendNotification } from './background/notifications';
 import { upgradewWizzards } from './background/upgradeWizzards';
 import { initDatabase, databaseRequest } from './background/database';
-import { initShark } from './utils/shark';
-
-initShark();
 
 try {
   initSyncTags();

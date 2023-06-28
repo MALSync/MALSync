@@ -1,8 +1,5 @@
 import { KitsuClass } from '../kitsu/kitsuClass';
 import { firebaseNotification } from '../utils/firebaseNotification';
-import { initShark } from '../utils/shark';
-
-initShark();
 
 let lastFocus;
 

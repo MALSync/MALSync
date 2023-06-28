@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const appTarget = process.env.APP_TARGET || 'general';
-const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 const packageJson = require('../package.json');
 
 plugins = [
@@ -20,23 +19,6 @@ plugins = [
     }),
   }),
 ]
-
-if (process.env.SENTRY_AUTH_TOKEN) {
-  plugins.push(
-    new SentryWebpackPlugin({
-      url: process.env.SENTRY_AUTH_URL,
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-      org: 'shark',
-      project: 'malsync',
-      release: `malsync@${packageJson.version}`,
-      include: 'dist/webextension',
-      ignore: ['node_modules', 'webpack.config.js'],
-      setCommits: {
-        auto: true,
-      },
-    }),
-  );
-}
 
 module.exports = {
   entry: {

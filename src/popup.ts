@@ -1,10 +1,7 @@
 import { Minimal } from './_minimal/minimalClass';
 import { openMinimal } from './floatbutton/extension';
-import { initShark } from './utils/shark';
 import { isFirefox } from './utils/general';
 import { router } from './_minimal/router';
-
-initShark();
 
 api.settings.init().then(() => {
   try {
