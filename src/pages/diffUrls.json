@@ -212,7 +212,8 @@
       "https://sizyreelingly.com/e/*",
       "https://yugenanime.tv/e/*",
       "https://vidnethub.net/*",
-      "https://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*"
+      "https://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*",
+      "https://api.animeflix.live/*"
     ]
   }
 }
