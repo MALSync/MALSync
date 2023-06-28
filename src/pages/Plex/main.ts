@@ -4,7 +4,7 @@ import { ScriptProxy } from '../../utils/scriptProxy';
 let item: any;
 
 const overviewSelector =
-  '[data-qa-id="preplay-mainTitle"], [class^="PrePlayPrimaryTitle-primaryTitle"]';
+  '[data-qa-id="preplay-mainTitle"], [data-testid="preplay-mainTitle"], [class^="PrePlayPrimaryTitle-primaryTitle"]';
 const syncSelector =
   '[class*="MetadataPosterTitle-isSecondary"] [data-qa-id="metadataTitleLink"], [class*="MetadataPosterTitle-isSecondary"] [data-testid="metadataTitleLink"]';
 
