@@ -1283,17 +1283,9 @@
         "message": "Filler/recap bölümleri var mı diye kontrol et",
         "description": "Option to enable filler checking"
     },
-    "settings_crash_report": {
-        "message": "Hata raporlarını gönder",
-        "description": "If to send crash reports"
-    },
     "settings_filler_text": {
         "message": "BU, bölümün MyAnimeList'de filler/recap olarak işaretlenip işaretlenmediğine bakacak",
         "description": "filler tooltip"
-    },
-    "settings_crash_report_text": {
-        "message": "Bugları düzeltmekte yardımcı oluyor, hiçbir hassas data gönderilmeyecektir.",
-        "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
         "message": "Bu bölüm MyAnimeList'te filler olarak işaretlendi, geçmek istiyor musun?",

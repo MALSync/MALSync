@@ -627,10 +627,6 @@
         "message": "无法搜索到下一集",
         "description": "Error message if no next episode could be found after pressing the next episode shortcut"
     },
-    "settings_crash_report": {
-        "message": "发送崩溃报告",
-        "description": "If to send crash reports"
-    },
     "syncPage_flashConfirm_rewatch_start_anime": {
         "message": "重看动画？",
         "description": "Start rewatching anime message"

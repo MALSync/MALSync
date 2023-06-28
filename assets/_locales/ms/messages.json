@@ -1387,17 +1387,9 @@
         "message": "Lihat Manga",
         "description": "Discord view manga button"
     },
-    "settings_crash_report": {
-        "message": "Hantar laporan ranap",
-        "description": "If to send crash reports"
-    },
     "settings_filler": {
         "message": "Semak episod pengisi/rekap",
         "description": "Option to enable filler checking"
-    },
-    "settings_crash_report_text": {
-        "message": "Boleh membantu membetulkan pepijat. Tiada data sensitif akan dihantar.",
-        "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
         "message": "Episod ini telah ditandakan sebagai pengisi pada MyAnimeList, adakah anda mahu melangkau?",
