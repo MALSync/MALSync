@@ -116,7 +116,7 @@ export const nineAnime: pageInterface = {
     } else {
       utils.waitUntilTrue(
         function () {
-          return j.$('ul.ep-range li').length;
+          return j.$('ul.ep-range li').length && j.$('ul.ep-range').css('display') !== 'none';
         },
         function () {
           con.info('Start check');
