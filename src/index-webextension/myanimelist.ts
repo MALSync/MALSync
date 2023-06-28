@@ -1,5 +1,5 @@
 import { MyAnimeListClass } from '../myanimelist/myanimelistClass';
-import { firebaseNotification } from '../utils/firebaseNotification';;
+import { firebaseNotification } from '../utils/firebaseNotification';
 
 let lastFocus;
 
