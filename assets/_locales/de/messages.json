@@ -1113,17 +1113,9 @@
         "message": "Prüfe auf Filler-/Recap-Episoden",
         "description": "Option to enable filler checking"
     },
-    "settings_crash_report": {
-        "message": "Sende Fehlerberichte",
-        "description": "If to send crash reports"
-    },
     "settings_filler_text": {
         "message": "Dies überprüft, ob eine Episode als Filler/Recap auf MyAnimeList markiert wurde.",
         "description": "filler tooltip"
-    },
-    "settings_crash_report_text": {
-        "message": "Hilft uns Fehler zu beheben. Es werden keine sensiblen Daten gesendet.",
-        "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
         "message": "Diese Episode wurde als Filler auf MyAnimeList markiert, willst du sie überspringen?",

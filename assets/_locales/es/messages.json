@@ -1121,17 +1121,9 @@
         "message": "Revisar por episodios de relleno/recapitulación",
         "description": "Option to enable filler checking"
     },
-    "settings_crash_report": {
-        "message": "Enviar reportes de fallos",
-        "description": "If to send crash reports"
-    },
     "settings_filler_text": {
         "message": "Esto revisará si el episodio está marcado como de relleno o recapitulación en MyAnimeList",
         "description": "filler tooltip"
-    },
-    "settings_crash_report_text": {
-        "message": "Ayuda a corregir errores. No se envían datos sensibles.",
-        "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
         "message": "Este episodio ha sido marcado como de relleno en MyAnimeList, ¿te gustaría saltártelo?",

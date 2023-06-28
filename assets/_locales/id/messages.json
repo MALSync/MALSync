@@ -1435,10 +1435,6 @@
         "message": "Periksa episode filler/recap",
         "description": "Option to enable filler checking"
     },
-    "settings_crash_report": {
-        "message": "Kirimkan laporan kerusakan",
-        "description": "If to send crash reports"
-    },
     "settings_crash_report_text": {
         "message": "Dapat membantu memperbaiki bug. Tidak ada data sensitif yang akan dikirim.",
         "description": "Crash report tooltip"

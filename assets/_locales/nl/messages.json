@@ -1121,17 +1121,9 @@
         "message": "Check voor filler/samenvatting afleveringen",
         "description": "Option to enable filler checking"
     },
-    "settings_crash_report": {
-        "message": "Verzend crash rapportages",
-        "description": "If to send crash reports"
-    },
     "settings_filler_text": {
         "message": "Dit zal controleren of de aflevering is gemarkeerd voor filler/samenvatting op MyAnimeList",
         "description": "filler tooltip"
-    },
-    "settings_crash_report_text": {
-        "message": "Helpt om bugs te corrigeren. Geen gevoelige informatie zal worden verzonden.",
-        "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
         "message": "Deze aflevering is gemarkeerd als filler op MyAnimeList, wil je het overslaan?",

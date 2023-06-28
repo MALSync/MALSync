@@ -1121,17 +1121,9 @@
         "message": "Vérifier les épisodes filler/récapitulatif",
         "description": "Option to enable filler checking"
     },
-    "settings_crash_report": {
-        "message": "Envoyer des rapports de crash",
-        "description": "If to send crash reports"
-    },
     "settings_filler_text": {
         "message": "Vérifie si l'épisode est marqué comme filler/récapitulatif sur MyAnimeList",
         "description": "filler tooltip"
-    },
-    "settings_crash_report_text": {
-        "message": "Aide à corriger les bugs. Aucune donnée sensible n'est transmise.",
-        "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
         "message": "Cet épisode est marqué comme filler sur MyAnimeList, voulez-vous passer au suivant ?",
