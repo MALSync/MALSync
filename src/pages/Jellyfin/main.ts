@@ -171,6 +171,7 @@ async function returnPlayingItemId() {
   const deviceId = await getDeviceId();
   const userId = await getUser();
   let i = 0;
+  await utils.wait(15000);
   while ($('video').first().attr('src') && i < 10) {
     con.m('playing').log('Waiting for session');
     try {
