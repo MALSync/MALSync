@@ -1434,5 +1434,27 @@
     "overview_sidebar_Mal_Score": {
         "message": "Pontuação MAL:",
         "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "next": {
+        "message": "Próximo",
+        "description": "Next button"
+    },
+    "back": {
+        "message": "Voltar",
+        "description": "Back button"
+    },
+    "start": {
+        "message": "Começar",
+        "description": "Start button"
+    },
+    "Error_Blocked": {
+        "message": "O seu IP foi banido em $Page$, mude o seu IP ou espere para ser desbanido. Uma interrupção temporária também pode ser um motivo.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
     }
 }
