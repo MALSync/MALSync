@@ -22,6 +22,7 @@ const res = pagesMain.completePages().map(page => {
   }
 
   return {
+    key: page.key,
     name: page.main.name,
     domain,
     database,

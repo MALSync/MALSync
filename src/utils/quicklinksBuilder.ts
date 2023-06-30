@@ -199,3 +199,7 @@ export function removeFromOptions(key) {
   const options = api.settings.get('quicklinks');
   api.settings.set('quicklinks', removeOptionKey(options, key));
 }
+
+export function getPages() {
+  return quicklinks;
+}
