@@ -116,7 +116,12 @@ export const nineAnime: pageInterface = {
     } else {
       utils.waitUntilTrue(
         function () {
-          return j.$('ul.ep-range li').length && j.$('ul.ep-range').css('display') !== 'none';
+          const loaded = j
+            .$('ul.ep-range')
+            .toArray()
+            .some(el => el.style.display !== 'none');
+
+          return loaded && j.$('ul.ep-range li').length;
         },
         function () {
           con.info('Start check');
@@ -127,16 +132,6 @@ export const nineAnime: pageInterface = {
             page.reset();
             page.handlePage();
           });
-
-          // utils.changeDetect(
-          //   () => {
-          //     page.reset();
-          //     page.handlePage();
-          //   },
-          //   () => {
-          //     return nineAnime.sync.getEpisode(window.location.href);
-          //   },
-          // );
 
           utils.changeDetect(
             () => {
