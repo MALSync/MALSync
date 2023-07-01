@@ -100,11 +100,9 @@ import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
 import { Aniworld } from './Aniworld/main';
-import { BetterAnime } from './BetterAnime/main';
 import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
-import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
 import { MuitoManga } from './MuitoManga/main';
 import { RealmScans } from './RealmScans/main';
@@ -237,11 +235,9 @@ export const pages = {
   DisasterScans,
   DynastyScans,
   Aniworld,
-  BetterAnime,
   BilibiliComics,
   MangaReader,
   AnimeOnsen,
-  Puray,
   Animetoast,
   MuitoManga,
   RealmScans,
