@@ -17,6 +17,8 @@ jobs:
     - name: Build
       run: |
         npm run build
+      env:
+        MODE: travis
   lint:
     runs-on: ubuntu-latest
     steps:
