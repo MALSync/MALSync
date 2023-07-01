@@ -123,9 +123,6 @@ module.exports = {
       api: path.resolve(__dirname, './../src/api/webextension'),
     }),
     new webpack.DefinePlugin({
-      env: JSON.stringify({
-        CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
-      }),
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
     }),

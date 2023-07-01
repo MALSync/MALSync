@@ -13,11 +13,6 @@ plugins = [
     api: path.resolve(__dirname, './../src/api/webextension'),
     j: path.resolve(__dirname, './../src/utils/j'),
   }),
-  new webpack.DefinePlugin({
-    env: JSON.stringify({
-      CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
-    }),
-  }),
 ]
 
 module.exports = {
