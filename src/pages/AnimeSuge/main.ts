@@ -44,7 +44,7 @@ export const AnimeSuge: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.range-wrap a');
+        return j.$('.range-wrap a:not([style*="display: none"])');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), AnimeSuge.domain);
@@ -73,8 +73,21 @@ export const AnimeSuge: pageInterface = {
         page.handlePage();
         utils.urlChangeDetect(function () {
           con.info('Check');
+          page.reset();
           page.handlePage();
         });
+
+        utils.changeDetect(
+          () => {
+            page.handleList();
+          },
+          () => {
+            return (
+              (j.$('#media-episode .lang-select [data-value="sub"]').attr('class') || '') +
+              (j.$('#media-episode .lang-select [data-value="dub"]').attr('class') || '')
+            );
+          },
+        );
       },
     );
   },
