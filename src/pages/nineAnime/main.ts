@@ -66,7 +66,7 @@ export const nineAnime: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul.ep-range > li:not([style*="display: none"]) > a');
+        return j.$('ul.ep-range > li > a:not([style*="display: none"])');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), nineAnime.domain);
