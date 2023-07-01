@@ -16,12 +16,12 @@ jobs:
         npm ci
         npm run build
       env:
-        MODE: dev
+        CI_MODE: dev
     - name: Pack
       run: |
         npm run package
       env:
-        MODE: dev
+        CI_MODE: dev
     - name: Deploy
       uses: trmcnvn/chrome-addon@v2
       with:

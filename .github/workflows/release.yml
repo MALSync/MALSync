@@ -18,7 +18,7 @@ jobs:
         npm ci
         npm run build
       env:
-        MODE: travis
+        CI_MODE: travis
     - name: Pack
       run: |
         npm run package
@@ -45,7 +45,7 @@ jobs:
         npm ci
         npm run build
       env:
-        MODE: travis
+        CI_MODE: travis
     - name: Pack
       run: |
         npm run package
@@ -82,7 +82,7 @@ jobs:
         npm ci
         npm run build
       env:
-        MODE: travis
+        CI_MODE: travis
     - name: Pack
       run: |
         npm run package
@@ -107,7 +107,7 @@ jobs:
         npm ci
         npm run build
       env:
-        MODE: travis
+        CI_MODE: travis
         APP_TARGET: firefox
     - name: Pack
       run: |
