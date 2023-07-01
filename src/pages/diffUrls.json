@@ -1,16 +1,4 @@
 {
-  "0.9.0": {
-    "Gogoanime": [
-      "https://gogoanime.ar/*"
-    ],
-    "iframe": [
-      "https://stream-service.proxer.me/*",
-      "https://sbanh.com/e/*",
-      "https://sblongvu.com/e/*",
-      "https://stream.simplyaweeb.to/*",
-      "https://mb.toonanime.xyz/dist/*"
-    ]
-  },
   "0.9.1": {
     "AnimeOnsen": [
       "https://www.animeonsen.xyz/*"
@@ -160,6 +148,9 @@
     ]
   },
   "0.9.4": {
+    "iframe": []
+  },
+  "0.9.5": {
     "iframe": []
   }
 }
