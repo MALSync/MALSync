@@ -17,18 +17,18 @@ export const AnimeSuge: pageInterface = {
       return splitUrl[splitUrl.length - 1];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('.episodes li > a').first().attr('href'), AnimeSuge.domain);
+      return utils.absoluteLink(j.$('.range-wrap a').first().attr('href'), AnimeSuge.domain);
     },
     getEpisode(url) {
-      return parseInt(j.$('.episodes li > a.active').attr('data-slug')!);
+      return parseInt(j.$('.range-wrap a.active').attr('data-slug')!);
     },
     nextEpUrl(url) {
-      const nextEp = j.$('.episodes li > a.active').parent('li').next().find('a').attr('href');
+      const nextEp = j.$('.range-wrap a.active').parent('div').next().find('a').attr('href');
       if (!nextEp) return nextEp;
       return utils.absoluteLink(nextEp, AnimeSuge.domain);
     },
     uiSelector(selector) {
-      j.$('#episodes').after(j.html(`<section>${selector}</section>`));
+      j.$('#media-episode').after(j.html(selector));
     },
   },
   overview: {
@@ -44,7 +44,7 @@ export const AnimeSuge: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.episodes li > a');
+        return j.$('.range-wrap a:not([style*="display: none"])');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), AnimeSuge.domain);
@@ -61,15 +61,33 @@ export const AnimeSuge: pageInterface = {
     AnimeSuge.database = '9anime';
     utils.waitUntilTrue(
       function () {
-        return j.$('.episodes li').length;
+        const loaded = j
+          .$('.range-wrap .range')
+          .toArray()
+          .some(el => el.style.display !== 'none');
+
+        return loaded && j.$('.range-wrap .active').length;
       },
       function () {
         con.info('Start check');
         page.handlePage();
         utils.urlChangeDetect(function () {
           con.info('Check');
+          page.reset();
           page.handlePage();
         });
+
+        utils.changeDetect(
+          () => {
+            page.handleList();
+          },
+          () => {
+            return (
+              (j.$('#media-episode .lang-select [data-value="sub"]').attr('class') || '') +
+              (j.$('#media-episode .lang-select [data-value="dub"]').attr('class') || '')
+            );
+          },
+        );
       },
     );
   },

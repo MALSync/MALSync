@@ -1,14 +1,14 @@
 import { domainType } from '../background/customDomain';
 import { hasDomainPermission } from './manifest';
 import { greaterOrEqualCurrentVersion } from './version';
-import { pages } from '../pages/pages';
+import { getPages } from './quicklinksBuilder';
 
 export function getPageOptions() {
   const options = [{ key: 'iframe', title: 'Video Iframe' }];
-  Object.keys(pages).forEach(key => {
+  getPages().forEach(page => {
     options.push({
-      key,
-      title: pages[key].name,
+      key: page.key,
+      title: page.name,
     });
   });
   return options;

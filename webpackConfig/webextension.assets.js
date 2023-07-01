@@ -13,7 +13,7 @@ const pagesUtils = require('./utils/pages');
 const pages = pagesUtils.pages();
 const generateMatchExcludes = pagesUtils.generateMatchExcludes;
 
-const mode = process.env.MODE || 'default';
+const mode = process.env.CI_MODE || 'default';
 console.log('Mode', mode);
 
 const malUrls = { myanimelist: pageUrls.myanimelist };

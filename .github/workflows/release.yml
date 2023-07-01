@@ -18,9 +18,7 @@ jobs:
         npm ci
         npm run build
       env:
-        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-        SENTRY_AUTH_URL: ${{ secrets.SENTRY_AUTH_URL }}
-        MODE: travis
+        CI_MODE: travis
     - name: Pack
       run: |
         npm run package
@@ -47,7 +45,7 @@ jobs:
         npm ci
         npm run build
       env:
-        MODE: travis
+        CI_MODE: travis
     - name: Pack
       run: |
         npm run package
@@ -84,7 +82,7 @@ jobs:
         npm ci
         npm run build
       env:
-        MODE: travis
+        CI_MODE: travis
     - name: Pack
       run: |
         npm run package
@@ -109,7 +107,7 @@ jobs:
         npm ci
         npm run build
       env:
-        MODE: travis
+        CI_MODE: travis
         APP_TARGET: firefox
     - name: Pack
       run: |
