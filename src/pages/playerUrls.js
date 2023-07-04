@@ -845,4 +845,8 @@ module.exports = {
   animeflix: {
     match: ['*://api.animeflix.live/*'],
   },
+  // zoro
+  megacloud: {
+    match: ['*://megacloud.tv/*'],
+  },
 };
