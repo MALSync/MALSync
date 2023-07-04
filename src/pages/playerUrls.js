@@ -635,6 +635,7 @@ module.exports = {
       '*://urochsunloath.com/e/*',
       '*://simpulumlamerop.com/e/*',
       '*://sizyreelingly.com/e/*',
+      '*://rationalityaloelike.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

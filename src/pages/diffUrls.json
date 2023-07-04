@@ -151,6 +151,8 @@
     "iframe": []
   },
   "0.9.5": {
-    "iframe": []
+    "iframe": [
+      "https://rationalityaloelike.com/e/*"
+    ]
   }
 }
