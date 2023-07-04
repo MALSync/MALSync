@@ -151,8 +151,12 @@
     "iframe": []
   },
   "0.9.5": {
+    "Zoro": [
+      "https://aniwatch.to/*"
+    ],
     "iframe": [
-      "https://rationalityaloelike.com/e/*"
+      "https://rationalityaloelike.com/e/*",
+      "https://megacloud.tv/*"
     ]
   }
 }
