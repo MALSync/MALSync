@@ -59,7 +59,7 @@ async function nineanime() {
 
     const $ = cheerio.load(body);
 
-    const urls = $('ul > li > a[target="_blank"]:not(:contains(alternative)))').map((i,el) =>  new URL($(el).attr('href'))).get();
+    const urls = $('ul > li > a[target="_blank"]:not(:contains(alternative))').map((i,el) =>  new URL($(el).attr('href'))).get();
 
     for(const url of urls) {
         addpageUrls('nineAnime', [
