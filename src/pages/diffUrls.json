@@ -154,6 +154,12 @@
     "Zoro": [
       "https://aniwatch.to/*"
     ],
+    "nineAnime": [
+      "https://9animehq.to/watch/*",
+      "https://9animehq.to/watch2gether/*",
+      "https://9animeto.io/watch/*",
+      "https://9animeto.io/watch2gether/*"
+    ],
     "iframe": [
       "https://rationalityaloelike.com/e/*",
       "https://megacloud.tv/*"
