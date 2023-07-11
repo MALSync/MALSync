@@ -850,4 +850,8 @@ module.exports = {
   megacloud: {
     match: ['*://megacloud.tv/*'],
   },
+  // animeunity
+  vixcloud: {
+    match: ['*://vixcloud.cc/*'],
+  },
 };
