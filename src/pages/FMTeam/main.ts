@@ -9,64 +9,63 @@ export const FMTeam: pageInterface = {
     return url.split('/')[3] === 'read';
   },
   sync: {
-    getTitle(url) {
-      return utils
-        .urlPart(url, 4)
-        .replace(/-/g, ' ')
-        .replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+    getTitle() {
+      return j.$('.comic-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl() {
-      return utils.absoluteLink(j.$('.dropdown_parent > .text > a').attr('href'), FMTeam.domain);
+      return utils.absoluteLink(j.$('.comic-title').attr('href'), FMTeam.domain);
+    },
+    getVolume(url) {
+      if (Number(utils.urlPart(url, 9))) {
+        return Number(utils.urlPart(url, 7));
+      }
+      return 0;
     },
     getEpisode(url) {
-      return parseInt(utils.urlPart(url, 7));
+      return Number(utils.urlPart(url, 9)) || Number(utils.urlPart(url, 7));
     },
-    nextEpUrl() {
-      // From FallenAngels pages code
-      const scriptContent = j.$('#content > script').first().html();
-      const nextChapterMatches = scriptContent.match(/next_chapter\s*=\s*".*"/gim);
+    nextEpUrl(url) {
+      const nextChapter = j.$('#jump-chapter option:selected').prev();
 
-      if (!nextChapterMatches || nextChapterMatches.length === 0) return '';
-
-      const matchesOfRestOfNextChapter = nextChapterMatches[0].match(/"(.*?)"/gm);
-
-      if (!matchesOfRestOfNextChapter || matchesOfRestOfNextChapter.length === 0) return '';
-
-      const chapterUrl = matchesOfRestOfNextChapter[0].replace(/(^"|"$)/gm, '');
-
-      if (typeof chapterUrl.split('/')[6] !== 'undefined') {
-        return chapterUrl;
+      if (nextChapter && typeof nextChapter !== 'undefined') {
+        let temp = nextChapter
+          .text()
+          .trim()
+          .match(/(ch\.|chapitre)\D?\d+/i);
+        if (temp !== null) {
+          temp = temp[0].replace('.', '-').match(/\d+/);
+          if (temp !== null) {
+            return utils.absoluteLink(temp[0], FMTeam.sync.getOverviewUrl(url));
+          }
+        }
       }
       return '';
     },
   },
   overview: {
     getTitle() {
-      return j.$('h1.title').text().trim();
+      return j.$('#comic > div:nth-child(1) > div.card-header').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.panel > .comic.info').after(
+      j.$('#comic > div:nth-child(1)').after(
         j.html(
-          `<div class="list"><div class="group"><div class="title">MAL-Sync</div>${selector}</div></div>`,
+          `<div class="card mt-3"><div class="card-header"><span class="fas fa-rotate fa-fw"></span> MAL-Sync</div><div class="card-body">${selector}</div></div>`,
         ),
       );
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.panel > .list > .group > .element');
+        return j.$('.item');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector.find('.title > a[href*="/read/"]').attr('href') || '',
-          FMTeam.domain,
-        );
+        return utils.absoluteLink(selector.find('.filter').attr('href'), FMTeam.domain);
       },
       elementEp(selector) {
         return FMTeam.sync.getEpisode(FMTeam.overview!.list!.elementUrl!(selector));
@@ -77,12 +76,33 @@ export const FMTeam: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(function () {
-      const urlSegment = page.url.split('/')[3];
-      const handlingPage = urlSegment === 'read' || urlSegment === 'series';
-      if (handlingPage && typeof page.url.split('/')[4] !== 'undefined') {
-        page.handlePage();
-      }
+    j.$(document).ready(() => {
+      utils.changeDetect(
+        () => {
+          page.reset();
+          start();
+        },
+        () => {
+          return j.$('head > meta[property="og:title"]').text() || '';
+        },
+      );
     });
+    function start() {
+      const urlSegment = page.url.split('/')[3];
+      const handlingPage = urlSegment === 'read' || urlSegment === 'comics';
+
+      if (handlingPage && typeof page.url.split('/')[4] !== 'undefined') {
+        con.info('Waiting');
+        utils.waitUntilTrue(
+          () => {
+            return j.$('#comic').length || j.$('#jump-chapter').length;
+          },
+          () => {
+            con.info('Start');
+            page.handlePage();
+          },
+        );
+      }
+    }
   },
 };

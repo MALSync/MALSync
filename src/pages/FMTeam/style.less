@@ -1,14 +1,22 @@
 @import './../pages';
 
 @textColor: inherit;
-@activeEp: #0b5393;
+@activeEp: #3490dc;
 
 .mal-sync-active {
-  background-color: @activeEp;
+  background-color: @activeEp !important;
+
+  * {
+    color: white !important;
+  }
+}
+
+#malp {
+  margin: 0;
 }
 
 // Using breakpoint from overview image
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   #MalData {
     flex-direction: column;
   }
