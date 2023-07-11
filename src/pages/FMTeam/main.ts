@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const FMTeam: pageInterface = {
   name: 'FMTeam',
-  domain: 'https://fmteam.fr/',
+  domain: 'https://fmteam.fr',
   languages: ['French'],
   type: 'manga',
   isSyncPage(url) {
@@ -27,22 +27,11 @@ export const FMTeam: pageInterface = {
     getEpisode(url) {
       return Number(utils.urlPart(url, 9)) || Number(utils.urlPart(url, 7));
     },
-    nextEpUrl(url) {
-      const nextChapter = j.$('#jump-chapter option:selected').prev();
-
-      if (nextChapter && typeof nextChapter !== 'undefined') {
-        let temp = nextChapter
-          .text()
-          .trim()
-          .match(/(ch\.|chapitre)\D?\d+/i);
-        if (temp !== null) {
-          temp = temp[0].replace('.', '-').match(/\d+/);
-          if (temp !== null) {
-            return utils.absoluteLink(temp[0], FMTeam.sync.getOverviewUrl(url));
-          }
-        }
+    nextEpUrl() {
+      if (String(j.$('#chapter-link-right').attr('href')).startsWith('/comics')) {
+        return '';
       }
-      return '';
+      return utils.absoluteLink(j.$('#chapter-link-right').attr('href'), FMTeam.domain);
     },
   },
   overview: {
