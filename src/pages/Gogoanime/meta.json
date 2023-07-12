@@ -31,7 +31,9 @@
       "*://*.gogoanime.llc/*",
       "*://*.gogoanime.cl/*",
       "*://*.gogoanime.hu/*",
-      "*://*.gogoanime.vet/*"
+      "*://*.gogoanime.vet/*",
+      "*://*.gogoanimehd.to/*",
+      "*://*.gogoanime3.net/*"
     ]
   }
 }

@@ -151,6 +151,10 @@
     "iframe": []
   },
   "0.9.5": {
+    "Gogoanime": [
+      "https://gogoanimehd.to/*",
+      "https://gogoanime3.net/*"
+    ],
     "Voiranime": [
       "https://v5.voiranime.com/*"
     ],
