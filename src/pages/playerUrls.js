@@ -535,6 +535,10 @@ module.exports = {
   pd: {
     match: ['*://playdrive.xyz/*'],
   },
+  // animedao.to
+  mplayer: {
+    match: ['*://truepoweroflove.com/*'],
+  },
   // otakustv.com
   youtubeEmbed: {
     match: ['*://youtube.googleapis.com/embed/*drive.google.com*'],
