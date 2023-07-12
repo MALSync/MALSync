@@ -673,5 +673,10 @@
     "domain": "https://animeflix.live",
     "type": "anime",
     "name": "Animeflix"
+  },
+  {
+    "domain": "https://luciferdonghua.in",
+    "type": "anime",
+    "name": "Lucifer Donghua"
   }
 ]

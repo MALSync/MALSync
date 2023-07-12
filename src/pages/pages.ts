@@ -133,6 +133,7 @@ import { AnimeOnegai } from './AnimeOnegai/main';
 import { FirstKiss } from './FirstKiss/main';
 import { AnimeKO } from './AnimeKO/main';
 import { Animeflix } from './Animeflix/main';
+import { LuciferDonghua } from './LuciferDonghua/main';
 
 export const pages = {
   nineAnime,
@@ -270,4 +271,5 @@ export const pages = {
   FirstKiss,
   AnimeKO,
   Animeflix,
+  LuciferDonghua,
 };
