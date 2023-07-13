@@ -19,7 +19,7 @@ export const RandomScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('h1.chapter-heading').text().split(' - Cap')[0].trim();
+      return j.$('#chapter-heading').text().split(' - Cap')[0].trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);

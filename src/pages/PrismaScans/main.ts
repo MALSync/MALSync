@@ -19,7 +19,7 @@ export const PrismaScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('h1.chapter-heading').text().split(' - CAP')[0].trim();
+      return j.$('#chapter-heading').text().split(' - CAP')[0].trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
