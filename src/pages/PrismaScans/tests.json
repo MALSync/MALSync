@@ -1,0 +1,31 @@
+{
+  "title": "PrismaScans",
+  "url": "https://prismascans.net",
+  "testCases": [
+    {
+      "url": "https://prismascans.net/manga/1253/cap-50/",
+      "expected": {
+        "sync": true,
+        "title": "Relife Player",
+        "identifier": "1253",
+        "overviewUrl": "https://prismascans.net/manga/1253/",
+        "nextEpUrl": "https://prismascans.net/manga/1253/cap-51/",
+        "episode": 50,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://prismascans.net/manga/1253/",
+      "expected": {
+        "sync": false,
+        "title": "Relife Player",
+        "identifier": "1253",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://prismascans.net/manga/1253/cap-05/",
+          "50": "https://prismascans.net/manga/1253/cap-50/"
+        }
+      }
+    }
+  ]
+}

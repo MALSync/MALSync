@@ -1,0 +1,6 @@
+{
+  "search": "https://randomscans.com/?post_type=wp-manga&s={searchterm}",
+  "urls": {
+    "match": ["*://randomscans.com/manga/*"]
+  }
+}

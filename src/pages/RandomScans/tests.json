@@ -1,0 +1,31 @@
+{
+  "title": "RandomScans",
+  "url": "https://randomscans.com",
+  "testCases": [
+    {
+      "url": "https://randomscans.com/manga/top-tier-providence13/cap-110/",
+      "expected": {
+        "sync": true,
+        "title": "Top Tier Providence",
+        "identifier": "top-tier-providence13",
+        "overviewUrl": "https://randomscans.com/manga/top-tier-providence13/",
+        "nextEpUrl": "https://randomscans.com/manga/top-tier-providence13/cap-111/",
+        "episode": 110,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://randomscans.com/manga/top-tier-providence13/",
+      "expected": {
+        "sync": false,
+        "title": "Top Tier Providence",
+        "identifier": "top-tier-providence13",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://randomscans.com/manga/top-tier-providence13/cap-05/",
+          "50": "https://randomscans.com/manga/top-tier-providence13/cap-50/"
+        }
+      }
+    }
+  ]
+}

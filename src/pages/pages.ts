@@ -133,6 +133,8 @@ import { AnimeOnegai } from './AnimeOnegai/main';
 import { FirstKiss } from './FirstKiss/main';
 import { AnimeKO } from './AnimeKO/main';
 import { Animeflix } from './Animeflix/main';
+import { PrismaScans } from './PrismaScans/main';
+import { RandomScans } from './RandomScans/main';
 
 export const pages = {
   nineAnime,
@@ -270,4 +272,6 @@ export const pages = {
   FirstKiss,
   AnimeKO,
   Animeflix,
+  PrismaScans,
+  RandomScans,
 };
