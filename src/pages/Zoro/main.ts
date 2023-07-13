@@ -16,7 +16,7 @@ let jsonData: ZoroSyncData;
 
 export const Zoro: pageInterface = {
   name: 'Zoro',
-  domain: 'https://zoro.to',
+  domain: 'https://aniwatch.to',
   languages: ['English'],
   type: 'anime',
   database: 'Zoro',

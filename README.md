@@ -202,7 +202,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://immortalupdates.com"><img src="https://favicon.malsync.moe/?domain=https://immortalupdates.com"> ImmortalUpdates</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://zoro.to"><img src="https://favicon.malsync.moe/?domain=https://zoro.to"> Zoro</a></td>
+                <td><a href="https://aniwatch.to"><img src="https://favicon.malsync.moe/?domain=https://aniwatch.to"> Zoro</a></td>
                 <td><a href="https://lhtranslation.net"><img src="https://favicon.malsync.moe/?domain=https://lhtranslation.net"> LHTranslation</a></td>
                 <td></td>
               </tr><tr>
