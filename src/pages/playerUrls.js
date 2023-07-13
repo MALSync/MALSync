@@ -858,10 +858,4 @@ module.exports = {
   vixcloud: {
     match: ['*://vixcloud.cc/*'],
   },
-  prismascans: {
-    match: ['*://prismascans.net/*'],
-  },
-  randomscans: {
-    match: ['*://randomscans.com/*'],
-  },
 };
