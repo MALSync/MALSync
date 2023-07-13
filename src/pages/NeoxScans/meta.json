@@ -1,0 +1,9 @@
+{
+  "search": "https://neoxscans.com/?post_type=wp-manga&s={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://neoxscans.com/*",
+      "*://*.neoxscans.net/*"
+    ]
+  }
+}
