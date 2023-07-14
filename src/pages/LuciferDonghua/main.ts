@@ -14,7 +14,7 @@ export const LuciferDonghua: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('.det a').text();
+      return (j.$('.det a').text() || '').split('[')[0];
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3).split('-episode-')[0];
@@ -29,13 +29,16 @@ export const LuciferDonghua: pageInterface = {
       }
       return NaN;
     },
+    uiSelector(selector) {
+      j.$('.ts-breadcrumb').append(j.html(selector));
+    },
     nextEpUrl(url) {
       return j.$('a[rel=next]').attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('h1.entry-title').text();
+      return (j.$('h1.entry-title').text() || '').split('[')[0];
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
