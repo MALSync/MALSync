@@ -1,6 +1,6 @@
 {
   "title": "ReaperScans",
-  "url": "https://reaperscans.com/",
+  "url": "https://reaperscans.com",
   "testCases": [
     {
       "url": "https://reaperscans.com/comics/4073-overgeared/chapters/71411621-chapter-83",
@@ -23,6 +23,30 @@
         "uiSelector": true,
         "epList": {
           "132": "https://reaperscans.com/comics/4073-overgeared/chapters/30567466-chapter-132"
+        }
+      }
+    },
+    {
+      "url": "https://reaperscans.net/series/level-up-with-skills/capitulo-20",
+      "expected": {
+        "sync": true,
+        "title": "Level Up With Skills",
+        "identifier": "level-up-with-skills",
+        "overviewUrl": "https://reaperscans.net/series/level-up-with-skills",
+        "nextEpUrl": "https://reaperscans.net/series/level-up-with-skills/capitulo-21",
+        "episode": 20,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://reaperscans.net/series/level-up-with-skills",
+      "expected": {
+        "sync": false,
+        "title": "Level Up With Skills",
+        "identifier": "level-up-with-skills",
+        "uiSelector": true,
+        "epList": {
+          "25": "https://reaperscans.net/series/level-up-with-skills/capitulo-25"
         }
       }
     }

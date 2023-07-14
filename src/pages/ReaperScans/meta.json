@@ -1,5 +1,8 @@
 {
   "urls": {
-    "match": ["*://reaperscans.com/comics/*"]
+    "match": [
+      "*://reaperscans.com/comics/*",
+      "*://reaperscans.net/series/*"
+    ]
   }
 }

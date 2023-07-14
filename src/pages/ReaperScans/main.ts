@@ -2,10 +2,13 @@ import { pageInterface } from '../pageInterface';
 
 export const ReaperScans: pageInterface = {
   name: 'ReaperScans',
-  domain: 'https://reaperscans.com',
-  languages: ['English'],
+  domain: ['https://reaperscans.com', 'https://reaperscans.net'],
+  languages: ['English', 'Portuguese'],
   type: 'manga',
   isSyncPage(url) {
+    if (url.split('/')[2].endsWith('.net')) {
+      return utils.urlPart(url, 5).startsWith('capitulo');
+    }
     return utils.urlPart(url, 5) === 'chapters';
   },
   isOverviewPage(url) {
@@ -16,29 +19,43 @@ export const ReaperScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
+      if (url.split('/')[2].endsWith('.net')) {
+        return j.$('div.chapter-heading > h5 > a').text().trim();
+      }
       return j.$('div.text-center > p').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
+      if (url.split('/')[2].endsWith('net')) {
+        return utils.absoluteLink(
+          j.$('div.chapter-heading > h5 > a').first().attr('href'),
+          'https://reaperscans.net',
+        );
+      }
       return utils.absoluteLink(
         j.$('.fa-list').closest('a[href*="/comics/"]').attr('href'),
-        ReaperScans.domain,
+        'https://reaperscans.com',
       );
     },
     getEpisode(url) {
       let temp = 0;
 
-      const titlePart = document.title.match(/chapter (\d+)/i);
+      const titlePart = document.title.match(/(chapter|capítulo) (\d+)/i);
 
       if (titlePart && titlePart[1]) {
         temp = Number(titlePart[1]);
       }
 
       if (!temp) {
-        const episodePart = utils.urlPart(url, 6).match(/chapter-(\d+)/i);
-        if (episodePart) temp = Number(episodePart[1]);
+        if (url.split('/')[2].endsWith('.net')) {
+          const episodePart = utils.urlPart(url, 5).match(/capitulo-(\d+)/i);
+          if (episodePart) temp = Number(episodePart[1]);
+        } else {
+          const episodePart = utils.urlPart(url, 6).match(/chapter-(\d+)/i);
+          if (episodePart) temp = Number(episodePart[1]);
+        }
       }
 
       if (!temp) return 0;
@@ -46,7 +63,13 @@ export const ReaperScans: pageInterface = {
       return temp;
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(j.$('a:contains(Next)').attr('href'), ReaperScans.domain);
+      if (url.split('/')[2].endsWith('.net')) {
+        return utils.absoluteLink(
+          j.$('div.next-chap > a').first().attr('href'),
+          'https://reaperscans.net',
+        );
+      }
+      return utils.absoluteLink(j.$('a:contains(Next)').attr('href'), 'https://reaperscans.com');
     },
   },
   overview: {
@@ -62,10 +85,19 @@ export const ReaperScans: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
+        if (document.URL.split('/')[2].endsWith('.net')) {
+          return j.$('div.season > ul > a');
+        }
         return j.$('div.pb-4 > div > div > ul > li');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a').first().attr('href'), ReaperScans.domain);
+        if (document.URL.split('/')[2].endsWith('.net')) {
+          return utils.absoluteLink(selector.attr('href'), 'https://reaperscans.net');
+        }
+        return utils.absoluteLink(
+          selector.find('a').first().attr('href'),
+          'https://reaperscans.com',
+        );
       },
       elementEp(selector) {
         return ReaperScans.sync.getEpisode(ReaperScans.overview!.list!.elementUrl!(selector));
