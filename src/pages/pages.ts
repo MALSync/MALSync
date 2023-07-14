@@ -135,6 +135,7 @@ import { AnimeKO } from './AnimeKO/main';
 import { Animeflix } from './Animeflix/main';
 import { PrismaScans } from './PrismaScans/main';
 import { RandomScans } from './RandomScans/main';
+import { NeoxScans } from './NeoxScans/main';
 
 export const pages = {
   nineAnime,
@@ -274,4 +275,5 @@ export const pages = {
   Animeflix,
   PrismaScans,
   RandomScans,
+  NeoxScans,
 };

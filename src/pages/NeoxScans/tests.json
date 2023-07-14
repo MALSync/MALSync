@@ -1,0 +1,31 @@
+{
+  "title": "NeoxScans",
+  "url": "https://neoxscans.net",
+  "testCases": [
+    {
+      "url": "https://neoxscans.net/manga/player_1-_6_12300/cap-50/",
+      "expected": {
+        "sync": true,
+        "title": "Player",
+        "identifier": "https://neoxscans.net/manga/player_1-_6_12300/",
+        "overviewUrl": "https://neoxscans.net/manga/player_1-_6_12300/",
+        "nextEpUrl": "https://neoxscans.net/manga/player_1-_6_12300/cap-51/",
+        "episode": 50,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://neoxscans.net/manga/tamingmas-_6_12300-ter_1/",
+      "expected": {
+        "sync": false,
+        "title": "Taming Master",
+        "identifier": "tamingmas-_6_12300-ter_1",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://neoxscans.net/manga/tamingmas-_6_12300-ter_1/cap-05/",
+          "50": "https://neoxscans.net/manga/tamingmas-_6_12300-ter_1/cap-50/"
+        }
+      }
+    }
+  ]
+}
