@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const LuciferDonghua: pageInterface = {
   name: 'Lucifer Donghua',
-  domain: 'https://luciferdonghua.in/',
+  domain: 'https://luciferdonghua.in',
   database: 'luciferdonghua',
   languages: ['English'],
   type: 'anime',
@@ -71,8 +71,6 @@ export const LuciferDonghua: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-
-    LuciferDonghua.domain = `${window.location.protocol}//${window.location.hostname}`;
 
     utils.waitUntilTrue(
       () => {
