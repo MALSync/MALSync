@@ -180,6 +180,7 @@ module.exports = {
         'vue/no-v-html': 'error',
         'vue/multi-word-component-names': 'off',
         'vue/no-deprecated-filter': 'off',
+        'vue/no-setup-props-destructure': 'warn',
       },
     },
     {
