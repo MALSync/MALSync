@@ -61,7 +61,7 @@
     "typescript": "^5.1.6",
     "vue-loader": "^17.2.2",
     "web-ext": "^7.6.2",
-    "webpack": "^5.88.1",
+    "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
