@@ -73,7 +73,9 @@ const id = Math.floor(Math.random() * 10000);
     align-items: center;
     padding: 5px 10px;
     margin: -2px;
-    transition: background-color @fast-transition, color @fast-transition;
+    transition:
+      background-color @fast-transition,
+      color @fast-transition;
   }
 
   :checked + label {

@@ -5,8 +5,8 @@
   <div class="content">
     <router-view v-slot="{ Component, route }">
       <transition
-        :name="route.meta.transition as string || 'fade'"
-        :duration="route.meta.duration as number || 0"
+        :name="(route.meta.transition as string) || 'fade'"
+        :duration="(route.meta.duration as number) || 0"
       >
         <keep-alive max="5" :exclude="['overview']">
           <component

@@ -34,7 +34,7 @@
       </Section>
       <div class="provider-section">
         <div
-          v-for="provider in (Object.values(providerList) as any[])"
+          v-for="provider in Object.values(providerList) as any[]"
           :key="provider.providerType"
           class="provider-item"
         >

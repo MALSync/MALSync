@@ -24,7 +24,7 @@ import Section from '../section.vue';
 </script>
 
 <style lang="less" scoped>
-.how::v-deep a {
+.how:deep(a) {
   color: var(--cl-secondary-text);
   transition: color 0.2s ease-in-out;
 

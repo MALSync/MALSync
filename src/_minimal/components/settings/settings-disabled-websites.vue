@@ -4,7 +4,7 @@
       {{ lang('settings_tracking_disabled') }}
     </Header>
     <SettingsGeneral
-      v-for="(page, key) in (pageArray as any)"
+      v-for="(page, key) in pageArray as any"
       :key="key"
       component="checkbox"
       title=""
