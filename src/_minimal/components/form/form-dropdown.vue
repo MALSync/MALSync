@@ -130,7 +130,15 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'close:popper', 'open:popper']);
 
-const picked = ref(props.modelValue);
+const picked = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit('update:modelValue', value);
+  },
+});
+
 const open = ref(false);
 const select = (option: Option) => {
   picked.value = option.value;
@@ -146,16 +154,6 @@ const currentMeta = computed(() => {
   if (!active) return {};
   return active.meta;
 });
-
-watch(picked, value => {
-  emit('update:modelValue', value);
-});
-watch(
-  () => props.modelValue,
-  value => {
-    picked.value = value;
-  },
-);
 
 const popperNode = ref(null);
 const triggerNode = ref(null);
