@@ -47,6 +47,31 @@ const COMMON_RULES = {
 };
 
 /**
+ * @type {import("eslint").Linter.RulesRecord}
+ */
+const TYPESCRIPT_RULES = {
+  '@typescript-eslint/ban-ts-comment': 'warn',
+  '@typescript-eslint/ban-types': [
+    'off',
+    {
+      types: {
+        // add a custom message to help explain why not to use it
+        Object: '',
+        '{}': '',
+        object: '',
+      },
+      extendDefaults: true,
+    },
+  ],
+  '@typescript-eslint/explicit-function-return-type': 'off',
+  '@typescript-eslint/no-non-null-assertion': 'off',
+  '@typescript-eslint/no-this-alias': 'warn',
+  '@typescript-eslint/no-var-requires': 'off',
+  '@typescript-eslint/no-explicit-any': 'warn',
+  '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
+};
+
+/**
  * @type {import("eslint").Linter.Config}
  */
 module.exports = {
@@ -94,24 +119,7 @@ module.exports = {
         'import/no-cycle': 'warn', // TODO
         'import/no-self-import': 'warn',
         // TS rules
-        '@typescript-eslint/ban-ts-comment': 'warn',
-        '@typescript-eslint/ban-types': [
-          'off',
-          {
-            types: {
-              // add a custom message to help explain why not to use it
-              Object: '',
-              '{}': '',
-              object: '',
-            },
-            extendDefaults: true,
-          },
-        ],
-        '@typescript-eslint/explicit-function-return-type': 'off',
-        '@typescript-eslint/no-non-null-assertion': 'off',
-        '@typescript-eslint/no-this-alias': 'warn',
-        '@typescript-eslint/no-var-requires': 'off',
-        '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
+        ...TYPESCRIPT_RULES,
         // General rules
         camelcase: ['error', { allow: ['_'] }],
         'vars-on-top': 'off',
@@ -135,7 +143,6 @@ module.exports = {
             },
           },
         ],
-        // `eslint-plugin-es, rules
         'es/no-nullish-coalescing-operators': 'off',
         'es/no-optional-chaining': 'warn',
         'es/no-regexp-lookbehind-assertions': 'error',
@@ -165,6 +172,7 @@ module.exports = {
       plugins: ['vue', 'prettier'],
       rules: {
         ...COMMON_RULES,
+        ...TYPESCRIPT_RULES,
         'prettier/prettier': ['error', { singleQuote: true }],
         'vue/component-tags-order': 'off',
         'vue/no-v-for-template-key-on-child': 'off',
