@@ -21,7 +21,7 @@
           </template>
           <template #option="slotProps">
             <MediaLink
-              :href="(slotProps.option.value as string)"
+              :href="slotProps.option.value as string"
               class="dropdown-link"
               @mousedown.prevent=""
             >

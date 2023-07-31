@@ -171,6 +171,7 @@ module.exports = {
         'vue/no-deprecated-destroyed-lifecycle': 'off',
         'vue/no-v-html': 'error',
         'vue/multi-word-component-names': 'off',
+        'vue/no-deprecated-filter': 'off',
       },
     },
     {

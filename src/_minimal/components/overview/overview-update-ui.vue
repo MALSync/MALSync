@@ -7,7 +7,7 @@
           <span class="label">{{ lang('UI_Status') }}</span>
           <FormDropdown
             v-model="status"
-            :options="(single.getStatusCheckbox() as any)"
+            :options="single.getStatusCheckbox() as any"
             align-items="left"
           >
             <template #select="slotProps">
@@ -101,7 +101,9 @@
                 :strict-validation="true"
                 :validation="
                   value => {
-                    return Boolean(String(value).match(new RegExp((scoreModeStrategy!.ui as any).pattern)));
+                    return Boolean(
+                      String(value).match(new RegExp((scoreModeStrategy!.ui as any).pattern)),
+                    );
                   }
                 "
                 :placeholder="lang('UI_Score_Not_Rated')"
@@ -110,7 +112,7 @@
             <template v-else-if="scoreModeStrategy.ui.module === 'click'">
               <FormClick
                 v-model="score"
-                :options="(scoreModeStrategy.getOptions() as any)"
+                :options="scoreModeStrategy.getOptions() as any"
                 :type="scoreModeStrategy.ui.type"
               />
             </template>
@@ -118,7 +120,7 @@
               <FormDropdown
                 v-model="score"
                 align-items="left"
-                :options="(scoreModeStrategy.getOptions() as any)"
+                :options="scoreModeStrategy.getOptions() as any"
               >
                 <template #select="slotProps">
                   <FormButton :tabindex="-1" :animation="false" padding="mini">
@@ -131,7 +133,7 @@
           <FormSlider
             v-model="score"
             color="violet"
-            :options="(sortedOptions(single.getScoreCheckbox()) as any)"
+            :options="sortedOptions(single.getScoreCheckbox()) as any"
           />
         </template>
       </div>

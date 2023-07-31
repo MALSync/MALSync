@@ -4,7 +4,7 @@
     <Section class="image-section real">
       <OverviewImage
         class="image"
-        :single="(singleRequest.data as null | SingleAbstract)"
+        :single="singleRequest.data as null | SingleAbstract"
         :src="metaRequest.data?.imageLarge || singleRequest.data?.getImage() || ''"
         :loading="metaRequest.loading"
       />
@@ -86,7 +86,7 @@
     <HR v-if="breakpoint === 'desktop' || !totalLoading" class="header-split" />
     <Section v-if="breakpoint === 'desktop' || !totalLoading" class="update-section">
       <OverviewUpdateUi
-        :single="(singleRequest.data as null | SingleAbstract)"
+        :single="singleRequest.data as null | SingleAbstract"
         :loading="totalLoading || singleRequest.loading"
         :type="props.type"
       />
@@ -116,7 +116,10 @@
           <HR />
         </template>
         <template
-          v-if="metaRequest.data!.reviews && metaRequest.data!.reviews.length || singleRequest.data?.getMalUrl()"
+          v-if="
+            (metaRequest.data!.reviews && metaRequest.data!.reviews.length) ||
+            singleRequest.data?.getMalUrl()
+          "
         >
           <Section>
             <OverviewReviews
@@ -127,7 +130,10 @@
           <HR />
         </template>
         <template
-          v-if="metaRequest.data!.recommendations && metaRequest.data!.recommendations.length || singleRequest.data?.getMalUrl()"
+          v-if="
+            (metaRequest.data!.recommendations && metaRequest.data!.recommendations.length) ||
+            singleRequest.data?.getMalUrl()
+          "
         >
           <Section>
             <OverviewRecommendations
@@ -145,7 +151,7 @@
       >
         <OverviewInfo
           :info="metaRequest.data!.info"
-          :single="(singleRequest.data as null | SingleAbstract)"
+          :single="singleRequest.data as null | SingleAbstract"
         />
       </Section>
     </template>

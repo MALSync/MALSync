@@ -142,7 +142,9 @@ const formatItem = (item: searchResult): bookmarkItem => {
 }
 
 .grid {
-  transition: filter @normal-transition, opacity @normal-transition;
+  transition:
+    filter @normal-transition,
+    opacity @normal-transition;
   &.loading {
     opacity: 0.4;
     filter: grayscale(1);

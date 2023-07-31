@@ -25,7 +25,10 @@ export class RulesClass {
 
   protected state: rules | undefined;
 
-  constructor(protected cacheKey: string | number, protected type: 'anime' | 'manga') {
+  constructor(
+    protected cacheKey: string | number,
+    protected type: 'anime' | 'manga',
+  ) {
     this.logger = con.m('Rules');
     return this;
   }
