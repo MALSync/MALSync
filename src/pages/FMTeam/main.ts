@@ -65,24 +65,22 @@ export const FMTeam: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(() => {
-      utils.changeDetect(
-        () => {
-          page.reset();
-          start();
-        },
-        () => {
-          return j.$('head > meta[property="og:title"]').text() || '';
-        },
-      );
+
+    let inter;
+
+    utils.fullUrlChangeDetect(() => {
+      page.reset();
+      start();
     });
+
     function start() {
+      clearInterval(inter);
       const urlSegment = page.url.split('/')[3];
       const handlingPage = urlSegment === 'read' || urlSegment === 'comics';
 
       if (handlingPage && typeof page.url.split('/')[4] !== 'undefined') {
         con.info('Waiting');
-        utils.waitUntilTrue(
+        inter = utils.waitUntilTrue(
           () => {
             return j.$('#comic').length || j.$('#jump-chapter').length;
           },
