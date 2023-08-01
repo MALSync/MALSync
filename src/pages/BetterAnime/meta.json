@@ -1,0 +1,7 @@
+{
+  "search": "https://betteranime.net/pesquisa?titulo={searchtermPlus}",
+  "urls": {
+    "match": ["*://betteranime.net/anime/*"]
+  }
+}
+

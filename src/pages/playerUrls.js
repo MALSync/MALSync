@@ -726,6 +726,9 @@ module.exports = {
   streamlare: {
     match: ['*://streamlare.com/e/*'],
   },
+  BetterAnime: {
+    match: ['*://betteranime.net/player*'],
+  },
   // animixplay
   streamzz: {
     match: ['*://streamzz.to/*'],
