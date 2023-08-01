@@ -1,0 +1,31 @@
+{
+  "title": "Furyosociety",
+  "url": "https://furyosociety.com/",
+  "testCases": [
+    {
+      "url": "https://furyosociety.com/read/crows/fr/26/94/",
+      "expected": {
+        "sync": true,
+        "title": "CROWS",
+        "identifier": "crows",
+        "overviewUrl": "https://furyosociety.com/series/crows/",
+        "nextEpUrl": "https://furyosociety.com/read/crows/fr/26/95/",
+        "episode": 94,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://furyosociety.com/series/crows/",
+      "expected": {
+        "sync": false,
+        "title": "CROWS",
+        "identifier": "crows",
+        "uiSelector": true,
+        "epList": {
+          "26": "https://furyosociety.com/read/crows/fr/8/26/",
+          "51": "https://furyosociety.com/read/crows/fr/15/51/"
+        }
+      }
+    }
+  ]
+}

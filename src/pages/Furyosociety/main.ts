@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
-export const Furyosquad: pageInterface = {
-  name: 'Furyosquad',
-  domain: 'https://furyosquad.com/',
+export const Furyosociety: pageInterface = {
+  name: 'Furyosociety',
+  domain: 'https://furyosociety.com/',
   languages: ['French'],
   type: 'manga',
   isSyncPage(url) {
@@ -16,7 +16,7 @@ export const Furyosquad: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl() {
-      return utils.absoluteLink(j.$('.fs-read-comic-link a').attr('href'), Furyosquad.domain);
+      return utils.absoluteLink(j.$('.fs-read-comic-link a').attr('href'), Furyosociety.domain);
     },
     getVolume(url) {
       return parseInt(utils.urlPart(url, 6));
@@ -30,7 +30,7 @@ export const Furyosquad: pageInterface = {
       if (href && href.split('/').length === 6) {
         return '';
       }
-      return utils.absoluteLink(href, Furyosquad.domain);
+      return utils.absoluteLink(href, Furyosociety.domain);
     },
   },
   overview: {
@@ -55,11 +55,11 @@ export const Furyosquad: pageInterface = {
       elementUrl(selector) {
         return utils.absoluteLink(
           selector.find('a[href*="/read/"]').attr('href') || '',
-          Furyosquad.domain,
+          Furyosociety.domain,
         );
       },
       elementEp(selector) {
-        return Furyosquad.sync.getEpisode(Furyosquad.overview!.list!.elementUrl!(selector));
+        return Furyosociety.sync.getEpisode(Furyosociety.overview!.list!.elementUrl!(selector));
       },
     },
   },
@@ -67,13 +67,12 @@ export const Furyosquad: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(function () {
-      if (
-        (page.url.split('/')[3] === 'read' && typeof page.url.split('/')[4] !== 'undefined') ||
-        (j.$('.fs-comic-title').length && j.$('div.main-container-top.comic').length)
-      ) {
-        page.handlePage();
-      }
-    });
+
+    if (
+      (page.url.split('/')[3] === 'read' && typeof page.url.split('/')[4] !== 'undefined') ||
+      (j.$('.fs-comic-title').length && j.$('div.main-container-top.comic').length)
+    ) {
+      page.handlePage();
+    }
   },
 };
