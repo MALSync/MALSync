@@ -858,6 +858,6 @@ module.exports = {
   },
   // animeunity
   vixcloud: {
-    match: ['*://vixcloud.cc/*'],
+    match: ['*://vixcloud.cc/*', '*://vixcloud.co/*'],
   },
 };
