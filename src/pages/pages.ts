@@ -103,7 +103,6 @@ import { BetterAnime } from './BetterAnime/main';
 import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
-import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
 import { MuitoManga } from './MuitoManga/main';
 import { RealmScans } from './RealmScans/main';
@@ -240,7 +239,6 @@ export const pages = {
   BilibiliComics,
   MangaReader,
   AnimeOnsen,
-  Puray,
   Animetoast,
   MuitoManga,
   RealmScans,
