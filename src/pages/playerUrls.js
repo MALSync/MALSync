@@ -535,6 +535,10 @@ module.exports = {
   pd: {
     match: ['*://playdrive.xyz/*'],
   },
+  // animedao.to
+  mplayer: {
+    match: ['*://truepoweroflove.com/*'],
+  },
   // otakustv.com
   youtubeEmbed: {
     match: ['*://youtube.googleapis.com/embed/*drive.google.com*'],
@@ -636,6 +640,9 @@ module.exports = {
       '*://simpulumlamerop.com/e/*',
       '*://sizyreelingly.com/e/*',
       '*://rationalityaloelike.com/e/*',
+      '*://wolfdyslectic.com/e/*',
+      '*://metagnathtuggers.com/e/*',
+      '*://gamoneinterrupted.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -848,5 +855,9 @@ module.exports = {
   // zoro
   megacloud: {
     match: ['*://megacloud.tv/*'],
+  },
+  // animeunity
+  vixcloud: {
+    match: ['*://vixcloud.cc/*', '*://vixcloud.co/*'],
   },
 };

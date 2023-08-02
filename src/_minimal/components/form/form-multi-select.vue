@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, ref, watch } from 'vue';
+import { PropType, computed, ref } from 'vue';
 import FormButton from './form-button.vue';
 import TextIcon from '../text-icon.vue';
 
@@ -58,7 +58,15 @@ const ignore = ref(props.ignoreSelect);
 
 const emit = defineEmits(['update:modelValue', 'click']);
 
-const picked = ref(props.modelValue);
+const picked = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit('update:modelValue', value);
+  },
+});
+
 const open = ref(false);
 const select = (option: Option) => {
   picked.value = option.value;
@@ -66,16 +74,6 @@ const select = (option: Option) => {
   ignore.value = false;
   emit('click');
 };
-
-watch(picked, value => {
-  emit('update:modelValue', value);
-});
-watch(
-  () => props.modelValue,
-  value => {
-    picked.value = value;
-  },
-);
 </script>
 
 <style lang="less" scoped>

@@ -110,7 +110,9 @@ watch(
   .smile-score-wrap {
     .el-rate__item {
       filter: grayscale(100%);
-      transition: transform @fast-transition ease, filter @fast-transition ease;
+      transition:
+        transform @fast-transition ease,
+        filter @fast-transition ease;
       transform: scale(1);
 
       &.active,

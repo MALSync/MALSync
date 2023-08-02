@@ -517,7 +517,7 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://zoro.to"><img src="https://favicon.malsync.moe/?domain=https://zoro.to"> Zoro</a></td>
+    <td><a href="https://aniwatch.to"><img src="https://favicon.malsync.moe/?domain=https://aniwatch.to"> Zoro</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>

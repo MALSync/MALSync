@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, watch, ref } from 'vue';
+import { PropType, computed } from 'vue';
 
 interface Option {
   value: string;
@@ -37,17 +37,14 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-const picked = ref(props.modelValue);
-
-watch(picked, value => {
-  emit('update:modelValue', value);
-});
-watch(
-  () => props.modelValue,
-  value => {
-    picked.value = value;
+const picked = computed({
+  get() {
+    return props.modelValue;
   },
-);
+  set(value) {
+    emit('update:modelValue', value);
+  },
+});
 
 const id = Math.floor(Math.random() * 10000);
 </script>
@@ -73,7 +70,9 @@ const id = Math.floor(Math.random() * 10000);
     align-items: center;
     padding: 5px 10px;
     margin: -2px;
-    transition: background-color @fast-transition, color @fast-transition;
+    transition:
+      background-color @fast-transition,
+      color @fast-transition;
   }
 
   :checked + label {

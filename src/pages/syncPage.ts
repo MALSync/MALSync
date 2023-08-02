@@ -507,9 +507,12 @@ export class SyncPage {
     }
 
     if (!mangaProgressMode && api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
-      setTimeout(() => {
-        this.sync(state);
-      }, api.settings.get('delay') * 1000);
+      setTimeout(
+        () => {
+          this.sync(state);
+        },
+        api.settings.get('delay') * 1000,
+      );
     } else {
       const translationMsg = {
         key: `syncPage_flashm_sync_${this.page.type}`,
@@ -589,21 +592,24 @@ export class SyncPage {
 
       // Show error if no player gets detected for 5 minutes
       if (this.singleObj.getType() === 'anime') {
-        playerTimeout = setTimeout(async () => {
-          j.$('#flashinfo-div').addClass('player-error');
+        playerTimeout = setTimeout(
+          async () => {
+            j.$('#flashinfo-div').addClass('player-error');
 
-          if (await hasMissingPermissions()) {
-            j.$('#flashinfo-div').addClass('player-error-missing-permissions');
-          }
+            if (await hasMissingPermissions()) {
+              j.$('#flashinfo-div').addClass('player-error-missing-permissions');
+            }
 
-          const iframes = $('iframe')
-            .toArray()
-            .map(el => utils.absoluteLink($(el).attr('src'), window.location.origin))
-            .filter(el => el)
-            .filter(el => !isIframeUrl(el));
+            const iframes = $('iframe')
+              .toArray()
+              .map(el => utils.absoluteLink($(el).attr('src'), window.location.origin))
+              .filter(el => el)
+              .filter(el => !isIframeUrl(el));
 
-          con.log('No Player found', iframes);
-        }, 5 * 60 * 1000);
+            con.log('No Player found', iframes);
+          },
+          5 * 60 * 1000,
+        );
       }
 
       // Debugging
@@ -1213,9 +1219,12 @@ export class SyncPage {
 
         // Reset browsingTime if not in focus for more than 5 min
         clearTimeout(browsingTimeout);
-        browsingTimeout = setTimeout(() => {
-          this.browsingtime = undefined;
-        }, 5 * 60 * 1000);
+        browsingTimeout = setTimeout(
+          () => {
+            this.browsingtime = undefined;
+          },
+          5 * 60 * 1000,
+        );
         if (!this.browsingtime) this.browsingtime = Date.now();
 
         // Cover

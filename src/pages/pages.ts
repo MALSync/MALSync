@@ -47,7 +47,7 @@ import { mangatx } from './mangatx/main';
 import { manhuafast } from './manhuafast/main';
 import { TRanimeizle } from './TRanimeizle/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
-import { Furyosquad } from './Furyosquad/main';
+import { Furyosociety } from './Furyosociety/main';
 import { AnimeId } from './AnimeId/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
 import { AnimeUnity } from './AnimeUnity/main';
@@ -83,7 +83,6 @@ import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
-import { Japanread } from './Japanread/main';
 import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { HunlightScans } from './HunlightScans/main';
@@ -104,7 +103,6 @@ import { BetterAnime } from './BetterAnime/main';
 import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
-import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
 import { MuitoManga } from './MuitoManga/main';
 import { RealmScans } from './RealmScans/main';
@@ -134,6 +132,7 @@ import { FirstKiss } from './FirstKiss/main';
 import { AnimeKO } from './AnimeKO/main';
 import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
+import { NeoxScans } from './NeoxScans/main';
 
 export const pages = {
   nineAnime,
@@ -185,7 +184,7 @@ export const pages = {
   manhuafast,
   TRanimeizle,
   AnimeStreamingFR,
-  Furyosquad,
+  Furyosociety,
   AnimeId,
   MyAnimeListVideo,
   AnimeUnity,
@@ -221,7 +220,6 @@ export const pages = {
   Guya,
   MangaHub,
   ComicK,
-  Japanread,
   Bentomanga,
   MangaSushi,
   HunlightScans,
@@ -242,7 +240,6 @@ export const pages = {
   BilibiliComics,
   MangaReader,
   AnimeOnsen,
-  Puray,
   Animetoast,
   MuitoManga,
   RealmScans,
@@ -272,4 +269,5 @@ export const pages = {
   AnimeKO,
   Animeflix,
   LuciferDonghua,
+  NeoxScans,
 };

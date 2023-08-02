@@ -151,12 +151,35 @@
     "iframe": []
   },
   "0.9.5": {
+    "AnimeUnity": [
+      "https://www.animeunity.to/anime/*"
+    ],
+    "Gogoanime": [
+      "https://gogoanimehd.to/*",
+      "https://gogoanime3.net/*"
+    ],
+    "RealmScans": [
+      "https://realmscans.xyz/*"
+    ],
+    "Voiranime": [
+      "https://v5.voiranime.com/*"
+    ],
     "Zoro": [
       "https://aniwatch.to/*"
     ],
+    "nineAnime": [
+      "https://aniwave.to/watch/*",
+      "https://aniwave.to/watch2gether/*"
+    ],
     "iframe": [
+      "https://truepoweroflove.com/*",
       "https://rationalityaloelike.com/e/*",
-      "https://megacloud.tv/*"
+      "https://wolfdyslectic.com/e/*",
+      "https://metagnathtuggers.com/e/*",
+      "https://gamoneinterrupted.com/e/*",
+      "https://megacloud.tv/*",
+      "https://vixcloud.cc/*",
+      "https://vixcloud.co/*"
     ]
   }
 }

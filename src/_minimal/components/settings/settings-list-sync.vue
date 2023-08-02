@@ -34,7 +34,7 @@
       </Section>
       <div class="provider-section">
         <div
-          v-for="provider in (Object.values(providerList) as any[])"
+          v-for="provider in Object.values(providerList) as any[]"
           :key="provider.providerType"
           class="provider-item"
         >
@@ -183,7 +183,6 @@ import Card from '../card.vue';
 import FormSwitch from '../form/form-switch.vue';
 import FormButton from '../form/form-button.vue';
 import Section from '../section.vue';
-import Grid from '../grid.vue';
 import Spinner from '../spinner.vue';
 import Header from '../header.vue';
 import MediaLink from '../media-link.vue';

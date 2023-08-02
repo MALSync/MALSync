@@ -125,17 +125,6 @@ const profileRequest = createRequest(
   },
 );
 
-const deauth = () => {
-  parameters.value.listObj
-    .deauth()
-    .then(() => {
-      profileRequest.execute();
-    })
-    .catch(() => {
-      alert('Failed');
-    });
-};
-
 const state = computed(() => {
   if (profileRequest.loading) return 'loading';
   if (profileRequest.data && !profileRequest.data.username) return 'noAuth';

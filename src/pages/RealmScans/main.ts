@@ -14,7 +14,7 @@ export function getInter(): pageInterface {
   /* eslint-disable-next-line prefer-const */
   thisSelf = {
     name: 'RealmScans',
-    domain: 'https://realmscans.com',
+    domain: 'https://realmscans.xyz',
     languages: ['English'],
     type: 'manga',
     isSyncPage(url) {
