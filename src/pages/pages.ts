@@ -47,7 +47,7 @@ import { mangatx } from './mangatx/main';
 import { manhuafast } from './manhuafast/main';
 import { TRanimeizle } from './TRanimeizle/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
-import { Furyosquad } from './Furyosquad/main';
+import { Furyosociety } from './Furyosociety/main';
 import { AnimeId } from './AnimeId/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
 import { AnimeUnity } from './AnimeUnity/main';
@@ -183,7 +183,7 @@ export const pages = {
   manhuafast,
   TRanimeizle,
   AnimeStreamingFR,
-  Furyosquad,
+  Furyosociety,
   AnimeId,
   MyAnimeListVideo,
   AnimeUnity,
