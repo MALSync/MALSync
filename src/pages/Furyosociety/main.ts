@@ -67,12 +67,13 @@ export const Furyosociety: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-
-    if (
-      (page.url.split('/')[3] === 'read' && typeof page.url.split('/')[4] !== 'undefined') ||
-      (j.$('.fs-comic-title').length && j.$('div.main-container-top.comic').length)
-    ) {
-      page.handlePage();
-    }
+    j.$(document).ready(() => {
+      if (
+        (page.url.split('/')[3] === 'read' && typeof page.url.split('/')[4] !== 'undefined') ||
+        (j.$('.fs-comic-title').length && j.$('div.main-container-top.comic').length)
+      ) {
+        page.handlePage();
+      }
+    });
   },
 };
