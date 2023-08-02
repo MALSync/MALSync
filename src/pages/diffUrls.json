@@ -167,6 +167,10 @@
     "Zoro": [
       "https://aniwatch.to/*"
     ],
+    "nineAnime": [
+      "https://aniwave.to/watch/*",
+      "https://aniwave.to/watch2gether/*"
+    ],
     "iframe": [
       "https://truepoweroflove.com/*",
       "https://rationalityaloelike.com/e/*",
