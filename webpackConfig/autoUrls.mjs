@@ -40,7 +40,7 @@ async function gogostream() {
         streamsb.hostname + '/e/*',
     ]);
 
-    
+
     const dood = new URL($('.anime_muti_link .doodstream [data-video]').attr('data-video'));
     addPlayerUrls('gogodood', [
         dood.hostname + '/e/*',
@@ -153,7 +153,7 @@ function addPlayerUrls(key, urls) {
 async function start() {
     await voe();
     await vidmoly();
-    await gogostream();
+    // await gogostream();
     await nineanime();
     await zoro();
     await gogoanime();
