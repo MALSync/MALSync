@@ -3,7 +3,6 @@ import { pageInterface } from '../pageInterface';
 export const LuciferDonghua: pageInterface = {
   name: 'Lucifer Donghua',
   domain: 'https://luciferdonghua.in',
-  database: 'luciferdonghua',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
@@ -28,9 +27,6 @@ export const LuciferDonghua: pageInterface = {
         return parseInt(ep[1]);
       }
       return NaN;
-    },
-    uiSelector(selector) {
-      j.$('.ts-breadcrumb').append(j.html(selector));
     },
     nextEpUrl(url) {
       return j.$('a[rel=next]').attr('href');
@@ -72,15 +68,16 @@ export const LuciferDonghua: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
 
-    utils.waitUntilTrue(
-      () => {
-        return j.$('h1.entry-title');
-      },
-      function () {
-        con.info('Start check');
-        page.handlePage();
-        page.handleList();
-      },
+    j.$(() =>
+      utils.waitUntilTrue(
+        () => {
+          return j.$('h1.entry-title');
+        },
+        () => {
+          con.info('Start check');
+          page.handlePage();
+        },
+      ),
     );
   },
 };
