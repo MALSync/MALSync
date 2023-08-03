@@ -1,0 +1,6 @@
+{
+    "search": "https://manhwafreak.com/?s={searchtermPlus}",
+    "urls": {
+      "match": ["*://manhwafreak.com/*"]
+    }
+}

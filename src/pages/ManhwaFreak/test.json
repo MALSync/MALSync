@@ -1,0 +1,30 @@
+{
+    "title": "ManhwaFreak",
+    "url": "https://manhwafreak.com",
+    "testCases": [
+      {
+        "url": "https://manhwafreak.com/rise-from-the-rubble-ch-200/",
+        "expected": {
+          "sync": true,
+          "title": "Rise From the Rubble",
+          "identifier": "com/rise-from-the-rubble-ch-200",
+          "overviewUrl": "https://manhwafreak.com/manga/rise-from-the-rubble/",
+          "nextEpUrl": "https://manhwafreak.com/rise-from-the-rubble-ch-201/",
+          "episode": 200,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://manhwafreak.com/manga/rise-from-the-rubble/",
+        "expected": {
+          "sync": false,
+          "title": "Rise From the Rubble",
+          "identifier": "rise-from-the-rubble",
+          "uiSelector": true,
+          "epList": {
+            "201": "https://manhwafreak.com/rise-from-the-rubble-ch-201/"
+          }
+        }
+      }
+    ]
+  }
