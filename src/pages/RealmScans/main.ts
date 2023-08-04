@@ -39,7 +39,7 @@ export function getInter(): pageInterface {
         return j.$('.ts-breadcrumb li:nth-child(2) a').attr('href') || '';
       },
       getEpisode(url) {
-        const episodePart = utils.urlPart(cleanUrl(url), 3);
+        const episodePart = utils.urlPart(cleanUrl(url), 4);
 
         const temp = episodePart.match(/-chapter-(\d+)/im);
 
