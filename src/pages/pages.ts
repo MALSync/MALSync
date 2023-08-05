@@ -132,7 +132,7 @@ import { FirstKiss } from './FirstKiss/main';
 import { AnimeKO } from './AnimeKO/main';
 import { Animeflix } from './Animeflix/main';
 import { NeoxScans } from './NeoxScans/main';
-import { HinataSoul } from './HinataSoul/main'
+import { HinataSoul } from './HinataSoul/main';
 
 export const pages = {
   nineAnime,
