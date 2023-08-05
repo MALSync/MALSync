@@ -269,5 +269,5 @@ export const pages = {
   AnimeKO,
   Animeflix,
   NeoxScans,
-  HinataSoul
+  HinataSoul,
 };

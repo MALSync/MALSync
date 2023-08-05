@@ -74,7 +74,7 @@ export const HinataSoul: pageInterface = {
           selector.find('.ultimosEpisodiosHomeItemInfosNum').text().match(/\d+/)?.[0],
         );
         // Animes without episodes, like movies, does not have a number.
-        return isNaN(ep) ? 1 : ep;
+        return Number.isNaN(ep) ? 1 : ep;
       },
       paginationNext(updateCheck) {
         const nextBtn: JQuery<HTMLElement> = j.$('.flickity-slider > a[href*="/page"]')?.last();
