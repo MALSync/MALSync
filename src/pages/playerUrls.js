@@ -643,6 +643,7 @@ module.exports = {
       '*://wolfdyslectic.com/e/*',
       '*://metagnathtuggers.com/e/*',
       '*://gamoneinterrupted.com/e/*',
+      '*://chromotypic.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
