@@ -132,6 +132,7 @@ import { FirstKiss } from './FirstKiss/main';
 import { AnimeKO } from './AnimeKO/main';
 import { Animeflix } from './Animeflix/main';
 import { NeoxScans } from './NeoxScans/main';
+import { Anix } from './Anix/main';
 
 export const pages = {
   nineAnime,
@@ -268,4 +269,5 @@ export const pages = {
   AnimeKO,
   Animeflix,
   NeoxScans,
+  Anix,
 };
