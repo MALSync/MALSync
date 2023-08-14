@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const NekoSama: pageInterface = {
   name: 'NekoSama',
-  domain: 'https://neko-sama.fr',
+  domain: 'https://animecat.net',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
