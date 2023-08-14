@@ -184,8 +184,8 @@ export const Komga: pageInterface = {
             if (jn.metadata && jn.metadata.number) chapter.chapter = jn.metadata.number;
             else chapter.chapter = jn.number;
             chapter.pid = jn.seriesId;
-            if (ifIsOneshot(jn.oneshot)) setLinks(jn.metadata);
-            else ifIsVolume(jn.metadata);
+            if (!ifIsOneshot(jn.oneshot)) ifIsVolume(jn.metadata);
+            setLinks(jn.metadata);
             return apiCall(`/api/v1/series/${jn.seriesId}`);
           })
           .then(res => {
@@ -193,8 +193,8 @@ export const Komga: pageInterface = {
             con.m('Series').log(jn);
             if (jn.metadata && jn.metadata.title) series.name = jn.metadata.title;
             else series.name = jn.name;
-            if (!ifIsOneshot(jn.oneshot)) setLinks(jn.metadata);
-            else ifIsVolume(jn.metadata);
+            if (!ifIsOneshot(jn.oneshot)) ifIsVolume(jn.metadata);
+            setLinks(jn.metadata);
             con.m('Object').log(chapter);
             page.reset();
             page.handlePage();
