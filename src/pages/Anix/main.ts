@@ -1,3 +1,4 @@
+import { Animeworld } from '../Animeworld/main';
 import { pageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
 
@@ -15,7 +16,8 @@ export const Anix: pageInterface = {
     },
     getIdentifier(url: string): string {
       const anime = url.split('/')[4];
-      return anime.split('-')[4];
+      const animeWords = anime.split('-');
+      return animeWords[animeWords.length - 1];
     },
     getOverviewUrl(url: string): string {
       return utils.absoluteLink(
@@ -35,7 +37,7 @@ export const Anix: pageInterface = {
         .attr('href');
     },
     uiSelector(selector) {
-      j.$('#ani-episode').after(j.html(selector));
+      j.$('#ani-player-section').before(j.html(selector));
     },
     readerConfig: undefined,
   },
