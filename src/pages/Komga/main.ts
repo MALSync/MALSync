@@ -1,4 +1,5 @@
 import { pageInterface } from '../pageInterface';
+import { pathToUrl, urlToSlug } from '../../utils/slugs';
 
 async function apiCall(url: string) {
   url = window.location.origin + url;
@@ -8,9 +9,17 @@ async function apiCall(url: string) {
 
 const chapter = {
   pid: '',
-  name: '',
   chapter: '',
   mode: 'chapter',
+};
+
+const series = {
+  name: '',
+  links: {
+    mal: '',
+    al: '',
+    kt: '',
+  },
 };
 
 export const Komga: pageInterface = {
@@ -19,15 +28,19 @@ export const Komga: pageInterface = {
   languages: ['Many'],
   type: 'manga',
   isSyncPage(url) {
-    return utils.urlPart(url, 5) === 'read';
+    return utils.urlPart(url, 5) === 'read' && utils.urlParam(url, 'incognito') !== 'true';
   },
   isOverviewPage(url) {
-    return utils.urlPart(url, 3) === 'series' && utils.urlPart(url, 5) !== 'read';
+    const urlTypePart = utils.urlPart(url, 3);
+    if (urlTypePart === 'oneshot') chapter.mode = 'oneshot';
+    return (
+      (urlTypePart === 'series' || urlTypePart === 'oneshot') && utils.urlPart(url, 5) !== 'read'
+    );
   },
   sync: {
     getTitle(url) {
-      if (!chapter.name) throw 'No name';
-      return chapter.name;
+      if (!series.name) throw 'No name';
+      return series.name;
     },
     getIdentifier(url) {
       if (!chapter.pid) throw 'No pid';
@@ -37,35 +50,72 @@ export const Komga: pageInterface = {
       return `${window.location.origin}/series/${chapter.pid}`;
     },
     getEpisode(url) {
+      if (chapter.mode === 'oneshot') return 1;
       if (chapter.mode !== 'chapter') return 0;
       if (!chapter.chapter || !parseInt(chapter.chapter)) throw 'No chapter number';
       return parseInt(chapter.chapter);
     },
     getVolume(url) {
+      if (chapter.mode === 'oneshot') return 1;
       if (chapter.mode !== 'volume') return 0;
       if (!chapter.chapter || !parseInt(chapter.chapter)) throw 'No volume number';
       return parseInt(chapter.chapter);
     },
+    getMalUrl(provider) {
+      if (series.links.mal) return series.links.mal;
+      if (provider === 'ANILIST' && series.links.al) return series.links.al;
+      if (provider === 'KITSU' && series.links.kt) return series.links.kt;
+      return false;
+    },
+    readerConfig: [
+      {
+        condition: '.d-flex.flex-column img#page1',
+        current: {
+          selector: '.d-flex.flex-column img',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.d-flex.flex-column img',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle() {
-      return j.$('.v-toolbar__title > span:nth-child(1)').first().text().trim();
+      let element: JQuery<HTMLElement>;
+      if (chapter.mode === 'oneshot') element = j.$('.py-1.col > span.text-h6:nth-child(1)');
+      else element = j.$('.v-toolbar__title > span:nth-child(1)');
+      return element.first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.text-h5').first().after(j.html(selector));
+      let element: JQuery<HTMLElement>;
+      if (chapter.mode === 'oneshot') element = j.$('.text-h6');
+      else element = j.$('.text-h5');
+      element.first().after(j.html(selector));
+    },
+    getMalUrl(provider) {
+      return Komga.sync.getMalUrl!(provider);
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.my-2');
+        let element: JQuery<HTMLElement>;
+        if (chapter.mode === 'oneshot') element = j.$('a.v-btn--router.accent');
+        else element = j.$('div.my-2');
+        return element;
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a').first().attr('href'), Komga.domain);
+        let element: JQuery<HTMLElement>;
+        if (chapter.mode === 'oneshot') element = selector;
+        else element = selector.find('a');
+        return utils.absoluteLink(element.first().attr('href'), Komga.domain);
       },
       elementEp(selector) {
+        if (chapter.mode === 'oneshot') return 1;
         const chapterAsText = selector
           .find('div:nth-child(1) > a:nth-child(2) > div:nth-child(1)')
           .first()
@@ -90,15 +140,36 @@ export const Komga: pageInterface = {
 
     function loaded() {
       chapter.chapter = '';
-      chapter.name = '';
       chapter.pid = '';
       chapter.mode = 'chapter';
       page.strongVolumes = false;
+      series.name = '';
+      series.links = {
+        mal: '',
+        al: '',
+        kt: '',
+      };
       clearInterval(checker);
       if (Komga.isOverviewPage!(window.location.href)) {
         checker = utils.waitUntilTrue(
           () => Komga.overview!.getTitle(window.location.href),
           () => {
+            const metadata = {
+              links: [
+                {
+                  url: '',
+                },
+              ],
+            };
+            j.$.each(j.$('.v-icon.mdi-open-in-new'), (i, icon) => {
+              const jIcon = j.$(icon);
+              const linkUrl = jIcon.parents('a.v-chip--link').first().attr('href');
+              if (linkUrl)
+                metadata.links.push({
+                  url: linkUrl,
+                });
+            });
+            setLinks(metadata);
             con.log('pagehandle');
             page.reset();
             page.handlePage();
@@ -110,22 +181,20 @@ export const Komga: pageInterface = {
             const jn = JSON.parse(res.responseText);
             if (!jn.seriesId) throw 'No seriesId found';
             con.m('Book').log(jn);
-            chapter.chapter = jn.metadata.number;
+            if (jn.metadata && jn.metadata.number) chapter.chapter = jn.metadata.number;
+            else chapter.chapter = jn.number;
             chapter.pid = jn.seriesId;
-            if (isVolume(jn)) {
-              chapter.mode = 'volume';
-              page.strongVolumes = true;
-            }
+            if (ifIsOneshot(jn.oneshot)) setLinks(jn.metadata);
+            else ifIsVolume(jn.metadata);
             return apiCall(`/api/v1/series/${jn.seriesId}`);
           })
           .then(res => {
             const jn = JSON.parse(res.responseText);
             con.m('Series').log(jn);
-            chapter.name = jn.name;
-            if (isVolume(jn)) {
-              chapter.mode = 'volume';
-              page.strongVolumes = true;
-            }
+            if (jn.metadata && jn.metadata.title) series.name = jn.metadata.title;
+            else series.name = jn.name;
+            if (!ifIsOneshot(jn.oneshot)) setLinks(jn.metadata);
+            else ifIsVolume(jn.metadata);
             con.m('Object').log(chapter);
             page.reset();
             page.handlePage();
@@ -135,12 +204,38 @@ export const Komga: pageInterface = {
       }
     }
 
-    function isVolume(jn) {
-      if (jn.metadata && jn.metadata.tags && jn.metadata.tags.length) {
-        const lowerArray = jn.metadata.tags.map(el => el.toLowerCase());
-        if (lowerArray.includes('volume') || lowerArray.includes('volumes')) return true;
+    function ifIsVolume(metadata) {
+      if (metadata && metadata.tags && metadata.tags.length) {
+        const lowerArray = metadata.tags.map(el => el.toLowerCase());
+        if (lowerArray.includes('volume') || lowerArray.includes('volumes')) {
+          chapter.mode = 'volume';
+          page.strongVolumes = true;
+          return true;
+        }
       }
       return false;
+    }
+
+    function ifIsOneshot(isOneshot) {
+      if (isOneshot) {
+        chapter.mode = 'oneshot';
+        return true;
+      }
+      return false;
+    }
+
+    function setLinks(metadata) {
+      if (metadata && metadata.links && metadata.links.length) {
+        metadata.links.forEach(link => {
+          if (!link.url) return;
+          const obj = urlToSlug(link.url);
+          if (!obj.path || obj.path.type !== 'manga') return;
+          const url = pathToUrl(obj.path);
+          if (!series.links.mal && obj.path.slug.match(/^\d+$/)) series.links.mal = url;
+          else if (!series.links.al && obj.path.slug.startsWith('a:')) series.links.al = url;
+          else if (!series.links.kt && obj.path.slug.startsWith('k:')) series.links.kt = url;
+        });
+      }
     }
   },
 };
