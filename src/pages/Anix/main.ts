@@ -11,36 +11,28 @@ export const Anix: pageInterface = {
   },
   sync: {
     getTitle(url: string): string {
-      const title = j.$('div.ani-name h1').text();
-      // con.log(`sync getTitle / ${title}`);
-
-      return title.trim();
+      return j.$('h1.anime-name').text().trim();
     },
     getIdentifier(url: string): string {
       const anime = url.split('/')[4];
-      const id = anime.split('-')[4];
-      // con.log(`sync getIdentifier / ${id}`);
-      return id;
+      return anime.split('-')[4];
     },
     getOverviewUrl(url: string): string {
-      const href = j.$('div.range-wrap > div.range > div > a').first().attr('href');
-      // con.log(`sync getOverviewUrl url / ${href}`);
-      return utils.absoluteLink(href, Anix.domain);
+      return utils.absoluteLink(
+        j.$('div.range-wrap > div.range > div > a').first().attr('href'),
+        Anix.domain,
+      );
     },
     getEpisode(url: string): number {
-      const ep = parseInt(j.$('div.range-wrap > div.range > div > a.active').text());
-      // con.log(`sync getEpisode / ${ep}`);
-      return ep;
+      return parseInt(j.$('div.range-wrap > div.range > div > a.active').text());
     },
     nextEpUrl(url: string): string | undefined {
-      const epUrl = j
+      return j
         .$('div.range-wrap > div.range > div > a.active')
         .parent('div')
         .next()
         .find('a')
         .attr('href');
-      // con.log(`sync nextEpUrl / ${epUrl}`);
-      return epUrl;
     },
     uiSelector(selector) {
       j.$('#ani-episode').after(j.html(selector));
@@ -60,41 +52,26 @@ export const Anix: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        const elements = j.$(
+        return j.$(
           'div.ani-episode > div.range-wrap > div.range > div > a:not([style*="display: none"])',
         );
-        // con.log('list elementsSelector / ');
-        // con.log(elements);
-        return elements;
       },
       elementUrl(selector) {
-        const href = selector.attr('href');
-        // con.log('list elementUrl / ');
-        // con.log(href);
-        return utils.absoluteLink(href, Anix.domain);
+        return utils.absoluteLink(selector.attr('href'), Anix.domain);
       },
       elementEp(selector) {
-        const ep = Number(selector.attr('data-num'));
-        // con.log('list elementEp /');
-        // con.log(ep);
-        return ep;
+        return Number(selector.attr('data-num'));
       },
       paginationNext() {
         const pageElements = j.$('#ani-episode > div.head > div > div > div.dropdown-menu > a');
-        // con.log('list paginationNext pageElements /');
-        // con.log(pageElements);
         if (pageElements.length <= 1) return false;
 
         const activePageIndex = pageElements.index(j.$('active'));
-        // con.log('list paginationNext activePageIndex /');
-        // con.log(activePageIndex);
         if (activePageIndex < pageElements.length - 1) {
           const btnNext = j.$('div.range-ctrls > div').attr('data-value', 'next');
           btnNext.trigger('click');
-          // con.log('list paginationNext click');
           return true;
         }
-        // con.log('list paginationNext no click');
         return false;
       },
     },
@@ -102,10 +79,9 @@ export const Anix: pageInterface = {
   init(page: SyncPage): void {
     // Stops all keys from changing the episode and anything else, when the correction menu is open
     document.addEventListener('keydown', e => {
-      const isOpen = isCorrectionMenuOpen();
-      if (isOpen) {
+      if (isCorrectionMenuOpen()) {
         e.stopImmediatePropagation();
-        con.log('Correction menu is open, stopping keydown event');
+        con.info('Correction menu is open, stopped keydown event');
       }
     });
 
@@ -136,9 +112,7 @@ export const Anix: pageInterface = {
             page.handleList();
           },
           () => {
-            const text = j.$('div.ani-episode > div.head > div > div.dropdown > button').text();
-            // con.log(`changeDetect / ${text}`);
-            return text;
+            return j.$('div.ani-episode > div.head > div > div.dropdown > button').text();
           },
         );
       },
@@ -147,6 +121,5 @@ export const Anix: pageInterface = {
 };
 
 function isCorrectionMenuOpen() {
-  const correctionMenu = j.$('div.type-correction');
-  return correctionMenu.length > 0; // Returns true if the menu is found and false if not
+  return j.$('div.type-correction').length > 0; // Returns true if the menu is found and false if not
 }
