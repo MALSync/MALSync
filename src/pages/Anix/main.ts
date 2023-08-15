@@ -20,13 +20,13 @@ export const Anix: pageInterface = {
       return animeWords[animeWords.length - 1];
     },
     getOverviewUrl(url: string): string {
-      return utils.absoluteLink(j.$(episodeLinkButtons).first().attr('href'), Anix.domain);
+      return utils.absoluteLink(j.$(episodeLinkButtonsQuery).first().attr('href'), Anix.domain);
     },
     getEpisode(url: string): number {
-      return parseInt(j.$(selectedEpisode).text());
+      return parseInt(j.$(selectedEpisodeQuery).text());
     },
     nextEpUrl(url: string): string | undefined {
-      return j.$(selectedEpisode).parent('div').next().find('a').attr('href');
+      return j.$(selectedEpisodeQuery).parent('div').next().find('a').attr('href');
     },
     uiSelector(selector) {
       j.$('#ani-player-section').before(j.html(selector));
@@ -45,7 +45,7 @@ export const Anix: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$(episodeLinkButtons).not('[style*="display: none"])');
+        return j.$(episodeLinkButtonsQuery).not('[style*="display: none"])');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), Anix.domain);
@@ -54,7 +54,7 @@ export const Anix: pageInterface = {
         return Number(selector.attr('data-num'));
       },
       paginationNext() {
-        const pageElements = j.$(episodeLinkButtons);
+        const pageElements = j.$(episodeLinkButtonsQuery);
         if (pageElements.length <= 1) return false;
 
         const activePageIndex = pageElements.index(j.$('active'));
@@ -86,7 +86,7 @@ export const Anix: pageInterface = {
           .$('div.range')
           .toArray()
           .some(el => el.style.display !== 'none');
-        return loaded && j.$(episodeLinkButtons).length;
+        return loaded && j.$(episodeLinkButtonsQuery).length;
       },
       function () {
         con.info('Start check');
@@ -115,5 +115,5 @@ function isCorrectionMenuOpen() {
   return j.$('.type-correction').length > 0; // Returns true if the menu is found and false if not
 }
 
-const selectedEpisode = '#ani-episode a.active';
-const episodeLinkButtons = '#ani-episode a';
+const selectedEpisodeQuery = '#ani-episode a.active';
+const episodeLinkButtonsQuery = '#ani-episode a';
