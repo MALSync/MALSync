@@ -1,5 +1,5 @@
 {
-  "search": "https://anix.to/filter?keyword={searchterm}",
+  "search": "https://anix.to/filter?keyword={searchtermPlus}",
   "urls": {
     "match": ["*://anix.to/anime/*"]
   }
