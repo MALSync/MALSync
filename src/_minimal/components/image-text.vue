@@ -2,7 +2,7 @@
   <div class="head" :class="{ loading }">
     <MediaLink :href="href" class="img" :class="{ [imageType]: true }">
       <template v-if="imageType === 'cover'">
-        <ImageFit v-if="!loading" :src="image" class="img-el" mode="cover" />
+        <ImageFit :loading="loading" :src="image" class="img-el" mode="cover" />
       </template>
       <template v-else>
         <ImageLazy v-if="!loading" :src="image" class="img-el" />
@@ -50,6 +50,8 @@ defineProps({
     width: calc(@normal-text * 6.25);
     min-width: calc(@normal-text * 6.25);
     &.round {
+      .box-shadow();
+
       height: calc(@normal-text * 6.25);
       border-radius: 50%;
       overflow: hidden;
@@ -69,7 +71,9 @@ defineProps({
 
   &.loading {
     .img {
-      .skeleton-img();
+      &.round {
+        .skeleton-img();
+      }
     }
     .info {
       overflow: hidden;

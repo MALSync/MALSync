@@ -10,16 +10,14 @@
     >
       <div class="loading-placeholder">
         <ImageText href="" image="" image-type="cover" :loading="true">
-          <div />
-          <Header class="skeleton-text">
+          <Header spacer="half" class="skeleton-text">
             <MediaLink href=""></MediaLink>
           </Header>
           <div class="skeleton-text"></div>
-          <div />
+          <div class="text">
+            <Description :loading="true" height="dynamic" minheight="70px"></Description>
+          </div>
         </ImageText>
-        <div v-if="metaRequest.loading" class="text">
-          <Description :loading="true" :height="150"></Description>
-        </div>
         <div class="load-button">
           <FormButton
             v-if="!metaRequest.loading"
@@ -235,7 +233,7 @@ const data = computed(() =>
   padding-right: calc(15px + (@normal-text * 6.25));
 }
 
-:deep(.description.close) {
+:deep(.description.close:not(.loading)) {
   margin-left: calc((15px + (@normal-text * 6.25)) * -1);
   padding-left: calc(15px + (@normal-text * 6.25));
 }
