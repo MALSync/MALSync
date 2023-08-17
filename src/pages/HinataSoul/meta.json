@@ -1,0 +1,6 @@
+{
+  "search": "https://www.hinatasoul.com/busca?busca={searchtermPlus}",
+  "urls": {
+    "match": ["*://www.hinatasoul.com/anime*", "*://www.hinatasoul.com/videos/*"]
+  }
+}
