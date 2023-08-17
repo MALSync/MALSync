@@ -178,10 +178,14 @@ export class Single extends SingleAbstract {
       /* eslint-disable-next-line no-var */
       var kitsuRes = await this.malToKitsu(this.ids.mal, this.getType());
       try {
-        this.ids.kitsu.id = Number(kitsuRes.data[0].relationships.item.data.id);
+        const relation = kitsuRes.data.find(
+          item => item.relationships.item.data.type === this.getType(),
+        );
+        if (!relation) throw new NotFoundError('Not found');
+        this.ids.kitsu.id = Number(relation.relationships.item.data.id);
       } catch (e) {
         this._authenticated = true;
-        throw new NotFoundError('Not found');
+        throw new NotFoundError(`No entry found for malId ${this.ids.mal}`);
       }
     }
 
