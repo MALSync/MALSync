@@ -11,37 +11,36 @@
     </Section>
     <div class="header-section">
       <Section spacer="half">
-        <Header
-          :loading="metaRequest.loading"
-          class="header-block"
-          :class="{
-            hasTitle:
-              metaRequest.data &&
-              metaRequest.data.alternativeTitle &&
-              metaRequest.data.alternativeTitle.length,
-          }"
-        >
-          <div class="statusDotSection">
-            <StateDot
-              class="dot"
-              :status="
-                !singleRequest.loading && singleRequest.data?.getStatus()
-                  ? singleRequest.data?.getStatus()
-                  : 0
-              "
-            />
-            <MediaLink
-              :force-link="true"
-              :href="singleRequest.data?.getDisplayUrl() || ''"
-              class="header-link"
-            >
-              <span class="material-icons">open_in_new</span>
-            </MediaLink>
-          </div>
-          <span @click="titleModal = true">
-            {{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}
-          </span>
-        </Header>
+        <MediaLink :force-link="true" :href="singleRequest.data?.getDisplayUrl() || ''">
+          <Header
+            :loading="metaRequest.loading"
+            class="header-block"
+            :class="{
+              hasTitle:
+                metaRequest.data &&
+                metaRequest.data.alternativeTitle &&
+                metaRequest.data.alternativeTitle.length,
+            }"
+          >
+            <div class="statusDotSection">
+              <StateDot
+                class="dot"
+                :status="
+                  !singleRequest.loading && singleRequest.data?.getStatus()
+                    ? singleRequest.data?.getStatus()
+                    : 0
+                "
+              />
+              <span class="header-link material-icons">open_in_new</span>
+            </div>
+            <span class="header-title">
+              {{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}
+              <PillDark class="header-synonyms" @click.prevent="titleModal = true">
+                {{ lang('overview_synonyms') }}
+              </PillDark>
+            </span>
+          </Header>
+        </MediaLink>
         <Modal
           v-if="
             metaRequest.data &&
@@ -185,6 +184,7 @@ import MediaLink from '../components/media-link.vue';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { SingleAbstract } from '../../_provider/singleAbstract';
 import ErrorMeta from '../components/error/error-meta.vue';
+import PillDark from '../components/pill-dark.vue';
 
 const breakpoint = inject('breakpoint');
 
@@ -314,6 +314,21 @@ const totalLoading = computed(() => {
       color: var(--cl-secondary);
     }
 
+    .header-title {
+      position: relative;
+      width: 100%;
+
+      .header-synonyms {
+        display: none;
+        font-size: var(--base-font-size);
+        font-weight: normal;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+      }
+    }
+
     &.hasTitle {
       .link();
     }
@@ -327,6 +342,10 @@ const totalLoading = computed(() => {
         position: relative;
         max-width: 16px;
         left: -3px;
+      }
+
+      .header-synonyms {
+        display: block;
       }
     }
   }
