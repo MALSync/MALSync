@@ -3,7 +3,13 @@
     :is="link ? MediaLink : 'div'"
     class="button"
     :href="link"
-    :class="`${padding} ${animation ? 'animation' : ''} ${color} ${disabled ? 'disabled' : ''}`"
+    :class="`
+      ${padding}
+      ${animation ? 'animation' : ''}
+      ${color}
+      ${disabled ? 'disabled' : ''}
+      ${hoverAnimation ? 'hoverActive' : ''}
+    `"
     tabindex="tabindex"
     @click="disabled ? null : click()"
   >
@@ -26,6 +32,10 @@ defineProps({
     default: 0,
   },
   animation: {
+    type: Boolean,
+    default: true,
+  },
+  hoverAnimation: {
     type: Boolean,
     default: true,
   },
@@ -114,7 +124,7 @@ defineProps({
     color: white;
   }
 
-  &:hover {
+  &.hoverActive:hover {
     border-color: var(--cl-border-hover);
     .top-icon {
       border-color: var(--cl-border-hover);

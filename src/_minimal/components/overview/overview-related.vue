@@ -2,7 +2,13 @@
   <div>
     <Header :spacer="true">{{ lang('overview_Related') }}</Header>
     <div class="grid">
-      <FormButton v-for="relation in related" :key="relation.type" class="related-item">
+      <FormButton
+        v-for="relation in related"
+        :key="relation.type"
+        :link="relation.links.length === 1 ? relation.links[0].url : ''"
+        :hover-animation="false"
+        class="related-item"
+      >
         <div class="type">{{ relation.type }}</div>
         <div v-for="link in relation.links" :key="link.id" class="title">
           <MediaLink :href="link.url" class="link">
@@ -57,6 +63,12 @@ defineProps({
   .link {
     display: flex;
     align-items: center;
+
+    &:hover {
+      span {
+        opacity: 0.6;
+      }
+    }
   }
 }
 </style>
