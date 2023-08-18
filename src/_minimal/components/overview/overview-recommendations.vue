@@ -15,7 +15,7 @@
           </Header>
           <div class="skeleton-text"></div>
           <div class="text">
-            <Description :loading="true" height="dynamic" minheight="70px"></Description>
+            <Description :loading="true" height="dynamic" minheight="34px"></Description>
           </div>
         </ImageText>
         <div class="load-button">
@@ -61,7 +61,7 @@
                 </MediaLink>
               </div>
               <div class="text">
-                <Description height="dynamic" minheight="70px">{{ rec.body.text }}</Description>
+                <Description height="dynamic" minheight="34px">{{ rec.body.text }}</Description>
               </div>
             </ImageText>
           </Section>
