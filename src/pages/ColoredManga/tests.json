@@ -1,0 +1,31 @@
+{
+  "title": "ColoredManga",
+  "url": "https://coloredmanga.com/",
+  "testCases": [
+    {
+      "url": "https://coloredmanga.com/mangas/english-haikyuu/",
+      "expected": {
+        "sync": false,
+        "title": "Haikyu!! – Digital Colored Comics (EN)",
+        "identifier": "english-haikyuu",
+        "uiSelector": true,
+        "epList": {
+          "33": "https://coloredmanga.com/mangas/english-haikyuu/volume-4-rivals/chapter-33-what-it-means-to-connect/",
+          "90": "https://coloredmanga.com/mangas/english-haikyuu/volume-11-above/chapter-90_1/"
+        }
+      }
+    },
+    {
+      "url": "https://coloredmanga.com/mangas/chainsaw-man-part-2-monochrome/chapter-109-the-easy-way-to-stop-bullying/",
+      "expected": {
+        "sync": true,
+        "title": "Chainsaw Man Part 2 – Monochrome — {Official TL} (EN)",
+        "identifier": "chainsaw-man-part-2-monochrome",
+        "overviewUrl": "https://coloredmanga.com/mangas/chainsaw-man-part-2-monochrome/",
+        "nextEpUrl": "https://coloredmanga.com/mangas/chainsaw-man-part-2-monochrome/chapter-110/",
+        "episode": 109,
+        "uiSelector": false
+      }
+    }
+  ]
+}

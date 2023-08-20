@@ -1,0 +1,6 @@
+{
+  "search": "https://coloredmanga.com/?s={searchtermPlus}&post_type=wp-manga",
+  "urls": {
+    "match": ["*://coloredmanga.com/mangas/*"]
+  }
+}
