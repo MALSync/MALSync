@@ -5,19 +5,17 @@ const clone = getInter();
 
 clone.name = 'ColoredManga';
 clone.domain = 'https://coloredmanga.com';
-clone.isSyncPage = function(url) {
-    return Boolean(
-      utils.urlPart(url, 3) === 'mangas' &&
-        (utils.urlPart(url, 5) &&
-        utils.urlPart(url, 5).startsWith('chapter-') ||
-        utils.urlPart(url, 6) &&
-        utils.urlPart(url, 6).startsWith('chapter-'))
-    );
-}
+clone.isSyncPage = function (url) {
+  return Boolean(
+    utils.urlPart(url, 3) === 'mangas' &&
+      ((utils.urlPart(url, 5) && utils.urlPart(url, 5).startsWith('chapter-')) ||
+        (utils.urlPart(url, 6) && utils.urlPart(url, 6).startsWith('chapter-'))),
+  );
+};
 
-clone.isOverviewPage = function(url) {
+clone.isOverviewPage = function (url) {
   return Boolean(utils.urlPart(url, 3) === 'mangas' && !utils.urlPart(url, 5));
-}
+};
 
 clone.sync.getEpisode = function (url) {
   let episodeNum = '0';
@@ -30,15 +28,14 @@ clone.sync.getEpisode = function (url) {
 
   if (temp && temp.length) {
     episodeNum = temp[0];
-  }
-  else if (temp2 && temp2.length) {
+  } else if (temp2 && temp2.length) {
     episodeNum = temp2[0];
   }
 
   return Number(episodeNum.replace(/\D+/g, ''));
-}
+};
 
-clone.sync.getVolume = function(url){
+clone.sync.getVolume = function (url) {
   let volume = '0';
 
   const volumePart = utils.urlPart(url, 5);
@@ -50,7 +47,7 @@ clone.sync.getVolume = function(url){
   }
 
   return Number(volume.replace(/\D+/g, ''));
-}
+};
 
 clone.sync.readerConfig = [
   {
@@ -62,7 +59,7 @@ clone.sync.readerConfig = [
       selector: '.wp-manga-chapter-img',
       mode: 'count',
     },
-  }
-]
+  },
+];
 
 export const ColoredManga: pageInterface = clone;

@@ -4,7 +4,7 @@ export const Isekaiscan: pageInterface = getInter();
 
 export function getInter(): pageInterface {
   let thisSelf;
-  
+  /* eslint-disable-next-line prefer-const */
   thisSelf = {
     name: 'Isekaiscan',
     domain: 'https://isekaiscan.com',
@@ -13,8 +13,8 @@ export function getInter(): pageInterface {
     isSyncPage(url) {
       return Boolean(
         utils.urlPart(url, 3) === 'manga' &&
-        utils.urlPart(url, 5) &&
-        utils.urlPart(url, 5).startsWith('chapter-'),
+          utils.urlPart(url, 5) &&
+          utils.urlPart(url, 5).startsWith('chapter-'),
       );
     },
     isOverviewPage(url) {
@@ -97,4 +97,4 @@ export function getInter(): pageInterface {
     },
   };
   return thisSelf;
-};
+}
