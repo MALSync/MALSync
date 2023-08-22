@@ -42,6 +42,31 @@ export const manga4life: pageInterface = {
         )
         .match(/\d+/gim);
     },
+    readerConfig: [
+      {
+        condition: '.fa-columns',
+        current: {
+          selector: '.ImageGallery > .ng-scope',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.ImageGallery > .ng-scope',
+          mode: 'count',
+        },
+      },
+      {
+        condition: '.fa-arrows-alt-v',
+        current: {
+          selector: '[data-target="#PageModal"]',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+        total: {
+          selector: '.ImageGallery > .ng-scope',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {
