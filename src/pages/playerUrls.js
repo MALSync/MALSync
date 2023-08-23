@@ -236,7 +236,7 @@ module.exports = {
   },
   // Neko-sama
   fusevideo: {
-    match: ['*://fusevideo.net/e/*'],
+    match: ['*://fusevideo.net/e/*', '*://fusevideo.io/e/*'],
   },
   // Animeultima
   animefever: {
