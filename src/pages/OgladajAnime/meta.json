@@ -1,0 +1,6 @@
+{
+  "search": "https://ogladajanime.pl/search/name/{searchtermPlus}",
+  "urls": {
+    "match": ["*://ogladajanime.pl/*"]
+  }
+}
