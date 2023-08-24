@@ -436,6 +436,10 @@ module.exports = {
       '*://*.gotaku1.com/streaming.php?*',
       '*://*.gotaku1.com/load.php?*',
       '*://*.gotaku1.com/loadserver.php?*',
+      '*://*.goone.pro/embedplus*',
+      '*://*.goone.pro/streaming.php?*',
+      '*://*.goone.pro/load.php?*',
+      '*://*.goone.pro/loadserver.php?*',
       // auto-gogostream-replace-dont-remove
     ],
   },
@@ -644,6 +648,7 @@ module.exports = {
       '*://metagnathtuggers.com/e/*',
       '*://gamoneinterrupted.com/e/*',
       '*://chromotypic.com/e/*',
+      '*://crownmakermacaronicism.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
