@@ -168,7 +168,7 @@ async function start() {
         vidmoly,
         gogostream,
         nineanime,
-        zoro,
+        // zoro,
         gogoanime,
         kickassanime
     }
