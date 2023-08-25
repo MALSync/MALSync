@@ -1,0 +1,31 @@
+{
+    "title": "DisasterScans",
+    "url": "https://honey-manga.com.ua/",
+    "testCases": [
+      {
+        "url": "https://honey-manga.com.ua/book/6b9366dd-9bb9-4459-a511-902634d8074d",
+        "expected": {
+          "sync": false,
+          "title": "Jujutsu Kaisen",
+          "identifier": "6b9366dd-9bb9-4459-a511-902634d8074d",
+          "uiSelector": true,
+          "epList": {
+            "10": "https://honey-manga.com.ua/read/32784d59-c3ea-496d-8f92-153269b93156/6b9366dd-9bb9-4459-a511-902634d8074d",
+            "7": "https://honey-manga.com.ua/read/791f6d8d-7014-44fb-847a-644da9093b48/6b9366dd-9bb9-4459-a511-902634d8074d"
+          }
+        }
+      },
+      {
+        "url": "https://honey-manga.com.ua/read/32784d59-c3ea-496d-8f92-153269b93156/6b9366dd-9bb9-4459-a511-902634d8074d",
+        "expected": {
+          "sync": true,
+          "title": "Jujutsu Kaisen",
+          "identifier": "6b9366dd-9bb9-4459-a511-902634d8074d",
+          "overviewUrl": "https://honey-manga.com.ua/book/6b9366dd-9bb9-4459-a511-902634d8074d",
+          "nextEpUrl": "",
+          "episode": 210,
+          "uiSelector": false
+        }
+      }
+    ]
+  }
