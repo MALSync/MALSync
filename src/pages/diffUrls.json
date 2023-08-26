@@ -173,7 +173,11 @@
     ],
     "nineAnime": [
       "https://aniwave.to/watch/*",
-      "https://aniwave.to/watch2gether/*"
+      "https://aniwave.to/watch2gether/*",
+      "https://aniwave.bz/watch/*",
+      "https://aniwave.bz/watch2gether/*",
+      "https://aniwave.ws/watch/*",
+      "https://aniwave.ws/watch2gether/*"
     ],
     "iframe": [
       "https://fusevideo.io/e/*",
