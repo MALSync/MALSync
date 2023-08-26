@@ -25,10 +25,10 @@ export const HoneyManga: pageInterface = {
       return j.$('.MuiBox-root').attr('href') || '';
     },
     getEpisode(url) {
-      const val = j.$('.justify-center.flex .items-center button:nth-child(2)').text().replace(
-        /(\d)+ - /,
-        '$1',
-      );
+      const val = j
+        .$('.justify-center.flex .items-center button:nth-child(2)')
+        .text()
+        .replace(/(\d)+ - /, '$1');
       return Number(val);
     },
     nextEpUrl(url) {
