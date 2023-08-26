@@ -6,9 +6,7 @@ export const HoneyManga: pageInterface = {
   languages: ['Ukrainian'],
   type: 'manga',
   isSyncPage(url) {
-    return Boolean(
-      utils.urlPart(url, 3) === 'read'
-    );
+    return Boolean(utils.urlPart(url, 3) === 'read');
   },
   isOverviewPage(url) {
     return Boolean(utils.urlPart(url, 3) === 'book');
@@ -27,7 +25,10 @@ export const HoneyManga: pageInterface = {
       return j.$('.MuiBox-root').attr('href') || '';
     },
     getEpisode(url) {
-      const val = $('.justify-center.flex .items-center button:nth-child(2)').innerText.replace(/(\d)+ - /, "$1")
+      const val = j.$('.justify-center.flex .items-center button:nth-child(2)').text().replace(
+        /(\d)+ - /,
+        '$1',
+      );
       return Number(val);
     },
     nextEpUrl(url) {
@@ -60,7 +61,11 @@ export const HoneyManga: pageInterface = {
         return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
-        return selector.find('.text-gray-600').text().replace(/.+(\d+)/, '$1');
+        const str = selector
+          .find('.text-gray-600')
+          .text()
+          .replace(/.+(\d+)/, '$1');
+        return Number(str);
       },
     },
   },
