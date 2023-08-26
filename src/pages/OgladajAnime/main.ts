@@ -6,7 +6,7 @@ export const OgladajAnime: pageInterface = {
   languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] == 'anime') return true;
+    if (url.split('/')[3] === 'anime') return true;
     return false;
   },
   sync: {
@@ -17,17 +17,17 @@ export const OgladajAnime: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return url.split('/').length == 6 ? url.split('/').slice(0, -1).join('/') : url
+      return url.split('/').length === 6 ? url.split('/').slice(0, -1).join('/') : url;
     },
     getEpisode(url) {
-      if (url.split('/')[5] != undefined) return parseInt(url.split('/')[5]);
+      if (url.split('/')[5] !== undefined) return parseInt(url.split('/')[5]);
       return parseInt(j.$('ul > li.active').first().attr('value')!);
     },
     nextEpUrl(url) {
       const onclick = j.$('#next_ep_button').attr('onclick');
       if (onclick) {
         const nextep = onclick.split(', ')[1];
-        return OgladajAnime.sync.getOverviewUrl(url) + '/' + nextep;
+        return `${OgladajAnime.sync.getOverviewUrl(url)}/${nextep}`;
       }
       return '';
     },
