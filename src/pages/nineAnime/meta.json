@@ -45,7 +45,11 @@
       "*://*.9anime.ph/watch/*",
       "*://*.9anime.ph/watch2gether/*",
       "*://*.aniwave.to/watch/*",
-      "*://*.aniwave.to/watch2gether/*"
+      "*://*.aniwave.to/watch2gether/*",
+      "*://*.aniwave.bz/watch/*",
+      "*://*.aniwave.bz/watch2gether/*",
+      "*://*.aniwave.ws/watch/*",
+      "*://*.aniwave.ws/watch2gether/*"
     ]
   }
 }
