@@ -65,7 +65,7 @@ async function gogostream() {
 
 // pages
 async function nineanime() {
-    const response = await fetch("https://9anime.me");
+    const response = await fetch('https://aniwave.tv');
     const body = await response.text();
 
     const $ = cheerio.load(body);
