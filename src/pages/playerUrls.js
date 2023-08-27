@@ -649,6 +649,7 @@ module.exports = {
       '*://gamoneinterrupted.com/e/*',
       '*://chromotypic.com/e/*',
       '*://crownmakermacaronicism.com/e/*',
+      '*://generatesnitrosate.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
