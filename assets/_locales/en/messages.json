@@ -1276,7 +1276,7 @@
         "description": "Text that is shown when the browser does not support adding new permissions"
     },
     "settings_custom_domains_disclaimer": {
-        "message": "Please only use if you know what you are doing!",
+        "message": "This feature allows adding custom domains to existing sites for handling domain changes and self-hosted sources, but it cannot add new sites.",
         "description": "Text on the custom domain configuration page"
     },
     "settings_custom_domains_wrong": {
