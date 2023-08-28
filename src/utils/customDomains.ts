@@ -107,6 +107,7 @@ function getOrigins(permissions: domainType[]) {
 }
 
 export async function requestPermissions(permissions: domainType[]) {
+  if (!sessionSupportsPermissions()) throw new Error('BadPermissionSession');
   return new Promise(resolve => {
     con.m('Request Permissions').log(getOrigins(permissions));
     chrome.permissions.request(
@@ -122,7 +123,12 @@ export async function requestPermissions(permissions: domainType[]) {
   });
 }
 
+export function sessionSupportsPermissions() {
+  return typeof chrome.permissions !== 'undefined';
+}
+
 export async function checkPermissions(permissions: domainType[]): Promise<boolean> {
+  if (!sessionSupportsPermissions()) throw new Error('BadPermissionSession');
   return new Promise(resolve => {
     chrome.permissions.contains(
       {

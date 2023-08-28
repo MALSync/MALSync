@@ -39,7 +39,12 @@
       <Section>
         <FormButton @click="addPermission()"><div class="material-icons">add</div></FormButton>
       </Section>
-      <div v-if="!verifyEverything">
+      <div v-if="!supportsPermissions">
+        <FormButton color="secondary" link="https://malsync.moe/pwa">
+          {{ lang('settings_custom_domains_permissions_not_supported') }}
+        </FormButton>
+      </div>
+      <div v-else-if="!verifyEverything">
         <FormButton color="secondary">{{ lang('settings_custom_domains_wrong') }}</FormButton>
       </div>
       <div v-else-if="!hasAllPermissions || JSON.stringify(model) !== JSON.stringify(permissions)">
@@ -51,7 +56,12 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
-import { checkPermissions, getPageOptions, requestPermissions } from '../../../utils/customDomains';
+import {
+  sessionSupportsPermissions,
+  checkPermissions,
+  getPageOptions,
+  requestPermissions,
+} from '../../../utils/customDomains';
 import Card from '../card.vue';
 import FormDropdown from '../form/form-dropdown.vue';
 import FormText from '../form/form-text.vue';
@@ -72,6 +82,8 @@ const options = getPageOptions()
   .sort((a, b) => utils.sortAlphabetically(a.title, b.title));
 
 const permissions = ref([] as domainType[]);
+
+const supportsPermissions = sessionSupportsPermissions();
 
 const model = computed({
   get() {

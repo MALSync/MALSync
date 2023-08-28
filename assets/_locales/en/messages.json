@@ -1271,6 +1271,10 @@
         "message": "Some page permissions are not yet granted",
         "description": "Asking to allow missing domain permissions"
     },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "The browser or the current window don't support adding permissions, please retry it with the url https://malsync.moe/pwa or use the extension popup.",
+        "description": "Text that is shown when the browser does not support adding new permissions"
+    },
     "settings_custom_domains_disclaimer": {
         "message": "Please only use if you know what you are doing!",
         "description": "Text on the custom domain configuration page"
