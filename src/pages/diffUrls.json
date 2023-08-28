@@ -156,7 +156,8 @@
     ],
     "Gogoanime": [
       "https://gogoanimehd.to/*",
-      "https://gogoanime3.net/*"
+      "https://gogoanime3.net/*",
+      "https://gogoanimehd.io/*"
     ],
     "NekoSama": [
       "https://animecat.net/*"
@@ -172,15 +173,26 @@
     ],
     "nineAnime": [
       "https://aniwave.to/watch/*",
-      "https://aniwave.to/watch2gether/*"
+      "https://aniwave.to/watch2gether/*",
+      "https://aniwave.bz/watch/*",
+      "https://aniwave.bz/watch2gether/*",
+      "https://aniwave.ws/watch/*",
+      "https://aniwave.ws/watch2gether/*"
     ],
     "iframe": [
+      "https://fusevideo.io/e/*",
+      "https://goone.pro/embedplus*",
+      "https://goone.pro/streaming.php?*",
+      "https://goone.pro/load.php?*",
+      "https://goone.pro/loadserver.php?*",
       "https://truepoweroflove.com/*",
       "https://rationalityaloelike.com/e/*",
       "https://wolfdyslectic.com/e/*",
       "https://metagnathtuggers.com/e/*",
       "https://gamoneinterrupted.com/e/*",
       "https://chromotypic.com/e/*",
+      "https://crownmakermacaronicism.com/e/*",
+      "https://generatesnitrosate.com/e/*",
       "https://megacloud.tv/*",
       "https://vixcloud.cc/*",
       "https://vixcloud.co/*"
