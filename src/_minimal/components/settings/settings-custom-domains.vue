@@ -102,10 +102,7 @@ function validDomain(domain) {
     return false;
   }
 
-  return (
-    /^https?:\/\/(localhost|(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+))/.test(domain) &&
-    origin
-  );
+  return /^https?:\/\/[a-zA-Z0-9.]+/.test(domain) && origin;
 }
 
 const hasAllPermissions = ref(false);
