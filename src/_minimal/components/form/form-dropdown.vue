@@ -4,7 +4,7 @@
     class="dropdown"
     :class="`${size} ${disabled ? 'disabled' : ''}`"
     @blur="open = false"
-    @keydown.prevent="keyDown($event)"
+    @keydown="keyDown($event)"
   >
     <div class="selector" :class="{ animate }" @click="open = !open">
       <slot
@@ -229,8 +229,10 @@ function keyDown(event: KeyboardEvent) {
     }
 
     default:
-      break;
+      return;
   }
+
+  event.preventDefault();
 }
 </script>
 

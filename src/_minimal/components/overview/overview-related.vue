@@ -7,6 +7,7 @@
         :key="relation.type"
         :link="relation.links.length === 1 ? relation.links[0].url : ''"
         :hover-animation="false"
+        :tabindex="-1"
         class="related-item"
       >
         <div class="type">{{ relation.type }}</div>

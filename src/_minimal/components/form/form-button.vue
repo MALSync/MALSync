@@ -10,7 +10,7 @@
       ${disabled ? 'disabled' : ''}
       ${hoverAnimation ? 'hoverActive' : ''}
     `"
-    tabindex="tabindex"
+    :tabindex="tabindex"
     @click="disabled ? null : click()"
   >
     <slot /> {{ title }}
