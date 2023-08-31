@@ -35,6 +35,19 @@ export const notificationsSection: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+  {
+    key: 'notificationsSticky',
+    title: () =>
+      `${api.storage.lang('settings_Notifications_Sticky')} ${api.storage.lang(
+        'settings_Notifications',
+      )}`,
+    condition: () => true,
+    props: {
+      component: 'checkbox',
+      option: 'notificationsSticky',
+    },
+    component: SettingsGeneral,
+  },
 ];
 
 export const estimation: ConfObj[] = [

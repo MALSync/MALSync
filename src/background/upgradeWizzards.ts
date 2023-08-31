@@ -88,6 +88,17 @@ export async function upgradewWizzards(lastVersion) {
         });
       },
     },
+    {
+      version: '*', // TODO: Set to version of the release of this feature
+      name: 'Sticky Notifications',
+      action: () => {
+        return api.storage.get('settings/notificationsSticky').then(res => {
+          let mode = true;
+          if (typeof res !== 'undefined' && res === false) mode = false;
+          api.storage.set('settings/notificationsSticky', mode);
+        });
+      },
+    },
   ];
 
   for (let i = 0; i < wizards.length; i++) {

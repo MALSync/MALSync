@@ -1179,6 +1179,10 @@
         "message": "Notifications",
         "description": "Notifications"
     },
+    "settings_Notifications_Sticky": {
+      "message": "Sticky",
+      "description": "Requires interaction to dismiss; ignores system notification timeout"
+  },
     "settings_Debugging": {
         "message": "Debugging",
         "description": "Debugging"
