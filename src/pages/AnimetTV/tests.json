@@ -1,0 +1,28 @@
+{
+  "title": "AnimetTV",
+  "url": "https://animet.site/",
+  "enabled": false,
+  "testCases": [
+    {
+      "url": "https://animet.site/anime/watch/124410/gogo/kanojo-okarishimasu-2nd-season-dub-episode-1",
+      "expected": {
+        "sync": true,
+        "title": "Kanojo, Okarishimasu 2",
+        "identifier": "124410",
+        "overviewUrl": "https://animet.site/anime/details/124410/kanojo-okarishimasu-2",
+        "nextEpUrl": "https://animet.site/anime/watch/124410/gogo/kanojo-okarishimasu-2nd-season-dub-episode-2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animet.site/anime/details/124410/kanojo-okarishimasu-2",
+      "expected": {
+        "sync": false,
+        "title": "Kanojo, Okarishimasu 2nd Season",
+        "identifier": "124410",
+        "uiSelector": true
+      }
+    }
+  ]
+}

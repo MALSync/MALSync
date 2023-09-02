@@ -1,0 +1,6 @@
+{
+  "search": "https://animet.site/browse?keyword={searchtermPlus}",
+  "urls": {
+    "match": ["*://animet.site/*"]
+  }
+}
