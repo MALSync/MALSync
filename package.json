@@ -13,7 +13,7 @@
   "devDependencies": {
     "@cliqz/adblocker-puppeteer": "^1.26.6",
     "@types/chai": "^4.3.6",
-    "@types/jquery": "^3.5.14",
+    "@types/jquery": "^3.5.18",
     "@types/mocha": "^10.0.1",
     "@types/node": "^16.0.0",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
@@ -118,7 +118,7 @@
     "fork-ts-checker-webpack-plugin": "^7.3.0",
     "fuse.js": "^6.6.2",
     "hex-to-hsl": "^1.0.2",
-    "jquery": "^3.6.2",
+    "jquery": "^3.7.1",
     "overlayscrollbars": "^2.2.1",
     "overlayscrollbars-vue": "^0.5.2",
     "popper-max-size-modifier": "^0.2.0",
