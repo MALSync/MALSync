@@ -11,6 +11,7 @@ const chapter = {
   pid: '',
   chapter: '',
   mode: 'chapter',
+  totalPages: null,
 };
 
 const series = {
@@ -69,14 +70,14 @@ export const Komga: pageInterface = {
     },
     readerConfig: [
       {
-        condition: '.d-flex.flex-column img#page1',
         current: {
-          selector: '.d-flex.flex-column img',
-          mode: 'countAbove',
+          mode: 'url',
+          regex: '(\\?|&)page=(\\d+)',
+          group: 2,
         },
         total: {
-          selector: '.d-flex.flex-column img',
-          mode: 'count',
+          callback: () => chapter.totalPages as any,
+          mode: 'callback',
         },
       },
     ],
@@ -142,6 +143,7 @@ export const Komga: pageInterface = {
       chapter.chapter = '';
       chapter.pid = '';
       chapter.mode = 'chapter';
+      chapter.totalPages = null;
       page.strongVolumes = false;
       series.name = '';
       series.links = {
@@ -182,6 +184,7 @@ export const Komga: pageInterface = {
             if (!jn.seriesId) throw 'No seriesId found';
             con.m('Book').log(jn);
             if (jn.metadata && jn.metadata.number) chapter.chapter = jn.metadata.number;
+            if (jn.media && jn.media.pagesCount) chapter.totalPages = jn.media.pagesCount;
             else chapter.chapter = jn.number;
             chapter.pid = jn.seriesId;
             if (!ifIsOneshot(jn.oneshot)) ifIsVolume(jn.metadata);
