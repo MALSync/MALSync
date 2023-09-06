@@ -1,5 +1,5 @@
 <template>
-  <label class="checkbox">
+  <label class="checkbox" @keydown.enter="$el.click()">
     <input v-model="picked" class="checkbox-input" type="checkbox" />
     <span class="slider"></span>
   </label>
