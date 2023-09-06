@@ -216,6 +216,10 @@ function keyDown(event: KeyboardEvent) {
     }
 
     case 'Enter': {
+      if (!open.value) {
+        open.value = true;
+        break;
+      }
       if (activeKey.value !== '_-_') {
         picked.value = activeKey.value;
       }
@@ -225,10 +229,13 @@ function keyDown(event: KeyboardEvent) {
 
     case 'Escape': {
       open.value = false;
+      activeKey.value = '_-_';
       break;
     }
 
     default:
+      open.value = false;
+      activeKey.value = '_-_';
       return;
   }
 

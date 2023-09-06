@@ -12,6 +12,7 @@
     `"
     :tabindex="tabindex"
     @click="disabled ? null : click()"
+    @keyup.enter="$el.click()"
   >
     <slot /> {{ title }}
     <div v-if="icon" class="material-icons top-icon">{{ icon }}</div>
