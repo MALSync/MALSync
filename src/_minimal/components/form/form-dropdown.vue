@@ -6,7 +6,14 @@
     @blur="open = false"
     @keydown="keyDown($event)"
   >
-    <div class="selector" :class="{ animate }" @click="open = !open">
+    <div
+      class="selector"
+      :class="{ animate }"
+      @click="
+        open = !open;
+        $el.focus();
+      "
+    >
       <slot
         name="select"
         :open="open"
