@@ -1,5 +1,5 @@
 <template>
-  <div class="radio-slider" tabindex="0">
+  <div class="radio-slider">
     <template v-for="(option, index) in options" :key="option.value">
       <input
         :id="`radio-${id}-${index}`"
@@ -9,7 +9,14 @@
         name="radio-slide"
         :value="option.value"
       />
-      <label class="label" :for="`radio-${id}-${index}`">{{ option.title }}</label>
+      <label
+        class="label"
+        :for="`radio-${id}-${index}`"
+        tabindex="0"
+        @keyup.enter="picked = option.value"
+      >
+        {{ option.title }}
+      </label>
     </template>
     <div class="select-pill" />
   </div>
