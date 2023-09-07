@@ -60,7 +60,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "vue-loader": "^17.2.2",
-    "web-ext": "^7.6.2",
+    "web-ext": "^7.7.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
