@@ -134,6 +134,7 @@ import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
 import { HinataSoul } from './HinataSoul/main';
+import { AnimetTV } from './AnimetTV/main';
 
 export const pages = {
   nineAnime,
@@ -272,4 +273,5 @@ export const pages = {
   LuciferDonghua,
   NeoxScans,
   HinataSoul,
+  AnimetTV,
 };
