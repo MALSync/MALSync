@@ -19,13 +19,16 @@ export const FMTeam: pageInterface = {
       return utils.absoluteLink(j.$('.comic-title').attr('href'), FMTeam.domain);
     },
     getVolume(url) {
-      if (Number(utils.urlPart(url, 9))) {
+      if (utils.urlPart(url, 6) === 'vol') {
         return Number(utils.urlPart(url, 7));
       }
       return 0;
     },
     getEpisode(url) {
-      return Number(utils.urlPart(url, 9)) || Number(utils.urlPart(url, 7));
+      if (utils.urlPart(url, 6) === 'vol') {
+        return Number(utils.urlPart(url, 9));
+      }
+      return Number(utils.urlPart(url, 7));
     },
     nextEpUrl() {
       if (String(j.$('#chapter-link-right').attr('href')).startsWith('/comics')) {
