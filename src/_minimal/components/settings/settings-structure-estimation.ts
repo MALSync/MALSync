@@ -37,11 +37,7 @@ export const notificationsSection: ConfObj[] = [
   },
   {
     key: 'notificationsSticky',
-    title: () =>
-      `${api.storage.lang('settings_Notifications_Sticky')} ${api.storage.lang(
-        'settings_Notifications',
-      )}`,
-    condition: () => true,
+    title: () => api.storage.lang('settings_Notifications_Sticky'),
     props: {
       component: 'checkbox',
       option: 'notificationsSticky',
