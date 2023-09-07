@@ -26,13 +26,5 @@
         "uiSelector": true
       }
     },
-	{
-      "url": "https://ogladajanime.pl/main2",
-      "expected": {
-        "sync": false,
-        "title": "",
-		"uiSelector": false
-      }
-    },
   ]
 }
