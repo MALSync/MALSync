@@ -134,7 +134,7 @@ import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
 import { HinataSoul } from './HinataSoul/main';
-import { OgladajAnime } from './OgladajAnime/main'
+import { OgladajAnime } from './OgladajAnime/main';
 
 export const pages = {
   nineAnime,
