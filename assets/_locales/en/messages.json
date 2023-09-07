@@ -1180,7 +1180,7 @@
         "description": "Notifications"
     },
     "settings_Notifications_Sticky": {
-      "message": "Sticky",
+      "message": "Sticky Notifications",
       "description": "Requires interaction to dismiss; ignores system notification timeout"
   },
     "settings_Debugging": {
