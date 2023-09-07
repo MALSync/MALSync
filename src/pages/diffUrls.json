@@ -154,10 +154,16 @@
     "AnimeUnity": [
       "https://www.animeunity.to/anime/*"
     ],
+    "AsuraScans": [
+      "https://asuracomics.com/*"
+    ],
     "Gogoanime": [
       "https://gogoanimehd.to/*",
       "https://gogoanime3.net/*",
       "https://gogoanimehd.io/*"
+    ],
+    "LeviatanScans": [
+      "https://lscomic.com/*"
     ],
     "NekoSama": [
       "https://animecat.net/*"
@@ -193,6 +199,7 @@
       "https://chromotypic.com/e/*",
       "https://crownmakermacaronicism.com/e/*",
       "https://generatesnitrosate.com/e/*",
+      "https://yodelswartlike.com/e/*",
       "https://megacloud.tv/*",
       "https://vixcloud.cc/*",
       "https://vixcloud.co/*"
