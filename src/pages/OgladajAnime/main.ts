@@ -9,6 +9,9 @@ export const OgladajAnime: pageInterface = {
     if (url.split('/')[3] === 'anime') return true;
     return false;
   },
+  isOverviewPage(url) {
+    return false;
+  },
   sync: {
     getTitle(url) {
       return j.$('#anime_name_id').text();
@@ -30,17 +33,6 @@ export const OgladajAnime: pageInterface = {
         return `${OgladajAnime.sync.getOverviewUrl(url)}/${nextep}`;
       }
       return '';
-    },
-  },
-  overview: {
-    getTitle(url) {
-      return j.$('#anime_name_id').text();
-    },
-    getIdentifier(url) {
-      return url.split('/')[4];
-    },
-    uiSelector(selector) {
-      j.$('#anime_name_id').first().before(j.html(selector));
     },
   },
   init(page) {
