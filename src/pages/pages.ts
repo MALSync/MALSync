@@ -131,8 +131,10 @@ import { AnimeOnegai } from './AnimeOnegai/main';
 import { FirstKiss } from './FirstKiss/main';
 import { AnimeKO } from './AnimeKO/main';
 import { Animeflix } from './Animeflix/main';
+import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
 import { Anix } from './Anix/main';
+import { HinataSoul } from './HinataSoul/main';
 
 export const pages = {
   nineAnime,
@@ -268,6 +270,8 @@ export const pages = {
   FirstKiss,
   AnimeKO,
   Animeflix,
+  LuciferDonghua,
   NeoxScans,
   Anix,
+  HinataSoul,
 };
