@@ -1,6 +1,9 @@
 import { pageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
 
+const selectedEpisodeQuery = '#ani-episode a.active';
+const episodeLinkButtonsQuery = '#ani-episode a';
+
 export const Anix: pageInterface = {
   domain: 'https://anix.to',
   languages: ['English'],
@@ -23,13 +26,13 @@ export const Anix: pageInterface = {
       return utils.absoluteLink(j.$(episodeLinkButtonsQuery).first().attr('href'), Anix.domain);
     },
     getEpisode(url: string): number {
-      return parseInt(j.$(selectedEpisodeQuery).text());
+      return parseInt(j.$(selectedEpisodeQuery).eq(1).attr('data-num')!.toString());
     },
     nextEpUrl(url: string): string | undefined {
       return j.$(selectedEpisodeQuery).parent('div').next().find('a').attr('href');
     },
     uiSelector(selector) {
-      j.$('#ani-player-section').before(j.html(selector));
+      j.$('#ani-player-controls').after(j.html(selector));
     },
   },
   overview: {
@@ -45,7 +48,7 @@ export const Anix: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$(episodeLinkButtonsQuery).not('[style*="display: none"])');
+        return j.$(`${episodeLinkButtonsQuery}:not([style*="display: none"])`);
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), Anix.domain);
@@ -114,6 +117,3 @@ export const Anix: pageInterface = {
 function isCorrectionMenuOpen() {
   return j.$('.type-correction').length > 0; // Returns true if the menu is found and false if not
 }
-
-const selectedEpisodeQuery = '#ani-episode a.active';
-const episodeLinkButtonsQuery = '#ani-episode a';
