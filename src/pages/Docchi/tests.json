@@ -3,26 +3,26 @@
   "url": "https://docchi.pl",
   "testCases": [
     {
-      "url": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu/2",
+      "url": "https://docchi.pl/production/as/nanatsu-no-maken-ga-shihai-suru/2",
       "expected": {
         "sync": true,
-        "title": "Rougo ni Sonaete Isekai de 8-manmai no Kinka wo Tamemasu",
-        "identifier": "rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
-        "overviewUrl": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
-        "nextEpUrl": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu/3",
+        "title": "Nanatsu no Maken ga Shihai suru",
+        "identifier": "nanatsu-no-maken-ga-shihai-suru",
+        "overviewUrl": "https://docchi.pl/production/as/nanatsu-no-maken-ga-shihai-suru",
+        "nextEpUrl": "https://docchi.pl/production/as/nanatsu-no-maken-ga-shihai-suru/3",
         "episode": 2,
         "uiSelector": false
       }
     },
     {
-      "url": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
+      "url": "https://docchi.pl/production/as/nanatsu-no-maken-ga-shihai-suru",
       "expected": {
         "sync": false,
-        "title": "Rougo ni Sonaete Isekai de 8-manmai no Kinka wo Tamemasu",
-        "identifier": "rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu",
+        "title": "Nanatsu no Maken ga Shihai suru",
+        "identifier": "nanatsu-no-maken-ga-shihai-suru",
         "uiSelector": true,
         "epList": {
-          "1": "https://docchi.pl/series/rougo-ni-sonaete-isekai-de-8-manmai-no-kinka-wo-tamemasu/1"
+          "1": "https://docchi.pl/production/as/nanatsu-no-maken-ga-shihai-suru/1"
         }
       }
     }
