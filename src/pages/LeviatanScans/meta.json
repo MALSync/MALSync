@@ -1,6 +1,6 @@
 {
-  "search": "https://en.leviatanscans.com/?s={searchtermPlus}",
+  "search": "https://lscomic.com/?s={searchtermPlus}",
   "urls": {
-    "match": ["*://en.leviatanscans.com/*"]
+    "match": ["*://lscomic.com/*", "*://en.leviatanscans.com/*"]
   }
 }

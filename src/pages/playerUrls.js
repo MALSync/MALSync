@@ -650,6 +650,8 @@ module.exports = {
       '*://chromotypic.com/e/*',
       '*://crownmakermacaronicism.com/e/*',
       '*://generatesnitrosate.com/e/*',
+      '*://yodelswartlike.com/e/*',
+      '*://figeterpiazine.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
