@@ -6,7 +6,17 @@ export const mangalivre: pageInterface = {
   languages: ['Portuguese'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[6] !== undefined && url.split('/')[6].length > 0) {
+    if (url.split('/')[6] === 'capitulo') {
+      return true;
+    }
+    return false;
+  },
+  isOverviewPage(url) {
+    if (
+      url.split('/')[3] === 'serie' &&
+      url.split('/')[5] !== undefined &&
+      url.split('/')[5].length > 0
+    ) {
       return true;
     }
     return false;
@@ -16,7 +26,7 @@ export const mangalivre: pageInterface = {
       return j.$('div.series-title > span.title').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return utils.urlPart(url, 5) || '';
     },
     getOverviewUrl(url) {
       return (
@@ -65,13 +75,7 @@ export const mangalivre: pageInterface = {
         con.error('404');
         return;
       }
-      if (
-        (page.url.split('/')[3] === 'manga' || page.url.split('/')[3] === 'ler') &&
-        page.url.split('/')[4] !== undefined &&
-        page.url.split('/')[4].length > 0
-      ) {
-        page.handlePage();
-      }
+      page.handlePage();
     });
   },
 };
