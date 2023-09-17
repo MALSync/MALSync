@@ -26,7 +26,7 @@ export const mangalivre: pageInterface = {
       return j.$('div.series-title > span.title').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 5) || '';
+      return mangalivre.overview!.getIdentifier(mangalivre.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
       return (
