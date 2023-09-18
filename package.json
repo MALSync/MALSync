@@ -11,7 +11,7 @@
     "node": ">=16.0.0"
   },
   "devDependencies": {
-    "@cliqz/adblocker-puppeteer": "^1.26.6",
+    "@cliqz/adblocker-puppeteer": "^1.26.7",
     "@types/chai": "^4.3.6",
     "@types/jquery": "^3.5.14",
     "@types/mocha": "^10.0.1",
