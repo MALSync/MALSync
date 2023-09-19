@@ -6,9 +6,20 @@ export const Docchi: pageInterface = {
   languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[5]) {
+    const args = url.split('/');
+
+    if(args[3] === "production" && !args[6]){
+      return false;
+    }
+    
+    if(args[3] === "production" && args[6]){
       return true;
     }
+
+    if(args[5]){
+      return true;
+    }
+
     return false;
   },
   sync: {
@@ -16,7 +27,13 @@ export const Docchi: pageInterface = {
       return j.$('a[mal_sync="title"]').text() || '';
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      const args = url.split('/');
+
+      if(args[3] === "production"){
+        return args[5];
+      }
+
+      return args[4];
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(j.$('a[mal_sync="title"]').attr('href'), Docchi.domain);
@@ -84,7 +101,7 @@ export const Docchi: pageInterface = {
     });
     function ready() {
       page.reset();
-      if (page.url.split('/')[3] === 'series' || page.url.split('/')[3] === 'hentai') {
+      if (page.url.split('/')[3] === 'production' || page.url.split('/')[3] === 'hentai') {
         if (Docchi.isSyncPage(page.url)) {
           utils.waitUntilTrue(
             function () {
