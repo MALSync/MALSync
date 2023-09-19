@@ -8,15 +8,15 @@ export const Docchi: pageInterface = {
   isSyncPage(url) {
     const args = url.split('/');
 
-    if(args[3] === "production" && !args[6]){
+    if (args[3] === 'production' && !args[6]) {
       return false;
     }
-    
-    if(args[3] === "production" && args[6]){
+
+    if (args[3] === 'production' && args[6]) {
       return true;
     }
 
-    if(args[5]){
+    if (args[5]) {
       return true;
     }
 
@@ -29,7 +29,7 @@ export const Docchi: pageInterface = {
     getIdentifier(url) {
       const args = url.split('/');
 
-      if(args[3] === "production"){
+      if (args[3] === 'production') {
         return args[5];
       }
 
