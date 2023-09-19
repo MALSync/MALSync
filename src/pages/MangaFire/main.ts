@@ -105,7 +105,7 @@ export const MangaFire: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$(jsonData.selector_position!).append(j.html(selector));
+      j.$('.manga-bottom .tab-content').prepend(j.html(selector));
     },
     getMalUrl(provider) {
       return MangaFire.sync.getMalUrl!(provider);
@@ -113,7 +113,7 @@ export const MangaFire: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.chapter-list.lang-chapter[style=""] > li.item');
+        return j.$('[data-name="chapter"] li.item');
       },
       elementUrl(selector) {
         return selector.find('a').attr('href')!;
