@@ -135,6 +135,7 @@ import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
 import { Anix } from './Anix/main';
 import { HinataSoul } from './HinataSoul/main';
+import { OgladajAnime } from './OgladajAnime/main';
 
 export const pages = {
   nineAnime,
@@ -274,4 +275,5 @@ export const pages = {
   NeoxScans,
   Anix,
   HinataSoul,
+  OgladajAnime,
 };

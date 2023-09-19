@@ -1,0 +1,30 @@
+{
+  "title": "OgladajAnime",
+  "url": "https://ogladajanime.pl/",
+  "testCases": [
+    {
+      "url": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv/2",
+      "expected": {
+        "sync": true,
+        "title": "Jujutsu Kaisen (TV)",
+        "identifier": "jujutsu-kaisen-tv",
+        "overviewUrl": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv",
+        "nextEpUrl": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv/3",
+        "episode": 2,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv",
+      "expected": {
+        "sync": true,
+        "title": "Jujutsu Kaisen (TV)",
+        "identifier": "jujutsu-kaisen-tv",
+		"overviewUrl": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv",
+        "nextEpUrl": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv/2",
+		"episode": 1,
+        "uiSelector": true
+      }
+    },
+  ]
+}
