@@ -87,6 +87,7 @@ export const settingsObj = {
     progressIntervalDefaultManga: 'en/sub',
     progressNotificationsAnime: true,
     progressNotificationsManga: true,
+    notificationsSticky: true,
 
     bookMarksList: false,
 

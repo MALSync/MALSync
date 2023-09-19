@@ -22,6 +22,7 @@ build/Release
 yarn.lock
 node_modules/
 jspm_packages/
+pnpm-lock.yaml
 
 # Optional npm cache directory
 .npm

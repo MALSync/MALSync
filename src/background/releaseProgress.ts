@@ -507,7 +507,7 @@ async function notificationCheck(el, cProgress, nProgress, type) {
               noti = {
                 title: el.title,
                 text: api.storage.lang(`syncPage_malObj_nextEp_${type}`, [nProgress.lastEp.total]),
-                sticky: true,
+                sticky: api.settings.get('notificationsSticky'),
                 image: await el.single.getImage(),
                 url: el.single.getStreamingUrl() ? el.single.getStreamingUrl() : el.single.getUrl(),
               };
@@ -515,7 +515,7 @@ async function notificationCheck(el, cProgress, nProgress, type) {
               noti = {
                 title: el.title,
                 text: api.storage.lang(`syncPage_malObj_nextEp_${type}`, [nProgress.lastEp.total]),
-                sticky: true,
+                sticky: api.settings.get('notificationsSticky'),
                 image: el.image,
                 url: el.options && el.options.u ? el.options.u : el.url,
               };
