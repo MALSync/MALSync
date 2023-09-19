@@ -75,24 +75,13 @@ export const MangaFire: pageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '.step > form > input',
-          property: 'placeholder',
-          regex: '^[^-]*',
-          mode: 'prop',
-        },
-        total: {
-          selector: '.step .total',
+          selector: '.current-page',
+          regex: '\\d+$',
           mode: 'text',
         },
-      },
-      {
-        current: {
-          selector: '.vertical > .page',
-          mode: 'countAbove',
-        },
         total: {
-          selector: '.vertical > .page',
-          mode: 'count',
+          selector: '.total-page',
+          mode: 'text',
         },
       },
     ],
