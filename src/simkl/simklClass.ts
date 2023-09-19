@@ -1,6 +1,6 @@
 import { createApp } from '../utils/Vue';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
-import * as helper from '../provider/Simkl/helper';
+import * as helper from '../_provider/Simkl/helper';
 import malkiss from './malkiss.vue';
 import { activeLinks } from '../utils/quicklinksBuilder';
 import { waitForPageToBeVisible } from '../utils/general';
@@ -14,7 +14,11 @@ export class SimklClass {
 
   private malkiss;
 
+  protected logger;
+
   constructor(public url: string) {
+    this.logger = con.m('SimklClass', '#9b7400');
+
     utils.urlChangeDetect(() => {
       clearInterval(this.interval);
       this.interval = utils.waitUntilTrue(
@@ -83,7 +87,7 @@ export class SimklClass {
     const urlpart = utils.urlPart(this.url, 3);
     if (urlpart === 'anime' || urlpart === 'manga') {
       const simklId = utils.urlPart(this.url, 4);
-      return helper.simklIdToMal(simklId).then(malId => {
+      return this.simklIdToMal(simklId).then(malId => {
         if (!malId) return '';
         return `https://myanimelist.net/${urlpart}/${malId}/${utils.urlPart(this.url, 5)}`;
       });
@@ -100,19 +104,18 @@ export class SimklClass {
     try {
       const code = utils.urlParam(this.url, 'code');
       if (!code) throw 'No code found!';
-      helper
-        .call(
-          'https://api.simkl.com/oauth/token',
-          JSON.stringify({
-            code,
-            client_id: helper.client_id,
-            client_secret: '3f883e8e6cdd60d2d5e765aaf0612953f743dc77f44c422af98b38e083cf038b',
-            redirect_uri: 'https://simkl.com/apps/chrome/mal-sync/connected/',
-            grant_type: 'authorization_code',
-          }),
-          false,
-          'POST',
-        )
+      this.call(
+        'https://api.simkl.com/oauth/token',
+        JSON.stringify({
+          code,
+          client_id: helper.client_id,
+          client_secret: __MAL_SYNC_KEYS__.simkl.secret,
+          redirect_uri: 'https://simkl.com/apps/chrome/mal-sync/connected/',
+          grant_type: 'authorization_code',
+        }),
+        false,
+        'POST',
+      )
         .then(access_token => {
           if (
             typeof access_token.error !== 'undefined' ||
@@ -185,4 +188,10 @@ export class SimklClass {
     await this.page.malObj.fillRelations();
     this.malkiss.pageRelation = this.page.malObj.getPageRelations();
   }
+
+  protected call = helper.call;
+
+  protected errorHandling = helper.errorHandling;
+
+  protected simklIdToMal = helper.simklIdToMal;
 }
