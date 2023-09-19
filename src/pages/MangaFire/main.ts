@@ -125,7 +125,7 @@ export const MangaFire: pageInterface = {
 
     utils.changeDetect(
       () => page.handleList(),
-      () => j.$('.dropdown.language').text(),
+      () => j.$('.list-menu .dropdown').text(),
     );
 
     function check() {
