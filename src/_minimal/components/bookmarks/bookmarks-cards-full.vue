@@ -162,7 +162,12 @@ const styleText = computed(() => `${textHeight.value}px`);
     }
   }
 
-  &:hover {
+  &:focus-within {
+    .focus-outline();
+  }
+
+  &:hover,
+  &:focus-within {
     .img {
       filter: grayscale(1);
 

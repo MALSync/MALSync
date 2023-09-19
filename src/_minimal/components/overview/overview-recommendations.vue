@@ -9,17 +9,15 @@
       class="grid-sp"
     >
       <div class="loading-placeholder">
-        <ImageText href="" image="" :loading="true">
-          <div />
-          <Header class="skeleton-text">
+        <ImageText href="" image="" image-type="cover" :loading="true">
+          <Header spacer="half" class="skeleton-text">
             <MediaLink href=""></MediaLink>
           </Header>
           <div class="skeleton-text"></div>
-          <div />
+          <div class="text">
+            <Description :loading="true" height="dynamic" minheight="34px"></Description>
+          </div>
         </ImageText>
-        <div v-if="metaRequest.loading" class="text">
-          <Description :loading="true" :height="150"></Description>
-        </div>
         <div class="load-button">
           <FormButton
             v-if="!metaRequest.loading"
@@ -40,9 +38,8 @@
         <template #elements="{ elements }">
           <Section v-for="(rec, index) in elements" :key="rec.entry.url">
             <HR v-if="index" size="thin" />
-            <ImageText :href="rec.entry.url" :image="rec.entry.image">
-              <div />
-              <Header>
+            <ImageText :href="rec.entry.url" :image="rec.entry.image" image-type="cover">
+              <Header spacer="half">
                 <MediaLink :href="rec.entry.url">
                   <div class="head-dot">
                     <StateDot class="dot" :status="rec.entry.list ? rec.entry.list.status : 0" />
@@ -63,11 +60,10 @@
                   </TextIcon>
                 </MediaLink>
               </div>
-              <div />
+              <div class="text">
+                <Description height="dynamic" minheight="34px">{{ rec.body.text }}</Description>
+              </div>
             </ImageText>
-            <div class="text">
-              <Description :height="150">{{ rec.body.text }}</Description>
-            </div>
           </Section>
         </template>
       </Pagination>
@@ -180,6 +176,7 @@ const data = computed(() =>
 
 .text {
   white-space: pre-line;
+  flex-grow: 1;
 }
 
 .grid-sp {
@@ -187,7 +184,7 @@ const data = computed(() =>
 }
 
 .text {
-  margin-top: @spacer;
+  margin-top: @spacer-half;
 }
 
 .head-dot {
@@ -230,5 +227,14 @@ const data = computed(() =>
 
 .stopLoading {
   --cl-loading: 0;
+}
+
+:deep(.close-button-box) {
+  padding-right: calc(15px + (@normal-text * 6.25));
+}
+
+:deep(.description.close:not(.loading)) {
+  margin-left: calc((15px + (@normal-text * 6.25)) * -1);
+  padding-left: calc(15px + (@normal-text * 6.25));
 }
 </style>

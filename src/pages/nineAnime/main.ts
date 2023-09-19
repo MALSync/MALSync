@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
 export const nineAnime: pageInterface = {
-  name: '9anime',
-  domain: 'https://9anime.to',
+  name: 'Aniwave',
+  domain: 'https://aniwave.to',
   database: '9anime',
   languages: ['English'],
   type: 'anime',

@@ -15,6 +15,7 @@ const pagesUtils = require('./utils/pages');
 const generateMatchExcludes = pagesUtils.generateMatchExcludes;
 
 const pageUrls = { ...generalUrls, ...pages };
+const { getKeys } = require('./utils/keys');
 
 const generateResources = () => {
   const resources = [];
@@ -140,6 +141,11 @@ module.exports = {
       utils: path.resolve(__dirname, './../src/utils/general'),
       j: path.resolve(__dirname, './../src/utils/j'),
       api: path.resolve(__dirname, './../src/api/userscript'),
+    }),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
+      __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
     }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,

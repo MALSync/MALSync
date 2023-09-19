@@ -1,6 +1,10 @@
 import { NotAutenticatedError, parseJson, ServerOfflineError } from '../Errors';
 
-export const client_id = '39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0';
+export const client_id = __MAL_SYNC_KEYS__.simkl.id;
+
+export function getAuthUrl() {
+  return `https://simkl.com/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/`;
+}
 
 export function translateList(simklStatus, malStatus: null | number = null) {
   const list = {
@@ -21,6 +25,15 @@ export function getCacheKey(id, simklId) {
     return `simkl:${simklId}`;
   }
   return id;
+}
+
+export function simklIdToMal(simklId) {
+  return this.call(`https://api.simkl.com/anime/${simklId}`, { extended: 'full' }, true).then(
+    res => {
+      if (typeof res.ids.mal === 'undefined') return null;
+      return res.ids.mal;
+    },
+  );
 }
 
 export function getEpisode(episode: string): number {

@@ -13,6 +13,8 @@ const i18n = require('./utils/i18n');
 const pagesUtils = require('./utils/pages');
 const generateMatchExcludes = pagesUtils.generateMatchExcludes;
 
+const { getKeys } = require('./utils/keys');
+
 const generateResources = () => {
   const resources = [];
   for (const key in resourcesJson) {
@@ -136,6 +138,11 @@ module.exports = {
       utils: path.resolve(__dirname, './../src/utils/general'),
       j: path.resolve(__dirname, './../src/utils/j'),
       api: path.resolve(__dirname, './../src/api/userscript'),
+    }),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
+      __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
     }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,

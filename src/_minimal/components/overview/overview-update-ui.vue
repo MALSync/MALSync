@@ -139,20 +139,32 @@
       </div>
     </div>
     <div class="update-buttons">
-      <div v-if="!single?.isOnList() || false" class="update-button add" @click="sync()">
+      <div
+        v-if="!single?.isOnList() || false"
+        class="update-button add"
+        tabindex="0"
+        @keydown.enter="sync()"
+        @click="sync()"
+      >
         <span class="material-icons">bookmark_add</span>
         {{ lang('Add') }}
       </div>
       <template v-else>
-        <div v-if="single.isDirty()" class="update-button" @click="sync()">
+        <div
+          v-if="single.isDirty()"
+          class="update-button"
+          tabindex="0"
+          @keydown.enter="sync()"
+          @click="sync()"
+        >
           <span class="material-icons">cloud_upload</span>
           {{ lang('Update') }}
         </div>
-        <div v-else class="update-button" @click="update()">
+        <div v-else class="update-button" tabindex="0" @keydown.enter="update()" @click="update()">
           <span class="material-icons">cloud_download</span>
           {{ lang('Synchronize') }}
         </div>
-        <div class="update-button" @click="remove()">
+        <div class="update-button" tabindex="0" @keydown.enter="remove()" @click="remove()">
           <span class="material-icons">remove_circle_outline</span>
           {{ lang('Remove') }}
         </div>

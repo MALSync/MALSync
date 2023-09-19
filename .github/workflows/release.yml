@@ -19,6 +19,8 @@ jobs:
         npm run build
       env:
         CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -64,6 +66,8 @@ jobs:
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
         asset_path: ./dist/malsync-adult.user.js
@@ -109,6 +113,8 @@ jobs:
       env:
         CI_MODE: travis
         APP_TARGET: firefox
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
     - name: Pack
       run: |
         npm run package

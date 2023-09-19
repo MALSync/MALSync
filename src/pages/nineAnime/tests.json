@@ -1,19 +1,19 @@
 {
   "title": "9anime",
-  "url": "https://9anime.to/",
+  "url": "https://aniwave.to/",
   "testCases": [
     {
-      "url": "https://9anime.pl/watch/no-game-no-life.4qkm/ep-4",
+      "url": "https://aniwave.to/watch/no-game-no-life.4qkm/ep-4",
       "expected": {
         "sync": true,
         "title": "No Game, No Life",
         "identifier": "4qkm",
-        "overviewUrl": "https://9anime.pl/watch/no-game-no-life.4qkm/ep-1",
-        "nextEpUrl": "https://9anime.pl/watch/no-game-no-life.4qkm/ep-5",
+        "overviewUrl": "https://aniwave.to/watch/no-game-no-life.4qkm/ep-1",
+        "nextEpUrl": "https://aniwave.to/watch/no-game-no-life.4qkm/ep-5",
         "episode": 4,
         "uiSelector": true,
         "epList": {
-          "5": "https://9anime.pl/watch/no-game-no-life.4qkm/ep-5"
+          "5": "https://aniwave.to/watch/no-game-no-life.4qkm/ep-5"
         }
       }
     }

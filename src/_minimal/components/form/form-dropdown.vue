@@ -4,9 +4,16 @@
     class="dropdown"
     :class="`${size} ${disabled ? 'disabled' : ''}`"
     @blur="open = false"
-    @keydown.prevent="keyDown($event)"
+    @keydown="keyDown($event)"
   >
-    <div class="selector" :class="{ animate }" @click="open = !open">
+    <div
+      class="selector"
+      :class="{ animate }"
+      @click="
+        open = !open;
+        $el.focus();
+      "
+    >
       <slot
         name="select"
         :open="open"
@@ -216,6 +223,10 @@ function keyDown(event: KeyboardEvent) {
     }
 
     case 'Enter': {
+      if (!open.value) {
+        open.value = true;
+        break;
+      }
       if (activeKey.value !== '_-_') {
         picked.value = activeKey.value;
       }
@@ -225,12 +236,17 @@ function keyDown(event: KeyboardEvent) {
 
     case 'Escape': {
       open.value = false;
+      activeKey.value = '_-_';
       break;
     }
 
     default:
-      break;
+      open.value = false;
+      activeKey.value = '_-_';
+      return;
   }
+
+  event.preventDefault();
 }
 </script>
 

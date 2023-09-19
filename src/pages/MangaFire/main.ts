@@ -75,24 +75,13 @@ export const MangaFire: pageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '.step > form > input',
-          property: 'placeholder',
-          regex: '^[^-]*',
-          mode: 'prop',
-        },
-        total: {
-          selector: '.step .total',
+          selector: '.current-page',
+          regex: '\\d+$',
           mode: 'text',
         },
-      },
-      {
-        current: {
-          selector: '.vertical > .page',
-          mode: 'countAbove',
-        },
         total: {
-          selector: '.vertical > .page',
-          mode: 'count',
+          selector: '.total-page',
+          mode: 'text',
         },
       },
     ],
@@ -105,7 +94,7 @@ export const MangaFire: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$(jsonData.selector_position!).append(j.html(selector));
+      j.$('.manga-bottom .tab-content').prepend(j.html(selector));
     },
     getMalUrl(provider) {
       return MangaFire.sync.getMalUrl!(provider);
@@ -113,7 +102,7 @@ export const MangaFire: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.chapter-list.lang-chapter[style=""] > li.item');
+        return j.$('[data-name="chapter"] li.item');
       },
       elementUrl(selector) {
         return selector.find('a').attr('href')!;
@@ -136,7 +125,7 @@ export const MangaFire: pageInterface = {
 
     utils.changeDetect(
       () => page.handleList(),
-      () => j.$('.dropdown.language').text(),
+      () => j.$('.list-menu .dropdown').text(),
     );
 
     function check() {

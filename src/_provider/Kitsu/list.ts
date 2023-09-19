@@ -19,9 +19,8 @@ export class UserList extends ListAbstract {
     return {
       username: user.attributes.name,
       picture: user.attributes.avatar?.large || '',
-      href: `https://kitsu.io/users/${user.attributes.slug}`,
+      href: `https://kitsu.io/users/${user.attributes.slug || user.id}`,
     };
-    return user.attributes.name;
   }
 
   async getUserId() {
