@@ -89,6 +89,7 @@ module.exports = {
     con: 'readonly',
     j: 'readonly',
     utils: 'readonly',
+    __MAL_SYNC_KEYS__: 'readonly',
   },
   ignorePatterns: [
     'dist/',

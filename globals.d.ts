@@ -15,6 +15,12 @@ declare global {
     html: (content: string) => string;
   };
   let api: WebExtensionType;
+  let __MAL_SYNC_KEYS__: {
+    simkl: {
+      id: string;
+      secret: string;
+    };
+  };
 
   interface Window {
     /**

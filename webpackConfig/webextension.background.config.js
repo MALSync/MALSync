@@ -3,6 +3,8 @@ const path = require('path');
 const appTarget = process.env.APP_TARGET || 'general';
 const packageJson = require('../package.json');
 
+const { getKeys } = require('./utils/keys');
+
 plugins = [
   new webpack.NormalModuleReplacementPlugin(/(.*)-general/, function(resource) {
     resource.request = resource.request.replace(/-general/, `-${appTarget}`);
@@ -12,6 +14,11 @@ plugins = [
     utils: path.resolve(__dirname, './../src/utils/general'),
     api: path.resolve(__dirname, './../src/api/webextension'),
     j: path.resolve(__dirname, './../src/utils/j'),
+  }),
+  new webpack.DefinePlugin({
+    __VUE_OPTIONS_API__: true,
+    __VUE_PROD_DEVTOOLS__: false,
+    __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
   }),
 ]
 
