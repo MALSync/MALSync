@@ -71,14 +71,6 @@ export const Anix: pageInterface = {
     },
   },
   init(page: SyncPage): void {
-    // Stops all keys from changing the episode and anything else, when the correction menu is open
-    document.addEventListener('keydown', e => {
-      if (isCorrectionMenuOpen()) {
-        e.stopImmediatePropagation();
-        con.info('Correction menu is open, stopped keydown event');
-      }
-    });
-
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
@@ -113,7 +105,3 @@ export const Anix: pageInterface = {
     );
   },
 };
-
-function isCorrectionMenuOpen() {
-  return j.$('.type-correction').length > 0; // Returns true if the menu is found and false if not
-}
