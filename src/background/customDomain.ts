@@ -40,22 +40,22 @@ function clearListener() {
 }
 
 function singleListener(domainConfig: domainType) {
-  const callback = data => {
+  const callback = async data => {
     logger.m('Navigation').log(domainConfig, data);
     if (domainConfig.page === 'iframe') {
       if (!data.frameId) {
         logger.m('Navigation').log('Do not inject iframe on root page');
         return;
       }
-      chrome.tabs.executeScript(data.tabId, {
+      await chrome.tabs.executeScript(data.tabId, {
         file: 'vendor/jquery.min.js',
         frameId: data.frameId,
       });
-      chrome.tabs.executeScript(data.tabId, {
+      await chrome.tabs.executeScript(data.tabId, {
         file: 'i18n.js',
         frameId: data.frameId,
       });
-      chrome.tabs.executeScript(data.tabId, {
+      await chrome.tabs.executeScript(data.tabId, {
         file: 'content/iframe.js',
         frameId: data.frameId,
       });
@@ -64,19 +64,19 @@ function singleListener(domainConfig: domainType) {
         logger.m('Navigation').log('Do not inject page scripts in Iframe');
         return;
       }
-      chrome.tabs.executeScript(data.tabId, {
+      await chrome.tabs.executeScript(data.tabId, {
         file: 'vendor/jquery.min.js',
         frameId: data.frameId,
       });
-      chrome.tabs.executeScript(data.tabId, {
+      await chrome.tabs.executeScript(data.tabId, {
         file: 'i18n.js',
         frameId: data.frameId,
       });
-      chrome.tabs.executeScript(data.tabId, {
+      await chrome.tabs.executeScript(data.tabId, {
         file: `content/page_${domainConfig.page}.js`,
         frameId: data.frameId,
       });
-      chrome.tabs.executeScript(data.tabId, {
+      await chrome.tabs.executeScript(data.tabId, {
         file: 'content/content-script.js',
         frameId: data.frameId,
       });
