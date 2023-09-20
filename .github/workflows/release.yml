@@ -87,8 +87,8 @@ jobs:
         npm run build
       env:
         CI_MODE: travis
-        client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
-        refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -98,6 +98,8 @@ jobs:
         extension: kekjfbackdeiabghhcdklcdoekaanoel
         zip: dist/webextension.zip
         client-id: ${{ secrets.DEV_CHROME_CLIENT_ID }}
+        client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
 
   firefox:
     runs-on: ubuntu-latest
