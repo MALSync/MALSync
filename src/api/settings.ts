@@ -45,7 +45,7 @@ export const settingsObj = {
     loadPTWForProgress: false,
 
     quicklinks: [
-      '9anime',
+      'Aniwave',
       'Crunchyroll',
       'Gogoanime',
       'Mangadex',
@@ -54,7 +54,7 @@ export const settingsObj = {
       'MangaSee',
       'MangaFire',
       'YugenAnime',
-      'Zoro',
+      'AniWatch',
       'Funimation',
       'Hulu',
       'Netflix',
