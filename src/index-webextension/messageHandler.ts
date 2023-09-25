@@ -136,5 +136,36 @@ function emitterAction(message: emitter, sender, sendResponse) {
 }
 
 function xhrAction(message: xhrI, sender, sendResponse, retry = 0) {
-  throw new Error('Function not implemented.');
+  let url;
+  const options: RequestInit = {
+    method: message.method,
+    headers: [] as [string, string][],
+  };
+
+  if (typeof message.url === 'object') {
+    url = message.url.url;
+    if (message.url.data) {
+      options.body = message.url.data;
+    }
+    for (const key in message.url.headers) {
+      (options.headers as [string, string][]).push([key, message.url.headers[key]]);
+    }
+  } else {
+    url = message.url;
+  }
+
+  if (url.includes('malsync.moe') || url.includes('simkl.com')) {
+    (options.headers as [string, string][]).push(['version', api.storage.version()]);
+    (options.headers as [string, string][]).push(['type', 'addon']);
+  }
+
+  fetch(url, options).then(async response => {
+    const responseObj = {
+      finalUrl: response.url,
+      responseText: await response.text(),
+      status: response.status,
+    };
+    sendResponse(responseObj);
+  });
+  return true;
 }
