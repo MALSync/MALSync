@@ -107,7 +107,7 @@ content_scripts.push({
 
 const generateManifest = () => {
   const mani = {
-    manifest_version: 2,
+    manifest_version: 3,
     name: packageJson.productName,
     version: packageJson.version,
     description: '__MSG_Package_Description__',
@@ -119,9 +119,9 @@ const generateManifest = () => {
       },
     },
     background: {
-      scripts: ['vendor/jquery.min.js', 'background.js'],
+      service_worker: 'background.js',
     },
-    browser_action: {
+    action: {
       default_popup: 'popup.html',
       default_icon: 'icons/icon16.png',
     },
@@ -130,7 +130,7 @@ const generateManifest = () => {
       browser_style: false,
     },
     commands: {
-      _execute_browser_action: {
+      _execute_action: {
         suggested_key: {
           default: 'Alt+M',
           windows: 'Alt+M',
@@ -145,16 +145,25 @@ const generateManifest = () => {
       '48': 'icons/icon48.png',
       '128': 'icons/icon128.png',
     },
-    web_accessible_resources: ['vendor/*', 'assets/*', 'icons/*', 'window.html'],
+    web_accessible_resources: [
+      {
+        "resources": ['vendor/*', 'assets/*', 'icons/*', 'window.html'],
+        "matches": ["*://*/*"],
+      }
+    ],
     permissions: [
       'storage',
       'alarms',
       'webRequest',
       'webRequestBlocking',
-      ...httpPermissionsJson,
       'notifications',
     ],
-    optional_permissions: ['webNavigation', 'http://*/*', 'https://*/*'],
+    host_permissions: [
+      ...httpPermissionsJson,
+    ],
+    "optional_host_permissions": [
+      "*://*/*",
+    ],
   };
 
   if (mode === 'travis') {
