@@ -32,7 +32,7 @@
         "description": "Loading"
     },
     "Select": {
-        "message": "Sélectionnez",
+        "message": "Sélectionner",
         "description": "Select"
     },
     "Yes": {
@@ -588,11 +588,11 @@
         "description": "Characters"
     },
     "overview_OpeningTheme": {
-        "message": "Opening :",
+        "message": "Thème de l’opening :",
         "description": "Opening Theme"
     },
     "overview_EndingTheme": {
-        "message": "Ending :",
+        "message": "Thème de l’ending :",
         "description": "Ending Theme"
     },
     "search_Type": {
@@ -640,11 +640,11 @@
         "description": "Video"
     },
     "settings_Animesync_Instant": {
-        "message": "Instantanément",
+        "message": "Instantané",
         "description": "Instant"
     },
     "settings_Animesync_Manual": {
-        "message": "Manuellement",
+        "message": "Manuel",
         "description": "Manual"
     },
     "settings_Mangasync": {
@@ -672,11 +672,11 @@
         }
     },
     "settings_StreamingSite": {
-        "message": "Raccourcis",
+        "message": "Liens d’accès rapide",
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "Si désactivé, les sites de streaming n’apparaîtront plus dans l'encadré à coté de MyAnimeList/AniList/Kitsu.",
+        "message": "Si désactivé, les sites de streaming n’apparaîtront plus dans la barre latérale d'un anime sur MyAnimeList/AniList/Kitsu.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -716,7 +716,7 @@
         "description": "Use Tags/Notes"
     },
     "settings_malTags_Text": {
-        "message": "Si activée : La dernière page de streaming que vous avez utilisée est enregistrée de façon permanente (tous navigateurs confondus) dans la section \"tags/Notes\" de votre liste. La chaîne de caractère sauvegardée dans la section des balises est laide, seulement vraiment recommandée que si vous n'utilisez pas la section des balises/notes.",
+        "message": "Si activée : La dernière page de streaming que vous avez utilisée est enregistrée de façon permanente (tous navigateurs confondus) dans la section \"tags/Notes\" de votre liste. La chaîne de caractère sauvegardée dans la section des balises est laide, seulement vraiment recommandée si vous n'utilisez pas la section des balises/notes.",
         "description": "Use Tags/Notes - Text"
     },
     "settings_malContinue": {
@@ -760,7 +760,7 @@
         "description": "Display to the"
     },
     "settings_miniMAL_popup": {
-        "message": "Extension popup",
+        "message": "Popup de l’extension",
         "description": "Header of the settings section for the extension popup"
     },
     "settings_miniMAL_theme": {
@@ -866,7 +866,7 @@
         "description": "Interval"
     },
     "settings_Interval_Off": {
-        "message": "Off",
+        "message": "Désactivé",
         "description": "Interval - Off"
     },
     "settings_Interval_Default_Anime": {
@@ -1316,7 +1316,7 @@
         "description": "Dropdown option to sort list alphabetic"
     },
     "list_sorting_history": {
-        "message": "Date de mise à jour",
+        "message": "Dernière mise à jour",
         "description": "Dropdown option to sort list by last updated"
     },
     "list_sorting_score": {
@@ -1368,7 +1368,7 @@
         "description": "Info table on overview - Members: 1337"
     },
     "overview_sidebar_Broadcast": {
-        "message": "Diffusion :",
+        "message": "Horaires de diffusion :",
         "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
     },
     "overview_sidebar_Studios": {
@@ -1408,7 +1408,7 @@
         "description": "Info table on overview - Licensor: AT-X"
     },
     "overview_sidebar_Aired": {
-        "message": "Diffusion :",
+        "message": "Période de diffusion :",
         "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
     },
     "overview_sidebar_Authors": {
