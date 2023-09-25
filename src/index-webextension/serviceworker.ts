@@ -9,6 +9,13 @@ import { initDatabase } from '../background/database';
 import { listSyncInit } from '../background/listSync';
 import { initProgressScheduler } from '../background/releaseProgress';
 import { initSyncTags } from '../background/syncTags';
+import { initMessageHandler } from './messageHandler';
+
+try {
+  initMessageHandler();
+} catch (e) {
+  con.error(e);
+}
 
 try {
   initSyncTags();
