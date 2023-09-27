@@ -655,6 +655,7 @@ module.exports = {
       '*://figeterpiazine.com/e/*',
       '*://cigarlessarefy.com/e/*',
       '*://valeronevijao.com/e/*',
+      '*://strawberriesporail.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
