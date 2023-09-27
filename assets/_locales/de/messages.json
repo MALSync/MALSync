@@ -1200,7 +1200,7 @@
         "description": "Option to sync list once a day in the background"
     },
     "settings_custom_domains_disclaimer": {
-        "message": "Bitte nur benutzen, wenn du weißt, was du tust!",
+        "message": "Diese Funktion ermöglicht das Hinzufügen von benutzerdefinierten Domains zu bestehenden Webseiten, um Domainänderungen und selbst gehostete Quellen zu handhaben, kann aber keine neuen Webseiten hinzufügen.",
         "description": "Text on the custom domain configuration page"
     },
     "settings_custom_domains_wrong": {
@@ -1510,5 +1510,17 @@
     "installPage_Howto_Notes": {
         "message": "Die Synchronisation kann später in den Einstellungen konfiguriert werden - passe sie gerne deinen Wünschen an!",
         "description": "The synchronization settings can be changed later"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "Der Browser oder das aktuelle Fenster unterstützen das Hinzufügen von Berechtigungen nicht. Bitte versuche es erneut mit der URL https://malsync.moe/pwa oder verwende das Popup der Erweiterung.",
+        "description": "Text that is shown when the browser does not support adding new permissions"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "Angeheftete Benachrichtigungen",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
+    "overview_synonyms": {
+        "message": "Synonyme",
+        "description": "Text of a button that shows the alternative names for an entry"
     }
 }

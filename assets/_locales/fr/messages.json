@@ -32,7 +32,7 @@
         "description": "Loading"
     },
     "Select": {
-        "message": "Sélectionnez",
+        "message": "Sélectionner",
         "description": "Select"
     },
     "Yes": {
@@ -108,7 +108,7 @@
         "description": "Reading"
     },
     "UI_Status_Completed": {
-        "message": "Terminé",
+        "message": "Terminés",
         "description": "Completed"
     },
     "UI_Status_OnHold": {
@@ -116,7 +116,7 @@
         "description": "On-Hold"
     },
     "UI_Status_Dropped": {
-        "message": "Abandonné",
+        "message": "Abandonnés",
         "description": "Dropped"
     },
     "UI_Status_planTo_anime": {
@@ -272,11 +272,11 @@
         "description": "Start watching anime message"
     },
     "syncPage_flashConfirm_rewatch_finish_anime": {
-        "message": "Revisionnage terminé ?",
+        "message": "Terminer le re-visionnage ?",
         "description": "Finish rewatching anime message"
     },
     "syncPage_flashConfirm_rewatch_finish_manga": {
-        "message": "Relecture terminé ?",
+        "message": "Terminer la relecture ?",
         "description": "Finish rereading manga message"
     },
     "syncPage_flashConfirm_start_manga": {
@@ -350,7 +350,7 @@
         "description": "The token has been obtained and saved"
     },
     "kitsuClass_authentication_text": {
-        "message": "Pour vous connecter avec Kitsu, vous devez entrer l'e-mail de votre compte ainsi que le mot de passe.<br>Vos identifiants ne sont pas stockés sur votre ordinateur ou nulle part ailleurs.<br>Ils sont directement envoyés a Kitsu. Seul le jeton de connexion est sauvegardé.<br>",
+        "message": "Pour vous connecter avec Kitsu, vous devez entrer l'e-mail de votre compte ainsi que le mot de passe.<br>Vos identifiants ne sont pas stockés sur votre ordinateur ou nulle part ailleurs.<br>Ils sont directement envoyés à Kitsu. Seul le jeton de connexion retourné est sauvegardé.<br>",
         "description": "Authentication text in Kitsu"
     },
     "kitsuClass_authentication_Password": {
@@ -500,7 +500,7 @@
         "description": "Episode Offset"
     },
     "correction_Offset_text": {
-        "message": "Tapez le décalage des épisodes, si un anime a 12 épisodes, mais que les nombres de 0-11 sont utilisés à la place de 1-12, vous devez simplement taper \" +1 \" dans le décalage des épisodes.",
+        "message": "Entrez le décalage des épisodes, si un anime a 12 épisodes, mais que les nombres de 0-11 sont utilisés à la place de 1-12, vous devez simplement écrire \" +1 \" dans le décalage des épisodes.",
         "description": "Episode Offset - Text"
     },
     "correction_WrongUrl": {
@@ -512,11 +512,11 @@
         "description": "Correction Search"
     },
     "correction_Search_text": {
-        "message": "Ce champ est utilisé pour rechercher un anime, quand vous devez corriger le \"MyAnimeList URL\" affiché au dessus.<br>Pour faire une recherche, commencez simplement à taper le nom de l'anime, et la liste avec les résultats va apparaître automatiquement pendant que vous tapez.",
+        "message": "Ce champ est utilisé pour rechercher un anime, quand vous devez corriger le \"MyAnimeList URL\" affiché au dessus.<br>Pour faire une recherche, commencez simplement à taper le nom de l'anime, et une liste avec les résultats va apparaître automatiquement pendant que vous tapez.",
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "Si l'Anime/le Manga ne peuvent pas être trouvés sur MAL",
+        "message": "Si l'anime/le manga ne peut pas être trouvé sur MAL",
         "description": "Anime/Manga not found in MAL"
     },
     "correction_NoEntry": {
@@ -588,11 +588,11 @@
         "description": "Characters"
     },
     "overview_OpeningTheme": {
-        "message": "Opening :",
+        "message": "Thème de l’opening :",
         "description": "Opening Theme"
     },
     "overview_EndingTheme": {
-        "message": "Ending :",
+        "message": "Thème de l’ending :",
         "description": "Ending Theme"
     },
     "search_Type": {
@@ -640,11 +640,11 @@
         "description": "Video"
     },
     "settings_Animesync_Instant": {
-        "message": "Instantanément",
+        "message": "Instantané",
         "description": "Instant"
     },
     "settings_Animesync_Manual": {
-        "message": "Manuellement",
+        "message": "Manuel",
         "description": "Manual"
     },
     "settings_Mangasync": {
@@ -672,11 +672,11 @@
         }
     },
     "settings_StreamingSite": {
-        "message": "Raccourcis",
+        "message": "Liens d’accès rapide",
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "Si désactivé, les sites de streaming n’apparaîtront plus dans l'encadré à coté de MyAnimeList/AniList/Kitsu.",
+        "message": "Si désactivé, les sites de streaming n’apparaîtront plus dans la barre latérale d'un anime sur MyAnimeList/AniList/Kitsu.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -716,7 +716,7 @@
         "description": "Use Tags/Notes"
     },
     "settings_malTags_Text": {
-        "message": "Si activée : La dernière page de streaming que vous avez utilisée est enregistrée de façon permanente (tous navigateurs confondus) dans la section \"tags/Notes\" de votre liste. La chaîne de caractère sauvegardée dans la section des balises est laide, seulement vraiment recommandée que si vous n'utilisez pas la section des balises/notes.",
+        "message": "Si activée : La dernière page de streaming que vous avez utilisée est enregistrée de façon permanente (tous navigateurs confondus) dans la section \"tags/Notes\" de votre liste. La chaîne de caractère sauvegardée dans la section des balises est laide, seulement vraiment recommandée si vous n'utilisez pas la section des balises/notes.",
         "description": "Use Tags/Notes - Text"
     },
     "settings_malContinue": {
@@ -760,7 +760,7 @@
         "description": "Display to the"
     },
     "settings_miniMAL_popup": {
-        "message": "Extension popup",
+        "message": "Popup de l’extension",
         "description": "Header of the settings section for the extension popup"
     },
     "settings_miniMAL_theme": {
@@ -866,7 +866,7 @@
         "description": "Interval"
     },
     "settings_Interval_Off": {
-        "message": "Off",
+        "message": "Désactivé",
         "description": "Interval - Off"
     },
     "settings_Interval_Default_Anime": {
@@ -1280,7 +1280,7 @@
         "description": "Asking to allow missing domain permissions"
     },
     "settings_custom_domains_disclaimer": {
-        "message": "À n’utiliser que si vous savez ce que vous faites !",
+        "message": "Cette fonctionnalité permet d’ajouter des domaines personnalisés à des sites existants pour gérer les changements de noms de domaine et les sources auto-hébergées, mais il ne permet pas d’ajouter de nouveaux sites.",
         "description": "Text on the custom domain configuration page"
     },
     "settings_read_less": {
@@ -1316,7 +1316,7 @@
         "description": "Dropdown option to sort list alphabetic"
     },
     "list_sorting_history": {
-        "message": "Date de mise à jour",
+        "message": "Dernière mise à jour",
         "description": "Dropdown option to sort list by last updated"
     },
     "list_sorting_score": {
@@ -1368,7 +1368,7 @@
         "description": "Info table on overview - Members: 1337"
     },
     "overview_sidebar_Broadcast": {
-        "message": "Diffusion :",
+        "message": "Horaires de diffusion :",
         "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
     },
     "overview_sidebar_Studios": {
@@ -1408,7 +1408,7 @@
         "description": "Info table on overview - Licensor: AT-X"
     },
     "overview_sidebar_Aired": {
-        "message": "Diffusion :",
+        "message": "Période de diffusion :",
         "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
     },
     "overview_sidebar_Authors": {
@@ -1510,5 +1510,17 @@
                 "example": "MyAnimeList"
             }
         }
+    },
+    "settings_Notifications_Sticky": {
+        "message": "Notifications persistantes",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
+    "overview_synonyms": {
+        "message": "Synonymes",
+        "description": "Text of a button that shows the alternative names for an entry"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "Le navigateur ou cette fenêtre ne permet pas l’ajout de permissions, veuillez réessayer avec l’URL https://malsync.moe/pwa ou en utilisant le popup de l’extension.",
+        "description": "Text that is shown when the browser does not support adding new permissions"
     }
 }
