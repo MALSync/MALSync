@@ -277,5 +277,5 @@ export const pages = {
   Anix,
   HinataSoul,
   OgladajAnime,
-  hachi
+  hachi,
 };
