@@ -1,5 +1,5 @@
 {
-  "search": "https://9anime.to/filter?keyword={searchtermPlus}",
+  "search": "https://aniwave.to/filter?keyword={searchtermPlus}",
   "urls": {
     "match": [
       "*://*.9anime.to/watch/*",
