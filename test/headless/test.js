@@ -150,6 +150,8 @@ async function PreparePage(block, page, url) {
   const filePath = path.join(__dirname, '../dist/headless/', block, name, 'index.html');
 
   if (fs.existsSync(filePath)) {
+    log(block, 'Cached', 2);
+
     await page.setRequestInterception(true);
 
     page.on('request', (request) => {
@@ -176,6 +178,8 @@ async function PreparePage(block, page, url) {
     } catch (e) {
       await page.evaluate(() => window.stop());
     }
+
+    return null;
   } else {
     try {
       const [response] = await Promise.all([
@@ -188,7 +192,10 @@ async function PreparePage(block, page, url) {
     }
 
     const content = await page.content();
-    fs.writeFileSync(filePath, content);
+
+    return () => {
+      fs.writeFileSync(filePath, content);
+    }
   }
 }
 
@@ -211,7 +218,7 @@ function checkIfFolderExists(block, name) {
 }
 
 async function singleCase(block, test, page, retry = 0) {
-  await PreparePage(block, page, test.url);
+  const saveCallback = await PreparePage(block, page, test.url);
 
   await page
     .addScriptTag({
@@ -265,6 +272,8 @@ async function singleCase(block, test, page, retry = 0) {
       );
     }
   }
+
+  if (saveCallback) saveCallback();
 }
 
 async function testPageCase(block, testPage, b) {
