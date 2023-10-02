@@ -299,7 +299,7 @@ async function testPageCase(block, testPage, b) {
 }
 
 async function loopEl(testPage, headless = true) {
-  if(testPage.title !== 'manganato') return;
+  // if(testPage.title !== 'manganato') return;
   if (!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
   const b = await getBrowser(headless);
 
