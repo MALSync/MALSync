@@ -138,16 +138,58 @@ async function onlineTest(url, page) {
   }
 }
 
-async function singleCase(block, test, page, retry = 0) {
-  try {
-    const [response] = await Promise.all([
-      page.goto(test.url, { timeout: 0 }),
-      page.waitForNavigation({ timeout: 30000 }),
-    ]);
-  } catch (e) {
-    log(block, 'Page loads too long', 2);
-    await page.evaluate(() => window.stop());
+async function PreparePage(block, page, url) {
+  const urlObj = new URL(url);
+  let name =
+    encodeURIComponent(
+      urlObj.pathname.replace(/(^\/|\/$| )/g, '').replace(/\//g, '_'),
+    ).toLowerCase()
+
+  if (!name.endsWith('.html')) {
+    name += '.html';
   }
+
+  const filePath = path.join(__dirname, '../dist/headless/', block, name);
+
+  if (fs.existsSync(filePath)) {
+    await page.setRequestInterception(true);
+
+    page.on('request', (request) => {
+      if (!request.isInterceptResolutionHandled()) {
+        if (request.url() === url) {
+          const content = fs.readFileSync(filePath, 'utf8');
+          return request.respond({ status: 200, body: content, contentType: 'text/html' });
+        } else {
+          return request.abort();
+        }
+      }
+    });
+    try {
+      const [response] = await Promise.all([
+        page.goto(url, { timeout: 0 }),
+        page.waitForNavigation({ timeout: 30000 }),
+      ]);
+    } catch (e) {
+      await page.evaluate(() => window.stop());
+    }
+  } else {
+    try {
+      const [response] = await Promise.all([
+        page.goto(url, { timeout: 0 }),
+        page.waitForNavigation({ timeout: 30000 }),
+      ]);
+    } catch (e) {
+      log(block, 'Page loads too long', 2);
+      await page.evaluate(() => window.stop());
+    }
+
+    const content = await page.content();
+    fs.writeFileSync(filePath, content);
+  }
+}
+
+async function singleCase(block, test, page, retry = 0) {
+  await PreparePage(block, page, test.url);
 
   await page
     .addScriptTag({
