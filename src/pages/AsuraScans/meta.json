@@ -4,7 +4,8 @@
     "match": [
       "*://asura.gg/*",
       "*://*.asurascans.com/*",
-      "*://*.asuracomics.com/*"
+      "*://*.asuracomics.com/*",
+      "*://asuratoon.com/*"
     ]
   }
 }
