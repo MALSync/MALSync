@@ -19,8 +19,8 @@ jobs:
         npm run build
       env:
         CI_MODE: travis
-        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
-        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        SIMKL_API_ID: test-placeholder
+        SIMKL_API_SECRET: test-placeholder
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -56,8 +56,8 @@ jobs:
         npm run build:webextension:content:build
       env:
         CI_MODE: travis
-        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
-        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        SIMKL_API_ID: test-placeholder
+        SIMKL_API_SECRET: test-placeholder
     - name: Tests
       run: |
         npm run test:ts:ci
