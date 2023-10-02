@@ -146,11 +146,8 @@ async function PreparePage(block, page, url) {
       urlObj.pathname.replace(/(^\/|\/$| )/g, '').replace(/\//g, '_'),
     ).toLowerCase()
 
-  if (!name.endsWith('.html')) {
-    name += '.html';
-  }
-
-  const filePath = path.join(__dirname, '../dist/headless/', block, name);
+  checkIfFolderExists(block, name);
+  const filePath = path.join(__dirname, '../dist/headless/', block, name, 'index.html');
 
   if (fs.existsSync(filePath)) {
     await page.setRequestInterception(true);
@@ -192,6 +189,24 @@ async function PreparePage(block, page, url) {
 
     const content = await page.content();
     fs.writeFileSync(filePath, content);
+  }
+}
+
+function checkIfFolderExists(block, name) {
+  const root = path.join(__dirname, '../dist/headless/');
+
+  if (!fs.existsSync(root)) {
+    fs.mkdirSync(root);
+  }
+
+  const folderPath = path.join(root, block);
+  if (!fs.existsSync(folderPath)) {
+    fs.mkdirSync(folderPath);
+  }
+
+  const filePath = path.join(folderPath, name);
+  if (!fs.existsSync(filePath)) {
+    fs.mkdirSync(filePath);
   }
 }
 
