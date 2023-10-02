@@ -159,6 +159,12 @@ async function PreparePage(block, page, url) {
         if (request.url() === url) {
           const content = fs.readFileSync(filePath, 'utf8');
           return request.respond({ status: 200, body: content, contentType: 'text/html' });
+        } else if (request.resourceType() === 'image') {
+          return request.respond({
+            status: 200,
+            body: fs.readFileSync(path.join(__dirname, '../../assets/icons/icon128.png')),
+            contentType: 'image/png'
+          });
         } else {
           return request.abort();
         }
