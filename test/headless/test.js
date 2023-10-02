@@ -203,7 +203,7 @@ async function singleCase(block, test, page, retry = 0) {
   }
 }
 
-async function testPageCase(block, testPage, page) {
+async function testPageCase(block, testPage, b) {
   log(block, '');
   log(block, testPage.title);
   if (testPage.unreliable) logC(block, 'Unreliable', 1, 'yellow');
@@ -213,13 +213,16 @@ async function testPageCase(block, testPage, page) {
   if (testPage.offline) logC(block, 'Offline', 1, 'yellow');
 
   try {
+    const page = await openPage(b);
     await onlineTest(testPage.url, page);
+    await page.close();
     logC(block, 'Online', 1);
   } catch (e) {
     logC(block, 'Offline', 1);
     log(block, e, 2);
   }
   for (const testCase of testPage.testCases) {
+    const page = await openPage(b);
     try {
       logC(block, testCase.url, 1);
       await Promise.race([
@@ -244,6 +247,7 @@ async function testPageCase(block, testPage, page) {
       }
       passed = 0;
     }
+    await page.close();
   }
 
   if (!mode.quiet || (mode.quiet && !passed)) printLogBlock(block);
@@ -255,18 +259,12 @@ async function testPageCase(block, testPage, page) {
 }
 
 async function loopEl(testPage, headless = true) {
-  // if(testPage.title !== 'Kissmanga') return;
+  if(testPage.title !== 'manganato') return;
   if (!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
   const b = await getBrowser(headless);
-  const page = await b.newPage();
-
-  const blocker = await PuppeteerBlocker.fromPrebuiltAdsAndTracking(fetch);
-  await blocker.enableBlockingInPage(page);
-
-  await page.setViewport({ width: 1920, height: 1080 });
 
   try {
-    await testPageCase(testPage.title, testPage, page);
+    await testPageCase(testPage.title, testPage, b);
   } catch (e) {
     if (e === 'Captcha') {
       if (!process.env.CI && headless === true) {
@@ -280,8 +278,17 @@ async function loopEl(testPage, headless = true) {
       console.error(e);
     }
   }
+}
 
-  await page.close();
+async function openPage(b) {
+  const page = await b.newPage();
+
+  const blocker = await PuppeteerBlocker.fromPrebuiltAdsAndTracking(fetch);
+  await blocker.enableBlockingInPage(page);
+
+  await page.setViewport({ width: 1920, height: 1080 });
+
+  return page;
 }
 
 async function initTestsArray() {
