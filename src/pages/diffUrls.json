@@ -177,6 +177,9 @@
     ]
   },
   "0.9.6": {
+    "AsuraScans": [
+      "https://asuratoon.com/*"
+    ],
     "iframe": [
       "https://valeronevijao.com/e/*",
       "https://strawberriesporail.com/e/*"
