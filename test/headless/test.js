@@ -260,15 +260,6 @@ async function testPageCase(block, testPage, b) {
   if (typeof testPage.offline === 'undefined') testPage.offline = false;
   if (testPage.offline) logC(block, 'Offline', 1, 'yellow');
 
-  try {
-    const page = await openPage(b);
-    await onlineTest(testPage.url, page);
-    await page.close();
-    logC(block, 'Online', 1);
-  } catch (e) {
-    logC(block, 'Offline', 1);
-    log(block, e, 2);
-  }
   for (const testCase of testPage.testCases) {
     const page = await openPage(b);
     try {
