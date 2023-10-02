@@ -2,6 +2,7 @@ const { expect } = require('chai');
 const puppeteer = require('puppeteer');
 const { PuppeteerBlocker } = require('@cliqz/adblocker-puppeteer');
 const fetch = require('cross-fetch');
+const path = require('path');
 
 const fs = require('fs');
 const dir = require('node-dir');
