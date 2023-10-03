@@ -143,7 +143,7 @@ async function PreparePage(block, page, url) {
   const urlObj = new URL(url);
   let name =
     encodeURIComponent(
-      urlObj.pathname.replace(/(^\/|\/$| )/g, '').replace(/\//g, '_'),
+      (urlObj.pathname + urlObj.search + urlObj.hash).replace(/(^\/|\/$| )/g, '').replace(/\//g, '_'),
     ).toLowerCase()
 
   checkIfFolderExists(block, name);
