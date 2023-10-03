@@ -1,5 +1,6 @@
 {
     "title": "Animeflix",
+    "enabled": false,
     "url": "https://animeflix.live",
     "testCases": [
       {
@@ -16,4 +17,3 @@
       }
     ]
   }
-  

@@ -1,6 +1,7 @@
 {
   "title": "SKScans",
   "url": "https://skscans.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://skscans.com/manga/a-returners-magic-should-be-special/season-2/128/",

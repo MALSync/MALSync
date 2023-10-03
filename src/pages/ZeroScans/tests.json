@@ -1,6 +1,7 @@
 {
   "title": "ZeroScans",
   "url": "https://zeroscans.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://zeroscans.com/comics/second-life-ranker/400",

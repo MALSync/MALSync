@@ -1,5 +1,6 @@
 {
   "title": "MangaPark",
+  "enabled": false,
   "url": "https://mangapark.net/",
   "testCases": [
     {

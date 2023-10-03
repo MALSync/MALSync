@@ -1,6 +1,7 @@
 {
   "title": "manga4life",
   "url": "https://manga4life.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://manga4life.com/read-online/Solo-Leveling-chapter-105-page-1.html",

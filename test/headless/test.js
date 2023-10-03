@@ -118,6 +118,10 @@ async function cdn(page, type) {
     }
 
     setTimeout(async () => {
+      if (page.isClosed()) {
+        reject('Page closed');
+        return;
+      }
       const content = await page.evaluate(() => document.body.innerHTML);
       if (content.indexOf('Why do I have to complete a CAPTCHA?') !== -1) {
         reject('Captcha');

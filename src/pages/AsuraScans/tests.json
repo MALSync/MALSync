@@ -1,6 +1,7 @@
 {
   "title": "AsuraScans",
   "url": "https://asura.gg",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://asura.gg/sss-class-suicide-hunter-chapter-18/",

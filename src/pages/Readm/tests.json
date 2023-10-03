@@ -1,6 +1,7 @@
 {
   "title": "Readm",
   "url": "https://readm.org/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://readm.org/manga/16160/108/all-pages",

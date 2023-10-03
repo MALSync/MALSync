@@ -1,6 +1,7 @@
 {
   "title": "YugenAnime",
   "url": "https://yugen.to/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://yugen.to/watch/6476/mahouka-koukou-no-rettousei-raihousha-hen/7/",

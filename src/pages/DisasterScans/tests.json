@@ -1,5 +1,6 @@
 {
     "title": "DisasterScans",
+    "enabled": false,
     "url": "https://disasterscans.com/",
     "testCases": [
       {

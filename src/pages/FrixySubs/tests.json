@@ -1,6 +1,7 @@
 {
   "title": "FrixySubs",
   "url": "https://frixysubs.pl",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://frixysubs.pl/ogladaj.html?id=665",

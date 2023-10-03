@@ -1,6 +1,7 @@
 {
   "title": "MangaHub",
   "url": "https://mangahub.io/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://mangahub.io/chapter/iron-ladies/chapter-167",

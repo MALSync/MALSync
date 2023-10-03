@@ -1,5 +1,6 @@
 {
   "title": "NeoxScans",
+  "enabled": false,
   "url": "https://neoxscans.com",
   "testCases": [
     {

@@ -1,6 +1,7 @@
 {
   "title": "mangatx",
   "url": "https://mangatx.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-113/",

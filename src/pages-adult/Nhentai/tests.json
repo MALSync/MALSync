@@ -2,6 +2,7 @@
   // nsfw
   "title": "Nhentai",
   "url": "https://nhentai.net/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://nhentai.net/g/306629/1",

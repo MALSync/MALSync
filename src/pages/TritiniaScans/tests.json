@@ -1,6 +1,7 @@
 {
   "title": "TritiniaScans",
   "url": "https://tritinia.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://tritinia.com/manga/its-too-hard-to-chase-the-tsundere-prince/ch-98/",

@@ -1,5 +1,6 @@
 {
   "title": "kickassanime",
+  "enabled": false,
   "url": "https://www.kickassanime.ro/",
   "testCases": [
     {

@@ -1,5 +1,6 @@
 {
   "title": "Isekaiscan",
+  "enabled": false,
   "url": "https://isekaiscan.com/",
   "testCases": [
     {

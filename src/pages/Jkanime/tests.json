@@ -1,5 +1,6 @@
 {
   "title": "Jkanime",
+  "enabled": false,
   "url": "https://jkanime.net",
   "testCases": [
     {

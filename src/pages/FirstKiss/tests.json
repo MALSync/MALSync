@@ -1,6 +1,7 @@
 {
   "title": "1stKissManga",
   "url": "https://1stkissmanga.me/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://1stkissmanga.me/manga/father-i-dont-want-to-get-married/chapter-107/",

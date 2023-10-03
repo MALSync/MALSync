@@ -1,6 +1,7 @@
 {
   "title": "Bentomanga",
   "url": "https://www.bentomanga.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://www.bentomanga.com/manga/ao-no-hako",

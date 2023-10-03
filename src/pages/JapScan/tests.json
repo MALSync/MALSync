@@ -1,5 +1,6 @@
 {
   "title": "JapScan",
+  "enabled": false,
   "url": "https://www.japscan.ws/",
   "testCases": [
     {

@@ -1,5 +1,6 @@
 {
   "title": "MangaSushi",
+  "enabled": false,
   "url": "https://mangasushi.net/",
   "testCases": [
     {

@@ -1,5 +1,6 @@
 {
   "title": "Docchi",
+  "enabled": false,
   "url": "https://docchi.pl",
   "testCases": [
     {

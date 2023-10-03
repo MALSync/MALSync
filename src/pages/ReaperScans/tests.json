@@ -1,6 +1,7 @@
 {
   "title": "ReaperScans",
   "url": "https://reaperscans.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://reaperscans.com/comics/4073-overgeared/chapters/71411621-chapter-83",

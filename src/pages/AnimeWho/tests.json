@@ -1,6 +1,7 @@
 {
   "title": "AnimeWho",
   "url": "https://animewho.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://animewho.com/ceviriler/anime/mahouka-koukou-no-rettousei-raihousha-hen/izle/bolum3",

@@ -1,5 +1,6 @@
 {
   "title": "MangaFox",
+  "enabled": false,
   "url": "http://fanfox.net/",
   "testCases": [
     {

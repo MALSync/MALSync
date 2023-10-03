@@ -1,6 +1,7 @@
 {
     "title": "LuminousScans",
     "url": "https://luminousscans.com",
+    "enabled": false,
     "testCases": [
       {
         "url": "https://luminousscans.com/1652277289-leveling-up-with-the-gods-chapter-1/",

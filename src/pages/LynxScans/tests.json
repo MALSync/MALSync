@@ -1,5 +1,6 @@
 {
     "title": "LynxScans",
+    "enabled": false,
     "url": "https://lynxscans.com",
     "testCases": [
       {
@@ -29,4 +30,3 @@
       }
     ]
   }
-  

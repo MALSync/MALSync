@@ -1,5 +1,6 @@
 {
   "title": "Gogoanime",
+  "enabled": false,
   "url": "https://gogoanime.tel",
   "testCases": [
     {

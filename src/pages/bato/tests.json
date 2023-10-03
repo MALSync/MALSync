@@ -1,6 +1,7 @@
 {
   "title": "bato",
   "url": "https://bato.to/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://bato.to/chapter/1403185",

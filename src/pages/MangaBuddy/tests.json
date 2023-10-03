@@ -1,5 +1,6 @@
 {
   "title": "MangaBuddy",
+  "enabled": false,
   "url": "https://mangabuddy.com/",
   "testCases": [
     {

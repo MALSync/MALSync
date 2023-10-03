@@ -1,6 +1,7 @@
 {
   "title": "MangasOrigines",
   "url": "https://mangas-origines.fr/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://mangas-origines.fr/manga/111155-solo-leveling/chapitre-170/",

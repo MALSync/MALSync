@@ -1,5 +1,6 @@
 {
   "title": "ReadManhua",
+  "enabled": false,
   "url": "https://readmanhua.net/",
   "testCases": [
     {

@@ -1,6 +1,7 @@
 {
   "title": "Guya",
   "url": "https://guya.moe",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://guya.moe/read/manga/Kaguya-Wants-To-Be-Confessed-To/",

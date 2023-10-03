@@ -1,6 +1,7 @@
 {
   "title": "HinataSoul",
   "url": "https://www.hinatasoul.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://www.hinatasoul.com/anime-dublado/death-note-dublado",

@@ -1,6 +1,7 @@
 {
     "title": "VoidScans",
     "url": "https://void-scans.com",
+    "enabled": false,
     "testCases": [
       {
         "url": "https://void-scans.com/leveling-up-by-only-eating-chapter-101-chosen/",

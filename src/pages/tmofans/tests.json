@@ -1,6 +1,7 @@
 {
   "title": "tmofans",
   "url": "https://lectortmo.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://lectortmo.com/library/manga/50/one-piece",

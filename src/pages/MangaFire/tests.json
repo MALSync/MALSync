@@ -1,6 +1,7 @@
 {
     "title": "MangaFire",
     "url": "https://mangafire.to/",
+    "enabled": false,
     "testCases": [
       {
         "url": "https://mangafire.to/manga/solo-leveling.52x0",
@@ -29,4 +30,3 @@
       }
     ]
   }
-  

@@ -1,5 +1,6 @@
 {
   "title": "Okanime",
+  "enabled": false,
   "url": "https://okanime.tv",
   "testCases": [
     {

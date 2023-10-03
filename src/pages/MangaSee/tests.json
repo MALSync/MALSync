@@ -1,6 +1,7 @@
 {
   "title": "MangaSee",
   "url": "https://mangasee123.com",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://mangasee123.com/read-online/Martial-Peak-chapter-638-page-1.html",

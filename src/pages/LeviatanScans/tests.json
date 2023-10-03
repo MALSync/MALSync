@@ -1,6 +1,7 @@
 {
   "title": "LeviatanScans",
   "url": "https://lscomic.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://lscomic.com/manga/survival-story-of-a-sword-king-in-a-fantasy-world/chapter-49/",

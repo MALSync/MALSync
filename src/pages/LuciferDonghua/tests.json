@@ -1,6 +1,7 @@
 {
   "title": "Lucifer Donghua",
   "url": "https://luciferdonghua.in",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://luciferdonghua.in/anime/tales-of-demons-and-gods-season-6/",

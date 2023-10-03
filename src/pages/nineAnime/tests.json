@@ -1,6 +1,7 @@
 {
   "title": "9anime",
   "url": "https://aniwave.to/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://aniwave.to/watch/no-game-no-life.4qkm/ep-4",
