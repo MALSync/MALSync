@@ -198,7 +198,7 @@ async function PreparePage(block, page, url) {
     await new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve();
-      }, 1000);
+      }, 10000);
     })
 
     const content = await page.content();
@@ -254,6 +254,10 @@ async function singleCase(block, test, page, retry = 0) {
     await cdn(page, text.type);
     retry++;
     return singleCase(block, test, page, retry);
+  }
+
+  if (text === 'Page Not Found') {
+    throw 'Page Not Found';
   }
 
   expect(text.sync, 'Sync').to.equal(test.expected.sync);

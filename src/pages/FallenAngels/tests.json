@@ -1,6 +1,6 @@
 {
   "title": "FallenAngels",
-  "enabled": false,
+  "offline": true,
   "url": "https://manga.fascans.com/",
   "testCases": [
     {

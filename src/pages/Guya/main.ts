@@ -89,6 +89,8 @@ export const Guya: pageInterface = {
     );
     let interval;
 
+    Guya.domain = `${window.location.protocol}//${window.location.hostname}`;
+
     utils.changeDetect(
       () => {
         page.reset();

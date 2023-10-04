@@ -45,7 +45,7 @@ export const FlameScans: pageInterface = {
 
       const temp = next.split('/');
 
-      if (temp[3] === 'manga') return next;
+      if (temp[3] !== 'manga') return next;
 
       temp.splice(3, 1);
 
