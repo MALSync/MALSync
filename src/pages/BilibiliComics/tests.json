@@ -1,7 +1,6 @@
 {
   "title": "BilibiliComics",
   "url": "https://www.bilibilicomics.com/",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://www.bilibilicomics.com/mc56/995?from=manga_detail",

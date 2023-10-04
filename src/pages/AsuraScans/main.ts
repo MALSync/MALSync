@@ -7,7 +7,12 @@ export function getInter(): pageInterface {
   /* eslint-disable-next-line prefer-const */
   thisSelf = {
     name: 'AsuraScans',
-    domain: ['https://asuracomics.com', 'https://asura.gg', 'https://asurascans.com'],
+    domain: [
+      'https://asuratoon.com',
+      'https://asuracomics.com',
+      'https://asura.gg',
+      'https://asurascans.com',
+    ],
     languages: ['English'],
     type: 'manga',
     isSyncPage(url) {

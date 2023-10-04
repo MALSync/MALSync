@@ -1,29 +1,28 @@
 {
   "title": "AsuraScans",
   "url": "https://asura.gg",
-  "enabled": false,
   "testCases": [
     {
-      "url": "https://asura.gg/sss-class-suicide-hunter-chapter-18/",
+      "url": "https://asuratoon.com/5337927378-infinite-mage-chapter-18/",
       "expected": {
         "sync": true,
-        "title": "SSS-Class Suicide Hunter",
-        "identifier": "sss-class-suicide-hunter",
-        "overviewUrl": "https://asura.gg/manga/sss-class-suicide-hunter/",
-        "nextEpUrl": "https://asura.gg/sss-class-suicide-hunter-chapter-19/",
+        "title": "Infinite Mage",
+        "identifier": "infinite-mage",
+        "overviewUrl": "https://asuratoon.com/manga/3787011421-infinite-mage/",
+        "nextEpUrl": "https://asuratoon.com/5337927378-infinite-mage-chapter-19/",
         "episode": 18,
         "uiSelector": false
       }
     },
     {
-      "url": "https://asura.gg/manga/sss-class-suicide-hunter/",
+      "url": "https://asuratoon.com/manga/3787011421-infinite-mage/",
       "expected": {
         "sync": false,
-        "title": "SSS-Class Suicide Hunter",
-        "identifier": "sss-class-suicide-hunter",
+        "title": "Infinite Mage",
+        "identifier": "infinite-mage",
         "uiSelector": true,
         "epList": {
-          "25": "https://asura.gg/sss-class-suicide-hunter-chapter-25/"
+          "25": "https://asuratoon.com/5337927378-infinite-mage-chapter-25/"
         }
       }
     }
