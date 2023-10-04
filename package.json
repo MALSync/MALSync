@@ -115,7 +115,7 @@
     "dompurify": "^3.0.6",
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.5",
-    "fork-ts-checker-webpack-plugin": "^7.3.0",
+    "fork-ts-checker-webpack-plugin": "^9.0.0",
     "fuse.js": "^6.6.2",
     "hex-to-hsl": "^1.0.2",
     "jquery": "^3.6.2",
