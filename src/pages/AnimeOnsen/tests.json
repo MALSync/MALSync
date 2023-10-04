@@ -1,7 +1,6 @@
 {
   "title": "AnimeOnsen",
   "url": "https://www.animeonsen.xyz",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://www.animeonsen.xyz/details/OnVssnwZa0zIY601",

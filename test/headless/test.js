@@ -195,6 +195,12 @@ async function PreparePage(block, page, url) {
       await page.evaluate(() => window.stop());
     }
 
+    await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    })
+
     const content = await page.content();
 
     return () => {
