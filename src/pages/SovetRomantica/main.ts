@@ -7,11 +7,11 @@ export const SovetRomantica: pageInterface = {
   type: 'anime',
   isSyncPage(url) {
     // Some pages don't have player (https://sovetromantica.com/anime/1418-yamada-kun-to-lv999-no-koi-wo-suru)
-    if (j.$('meta[property~="og:video"]').attr('content')) return true;
+    if (j.$('meta[property~="og:video"]').length > 0) return true;
     return false;
   },
   getImage() {
-    return $('img#poster').attr('src');
+    return $('meta[property~="ya:ovs:poster"]').attr('content');
   },
   sync: {
     getIdentifier(url) {
