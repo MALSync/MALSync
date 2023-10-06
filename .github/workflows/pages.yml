@@ -26,6 +26,7 @@ jobs:
         repository: ${{secrets.TEST_DATA_REPO}}
         ref: 'master'
         path: test/dist/headless
+        token: ${{secrets.PAT_TOKEN}}
     - name: Page Tests
       run: |
         npm ci
