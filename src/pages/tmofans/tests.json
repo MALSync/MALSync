@@ -1,10 +1,9 @@
 {
   "title": "tmofans",
   "url": "https://lectortmo.com/",
-  "enabled": false,
   "testCases": [
     {
-      "url": "https://lectortmo.com/library/manga/50/one-piece",
+      "url": "https://lectortmo.com/library/manga/320/one-piece",
       "expected": {
         "sync": false,
         "title": "One Piece",

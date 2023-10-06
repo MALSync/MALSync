@@ -281,6 +281,7 @@ async function singleCase(block, test, page, retry = 0) {
   }
   if (typeof text.epList !== 'undefined' && typeof test.expected.epList !== 'undefined') {
     for (const key in test.expected.epList) {
+      if (!text.epList[key]) throw `Episode url ${key} is ${text.epList[key]}`;
       expect(test.expected.epList[key].replace(/www[^.]*\./, ''), `EP${key}`).to.equal(
         text.epList[key].replace(/www[^.]*\./, ''),
       );

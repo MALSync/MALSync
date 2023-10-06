@@ -30,7 +30,7 @@ export function getInter(): pageInterface {
     },
     sync: {
       getTitle(url) {
-        return j.$('.ts-breadcrumb li:nth-child(2) [itemprop="name"]').text();
+        return j.$('.ts-breadcrumb li:nth-child(2) [itemprop="name"]').text().trim();
       },
       getIdentifier(url) {
         return RealmScans.overview!.getIdentifier(RealmScans.sync.getOverviewUrl(url));
@@ -55,7 +55,7 @@ export function getInter(): pageInterface {
     },
     overview: {
       getTitle(url) {
-        return j.$('#titlemove [itemprop="name"]').text();
+        return j.$('#titlemove [itemprop="name"]').text().trim();
       },
       getIdentifier(url) {
         return utils.urlPart(cleanUrl(url), 4);
