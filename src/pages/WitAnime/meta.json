@@ -1,0 +1,6 @@
+{
+    "search": "https://witanime.sbs/?search_param=animes&s={searchtermPlus}",
+    "urls": {
+      "match": ["*://witanime.sbs/*"]
+    }
+}
