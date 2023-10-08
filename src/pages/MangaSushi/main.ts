@@ -13,13 +13,13 @@ export const MangaSushi: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1]).text().trim();
+      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2]).text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1]).attr('href') || '';
+      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2]).attr('href') || '';
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5);

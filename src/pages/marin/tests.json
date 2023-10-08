@@ -1,7 +1,7 @@
 {
   "title": "marin",
   "url": "https://marin.moe/",
-  "enabled": false,
+  "offline": true,
   "testCases": [
     {
       "url": "https://marin.moe/anime/jtch7eba",

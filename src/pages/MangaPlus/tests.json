@@ -1,7 +1,6 @@
 {
   "title": "MangaPlus",
   "url": "https://mangaplus.shueisha.co.jp/",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://mangaplus.shueisha.co.jp/viewer/1000391",

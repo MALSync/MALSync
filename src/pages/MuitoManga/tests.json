@@ -1,7 +1,7 @@
 {
   "title": "MuitoMangá",
   "url": "https://muitomanga.com/",
-  "enabled": false,
+  "offline": true,
   "testCases": [
     {
       "url": "https://muitomanga.com/ler/kimetsu-no-yaiba/capitulo-26",
