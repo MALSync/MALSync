@@ -886,4 +886,8 @@ module.exports = {
   videa: {
     match: ['*://*.videa.hu/*'],
   },
+  // WitAnime
+  soraplay: {
+    match: ['*://*.soraplay.xyz/*'],
+  },
 };
