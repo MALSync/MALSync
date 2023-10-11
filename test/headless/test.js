@@ -245,7 +245,9 @@ async function singleCase(block, test, page, retry = 0) {
     throw 'Blocked';
   }
 
+  await page.evaluate(() => console.log(`Adding script`));
   await page.addScriptTag({ content: script });
+  await page.evaluate(() => console.log(`Evaluating script`));
   const text = await page.evaluate(() => MalSyncTest());
 
   if (text.sync === 'cdn') {

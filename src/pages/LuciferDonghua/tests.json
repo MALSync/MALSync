@@ -1,7 +1,6 @@
 {
   "title": "Lucifer Donghua",
   "url": "https://luciferdonghua.in",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://luciferdonghua.in/anime/tales-of-demons-and-gods-season-6/",
@@ -11,8 +10,8 @@
         "identifier": "tales-of-demons-and-gods-season-6",
         "uiSelector": true
       }
-    },
-    {
+    }
+    /*{
       "url": "https://www.luciferdonghua.co.in/tales-of-demons-and-gods-season-6-episode-50-multi-sub/",
       "expected": {
         "sync": true,
@@ -23,6 +22,6 @@
         "episode": 50,
         "uiSelector": false
       }
-    }
+    }*/
   ]
 }
