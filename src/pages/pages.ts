@@ -85,7 +85,6 @@ import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
 import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
-import { HunlightScans } from './HunlightScans/main';
 import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
 import { FlameScans } from './FlameScans/main';
@@ -225,7 +224,6 @@ export const pages = {
   ComicK,
   Bentomanga,
   MangaSushi,
-  HunlightScans,
   TritiniaScans,
   ReadManhua,
   FlameScans,
