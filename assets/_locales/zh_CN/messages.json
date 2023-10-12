@@ -966,5 +966,19 @@
     "settings_Shortcuts_Sync": {
         "message": "设集/章为已读",
         "description": "Text for the sync ui shortcut"
+    },
+    "correction_NewUrlReset": {
+        "message": "重置MyAnimeList URL",
+        "description": "URL reset"
+    },
+    "correction_NewUrl": {
+        "message": "设置“$malUrl$”新链接。",
+        "description": "New URL",
+        "placeholders": {
+            "malUrl": {
+                "content": "$1",
+                "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            }
+        }
     }
 }
