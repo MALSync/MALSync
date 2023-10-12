@@ -980,5 +980,25 @@
                 "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
             }
         }
+    },
+    "settings_Shortcuts": {
+        "message": "快捷",
+        "description": "Shortcuts"
+    },
+    "settings_LocalSync": {
+        "message": "本地存储回退",
+        "description": "Option to activate the local storage fallback sync"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "名称",
+        "description": "Placeholder text the field that sets the custom url name"
+    },
+    "settings_progress": {
+        "message": "预期时间",
+        "description": "Header of the section of progress estimation settings"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "观看时长：",
+        "description": "Info table on overview - Total Playtime: 276 mins"
     }
 }
