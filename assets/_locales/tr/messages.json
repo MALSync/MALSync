@@ -1322,5 +1322,37 @@
     "list_sorting_score": {
         "message": "Skor",
         "description": "Dropdown option to sort list by score"
+    },
+    "overview_sidebar_Score": {
+        "message": "Puan:",
+        "description": "Info table on overview - Score: 7.65"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "MAL Puanı:",
+        "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "Sıralama:",
+        "description": "Info table on overview - Ranked: #317"
+    },
+    "overview_sidebar_Status": {
+        "message": "Durum:",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Members": {
+        "message": "Üyeler:",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "Başlama Tarihi:",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "Bitiş Tarihi:",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "Kaynak:",
+        "description": "Info table on overview - Source: Light Novel"
     }
 }
