@@ -1,7 +1,6 @@
 {
   "title": "FRAnime",
   "url": "https://franime.fr",
-  "enabled": true,
   "testCases": [
     {
       "url": "https://franime.fr/anime/spyfamily?s=2&ep=13&lang=vo",

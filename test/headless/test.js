@@ -160,7 +160,7 @@ async function PreparePage(block, page, url) {
 
     page.on('request', (request) => {
       if (!request.isInterceptResolutionHandled()) {
-        if (request.url() === url) {
+        if (request.url() === url || request.url() === url.replace(/#.*/, '')) {
           const content = fs.readFileSync(filePath, 'utf8');
           return request.respond({ status: 200, body: content, contentType: 'text/html' });
         } else if (request.resourceType() === 'image') {
@@ -200,6 +200,21 @@ async function PreparePage(block, page, url) {
         resolve();
       }, 10000);
     })
+
+    // Makes sure selected is set in dropdowns
+    await page.evaluate(() => {
+      const selects = document.querySelectorAll('select');
+      selects.forEach(select => {
+        const value = select.value;
+        select.querySelectorAll('option').forEach(option => {
+          if (option.value === value) {
+            option.setAttribute('selected', 'selected');
+          } else {
+            option.removeAttribute('selected');
+          }
+        });
+      });
+    });
 
     const content = await page.content();
 

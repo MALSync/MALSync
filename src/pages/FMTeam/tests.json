@@ -1,7 +1,6 @@
 {
   "title": "FMTeam",
   "url": "https://fmteam.fr/",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://fmteam.fr/read/the-fable-second-contact/fr/vol/2/ch/10",

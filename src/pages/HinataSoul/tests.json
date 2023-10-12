@@ -1,7 +1,6 @@
 {
   "title": "HinataSoul",
   "url": "https://www.hinatasoul.com/",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://www.hinatasoul.com/anime-dublado/death-note-dublado",
@@ -12,8 +11,7 @@
         "uiSelector": true,
         "epList": {
           "9": "https://www.hinatasoul.com/videos/179050",
-          "23": "https://www.hinatasoul.com/videos/179064",
-          "37": "https://www.hinatasoul.com/videos/94358"
+          "23": "https://www.hinatasoul.com/videos/179064"
         }
       }
     },
