@@ -394,11 +394,11 @@
         "description": "Hour"
     },
     "bookmarksItem_mins": {
-        "message": "min",
+        "message": "minutos",
         "description": "mins"
     },
     "bookmarksItem_min": {
-        "message": "min",
+        "message": "minuto",
         "description": "min"
     },
     "bookmarksItem_secs": {
@@ -1240,7 +1240,7 @@
         "description": "Header of the section to change onsite website appearance and features"
     },
     "settings_theming": {
-        "message": "Tema",
+        "message": "Temas",
         "description": "Header of the theming section"
     },
     "settings_theming_sidebars": {
