@@ -1,7 +1,6 @@
 {
   "title": "Anime Streaming FR",
   "url": "https://beta.animestreamingfr.fr/",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://beta.animestreamingfr.fr/episode/99/lattaque-des-titans-episode-1-vostfr",

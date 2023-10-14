@@ -1,7 +1,6 @@
 {
   "title": "Animelon",
   "url": "https://www.animelon.com/",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://animelon.com/series/Fullmetal%20Alchemist:%20Brotherhood",

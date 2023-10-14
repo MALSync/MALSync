@@ -143,7 +143,7 @@ async function onlineTest(url, page) {
   }
 }
 
-async function PreparePage(block, page, url) {
+async function PreparePage(block, page, url, testPage) {
   const urlObj = new URL(url);
   let name =
     encodeURIComponent(
@@ -185,6 +185,7 @@ async function PreparePage(block, page, url) {
 
     return null;
   } else {
+    await page.setBypassCSP(true);
     try {
       const [response] = await Promise.all([
         page.goto(url, { timeout: 0 }),
@@ -216,7 +217,20 @@ async function PreparePage(block, page, url) {
       });
     });
 
-    const content = await page.content();
+    let content = await page.content();
+
+    if (testPage.variables.length) {
+      content += '<script>';
+
+      for (const variable of testPage.variables) {
+        varData = await page.evaluate((variable) => {
+          return JSON.stringify(window[variable]);
+        }, variable);
+        content += `window.${variable} = ${varData};`;
+      }
+
+      content += '</script>';
+    }
 
     return () => {
       fs.writeFileSync(filePath, content);
@@ -242,8 +256,8 @@ function checkIfFolderExists(block, name) {
   }
 }
 
-async function singleCase(block, test, page, retry = 0) {
-  const saveCallback = await PreparePage(block, page, test.url);
+async function singleCase(block, test, page, testPage, retry = 0) {
+  const saveCallback = await PreparePage(block, page, test.url, testPage);
 
   await page
     .addScriptTag({
@@ -270,7 +284,7 @@ async function singleCase(block, test, page, retry = 0) {
     log(block, `Retry ${text.type}`, 2);
     await cdn(page, text.type);
     retry++;
-    return singleCase(block, test, page, retry);
+    return singleCase(block, test, page, testPage, retry);
   }
 
   if (text === 'Page Not Found') {
@@ -322,7 +336,7 @@ async function testPageCase(block, testPage, b) {
     try {
       logC(block, testCase.url, 1);
       await Promise.race([
-        singleCase(block, testCase, page),
+        singleCase(block, testCase, page, testPage),
         new Promise((_, reject) => setTimeout(() => reject('timeout'), 100 * 1000)),
       ]);
       logC(block, 'Passed', 2, 'green');
