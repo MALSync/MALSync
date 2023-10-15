@@ -335,7 +335,10 @@ async function testPageCase(block, testPage, b) {
   let passed = 1;
 
   if (typeof testPage.offline === 'undefined') testPage.offline = false;
-  if (testPage.offline) logC(block, 'Offline', 1, 'yellow');
+  if (testPage.offline) {
+    logC(block, 'Offline', 1, 'yellow');
+    return;
+  }
 
   for (const testCase of testPage.testCases) {
     const page = await openPage(b);
