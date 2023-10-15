@@ -1,7 +1,7 @@
 {
   "title": "unionmangas",
   "url": "https://unionmangas.top/",
-  "enabled": false,
+  "offline": true,
   "testCases": [
     {
       "url": "https://unionleitor.top/leitor/Solo_Leveling/76",

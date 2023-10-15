@@ -258,13 +258,19 @@ function checkIfFolderExists(block, name) {
 
 async function singleCase(block, test, page, testPage, retry = 0) {
   const saveCallback = await PreparePage(block, page, test.url, testPage);
+  const testJquery = () => page.evaluate(() => {
+    if (typeof jQuery === 'undefined') throw 'jquery could not be loaded';
+  })
 
   await page
     .addScriptTag({
       content: fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'),
     })
-    .catch(() => {
-      throw 'jquery could not be loaded';
+    .then(() => {
+      return testJquery();
+    }).catch(async () => {
+      await page.evaluate(fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'));
+      await testJquery();
     });
 
   const loadContent = await page.evaluate(() => document.body.innerHTML);

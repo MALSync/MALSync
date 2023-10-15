@@ -1,7 +1,6 @@
 {
   "title": "OgladajAnime",
   "url": "https://ogladajanime.pl/",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv/2",

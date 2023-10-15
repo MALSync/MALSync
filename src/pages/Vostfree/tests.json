@@ -1,7 +1,7 @@
 {
   "title": "Vostfree",
   "url": "https://vostfree.cx/",
-  "enabled": false,
+  "offline": true,
   "testCases": [
     {
       "url": "https://vostfree.cx/1188-summer-time-rendering-vostfr-ddl-streaming-1fichier-uptobox.html",

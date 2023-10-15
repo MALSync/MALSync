@@ -1,6 +1,6 @@
 {
     "title": "Pactedanime",
-    "enabled": false,
+    "offline": true,
     "url": "https://pactedanime.com",
     "testCases": [
       {
