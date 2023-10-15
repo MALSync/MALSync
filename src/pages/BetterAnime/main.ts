@@ -9,7 +9,7 @@ export const BetterAnime: pageInterface = {
     return utils.urlPart(url, 6).startsWith('episodio-') && !url.includes('/download');
   },
   isOverviewPage(url) {
-    return ['anime', 'filme'].includes(utils.urlPart(url, 3)) && utils.urlPart(url, 6) == '';
+    return ['anime', 'filme'].includes(utils.urlPart(url, 3)) && utils.urlPart(url, 6) === '';
   },
   sync: {
     getTitle(url) {
