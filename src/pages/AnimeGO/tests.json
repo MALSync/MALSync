@@ -1,0 +1,30 @@
+{
+    "title": "AnimeGO",
+    "url": "https://animego.org",
+    "testCases": [
+        {
+            "url": "https://animego.org/anime/horimiya-1686",
+            "expected": {
+                "sync": true,
+                "title": "Horimiya",
+                "identifier": "1686",
+                "overviewUrl": "https://animego.org/anime/horimiya-1686"
+            }
+        },
+        {
+            "url": "https://animego.org/anime/tvoe-imya-107",
+            "expected": {
+                "sync": true,
+                "title": "Horimiya",
+                "identifier": "107",
+                "overviewUrl": "https://animego.org/anime/tvoe-imya-107"
+            }
+        },
+        {
+            "url": "https://animego.org/anime",
+            "expected": {
+                "sync": false
+            }
+        }
+    ]
+}

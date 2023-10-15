@@ -130,6 +130,7 @@ import { projectsuki } from './projectsuki/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
 import { FirstKiss } from './FirstKiss/main';
 import { AnimeKO } from './AnimeKO/main';
+import { AnimeGO } from './AnimeGO/main';
 import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
@@ -270,6 +271,7 @@ export const pages = {
   AnimeOnegai,
   FirstKiss,
   AnimeKO,
+  AnimeGO,
   Animeflix,
   LuciferDonghua,
   NeoxScans,
