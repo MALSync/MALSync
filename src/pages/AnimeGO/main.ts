@@ -21,7 +21,6 @@ export const AnimeGO: pageInterface = {
     },
     getTitle(url) {
       const jsonData = JSON.parse(j.$('script[type~="application/ld+json"]').text());
-      con.m('Super Trace').info(jsonData.alternativeHeadline);
       return jsonData.alternativeHeadline[1]; // There're 3 languages there: Japanese, English, 日本語 (jp)
     },
     getEpisode(url) {
@@ -67,7 +66,6 @@ type PlayerActiveData = {
 };
 
 function getAllActiveElementsPlayer(): PlayerActiveData {
-  // player/provider, dub, episode
   const elements = getAllActiveDivElementsPlayer();
   return {
     episode: elements[0].attr('data-episode'),
@@ -77,10 +75,10 @@ function getAllActiveElementsPlayer(): PlayerActiveData {
 }
 
 function getAllActiveDivElementsPlayer() {
-  // Elements with class ".video-player__active": Active player, Active dub team, Active episode
-  const epDiv = j.$('#video-carousel .video-player__active');
-  const plDiv = j.$('#video-players .video-player__active');
-  const dbDiv = j.$('#video-dubbing .video-player__active');
+  // Elements with class ".video-player__active"
+  const epDiv = j.$('#video-carousel .video-player__active'); // Episode
+  const plDiv = j.$('#video-players .video-player__active'); //  Player
+  const dbDiv = j.$('#video-dubbing .video-player__active'); //  Dubbing
 
   return [epDiv, plDiv, dbDiv];
 }
