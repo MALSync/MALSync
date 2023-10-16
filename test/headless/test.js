@@ -11,6 +11,12 @@ const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
 
 const testsArray = [];
 let changedFiles = [];
+let OnlyPage = null;
+
+if (process.argv && process.argv.length > 2) {
+  console.log('Page to test:', process.argv[2]);
+  OnlyPage = process.argv[2];
+}
 
 if (process.env.FILES) {
   changedFiles = JSON.parse(process.env.FILES.replace(/\\/g, '/'));
@@ -19,8 +25,8 @@ if (process.env.FILES) {
 
 // Define global variables
 let browser;
-let browserFull;
 const debugging = false;
+let headless = true;
 let buildFailed = false;
 const mode = {
   quiet: false,
@@ -30,22 +36,17 @@ const mode = {
 
 if (process.env.CI && !changedFiles.length) mode.quiet = true;
 
-async function getBrowser(headless = true) {
-  if (browser && headless) return browser;
-  if (browserFull && !headless) return browserFull;
+async function getBrowser() {
+  if (browser) return browser;
 
   const tempBrowser = await puppeteer.launch({ headless: headless ? 'new' : false });
-  if (headless) {
-    browser = tempBrowser;
-  } else {
-    browserFull = tempBrowser;
-  }
+  browser = tempBrowser;
+
   return tempBrowser;
 }
 
 async function closeBrowser() {
   if (browser) await browser.close();
-  if (browserFull) await browserFull.close();
 }
 
 const logBlocks = {};
@@ -378,7 +379,7 @@ async function testPageCase(block, testPage, b) {
 }
 
 async function loopEl(testPage, headless = true) {
-  // if(testPage.title !== 'manganato') return;
+  if (OnlyPage && testPage.title !== OnlyPage) return;
   if (!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
   const b = await getBrowser(headless);
 
