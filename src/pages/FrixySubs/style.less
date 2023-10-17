@@ -1,35 +1,10 @@
 @import './../pages';
 
-@borderColor: var(--fs-episodes-border-color);
-@backgroundColor: var(--fs-episodes-series-desc-background);
-@textColor: #ffffff;
-@activeBorderColor: var(--fs-malsync-watched);
-@activeBgColor: var(--fs-malsync-watched-bg);
-
-#malp span,
-select,
-input,
-a {
-  color: @textColor !important;
-}
-
-#malp select option {
-  color: @textColor !important;
-  background-color: @backgroundColor !important;
-}
+@textColor: inherit;
 
 #malp {
-  width: 100%;
-  padding: 4px 10px;
-  border: 2px solid @borderColor !important;
-  border-radius: 11px;
-  background-color: @backgroundColor !important;
+  padding-left: 16px;
   .info {
-    background-color: transparent;
-    border: none;
+    background-color: transparent !important;
   }
-}
-.mal-sync-active {
-  background-color: @activeBgColor !important;
-  border-color: @activeBorderColor !important;
 }

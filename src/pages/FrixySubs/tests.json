@@ -20,10 +20,7 @@
         "sync": false,
         "title": "5-Toubun no Hanayome ∬",
         "identifier": "5-toubun-no-hanayome",
-        "uiSelector": true,
-        "epList": {
-          "1": "https://frixysubs.pl/anime/5-toubun-no-hanayome/1"
-        }
+        "uiSelector": true
       }
     }
   ]
