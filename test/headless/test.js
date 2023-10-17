@@ -26,7 +26,7 @@ if (process.env.FILES) {
 // Define global variables
 let browser;
 const debugging = false;
-let headless = OnlyPage ? false : false;
+let headless = OnlyPage ? false : true;
 let buildFailed = false;
 const mode = {
   quiet: false,
