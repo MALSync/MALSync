@@ -18,12 +18,6 @@ export function getPageConfig(url, thispages) {
 }
 
 function checkDomain(url, domain) {
-  if (
-    url.indexOf(
-      `${utils.urlPart(domain, 2).replace('.com.br', '.br').split('.').slice(-2, -1)[0]}.`,
-    ) > -1
-  ) {
-    return true;
-  }
-  return false;
+  const partDomain = utils.urlPart(domain, 2).replace('.com.br', '.br').split('.').slice(-2, -1)[0];
+  return new RegExp(`(\\.|^|\\/)${partDomain}\\.`).test(url);
 }
