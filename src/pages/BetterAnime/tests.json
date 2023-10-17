@@ -1,6 +1,7 @@
 {
   "title": "BetterAnime",
   "url": "https://www.betteranime.net/",
+  "offline": true,
   "testCases": [
     {
       "url": "https://betteranime.net/anime/legendado/bleach-dublado",
