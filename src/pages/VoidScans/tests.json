@@ -17,14 +17,13 @@
       {
         "url": "https://void-scans.com/manga/questism/",
         "expected": {
-        "sync": false,
-        "title": "Questism",
-        "identifier": "questism",
-        "uiSelector": true,
-        "epList": {
-          "108": "https://void-scans.com/1/questism-chapter-108/",
-          "1": "https://void-scans.com/1/questism-chapter-1/"
-        }
+          "sync": false,
+          "title": "Questism",
+          "identifier": "questism",
+          "uiSelector": true,
+          "epList": {
+            "62": "https://void-scans.com/questism-chapter-62/"
+          }
         }
       }
     ]

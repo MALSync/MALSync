@@ -1,6 +1,6 @@
 {
   "search": "https://luminousscans.com/?s={searchtermPlus}",
   "urls": {
-    "match": ["*://luminousscans.com/*"]
+    "match": ["*://luminousscans.com/*", "*://luminousscans.gg/*"]
   }
 }
