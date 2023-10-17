@@ -10,8 +10,7 @@
           "identifier": "11422-martial-peak",
           "uiSelector": true,
           "epList": {
-            "3523": "https://disasterscans.com/comics/11422-martial-peak/31327-chapter-3523/",
-            "3545": "https://disasterscans.com/comics/11422-martial-peak/72948-chapter-3545/"
+            "3545": "https://disasterscans.com/comics/11422-martial-peak/72948-chapter-3545"
           }
         }
       },
@@ -21,8 +20,8 @@
           "sync": true,
           "title": "Martial Peak",
           "identifier": "11422-martial-peak",
-          "overviewUrl": "https://disasterscans.com/comics/11422-martial-peak/",
-          "nextEpUrl": "https://disasterscans.com/comics/11422-martial-peak/71667-chapter-3546",
+          "overviewUrl": "https://disasterscans.com/comics/11422-martial-peak",
+          "nextEpUrl": "",
           "episode": 3545,
           "uiSelector": false
         }
