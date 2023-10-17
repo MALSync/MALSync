@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const MangaNato: pageInterface = {
   name: 'MangaNato',
-  domain: ['https://manganato.com', 'https://readmanganato.com'],
+  domain: ['https://chapmanganato.com', 'https://manganato.com', 'https://readmanganato.com'],
   database: 'MangaNato',
   languages: ['English'],
   type: 'manga',
