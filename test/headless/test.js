@@ -152,7 +152,7 @@ async function PreparePage(block, page, url, testPage) {
     ).toLowerCase()
 
   checkIfFolderExists(block, name);
-  const filePath = path.join(__dirname, '../dist/headless/', block, name, 'index.html');
+  const filePath = path.join(__dirname, '../dist/headless/clear/', block, name, 'index.html');
 
   if (fs.existsSync(filePath)) {
     log(block, 'Cached', 2);
@@ -246,7 +246,12 @@ function checkIfFolderExists(block, name) {
     fs.mkdirSync(root);
   }
 
-  const folderPath = path.join(root, block);
+  const clearPath = path.join(root, 'clear');
+  if (!fs.existsSync(clearPath)) {
+    fs.mkdirSync(clearPath);
+  }
+
+  const folderPath = path.join(clearPath, block);
   if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath);
   }
@@ -283,8 +288,20 @@ async function singleCase(block, test, page, testPage, retry = 0) {
 
   await page.evaluate(() => console.log(`Adding script`));
   await page.addScriptTag({ content: script });
-  await page.evaluate(() => console.log(`Evaluating script`));
+
+
+  //console.log(text);
+
+
+
+    await page.evaluate(() => console.log(`Evaluating script`));
   const text = await page.evaluate(() => MalSyncTest());
+
+  await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 0);
+    })
 
   if (text.sync === 'cdn') {
     if (retry > 2) throw 'Max retries';

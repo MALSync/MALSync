@@ -27,6 +27,9 @@ jobs:
         ref: 'master'
         path: test/dist/headless
         token: ${{secrets.PAT_TOKEN}}
+    - name: Decode
+      run: |
+        node test/dist/headless/decrypt.js
     - name: Page Tests
       run: |
         npm ci
