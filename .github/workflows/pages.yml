@@ -23,10 +23,9 @@ jobs:
     - name: Checkout test data
       uses: actions/checkout@v4
       with:
-        repository: ${{secrets.TEST_DATA_REPO}}
+        repository: MALSync/test_data
         ref: 'master'
         path: test/dist/headless
-        token: ${{secrets.PAT_TOKEN}}
     - name: Decode
       run: node decrypt.js
       working-directory: test/dist/headless
