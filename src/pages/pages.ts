@@ -25,13 +25,10 @@ import { serimanga } from './serimanga/main';
 import { mangadenizi } from './mangadenizi/main';
 import { moeclip } from './moeclip/main';
 import { mangalivre } from './mangalivre/main';
-import { tmofans } from './tmofans/main';
-import { unionmangas } from './unionmangas/main';
 import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
-import { FallenAngels } from './FallenAngels/main';
 import { PrimeVideo } from './PrimeVideo/main';
 import { MangaKatana } from './MangaKatana/main';
 import { manga4life } from './manga4life/main';
@@ -42,7 +39,6 @@ import { AnimeXin } from './AnimeXin/main';
 import { MonosChinos } from './MonosChinos/main';
 import { AnimeFire } from './AnimeFire/main';
 import { OtakuFR } from './OtakuFR/main';
-import { Samehadaku } from './Samehadaku/main';
 import { mangatx } from './mangatx/main';
 import { manhuafast } from './manhuafast/main';
 import { TRanimeizle } from './TRanimeizle/main';
@@ -58,7 +54,6 @@ import { WuxiaWorld } from './WuxiaWorld/main';
 import { LeviatanScans } from './LeviatanScans/main';
 import { ReaperScans } from './ReaperScans/main';
 import { LynxScans } from './LynxScans/main';
-import { SKScans } from './SKScans/main';
 import { ZeroScans } from './ZeroScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
@@ -72,7 +67,6 @@ import { AsuraScans } from './AsuraScans/main';
 import { Jellyfin } from './Jellyfin/main';
 import { An1me } from './An1me/main';
 import { MangaJar } from './MangaJar/main';
-import { AnimeDao } from './AnimeDao/main';
 import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
 import { AnimeWho } from './AnimeWho/main';
@@ -103,12 +97,10 @@ import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
 import { Animetoast } from './Animetoast/main';
-import { MuitoManga } from './MuitoManga/main';
 import { RealmScans } from './RealmScans/main';
 import { LuminousScans } from './LuminousScans/main';
 import { Animeworld } from './Animeworld/main';
 import { MangaBuddy } from './MangaBuddy/main';
-import { Vostfree } from './Vostfree/main';
 import { VoidScans } from './VoidScans/main';
 import { ToonAnime } from './ToonAnime/main';
 import { ADKami } from './ADKami/main';
@@ -116,18 +108,14 @@ import { Kaguya } from './Kaguya/main';
 import { Hdrezka } from './Hdrezka/main';
 import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
-import { marin } from './marin/main';
-import { Isekaiscan } from './Isekaiscan/main';
 import { Docchi } from './Docchi/main';
 import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 import { AnimeSama } from './AnimeSama/main';
 import { MangaFire } from './MangaFire/main';
-import { Pactedanime } from './Pactedanime/main';
 import { projectsuki } from './projectsuki/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
-import { FirstKiss } from './FirstKiss/main';
 import { AnimeKO } from './AnimeKO/main';
 import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
@@ -164,13 +152,10 @@ export const pages = {
   mangadenizi,
   moeclip,
   mangalivre,
-  tmofans,
-  unionmangas,
   MangaPlus,
   JapScan,
   Hulu,
   Hidive,
-  FallenAngels,
   PrimeVideo,
   MangaKatana,
   manga4life,
@@ -181,7 +166,6 @@ export const pages = {
   MonosChinos,
   AnimeFire,
   OtakuFR,
-  Samehadaku,
   mangatx,
   manhuafast,
   TRanimeizle,
@@ -197,7 +181,6 @@ export const pages = {
   LeviatanScans,
   ReaperScans,
   LynxScans,
-  SKScans,
   ZeroScans,
   DeathTollScans,
   ManhuaPlus,
@@ -211,7 +194,6 @@ export const pages = {
   Jellyfin,
   An1me,
   MangaJar,
-  AnimeDao,
   Otakustv,
   Komga,
   AnimeWho,
@@ -242,12 +224,10 @@ export const pages = {
   MangaReader,
   AnimeOnsen,
   Animetoast,
-  MuitoManga,
   RealmScans,
   LuminousScans,
   Animeworld,
   MangaBuddy,
-  Vostfree,
   VoidScans,
   ToonAnime,
   ADKami,
@@ -255,18 +235,14 @@ export const pages = {
   Hdrezka,
   ADN,
   Aniyan,
-  marin,
-  Isekaiscan,
   Docchi,
   FRAnime,
   FMTeam,
   Animelon,
   AnimeSama,
   MangaFire,
-  Pactedanime,
   projectsuki,
   AnimeOnegai,
-  FirstKiss,
   AnimeKO,
   Animeflix,
   LuciferDonghua,

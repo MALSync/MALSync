@@ -278,10 +278,6 @@ module.exports = {
   letsupload: {
     match: ['*://*.letsupload.co/*/mediaplayer/*/_embed.php?*'],
   },
-  // Samehadaku
-  mangakyo: {
-    match: ['*://player.mangakyo.me/stream/embed.php*'],
-  },
   // 9anime
   streamtape: {
     match: [
@@ -531,18 +527,6 @@ module.exports = {
       '*://dooood.com/e/*',
       // auto-gogodood-replace-dont-remove
     ],
-  },
-  // animedao.to
-  vcdn: {
-    match: ['*://vcdn.space/v/*', '*://vcdn-stream.xyz/v/*'],
-  },
-  // animedao.to
-  pd: {
-    match: ['*://playdrive.xyz/*'],
-  },
-  // animedao.to
-  mplayer: {
-    match: ['*://truepoweroflove.com/*'],
   },
   // otakustv.com
   youtubeEmbed: {
@@ -844,10 +828,6 @@ module.exports = {
   // toonanime
   toonvip: {
     match: ['*://mb.toonanime.xyz/dist/*'],
-  },
-  // animedao
-  animedao: {
-    match: ['*://animedao.to/redirect/*'],
   },
   // aniyan
   aniyan: {
