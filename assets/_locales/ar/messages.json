@@ -1,1 +1,956 @@
-{}
+{
+    "Help": {
+        "message": "مساعدة",
+        "description": "Help"
+    },
+    "Update": {
+        "message": "تحديث",
+        "description": "Update"
+    },
+    "Add": {
+        "message": "إضافة",
+        "description": "Button to add an anime/manga to user list"
+    },
+    "Synchronize": {
+        "message": "زامن",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "Remove": {
+        "message": "إزالة",
+        "description": "Button for removing entry from MAL..."
+    },
+    "Loading": {
+        "message": "تحميل",
+        "description": "Loading"
+    },
+    "Load": {
+        "message": "حمِّل",
+        "description": "Button to load content"
+    },
+    "Select": {
+        "message": "اختار",
+        "description": "Select"
+    },
+    "Yes": {
+        "message": "نعم",
+        "description": "Yes"
+    },
+    "Ok": {
+        "message": "حَسَنًا",
+        "description": "Ok"
+    },
+    "No": {
+        "message": "لا",
+        "description": "No"
+    },
+    "Cancel": {
+        "message": "إلغاء",
+        "description": "Cancel"
+    },
+    "updated": {
+        "message": "تم التحديث",
+        "description": "Flash message that shows up after updating an anime/manga entry"
+    },
+    "removed": {
+        "message": "تمت الإزالة",
+        "description": "Flash message that shows up after removing an anime/manga entry from user list"
+    },
+    "next": {
+        "message": "التالي",
+        "description": "Next button"
+    },
+    "back": {
+        "message": "العودة",
+        "description": "Back button"
+    },
+    "start": {
+        "message": "بدء",
+        "description": "Start button"
+    },
+    "NothingFound": {
+        "message": "لم يتم العثور على شيء",
+        "description": "Nothing Found"
+    },
+    "NoEntries": {
+        "message": "لا إدخالات",
+        "description": "No Entries"
+    },
+    "fullscreen": {
+        "message": "ملء الشاشة",
+        "description": "fullscreen"
+    },
+    "close": {
+        "message": "غلق",
+        "description": "close"
+    },
+    "All": {
+        "message": "الكل",
+        "description": "All"
+    },
+    "Anime": {
+        "message": "الأنمي",
+        "description": "General translation of anime for places like drop downs"
+    },
+    "Search": {
+        "message": "بحث الموقع",
+        "description": "Button to open the site search links on mal, anilist ..."
+    },
+    "Show": {
+        "message": "عرض",
+        "description": "Show"
+    },
+    "Reset": {
+        "message": "إعادة تعيين",
+        "description": "Reset"
+    },
+    "UI_Status": {
+        "message": "الحالة:",
+        "description": "Status"
+    },
+    "UI_Status_All": {
+        "message": "جميع الأنميات",
+        "description": "Dropdown text to show all anime on the users list"
+    },
+    "UI_Status_watching_anime": {
+        "message": "يتم مشاهدتها",
+        "description": "Watching"
+    },
+    "UI_Status_watching_manga": {
+        "message": "يتم قراءتها",
+        "description": "Reading"
+    },
+    "UI_Status_Completed": {
+        "message": "مكتملة",
+        "description": "Completed"
+    },
+    "UI_Status_Dropped": {
+        "message": "لا أرغب بمشاهدته",
+        "description": "Dropped"
+    },
+    "UI_Status_planTo_anime": {
+        "message": "خطط للمشاهدة",
+        "description": "Plan to Watch"
+    },
+    "UI_Status_planTo_manga": {
+        "message": "خطط للقراءة",
+        "description": "Plan to Read"
+    },
+    "UI_Status_Rewatching_anime": {
+        "message": "إعادة المشاهدة",
+        "description": "Status to rewatch anime"
+    },
+    "UI_Status_Rewatching_manga": {
+        "message": "إعادة القراءة",
+        "description": "Status to reread manga"
+    },
+    "UI_Episode": {
+        "message": "الحلقة:",
+        "description": "Episode"
+    },
+    "UI_Volume": {
+        "message": "المجلد:",
+        "description": "Volume"
+    },
+    "UI_Chapter": {
+        "message": "الفصل:",
+        "description": "Chapter"
+    },
+    "UI_Score": {
+        "message": "تقييمك:",
+        "description": "Score"
+    },
+    "UI_Score_Not_Rated": {
+        "message": "لم يتم تقييمه",
+        "description": "Text if nothing is selected in the rating dropdown"
+    },
+    "UI_Score_Masterpiece": {
+        "message": "(10) تحفة فنية",
+        "description": "Masterpiece - Score"
+    },
+    "UI_Score_VeryGood": {
+        "message": "(8) جيد جداً",
+        "description": "Very Good - Score"
+    },
+    "UI_Score_Great": {
+        "message": "(9) رائع جداً",
+        "description": "Great - Score"
+    },
+    "UI_Score_Good": {
+        "message": "(7) جيد",
+        "description": "Good - Score"
+    },
+    "UI_Score_Fine": {
+        "message": "(6) لا بأس به",
+        "description": "Fine - Score"
+    },
+    "UI_Score_Average": {
+        "message": "(5) عادي",
+        "description": "Average - Score"
+    },
+    "UI_Score_Bad": {
+        "message": "(4) سيء",
+        "description": "Bad - Score"
+    },
+    "UI_Score_VeryBad": {
+        "message": "(3) سيء جداً",
+        "description": "Very Bad - Score"
+    },
+    "UI_Score_Horrible": {
+        "message": "(2) كارثي",
+        "description": "Horrible - Score"
+    },
+    "UI_Score_Appalling": {
+        "message": "(1) مأساوي",
+        "description": "Appalling - Score"
+    },
+    "UI_Rules": {
+        "message": "القواعد",
+        "description": "Rules text for the correction UI"
+    },
+    "syncPage_flashm_resumeMsg": {
+        "message": "اكمل المشاهدة عند $time$",
+        "description": "Video resume message",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "13:37"
+            }
+        }
+    },
+    "syncPage_flashm_sync_anime": {
+        "message": "حدث $page$ الى الحلقة $epNr$",
+        "description": "Update MAL to episode 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga": {
+        "message": "حدث $page$ الى الفصل $epNr$",
+        "description": "Update MAL to chapter 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "حدث $page$ الى المجلد $epNr$",
+        "description": "Update MAL to volume 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_undefined_undo": {
+        "message": "تراجع",
+        "description": "Undo button on 'synced' message"
+    },
+    "syncPage_flashm_sync_undefined_wrong": {
+        "message": "خطأ؟",
+        "description": "Wrong/correction button on 'synced' message"
+    },
+    "syncPage_flashConfirm_complete": {
+        "message": "تعيين كمكتمل؟",
+        "description": "Question when last episode is synced"
+    },
+    "syncPage_flashConfirm_rewatch_finish_manga": {
+        "message": "أنهيت إعادة القراءة؟",
+        "description": "Finish rereading manga message"
+    },
+    "syncPage_flashConfirm_start_anime": {
+        "message": "بدء المشاهدة؟",
+        "description": "Start watching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_finish_anime": {
+        "message": "أنهيت إعادة المشاهدة؟",
+        "description": "Finish rewatching anime message"
+    },
+    "syncPage_flashConfirm_start_manga": {
+        "message": "بدء القراءة؟",
+        "description": "Start reading manga message"
+    },
+    "syncPage_flashConfirm_rewatch_start_anime": {
+        "message": "إعادة مشاهدة الأنمي؟",
+        "description": "Start rewatching anime message"
+    },
+    "syncPage_flashConfirm_Anime_Correct": {
+        "message": "هل هذا \"$anime$\" صحيح؟",
+        "description": "Is anime correct",
+        "placeholders": {
+            "anime": {
+                "content": "$1",
+                "example": "No Game No Life"
+            }
+        }
+    },
+    "syncPage_flash_player_error": {
+        "message": "لم يتم التعرف على المشغل، يرجى تحديثه يدوياً هنا.",
+        "description": "Message if the video player could not be recognized"
+    },
+    "syncPage_malObj_addAnime": {
+        "message": "الإضافة إلى $page$",
+        "description": "add anime",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "AniList"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_manga": {
+        "message": "الفصل $chapter$",
+        "description": "Next chapter message on streaming overview pages",
+        "placeholders": {
+            "chapter": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "anilistClass_authentication": {
+        "message": "تم حفظ الرمز المميز، يمكنك إغلاق هذه الصفحة الآن",
+        "description": "The token has been obtained and saved"
+    },
+    "kitsuClass_authentication_Password": {
+        "message": "كلمة المرور",
+        "description": "Password"
+    },
+    "kitsuClass_authentication_Login": {
+        "message": "تسجيل الدخول",
+        "description": "Login"
+    },
+    "kitsuClass_authentication_Success": {
+        "message": "تم حفظ الرمز المميز، يمكنك إغلاق هذه الصفحة الآن.",
+        "description": "Authentication success"
+    },
+    "kitsuClass_authentication_Wrong": {
+        "message": "البيانات خاطئة",
+        "description": "Credentials wrong"
+    },
+    "bookmarksItem_Year": {
+        "message": "سنة",
+        "description": "year"
+    },
+    "bookmarksItem_Days": {
+        "message": "أيام",
+        "description": "days"
+    },
+    "bookmarksItem_Day": {
+        "message": "يوم",
+        "description": "day"
+    },
+    "bookmarksItem_Hours": {
+        "message": "ساعات",
+        "description": "hours"
+    },
+    "bookmarksItem_Hour": {
+        "message": "ساعة",
+        "description": "hour"
+    },
+    "bookmarksItem_mins": {
+        "message": "دقائق",
+        "description": "mins"
+    },
+    "bookmarksItem_min": {
+        "message": "دقيقة",
+        "description": "min"
+    },
+    "bookmarksItem_secs": {
+        "message": "ثواني",
+        "description": "seconds"
+    },
+    "bookmarksItem_sec": {
+        "message": "ثانية",
+        "description": "second"
+    },
+    "bookmarksItem_now": {
+        "message": "الأن",
+        "description": "Now"
+    },
+    "prediction_Episode_anime": {
+        "message": "الحلقة القادمة في غضون $time$",
+        "description": "Text for next episode estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_anime": {
+        "message": "الحلقة السابقة عرضت قبل $time$",
+        "description": "Text for last episode release time",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Episode_manga": {
+        "message": "الفصل القادم في غضون $time$",
+        "description": "Text for next chapter estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_incomplete": {
+        "message": "غير مكتمل",
+        "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
+    },
+    "prediction_ongoing": {
+        "message": "الجاريه",
+        "description": "Header for the ongoing section in the translation/airing progress section"
+    },
+    "prediction_complete": {
+        "message": "مكتمل",
+        "description": "Header for the complete translation/airing section"
+    },
+    "prediction_Airing": {
+        "message": "ستعرض خلال $time$",
+        "description": "Text for airing estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "correction_Offset": {
+        "message": "إزاحة الحلقة",
+        "description": "Episode Offset"
+    },
+    "correction_WrongUrl": {
+        "message": "قم بتغيير عنوان URL هذا فقط إذا كان يشير إلى صفحة الأنمي الخطأ على MAL.",
+        "description": "URL is Wrong"
+    },
+    "correction_Search": {
+        "message": "تصحيح البحث",
+        "description": "Correction Search"
+    },
+    "correction_NoMal": {
+        "message": "إذا تعذر العثور على الأنمي / المانجا على MAL",
+        "description": "Anime/Manga not found in MAL"
+    },
+    "correction_NoEntry": {
+        "message": "لا توجد مدخلات على MyAnimeList",
+        "description": "No entry on MyAnimeList"
+    },
+    "correction_NewOffset": {
+        "message": "مجموعة إزاحة جديدة ($offset$).",
+        "description": "New Offset",
+        "placeholders": {
+            "offset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "correction_OffsetReset": {
+        "message": "إعادة تعيين الإزاحة",
+        "description": "Offset reset"
+    },
+    "correction_NewUrlReset": {
+        "message": "إعادة تعيين URL موقع MyAnimeList",
+        "description": "URL reset"
+    },
+    "correction_DBRequest": {
+        "message": "إرسال طلب تصحيح قاعدة البيانات؟",
+        "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
+    },
+    "overview_synonyms": {
+        "message": "المرادفات",
+        "description": "Text of a button that shows the alternative names for an entry"
+    },
+    "overview_Continue_anime": {
+        "message": "إكمال المشاهدة",
+        "description": "Continue watching"
+    },
+    "overview_Continue_manga": {
+        "message": "إكمال القراءة",
+        "description": "Continue reading"
+    },
+    "overview_Next_Episode_anime": {
+        "message": "الحلقة التالية",
+        "description": "Next Episode"
+    },
+    "overview_Next_Episode_manga": {
+        "message": "الفصل التالي",
+        "description": "Next Chapter"
+    },
+    "overview_Resume_Episode_anime": {
+        "message": "استئناف الحلقة",
+        "description": "Resume Episode"
+    },
+    "overview_EditDetails": {
+        "message": "تعديل التفاصيل",
+        "description": "Edit Details"
+    },
+    "overview_Characters": {
+        "message": "الشخصيات",
+        "description": "Characters"
+    },
+    "overview_Information": {
+        "message": "المعلومات",
+        "description": "Header of the information section of the popup anime overview"
+    },
+    "overview_Related": {
+        "message": "متعلق",
+        "description": "Header of the anime/manga relations section of the popup anime overview"
+    },
+    "overview_OpeningTheme": {
+        "message": "اغنية البداية:",
+        "description": "Opening Theme"
+    },
+    "overview_EndingTheme": {
+        "message": "اغنية النهاية:",
+        "description": "Ending Theme"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "تقييم MAL:",
+        "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "المصنف:",
+        "description": "Info table on overview - Ranked: #317"
+    },
+    "overview_sidebar_Format": {
+        "message": "الصيغة:",
+        "description": "Info table on overview - Format: Movie"
+    },
+    "overview_sidebar_Status": {
+        "message": "الحالة:",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Rating": {
+        "message": "التقييم العمري:",
+        "description": "Info table on overview - Rating: PG-13"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "الشعبية:",
+        "description": "Info table on overview - Popularity: #15"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "تاريخ نهاية العرض:",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "المصدر:",
+        "description": "Info table on overview - Source: Light Novel"
+    },
+    "overview_sidebar_Members": {
+        "message": "الأعضاء:",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "البث:",
+        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+    },
+    "overview_sidebar_Studios": {
+        "message": "الإستيديوهات:",
+        "description": "Info table on overview - Studios: Madhouse"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "عدد الحلقات:",
+        "description": "Info table on overview - Episodes: 12"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "عدد الفصول:",
+        "description": "Info table on overview - Chapters: 12"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "عدد المجلدات:",
+        "description": "Info table on overview - Volumes: 12"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "المفضله:",
+        "description": "Info table on overview - Favorites: 15423"
+    },
+    "overview_sidebar_Season": {
+        "message": "الموسم:",
+        "description": "Info table on overview - Season: Spring 2014"
+    },
+    "overview_sidebar_external_links": {
+        "message": "روابط خارجية:",
+        "description": "Info table on overview - External Links: Official Site, Hulu"
+    },
+    "overview_sidebar_Genres": {
+        "message": "النوع الأدبي:",
+        "description": "Info table on overview - Genres: Action"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "المرخص:",
+        "description": "Info table on overview - Licensor: AT-X"
+    },
+    "overview_sidebar_Aired": {
+        "message": "تم عرضه:",
+        "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
+    },
+    "overview_sidebar_Authors": {
+        "message": "المؤلفين:",
+        "description": "Info table on overview - Authors: Kamiya, Yuu"
+    },
+    "overview_sidebar_Serialization": {
+        "message": "التسلسل:",
+        "description": "Info table on overview - Serialization: Big Comic Original"
+    },
+    "overview_sidebar_Duration": {
+        "message": "المدة:",
+        "description": "Info table on overview - Duration: 23 min"
+    },
+    "list_sorting_alpha": {
+        "message": "ابجديه",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "list_sorting_history": {
+        "message": "آخر تحديث",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "list_sorting_score": {
+        "message": "التقييم",
+        "description": "Dropdown option to sort list by score"
+    },
+    "list_sorting_airing_date": {
+        "message": "موعد العرض",
+        "description": "Dropdown option to sort list by airing date"
+    },
+    "search_Type": {
+        "message": "النوع:",
+        "description": "Type"
+    },
+    "search_Score": {
+        "message": "التقييم:",
+        "description": "Score"
+    },
+    "search_Year": {
+        "message": "السنة:",
+        "description": "Year"
+    },
+    "settings_General": {
+        "message": "عام",
+        "description": "General"
+    },
+    "settings_Mode": {
+        "message": "الوضع",
+        "description": "Mode"
+    },
+    "settings_profile_no_login": {
+        "message": "لم يتم تسجيل الدخول",
+        "description": "Text if not logged in"
+    },
+    "settings_profile_logout": {
+        "message": "تسجيل خروج",
+        "description": "Button to logout"
+    },
+    "settings_profile_check": {
+        "message": "فحص",
+        "description": "Button to rechecks the login status"
+    },
+    "settings_LocalSync_Export": {
+        "message": "تصدير",
+        "description": "Button to Export Local storage fallback data"
+    },
+    "settings_Animesync": {
+        "message": "مزامنة الأنمي",
+        "description": "Anime sync"
+    },
+    "settings_Animesync_Video": {
+        "message": "فيديو",
+        "description": "Video"
+    },
+    "settings_Animesync_Instant": {
+        "message": "فوري",
+        "description": "Instant"
+    },
+    "settings_Animesync_Manual": {
+        "message": "يدوي",
+        "description": "Manual"
+    },
+    "settings_AutoTracking_Video": {
+        "message": "تحديث %$videoDuration$ من تقدم الفيديو",
+        "description": "Update Episode of video progress",
+        "placeholders": {
+            "videoDuration": {
+                "content": "$1",
+                "example": "85"
+            }
+        }
+    },
+    "settings_AutoTracking_Instant": {
+        "message": "تأخير التتبع التلقائي الفوري بمقدار $delay$ ثواني",
+        "description": "Delay instant autotracking",
+        "placeholders": {
+            "delay": {
+                "content": "$1",
+                "example": "15"
+            }
+        }
+    },
+    "settings_StreamingSite": {
+        "message": "الروابط السريعة",
+        "description": "Quicklinks"
+    },
+    "settings_StreamingSite_custom": {
+        "message": "روابط البحث المخصصة",
+        "description": "Header of the section where you can add your own custom search links"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "الإسم",
+        "description": "Placeholder text the field that sets the custom url name"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "رابط بحث المانجا",
+        "description": "Form field title to enter the search url for manga"
+    },
+    "settings_Thumbnails": {
+        "message": "الصورة المصغرة",
+        "description": "Thumbnails"
+    },
+    "settings_Thumbnails_Large": {
+        "message": "كبير",
+        "description": "Thumbnails Large"
+    },
+    "settings_Thumbnails_Medium": {
+        "message": "متوسط",
+        "description": "Thumbnails Medium"
+    },
+    "settings_Thumbnails_Small": {
+        "message": "صغير",
+        "description": "Thumbnails Small"
+    },
+    "settings_Thumbnails_Default": {
+        "message": "MAL الافتراضي",
+        "description": "Thumbnails MAL Default"
+    },
+    "settings_epPredictions": {
+        "message": "تقدير رقم الحلقة",
+        "description": "Estimate episode number"
+    },
+    "settings_malTags": {
+        "message": "استخدم العلامات/الملاحظات",
+        "description": "Use Tags/Notes"
+    },
+    "settings_malContinue": {
+        "message": "تابع روابط المشاهدة",
+        "description": "Continue watching links"
+    },
+    "settings_malResume": {
+        "message": "استئنف روابط المشاهدة",
+        "description": "Resume watching links"
+    },
+    "settings_usedPage": {
+        "message": "أخر روابط المشاهدة المستخدمة",
+        "description": "Last used page links"
+    },
+    "settings_anilist_update_ui": {
+        "message": "تحديث الواجهة",
+        "description": "UI in the aniList sidebar to update episodes progress and the score"
+    },
+    "settings_miniMAL_floatButtonStealth": {
+        "message": "وضع الواجهة الخفية",
+        "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "يجعل مؤشر التقدم (في أسفل الشاشة) شفافًا بشكل افتراضي ويجعله يخفي نفسه بشكل أسرع",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_miniMAL_minimizeBigPopup": {
+        "message": "تصغير النوافذ المنبثقة الكبيرة",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "Manga": {
+        "message": "المانجا",
+        "description": "General translation of manga for places like drop downs"
+    },
+    "Not_Found": {
+        "message": "لم يتم العثور عليه !",
+        "description": "Anime/Manga Not Found"
+    },
+    "correction_Search_text": {
+        "message": "هذا الحقل مخصص للعثور على أحد الأنميات، عندما تحتاج إلى تصحيح \"عنوان URL الخاص بـ MyAnimeList\" الموضح أعلاه.<br> لإجراء بحث، ما عليك سوى البدء في كتابة اسم الأنمي وستظهر قائمة بالنتائج تلقائيًا أثناء الكتابة.",
+        "description": "Search text"
+    },
+    "Package_Description": {
+        "message": "يقوم بدمج MyAnimeList/AniList/Kitsu/Simkl/Shikimori الى مواقع متنوعة، مع تتبع تلقائي للحلقات.",
+        "description": "Description MALSync"
+    },
+    "UI_Status_OnHold": {
+        "message": "المشاهدة لاحقا",
+        "description": "On-Hold"
+    },
+    "syncPage_flashm_failded": {
+        "message": "فشل التحديث",
+        "description": "When update to MAL failes"
+    },
+    "syncPage_flashConfirm_rewatch_start_manga": {
+        "message": "إعادة قراءة المانجا؟",
+        "description": "Start rereading manga message"
+    },
+    "bookmarksItem_ago": {
+        "message": "$time$ مضى",
+        "description": "Text for time in the past",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_manga": {
+        "message": "أخر فصل صدر قبل $time$",
+        "description": "Text for last chapter release time",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "overview_sidebar_Score": {
+        "message": "التقييم:",
+        "description": "Info table on overview - Score: 7.65"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "مجموع وقت المشاهدة:",
+        "description": "Info table on overview - Total Playtime: 276 mins"
+    },
+    "list_sorting_unread": {
+        "message": "غير مقروء",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "syncPage_malObj_nextEp_anime": {
+        "message": "الحلقة $episode$",
+        "description": "Next episode message on streaming overview pages",
+        "placeholders": {
+            "episode": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+        "message": "تم اكتشاف إزاحة محتملة للحلقات بحدود $calcOffset$، هل هذا صحيح ؟",
+        "description": "offsetHandler Episode",
+        "placeholders": {
+            "calcOffset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "bookmarksItem_Years": {
+        "message": "سنوات",
+        "description": "years"
+    },
+    "prediction_next": {
+        "message": "القادم خلال $time$",
+        "description": "Short Form Text for next episode/episode estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "correction_Offset_text": {
+        "message": "أدخل إزاحة الحلقة ، إذا كان الأنمي يحتوي على 12 حلقة ، ولكنه يستخدم الأرقام من 0-11 بدلا من 1-12 ، فما عليك سوى كتابة \"+1\" في إزاحة الحلقة.",
+        "description": "Episode Offset - Text"
+    },
+    "overview_Resume_Episode_manga": {
+        "message": "استئناف الفصل",
+        "description": "Resume Chapter"
+    },
+    "overview_sidebar_Votes": {
+        "message": "التصويت:",
+        "description": "Info table on overview - Votes: 1423"
+    },
+    "kitsuClass_authentication_text": {
+        "message": "لتسجيل الدخول باستخدام Kitsu، تحتاج إلى إدخال البريد الإلكتروني وكلمة المرور لحسابك.<br>لا يتم تخزين بيانات تسجيل الدخول الخاصة بك على جهاز الكمبيوتر الخاص بك أو في أي مكان آخر.<br>يتم إرسالها مباشرة إلى Kitsu. يتم حفظ رمز الوصول الذي تم إرجاعه فقط. <br>",
+        "description": "Authentication text in Kitsu"
+    },
+    "correction_NewUrl": {
+        "message": "تم تعيين عنوان URL الجديد \"$malUrl$\".",
+        "description": "New URL",
+        "placeholders": {
+            "malUrl": {
+                "content": "$1",
+                "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            }
+        }
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "تاريخ بدء العرض:",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "settings_LocalSync_Import": {
+        "message": "استيراد",
+        "description": "Button to import local storage fallback data"
+    },
+    "settings_Authenticate": {
+        "message": "مصادقه",
+        "description": "Authenticate"
+    },
+    "settings_profile_logged_via": {
+        "message": "تم تسجيل الدخول بواسطة $provider$",
+        "description": "Info about which provider is used to login",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "settings_Mangasync_readerTracking": {
+        "message": "مزامنة المانجا بعد 90٪ من الصفحات",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+    },
+    "settings_StreamingSite_text": {
+        "message": "إذا تم تعطيله ، فلن يظهر موقع البث بعد الآن في الشريط الجانبي للأنمي على MyAnimeList / AniList / Kitsu / Simkl.",
+        "description": "Streaming Site Links - Text"
+    },
+    "settings_Thumbnails_text": {
+        "message": "هذا الخيار هو لتغيير حجم الصور المصغرة على MyAnimeList. على سبيل المثال، صور مصغرة للشخصيات والأشخاص والتوصيات وما إلى ذلك.",
+        "description": "Thumbnails - Text"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "رابط بحث الأنمي",
+        "description": "Form field title to enter the search url for anime"
+    },
+    "settings_malTags_Text": {
+        "message": "في حالة التمكين: يتم حفظ صفحة البث التي استخدمتها مؤخرًا (عبر المتصفحات) بشكل دائم في قسم العلامات/الملاحظات في قائمتك. السلسلة المحفوظة في قسم العلامات قبيحة، ولا يوصى بها إلا إذا كنت لا تستخدم قسم العلامات/الملاحظات.",
+        "description": "Use Tags/Notes - Text"
+    },
+    "settings_FriendScore": {
+        "message": "تقييم الأصدقاء في صفحة التفاصيل",
+        "description": "Friend scores on detail page"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "يسمح بتحديث عدد الحلقات وتقييمها وحالتها بسرعة على AniList دون الحاجة إلى فتح نافذة متصفح جديدة.",
+        "description": "Tooltip for the Update UI option"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "يصغر من مربعات المطالبة الكبيرة في MAL-Sync، والتي من شأنها أن تغطي معظم الشاشة، خلف نقرة واحدة.",
+        "description": "Shows an 'action required' popup hidding big popups"
+    }
+}
