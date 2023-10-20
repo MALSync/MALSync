@@ -29,6 +29,7 @@ import { tmofans } from './tmofans/main';
 import { unionmangas } from './unionmangas/main';
 import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
+import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
 import { FallenAngels } from './FallenAngels/main';
@@ -169,6 +170,7 @@ export const pages = {
   unionmangas,
   MangaPlus,
   JapScan,
+  AnimesVision,
   Hulu,
   Hidive,
   FallenAngels,
