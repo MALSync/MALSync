@@ -28,8 +28,8 @@ jobs:
         path: test/dist/headless
         token: ${{secrets.PAT_TOKEN}}
     - name: Decode
-      run: |
-        node test/dist/headless/decrypt.js
+      run: node test/dist/headless/decrypt.js
+      working-directory: test/dist/headless
     - name: Page Tests
       run: |
         npm ci
