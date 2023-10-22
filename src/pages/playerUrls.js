@@ -874,4 +874,10 @@ module.exports = {
   vixcloud: {
     match: ['*://vixcloud.cc/*', '*://vixcloud.co/*'],
   },
+  // otakuanimes
+  otakuanimes: {
+    match: [
+      '*://otakuanimess.com/episodio/*', 
+      '*://ns*'],
+  },
 };

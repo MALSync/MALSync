@@ -688,5 +688,10 @@
     "domain": "https://ogladajanime.pl",
     "type": "anime",
     "name": "OgladajAnime"
+  },
+  {
+    "domain": "https://otakuanimess.com",
+    "type": "anime",
+    "name": "OtakuAnimes"
   }
 ]

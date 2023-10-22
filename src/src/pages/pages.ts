@@ -136,7 +136,6 @@ import { NeoxScans } from './NeoxScans/main';
 import { Anix } from './Anix/main';
 import { HinataSoul } from './HinataSoul/main';
 import { OgladajAnime } from './OgladajAnime/main';
-import { OtakuAnimes } from './OtakuAnimes/main';
 
 export const pages = {
   nineAnime,
@@ -277,5 +276,4 @@ export const pages = {
   Anix,
   HinataSoul,
   OgladajAnime,
-  OtakuAnimes,
 };

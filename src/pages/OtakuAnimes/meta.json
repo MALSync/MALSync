@@ -1,0 +1,6 @@
+{
+  "search": "https://otakuanimess.com/?s={searchtermPlus}",
+  "urls": {
+    "match": ["*://otakuanimess.com/*"]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "title": "OtakuAnimes",
+  "url": "https://otakuanimess.com",
+  "testCases": [
+    {
+      "url": "https://otakuanimess.com/episodio/37004/undead-unluck/2/",
+      "expected": {
+        "sync": true,
+        "title": "Undead Unluck",
+        "identifier": "undead-unluck",
+        "overviewUrl": "https://otakuanimess.com/animes/undead-unluck",
+        "nextEpUrl": "https://otakuanimess.com/episodio/37004/undead-unluck/3/",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://otakuanimess.com/animes/undead-unluck/",
+      "expected": {
+        "sync": false,
+        "title": "Undead Unluck",
+        "identifier": "undead-unluck",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://otakuanimess.com/episodio/37004/undead-unluck/3/"
+        }
+      }
+    }
+  ]
+}
