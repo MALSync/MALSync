@@ -8,7 +8,10 @@
         "sync": false,
         "title": "Omniscient Reader's Point of View",
         "identifier": "omniscient-readers-viewpoint",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "2": "https://hachi.moe/article/omniscient-readers-viewpoint/chapter/2"
+        }
       }
     },
     {
