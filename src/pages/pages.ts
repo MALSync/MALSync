@@ -81,7 +81,6 @@ import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
-import { FlameScans } from './FlameScans/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
 import { Funimation } from './Funimation/main';
@@ -97,7 +96,6 @@ import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
 import { Animetoast } from './Animetoast/main';
-import { RealmScans } from './RealmScans/main';
 import { LuminousScans } from './LuminousScans/main';
 import { Animeworld } from './Animeworld/main';
 import { MangaBuddy } from './MangaBuddy/main';
@@ -208,7 +206,6 @@ export const pages = {
   MangaSushi,
   TritiniaScans,
   ReadManhua,
-  FlameScans,
   ImmortalUpdates,
   Zoro,
   Funimation,
@@ -224,7 +221,6 @@ export const pages = {
   MangaReader,
   AnimeOnsen,
   Animetoast,
-  RealmScans,
   LuminousScans,
   Animeworld,
   MangaBuddy,
