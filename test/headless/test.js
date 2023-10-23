@@ -220,7 +220,7 @@ async function PreparePage(block, page, url, testPage) {
 
     let content = await page.content();
 
-    if (testPage.variables.length) {
+    if (testPage.variables && testPage.variables.length) {
       content += '<script>';
 
       for (const variable of testPage.variables) {
@@ -289,19 +289,8 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   await page.evaluate(() => console.log(`Adding script`));
   await page.addScriptTag({ content: script });
 
-
-  //console.log(text);
-
-
-
-    await page.evaluate(() => console.log(`Evaluating script`));
+  await page.evaluate(() => console.log(`Evaluating script`));
   const text = await page.evaluate(() => MalSyncTest());
-
-  await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve();
-      }, 0);
-    })
 
   if (text.sync === 'cdn') {
     if (retry > 2) throw 'Max retries';
