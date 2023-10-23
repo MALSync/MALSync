@@ -1,0 +1,27 @@
+{
+    "title": "WitAnime",
+    "url": "https://witanime.pics/",
+    "testCases": [
+      {
+        "url": "https://witanime.pics/episode/mahouka-koukou-no-rettousei-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-15/",
+        "expected": {
+          "sync": true,
+          "title": "Mahouka Koukou no Rettousei",
+          "identifier": "mahouka-koukou-no-rettousei",
+          "overviewUrl": "https://witanime.pics/anime/mahouka-koukou-no-rettousei/",
+          "nextEpUrl": "https://witanime.pics/episode/mahouka-koukou-no-rettousei-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-16/",
+          "episode": 15,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://witanime.pics/anime/mahouka-koukou-no-rettousei/",
+        "expected": {
+          "sync": false,
+          "title": "Mahouka Koukou no Rettousei",
+          "identifier": "mahouka-koukou-no-rettousei",
+          "uiSelector": true
+        }
+      }
+    ]
+}

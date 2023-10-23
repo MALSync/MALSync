@@ -1,6 +1,0 @@
-{
-  "search": "https://samehadaku.vip/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://samehadaku.vip/*"]
-  }
-}

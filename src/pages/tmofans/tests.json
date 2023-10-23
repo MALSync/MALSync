@@ -1,9 +1,9 @@
 {
   "title": "tmofans",
-  "url": "https://lectortmo.com/",
+  "url": "https://visortmo.com/",
   "testCases": [
     {
-      "url": "https://lectortmo.com/library/manga/50/one-piece",
+      "url": "https://visortmo.com/library/manga/320/one-piece",
       "expected": {
         "sync": false,
         "title": "One Piece",

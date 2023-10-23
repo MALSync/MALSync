@@ -20,6 +20,15 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '16.x'
+    - name: Checkout test data
+      uses: actions/checkout@v4
+      with:
+        repository: MALSync/test_data
+        ref: 'master'
+        path: test/dist/headless
+    - name: Decode
+      run: node decrypt.js
+      working-directory: test/dist/headless
     - name: Page Tests
       run: |
         npm ci

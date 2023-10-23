@@ -1,26 +1,26 @@
 {
   "title": "YugenAnime",
-  "url": "https://yugen.to/",
+  "url": "https://yugenanime.tv/",
   "testCases": [
     {
-      "url": "https://yugen.to/watch/6476/mahouka-koukou-no-rettousei-raihousha-hen/7/",
+      "url": "https://yugenanime.tv/watch/6476/mahouka-koukou-no-rettousei-raihousha-hen/7/",
       "expected": {
         "sync": true,
         "title": "Mahouka Koukou no Rettousei: Raihousha-hen",
         "identifier": 6476,
-        "overviewUrl": "https://yugen.to/anime/6476/mahouka-koukou-no-rettousei-raihousha-hen/",
-        "nextEpUrl": "https://yugen.to/watch/6476/mahouka-koukou-no-rettousei-raihousha-hen/8/",
+        "overviewUrl": "https://yugenanime.tv/anime/6476/mahouka-koukou-no-rettousei-raihousha-hen/",
+        "nextEpUrl": "https://yugenanime.tv/watch/6476/mahouka-koukou-no-rettousei-raihousha-hen/8/",
         "episode": 7,
         "uiSelector": false
       }
     },
     {
-      "url": "https://yugen.to/anime/6476/mahouka-koukou-no-rettousei-raihousha-hen/",
+      "url": "https://yugenanime.tv/anime/6476/mahouka-koukou-no-rettousei-raihousha-hen/",
       "expected": {
         "sync": false,
         "title": "Mahouka Koukou no Rettousei: Raihousha-hen",
         "identifier": 6476,
-        "uiSelector": true,
+        "uiSelector": true
       }
     }
   ]

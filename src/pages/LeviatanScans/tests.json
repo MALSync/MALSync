@@ -1,21 +1,21 @@
 {
   "title": "LeviatanScans",
-  "url": "https://en.leviatanscans.com/",
+  "url": "https://lscomic.com/",
   "testCases": [
     {
-      "url": "https://en.leviatanscans.com/manga/survival-story-of-a-sword-king-in-a-fantasy-world/chapter-49/",
+      "url": "https://lscomic.com/manga/survival-story-of-a-sword-king-in-a-fantasy-world/chapter-49/",
       "expected": {
         "sync": true,
         "title": "Survival Story of a Sword King in a Fantasy World",
         "identifier": "survival-story-of-a-sword-king-in-a-fantasy-world",
-        "overviewUrl": "https://en.leviatanscans.com/manga/survival-story-of-a-sword-king-in-a-fantasy-world/",
-        "nextEpUrl": "https://en.leviatanscans.com/manga/survival-story-of-a-sword-king-in-a-fantasy-world/chapter-50/",
+        "overviewUrl": "https://lscomic.com/manga/survival-story-of-a-sword-king-in-a-fantasy-world/",
+        "nextEpUrl": "https://lscomic.com/manga/survival-story-of-a-sword-king-in-a-fantasy-world/chapter-50/",
         "episode": 49,
         "uiSelector": false
       }
     },
     {
-      "url": "https://en.leviatanscans.com/manga/survival-story-of-a-sword-king-in-a-fantasy-world/",
+      "url": "https://lscomic.com/manga/survival-story-of-a-sword-king-in-a-fantasy-world/",
       "expected": {
         "sync": false,
         "title": "Survival Story of a Sword King in a Fantasy World",

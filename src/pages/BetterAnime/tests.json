@@ -1,0 +1,31 @@
+{
+  "title": "BetterAnime",
+  "url": "https://www.betteranime.net/",
+  "testCases": [
+    {
+      "url": "https://betteranime.net/anime/legendado/bleach-dublado",
+      "expected": {
+        "sync": false,
+        "title": "Bleach",
+        "identifier": "bleach",
+        "uiSelector": true,
+        "epList": {
+          "93": "https://betteranime.net/anime/legendado/bleach-dublado/episodio-93",
+          "154": "https://betteranime.net/anime/legendado/bleach-dublado/episodio-154",
+          "173": "https://betteranime.net/anime/legendado/bleach-dublado/episodio-173"
+        }
+      }
+    },
+    {
+      "url": "https://betteranime.net/anime/dublado/one-piece-dublado-2020/episodio-132",
+      "expected": {
+        "sync": true,
+        "title": "One Piece (2020)",
+        "identifier": "one-piece-2020",
+        "episode": 132,
+        "overviewUrl": "https://betteranime.net/anime/dublado/one-piece-dublado-2020",
+        "nextEpUrl": "https://betteranime.net/anime/dublado/one-piece-dublado-2020/episodio-133"
+      }
+    }
+  ]
+}
