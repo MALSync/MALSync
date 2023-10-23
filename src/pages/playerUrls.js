@@ -855,4 +855,20 @@ module.exports = {
   vixcloud: {
     match: ['*://vixcloud.cc/*', '*://vixcloud.co/*'],
   },
+  // WitAnime
+  yonaplay: {
+    match: ['*://yonaplay.org/*'],
+  },
+  // WitAnime
+  fourshared: {
+    match: ['*://*.4shared.com/*'],
+  },
+  // WitAnime
+  videa: {
+    match: ['*://*.videa.hu/*'],
+  },
+  // WitAnime
+  soraplay: {
+    match: ['*://*.soraplay.xyz/*'],
+  },
 };

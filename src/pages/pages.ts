@@ -124,6 +124,7 @@ import { Anix } from './Anix/main';
 import { HinataSoul } from './HinataSoul/main';
 import { OgladajAnime } from './OgladajAnime/main';
 import { hachi } from './hachi/main';
+import { WitAnime } from './WitAnime/main';
 
 export const pages = {
   nineAnime,
@@ -252,4 +253,5 @@ export const pages = {
   HinataSoul,
   OgladajAnime,
   hachi,
+  WitAnime,
 };
