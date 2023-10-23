@@ -222,6 +222,14 @@ module.exports = {
   streamium: {
     match: ['*://*.streamium.xyz/*'],
   },
+  // AnimeGO
+  kodik: {
+    match: ['*://kodik.info/*'],
+  },
+  // AnimeGO
+  aniboom: {
+    match: ['*://aniboom.one/*'],
+  },
   // kickassanime
   animopacestream: {
     match: ['*://animo-pace-stream.io/*'],

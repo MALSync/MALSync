@@ -117,6 +117,7 @@ import { MangaFire } from './MangaFire/main';
 import { projectsuki } from './projectsuki/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
 import { AnimeKO } from './AnimeKO/main';
+import { AnimeGO } from './AnimeGO/main';
 import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
@@ -246,6 +247,7 @@ export const pages = {
   projectsuki,
   AnimeOnegai,
   AnimeKO,
+  AnimeGO,
   Animeflix,
   LuciferDonghua,
   NeoxScans,
