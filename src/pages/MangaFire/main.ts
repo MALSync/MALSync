@@ -105,7 +105,7 @@ export const MangaFire: pageInterface = {
         return j.$('[data-name="chapter"] li.item');
       },
       elementUrl(selector) {
-        return selector.find('a').attr('href')!;
+        return utils.absoluteLink(selector.find('a').attr('href')!, MangaFire.domain);
       },
       elementEp(selector) {
         return Number(selector.attr('data-number'));

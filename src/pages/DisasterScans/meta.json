@@ -1,6 +1,6 @@
 {
     "search": "https://disasterscans.com/?s={searchtermPlus}&post_type=wp-manga",
     "urls": {
-      "match": ["*://disasterscans.com/manga*"]
+      "match": ["*://disasterscans.com/*"]
     }
   }

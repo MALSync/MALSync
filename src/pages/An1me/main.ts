@@ -64,9 +64,7 @@ export const An1me: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return utils
-        .getBaseText(j.$('div.profile-manga > div > div > div > div.post-title > h1'))
-        .trim();
+      return j.$('#manga-title h1').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
