@@ -1,7 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
 export const hachi: pageInterface = {
-  domain: 'hachi.moe',
+  domain: 'https://hachi.moe',
   languages: ['English'],
   name: 'hachi',
   type: 'manga',
