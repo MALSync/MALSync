@@ -17,7 +17,7 @@ jobs:
       uses: jitterbit/get-changed-files@v1
       with:
         format: 'json'
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: '16.x'
     - name: Checkout test data
