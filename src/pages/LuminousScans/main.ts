@@ -5,7 +5,7 @@ function cleanUrl(url: string) {
     return url.replace(`/${utils.urlPart(url, 3)}`, '');
   }
   return url;
-};
+}
 
 export const LuminousScans: pageInterface = {
   name: 'LuminousScans',
