@@ -28,6 +28,7 @@ import { mangalivre } from './mangalivre/main';
 import { tmofans } from './tmofans/main';
 import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
+import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
 import { PrimeVideo } from './PrimeVideo/main';
@@ -158,6 +159,7 @@ export const pages = {
   tmofans,
   MangaPlus,
   JapScan,
+  AnimesVision,
   Hulu,
   Hidive,
   PrimeVideo,
