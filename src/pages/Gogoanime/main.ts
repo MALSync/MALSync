@@ -7,6 +7,7 @@ export const Gogoanime: pageInterface = {
     'https://gogoanimes.co',
     'https://animego.to',
     'https://gogoanimehd.io',
+    'https://gogoanime3.net',
   ],
   database: 'Gogoanime',
   languages: ['English'],

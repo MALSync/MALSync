@@ -3,27 +3,24 @@
   "url": "https://frixysubs.pl",
   "testCases": [
     {
-      "url": "https://frixysubs.pl/ogladaj.html?id=665",
+      "url": "https://frixysubs.pl/anime/5-toubun-no-hanayome/2",
       "expected": {
         "sync": true,
         "title": "5-Toubun no Hanayome ∬",
-        "identifier": "1",
-        "overviewUrl": "https://frixysubs.pl/odcinki.html?id=1",
-        "nextEpUrl": "https://frixysubs.pl/ogladaj.html?id=681",
-        "episode": 1,
+        "identifier": "5-toubun-no-hanayome",
+        "overviewUrl": "https://frixysubs.pl/anime/5-toubun-no-hanayome",
+        "nextEpUrl": "https://frixysubs.pl/anime/5-toubun-no-hanayome/3",
+        "episode": 2,
         "uiSelector": false
       }
     },
     {
-      "url": "https://frixysubs.pl/odcinki.html?id=1",
+      "url": "https://frixysubs.pl/anime/5-toubun-no-hanayome",
       "expected": {
         "sync": false,
         "title": "5-Toubun no Hanayome ∬",
-        "identifier": "1",
-        "uiSelector": true,
-        "epList": {
-          "1": "https://frixysubs.pl/ogladaj.html?id=665"
-        }
+        "identifier": "5-toubun-no-hanayome",
+        "uiSelector": true
       }
     }
   ]
