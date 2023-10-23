@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://mangadenizi.com/*"]
+    "match": ["*://mangadenizi.com/*", "*://*.mangadenizi.net/*"]
   }
 }

@@ -3,28 +3,27 @@
     "url": "https://void-scans.com",
     "testCases": [
       {
-        "url": "https://void-scans.com/leveling-up-by-only-eating-chapter-101-chosen/",
+        "url": "https://void-scans.com/1/questism-chapter-101/",
         "expected": {
           "sync": true,
-          "title": "Leveling Up, by Only Eating!",
-          "identifier": "leveling-up-by-only-eating",
-          "overviewUrl": "https://void-scans.com/manga/leveling-up-by-only-eating/",
-          "nextEpUrl": "https://void-scans.com/leveling-up-by-only-eating-chapter-102-pope/",
+          "title": "Questism",
+          "identifier": "questism",
+          "overviewUrl": "https://void-scans.com/manga/questism/",
+          "nextEpUrl": "https://void-scans.com/1/questism-chapter-102/",
           "episode": 101,
           "uiSelector": false
         }
       },
       {
-        "url": "https://void-scans.com/manga/leveling-up-by-only-eating/",
+        "url": "https://void-scans.com/manga/questism/",
         "expected": {
-        "sync": false,
-        "title": "Leveling Up, by Only Eating!",
-        "identifier": "leveling-up-by-only-eating",
-        "uiSelector": true,
-        "epList": {
-          "108": "https://void-scans.com/leveling-up-by-only-eating-chapter-108-punk/",
-          "1": "https://void-scans.com/leveling-up-by-only-eating-chapter-1-ginseng/"
-        }
+          "sync": false,
+          "title": "Questism",
+          "identifier": "questism",
+          "uiSelector": true,
+          "epList": {
+            "62": "https://void-scans.com/questism-chapter-62/"
+          }
         }
       }
     ]

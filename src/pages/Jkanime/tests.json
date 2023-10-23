@@ -10,7 +10,7 @@
         "identifier": "no-game-no-life",
         "uiSelector": true,
         "epList": {
-          "5": "https://jkanime.net/no-game-no-life/5"
+          "5": "https://jkanime.net/no-game-no-life/5/"
         }
       }
     },
@@ -20,7 +20,7 @@
         "sync": true,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
-        "overviewUrl": "https://jkanime.net/no-game-no-life/",
+        "overviewUrl": "https://jkanime.net/no-game-no-life",
         "nextEpUrl": "https://jkanime.net/no-game-no-life/12/",
         "episode": 11,
         "uiSelector": true

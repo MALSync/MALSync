@@ -1,29 +1,28 @@
 {
   "title": "an1me",
   "url": "https://an1me.nl/",
-  "enabled": false,
   "testCases": [
     {
-      "url": "https://an1me.nl/c/one-piece/",
+      "url": "https://an1me.nl/wm/one-piece/",
       "expected": {
         "sync": false,
         "title": "One Piece",
         "identifier": "one-piece",
         "uiSelector": true,
         "epList": {
-          "210": "https://an1me.nl/c/one-piece/episode-210/",
-          "312": "https://an1me.nl/c/one-piece/episode-312/"
+          "210": "https://an1me.nl/wm/one-piece/episode-210/",
+          "312": "https://an1me.nl/wm/one-piece/episode-312/"
         }
       }
     },
     {
-      "url": "https://an1me.nl/c/one-piece/episode-312/",
+      "url": "https://an1me.nl/wm/one-piece/episode-312/",
       "expected": {
         "sync": true,
         "title": "One Piece",
         "identifier": "one-piece",
-        "overviewUrl": "https://an1me.nl/c/one-piece/",
-        "nextEpUrl": "https://an1me.nl/c/one-piece/episode-313/",
+        "overviewUrl": "https://an1me.nl/wm/one-piece/",
+        "nextEpUrl": "https://an1me.nl/wm/one-piece/episode-313/",
         "episode": 312,
         "uiSelector": false
       }

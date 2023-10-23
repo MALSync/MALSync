@@ -60,16 +60,6 @@ export const NeoxScans: pageInterface = {
 
       return Number(chapterTextMatches[0].match(/\d+/));
     },
-    nextEpUrl(url) {
-      const href = utils.absoluteLink(
-        j.$('.header .nav-next > a').first().attr('href'),
-        NeoxScans.domain,
-      );
-      if (isChapterPage(url)) {
-        return href;
-      }
-      return '';
-    },
   },
   init(page) {
     api.storage.addStyle(

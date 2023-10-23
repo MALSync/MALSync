@@ -1,7 +1,7 @@
 {
   "title": "Shinden",
   "url": "https://shinden.pl/",
-  "unreliable": true, // does not work because of geoblocking
+  "offline": true,
   "testCases": [
     {
       "url": "https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117041",

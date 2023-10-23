@@ -6,94 +6,78 @@ export const FrixySubs: pageInterface = {
   languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3].startsWith('ogladaj')) return true;
-    return false;
+    return utils.urlPart(url, 3) === 'anime' && Boolean(utils.urlPart(url, 5));
   },
   isOverviewPage(url) {
-    if (url.split('/')[3].startsWith('odcinki')) return true;
-    return false;
+    return utils.urlPart(url, 3) === 'anime' && Boolean(!utils.urlPart(url, 5));
   },
   sync: {
     getTitle(url) {
-      const title = j.$('#anime-watch-title').text();
-      if (!title) return j.$('#watch-title').text() || '';
-      return title;
+      return (
+        j
+          .$('.container .v-card__title')
+          .first()
+          .text()
+          .trim()
+          .replace(/-[^-]*$/, '')
+          .trim() || ''
+      );
     },
     getIdentifier(url) {
-      const isMovie = utils.urlParam(url, 'video');
-      if (isMovie === 'true') {
-        const id = utils.urlParam(url, 'id') || '';
-        return `${id}v`;
-      }
-      return j.$('.watch-player-button:contains("Wróć")').attr('idd') || '';
+      return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      const id = j.$('.watch-player-button:contains("Wróć")').attr('idd');
-      if (!id) return '';
-      return utils.absoluteLink(`odcinki.html?id=${id}`, FrixySubs.domain);
+      return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
-      const text = j.$('#watch-title').text();
-      return getEpNumber(text, /\|#(\d+)/);
+      return Number(utils.urlPart(url, 5));
     },
     nextEpUrl(url) {
-      const id = j.$('.watch-player-button:contains("Następny")').attr('idd');
-      if (!id) return '';
-      return utils.absoluteLink(`ogladaj.html?id=${id}`, FrixySubs.domain);
+      const href = j.$('.mdi-skip-forward').closest('a').attr('href');
+      return href ? utils.absoluteLink(href, FrixySubs.domain) : '';
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('#series-info-title').text();
+      return j.$('.data .v-card__title').first().text().trim();
     },
     getIdentifier(url) {
-      return utils.urlParam(url, 'id') || '';
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#series-info').after(j.html(selector));
-    },
-    list: {
-      offsetHandler: false,
-      elementsSelector() {
-        return j.$('.episodes-episode');
-      },
-      elementUrl(selector) {
-        const id = j.$(selector).attr('idd');
-        return utils.absoluteLink(`ogladaj.html?id=${id}`, FrixySubs.domain);
-      },
-      elementEp(selector) {
-        const text = j.$(selector).find('.episodes-h1').text();
-        return getEpNumber(text, /Odcinek (\d+)/);
-      },
+      j.$('.data .v-card__title').first().after(j.html(selector));
     },
   },
   init(page) {
+    page.handlePage();
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      const urlPart = page.url.split('/')[3];
-      if (urlPart.startsWith('ogladaj') || urlPart.startsWith('odcinki')) {
-        utils.waitUntilTrue(
+      utils.urlChangeDetect(() => check());
+      check();
+    });
+
+    let debounce: NodeJS.Timer;
+
+    function check() {
+      page.reset();
+      clearTimeout(debounce);
+      if (FrixySubs.isSyncPage(page.url)) {
+        debounce = utils.waitUntilTrue(
+          () => FrixySubs.sync.getTitle(page.url),
           () => {
-            if (
-              FrixySubs.overview!.getTitle(page.url).length ||
-              FrixySubs.sync.getTitle(page.url).length
-            )
-              return true;
-            return false;
+            page.handlePage();
           },
+        );
+      } else if (FrixySubs.isOverviewPage!(page.url)) {
+        debounce = utils.waitUntilTrue(
+          () => FrixySubs.overview!.getTitle(page.url),
           () => {
             page.handlePage();
           },
         );
       }
-    });
+    }
   },
 };
-
-function getEpNumber(text, pattern): number {
-  const ep = text.match(pattern);
-  if (!ep) return 1;
-  return parseInt(ep[1]);
-}
