@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
 
 const selectedEpisodeQuery = '#ani-episode a.active';
-const episodeLinkButtonsQuery = '#ani-episode a';
+const episodeLinkButtonsQuery = '#ani-episode a:not([href="#"])';
 
 export const Anix: pageInterface = {
   domain: 'https://anix.to',

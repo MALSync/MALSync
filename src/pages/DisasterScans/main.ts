@@ -1,5 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
+const urlAnime = ['anime', 'comics'];
+
 export const DisasterScans: pageInterface = {
   name: 'DisasterScans',
   domain: 'https://disasterscans.com',
@@ -7,26 +9,26 @@ export const DisasterScans: pageInterface = {
   type: 'manga',
   isSyncPage(url) {
     return Boolean(
-      utils.urlPart(url, 3) === 'manga' &&
+      urlAnime.includes(utils.urlPart(url, 3)) &&
         utils.urlPart(url, 5) &&
-        utils.urlPart(url, 5).startsWith('chapter-'),
+        utils.urlPart(url, 5).includes('chapter-'),
     );
   },
   isOverviewPage(url) {
-    return Boolean(utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 5) === '');
+    return Boolean(urlAnime.includes(utils.urlPart(url, 3)) && utils.urlPart(url, 5) === '');
   },
   getImage() {
-    return j.$('div.summary_image img').attr('src');
+    return j.$('[class^="comicDetails_coverImage"]').first().attr('src');
   },
   sync: {
     getTitle(url) {
-      return j.$('.c-breadcrumb-wrapper .breadcrumb li').last().prev().text().trim();
+      return j.$('[class^="chapter_comicName"]').last().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return j.$('.c-breadcrumb-wrapper .breadcrumb li a').last().attr('href') || '';
+      return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5);
@@ -37,21 +39,18 @@ export const DisasterScans: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl(url) {
-      return j.$('.nav-links .next_page').first().attr('href');
-    },
   },
   overview: {
     getTitle(url) {
-      return j.$('.summary-content.vote-details .rate-title').text().trim();
+      return j.$('[class^="comicDetails_title"]').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.c-page__content .c-blog__heading')
+      j.$('[class^="comicDetails_chapters"]')
         .first()
-        .before(
+        .after(
           j.html(
             `<div id="malthing"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> <i class="icon ion-ios-star"></i> MAL-Sync</h2></div>${selector}</div>`,
           ),
@@ -60,10 +59,11 @@ export const DisasterScans: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.wp-manga-chapter');
+        return j.$('[class^="comicDetails_chapterBlob"]');
       },
       elementUrl(selector) {
-        return selector.find('a').first().attr('href') || '';
+        const link = selector.find('a').first().attr('href');
+        return link ? utils.absoluteLink(link, DisasterScans.domain) : '';
       },
       elementEp(selector) {
         return DisasterScans.sync.getEpisode(DisasterScans.overview!.list!.elementUrl!(selector));
@@ -81,7 +81,7 @@ export const DisasterScans: pageInterface = {
       if (DisasterScans.isOverviewPage!(page.url)) {
         utils.waitUntilTrue(
           function () {
-            return j.$('.wp-manga-chapter').length > 0;
+            return j.$('[class^="comicDetails_chapterBlob"]').length > 0;
           },
           function () {
             page.handlePage();

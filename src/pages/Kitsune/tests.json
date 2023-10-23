@@ -1,6 +1,7 @@
 {
   "title": "Kitsune",
   "url": "https://beta.kitsune.tv/",
+  "offline": true,
   "testCases": [
     {
       "url": "https://beta.kitsune.tv/shows/1a716358-6ce1-4155-b3d9-29a53d075ee8/watch/2",
