@@ -657,6 +657,7 @@ module.exports = {
       '*://valeronevijao.com/e/*',
       '*://strawberriesporail.com/e/*',
       '*://timberwoodanotia.com/e/*',
+      '*://phenomenalityuniform.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
