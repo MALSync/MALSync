@@ -33,7 +33,9 @@ export const ToonAnime: pageInterface = {
       return Number(j.$('.ss-list > .ssl-item.active').first().attr('data-number'));
     },
     nextEpUrl(url) {
-      return j.$('.ss-list > .ssl-item.active').next().attr('href');
+      const nextEp = j.$('.ss-list > .ssl-item.active').next().attr('href');
+      if (!nextEp) return '';
+      return utils.absoluteLink(nextEp, ToonAnime.domain);
     },
   },
   overview: {
@@ -52,7 +54,7 @@ export const ToonAnime: pageInterface = {
         return j.$('div.ss-list > .ep-item');
       },
       elementUrl(selector) {
-        return selector.attr('href') || '';
+        return utils.absoluteLink(selector.attr('href'), ToonAnime.domain) || '';
       },
       elementEp(selector) {
         return Number(selector.attr('data-number'));

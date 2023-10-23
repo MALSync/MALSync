@@ -1,6 +1,0 @@
-{
-  "search": "https://vostfree.tv/index.php?do=search&subaction=search&story={searchterm}",
-  "urls": {
-    "match": ["*://vostfree.com/*", "*://vostfree.cx/*", "*://vostfree.tv/*"]
-  }
-}

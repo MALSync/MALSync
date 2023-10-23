@@ -36,7 +36,10 @@ export const Jkanime: pageInterface = {
       return parseInt(utils.urlPart(url, 4)) || 1;
     },
     nextEpUrl(url) {
-      return j.$('div:contains("Proximo Episodio")').parent('a').attr('href');
+      return j
+        .$('div:contains("Proximo Episodio"), div:contains("Episodio final")')
+        .parent('a')
+        .attr('href');
     },
   },
   overview: {

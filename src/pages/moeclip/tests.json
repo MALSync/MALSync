@@ -1,6 +1,7 @@
 {
   "title": "moeclip",
   "url": "https://moeclip.com/",
+  "offline": true,
   "testCases": [
     {
       "url": "https://moeclip.com/high-school-dxd-hero-05-sub-indo/",

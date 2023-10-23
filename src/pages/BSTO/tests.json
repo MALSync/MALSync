@@ -1,8 +1,7 @@
 {
   "title": "bs.to",
-  "enabled": true,
   "url": "https://bs.to",
-  "enabled": false,
+  "offline": true,
   "testCases": [
     {
       "url": "https://bs.to/serie/Sword-Art-Online/",
