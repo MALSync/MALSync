@@ -177,8 +177,29 @@
     ]
   },
   "0.9.6": {
+    "AnimeXin": [
+      "https://animexin.vip/*"
+    ],
     "AsuraScans": [
       "https://asuratoon.com/*"
+    ],
+    "DisasterScans": [
+      "https://disasterscans.com/*"
+    ],
+    "FrixySubs": [
+      "https://frixysubs.pl/*"
+    ],
+    "LuminousScans": [
+      "https://luminousscans.gg/*"
+    ],
+    "MangasOrigines": [
+      "https://mangas-origines.fr/oeuvre*"
+    ],
+    "mangadenizi": [
+      "https://mangadenizi.net/*"
+    ],
+    "tmofans": [
+      "https://visortmo.com/*"
     ],
     "iframe": [
       "https://mcloud.bz/*",
