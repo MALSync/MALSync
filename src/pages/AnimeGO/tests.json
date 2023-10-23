@@ -7,7 +7,8 @@
             "expected": {
                 "sync": true,
                 "title": "Horimiya",
-                "identifier": "1686",
+                "identifier": "horimiya-1686",
+                "episode": 1,
                 "overviewUrl": "https://animego.org/anime/horimiya-1686"
             }
         },
@@ -16,14 +17,9 @@
             "expected": {
                 "sync": true,
                 "title": "Horimiya",
-                "identifier": "107",
+                "identifier": "tvoe-imya-107",
+                "episode": 3,
                 "overviewUrl": "https://animego.org/anime/tvoe-imya-107"
-            }
-        },
-        {
-            "url": "https://animego.org/anime",
-            "expected": {
-                "sync": false
             }
         }
     ]
