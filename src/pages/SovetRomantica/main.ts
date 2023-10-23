@@ -10,6 +10,9 @@ export const SovetRomantica: pageInterface = {
     if (j.$('meta[property~="og:video"]').length > 0) return true;
     return false;
   },
+  isOverviewPage(url) {
+    return false;
+  },
   getImage() {
     return $('meta[property~="ya:ovs:poster"]').attr('content');
   },
@@ -51,7 +54,7 @@ export const SovetRomantica: pageInterface = {
 };
 
 // For future, if API will be needed
-/* 
+/*
 async function apiCallGet(path: string) {
   con.log('SovetRomantica API Call:', path);
   const xhrResp = await api.request.xhr('GET', `https://service.sovetromantica.com/v1/${path}`);

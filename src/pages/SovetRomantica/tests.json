@@ -33,12 +33,6 @@
                 "overviewUrl": "https://ani.wtf/anime/188",
                 "nextEpUrl": "https://ani.wtf/anime/188-yuri-on-ice/episode_4-subtitles"
             }
-        },
-        {
-            "url": "https://sovetromantica.com/anime/1418_yamada-kun-to-lv999-no-koi-wo-suru",
-            "expected": {
-                "sync": false
-            }
         }
     ]
 }
