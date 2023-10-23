@@ -1,0 +1,6 @@
+{
+  "search": "https://hachi.moe/search?query={searchterm}",
+  "urls": {
+    "match": ["*://hachi.moe/*"]
+  }
+}
