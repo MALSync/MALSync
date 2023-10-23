@@ -1,7 +1,6 @@
 {
   "title": "AnimesVision",
   "url": "https://animes.vision/",
-  "skip": true, // geolock
   "testCases": [
     {
       // anime
@@ -9,7 +8,7 @@
       "expected": {
         "sync": true,
         "title": "Strike the Blood 3",
-        "identifier": "1046",
+        "identifier": 1046,
         "overviewUrl": "https://animes.vision/animes/strike-the-blood-3",
         "nextEpUrl": "https://animes.vision/animes/strike-the-blood-3/episodio-05/legendado",
         "episode": 4,
@@ -22,7 +21,7 @@
       "expected": {
         "sync": false,
         "title": "Strike the Blood 3",
-        "identifier": "1046",
+        "identifier": 1046,
         "uiSelector": true,
         "epList": {
           "5": "https://animes.vision/animes/strike-the-blood-3/episodio-05/legendado"
@@ -35,8 +34,8 @@
       "expected": {
         "sync": true,
         "title": "Mahouka Koukou no Rettousei Movie: Hoshi wo Yobu Shoujo",
-        "identifier": "703",
-        "overviewUrl": "https://animes.vision/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo",
+        "identifier": 703,
+        "overviewUrl": "https://animes.vision/filmes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo",
         "nextEpUrl": null,
         "episode": 1,
         "uiSelector": false
@@ -48,7 +47,7 @@
       "expected": {
         "sync": false,
         "title": "Mahouka Koukou no Rettousei Movie: Hoshi wo Yobu Shoujo",
-        "identifier": "703",
+        "identifier": 703,
         "uiSelector": true
       }
     },
@@ -58,7 +57,7 @@
       "expected": {
         "sync": true,
         "title": "Nanatsu no Taizai",
-        "identifier": "742",
+        "identifier": 742,
         "overviewUrl": "https://animes.vision/animes/nanatsu-no-taizai-dublado",
         "nextEpUrl": "https://animes.vision/animes/nanatsu-no-taizai-dublado/episodio-07/dublado",
         "episode": 6,
@@ -71,7 +70,7 @@
       "expected": {
         "sync": false,
         "title": "Nanatsu no Taizai",
-        "identifier": "742",
+        "identifier": 742,
         "uiSelector": true,
         "epList": {
           "5": "https://animes.vision/animes/nanatsu-no-taizai-dublado/episodio-05/dublado"
