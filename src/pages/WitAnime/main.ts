@@ -1,7 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
 export const WitAnime: pageInterface = {
-  domain: 'https://witanime.sbs',
+  domain: 'https://witanime.pics',
   languages: ['Arabic'],
   name: 'WitAnime',
   type: 'anime',
