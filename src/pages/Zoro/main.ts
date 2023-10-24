@@ -34,7 +34,7 @@ export const Zoro: pageInterface = {
       return jsonData.anime_id;
     },
     getOverviewUrl(url) {
-      return jsonData.series_url;
+      return jsonData.series_url.replace('watch/', '');
     },
     getEpisode(url) {
       return parseInt(jsonData.episode!);

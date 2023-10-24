@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Bentomanga: pageInterface = {
   name: 'Bentomanga',
-  domain: 'https://www.bentomanga.com',
+  domain: 'https://bentomanga.com',
   languages: ['French'],
   type: 'manga',
   isSyncPage(url) {

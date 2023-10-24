@@ -1,6 +1,0 @@
-{
-  "search": "https://hunlight-scans.info/comics?query={searchtermPlus}",
-  "urls": {
-    "match": ["*://hunlight-scans.info/*"]
-  }
-}

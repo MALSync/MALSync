@@ -1,29 +1,28 @@
 {
   "title": "mangadenizi",
-  "url": "https://mangadenizi.com/",
-  "offline": true,
+  "url": "https://www.mangadenizi.net/",
   "testCases": [
     {
-      "url": "https://mangadenizi.com/manga/one-piece/0769/2",
+      "url": "https://www.mangadenizi.net/manga/one-piece/0769/2",
       "expected": {
         "sync": true,
         "title": "One Piece",
         "identifier": "one-piece",
-        "overviewUrl": "https://mangadenizi.com/manga/one-piece",
+        "overviewUrl": "https://www.mangadenizi.net/manga/one-piece",
         "episode": 769,
-        "nextEpUrl": "https://mangadenizi.com/manga/one-piece/0770",
+        "nextEpUrl": "https://www.mangadenizi.net/manga/one-piece/0770",
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangadenizi.com/manga/one-piece",
+      "url": "https://www.mangadenizi.net/manga/one-piece",
       "expected": {
         "sync": false,
         "title": "One Piece",
         "identifier": "one-piece",
         "uiSelector": true,
         "epList": {
-          "826": "https://mangadenizi.com/manga/one-piece/0826"
+          "826": "https://www.mangadenizi.net/manga/one-piece/0826"
         }
       }
     }

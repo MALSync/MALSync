@@ -1,6 +1,7 @@
 {
   "title": "MangaPark",
   "url": "https://mangapark.net/",
+  "variables": ["__NEXT_DATA__"],
   "testCases": [
     {
       "url": "https://mangapark.net/comic/87224/her-summon/c83-en",
@@ -15,13 +16,13 @@
       }
     },
     {
-      "url": "https://mangapark.net/chapter/3389700",
+      "url": "https://mangapark.net/comic/38239/tiger-books/c1-en",
       "expected": {
         "sync": true,
         "title": "Tiger Books",
         "identifier": "38239",
         "overviewUrl": "https://mangapark.net/comic/38239/tiger-books",
-        "nextEpUrl": "https://mangapark.net/comic/38239/tiger-books/i3389701-en-v2-c1",
+        "nextEpUrl": "https://mangapark.net/comic/38239/tiger-books/c1.1-en",
         "episode": 1,
         "uiSelector": false
       }

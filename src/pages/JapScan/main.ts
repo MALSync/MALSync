@@ -75,10 +75,7 @@ export const JapScan: pageInterface = {
         con.error('404');
         return;
       }
-      if (
-        page.url.split('/')[3] === 'manga' ||
-        (page.url.split('/')[3] === 'lecture-en-ligne' && j.$('div#image').length)
-      ) {
+      if (page.url.split('/')[3] === 'manga' || page.url.split('/')[3] === 'lecture-en-ligne') {
         page.handlePage();
       }
     });

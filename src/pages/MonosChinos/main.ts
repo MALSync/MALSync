@@ -18,6 +18,8 @@ export const MonosChinos: pageInterface = {
         .first()
         .text()
         .replace(/(\. )?(\d+\s+)(Sub|Dub)(\s+Español)$/gi, '')
+        .replace(/-[^-]*$/gi, '')
+        .replace(/^ver/gi, '')
         .trim();
     },
     getIdentifier(url) {
@@ -42,7 +44,7 @@ export const MonosChinos: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j.$('[src$="/public/img/playarrowright.png"]').first().parent().attr('href');
+      const href = j.$('.derecha a').first().attr('href');
       if (href) {
         if (MonosChinos.sync.getEpisode(url) < MonosChinos.sync.getEpisode(href)) {
           return href;
