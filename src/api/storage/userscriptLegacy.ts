@@ -49,6 +49,10 @@ export const userscriptLegacy: storageInterface = {
     return message;
   },
 
+  langDirection() {
+    return 'ltr';
+  },
+
   assetUrl(filename) {
     return `https://raw.githubusercontent.com/MALSync/MALSync/master/assets/assets/${filename}`;
   },

@@ -62,6 +62,8 @@ const classes = computed(() => {
     }
   }
 
+  if (api.storage.langDirection() === 'rtl') cl.push('rtl');
+
   return cl.join(' ');
 });
 
