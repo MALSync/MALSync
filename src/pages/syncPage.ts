@@ -1046,7 +1046,7 @@ export class SyncPage {
     this.UILoaded = true;
     const wrapEnd = '</span>';
 
-    let ui = '<p id="malp">';
+    let ui = `<p id="malp" dir="${api.storage.langDirection()}">`;
     ui += `<span id="MalInfo">${api.storage.lang('Loading')}</span>`;
 
     ui +=
