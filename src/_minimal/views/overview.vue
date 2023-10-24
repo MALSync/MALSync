@@ -77,6 +77,7 @@
           <div
             v-dompurify-html="cleanDescription"
             class="description-html"
+            dir="auto"
             :class="{ preLine: !cleanDescription.includes('<br') }"
           />
         </Description>

@@ -152,8 +152,8 @@ if (properties.option) {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 100%;
-    margin-left: 15px;
+    inset-inline-start: 100%;
+    margin-inline-start: 15px;
     width: 40vw;
     max-width: 500px;
     border-radius: 10px;

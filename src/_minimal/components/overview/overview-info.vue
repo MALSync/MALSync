@@ -6,14 +6,14 @@
         <div class="type">{{ item.title }}</div>
         <div class="content">
           <template v-for="(link, index) in item.body" :key="link.text">
-            <MediaLink v-if="link.url" color="secondary" :href="link.url">
+            <MediaLink v-if="link.url" dir="auto" color="secondary" :href="link.url">
               {{ link.text }}
             </MediaLink>
-            <span v-else>
+            <span v-else dir="auto">
               {{ link.text }}
             </span>
             <span v-if="link.subtext" class="subtext">({{ link.subtext }})</span>
-            <span v-if="Number(index) + 1 < item.body.length">, </span>
+            <span v-if="Number(index) + 1 < item.body.length" dir="auto">, </span>
           </template>
         </div>
       </div>

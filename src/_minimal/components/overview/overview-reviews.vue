@@ -57,6 +57,7 @@
                 <div
                   v-dompurify-html:noMedia="cleanDescription(review.body.text)"
                   class="description-html"
+                  dir="auto"
                   :class="{
                     preLine: !(review.body.text.includes('<br') || review.body.text.includes('<p')),
                   }"
