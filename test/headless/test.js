@@ -292,6 +292,8 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   await page.evaluate(() => console.log(`Evaluating script`));
   const text = await page.evaluate(() => MalSyncTest());
 
+  if (OnlyPage) console.log(text);
+
   if (text.sync === 'cdn') {
     if (retry > 2) throw 'Max retries';
     log(block, `Retry ${text.type}`, 2);

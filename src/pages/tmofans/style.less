@@ -1,10 +1,18 @@
 @import './../pages';
 
-body:not(.dark-mode) #malp select option {
-  color: black !important;
-  background-color: white !important;
+@textColor: inherit;
+@activeEp: transparent;
+
+#malp {
+  .boxStyle(#fff);
+
+  margin: 1em 0;
 }
 
-body.dark-mode #malp * {
-  color: white;
+body.dark-mode #malp {
+  .boxStyle(#343a40);
+}
+
+.mal-sync-active {
+  border-left: 5px solid #2957ba !important;
 }
