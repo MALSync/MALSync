@@ -310,7 +310,7 @@ const totalLoading = computed(() => {
 
     .header-link {
       display: none;
-      margin-right: 0.5em;
+      margin-inline-end: 0.5em;
       color: var(--cl-secondary);
     }
 
@@ -325,7 +325,7 @@ const totalLoading = computed(() => {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        right: 0;
+        inset-inline-end: 0;
       }
     }
 

@@ -62,8 +62,6 @@ const classes = computed(() => {
     }
   }
 
-  if (api.storage.langDirection() === 'rtl') cl.push('rtl');
-
   return cl.join(' ');
 });
 
@@ -71,6 +69,20 @@ watch(
   classes,
   value => {
     rootHtml.className = value;
+  },
+  {
+    immediate: true,
+  },
+);
+
+const direction = computed(() => {
+  return api.storage.langDirection() === 'rtl' ? 'rtl' : '';
+});
+
+watch(
+  direction,
+  value => {
+    rootHtml.setAttribute('dir', value);
   },
   {
     immediate: true,

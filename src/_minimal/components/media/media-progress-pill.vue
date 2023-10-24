@@ -47,9 +47,9 @@ const hasNewEps = computed(() => {
   &.medium,
   &.large {
     font-size: @small-text;
-    margin-left: 3px;
+    margin-inline-start: 3px;
     &.large {
-      margin-left: 6px;
+      margin-inline-start: 6px;
     }
   }
 

@@ -29,7 +29,7 @@ defineProps({
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  margin-right: 0.5em;
+  margin-inline-end: 0.5em;
 
   &.relative {
     min-width: 1em;

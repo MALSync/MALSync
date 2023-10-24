@@ -130,13 +130,13 @@ if (properties.option) {
 }
 
 .infoLink {
-  margin-left: 10px;
+  margin-inline-start: 10px;
 }
 
 .tooltip {
   cursor: help;
   font-size: @normal-text;
-  margin-left: 5px;
+  margin-inline-start: 5px;
   vertical-align: bottom;
   position: relative;
 
