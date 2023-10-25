@@ -876,8 +876,6 @@ module.exports = {
   },
   // otakuanimes
   otakuanimes: {
-    match: [
-      '*://otakuanimess.com/episodio/*', 
-      '*://ns*'],
+    match: ['*://ns*/*/*/*/*'],
   },
 };
