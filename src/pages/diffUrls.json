@@ -185,13 +185,5 @@
       "https://strawberriesporail.com/e/*",
       "https://timberwoodanotia.com/e/*"
     ]
-  },
-  "0.9.7": {
-    "OtakuAnimes": [
-      "https://otakuanimess.com/episodio/*"
-    ],
-    "iframe": [
-      "https://ns*"
-    ]
   }
 }
