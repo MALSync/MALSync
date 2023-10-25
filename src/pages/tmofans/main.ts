@@ -2,58 +2,54 @@ import { pageInterface } from '../pageInterface';
 
 export const tmofans: pageInterface = {
   name: 'tmofans',
-  domain: ['https://lectortmo.com', 'https://tmofans.com'],
+  domain: ['https://visortmo.com', 'https://lectortmo.com', 'https://tmofans.com'],
   languages: ['Spanish'],
   type: 'manga',
   isSyncPage(url) {
-    if (
-      url.split('/')[3] === 'viewer' &&
-      url.split('/')[4] !== undefined &&
-      url.split('/')[4].length > 0
-    ) {
-      return true;
-    }
-    return false;
+    return Boolean(j.$('.viewer-container').length);
+  },
+  isOverviewPage(url) {
+    return Boolean(utils.urlPart(url, 3) === 'library' && utils.urlPart(url, 4));
   },
   sync: {
     getTitle(url) {
-      return j.$('#app > section:nth-child(2) > div > div > h1').text().trim();
+      return j.$('h1').first().text().trim();
     },
     getIdentifier(url) {
-      const identifierAnchorHref = j
-        .$('nav.navbar > div > div:nth-child(2) > a')
-        .last()
-        .attr('href');
-
-      if (!identifierAnchorHref) return '';
-
-      return identifierAnchorHref.split('/')[6];
+      return tmofans.overview!.getIdentifier(tmofans.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      return j.$('nav.navbar > div > div:nth-child(2) > a').last().attr('href') || '';
+      const path = j.$('.nav-link[href*="library"]').last().attr('href');
+      return path ? utils.absoluteLink(path, tmofans.domain) : '';
     },
     getEpisode(url) {
-      const episodePart = utils
-        .getBaseText($('#app > section:nth-child(2) > div > div > h2').first())
-        .trim();
-      if (episodePart.length) {
-        const temp = episodePart.match(/Capítulo *\d*/gim);
-        if (temp !== null) {
-          return temp[0].replace(/\D+/g, '');
-        }
-      }
-      return '';
+      const episodePart = utils.getBaseText($('#app h2').first()).trim();
+      return chapter(episodePart);
     },
   },
   overview: {
     getTitle(url) {
-      return utils.getBaseText($('h1.element-title.my-2').first()).trim();
+      return utils.getBaseText($('.element-title').first()).trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 6) || '';
     },
     uiSelector(selector) {
-      j.$('header.container-fluid').first().after(j.html(selector));
+      j.$('main .container').first().prepend(j.html(selector));
+    },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('#chapters .upload-link');
+      },
+      elementUrl(selector) {
+        const link = selector.find('.chapter-list-element .fa-play').first().parent().attr('href');
+        return link ? utils.absoluteLink(link, tmofans.domain) : '';
+      },
+      elementEp(selector) {
+        const text = selector.find('.btn-collapse').first().text();
+        return chapter(text);
+      },
     },
   },
   init(page) {
@@ -61,14 +57,17 @@ export const tmofans: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      if (
-        (page.url.split('/')[3] === 'library' &&
-          page.url.split('/')[4] !== undefined &&
-          page.url.split('/')[4].length > 0) ||
-        page.url.split('/')[3] === 'viewer'
-      ) {
-        page.handlePage();
-      }
+      page.handlePage();
     });
   },
 };
+
+function chapter(episodePart: string): number {
+  if (episodePart.length) {
+    const temp = episodePart.match(/Capítulo *\d*/gim);
+    if (temp !== null) {
+      return Number(temp[0].replace(/\D+/g, ''));
+    }
+  }
+  return NaN;
+}

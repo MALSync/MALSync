@@ -1,0 +1,38 @@
+{
+    "title": "SovetRomantica",
+    "url": "https://sovetromantica.com/",
+    "testCases": [
+        {
+            "url": "https://sovetromantica.com/anime/1289-komi-san-wa-comyushou-desu",
+            "expected": {
+                "sync": true,
+                "title": "Komi-san wa, Comyushou desu.",
+                "identifier": "1289",
+                "overviewUrl": "https://sovetromantica.com/anime/1289",
+                "episode": 1,
+                "nextEpUrl": "https://sovetromantica.com/anime/1289-komi-san-wa-comyushou-desu/episode_2-subtitles"
+            }
+        },
+        {
+            "url": "https://sovetromantica.com/anime/1182-horimiya/episode_11-subtitles",
+            "expected": {
+                "sync": true,
+                "title": "Horimiya",
+                "identifier": "1182",
+                "overviewUrl": "https://sovetromantica.com/anime/1182",
+                "episode": 11
+            }
+        },
+        {
+            "url": "https://ani.wtf/anime/188-yuri-on-ice/episode_3-subtitles",
+            "expected": {
+                "sync": true,
+                "title": "Yuri!!! on Ice",
+                "identifier": "188",
+                "episode": 3,
+                "overviewUrl": "https://ani.wtf/anime/188",
+                "nextEpUrl": "https://ani.wtf/anime/188-yuri-on-ice/episode_4-subtitles"
+            }
+        }
+    ]
+}

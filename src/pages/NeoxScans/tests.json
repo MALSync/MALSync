@@ -3,27 +3,14 @@
   "url": "https://neoxscans.com",
   "testCases": [
     {
-      "url": "https://neoxscans.com/manga/sssclass-3097_1_4-revival-hunter_1/cap-18/",
+      "url": "https://neoxscans.com/manga/tecnica-do-deus-marcial-estelar/cap-25/",
       "expected": {
         "sync": true,
-        "title": "SSS-Class Revival Hunter",
-        "identifier": "sssclass-3097_1_4-revival-hunter_1",
-        "overviewUrl": "https://neoxscans.com/manga/sssclass-3097_1_4-revival-hunter_1/",
-        "nextEpUrl": "https://neoxscans.com/manga/sssclass-3097_1_4-revival-hunter_1/cap-19/",
-        "episode": 18,
+        "title": "Técnica do Deus Marcial Estelar",
+        "identifier": "tecnica-do-deus-marcial-estelar",
+        "overviewUrl": "https://neoxscans.com/manga/tecnica-do-deus-marcial-estelar/",
+        "episode": 25,
         "uiSelector": false
-      }
-    },
-    {
-      "url": "https://neoxscans.com/manga/sssclass-3097_1_4-revival-hunter_1/",
-      "expected": {
-        "sync": false,
-        "title": "SSS-Class Revival Hunter",
-        "identifier": "sssclass-3097_1_4-revival-hunter_1",
-        "uiSelector": true,
-        "epList": {
-          "25": "https://neoxscans.com/manga/sssclass-3097_1_4-revival-hunter_1/cap-25/"
-        }
       }
     }
   ]

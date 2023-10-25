@@ -1,36 +1,35 @@
 {
   "title": "aniflix",
-  "url": "https://www2.aniflix.tv/",
-  "enabled": false,
+  "url": "https://aniflix.cc/",
   "testCases": [
     {
-      "url": "https://www2.aniflix.tv/show/assassination-classroom/ger-sub/season/1/episode/12",
+      "url": "https://aniflix.cc/show/ansatsu-kyoushitsu/ger-sub/season/1/episode/12",
       "expected": {
         "sync": true,
-        "title": "Assassination Classroom",
-        "identifier": "assassination-classroom?s=1",
-        "overviewUrl": "https://www2.aniflix.tv/show/assassination-classroom",
+        "title": "Ansatsu Kyoushitsu",
+        "identifier": "ansatsu-kyoushitsu?s=1",
+        "overviewUrl": "https://aniflix.cc/show/ansatsu-kyoushitsu",
         "episode": 12,
         "uiSelector": false
       }
     },
     {
-      "url": "https://www2.aniflix.tv/show/assassination-classroom/ger-sub/season/2/episode/15",
+      "url": "https://aniflix.cc/show/ansatsu-kyoushitsu/ger-sub/season/2/episode/15",
       "expected": {
         "sync": true,
-        "title": "Assassination Classroom season 2",
-        "identifier": "assassination-classroom?s=2",
-        "overviewUrl": "https://www2.aniflix.tv/show/assassination-classroom",
+        "title": "Ansatsu Kyoushitsu season 2",
+        "identifier": "ansatsu-kyoushitsu?s=2",
+        "overviewUrl": "https://aniflix.cc/show/ansatsu-kyoushitsu",
         "episode": 15,
         "uiSelector": false
       }
     },
     {
-      "url": "https://www2.aniflix.tv/show/assassination-classroom",
+      "url": "https://aniflix.cc/show/ansatsu-kyoushitsu",
       "expected": {
         "sync": false,
-        "title": "Assassination Classroom",
-        "identifier": "assassination-classroom?s=1",
+        "title": "Ansatsu Kyoushitsu",
+        "identifier": "ansatsu-kyoushitsu?s=1",
         "uiSelector": true
       }
     }

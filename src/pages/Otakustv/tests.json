@@ -3,7 +3,7 @@
   "url": "https://www.otakustv.com/",
   "testCases": [
     {
-      "url": "https://www.otakustv.com/anime/high-score-girl/",
+      "url": "https://www1.otakustv.com/anime/high-score-girl/",
       "expected": {
         "sync": false,
         "title": "High Score Girl",
@@ -15,7 +15,7 @@
       }
     },
     {
-      "url": "https://www.otakustv.com/anime/high-score-girl/round-7/",
+      "url": "https://www1.otakustv.com/anime/high-score-girl/round-7/",
       "expected": {
         "sync": true,
         "title": "High Score Girl",
@@ -30,15 +30,15 @@
       }
     },
     {
-      "url": "https://www.otakustv.com/anime/kizumonogatari-i-tekketsu-hen/pelicula/",
+      "url": "https://www1.otakustv.com/anime/kizumonogatari-i-tekketsu-hen-9zmwttpv/pelicula",
       "expected": {
         "sync": true,
         "title": "Kizumonogatari I: Tekketsu-hen",
-        "identifier": "kizumonogatari-i-tekketsu-hen",
+        "identifier": "kizumonogatari-i-tekketsu-hen-9zmwttpv",
         "episode": 1,
-        "overviewUrl": "https://www.otakustv.com/anime/kizumonogatari-i-tekketsu-hen",
+        "overviewUrl": "https://www1.otakustv.com/anime/kizumonogatari-i-tekketsu-hen-9zmwttpv",
         "nextEpUrl": "",
-        "uiSelector": false,
+        "uiSelector": false
       }
     }
   ]

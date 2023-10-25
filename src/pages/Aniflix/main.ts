@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Aniflix: pageInterface = {
   name: 'Aniflix',
-  domain: 'https://www1.aniflix.tv',
+  domain: 'https://aniflix.cc',
   languages: ['German'],
   type: 'anime',
   isSyncPage(url) {

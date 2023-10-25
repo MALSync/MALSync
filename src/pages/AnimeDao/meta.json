@@ -1,6 +1,0 @@
-{
-  "search": "https://animedao.to/search/?search={searchtermPlus}",
-  "urls": {
-    "match": ["*://animedao.to/*"]
-  }
-}

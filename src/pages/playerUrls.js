@@ -9,7 +9,7 @@ module.exports = {
     match: ['*://*.mp4upload.com/*'],
   },
   mcloud: {
-    match: ['*://*.mcloud.to/*', '*://*.mcloud2.to/*', '*://*.mzcloud.life/*'],
+    match: ['*://*.mcloud.to/*', '*://*.mcloud2.to/*', '*://*.mzcloud.life/*', '*://*.mcloud.bz/*'],
   },
   prettyfast: {
     match: ['*://*.prettyfast.to/*'],
@@ -222,6 +222,14 @@ module.exports = {
   streamium: {
     match: ['*://*.streamium.xyz/*'],
   },
+  // AnimeGO
+  kodik: {
+    match: ['*://kodik.info/*'],
+  },
+  // AnimeGO
+  aniboom: {
+    match: ['*://aniboom.one/*'],
+  },
   // kickassanime
   animopacestream: {
     match: ['*://animo-pace-stream.io/*'],
@@ -277,10 +285,6 @@ module.exports = {
   // OtakuFR
   letsupload: {
     match: ['*://*.letsupload.co/*/mediaplayer/*/_embed.php?*'],
-  },
-  // Samehadaku
-  mangakyo: {
-    match: ['*://player.mangakyo.me/stream/embed.php*'],
   },
   // 9anime
   streamtape: {
@@ -532,18 +536,6 @@ module.exports = {
       // auto-gogodood-replace-dont-remove
     ],
   },
-  // animedao.to
-  vcdn: {
-    match: ['*://vcdn.space/v/*', '*://vcdn-stream.xyz/v/*'],
-  },
-  // animedao.to
-  pd: {
-    match: ['*://playdrive.xyz/*'],
-  },
-  // animedao.to
-  mplayer: {
-    match: ['*://truepoweroflove.com/*'],
-  },
   // otakustv.com
   youtubeEmbed: {
     match: ['*://youtube.googleapis.com/embed/*drive.google.com*'],
@@ -657,6 +649,7 @@ module.exports = {
       '*://valeronevijao.com/e/*',
       '*://strawberriesporail.com/e/*',
       '*://timberwoodanotia.com/e/*',
+      '*://phenomenalityuniform.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -846,10 +839,6 @@ module.exports = {
   toonvip: {
     match: ['*://mb.toonanime.xyz/dist/*'],
   },
-  // animedao
-  animedao: {
-    match: ['*://animedao.to/redirect/*'],
-  },
   // aniyan
   aniyan: {
     match: ['*://aniyan.net/jwplayer/*'],
@@ -877,5 +866,20 @@ module.exports = {
   // otakuanimes
   otakuanimes: {
     match: ['*://ns*/*/*/*/*'],
+  // WitAnime
+  yonaplay: {
+    match: ['*://yonaplay.org/*'],
+  },
+  // WitAnime
+  fourshared: {
+    match: ['*://*.4shared.com/*'],
+  },
+  // WitAnime
+  videa: {
+    match: ['*://*.videa.hu/*'],
+  },
+  // WitAnime
+  soraplay: {
+    match: ['*://*.soraplay.xyz/*'],
   },
 };
