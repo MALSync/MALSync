@@ -650,6 +650,7 @@ module.exports = {
       '*://strawberriesporail.com/e/*',
       '*://timberwoodanotia.com/e/*',
       '*://phenomenalityuniform.com/e/*',
+      '*://prefulfilloverdoor.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
