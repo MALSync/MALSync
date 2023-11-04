@@ -264,12 +264,15 @@
       "https://otakunice.com/*",
       "https://sucrecipes.com/*",
       "https://recetasviaje.com/*",
-      "https://animalslegacy.com/*"
+      "https://animalslegacy.com/*",
+      "https://worldcuisineis.com/*",
+      "https://eligeunnombre.com/*"
     ],
     "iframe": [
       "https://mcloud.bz/*",
       "https://kodik.info/*",
       "https://aniboom.one/*",
+      "https://vidplay.lol/e/*",
       "https://valeronevijao.com/e/*",
       "https://strawberriesporail.com/e/*",
       "https://timberwoodanotia.com/e/*",
