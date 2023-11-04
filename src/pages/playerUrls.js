@@ -489,6 +489,7 @@ module.exports = {
       '*://vizcloud.co/embed/*',
       '*://vizcloud.co/e/*',
       '*://vidplay.site/e/*',
+      '*://vidplay.lol/e/*',
     ],
   },
   // gogo
