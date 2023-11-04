@@ -952,5 +952,9 @@
     "settings_miniMAL_minimizeBigPopup_tooltip": {
         "message": "يصغر من مربعات المطالبة الكبيرة في MAL-Sync، والتي من شأنها أن تغطي معظم الشاشة، خلف نقرة واحدة.",
         "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "overview_Streaming": {
+        "message": "شاهد",
+        "description": "Header of the streaming link section of the popup anime overview"
     }
 }
