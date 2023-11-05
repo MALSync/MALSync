@@ -48,7 +48,6 @@ export const settingsObj = {
       '9anime',
       'Crunchyroll',
       'Gogoanime',
-      'Twistmoe',
       'Mangadex',
       'MangaNato',
       'MangaFox',

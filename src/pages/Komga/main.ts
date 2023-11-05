@@ -112,18 +112,19 @@ export const Komga: pageInterface = {
             con.m('Book').log(jn);
             chapter.chapter = jn.metadata.number;
             chapter.pid = jn.seriesId;
+            if (isVolume(jn)) {
+              chapter.mode = 'volume';
+              page.strongVolumes = true;
+            }
             return apiCall(`/api/v1/series/${jn.seriesId}`);
           })
           .then(res => {
             const jn = JSON.parse(res.responseText);
             con.m('Series').log(jn);
             chapter.name = jn.name;
-            if (jn.metadata && jn.metadata.tags && jn.metadata.tags.length) {
-              const lowerArray = jn.metadata.tags.map(el => el.toLowerCase());
-              if (lowerArray.includes('volume') || lowerArray.includes('volumes')) {
-                chapter.mode = 'volume';
-                page.strongVolumes = true;
-              }
+            if (isVolume(jn)) {
+              chapter.mode = 'volume';
+              page.strongVolumes = true;
             }
             con.m('Object').log(chapter);
             page.reset();
@@ -132,6 +133,14 @@ export const Komga: pageInterface = {
       } else {
         page.reset();
       }
+    }
+
+    function isVolume(jn) {
+      if (jn.metadata && jn.metadata.tags && jn.metadata.tags.length) {
+        const lowerArray = jn.metadata.tags.map(el => el.toLowerCase());
+        if (lowerArray.includes('volume') || lowerArray.includes('volumes')) return true;
+      }
+      return false;
     }
   },
 };

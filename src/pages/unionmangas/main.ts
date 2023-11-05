@@ -1,7 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
 export const unionmangas: pageInterface = {
-  name: 'unionmangas',
+  name: 'Union Mangás',
   domain: ['https://unionleitor.top', 'https://unionmangas.top'],
   languages: ['Portuguese'],
   type: 'manga',

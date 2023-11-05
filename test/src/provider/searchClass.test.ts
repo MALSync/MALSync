@@ -423,23 +423,6 @@ describe('Full Search', function() {
     expect(result.provider).equal('firebase');
   });
 
-  it('Not Existing', async function() {
-    // TODO: Reimplement
-    return;
-    this.timeout(10000);
-    const searchObj = new SearchClass(
-      'No Game No Life',
-      'anime',
-      'Something-that-does-not-exist',
-    );
-    searchObj.setPage({
-      database: 'Twistmoe',
-      type: 'anime',
-    });
-    const result = await searchObj.searchForIt();
-    expect(result.provider).equal('mal');
-  });
-
   it('Not Found', async function() {
     this.timeout(10000);
     const searchObj = new SearchClass(
