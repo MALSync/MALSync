@@ -1262,5 +1262,9 @@
     "settings_presenceShowMalsync": {
         "message": "Pokaż Mal-Sync w tytule prezentacji zamiast anime/mangi",
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
+    },
+    "next": {
+        "message": "Następny",
+        "description": "Next button"
     }
 }
