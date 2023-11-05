@@ -13,6 +13,7 @@ import { video } from './settings-structure-video';
 import { minimal } from './settings-structure-minimal';
 import { estimation } from './settings-structure-estimation';
 import { links } from './settings-structure-links';
+import { notifications } from './settings-structure-notifications';
 
 export const structure: ConfObj[] = [
   {
@@ -83,6 +84,15 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: estimation,
+  },
+  {
+    key: 'notifiactionSection',
+    title: () => api.storage.lang('settings_Notifications'),
+    props: {
+      icon: 'notifications',
+    },
+    component: SettingsGroup,
+    children: notifications,
   },
   {
     key: 'customDomains',

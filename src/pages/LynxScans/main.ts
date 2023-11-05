@@ -1,95 +1,85 @@
 import { pageInterface } from '../pageInterface';
 
-export const LynxScans: pageInterface = getInter();
-
-export function getInter(): pageInterface {
-  let thisSelf;
-  /* eslint-disable-next-line prefer-const */
-  thisSelf = {
-    name: 'LynxScans',
-    domain: 'https://lynxscans.com',
-    languages: ['English'],
-    type: 'manga',
-    isSyncPage(url) {
-      if (url.split('/')[3] === 'comics' && url.split('/')[5] >= '1') {
-        return true;
+export const LynxScans: pageInterface = {
+  name: 'LynxScans',
+  domain: 'https://lynxscans.com',
+  languages: ['English'],
+  type: 'manga',
+  isSyncPage(url) {
+    return utils.urlPart(url, 3) !== 'comics';
+  },
+  isOverviewPage(url) {
+    return utils.urlPart(url, 3) === 'comics' && Boolean(utils.urlPart(url, 4));
+  },
+  sync: {
+    getTitle(url) {
+      return j.$('.ts-breadcrumb [href*="/comics/"]').first().text().trim();
+    },
+    getIdentifier(url) {
+      return utils.urlPart(LynxScans.sync.getOverviewUrl(url), 4);
+    },
+    getOverviewUrl(url) {
+      const link = j.$('.ts-breadcrumb [href*="/comics/"]').first().attr('href');
+      return link ? utils.absoluteLink(link, LynxScans.domain) : '';
+    },
+    getEpisode(url) {
+      const chapterPart = utils.urlPart(url, 3);
+      const chapter = chapterPart.match(/(\d+)(-\d+)?$/i);
+      if (chapter) {
+        return Number(chapter[1]);
       }
-      return false;
+
+      return 0;
     },
-    sync: {
-      getTitle(url) {
-        return j.$('.d-flex .heading h6.text-highlight').text().trim();
-      },
-      getIdentifier(url) {
-        return url.split('/')[4];
-      },
-      getOverviewUrl(url) {
-        return (
-          j
-            .$('div.container.py-5 div#pages-container div.d-flex div.btn-group a.btn')
-            .attr('href') || ''
-        );
-      },
-      getEpisode(url) {
-        return Number(utils.urlPart(url, 6));
-      },
-      getVolume(url) {
-        return Number(url.split('/')[5]);
-      },
-      nextEpUrl(url) {
-        return j
-          .$(
-            "div#content.flex div.container.py-5 div#pages-container div.d-flex a:contains('Next')",
-          )
-          .attr('href');
-      },
+    getVolume(url) {
+      const chapterPart = utils.urlPart(url, 3);
+      const vol = chapterPart.match(/vol(ume)?-(\d+)/i);
+      if (vol) {
+        return Number(vol[2]);
+      }
+
+      return 0;
     },
-    overview: {
-      getTitle(url) {
-        return j.$('.d-flex .heading h5.text-highlight').text().trim();
+    nextEpUrl(url) {
+      return j.$('.nextprev .ch-next-btn:not(".disabled")').attr('href');
+    },
+  },
+  overview: {
+    getTitle(url) {
+      return j.$('.entry-title').first().text().trim();
+    },
+    getIdentifier(url) {
+      return utils.urlPart(url, 4);
+    },
+    uiSelector(selector) {
+      j.$('.info-desc')
+        .first()
+        .after(j.html(`<div class="bixbox" id="malthing">${selector}</div>`));
+    },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('#chapterlist li');
       },
-      getIdentifier(url) {
-        return utils.urlPart(url, 4);
+      elementUrl(selector) {
+        const link = selector.find('a').first().attr('href');
+        return link ? utils.absoluteLink(link, LynxScans.domain) : '';
       },
-      uiSelector(selector) {
-        j.$('div.col-lg-9.col-md-8.col-xs-12.text-muted div.row.py-2')
-          .first()
-          .before(
-            j.html(
-              `<div id= "MALSyncheading" class="heading"> <h6 class="text-highlight">MAL-Sync</h6></div><div id="malthing">${selector}</div>`,
-            ),
-          );
-      },
-      list: {
-        offsetHandler: false,
-        elementsSelector() {
-          return j.$('div.list-item.col-sm-3');
-        },
-        elementUrl(selector) {
-          return selector.find('a').first().attr('href') || '';
-        },
-        elementEp(selector) {
-          return selector.find('a').first().attr('href').split('/')[6];
-        },
+      elementEp(selector) {
+        return LynxScans.sync.getEpisode(LynxScans.overview!.list!.elementUrl!(selector));
       },
     },
-    init(page) {
-      api.storage.addStyle(
-        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-      );
-      j.$(document).ready(function () {
-        if (document.title.includes('Not Found')) {
-          con.error('404');
-          return;
-        }
-        if (
-          page.url.split('/')[3] === 'comics' &&
-          (page.url.split('/').length === 5 || page.url.split('/').length === 7)
-        ) {
-          page.handlePage();
-        }
-      });
-    },
-  };
-  return thisSelf;
-}
+  },
+  init(page) {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
+      if (document.title.includes('Not Found')) {
+        con.error('404');
+        return;
+      }
+      page.handlePage();
+    });
+  },
+};

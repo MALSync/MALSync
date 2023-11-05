@@ -2,11 +2,10 @@
   "urls": {
     "match": [
       "*://*.kaas.am/*",
-      "*://*.kickassanime.io/anime/*",
-      "*://*.kickassanime.ru/anime/*",
-      "*://*.kickassanime.rs/anime/*",
-      "*://*.kickassanime.lol/anime/*",
-      "*://*.kickassanime.ro/anime/*"
+      "*://*.kaas.ro/*",
+      "*://*.kaas.to/*",
+      "*://*.kickassanime.ro/*",
+      "*://*.kickassanime.am/*"
     ]
   }
 }

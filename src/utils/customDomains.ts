@@ -1,14 +1,14 @@
 import { domainType } from '../background/customDomain';
 import { hasDomainPermission } from './manifest';
 import { greaterOrEqualCurrentVersion } from './version';
-import { pages } from '../pages/pages';
+import { getPages } from './quicklinksBuilder';
 
 export function getPageOptions() {
   const options = [{ key: 'iframe', title: 'Video Iframe' }];
-  Object.keys(pages).forEach(key => {
+  getPages().forEach(page => {
     options.push({
-      key,
-      title: pages[key].name,
+      key: page.key,
+      title: page.name,
     });
   });
   return options;
@@ -107,6 +107,7 @@ function getOrigins(permissions: domainType[]) {
 }
 
 export async function requestPermissions(permissions: domainType[]) {
+  if (!sessionSupportsPermissions()) throw new Error('BadPermissionSession');
   return new Promise(resolve => {
     con.m('Request Permissions').log(getOrigins(permissions));
     chrome.permissions.request(
@@ -122,7 +123,12 @@ export async function requestPermissions(permissions: domainType[]) {
   });
 }
 
+export function sessionSupportsPermissions() {
+  return typeof chrome.permissions !== 'undefined';
+}
+
 export async function checkPermissions(permissions: domainType[]): Promise<boolean> {
+  if (!sessionSupportsPermissions()) throw new Error('BadPermissionSession');
   return new Promise(resolve => {
     chrome.permissions.contains(
       {

@@ -1,12 +1,12 @@
 <template>
-  <label class="checkbox">
+  <label class="checkbox" @keydown.enter="$el.click()">
     <input v-model="picked" class="checkbox-input" type="checkbox" />
     <span class="slider"></span>
   </label>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps({
   modelValue: {
@@ -17,17 +17,14 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-const picked = ref(props.modelValue);
-watch(picked, value => {
-  emit('update:modelValue', value);
-});
-
-watch(
-  () => props.modelValue,
-  value => {
-    picked.value = value;
+const picked = computed({
+  get() {
+    return props.modelValue;
   },
-);
+  set(value) {
+    emit('update:modelValue', value);
+  },
+});
 </script>
 
 <style lang="less" scoped>

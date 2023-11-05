@@ -967,39 +967,9 @@
         "message": "Sila aktifkan pop-up di laman web ini",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Dikemaskini ke versi $Version$ $Link$CHANGELOG$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Terima kasih kerana telah memasang MAL-Sync",
         "description": "Update version - Text 1"
-    },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Sertai komuniti kami, dapatkan bantuan dan cadangkan ciri baharu",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Lihat kod sumber terbuka kami",
-        "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Langgan senarai penapis (untuk pengguna uBlock)",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Sila pilih pangkalan data anime yang akan anda gunakan",
@@ -1417,17 +1387,9 @@
         "message": "Lihat Manga",
         "description": "Discord view manga button"
     },
-    "settings_crash_report": {
-        "message": "Hantar laporan ranap",
-        "description": "If to send crash reports"
-    },
     "settings_filler": {
         "message": "Semak episod pengisi/rekap",
         "description": "Option to enable filler checking"
-    },
-    "settings_crash_report_text": {
-        "message": "Boleh membantu membetulkan pepijat. Tiada data sensitif akan dihantar.",
-        "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
         "message": "Episod ini telah ditandakan sebagai pengisi pada MyAnimeList, adakah anda mahu melangkau?",

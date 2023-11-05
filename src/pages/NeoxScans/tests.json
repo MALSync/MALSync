@@ -1,0 +1,17 @@
+{
+  "title": "NeoxScans",
+  "url": "https://neoxscans.com",
+  "testCases": [
+    {
+      "url": "https://neoxscans.com/manga/tecnica-do-deus-marcial-estelar/cap-25/",
+      "expected": {
+        "sync": true,
+        "title": "Técnica do Deus Marcial Estelar",
+        "identifier": "tecnica-do-deus-marcial-estelar",
+        "overviewUrl": "https://neoxscans.com/manga/tecnica-do-deus-marcial-estelar/",
+        "episode": 25,
+        "uiSelector": false
+      }
+    }
+  ]
+}

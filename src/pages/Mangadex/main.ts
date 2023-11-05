@@ -6,6 +6,10 @@ const { asyncWaitUntilTrue: awaitUi, reset: resetAwaitUi } = utils.getAsyncWaitU
   () => j.$(uiSelec).length,
 );
 
+const { asyncWaitUntilTrue: awaitReader, reset: resetawaitReader } = utils.getAsyncWaitUntilTrue(
+  () => j.$('.md--reader-pages img').length,
+);
+
 let listUpdate: number;
 
 const mangaData = {
@@ -181,6 +185,7 @@ export const Mangadex: pageInterface = {
 
     async function check() {
       resetAwaitUi();
+      resetawaitReader();
       clearInterval(listUpdate);
       if (
         !Mangadex.isSyncPage(window.location.href) &&
@@ -199,6 +204,7 @@ export const Mangadex: pageInterface = {
         chapterData.volume = chapter.data.attributes.volume;
         chapterData.translatedLanguage = chapter.data.attributes.translatedLanguage;
         manga.data = chapter.data.relationships.find(relation => relation.type === 'manga');
+        await awaitReader();
       }
       if (Mangadex.isOverviewPage!(window.location.href)) {
         const id = utils.urlPart(window.location.href, 4);

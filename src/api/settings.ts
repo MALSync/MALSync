@@ -45,7 +45,7 @@ export const settingsObj = {
     loadPTWForProgress: false,
 
     quicklinks: [
-      '9anime',
+      'Aniwave',
       'Crunchyroll',
       'Gogoanime',
       'Mangadex',
@@ -54,7 +54,7 @@ export const settingsObj = {
       'MangaSee',
       'MangaFire',
       'YugenAnime',
-      'Zoro',
+      'AniWatch',
       'Funimation',
       'Hulu',
       'Netflix',
@@ -63,7 +63,6 @@ export const settingsObj = {
       'VIZ',
       'MangaPlus',
       'MangaReader',
-      'marin',
       'ComicK',
     ],
     quicklinksPosition: 'default',
@@ -87,6 +86,7 @@ export const settingsObj = {
     progressIntervalDefaultManga: 'en/sub',
     progressNotificationsAnime: true,
     progressNotificationsManga: true,
+    notificationsSticky: true,
 
     bookMarksList: false,
 

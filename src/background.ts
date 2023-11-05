@@ -6,9 +6,6 @@ import { initCustomDomain, cleanupCustomDomains } from './background/customDomai
 import { sendNotification } from './background/notifications';
 import { upgradewWizzards } from './background/upgradeWizzards';
 import { initDatabase, databaseRequest } from './background/database';
-import { initShark } from './utils/shark';
-
-initShark();
 
 try {
   initSyncTags();
@@ -81,14 +78,14 @@ function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) 
         for (const key in message.url.headers) {
           xhr.setRequestHeader(key, message.url.headers[key]);
         }
-        if (message.url.url.includes('malsync.moe')) {
+        if (message.url.url.includes('malsync.moe') || message.url.url.includes('simkl.com')) {
           xhr.setRequestHeader('version', api.storage.version());
           xhr.setRequestHeader('type', 'addon');
         }
         xhr.send(message.url.data);
       } else {
         xhr.open(message.method, message.url, true);
-        if (message.url.includes('malsync.moe')) {
+        if (message.url.includes('malsync.moe') || message.url.includes('simkl.com')) {
           xhr.setRequestHeader('version', api.storage.version());
           xhr.setRequestHeader('type', 'addon');
         }

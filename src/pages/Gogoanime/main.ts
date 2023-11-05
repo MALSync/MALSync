@@ -2,7 +2,12 @@ import { pageInterface } from '../pageInterface';
 
 export const Gogoanime: pageInterface = {
   name: 'Gogoanime',
-  domain: ['https://gogoanime.tv', 'https://gogoanimes.co', 'https://animego.to'],
+  domain: [
+    'https://gogoanime.tv',
+    'https://gogoanimes.co',
+    'https://gogoanimehd.io',
+    'https://gogoanime3.net',
+  ],
   database: 'Gogoanime',
   languages: ['English'],
   type: 'anime',

@@ -15,8 +15,8 @@ type ZoroSyncData = {
 let jsonData: ZoroSyncData;
 
 export const Zoro: pageInterface = {
-  name: 'Zoro',
-  domain: 'https://zoro.to',
+  name: 'AniWatch',
+  domain: 'https://aniwatch.to',
   languages: ['English'],
   type: 'anime',
   database: 'Zoro',
@@ -34,7 +34,7 @@ export const Zoro: pageInterface = {
       return jsonData.anime_id;
     },
     getOverviewUrl(url) {
-      return jsonData.series_url;
+      return jsonData.series_url.replace('watch/', '');
     },
     getEpisode(url) {
       return parseInt(jsonData.episode!);

@@ -38,11 +38,11 @@ export const ComicK: pageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '.images-reader-container [id^="page"]',
+          selector: '#images-reader-container [id^="page"]',
           mode: 'countAbove',
         },
         total: {
-          selector: '.images-reader-container [id^="page"]',
+          selector: '#images-reader-container [id^="page"]',
           mode: 'count',
         },
       },

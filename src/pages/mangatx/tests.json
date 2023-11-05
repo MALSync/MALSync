@@ -3,27 +3,27 @@
   "url": "https://mangatx.com/",
   "testCases": [
     {
-      "url": "https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-113/",
+      "url": "https://mangatx.com/manga/solo-leveling/chapter-113/",
       "expected": {
         "sync": true,
         "title": "Solo Leveling",
-        "identifier": "solo-leveling-manhwa-free",
-        "overviewUrl": "https://mangatx.com/manga/solo-leveling-manhwa-free/",
-        "nextEpUrl": "https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-114/",
+        "identifier": "solo-leveling",
+        "overviewUrl": "https://mangatx.com/manga/solo-leveling/",
+        "nextEpUrl": "https://mangatx.com/manga/solo-leveling/chapter-114/",
         "episode": 113,
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangatx.com/manga/solo-leveling-manhwa-free/",
+      "url": "https://mangatx.com/manga/solo-leveling/",
       "expected": {
         "sync": false,
         "title": "Solo Leveling",
-        "identifier": "solo-leveling-manhwa-free",
+        "identifier": "solo-leveling",
         "uiSelector": true,
         "epList": {
-          "1": "https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-1/",
-          "108": "https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-108/"
+          "1": "https://mangatx.com/manga/solo-leveling/chapter-1/",
+          "108": "https://mangatx.com/manga/solo-leveling/chapter-108/"
         }
       }
     }

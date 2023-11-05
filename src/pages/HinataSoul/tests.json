@@ -1,0 +1,30 @@
+{
+  "title": "HinataSoul",
+  "url": "https://www.hinatasoul.com/",
+  "testCases": [
+    {
+      "url": "https://www.hinatasoul.com/anime-dublado/death-note-dublado",
+      "expected": {
+        "sync": false,
+        "title": "Death Note",
+        "identifier": "death-note",
+        "uiSelector": true,
+        "epList": {
+          "9": "https://www.hinatasoul.com/videos/179050",
+          "23": "https://www.hinatasoul.com/videos/179064"
+        }
+      }
+    },
+    {
+      "url": "https://www.hinatasoul.com/videos/243074",
+      "expected": {
+        "sync": true,
+        "title": "Mashle",
+        "identifier": "mashle",
+        "episode": 6,
+        "overviewUrl": "https://www.hinatasoul.com/anime-dublado/mashle-dublado",
+        "nextEpUrl": "https://www.hinatasoul.com/videos/271075"
+      }
+    }
+  ]
+}

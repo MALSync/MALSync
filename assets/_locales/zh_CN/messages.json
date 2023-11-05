@@ -587,14 +587,6 @@
         "message": "小缩略图",
         "description": "Thumbnails Small"
     },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "加入我们的社区，获得帮助并建议新功能",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "查看我们的开源代码",
-        "description": "Update version - Text 3"
-    },
     "installPage_Howto": {
         "message": "了解MAL-Sync的工作原理",
         "description": "Header for how to use section"
@@ -634,10 +626,6 @@
     "nextEpShort_no_nextEp": {
         "message": "无法搜索到下一集",
         "description": "Error message if no next episode could be found after pressing the next episode shortcut"
-    },
-    "settings_crash_report": {
-        "message": "发送崩溃报告",
-        "description": "If to send crash reports"
     },
     "syncPage_flashConfirm_rewatch_start_anime": {
         "message": "重看动画？",

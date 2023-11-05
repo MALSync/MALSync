@@ -7,12 +7,11 @@ import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
 import { isIframeUrl } from '../utils/manifest';
-import { bloodTrail, Shark } from '../utils/shark';
-import { MissingDataError, MissingPlayerError } from '../utils/errors';
 import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
 import { hasMissingPermissions } from '../utils/customDomains';
 import { localStore } from '../utils/localStore';
 import { MangaProgress } from '../utils/mangaProgress/MangaProgress';
+import { getPageConfig } from '../utils/test';
 
 declare let browser: any;
 
@@ -102,33 +101,7 @@ export class SyncPage {
 
   private getPage(url) {
     if (this.pages.type) return this.pages;
-    for (const key in this.pages) {
-      const page = this.pages[key];
-      if (j.$.isArray(page.domain)) {
-        let resPage;
-        page.domain.forEach(singleDomain => {
-          if (checkDomain(singleDomain)) {
-            page.domain = singleDomain;
-            resPage = page;
-          }
-        });
-        if (resPage) return resPage;
-      } else if (checkDomain(page.domain)) {
-        return page;
-      }
-
-      function checkDomain(domain) {
-        if (
-          url.indexOf(
-            `${utils.urlPart(domain, 2).replace('.com.br', '.br').split('.').slice(-2, -1)[0]}.`,
-          ) > -1
-        ) {
-          return true;
-        }
-        return false;
-      }
-    }
-    return null;
+    return getPageConfig(url, this.pages);
   }
 
   private domainSet() {
@@ -364,11 +337,6 @@ export class SyncPage {
         });
       }
       logger.m('Sync', 'green').log(state);
-      bloodTrail({
-        category: 'info',
-        message: 'Sync',
-        data: state,
-      });
     } else {
       if (typeof this.page.overview === 'undefined') {
         logger.log('No overview definition');
@@ -404,15 +372,6 @@ export class SyncPage {
       }
 
       logger.m('Overview', 'green').log(state);
-      bloodTrail({
-        category: 'info',
-        message: 'Overview',
-        data: state,
-      });
-    }
-
-    if (!state.identifier || !state.title) {
-      Shark.captureException(new MissingDataError(this.page.name));
     }
 
     this.curState = state;
@@ -523,9 +482,12 @@ export class SyncPage {
     }
 
     if (!mangaProgressMode && api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
-      setTimeout(() => {
-        this.sync(state);
-      }, api.settings.get('delay') * 1000);
+      setTimeout(
+        () => {
+          this.sync(state);
+        },
+        api.settings.get('delay') * 1000,
+      );
     } else {
       const translationMsg = {
         key: `syncPage_flashm_sync_${this.page.type}`,
@@ -605,23 +567,24 @@ export class SyncPage {
 
       // Show error if no player gets detected for 5 minutes
       if (this.singleObj.getType() === 'anime') {
-        playerTimeout = setTimeout(async () => {
-          j.$('#flashinfo-div').addClass('player-error');
+        playerTimeout = setTimeout(
+          async () => {
+            j.$('#flashinfo-div').addClass('player-error');
 
-          if (await hasMissingPermissions()) {
-            j.$('#flashinfo-div').addClass('player-error-missing-permissions');
-          }
+            if (await hasMissingPermissions()) {
+              j.$('#flashinfo-div').addClass('player-error-missing-permissions');
+            }
 
-          const iframes = $('iframe')
-            .toArray()
-            .map(el => utils.absoluteLink($(el).attr('src'), window.location.origin))
-            .filter(el => el)
-            .filter(el => !isIframeUrl(el));
+            const iframes = $('iframe')
+              .toArray()
+              .map(el => utils.absoluteLink($(el).attr('src'), window.location.origin))
+              .filter(el => el)
+              .filter(el => !isIframeUrl(el));
 
-          con.log('No Player found', iframes);
-
-          iframes.forEach(el => Shark.captureException(new MissingPlayerError(el!)));
-        }, 5 * 60 * 1000);
+            con.log('No Player found', iframes);
+          },
+          5 * 60 * 1000,
+        );
       }
 
       // Debugging
@@ -1231,9 +1194,12 @@ export class SyncPage {
 
         // Reset browsingTime if not in focus for more than 5 min
         clearTimeout(browsingTimeout);
-        browsingTimeout = setTimeout(() => {
-          this.browsingtime = undefined;
-        }, 5 * 60 * 1000);
+        browsingTimeout = setTimeout(
+          () => {
+            this.browsingtime = undefined;
+          },
+          5 * 60 * 1000,
+        );
         if (!this.browsingtime) this.browsingtime = Date.now();
 
         // Cover

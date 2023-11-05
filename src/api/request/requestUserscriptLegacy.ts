@@ -50,7 +50,7 @@ export const requestUserscriptLegacy: requestInterface = {
       request.url = encodeURI(request.url as string);
 
       // @ts-ignore
-      if (request.url.includes('malsync.moe')) {
+      if (request.url.includes('malsync.moe') || request.url.includes('simkl.com')) {
         // @ts-ignore
         request.headers.version = api.storage.version();
         // @ts-ignore

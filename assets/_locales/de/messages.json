@@ -1013,39 +1013,9 @@
         "message": "Bitte erlaube Popups für diese Webseite",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Version $Version$ wurde installiert $Link$CHANGELOG$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Danke, dass du MAL-Sync installiert hast",
         "description": "Update version - Text 1"
-    },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Trete unserer Community bei, um Hilfe zu erhalten und neue Features vorzuschlagen",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Schau dir unseren Open-Source-Code an",
-        "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Abonniere die Filterliste (für uBlock-Nutzer)",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Bitte wähle aus, welche Anime-Datenbank du verwenden möchtest",
@@ -1078,7 +1048,7 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Finde heraus, wie du einen falschen MAL-Eintrag beheben kannst",
+        "message": "So behebst du einen falsch erkannten Anime oder Manga",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
@@ -1143,17 +1113,9 @@
         "message": "Prüfe auf Filler-/Recap-Episoden",
         "description": "Option to enable filler checking"
     },
-    "settings_crash_report": {
-        "message": "Sende Fehlerberichte",
-        "description": "If to send crash reports"
-    },
     "settings_filler_text": {
         "message": "Dies überprüft, ob eine Episode als Filler/Recap auf MyAnimeList markiert wurde.",
         "description": "filler tooltip"
-    },
-    "settings_crash_report_text": {
-        "message": "Hilft uns Fehler zu beheben. Es werden keine sensiblen Daten gesendet.",
-        "description": "Crash report tooltip"
     },
     "filler_filler_confirm": {
         "message": "Diese Episode wurde als Filler auf MyAnimeList markiert, willst du sie überspringen?",
@@ -1238,7 +1200,7 @@
         "description": "Option to sync list once a day in the background"
     },
     "settings_custom_domains_disclaimer": {
-        "message": "Bitte nur benutzen, wenn du weißt, was du tust!",
+        "message": "Diese Funktion ermöglicht das Hinzufügen von benutzerdefinierten Domains zu bestehenden Webseiten, um Domainänderungen und selbst gehostete Quellen zu handhaben, kann aber keine neuen Webseiten hinzufügen.",
         "description": "Text on the custom domain configuration page"
     },
     "settings_custom_domains_wrong": {
@@ -1472,5 +1434,93 @@
     "settings_StreamingSite_custom_url_name": {
         "message": "Name",
         "description": "Placeholder text the field that sets the custom url name"
+    },
+    "list_sorting_airing_date": {
+        "message": "Ausstrahlungsdatum",
+        "description": "Dropdown option to sort list by airing date"
+    },
+    "next": {
+        "message": "Nächste",
+        "description": "Next button"
+    },
+    "back": {
+        "message": "Vorherige",
+        "description": "Back button"
+    },
+    "start": {
+        "message": "Start",
+        "description": "Start button"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Erlaubt Episodenanzahl, Bewertung und Status auf AniList schnell zu aktualisieren, ohne das Popover öffnen zu müssen.",
+        "description": "Tooltip for the Update UI option"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Macht den Fortschrittsindikator (am unteren Bildschirmrand) standardmäßig transparent und lässt diesen schneller verschwinden",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
+    "installPage_Description_paragraph2": {
+        "message": "Zum Beispiel, wenn du einen Anime auf Crunchyroll schauen möchtest, dann wird Crunchyrolls Quicklink auf jeder Animeseite erscheinen. Es ist eine bequeme Möglichkeit, um deine Lieblingsseiten mit nur einem Klick zu erreichen!",
+        "description": "paragraph two of the description"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "Minimiert große Eingabeaufforderungsfelder in MAL-Sync, die den größten Teil des Bildschirms einnehmen würden, hinter einem Klick.",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "installPage_Links": {
+        "message": "Wähle bevorzugte Quicklinks - deine Lieblingsseiten nur einen Klick entfernt",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "Quicklinks sind im Prinzip Schaltflächen, welche die Streaming-/Lese-Seite deiner Wahl öffnen - sie werden sich auf jeder Übersichtsseite jedes Anime/Manga befinden.",
+        "description": "paragraph one of the description"
+    },
+    "installPage_Login_Successful": {
+        "message": "Fantastisch, $Username$! Du bist jetzt authentifiziert and bereit loszulegen.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
+    },
+    "Error_Blocked": {
+        "message": "Deine IP wurde auf $Page$ gebannt, wechsle deine IP oder warte darauf, dass sie entbannt wird. Ein vorübergehender Ausfall könnte ebenfalls der Grund sein.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "installPage_Start_Description": {
+        "message": "Lass uns ein einfaches Briefing durchführen, um den Einstieg zu erleichtern - es dauert weniger als eine Minute!",
+        "description": "Start description text"
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "Die Synchronisation wartet bis 85% des Videos gesehen wurden.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "Die Synchronisation erfolgt beim Laden der Seite und auf manchen Seiten wird gewartet, bis 80% des Kapitels gelesen wurde.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "Die Synchronisation kann später in den Einstellungen konfiguriert werden - passe sie gerne deinen Wünschen an!",
+        "description": "The synchronization settings can be changed later"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "Der Browser oder das aktuelle Fenster unterstützen das Hinzufügen von Berechtigungen nicht. Bitte versuche es erneut mit der URL https://malsync.moe/pwa oder verwende das Popup der Erweiterung.",
+        "description": "Text that is shown when the browser does not support adding new permissions"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "Angeheftete Benachrichtigungen",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
+    "overview_synonyms": {
+        "message": "Synonyme",
+        "description": "Text of a button that shows the alternative names for an entry"
     }
 }

@@ -392,7 +392,9 @@ function refresh() {
 }
 
 .grid {
-  transition: filter @normal-transition, opacity @normal-transition;
+  transition:
+    filter @normal-transition,
+    opacity @normal-transition;
   &.cached {
     opacity: 0.4;
     filter: grayscale(1);

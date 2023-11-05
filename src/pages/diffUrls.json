@@ -1,105 +1,4 @@
 {
-  "0.8.22": {
-    "Aniflix": [
-      "https://aniflix.cc/*"
-    ],
-    "AnimeXin": [
-      "https://animexinax.com/*"
-    ],
-    "AsuraScans": [
-      "https://asura.gg/*"
-    ],
-    "Gogoanime": [
-      "https://gogoanime.tel/*",
-      "https://gogoanime.ee/*",
-      "https://gogoanime.dk/*"
-    ],
-    "MangaNato": [
-      "https://chapmanganato.com/*"
-    ],
-    "nineAnime": [
-      "https://9anime.gs/watch/*",
-      "https://9anime.gs/watch2gether/*"
-    ],
-    "TRanimeizle": [
-      "https://tranimeizle.co/*",
-      "https://www.tranimeizle.co/*"
-    ],
-    "iframe": [
-      "https://www.myvi.tv/embed/*",
-      "https://fembed9hd.com/*",
-      "https://plyr.in/*",
-      "https://goload.io/streaming.php?*",
-      "https://goload.io/load.php?*",
-      "https://goload.io/loadserver.php?*",
-      "https://goload.io/embedplus*",
-      "https://gogohd.net/embedplus*",
-      "https://gogohd.net/streaming.php?*",
-      "https://gogohd.net/load.php?*",
-      "https://gogohd.net/loadserver.php?*",
-      "https://ssbstream.net/*",
-      "https://streamsss.net/*",
-      "https://dood.wf/e/*",
-      "https://dood.re/e/*",
-      "https://launchreliantcleaverriver.com/e/*",
-      "https://reputationsheriffkennethsand.com/e/*",
-      "https://fittingcentermondaysunday.com/e/*",
-      "https://voe.bar/e/*",
-      "https://housecardsummerbutton.com/e/*",
-      "https://fraudclatterflyingcar.com/e/*",
-      "https://bigclatterhomesguideservice.com/e/*",
-      "https://uptodatefinishconferenceroom.com/e/*",
-      "https://realfinanceblogcenter.com/e/*",
-      "https://tinycat-voe-fashion.com/e/*",
-      "https://rapid-cloud.co/*",
-      "https://filemoon.sx/e/*",
-      "https://mb.toonanime.xyz/dist/myt.html*"
-    ]
-  },
-  "0.9.0": {
-    "Gogoanime": [
-      "https://gogoanime.ar/*"
-    ],
-    "iframe": [
-      "https://stream-service.proxer.me/*",
-      "https://sbanh.com/e/*",
-      "https://sblongvu.com/e/*",
-      "https://stream.simplyaweeb.to/*",
-      "https://mb.toonanime.xyz/dist/*"
-    ]
-  },
-  "0.9.1": {
-    "AnimeOnsen": [
-      "https://www.animeonsen.xyz/*"
-    ],
-    "ComicK": [
-      "https://comick.app/*"
-    ],
-    "Gogoanime": [
-      "https://gogoanime.bid/*"
-    ],
-    "iframe": [
-      "https://vidstreaming.link/*",
-      "https://veestream.net/e/*",
-      "https://fusevideo.net/e/*",
-      "https://gogohd.pro/embedplus*",
-      "https://gogohd.pro/streaming.php?*",
-      "https://gogohd.pro/load.php?*",
-      "https://gogohd.pro/loadserver.php?*",
-      "https://gembedhd.com/embedplus*",
-      "https://gembedhd.com/streaming.php?*",
-      "https://gembedhd.com/load.php?*",
-      "https://gembedhd.com/loadserver.php?*",
-      "https://20demidistance9elongations.com/e/*",
-      "https://telyn610zoanthropy.com/e/*",
-      "https://toxitabellaeatrebates306.com/e/*",
-      "https://greaseball6eventual20.com/e/*",
-      "https://745mingiestblissfully.com/e/*",
-      "https://19turanosephantasia.com/e/*",
-      "https://30sensualizeexpression.com/e/*",
-      "https://animedao.to/redirect/*"
-    ]
-  },
   "0.9.2": {
     "Gogoanime": [
       "https://gogoanime.gr/*",
@@ -151,14 +50,29 @@
     ]
   },
   "0.9.3": {
+    "AnimeUnity": [
+      "https://www.animeunity.cc/anime/*"
+    ],
+    "Animeworld": [
+      "https://www.animeworld.so/play/*"
+    ],
     "Gogoanime": [
-      "https://gogoanime.cl/*"
+      "https://gogoanime.cl/*",
+      "https://gogoanime.hu/*",
+      "https://gogoanime.vet/*"
     ],
     "Kaguya": [
       "https://kaguya.app/*"
     ],
+    "KickAssAnime": [
+      "https://kaas.ro/*",
+      "https://kaas.to/*",
+      "https://kickassanime.ro/*",
+      "https://kickassanime.am/*"
+    ],
     "Voiranime": [
-      "https://v3.voiranime.com/*"
+      "https://v3.voiranime.com/*",
+      "https://v4.voiranime.com/*"
     ],
     "YugenAnime": [
       "https://yugenanime.tv/*"
@@ -167,8 +81,8 @@
       "https://sanji.to/*"
     ],
     "nineAnime": [
-      "https://9animehq.to/watch/*",
-      "https://9animehq.to/watch2gether/*"
+      "https://9anime.ph/watch/*",
+      "https://9anime.ph/watch2gether/*"
     ],
     "iframe": [
       "https://playtaku.net/embedplus*",
@@ -191,7 +105,183 @@
       "https://tubelessceliolymph.com/e/*",
       "https://availedsmallest.com/e/*",
       "https://counterclockwisejacky.com/e/*",
-      "https://yugenanime.tv/e/*"
+      "https://monorhinouscassaba.com/e/*",
+      "https://urochsunloath.com/e/*",
+      "https://simpulumlamerop.com/e/*",
+      "https://sizyreelingly.com/e/*",
+      "https://yugenanime.tv/e/*",
+      "https://vidnethub.net/*",
+      "https://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*",
+      "https://api.animeflix.live/*"
+    ]
+  },
+  "0.9.4": {
+    "iframe": []
+  },
+  "0.9.5": {
+    "AnimeUnity": [
+      "https://www.animeunity.to/anime/*"
+    ],
+    "AsuraScans": [
+      "https://asuracomics.com/*"
+    ],
+    "Gogoanime": [
+      "https://gogoanimehd.to/*",
+      "https://gogoanime3.net/*",
+      "https://gogoanimehd.io/*"
+    ],
+    "LeviatanScans": [
+      "https://lscomic.com/*"
+    ],
+    "NekoSama": [
+      "https://animecat.net/*"
+    ],
+    "RealmScans": [
+      "https://realmscans.xyz/*"
+    ],
+    "Voiranime": [
+      "https://v5.voiranime.com/*"
+    ],
+    "Zoro": [
+      "https://aniwatch.to/*"
+    ],
+    "nineAnime": [
+      "https://aniwave.to/watch/*",
+      "https://aniwave.to/watch2gether/*",
+      "https://aniwave.bz/watch/*",
+      "https://aniwave.bz/watch2gether/*",
+      "https://aniwave.ws/watch/*",
+      "https://aniwave.ws/watch2gether/*"
+    ],
+    "iframe": [
+      "https://fusevideo.io/e/*",
+      "https://goone.pro/embedplus*",
+      "https://goone.pro/streaming.php?*",
+      "https://goone.pro/load.php?*",
+      "https://goone.pro/loadserver.php?*",
+      "https://vidplay.site/e/*",
+      "https://truepoweroflove.com/*",
+      "https://rationalityaloelike.com/e/*",
+      "https://wolfdyslectic.com/e/*",
+      "https://metagnathtuggers.com/e/*",
+      "https://gamoneinterrupted.com/e/*",
+      "https://chromotypic.com/e/*",
+      "https://crownmakermacaronicism.com/e/*",
+      "https://generatesnitrosate.com/e/*",
+      "https://yodelswartlike.com/e/*",
+      "https://figeterpiazine.com/e/*",
+      "https://cigarlessarefy.com/e/*",
+      "https://megacloud.tv/*",
+      "https://vixcloud.cc/*",
+      "https://vixcloud.co/*"
+    ]
+  },
+  "0.9.6": {
+    "AnimeXin": [
+      "https://animexin.vip/*"
+    ],
+    "AsuraScans": [
+      "https://asuratoon.com/*"
+    ],
+    "DisasterScans": [
+      "https://disasterscans.com/*"
+    ],
+    "FrixySubs": [
+      "https://frixysubs.pl/*"
+    ],
+    "LuminousScans": [
+      "https://luminousscans.gg/*"
+    ],
+    "MangasOrigines": [
+      "https://mangas-origines.fr/oeuvre*"
+    ],
+    "mangadenizi": [
+      "https://mangadenizi.net/*"
+    ],
+    "tmofans": [
+      "https://visortmo.com/*",
+      "https://gastronomiaporpaises.com/*",
+      "https://releasingcars.com/*",
+      "https://mundorecetascuriosas.com/*",
+      "https://lupitaalosfogones.com/*",
+      "https://cocinarporelmundo.com/*",
+      "https://disfrutacocina.com/*",
+      "https://recetascuriosas.com/*",
+      "https://lacocinadelupita.com/*",
+      "https://mynewsrecipes.com/*",
+      "https://recipestravelworld.com/*",
+      "https://recipestraveling.com/*",
+      "https://recetaspaises.com/*",
+      "https://worldrecipesu.com/*",
+      "https://techinroll.com/*",
+      "https://vsrecipes.com/*",
+      "https://mygamesinfo.com/*",
+      "https://gamesnk.com/*",
+      "https://otakuworldgames.com/*",
+      "https://animalcanine.com/*",
+      "https://cook2love.com/*",
+      "https://wtechnews.com/*",
+      "https://animationforyou.com/*",
+      "https://fanaticmanga.com/*",
+      "https://mistermanga.com/*",
+      "https://enginepassion.com/*",
+      "https://motornk.com/*",
+      "https://recipesnk.com/*",
+      "https://panicmanga.com/*",
+      "https://worldmangas.com/*",
+      "https://anitoc.com/*",
+      "https://cookerready.com/*",
+      "https://cooker2love.com/*",
+      "https://infopetworld.com/*",
+      "https://infogames2you.com/*",
+      "https://almtechnews.com/*",
+      "https://animation2you.com/*",
+      "https://recipesdo.com/*",
+      "https://vgmotor.com/*",
+      "https://myotakuinfo.com/*",
+      "https://otakworld.com/*",
+      "https://cookermania.com/*",
+      "https://motorbakery.com/*",
+      "https://recipesist.com/*",
+      "https://motorpi.com/*",
+      "https://dariusmotor.com/*",
+      "https://recipesaniki.com/*",
+      "https://cocinaconlupita.com/*",
+      "https://recetasdelupita.com/*",
+      "https://gamesxo.com/*",
+      "https://fitfooders.com/*",
+      "https://checkingcars.com/*",
+      "https://keepfooding.com/*",
+      "https://feelthecook.com/*",
+      "https://recetchef.com/*",
+      "https://motoroilblood.com/*",
+      "https://anisurion.com/*",
+      "https://recipescoaching.com/*",
+      "https://anitirion.com/*",
+      "https://cookernice.com/*",
+      "https://animalsside.com/*",
+      "https://paleomotor.com/*",
+      "https://otakunice.com/*",
+      "https://sucrecipes.com/*",
+      "https://recetasviaje.com/*",
+      "https://animalslegacy.com/*",
+      "https://worldcuisineis.com/*",
+      "https://eligeunnombre.com/*"
+    ],
+    "iframe": [
+      "https://mcloud.bz/*",
+      "https://kodik.info/*",
+      "https://aniboom.one/*",
+      "https://vidplay.lol/e/*",
+      "https://valeronevijao.com/e/*",
+      "https://strawberriesporail.com/e/*",
+      "https://timberwoodanotia.com/e/*",
+      "https://phenomenalityuniform.com/e/*",
+      "https://prefulfilloverdoor.com/e/*",
+      "https://yonaplay.org/*",
+      "https://4shared.com/*",
+      "https://videa.hu/*",
+      "https://soraplay.xyz/*"
     ]
   }
 }

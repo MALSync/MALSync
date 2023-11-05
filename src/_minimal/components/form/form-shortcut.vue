@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, PropType, computed, toRaw } from 'vue';
+import { ref, PropType, computed, toRaw } from 'vue';
 import { keyboardMap } from './keyboardMap';
 
 const props = defineProps({
@@ -41,17 +41,14 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 const inFocus = ref(false);
 
-const picked = ref(props.modelValue);
-watch(picked, value => {
-  emit('update:modelValue', toRaw(value));
-});
-
-watch(
-  () => props.modelValue,
-  value => {
-    picked.value = value;
+const picked = computed({
+  get() {
+    return props.modelValue;
   },
-);
+  set(value) {
+    emit('update:modelValue', toRaw(value));
+  },
+});
 
 const el = ref(null as HTMLElement | null);
 

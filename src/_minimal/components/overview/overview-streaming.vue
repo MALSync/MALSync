@@ -8,20 +8,23 @@
     </div>
     <div v-else class="grid">
       <template v-for="b in streamRequest.data!" :key="b.name">
-        <MediaLink v-if="options(b).length === 1" :href="options(b)[0].value">
-          <FormButton :icon="groupIcon(b)" class="btn">
-            <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>
-          </FormButton>
-        </MediaLink>
+        <FormButton
+          v-if="options(b).length === 1"
+          :icon="groupIcon(b)"
+          class="btn"
+          :link="options(b)[0].value"
+        >
+          <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>
+        </FormButton>
         <FormDropdown v-else :options="options(b)" align-items="left">
           <template #select>
-            <FormButton :animation="false" :icon="groupIcon(b)" class="btn">
+            <FormButton :animation="false" :icon="groupIcon(b)" class="btn" :tabindex="-1">
               <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>
             </FormButton>
           </template>
           <template #option="slotProps">
             <MediaLink
-              :href="(slotProps.option.value as string)"
+              :href="slotProps.option.value as string"
               class="dropdown-link"
               @mousedown.prevent=""
             >

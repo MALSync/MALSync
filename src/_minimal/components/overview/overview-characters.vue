@@ -3,8 +3,14 @@
     <Header :spacer="true">{{ lang('overview_Characters') }}</Header>
 
     <Grid :min-width-popup="90">
-      <MediaLink v-for="char in characters" :key="char.name" class="character" :href="char.url">
-        <div class="cover">
+      <MediaLink
+        v-for="char in characters"
+        :key="char.name"
+        class="character"
+        :href="char.url"
+        :focus-state="false"
+      >
+        <div class="cover-el">
           <ImageFit mode="cover" :src="char.img" />
         </div>
         <div>
@@ -36,7 +42,7 @@ defineProps({
 <style lang="less" scoped>
 @import '../../less/_globals.less';
 
-.cover {
+.cover-el {
   .click-move-down();
 }
 .name {
@@ -46,5 +52,15 @@ defineProps({
 .role {
   margin-top: 5px;
   color: var(--cl-light-text);
+}
+
+.character {
+  &:focus-visible {
+    .cover {
+      .focus-outline();
+
+      outline-width: 4px;
+    }
+  }
 }
 </style>

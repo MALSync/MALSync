@@ -7,7 +7,7 @@
           <span class="label">{{ lang('UI_Status') }}</span>
           <FormDropdown
             v-model="status"
-            :options="(single.getStatusCheckbox() as any)"
+            :options="single.getStatusCheckbox() as any"
             align-items="left"
           >
             <template #select="slotProps">
@@ -101,7 +101,9 @@
                 :strict-validation="true"
                 :validation="
                   value => {
-                    return Boolean(String(value).match(new RegExp((scoreModeStrategy!.ui as any).pattern)));
+                    return Boolean(
+                      String(value).match(new RegExp((scoreModeStrategy!.ui as any).pattern)),
+                    );
                   }
                 "
                 :placeholder="lang('UI_Score_Not_Rated')"
@@ -110,7 +112,7 @@
             <template v-else-if="scoreModeStrategy.ui.module === 'click'">
               <FormClick
                 v-model="score"
-                :options="(scoreModeStrategy.getOptions() as any)"
+                :options="scoreModeStrategy.getOptions() as any"
                 :type="scoreModeStrategy.ui.type"
               />
             </template>
@@ -118,7 +120,7 @@
               <FormDropdown
                 v-model="score"
                 align-items="left"
-                :options="(scoreModeStrategy.getOptions() as any)"
+                :options="scoreModeStrategy.getOptions() as any"
               >
                 <template #select="slotProps">
                   <FormButton :tabindex="-1" :animation="false" padding="mini">
@@ -131,26 +133,38 @@
           <FormSlider
             v-model="score"
             color="violet"
-            :options="(sortedOptions(single.getScoreCheckbox()) as any)"
+            :options="sortedOptions(single.getScoreCheckbox()) as any"
           />
         </template>
       </div>
     </div>
     <div class="update-buttons">
-      <div v-if="!single?.isOnList() || false" class="update-button add" @click="sync()">
+      <div
+        v-if="!single?.isOnList() || false"
+        class="update-button add"
+        tabindex="0"
+        @keydown.enter="sync()"
+        @click="sync()"
+      >
         <span class="material-icons">bookmark_add</span>
         {{ lang('Add') }}
       </div>
       <template v-else>
-        <div v-if="single.isDirty()" class="update-button" @click="sync()">
+        <div
+          v-if="single.isDirty()"
+          class="update-button"
+          tabindex="0"
+          @keydown.enter="sync()"
+          @click="sync()"
+        >
           <span class="material-icons">cloud_upload</span>
           {{ lang('Update') }}
         </div>
-        <div v-else class="update-button" @click="update()">
+        <div v-else class="update-button" tabindex="0" @keydown.enter="update()" @click="update()">
           <span class="material-icons">cloud_download</span>
           {{ lang('Synchronize') }}
         </div>
-        <div class="update-button" @click="remove()">
+        <div class="update-button" tabindex="0" @keydown.enter="remove()" @click="remove()">
           <span class="material-icons">remove_circle_outline</span>
           {{ lang('Remove') }}
         </div>

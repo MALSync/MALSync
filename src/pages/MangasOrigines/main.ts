@@ -67,7 +67,7 @@ export const MangasOrigines: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(() => {
-      if (page.url.split('/')[3] === 'manga') {
+      if (page.url.split('/')[3] === 'oeuvre') {
         utils.waitUntilTrue(
           () => {
             return j.$('ul.version-chap').length || j.$('select.single-chapter-select').length;

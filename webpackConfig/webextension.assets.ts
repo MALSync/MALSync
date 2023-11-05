@@ -13,7 +13,7 @@ import { pages as _pages, generateMatchExcludes as _generateMatchExcludes, urls 
 const pages = _pages();
 const generateMatchExcludes = _generateMatchExcludes;
 
-const mode = process.env.MODE || 'default';
+const mode = process.env.CI_MODE || 'default';
 console.log('Mode', mode);
 
 const malUrls = { myanimelist: _myanimelist };
@@ -226,9 +226,9 @@ mkdirp(join(__dirname, '../dist/webextension')).then(err => {
     },
   );
 
-  copy(
-    join(__dirname, '../src/installPage/install.html'),
-    join(__dirname, '../dist/webextension/install.html'),
+  extra.copy(
+    path.join(__dirname, '../src/_minimal/install.html'),
+    path.join(__dirname, '../dist/webextension/install.html'),
     err => {
       if (err) {
         console.error(err);

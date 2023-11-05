@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const LeviatanScans: pageInterface = {
   name: 'LeviatanScans',
-  domain: 'https://en.leviatanscans.com',
+  domain: ['https://lscomic.com', 'https://en.leviatanscans.com'],
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
@@ -61,7 +61,7 @@ export const LeviatanScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$(j.$('#manga-title > h1')).text().trim();
+      return j.$(j.$('.post-title > h1')).text().trim();
     },
     getIdentifier(url) {
       if (utils.urlPart(url, 3) === 'manga') {
@@ -70,11 +70,11 @@ export const LeviatanScans: pageInterface = {
       return utils.urlPart(url, 5);
     },
     uiSelector(selector) {
-      j.$('.c-page__content .profile-manga')
+      j.$('.profile-manga')
         .first()
         .after(
           j.html(
-            `<div id="malthing"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> <i class="icon ion-ios-star"></i> MAL-Sync</h2></div>${selector}</div>`,
+            `<div id="malthing" class="container"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> <i class="icon ion-ios-star"></i> MAL-Sync</h2></div>${selector}</div>`,
           ),
         );
     },
@@ -87,10 +87,10 @@ export const LeviatanScans: pageInterface = {
         return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
-        let episodePart = utils.urlPart(LeviatanScans.overview!.list!.elementUrl!(selector), 6);
+        let episodePart = utils.urlPart(LeviatanScans.overview!.list!.elementUrl!(selector), 5);
 
         if (episodePart.match(/season-\d+/gim)) {
-          episodePart = utils.urlPart(LeviatanScans.overview!.list!.elementUrl!(selector), 7);
+          episodePart = utils.urlPart(LeviatanScans.overview!.list!.elementUrl!(selector), 6);
         }
 
         const temp = episodePart.match(/\d+/i);

@@ -50,7 +50,6 @@ import { PropType, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { setTypeContext } from '../utils/state';
 import { createRequest } from '../utils/reactive';
-import { miniMALSearch } from '../../utils/Search';
 import FormSwitch from '../components/form/form-switch.vue';
 import Section from '../components/section.vue';
 import Spinner from '../components/spinner.vue';
@@ -62,6 +61,7 @@ import { searchResult } from '../../_provider/definitions';
 import { bookmarkItem } from '../minimalClass';
 import ErrorSearch from '../components/error/error-search.vue';
 import { getTyping } from '../components/nav/nav-search-state';
+import { miniMALSearch } from '../../_provider/Local/search';
 
 const route = useRoute();
 const router = useRouter();
@@ -142,7 +142,9 @@ const formatItem = (item: searchResult): bookmarkItem => {
 }
 
 .grid {
-  transition: filter @normal-transition, opacity @normal-transition;
+  transition:
+    filter @normal-transition,
+    opacity @normal-transition;
   &.loading {
     opacity: 0.4;
     filter: grayscale(1);

@@ -3,9 +3,16 @@
     :is="link ? MediaLink : 'div'"
     class="button"
     :href="link"
-    :class="`${padding} ${animation ? 'animation' : ''} ${color} ${disabled ? 'disabled' : ''}`"
-    tabindex="tabindex"
+    :class="`
+      ${padding}
+      ${animation ? 'animation' : ''}
+      ${color}
+      ${disabled ? 'disabled' : ''}
+      ${hoverAnimation ? 'hoverActive' : ''}
+    `"
+    :tabindex="tabindex"
     @click="disabled ? null : click()"
+    @keyup.enter="$el.click()"
   >
     <slot /> {{ title }}
     <div v-if="icon" class="material-icons top-icon">{{ icon }}</div>
@@ -26,6 +33,10 @@ defineProps({
     default: 0,
   },
   animation: {
+    type: Boolean,
+    default: true,
+  },
+  hoverAnimation: {
     type: Boolean,
     default: true,
   },
@@ -114,7 +125,7 @@ defineProps({
     color: white;
   }
 
-  &:hover {
+  &.hoverActive:hover {
     border-color: var(--cl-border-hover);
     .top-icon {
       border-color: var(--cl-border-hover);

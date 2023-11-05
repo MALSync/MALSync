@@ -100,7 +100,7 @@ export class SearchClass {
   }
 
   getOffset(): number {
-    if (this.state) {
+    if (this.state && this.state.offset) {
       return this.state.offset;
     }
     return 0;
@@ -377,7 +377,7 @@ export class SearchClass {
     }
     logger.log(url);
 
-    function handleResult(response, i, This) {
+    function handleResult(response, i, This): SearchResult {
       const link = getLink(response, i);
       let id = 0;
       let sim = { same: false, value: 0 };

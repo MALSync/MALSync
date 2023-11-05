@@ -1,6 +1,6 @@
 <template>
   <div class="quicklinkedit">
-    <Section spacer="half">
+    <Section :spacer="short ? 'none' : 'half'">
       <Card>
         <Section class="ui-row">
           <FormButton color="secondary" padding="slim" @click="orderMode = !orderMode">
@@ -49,7 +49,7 @@
         </div>
       </Card>
     </Section>
-    <Card>
+    <Card v-if="!short">
       <Header :spacer="true">{{ lang('settings_StreamingSite_custom') }}</Header>
       <Section>
         <table>
@@ -129,6 +129,10 @@ defineProps({
   title: {
     type: String,
     default: '',
+  },
+  short: {
+    type: Boolean,
+    default: false,
   },
 });
 

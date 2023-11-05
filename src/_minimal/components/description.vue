@@ -42,6 +42,10 @@ const props = defineProps({
     type: [Number, String] as PropType<number | 'dynamic'>,
     default: 240,
   },
+  minheight: {
+    type: String,
+    default: '150px',
+  },
 });
 
 const open = ref(false);
@@ -117,7 +121,7 @@ watch(inner, () => calcOverflow());
 
   &.dynamic {
     height: 100%;
-    min-height: 150px;
+    min-height: v-bind(minheight);
     position: relative;
     &.close .open-gradient {
       max-height: 100%;

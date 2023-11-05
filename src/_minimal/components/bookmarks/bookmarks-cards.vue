@@ -145,7 +145,12 @@ const episodeLang = utils.episode;
     }
   }
 
-  &:hover {
+  &:focus-within {
+    .focus-outline();
+  }
+
+  &:hover,
+  &:focus-within {
     .gradient {
       opacity: 1;
     }

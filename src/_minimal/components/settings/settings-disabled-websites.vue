@@ -4,7 +4,7 @@
       {{ lang('settings_tracking_disabled') }}
     </Header>
     <SettingsGeneral
-      v-for="(page, key) in (pageArray as any)"
+      v-for="(page, key) in pageArray as any"
       :key="key"
       component="checkbox"
       title=""
@@ -29,7 +29,7 @@
 import { computed } from 'vue';
 import Card from '../card.vue';
 import SettingsGeneral from './settings-general.vue';
-import { pages } from '../../../pages/pages';
+import { getPages } from '../../../utils/quicklinksBuilder';
 import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
@@ -70,9 +70,9 @@ function setPageState(page, state) {
 
 const pageArray = computed(() => {
   const res = {};
-  Object.keys(pages).forEach(key => {
-    if (props.onlyDisabled && getPageState(pages[key])) return;
-    res[key] = pages[key];
+  getPages().forEach(page => {
+    if (props.onlyDisabled && getPageState(page)) return;
+    res[page.key] = page;
   });
   return res;
 });

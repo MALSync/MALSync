@@ -1,12 +1,13 @@
 {
-  "search": "https://zoro.to/search?keyword={searchtermPlus}",
+  "search": "https://aniwatch.to/search?keyword={searchtermPlus}",
   "urls": {
     "match": [
       "*://zoro.to/*",
       "*://zoro.moe/*",
       "*://zoro.sx/*",
       "*://zoro.pm/*",
-      "*://sanji.to/*"
+      "*://sanji.to/*",
+      "*://aniwatch.to/*"
     ]
   }
 }

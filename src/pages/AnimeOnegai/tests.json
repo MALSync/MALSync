@@ -1,0 +1,25 @@
+{
+  "title": "AnimeOnegai",
+  "url": "https://www.animeonegai.com/",
+  "enabled": false,
+  "testCases": [
+    {
+      "url": "https://www.animeonegai.com/es/details/dVNjDxqy081YPunnG",
+      "expected": {
+        "sync": false,
+        "title": "Fate/kaleid liner Prisma☆Illya",
+        "identifier": 79,
+        "uiSelector": true,
+      }
+    },
+    {
+      "url": "https://www.animeonegai.com/es/watch/wJExBQ0ay30l3cWYG?serie=true",
+      "expected": {
+        "sync": true,
+        "title": "TSUKIUTA.2",
+        "identifier": "14",
+        "episode": "1",
+      }
+    }
+  ]
+}

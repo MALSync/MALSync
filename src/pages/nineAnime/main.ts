@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
 export const nineAnime: pageInterface = {
-  name: '9anime',
-  domain: 'https://9anime.to',
+  name: 'Aniwave',
+  domain: 'https://aniwave.to',
   database: '9anime',
   languages: ['English'],
   type: 'anime',
@@ -66,7 +66,7 @@ export const nineAnime: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul.ep-range > li:not([style*="display: none"]) > a');
+        return j.$('ul.ep-range > li > a:not([style*="display: none"])');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), nineAnime.domain);
@@ -116,7 +116,12 @@ export const nineAnime: pageInterface = {
     } else {
       utils.waitUntilTrue(
         function () {
-          return j.$('ul.ep-range li').length;
+          const loaded = j
+            .$('ul.ep-range')
+            .toArray()
+            .some(el => el.style.display !== 'none');
+
+          return loaded && j.$('ul.ep-range li').length;
         },
         function () {
           con.info('Start check');
@@ -127,16 +132,6 @@ export const nineAnime: pageInterface = {
             page.reset();
             page.handlePage();
           });
-
-          // utils.changeDetect(
-          //   () => {
-          //     page.reset();
-          //     page.handlePage();
-          //   },
-          //   () => {
-          //     return nineAnime.sync.getEpisode(window.location.href);
-          //   },
-          // );
 
           utils.changeDetect(
             () => {

@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integra MyAnimeList/AniList/Kitsu/Simkl su svariati siti tenendo traccia in automatico degli episodi che guardi.",
+        "message": "Integra MyAnimeList/AniList/Kitsu/Simkl/Shikimori su svariati siti tenendo traccia in automatico degli episodi che guardi.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -314,7 +314,7 @@
         }
     },
     "syncPage_flashConfirm_offsetHandler_1": {
-        "message": "È stato riscontrato un possibile sfasamento di $calcOffset$ Episodi. È corretto?",
+        "message": "È stato riscontrato un possibile sfasamento di $calcOffset$ episodi. È corretto?",
         "description": "offsetHandler Episode",
         "placeholders": {
             "calcOffset": {
@@ -340,7 +340,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Token salvato, puoi chiudere questa pagina",
+        "message": "Token salvato, puoi chiudere questa pagina.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -348,27 +348,27 @@
         "description": "Credentials wrong"
     },
     "bookmarksItem_Years": {
-        "message": "Anni",
+        "message": "anni",
         "description": "Years"
     },
     "bookmarksItem_Year": {
-        "message": "Anno",
+        "message": "anno",
         "description": "Year"
     },
     "bookmarksItem_Days": {
-        "message": "Giorni",
+        "message": "giorni",
         "description": "Days"
     },
     "bookmarksItem_Day": {
-        "message": "Giorno",
+        "message": "giorno",
         "description": "Day"
     },
     "bookmarksItem_Hours": {
-        "message": "Ore",
+        "message": "ore",
         "description": "Hours"
     },
     "bookmarksItem_Hour": {
-        "message": "Ora",
+        "message": "ora",
         "description": "Hour"
     },
     "bookmarksItem_mins": {
@@ -967,39 +967,9 @@
         "message": "Per favore permetti i popup su questo sito",
         "description": "Please allow pop-ups for this website"
     },
-    "minimalClass_versionMsg": {
-        "message": "Aggiornato alla versione $Version$ $Link$CAMBIAMENTI$LinkEnd$",
-        "description": "Update version",
-        "placeholders": {
-            "Version": {
-                "content": "$1",
-                "example": "0.1.4"
-            },
-            "Link": {
-                "content": "$2",
-                "example": "[<a>"
-            },
-            "LinkEnd": {
-                "content": "</a>]",
-                "example": "</a>]"
-            }
-        }
-    },
     "minimalClass_versionMsg_Text_1": {
         "message": "Grazie per aver installato MAL-Sync",
         "description": "Update version - Text 1"
-    },
-    "minimalClass_versionMsg_Text_2": {
-        "message": "Domande?",
-        "description": "Update version - Text 2"
-    },
-    "minimalClass_versionMsg_Text_3": {
-        "message": "Codice Open Source:",
-        "description": "Update version - Text 3"
-    },
-    "minimalClass_versionMsg_Text_4": {
-        "message": "Utenti di uBlock iscrivetevi a questo filtro! Corregge alcuni problemi come le immagini che non caricano.",
-        "description": "Update version - Text 4"
     },
     "installPage_Mode": {
         "message": "Seleziona il database di anime che vuoi usare",
@@ -1084,5 +1054,99 @@
     "nextEpShort_no_nextEp": {
         "message": "Impossibile trovare l'episodio successivo",
         "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "Aggiorna $page$ al volume $epNr$",
+        "description": "Update MAL to volume 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "overview_sidebar_Status": {
+        "message": "Stato:",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Genres": {
+        "message": "Generi:",
+        "description": "Info table on overview - Genres: Action"
+    },
+    "overview_sidebar_Rating": {
+        "message": "Classificazione:",
+        "description": "Info table on overview - Rating: PG-13"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "Popolarità:",
+        "description": "Info table on overview - Popularity: #15"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "Data inizio:",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "Data fine:",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "Fonte:",
+        "description": "Info table on overview - Source: Light Novel"
+    },
+    "overview_sidebar_Members": {
+        "message": "Membri:",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "Trasmissione:",
+        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+    },
+    "overview_sidebar_Studios": {
+        "message": "Studio:",
+        "description": "Info table on overview - Studios: Madhouse"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "Episodi:",
+        "description": "Info table on overview - Episodes: 12"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "Capitoli:",
+        "description": "Info table on overview - Chapters: 12"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "Volumi:",
+        "description": "Info table on overview - Volumes: 12"
+    },
+    "Synchronize": {
+        "message": "Sincronizzare",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "Load": {
+        "message": "caricare",
+        "description": "Button to load content"
+    },
+    "UI_Status_All": {
+        "message": "tutti",
+        "description": "Dropdown text to show all anime on the users list"
+    },
+    "syncPage_flash_player_error": {
+        "message": "Video player non rilevato. Si prega di aggiornarlo manualmente qui.",
+        "description": "Message if the video player could not be recognized"
+    },
+    "overview_Information": {
+        "message": "informazioni",
+        "description": "Header of the information section of the popup anime overview"
+    },
+    "overview_Related": {
+        "message": "Correlati",
+        "description": "Header of the anime/manga relations section of the popup anime overview"
+    },
+    "overview_Streaming": {
+        "message": "Streaming",
+        "description": "Header of the streaming link section of the popup anime overview"
     }
 }

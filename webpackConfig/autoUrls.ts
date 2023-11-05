@@ -5,7 +5,7 @@ import path from 'path';
 
 // players
 async function voe() {
-    const response = await fetch('https://voe.sx/e/x63dioldjm1y', { redirect: 'manual' });
+    const response = await fetch('https://voe.sx/e/2sqxhth1ukzh', { redirect: 'manual' });
     const url = new URL(response.headers.get("Location"));
 
     addPlayerUrls('voe', [url.hostname + '/e/*']);
@@ -35,31 +35,42 @@ async function gogostream() {
 
     const $ = cheerio.load(body);
 
-    const streamsb = new URL($('.anime_muti_link .streamsb [data-video]').attr('data-video'));
-    addPlayerUrls('gogostreamsb', [
-        streamsb.hostname + '/e/*',
-    ]);
+    const servers = [
+      {
+        name: 'gogostreamsb',
+        selector: '.streamsb',
+      },
+      {
+        name: 'gogodood',
+        selector: '.doodstream',
+      },
+      {
+        name: 'gogofembed',
+        selector: '.xstreamcdn',
+      },
+    ];
 
-    
-    const dood = new URL($('.anime_muti_link .doodstream [data-video]').attr('data-video'));
-    addPlayerUrls('gogodood', [
-        dood.hostname + '/e/*',
-    ]);
-
-    const fembed = new URL($('.anime_muti_link .xstreamcdn [data-video]').attr('data-video'));
-    addPlayerUrls('gogofembed', [
-        '*.' + fembed.hostname + '/*',
-    ]);
+    for (const server of servers) {
+      const res = $(`.anime_muti_link ${server.selector} [data-video]`).attr('data-video');
+      if (!res) {
+        console.error(`[${server.name}]:`, 'no data-video');
+        continue;
+      }
+      const url = new URL(res);
+      addPlayerUrls(server.name, [
+        url.hostname + '/e/*',
+      ]);
+    }
 }
 
 // pages
 async function nineanime() {
-    const response = await fetch("https://9anime.me");
+    const response = await fetch('https://aniwave.tv');
     const body = await response.text();
 
     const $ = cheerio.load(body);
 
-    const urls = $('ul > li > a[target="_blank"]').map((i,el) =>  new URL($(el).attr('href'))).get();
+    const urls = $('ul > li > a[target="_blank"]:not(:contains(alternative)):not(:contains(lite))').map((i,el) =>  new URL($(el).attr('href'))).get();
 
     for(const url of urls) {
         addpageUrls('nineAnime', [
@@ -104,6 +115,21 @@ async function gogoanime() {
     }
 }
 
+async function kickassanime() {
+    const response = await fetch("https://kickassanimes.info");
+    const body = await response.text();
+
+    const $ = cheerio.load(body);
+
+    const urls = $('div.container a.button').map((i,el) =>  new URL($(el).attr('href'))).get();
+
+    for(let url of urls) {
+        addpageUrls('KickAssAnime', [
+            "*://*." + url.hostname + "/*",
+        ])
+    }
+}
+
 
 function addpageUrls(page, urls) {
     let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
@@ -136,12 +162,27 @@ function addPlayerUrls(key, urls) {
 }
 
 async function start() {
-    await voe();
-    await vidmoly();
-    await gogostream();
-    await nineanime();
-    await zoro();
-    await gogoanime();
+    let lastError = null;
+    const tasks = {
+        voe,
+        vidmoly,
+        gogostream,
+        nineanime,
+        // zoro,
+        gogoanime,
+        kickassanime
+    }
+
+    for(const key of Object.keys(tasks)) {
+        await tasks[key]().catch(e => {
+            console.error(`[${key}]:`, e);
+            lastError = e;
+        });
+    }
+
+    if (lastError) {
+        throw new Error('Some tasks failed');
+    }
 }
 
 start();

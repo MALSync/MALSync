@@ -14,6 +14,38 @@ function startProgressSync() {
   }
 }
 
+export const notificationsSection: ConfObj[] = [
+  {
+    key: 'progressNotificationsAnime',
+    title: () => `${api.storage.lang('settings_Notifications')} (${api.storage.lang('Anime')})`,
+    condition: () => Boolean(Number(api.settings.get('progressInterval'))),
+    props: {
+      component: 'checkbox',
+      option: 'progressNotificationsAnime',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'progressNotificationsManga',
+    title: () => `${api.storage.lang('settings_Notifications')} (${api.storage.lang('Manga')})`,
+    condition: () => Boolean(Number(api.settings.get('progressInterval'))),
+    props: {
+      component: 'checkbox',
+      option: 'progressNotificationsManga',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'notificationsSticky',
+    title: () => api.storage.lang('settings_Notifications_Sticky'),
+    props: {
+      component: 'checkbox',
+      option: 'notificationsSticky',
+    },
+    component: SettingsGeneral,
+  },
+];
+
 export const estimation: ConfObj[] = [
   {
     key: 'progressInterval',
@@ -60,26 +92,7 @@ export const estimation: ConfObj[] = [
     },
     component: SettingsProgressDropdown,
   },
-  {
-    key: 'progressNotificationsAnime',
-    title: () => `${api.storage.lang('settings_Notifications')} (${api.storage.lang('Anime')})`,
-    condition: () => Boolean(Number(api.settings.get('progressInterval'))),
-    props: {
-      component: 'checkbox',
-      option: 'progressNotificationsAnime',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'progressNotificationsManga',
-    title: () => `${api.storage.lang('settings_Notifications')} (${api.storage.lang('Manga')})`,
-    condition: () => Boolean(Number(api.settings.get('progressInterval'))),
-    props: {
-      component: 'checkbox',
-      option: 'progressNotificationsManga',
-    },
-    component: SettingsGeneral,
-  },
+  ...notificationsSection,
   {
     key: 'loadPTWForProgress',
     title: () => api.storage.lang('settings_loadPTWForProgress'),

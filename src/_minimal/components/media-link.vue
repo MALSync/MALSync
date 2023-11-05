@@ -2,7 +2,7 @@
   <router-link
     v-if="slugObj.path && !forceLink"
     class="media-link"
-    :class="[color].join(' ')"
+    :class="[color].join(' ') + (focusState ? ' focus-state' : ' no-focus')"
     :to="{ name: 'Overview', params: slugObj.path }"
     :href="slugObj.url"
     rel="noopener"
@@ -13,8 +13,8 @@
     v-else-if="slugObj.url"
     :href="slugObj.url"
     class="media-link"
-    :class="[color].join(' ')"
-    target="_blank"
+    :class="[color].join(' ') + (focusState ? ' focus-state' : ' no-focus')"
+    :target="target"
     rel="noopener"
   >
     <slot />
@@ -39,6 +39,14 @@ const props = defineProps({
     type: String as PropType<'primary' | 'secondary' | 'none'>,
     default: 'none',
   },
+  target: {
+    type: String,
+    default: '_blank',
+  },
+  focusState: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const slugObj = computed(() => urlToSlug(props.href));
@@ -52,6 +60,10 @@ const slugObj = computed(() => urlToSlug(props.href));
   color: inherit;
   font-size: inherit;
   text-decoration: none;
+
+  &.no-focus:focus {
+    outline: none;
+  }
 
   &.secondary {
     color: var(--cl-secondary-text);

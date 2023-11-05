@@ -1,0 +1,43 @@
+@import './../pages';
+
+.aniInfosSingleGeneros {
+  border-top: none;
+}
+
+.aniInfosMalSync {
+  padding: 10px;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+.aniInfosMalSync > b {
+  display: block;
+  font-size: 17px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+#malp {
+  margin: 0;
+  margin-top: 5px;
+}
+
+#MalData {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(calc(50% - 3px), 1fr));
+  align-items: center;
+  gap: 5px;
+}
+
+#malStatus,
+#malTotal,
+#malEpisodes,
+#malUserRating,
+#malRating,
+#malVolumes,
+#malTotalVol,
+#malTotalCha,
+#AddMal {
+  font-size: 0.9em !important;
+  color: #999 !important;
+}

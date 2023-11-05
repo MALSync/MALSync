@@ -13,7 +13,7 @@ export const AnimeUnity: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('div.general > h1.title').text().trim();
+      return j.$('div.general > h1.title').text().replace('(ITA)', '').trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);

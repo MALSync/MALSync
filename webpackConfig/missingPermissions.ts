@@ -55,7 +55,18 @@ function getDiff(oldUrls, oldDiff) {
   oldPages.forEach(page => {
     try {
       const urls = pagesUtils.urls(page);
-      const diffUrls = urls.match.filter(el => !oldUrls.includes(el)).map(el => formatUrls(el));
+      const diffUrls = urls.match.filter(el => !oldUrls.includes(el)).map(el => {
+
+        if (oldDiff && oldDiff[page] && el.startsWith('*://*.')) {
+          for (const old of oldDiff[page]) {
+            if (old.endsWith('.' + el.replace('*://*.', ''))) {
+              return old;
+            }
+          }
+        }
+
+        return formatUrls(el)
+      });
       if (diffUrls.length) {
         res[page] = diffUrls;
       }

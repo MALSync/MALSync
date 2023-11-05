@@ -1,6 +1,6 @@
 <template>
   <div class="option">
-    <div class="title">
+    <div v-if="labelSection" class="title">
       <slot name="title">
         {{ typeof title === 'function' ? (title as any)() : title }}
       </slot>
@@ -9,9 +9,15 @@
       </MediaLink>
       <span v-if="tooltip" :data-text="tooltip" class="material-icons tooltip">help</span>
     </div>
-    <div class="component" :class="`type-${component}`">
+    <div :class="`type-${component} ${labelSection ? 'component' : 'only-component'}`">
       <slot name="component">
-        <component :is="components[component]" v-bind="props" v-model="model"><slot /></component>
+        <component
+          :is="components[component]"
+          v-bind="props"
+          v-model="model"
+          @click="$emit('click')"
+          ><slot
+        /></component>
       </slot>
     </div>
   </div>
@@ -28,6 +34,7 @@ import FormText from '../form/form-text.vue';
 import formSwitch from '../form/form-switch.vue';
 import FormShortcut from '../form/form-shortcut.vue';
 import MediaLink from '../media-link.vue';
+import FormMultiSelect from '../form/form-multi-select.vue';
 
 const components = {
   button: FormButton,
@@ -38,9 +45,10 @@ const components = {
   input: FormText,
   switch: formSwitch,
   shortcut: FormShortcut,
+  multiSelect: FormMultiSelect,
 };
 
-const emit = defineEmits(['change']);
+const emit = defineEmits(['change', 'click']);
 
 const properties = defineProps({
   title: {
@@ -69,6 +77,10 @@ const properties = defineProps({
     type: String,
     required: false,
     default: null,
+  },
+  labelSection: {
+    type: Boolean,
+    default: true,
   },
 });
 
@@ -106,6 +118,10 @@ if (properties.option) {
 .component {
   max-width: 50%;
   overflow: show;
+}
+
+.only-component {
+  width: 100%;
 }
 
 .type-slider {

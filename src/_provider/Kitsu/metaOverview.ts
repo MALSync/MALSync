@@ -62,13 +62,17 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (!this.kitsuSlug) {
       const kitsuRes = await helper.malToKitsu(this.malId, this.type);
       try {
-        this.kitsuId = kitsuRes.data[0].relationships.item.data.id;
+        const relation = kitsuRes.data.find(
+          item => item.relationships.item.data.type === this.type,
+        );
+        if (!relation) throw new NotFoundError(`No entry found for malId ${this.malId}`);
+        this.kitsuId = Number(relation.relationships.item.data.id);
         kitsuRes.included.forEach(el => {
-          if (el.id === this.kitsuId) {
+          if (Number(el.id) === this.kitsuId) {
             this.kitsuSlug = el.attributes.slug;
           }
         });
-        if (!this.kitsuSlug) throw 'No slug';
+        if (!this.kitsuSlug) throw new NotFoundError(`No slug found for ${this.kitsuId}`);
       } catch (e) {
         throw new NotFoundError(e.message);
       }
