@@ -652,6 +652,7 @@ module.exports = {
       '*://timberwoodanotia.com/e/*',
       '*://phenomenalityuniform.com/e/*',
       '*://prefulfilloverdoor.com/e/*',
+      '*://nonesnanking.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
