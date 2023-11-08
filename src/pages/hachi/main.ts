@@ -45,7 +45,7 @@ export const hachi: pageInterface = {
       j.$('div.mantine-Grid-root').first().prepend(j.html(selector));
     },
     list: {
-      offsetHandler: true,
+      offsetHandler: false,
       elementsSelector() {
         return j.$('div.mantine-SimpleGrid-root > a');
       },
