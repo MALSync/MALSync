@@ -1,9 +1,7 @@
-import { util } from "chai";
 import { pageInterface } from "../pageInterface";
-import { url } from "inspector";
 
-export const manhuaus: pageInterface = {
-    name: 'manhuaus',
+export const ManhuaUS: pageInterface = {
+    name: 'ManhuaUS',
     domain: 'https://manhuaus.com',
     languages: ['English'],
     type: 'manga',
@@ -58,10 +56,10 @@ export const manhuaus: pageInterface = {
                 return j.$('ul > li.wp.manga-chapter');
             },
             elementUrl(selector) {
-                return utils.absoluteLink(selector.find('a').first().attr('href'), manhuaus.domain);
+                return utils.absoluteLink(selector.find('a').first().attr('href'), ManhuaUS.domain);
             },
             elementEp(selector) {
-                return manhuaus.sync.getEpisode(manhuaus.overview!.list!.elementUrl!(selector));
+                return ManhuaUS.sync.getEpisode(ManhuaUS.overview!.list!.elementUrl!(selector));
             },
         },
     },
