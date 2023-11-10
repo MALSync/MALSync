@@ -882,8 +882,4 @@ module.exports = {
   soraplay: {
     match: ['*://*.soraplay.xyz/*'],
   },
-  //ManhuaUS
-  manhuaus:{
-    match: ["*//manhuaus.com/*"],
-  },
 };
