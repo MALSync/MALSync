@@ -340,7 +340,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Токен сохранён, теперь можно закрыть страницу",
+        "message": "Токен сохранён, теперь можно закрыть страницу.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -832,7 +832,7 @@
         "description": "Update Check"
     },
     "settings_UpdateCheck_Text": {
-        "message": "Проверяет выход новых серий в фоновом режиме",
+        "message": "Проверяет выход новых серий в фоновом режиме.",
         "description": "Update Check - Text"
     },
     "settings_Interval": {
@@ -1062,5 +1062,13 @@
     "Load": {
         "message": "Загрузить",
         "description": "Button to load content"
+    },
+    "filler_recap_confirm": {
+        "message": "Этот эпизод отмечен как рекап на MyAnimeList, желаете пропустить?",
+        "description": "Question if the user wants to skip the recap"
+    },
+    "filler_filler_confirm": {
+        "message": "Этот эпизод отмечен как филлер на MyAnimeList, желаете пропустить?",
+        "description": "Question if the user wants to skip the filler"
     }
 }
