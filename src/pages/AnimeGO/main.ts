@@ -21,7 +21,25 @@ export const AnimeGO: pageInterface = {
     },
     getTitle(url) {
       const jsonData = JSON.parse(j.$('script[type~="application/ld+json"]').text());
-      return jsonData.alternativeHeadline[1]; // There're 3 languages there: Japanese, English, 日本語 (jp)
+      switch (jsonData.alternativeHeadline.length) {
+        case 0: {
+          // no headlines
+          // example: https://animego.org/anime/moya-geroyskaya-akademiya-s1-294
+          return jsonData.name; // Return Russian title, if no English found
+        }
+        case 3: {
+          // Japanese, English, 日本語 (jp)
+          // example: https://animego.org/anime/horimiya-1686
+          return jsonData.alternativeHeadline[1];
+        }
+        default: {
+          // 1 or 2. Anyway, English is first
+          // examples:
+          // 1: https://animego.org/anime/velikiy-pritvorschik-1573
+          // 2: https://animego.org/anime/vanpanchmen-put-k-stanovleniyu-geroem-14
+          return jsonData.alternativeHeadline[0];
+        }
+      }
     },
     getEpisode(url) {
       return parseInt(j.$('div#video-carousel .video-player__active').attr('data-episode') || '1');
