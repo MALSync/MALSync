@@ -48,9 +48,10 @@ export const requestUserscriptLegacy: requestInterface = {
       }
 
       request.url = encodeURI(request.url as string);
-
-      // @ts-ignore
-      if (request.url.includes('malsync.moe') || request.url.includes('simkl.com')) {
+      if (
+        utils.isDomainMatching(request.url, 'malsync.moe') ||
+        utils.isDomainMatching(request.url, 'simkl.com')
+      ) {
         // @ts-ignore
         request.headers.version = api.storage.version();
         // @ts-ignore
