@@ -13,6 +13,8 @@ export interface storageInterface {
 
   lang(selector, args?: string[]): string;
 
+  langDirection(): 'ltr' | 'rtl';
+
   assetUrl(filename: string): string;
 
   injectCssResource(res: string, head, code?: string | null): void;

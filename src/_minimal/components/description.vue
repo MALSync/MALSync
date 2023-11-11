@@ -4,7 +4,7 @@
     :class="{ close: !open && overflow, loading, fade, dynamic: height === 'dynamic' }"
   >
     <template v-if="!loading">
-      <div ref="inner" class="open-gradient">
+      <div ref="inner" class="open-gradient" dir="auto">
         <slot></slot>
       </div>
       <FormButton

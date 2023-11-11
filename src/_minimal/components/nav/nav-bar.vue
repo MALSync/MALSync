@@ -110,7 +110,7 @@ const closeWindow = () => {
     &.close-fix {
       font-size: 38px;
       position: relative;
-      left: -4px;
+      inset-inline-start: -4px;
     }
   }
 

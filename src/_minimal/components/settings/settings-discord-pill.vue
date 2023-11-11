@@ -31,7 +31,7 @@ const discordRequest = createRequest(
 .pillN {
   .border-pill();
 
-  margin-left: @spacer-half;
+  margin-inline-start: @spacer-half;
   background-color: var(--cl-primary);
   color: white;
   padding: 5px 10px;

@@ -193,7 +193,7 @@ defineProps({
         .border-radius();
         .big-shadow();
 
-        left: -10px;
+        inset-inline-start: -10px;
         max-width: calc(100% + 10px);
       }
     }

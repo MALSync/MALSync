@@ -75,6 +75,20 @@ watch(
   },
 );
 
+const direction = computed(() => {
+  return api.storage.langDirection() === 'rtl' ? 'rtl' : '';
+});
+
+watch(
+  direction,
+  value => {
+    rootHtml.setAttribute('dir', value);
+  },
+  {
+    immediate: true,
+  },
+);
+
 const hslColorString = (color: Hsl, opacity = false) => {
   return `hsla(${color[0]}, ${color[1]}%, ${color[2]}%${opacity ? ', var(--cl-opacity)' : ''})`;
 };

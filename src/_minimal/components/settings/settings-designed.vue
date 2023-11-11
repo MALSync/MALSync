@@ -38,7 +38,7 @@ defineProps({
 
 .designed-wrapper {
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   bottom: 0;
 }
 
