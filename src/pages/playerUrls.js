@@ -653,6 +653,7 @@ module.exports = {
       '*://phenomenalityuniform.com/e/*',
       '*://prefulfilloverdoor.com/e/*',
       '*://nonesnanking.com/e/*',
+      '*://kathleenmemberhistory.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
