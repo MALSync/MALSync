@@ -694,6 +694,7 @@ module.exports = {
       '*://kaaplayer.com/*',
       '*://kaavid.com/*',
       '*://vidnethub.net/*',
+      '*://vidco.pro/*',
     ],
   },
   // kickassanime
