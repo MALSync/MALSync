@@ -654,6 +654,7 @@ module.exports = {
       '*://prefulfilloverdoor.com/e/*',
       '*://nonesnanking.com/e/*',
       '*://kathleenmemberhistory.com/e/*',
+      '*://denisegrowthwide.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
