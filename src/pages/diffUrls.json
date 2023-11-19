@@ -291,7 +291,8 @@
       "https://yonaplay.org/*",
       "https://4shared.com/*",
       "https://videa.hu/*",
-      "https://soraplay.xyz/*"
+      "https://soraplay.xyz/*",
+      "https://aniworld.to/redirect/*"
     ]
   }
 }

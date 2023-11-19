@@ -885,4 +885,8 @@ module.exports = {
   soraplay: {
     match: ['*://*.soraplay.xyz/*'],
   },
+  // AniWorld
+  aniworld: {
+    match: ['*://aniworld.to/redirect/*'],
+  },
 };
