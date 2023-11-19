@@ -33,7 +33,11 @@ export const MangaPlus: pageInterface = {
 
       if (!episodeText) return NaN;
 
-      return Number(episodeText.replace(/[^\d.]+/g, ''));
+      const temp = episodeText.match(/#(\d+)/i);
+
+      if (!temp) return NaN;
+
+      return Number(temp[1]);
     },
   },
   overview: {
