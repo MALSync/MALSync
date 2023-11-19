@@ -8,7 +8,6 @@ export const Anix: pageInterface = {
   domain: 'https://anix.to',
   languages: ['English'],
   name: 'Anix',
-  database: '9anime',
   type: 'anime',
   isSyncPage(url: string): boolean {
     return true;
@@ -74,7 +73,7 @@ export const Anix: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-
+    Anix.database = '9anime';
     utils.waitUntilTrue(
       function () {
         const loaded = j

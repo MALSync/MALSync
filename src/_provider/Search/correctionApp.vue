@@ -1,5 +1,12 @@
 <template>
   <div v-if="syncPage" id="material">
+    <div class="m-s-pill-section">
+      <div class="m-s-pill">
+        <a href="https://malsync.moe/pwa/#/settings" target="_blank">
+          {{ lang('minimalApp_Settings') }}→
+        </a>
+      </div>
+    </div>
     <div v-if="syncMode && minimized">
       <a style="cursor: pointer" @click="minimized = false"> Action required </a>
     </div>
