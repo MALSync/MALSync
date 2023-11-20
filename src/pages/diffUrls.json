@@ -1,54 +1,4 @@
 {
-  "0.9.2": {
-    "Gogoanime": [
-      "https://gogoanime.gr/*",
-      "https://gogoanime.llc/*"
-    ],
-    "MangasOrigines": [
-      "https://mangas-origines.fr/manga*"
-    ],
-    "Voiranime": [
-      "https://v2.voiranime.com/*"
-    ],
-    "YugenAnime": [
-      "https://yugenanime.ro/*"
-    ],
-    "Zoro": [
-      "https://zoro.moe/*",
-      "https://zoro.sx/*",
-      "https://zoro.pm/*"
-    ],
-    "iframe": [
-      "https://myvi.tv/*",
-      "https://suzihaza.com/v/*",
-      "https://vanfem.com/v/*",
-      "https://playgo1.cc/embedplus*",
-      "https://playgo1.cc/streaming.php?*",
-      "https://playgo1.cc/load.php?*",
-      "https://playgo1.cc/loadserver.php?*",
-      "https://anihdplay.com/embedplus*",
-      "https://anihdplay.com/streaming.php?*",
-      "https://anihdplay.com/load.php?*",
-      "https://anihdplay.com/loadserver.php?*",
-      "https://vizcloud.co/embed/*",
-      "https://vizcloud.co/e/*",
-      "https://sbchill.com/e/*",
-      "https://vidmoly.to/*",
-      "https://321naturelikefurfuroid.com/e/*",
-      "https://449unceremoniousnasoseptal.com/e/*",
-      "https://guidon40hyporadius9.com/e/*",
-      "https://cyamidpulverulence530.com/e/*",
-      "https://boonlessbestselling244.com/e/*",
-      "https://antecoxalbobbing1010.com/e/*",
-      "https://matriculant401merited.com/e/*",
-      "https://scatch176duplicities.com/e/*",
-      "https://yugenanime.ro/e/*",
-      "https://www.turkanime.co/embed/*",
-      "https://aniyan.net/jwplayer/*",
-      "https://googlevideo.com/videoplayback?*",
-      "https://streamhide.to/e/*"
-    ]
-  },
   "0.9.3": {
     "AnimeUnity": [
       "https://www.animeunity.cc/anime/*"
@@ -293,5 +243,8 @@
       "https://videa.hu/*",
       "https://soraplay.xyz/*"
     ]
+  },
+  "0.9.7": {
+    "iframe": []
   }
 }
