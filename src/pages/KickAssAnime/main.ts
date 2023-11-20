@@ -13,7 +13,7 @@ export const KickAssAnime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return $('.v-card__title > span').first().text();
+      return $('h1').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
@@ -22,7 +22,7 @@ export const KickAssAnime: pageInterface = {
       return `${KickAssAnime.domain}/${KickAssAnime.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      const epText = $('.v-card__title > .text-overline').first().text();
+      const epText = $('.v-card__title .text-overline').first().text();
 
       const epParts = epText.match(/episode (\d+)/im);
 
