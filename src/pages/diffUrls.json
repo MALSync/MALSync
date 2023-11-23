@@ -245,6 +245,9 @@
     ]
   },
   "0.9.7": {
+    "Anix": [
+      "https://www1.anix.to/anime/*"
+    ],
     "iframe": []
   }
 }
