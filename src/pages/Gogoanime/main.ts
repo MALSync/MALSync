@@ -4,9 +4,8 @@ export const Gogoanime: pageInterface = {
   name: 'Gogoanime',
   domain: [
     'https://gogoanime.tv',
-    'https://gogoanimes.co',
-    'https://gogoanimehd.io',
     'https://gogoanime3.net',
+    'https://anitaku.to',
   ],
   database: 'Gogoanime',
   languages: ['English'],
