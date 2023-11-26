@@ -81,12 +81,12 @@ async function nineanime() {
 }
 
 async function zoro() {
-    const response = await fetch("https://zoroanime.net");
+    const response = await fetch("https://aniwatch.gg");
     const body = await response.text();
 
     const $ = cheerio.load(body);
 
-    const urls = $('div.site-mirror .i-url a').map((i,el) =>  new URL($(el).attr('href'))).get();
+    const urls = $('ul.site-opt > li > a').map((i,el) =>  new URL($(el).attr('href'))).get();
 
     for(const url of urls) {
         addpageUrls('Zoro', [
@@ -96,7 +96,7 @@ async function zoro() {
 }
 
 async function gogoanime() {
-    const response = await fetch("https://gogoanime.news");
+    const response = await fetch("https://gogotaku.info");
     const body = await response.text();
 
     const $ = cheerio.load(body);
@@ -168,7 +168,7 @@ async function start() {
         vidmoly,
         gogostream,
         nineanime,
-        // zoro,
+        zoro,
         gogoanime,
         kickassanime
     }
