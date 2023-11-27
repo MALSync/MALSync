@@ -248,6 +248,13 @@
     "Anix": [
       "https://www1.anix.to/anime/*"
     ],
+    "Gogoanime": [
+      "https://anitaku.to/*"
+    ],
+    "Zoro": [
+      "https://aniwatch.nz/*",
+      "https://aniwatch.se/*"
+    ],
     "iframe": [
       "https://troyyourlead.com/e/*"
     ]
