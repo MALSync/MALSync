@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://animefire.net/*"]
+    "match": ["*://animefire.net/*", "*://animefire.plus/*"]
   }
 }
