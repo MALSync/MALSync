@@ -245,6 +245,9 @@
     ]
   },
   "0.9.7": {
+    "AnimeFire": [
+      "https://animefire.plus/*"
+    ],
     "Anix": [
       "https://www1.anix.to/anime/*"
     ],
