@@ -656,6 +656,7 @@ module.exports = {
       '*://kathleenmemberhistory.com/e/*',
       '*://denisegrowthwide.com/e/*',
       '*://troyyourlead.com/e/*',
+      '*://stevenimaginelittle.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

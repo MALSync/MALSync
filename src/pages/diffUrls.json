@@ -258,8 +258,19 @@
       "https://aniwatch.nz/*",
       "https://aniwatch.se/*"
     ],
+    "nineAnime": [
+      "https://aniwave.vc/watch/*",
+      "https://aniwave.vc/watch2gether/*"
+    ],
+    "tmofans": [
+      "https://gamesnacion.com/*",
+      "https://topamotor.com/*",
+      "https://motorwithpassion.com/*",
+      "https://gamesnewses.com/*"
+    ],
     "iframe": [
-      "https://troyyourlead.com/e/*"
+      "https://troyyourlead.com/e/*",
+      "https://stevenimaginelittle.com/e/*"
     ]
   }
 }
