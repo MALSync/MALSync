@@ -1,7 +1,7 @@
 {
-  "search": "https://comick.app/search?q={searchterm}",
+  "search": "https://comick.ink/search?q={searchterm}",
   "searchDatabase": "Comick",
   "urls": {
-    "match": ["*://comick.app/*"]
+    "match": ["*://comick.app/*", "*://comick.ink/*"]
   }
 }
