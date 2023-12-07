@@ -490,6 +490,7 @@ module.exports = {
       '*://vizcloud.co/e/*',
       '*://vidplay.site/e/*',
       '*://vidplay.lol/e/*',
+      '*://vidplay.online/e/*',
     ],
   },
   // gogo

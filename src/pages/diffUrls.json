@@ -272,6 +272,7 @@
       "https://gamesnewses.com/*"
     ],
     "iframe": [
+      "https://vidplay.online/e/*",
       "https://troyyourlead.com/e/*",
       "https://stevenimaginelittle.com/e/*",
       "https://api.animeflix.dev/*"
