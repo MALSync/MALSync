@@ -752,7 +752,7 @@
         "description": "Clicking outside closes miniMAL"
     },
     "settings_miniMAL_Display": {
-        "message": "Anzeige nach",
+        "message": "Position",
         "description": "Display to the"
     },
     "settings_miniMAL_popup": {
