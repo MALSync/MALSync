@@ -1280,7 +1280,7 @@
         "description": "Asking to allow missing domain permissions"
     },
     "settings_custom_domains_disclaimer": {
-        "message": "Cette fonctionnalité permet d’ajouter des domaines personnalisés à des sites existants pour gérer les changements de noms de domaine et les sources auto-hébergées, mais il ne permet pas d’ajouter de nouveaux sites.",
+        "message": "Cette fonctionnalité permet d’ajouter des domaines personnalisés à des sites existants pour gérer les changements de noms de domaine et les sources auto-hébergées, mais elle ne permet pas d’ajouter de nouveaux sites.",
         "description": "Text on the custom domain configuration page"
     },
     "settings_read_less": {
