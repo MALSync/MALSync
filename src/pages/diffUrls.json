@@ -258,6 +258,9 @@
     "Gogoanime": [
       "https://anitaku.to/*"
     ],
+    "MangaNato": [
+      "https://chapmanganato.to/*"
+    ],
     "Zoro": [
       "https://aniwatch.nz/*",
       "https://aniwatch.se/*"
@@ -273,9 +276,14 @@
       "https://gamesnewses.com/*"
     ],
     "iframe": [
+      "https://embtaku.pro/embedplus*",
+      "https://embtaku.pro/streaming.php?*",
+      "https://embtaku.pro/load.php?*",
+      "https://embtaku.pro/loadserver.php?*",
       "https://vidplay.online/e/*",
       "https://troyyourlead.com/e/*",
       "https://stevenimaginelittle.com/e/*",
+      "https://edwardarriveoften.com/e/*",
       "https://api.animeflix.dev/*"
     ]
   }

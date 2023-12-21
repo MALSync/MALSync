@@ -444,6 +444,10 @@ module.exports = {
       '*://*.goone.pro/streaming.php?*',
       '*://*.goone.pro/load.php?*',
       '*://*.goone.pro/loadserver.php?*',
+      '*://*.embtaku.pro/embedplus*',
+      '*://*.embtaku.pro/streaming.php?*',
+      '*://*.embtaku.pro/load.php?*',
+      '*://*.embtaku.pro/loadserver.php?*',
       // auto-gogostream-replace-dont-remove
     ],
   },
@@ -658,6 +662,7 @@ module.exports = {
       '*://denisegrowthwide.com/e/*',
       '*://troyyourlead.com/e/*',
       '*://stevenimaginelittle.com/e/*',
+      '*://edwardarriveoften.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
