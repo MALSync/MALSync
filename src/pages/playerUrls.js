@@ -901,6 +901,6 @@ module.exports = {
   },
   // animeflv
   streamwish: {
-    match: ['*://streamwish.to/e/*'],
+    match: ['*://streamwish.to/e/*', '*://sfastwish.com/e/*'],
   },
 };
