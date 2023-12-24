@@ -263,6 +263,7 @@ module.exports = {
     match: [
       '*://*.mixdrop.co/e/*',
       '*://*.mixdrop.to/e/*',
+      '*://*.mdbekjwqa.pw/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
