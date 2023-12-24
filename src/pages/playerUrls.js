@@ -663,6 +663,7 @@ module.exports = {
       '*://troyyourlead.com/e/*',
       '*://stevenimaginelittle.com/e/*',
       '*://edwardarriveoften.com/e/*',
+      '*://lukecomparetwo.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
