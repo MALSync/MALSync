@@ -18,6 +18,13 @@ async function vidmoly() {
     addPlayerUrls('vidmoly', [url.hostname + '/*']);
 }
 
+async function mixdrop() {
+    const response = await fetch("https://mixdrop.to/e/3nl0j0lec477v9", {redirect: 'manual'})
+    const url = new URL(response.headers.get("Location"));
+
+    addPlayerUrls('mixdrop', ['*.' + url.hostname + '/e/*']);
+}
+
 async function gogostream() {
     const response = await fetch("https://gogoanime.tel/no-game-no-life-episode-9");
     const body = await response.text();
@@ -166,6 +173,7 @@ async function start() {
     const tasks = {
         voe,
         vidmoly,
+        mixdrop,
         gogostream,
         // nineanime,
         zoro,

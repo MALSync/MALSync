@@ -260,7 +260,11 @@ module.exports = {
   },
   // gogoanime
   mixdrop: {
-    match: ['*://*.mixdrop.co/e/*', '*://*.mixdrop.to/e/*'],
+    match: [
+      '*://*.mixdrop.co/e/*',
+      '*://*.mixdrop.to/e/*',
+      // auto-mixdrop-replace-dont-remove
+    ],
   },
   // animexin
   gdriveplayer: {
@@ -893,5 +897,9 @@ module.exports = {
   // WitAnime
   soraplay: {
     match: ['*://*.soraplay.xyz/*'],
+  },
+  // animeflv
+  streamwish: {
+    match: ['*://streamwish.to/e/*'],
   },
 };
