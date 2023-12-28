@@ -1,3 +1,4 @@
+import { Taiyo } from './Taiyo/main';
 import { nineAnime } from './nineAnime/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
@@ -130,6 +131,7 @@ import { hachi } from './hachi/main';
 import { WitAnime } from './WitAnime/main';
 
 export const pages = {
+  Taiyo,
   nineAnime,
   Crunchyroll,
   Vrv,
