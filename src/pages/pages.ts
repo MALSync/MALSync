@@ -1,4 +1,3 @@
-import { Taiyo } from './Taiyo/main';
 import { nineAnime } from './nineAnime/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
@@ -129,6 +128,7 @@ import { HinataSoul } from './HinataSoul/main';
 import { OgladajAnime } from './OgladajAnime/main';
 import { hachi } from './hachi/main';
 import { WitAnime } from './WitAnime/main';
+import { Taiyo } from './Taiyo/main';
 
 export const pages = {
   Taiyo,
