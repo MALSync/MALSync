@@ -131,7 +131,6 @@ import { WitAnime } from './WitAnime/main';
 import { Taiyo } from './Taiyo/main';
 
 export const pages = {
-  Taiyo,
   nineAnime,
   Crunchyroll,
   Vrv,
@@ -262,4 +261,5 @@ export const pages = {
   OgladajAnime,
   hachi,
   WitAnime,
+  Taiyo,
 };
