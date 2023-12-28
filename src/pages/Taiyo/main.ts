@@ -32,7 +32,7 @@ export const Taiyo: pageInterface = {
       return j.$('.media-title').text();
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      return Taiyo.overview!.getIdentifier(Taiyo.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
       const urlObject = new URL(url);
