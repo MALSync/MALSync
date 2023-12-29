@@ -264,6 +264,7 @@ module.exports = {
       '*://*.mixdrop.co/e/*',
       '*://*.mixdrop.to/e/*',
       '*://*.mdbekjwqa.pw/e/*',
+      '*://*.mdfx9dc8n.net/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
