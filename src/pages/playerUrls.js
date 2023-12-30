@@ -900,8 +900,20 @@ module.exports = {
   soraplay: {
     match: ['*://*.soraplay.xyz/*'],
   },
-  // animeflv
+  // animeflv/gogo
   streamwish: {
-    match: ['*://streamwish.to/e/*', '*://sfastwish.com/e/*'],
+    match: [
+      '*://streamwish.to/e/*',
+      '*://sfastwish.com/e/*',
+      '*://awish.pro/e/*',
+      // auto-gogostreamwish-replace-dont-remove
+    ],
+  },
+  // gogo
+  filelions: {
+    match: [
+      '*://alions.pro/v/*',
+      // auto-gogofilelions-replace-dont-remove
+    ],
   },
 };

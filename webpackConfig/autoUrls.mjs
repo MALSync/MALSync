@@ -55,6 +55,14 @@ async function gogostream() {
         name: 'gogofembed',
         selector: '.xstreamcdn',
       },
+      {
+        name: 'gogostreamwish',
+        selector: '.streamwish',
+      },
+      {
+        name: 'gogofilelions',
+        selector: '.filelions',
+      },
     ];
 
     for (const server of servers) {
@@ -65,7 +73,7 @@ async function gogostream() {
       }
       const url = new URL(res);
       addPlayerUrls(server.name, [
-        url.hostname + '/e/*',
+        url.hostname + (server.name === 'gogofilelions' ? '/v/*' : '/e/*'),
       ]);
     }
 }
