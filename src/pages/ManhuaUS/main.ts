@@ -30,9 +30,8 @@ export const ManhuaUS: pageInterface = {
     nextEpUrl(url) {
       return j
         .$(
-          'div.entry-header.header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page',
+          'div.select-pagination > div.nav-links > div.nav-next > a.next_page',
         )
-        .first()
         .attr('href');
     },
   },
@@ -55,7 +54,7 @@ export const ManhuaUS: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul > li.wp.manga-chapter');
+        return j.$('ul > li.wp-manga-chapter');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a').first().attr('href'), ManhuaUS.domain);
