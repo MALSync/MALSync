@@ -670,6 +670,7 @@ module.exports = {
       '*://stevenimaginelittle.com/e/*',
       '*://edwardarriveoften.com/e/*',
       '*://lukecomparetwo.com/e/*',
+      '*://kennethofficialitem.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
