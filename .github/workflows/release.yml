@@ -135,3 +135,21 @@ jobs:
         SIGN_KEY: ${{ secrets.SIGN_KEY }}
         SIGN_SECRET: ${{ secrets.SIGN_SECRET }}
         SIGN_ID: ${{ secrets.SIGN_ID }}
+
+    - name: Find first .xpi file
+      id: find_first_xpi
+      run: |
+        FILE=$(ls ./web-ext-artifacts/*.xpi | head -n 1)
+        BASENAME=$(basename "$FILE")
+        echo "xpi_file=$FILE" >> $GITHUB_OUTPUT
+        echo "xpi_filename=$BASENAME" >> $GITHUB_OUTPUT
+
+    - name: Upload .xpi file
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ${{ steps.find_first_xpi.outputs.xpi_file }
+        asset_name: ${{ steps.find_first_xpi.outputs.xpi_filename }}
+        asset_content_type: application/zip
