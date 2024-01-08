@@ -102,7 +102,7 @@ jobs:
         refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
     - name: Deploy Edge
       uses: wdzeng/edge-addon@v1
-    with:
+      with:
         product-id: ${{ secrets.EDGE_PRODUCT_ID }}
         zip-path: dist/webextension.zip
         client-id: ${{ secrets.EDGE_CLIENT_ID }}
