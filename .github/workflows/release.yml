@@ -92,7 +92,7 @@ jobs:
     - name: Pack
       run: |
         npm run package
-    - name: Deploy
+    - name: Deploy Chrome
       uses: trmcnvn/chrome-addon@v2
       with:
         extension: kekjfbackdeiabghhcdklcdoekaanoel
@@ -100,6 +100,14 @@ jobs:
         client-id: ${{ secrets.DEV_CHROME_CLIENT_ID }}
         client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
         refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
+    - name: Deploy Edge
+      uses: wdzeng/edge-addon@v1
+    with:
+        product-id: ${{ secrets.EDGE_PRODUCT_ID }}
+        zip-path: dist/webextension.zip
+        client-id: ${{ secrets.EDGE_CLIENT_ID }}
+        client-secret: ${{ secrets.EDGE_CLIENT_SECRET }}
+        access-token-url: ${{ secrets.EDGE_ACCESS_TOKEN_URL }}
 
   firefox:
     runs-on: ubuntu-latest
