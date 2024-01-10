@@ -974,7 +974,7 @@
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     },
     "updateCheck_Refresh": {
-        "message": "Atualizar",
+        "message": "Renovar",
         "description": "Refresh"
     },
     "updateCheck_StartCheck": {
