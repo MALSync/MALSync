@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["https://suwayomi-webui-preview.github.io/*"]
+  }
+}

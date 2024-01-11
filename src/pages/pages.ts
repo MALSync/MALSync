@@ -128,6 +128,7 @@ import { HinataSoul } from './HinataSoul/main';
 import { OgladajAnime } from './OgladajAnime/main';
 import { hachi } from './hachi/main';
 import { WitAnime } from './WitAnime/main';
+import { Tachidesk } from './Tachidesk/main';
 
 export const pages = {
   nineAnime,
@@ -260,4 +261,5 @@ export const pages = {
   OgladajAnime,
   hachi,
   WitAnime,
+  Tachidesk,
 };
