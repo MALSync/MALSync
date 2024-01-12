@@ -28,11 +28,7 @@ export const ManhuaUS: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      return j
-        .$(
-          'div.select-pagination > div.nav-links > div.nav-next > a.next_page',
-        )
-        .attr('href');
+      return j.$('div.select-pagination > div.nav-links > div.nav-next > a.next_page').attr('href');
     },
   },
   overview: {
