@@ -1,5 +1,7 @@
 {
+  "search": "https://suwayomi-webui-preview.github.io/sources/all/search/?query={searchtermPlus}",
   "urls": {
-    "match": ["https://suwayomi-webui-preview.github.io/*"]
+    "match": ["**://suwayomi-webui-preview.github.io/*", "**://127.0.0.1:4567/*"]
   }
 }
+
