@@ -672,6 +672,7 @@ module.exports = {
       '*://lukecomparetwo.com/e/*',
       '*://kennethofficialitem.com/e/*',
       '*://bradleyviewdoctor.com/e/*',
+      '*://jamiesamewalk.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
