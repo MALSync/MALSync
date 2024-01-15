@@ -80,7 +80,7 @@ async function gogostream() {
 
 // pages
 async function nineanime() {
-    const response = await fetch('https://aniwave.tv');
+    const response = await fetch('https://aniwave.live');
     const body = await response.text();
 
     const $ = cheerio.load(body);
@@ -183,7 +183,7 @@ async function start() {
         vidmoly,
         mixdrop,
         gogostream,
-        // nineanime,
+        nineanime,
         zoro,
         gogoanime,
         kickassanime
