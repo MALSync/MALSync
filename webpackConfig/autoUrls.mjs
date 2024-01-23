@@ -19,7 +19,7 @@ async function vidmoly() {
 }
 
 async function mixdrop() {
-    const response = await fetch("https://mixdrop.to/e/3nl0j0lec477v9", {redirect: 'manual'})
+    const response = await fetch("https://mdzsmutpcvykb.net/e/3nl0j0lec477v9", {redirect: 'manual'})
     const url = new URL(response.headers.get("Location"));
 
     addPlayerUrls('mixdrop', ['*.' + url.hostname + '/e/*']);
