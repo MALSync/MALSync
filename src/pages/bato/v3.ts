@@ -1,40 +1,39 @@
 import { pageInterface } from '../pageInterface';
-import { v3 } from './v3';
 
-function getVersion() {
-  return j.$('a.position-absolute > small').length > 0 ? 2 : 3;
-}
-
-export const bato: pageInterface = {
+export const v3: pageInterface = {
   name: 'bato',
   domain: 'https://bato.to',
   languages: ['Many'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'chapter') {
+    if (j.$('div.comic-detail').length > 0) {
       return true;
     }
     return false;
   },
   sync: {
     getTitle(url) {
-      return j.$('h3.nav-title > a').text();
+      return j.$('div.comic-detail > h3 > a').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(bato.sync.getOverviewUrl(url), 4) || '';
+      return utils.urlPart(v3.sync.getOverviewUrl(url), 4).split('-')[0] || '';
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('h3.nav-title > a').attr('href'), bato.domain);
+      return utils.absoluteLink(j.$('div.comic-detail > h3 > a').attr('href'), v3.domain);
     },
     getEpisode(url) {
-      const selectedOptionText = j.$('div.nav-epis > select > optgroup > option:selected').text();
+      const selectedOptionText = j
+        .$('div.comic-detail ~ div > div > select:nth-child(1) > optgroup > option:selected')
+        .text();
 
       if (!selectedOptionText) return NaN;
 
       return getChapter(selectedOptionText);
     },
     getVolume(url) {
-      const selectedOptionText = j.$('div.nav-epis > select > optgroup > option:selected').text();
+      const selectedOptionText = j
+        .$('div.comic-detail ~ div > div > select:nth-child(1) > optgroup > option:selected')
+        .text();
 
       if (!selectedOptionText) return NaN;
 
@@ -45,33 +44,37 @@ export const bato: pageInterface = {
       return Number(/\d+/.exec(chapterTextMatches[0]));
     },
     nextEpUrl(url) {
-      const href = utils.absoluteLink(j.$('div.nav-next > a').first().attr('href'), bato.domain);
+      const href = utils.absoluteLink(j.$('a.btn:nth-child(6)').first().attr('href'), v3.domain);
       if (href.split('/')[3] === 'chapter') {
+        return href;
+      }
+      if (href.split('/')[3].split('-')[0]) {
         return href;
       }
       return '';
     },
     readerConfig: [
       {
-        condition: '.item:nth-child(2)',
+        condition: 'div[name="image-items"] > div > div[name="image-item"]:nth-child(2)',
         current: {
-          selector: '#viewer > .item',
+          selector: 'div[name="image-item"]',
           mode: 'countAbove',
         },
         total: {
-          selector: '.page-num',
+          selector: 'div[name="image-item"] span.text-3xl',
           mode: 'text',
           regex: '\\d+$',
         },
       },
       {
+        condition: 'div[name="image-item"]',
         current: {
-          selector: '.page-num',
+          selector: 'div[name="image-item"] > div > span:nth-child(1)',
           mode: 'text',
           regex: '^\\d+',
         },
         total: {
-          selector: '.page-num',
+          selector: 'div[name="image-item"] > div > span:nth-child(1)',
           mode: 'text',
           regex: '\\d+$',
         },
@@ -80,24 +83,24 @@ export const bato: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('h3.item-title > a').first().text();
+      return j.$('h3.text-lg > a').first().text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return utils.urlPart(url, 4).split('-')[0] || '';
     },
     uiSelector(selector) {
-      j.$('h3.item-title').first().after(j.html(selector));
+      j.$('div.mt-3 > div:nth-child(3)').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.episode-list > div.main > div.item');
+        return j.$('div.scrollable-panel > div.group > astro-slot > div');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a').first().attr('href'), bato.domain);
+        return utils.absoluteLink(selector.find('a').first().attr('href'), v3.domain);
       },
       elementEp(selector) {
-        const episodeText = selector.find('a > b').text();
+        const episodeText = selector.find('a').first().text();
 
         if (!episodeText) return NaN;
 
@@ -110,15 +113,7 @@ export const bato: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(function () {
-      if (getVersion() === 3) {
-        bato.isSyncPage = v3.isSyncPage;
-        bato.sync = v3.sync;
-        bato.overview = v3.overview;
-        bato.name = v3.name;
-        v3.init(page);
-        return;
-      }
-      if (page.url.split('/')[3] === 'chapter' || page.url.split('/')[3] === 'series') {
+      if (page.url.split('/')[3] === 'title') {
         page.handlePage();
       }
     });
