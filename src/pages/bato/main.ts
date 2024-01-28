@@ -188,12 +188,11 @@ export const bato: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(function () {
-      if (getVersion() === 2) {
-        if (page.url.split('/')[3] === 'chapter' || page.url.split('/')[3] === 'series') {
-          page.handlePage();
-        }
-      }
-      if (page.url.split('/')[3] === 'title') {
+      if (
+        page.url.split('/')[3] === 'chapter' ||
+        page.url.split('/')[3] === 'series' ||
+        page.url.split('/')[3] === 'title'
+      ) {
         page.handlePage();
       }
     });
