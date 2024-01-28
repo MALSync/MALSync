@@ -65,6 +65,31 @@ export const bato: pageInterface = {
         },
       },
       {
+        condition: 'div[name="image-items"] > div > div[name="image-item"]:nth-child(2)',
+        current: {
+          selector: 'div[name="image-item"]',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: 'div[name="image-item"] span.text-3xl',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+      {
+        condition: 'div[name="image-item"]',
+        current: {
+          selector: 'div[name="image-item"] > div > span:nth-child(1)',
+          mode: 'text',
+          regex: '^\\d+',
+        },
+        total: {
+          selector: 'div[name="image-item"] > div > span:nth-child(1)',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+      {
         current: {
           selector: '.page-num',
           mode: 'text',
