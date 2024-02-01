@@ -675,6 +675,7 @@ module.exports = {
       '*://bradleyviewdoctor.com/e/*',
       '*://jamiesamewalk.com/e/*',
       '*://seanshowcould.com/e/*',
+      '*://johntryopen.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
