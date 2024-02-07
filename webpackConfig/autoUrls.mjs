@@ -145,6 +145,21 @@ async function kickassanime() {
     }
 }
 
+async function anix() {
+    const response = await fetch("https://anix.me");
+    const body = await response.text();
+
+    const $ = cheerio.load(body);
+
+    const urls = $('.mt-3 a[target="_blank"]').map((i,el) =>  new URL($(el).attr('href'))).get();
+
+    for(let url of urls) {
+        addpageUrls('Anix', [
+            "*://*." + url.hostname + "/anime/*",
+        ])
+    }
+}
+
 
 function addpageUrls(page, urls) {
     let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
@@ -186,7 +201,8 @@ async function start() {
         nineanime,
         zoro,
         gogoanime,
-        kickassanime
+        kickassanime,
+        anix,
     }
 
     for(const key of Object.keys(tasks)) {
