@@ -249,7 +249,9 @@
       "https://animefire.plus/*"
     ],
     "Anix": [
-      "https://www1.anix.to/anime/*"
+      "https://www1.anix.to/anime/*",
+      "https://anix.ac/anime/*",
+      "https://anix.vc/anime/*"
     ],
     "ComicK": [
       "https://comick.ink/*",
@@ -297,6 +299,7 @@
       "https://jamiesamewalk.com/e/*",
       "https://seanshowcould.com/e/*",
       "https://johntryopen.com/e/*",
+      "https://morganoperationface.com/e/*",
       "https://api.animeflix.dev/*",
       "https://streamwish.to/e/*",
       "https://sfastwish.com/e/*",
