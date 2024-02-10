@@ -71,6 +71,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://kickassanime.am"><img src="https://favicon.malsync.moe/?domain=https://kickassanime.am"> KickAssAnime</a></td>
+                <td><a href="https://kickassanime.co.in"><img src="https://favicon.malsync.moe/?domain=https://kickassanime.co.in"> KickAssAnimation</a></td>
                 <td><a href="https://bato.to"><img src="https://favicon.malsync.moe/?domain=https://bato.to"> bato</a></td>
                 <td></td>
               </tr><tr>
