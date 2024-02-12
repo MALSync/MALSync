@@ -69,6 +69,7 @@ export const MangaPark: pageInterface = {
       return '';
     },
     readerConfig: [
+      /* TODO: fix this for v5
       {
         condition: '#__next',
         current: {
@@ -80,7 +81,7 @@ export const MangaPark: pageInterface = {
           mode: 'text',
           regex: '\\d+$',
         },
-      },
+      }, */
       {
         current: {
           selector: '#viewer .item',
@@ -110,7 +111,7 @@ export const MangaPark: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      if ($('#__next').length) {
+      if ($('#app-wrapper').length) {
         MangaPark.isSyncPage = version5.isSyncPage;
         MangaPark.isOverviewPage = version5.isOverviewPage;
         MangaPark.sync = version5.sync;
