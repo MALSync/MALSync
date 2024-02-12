@@ -59,7 +59,6 @@ export const settingsObj = {
       'Hulu',
       'Netflix',
       'Hidive',
-      'Vrv',
       'VIZ',
       'MangaPlus',
       'MangaReader',

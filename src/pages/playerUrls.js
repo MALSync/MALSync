@@ -20,9 +20,6 @@ module.exports = {
   crunchyroll: {
     match: ['*://*.static.crunchyroll.com/*'],
   },
-  Vrv: {
-    match: ['*://*.static.vrv.co/*'],
-  },
   vidstreaming: {
     match: [
       '*://*.vidstreaming.io/*',

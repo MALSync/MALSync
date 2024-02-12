@@ -1,7 +1,0 @@
-{
-  "search": "https://vrv.co/?q={searchterm}",
-  "searchDatabase": "Vrv",
-  "urls": {
-    "match": ["*://vrv.co/*"]
-  }
-}

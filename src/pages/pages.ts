@@ -9,7 +9,6 @@ import { Netflix } from './Netflix/main';
 import { animepahe } from './animepahe/main';
 import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
-import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
 import { Aniflix } from './Aniflix/main';
 import { KickAssAnime } from './KickAssAnime/main';
@@ -132,7 +131,6 @@ import { WitAnime } from './WitAnime/main';
 export const pages = {
   nineAnime,
   Crunchyroll,
-  Vrv,
   Mangadex,
   Gogoanime,
   TurkAnime,
