@@ -149,9 +149,6 @@ module.exports = {
   animedaisuki: {
     match: ['*://animedaisuki.moe/embed/*'],
   },
-  Wakanim: {
-    match: ['*://*.wakanim.tv/*/*/*/embeddedplayer/*'],
-  },
   superitu: {
     match: ['*://superitu.com/embed/*'],
   },

@@ -12,7 +12,6 @@ import { Jkanime } from './Jkanime/main';
 import { Proxer } from './Proxer/main';
 import { Aniflix } from './Aniflix/main';
 import { KickAssAnime } from './KickAssAnime/main';
-import { Wakanim } from './Wakanim/main';
 import { Shinden } from './Shinden/main';
 import { Voiranime } from './Voiranime/main';
 import { VIZ } from './VIZ/main';
@@ -139,7 +138,6 @@ export const pages = {
   Animeflv,
   Jkanime,
   Proxer,
-  Wakanim,
   Emby,
   Plex,
   Aniflix,
