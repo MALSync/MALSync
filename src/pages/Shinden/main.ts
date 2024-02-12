@@ -39,11 +39,7 @@ export const Shinden: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.page-title')
-        .text()
-        .replace(/anime:/gim, '')
-        .trim();
+      return j.$('h1.page-title .title').text().trim();
     },
     getIdentifier(url) {
       return url.split('/')[4];
