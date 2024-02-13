@@ -260,6 +260,10 @@
     "Gogoanime": [
       "https://anitaku.to/*"
     ],
+    "KickAssAnime": [
+      "https://kickassanimes.io/*",
+      "https://kickassanime.mx/*"
+    ],
     "MangaNato": [
       "https://chapmanganato.to/*"
     ],
@@ -285,6 +289,7 @@
       "https://mdfx9dc8n.net/e/*",
       "https://mdzsmutpcvykb.net/e/*",
       "https://mixdropjmk.pw/e/*",
+      "https://mixdrop21.net/e/*",
       "https://embtaku.pro/embedplus*",
       "https://embtaku.pro/streaming.php?*",
       "https://embtaku.pro/load.php?*",
@@ -300,6 +305,7 @@
       "https://seanshowcould.com/e/*",
       "https://johntryopen.com/e/*",
       "https://morganoperationface.com/e/*",
+      "https://markstyleall.com/e/*",
       "https://api.animeflix.dev/*",
       "https://streamwish.to/e/*",
       "https://sfastwish.com/e/*",

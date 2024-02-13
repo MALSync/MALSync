@@ -5,7 +5,9 @@
       "*://*.kaas.ro/*",
       "*://*.kaas.to/*",
       "*://*.kickassanime.ro/*",
-      "*://*.kickassanime.am/*"
+      "*://*.kickassanime.am/*",
+      "*://*.kickassanimes.io/*",
+      "*://*.kickassanime.mx/*"
     ]
   }
 }
