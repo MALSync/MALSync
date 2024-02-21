@@ -38,6 +38,22 @@ export const Suwayomi: pageInterface = {
       }
       return 0;
     },
+    readerConfig: [
+      {
+        current: {
+          mode: 'text',
+          selector: '#root > .MuiBox-root > .MuiBox-root',
+          regex: '(\\d+) /',
+          group: 1,
+        },
+        total: {
+          mode: 'text',
+          selector: '#root > .MuiBox-root > .MuiBox-root',
+          regex: '/ (\\d+)',
+          group: 1,
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {
