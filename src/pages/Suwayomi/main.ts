@@ -13,10 +13,11 @@ export const Suwayomi: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('title')
-        .text()
-        .replace(/(.+): .+ - Suwayomi/g, '$1');
+      const title = j.$('title').text();
+      if (title.includes('Loading...')) {
+        return '';
+      }
+      return title.replace(/(.+): .+ - Suwayomi/g, '$1');
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -71,17 +72,37 @@ export const Suwayomi: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+
     utils.fullUrlChangeDetect(() => {
       page.reset();
-      clearInterval(interval);
-      interval = utils.waitUntilTrue(
-        () => {
-          return j.$('title').length;
-        },
-        () => {
-          page.handlePage();
-        },
-      );
+      check();
     });
+    j.$(() => {
+      check();
+    });
+
+    function check() {
+      clearInterval(interval);
+
+      if (Suwayomi.isSyncPage(window.location.href)) {
+        interval = utils.waitUntilTrue(
+          () => {
+            return $('.MuiBox-root img').length > 0;
+          },
+          () => {
+            page.handlePage();
+          },
+        );
+      } else if (Suwayomi.isOverviewPage!(window.location.href)) {
+        interval = utils.waitUntilTrue(
+          () => {
+            return Suwayomi.overview!.getTitle(window.location.href).length;
+          },
+          () => {
+            page.handlePage();
+          },
+        );
+      }
+    }
   },
 };
