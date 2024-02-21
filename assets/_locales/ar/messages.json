@@ -752,15 +752,15 @@
         "description": "Use Tags/Notes"
     },
     "settings_malContinue": {
-        "message": "تابع روابط المشاهدة",
+        "message": "روابط تكملة المشاهدة",
         "description": "Continue watching links"
     },
     "settings_malResume": {
-        "message": "استئنف روابط المشاهدة",
+        "message": "روابط استئناف المشاهدة",
         "description": "Resume watching links"
     },
     "settings_usedPage": {
-        "message": "أخر روابط المشاهدة المستخدمة",
+        "message": "روابط اخر الصفحات المستخدمة",
         "description": "Last used page links"
     },
     "settings_anilist_update_ui": {
@@ -956,5 +956,563 @@
     "overview_Streaming": {
         "message": "شاهد",
         "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "settings_LocalSync": {
+        "message": "احتياطي التخزين المحلي",
+        "description": "Option to activate the local storage fallback sync"
+    },
+    "settings_Mangasync": {
+        "message": "مزامنة المانجا الاحتياطية",
+        "description": "Manga sync fallback in case the manga reader progress tracking does not work"
+    },
+    "settings_miniMAL_floatButtonCorrection": {
+        "message": "إعادة تعيين الزر العائم إلى واجهة مستخدم التصحيح",
+        "description": "Remap floating button to the correction UI"
+    },
+    "settings_miniMAL_floatButtonHide": {
+        "message": "إخفاء زر قائمة miniMAL العائمة",
+        "description": "Hide miniMAL floating menu button"
+    },
+    "settings_miniMAL_Display": {
+        "message": "عرض على",
+        "description": "Display to the"
+    },
+    "settings_miniMAL_popup": {
+        "message": "اعدادات نافذة التمديد",
+        "description": "Header of the settings section for the extension popup"
+    },
+    "settings_miniMAL_theme": {
+        "message": "الثيم",
+        "description": "Label for the theme switch dropdown (light/dark theme)"
+    },
+    "settings_miniMAL_window": {
+        "message": "فتح في نافذة منفصلة",
+        "description": "Open miniMAL in separate window checkbox"
+    },
+    "settings_miniMAL_Display_Left": {
+        "message": "اليسار",
+        "description": "miniMAL Display Left"
+    },
+    "settings_miniMAL_Display_Center": {
+        "message": "المنتصف",
+        "description": "miniMAL Display Center"
+    },
+    "settings_miniMAL_Display_Right": {
+        "message": "اليمين",
+        "description": "miniMAL Display Right"
+    },
+    "settings_miniMAL_Height": {
+        "message": "الارتفاع (px / ٪)",
+        "description": "miniMAL Height"
+    },
+    "settings_miniMAL_Width": {
+        "message": "العرض (px / ٪)",
+        "description": "miniMAL Width"
+    },
+    "settings_donate": {
+        "message": "تبرّع",
+        "description": "Link to donation page"
+    },
+    "settings_discord_join": {
+        "message": "انضم الى سيرفر الدسكورد الخاص بنا",
+        "description": "Link to join discord"
+    },
+    "settings_help": {
+        "message": "تحتاج الى مساعدة؟",
+        "description": "Button that links to support"
+    },
+    "settings_miscellaneous": {
+        "message": "اعدادات اخرى",
+        "description": "Header of the section of settings without specific theme"
+    },
+    "settings_listsync": {
+        "message": "مزامنة القائمة",
+        "description": "Header of the section of List Sync settings"
+    },
+    "settings_progress": {
+        "message": "تقدير التقدم",
+        "description": "Header of the section of progress estimation settings"
+    },
+    "settings_onsite": {
+        "message": "في الموقع",
+        "description": "Header of the section to change onsite website appearance and features"
+    },
+    "settings_theming": {
+        "message": "تخصيص الثيم",
+        "description": "Header of the theming section"
+    },
+    "settings_theming_sidebars": {
+        "message": "القوائم الجانبية",
+        "description": "Option to disable the sidebars in the extension popup"
+    },
+    "settings_theming_background_image": {
+        "message": "صورة الخلفية",
+        "description": "Option to select a custom background image for the extension popup"
+    },
+    "settings_theming_background_opacity": {
+        "message": "عتامة الخلفية",
+        "description": "Option to set the transparency of the UI in front of the background image"
+    },
+    "settings_theming_theme_system": {
+        "message": "النظام",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "فاتح",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_dark": {
+        "message": "مظلم",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "settings_theming_theme_custom": {
+        "message": "مخصص",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "settings_Shortcuts": {
+        "message": "الإختصارات",
+        "description": "Shortcuts"
+    },
+    "settings_miniMAL_Open": {
+        "message": "افتح miniMAL",
+        "description": "miniMAL Open"
+    },
+    "settings_miniMAL_NotSet": {
+        "message": "غير محدد",
+        "description": "miniMAL Not Set"
+    },
+    "settings_loadPTWForProgress": {
+        "message": "تحميل PTW / PTR لتقييم التقدم",
+        "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
+    },
+    "settings_Video_Player": {
+        "message": "مشغل الفيديو",
+        "description": "Video settings header"
+    },
+    "settings_Video_Fullscreen": {
+        "message": "ملء الشاشة تلقائيا",
+        "description": "Auto fullscreen toggle"
+    },
+    "settings_autoNextEp": {
+        "message": "تشغيل الحلقة التالية تلقائيا",
+        "description": "Autoplays the next episode after the video ends"
+    },
+    "settings_Shortcuts_Sync": {
+        "message": "تعيين الحلقة / الفصل كمقروءة",
+        "description": "Text for the sync ui shortcut"
+    },
+    "settings_Shortcuts_Skip_Forward": {
+        "message": "تخطي المقدمة",
+        "description": "Description for the the opening skip shortcut"
+    },
+    "settings_Shortcuts_Skip_Backward": {
+        "message": "العودة الى بداية المقدمة",
+        "description": "Description for the the opening skip shortcut"
+    },
+    "settings_Shortcuts_Click": {
+        "message": "انقر لإدخال الاختصار",
+        "description": "Shown if no shortcut is set for an option"
+    },
+    "settings_UpdateCheck": {
+        "message": "التحقق من وجود تحديث",
+        "description": "Update Check"
+    },
+    "settings_UpdateCheck_Text": {
+        "message": "التحقق من وجود حلقات جديدة في الخلفية.",
+        "description": "Update Check - Text"
+    },
+    "settings_Interval": {
+        "message": "الفاصل الزمني",
+        "description": "Interval"
+    },
+    "settings_Interval_Off": {
+        "message": "إيقاف",
+        "description": "Interval - Off"
+    },
+    "settings_Interval_Default_Anime": {
+        "message": "الأنمي الافتراضي",
+        "description": "Dropdown label for selecting the global progress anime source"
+    },
+    "settings_Interval_Default_Manga": {
+        "message": "المانجا الافتراضية",
+        "description": "Dropdown label for selecting the global progress manga source"
+    },
+    "settings_ProgressCheck": {
+        "message": "التحقق من التقدم",
+        "description": "Header for the progress section in the settings"
+    },
+    "settings_Notifications": {
+        "message": "الإشعارات",
+        "description": "Notifications"
+    },
+    "settings_Debugging": {
+        "message": "إيجاد الثغرات",
+        "description": "Debugging"
+    },
+    "settings_ETC": {
+        "message": "الخ",
+        "description": "ETC"
+    },
+    "settings_tracking": {
+        "message": "تعقب",
+        "description": "tracking settings header"
+    },
+    "settings_tracking_disabled": {
+        "message": "إيقاف تشغيل التعقب",
+        "description": "Header for section with websites with disabled tracking"
+    },
+    "settings_Userscriptmode": {
+        "message": "وضع الـ Userscript",
+        "description": "Userscript mode"
+    },
+    "settings_highlightAllEp": {
+        "message": "تحديد جميع الحلقات / الفصول",
+        "description": "Highlight all Episodes/Chapters"
+    },
+    "settings_highlightAllEp_Text": {
+        "message": "هذا الخيار سيحدد جميع الفصول / الحلقات التي تمت مشاهدتها في القائمة التي يمكنك العثور عليها في بعض مواقع الانمي / المانجا",
+        "description": "Highlight all Episodes/Chapters - Text"
+    },
+    "settings_ClearCache": {
+        "message": "مسح ذاكرة التخزين المؤقت",
+        "description": "Clear Cache"
+    },
+    "settings_presence_largeimage_cover": {
+        "message": "صورة الغلاف",
+        "description": "Dropdown option to show the cover from mal on discord"
+    },
+    "settings_presence_largeimage_website": {
+        "message": "أيقونة الموقع",
+        "description": "Dropdown option to show the server icon on discord"
+    },
+    "settings_presence_largeimage_malsync": {
+        "message": "أيقونة Malsync",
+        "description": "Dropdown option to show the malsync icon on discord"
+    },
+    "settings_enabled": {
+        "message": "مفعل",
+        "description": "Checkbox if feature is enabled"
+    },
+    "settings_progress_dropdown": {
+        "message": "مصدر التقدير:",
+        "description": "Text over the dropdown to select the Episode estimation/prediction source"
+    },
+    "settings_progress_disabled": {
+        "message": "غير مفعل",
+        "description": "Dropdown option to disable the estimation for an anime/manga"
+    },
+    "settings_progress_default": {
+        "message": "الافتراضي",
+        "description": "Dropdown option to use the default in the estimation for an anime/manga"
+    },
+    "settings_website_button": {
+        "message": "المواقع",
+        "description": "Button that leads to the config page where individual pages can be disabled"
+    },
+    "settings_custom_domains_button": {
+        "message": "الـ domains المخصصة",
+        "description": "Button that leads to the custom domain configuration page"
+    },
+    "settings_custom_domains_missing_permissions_header": {
+        "message": "تم اكتشاف صلاحيات مفقودة",
+        "description": "Section header for asking to allow missing domain permissions"
+    },
+    "settings_custom_domains_missing_permissions_long": {
+        "message": "لم يتم منح بعض صلاحيات الصفحة بعد",
+        "description": "Asking to allow missing domain permissions"
+    },
+    "settings_custom_domains_wrong": {
+        "message": "الاعدادات غير صحيحة!",
+        "description": "Error text if the configuration is not correct"
+    },
+    "settings_clean_tags_button": {
+        "message": "ازالة العلامات",
+        "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
+    },
+    "settings_more_info": {
+        "message": "معلومات إضافية",
+        "description": "Link button which links to more informations"
+    },
+    "settings_read_more": {
+        "message": "قراءة المزيد",
+        "description": "Button to show more of the description"
+    },
+    "settings_read_less": {
+        "message": "قراءة اقل",
+        "description": "Button to show less the description"
+    },
+    "settings_presenceShowMalsync": {
+        "message": "إظهار Mal-Sync في العنوان الحالي بدلا من الأنمي / المانجا",
+        "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
+    },
+    "updateCheck_Refresh": {
+        "message": "إعادة تجديد",
+        "description": "Refresh"
+    },
+    "updateCheck_StartCheck": {
+        "message": "بدء التحقق",
+        "description": "Start Check"
+    },
+    "updateCheck_NotificationCheck": {
+        "message": "التحقق من الإشعارات",
+        "description": "Notification Check"
+    },
+    "updateCheck_Episode": {
+        "message": "الحلقة",
+        "description": "Episode"
+    },
+    "updateCheck_Message": {
+        "message": "الرسالة",
+        "description": "Message"
+    },
+    "updateCheck_NotificationHistory": {
+        "message": "تاريخ الإشعارات-",
+        "description": "Notification History"
+    },
+    "minimalApp_Overview": {
+        "message": "نظرة عامة",
+        "description": "Overview"
+    },
+    "minimalApp_Reviews": {
+        "message": "التقييمات",
+        "description": "Reviews"
+    },
+    "minimalApp_Recommendations": {
+        "message": "الاقتراحات",
+        "description": "Recommendations"
+    },
+    "minimalApp_Settings": {
+        "message": "الاعدادات",
+        "description": "Settings"
+    },
+    "minimalClass_versionMsg_Text_1": {
+        "message": "شكرا لك على تثبيت MAL-Sync",
+        "description": "Update version - Text 1"
+    },
+    "installPage_Start_Description": {
+        "message": "دعونا نقوم بإيجاز بسيط لبدء - لن يأخذ دقيقة من الوقت!",
+        "description": "Start description text"
+    },
+    "installPage_Howto": {
+        "message": "فهم كيفية عمل MAL-Sync",
+        "description": "Header for how to use section"
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "تنتظر المزامنة حتى تتم مشاهدة 85٪ من الفيديو.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "تحدث المزامنة في تحميل الصفحة وتنتظر لبضع صفحات حتى تتم قراءة 80٪ من الفصل.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "يمكن تخصيص المزامنة في الإعدادات لاحقا - لا تتردد في تخصيصها بطريقتك!",
+        "description": "The synchronization settings can be changed later"
+    },
+    "installPage_Wrong": {
+        "message": "كيفية إصلاح أنمي أو مانجا غير صحيحة تم اكتشافها",
+        "description": "Header of the wrong section on the install page"
+    },
+    "installPage_Links": {
+        "message": "اختر الروابط السريعة المفضلة - مواقعك المفضلة بنقرة واحدة",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "الروابط السريعة ، في الأساس ، هي أزرار تفتح موقع البث / القراءة الذي تختاره - ستكون موجودة في كل صفحة نظرة عامة لأي أنمي / مانجا.",
+        "description": "paragraph one of the description"
+    },
+    "installPage_Login_Successful": {
+        "message": "أحسنت، $Username$! الأن تم التحقق من معلوماتك وانت جاهز للانطلاق.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
+    },
+    "Emby_Authenticate": {
+        "message": "يحتاج MAL-Sync إلى مفتاح Emby API للعمل. المزيد من المعلومات $Link1$ هنا $Link2$",
+        "description": "Emby Authentication",
+        "placeholders": {
+            "Link1": {
+                "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "Error_Authenticate": {
+        "message": "الرجاء التحقق $Link1$ هنا $Link2$",
+        "description": "Update version - Text 3",
+        "placeholders": {
+            "Link1": {
+                "content": "<a target=\"_blank\" href=\"$1\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "Discord_rpc_browsing": {
+        "message": "تصفح $Page$",
+        "description": "Discord rich Presence text if on overview page",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "Mangadex"
+            }
+        }
+    },
+    "discord_rpc_view_anime": {
+        "message": "إظهار الأنمي",
+        "description": "Discord view anime button"
+    },
+    "discord_rpc_view_manga": {
+        "message": "إظهار المانجا",
+        "description": "Discord view manga button"
+    },
+    "nextEpShort_no_support": {
+        "message": "هذه الصفحة لا تدعم فتح الحلقة التالية",
+        "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+    },
+    "nextEpShort_no_nextEp": {
+        "message": "تعذر العثور على الحلقة التالية",
+        "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+    },
+    "settings_filler": {
+        "message": "تحقق من حلقات الفلر / الملخص",
+        "description": "Option to enable filler checking"
+    },
+    "settings_filler_text": {
+        "message": "سيتحقق هذا مما إذا تم وضع علامة على الحلقة على أنها فلر / ملخص على MyAnimeList",
+        "description": "filler tooltip"
+    },
+    "filler_filler_confirm": {
+        "message": "تم وضع علامة على هذه الحلقة على أنها فلر على MyAnimeList ، هل تريد تخطيها؟",
+        "description": "Question if the user wants to skip the filler"
+    },
+    "filler_recap_confirm": {
+        "message": "تم وضع علامة على هذه الحلقة كملخص على MyAnimeList ، هل تريد تخطيها؟",
+        "description": "Question if the user wants to skip the recap"
+    },
+    "settings_custom_domains_position": {
+        "message": "الموضع",
+        "description": "Position of the quicklinks"
+    },
+    "settings_custom_position_below": {
+        "message": "تحت المعلومات",
+        "description": "Position of the quicklinks below the information section"
+    },
+    "settings_miniMAL_pwa": {
+        "message": "موقع PWA",
+        "description": "Link to the PWA version of the extension popup"
+    },
+    "settings_introSkip": {
+        "message": "تعيين طول مدة تخطي المقدمة ($Seconds$ ثانية)",
+        "description": "Skips video seconds",
+        "placeholders": {
+            "Seconds": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "settings_miniMAL_autoCloseMinimal": {
+        "message": "يؤدي النقر للخارج إلى إغلاق miniMAL",
+        "description": "Clicking outside closes miniMAL"
+    },
+    "settings_theming_color": {
+        "message": "لون الثيم",
+        "description": "Option to select a custom theme color for the extension popup"
+    },
+    "settings_listsync_background": {
+        "message": "مزامنة يومية في الخلفية",
+        "description": "Option to sync list once a day in the background"
+    },
+    "settings_Video_Resume": {
+        "message": "الإستئناف التلقائي",
+        "description": "Auto resume video where you left off toggle"
+    },
+    "settings_Shortcuts_Correction": {
+        "message": "افتح النافذة المنبثقة لتصحيح علاقة الأنمي",
+        "description": "Text for the correction ui shortcut"
+    },
+    "settings_Shortcuts_Next_Episode": {
+        "message": "فتح اختصار الحلقة التالية",
+        "description": "Description for the next episode shortcut option"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "الإشعارات اللاصقة",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
+    "settings_Userscriptmode_Text": {
+        "message": "تعطيل الـ content script. هذا يجعل من الممكن تمكين الامتداد و الـ userscript في نفس الوقت.",
+        "description": "Userscript mode - Text"
+    },
+    "installPage_Howto_Description": {
+        "message": "تحدث المزامنة مع قاعدة البيانات فقط عندما تفتح حلقة أو فصلًا في أي من $Link1$ الصفحات المدعومة بـ - $LinkEnd1$— لا داعي للقلق، لدينا بالتأكيد موقعك المفضل في القائمة!",
+        "description": "How to use description text",
+        "placeholders": {
+            "Link1": {
+                "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
+                "example": "<a>"
+            },
+            "LinkEnd1": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "installPage_Wrong_Description": {
+        "message": "يمكنك بسهولة تغيير العلاقة كما هو موضح في GIF أدناه. يمكن تعيين إزاحة الحلقة على تلك الصفحة أيضا.",
+        "description": "Description of the wrong section on the install page"
+    },
+    "settings_presence_largeimage": {
+        "message": "الصورة الحالية",
+        "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+    },
+    "settings_custom_domains_disclaimer": {
+        "message": "تسمح هذه الميزة بإضافة domains مخصصة إلى المواقع الحالية للتعامل مع تغييرات الـ domain وself-hosted sources ، ولكن لا يمكنها إضافة مواقع جديدة.",
+        "description": "Text on the custom domain configuration page"
+    },
+    "settings_presenceShowButtons": {
+        "message": "زر إظهار لعرض الأنمي / المانجا على MAL أو مزود آخر",
+        "description": "Show button to view the anime/manga on MAL or another provider"
+    },
+    "settings_shortcut_tooltip": {
+        "message": "لا يوصى بتعيين الاختصار على مفتاح واحد",
+        "description": "Shows this message if the users has only a single key set as shortcut"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "لا يدعم المتصفح أو النافذة الحالية إضافة صلاحيات ، يرجى إعادة المحاولة باستخدام عنوان https://malsync.moe/pwa أو استخدام نافذة الإضافة المنبثقة.",
+        "description": "Text that is shown when the browser does not support adding new permissions"
+    },
+    "minimalClass_Popup": {
+        "message": "يرجى السماح بالنوافذ المنبثقة لهذا الموقع",
+        "description": "Please allow pop-ups for this website"
+    },
+    "installPage_Mode": {
+        "message": "حدد قاعدة بيانات الأنمي التي تريد استخدامها",
+        "description": "Header for the MAL-sync provider dropdown"
+    },
+    "Error_Blocked": {
+        "message": "تم حظر الـIP الخاص بك على $Page$، قم بتغيير الـ IP الخاص بك أو انتظر حتى يتم ازالة الحظر. قد يكون انقطاع الموقع المؤقت سببًا أيضًا.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "installPage_Description_paragraph2": {
+        "message": "على سبيل المثال ، إذا كنت ترغب في مشاهدة الأنمي على Crunchyroll ، فسيظهر الرابط السريع ل Crunchyroll في كل صفحة أنمي. هي طريقة ملائمة للوصول إلى مواقعك المفضلة بنقرة واحدة فقط!",
+        "description": "paragraph two of the description"
     }
 }
