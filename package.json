@@ -120,7 +120,7 @@
     "hex-to-hsl": "^1.0.2",
     "jquery": "^3.6.2",
     "overlayscrollbars": "^2.2.1",
-    "overlayscrollbars-vue": "^0.5.2",
+    "overlayscrollbars-vue": "^0.5.7",
     "popper-max-size-modifier": "^0.2.0",
     "semver": "^7.5.4",
     "string-similarity": "^4.0.4",
