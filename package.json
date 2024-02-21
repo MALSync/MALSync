@@ -23,7 +23,7 @@
     "archiver": "^5.3.2",
     "bl": "^6.0.9",
     "chai": "^4.3.10",
-    "chrome-webstore-upload": "^1.0.0",
+    "chrome-webstore-upload": "^3.0.3",
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "dot-prop": "^8.0.2",
