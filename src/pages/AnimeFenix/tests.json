@@ -1,0 +1,30 @@
+{
+  "title": "AnimeFenix",
+  "url": "https://animefenix.tv/",
+  "testCases": [
+    {
+      "url": "https://animefenix.tv/ver/kikansha-no-mahou-wa-tokubetsu-desu-12",
+      "expected": {
+        "sync": true,
+        "title": "Kikansha no Mahou wa Tokubetsu desu",
+        "identifier": "kikansha-no-mahou-wa-tokubetsu-desu",
+        "overviewUrl": "https://animefenix.tv/anime/kikansha-no-mahou-wa-tokubetsu-desu",
+        "nextEpUrl": "https://animefenix.tv/ver/kikansha-no-mahou-wa-tokubetsu-desu-13",
+        "episode": 12,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animefenix.tv/ver/toaru-kagaku-no-railgun-19",
+      "expected": {
+        "sync": false,
+        "title": "Toaru Kagaku no Railgun",
+        "identifier": "toaru-kagaku-no-railgun",
+        "uiSelector": true,
+        "epList": {
+          "19": "https://animefenix.tv/ver/toaru-kagaku-no-railgun-19"
+        }
+      }
+    }
+  ]
+}

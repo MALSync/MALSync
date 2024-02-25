@@ -39,6 +39,7 @@ import { MangaPark } from './MangaPark/main';
 import { AnimesHouse } from './AnimesHouse/main';
 import { AnimeXin } from './AnimeXin/main';
 import { MonosChinos } from './MonosChinos/main';
+import { AnimeFenix } from './AnimeFenix/main';
 import { AnimeFire } from './AnimeFire/main';
 import { OtakuFR } from './OtakuFR/main';
 import { mangatx } from './mangatx/main';

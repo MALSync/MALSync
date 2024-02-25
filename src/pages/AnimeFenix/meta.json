@@ -1,0 +1,8 @@
+{
+  "search": "https://animefenix.tv/buscar?q={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://animefenix.tv/*",
+    ]
+  }
+}
