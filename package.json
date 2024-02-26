@@ -126,7 +126,7 @@
     "string-similarity": "^4.0.4",
     "vue": "^3.4.19",
     "vue-dompurify-html": "^5.0.1",
-    "vue-router": "^4.2.5",
+    "vue-router": "^4.3.0",
     "vue-slider-component": "^4.1.0-beta.6",
     "vue-tsc": "^1.8.27",
     "vue3-lazyload": "^0.3.8",
