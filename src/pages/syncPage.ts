@@ -443,6 +443,7 @@ export class SyncPage {
         }
 
         if (await this.singleObj.checkSync(state.episode, state.volume)) {
+          await this.singleObj.lifeCycleHook('afterCheckSync');
           if (!(this.strongVolumes && !state.episode)) this.singleObj.setEpisode(state.episode);
           this.singleObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
 
@@ -595,7 +596,8 @@ export class SyncPage {
     }
   }
 
-  protected sync(state) {
+  protected async sync(state) {
+    await this.singleObj.lifeCycleHook('beforeSync');
     this.singleObj.setResumeWatching(this.url, state.episode);
     if (typeof this.page.sync.nextEpUrl !== 'undefined') {
       const continueWatching = this.page.sync.nextEpUrl(this.url);
