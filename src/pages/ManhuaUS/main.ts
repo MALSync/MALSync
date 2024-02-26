@@ -30,6 +30,18 @@ export const ManhuaUS: pageInterface = {
     nextEpUrl(url) {
       return j.$('div.select-pagination > div.nav-links > div.nav-next > a.next_page').attr('href');
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '.reading-content .wp-manga-chapter-img',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.reading-content .wp-manga-chapter-img',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {
