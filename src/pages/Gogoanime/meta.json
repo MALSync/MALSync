@@ -35,7 +35,8 @@
       "*://*.gogoanimehd.to/*",
       "*://*.gogoanime3.net/*",
       "*://*.gogoanimehd.io/*",
-      "*://*.anitaku.to/*"
+      "*://*.anitaku.to/*",
+      "*://*.gogoanime3.co/*"
     ]
   }
 }
