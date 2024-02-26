@@ -51,7 +51,9 @@
       "*://*.aniwave.ws/watch/*",
       "*://*.aniwave.ws/watch2gether/*",
       "*://*.aniwave.vc/watch/*",
-      "*://*.aniwave.vc/watch2gether/*"
+      "*://*.aniwave.vc/watch2gether/*",
+      "*://*.aniwave.li/watch/*",
+      "*://*.aniwave.li/watch2gether/*"
     ]
   }
 }

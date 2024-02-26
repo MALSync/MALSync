@@ -129,6 +129,7 @@ import { OgladajAnime } from './OgladajAnime/main';
 import { hachi } from './hachi/main';
 import { WitAnime } from './WitAnime/main';
 import { Suwayomi } from './Suwayomi/main';
+import { ManhuaUS } from './ManhuaUS/main';
 
 export const pages = {
   nineAnime,
@@ -262,4 +263,5 @@ export const pages = {
   hachi,
   WitAnime,
   Suwayomi,
+  ManhuaUS,
 };

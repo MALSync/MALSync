@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integruje MyAnimeList/AniList/Kitsu/Simkl z różnymi stronami, z automatycznym śledzeniem epizodów.",
+        "message": "Integruje MyAnimeList/AniList/Kitsu/Simkl/Shikimori z różnymi stronami, z automatycznym śledzeniem epizodów.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -1266,5 +1266,257 @@
     "next": {
         "message": "Następny",
         "description": "Next button"
+    },
+    "list_sorting_alpha": {
+        "message": "Alfabetycznie",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "list_sorting_history": {
+        "message": "Ostatnio zaktualizowane",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "list_sorting_score": {
+        "message": "Ocena",
+        "description": "Dropdown option to sort list by score"
+    },
+    "settings_Mangasync_readerTracking": {
+        "message": "Synchronizuj mange po przeczytaniu 90% rozdziału",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+    },
+    "overview_sidebar_Score": {
+        "message": "Ocena:",
+        "description": "Info table on overview - Score: 7.65"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "Tomy:",
+        "description": "Info table on overview - Volumes: 12"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "Całkowity czas odtwarzania:",
+        "description": "Info table on overview - Total Playtime: 276 mins"
+    },
+    "list_sorting_unread": {
+        "message": "Nieprzeczytane",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "Stałe powiadomienia",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
+    "back": {
+        "message": "Wstecz",
+        "description": "Back button"
+    },
+    "settings_theming_theme_light": {
+        "message": "Jasny",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "start": {
+        "message": "Start",
+        "description": "Start button"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "Ocena z MAL:",
+        "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "W rankingu:",
+        "description": "Info table on overview - Ranked: #317"
+    },
+    "overview_sidebar_external_links": {
+        "message": "Linki zewnętrzne:",
+        "description": "Info table on overview - External Links: Official Site, Hulu"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "Poplarność:",
+        "description": "Info table on overview - Popularity: #15"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "Data rozpoczęcia:",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "overview_sidebar_Authors": {
+        "message": "Autorzy:",
+        "description": "Info table on overview - Authors: Kamiya, Yuu"
+    },
+    "overview_sidebar_Serialization": {
+        "message": "Serializacja:",
+        "description": "Info table on overview - Serialization: Big Comic Original"
+    },
+    "overview_sidebar_Duration": {
+        "message": "Długość odcinka:",
+        "description": "Info table on overview - Duration: 23 min"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Zezwól na szybką aktualizację liczby odcinków, oceny i statusu na AniList bez konieczności otwierania wyskakującego okna.",
+        "description": "Tooltip for the Update UI option"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Sprawia, że wskaźnik postępu (w dolnej części ekranu) jest domyślnie przezroczysty i szybciej się ukrywa",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_theming_theme_system": {
+        "message": "Systemowy",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "Przeglądarka lub bieżące okno nie obsługują dodawania uprawnień, spróbuj ponownie z adresem URL https://malsync.moe/pwa lub skorzystaj z wyskakującego okienka rozszerzenia.",
+        "description": "Text that is shown when the browser does not support adding new permissions"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Ciemny",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "installPage_Links": {
+        "message": "Wybierz preferowane szybkie łącza - ulubione strony dostępne za jednym kliknięciem",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "Szybkie łącza to przyciski, które otwierają wybraną stronę z mangą/anime - znajdują się one na każdej stronie z opisem mangi/anime.",
+        "description": "paragraph one of the description"
+    },
+    "settings_filler": {
+        "message": "Sprawdź fillery/odcinki podsumowujące",
+        "description": "Option to enable filler checking"
+    },
+    "settings_filler_text": {
+        "message": "Ta funkcja sprawdzi, czy odcinek jest oznaczony jako filler/podsumowanie na MyAnimeList",
+        "description": "filler tooltip"
+    },
+    "settings_custom_domains_position": {
+        "message": "Pozycja",
+        "description": "Position of the quicklinks"
+    },
+    "overview_synonyms": {
+        "message": "Alternatywnie",
+        "description": "Text of a button that shows the alternative names for an entry"
+    },
+    "overview_sidebar_Format": {
+        "message": "Format:",
+        "description": "Info table on overview - Format: Movie"
+    },
+    "overview_sidebar_Status": {
+        "message": "Status:",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Genres": {
+        "message": "Gatunki:",
+        "description": "Info table on overview - Genres: Action"
+    },
+    "overview_sidebar_Rating": {
+        "message": "Kategoria wiekowa:",
+        "description": "Info table on overview - Rating: PG-13"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "Data zakończenia:",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "Źródło:",
+        "description": "Info table on overview - Source: Light Novel"
+    },
+    "overview_sidebar_Members": {
+        "message": "Członkowie:",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "Emisja:",
+        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+    },
+    "overview_sidebar_Studios": {
+        "message": "Studio:",
+        "description": "Info table on overview - Studios: Madhouse"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "Odcinki:",
+        "description": "Info table on overview - Episodes: 12"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "Rozdziały:",
+        "description": "Info table on overview - Chapters: 12"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "Ulubione:",
+        "description": "Info table on overview - Favorites: 15423"
+    },
+    "overview_sidebar_Season": {
+        "message": "Sezon:",
+        "description": "Info table on overview - Season: Spring 2014"
+    },
+    "overview_sidebar_Votes": {
+        "message": "Oceny:",
+        "description": "Info table on overview - Votes: 1423"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "Licencjodawca:",
+        "description": "Info table on overview - Licensor: AT-X"
+    },
+    "overview_sidebar_Aired": {
+        "message": "Emitowano:",
+        "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
+    },
+    "list_sorting_airing_date": {
+        "message": "Data emisji",
+        "description": "Dropdown option to sort list by airing date"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "Nazwa",
+        "description": "Placeholder text the field that sets the custom url name"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Niestandardowy",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "installPage_Start_Description": {
+        "message": "Zróbmy krótki instruktarz przed rozpoczęciem - zajmie to mniej niż minutę!",
+        "description": "Start description text"
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "Synchronizacja czeka aż obejrzysz przynajmniej 85% wideo.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "Synchronizacja podczas ładowania strony i przez kilka stron czeka aż 80% rozdziału zostanie przeczytane.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "Synchronizację można skonfigurować później w ustawieniach - zachęcamy do dostosowania jej do własnych potrzeb!",
+        "description": "The synchronization settings can be changed later"
+    },
+    "installPage_Description_paragraph2": {
+        "message": "Na przykład, jeśli lubisz oglądać anime na Crunchyroll, szybki link do Crunchyroll pojawi się na każdej stronie opisującej anime. To wygodny sposób na dostęp do ulubionych stron za pomocą jednego kliknięcia!",
+        "description": "paragraph two of the description"
+    },
+    "installPage_Login_Successful": {
+        "message": "Wspaniale, $Username$! Jesteś teraz uwierzytelniony i gotowy do działania.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
+    },
+    "Error_Blocked": {
+        "message": "Twój adres IP został zablokowany na $Page$. Zmień adres IP lub poczekaj aż zostaniesz odblokowany. Przyczyną może być też chwilowa awaria.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "filler_filler_confirm": {
+        "message": "Ten odcinek został oznaczony jako filler na MyAnimeList, chcesz go pominąć?",
+        "description": "Question if the user wants to skip the filler"
+    },
+    "filler_recap_confirm": {
+        "message": "Ten odcinek został oznaczony jako podsumowanie na MyAnimeList, chcesz go pominąć?",
+        "description": "Question if the user wants to skip the recap"
+    },
+    "settings_custom_position_below": {
+        "message": "Poniższe informacje",
+        "description": "Position of the quicklinks below the information section"
     }
 }

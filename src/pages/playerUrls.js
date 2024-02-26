@@ -96,7 +96,7 @@ module.exports = {
     match: ['*://*.vidlox.me/*'],
   },
   kwik: {
-    match: ['*://*.kwik.cx/*'],
+    match: ['*://*.kwik.cx/*', '*://*.kwik.si/*'],
   },
   mega: {
     match: ['*://*.mega.nz/*'],
@@ -265,6 +265,9 @@ module.exports = {
       '*://*.mixdrop.to/e/*',
       '*://*.mdbekjwqa.pw/e/*',
       '*://*.mdfx9dc8n.net/e/*',
+      '*://*.mdzsmutpcvykb.net/e/*',
+      '*://*.mixdropjmk.pw/e/*',
+      '*://*.mixdrop21.net/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -672,6 +675,12 @@ module.exports = {
       '*://lukecomparetwo.com/e/*',
       '*://kennethofficialitem.com/e/*',
       '*://bradleyviewdoctor.com/e/*',
+      '*://jamiesamewalk.com/e/*',
+      '*://seanshowcould.com/e/*',
+      '*://johntryopen.com/e/*',
+      '*://morganoperationface.com/e/*',
+      '*://markstyleall.com/e/*',
+      '*://jayservicestuff.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
