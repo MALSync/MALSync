@@ -1,4 +1,9 @@
 import { pageInterface } from '../pageInterface';
+import { v3 } from './v3';
+
+function getVersion() {
+  return j.$('a.position-absolute > small').length > 0 ? 2 : 3;
+}
 
 export const bato: pageInterface = {
   name: 'bato',
@@ -33,11 +38,11 @@ export const bato: pageInterface = {
 
       if (!selectedOptionText) return NaN;
 
-      const chapterTextMatches = selectedOptionText.match(/(vol\.|volume)\D?\d+/i);
+      const chapterTextMatches = /(vol\.|volume)\D?\d+/i.exec(selectedOptionText);
 
       if (!chapterTextMatches || chapterTextMatches.length === 0) return NaN;
 
-      return Number(chapterTextMatches[0].match(/\d+/));
+      return Number(/\d+/.exec(chapterTextMatches[0]));
     },
     nextEpUrl(url) {
       const href = utils.absoluteLink(j.$('div.nav-next > a').first().attr('href'), bato.domain);
@@ -55,6 +60,31 @@ export const bato: pageInterface = {
         },
         total: {
           selector: '.page-num',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+      {
+        condition: 'div[name="image-items"] > div > div[name="image-item"]:nth-child(2)',
+        current: {
+          selector: 'div[name="image-item"]',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: 'div[name="image-item"] span.text-3xl',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+      },
+      {
+        condition: 'div[name="image-item"]',
+        current: {
+          selector: 'div[name="image-item"] > div > span:nth-child(1)',
+          mode: 'text',
+          regex: '^\\d+',
+        },
+        total: {
+          selector: 'div[name="image-item"] > div > span:nth-child(1)',
           mode: 'text',
           regex: '\\d+$',
         },
@@ -104,7 +134,15 @@ export const bato: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(function () {
+    j.$(function () {
+      if (getVersion() === 3) {
+        bato.isSyncPage = v3.isSyncPage;
+        bato.sync = v3.sync;
+        bato.overview = v3.overview;
+        bato.name = v3.name;
+        v3.init(page);
+        return;
+      }
       if (page.url.split('/')[3] === 'chapter' || page.url.split('/')[3] === 'series') {
         page.handlePage();
       }
