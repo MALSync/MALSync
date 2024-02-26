@@ -122,7 +122,7 @@
     "overlayscrollbars": "^2.2.1",
     "overlayscrollbars-vue": "^0.5.7",
     "popper-max-size-modifier": "^0.2.0",
-    "semver": "^7.5.4",
+    "semver": "^7.6.0",
     "string-similarity": "^4.0.4",
     "vue": "^3.4.19",
     "vue-dompurify-html": "^5.0.1",
