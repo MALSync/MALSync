@@ -254,11 +254,13 @@
       "https://anix.vc/anime/*"
     ],
     "ComicK": [
+      "https://comick.ink/*",
       "https://comick.cc/*",
       "https://comick.io/*"
     ],
     "Gogoanime": [
-      "https://anitaku.to/*"
+      "https://anitaku.to/*",
+      "https://gogoanime3.co/*"
     ],
     "KickAssAnime": [
       "https://kickassanimes.io/*",
@@ -318,6 +320,7 @@
       "https://johntryopen.com/e/*",
       "https://morganoperationface.com/e/*",
       "https://markstyleall.com/e/*",
+      "https://jayservicestuff.com/e/*",
       "https://api.animeflix.dev/*",
       "https://streamwish.to/e/*",
       "https://sfastwish.com/e/*",

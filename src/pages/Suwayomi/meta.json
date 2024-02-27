@@ -1,0 +1,8 @@
+{
+  "search": "https://suwayomi-webui-preview.github.io/sources/all/search/?query={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://suwayomi-webui-preview.github.io/*"
+    ]
+  }
+}

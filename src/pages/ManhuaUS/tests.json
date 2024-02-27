@@ -1,0 +1,58 @@
+{
+    "title": "ManhuaUS",
+    "url": "https://manhuaus.com",
+    "testCases": [
+        {
+            "url": "https://manhuaus.com/manga/magic-emperor-0/chapter-465/",
+            "expected": {
+                "sync": true,
+                "title": "Magic Emperor",
+                "identifier": "magic-emperor-0",
+                "overviewUrl": "https://manhuaus.com/manga/magic-emperor-0",
+                "nextEpUrl": "https://manhuaus.com/manga/magic-emperor-0/chapter-466/",
+                "episode": 465,
+                "uiSelector": false
+            }
+        },
+        {
+            "url": "https://manhuaus.com/manga/magic-emperor-0/",
+            "expected": {
+                "sync": false,
+                "title": "Magic Emperor",
+                "identifier": "magic-emperor-0",
+                "uiSelector":true,
+                "epList":{
+                    "1": "https://manhuaus.com/manga/magic-emperor-0/chapter-1/",
+                    "10": "https://manhuaus.com/manga/magic-emperor-0/chapter-10/",
+                    "200": "https://manhuaus.com/manga/magic-emperor-0/chapter-200/"
+                }
+            }
+        },
+        {
+            "url": "https://manhuaus.com/manga/i-became-the-tyrant-of-a-defence-game/chapter-68/",
+            "expected": {
+                "sync": true,
+                "title": "I Became the Tyrant of a Defence Game",
+                "identifier": "i-became-the-tyrant-of-a-defence-game",
+                "overviewUrl": "https://manhuaus.com/manga/i-became-the-tyrant-of-a-defence-game",
+                "nextEpUrl": "https://manhuaus.com/manga/i-became-the-tyrant-of-a-defence-game/chapter-69/",
+                "episode": 68,
+                "uiSelector": false
+            }
+        },
+        {
+            "url": "https://manhuaus.com/manga/i-became-the-tyrant-of-a-defence-game/",
+            "expected": {
+                "sync": false,
+                "title": "I Became the Tyrant of a Defence Game",
+                "identifier": "i-became-the-tyrant-of-a-defence-game",
+                "uiSelector":true,
+                "epList":{
+                    "1": "https://manhuaus.com/manga/i-became-the-tyrant-of-a-defence-game/chapter-1/",
+                    "10": "https://manhuaus.com/manga/i-became-the-tyrant-of-a-defence-game/chapter-10/",
+                    "40": "https://manhuaus.com/manga/i-became-the-tyrant-of-a-defence-game/chapter-40/"
+                }
+            }
+        }
+    ]
+}
