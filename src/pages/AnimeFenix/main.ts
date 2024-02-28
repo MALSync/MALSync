@@ -13,38 +13,33 @@ export const AnimeFenix: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      // Update the selector to match AnimeFenix's layout
-      return j
-        .$('.title')
-        .first()
-        .text()
-        .trim();
+      const urlParts = url.split('/');
+      if (urlParts.length > 0) {
+        const titleParts = urlParts[urlParts.length - 1].split('-');
+        // Elimina el último elemento (número del episodio)
+        titleParts.pop();
+        // Convierte a formato de título y elimina los guiones
+        const title = titleParts.join(' ').replace(/\b\w/g, l => l.toUpperCase());
+        return title;
+      }
+      return '';
     },
     getIdentifier(url) {
-      return AnimeFenix.sync.getOverviewUrl(url).split('/')[4];
+      return AnimeFenix.sync.getTitle(url);
     },
     getOverviewUrl(url) {
-      // Update the selector to match AnimeFenix's layout
-      return j.$('.anime-info a').first().attr('href') || '';
+      return j.$('.lista a').first().attr('href') || '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');
-
-      if (!urlParts || urlParts.length === 0) return NaN;
-
-      const episodePart = urlParts[4];
-
-      if (episodePart.length === 0) return NaN;
-
-      const temp = episodePart.match(/-\d+/gi);
-
-      if (!temp || temp.length === 0) return NaN;
-
-      return Number(temp[0].replace(/\D+/g, ''));
+      if (urlParts.length > 0) {
+        const episodePart = urlParts[urlParts.length - 1].split('-').pop();
+        return Number(episodePart);
+      }
+      return NaN;
     },
     nextEpUrl(url) {
-      // Update the selector to match AnimeFenix's layout
-      const href = j.$('.next a').first().attr('href');
+      const href = j.$('.derecha a').first().attr('href');
       if (href) {
         if (AnimeFenix.sync.getEpisode(url) < AnimeFenix.sync.getEpisode(href)) {
           return href;
@@ -55,25 +50,23 @@ export const AnimeFenix: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      // Update the selector to match AnimeFenix's layout
       return j
-        .$('.anime-title')
+        .$('h1')
         .first()
         .text()
+        .replace(/(Sub|Dub)(\s+Español)$/gi, '')
         .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      // Update the selector to match AnimeFenix's layout
-      j.$('.anime-info').first().before(j.html(selector));
+      j.$('.heromain2').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        // Update the selector to match AnimeFenix's layout
-        return j.$('.episodes .episode');
+        return j.$('.allanimes .col-item');
       },
       elementUrl(selector) {
         return selector.find('a').first().attr('href') || '';
@@ -96,5 +89,18 @@ export const AnimeFenix: pageInterface = {
         page.handlePage();
       }
     });
+
+    // Detecta cambios en la URL
+    let oldUrl = window.location.href;
+    setInterval(function() {
+      let newUrl = window.location.href;
+      if (newUrl !== oldUrl) {
+        // Si la URL ha cambiado, vuelve a manejar la página
+        if (newUrl.split('/')[3] === 'ver' || newUrl.split('/')[3] === 'anime') {
+          page.handlePage();
+        }
+        oldUrl = newUrl;
+      }
+    }, 1000); // Comprueba cada segundo
   },
 };
