@@ -16,9 +16,7 @@ export const AnimeFenix: pageInterface = {
       const urlParts = url.split('/');
       if (urlParts.length > 0) {
         const titleParts = urlParts[urlParts.length - 1].split('-');
-        // Elimina el último elemento (número del episodio)
         titleParts.pop();
-        // Convierte a formato de título y elimina los guiones
         const title = titleParts.join(' ').replace(/\b\w/g, l => l.toUpperCase());
         return title;
       }
@@ -89,18 +87,15 @@ export const AnimeFenix: pageInterface = {
         page.handlePage();
       }
     });
-
-    // Detecta cambios en la URL
     let oldUrl = window.location.href;
     setInterval(function() {
-      let newUrl = window.location.href;
+      const newUrl = window.location.href;
       if (newUrl !== oldUrl) {
-        // Si la URL ha cambiado, vuelve a manejar la página
         if (newUrl.split('/')[3] === 'ver' || newUrl.split('/')[3] === 'anime') {
           page.handlePage();
         }
         oldUrl = newUrl;
       }
-    }, 1000); // Comprueba cada segundo
+    }, 1000); 
   },
 };
