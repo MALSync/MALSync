@@ -129,8 +129,6 @@ import { HinataSoul } from './HinataSoul/main';
 import { OgladajAnime } from './OgladajAnime/main';
 import { hachi } from './hachi/main';
 import { WitAnime } from './WitAnime/main';
-import { Suwayomi } from './Suwayomi/main';
-import { ManhuaUS } from './ManhuaUS/main';
 
 export const pages = {
   nineAnime,
@@ -174,6 +172,7 @@ export const pages = {
   AnimesHouse,
   AnimeXin,
   MonosChinos,
+  AnimeFenix,
   AnimeFire,
   OtakuFR,
   mangatx,
@@ -263,6 +262,4 @@ export const pages = {
   OgladajAnime,
   hachi,
   WitAnime,
-  Suwayomi,
-  ManhuaUS,
 };
