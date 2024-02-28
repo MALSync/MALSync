@@ -11,6 +11,13 @@ export const AnimeFenix: pageInterface = {
     }
     return false;
   },
+  isOverviewPage(url) {
+    if (url.split('/')[3] === 'anime') {
+      return true;
+    }
+    return false;
+  },
+},
   sync: {
     getTitle(url) {
       const urlParts = url.split('/');
