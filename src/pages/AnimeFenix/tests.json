@@ -1,0 +1,16 @@
+{
+  "title": "AnimeFenix",
+  "url": "https://animefenix.tv/",
+  "testCases": [
+    {
+      "url": "https://animefenix.tv/ver/youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-3rd-season-9",
+      "expected": {
+          "sync": true,
+          "title": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e 3rd Season",
+          "identifier": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e 3rd Season",
+          "overviewUrl": "https://animefenix.tv/youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-3rd-season",
+          "episode": 9
+        }
+      }
+  ]
+}
