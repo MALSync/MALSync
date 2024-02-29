@@ -15,9 +15,7 @@ export const AnimeFenix: pageInterface = {
   },  
   sync: {
     getTitle: (url: string) => {
-      const titleElement = document.querySelector(
-        `body > div.hero.is-fullheightX > section > div > div > div.column.is-12-mobile.is-8-tablet.is-9-desktop > h1`
-      );
+      const titleElement = document.querySelector(".hero h1");
       let title = titleElement?.textContent
         ? titleElement.textContent.replace(/\d+\s*(Sub|Dub|Doblaje|Español)$/i, '').trim()
         : null;
@@ -29,9 +27,7 @@ export const AnimeFenix: pageInterface = {
       return title.split(' (')[0];
     },
     getIdentifier: (url: string) => {
-      const titleElement = document.querySelector(
-        `body > div.hero.is-fullheightX > section > div > div > div.column.is-12-mobile.is-8-tablet.is-9-desktop > h1`
-      );
+      const titleElement = document.querySelector(".hero h1");
       let identifier = titleElement?.textContent
         ? titleElement.textContent.replace(/\d+\s*(Sub|Dub|Doblaje|Español)$/i, '').trim()
         : null;
@@ -45,7 +41,7 @@ export const AnimeFenix: pageInterface = {
     getOverviewUrl: (url: string) => {
       const urlParts = url.split('/');
       if (urlParts[3] === 'ver') {
-        urlParts.splice(3, 1); // Remove 'ver'
+        urlParts.splice(3, 1);
       }
       return urlParts.join('/');
     },
