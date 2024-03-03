@@ -69,28 +69,28 @@ export const MangaPark: pageInterface = {
       return '';
     },
     readerConfig: [
-      /* TODO: fix this for v5
       {
-        condition: '#__next',
+        condition: '[href^="?page="].btn-outline',
         current: {
-          selector: '.cursor-pointer.relative',
+          selector: '[href^="?page="].btn-outline',
+          mode: 'text',
+        },
+        total: {
+          selector: '[href^="?page="]:last-of-type',
+          mode: 'text',
+        },
+      },
+      {
+        current: {
+          selector: '[data-name="image-item"] img',
           mode: 'countAbove',
         },
         total: {
-          selector: '.cursor-pointer.relative > span:first-child',
-          mode: 'text',
-          regex: '\\d+$',
-        },
-      }, */
-      {
-        current: {
-          selector: '#viewer .item',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#viewer .page-num',
-          mode: 'text',
-          regex: '\\d+$',
+          selector: '[data-name="image-item"]:first-child [data-name="image-show"]',
+          mode: 'attr',
+          attribute: 'style',
+          regex: '(\\d+)<\\/text>',
+          group: 1,
         },
       },
     ],

@@ -3,9 +3,10 @@ import { count } from './modes/count';
 import { countAbove } from './modes/countAbove';
 import { prop } from './modes/prop';
 import { url } from './modes/url';
+import { attr } from './modes/attr';
 import { callback } from './modes/callback';
 
-const modes = { text, count, countAbove, prop, url, callback } as const;
+const modes = { text, count, countAbove, prop, url, attr, callback } as const;
 
 type Expand<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
 type modeValues = {
