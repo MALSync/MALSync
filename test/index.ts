@@ -46,7 +46,7 @@ window.MalSyncTest = async function() {
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }
-        } else {
+        } else if (!page.isOverviewPage || page.isOverviewPage(window.location.href)) {
           value.sync = false;
           value.title = page.overview.getTitle(window.location.href);
           value.identifier = page.overview.getIdentifier(window.location.href);
@@ -56,6 +56,9 @@ window.MalSyncTest = async function() {
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }
+        } else {
+          reject('Not an overview or sync page');
+          return;
         }
 
         if (

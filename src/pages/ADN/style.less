@@ -1,29 +1,19 @@
 @import './../pages';
 
 @activeEp: transparent;
+@textColor: inherit;
 
 #flashinfo-div {
   z-index: 100 !important;
 }
 
-#malp > span > span > * {
-  font-weight: lighter;
-  font-size: 1.1em;
-  line-height: 1.3em;
-  text-align: justify;
-  hyphens: auto;
+#malp {
+  .boxStyle(rgb(0, 149, 255));
+
   margin: 0;
+  margin-bottom: 15px;
 }
 
-#malp > span > span input,
-#malp > span > span span,
-#malp > span > span select,
-#malp > span > span option,
-#malp > span > span a {
-  color: white !important;
-  background-color: #303132 !important;
-}
-
-.mal-sync-active div:has(img) {
-  outline: 3px solid #0095ff;
+.mal-sync-active {
+  border-top: 3px solid #0095ff;
 }
