@@ -3,12 +3,14 @@
     ref="el"
     class="text-from"
     :class="{
+      auto: fakeFocus,
       noFocus: !inFocus,
       search: type === 'search',
       mini: type === 'mini',
       invalid: !valid,
       disabled,
     }"
+    @click="fakeFocus = false"
   >
     <span v-if="icon" class="material-icons">{{ icon }}</span>
     <span
@@ -18,6 +20,7 @@
       {{ placeholder }}{{ picked ? ':' : '' }}
     </span>
     <input
+      ref="inputField"
       v-model="picked"
       class="text-input"
       type="input"
@@ -34,7 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed, PropType } from 'vue';
+import { ref, watch, computed, PropType, onMounted } from 'vue';
 
 const props = defineProps({
   modelValue: {
@@ -77,12 +80,26 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  autofocus: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+const fakeFocus = ref(false);
+const inputField = ref(null as HTMLInputElement | null);
+if (props.autofocus) {
+  fakeFocus.value = true;
+  onMounted(() => {
+    if (inputField.value) inputField.value.focus();
+  });
+}
 
 const emit = defineEmits(['update:modelValue']);
 
 const picked = ref(props.modelValue.toString());
 watch(picked, value => {
+  fakeFocus.value = false;
   if (props.validation && !props.validation(value)) {
     if (props.strictValidation) picked.value = props.modelValue.toString();
     return;
@@ -104,6 +121,7 @@ watch(inFocus, value => {
   if (value && el.value) {
     minWidth.value = el.value.offsetWidth;
   } else {
+    fakeFocus.value = false;
     minWidth.value = 100;
   }
 });
@@ -146,11 +164,11 @@ const valid = computed(() => {
     border-color: var(--cl-border-hover);
   }
 
-  &:focus-visible {
+  &:not(.auto):focus-visible {
     .focus-outline();
   }
 
-  &:focus-within {
+  &:not(.auto):focus-within {
     border-color: var(--cl-primary);
   }
 
@@ -176,6 +194,10 @@ const valid = computed(() => {
   .placeholder-text {
     color: var(--cl-light-text);
     white-space: nowrap;
+  }
+
+  &.auto .text-input {
+    caret-color: transparent;
   }
 
   &.noFocus {
