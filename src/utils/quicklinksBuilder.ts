@@ -49,7 +49,7 @@ export function titleSearch(url, title, id) {
 type option = 'noEncode' | 'noSpecial' | 'noLowercase' | 'specialReplace';
 
 export function searchSyntax(url, title) {
-  let resTitle = title.trim();
+  let resTitle = title.replace(/^\[l\]/i, '').trim();
   let options: option[] = [];
 
   const found = url.match(/{searchterm(\(.\))?(\[[^[\]]*\])?}/);
