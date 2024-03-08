@@ -152,7 +152,7 @@
         "description": "Score"
     },
     "UI_Score_Not_Rated": {
-        "message": "Не оценено",
+        "message": "Нет оценки",
         "description": "Text if nothing is selected in the rating dropdown"
     },
     "UI_Score_Masterpiece": {
@@ -196,7 +196,7 @@
         "description": "Appalling - Score"
     },
     "syncPage_flashm_resumeMsg": {
-        "message": "Воспроизвести с $time$",
+        "message": "Продолжить с $time$",
         "description": "Video resume message",
         "placeholders": {
             "time": {
@@ -234,7 +234,7 @@
         }
     },
     "syncPage_flashm_sync_undefined_undo": {
-        "message": "Отменить действие",
+        "message": "Отменить",
         "description": "Undo button on 'synced' message"
     },
     "syncPage_flashm_sync_undefined_wrong": {
@@ -246,7 +246,7 @@
         "description": "When update to MAL failes"
     },
     "syncPage_flashConfirm_complete": {
-        "message": "Указать как завершённое?",
+        "message": "Указать как завершенное?",
         "description": "Question when last episode is synced"
     },
     "syncPage_flashConfirm_start_anime": {
@@ -324,11 +324,11 @@
         }
     },
     "anilistClass_authentication": {
-        "message": "Токен сохранён, теперь можно закрыть страницу",
+        "message": "Токен сохранен, теперь можно закрыть страницу",
         "description": "The token has been obtained and saved"
     },
     "kitsuClass_authentication_text": {
-        "message": "Чтобы зайти с Kitsu, вам надо ввести e-mail и пароль от вашего аккаунта. Введённые данные не будут сохранены на вашем компьютере или где-либо ещё. Они будут отправлены напрямую на Kitsu. Только токен доступа для Kitsu будет сохранён.<br>",
+        "message": "Чтобы зайти с Kitsu, вам надо ввести e-mail и пароль от вашего аккаунта. Введенные данные не будут сохранены на вашем компьютере или где-либо еще.<br>Они будут отправлены напрямую на Kitsu. Только токен доступа для Kitsu будет сохранён.<br>",
         "description": "Authentication text in Kitsu"
     },
     "kitsuClass_authentication_Password": {
@@ -340,7 +340,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Токен сохранён, теперь можно закрыть страницу.",
+        "message": "Токен сохранен, теперь можно закрыть страницу.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -464,7 +464,7 @@
         "description": "Header for the complete translation/airing section"
     },
     "prediction_Airing": {
-        "message": "Трансляция через $time$",
+        "message": "Показ через $time$",
         "description": "Text for airing estimation",
         "placeholders": {
             "time": {
@@ -482,7 +482,7 @@
         "description": "Episode Offset - Text"
     },
     "correction_WrongUrl": {
-        "message": "Меняйте этот URL только если оно ведёт на неверную страницу тайтла на MAL.",
+        "message": "Меняйте этот URL только если оно ведет на неверную страницу тайтла на MAL.",
         "description": "URL is Wrong"
     },
     "correction_Search": {
@@ -502,7 +502,7 @@
         "description": "No entry on MyAnimeList"
     },
     "correction_NewOffset": {
-        "message": "Новое Смещение ($offset$) установлено.",
+        "message": "Новое смещение ($offset$) установлено.",
         "description": "New Offset",
         "placeholders": {
             "offset": {
@@ -530,7 +530,7 @@
         "description": "URL reset"
     },
     "correction_DBRequest": {
-        "message": "Подтвердить запрос на исправление трекинга?",
+        "message": "Отправить запрос на исправление?",
         "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
     },
     "overview_Continue_anime": {
@@ -590,7 +590,7 @@
         "description": "General"
     },
     "settings_Mode": {
-        "message": "Сайт для трекинга",
+        "message": "Режим отслеживания",
         "description": "Mode"
     },
     "settings_Authenticate": {
@@ -654,7 +654,7 @@
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "Если отключена ссылка, то сайт более не будет появляться на панели на MyAnimeList и прочих.",
+        "message": "Если отключена ссылка, то сайт более не будет появляться на панели на MyAnimeList/AniList/Kitsu/Simkl.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -670,7 +670,7 @@
         "description": "Thumbnails Large"
     },
     "settings_Thumbnails_Medium": {
-        "message": "Среднее",
+        "message": "Средние",
         "description": "Thumbnails Medium"
     },
     "settings_Thumbnails_Small": {
@@ -706,7 +706,7 @@
         "description": "Resume watching links"
     },
     "settings_usedPage": {
-        "message": "Включение кнопок выше",
+        "message": "Кнопки с последними сайтами",
         "description": "Last used page links"
     },
     "settings_miniMAL_floatButtonStealth": {
@@ -718,11 +718,11 @@
         "description": "Shows an 'action required' popup hidding big popups"
     },
     "settings_miniMAL_floatButtonCorrection": {
-        "message": "Переназначить кнопку–гамбургер на исправление трекинга",
+        "message": "Плавающая кнопка открывает окно исправления отслеживания",
         "description": "Remap floating button to the correction UI"
     },
     "settings_miniMAL_floatButtonHide": {
-        "message": "Спрятать кнопку–гамбургер",
+        "message": "Спрятать плавающую кнопку",
         "description": "Hide miniMAL floating menu button"
     },
     "settings_miniMAL_autoCloseMinimal": {
@@ -762,7 +762,7 @@
         "description": "miniMAL Width"
     },
     "settings_Shortcuts": {
-        "message": "Ярлыки",
+        "message": "Горячие клавиши",
         "description": "Shortcuts"
     },
     "settings_miniMAL_Open": {
@@ -794,11 +794,11 @@
         "description": "Autoplays the next episode after the video ends"
     },
     "settings_Shortcuts_Correction": {
-        "message": "Открыть окно исправления трекинга",
+        "message": "Открыть окно исправления отслеживания",
         "description": "Text for the correction ui shortcut"
     },
     "settings_Shortcuts_Sync": {
-        "message": "Указать серию/главу как пройдённую",
+        "message": "Указать серию/главу как завершенную",
         "description": "Text for the sync ui shortcut"
     },
     "settings_Shortcuts_Next_Episode": {
@@ -972,7 +972,7 @@
         "description": "Update version - Text 1"
     },
     "installPage_Mode": {
-        "message": "Выберите какой сайт для трекинга вы хотите использовать",
+        "message": "Выберите какой сайт для отслеживания вы хотите использовать",
         "description": "Header for the MAL-sync provider dropdown"
     },
     "installPage_Howto": {
@@ -1006,7 +1006,7 @@
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
-        "message": "Вы можете легко исправлять ошибки в трекинге как, например, на гифке показанной ниже. Смещение серий также может быть установлено на любой странице где вы смотрите аниме.",
+        "message": "Вы можете легко исправлять ошибки в трекинге как на гифке, показанной ниже. На этой странице также можно установить смещение серий.",
         "description": "Description of the wrong section on the install page"
     },
     "Emby_Authenticate": {
@@ -1268,7 +1268,7 @@
         "description": "Button to rechecks the login status"
     },
     "syncPage_flash_player_error": {
-        "message": "Видеоплеер не обнаружен. Пожалуйста, обновите его вручную.",
+        "message": "Видеоплеер не обнаружен. Пожалуйста, обновите вручную.",
         "description": "Message if the video player could not be recognized"
     },
     "overview_Information": {
@@ -1424,7 +1424,7 @@
         "description": "miniMAL Display Center"
     },
     "settings_miniMAL_pwa": {
-        "message": "PWA окно",
+        "message": "PWA страница",
         "description": "Link to the PWA version of the extension popup"
     },
     "settings_donate": {
