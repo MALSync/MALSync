@@ -92,18 +92,22 @@ export const MangaLib: pageInterface = {
     });
 
     function check() {
+      // check for correct manga url
       if (
         document.title.includes('Страница не найдена 404') ||
+        document.title === '404' ||
         $('.text > .title').first().text() === '404'
       ) {
         con.error('Error 404');
         return;
       }
+      // check if it's a SYNC/OVERVIEW page
       if (
         !MangaLib.isSyncPage(window.location.href) &&
         !MangaLib.isOverviewPage!(window.location.href)
       )
         return;
+      // when we are on SYNC page
       if (MangaLib.isSyncPage(window.location.href)) {
         clearInterval(Interval);
         Interval = utils.waitUntilTrue(
@@ -115,6 +119,7 @@ export const MangaLib: pageInterface = {
           },
         );
       }
+      // when we are on OVERVIEW page
       if (MangaLib.isOverviewPage!(window.location.href)) {
         if ($('#malthing').length) {
           $('#malthing').remove();
@@ -122,10 +127,7 @@ export const MangaLib: pageInterface = {
         clearInterval(Interval);
         Interval = utils.waitUntilTrue(
           () => {
-            if ($('.media-name__main').length) {
-              return true;
-            }
-            return false;
+            return !!$('.media-name__main').length;
           },
           () => {
             page.handlePage();
