@@ -1,0 +1,6 @@
+{
+  "search": "https://mangalib.me/manga-list?name={searchterm}",
+  "urls": {
+    "match": ["*://mangalib.me/*"]
+  }
+}
