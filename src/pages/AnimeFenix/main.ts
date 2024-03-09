@@ -24,7 +24,7 @@ export const AnimeFenix: pageInterface = {
         const urlTitle = url.split('/')[4];
         title = urlTitle ? urlTitle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
       }
-      return title.replace(/\d+ Sub Español$/, '').trim();
+      return title.split(' (')[0];
     },
     getIdentifier: (url: string) => {
       return AnimeFenix.sync.getTitle(url);
@@ -43,40 +43,6 @@ export const AnimeFenix: pageInterface = {
       return episodeNumber && episodeNumber.length > 0 ? parseInt(episodeNumber[episodeNumber.length - 1]) : 0;
     },
   },
-  overview: {
-    getTitle: (url: string) => {
-      const titleElement = document.querySelector(".hero h1");
-      let title = titleElement?.textContent
-        ? titleElement.textContent.replace(/\d+\s*(Sub|Dub|Doblaje|Español)$/i, '').trim()
-        : null;
-  
-      if (!title) {
-        const urlTitle = url.split('/')[4];
-        title = urlTitle ? urlTitle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
-      }
-      return title.split(' (')[0];
-    },
-    getIdentifier: (url: string) => {
-      const identifier = AnimeFenix.overview?.getTitle(url);
-      return identifier || '';
-    },
-    uiSelector: function(selector) {
-      j.$('.anime-page__episode-list.is-size-6').first().before(j.html(selector));
-    },    
-    list: {
-      offsetHandler: false,
-      elementsSelector: function() {
-        return j.$('.anime-page__episode-list.is-size-6 li a');
-      },      
-      elementUrl: function(selector) {
-        return j.$(selector).find('a').first().attr('href') || '';
-      },
-      elementEp: function(selector) {
-        const url = this.elementUrl(selector);
-        return AnimeFenix.sync.getEpisode(url);
-      },          
-    },
-  },
   init: page => {
     j.$(document).ready(function () {
       const h1Element = document.querySelector('h1');
@@ -90,3 +56,11 @@ export const AnimeFenix: pageInterface = {
     });
   },  
 };
+
+export interface pageState {
+  on: 'SYNC' | 'OVERVIEW';
+  title: string;
+  identifier: string;
+  episode?: number;
+  detectedEpisode?: number;
+}
