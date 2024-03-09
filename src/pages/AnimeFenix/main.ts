@@ -50,17 +50,9 @@ export const AnimeFenix: pageInterface = {
         console.error('404');
         return;
       }
-      if (page.url.split('/')[3] === 'ver' || page.url.split('/')[3] !== 'zerotwo') {
+      if (page.url.split('/')[3] === 'ver' || page.url.split('/')[3] !== 'zerotwo' || page.url.split('/')[3] !== 'animes') {
         page.handlePage();
       }
     });
   },  
 };
-
-export interface pageState {
-  on: 'SYNC' | 'OVERVIEW';
-  title: string;
-  identifier: string;
-  episode?: number;
-  detectedEpisode?: number;
-}
