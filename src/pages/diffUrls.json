@@ -274,7 +274,8 @@
     ],
     "Zoro": [
       "https://aniwatch.nz/*",
-      "https://aniwatch.se/*"
+      "https://aniwatch.se/*",
+      "https://hianime.to/*"
     ],
     "nineAnime": [
       "https://aniwave.vc/watch/*",
@@ -321,6 +322,7 @@
       "https://morganoperationface.com/e/*",
       "https://markstyleall.com/e/*",
       "https://jayservicestuff.com/e/*",
+      "https://kerapoxy.cc/e/*",
       "https://api.animeflix.dev/*",
       "https://streamwish.to/e/*",
       "https://sfastwish.com/e/*",

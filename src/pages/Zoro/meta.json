@@ -1,15 +1,11 @@
 {
-  "search": "https://aniwatch.to/search?keyword={searchtermPlus}",
+  "search": "https://hianime.to/search?keyword={searchtermPlus}",
   "urls": {
     "match": [
-      "*://zoro.to/*",
-      "*://zoro.moe/*",
-      "*://zoro.sx/*",
-      "*://zoro.pm/*",
-      "*://sanji.to/*",
       "*://aniwatch.to/*",
       "*://aniwatch.nz/*",
-      "*://aniwatch.se/*"
+      "*://aniwatch.se/*",
+      "*://hianime.to/*"
     ]
   }
 }
