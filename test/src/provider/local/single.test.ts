@@ -23,9 +23,9 @@ const state = {
 setGlobals();
 function setGlobals() {
   global.con = require('../../../../src/utils/console');
-  global.con.log = function() {};
-  global.con.error = function() {};
-  global.con.info = function() {};
+  global.con.log = function () {};
+  global.con.error = function () {};
+  global.con.info = function () {};
 
   global.api = {
     settings: {
@@ -103,22 +103,17 @@ function setGlobals() {
   };
 }
 
-describe('Local single', function() {
+describe('Local single', function () {
   const titlePrefix = '[L] ';
 
-  before(function() {
+  before(function () {
     setGlobals();
   });
   generalSingleTests(Single, setGlobals, titlePrefix);
 
-  describe('title', function() {
-    [
-      'test/213',
-      '',
-      'Fate/kaleid liner PRISMA☆ILLYA',
-      'This is a title',
-    ].forEach(el => {
-      it(`${el}`, async function() {
+  describe('title', function () {
+    ['test/213', '', 'Fate/kaleid liner PRISMA☆ILLYA', 'This is a title'].forEach(el => {
+      it(`${el}`, async function () {
         const singleEntry = new Single(
           `local://crunchyroll/anime/notonlist/${encodeURIComponent(el)}`,
         );

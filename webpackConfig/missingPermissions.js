@@ -24,16 +24,16 @@ async function main() {
   const version = manifest.version;
   const oldUrls = getUrls(manifest);
   const descFile = path.join(__dirname, '../src/pages/diffUrls.json');
-  fs.readFile(descFile, 'utf8', function(err, data) {
+  fs.readFile(descFile, 'utf8', function (err, data) {
     const currentData = JSON.parse(data);
     const diffUrls = getDiff(oldUrls, currentData[version]);
     console.log(version, diffUrls);
     currentData[version] = diffUrls;
 
-    if(Object.keys(currentData).length > 5) {
+    if (Object.keys(currentData).length > 5) {
       const remove = Object.keys(currentData).slice(0, Object.keys(currentData).length - 5);
 
-      for(const item of remove) {
+      for (const item of remove) {
         delete currentData[item];
       }
     }
@@ -47,31 +47,33 @@ async function main() {
 function getDiff(oldUrls, oldDiff) {
   res = {};
 
-  const oldPages = fs.readdirSync(path.join(__dirname, '../dist/lastExtension/content'))
+  const oldPages = fs
+    .readdirSync(path.join(__dirname, '../dist/lastExtension/content'))
     .filter(el => el.startsWith('page_') && el.endsWith('.js'))
-    .map(el => el.replace('page_', '').replace('.js', ''))
+    .map(el => el.replace('page_', '').replace('.js', ''));
 
   // Page urls
   oldPages.forEach(page => {
     try {
       const urls = pagesUtils.urls(page);
-      const diffUrls = urls.match.filter(el => !oldUrls.includes(el)).map(el => {
-
-        if (oldDiff && oldDiff[page] && el.startsWith('*://*.')) {
-          for (const old of oldDiff[page]) {
-            if (old.endsWith('.' + el.replace('*://*.', ''))) {
-              return old;
+      const diffUrls = urls.match
+        .filter(el => !oldUrls.includes(el))
+        .map(el => {
+          if (oldDiff && oldDiff[page] && el.startsWith('*://*.')) {
+            for (const old of oldDiff[page]) {
+              if (old.endsWith('.' + el.replace('*://*.', ''))) {
+                return old;
+              }
             }
           }
-        }
 
-        return formatUrls(el)
-      });
+          return formatUrls(el);
+        });
       if (diffUrls.length) {
         res[page] = diffUrls;
       }
     } catch (err) {
-      return
+      return;
     }
   });
 
@@ -80,15 +82,15 @@ function getDiff(oldUrls, oldDiff) {
     .generateMatchExcludes(playerUrls)
     .match.filter(el => !oldUrls.includes(el))
     .map(el => {
-      if(oldDiff && oldDiff.iframe && el.startsWith('*://*.')) {
-        for(const old of oldDiff.iframe) {
-          if(old.endsWith("." + el.replace('*://*.', ''))) {
+      if (oldDiff && oldDiff.iframe && el.startsWith('*://*.')) {
+        for (const old of oldDiff.iframe) {
+          if (old.endsWith('.' + el.replace('*://*.', ''))) {
             return old;
           }
         }
       }
 
-      return formatUrls(el)
+      return formatUrls(el);
     });
 
   return res;

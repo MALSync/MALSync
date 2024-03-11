@@ -1,8 +1,5 @@
 {
   "urls": {
-    "match": [
-      "*://app.emby.media/*",
-      "*://app.emby.tv/*"
-    ]
+    "match": ["*://app.emby.media/*", "*://app.emby.tv/*"]
   }
 }

@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import { NotAutenticatedError, ServerOfflineError } from '../../../src/_provider/Errors';
 
 export function generalListTests(userlist, elements, responses, options: ObjectAnyType = {}) {
-  describe('Empty responses', async function() {
-    Object.keys(responses).forEach(async function(index) {
+  describe('Empty responses', async function () {
+    Object.keys(responses).forEach(async function (index) {
       const value = responses[index].data;
-      it(index, async function() {
+      it(index, async function () {
         const temp = responses[index].data;
         responses[index].data = '';
         try {
@@ -21,10 +21,10 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
     });
   });
 
-  describe('No json responses', async function() {
-    Object.keys(responses).forEach(async function(index) {
+  describe('No json responses', async function () {
+    Object.keys(responses).forEach(async function (index) {
       const value = responses[index].data;
-      it(index, async function() {
+      it(index, async function () {
         const temp = responses[index].data;
         responses[index].data = 'This is not valid json';
         try {
@@ -40,18 +40,22 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
     });
   });
 
-  describe('errorHandling', async function() {
+  describe('errorHandling', async function () {
     const list = new userlist();
-    it('js', async function() {
+    it('js', async function () {
       expect(list.errorMessage(new Error('This is a error'), 'url')).to.equal('This is a error');
     });
 
-    it('Authentication', async function() {
-      expect(list.errorMessage(new NotAutenticatedError('No Authentication'), 'url')).to.equal('lang');
+    it('Authentication', async function () {
+      expect(list.errorMessage(new NotAutenticatedError('No Authentication'), 'url')).to.equal(
+        'lang',
+      );
     });
 
-    it('Server offline', async function() {
-      expect(list.errorMessage(new ServerOfflineError('Offline'), 'url')).to.equal('Server Offline');
+    it('Server offline', async function () {
+      expect(list.errorMessage(new ServerOfflineError('Offline'), 'url')).to.equal(
+        'Server Offline',
+      );
     });
   });
 }

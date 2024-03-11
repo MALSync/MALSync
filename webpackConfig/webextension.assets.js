@@ -91,12 +91,17 @@ pages.forEach(el => {
     return;
   }
   content_scripts.push({
-    matches: generateMatchExcludes({urls: cUrls }).match,
-    exclude_globs: generateMatchExcludes({urls: cUrls}).exclude,
-    js: ['vendor/jquery.min.js', 'i18n.js', 'content/page_'+el+'.js', 'content/content-script.js'],
+    matches: generateMatchExcludes({ urls: cUrls }).match,
+    exclude_globs: generateMatchExcludes({ urls: cUrls }).exclude,
+    js: [
+      'vendor/jquery.min.js',
+      'i18n.js',
+      'content/page_' + el + '.js',
+      'content/content-script.js',
+    ],
     run_at: 'document_start',
   });
-})
+});
 
 content_scripts.push({
   matches: generateMatchExcludes(playerUrls).match,
@@ -140,10 +145,10 @@ const generateManifest = () => {
     },
     content_scripts: content_scripts,
     icons: {
-      '16': 'icons/icon16.png',
-      '32': 'icons/icon32.png',
-      '48': 'icons/icon48.png',
-      '128': 'icons/icon128.png',
+      16: 'icons/icon16.png',
+      32: 'icons/icon32.png',
+      48: 'icons/icon48.png',
+      128: 'icons/icon128.png',
     },
     web_accessible_resources: ['vendor/*', 'assets/*', 'icons/*', 'window.html'],
     permissions: [
@@ -162,10 +167,7 @@ const generateManifest = () => {
   } else if (mode === 'dev') {
     delete mani.applications;
     mani.name = `${mani.name} (DEV)`;
-    mani.version = new Date()
-      .toISOString()
-      .replace(/T.*/, '')
-      .replace(/-/g, '.');
+    mani.version = new Date().toISOString().replace(/T.*/, '').replace(/-/g, '.');
   }
 
   return JSON.stringify(mani, null, 2);
@@ -267,7 +269,7 @@ mkdirp(path.join(__dirname, '../dist/webextension')).then(err => {
       filename: key,
     };
 
-    download(url, options, function(err) {
+    download(url, options, function (err) {
       if (err) {
         console.error(err);
         process.exit(1);

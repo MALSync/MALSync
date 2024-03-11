@@ -34,6 +34,7 @@ export const AnimeFenix: pageInterface = {
       if (urlParts[3] === 'ver') {
         urlParts.splice(3, 1);
       }
+      urlParts[urlParts.length - 1] = urlParts[urlParts.length - 1].replace(/-\d+$/, '');
       return urlParts.join('/');
     },
     getEpisode: (url: string) => {
@@ -44,8 +45,16 @@ export const AnimeFenix: pageInterface = {
         ? parseInt(episodeNumber[episodeNumber.length - 1])
         : 0;
     },
+    nextEpUrl(url) {
+      const element = document.querySelector('div.columns.is-variable.is-1 > div:nth-child(3) > a');
+      const href = element ? (element as HTMLAnchorElement).href : null;
+      if (href && AnimeFenix.sync.getEpisode(url) < AnimeFenix.sync.getEpisode(href)) {
+        return href;
+      }
+      return '';
+    },
   },
-  init: (page) => {
+  init: page => {
     j.$(document).ready(function () {
       const h1Element = document.querySelector('h1');
       if (

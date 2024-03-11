@@ -5,9 +5,9 @@ import * as Api from '../../utils/apiStub';
 
 function setGlobals() {
   global.con = require('../../../../src/utils/console');
-  global.con.log = function() {};
-  global.con.error = function() {};
-  global.con.info = function() {};
+  global.con.log = function () {};
+  global.con.error = function () {};
+  global.con.info = function () {};
 }
 
 const helper = {
@@ -38,37 +38,37 @@ const helper = {
   },
 };
 
-describe('Sync Handling', function() {
-  before(function() {
+describe('Sync Handling', function () {
+  before(function () {
     setGlobals();
   });
-  describe('getType', function() {
-    it('Myanimelist', function() {
+  describe('getType', function () {
+    it('Myanimelist', function () {
       expect(sync.getType('https://myanimelist.net/anime/19815/No_Game_No_Life')).to.equal('MAL');
     });
-    it('AniList', function() {
+    it('AniList', function () {
       expect(sync.getType('https://anilist.co/anime/19815/No-Game-No-Life/')).to.equal('ANILIST');
     });
-    it('Kitsu', function() {
+    it('Kitsu', function () {
       expect(sync.getType('https://kitsu.io/anime/no-game-no-life')).to.equal('KITSU');
     });
-    it('Simkl', function() {
+    it('Simkl', function () {
       expect(sync.getType('https://simkl.com/anime/46128/no-game-no-life')).to.equal('SIMKL');
     });
-    it('Random', function() {
+    it('Random', function () {
       expect(() => sync.getType('Random')).to.throw();
     });
   });
 
-  describe('changeCheck', function() {
+  describe('changeCheck', function () {
     const mode = 'mirror';
-    it('No Change', function() {
+    it('No Change', function () {
       const item = helper.getMasterSlave();
       sync.changeCheck(item, mode);
       expect(item.diff).to.equal(false);
     });
 
-    it('No Master', function() {
+    it('No Master', function () {
       const item = helper.getMasterSlave();
       item.slaves[0].watchedEp = 22;
       delete item.master;
@@ -76,7 +76,7 @@ describe('Sync Handling', function() {
       expect(item.diff).to.equal(false);
     });
 
-    it('Slave Change', function() {
+    it('Slave Change', function () {
       const item = helper.getMasterSlave();
       item.slaves[0].watchedEp = 22;
       const diff = { watchedEp: 15 };
@@ -86,7 +86,7 @@ describe('Sync Handling', function() {
       expect(item.slaves[1].diff).to.deep.equal({});
     });
 
-    it('Master Change', function() {
+    it('Master Change', function () {
       const item = helper.getMasterSlave();
       item.master.watchedEp = 22;
       const diff = { watchedEp: 22 };
@@ -96,7 +96,7 @@ describe('Sync Handling', function() {
       expect(item.slaves[1].diff).to.deep.equal(diff);
     });
 
-    it('Episode Change', function() {
+    it('Episode Change', function () {
       const item = helper.getMasterSlave();
       item.master.watchedEp = 22;
       const diff = { watchedEp: 22 };
@@ -106,7 +106,7 @@ describe('Sync Handling', function() {
       expect(item.slaves[1].diff).to.deep.equal(diff);
     });
 
-    it('Status Change', function() {
+    it('Status Change', function () {
       const item = helper.getMasterSlave();
       item.master.status = 2;
       const diff = { status: 2 };
@@ -116,7 +116,7 @@ describe('Sync Handling', function() {
       expect(item.slaves[1].diff).to.deep.equal(diff);
     });
 
-    it('Score Change', function() {
+    it('Score Change', function () {
       const item = helper.getMasterSlave();
       item.master.score = 2;
       const diff = { score: 2 };
@@ -126,7 +126,7 @@ describe('Sync Handling', function() {
       expect(item.slaves[1].diff).to.deep.equal(diff);
     });
 
-    it('Master Complete', function() {
+    it('Master Complete', function () {
       const item = helper.getMasterSlave();
       item.master.status = 2;
       item.master.watchedEp = 2;
@@ -146,18 +146,18 @@ describe('Sync Handling', function() {
     });
   });
 
-  describe('missingCheck', function() {
+  describe('missingCheck', function () {
     const typeArray = ['MAL', 'KITSU', 'ANILIST'];
     const mode = 'mirror';
 
-    it('No missing', function() {
+    it('No missing', function () {
       const item = helper.getMasterSlave();
       const miss = [];
       sync.missingCheck(item, miss, typeArray, mode);
       expect(miss).to.deep.equal([]);
     });
 
-    it('missing', function() {
+    it('missing', function () {
       const item = helper.getMasterSlave();
       const res: any = helper.getItem();
       const miss = [];
@@ -173,7 +173,7 @@ describe('Sync Handling', function() {
       expect(miss).to.deep.equal([res]);
     });
 
-    it('No Master', function() {
+    it('No Master', function () {
       const item = helper.getMasterSlave();
       const res: any = helper.getItem();
       const miss = [];
@@ -192,8 +192,8 @@ describe('Sync Handling', function() {
     });
   });
 
-  describe('mapToArray', function() {
-    it('Master', function() {
+  describe('mapToArray', function () {
+    it('Master', function () {
       const list = {};
       const item = helper.getItem();
       const item2 = helper.getItem();
@@ -205,7 +205,7 @@ describe('Sync Handling', function() {
       expect(list[3123].slaves).to.deep.equal([]);
     });
 
-    it('Slaves', function() {
+    it('Slaves', function () {
       const list = {};
       const item = helper.getItem();
       const item2 = helper.getItem();
@@ -219,7 +219,7 @@ describe('Sync Handling', function() {
       expect(list[3123].slaves).to.deep.equal([item2, item2]);
     });
 
-    it('No Mal id', function() {
+    it('No Mal id', function () {
       const list = {};
       const item = helper.getItem();
       const item2 = helper.getItem();
@@ -232,26 +232,26 @@ describe('Sync Handling', function() {
     });
   });
 
-  describe('getListProvider', function() {
+  describe('getListProvider', function () {
     const providerList = sync.getListProvider({
       mal: 'mal',
       anilist: 'anilist',
       kitsu: 'kitsu',
       simkl: 'simkl',
     });
-    it('providerType', function() {
+    it('providerType', function () {
       for (const i in providerList) {
         expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'SIMKL']);
       }
     });
-    it('providerSettings', function() {
+    it('providerSettings', function () {
       for (const i in providerList) {
         expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl']);
       }
     });
   });
 
-  describe('retriveLists', function() {
+  describe('retriveLists', function () {
     function getProviderListList() {
       const providerList = sync.getListProvider({
         mal: {
@@ -289,7 +289,7 @@ describe('Sync Handling', function() {
       });
     };
 
-    it('MAL Master', async function() {
+    it('MAL Master', async function () {
       const stub = Api.getStub({
         settings: {
           syncMode: 'MAL',
@@ -306,7 +306,7 @@ describe('Sync Handling', function() {
       expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'KITSU', 'SIMKL']);
     });
 
-    it('ANILIST Master', async function() {
+    it('ANILIST Master', async function () {
       const stub = Api.getStub({
         settings: {
           syncMode: 'ANILIST',
@@ -322,7 +322,7 @@ describe('Sync Handling', function() {
       expect(res.slaves).to.not.include('ANILIST');
     });
 
-    it('KITSU Master', async function() {
+    it('KITSU Master', async function () {
       const stub = Api.getStub({
         settings: {
           syncMode: 'KITSU',
@@ -337,7 +337,7 @@ describe('Sync Handling', function() {
       expect(res.slaves).to.not.include('KITSU');
     });
 
-    it('SIMKL Master', async function() {
+    it('SIMKL Master', async function () {
       const stub = Api.getStub({
         settings: {
           syncMode: 'SIMKL',
@@ -353,7 +353,7 @@ describe('Sync Handling', function() {
       expect(res.slaves).to.not.include('SIMKL');
     });
 
-    it('SIMKL MAL Master', async function() {
+    it('SIMKL MAL Master', async function () {
       const stub = Api.getStub({
         settings: {
           syncMode: 'SIMKL',
@@ -370,7 +370,7 @@ describe('Sync Handling', function() {
       expect(res.slaves).to.not.include('MAL');
     });
 
-    it('typeArray', async function() {
+    it('typeArray', async function () {
       getListStub = (prov, type) => {
         return new Promise((resolve, reject) => {
           if (prov === 'KITSU') {

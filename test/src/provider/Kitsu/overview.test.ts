@@ -6,31 +6,32 @@ import * as utils from '../../../../src/utils/general';
 setGlobals();
 function setGlobals() {
   global.con = require('../../../../src/utils/console');
-  global.con.log = function() {};
-  global.con.error = function() {};
-  global.con.info = function() {};
-  global.con.m = function() {
+  global.con.log = function () {};
+  global.con.error = function () {};
+  global.con.info = function () {};
+  global.con.m = function () {
     return global.con;
   };
   global.utils = utils;
   global.localStorage = {
-    getItem: function(key) {
+    getItem: function (key) {
       return null;
     },
-    setItem: function(key,value) {}
-  }
+    setItem: function (key, value) {},
+  };
   global.api = {
     settings: {
       get(key) {
-        if ('kitsuOptions') return {
-          titleLanguagePreference: 'english'
-        }
+        if ('kitsuOptions')
+          return {
+            titleLanguagePreference: 'english',
+          };
         throw 'key not defined';
       },
     },
     request: {
       async xhr(post, conf, data) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
           const options = {
             url: conf.url,
             headers: conf.headers,
@@ -66,8 +67,8 @@ function setGlobals() {
 
 if (process.env.NO_API) return;
 
-describe('Kitsu overview', function() {
-  before(function() {
+describe('Kitsu overview', function () {
+  before(function () {
     setGlobals();
   });
   let resObj = {
@@ -279,15 +280,15 @@ describe('Kitsu overview', function() {
   let tests = [
     {
       url: 'https://kitsu.io/anime/no-game-no-life',
-      res: resObj
+      res: resObj,
     },
     {
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life/',
-      res: JSON.parse(JSON.stringify(resObj))
-    }
-  ]
+      res: JSON.parse(JSON.stringify(resObj)),
+    },
+  ];
   tests.forEach(test => {
-    it(test.url, async function() {
+    it(test.url, async function () {
       let m = await new MetaOverview(test.url).init();
       let res = m.getMeta();
       // Clean statistics
@@ -297,6 +298,5 @@ describe('Kitsu overview', function() {
       // test
       expect(res).to.eql(test.res);
     });
-  })
-
+  });
 });

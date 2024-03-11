@@ -20,7 +20,7 @@
         "sync": false,
         "title": "Mahouka Koukou no Rettousei: Raihousha-hen",
         "identifier": "anime-mahouka-koukou-no-rettousei-raihousha-hen",
-        "uiSelector": true,
+        "uiSelector": true
       }
     },
     {
@@ -41,7 +41,7 @@
         "sync": false,
         "title": "Tate no Yuusha no Nariagari",
         "identifier": "manga-tate-no-yuusha-no-nariagari",
-        "uiSelector": true,
+        "uiSelector": true
       }
     }
   ]

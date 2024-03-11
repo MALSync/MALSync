@@ -5,7 +5,7 @@ const pagesMain = require('./utils/pagesMain');
 
 const pages = Object.values(pagesMain.pages());
 
-pages.sort(function(a, b) {
+pages.sort(function (a, b) {
   const textA = a.name.toUpperCase();
   const textB = b.name.toUpperCase();
   return textA < textB ? -1 : textA > textB ? 1 : 0;
@@ -13,7 +13,7 @@ pages.sort(function(a, b) {
 
 const hpages = Object.values(pagesMain.pages('../../src/pages-adult/pages.ts'));
 
-hpages.sort(function(a, b) {
+hpages.sort(function (a, b) {
   const textA = a.name.toUpperCase();
   const textB = b.name.toUpperCase();
   return textA < textB ? -1 : textA > textB ? 1 : 0;
@@ -113,13 +113,16 @@ function adultDep() {
   `;
 
   const descFile = path.join(__dirname, '../src/pages-adult/README.md');
-  fs.readFile(descFile, 'utf8', function(err, data) {
+  fs.readFile(descFile, 'utf8', function (err, data) {
     if (err) {
       return console.log(err);
     }
-    const result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, `<!--pages-->${html}<!--/pages-->`);
+    const result = data.replace(
+      /<!--pages-->((.|\n|\r)*)<!--\/pages-->/g,
+      `<!--pages-->${html}<!--/pages-->`,
+    );
 
-    fs.writeFile(descFile, result, 'utf8', function(err) {
+    fs.writeFile(descFile, result, 'utf8', function (err) {
       if (err) return console.log(err);
     });
   });
@@ -145,7 +148,12 @@ function readMe() {
 
     const str = `<a href="${page.domain}"><img src="https://favicon.malsync.moe/?domain=${page.domain}"> ${page.name}</a>`;
 
-    if (page.name === 'Emby' || page.name === 'Plex' || page.name === 'Jellyfin' || page.name === 'Komga') {
+    if (
+      page.name === 'Emby' ||
+      page.name === 'Plex' ||
+      page.name === 'Jellyfin' ||
+      page.name === 'Komga'
+    ) {
       continue;
     }
 
@@ -192,13 +200,16 @@ function readMe() {
   `;
 
   const descFile = path.join(__dirname, '../README.md');
-  fs.readFile(descFile, 'utf8', function(err, data) {
+  fs.readFile(descFile, 'utf8', function (err, data) {
     if (err) {
       return console.log(err);
     }
-    const result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, `<!--pages-->${html}<!--/pages-->`);
+    const result = data.replace(
+      /<!--pages-->((.|\n|\r)*)<!--\/pages-->/g,
+      `<!--pages-->${html}<!--/pages-->`,
+    );
 
-    fs.writeFile(descFile, result, 'utf8', function(err) {
+    fs.writeFile(descFile, result, 'utf8', function (err) {
       if (err) return console.log(err);
     });
   });
@@ -220,7 +231,7 @@ function createJson() {
   }
 
   const descFile = path.join(__dirname, '../src/pages/list.json');
-  fs.writeFile(descFile, JSON.stringify(res, null, 2), 'utf8', function(err) {
+  fs.writeFile(descFile, JSON.stringify(res, null, 2), 'utf8', function (err) {
     if (err) return console.log(err);
   });
 }

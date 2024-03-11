@@ -9,9 +9,9 @@ import { generalSingleTests } from '../generalSingleTests.exclude';
 setGlobals();
 function setGlobals() {
   global.con = require('../../../../src/utils/console');
-  global.con.log = function() {};
-  global.con.error = function() {};
-  global.con.info = function() {};
+  global.con.log = function () {};
+  global.con.error = function () {};
+  global.con.info = function () {};
 
   global.api = {
     token: process.env.SIMKL_API_KEY,
@@ -26,7 +26,7 @@ function setGlobals() {
     status: 200,
     request: {
       async xhr(post, conf, data) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
           const options = {
             url: conf.url,
             headers: conf.headers,
@@ -137,8 +137,8 @@ function setGlobals() {
 
 if (process.env.NO_API) return;
 
-describe('Simkl single', function() {
-  before(function() {
+describe('Simkl single', function () {
+  before(function () {
     setGlobals();
   });
   generalSingleTests(Single, setGlobals);

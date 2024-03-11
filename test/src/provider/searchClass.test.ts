@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as request from 'request';
 import { SearchClass } from '../../../src/_provider/Search/searchClass';
 
-describe('Sanitized Titel', function() {
+describe('Sanitized Titel', function () {
   const titles = {
     'Full Metal Panic! (Dub)': 'Full Metal Panic!',
     'Full Metal Panic! (Sub)': 'Full Metal Panic!',
@@ -18,17 +18,17 @@ describe('Sanitized Titel', function() {
     'Great Teacher Onizuka (Dubbed)': 'Great Teacher Onizuka',
   };
 
-  Object.keys(titles).forEach(function(key) {
+  Object.keys(titles).forEach(function (key) {
     const title = key;
     const resTitle = titles[key];
-    it(title, function() {
+    it(title, function () {
       const searchObj = new SearchClass(title, 'anime');
       expect(searchObj.getSanitizedTitel()).to.equal(resTitle);
     });
   });
 });
 
-describe('Titel Similarity', function() {
+describe('Titel Similarity', function () {
   const titles = [
     { title: 'Durarara!!x2 Shou', extTitle: 'Durarara!!x2 Shou', result: true },
     {
@@ -54,8 +54,7 @@ describe('Titel Similarity', function() {
     { title: 'Heroman Specials', extTitle: 'Heroman Specials', result: true },
     {
       title: 'Risou no Musume Nara Sekai Saikyou Demo Kawaigatte Kuremasuka',
-      extTitle:
-        'Risou no Musume Nara Sekai Saikyou Demo Kawaigatte Kuremasu ka?',
+      extTitle: 'Risou no Musume Nara Sekai Saikyou Demo Kawaigatte Kuremasu ka?',
       result: true,
     },
     {
@@ -66,27 +65,25 @@ describe('Titel Similarity', function() {
     { title: 'Liar Liar', extTitle: 'Bonnouji', result: false },
   ];
 
-  titles.forEach(function(res) {
-    it(res.title, function() {
-      expect(SearchClass.similarity(res.extTitle, res.title).same).to.equal(
-        res.result,
-      );
+  titles.forEach(function (res) {
+    it(res.title, function () {
+      expect(SearchClass.similarity(res.extTitle, res.title).same).to.equal(res.result);
     });
   });
 });
 
-describe('Firebase', function() {
+describe('Firebase', function () {
   // Not in use anymore
   return;
-  before(function() {
+  before(function () {
     global.con = require('../../../src/utils/console');
-    global.con.log = function() {};
-    global.con.error = function() {};
-    global.con.info = function() {};
+    global.con.log = function () {};
+    global.con.error = function () {};
+    global.con.info = function () {};
     global.api = {
       request: {
         async xhr(post, conf, data) {
-          return new Promise(function(resolve, reject) {
+          return new Promise(function (resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
                 responseText: body,
@@ -98,12 +95,8 @@ describe('Firebase', function() {
     };
   });
 
-  it('Crunchyroll', async function() {
-    const searchObj = new SearchClass(
-      'No Game No Life',
-      'anime',
-      'No Game No Life',
-    );
+  it('Crunchyroll', async function () {
+    const searchObj = new SearchClass('No Game No Life', 'anime', 'No Game No Life');
     searchObj.setPage({
       database: 'Crunchyroll',
       type: 'anime',
@@ -119,12 +112,8 @@ describe('Firebase', function() {
     });
   });
 
-  it('Kissanime', async function() {
-    const searchObj = new SearchClass(
-      'No Game No Life',
-      'anime',
-      'No-Game-No-Life-Dub',
-    );
+  it('Kissanime', async function () {
+    const searchObj = new SearchClass('No Game No Life', 'anime', 'No-Game-No-Life-Dub');
     searchObj.setPage({
       database: 'Kissanime',
       type: 'anime',
@@ -140,12 +129,8 @@ describe('Firebase', function() {
     });
   });
 
-  it('Novelplanet', async function() {
-    const searchObj = new SearchClass(
-      'No Game No Life',
-      'novel',
-      'No-Game-No-Life',
-    );
+  it('Novelplanet', async function () {
+    const searchObj = new SearchClass('No Game No Life', 'novel', 'No-Game-No-Life');
     searchObj.setPage({
       database: 'Novelplanet',
       type: 'manga',
@@ -161,7 +146,7 @@ describe('Firebase', function() {
     });
   });
 
-  it('Not Found', async function() {
+  it('Not Found', async function () {
     const searchObj = new SearchClass(
       'Avatar: The Last Airbender Season 1',
       'anime',
@@ -182,12 +167,8 @@ describe('Firebase', function() {
     });
   });
 
-  it('Not Existing', async function() {
-    const searchObj = new SearchClass(
-      'Something',
-      'anime',
-      'Something-that-does-not-exist',
-    );
+  it('Not Existing', async function () {
+    const searchObj = new SearchClass('Something', 'anime', 'Something-that-does-not-exist');
     searchObj.setPage({
       database: 'Kissanime',
       type: 'anime',
@@ -195,12 +176,8 @@ describe('Firebase', function() {
     expect(await searchObj.firebase()).to.eql(false);
   });
 
-  it('No database', async function() {
-    const searchObj = new SearchClass(
-      'Something',
-      'anime',
-      'Something-that-does-not-exist',
-    );
+  it('No database', async function () {
+    const searchObj = new SearchClass('Something', 'anime', 'Something-that-does-not-exist');
     searchObj.setPage({
       type: 'anime',
     });
@@ -208,16 +185,16 @@ describe('Firebase', function() {
   });
 });
 
-describe('Mal Search', function() {
-  before(function() {
+describe('Mal Search', function () {
+  before(function () {
     global.con = require('../../../src/utils/console');
-    global.con.log = function() {};
-    global.con.error = function() {};
-    global.con.info = function() {};
+    global.con.log = function () {};
+    global.con.error = function () {};
+    global.con.info = function () {};
     global.api = {
       request: {
         async xhr(post, conf, data) {
-          return new Promise(function(resolve, reject) {
+          return new Promise(function (resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
                 responseText: body,
@@ -230,7 +207,7 @@ describe('Mal Search', function() {
     };
   });
 
-  it('Novelplanet', async function() {
+  it('Novelplanet', async function () {
     this.timeout(10000);
     const searchObj = new SearchClass(
       'Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?',
@@ -243,8 +220,7 @@ describe('Mal Search', function() {
     });
     expect(await searchObj.malSearch()).to.eql({
       id: 81211,
-      url:
-        'https://myanimelist.net/manga/81211/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka',
+      url: 'https://myanimelist.net/manga/81211/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka',
       offset: 0,
       provider: 'mal',
       similarity: {
@@ -254,7 +230,7 @@ describe('Mal Search', function() {
     });
   });
 
-  it('Kissanime', async function() {
+  it('Kissanime', async function () {
     this.timeout(10000);
     const searchObj = new SearchClass(
       'AZUMANGA DAIOH: GEKIJOU TANPEN',
@@ -278,18 +254,18 @@ describe('Mal Search', function() {
   });
 });
 
-describe('Page Search', function() {
+describe('Page Search', function () {
   // TODO: Reimplement
   return;
-  before(function() {
+  before(function () {
     global.con = require('../../../src/utils/console');
-    global.con.log = function() {};
-    global.con.error = function() {};
-    global.con.info = function() {};
+    global.con.log = function () {};
+    global.con.error = function () {};
+    global.con.info = function () {};
     global.api = {
       request: {
         async xhr(post, conf, data) {
-          return new Promise(function(resolve, reject) {
+          return new Promise(function (resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
                 responseText: body,
@@ -308,13 +284,9 @@ describe('Page Search', function() {
     };
   });
 
-  it('Novelplanet', async function() {
+  it('Novelplanet', async function () {
     this.timeout(10000);
-    const searchObj = new SearchClass(
-      'No Game No Life',
-      'novel',
-      'No Game No Life',
-    );
+    const searchObj = new SearchClass('No Game No Life', 'novel', 'No Game No Life');
     searchObj.setPage({
       database: 'Novelplanet',
       type: 'manga',
@@ -331,13 +303,9 @@ describe('Page Search', function() {
     });
   });
 
-  it('Kissmanga', async function() {
+  it('Kissmanga', async function () {
     this.timeout(10000);
-    const searchObj = new SearchClass(
-      'No Game No Life',
-      'manga',
-      'No Game No Life',
-    );
+    const searchObj = new SearchClass('No Game No Life', 'manga', 'No Game No Life');
     searchObj.setPage({
       database: 'Kissmanga',
       type: 'manga',
@@ -354,7 +322,7 @@ describe('Page Search', function() {
     });
   });
 
-  it('Kissanime', async function() {
+  it('Kissanime', async function () {
     this.timeout(10000);
     const searchObj = new SearchClass(
       'Fate/kaleid liner PRISMA ILLYA',
@@ -378,16 +346,16 @@ describe('Page Search', function() {
   });
 });
 
-describe('Full Search', function() {
-  before(function() {
+describe('Full Search', function () {
+  before(function () {
     global.con = require('../../../src/utils/console');
-    global.con.log = function() {};
-    global.con.error = function() {};
-    global.con.info = function() {};
+    global.con.log = function () {};
+    global.con.error = function () {};
+    global.con.info = function () {};
     global.api = {
       request: {
         async xhr(post, conf, data) {
-          return new Promise(function(resolve, reject) {
+          return new Promise(function (resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
                 responseText: body,
@@ -406,15 +374,11 @@ describe('Full Search', function() {
     };
   });
 
-  it('Firebase', async function() {
+  it('Firebase', async function () {
     // TODO: Readd when new novel page is supported
     return;
     this.timeout(10000);
-    const searchObj = new SearchClass(
-      'No Game No Life',
-      'novel',
-      'No-Game-No-Life',
-    );
+    const searchObj = new SearchClass('No Game No Life', 'novel', 'No-Game-No-Life');
     searchObj.setPage({
       database: 'Novelplanet',
       type: 'manga',
@@ -423,13 +387,9 @@ describe('Full Search', function() {
     expect(result.provider).equal('firebase');
   });
 
-  it('Not Found', async function() {
+  it('Not Found', async function () {
     this.timeout(10000);
-    const searchObj = new SearchClass(
-      'Avatar: The Last Airbender',
-      'anime',
-      'wjzl',
-    );
+    const searchObj = new SearchClass('Avatar: The Last Airbender', 'anime', 'wjzl');
     searchObj.setPage({
       database: '9anime',
       type: 'anime',
@@ -438,7 +398,7 @@ describe('Full Search', function() {
     expect(result.provider).equal('firebase');
   });
 
-  it('Page Search', async function() {
+  it('Page Search', async function () {
     this.timeout(10000);
     const searchObj = new SearchClass(
       'tales of demons and gods',

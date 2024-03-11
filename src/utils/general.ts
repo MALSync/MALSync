@@ -808,7 +808,7 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
     for (let i = 0; i < lazyimages.length; i++) {
       if (utils.elementInViewport(lazyimages[i], 600)) {
         // eslint-disable-next-line
-        loadImage(lazyimages[i], function() {
+        loadImage(lazyimages[i], function () {
           lazyimages.splice(i, i);
         });
       }

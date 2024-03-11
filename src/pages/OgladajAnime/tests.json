@@ -20,11 +20,11 @@
         "sync": true,
         "title": "Jujutsu Kaisen (TV)",
         "identifier": "jujutsu-kaisen-tv",
-		"overviewUrl": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv",
+        "overviewUrl": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv",
         "nextEpUrl": "https://ogladajanime.pl/anime/jujutsu-kaisen-tv/2",
-		"episode": 1,
+        "episode": 1,
         "uiSelector": true
       }
-    },
+    }
   ]
 }

@@ -5,19 +5,19 @@ import * as utils from '../../../../src/utils/general';
 setGlobals();
 function setGlobals() {
   global.con = require('../../../../src/utils/console');
-  global.con.log = function() {};
-  global.con.error = function() {};
-  global.con.info = function() {};
-  global.con.m = function() {
+  global.con.log = function () {};
+  global.con.error = function () {};
+  global.con.info = function () {};
+  global.con.m = function () {
     return global.con;
   };
   global.utils = utils;
   global.localStorage = {
-    getItem: function(key) {
+    getItem: function (key) {
       return null;
     },
-    setItem: function(key,value) {}
-  }
+    setItem: function (key, value) {},
+  };
   global.api = {
     token: process.env.SIMKL_API_KEY,
     noManga: true,
@@ -31,7 +31,7 @@ function setGlobals() {
     status: 200,
     request: {
       async xhr(post, conf, data) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
           const options = {
             url: conf.url,
             headers: conf.headers,
@@ -69,8 +69,8 @@ function setGlobals() {
 
 if (process.env.NO_API) return;
 
-describe('Simkl overview', function() {
-  before(function() {
+describe('Simkl overview', function () {
+  before(function () {
     setGlobals();
   });
   let resObj = {
@@ -211,15 +211,15 @@ describe('Simkl overview', function() {
   let tests = [
     {
       url: 'https://simkl.com/anime/46128/no-game-no-life/',
-      res: resObj
+      res: resObj,
     },
     {
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life/',
-      res: JSON.parse(JSON.stringify(resObj))
-    }
-  ]
+      res: JSON.parse(JSON.stringify(resObj)),
+    },
+  ];
   tests.forEach(test => {
-    it(test.url, async function() {
+    it(test.url, async function () {
       let m = await new MetaOverview(test.url).init();
       let res = m.getMeta();
       // Clean statistics
@@ -229,6 +229,5 @@ describe('Simkl overview', function() {
       // test
       expect(res).to.eql(test.res);
     });
-  })
-
+  });
 });

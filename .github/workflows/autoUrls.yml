@@ -1,4 +1,4 @@
-name: "autoUrls"
+name: 'autoUrls'
 
 on:
   schedule:
@@ -10,29 +10,29 @@ jobs:
     name: main
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-      with:
-        ref: master
+      - uses: actions/checkout@master
+        with:
+          ref: master
 
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
 
-    - name: Build
-      run: npm install
+      - name: Build
+        run: npm install
 
-    - name: Run
-      run: npm run build:autoUrls
-      env:
-        CI_MODE: travis
-        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
-        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+      - name: Run
+        run: npm run build:autoUrls
+        env:
+          CI_MODE: travis
+          SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+          SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
 
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v6
-      with:
-        commit-message: Auto Urls
-        branch: auto-urls
-        delete-branch: true
-        title: 'Auto Urls'
-        body: 'Automatically added Urls'
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: Auto Urls
+          branch: auto-urls
+          delete-branch: true
+          title: 'Auto Urls'
+          body: 'Automatically added Urls'

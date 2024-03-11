@@ -17,7 +17,7 @@
   foreground-active: var(--cl-backdrop);
   opacity: 1;
   loading: 1;
-}
+};
 
 @dark-colors: {
   text: white;
@@ -32,7 +32,7 @@
   foreground: rgb(94 94 94 / var(--cl-opacity));
   foreground-solid: rgb(94 94 94);
   foreground-active: var(--cl-background);
-}
+};
 
 @state-colors: {
   0: grey;
@@ -42,5 +42,12 @@
   4: #eb5757;
   6: #bb6bd9;
   23: #3492b1;
-  7: conic-gradient(var(--state-1), var(--state-2), var(--state-3), var(--state-4), var(--state-6), var(--state-1));
-}
+  7: conic-gradient(
+    var(--state-1),
+    var(--state-2),
+    var(--state-3),
+    var(--state-4),
+    var(--state-6),
+    var(--state-1)
+  );
+};

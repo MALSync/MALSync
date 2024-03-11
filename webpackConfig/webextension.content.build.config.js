@@ -16,7 +16,7 @@ const res = pagesMain.completePages().map(page => {
   let database = null;
 
   if (typeof page.meta.searchDatabase !== 'undefined') {
-    if(page.meta.searchDatabase) database = page.meta.searchDatabase;
+    if (page.meta.searchDatabase) database = page.meta.searchDatabase;
   } else if (page.main.database) {
     database = page.main.database;
   }

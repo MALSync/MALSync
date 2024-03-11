@@ -14,6 +14,6 @@
     }
   ],
   "npm": {
-     "rangeStrategy": "update-lockfile"
+    "rangeStrategy": "update-lockfile"
   }
 }

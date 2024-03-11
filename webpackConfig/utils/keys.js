@@ -19,6 +19,6 @@ module.exports = {
         id: simklId,
         secret: simklSecret,
       },
-    }
-  }
+    };
+  },
 };

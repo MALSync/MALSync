@@ -2,9 +2,7 @@ import { expect } from 'chai';
 import * as Api from '../utils/apiStub';
 import { classConfigs, getSingle } from '../utils/singleStub';
 
-
 describe('Score', () => {
-
   Api.setGlobals();
   Api.setStub({});
 
