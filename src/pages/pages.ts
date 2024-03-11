@@ -142,7 +142,7 @@ export const pages = {
   animepahe,
   Netflix,
   Animeflv,
-  AnimeFenix,
+AnimeFenix,
   Jkanime,
   Proxer,
   Wakanim,
