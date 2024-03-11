@@ -12,14 +12,14 @@ export const AnimeFenix: pageInterface = {
   isOverviewPage: (url: string) => {
     const path = url.split('/')[3];
     return Boolean(path && path !== 'ver' && path !== 'zerotwo');
-  },  
+  },
   sync: {
     getTitle: (url: string) => {
-      const titleElement = document.querySelector(".hero h1");
+      const titleElement = document.querySelector('.hero h1');
       let title = titleElement?.textContent
         ? titleElement.textContent.replace(/\d+\s*(Sub|Dub|Doblaje|Español)$/i, '').trim()
         : null;
-    
+
       if (!title) {
         const urlTitle = url.split('/')[4];
         title = urlTitle ? urlTitle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
@@ -28,7 +28,7 @@ export const AnimeFenix: pageInterface = {
     },
     getIdentifier: (url: string) => {
       return AnimeFenix.sync.getTitle(url);
-    },          
+    },
     getOverviewUrl: (url: string) => {
       const urlParts = url.split('/');
       if (urlParts[3] === 'ver') {
@@ -40,19 +40,29 @@ export const AnimeFenix: pageInterface = {
       const urlParts = url.split('/');
       const lastPart = urlParts.pop();
       const episodeNumber = lastPart ? lastPart.match(/\d+/g) : null;
-      return episodeNumber && episodeNumber.length > 0 ? parseInt(episodeNumber[episodeNumber.length - 1]) : 0;
+      return episodeNumber && episodeNumber.length > 0
+        ? parseInt(episodeNumber[episodeNumber.length - 1])
+        : 0;
     },
   },
-  init: page => {
+  init: (page) => {
     j.$(document).ready(function () {
       const h1Element = document.querySelector('h1');
-      if (h1Element && h1Element.textContent && h1Element.textContent.includes('Animes Populares')) {
+      if (
+        h1Element &&
+        h1Element.textContent &&
+        h1Element.textContent.includes('Animes Populares')
+      ) {
         console.error('404');
         return;
       }
-      if (page.url.split('/')[3] === 'ver' || page.url.split('/')[3] !== 'zerotwo' || page.url.split('/')[3] !== 'animes') {
+      if (
+        page.url.split('/')[3] === 'ver' ||
+        page.url.split('/')[3] !== 'zerotwo' ||
+        page.url.split('/')[3] !== 'animes'
+      ) {
         page.handlePage();
       }
     });
-  },  
+  },
 };
