@@ -3,30 +3,31 @@ import * as def from '../../../src/_provider/definitions';
 import { UrlNotSupportedError } from '../../../src/_provider/Errors';
 
 export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
-  describe('Url', function () {
-    describe('Constructor', function () {
+  describe('Url', function() {
+    describe('Constructor', function() {
       global.testData.urlTest.forEach(el => {
-        it(el.url, function () {
+        it(el.url, function() {
           if (!el.error) {
             let single;
             expect(() => (single = new Single(el.url))).not.to.throw();
             expect(single.getType()).equal(el.type);
           } else {
-            expect(() => new Single(el.url)).to.throw(UrlNotSupportedError);
+            expect(() => new Single(el.url))
+              .to.throw(UrlNotSupportedError);
           }
         });
       });
     });
   });
 
-  describe('Dry', function () {
+  describe('Dry', function() {
     const singleEntry = new Single(global.testData.urlTest[0].url);
-    before(async function () {
+    before(async function() {
       this.timeout(50000);
       await singleEntry.update();
     });
 
-    describe('Status', function () {
+    describe('Status', function() {
       [
         def.status.Watching,
         def.status.Completed,
@@ -35,9 +36,12 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
         def.status.PlanToWatch,
         def.status.Rewatching,
       ].forEach(el => {
-        it(def.status[el], function () {
+        it(def.status[el], function() {
           singleEntry.setStatus(el);
-          if (el === def.status.Rewatching && !singleEntry.supportsRewatching()) {
+          if (
+            el === def.status.Rewatching &&
+            !singleEntry.supportsRewatching()
+          ) {
             expect(singleEntry.getStatus()).equal(def.status.Watching);
           } else {
             expect(singleEntry.getStatus()).equal(el);
@@ -46,7 +50,7 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
       });
     });
 
-    describe('Score', function () {
+    describe('Score', function() {
       [
         def.score.NoScore,
         def.score.R1,
@@ -60,16 +64,16 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
         def.score.R9,
         def.score.R10,
       ].forEach(el => {
-        it(def.score[el], function () {
+        it(def.score[el], function() {
           singleEntry.setScore(el);
           expect(singleEntry.getScore()).equal(el);
         });
       });
     });
 
-    describe('Episode', function () {
+    describe('Episode', function() {
       [0, 2, 11].forEach(el => {
-        it(`${el}`, function () {
+        it(`${el}`, function() {
           singleEntry.setEpisode(el);
           expect(singleEntry.getEpisode()).equal(el);
         });
@@ -77,9 +81,9 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
     });
 
     if (!api.noManga) {
-      describe('Volume', function () {
+      describe('Volume', function() {
         [0, 2, 21].forEach(el => {
-          it(`${el}`, function () {
+          it(`${el}`, function() {
             singleEntry.setVolume(el);
             expect(singleEntry.getVolume()).equal(el);
           });
@@ -87,20 +91,20 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
       });
     }
 
-    describe('Streaming Url', function () {
+    describe('Streaming Url', function() {
       [
         'https://myanimelist.net/anime/13371337',
         'https://myanimelist.net/anime/13',
         'https://myanimelist.net/manga/1',
       ].forEach(el => {
-        it(`${el}`, function () {
+        it(`${el}`, function() {
           singleEntry.setStreamingUrl(el);
           expect(singleEntry.getStreamingUrl()).equal(el);
         });
       });
     });
 
-    describe('Check Sync', function () {
+    describe('Check Sync', function() {
       if (api.noManga) return;
       [
         {
@@ -221,7 +225,7 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
           result: true,
         },
       ].forEach(el => {
-        it(el.name, async function () {
+        it(el.name, async function() {
           singleEntry.finishRewatchingMessage = () => true;
           singleEntry.finishWatchingMessage = () => true;
           singleEntry.startWatchingMessage = () => true;
@@ -235,9 +239,9 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
     });
   });
 
-  describe('API', function () {
-    describe('Update', function () {
-      it('Main Url', async function () {
+  describe('API', function() {
+    describe('Update', function() {
+      it('Main Url', async function() {
         this.timeout(50000);
         const tData = global.testData.apiTest.defaultUrl;
         const singleEntry = new Single(tData.url);
@@ -250,10 +254,12 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
         expect(await singleEntry.getImage()).equal(tData.image);
-        expect((await singleEntry.getRating()).length).equal(tData.rating.length);
+        expect((await singleEntry.getRating()).length).equal(
+          tData.rating.length,
+        );
         expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
       });
-      it('Not on list', async function () {
+      it('Not on list', async function() {
         this.timeout(50000);
         const tData = global.testData.apiTest.notOnListUrl;
         if (!tData) return;
@@ -262,12 +268,12 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(false);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(titlePrefix + tData.title);
+        expect(singleEntry.getTitle()).equal(titlePrefix+tData.title);
         expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
       });
-      it('No Mal Entry', async function () {
+      it('No Mal Entry', async function() {
         this.timeout(50000);
         const tData = global.testData.apiTest.noMalEntry;
         if (!tData) return;
@@ -276,13 +282,13 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(titlePrefix + tData.title);
+        expect(singleEntry.getTitle()).equal(titlePrefix+tData.title);
         expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(null);
         expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
       });
-      it('MAL Url', async function () {
+      it('MAL Url', async function() {
         this.timeout(50000);
         const tData = global.testData.apiTest.malUrl;
         if (!tData) return;
@@ -291,12 +297,12 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(titlePrefix + tData.title);
+        expect(singleEntry.getTitle()).equal(titlePrefix+tData.title);
         expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
       });
-      it('Non existing MAL url', async function () {
+      it('Non existing MAL url', async function() {
         this.timeout(50000);
         const tData = global.testData.apiTest.nonExistingMAL;
         if (!tData) return;
@@ -306,10 +312,12 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
           .then(() => {
             throw 'was not supposed to succeed';
           })
-          .catch(e => expect(e).to.include({ code: def.errorCode.EntryNotFound }));
+          .catch(e =>
+            expect(e).to.include({ code: def.errorCode.EntryNotFound }),
+          );
         expect(singleEntry.isAuthenticated()).equal(true);
       });
-      it('No Authorization', async function () {
+      it('No Authorization', async function() {
         this.timeout(50000);
         global.api.token = '';
         const tData = global.testData.apiTest.defaultUrl;
@@ -320,12 +328,14 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
           .then(() => {
             throw 'was not supposed to succeed';
           })
-          .catch(e => expect(e).to.include({ code: def.errorCode.NotAutenticated }));
+          .catch(e =>
+            expect(e).to.include({ code: def.errorCode.NotAutenticated }),
+          );
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isAuthenticated()).equal(false);
         setGlobals();
       });
-      it('Server Offline', async function () {
+      it('Server Offline', async function() {
         this.timeout(50000);
         global.api.status = 504;
         const tData = global.testData.apiTest.defaultUrl;
@@ -336,21 +346,29 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
           .then(() => {
             throw 'was not supposed to succeed';
           })
-          .catch(e => expect(e).to.include({ code: def.errorCode.ServerOffline }));
+          .catch(e =>
+            expect(e).to.include({ code: def.errorCode.ServerOffline }),
+          );
         setGlobals();
       });
     });
 
-    describe('sync', function () {
-      it('Persistence', async function () {
+    describe('sync', function() {
+      it('Persistence', async function() {
         this.timeout(50000);
         const tData = global.testData.apiTest.defaultUrl;
         const singleEntry = new Single(tData.url);
         await singleEntry.update();
-        singleEntry.setScore(def.score.R5).setStatus(def.status.Watching).setEpisode(2);
+        singleEntry
+          .setScore(def.score.R5)
+          .setStatus(def.status.Watching)
+          .setEpisode(2);
         await singleEntry.sync();
 
-        singleEntry.setScore(def.score.R6).setStatus(def.status.Completed).setEpisode(3);
+        singleEntry
+          .setScore(def.score.R6)
+          .setStatus(def.status.Completed)
+          .setEpisode(3);
 
         expect(singleEntry.getScore()).equal(def.score.R6);
         expect(singleEntry.getStatus()).equal(def.status.Completed);
@@ -362,7 +380,7 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
         expect(singleEntry.getEpisode()).equal(2);
       });
 
-      it('Undo', async function () {
+      it('Undo', async function() {
         this.timeout(50000);
         const tData = global.testData.apiTest.defaultUrl;
         const singleEntry = new Single(tData.url);
@@ -375,7 +393,10 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
           score: singleEntry.getScore(),
         };
 
-        singleEntry.setScore(def.score.R6).setStatus(def.status.PlanToWatch).setEpisode(2);
+        singleEntry
+          .setScore(def.score.R6)
+          .setStatus(def.status.PlanToWatch)
+          .setEpisode(2);
 
         await singleEntry.sync();
 
@@ -390,12 +411,15 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
       });
 
       if (!api.noLimitless) {
-        it('Over totalEp no limit', async function () {
+        it('Over totalEp no limit', async function() {
           this.timeout(50000);
           const tData = global.testData.apiTest.defaultUrl;
           const singleEntry = new Single(tData.url);
           await singleEntry.update();
-          singleEntry.setScore(def.score.R5).setStatus(def.status.Watching).setEpisode(1000);
+          singleEntry
+            .setScore(def.score.R5)
+            .setStatus(def.status.Watching)
+            .setEpisode(1000);
           await singleEntry.sync();
 
           await singleEntry.update();
@@ -403,17 +427,23 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
         });
       }
 
-      it('Over totalEp', async function () {
+      it('Over totalEp', async function() {
         this.timeout(50000);
         if (!global.testData.apiTest.hasTotalEp) return;
         const tData = global.testData.apiTest.hasTotalEp;
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
-        singleEntry.setScore(def.score.R5).setStatus(def.status.Watching).setEpisode(1);
+        singleEntry
+          .setScore(def.score.R5)
+          .setStatus(def.status.Watching)
+          .setEpisode(1);
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
         await singleEntry.sync();
-        singleEntry.setScore(def.score.R5).setStatus(def.status.Watching).setEpisode(1000);
+        singleEntry
+          .setScore(def.score.R5)
+          .setStatus(def.status.Watching)
+          .setEpisode(1000);
         await singleEntry.sync();
 
         await singleEntry.update();

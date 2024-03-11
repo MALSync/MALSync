@@ -146,9 +146,10 @@ async function onlineTest(url, page) {
 
 async function PreparePage(block, page, url, testPage) {
   const urlObj = new URL(url);
-  let name = encodeURIComponent(
-    (urlObj.pathname + urlObj.search + urlObj.hash).replace(/(^\/|\/$| )/g, '').replace(/\//g, '_'),
-  ).toLowerCase();
+  let name =
+    encodeURIComponent(
+      (urlObj.pathname + urlObj.search + urlObj.hash).replace(/(^\/|\/$| )/g, '').replace(/\//g, '_'),
+    ).toLowerCase()
 
   checkIfFolderExists(block, name);
   const filePath = path.join(__dirname, '../dist/headless/clear/', block, name, 'index.html');
@@ -158,7 +159,7 @@ async function PreparePage(block, page, url, testPage) {
 
     await page.setRequestInterception(true);
 
-    page.on('request', request => {
+    page.on('request', (request) => {
       if (!request.isInterceptResolutionHandled()) {
         if (request.url() === url || request.url() === url.replace(/#.*/, '')) {
           const content = fs.readFileSync(filePath, 'utf8');
@@ -167,7 +168,7 @@ async function PreparePage(block, page, url, testPage) {
           return request.respond({
             status: 200,
             body: fs.readFileSync(path.join(__dirname, '../../assets/icons/icon128.png')),
-            contentType: 'image/png',
+            contentType: 'image/png'
           });
         } else {
           return request.abort();
@@ -200,7 +201,7 @@ async function PreparePage(block, page, url, testPage) {
       setTimeout(() => {
         resolve();
       }, 10000);
-    });
+    })
 
     // Makes sure selected is set in dropdowns
     await page.evaluate(() => {
@@ -223,7 +224,7 @@ async function PreparePage(block, page, url, testPage) {
       content += '<script>';
 
       for (const variable of testPage.variables) {
-        varData = await page.evaluate(variable => {
+        varData = await page.evaluate((variable) => {
           return JSON.stringify(window[variable]);
         }, variable);
         content += `window.${variable} = ${varData};`;
@@ -234,7 +235,7 @@ async function PreparePage(block, page, url, testPage) {
 
     return () => {
       fs.writeFileSync(filePath, content);
-    };
+    }
   }
 }
 
@@ -263,10 +264,9 @@ function checkIfFolderExists(block, name) {
 
 async function singleCase(block, test, page, testPage, retry = 0) {
   const saveCallback = await PreparePage(block, page, test.url, testPage);
-  const testJquery = () =>
-    page.evaluate(() => {
-      if (typeof jQuery === 'undefined') throw 'jquery could not be loaded';
-    });
+  const testJquery = () => page.evaluate(() => {
+    if (typeof jQuery === 'undefined') throw 'jquery could not be loaded';
+  })
 
   await page
     .addScriptTag({
@@ -274,8 +274,7 @@ async function singleCase(block, test, page, testPage, retry = 0) {
     })
     .then(() => {
       return testJquery();
-    })
-    .catch(async () => {
+    }).catch(async () => {
       await page.evaluate(fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'));
       await testJquery();
     });
@@ -313,20 +312,14 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
     var textOverview =
-      typeof text.overviewUrl !== 'undefined'
-        ? text.overviewUrl.replace(/www[^.]*\./, '')
-        : text.overviewUrl;
+      typeof text.overviewUrl !== 'undefined' ? text.overviewUrl.replace(/www[^.]*\./, '') : text.overviewUrl;
     var testOverview =
       typeof test.expected.overviewUrl !== 'undefined'
         ? test.expected.overviewUrl.replace(/www[^.]*\./, '')
         : test.expected.overviewUrl;
-    expect(textOverview, 'Overview Url').to.equal(
-      test.expected.overviewUrl.replace(/www[^.]*\./, ''),
-    );
+    expect(textOverview, 'Overview Url').to.equal(test.expected.overviewUrl.replace(/www[^.]*\./, ''));
     var textOverview = text.nextEpUrl ? text.nextEpUrl.replace(/www[^.]*\./, '') : '';
-    var testOverview = test.expected.nextEpUrl
-      ? test.expected.nextEpUrl.replace(/www[^.]*\./, '')
-      : '';
+    var testOverview = test.expected.nextEpUrl ? test.expected.nextEpUrl.replace(/www[^.]*\./, '') : '';
     expect(textOverview, 'Next Episode').to.equal(testOverview);
   }
   if (typeof text.uiSelector !== 'undefined') {
@@ -436,18 +429,22 @@ async function initTestsArray() {
       (err, content, file, next) => {
         if (err) throw err;
         if (changedFiles && changedFiles.length) {
-          const found = changedFiles.find(changed => {
-            const cleanChanged = changed.replace(/[^\/]+\.(less|ts|json)$/, '');
-            const cleanFile = file.replace('tests.json', '').replace(/\\/g, '/');
 
-            return (
-              changed &&
-              cleanChanged &&
-              cleanChanged !== 'src/' &&
-              cleanChanged !== 'src/pages/' &&
-              cleanFile.includes(cleanChanged)
-            );
-          });
+          const found = changedFiles.find(
+            changed => {
+              const cleanChanged = changed.replace(/[^\/]+\.(less|ts|json)$/, '');
+              const cleanFile = file.replace('tests.json', '').replace(/\\/g, '/')
+
+              return (
+                changed &&
+                cleanChanged &&
+                cleanChanged !== 'src/' &&
+                cleanChanged !== 'src/pages/' &&
+                cleanFile.includes(cleanChanged)
+              );
+            }
+
+          );
 
           if (!found) {
             next();
@@ -467,10 +464,7 @@ async function initTestsArray() {
       },
       (err, files) => {
         if (err) throw err;
-        console.log(
-          'Test files:',
-          testsArray.map(t => t.path),
-        );
+        console.log('Test files:', testsArray.map(t => t.path));
         resolve();
       },
     );
@@ -478,13 +472,13 @@ async function initTestsArray() {
 }
 
 async function resetOnline(path) {
-  fs.readFile(path, 'utf8', function (err, data) {
+  fs.readFile(path, 'utf8', function(err, data) {
     if (err) {
       return console.log(err);
     }
     const result = data.replace(/"offline" *: *true *,/g, `"offline": false,`);
 
-    fs.writeFile(path, result, 'utf8', function (err) {
+    fs.writeFile(path, result, 'utf8', function(err) {
       if (err) return console.log(err);
     });
   });

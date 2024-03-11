@@ -4,9 +4,9 @@ import { generalListTests } from '../generalTests.exclude';
 
 global.con = require('../../../../src/utils/console');
 
-global.con.log = function () {};
-global.con.error = function () {};
-global.con.info = function () {};
+global.con.log = function() {};
+global.con.error = function() {};
+global.con.info = function() {};
 
 const responses = {
   user: {
@@ -34,7 +34,8 @@ const elements = [
     totalEp: 13,
     status: 2,
     score: 10,
-    image: 'https://media.kitsu.io/anime/poster_images/4604/large.jpg?1416274148',
+    image:
+      'https://media.kitsu.io/anime/poster_images/4604/large.jpg?1416274148',
     tags: '\n=== MAL Tags ===\nScore: 8.35',
     airingState: undefined,
   },
@@ -51,7 +52,8 @@ const elements = [
     totalEp: 12,
     status: 2,
     score: 9,
-    image: 'https://media.kitsu.io/anime/poster_images/5861/large.jpg?1486237007',
+    image:
+      'https://media.kitsu.io/anime/poster_images/5861/large.jpg?1486237007',
     tags: '\n=== MAL Tags ===\nScore: 7.04',
     airingState: undefined,
   },
@@ -63,8 +65,8 @@ function getResponse(key) {
   return responses[key].data;
 }
 
-describe('Kitsu UserList', function () {
-  before(function () {
+describe('Kitsu UserList', function() {
+  before(function() {
     global.api = {
       request: {
         async xhr(post, conf, data) {

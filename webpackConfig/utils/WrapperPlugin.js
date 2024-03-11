@@ -21,9 +21,7 @@ class WrapperPlugin {
 
     this.header = args.hasOwnProperty('header') ? args.header : '';
     this.footer = args.hasOwnProperty('footer') ? args.footer : '';
-    this.afterOptimizations = args.hasOwnProperty('afterOptimizations')
-      ? !!args.afterOptimizations
-      : false;
+    this.afterOptimizations = args.hasOwnProperty('afterOptimizations') ? !!args.afterOptimizations : false;
     this.test = args.hasOwnProperty('test') ? args.test : '';
   }
 
@@ -44,9 +42,7 @@ class WrapperPlugin {
         return;
       }
 
-      compilation.hooks.afterOptimizeChunkModules.tap('WrapperPlugin', chunks =>
-        wrapChunks(compilation, chunks),
-      );
+      compilation.hooks.afterOptimizeChunkModules.tap('WrapperPlugin', chunks => wrapChunks(compilation, chunks));
     });
 
     function wrapFile(compilation, fileName, chunkHash) {
@@ -56,7 +52,10 @@ class WrapperPlugin {
         fileName,
         new compiler.webpack.sources.ConcatSource(
           String(headerContent),
-          compilation.getAsset(fileName).source.buffer().toString(),
+          compilation
+            .getAsset(fileName)
+            .source.buffer()
+            .toString(),
           String(footerContent),
         ),
       );

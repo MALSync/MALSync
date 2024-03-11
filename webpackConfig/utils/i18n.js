@@ -1,6 +1,6 @@
 const i18n = require('../../assets/_locales/en/messages.json');
 
-module.exports = function () {
+module.exports = function() {
   const tempi18n = {};
   for (const i in i18n) {
     const lEl = i18n[i];

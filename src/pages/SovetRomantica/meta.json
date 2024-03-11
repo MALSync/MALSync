@@ -1,6 +1,7 @@
 {
-  "search": "https://sovetromantica.com/anime?query={searchterm}",
-  "urls": {
-    "match": ["*://sovetromantica.com/anime/*", "*://ani.wtf/anime/*"]
-  }
+    "search": "https://sovetromantica.com/anime?query={searchterm}",
+    "urls": {
+      "match": ["*://sovetromantica.com/anime/*",
+                "*://ani.wtf/anime/*"]
+    }
 }

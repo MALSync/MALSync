@@ -11,9 +11,9 @@ const state = {};
 setGlobals();
 function setGlobals() {
   global.con = require('../../../../src/utils/console');
-  global.con.log = function () {};
-  global.con.error = function () {};
-  global.con.info = function () {};
+  global.con.log = function() {};
+  global.con.error = function() {};
+  global.con.info = function() {};
 
   global.api = {
     token: process.env.KITSU_API_KEY,
@@ -35,7 +35,7 @@ function setGlobals() {
     status: 200,
     request: {
       async xhr(post, conf, data) {
-        return new Promise(function (resolve, reject) {
+        return new Promise(function(resolve, reject) {
           const options = {
             url: conf.url,
             headers: conf.headers,
@@ -108,7 +108,8 @@ function setGlobals() {
         title: 'One Piece',
         eps: 0,
         vol: 0,
-        image: 'https://media.kitsu.io/anime/poster_images/12/large.jpg?1490541434',
+        image:
+          'https://media.kitsu.io/anime/poster_images/12/large.jpg?1490541434',
         rating: '82.88%',
         cacheKey: 21,
       },
@@ -122,7 +123,8 @@ function setGlobals() {
       },
       noMalEntry: {
         url: 'https://kitsu.io/manga/ultimate-legend-kang-hae-hyo-manhwa',
-        displayUrl: 'https://kitsu.io/manga/ultimate-legend-kang-hae-hyo-manhwa',
+        displayUrl:
+          'https://kitsu.io/manga/ultimate-legend-kang-hae-hyo-manhwa',
         title: 'Ultimate Legend: Kang Hae Hyo Manhwa',
         eps: 0,
         vol: 0,
@@ -148,8 +150,8 @@ function setGlobals() {
 
 if (process.env.NO_API) return;
 
-describe('Kitsu single', function () {
-  before(function () {
+describe('Kitsu single', function() {
+  before(function() {
     setGlobals();
   });
   generalSingleTests(Single, setGlobals);

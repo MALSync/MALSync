@@ -9,7 +9,7 @@
         "sync": false,
         "title": "Fate/kaleid liner Prisma☆Illya",
         "identifier": 79,
-        "uiSelector": true
+        "uiSelector": true,
       }
     },
     {
@@ -18,7 +18,7 @@
         "sync": true,
         "title": "TSUKIUTA.2",
         "identifier": "14",
-        "episode": "1"
+        "episode": "1",
       }
     }
   ]

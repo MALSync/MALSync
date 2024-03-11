@@ -107,7 +107,7 @@ export const classConfigs: {
 ];
 
 export function getSingle(pageName) {
-  const singelConfig = classConfigs.find(c => c.name === pageName);
+  const singelConfig = classConfigs.find((c) => c.name === pageName);
   if (!singelConfig) {
     throw new Error(`Provider ${pageName} not found.`);
   }

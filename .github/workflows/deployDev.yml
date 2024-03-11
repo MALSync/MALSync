@@ -7,26 +7,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: Build
-        run: |
-          npm ci
-          npm run build
-        env:
-          CI_MODE: dev
-      - name: Pack
-        run: |
-          npm run package
-        env:
-          CI_MODE: dev
-      - name: Deploy
-        uses: trmcnvn/chrome-addon@v2
-        with:
-          extension: neekhcfkcjbddejgenpcdnpnidnfdgoh
-          zip: dist/webextension.zip
-          client-id: ${{ secrets.DEV_CHROME_CLIENT_ID }}
-          client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
-          refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI_MODE: dev
+    - name: Pack
+      run: |
+        npm run package
+      env:
+        CI_MODE: dev
+    - name: Deploy
+      uses: trmcnvn/chrome-addon@v2
+      with:
+        extension: neekhcfkcjbddejgenpcdnpnidnfdgoh
+        zip: dist/webextension.zip
+        client-id: ${{ secrets.DEV_CHROME_CLIENT_ID }}
+        client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}

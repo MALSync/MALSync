@@ -1,6 +1,7 @@
 {
-  "search": "https://mangafire.to/filter?keyword={searchtermPlus}",
-  "urls": {
-    "match": ["*://mangafire.to/*"]
+    "search": "https://mangafire.to/filter?keyword={searchtermPlus}",
+    "urls": {
+      "match": ["*://mangafire.to/*"]
+    }
   }
-}
+  

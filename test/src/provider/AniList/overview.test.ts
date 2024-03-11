@@ -6,44 +6,44 @@ import * as utils from '../../../../src/utils/general';
 setGlobals();
 function setGlobals() {
   global.con = require('../../../../src/utils/console');
-  global.con.log = function () {};
-  global.con.error = function () {};
-  global.con.info = function () {};
-  global.con.m = function () {
+  global.con.log = function() {};
+  global.con.error = function() {};
+  global.con.info = function() {};
+  global.con.m = function() {
     return global.con;
   };
   global.utils = utils;
   global.localStorage = {
-    getItem: function (key) {
+    getItem: function(key) {
       return null;
     },
-    setItem: function (key, value) {},
-  };
+    setItem: function(key,value) {}
+  }
   global.api = {
-    request: {
-      async xhr(post, conf, data) {
-        return new Promise(function (resolve, reject) {
-          const options = {
-            url: conf.url,
-            headers: conf.headers,
-            body: conf.data,
-          };
-          request.post(options, (error, response, body) => {
-            resolve({
-              responseText: body,
-              status: global.api.status,
+      request: {
+        async xhr(post, conf, data) {
+          return new Promise(function(resolve, reject) {
+            const options = {
+              url: conf.url,
+              headers: conf.headers,
+              body: conf.data,
+            };
+            request.post(options, (error, response, body) => {
+              resolve({
+                responseText: body,
+                status: global.api.status,
+              });
             });
           });
-        });
+        },
       },
-    },
-  };
+    };
 }
 
 if (process.env.NO_API) return;
 
-describe('AniList overview', function () {
-  before(function () {
+describe('AniList overview', function() {
+  before(function() {
     setGlobals();
   });
   let resObj = {
@@ -51,8 +51,7 @@ describe('AniList overview', function () {
     alternativeTitle: ['No Game, No Life', 'ノーゲーム・ノーライフ'],
     description:
       '<p>The story of No Game, No Life centers around Sora and Shiro, a brother and sister whose reputations as brilliant NEET (Not in Education, Employment, or Training) hikikomori (shut-in) gamers have spawned urban legends all over the Internet. These two gamers even consider the real world as just another &quot;crappy game.&quot;<br><br><br />\nOne day, they are summoned to another world where a young boy named Tet appears before them, claiming to be the “God” of this world. In this world populated by magical creatures, violence is forbidden, humanity is on the brink of extinction and all matters are settled through games. Using their combined intellect, questionable morals and considerable guile, it is up to these siblings to swindle their way to the top in a series of increasingly intriguing and deceptively deadly games.<br><br><br />\n(Source: Anime News Network)</p>',
-    image:
-      'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx19815-bIo51RMWWhLv.jpg',
+    image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx19815-bIo51RMWWhLv.jpg',
     characters: [
       {
         img: 'https://s4.anilist.co/file/anilistcdn/character/large/n82523-W3XG4FLDGSQZ.jpg',
@@ -93,140 +92,140 @@ describe('AniList overview', function () {
     ],
     info: [
       {
-        title: 'Format:',
-        body: [
+        "title": "Format:",
+        "body": [
           {
-            text: 'Tv',
-          },
-        ],
+            "text": "Tv"
+          }
+        ]
       },
       {
-        title: 'Episodes:',
-        body: [
+        "title": "Episodes:",
+        "body": [
           {
-            text: 12,
-          },
-        ],
+            "text": 12
+          }
+        ]
       },
       {
-        title: 'Episode Duration:',
-        body: [
+        "title": "Episode Duration:",
+        "body": [
           {
-            text: '24 mins',
-          },
-        ],
+            "text": "24 mins"
+          }
+        ]
       },
       {
-        title: 'Status:',
-        body: [
+        "title": "Status:",
+        "body": [
           {
-            text: 'Finished',
-          },
-        ],
+            "text": "Finished"
+          }
+        ]
       },
       {
-        title: 'Start Date:',
-        body: [
+        "title": "Start Date:",
+        "body": [
           {
-            text: '2014-4-9',
-          },
-        ],
+            "text": "2014-4-9"
+          }
+        ]
       },
       {
-        title: 'End Date:',
-        body: [
+        "title": "End Date:",
+        "body": [
           {
-            text: '2014-6-25',
-          },
-        ],
+            "text": "2014-6-25"
+          }
+        ]
       },
       {
-        title: 'Season:',
-        body: [
+        "title": "Season:",
+        "body": [
           {
-            text: 'Spring 2014',
-          },
-        ],
+            "text": "Spring 2014"
+          }
+        ]
       },
       {
-        title: 'Studios:',
-        body: [
+        "title": "Studios:",
+        "body": [
           {
-            text: 'MADHOUSE',
-            url: 'https://anilist.co/studio/11',
-          },
-        ],
+            "text": "MADHOUSE",
+            "url": "https://anilist.co/studio/11"
+          }
+        ]
       },
       {
-        title: 'Source:',
-        body: [
+        "title": "Source:",
+        "body": [
           {
-            text: 'Light novel',
-          },
-        ],
+            "text": "Light novel"
+          }
+        ]
       },
       {
-        title: 'Genres:',
-        body: [
+        "title": "Genres:",
+        "body": [
           {
-            text: 'Adventure',
-            url: 'https://anilist.co/search/anime?includedGenres=Adventure',
+            "text": "Adventure",
+            "url": "https://anilist.co/search/anime?includedGenres=Adventure"
           },
           {
-            text: 'Comedy',
-            url: 'https://anilist.co/search/anime?includedGenres=Comedy',
+            "text": "Comedy",
+            "url": "https://anilist.co/search/anime?includedGenres=Comedy"
           },
           {
-            text: 'Ecchi',
-            url: 'https://anilist.co/search/anime?includedGenres=Ecchi',
+            "text": "Ecchi",
+            "url": "https://anilist.co/search/anime?includedGenres=Ecchi"
           },
           {
-            text: 'Fantasy',
-            url: 'https://anilist.co/search/anime?includedGenres=Fantasy',
-          },
-        ],
+            "text": "Fantasy",
+            "url": "https://anilist.co/search/anime?includedGenres=Fantasy"
+          }
+        ]
       },
       {
-        title: 'External Links:',
-        body: [
+        "title": "External Links:",
+        "body": [
           {
-            text: 'Official Site',
-            url: 'http://ngnl.jp/',
+            "text": "Official Site",
+            "url": "http://ngnl.jp/"
           },
           {
-            text: 'Crunchyroll',
-            url: 'http://www.crunchyroll.com/no-game-no-life',
+            "text": "Crunchyroll",
+            "url": "http://www.crunchyroll.com/no-game-no-life"
           },
           {
-            text: 'Hulu',
-            url: 'http://www.hulu.com/no-game-no-life',
+            "text": "Hulu",
+            "url": "http://www.hulu.com/no-game-no-life"
           },
           {
-            text: 'Twitter',
-            url: 'https://twitter.com/ngnl_anime',
+            "text": "Twitter",
+            "url": "https://twitter.com/ngnl_anime"
           },
           {
-            text: 'Hidive',
-            url: 'https://www.hidive.com/tv/no-game-no-life',
+            "text": "Hidive",
+            "url": "https://www.hidive.com/tv/no-game-no-life"
           },
           {
-            text: 'Netflix',
-            url: 'https://www.netflix.com/title/80052669',
+            "text": "Netflix",
+            "url": "https://www.netflix.com/title/80052669"
           },
           {
-            text: 'VRV',
-            url: 'https://vrv.co/series/G6ZJ48K4Y/No-Game-No-Life',
+            "text": "VRV",
+            "url": "https://vrv.co/series/G6ZJ48K4Y/No-Game-No-Life"
           },
           {
-            text: 'CONtv',
-            url: 'https://www.contv.com/details-movie/1323-19619-000/no-game-no-life',
+            "text": "CONtv",
+            "url": "https://www.contv.com/details-movie/1323-19619-000/no-game-no-life"
           },
           {
-            text: 'Youtube',
-            url: 'https://www.youtube.com/playlist?list=PLxSscENEp7JglGq-5PMtbewK96Z_7Au8J',
-          },
-        ],
-      },
+            "text": "Youtube",
+            "url": "https://www.youtube.com/playlist?list=PLxSscENEp7JglGq-5PMtbewK96Z_7Au8J"
+          }
+        ]
+      }
     ],
     openingSongs: [],
     endingSongs: [],
@@ -276,15 +275,15 @@ describe('AniList overview', function () {
   let tests = [
     {
       url: 'https://anilist.co/anime/19815/No-Game-No-Life/',
-      res: resObj,
+      res: resObj
     },
     {
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life/',
-      res: JSON.parse(JSON.stringify(resObj)),
-    },
-  ];
+      res: JSON.parse(JSON.stringify(resObj))
+    }
+  ]
   tests.forEach(test => {
-    it(test.url, async function () {
+    it(test.url, async function() {
       let m = await new MetaOverview(test.url).init();
       let res = m.getMeta();
       // Clean statistics
@@ -294,5 +293,6 @@ describe('AniList overview', function () {
       // test
       expect(res).to.eql(test.res);
     });
-  });
+  })
+
 });

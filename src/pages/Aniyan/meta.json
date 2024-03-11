@@ -1,7 +1,8 @@
 {
-  "search": "https://aniyan.net/?s={searchtermPlus}",
-  "searchDatabase": "Aniyan",
-  "urls": {
-    "match": ["*://aniyan.net/*"]
+    "search": "https://aniyan.net/?s={searchtermPlus}",
+    "searchDatabase": "Aniyan",
+    "urls": {
+      "match": ["*://aniyan.net/*"]
+    }
   }
-}
+  

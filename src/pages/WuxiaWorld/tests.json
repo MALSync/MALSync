@@ -2,8 +2,7 @@
   "title": "WuxiaWorld",
   "url": "https://wuxiaworld.site/",
   "testCases": [
-    {
-      //manhwa
+    { //manhwa
       "url": "https://wuxiaworld.site/novel/a-returners-magic-should-be-special-manga12321334/chapter-110",
       "expected": {
         "sync": true,
@@ -15,8 +14,7 @@
         "uiSelector": false
       }
     },
-    {
-      //manhwa
+    { //manhwa
       "url": "https://wuxiaworld.site/novel/a-returners-magic-should-be-special-manga12321334/",
       "expected": {
         "sync": false,
@@ -29,8 +27,7 @@
         }
       }
     },
-    {
-      //novel
+    { //novel
       "url": "https://wuxiaworld.site/novel/the-undetectable-strongest-job-rule-breaker/chapter-133",
       "expected": {
         "sync": true,
@@ -42,8 +39,7 @@
         "uiSelector": false
       }
     },
-    {
-      //novel
+    { //novel
       "url": "https://wuxiaworld.site/novel/the-undetectable-strongest-job-rule-breaker/",
       "expected": {
         "sync": false,

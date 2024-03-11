@@ -1,19 +1,39 @@
 {
   "0.9.3": {
-    "AnimeUnity": ["https://www.animeunity.cc/anime/*"],
-    "Animeworld": ["https://www.animeworld.so/play/*"],
-    "Gogoanime": ["https://gogoanime.cl/*", "https://gogoanime.hu/*", "https://gogoanime.vet/*"],
-    "Kaguya": ["https://kaguya.app/*"],
+    "AnimeUnity": [
+      "https://www.animeunity.cc/anime/*"
+    ],
+    "Animeworld": [
+      "https://www.animeworld.so/play/*"
+    ],
+    "Gogoanime": [
+      "https://gogoanime.cl/*",
+      "https://gogoanime.hu/*",
+      "https://gogoanime.vet/*"
+    ],
+    "Kaguya": [
+      "https://kaguya.app/*"
+    ],
     "KickAssAnime": [
       "https://kaas.ro/*",
       "https://kaas.to/*",
       "https://kickassanime.ro/*",
       "https://kickassanime.am/*"
     ],
-    "Voiranime": ["https://v3.voiranime.com/*", "https://v4.voiranime.com/*"],
-    "YugenAnime": ["https://yugenanime.tv/*"],
-    "Zoro": ["https://sanji.to/*"],
-    "nineAnime": ["https://9anime.ph/watch/*", "https://9anime.ph/watch2gether/*"],
+    "Voiranime": [
+      "https://v3.voiranime.com/*",
+      "https://v4.voiranime.com/*"
+    ],
+    "YugenAnime": [
+      "https://yugenanime.tv/*"
+    ],
+    "Zoro": [
+      "https://sanji.to/*"
+    ],
+    "nineAnime": [
+      "https://9anime.ph/watch/*",
+      "https://9anime.ph/watch2gether/*"
+    ],
     "iframe": [
       "https://playtaku.net/embedplus*",
       "https://playtaku.net/streaming.php?*",
@@ -49,18 +69,32 @@
     "iframe": []
   },
   "0.9.5": {
-    "AnimeUnity": ["https://www.animeunity.to/anime/*"],
-    "AsuraScans": ["https://asuracomics.com/*"],
+    "AnimeUnity": [
+      "https://www.animeunity.to/anime/*"
+    ],
+    "AsuraScans": [
+      "https://asuracomics.com/*"
+    ],
     "Gogoanime": [
       "https://gogoanimehd.to/*",
       "https://gogoanime3.net/*",
       "https://gogoanimehd.io/*"
     ],
-    "LeviatanScans": ["https://lscomic.com/*"],
-    "NekoSama": ["https://animecat.net/*"],
-    "RealmScans": ["https://realmscans.xyz/*"],
-    "Voiranime": ["https://v5.voiranime.com/*"],
-    "Zoro": ["https://aniwatch.to/*"],
+    "LeviatanScans": [
+      "https://lscomic.com/*"
+    ],
+    "NekoSama": [
+      "https://animecat.net/*"
+    ],
+    "RealmScans": [
+      "https://realmscans.xyz/*"
+    ],
+    "Voiranime": [
+      "https://v5.voiranime.com/*"
+    ],
+    "Zoro": [
+      "https://aniwatch.to/*"
+    ],
     "nineAnime": [
       "https://aniwave.to/watch/*",
       "https://aniwave.to/watch2gether/*",
@@ -93,14 +127,30 @@
     ]
   },
   "0.9.6": {
-    "AnimeXin": ["https://animexin.vip/*"],
-    "AsuraScans": ["https://asuratoon.com/*"],
-    "DisasterScans": ["https://disasterscans.com/*"],
-    "FlameScans": ["https://flamecomics.com/*"],
-    "FrixySubs": ["https://frixysubs.pl/*"],
-    "LuminousScans": ["https://luminousscans.gg/*"],
-    "MangasOrigines": ["https://mangas-origines.fr/oeuvre*"],
-    "mangadenizi": ["https://mangadenizi.net/*"],
+    "AnimeXin": [
+      "https://animexin.vip/*"
+    ],
+    "AsuraScans": [
+      "https://asuratoon.com/*"
+    ],
+    "DisasterScans": [
+      "https://disasterscans.com/*"
+    ],
+    "FlameScans": [
+      "https://flamecomics.com/*"
+    ],
+    "FrixySubs": [
+      "https://frixysubs.pl/*"
+    ],
+    "LuminousScans": [
+      "https://luminousscans.gg/*"
+    ],
+    "MangasOrigines": [
+      "https://mangas-origines.fr/oeuvre*"
+    ],
+    "mangadenizi": [
+      "https://mangadenizi.net/*"
+    ],
     "tmofans": [
       "https://visortmo.com/*",
       "https://gastronomiaporpaises.com/*",
@@ -195,14 +245,38 @@
     ]
   },
   "0.9.7": {
-    "AnimeFire": ["https://animefire.plus/*"],
-    "Anix": ["https://www1.anix.to/anime/*", "https://anix.ac/anime/*", "https://anix.vc/anime/*"],
-    "ComicK": ["https://comick.ink/*", "https://comick.cc/*", "https://comick.io/*"],
-    "Gogoanime": ["https://anitaku.to/*", "https://gogoanime3.co/*"],
-    "KickAssAnime": ["https://kickassanimes.io/*", "https://kickassanime.mx/*"],
-    "MangaNato": ["https://chapmanganato.to/*"],
-    "Readm": ["https://readm.today/manga/*"],
-    "Zoro": ["https://aniwatch.nz/*", "https://aniwatch.se/*", "https://hianime.to/*"],
+    "AnimeFire": [
+      "https://animefire.plus/*"
+    ],
+    "Anix": [
+      "https://www1.anix.to/anime/*",
+      "https://anix.ac/anime/*",
+      "https://anix.vc/anime/*"
+    ],
+    "ComicK": [
+      "https://comick.ink/*",
+      "https://comick.cc/*",
+      "https://comick.io/*"
+    ],
+    "Gogoanime": [
+      "https://anitaku.to/*",
+      "https://gogoanime3.co/*"
+    ],
+    "KickAssAnime": [
+      "https://kickassanimes.io/*",
+      "https://kickassanime.mx/*"
+    ],
+    "MangaNato": [
+      "https://chapmanganato.to/*"
+    ],
+    "Readm": [
+      "https://readm.today/manga/*"
+    ],
+    "Zoro": [
+      "https://aniwatch.nz/*",
+      "https://aniwatch.se/*",
+      "https://hianime.to/*"
+    ],
     "nineAnime": [
       "https://aniwave.vc/watch/*",
       "https://aniwave.vc/watch2gether/*",

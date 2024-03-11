@@ -7,8 +7,8 @@ module.exports = {
   configs: {
     default: {
       rules: {
-        'no-xss-jquery': 2,
-      },
-    },
-  },
-};
+        "no-xss-jquery": 2,
+      }
+    }
+  }
+}

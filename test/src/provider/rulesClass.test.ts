@@ -5,7 +5,7 @@ import * as Api from '../utils/apiStub';
 
 Api.setGlobals();
 
-describe('Rules', function () {
+describe('Rules', function() {
   const stub = Api.getStub({
     storage: {
       syncMode: 'MAL',
@@ -95,12 +95,12 @@ describe('Rules', function () {
     },
   });
 
-  before(function () {
+  before(function() {
     Api.setGlobals();
     Api.setStub(stub);
   });
 
-  describe('Redirect', function () {
+  describe('Redirect', function() {
     [
       {
         name: 'No rule matches',
@@ -151,10 +151,10 @@ describe('Rules', function () {
         },
       },
     ].forEach(test => {
-      it(test.name, async function () {
+      it(test.name, async function() {
         const rules = await new RulesClass(test.id, 'anime').init();
         expect(rules.applyRules(test.episode)).to.eql(test.result);
       });
     });
   });
-});
+})

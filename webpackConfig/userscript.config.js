@@ -52,11 +52,13 @@ const metadata = {
   ],
   match: generateMatchExcludes(pageUrls).match.concat(generateMatchExcludes(playerUrls).match),
   exclude: generateMatchExcludes(pageUrls).exclude,
-  require:
-    'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js#sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=',
+  'require': 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js#sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=',
   resource: generateResources(),
   'run-at': 'document_start',
-  connect: [...httpPermissionsJson.map(url => url.replace(/(^https?:\/\/|\/+$|\*\.)/gi, '')), '*'],
+  connect: [
+    ...httpPermissionsJson.map(url => url.replace(/(^https?:\/\/|\/+$|\*\.)/gi, '')),
+    '*',
+  ],
 };
 
 const generateMetadataBlock = metadata => {
@@ -77,9 +79,7 @@ const generateMetadataBlock = metadata => {
     }
   }
 
-  return (
-    `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())};\n`
-  );
+  return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())};\n`;
 };
 
 module.exports = {

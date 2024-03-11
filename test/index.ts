@@ -5,7 +5,7 @@ import { getPageConfig } from '../src/utils/test';
 const pages = { ...part1, ...part2 };
 
 // @ts-ignore
-window.MalSyncTest = async function () {
+window.MalSyncTest = async function() {
   const value: any = {};
 
   const page = getPageConfig(window.location.href, pages);
@@ -15,11 +15,11 @@ window.MalSyncTest = async function () {
   if (!page) {
     return 'Page Not Found';
   }
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     if (testForCloudflare()) {
       resolve({
         sync: 'cdn',
-        type: 'default',
+        type: 'default'
       });
       return;
     }
@@ -33,13 +33,17 @@ window.MalSyncTest = async function () {
           value.sync = true;
           value.title = page.sync.getTitle(window.location.href);
           value.identifier = page.sync.getIdentifier(window.location.href);
-          value.episode = parseInt(`${page.sync.getEpisode(window.location.href)}`);
+          value.episode = parseInt(
+            `${page.sync.getEpisode(window.location.href)}`,
+          );
           value.overviewUrl = page.sync.getOverviewUrl(window.location.href);
           if (typeof page.sync.nextEpUrl !== 'undefined') {
             value.nextEpUrl = page.sync.nextEpUrl(window.location.href);
           }
           if (typeof page.sync.uiSelector !== 'undefined') {
-            page.sync.uiSelector('<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>');
+            page.sync.uiSelector(
+              '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
+            );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }
         } else {
@@ -47,7 +51,9 @@ window.MalSyncTest = async function () {
           value.title = page.overview.getTitle(window.location.href);
           value.identifier = page.overview.getIdentifier(window.location.href);
           if (typeof page.overview.uiSelector !== 'undefined') {
-            page.overview.uiSelector('<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>');
+            page.overview.uiSelector(
+              '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
+            );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }
         }
@@ -60,7 +66,7 @@ window.MalSyncTest = async function () {
           const { elementEp, elementUrl } = page.overview.list;
           const elementArray = [] as JQuery<HTMLElement>[];
 
-          page.overview.list.elementsSelector().each(function (index, el) {
+          page.overview.list.elementsSelector().each(function(index, el) {
             try {
               const elEp = parseInt(`${elementEp(j.$(el))}`);
               elementArray[elEp] = elementUrl(j.$(el));
@@ -79,18 +85,23 @@ window.MalSyncTest = async function () {
       cdn(type) {
         resolve({
           sync: 'cdn',
-          type: type,
+          type: type
         });
       },
     });
   });
   return page.domain;
 
-  return $('.link-mal-logo').text().trim();
+  return $('.link-mal-logo')
+    .text()
+    .trim();
 };
 
 function testForCloudflare() {
-  if (document.title === 'Just a moment...' || document.title.indexOf('Cloudflare') !== -1) {
+  if (
+    document.title === 'Just a moment...' ||
+    document.title.indexOf('Cloudflare') !== -1
+  ) {
     return true;
   }
   return false;

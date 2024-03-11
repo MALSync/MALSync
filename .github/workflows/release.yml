@@ -5,150 +5,151 @@ on:
       - created
 
 jobs:
+
   webextension:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: Build
-        run: |
-          npm ci
-          npm run build
-        env:
-          CI_MODE: travis
-          SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
-          SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
-      - name: Pack
-        run: |
-          npm run package
-      - name: Upload webextension
-        id: upload-webextension-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./dist/webextension.zip
-          asset_name: webextension.zip
-          asset_content_type: application/zip
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+    - name: Pack
+      run: |
+        npm run package
+    - name: Upload webextension
+      id: upload-webextension-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./dist/webextension.zip
+        asset_name: webextension.zip
+        asset_content_type: application/zip
 
   userscript:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: Build
-        run: |
-          npm ci
-          npm run build
-        env:
-          CI_MODE: travis
-          SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
-          SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
-      - name: Pack
-        run: |
-          npm run package
-      - name: Upload userscript
-        id: upload-userscript-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./dist/malsync.user.js
-          asset_name: malsync.user.js
-          asset_content_type: application/javascript
-      - name: Upload adult userscript
-        id: upload-adult-userscript-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./dist/malsync-adult.user.js
-          asset_name: malsync-adult.user.js
-          asset_content_type: application/javascript
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+    - name: Pack
+      run: |
+        npm run package
+    - name: Upload userscript
+      id: upload-userscript-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./dist/malsync.user.js
+        asset_name: malsync.user.js
+        asset_content_type: application/javascript
+    - name: Upload adult userscript
+      id: upload-adult-userscript-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./dist/malsync-adult.user.js
+        asset_name: malsync-adult.user.js
+        asset_content_type: application/javascript
 
   chrome:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: Build
-        run: |
-          npm ci
-          npm run build
-        env:
-          CI_MODE: travis
-          SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
-          SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
-      - name: Pack
-        run: |
-          npm run package
-      - name: Deploy Chrome
-        uses: trmcnvn/chrome-addon@v2
-        with:
-          extension: kekjfbackdeiabghhcdklcdoekaanoel
-          zip: dist/webextension.zip
-          client-id: ${{ secrets.DEV_CHROME_CLIENT_ID }}
-          client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
-          refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
-      - name: Deploy Edge
-        uses: wdzeng/edge-addon@v1
-        with:
-          product-id: ${{ secrets.EDGE_PRODUCT_ID }}
-          zip-path: dist/webextension.zip
-          client-id: ${{ secrets.EDGE_CLIENT_ID }}
-          client-secret: ${{ secrets.EDGE_CLIENT_SECRET }}
-          access-token-url: ${{ secrets.EDGE_ACCESS_TOKEN_URL }}
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+    - name: Pack
+      run: |
+        npm run package
+    - name: Deploy Chrome
+      uses: trmcnvn/chrome-addon@v2
+      with:
+        extension: kekjfbackdeiabghhcdklcdoekaanoel
+        zip: dist/webextension.zip
+        client-id: ${{ secrets.DEV_CHROME_CLIENT_ID }}
+        client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
+    - name: Deploy Edge
+      uses: wdzeng/edge-addon@v1
+      with:
+        product-id: ${{ secrets.EDGE_PRODUCT_ID }}
+        zip-path: dist/webextension.zip
+        client-id: ${{ secrets.EDGE_CLIENT_ID }}
+        client-secret: ${{ secrets.EDGE_CLIENT_SECRET }}
+        access-token-url: ${{ secrets.EDGE_ACCESS_TOKEN_URL }}
 
   firefox:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: Build
-        run: |
-          npm ci
-          npm run build
-        env:
-          CI_MODE: travis
-          APP_TARGET: firefox
-          SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
-          SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
-      - name: Pack
-        run: |
-          npm run package
-      - name: Deploy
-        run: |
-          npm run package:firefox
-        env:
-          SIGN_KEY: ${{ secrets.SIGN_KEY }}
-          SIGN_SECRET: ${{ secrets.SIGN_SECRET }}
-          SIGN_ID: ${{ secrets.SIGN_ID }}
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI_MODE: travis
+        APP_TARGET: firefox
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+    - name: Pack
+      run: |
+        npm run package
+    - name: Deploy
+      run: |
+        npm run package:firefox
+      env:
+        SIGN_KEY: ${{ secrets.SIGN_KEY }}
+        SIGN_SECRET: ${{ secrets.SIGN_SECRET }}
+        SIGN_ID: ${{ secrets.SIGN_ID }}
 
-      - name: Find first .xpi file
-        id: find_first_xpi
-        run: |
-          FILE=$(ls ./web-ext-artifacts/*.xpi | head -n 1)
-          BASENAME=$(basename "$FILE")
-          echo "xpi_file=$FILE" >> $GITHUB_OUTPUT
-          echo "xpi_filename=$BASENAME" >> $GITHUB_OUTPUT
+    - name: Find first .xpi file
+      id: find_first_xpi
+      run: |
+        FILE=$(ls ./web-ext-artifacts/*.xpi | head -n 1)
+        BASENAME=$(basename "$FILE")
+        echo "xpi_file=$FILE" >> $GITHUB_OUTPUT
+        echo "xpi_filename=$BASENAME" >> $GITHUB_OUTPUT
 
-      - name: Upload .xpi file
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ steps.find_first_xpi.outputs.xpi_file }
-          asset_name: ${{ steps.find_first_xpi.outputs.xpi_filename }}
-          asset_content_type: application/zip
+    - name: Upload .xpi file
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ${{ steps.find_first_xpi.outputs.xpi_file }
+        asset_name: ${{ steps.find_first_xpi.outputs.xpi_filename }}
+        asset_content_type: application/zip

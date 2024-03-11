@@ -11,28 +11,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - id: files
-        continue-on-error: true
-        uses: jitterbit/get-changed-files@v1
-        with:
-          format: 'json'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: Checkout test data
-        uses: actions/checkout@v4
-        with:
-          repository: MALSync/test_data
-          ref: 'master'
-          path: test/dist/headless
-      - name: Decode
-        run: node decrypt.js
-        working-directory: test/dist/headless
-      - name: Page Tests
-        run: |
-          npm ci
-          npm run test:headless
-        env:
-          CI: true
-          FILES: ${{steps.files.outputs.added_modified}}
+    - uses: actions/checkout@v4
+    - id: files
+      continue-on-error: true
+      uses: jitterbit/get-changed-files@v1
+      with:
+        format: 'json'
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Checkout test data
+      uses: actions/checkout@v4
+      with:
+        repository: MALSync/test_data
+        ref: 'master'
+        path: test/dist/headless
+    - name: Decode
+      run: node decrypt.js
+      working-directory: test/dist/headless
+    - name: Page Tests
+      run: |
+        npm ci
+        npm run test:headless
+      env:
+        CI: true
+        FILES: ${{steps.files.outputs.added_modified}}
+

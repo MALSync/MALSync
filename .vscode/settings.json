@@ -9,5 +9,8 @@
   "less.validate": false,
   "scss.validate": false,
   "vetur.validation.template": false,
-  "conventionalCommits.scopes": ["turkanime", "tranimeizle"]
+  "conventionalCommits.scopes": [
+    "turkanime",
+    "tranimeizle"
+  ]
 }

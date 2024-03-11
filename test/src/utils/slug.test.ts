@@ -1,5 +1,5 @@
-import { expect } from 'chai';
-import { Path, pathToUrl, urlToSlug } from '../../../src/utils/slugs';
+import { expect } from "chai";
+import { Path, pathToUrl, urlToSlug } from "../../../src/utils/slugs";
 
 const testCases = [
   {
@@ -109,21 +109,21 @@ const testCases = [
   },
 ];
 
-describe('Slugs', function () {
-  describe('Create', function () {
+describe('Slugs', function() {
+  describe('Create', function() {
     testCases.forEach(el => {
-      it(el.input, function () {
+      it(el.input, function() {
         expect(urlToSlug(el.input)).to.deep.equal(el.expect);
-      });
-    });
+      })
+    })
   });
-  describe('Resolve', function () {
+  describe('Resolve', function() {
     testCases.forEach(el => {
       if (el.expectedUrl) {
         it(el.input, function () {
           expect(pathToUrl(el.expect.path as Path)).to.equal(el.expectedUrl);
         });
       }
-    });
+    })
   });
 });

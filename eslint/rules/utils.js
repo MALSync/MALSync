@@ -4,15 +4,15 @@ function traverse(node) {
   while (node) {
     switch (node.type) {
       case 'CallExpression':
-        node = node.callee;
-        break;
+        node = node.callee
+        break
       case 'MemberExpression':
-        node = node.object;
-        break;
+        node = node.object
+        break
       case 'Identifier':
-        return node;
+        return node
       default:
-        return null;
+        return null
     }
   }
 }
@@ -30,11 +30,11 @@ function traverse(node) {
 // Returns true if the function call node is attached to a jQuery element set.
 function isjQuery(node) {
   return true;
-  const id = traverse(node);
-  return id && id.name.startsWith('$');
+  const id = traverse(node)
+  return id && id.name.startsWith('$')
 }
 
 module.exports = {
   traverse: traverse,
-  isjQuery: isjQuery,
-};
+  isjQuery: isjQuery
+}

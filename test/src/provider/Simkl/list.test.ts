@@ -4,9 +4,9 @@ import { generalListTests } from '../generalTests.exclude';
 
 global.con = require('../../../../src/utils/console');
 
-global.con.log = function () {};
-global.con.error = function () {};
-global.con.info = function () {};
+global.con.log = function() {};
+global.con.error = function() {};
+global.con.info = function() {};
 
 const responses = {
   activities: {
@@ -58,8 +58,8 @@ function getResponse(key) {
   return responses[key].data;
 }
 
-describe('Simkl UserList', function () {
-  before(function () {
+describe('Simkl UserList', function() {
+  before(function() {
     global.api = {
       request: {
         async xhr(post, conf, data) {

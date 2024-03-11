@@ -9,9 +9,9 @@ import { generalSingleTests } from '../generalSingleTests.exclude';
 setGlobals();
 function setGlobals() {
   global.con = require('../../../../src/utils/console');
-  global.con.log = function () {};
-  global.con.error = function () {};
-  global.con.info = function () {};
+  global.con.log = function() {};
+  global.con.error = function() {};
+  global.con.info = function() {};
 
   global.api = {
     token: process.env.ANILIST_API_KEY,
@@ -26,13 +26,13 @@ function setGlobals() {
         if (key.indexOf('continue') !== -1) return '';
         if (key.indexOf('resume') !== -1) return '';
         if (key.indexOf('tagSettings') !== -1) return '';
-        throw '[storage] key not found ' + key;
-      },
+        throw '[storage] key not found '+key;
+      }
     },
     status: 200,
     request: {
       async xhr(post, conf, data) {
-        return new Promise(function (resolve, reject) {
+        return new Promise(function(resolve, reject) {
           const options = {
             url: conf.url,
             headers: conf.headers,
@@ -103,7 +103,8 @@ function setGlobals() {
         vol: 0,
       },
       noMalEntry: {
-        url: 'https://anilist.co/manga/115067/Kagami-no-Kuni-no-Iris-SCP-Foundation/',
+        url:
+          'https://anilist.co/manga/115067/Kagami-no-Kuni-no-Iris-SCP-Foundation/',
         displayUrl: 'https://anilist.co/manga/115067',
         title: 'Kagami no Kuni no Iris: SCP Foundation',
         eps: 0,
@@ -128,10 +129,10 @@ function setGlobals() {
   };
 }
 
-if (!process.env.ANILIST_API_KEY) return;
+if(!process.env.ANILIST_API_KEY) return;
 
-describe('AniList single', function () {
-  before(function () {
+describe('AniList single', function() {
+  before(function() {
     setGlobals();
   });
   generalSingleTests(Single, setGlobals);

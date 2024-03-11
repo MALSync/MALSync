@@ -7,26 +7,59 @@ const pages = require('./utils/pages').pages();
 const { getKeys } = require('./utils/keys');
 
 let entry = {
-  'content-script': path.join(__dirname, '..', 'src/index-webextension/content.ts'),
-  'mal-script': path.join(__dirname, '..', 'src/index-webextension/myanimelist.ts'),
-  'anilist-script': path.join(__dirname, '..', 'src/index-webextension/anilist.ts'),
-  'kitsu-script': path.join(__dirname, '..', 'src/index-webextension/kitsu.ts'),
-  'simkl-script': path.join(__dirname, '..', 'src/index-webextension/simkl.ts'),
-  'oauth-script': path.join(__dirname, '..', 'src/index-webextension/oauth.ts'),
-  'oauth-anilist-script': path.join(__dirname, '..', 'src/index-webextension/anilistOauth.ts'),
-  'oauth-shiki-script': path.join(__dirname, '..', 'src/index-webextension/shikiOauth.ts'),
-  'pwa-script': path.join(__dirname, '..', 'src/index-webextension/pwa.ts'),
+  'content-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/content.ts',
+  ),
+  'mal-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/myanimelist.ts',
+  ),
+  'anilist-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/anilist.ts',
+  ),
+  'kitsu-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/kitsu.ts',
+  ),
+  'simkl-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/simkl.ts',
+  ),
+  'oauth-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/oauth.ts',
+  ),
+  'oauth-anilist-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/anilistOauth.ts',
+  ),
+  'oauth-shiki-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/shikiOauth.ts',
+  ),
+  'pwa-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/pwa.ts',
+  ),
   iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   popup: path.join(__dirname, '..', 'src/popup.ts'),
-};
+}
 
 pages.forEach(page => {
   entry['page_' + page] =
-    'expose-loader?exposes=_Page|' +
-    page +
-    '!' +
-    path.join(__dirname, '..', 'src/pages/', page, 'main.ts');
-});
+    'expose-loader?exposes=_Page|' + page + '!' + path.join(__dirname, '..', 'src/pages/', page, 'main.ts');
+})
 
 console.log(entry);
 

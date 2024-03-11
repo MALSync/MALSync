@@ -4,62 +4,62 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'npm'
-      - name: install
-        run: |
-          npm ci
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: 'true'
-      - name: Build
-        run: |
-          npm run build
-        env:
-          CI_MODE: travis
-          SIMKL_API_ID: test-placeholder
-          SIMKL_API_SECRET: test-placeholder
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    - name: install
+      run: |
+        npm ci
+      env:
+        PUPPETEER_SKIP_DOWNLOAD: 'true'
+    - name: Build
+      run: |
+        npm run build
+      env:
+        CI_MODE: travis
+        SIMKL_API_ID: test-placeholder
+        SIMKL_API_SECRET: test-placeholder
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'npm'
-      - name: install
-        run: |
-          npm ci
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: 'true'
-      - name: Lint
-        run: |
-          npm run lint:ci
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    - name: install
+      run: |
+        npm ci
+      env:
+        PUPPETEER_SKIP_DOWNLOAD: 'true'
+    - name: Lint
+      run: |
+        npm run lint:ci
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'npm'
-      - name: install
-        run: |
-          npm ci
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: 'true'
-      - name: Build
-        run: |
-          npm run build:webextension:assets
-          npm run build:webextension:content:build
-        env:
-          CI_MODE: travis
-          SIMKL_API_ID: test-placeholder
-          SIMKL_API_SECRET: test-placeholder
-      - name: Tests
-        run: |
-          npm run test:ts:ci
-        env:
-          NO_API: true
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    - name: install
+      run: |
+        npm ci
+      env:
+        PUPPETEER_SKIP_DOWNLOAD: 'true'
+    - name: Build
+      run: |
+        npm run build:webextension:assets
+        npm run build:webextension:content:build
+      env:
+        CI_MODE: travis
+        SIMKL_API_ID: test-placeholder
+        SIMKL_API_SECRET: test-placeholder
+    - name: Tests
+      run: |
+        npm run test:ts:ci
+      env:
+        NO_API: true

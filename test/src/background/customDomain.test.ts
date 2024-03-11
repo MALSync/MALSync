@@ -58,7 +58,7 @@ import * as Api from '../utils/apiStub';
 Api.setGlobals();
 
 const manifest = require('../../../dist/webextension/manifest.json');
-import { cleanupCustomDomains } from '../../../src/background/customDomain';
+import { cleanupCustomDomains} from '../../../src/background/customDomain';
 
 describe('Custom Domain', function () {
   before(function () {

@@ -2,8 +2,9 @@ import { expect } from 'chai';
 
 import { searchSyntax, titleSearch } from '../../../src/utils/quicklinksBuilder';
 
-describe('quicklinksBuilder', function () {
-  describe('searchSyntax', function () {
+describe('quicklinksBuilder', function() {
+
+  describe('searchSyntax', function() {
     const title = 'No game_no Life³4 1 ! ';
     [
       {
@@ -52,13 +53,13 @@ describe('quicklinksBuilder', function () {
         result: 'No_gameno_Life4_1',
       },
     ].forEach(el => {
-      it(el.title, function () {
+      it(el.title, function() {
         expect(el.result).to.equal(searchSyntax(el.search, title));
       });
     });
   });
 
-  describe('Title Search', function () {
+  describe('Title Search', function() {
     const title = 'No game_no Life³4 1 ! ';
     [
       {
@@ -87,18 +88,14 @@ describe('quicklinksBuilder', function () {
         result: '-123-',
       },
     ].forEach(el => {
-      it(el.title, function () {
+      it(el.title, function() {
         expect(el.result).to.equal(titleSearch(el.search, title, '123'));
       });
     });
 
-    it('/', function () {
-      expect('-no game no Life-').to.equal(
-        titleSearch('-{searchtermRaw}-', 'no game/no Life', '123'),
-      );
-      expect('-no%20game%2Fno%20life-').to.equal(
-        titleSearch('-{searchterm}-', 'no game/no Life', '123'),
-      );
+    it('/', function() {
+      expect('-no game no Life-').to.equal(titleSearch('-{searchtermRaw}-', 'no game/no Life', '123'));
+      expect('-no%20game%2Fno%20life-').to.equal(titleSearch('-{searchterm}-', 'no game/no Life', '123'));
     });
   });
 });

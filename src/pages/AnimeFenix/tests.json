@@ -1,42 +1,16 @@
 {
   "title": "AnimeFenix",
-  "url": "https://animefenix.tv",
+  "url": "https://animefenix.tv/",
   "testCases": [
     {
-      "url": "https://animefenix.tv/ver/ninja-kamui-5",
+      "url": "https://animefenix.tv/ver/youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-3rd-season-9",
       "expected": {
-        "sync": true,
-        "title": "Ninja Kamui",
-        "identifier": "Ninja Kamui",
-        "overviewUrl": "https://animefenix.tv/ver/ninja-kamui",
-        "nextEpUrl": "https://animefenix.tv/ver/ninja-kamui-6",
-        "episode": 5,
-        "uiSelector": false
+          "sync": true,
+          "title": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e 3rd Season",
+          "identifier": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e 3rd Season",
+          "overviewUrl": "https://animefenix.tv/youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-3rd-season",
+          "episode": 9
+        }
       }
-    },
-    {
-      "url": "https://animefenix.tv/ver/shangri-la-frontier-22",
-      "expected": {
-        "sync": true,
-        "title": "Shangri-La Frontier",
-        "identifier": "Shangri-La Frontier",
-        "overviewUrl": "https://animefenix.tv/ver/shangri-la-frontier",
-        "nextEpUrl": "https://animefenix.tv/ver/shangri-la-frontier-23",
-        "episode": 22,
-        "uiSelector": false
-      }
-    },
-    {
-      "url": "https://animefenix.tv/ver/kusuriya-no-hitorigoto-22",
-      "expected": {
-        "sync": true,
-        "title": "Kusuriya no Hitorigoto",
-        "identifier": "Kusuriya no Hitorigoto",
-        "overviewUrl": "https://animefenix.tv/ver/kusuriya-no-hitorigoto",
-        "nextEpUrl": "https://animefenix.tv/ver/kusuriya-no-hitorigoto-23",
-        "episode": 22,
-        "uiSelector": false
-      }
-    }
   ]
 }

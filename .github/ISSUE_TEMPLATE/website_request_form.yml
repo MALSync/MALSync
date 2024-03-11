@@ -1,8 +1,8 @@
 ---
 name: Website Request
-title: '[Website Request] <Website Name>'
+title: "[Website Request] <Website Name>"
 description: Suggest support for a new website in MALSync
-labels: ['New Website']
+labels: ["New Website"]
 body:
   - type: markdown
     id: notice
