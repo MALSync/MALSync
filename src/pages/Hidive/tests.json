@@ -1,0 +1,100 @@
+{
+  "title": "Hidive",
+  "enabled": false,
+  "url": "https://www.hidive.com/",
+  "testCases": [
+    {
+      "url": "https://www.hidive.com/season/20021",
+      "expected": {
+        "sync": false,
+        "title": "No Game, No Life",
+        "identifier": "20021",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://www.hidive.com/video/564632?seasonId=20021"
+        }
+      }
+    },
+    {
+      "url": "https://www.hidive.com/video/564632?seasonId=20021",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life",
+        "identifier": "20021",
+        "overviewUrl": "https://www.hidive.com/season/20021",
+        "nextEpUrl": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html#t:89-s:1-e:6",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.hidive.com/season/18884",
+      "expected": {
+        "sync": false,
+        "title": "The Eminence in Shadow",
+        "identifier": "18884",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://www.hidive.com/video/534742?seasonId=18884"
+        }
+      }
+    },
+    {
+      "url": "https://www.hidive.com/video/534742?seasonId=18884",
+      "expected": {
+        "sync": true,
+        "title": "The Eminence in Shadow",
+        "identifier": "18884",
+        "overviewUrl": "https://www.hidive.com/season/18884",
+        "nextEpUrl": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html#t:89-s:1-e:6",
+        "episode": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.hidive.com/season/18885",
+      "expected": {
+        "sync": false,
+        "title": "The Eminence in Shadow Season 2",
+        "identifier": "18885",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://www.hidive.com/video/562063?seasonId=18885"
+        }
+      }
+    },
+    {
+      "url": "https://www.hidive.com/video/562063",
+      "expected": {
+        "sync": true,
+        "title": "The Eminence in Shadow Season 2",
+        "identifier": "18885",
+        "overviewUrl": "https://www.hidive.com/season/18885",
+        "nextEpUrl": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html#t:89-s:1-e:6",
+        "episode": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.hidive.com/playlist/20663",
+      "expected": {
+        "sync": false,
+        "title": "No Game, No Life Zero",
+        "identifier": "20663",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://www.hidive.com/video/564456?playlistId=20663",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life Zero",
+        "identifier": "20663",
+        "overviewUrl": "https://www.hidive.com/playlist/20663",
+        "nextEpUrl": "https://hdrezka.ag/animation/21251-net-igry-net-zhizni-2014.html#t:89-s:1-e:6",
+        "episode": 1,
+        "uiSelector": false
+      }
+    }
+  ]
+}
