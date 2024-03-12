@@ -16,16 +16,20 @@ export const AnimeFenix: pageInterface = {
   sync: {
     getTitle: (url: string) => {
       const titleElement = document.querySelector('.hero h1');
-      let title = titleElement?.textContent
-        ? titleElement.textContent.replace(/\d+\s*(Sub|Dub|Doblaje|Español)$/i, '').trim()
-        : null;
-
+      let title = titleElement?.textContent ? titleElement.textContent.trim() : null;
+    
       if (!title) {
         const urlTitle = url.split('/')[4];
         title = urlTitle ? urlTitle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
       }
-      return title.split(' (')[0];
-    },
+      // Remove episode number from the title
+      const titleParts = title.split(' ');
+      if (titleParts.length > 1 && !isNaN(Number(titleParts[titleParts.length - 1]))) {
+        titleParts.pop();
+        title = titleParts.join(' ');
+      }
+      return title;
+    },    
     getIdentifier: (url: string) => {
       return AnimeFenix.sync.getTitle(url);
     },
@@ -34,8 +38,9 @@ export const AnimeFenix: pageInterface = {
       if (urlParts[3] === 'ver') {
         urlParts.splice(3, 1);
       }
+      urlParts[urlParts.length - 1] = urlParts[urlParts.length - 1].replace(/-\d+$/, '');
       return urlParts.join('/');
-    },
+    },    
     getEpisode: (url: string) => {
       const urlParts = url.split('/');
       const lastPart = urlParts.pop();
@@ -43,6 +48,10 @@ export const AnimeFenix: pageInterface = {
       return episodeNumber && episodeNumber.length > 0
         ? parseInt(episodeNumber[episodeNumber.length - 1])
         : 0;
+    },
+    nextEpUrl: (url: string) => {
+      const nextButton = document.querySelector('body > div.hero > section > div > div > div.column > div > div:nth-child(3) > a');
+      return nextButton ? nextButton.getAttribute('href') || undefined : undefined;
     },
   },
   init: (page) => {

@@ -121,7 +121,6 @@ import { AnimeOnegai } from './AnimeOnegai/main';
 import { AnimeKO } from './AnimeKO/main';
 import { AnimeGO } from './AnimeGO/main';
 import { Animeflix } from './Animeflix/main';
-import { AnimeFenix } from './AnimeFenix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
 import { Anix } from './Anix/main';
@@ -142,7 +141,6 @@ export const pages = {
   animepahe,
   Netflix,
   Animeflv,
-AnimeFenix,
   Jkanime,
   Proxer,
   Wakanim,
