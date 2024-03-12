@@ -130,6 +130,7 @@ import { hachi } from './hachi/main';
 import { WitAnime } from './WitAnime/main';
 import { Suwayomi } from './Suwayomi/main';
 import { ManhuaUS } from './ManhuaUS/main';
+import { AnimeFenix } from './AnimeFenix/main';
 
 export const pages = {
   nineAnime,
@@ -255,6 +256,7 @@ export const pages = {
   AnimeKO,
   AnimeGO,
   Animeflix,
+  AnimeFenix,
   LuciferDonghua,
   NeoxScans,
   Anix,

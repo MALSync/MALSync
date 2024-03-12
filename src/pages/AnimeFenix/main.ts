@@ -9,10 +9,6 @@ export const AnimeFenix: pageInterface = {
     const path = url.split('/')[3];
     return path === 'ver';
   },
-  isOverviewPage: (url: string) => {
-    const path = url.split('/')[3];
-    return Boolean(path && path !== 'ver' && path !== 'zerotwo');
-  },
   sync: {
     getTitle: (url: string) => {
       const titleElement = document.querySelector('.hero h1');
