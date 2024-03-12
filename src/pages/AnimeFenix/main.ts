@@ -45,10 +45,6 @@ export const AnimeFenix: pageInterface = {
         ? parseInt(episodeNumber[episodeNumber.length - 1])
         : 0;
     },
-    nextEpUrl: (url: string) => {
-      const nextButton = document.querySelector('body > div.hero > section > div > div > div.column > div > div:nth-child(3) > a');
-      return nextButton ? nextButton.getAttribute('href') || undefined : undefined;
-    },
   },
   init: (page) => {
     api.storage.addStyle(
