@@ -5,12 +5,12 @@ export const AnimeFenix: pageInterface = {
   domain: 'https://animefenix.tv',
   languages: ['Spanish'],
   type: 'anime',
-  isSyncPage: (url: string) => {
+  isSyncPage: url => {
     const path = url.split('/')[3];
     return path === 'ver';
   },
   sync: {
-    getTitle: (url: string) => {
+    getTitle: url => {
       const titleElement = document.querySelector('.hero h1');
       let title = titleElement?.textContent ? titleElement.textContent.trim() : null;
     
@@ -18,7 +18,6 @@ export const AnimeFenix: pageInterface = {
         const urlTitle = url.split('/')[4];
         title = urlTitle ? urlTitle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
       }
-      // Remove episode number from the title
       const titleParts = title.split(' ');
       if (titleParts.length > 1 && !Number.isNaN(Number(titleParts[titleParts.length - 1]))) {
         titleParts.pop();
@@ -26,10 +25,10 @@ export const AnimeFenix: pageInterface = {
       }
       return title;
     },    
-    getIdentifier: (url: string) => {
+    getIdentifier: url => {
       return AnimeFenix.sync.getTitle(url);
     },
-    getOverviewUrl: (url: string) => {
+    getOverviewUrl: url => {
       const urlParts = url.split('/');
       if (urlParts[3] === 'ver') {
         urlParts.splice(3, 1);
@@ -37,7 +36,7 @@ export const AnimeFenix: pageInterface = {
       urlParts[urlParts.length - 1] = urlParts[urlParts.length - 1].replace(/-\d+$/, '');
       return urlParts.join('/');
     },    
-    getEpisode: (url: string) => {
+    getEpisode: url => {
       const urlParts = url.split('/');
       const lastPart = urlParts.pop();
       const episodeNumber = lastPart ? lastPart.match(/\d+/g) : null;
@@ -60,9 +59,7 @@ export const AnimeFenix: pageInterface = {
         console.error('404');
         return;
       }
-      if (
-        page.url.split('/')[3] === 'ver'
-      ) {
+      if (page.url.split('/')[3] === 'ver') {
         page.handlePage();
       }
     });
