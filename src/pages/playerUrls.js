@@ -261,6 +261,7 @@ module.exports = {
       '*://*.mdfx9dc8n.net/e/*',
       '*://*.mdzsmutpcvykb.net/e/*',
       '*://*.mixdropjmk.pw/e/*',
+      '*://*.mixdrop21.net/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -672,6 +673,8 @@ module.exports = {
       '*://seanshowcould.com/e/*',
       '*://johntryopen.com/e/*',
       '*://morganoperationface.com/e/*',
+      '*://markstyleall.com/e/*',
+      '*://jayservicestuff.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -856,7 +859,7 @@ module.exports = {
   },
   // 9anime
   filemoon: {
-    match: ['*://filemoon.sx/e/*'],
+    match: ['*://filemoon.sx/e/*', '*://kerapoxy.cc/e/*'],
   },
   // toonanime
   toonvip: {

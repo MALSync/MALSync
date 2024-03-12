@@ -199,7 +199,7 @@ async function start() {
         mixdrop,
         gogostream,
         nineanime,
-        zoro,
+        // zoro,
         gogoanime,
         kickassanime,
         anix,

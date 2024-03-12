@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Readm: pageInterface = {
   name: 'Readm',
-  domain: 'https://readm.org',
+  domain: 'https://readm.today',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {

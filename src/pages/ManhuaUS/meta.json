@@ -1,0 +1,7 @@
+{
+    "search": "https://manhuaus.com/?s={searchterm}&post_type=wp-manga&op=&author=&artist=&release=&adult=",
+    "urls": {
+        "match": ["*://manhuaus.com/*"]
+    }
+
+}   

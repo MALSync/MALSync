@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://readm.org/manga/*", "*://www.readm.org/manga/*"]
+    "match": ["*://readm.org/manga/*", "*://www.readm.org/manga/*", "*://*.readm.today/manga/*"]
   }
 }

@@ -255,17 +255,27 @@
     ],
     "ComicK": [
       "https://comick.ink/*",
-      "https://comick.cc/*"
+      "https://comick.cc/*",
+      "https://comick.io/*"
     ],
     "Gogoanime": [
-      "https://anitaku.to/*"
+      "https://anitaku.to/*",
+      "https://gogoanime3.co/*"
+    ],
+    "KickAssAnime": [
+      "https://kickassanimes.io/*",
+      "https://kickassanime.mx/*"
     ],
     "MangaNato": [
       "https://chapmanganato.to/*"
     ],
+    "Readm": [
+      "https://readm.today/manga/*"
+    ],
     "Zoro": [
       "https://aniwatch.nz/*",
-      "https://aniwatch.se/*"
+      "https://aniwatch.se/*",
+      "https://hianime.to/*"
     ],
     "nineAnime": [
       "https://aniwave.vc/watch/*",
@@ -277,7 +287,16 @@
       "https://gamesnacion.com/*",
       "https://topamotor.com/*",
       "https://motorwithpassion.com/*",
-      "https://gamesnewses.com/*"
+      "https://gamesnewses.com/*",
+      "https://technewsroll.com/*",
+      "https://infonombre.com/*",
+      "https://animationdraw.com/*",
+      "https://recetasdegina.com/*",
+      "https://mislyfashion.com/*",
+      "https://techingro.com/*",
+      "https://motoralm.com/*",
+      "https://tocanimation.com/*",
+      "https://letsmotorgo.com/*"
     ],
     "iframe": [
       "https://kwik.si/*",
@@ -285,6 +304,7 @@
       "https://mdfx9dc8n.net/e/*",
       "https://mdzsmutpcvykb.net/e/*",
       "https://mixdropjmk.pw/e/*",
+      "https://mixdrop21.net/e/*",
       "https://embtaku.pro/embedplus*",
       "https://embtaku.pro/streaming.php?*",
       "https://embtaku.pro/load.php?*",
@@ -300,6 +320,9 @@
       "https://seanshowcould.com/e/*",
       "https://johntryopen.com/e/*",
       "https://morganoperationface.com/e/*",
+      "https://markstyleall.com/e/*",
+      "https://jayservicestuff.com/e/*",
+      "https://kerapoxy.cc/e/*",
       "https://api.animeflix.dev/*",
       "https://streamwish.to/e/*",
       "https://sfastwish.com/e/*",

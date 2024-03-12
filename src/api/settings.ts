@@ -54,7 +54,7 @@ export const settingsObj = {
       'MangaSee',
       'MangaFire',
       'YugenAnime',
-      'AniWatch',
+      'HiAnime',
       'Funimation',
       'Hulu',
       'Netflix',
