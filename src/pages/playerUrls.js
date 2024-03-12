@@ -268,6 +268,7 @@ module.exports = {
       '*://*.mdzsmutpcvykb.net/e/*',
       '*://*.mixdropjmk.pw/e/*',
       '*://*.mixdrop21.net/e/*',
+      '*://*.mixdrop.si/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -681,6 +682,7 @@ module.exports = {
       '*://morganoperationface.com/e/*',
       '*://markstyleall.com/e/*',
       '*://jayservicestuff.com/e/*',
+      '*://vincentincludesuccessful.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
