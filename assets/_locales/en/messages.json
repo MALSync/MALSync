@@ -1308,8 +1308,8 @@
         "description": "Show button to view the anime/manga on MAL or another provider"
     },
     "settings_presenceShowMalsync": {
-        "message": "Show Mal-Sync in the title of the presence instead of anime/manga",
-        "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
+        "message": "Show MAL-Sync in the title of the presence instead of anime/manga",
+        "description": "Show MAL-Sync in the title of the presence instead of anime/manga"
     },
     "updateCheck_Refresh": {
         "message": "Refresh",
