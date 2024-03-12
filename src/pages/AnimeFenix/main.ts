@@ -20,7 +20,7 @@ export const AnimeFenix: pageInterface = {
       }
       // Remove episode number from the title
       const titleParts = title.split(' ');
-      if (titleParts.length > 1 && !isNaN(Number(titleParts[titleParts.length - 1]))) {
+      if (titleParts.length > 1 && !Number.isNaN(Number(titleParts[titleParts.length - 1]))) {
         titleParts.pop();
         title = titleParts.join(' ');
       }
@@ -46,7 +46,7 @@ export const AnimeFenix: pageInterface = {
         : 0;
     },
   },
-  init: (page) => {
+  init: page => {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
