@@ -1,0 +1,39 @@
+{
+  "title": "AnimeFenix",
+  "url": "https://www3.animefenix.tv",
+  "testCases": [
+    {
+      "url": "https://www3.animefenix.tv/ver/ninja-kamui-5",
+      "expected": {
+        "sync": true,
+        "title": "Ninja Kamui",
+        "identifier": "Ninja Kamui",
+        "overviewUrl": "https://www3.animefenix.tv/ver/ninja-kamui",
+        "episode": 5,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www3.animefenix.tv/ver/shangri-la-frontier-22",
+      "expected": {
+        "sync": true,
+        "title": "Shangri La Frontier",
+        "identifier": "Shangri La Frontier",
+        "overviewUrl": "https://www3.animefenix.tv/shangri-la-frontier",
+        "episode": 22,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www3.animefenix.tv/ver/kusuriya-no-hitorigoto-22",
+      "expected": {
+        "sync": true,
+        "title": "Kusuriya No Hitorigoto",
+        "identifier": "Kusuriya No Hitorigoto",
+        "overviewUrl": "https://www3.animefenix.tv/kusuriya-no-hitorigoto",
+        "episode": 22,
+        "uiSelector": false
+      }
+    }
+  ]
+}

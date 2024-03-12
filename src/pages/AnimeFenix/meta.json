@@ -1,0 +1,6 @@
+{
+  "urls": {
+    "search": "https://www3.animefenix.tv/animes",
+    "match": ["*://animefenix.tv/*"]
+  }
+}
