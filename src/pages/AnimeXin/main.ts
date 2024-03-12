@@ -13,13 +13,17 @@ export const AnimeXin: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a > span').text();
+      return j
+        .$('.ts-breadcrumb [itemprop="itemListElement"]:nth-child(2) [itemprop="name"]')
+        .text();
     },
     getIdentifier(url) {
       return AnimeXin.overview!.getIdentifier(AnimeXin.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      const overview = j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').attr('href');
+      const overview = j
+        .$('.ts-breadcrumb [itemprop="itemListElement"]:nth-child(2) a')
+        .attr('href');
       return overview ? utils.absoluteLink(overview, AnimeXin.domain) : '';
     },
     getEpisode(url) {
