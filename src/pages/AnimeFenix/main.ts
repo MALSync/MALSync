@@ -66,9 +66,7 @@ export const AnimeFenix: pageInterface = {
         return;
       }
       if (
-        page.url.split('/')[3] === 'ver' ||
-        page.url.split('/')[3] !== 'zerotwo' ||
-        page.url.split('/')[3] !== 'animes'
+        page.url.split('/')[3] === 'ver'
       ) {
         page.handlePage();
       }
