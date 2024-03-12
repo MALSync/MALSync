@@ -7,8 +7,11 @@
       <Card>
         <input type="file" @change="handleFileUpload($event)" />
         <p v-if="type() == 'webextension'" class="info">
-          If you have problems please retry in
-          <a style="text-decoration: underline" href="#" @click="openWindow($event)">this window</a>
+          {{ lang('settings_LocalSync_Help_Before') }}
+          <a style="text-decoration: underline" href="#" @click="openWindow($event)">
+            {{ lang('settings_LocalSync_Help_LinkText') }}
+          </a>
+          {{ lang('settings_LocalSync_Help_After') }}
         </p>
       </Card>
     </template>
