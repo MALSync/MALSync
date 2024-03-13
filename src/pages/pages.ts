@@ -256,7 +256,6 @@ export const pages = {
   AnimeKO,
   AnimeGO,
   Animeflix,
-  AnimeFenix,
   LuciferDonghua,
   NeoxScans,
   Anix,
@@ -266,4 +265,5 @@ export const pages = {
   WitAnime,
   Suwayomi,
   ManhuaUS,
+  AnimeFenix,
 };

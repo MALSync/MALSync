@@ -3,12 +3,12 @@
   "url": "https://www3.animefenix.tv",
   "testCases": [
     {
-      "url": "https://www3.animefenix.tv/ver/ninja-kamui-5",
+      "url": "https://www3.animefenix.tv/ver/ninja-kamui-5/",
       "expected": {
         "sync": true,
         "title": "Ninja Kamui",
         "identifier": "Ninja Kamui",
-        "overviewUrl": "https://www3.animefenix.tv/ninja-kamui",
+        "overviewUrl": "https://www3.animefenix.tv/ninja-kamui/",
         "episode": 5,
         "uiSelector": false
       }
