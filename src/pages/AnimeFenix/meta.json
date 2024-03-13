@@ -1,6 +1,6 @@
 {
   "urls": {
-    "search": "https://animefenix.tv/animes",
+    "search": "https://animefenix.tv/animes?q={searchtermPlus}",
     "match": ["*://*.animefenix.tv/*"]
   }
 }
