@@ -18,11 +18,7 @@ export const AnimeFenix: pageInterface = {
         const urlTitle = url.split('/')[4];
         title = urlTitle ? urlTitle.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
       }
-      const titleParts = title.split(' ');
-      if (titleParts.length > 1 && !Number.isNaN(Number(titleParts[titleParts.length - 1]))) {
-        titleParts.pop();
-        title = titleParts.join(' ');
-      }
+      title = title.replace(/\d+(\.\d+)? Sub Español$/, '').trim();
       return title;
     },    
     getIdentifier: url => {
@@ -33,15 +29,15 @@ export const AnimeFenix: pageInterface = {
       if (urlParts[3] === 'ver') {
         urlParts.splice(3, 1);
       }
-      urlParts[urlParts.length - 1] = urlParts[urlParts.length - 1].replace(/-\d+$/, '');
+      urlParts[urlParts.length - 1] = urlParts[urlParts.length - 1].replace(/-\d+(\.\d+)?$/, '');
       return urlParts.join('/');
     },    
     getEpisode: url => {
       const urlParts = url.split('/');
-      const lastPart = urlParts.pop();
-      const episodeNumber = lastPart ? lastPart.match(/\d+/g) : null;
+      const lastPart = urlParts[urlParts.length - 1].split('?')[0];
+      const episodeNumber = lastPart ? lastPart.match(/\d+(\.\d+)?(?= Sub Español|$)/g) : null;
       return episodeNumber && episodeNumber.length > 0
-        ? parseInt(episodeNumber[episodeNumber.length - 1])
+        ? parseFloat(episodeNumber[0])
         : 0;
     },
   },
