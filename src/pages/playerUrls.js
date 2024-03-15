@@ -868,7 +868,14 @@ module.exports = {
   },
   // 9anime
   filemoon: {
-    match: ['*://filemoon.sx/e/*', '*://kerapoxy.cc/e/*', '*://vpcxz19p.xyz/e/*'],
+    match: [
+      '*://filemoon.sx/e/*',
+      '*://kerapoxy.cc/e/*',
+      '*://vpcxz19p.xyz/e/*',
+      '*://filemoon.top/e/*',
+      '*://fmoonembed.pro/e/*',
+      '*://rgeyyddl.skin/e/*',
+    ],
   },
   // toonanime
   toonvip: {
