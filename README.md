@@ -198,7 +198,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://disasterscans.com"><img src="https://favicon.malsync.moe/?domain=https://disasterscans.com"> DisasterScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://aniwatch.to"><img src="https://favicon.malsync.moe/?domain=https://aniwatch.to"> AniWatch</a></td>
+                <td><a href="https://hianime.to"><img src="https://favicon.malsync.moe/?domain=https://hianime.to"> HiAnime</a></td>
                 <td><a href="https://dynasty-scans.com"><img src="https://favicon.malsync.moe/?domain=https://dynasty-scans.com"> DynastyScans</a></td>
                 <td></td>
               </tr><tr>
