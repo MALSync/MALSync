@@ -52,7 +52,7 @@ proxy.addCaptureVariable(
       if (!data.episodeInformation || !data.episodeInformation.season) return;
       const seriesId = String(data.episodeInformation.season);
       if (!seriesId) return;
-      const storageTitle = window.localStorage.getItem('malsyncData_' + seriesId);
+      const storageTitle = window.sessionStorage.getItem('malsyncData_' + seriesId);
       if (storageTitle) return storageTitle;
       url = new URL(url);
       url.pathname = 'api/v1/view';
@@ -64,7 +64,7 @@ proxy.addCaptureVariable(
             if (!header) return;
             const title = header.attributes.header.attributes.text;
             if (!title) return;
-            window.localStorage.setItem('malsyncData_' + seriesId, title);
+            window.sessionStorage.setItem('malsyncData_' + seriesId, title);
             return title;
           });
         });
