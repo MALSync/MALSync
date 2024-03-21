@@ -26,7 +26,7 @@ async function mixdrop() {
 }
 
 async function gogostream() {
-    const response = await fetch("https://gogoanime.tel/no-game-no-life-episode-9");
+    const response = await fetch("https://gogoanime3.co/no-game-no-life-episode-9");
     const body = await response.text();
 
     const iframe = body.match(/<iframe\s+src="(.+?streaming\.php.+?)"/i);

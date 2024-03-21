@@ -262,6 +262,7 @@ module.exports = {
       '*://*.mdzsmutpcvykb.net/e/*',
       '*://*.mixdropjmk.pw/e/*',
       '*://*.mixdrop21.net/e/*',
+      '*://*.mixdrop.si/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -498,6 +499,7 @@ module.exports = {
       '*://vidplay.site/e/*',
       '*://vidplay.lol/e/*',
       '*://vidplay.online/e/*',
+      '*://ea1928580f.site/e/*',
     ],
   },
   // gogo
@@ -675,6 +677,7 @@ module.exports = {
       '*://morganoperationface.com/e/*',
       '*://markstyleall.com/e/*',
       '*://jayservicestuff.com/e/*',
+      '*://vincentincludesuccessful.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -859,7 +862,14 @@ module.exports = {
   },
   // 9anime
   filemoon: {
-    match: ['*://filemoon.sx/e/*', '*://kerapoxy.cc/e/*'],
+    match: [
+      '*://filemoon.sx/e/*',
+      '*://kerapoxy.cc/e/*',
+      '*://vpcxz19p.xyz/e/*',
+      '*://filemoon.top/e/*',
+      '*://fmoonembed.pro/e/*',
+      '*://rgeyyddl.skin/e/*',
+    ],
   },
   // toonanime
   toonvip: {
