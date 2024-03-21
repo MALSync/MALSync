@@ -19,6 +19,13 @@ proxy.addCaptureVariable(
               res.json().then(data => {
                 if (data && data.type && data.type === 'VOD' && data.id) {
                   window.malsyncData[data.id] = data;
+                  checkForTitle(url, data, init).then((title) => {
+                    if (title) {
+                      window.malsyncData[data.id].malsync_title = title;
+                    }
+                  }).finally(() => {
+                    window.malsyncData[data.id].done = true;
+                  });
                 }
               });
             }
@@ -38,6 +45,29 @@ proxy.addCaptureVariable(
       return window.malsyncData;
     } else {
       return undefined;
+    }
+
+    async function checkForTitle(url, data, options) {
+      if (!url) return;
+      if (!data.episodeInformation || !data.episodeInformation.season) return;
+      const seriesId = String(data.episodeInformation.season);
+      if (!seriesId) return;
+      const storageTitle = window.localStorage.getItem('malsyncData_' + seriesId);
+      if (storageTitle) return storageTitle;
+      url = new URL(url);
+      url.pathname = 'api/v1/view';
+      url.search = \`?type=season&id=\${seriesId}\`;
+      return originalFetch(url.toString(), options)
+        .then(response => {
+          return response.json().then(data => {
+            const header = data.elements.find(x => x.$zone === 'header');
+            if (!header) return;
+            const title = header.attributes.header.attributes.text;
+            if (!title) return;
+            window.localStorage.setItem('malsyncData_' + seriesId, title);
+            return title;
+          });
+        });
     }
   `,
 );
@@ -67,6 +97,7 @@ export const Hidive: pageInterface = {
       const info = epInfo(videoId());
       if (!info) throw new Error("Couldn't find episode information");
 
+      if (info.malsync_title) return info.malsync_title;
       if (!info.episodeInformation) return info.title;
 
       return '';
@@ -148,7 +179,8 @@ export const Hidive: pageInterface = {
         handleInterval = utils.waitUntilTrue(
           () => {
             proxy.addProxy();
-            return epInfo(video);
+            const info = epInfo(video);
+            return info && info.done;
           },
           () => page.handlePage(),
           1000,
