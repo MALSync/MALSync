@@ -648,5 +648,10 @@
     "domain": "https://witanime.pics",
     "type": "anime",
     "name": "WitAnime"
+  },
+  {
+    "domain": "https://animefenix.tv",
+    "type": "anime",
+    "name": "AnimeFenix"
   }
 ]
