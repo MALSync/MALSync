@@ -684,6 +684,7 @@ module.exports = {
       '*://markstyleall.com/e/*',
       '*://jayservicestuff.com/e/*',
       '*://vincentincludesuccessful.com/e/*',
+      '*://brookethoughi.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
