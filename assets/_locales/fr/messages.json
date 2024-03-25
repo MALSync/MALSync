@@ -712,7 +712,7 @@
         "description": "Estimate episode number"
     },
     "settings_malTags": {
-        "message": "Utilisez les Tags/Notes",
+        "message": "Utiliser les Tags/Notes",
         "description": "Use Tags/Notes"
     },
     "settings_malTags_Text": {
@@ -974,7 +974,7 @@
         "description": "Show button to view the anime/manga on MAL or another provider"
     },
     "settings_presenceShowMalsync": {
-        "message": "Afficher Mal-Sync dans le titre de Discord Rich Presence à la place de l'anime/du manga",
+        "message": "Afficher MAL-Sync dans le titre de Discord Rich Presence à la place de l'anime/du manga",
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     },
     "updateCheck_Refresh": {
@@ -1522,5 +1522,21 @@
     "settings_custom_domains_permissions_not_supported": {
         "message": "Le navigateur ou cette fenêtre ne permet pas l’ajout de permissions, veuillez réessayer avec l’URL https://malsync.moe/pwa ou en utilisant le popup de l’extension.",
         "description": "Text that is shown when the browser does not support adding new permissions"
+    },
+    "settings_AskBefore": {
+        "message": "Afficher le menu de confirmation de l’avancement au début de chaque épisode/chapitre",
+        "description": "Option to not show the 'completed' message during the episode"
+    },
+    "settings_LocalSync_Help_LinkText": {
+        "message": "cette fenêtre",
+        "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
+    },
+    "settings_LocalSync_Label": {
+        "message": "Export du stockage local",
+        "description": "Label where the import/export buttons are to backup the local saved anime/manga"
+    },
+    "settings_LocalSync_Help_Before": {
+        "message": "En cas de problèmes, veuillez réessayer dans",
+        "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
     }
 }
