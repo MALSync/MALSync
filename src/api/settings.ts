@@ -4,6 +4,7 @@ export const settingsObj = {
   options: reactive({
     autoTrackingModeanime: 'video',
     readerTracking: true,
+    askBefore: true,
     autoTrackingModemanga: 'instant',
     enablePages: {},
     forceEn: false,

@@ -28,6 +28,8 @@ export abstract class SingleAbstract {
 
   protected lastError;
 
+  protected askCompleted = false;
+
   public abstract shortName: string;
 
   protected abstract authenticationUrl: string;
@@ -598,6 +600,22 @@ export abstract class SingleAbstract {
     return undefined;
   }
 
+  public async lifeCycleHook(state: 'afterCheckSync' | 'beforeSync') {
+    if (this.askCompleted) {
+      if (
+        (state === 'afterCheckSync' && api.settings.get('askBefore')) ||
+        (state === 'beforeSync' && !api.settings.get('askBefore'))
+      ) {
+        this.askCompleted = false;
+        if (this.getStatus() === definitions.status.Rewatching) {
+          await this.finishRewatchingMessage();
+        } else {
+          await this.finishWatchingMessage();
+        }
+      }
+    }
+  }
+
   public async checkSync(episode: number, volume?: number): Promise<boolean> {
     const curEpisode = this.getEpisode();
     const curStatus = this.getStatus();
@@ -623,11 +641,7 @@ export abstract class SingleAbstract {
     }
 
     if (episode && episode === this.getTotalEpisodes()) {
-      if (curStatus === definitions.status.Rewatching) {
-        await this.finishRewatchingMessage();
-      } else {
-        await this.finishWatchingMessage();
-      }
+      this.askCompleted = true;
       return true;
     }
 

@@ -861,6 +861,10 @@
         "message": "Manga sync fallback",
         "description": "Manga sync fallback in case the manga reader progress tracking does not work"
     },
+    "settings_AskBefore": {
+        "message": "Show 'completed' confirmation dialog at the start of the episode/chapter",
+        "description": "Option to not show the 'completed' message during the episode"
+    },
     "settings_AutoTracking_Video": {
         "message": "Update on $videoDuration$% of video progress",
         "description": "Update Episode of video progress",

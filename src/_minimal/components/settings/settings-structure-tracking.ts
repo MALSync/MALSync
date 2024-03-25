@@ -105,6 +105,15 @@ export const tracking: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'askBefore',
+    title: () => api.storage.lang('settings_AskBefore'),
+    props: {
+      component: 'checkbox',
+      option: 'askBefore',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'hr',
     title: '',
     component: SettingsHr,
