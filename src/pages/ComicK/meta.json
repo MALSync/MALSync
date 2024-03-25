@@ -2,6 +2,6 @@
   "search": "https://comick.io/search?q={searchterm}",
   "searchDatabase": "Comick",
   "urls": {
-    "match": ["*://comick.ink/*", "*://comick.cc/*", "*://comick.io/*"]
+    "match": ["*://comick.app/*", "*://comick.ink/*", "*://comick.cc/*", "*://comick.io/*"]
   }
 }

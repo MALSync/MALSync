@@ -1,24 +1,24 @@
 {
   "title": "BilibiliComics",
-  "url": "https://www.bilibilicomics.com/",
+  "url": "https://manga.bilibili.com/",
   "testCases": [
     {
-      "url": "https://www.bilibilicomics.com/mc56/995?from=manga_detail",
+      "url": "https://manga.bilibili.com/mc28201/463671?from=manga_detail",
       "expected": {
         "sync": true,
-        "title": "Busted! Darklord",
-        "identifier": "mc56",
-        "overviewUrl": "https://www.bilibilicomics.com/detail/mc56",
-        "episode": 26,
+        "title": "间谍过家家",
+        "identifier": "mc28201",
+        "overviewUrl": "https://manga.bilibili.com/detail/mc28201",
+        "episode": 4,
         "uiSelector": false
       }
     },
     {
-      "url": "https://www.bilibilicomics.com/detail/mc56",
+      "url": "https://manga.bilibili.com/detail/mc28201",
       "expected": {
         "sync": false,
-        "title": "Busted! Darklord",
-        "identifier": "mc56",
+        "title": "间谍过家家",
+        "identifier": "mc28201",
         "uiSelector": true
       }
     }

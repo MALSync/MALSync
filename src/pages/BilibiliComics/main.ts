@@ -2,8 +2,8 @@ import { pageInterface } from '../pageInterface';
 
 export const BilibiliComics: pageInterface = {
   name: 'BilibiliComics',
-  domain: 'https://www.bilibilicomics.com',
-  languages: ['English'],
+  domain: 'https://manga.bilibili.com',
+  languages: ['Chinese'],
   type: 'manga',
   isSyncPage(url) {
     return Boolean(utils.urlPart(url, 3) !== 'detail' && parseInt(utils.urlPart(url, 4)));
@@ -26,10 +26,10 @@ export const BilibiliComics: pageInterface = {
     },
     getEpisode(url) {
       const temp = j
-        .$('.read-nav .episode')
-        .text()
+        .$('[property="og:title"]')
+        .attr('content')!
         .trim()
-        .match(/(\d+)$/im);
+        .match(/^(\d+)/im);
 
       if (!temp) return NaN;
 
@@ -52,7 +52,7 @@ export const BilibiliComics: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('.manga-title').first().text();
+      return j.$('.manga-info .manga-title').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -67,9 +67,6 @@ export const BilibiliComics: pageInterface = {
       },
       elementEp(selector) {
         return Number(selector.find('.short-title').first().text());
-      },
-      elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), BilibiliComics.domain);
       },
     },
   },
@@ -87,8 +84,7 @@ export const BilibiliComics: pageInterface = {
       if (BilibiliComics.isSyncPage(page.url)) {
         utils.waitUntilTrue(
           () =>
-            BilibiliComics.sync.getTitle(page.url) &&
-            j.$('.read-nav .episode').text().trim() !== '--',
+            BilibiliComics.sync.getTitle(page.url) && j.$('[property="og:title"]').attr('content'),
           () => page.handlePage(),
         );
       } else if (BilibiliComics.isOverviewPage!(page.url)) {

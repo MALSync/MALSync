@@ -20,9 +20,6 @@ module.exports = {
   crunchyroll: {
     match: ['*://*.static.crunchyroll.com/*'],
   },
-  Vrv: {
-    match: ['*://*.static.vrv.co/*'],
-  },
   vidstreaming: {
     match: [
       '*://*.vidstreaming.io/*',
@@ -151,9 +148,6 @@ module.exports = {
   },
   animedaisuki: {
     match: ['*://animedaisuki.moe/embed/*'],
-  },
-  Wakanim: {
-    match: ['*://*.wakanim.tv/*/*/*/embeddedplayer/*'],
   },
   superitu: {
     match: ['*://superitu.com/embed/*'],

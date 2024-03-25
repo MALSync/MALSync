@@ -66,7 +66,7 @@ export const Animeflix: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('a[id^="episode-"]');
+        return j.$('a[href^="/watch/"]');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), Animeflix.domain);

@@ -5,7 +5,7 @@ import { searchSyntax, titleSearch } from '../../../src/utils/quicklinksBuilder'
 describe('quicklinksBuilder', function() {
 
   describe('searchSyntax', function() {
-    const title = 'No game_no Life³4 1 ! ';
+    const title = '[L] No game_no Life³4 1 ! ';
     [
       {
         title: 'No Searchterm',

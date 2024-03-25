@@ -207,7 +207,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'localSyncExport',
-    title: 'Local Sync Export',
+    title: () => api.storage.lang('settings_LocalSync_Label'),
     condition: () => api.settings.get('localSync'),
     component: SettingsLocalSyncExport,
   },

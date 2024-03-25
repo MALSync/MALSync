@@ -37,6 +37,21 @@ export const ComicK: pageInterface = {
     },
     readerConfig: [
       {
+        condition: '.diagonal-fractions',
+        current: {
+          selector: '.diagonal-fractions',
+          mode: 'text',
+          regex: '(\\d+)/(\\d+)',
+          group: 1,
+        },
+        total: {
+          selector: '.diagonal-fractions',
+          mode: 'text',
+          regex: '(\\d+)/(\\d+)',
+          group: 2,
+        },
+      },
+      {
         current: {
           selector: '#images-reader-container [id^="page"]',
           mode: 'countAbove',
@@ -87,6 +102,6 @@ export const ComicK: pageInterface = {
           page.handlePage();
         },
       );
-    });
+    }, true);
   },
 };

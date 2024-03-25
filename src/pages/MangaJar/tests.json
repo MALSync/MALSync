@@ -8,8 +8,8 @@
         "sync": true,
         "title": "Solo Leveling",
         "identifier": "solo-leveling-abs3TTS",
-        "overviewUrl": "https://mangajar.com/manga/solo-leveling-abs3TTS",
-        "nextEpUrl": "https://mangajar.com/manga/solo-leveling-abs3TTS/chapter/121",
+        "overviewUrl": "https://mangajar.pro/manga/solo-leveling-abs3TTS",
+        "nextEpUrl": "https://mangajar.pro/manga/solo-leveling-abs3TTS/chapter/121",
         "episode": 120,
         "uiSelector": false
       }
@@ -22,8 +22,7 @@
         "identifier": "solo-leveling-abs3TTS",
         "uiSelector": true,
         "epList": {
-          "5": "https://mangajar.com/manga/solo-leveling-abs3TTS/chapter/5",
-          "126": "https://mangajar.com/manga/solo-leveling-abs3TTS/chapter/126"
+          "184": "https://mangajar.pro/manga/solo-leveling-abs3TTS/chapter/184"
         }
       }
     }

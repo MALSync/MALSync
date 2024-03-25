@@ -3,13 +3,13 @@ import { pageInterface } from '../pageInterface';
 export const ADN: pageInterface = {
   name: 'ADN',
   domain: 'https://animationdigitalnetwork.fr',
-  languages: ['French'],
+  languages: ['French', 'German'],
   type: 'anime',
   isSyncPage(url) {
-    return Boolean($('div[data-testid="video-player"]').length);
+    return utils.urlPart(url, 3) === 'video' && Boolean(utils.urlPart(url, 5));
   },
   isOverviewPage(url) {
-    return Boolean($('a[data-testid="watchlist-button"]').length);
+    return utils.urlPart(url, 3) === 'video' && !utils.urlPart(url, 5);
   },
   sync: {
     getTitle(url) {
@@ -22,9 +22,7 @@ export const ADN: pageInterface = {
       return `${ADN.domain}/video/${ADN.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      const temp = url.match(/episode-(\d+)/i);
-      if (!temp) return 1;
-      return Number(temp[1]);
+      return getEpisode(url);
     },
   },
   overview: {
@@ -40,38 +38,54 @@ export const ADN: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div[data-testid="default-layout"] ul li[itemtype] > div');
+        return j.$('[data-testid="default-layout"] ul li a[href^="/video/"][title]');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a').attr('href'), ADN.domain);
+        return utils.absoluteLink(selector.attr('href'), ADN.domain);
       },
       elementEp(selector) {
-        return ADN.sync.getEpisode(selector.find('a').attr('href') || '');
+        return getEpisode(selector.attr('href') || '', true);
       },
     },
   },
   init(page) {
-    const handlePage = () => {
-      api.storage.addStyle(
-        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-      );
-      page.handlePage();
-      utils.changeDetect(
-        () => {
-          page.handleList(true, 3);
-        },
-        () => {
-          return j.$('div[data-testid="default-layout"] ul li[itemtype] > div > a').attr('href');
-        },
-      );
-    };
-    utils.waitUntilTrue(
-      () =>
-        Boolean(j.$('div[data-testid="comments-panel"]').length) &&
-        (Boolean(j.$('div[data-testid="video-player"]').length) ||
-          Boolean(j.$('div[data-testid="viewbar-progress"]').length)),
-      handlePage,
-      1000,
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+
+    ADN.domain = window.location.origin;
+
+    let listInterval = 0;
+
+    utils.fullUrlChangeDetect(() => {
+      page.reset();
+      if (ADN.isSyncPage(window.location.href)) {
+        utils.waitUntilTrue(
+          () => j.$('div[data-testid="video-player"]').length,
+          () => page.handlePage(),
+        );
+      } else if (ADN.isOverviewPage!(window.location.href)) {
+        utils.waitUntilTrue(
+          () => ADN.overview!.getTitle(window.location.href).length,
+          () => page.handlePage(),
+        );
+
+        clearInterval(listInterval);
+        listInterval = utils.changeDetect(
+          () => {
+            setTimeout(() => page.handleList(true, 3), 500);
+          },
+          () => {
+            return ADN.overview!.list!.elementsSelector().attr('href');
+          },
+        );
+      }
+    });
   },
 };
+
+function getEpisode(url, forceZero = false) {
+  const temp = url.match(/(episode|folge)-(\d+)/i);
+  if (!temp) return forceZero ? 0 : 1;
+  return Number(temp[2]);
+}

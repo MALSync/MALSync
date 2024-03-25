@@ -1,7 +1,6 @@
 {
   "title": "MangaPark",
   "url": "https://mangapark.net/",
-  "variables": ["__NEXT_DATA__"],
   "testCases": [
     {
       "url": "https://mangapark.net/comic/87224/her-summon/c83-en",
@@ -37,23 +36,23 @@
       }
     },
     {
-      "url": "https://mangapark.net/title/75271-mission-yozakura-family/7273527-en-ch.136",
+      "url": "https://mangapark.net/title/75271-en-mission-yozakura-family/2765436-ch-136",
       "expected": {
         "sync": true,
         "title": "Mission: Yozakura Family",
-        "identifier": "75271",
-        "overviewUrl": "https://mangapark.net/title/75271-mission-yozakura-family",
-        "nextEpUrl": "https://mangapark.net/title/75271-mission-yozakura-family/7296452-en-ch.137",
+        "identifier": "75271-en-mission-yozakura-family",
+        "overviewUrl": "https://mangapark.net/title/75271-en-mission-yozakura-family",
+        "nextEpUrl": "https://mangapark.net/title/75271-en-mission-yozakura-family/2766927-ch-137",
         "episode": 136,
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangapark.net/title/75271-mission-yozakura-family",
+      "url": "https://mangapark.net/title/75271-en-mission-yozakura-family",
       "expected": {
         "sync": false,
         "title": "Mission: Yozakura Family",
-        "identifier": "75271",
+        "identifier": "75271-en-mission-yozakura-family",
         "uiSelector": true
       }
     }

@@ -10,7 +10,7 @@
         "identifier": "high-score-girl",
         "uiSelector": true,
         "epList": {
-          "5": "https://www.otakustv.com/anime/high-score-girl/round-5/"
+          "5": "https://www.otakustv.com/anime/high-score-girl/round-5"
         }
       }
     },
@@ -23,10 +23,7 @@
         "episode": 7,
         "overviewUrl": "https://www.otakustv.com/anime/high-score-girl",
         "nextEpUrl": "https://www.otakustv.com/anime/high-score-girl/round-8",
-        "uiSelector": false,
-        "epList": {
-          "5": "https://www.otakustv.com/anime/high-score-girl/round-5/"
-        }
+        "uiSelector": false
       }
     },
     {

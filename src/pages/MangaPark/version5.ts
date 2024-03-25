@@ -1,19 +1,4 @@
 import { pageInterface } from '../pageInterface';
-import { ScriptProxy } from '../../utils/scriptProxy';
-
-const proxy = new ScriptProxy();
-proxy.addCaptureVariable(
-  'NEXT_DATA',
-  `
-    if (window.hasOwnProperty("__NEXT_DATA__")) {
-      return __NEXT_DATA__;
-    } else {
-      return undefined;
-    }
-  `,
-);
-
-let nextData;
 
 export const version5: pageInterface = {
   name: 'MangaPark',
@@ -39,26 +24,29 @@ export const version5: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return nextData.props.pageProps.dehydratedState.queries[0].state.data.data.comicNode.data
-        .name;
+      return j.$('h3 > a[href*="/title/"]').first().text();
     },
     getIdentifier(url) {
-      return nextData.props.pageProps.dehydratedState.queries[0].state.data.data.comicNode.data.id.toString();
+      return utils.urlPart(version5.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('.comic-detail > h3 > a').attr('href'), version5.domain);
+      return utils.absoluteLink(
+        j.$('h3 > a[href*="/title/"]').first().attr('href'),
+        version5.domain,
+      );
     },
     getEpisode(url) {
-      return parseInt(nextData.props.pageProps.dehydratedState.queries[0].state.data.data.serial);
+      const episodePart = utils.urlPart(url, 5).match(/(chapter|ch)(-|.)(\d+)/i);
+      if (!episodePart) return NaN;
+      return Number(episodePart[3]);
     },
     getVolume(url) {
-      if (nextData.props.pageProps.dehydratedState.queries[0].state.data.data.volume) {
-        return parseInt(nextData.props.pageProps.dehydratedState.queries[0].state.data.data.volume);
-      }
-      return NaN;
+      const volumePart = utils.urlPart(url, 5).match(/(volume|vol)(-|.)(\d+)/i);
+      if (!volumePart) return NaN;
+      return Number(volumePart[3]);
     },
     nextEpUrl(url) {
-      const href = j.$('a:contains("Next ▶")').attr('href');
+      const href = j.$('span:contains("Next Chapter ▶")').parent('a').attr('href');
 
       if (href) {
         return utils.absoluteLink(href, version5.domain);
@@ -68,43 +56,22 @@ export const version5: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return nextData.props.pageProps.dehydratedState.queries[0].state.data.data.name;
+      return j.$('h3 > a[href*="/title/"]').first().text();
     },
     getIdentifier(url) {
-      return nextData.props.pageProps.dehydratedState.queries[0].state.data.data.id.toString();
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.marking-section').first().before(j.html(selector));
+      j.$('div[data-name="chapter-list"]').first().before(j.html(selector));
     },
   },
   init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./version5.less').toString(),
     );
-    proxy.addProxy(async (caller: ScriptProxy) => {
-      const meta: any = proxy.getCaptureVariable('NEXT_DATA');
 
-      if (!(meta instanceof Object)) {
-        throw new Error('Invalid metadata');
-      }
-
-      nextData = meta;
-
-      if (version5.isSyncPage(window.location.href)) {
-        utils.waitUntilTrue(
-          function () {
-            if (j.$('a:contains("Next ▶")').length) {
-              return true;
-            }
-            return false;
-          },
-          function () {
-            page.handlePage();
-          },
-        );
-      } else {
-        page.handlePage();
-      }
+    j.$(document).ready(function () {
+      page.handlePage();
     });
   },
 };

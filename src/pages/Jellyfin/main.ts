@@ -18,6 +18,8 @@ proxy.addCaptureVariable(
 
 let item: any;
 
+let baseUrl = '';
+
 class SessionsError extends Error {
   constructor(message) {
     super(message);
@@ -34,7 +36,10 @@ async function setApiKey(key) {
 }
 
 async function getBase() {
-  return api.storage.get('Jellyfin_Base');
+  return api.storage.get('Jellyfin_Base').then(base => {
+    baseUrl = base;
+    return base;
+  });
 }
 
 async function setBase(key) {
@@ -60,7 +65,7 @@ async function checkApi(page) {
       const itemId = await returnPlayingItemId();
       if (!itemId) con.log('No video id');
 
-      const curUrl = `${window.location.origin}/#!/details?id=${itemId}`;
+      const curUrl = `${baseUrl || window.location.origin}/#!/details?id=${itemId}`;
 
       checkItemId(page, itemId, curUrl, true);
     }
@@ -388,7 +393,7 @@ export const Jellyfin: pageInterface = {
       return item.Id;
     },
     getOverviewUrl(url) {
-      return `${Jellyfin.domain}/#!/details?id=${Jellyfin.sync.getIdentifier(url)}`;
+      return `${baseUrl || Jellyfin.domain}/#!/details?id=${Jellyfin.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       return item.IndexNumber;

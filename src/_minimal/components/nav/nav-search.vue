@@ -1,11 +1,18 @@
 <template>
   <div>
-    <FormText v-model="query" class="searchField" icon="search" :clear-icon="true" type="search" />
+    <FormText
+      v-model="query"
+      class="searchField"
+      icon="search"
+      :clear-icon="true"
+      type="search"
+      :autofocus="autofocus"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { inject, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getTypeContext } from '../../utils/state';
 import FormText from '../form/form-text.vue';
@@ -15,6 +22,12 @@ const route = useRoute();
 const router = useRouter();
 
 const query = ref(route.query.s ? route.query.s.toString() : '');
+const autofocus = ref(false);
+
+const rootHtml = inject('rootHtml') as HTMLElement;
+if (rootHtml.getAttribute('mode') === 'popup' || query.value) {
+  autofocus.value = true;
+}
 
 let debounce;
 
