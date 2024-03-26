@@ -1,70 +1,4 @@
 {
-  "0.9.3": {
-    "AnimeUnity": [
-      "https://www.animeunity.cc/anime/*"
-    ],
-    "Animeworld": [
-      "https://www.animeworld.so/play/*"
-    ],
-    "Gogoanime": [
-      "https://gogoanime.cl/*",
-      "https://gogoanime.hu/*",
-      "https://gogoanime.vet/*"
-    ],
-    "Kaguya": [
-      "https://kaguya.app/*"
-    ],
-    "KickAssAnime": [
-      "https://kaas.ro/*",
-      "https://kaas.to/*",
-      "https://kickassanime.ro/*",
-      "https://kickassanime.am/*"
-    ],
-    "Voiranime": [
-      "https://v3.voiranime.com/*",
-      "https://v4.voiranime.com/*"
-    ],
-    "YugenAnime": [
-      "https://yugenanime.tv/*"
-    ],
-    "Zoro": [
-      "https://sanji.to/*"
-    ],
-    "nineAnime": [
-      "https://9anime.ph/watch/*",
-      "https://9anime.ph/watch2gether/*"
-    ],
-    "iframe": [
-      "https://playtaku.net/embedplus*",
-      "https://playtaku.net/streaming.php?*",
-      "https://playtaku.net/load.php?*",
-      "https://playtaku.net/loadserver.php?*",
-      "https://playtaku.online/embedplus*",
-      "https://playtaku.online/streaming.php?*",
-      "https://playtaku.online/load.php?*",
-      "https://playtaku.online/loadserver.php?*",
-      "https://gotaku1.com/embedplus*",
-      "https://gotaku1.com/streaming.php?*",
-      "https://gotaku1.com/load.php?*",
-      "https://gotaku1.com/loadserver.php?*",
-      "https://sbone.pro/e/*",
-      "https://sbani.pro/e/*",
-      "https://dooood.com/e/*",
-      "https://35volitantplimsoles5.com/e/*",
-      "https://tummulerviolableness.com/e/*",
-      "https://tubelessceliolymph.com/e/*",
-      "https://availedsmallest.com/e/*",
-      "https://counterclockwisejacky.com/e/*",
-      "https://monorhinouscassaba.com/e/*",
-      "https://urochsunloath.com/e/*",
-      "https://simpulumlamerop.com/e/*",
-      "https://sizyreelingly.com/e/*",
-      "https://yugenanime.tv/e/*",
-      "https://vidnethub.net/*",
-      "https://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*",
-      "https://api.animeflix.live/*"
-    ]
-  },
   "0.9.4": {
     "iframe": []
   },
@@ -353,5 +287,8 @@
       "https://awish.pro/e/*",
       "https://alions.pro/v/*"
     ]
+  },
+  "0.9.8": {
+    "iframe": []
   }
 }

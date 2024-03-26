@@ -21,7 +21,7 @@
     <td>:x:</td>
   </tr><tr>
     <td><a href="https://animationdigitalnetwork.fr"><img src="https://favicon.malsync.moe/?domain=https://animationdigitalnetwork.fr"> ADN</a></td>
-    <td>French</td>
+    <td>French, German</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
@@ -34,7 +34,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://an1me.nl"><img src="https://favicon.malsync.moe/?domain=https://an1me.nl"> An1me</a></td>
+    <td><a href="https://an1me.to"><img src="https://favicon.malsync.moe/?domain=https://an1me.to"> An1me</a></td>
     <td>Greek</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -202,13 +202,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://aniwatch.to"><img src="https://favicon.malsync.moe/?domain=https://aniwatch.to"> AniWatch</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://aniwave.to"><img src="https://favicon.malsync.moe/?domain=https://aniwave.to"> Aniwave</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -321,10 +314,17 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://hianime.to"><img src="https://favicon.malsync.moe/?domain=https://hianime.to"> HiAnime</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www.hidive.com"><img src="https://favicon.malsync.moe/?domain=https://www.hidive.com"> Hidive</a></td>
     <td>English, Spanish, Portuguese, French, German, Arabic, Italian, Russian</td>
     <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
@@ -510,20 +510,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://vrv.co"><img src="https://favicon.malsync.moe/?domain=https://vrv.co"> Vrv</a></td>
-    <td>English, Spanish, Portuguese, French, German, Arabic, Italian, Russian</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://www.wakanim.tv"><img src="https://favicon.malsync.moe/?domain=https://www.wakanim.tv"> Wakanim</a></td>
-    <td>English, Spanish, Portuguese, French, German, Arabic, Italian, Russian</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://witanime.pics"><img src="https://favicon.malsync.moe/?domain=https://witanime.pics"> WitAnime</a></td>
     <td>Arabic</td>
     <td>:heavy_check_mark:</td>
@@ -575,8 +561,8 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://www.bilibilicomics.com"><img src="https://favicon.malsync.moe/?domain=https://www.bilibilicomics.com"> BilibiliComics</a></td>
-    <td>English</td>
+    <td><a href="https://manga.bilibili.com"><img src="https://favicon.malsync.moe/?domain=https://manga.bilibili.com"> BilibiliComics</a></td>
+    <td>Chinese</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
@@ -589,7 +575,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://comick.app"><img src="https://favicon.malsync.moe/?domain=https://comick.app"> ComicK</a></td>
+    <td><a href="https://comick.io"><img src="https://favicon.malsync.moe/?domain=https://comick.io"> ComicK</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -757,7 +743,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://mangajar.com"><img src="https://favicon.malsync.moe/?domain=https://mangajar.com"> MangaJar</a></td>
+    <td><a href="https://mangajar.pro"><img src="https://favicon.malsync.moe/?domain=https://mangajar.pro"> MangaJar</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -790,7 +776,7 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
-    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://mangareader.to"><img src="https://favicon.malsync.moe/?domain=https://mangareader.to"> MangaReader</a></td>
     <td>English, Japanese</td>
@@ -848,6 +834,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://manhuaus.com"><img src="https://favicon.malsync.moe/?domain=https://manhuaus.com"> ManhuaUS</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://neoxscans.com/"><img src="https://favicon.malsync.moe/?domain=https://neoxscans.com/"> NeoxScans</a></td>
     <td>Portuguese</td>
     <td>:x:</td>
@@ -862,7 +855,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://readm.org"><img src="https://favicon.malsync.moe/?domain=https://readm.org"> Readm</a></td>
+    <td><a href="https://readm.today"><img src="https://favicon.malsync.moe/?domain=https://readm.today"> Readm</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -885,6 +878,20 @@
   </tr><tr>
     <td><a href="https://serimanga.com"><img src="https://favicon.malsync.moe/?domain=https://serimanga.com"> serimanga</a></td>
     <td>Turkish</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://suwayomi-webui-preview.github.io/"><img src="https://favicon.malsync.moe/?domain=https://suwayomi-webui-preview.github.io/"> Suwayomi</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://taiyo.moe"><img src="https://favicon.malsync.moe/?domain=https://taiyo.moe"> Taiyo</a></td>
+    <td>Portuguese</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>

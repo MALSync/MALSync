@@ -10,11 +10,6 @@
     "name": "Crunchyroll"
   },
   {
-    "domain": "https://vrv.co",
-    "type": "anime",
-    "name": "Vrv"
-  },
-  {
     "domain": "https://www.mangadex.org",
     "type": "manga",
     "name": "Mangadex"
@@ -53,11 +48,6 @@
     "domain": "https://proxer.me",
     "type": "anime",
     "name": "Proxer"
-  },
-  {
-    "domain": "https://www.wakanim.tv",
-    "type": "anime",
-    "name": "Wakanim"
   },
   {
     "domain": "http://app.emby.media",
@@ -305,7 +295,7 @@
     "name": "ManhuaPlus"
   },
   {
-    "domain": "https://readm.org",
+    "domain": "https://readm.today",
     "type": "manga",
     "name": "Readm"
   },
@@ -345,12 +335,12 @@
     "name": "Jellyfin"
   },
   {
-    "domain": "https://an1me.nl",
+    "domain": "https://an1me.to",
     "type": "anime",
     "name": "An1me"
   },
   {
-    "domain": "https://mangajar.com",
+    "domain": "https://mangajar.pro",
     "type": "manga",
     "name": "MangaJar"
   },
@@ -400,7 +390,7 @@
     "name": "MangaHub"
   },
   {
-    "domain": "https://comick.app",
+    "domain": "https://comick.io",
     "type": "manga",
     "name": "ComicK"
   },
@@ -435,9 +425,9 @@
     "name": "ImmortalUpdates"
   },
   {
-    "domain": "https://aniwatch.to",
+    "domain": "https://hianime.to",
     "type": "anime",
-    "name": "AniWatch"
+    "name": "HiAnime"
   },
   {
     "domain": "https://www.funimation.com",
@@ -485,7 +475,7 @@
     "name": "BetterAnime"
   },
   {
-    "domain": "https://www.bilibilicomics.com",
+    "domain": "https://manga.bilibili.com",
     "type": "manga",
     "name": "BilibiliComics"
   },
@@ -648,5 +638,20 @@
     "domain": "https://witanime.pics",
     "type": "anime",
     "name": "WitAnime"
+  },
+  {
+    "domain": "https://suwayomi-webui-preview.github.io/",
+    "type": "manga",
+    "name": "Suwayomi"
+  },
+  {
+    "domain": "https://manhuaus.com",
+    "type": "manga",
+    "name": "ManhuaUS"
+  },
+  {
+    "domain": "https://taiyo.moe",
+    "type": "manga",
+    "name": "Taiyo"
   }
 ]
