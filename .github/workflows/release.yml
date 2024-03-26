@@ -169,6 +169,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ${{ steps.find_first_xpi.outputs.xpi_file }
+        asset_path: ${{ steps.find_first_xpi.outputs.xpi_file }}
         asset_name: ${{ steps.find_first_xpi.outputs.xpi_filename }}
         asset_content_type: application/zip
