@@ -100,6 +100,25 @@ jobs:
         client-id: ${{ secrets.DEV_CHROME_CLIENT_ID }}
         client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
         refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
+
+  edge:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+    - name: Pack
+      run: |
+        npm run package
     - name: Deploy Edge
       uses: wdzeng/edge-addon@v1
       with:
