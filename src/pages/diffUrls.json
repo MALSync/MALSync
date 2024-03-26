@@ -245,13 +245,26 @@
     ]
   },
   "0.9.7": {
+    "ADN": [
+      "https://animationdigitalnetwork.de/*"
+    ],
+    "An1me": [
+      "https://an1me.to/*"
+    ],
     "AnimeFire": [
       "https://animefire.plus/*"
+    ],
+    "Animeflix": [
+      "https://animeflix.icu/*",
+      "https://animeflix.ro/*"
     ],
     "Anix": [
       "https://www1.anix.to/anime/*",
       "https://anix.ac/anime/*",
       "https://anix.vc/anime/*"
+    ],
+    "BilibiliComics": [
+      "https://manga.bilibili.com/*"
     ],
     "ComicK": [
       "https://comick.ink/*",
@@ -265,6 +278,9 @@
     "KickAssAnime": [
       "https://kickassanimes.io/*",
       "https://kickassanime.mx/*"
+    ],
+    "MangaJar": [
+      "https://mangajar.pro/manga/*"
     ],
     "MangaNato": [
       "https://chapmanganato.to/*"
