@@ -21,6 +21,13 @@ const themeConfig = () => {
 
   if (rootHtml.getAttribute('mode') === 'install') conf.theme = 'installTheme';
 
+  if (conf.theme && conf.theme === 'auto') {
+    const now = new Date();
+    if (now.getMonth() === 3 && now.getDate() === 1) {
+      conf.theme = 'bestTheme';
+    }
+  }
+
   if (conf.theme && !['dark', 'light', 'auto', 'custom'].includes(conf.theme)) {
     conf.predefined = getThemeByKey(conf.theme);
     if (conf.predefined && conf.predefined.overrides) {
@@ -40,6 +47,8 @@ const hslColor = computed(() => hexToHsl(themeConfig().color));
 const classes = computed(() => {
   const cl: string[] = [];
   const config = themeConfig();
+
+  cl.push(`theme-${config.theme}`);
 
   if (!config.sidebars) cl.push('no-sidebar');
 
