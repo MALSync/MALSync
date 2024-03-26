@@ -918,7 +918,7 @@
         "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
     },
     "settings_presence_largeimage_cover": {
-        "message": "Image couverture",
+        "message": "Image de couverture",
         "description": "Dropdown option to show the cover from mal on discord"
     },
     "settings_presence_largeimage_website": {
@@ -926,7 +926,7 @@
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
-        "message": "Icône de Malsync",
+        "message": "Icône de MAL-Sync",
         "description": "Dropdown option to show the malsync icon on discord"
     },
     "settings_enabled": {
