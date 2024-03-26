@@ -106,7 +106,7 @@
     "@popperjs/core": "^2.11.8",
     "@types/chrome": "0.0.263",
     "@vue/eslint-config-typescript": "^13.0.0",
-    "dexie": "^3.2.7",
+    "dexie": "^4.0.1",
     "dompurify": "^3.0.11",
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.5",
