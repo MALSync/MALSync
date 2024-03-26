@@ -1,0 +1,27 @@
+{
+  "title": "Taiyo",
+  "url": "https://taiyo.moe/",
+  "testCases": [
+    {
+      "url": "https://www.taiyo.moe/media/3cec0768-c247-468c-97fe-76e9a556d6ee",
+      "expected": {
+        "sync": false,
+        "title": "One Piece",
+        "identifier": "3cec0768-c247-468c-97fe-76e9a556d6ee",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://www.taiyo.moe/chapter/53c2811f-0ad0-4630-a1cc-2c6b18d949d6/1",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "3cec0768-c247-468c-97fe-76e9a556d6ee",
+        "overviewUrl": "https://taiyo.moe/media/3cec0768-c247-468c-97fe-76e9a556d6ee",
+        "episode": 1102,
+        "nextEpUrl": "https://www.taiyo.moe/chapter/e86f8bac-2abe-4a64-9eeb-254003dda8cd/1",
+        "uiSelector": false
+      }
+    }
+  ]
+}

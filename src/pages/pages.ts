@@ -128,6 +128,7 @@ import { hachi } from './hachi/main';
 import { WitAnime } from './WitAnime/main';
 import { Suwayomi } from './Suwayomi/main';
 import { ManhuaUS } from './ManhuaUS/main';
+import { Taiyo } from './Taiyo/main';
 
 export const pages = {
   nineAnime,
@@ -260,4 +261,5 @@ export const pages = {
   WitAnime,
   Suwayomi,
   ManhuaUS,
+  Taiyo,
 };
