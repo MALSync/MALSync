@@ -49,3 +49,4 @@ src/utils/quicklinks.json
 
 # IDE
 .idea
+src/pages/list.json
