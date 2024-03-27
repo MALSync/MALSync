@@ -751,10 +751,6 @@
         "message": "Schließe miniMAL beim Klick außerhalb",
         "description": "Clicking outside closes miniMAL"
     },
-    "settings_miniMAL_Display": {
-        "message": "",
-        "description": "Display to the"
-    },
     "settings_miniMAL_popup": {
         "message": "Erweiterungs-Popup",
         "description": "Header of the settings section for the extension popup"
