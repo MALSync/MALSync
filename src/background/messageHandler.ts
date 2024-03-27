@@ -7,8 +7,8 @@ import {
   videoTimeSet,
   xhrI,
 } from '../api/messageInterface';
-import { databaseRequest } from '../background/database';
-import { sendNotification } from '../background/notifications';
+import { databaseRequest } from './database';
+import { sendNotification } from './notifications';
 
 export function initMessageHandler() {
   chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse) => {

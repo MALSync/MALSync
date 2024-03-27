@@ -10,7 +10,7 @@ import { initDatabase } from '../background/database';
 import { listSyncInit } from '../background/listSync';
 import { initProgressScheduler } from '../background/releaseProgress';
 import { initSyncTags } from '../background/syncTags';
-import { initMessageHandler } from './messageHandler';
+import { initMessageHandler } from '../background/messageHandler';
 
 try {
   initMessageHandler();
