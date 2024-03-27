@@ -2,7 +2,6 @@
  * TODO:
  * 429 Handling
  * Custom Domains
- * Install and update routines
  * webRequest.onBeforeSendHeaders
  */
 
@@ -11,6 +10,7 @@ import { listSyncInit } from '../background/listSync';
 import { initProgressScheduler } from '../background/releaseProgress';
 import { initSyncTags } from '../background/syncTags';
 import { initMessageHandler } from '../background/messageHandler';
+import { upgradewWizzards } from '../background/upgradeWizzards';
 
 try {
   initMessageHandler();
@@ -57,4 +57,15 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
     },
   );
   return true;
+});
+
+chrome.runtime.onInstalled.addListener(async function (details) {
+  if (details.reason === 'install') {
+    chrome.tabs.create({ url: chrome.extension.getURL('install.html') }, function (tab) {
+      con.info('Open installPage');
+    });
+  } else if (details.reason === 'update') {
+    upgradewWizzards(details.previousVersion).finally(() => cleanupCustomDomains());
+  }
+  chrome.alarms.clearAll();
 });
