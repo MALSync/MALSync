@@ -1534,5 +1534,9 @@
     "settings_AskBefore": {
         "message": "Zeige \"Abeschlossen\"-Bestätigungsdialog bei Start der Episode/des Kapitel",
         "description": "Option to not show the 'completed' message during the episode"
+    },
+    "settings_miniMAL_Display": {
+        "message": "Position",
+        "description": "Display to the"
     }
 }
