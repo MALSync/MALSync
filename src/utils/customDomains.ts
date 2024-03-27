@@ -112,7 +112,7 @@ export async function requestPermissions(permissions: domainType[]) {
     con.m('Request Permissions').log(getOrigins(permissions));
     chrome.permissions.request(
       {
-        permissions: ['webNavigation'],
+        permissions: ['scripting'],
         origins: getOrigins(permissions),
       },
       granted => {
@@ -132,7 +132,7 @@ export async function checkPermissions(permissions: domainType[]): Promise<boole
   return new Promise(resolve => {
     chrome.permissions.contains(
       {
-        permissions: ['webNavigation'],
+        permissions: ['scripting'],
         origins: getOrigins(permissions),
       },
       result => {

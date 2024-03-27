@@ -158,6 +158,9 @@ const generateManifest = () => {
       'webRequestBlocking',
       'notifications',
     ],
+    "optional_permissions": [
+      "scripting",
+    ],
     host_permissions: [
       ...httpPermissionsJson,
     ],
