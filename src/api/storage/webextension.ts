@@ -83,6 +83,18 @@ export const webextension: storageInterface = {
     return chrome.i18n.getMessage(selector, args);
   },
 
+  langDirection() {
+    try {
+      const lang = chrome.i18n.getUILanguage();
+      if (/^(ar)(-|$)/i.test(lang) && !api.settings.get('forceEn')) {
+        return 'rtl';
+      }
+    } catch (error) {
+      con.error(error);
+    }
+    return 'ltr';
+  },
+
   assetUrl(filename) {
     return chrome.extension.getURL(`assets/${filename}`);
   },

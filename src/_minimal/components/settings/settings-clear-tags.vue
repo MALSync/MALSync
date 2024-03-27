@@ -2,7 +2,7 @@
   <Card class="clear-tags">
     <Header :spacer="true">This script removes all malsync::xxxxx:: from your list.</Header>
     <FormButton v-if="!running" color="primary" @click="cleanTags()"
-      >Clean Up Mal-Sync Tags</FormButton
+      >Clean Up MAL-Sync Tags</FormButton
     >
     <div v-else-if="!done">
       <Section spacer="half">

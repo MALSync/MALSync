@@ -47,46 +47,13 @@ export const AnimeId: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        const url = window.location.href;
-        document.body.insertAdjacentHTML(
-          'afterbegin',
-          '<div id="MALSync" class="MALSync" style="display: none;"><ul id="MALSyncUl" class="MALSyncUl"></ul></div>',
-        );
-        const idMALSync = document.getElementById('MALSyncUl');
-
-        let lastEpi: HTMLElement | string | null = j.$(`section#capitulos li a`)[0];
-        if (lastEpi) {
-          lastEpi = lastEpi.getAttribute('href');
-          const numLastEpi = lastEpi!.split(`-`).pop();
-          if (numLastEpi !== undefined) {
-            for (let x = 1; x < Number.parseInt(numLastEpi) + 1; x++) {
-              if (idMALSync !== null) {
-                idMALSync.innerHTML += j.html(
-                  `<li><a href="${AnimeId.domain}/v/${utils.urlPart(
-                    url,
-                    3,
-                  )}-${x}" epi="${x}"></a> </li>`,
-                );
-              }
-            }
-          }
-        }
-        return j.$('.MALSync a');
+        return j.$(`section#capitulos li a`);
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), AnimeId.domain);
       },
       elementEp(selector) {
-        return Number(selector.attr('epi'));
-      },
-      handleListHook(epi, epilist) {
-        epi++;
-        if (epilist.length - 1 >= epi) {
-          const epiAct = `<li><a href="${epilist[
-            epi
-          ][0].toString()}"><strong>Capítulo ${epi}</strong><small class="right">Siguiente Episodio</small></li><li></li>`;
-          j.$('#listado').prepend(j.html(epiAct));
-        }
+        return Number(selector.find('strong').text().replace('Capítulo ', ''));
       },
     },
   },

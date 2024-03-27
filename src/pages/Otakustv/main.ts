@@ -67,10 +67,10 @@ export const Otakustv: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.episodios-bottom .row > div');
+        return j.$('.tab-content .row h1 a');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a').first().attr('href'), Otakustv.domain);
+        return utils.absoluteLink(selector.attr('href'), Otakustv.domain);
       },
       elementEp(selector) {
         return getEpisode(Otakustv.overview!.list!.elementUrl!(selector));

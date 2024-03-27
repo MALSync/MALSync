@@ -1,6 +1,0 @@
-{
-    "search": "https://pactedanime.com/?s={searchtermPlus}",
-    "urls": {
-      "match": ["*://pactedanime.com/*"]
-    }
-  }

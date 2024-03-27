@@ -29,12 +29,24 @@ export const MangaPlus: pageInterface = {
       );
     },
     getEpisode(url) {
-      const episodeText = j.$('p.Navigation-module_chapterTitle_20juD').first().text();
-
-      if (!episodeText) return NaN;
-
-      return Number(episodeText.replace(/[^\d.]+/g, ''));
+      return getEpisode(j.$('p.Navigation-module_chapterTitle_20juD').first().text());
     },
+    readerConfig: [
+      {
+        current: {
+          mode: 'text',
+          selector: '[class*="Viewer-module_pageNumber"]',
+          regex: '(\\d+) /',
+          group: 1,
+        },
+        total: {
+          mode: 'text',
+          selector: '[class*="Viewer-module_pageNumber"]',
+          regex: '/ (\\d+)',
+          group: 1,
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {
@@ -44,7 +56,18 @@ export const MangaPlus: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.TitleDetail-module_flexContainer_1oGb4').first().before(j.html(selector));
+      j.$('[class*="TitleDetailHeader-module_overviewTitleWrapper"]')
+        .first()
+        .after(j.html(selector));
+    },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('[class*="ChapterListItem-module_chapterListItem"]');
+      },
+      elementEp(selector) {
+        return getEpisode(selector.find('[class*="ChapterListItem-module_name"]').first().text());
+      },
     },
   },
   init(page) {
@@ -88,3 +111,13 @@ export const MangaPlus: pageInterface = {
     });
   },
 };
+
+function getEpisode(episodeText: string) {
+  if (!episodeText) return NaN;
+
+  const temp = episodeText.match(/#(\d+)/i);
+
+  if (!temp) return NaN;
+
+  return Number(temp[1]);
+}

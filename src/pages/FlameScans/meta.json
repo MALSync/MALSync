@@ -1,6 +1,6 @@
 {
-  "search": "https://flamescans.org/?s={searchtermPlus}",
+  "search": "https://flamecomics.com/?s={searchtermPlus}",
   "urls": {
-    "match": ["*://flamescans.org/*"]
+    "match": ["*://flamecomics.com/*"]
   }
 }

@@ -213,10 +213,6 @@ describe('AniList overview', function() {
             "url": "https://www.netflix.com/title/80052669"
           },
           {
-            "text": "VRV",
-            "url": "https://vrv.co/series/G6ZJ48K4Y/No-Game-No-Life"
-          },
-          {
             "text": "CONtv",
             "url": "https://www.contv.com/details-movie/1323-19619-000/no-game-no-life"
           },

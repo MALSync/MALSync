@@ -3,7 +3,7 @@
   "url": "https://mangasee123.com",
   "testCases": [
     {
-      "url": "https://mangasee123.com/read-online/Martial-Peak-chapter-638-page-1.html",
+      "url": "https://mangasee123.com/read-online/Martial-Peak-chapter-638-index-2-page-1.html",
       "expected": {
         "sync": true,
         "title": "Martial Peak",
@@ -22,7 +22,7 @@
         "uiSelector": true,
         "epList": {
           "9": "https://mangasee123.com/read-online/Martial-Peak-chapter-9-page-1.html",
-          "425": "https://mangasee123.com/read-online/Martial-Peak-chapter-425-page-1.html"
+          "425": "https://mangasee123.com/read-online/Martial-Peak-chapter-425-index-2-page-1.html"
         }
       }
     }

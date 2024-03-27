@@ -4,7 +4,7 @@ let jsonData;
 
 export const ComicK: pageInterface = {
   name: 'ComicK',
-  domain: 'https://comick.app',
+  domain: 'https://comick.io',
   languages: ['Many'],
   type: 'manga',
   isSyncPage(url) {
@@ -36,6 +36,21 @@ export const ComicK: pageInterface = {
       return false;
     },
     readerConfig: [
+      {
+        condition: '.diagonal-fractions',
+        current: {
+          selector: '.diagonal-fractions',
+          mode: 'text',
+          regex: '(\\d+)/(\\d+)',
+          group: 1,
+        },
+        total: {
+          selector: '.diagonal-fractions',
+          mode: 'text',
+          regex: '(\\d+)/(\\d+)',
+          group: 2,
+        },
+      },
       {
         current: {
           selector: '#images-reader-container [id^="page"]',
@@ -87,6 +102,6 @@ export const ComicK: pageInterface = {
           page.handlePage();
         },
       );
-    });
+    }, true);
   },
 };

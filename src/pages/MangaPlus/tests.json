@@ -21,6 +21,39 @@
         "identifier": "100017",
         "uiSelector": true
       }
+    },
+    {
+      "url": "https://mangaplus.shueisha.co.jp/viewer/1018878",
+      "expected": {
+        "sync": true,
+        "title": "Choujin X",
+        "identifier": "100160",
+        "overviewUrl": "https://mangaplus.shueisha.co.jp/titles/100160",
+        "episode": 41,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangaplus.shueisha.co.jp/viewer/1018961",
+      "expected": {
+        "sync": true,
+        "title": "My Girlfriend Gives Me Goosebumps!",
+        "identifier": "100249",
+        "overviewUrl": "https://mangaplus.shueisha.co.jp/titles/100249",
+        "episode": 21,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangaplus.shueisha.co.jp/viewer/1007745",
+      "expected": {
+        "sync": true,
+        "title": "Hokkaido Gals Are Super Adorable!",
+        "identifier": "100116",
+        "overviewUrl": "https://mangaplus.shueisha.co.jp/titles/100116",
+        "episode": 0,
+        "uiSelector": false
+      }
     }
   ]
 }

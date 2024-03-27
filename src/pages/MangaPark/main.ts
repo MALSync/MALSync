@@ -70,26 +70,27 @@ export const MangaPark: pageInterface = {
     },
     readerConfig: [
       {
-        condition: '#__next',
+        condition: '[href^="?page="].btn-outline',
         current: {
-          selector: '.cursor-pointer.relative',
-          mode: 'countAbove',
+          selector: '[href^="?page="].btn-outline',
+          mode: 'text',
         },
         total: {
-          selector: '.cursor-pointer.relative > span:first-child',
+          selector: '[href^="?page="]:last-of-type',
           mode: 'text',
-          regex: '\\d+$',
         },
       },
       {
         current: {
-          selector: '#viewer .item',
+          selector: '[data-name="image-item"] img',
           mode: 'countAbove',
         },
         total: {
-          selector: '#viewer .page-num',
-          mode: 'text',
-          regex: '\\d+$',
+          selector: '[data-name="image-item"]:first-child [data-name="image-show"]',
+          mode: 'attr',
+          attribute: 'style',
+          regex: '(\\d+)<\\/text>',
+          group: 1,
         },
       },
     ],
@@ -110,7 +111,7 @@ export const MangaPark: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      if ($('#__next').length) {
+      if ($('#app-wrapper').length) {
         MangaPark.isSyncPage = version5.isSyncPage;
         MangaPark.isOverviewPage = version5.isOverviewPage;
         MangaPark.sync = version5.sync;

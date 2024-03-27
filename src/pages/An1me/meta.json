@@ -1,6 +1,6 @@
 {
-  "search": "https://an1me.nl/?s={searchtermPlus}&post_type=wp-manga",
+  "search": "https://an1me.to/?s={searchtermPlus}&post_type=wp-manga",
   "urls": {
-    "match": ["*://an1me.nl/*"]
+    "match": ["*://an1me.nl/*", "*://an1me.to/*"]
   }
 }

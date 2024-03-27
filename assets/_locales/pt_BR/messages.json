@@ -394,11 +394,11 @@
         "description": "Hour"
     },
     "bookmarksItem_mins": {
-        "message": "min",
+        "message": "minutos",
         "description": "mins"
     },
     "bookmarksItem_min": {
-        "message": "min",
+        "message": "minuto",
         "description": "min"
     },
     "bookmarksItem_secs": {
@@ -974,7 +974,7 @@
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     },
     "updateCheck_Refresh": {
-        "message": "Atualizar",
+        "message": "Renovar",
         "description": "Refresh"
     },
     "updateCheck_StartCheck": {
@@ -1030,7 +1030,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "A sincronização com o banco de dados acontece apenas quando você abre um episódio ou capítulo em qualquer $Link1$página suportada$LinkEnd1$ — não se preocupe, nós definitivamente temos seu website favorito na lista!",
+        "message": "A sincronização com o banco de dados só acontece quando você abre um episódio ou capítulo em qualquer uma $Link1$ das páginas suportadas$LinkEnd1$ — não se preocupe, com certeza temos seu site favorito na lista!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -1052,7 +1052,7 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Aprenda como consertar a entrada errada no MAL",
+        "message": "Como corrigir um anime ou mangá detectado incorretamente",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
@@ -1240,7 +1240,7 @@
         "description": "Header of the section to change onsite website appearance and features"
     },
     "settings_theming": {
-        "message": "Tema",
+        "message": "Temas",
         "description": "Header of the theming section"
     },
     "settings_theming_sidebars": {
@@ -1276,7 +1276,7 @@
         "description": "Asking to allow missing domain permissions"
     },
     "settings_custom_domains_disclaimer": {
-        "message": "Por favor use apenas se souber o que está fazendo!",
+        "message": "Esse recurso permite adicionar domínios personalizados a sites existentes para lidar com alterações de domínio e fontes auto-hospedadas, mas não pode adicionar novos sites.",
         "description": "Text on the custom domain configuration page"
     },
     "settings_custom_domains_wrong": {
@@ -1454,6 +1454,72 @@
             "Page": {
                 "content": "$1",
                 "example": "MyAnimeList"
+            }
+        }
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Permite atualizar rapidamente sua contagem de episódios, classificação e status na AniList sem precisar abrir a sobreposição.",
+        "description": "Tooltip for the Update UI option"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Torna o indicador de progresso (na parte inferior da tela) transparente por padrão e faz com que ele se oculte mais rapidamente",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "Notificações fixas",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
+    "list_sorting_airing_date": {
+        "message": "Data de exibição",
+        "description": "Dropdown option to sort list by airing date"
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "A sincronização espera até que 85% do vídeo seja assistido.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "A sincronização ocorre no carregamento da página e, em algumas páginas, ela aguarda até que 80% do capítulo seja lido.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "A sincronização pode ser configurada posteriormente nas configurações - fique à vontade para personalizá-la do seu jeito!",
+        "description": "The synchronization settings can be changed later"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "Os links rápidos, basicamente, são botões que abrem o site de reprodução/leitura de sua preferência - eles estarão localizados em todas as páginas de resumo de qualquer anime/mangá.",
+        "description": "paragraph one of the description"
+    },
+    "overview_synonyms": {
+        "message": "Sinônimos",
+        "description": "Text of a button that shows the alternative names for an entry"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "Minimiza as grandes notificações de prompt no MAL-Sync, que cobririam a maior parte da tela, com um clique.",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "O navegador ou a janela atual não suporta a adição de permissões. Tente novamente com a URL https://malsync.moe/pwa ou use o pop-up de extensão.",
+        "description": "Text that is shown when the browser does not support adding new permissions"
+    },
+    "installPage_Start_Description": {
+        "message": "Vamos fazer um tutorial simples para você começar - leva menos de um minuto!",
+        "description": "Start description text"
+    },
+    "installPage_Links": {
+        "message": "Escolha os seus links preferidos - seus sites favoritos a um clique de distância",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "installPage_Description_paragraph2": {
+        "message": "Por exemplo, se você gosta de assistir anime no Crunchyroll, então a Crunchyroll aparecerá em todas as páginas de anime. É uma maneira conveniente de acessar seus sites favoritos com apenas um clique!",
+        "description": "paragraph two of the description"
+    },
+    "installPage_Login_Successful": {
+        "message": "Fantástico, $Username$! Agora você está autenticado e pronto para começar.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
             }
         }
     }

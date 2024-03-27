@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const KickAssAnime: pageInterface = {
   name: 'KickAssAnime',
-  domain: 'https://kaas.am',
+  domain: ['https://kickassanime.am', 'https://kaas.am'],
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
@@ -13,7 +13,7 @@ export const KickAssAnime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return $('.v-card__title > span').first().text();
+      return $('h1').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
@@ -22,7 +22,7 @@ export const KickAssAnime: pageInterface = {
       return `${KickAssAnime.domain}/${KickAssAnime.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      const epText = $('.v-card__title > .text-overline').first().text();
+      const epText = $('.v-card__title .text-overline').first().text();
 
       const epParts = epText.match(/episode (\d+)/im);
 

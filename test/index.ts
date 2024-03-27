@@ -1,5 +1,6 @@
 import { pages as part1 } from '../src/pages/pages';
 import { pages as part2 } from '../src/pages-adult/pages';
+import { getPageConfig } from '../src/utils/test';
 
 const pages = { ...part1, ...part2 };
 
@@ -7,7 +8,10 @@ const pages = { ...part1, ...part2 };
 window.MalSyncTest = async function() {
   const value: any = {};
 
-  const page = getPage(window.location.href);
+  const page = getPageConfig(window.location.href, pages);
+
+  console.log('page Found', page);
+
   if (!page) {
     return 'Page Not Found';
   }
@@ -42,7 +46,7 @@ window.MalSyncTest = async function() {
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }
-        } else {
+        } else if (!page.isOverviewPage || page.isOverviewPage(window.location.href)) {
           value.sync = false;
           value.title = page.overview.getTitle(window.location.href);
           value.identifier = page.overview.getIdentifier(window.location.href);
@@ -52,6 +56,9 @@ window.MalSyncTest = async function() {
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }
+        } else {
+          reject('Not an overview or sync page');
+          return;
         }
 
         if (
@@ -75,6 +82,7 @@ window.MalSyncTest = async function() {
             value.epList = elementArray;
           }
         }
+        console.log('result', value);
         resolve(value);
       },
       cdn(type) {
@@ -100,40 +108,4 @@ function testForCloudflare() {
     return true;
   }
   return false;
-}
-
-function getPage(url) {
-  for (const key in pages) {
-    const page = pages[key];
-    if (j.$.isArray(page.domain)) {
-      var resPage;
-      page.domain.forEach(singleDomain => {
-        if (checkDomain(singleDomain)) {
-          page.domain = singleDomain;
-          resPage = page;
-        }
-      });
-      if(resPage) return resPage;
-    } else if (checkDomain(page.domain)) {
-      return page;
-    }
-
-    function checkDomain(domain) {
-      if (
-        url.indexOf(
-          `${
-            utils
-              .urlPart(domain, 2)
-              .replace('.com.br', '.br')
-              .split('.')
-              .slice(-2, -1)[0]
-          }.`,
-        ) > -1
-      ) {
-        return true;
-      }
-      return false;
-    }
-  }
-  return null;
 }

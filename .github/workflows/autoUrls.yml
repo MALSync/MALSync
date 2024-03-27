@@ -14,18 +14,22 @@ jobs:
       with:
         ref: master
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
-        node-version: '16.x'
+        node-version: '20.x'
 
     - name: Build
       run: npm install
 
     - name: Run
       run: npm run build:autoUrls
+      env:
+        CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v5
+      uses: peter-evans/create-pull-request@v6
       with:
         commit-message: Auto Urls
         branch: auto-urls

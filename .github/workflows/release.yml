@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
-        node-version: '16.x'
+        node-version: '20.x'
     - name: Build
       run: |
         npm ci
@@ -39,9 +39,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
-        node-version: '16.x'
+        node-version: '20.x'
     - name: Build
       run: |
         npm ci
@@ -78,9 +78,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
-        node-version: '16.x'
+        node-version: '20.x'
     - name: Build
       run: |
         npm ci
@@ -92,7 +92,7 @@ jobs:
     - name: Pack
       run: |
         npm run package
-    - name: Deploy
+    - name: Deploy Chrome
       uses: trmcnvn/chrome-addon@v2
       with:
         extension: kekjfbackdeiabghhcdklcdoekaanoel
@@ -101,13 +101,40 @@ jobs:
         client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
         refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
 
+  edge:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+    - name: Pack
+      run: |
+        npm run package
+    - name: Deploy Edge
+      uses: wdzeng/edge-addon@v1
+      with:
+        product-id: ${{ secrets.EDGE_PRODUCT_ID }}
+        zip-path: dist/webextension.zip
+        client-id: ${{ secrets.EDGE_CLIENT_ID }}
+        client-secret: ${{ secrets.EDGE_CLIENT_SECRET }}
+        access-token-url: ${{ secrets.EDGE_ACCESS_TOKEN_URL }}
+
   firefox:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
-        node-version: '16.x'
+        node-version: '20.x'
     - name: Build
       run: |
         npm ci
@@ -127,3 +154,21 @@ jobs:
         SIGN_KEY: ${{ secrets.SIGN_KEY }}
         SIGN_SECRET: ${{ secrets.SIGN_SECRET }}
         SIGN_ID: ${{ secrets.SIGN_ID }}
+
+    - name: Find first .xpi file
+      id: find_first_xpi
+      run: |
+        FILE=$(ls ./web-ext-artifacts/*.xpi | head -n 1)
+        BASENAME=$(basename "$FILE")
+        echo "xpi_file=$FILE" >> $GITHUB_OUTPUT
+        echo "xpi_filename=$BASENAME" >> $GITHUB_OUTPUT
+
+    - name: Upload .xpi file
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ${{ steps.find_first_xpi.outputs.xpi_file }}
+        asset_name: ${{ steps.find_first_xpi.outputs.xpi_filename }}
+        asset_content_type: application/zip

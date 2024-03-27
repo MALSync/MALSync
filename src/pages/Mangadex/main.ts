@@ -99,7 +99,7 @@ export const Mangadex: pageInterface = {
           regex: '\\d+$',
         },
         total: {
-          selector: '.md--progress-page:last-child',
+          selector: '.md--progress-page:last-child > *:last-child',
           mode: 'text',
           regex: '\\d+$',
         },

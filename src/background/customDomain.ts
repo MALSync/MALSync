@@ -39,6 +39,21 @@ function clearListener() {
   listenerArray = [];
 }
 
+function loadScriptPromise(tabId, frameId, file) {
+  return new Promise((resolve, reject) => {
+    chrome.tabs.executeScript(
+      tabId,
+      {
+        file,
+        frameId,
+      },
+      res => {
+        resolve(res);
+      },
+    );
+  });
+}
+
 function singleListener(domainConfig: domainType) {
   const callback = async data => {
     logger.m('Navigation').log(domainConfig, data);
@@ -47,39 +62,18 @@ function singleListener(domainConfig: domainType) {
         logger.m('Navigation').log('Do not inject iframe on root page');
         return;
       }
-      await chrome.tabs.executeScript(data.tabId, {
-        file: 'vendor/jquery.min.js',
-        frameId: data.frameId,
-      });
-      await chrome.tabs.executeScript(data.tabId, {
-        file: 'i18n.js',
-        frameId: data.frameId,
-      });
-      await chrome.tabs.executeScript(data.tabId, {
-        file: 'content/iframe.js',
-        frameId: data.frameId,
-      });
+      await loadScriptPromise(data.tabId, data.frameId, 'vendor/jquery.min.js');
+      await loadScriptPromise(data.tabId, data.frameId, 'i18n.js');
+      await loadScriptPromise(data.tabId, data.frameId, 'content/iframe.js');
     } else {
       if (data.frameId) {
         logger.m('Navigation').log('Do not inject page scripts in Iframe');
         return;
       }
-      await chrome.tabs.executeScript(data.tabId, {
-        file: 'vendor/jquery.min.js',
-        frameId: data.frameId,
-      });
-      await chrome.tabs.executeScript(data.tabId, {
-        file: 'i18n.js',
-        frameId: data.frameId,
-      });
-      await chrome.tabs.executeScript(data.tabId, {
-        file: `content/page_${domainConfig.page}.js`,
-        frameId: data.frameId,
-      });
-      await chrome.tabs.executeScript(data.tabId, {
-        file: 'content/content-script.js',
-        frameId: data.frameId,
-      });
+      await loadScriptPromise(data.tabId, data.frameId, 'vendor/jquery.min.js');
+      await loadScriptPromise(data.tabId, data.frameId, 'i18n.js');
+      await loadScriptPromise(data.tabId, data.frameId, `content/page_${domainConfig.page}.js`);
+      await loadScriptPromise(data.tabId, data.frameId, 'content/content-script.js');
     }
   };
   listenerArray.push(callback);

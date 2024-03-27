@@ -51,57 +51,13 @@ export const Animeflv: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        const url = window.location.href;
-        document.body.insertAdjacentHTML(
-          'afterbegin',
-          '<div id="MALSync" class="MALSync" style="display: none;"><ul id="MALSyncUl" class="MALSyncUl"></ul></div>',
-        );
-        const idMALSync = document.getElementById('MALSyncUl');
-        const patron = /<script>\s\s {3}var([^]*?)<\/script>/g;
-        const html = document.body.innerHTML;
-        let scriptEps = patron.exec(html);
-        if (scriptEps !== null) {
-          // @ts-ignore
-          scriptEps = scriptEps[1] || null;
-          if (scriptEps !== null) {
-            // @ts-ignore
-            const patron2 = /\[([^[\]]{0,10},{0,10})\]/g;
-            // @ts-ignore
-            const eps = scriptEps.toString().match(patron2);
-            if (eps !== null) {
-              // @ts-ignore
-              eps.forEach(element => {
-                if (idMALSync !== null) {
-                  const Url = `${Animeflv.domain}/ver/${utils.urlPart(url, 4)}-${element
-                    .split(',')[0]
-                    .replace('[', '')}`;
-                  const Episodio = element.split(',')[0].replace('[', '');
-                  idMALSync.innerHTML += j.html(
-                    `<li><a href="${Url}" epi="${Episodio}"></a> </li>`,
-                  );
-                }
-              });
-            }
-          }
-        }
-        return j.$('.MALSync a');
+        return j.$('#episodeList li:not(.Next)');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), Animeflv.domain);
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Animeflv.domain);
       },
       elementEp(selector) {
-        return Number(selector.attr('epi'));
-      },
-      handleListHook(epi, epilist) {
-        epi++;
-        if (epilist.length - 1 >= epi) {
-          const cover = j.$('.AnimeCover img').attr('src');
-          const name = j.$('.Container h2').text();
-          const epiAct = `<li class="fa-play-circle Next"><a href="${epilist[
-            epi
-          ][0].toString()}"><figure><img src="${cover}" alt=""></figure><h3 class="Title">${name}</h3><p>Episodio ${epi}</p><span style="position: absolute; top: 0; bottom: 0; margin: auto; right: 20px; line-height: 30px; font-size: 16px; font-weight: 700; height: 30px;">Siguiente Episodio</span></a></li>`;
-          j.$('.Main .ListCaps').prepend(j.html(epiAct));
-        }
+        return Number(selector.find('p').text().replace('Episodio ', '').trim());
       },
     },
   },

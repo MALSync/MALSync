@@ -11,6 +11,7 @@ import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
 import { hasMissingPermissions } from '../utils/customDomains';
 import { localStore } from '../utils/localStore';
 import { MangaProgress } from '../utils/mangaProgress/MangaProgress';
+import { getPageConfig } from '../utils/test';
 
 declare let browser: any;
 
@@ -100,33 +101,7 @@ export class SyncPage {
 
   private getPage(url) {
     if (this.pages.type) return this.pages;
-    for (const key in this.pages) {
-      const page = this.pages[key];
-      if (j.$.isArray(page.domain)) {
-        let resPage;
-        page.domain.forEach(singleDomain => {
-          if (checkDomain(singleDomain)) {
-            page.domain = singleDomain;
-            resPage = page;
-          }
-        });
-        if (resPage) return resPage;
-      } else if (checkDomain(page.domain)) {
-        return page;
-      }
-
-      function checkDomain(domain) {
-        if (
-          url.indexOf(
-            `${utils.urlPart(domain, 2).replace('.com.br', '.br').split('.').slice(-2, -1)[0]}.`,
-          ) > -1
-        ) {
-          return true;
-        }
-        return false;
-      }
-    }
-    return null;
+    return getPageConfig(url, this.pages);
   }
 
   private domainSet() {
@@ -468,6 +443,7 @@ export class SyncPage {
         }
 
         if (await this.singleObj.checkSync(state.episode, state.volume)) {
+          await this.singleObj.lifeCycleHook('afterCheckSync');
           if (!(this.strongVolumes && !state.episode)) this.singleObj.setEpisode(state.episode);
           this.singleObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
 
@@ -620,7 +596,8 @@ export class SyncPage {
     }
   }
 
-  protected sync(state) {
+  protected async sync(state) {
+    await this.singleObj.lifeCycleHook('beforeSync');
     this.singleObj.setResumeWatching(this.url, state.episode);
     if (typeof this.page.sync.nextEpUrl !== 'undefined') {
       const continueWatching = this.page.sync.nextEpUrl(this.url);
@@ -1071,7 +1048,7 @@ export class SyncPage {
     this.UILoaded = true;
     const wrapEnd = '</span>';
 
-    let ui = '<p id="malp">';
+    let ui = `<p id="malp" dir="${api.storage.langDirection()}">`;
     ui += `<span id="MalInfo">${api.storage.lang('Loading')}</span>`;
 
     ui +=

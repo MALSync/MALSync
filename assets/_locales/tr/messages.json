@@ -844,7 +844,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "Veritabanı ile senkronizayon sadece $Link1$desteklenen sitelerden$LinkEnd1$ bölüm açtığınızda gerçekleşir - merak etmeyin, yüksek ihtimal favori siteniz listemizde vardır!",
+        "message": "Veritabanı ile senkronizasyon yalnızca $Link1$destekli sayfalardan$LinkEnd1$ herhangi birinde bir bölüm veya kısım açtığınızda gerçekleşir - endişelenmeyin, favori web sitenizi kesinlikle listeye aldık!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -866,7 +866,7 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Yanlış MAL girdisini nasıl düzeltebileceğinizi öğrenin",
+        "message": "Yanlış olduğunu düşündüğünüz bir anime veya manga nasıl düzeltebilirsiniz",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
@@ -1032,7 +1032,7 @@
         }
     },
     "prediction_next": {
-        "message": "Yeni $time$ 'da",
+        "message": "Yeni Bölüm $time$ 'da",
         "description": "Short Form Text for next episode/episode estimation",
         "placeholders": {
             "time": {
@@ -1244,7 +1244,7 @@
         "description": "Asking to allow missing domain permissions"
     },
     "settings_custom_domains_disclaimer": {
-        "message": "Lütfen ne yaptığınızı biliyorsanız kullanın!",
+        "message": "Bu özellik, alan adı değişikliklerini ve kendi kendine barındırılan kaynakları işlemek için mevcut sitelere özel alan adları eklemeye izin verir, ancak yeni siteler ekleyemez.",
         "description": "Text on the custom domain configuration page"
     },
     "settings_custom_domains_wrong": {
@@ -1322,5 +1322,205 @@
     "list_sorting_score": {
         "message": "Skor",
         "description": "Dropdown option to sort list by score"
+    },
+    "overview_sidebar_Score": {
+        "message": "Puan:",
+        "description": "Info table on overview - Score: 7.65"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "MAL Puanı:",
+        "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "Sıralama:",
+        "description": "Info table on overview - Ranked: #317"
+    },
+    "overview_sidebar_Status": {
+        "message": "Durum:",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Members": {
+        "message": "Üyeler:",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "Başlama Tarihi:",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "Bitiş Tarihi:",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "Kaynak:",
+        "description": "Info table on overview - Source: Light Novel"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "Ciltler:",
+        "description": "Info table on overview - Volumes: 12"
+    },
+    "overview_synonyms": {
+        "message": "Alternatifler",
+        "description": "Text of a button that shows the alternative names for an entry"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "Bölümler:",
+        "description": "Info table on overview - Episodes: 12"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "Cilt:",
+        "description": "Info table on overview - Chapters: 12"
+    },
+    "overview_sidebar_Season": {
+        "message": "Sezon:",
+        "description": "Info table on overview - Season: Spring 2014"
+    },
+    "overview_sidebar_Votes": {
+        "message": "Oylar:",
+        "description": "Info table on overview - Votes: 1423"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "Lisans sahibi:",
+        "description": "Info table on overview - Licensor: AT-X"
+    },
+    "overview_sidebar_Aired": {
+        "message": "Şu Tarihte Yayınlandı:",
+        "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
+    },
+    "overview_sidebar_Authors": {
+        "message": "Yazarlar:",
+        "description": "Info table on overview - Authors: Kamiya, Yuu"
+    },
+    "overview_sidebar_external_links": {
+        "message": "Harici Bağlantılar:",
+        "description": "Info table on overview - External Links: Official Site, Hulu"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Açılır pencereyi açmak zorunda kalmadan AniList'teki bölüm sayınızı, derecelendirmenizi ve durumunuzu hızlı bir şekilde güncellemenizi sağlar.",
+        "description": "Tooltip for the Update UI option"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "İlerleme göstergesini (ekranınızın altında) varsayılan olarak şeffaf hale getirir ve kendini daha hızlı gizlemesini sağlar",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "MAL-Sync'te ekranın çoğunu kaplayan büyük bilgi kutularını bir tıklamayla en aza indirir.",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "Yapışkan Bildirimler",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
+    "overview_sidebar_Genres": {
+        "message": "Tür:",
+        "description": "Info table on overview - Genres: Action"
+    },
+    "overview_sidebar_Format": {
+        "message": "Tür:",
+        "description": "Info table on overview - Format: Movie"
+    },
+    "overview_sidebar_Rating": {
+        "message": "Derecelendirme:",
+        "description": "Info table on overview - Rating: PG-13"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "Yayınlanma Tarihi:",
+        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+    },
+    "overview_sidebar_Studios": {
+        "message": "Stüdyo:",
+        "description": "Info table on overview - Studios: Madhouse"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "İsim",
+        "description": "Placeholder text the field that sets the custom url name"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "Popülarite:",
+        "description": "Info table on overview - Popularity: #15"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "Favoriler:",
+        "description": "Info table on overview - Favorites: 15423"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "Tarayıcı veya geçerli pencere uzantıya izin vermiyor , lütfen https://malsync.moe/pwa url'si ile tekrar deneyin veya uzantı açılır penceresini kullanın.",
+        "description": "Text that is shown when the browser does not support adding new permissions"
+    },
+    "overview_sidebar_Duration": {
+        "message": "Süre:",
+        "description": "Info table on overview - Duration: 23 min"
+    },
+    "installPage_Login_Successful": {
+        "message": "Harika, $Username$! Artık kimliğiniz doğrulandı ve gitmeye hazırsınız.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
+    },
+    "installPage_Howto_Notes": {
+        "message": "Senkronizasyon daha sonra ayarlardan yapılandırılabilir - istediğiniz şekilde özelleştirmekten çekinmeyin!",
+        "description": "The synchronization settings can be changed later"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "Hızlı bağlantılar, temel olarak, seçtiğiniz video/okuma sitesini açan düğmelerdir - herhangi bir anime/manga için her genel bakış sayfasında bulunurlar.",
+        "description": "paragraph one of the description"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "Toplam Oynatılma Sayısı:",
+        "description": "Info table on overview - Total Playtime: 276 mins"
+    },
+    "overview_sidebar_Serialization": {
+        "message": "Seri:",
+        "description": "Info table on overview - Serialization: Big Comic Original"
+    },
+    "installPage_Start_Description": {
+        "message": "Başlamak için basit bir görüşme yapalım - bir dakikadan az sürer!",
+        "description": "Start description text"
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "Senkronizasyon, videonun %85'i izlenince yapılır.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "Senkronizasyon sayfa yüklendiğinde gerçekleşir ve birkaç sayfa için bölümün %80'i okununca gerçekleşir.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Links": {
+        "message": "Tercih edilen hızlı bağlantıları seçin - favori siteleriniz tek tık uzağınızda",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "installPage_Description_paragraph2": {
+        "message": "Örneğin, Crunchyroll'da anime izlemeyi seviyorsanız, Crunchyroll'un hızlı bağlantısı her anime sayfasında görünecektir. Bu, favori sitelerinize tek bir tıklamayla erişmenin kolay bir yoludur!",
+        "description": "paragraph two of the description"
+    },
+    "list_sorting_airing_date": {
+        "message": "Yayın tarihi",
+        "description": "Dropdown option to sort list by airing date"
+    },
+    "next": {
+        "message": "Sonraki",
+        "description": "Next button"
+    },
+    "back": {
+        "message": "Geri",
+        "description": "Back button"
+    },
+    "start": {
+        "message": "Başlat",
+        "description": "Start button"
+    },
+    "Error_Blocked": {
+        "message": "IP'niz $Page$'de yasaklandı, IP'nizi değiştirin veya yasağın kalkmasını bekleyin. Geçici bir aksaklık olması da bunun bir nedeni olabilir.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
     }
 }

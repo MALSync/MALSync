@@ -1,29 +1,29 @@
 {
   "title": "Readm",
-  "url": "https://readm.org/",
+  "url": "https://readm.today/",
   "testCases": [
     {
-      "url": "https://readm.org/manga/16160/108/all-pages",
+      "url": "https://readm.today/manga/solo-leveling-30082023/108/all-pages",
       "expected": {
         "sync": true,
         "title": "Solo Leveling",
-        "identifier": "16160",
-        "overviewUrl": "https://readm.org/manga/16160",
-        "nextEpUrl": "https://readm.org/manga/16160/109/all-pages",
+        "identifier": "solo-leveling-30082023",
+        "overviewUrl": "https://readm.today/manga/solo-leveling-30082023",
+        "nextEpUrl": "https://readm.today/manga/solo-leveling-30082023/109/all-pages",
         "episode": 108,
         "uiSelector": false
       }
     },
     {
-      "url": "https://readm.org/manga/16160",
+      "url": "https://readm.today/manga/solo-leveling-30082023",
       "expected": {
         "sync": false,
         "title": "Solo Leveling",
-        "identifier": "16160",
+        "identifier": "solo-leveling-30082023",
         "uiSelector": true,
         "epList": {
-          "5": "https://readm.org/manga/16160/5/all-pages",
-          "108": "https://readm.org/manga/16160/108/all-pages"
+          "5": "https://readm.today/manga/solo-leveling-30082023/5/all-pages",
+          "108": "https://readm.today/manga/solo-leveling-30082023/108/all-pages"
         }
       }
     }

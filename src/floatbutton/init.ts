@@ -46,7 +46,7 @@ export function initFloatButton(page, floatClick) {
       additionalClasses += 'floatHide ';
     }
 
-    let floatbutton = `<button class="open-info-popup floatbutton ${additionalClasses}" style="">`;
+    let floatbutton = `<button dir="ltr" class="open-info-popup floatbutton ${additionalClasses}" style="">`;
 
     if (api.settings.get('floatButtonCorrection')) {
       floatbutton += `

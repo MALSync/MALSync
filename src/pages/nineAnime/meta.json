@@ -1,5 +1,5 @@
 {
-  "search": "https://9anime.to/filter?keyword={searchtermPlus}",
+  "search": "https://aniwave.to/filter?keyword={searchtermPlus}",
   "urls": {
     "match": [
       "*://*.9anime.to/watch/*",
@@ -49,7 +49,11 @@
       "*://*.aniwave.bz/watch/*",
       "*://*.aniwave.bz/watch2gether/*",
       "*://*.aniwave.ws/watch/*",
-      "*://*.aniwave.ws/watch2gether/*"
+      "*://*.aniwave.ws/watch2gether/*",
+      "*://*.aniwave.vc/watch/*",
+      "*://*.aniwave.vc/watch2gether/*",
+      "*://*.aniwave.li/watch/*",
+      "*://*.aniwave.li/watch2gether/*"
     ]
   }
 }

@@ -72,7 +72,7 @@ export const MangaHub: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('#noanim-content-tab div li');
+        return j.$('#chapters-tab .list-group-item');
       },
       elementUrl(selector) {
         return selector.find('a').first().attr('href') || '';

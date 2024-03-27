@@ -1,6 +1,6 @@
 {
-  "search": "https://www.bilibilicomics.com/search?keyword={searchterm( )[noLowercase]}",
+  "search": "https://manga.bilibili.com/search?keyword={searchterm( )[noLowercase]}",
   "urls": {
-    "match": ["*://*.bilibilicomics.com/*"]
+    "match": ["*://*.manga.bilibili.com/*"]
   }
 }

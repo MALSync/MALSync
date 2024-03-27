@@ -105,6 +105,15 @@ export const tracking: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'askBefore',
+    title: () => api.storage.lang('settings_AskBefore'),
+    props: {
+      component: 'checkbox',
+      option: 'askBefore',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'hr',
     title: '',
     component: SettingsHr,
@@ -207,7 +216,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'localSyncExport',
-    title: 'Local Sync Export',
+    title: () => api.storage.lang('settings_LocalSync_Label'),
     condition: () => api.settings.get('localSync'),
     component: SettingsLocalSyncExport,
   },

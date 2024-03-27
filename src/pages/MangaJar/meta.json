@@ -1,6 +1,6 @@
 {
-  "search": "https://mangajar.com/search?q={searchtermPlus}",
+  "search": "https://mangajar.pro/search?q={searchtermPlus}",
   "urls": {
-    "match": ["*://mangajar.com/manga/*"]
+    "match": ["*://mangajar.com/manga/*", "*://mangajar.pro/manga/*"]
   }
 }

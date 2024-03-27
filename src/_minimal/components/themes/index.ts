@@ -1,5 +1,6 @@
 import { nordtheme } from './nordtheme';
 import { installTheme } from './installTheme';
+import { bestTheme } from './bestTheme';
 
 export const themeOverrides = ['sidebars', 'image', 'opacity', 'color'] as const;
 
@@ -10,10 +11,10 @@ export type Theme = {
   overrides?: { [key in (typeof themeOverrides)[number]]?: any };
 };
 
-const themes: { [key: string]: Theme } = { nordtheme, installTheme };
+const themes: { [key: string]: Theme } = { nordtheme, installTheme, bestTheme };
 
 export const themeOptions = Object.keys(themes)
-  .filter(k => k !== 'installTheme')
+  .filter(k => k !== 'installTheme' && k !== 'bestTheme')
   .map(key => ({
     title: themes[key].name,
     value: key,

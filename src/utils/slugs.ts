@@ -12,7 +12,7 @@ const malRegex = /^https:\/\/myanimelist\.net\/(anime|manga)\/(\d+)(\/|$)/;
 const anilistRegex = /^https:\/\/anilist\.co\/(anime|manga)\/(\d+)(\/|$)/;
 const kitsuRegex = /^https:\/\/kitsu\.io\/(anime|manga)\/([^/]+)(\/|$)/;
 const simklRegex = /^https:\/\/simkl\.com\/(anime|manga)\/(\d+)(\/|$)/;
-const shikiRegex = /^https:\/\/shikimori\.me\/(animes|mangas|ranobe)\/\D?(\d+)/;
+const shikiRegex = /^https:\/\/shikimori\.one\/(animes|mangas|ranobe)\/\D?(\d+)/;
 const localRegex = /^local:\/\/([^/]+)\/(anime|manga)\/([^/]+)(\/|$)/;
 
 export function urlToSlug(url: string): slugObject {
@@ -92,7 +92,7 @@ export function pathToUrl(path: Path): string {
     return `https://simkl.com/${path.type}/${path.slug.substring(2)}`;
   }
   if (path.slug.startsWith('shi:')) {
-    return `https://shikimori.me/${path.type}s/${path.slug.substring(4)}`;
+    return `https://shikimori.one/${path.type}s/${path.slug.substring(4)}`;
   }
   if (path.slug.startsWith('l:')) {
     const match = path.slug.match(/^l:([^:]+)::([^:]+)$/);

@@ -1,5 +1,5 @@
 <template>
-  <div class="horizontal-scroller" :class="{ open, loading }" @click="open = !open">
+  <div class="horizontal-scroller" dir="ltr" :class="{ open, loading }" @click="open = !open">
     <slot v-if="!loading" />
     <div v-else class="loading-placeholder"></div>
   </div>

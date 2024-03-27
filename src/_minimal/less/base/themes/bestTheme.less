@@ -1,0 +1,60 @@
+@best-image: 'https://malsync.moe/images/best-full.webp';
+
+.theme-bestTheme {
+  .card {
+    background-image: url(@best-image);
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .button,
+  .text-from,
+  .slider,
+  .radio-slider,
+  .vue-slider-rail,
+  .episode,
+  .material-icons {
+    background-image: url(@best-image);
+    background-blend-mode: multiply;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  #id-profile .img {
+    background-image: url(@best-image);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    img {
+      display: none;
+    }
+  }
+
+  .overview {
+    .image-fit {
+      background-image: url(@best-image);
+      background-color: #ababab;
+      background-blend-mode: luminosity;
+      background-attachment: fixed;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      img,
+      .lazy-image {
+        mix-blend-mode: darken;
+      }
+    }
+
+    .overviewImage {
+      .image-fit {
+        .__breakpoint-desktop__({
+          background-attachment: initial;
+        });
+      }
+    }
+  }
+}

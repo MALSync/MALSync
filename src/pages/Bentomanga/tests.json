@@ -1,27 +1,26 @@
 {
   "title": "Bentomanga",
-  "url": "https://www.bentomanga.com/",
+  "url": "https://bentomanga.com/",
   "testCases": [
     {
-      "url": "https://www.bentomanga.com/manga/ao-no-hako",
+      "url": "https://bentomanga.com/manga/ao-no-hako",
       "expected": {
         "sync": false,
         "title": "Ao no hako",
         "identifier": "ao-no-hako",
         "uiSelector": true,
         "epList": {
-          "43": "https://bentomanga.com/manga/ao-no-hako/chapter/43",
-          "46": "https://bentomanga.com/manga/ao-no-hako/chapter/46"
+          "117": "https://bentomanga.com/manga/ao-no-hako/chapter/117"
         }
       }
     },
     {
-      "url": "https://www.bentomanga.com/manga/ao-no-hako/chapter/45",
+      "url": "https://bentomanga.com/manga/ao-no-hako/chapter/45",
       "expected": {
         "sync": true,
         "title": "Ao no hako",
         "identifier": "ao-no-hako",
-        "overviewUrl": "https://www.bentomanga.com/manga/ao-no-hako",
+        "overviewUrl": "https://bentomanga.com/manga/ao-no-hako",
         "episode": 45,
         "uiSelector": false
       }

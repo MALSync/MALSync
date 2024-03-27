@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const An1me: pageInterface = {
   name: 'An1me',
-  domain: 'https://an1me.nl',
+  domain: 'https://an1me.to',
   languages: ['Greek'],
   type: 'anime',
   isSyncPage(url) {
@@ -19,9 +19,7 @@ export const An1me: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    const titleElement = j.$(
-      'div.site-content > div > div.profile-manga > div > div > div > div.post-title > h1',
-    );
+    const titleElement = this.overview.getTitle(url);
 
     if (!url.split('/')[4] || titleElement.length === 0) return false;
 
@@ -64,9 +62,7 @@ export const An1me: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return utils
-        .getBaseText(j.$('div.profile-manga > div > div > div > div.post-title > h1'))
-        .trim();
+      return j.$('#manga-title h1').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';

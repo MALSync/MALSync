@@ -1,6 +1,7 @@
 {
   "title": "AnimeOnegai",
   "url": "https://www.animeonegai.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://www.animeonegai.com/es/details/dVNjDxqy081YPunnG",

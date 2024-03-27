@@ -1,5 +1,11 @@
 {
+  "search": "https://shinden.pl/series?search={searchtermPlus}",
   "urls": {
-    "match": ["*://shinden.pl/episode/*", "*://shinden.pl/series/*", "*://shinden.pl/titles/*", "*://shinden.pl/epek/*"]
+    "match": [
+      "*://shinden.pl/episode/*",
+      "*://shinden.pl/series/*",
+      "*://shinden.pl/titles/*",
+      "*://shinden.pl/epek/*"
+    ]
   }
 }

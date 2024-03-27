@@ -3,30 +3,40 @@
     "url": "https://lynxscans.com",
     "testCases": [
       {
-        "url": "https://lynxscans.com/comics/248175-the-story-of-a-low-rank-soldier-becoming-a-monarch/1/41",
+        "url": "https://lynxscans.com/the-story-of-a-low-rank-soldier-becoming-a-monarch-chapter-41/",
         "expected": {
           "sync": true,
-          "title": "The Story of a Low-Rank Soldier Becoming a Monarch.",
-          "identifier": "248175-the-story-of-a-low-rank-soldier-becoming-a-monarch",
-          "overviewUrl": "https://lynxscans.com/comics/248175-the-story-of-a-low-rank-soldier-becoming-a-monarch",
-          "nextEpUrl": "https://lynxscans.com/comics/248175-the-story-of-a-low-rank-soldier-becoming-a-monarch/1/42",
+          "title": "The Story of a Low-Rank Soldier Becoming a Monarch",
+          "identifier": "the-story-of-a-low-rank-soldier-becoming-a-monarch",
+          "overviewUrl": "https://lynxscans.com/comics/the-story-of-a-low-rank-soldier-becoming-a-monarch/",
+          "nextEpUrl": "https://lynxscans.com/the-story-of-a-low-rank-soldier-becoming-a-monarch-chapter-42/",
           "episode": 41,
           "uiSelector": false
         }
       },
       {
-        "url": "https://lynxscans.com/comics/248175-the-story-of-a-low-rank-soldier-becoming-a-monarch",
+        "url": "https://lynxscans.com/comics/the-story-of-a-low-rank-soldier-becoming-a-monarch",
         "expected": {
           "sync": false,
-          "title": "The Story of a Low-Rank Soldier Becoming a Monarch.",
-          "identifier": "248175-the-story-of-a-low-rank-soldier-becoming-a-monarch",
+          "title": "The Story of a Low-Rank Soldier Becoming a Monarch",
+          "identifier": "the-story-of-a-low-rank-soldier-becoming-a-monarch",
           "uiSelector": true,
           "epList": {
-            "15": "https://lynxscans.com/comics/248175-the-story-of-a-low-rank-soldier-becoming-a-monarch/1/15",
-            "60": "https://lynxscans.com/comics/248175-the-story-of-a-low-rank-soldier-becoming-a-monarch/2/60"
+            "15": "https://lynxscans.com/the-story-of-a-low-rank-soldier-becoming-a-monarch-chapter-15/",
+            "60": "https://lynxscans.com/the-story-of-a-low-rank-soldier-becoming-a-monarch-chapter-60/"
           }
+        }
+      },
+      {
+        "url": "https://lynxscans.com/zannenkei-akuyaku-reijou-wa-3-nen-go-ni-hametsu-suru-you-desu-chap-3-2/",
+        "expected": {
+          "sync": true,
+          "title": "Regrettably, The Villainess Will Fall Into Destruction Three Years Later",
+          "identifier": "zannenkei-akuyaku-reijou-wa-3-nen-go-ni-hametsu-suru-you-desu",
+          "overviewUrl": "https://lynxscans.com/comics/zannenkei-akuyaku-reijou-wa-3-nen-go-ni-hametsu-suru-you-desu/",
+          "episode": 3,
+          "uiSelector": false
         }
       }
     ]
   }
-  

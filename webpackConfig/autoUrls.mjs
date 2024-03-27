@@ -18,8 +18,15 @@ async function vidmoly() {
     addPlayerUrls('vidmoly', [url.hostname + '/*']);
 }
 
+async function mixdrop() {
+    const response = await fetch("https://mdfx9dc8n.net/e/3nl0j0lec477v9", {redirect: 'manual'})
+    const url = new URL(response.headers.get("Location"));
+
+    addPlayerUrls('mixdrop', ['*.' + url.hostname + '/e/*']);
+}
+
 async function gogostream() {
-    const response = await fetch("https://gogoanime.tel/no-game-no-life-episode-9");
+    const response = await fetch("https://gogoanime3.co/no-game-no-life-episode-9");
     const body = await response.text();
 
     const iframe = body.match(/<iframe\s+src="(.+?streaming\.php.+?)"/i);
@@ -48,6 +55,14 @@ async function gogostream() {
         name: 'gogofembed',
         selector: '.xstreamcdn',
       },
+      {
+        name: 'gogostreamwish',
+        selector: '.streamwish',
+      },
+      {
+        name: 'gogofilelions',
+        selector: '.filelions',
+      },
     ];
 
     for (const server of servers) {
@@ -58,14 +73,14 @@ async function gogostream() {
       }
       const url = new URL(res);
       addPlayerUrls(server.name, [
-        url.hostname + '/e/*',
+        url.hostname + (server.name === 'gogofilelions' ? '/v/*' : '/e/*'),
       ]);
     }
 }
 
 // pages
 async function nineanime() {
-    const response = await fetch('https://aniwave.tv');
+    const response = await fetch('https://aniwave.live');
     const body = await response.text();
 
     const $ = cheerio.load(body);
@@ -81,12 +96,12 @@ async function nineanime() {
 }
 
 async function zoro() {
-    const response = await fetch("https://zoroanime.net");
+    const response = await fetch("https://aniwatch.gg");
     const body = await response.text();
 
     const $ = cheerio.load(body);
 
-    const urls = $('div.site-mirror .i-url a').map((i,el) =>  new URL($(el).attr('href'))).get();
+    const urls = $('ul.site-opt > li > a').map((i,el) =>  new URL($(el).attr('href'))).get();
 
     for(const url of urls) {
         addpageUrls('Zoro', [
@@ -96,7 +111,7 @@ async function zoro() {
 }
 
 async function gogoanime() {
-    const response = await fetch("https://gogoanime.news");
+    const response = await fetch("https://gogotaku.info");
     const body = await response.text();
 
     const $ = cheerio.load(body);
@@ -126,6 +141,21 @@ async function kickassanime() {
     for(let url of urls) {
         addpageUrls('KickAssAnime', [
             "*://*." + url.hostname + "/*",
+        ])
+    }
+}
+
+async function anix() {
+    const response = await fetch("https://anix.me");
+    const body = await response.text();
+
+    const $ = cheerio.load(body);
+
+    const urls = $('.mt-3 a[target="_blank"]').map((i,el) =>  new URL($(el).attr('href'))).get();
+
+    for(let url of urls) {
+        addpageUrls('Anix', [
+            "*://*." + url.hostname + "/anime/*",
         ])
     }
 }
@@ -166,11 +196,13 @@ async function start() {
     const tasks = {
         voe,
         vidmoly,
+        mixdrop,
         gogostream,
         nineanime,
         // zoro,
         gogoanime,
-        kickassanime
+        kickassanime,
+        anix,
     }
 
     for(const key of Object.keys(tasks)) {

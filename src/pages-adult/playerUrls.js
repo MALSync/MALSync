@@ -17,9 +17,6 @@ module.exports = {
   rapidvideo: {
     match: ['*://*.rapidvideo.com/*', '*://*.rapidvid.to/*'],
   },
-  Vrv: {
-    match: ['*://*.static.vrv.co/*'],
-  },
   vidstreaming: {
     match: ['*://*.vidstreaming.io/*'],
   },

@@ -78,14 +78,20 @@ function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) 
         for (const key in message.url.headers) {
           xhr.setRequestHeader(key, message.url.headers[key]);
         }
-        if (message.url.url.includes('malsync.moe') || message.url.url.includes('simkl.com')) {
+        if (
+          utils.isDomainMatching(message.url.url, 'malsync.moe') ||
+          utils.isDomainMatching(message.url.url, 'simkl.com')
+        ) {
           xhr.setRequestHeader('version', api.storage.version());
           xhr.setRequestHeader('type', 'addon');
         }
         xhr.send(message.url.data);
       } else {
         xhr.open(message.method, message.url, true);
-        if (message.url.includes('malsync.moe') || message.url.includes('simkl.com')) {
+        if (
+          utils.isDomainMatching(message.url, 'malsync.moe') ||
+          utils.isDomainMatching(message.url, 'simkl.com')
+        ) {
           xhr.setRequestHeader('version', api.storage.version());
           xhr.setRequestHeader('type', 'addon');
         }

@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const MangaJar: pageInterface = {
   name: 'MangaJar',
-  domain: 'https://mangajar.com',
+  domain: 'https://mangajar.pro',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
@@ -70,7 +70,7 @@ export const MangaJar: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul.chaptersList > li.chapter-item');
+        return j.$('.chaptersList  .chapter-item');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a').first().attr('href') || '', MangaJar.domain);
