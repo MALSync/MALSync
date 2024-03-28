@@ -132,10 +132,11 @@ function readMe() {
   const animes = [];
   const mangas = [];
   const medias = [
-    '<a href="http://app.emby.media"><img src="https://favicon.malsync.moe/?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
-    '<a href="http://app.plex.tv"><img src="https://favicon.malsync.moe/?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
-    '<a href="https://jellyfin.org/"><img src="https://favicon.malsync.moe/?domain=https://jellyfin.org/"></a> <a href="https://jellyfin.org/">Jellyfin</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
-    '<a href="https://komga.org/"><img src="https://favicon.malsync.moe/?domain=https://komga.org/"></a> <a href="https://komga.org/">Komga</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
+    '<a href="http://app.emby.media"><img src="https://favicon.malsync.moe/?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex#emby">[Wiki]</a>',
+    '<a href="http://app.plex.tv"><img src="https://favicon.malsync.moe/?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex#plex">[Wiki]</a>',
+    '<a href="https://jellyfin.org/"><img src="https://favicon.malsync.moe/?domain=https://jellyfin.org/"></a> <a href="https://jellyfin.org/">Jellyfin</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex#jellyfin">[Wiki]</a>',
+    '<a href="https://komga.org/"><img src="https://favicon.malsync.moe/?domain=https://komga.org/"></a> <a href="https://komga.org/">Komga</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex#komga">[Wiki]</a>',
+    '<a href="https://suwayomi.org/"><img src="https://favicon.malsync.moe/?domain=https://suwayomi-webui-preview.github.io/"></a> <a href="https://suwayomi.org/">Suwayomi</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex#suwayomi">[Wiki]</a>',
   ];
 
   for (var page in pageList) {
@@ -145,7 +146,7 @@ function readMe() {
 
     const str = `<a href="${page.domain}"><img src="https://favicon.malsync.moe/?domain=${page.domain}"> ${page.name}</a>`;
 
-    if (page.name === 'Emby' || page.name === 'Plex' || page.name === 'Jellyfin' || page.name === 'Komga') {
+    if (page.name === 'Emby' || page.name === 'Plex' || page.name === 'Jellyfin' || page.name === 'Komga' || page.name === 'Suwayomi') {
       continue;
     }
 
