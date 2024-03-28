@@ -2,6 +2,7 @@ import {
   content,
   emitter,
   minimalWindow,
+  responseMessageI,
   sendMessageI,
   videoTime,
   videoTimeSet,
@@ -14,6 +15,14 @@ export function initMessageHandler() {
   chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse) => {
     return messageHandler(message, sender, sendResponse);
   });
+
+  api.request.sendMessage = function (message: sendMessageI) {
+    return new Promise((resolve, reject) => {
+      messageHandler(message, null, function (response: responseMessageI) {
+        resolve(response);
+      });
+    });
+  };
 }
 
 function messageHandler(message: sendMessageI, sender, sendResponse) {
