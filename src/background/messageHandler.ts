@@ -7,6 +7,7 @@ import {
   videoTime,
   videoTimeSet,
   xhrI,
+  xhrResponseI,
 } from '../api/messageInterface';
 import { databaseRequest } from './database';
 import { sendNotification } from './notifications';
@@ -179,7 +180,7 @@ function xhrAction(message: xhrI, sender, sendResponse, environment, retry = 0) 
   }
 
   fetch(url, options).then(async response => {
-    const responseObj = {
+    const responseObj: xhrResponseI = {
       finalUrl: response.url,
       responseText: await response.text(),
       status: response.status,
