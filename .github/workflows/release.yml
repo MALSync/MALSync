@@ -158,7 +158,7 @@ jobs:
     - name: Find first .xpi file
       id: find_first_xpi
       run: |
-        FILE=$(ls ./web-ext-artifacts/*.xpi | head -n 1)
+        FILE=$(ls ./dist/*.xpi | head -n 1)
         BASENAME=$(basename "$FILE")
         echo "xpi_file=$FILE" >> $GITHUB_OUTPUT
         echo "xpi_filename=$BASENAME" >> $GITHUB_OUTPUT
