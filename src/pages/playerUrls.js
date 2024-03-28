@@ -499,7 +499,7 @@ module.exports = {
       '*://vidplay.site/e/*',
       '*://vidplay.lol/e/*',
       '*://vidplay.online/e/*',
-      '*://ea1928580f.site/e/*',
+      '*://a9bfed0818.nl/e/*',
     ],
   },
   // gogo
