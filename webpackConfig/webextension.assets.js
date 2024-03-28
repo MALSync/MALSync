@@ -154,8 +154,6 @@ const generateManifest = () => {
     permissions: [
       'storage',
       'alarms',
-      'webRequest',
-      'webRequestBlocking',
       'notifications',
     ],
     "optional_permissions": [

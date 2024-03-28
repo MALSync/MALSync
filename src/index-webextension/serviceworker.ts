@@ -1,7 +1,6 @@
 /*
  * TODO:
  * 429 Handling
- * webRequest.onBeforeSendHeaders
  */
 
 import { initDatabase } from '../background/database';
