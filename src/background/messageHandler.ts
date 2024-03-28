@@ -218,6 +218,9 @@ function xhrAction(
       }
     }
 
+    if (environment === 'background') {
+      await utils.wait(5000);
+    }
 
     const responseObj: xhrResponseI = {
       finalUrl: response.url,
