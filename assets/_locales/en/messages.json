@@ -1283,6 +1283,10 @@
         "message": "Websites",
         "description": "Button that leads to the config page where individual pages can be disabled"
     },
+    "settings_permissions_overview": {
+        "message": "Permissions",
+        "description": "Button that leads to where permissions to sites can be managed"
+    },
     "settings_custom_domains_button": {
         "message": "Custom domains",
         "description": "Button that leads to the custom domain configuration page"

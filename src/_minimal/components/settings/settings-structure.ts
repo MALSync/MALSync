@@ -14,6 +14,7 @@ import { minimal } from './settings-structure-minimal';
 import { estimation } from './settings-structure-estimation';
 import { links } from './settings-structure-links';
 import { notifications } from './settings-structure-notifications';
+import { permissionsOverview } from './settings-structure-permissions';
 
 export const structure: ConfObj[] = [
   {
@@ -93,6 +94,16 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: notifications,
+  },
+  {
+    key: 'permissions-overview',
+    title: () => api.storage.lang('settings_permissions_overview'),
+    system: 'webextension',
+    props: {
+      icon: 'lock_open',
+    },
+    component: SettingsGroup,
+    children: permissionsOverview,
   },
   {
     key: 'customDomains',
