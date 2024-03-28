@@ -13,22 +13,32 @@ import { sendNotification } from './notifications';
 
 export function initMessageHandler() {
   chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse) => {
-    return messageHandler(message, sender, sendResponse);
+    return messageHandler(message, sender, sendResponse, 'content');
   });
 
   api.request.sendMessage = function (message: sendMessageI) {
     return new Promise((resolve, reject) => {
-      messageHandler(message, null, function (response: responseMessageI) {
-        resolve(response);
-      });
+      messageHandler(
+        message,
+        null,
+        function (response: responseMessageI) {
+          resolve(response);
+        },
+        'background',
+      );
     });
   };
 }
 
-function messageHandler(message: sendMessageI, sender, sendResponse) {
+function messageHandler(
+  message: sendMessageI,
+  sender,
+  sendResponse,
+  environment: 'background' | 'content',
+) {
   switch (message.name) {
     case 'xhr':
-      return xhrAction(message, sender, sendResponse);
+      return xhrAction(message, sender, sendResponse, environment);
     case 'videoTime':
       return videoTimeAction(message, sender, sendResponse);
     case 'content':
@@ -144,7 +154,7 @@ function emitterAction(message: emitter, sender, sendResponse) {
   return undefined;
 }
 
-function xhrAction(message: xhrI, sender, sendResponse, retry = 0) {
+function xhrAction(message: xhrI, sender, sendResponse, environment, retry = 0) {
   let url;
   const options: RequestInit = {
     method: message.method,
