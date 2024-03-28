@@ -46,7 +46,7 @@ async function registerScript(domainConfig: domainType) {
       js: ['vendor/jquery.min.js', 'i18n.js'],
       matches: [fixDomain],
       allFrames: false,
-      runAt: 'document_start',
+      runAt: 'document_start' as const,
     };
 
     if (domainConfig.page === 'iframe') {

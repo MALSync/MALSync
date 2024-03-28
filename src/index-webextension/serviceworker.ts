@@ -1,7 +1,6 @@
 /*
  * TODO:
  * 429 Handling
- * Custom Domains
  * webRequest.onBeforeSendHeaders
  */
 
