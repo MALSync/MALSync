@@ -1,8 +1,3 @@
-/*
- * TODO:
- * 429 Handling
- */
-
 import { initDatabase } from '../background/database';
 import { listSyncInit } from '../background/listSync';
 import { initProgressScheduler } from '../background/releaseProgress';

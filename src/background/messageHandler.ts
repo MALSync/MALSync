@@ -155,7 +155,13 @@ function emitterAction(message: emitter, sender, sendResponse) {
   return undefined;
 }
 
-function xhrAction(message: xhrI, sender, sendResponse, environment, retry = 0) {
+function xhrAction(
+  message: xhrI,
+  sender,
+  sendResponse,
+  environment,
+  retry = { try: 0, date: new Date() },
+) {
   let url;
   const options: RequestInit = {
     method: message.method,
@@ -180,6 +186,39 @@ function xhrAction(message: xhrI, sender, sendResponse, environment, retry = 0) 
   }
 
   fetch(url, options).then(async response => {
+    if (response.status === 429) {
+      let limits: { timeout: number; tries: number; cutoff: number };
+      if (environment === 'content') {
+        limits = {
+          timeout: 30000,
+          tries: 4,
+          cutoff: 180000,
+        };
+      } else {
+        limits = {
+          timeout: 300000,
+          tries: 4,
+          cutoff: 30 * 60 * 1000,
+        };
+      }
+
+      if (
+        retry.try < limits.tries &&
+        !utils.rateLimitExclude.test(response.url) &&
+        new Date().getTime() - retry.date.getTime() < limits.cutoff
+      ) {
+        con.error('RATE LIMIT');
+        setTimeout(() => {
+          retry.try++;
+          xhrAction(message, sender, sendResponse, environment, retry);
+          api.storage.set('rateLimit', false);
+        }, limits.timeout);
+        if (environment === 'content') api.storage.set('rateLimit', true);
+        return;
+      }
+    }
+
+
     const responseObj: xhrResponseI = {
       finalUrl: response.url,
       responseText: await response.text(),
