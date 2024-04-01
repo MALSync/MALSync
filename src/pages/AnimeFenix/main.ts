@@ -24,19 +24,29 @@ export const AnimeFenix: pageInterface = {
     getIdentifier: url => {
       return AnimeFenix.sync.getTitle(url);
     },
-    getOverviewUrl: url => {
-      const urlParts = url.split('/');
-      if (urlParts[3] === 'ver') {
-        urlParts.splice(3, 1);
-      }
-      urlParts[urlParts.length - 1] = urlParts[urlParts.length - 1].replace(/-\d+(\.\d+)?$/, '');
-      return urlParts.join('/');
+    getOverviewUrl: (url: string) => {
+      const getEpisode = (url: string) => {
+        const lastPart = url.split('/').pop()?.split('?')[0];
+        const episodeNumber = lastPart ? lastPart.match(/\d+(\.\d+)?(?= Sub Español|$)/g) : null;
+        return episodeNumber && episodeNumber.length > 0 ? parseFloat(episodeNumber[0]) : 0;
+      };
+      return getEpisode(url).toString();
     },
-    getEpisode: url => {
-      const urlParts = url.split('/');
-      const lastPart = urlParts[urlParts.length - 1].split('?')[0];
-      const episodeNumber = lastPart ? lastPart.match(/\d+(\.\d+)?(?= Sub Español|$)/g) : null;
-      return episodeNumber && episodeNumber.length > 0 ? parseFloat(episodeNumber[0]) : 0;
+    getEpisode: () => {
+      const titleElement = document.querySelector("body > div.hero > section > div.columns.is-multiline > div > div > h1");
+      const title = titleElement?.textContent ? titleElement.textContent.trim() : '';
+
+      let episodeNumber = 0;
+      const subEspañolMatch = title.match(/\d+(\.\d+)?(?= Sub Español|$)/g);
+      const latinoMatch = title.match(/\d+(\.\d+)?(?= Latino|$)/g);
+
+      if (subEspañolMatch && subEspañolMatch.length > 0) {
+        episodeNumber = parseFloat(subEspañolMatch[0]);
+      } else if (latinoMatch && latinoMatch.length > 0) {
+        episodeNumber = parseFloat(latinoMatch[0]);
+      }
+
+      return episodeNumber;
     },
   },
   init: page => {
