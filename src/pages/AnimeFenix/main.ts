@@ -25,7 +25,7 @@ export const AnimeFenix: pageInterface = {
       return AnimeFenix.sync.getTitle(url);
     },
     getOverviewUrl: (url: string) => {
-      const getEpisode = (url: string) => {
+      const getEpisode = (episodeUrl: string) => {
         const lastPart = url.split('/').pop()?.split('?')[0];
         const episodeNumber = lastPart ? lastPart.match(/\d+(\.\d+)?(?= Sub Español|$)/g) : null;
         return episodeNumber && episodeNumber.length > 0 ? parseFloat(episodeNumber[0]) : 0;
@@ -33,7 +33,9 @@ export const AnimeFenix: pageInterface = {
       return getEpisode(url).toString();
     },
     getEpisode: () => {
-      const titleElement = document.querySelector("body > div.hero > section > div.columns.is-multiline > div > div > h1");
+      const titleElement = document.querySelector(
+        'body > div.hero > section > div.columns.is-multiline > div > div > h1',
+      );
       const title = titleElement?.textContent ? titleElement.textContent.trim() : '';
 
       let episodeNumber = 0;
