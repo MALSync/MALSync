@@ -14,7 +14,6 @@
           <h3>
             <TextIcon :icon="icon(page.permission.value)">{{ page.name }}</TextIcon>
           </h3>
-          {{ page.permission }}
           <p v-for="perm in page.match" :key="perm">
             <CodeBlock>{{ perm }}</CodeBlock>
           </p>
