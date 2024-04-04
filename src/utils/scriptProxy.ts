@@ -1,4 +1,11 @@
-import { generateUniqueID } from './general';
+/**
+ * Generates a (hex) string ID for randomisation/verification.
+ */
+export function generateUniqueID(arraySize = 10): string {
+  const array = new Uint32Array(arraySize);
+  window.crypto.getRandomValues(array);
+  return Array.from(array, value => value.toString(16)).join('');
+}
 
 export class ScriptProxy<T = any> {
   constructor(
