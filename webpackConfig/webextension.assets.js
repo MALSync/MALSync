@@ -147,7 +147,7 @@ const generateManifest = () => {
     },
     web_accessible_resources: [
       {
-        "resources": ['vendor/*', 'assets/*', 'icons/*', 'window.html'],
+        "resources": ['vendor/*', 'assets/*', 'icons/*', 'content/proxy/*', 'window.html'],
         "matches": ["*://*/*"],
       }
     ],

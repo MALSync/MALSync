@@ -1,89 +1,63 @@
 import { generateUniqueID } from './general';
 
-export class ScriptProxy {
-  /// A list of variables ('name' = 'salt'/'function' pair) that will be captured
-  /// in an execution.
-  /// The salt here is to prevent conflicts with other 'data-' elements.
-  protected capturedVariables: Map<string, [string, string]> = new Map();
-
-  /**
-   * Creates a new ScriptProxy.
-   *
-   * @param elementId The name of the element to inject. This is randomly generated
-   *                  by default, though this can be changed if this needs to be directly
-   *                  interacted with.
-   */
-  constructor(protected elementId = generateUniqueID()) {
+export class ScriptProxy<T = any> {
+  constructor(
+    protected scriptName,
+    protected elementId = generateUniqueID(),
+  ) {
     return this;
   }
 
-  /**
-   * Registers a variable to capture from the guest page.
-   *
-   * @param name The name of the variable. Fetchable later. Should be a valid HTML
-   *             attribute name/Javascript identifier.
-   * @param scriptContents The *string* contents of an anonymous function which will be
-   *                       called to capture the contents of the page.
-   *
-   * @example
-   *    ```
-   *    addCaptureVariable('metadata', `
-   *      return some_object.metadata
-   *    `)
-   *    ```
-   */
-  addCaptureVariable(name: string, scriptContents: string) {
-    this.capturedVariables.set(name, [generateUniqueID(), scriptContents]);
+  async getData(): Promise<T> {
+    return new Promise((resolve, reject) => {
+      const eventId = generateUniqueID();
+
+      const callbackFunction = (event: Event) => {
+        if (!(event instanceof MessageEvent)) {
+          return;
+        }
+
+        const eventData: MessageEvent = event;
+
+        if (
+          !eventData.data.eventId ||
+          !eventData.data.resultId ||
+          eventData.data.eventId !== eventId
+        )
+          return;
+
+        window.removeEventListener('message', callbackFunction);
+        con.m('ScriptProxy').log('Result Received');
+
+        const resultElement = document.getElementById(eventData.data.resultId);
+        if (!resultElement) throw new Error('Result element not found');
+        const data = resultElement.getAttribute(`data-${eventId}`);
+        resultElement.remove();
+        if (!data) throw new Error('Result data not found');
+        const result = JSON.parse(data);
+        resolve(result[this.elementId]);
+      };
+
+      window.addEventListener('message', callbackFunction, false);
+      window.postMessage({ eventId }, '*');
+    });
   }
 
-  /**
-   * Fetches a captured variable's contents.
-   *
-   * @param name The name of the variable. Must have been registered -
-   *             @see ScriptProxy.addCaptureVariable
-   * @returns Either the object from the page, or undefined if an error occurred/
-   *          no proxy exists.
-   */
-  getCaptureVariable(name: string): object | undefined {
-    const element = j.$(`#${this.elementId}`);
+  async injectScript() {
+    let loaded: () => void;
 
-    // jQuery parses null here
-    if (element === null) {
-      return undefined;
-    }
-
-    const attrName = this.capturedVariables.get(name);
-
-    if (attrName === undefined) {
-      return undefined;
-    }
-
-    const elementContents = element.attr(`data-${attrName[0]}`);
-
-    if (elementContents === undefined) {
-      return undefined;
-    }
-
-    return JSON.parse(elementContents);
-  }
-
-  /**
-   * Adds a proxy to the running webpage, capturing all required variables.
-   *
-   * @param callback An optional callback function that is called when the proxy operation
-   *                 completes.
-   */
-  addProxy(callback: ((caller: ScriptProxy) => void) | undefined = undefined) {
-    // Cleanup any previous attempts
-    const previousElement = j.$(`#${this.elementId}`);
-    if (previousElement !== null) {
-      previousElement.remove();
-    }
-
-    // Generate a unique ID to prevent attacks:
     const uniqueId = generateUniqueID();
 
-    // Add the callback function as a one-off
+    const prom = new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        reject(new Error('ScriptProxy timed out'));
+      }, 5000);
+      loaded = () => {
+        clearTimeout(timeout);
+        resolve(true);
+      };
+    });
+
     const callbackFunction = (event: Event) => {
       if (!(event instanceof MessageEvent)) {
         return;
@@ -93,56 +67,61 @@ export class ScriptProxy {
 
       if (eventData.data.uniqueId !== uniqueId) return;
 
-      // Automatically remove this now - we only need this for a single call:
       window.removeEventListener('message', callbackFunction);
-
-      if (callback !== undefined) {
-        callback(this);
-      }
+      con.m('ScriptProxy').log('Script Loaded');
+      loaded();
     };
 
     window.addEventListener('message', callbackFunction, false);
 
-    // Build the contents of the script to inject.
-    let scriptContents = `
-      {
-        const element = document.getElementById('${this.elementId}');
-    `;
-
-    this.capturedVariables.forEach((value, key) => {
-      // Build an anonymous function to give the caller a sane environment,
-      // then inject it into a data attribute.
-      const funcId = generateUniqueID();
-
-      scriptContents += `
-        const func_${funcId} = () => {${value[1]}};
-        element.setAttribute('data-${value[0]}', JSON.stringify(func_${funcId}()));
-      `;
-    });
-
-    // Invoke our callback finally.
-    scriptContents += `
-        window.postMessage({"uniqueId": "${uniqueId}"}, "*");
-      }
-    `;
-
     const scriptElement = document.createElement('script');
-    const scriptTextElement = document.createTextNode(scriptContents);
-
+    scriptElement.src = chrome.runtime.getURL(`/content/proxy/proxy_${this.scriptName}.js`);
     scriptElement.id = this.elementId;
-    scriptElement.appendChild(scriptTextElement);
+    scriptElement.setAttribute(`data-${this.elementId}`, uniqueId);
+    document.documentElement.appendChild(scriptElement);
 
-    // Note: we *intentionally* want XSS here - our element is manually constructed
-    //       and as such we don't want to sanitize the script (as the lint suggests).
-    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
-    j.$('body').append(scriptElement);
-  }
+    con.m('ScriptProxy').log('Script Added');
 
-  async getProxyVariable(name: string): Promise<object | undefined> {
-    return new Promise((resolve, reject) => {
-      this.addProxy(async (caller: ScriptProxy) => {
-        resolve(this.getCaptureVariable(name));
-      });
-    });
+    return prom;
   }
+}
+
+export function ScriptProxyWrapper(fnc: () => void) {
+  const tag = document.currentScript as HTMLScriptElement;
+  const idAttribute = tag.getAttribute('id')!;
+  const logger = con.m('ScriptProxyWrapper');
+
+  window.addEventListener(
+    'message',
+    event => {
+      if (!(event instanceof MessageEvent)) {
+        return;
+      }
+
+      const eventData: MessageEvent = event;
+
+      if (!eventData.data.eventId || eventData.data.resultId) return;
+
+      const resultId = generateUniqueID();
+      const res = fnc();
+
+      const scriptElement = document.createElement('script');
+      scriptElement.id = resultId;
+      scriptElement.setAttribute(
+        `data-${eventData.data.eventId}`,
+        JSON.stringify({
+          [idAttribute]: res,
+        }),
+      );
+      document.documentElement.appendChild(scriptElement);
+
+      window.postMessage({ eventId: eventData.data.eventId, resultId }, '*');
+    },
+    false,
+  );
+
+  window.postMessage({ uniqueId: tag.getAttribute(`data-${idAttribute}`) }, '*');
+
+  logger.log('Listener Added');
+  tag.remove();
 }

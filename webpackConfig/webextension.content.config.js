@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const { VueLoaderPlugin } = require('vue-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
@@ -57,8 +58,11 @@ let entry = {
 }
 
 pages.forEach(page => {
-  entry['page_' + page] =
-    'expose-loader?exposes=_Page|' + page + '!' + path.join(__dirname, '..', 'src/pages/', page, 'main.ts');
+  pageRoot = path.join(__dirname, '..', 'src/pages/', page);
+  entry['page_' + page] = 'expose-loader?exposes=_Page|' + page + '!' + path.join(pageRoot, 'main.ts');
+  if (fs.existsSync(path.join(pageRoot, 'proxy.ts'))) {
+    entry['proxy/proxy_' + page] = path.join(pageRoot, 'proxy.ts');
+  }
 })
 
 console.log(entry);
