@@ -6,6 +6,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const pages = require('./utils/pages').pages();
 const { getKeys } = require('./utils/keys');
+const { getVirtualScript } = require('./utils/general');
 
 let entry = {
   'content-script': path.join(
@@ -61,7 +62,12 @@ pages.forEach(page => {
   pageRoot = path.join(__dirname, '..', 'src/pages/', page);
   entry['page_' + page] = 'expose-loader?exposes=_Page|' + page + '!' + path.join(pageRoot, 'main.ts');
   if (fs.existsSync(path.join(pageRoot, 'proxy.ts'))) {
-    entry['proxy/proxy_' + page] = path.join(pageRoot, 'proxy.ts');
+    entry['proxy/proxy_' + page] = getVirtualScript('proxy_' + page, `
+      import { script } from './src/pages/${page}/proxy.ts';
+      import { ScriptProxyWrapper } from './src/utils/scriptProxy.ts';
+
+      ScriptProxyWrapper(script);
+    `);
   }
 })
 
