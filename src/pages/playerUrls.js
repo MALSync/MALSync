@@ -159,9 +159,6 @@ module.exports = {
   theVideo: {
     match: ['*://vev.io/embed/*', '*://vev.red/embed/*'],
   },
-  Funimation: {
-    match: ['*://www.funimation.com/player/*'],
-  },
   // voiranime
   jwpstream: {
     match: ['*://jwpstream.com/jwps/yplayer.php*'],
