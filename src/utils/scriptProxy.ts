@@ -27,7 +27,6 @@ export class ScriptProxy<T = any> {
           return;
 
         window.removeEventListener('message', callbackFunction);
-        con.m('ScriptProxy').log('Result Received');
 
         const resultElement = document.getElementById(eventData.data.resultId);
         if (!resultElement) throw new Error('Result element not found');
@@ -35,6 +34,7 @@ export class ScriptProxy<T = any> {
         resultElement.remove();
         if (!data) throw new Error('Result data not found');
         const result = JSON.parse(data);
+        con.m('ScriptProxy').info('Result Received', result[this.elementId]);
         resolve(result[this.elementId]);
       };
 
