@@ -1,11 +1,4 @@
-/**
- * Generates a (hex) string ID for randomisation/verification.
- */
-export function generateUniqueID(arraySize = 10): string {
-  const array = new Uint32Array(arraySize);
-  window.crypto.getRandomValues(array);
-  return Array.from(array, value => value.toString(16)).join('');
-}
+import { generateUniqueID } from './scriptProxyWrapper';
 
 export class ScriptProxy<T = any> {
   constructor(
@@ -82,7 +75,7 @@ export class ScriptProxy<T = any> {
     window.addEventListener('message', callbackFunction, false);
 
     const scriptElement = document.createElement('script');
-    scriptElement.src = chrome.runtime.getURL(`/content/proxy/proxy_${this.scriptName}.js`);
+    api.storage.addProxyScriptToTag(scriptElement, this.scriptName);
     scriptElement.id = this.elementId;
     scriptElement.setAttribute(`data-${this.elementId}`, uniqueId);
     document.documentElement.appendChild(scriptElement);
@@ -91,44 +84,4 @@ export class ScriptProxy<T = any> {
 
     return prom;
   }
-}
-
-export function ScriptProxyWrapper(fnc: () => void) {
-  const tag = document.currentScript as HTMLScriptElement;
-  const idAttribute = tag.getAttribute('id')!;
-  const logger = con.m('ScriptProxyWrapper');
-
-  window.addEventListener(
-    'message',
-    event => {
-      if (!(event instanceof MessageEvent)) {
-        return;
-      }
-
-      const eventData: MessageEvent = event;
-
-      if (!eventData.data.eventId || eventData.data.resultId) return;
-
-      const resultId = generateUniqueID();
-      const res = fnc();
-
-      const scriptElement = document.createElement('script');
-      scriptElement.id = resultId;
-      scriptElement.setAttribute(
-        `data-${eventData.data.eventId}`,
-        JSON.stringify({
-          [idAttribute]: res,
-        }),
-      );
-      document.documentElement.appendChild(scriptElement);
-
-      window.postMessage({ eventId: eventData.data.eventId, resultId }, '*');
-    },
-    false,
-  );
-
-  window.postMessage({ uniqueId: tag.getAttribute(`data-${idAttribute}`) }, '*');
-
-  logger.log('Listener Added');
-  tag.remove();
 }

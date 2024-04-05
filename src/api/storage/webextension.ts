@@ -113,6 +113,11 @@ export const webextension: storageInterface = {
     head.get(0).appendChild(s);
   },
 
+  addProxyScriptToTag(tag, name) {
+    tag.src = chrome.runtime.getURL(`/content/proxy/proxy_${name}.js`);
+    return tag;
+  },
+
   updateDom(head) {
     const s = document.createElement('script');
     s.text = `

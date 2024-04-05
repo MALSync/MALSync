@@ -64,7 +64,7 @@ pages.forEach(page => {
   if (fs.existsSync(path.join(pageRoot, 'proxy.ts'))) {
     entry['proxy/proxy_' + page] = getVirtualScript('proxy_' + page, `
       import { script } from './src/pages/${page}/proxy.ts';
-      import { ScriptProxyWrapper } from './src/utils/scriptProxy.ts';
+      import { ScriptProxyWrapper } from './src/utils/scriptProxyWrapper.ts';
 
       ScriptProxyWrapper(script);
     `);
