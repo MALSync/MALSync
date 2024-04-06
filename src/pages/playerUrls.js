@@ -680,6 +680,7 @@ module.exports = {
       '*://vincentincludesuccessful.com/e/*',
       '*://brookethoughi.com/e/*',
       '*://jamesstartstudent.com/e/*',
+      '*://ryanagoinvolve.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
