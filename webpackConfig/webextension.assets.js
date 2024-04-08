@@ -156,10 +156,20 @@ const generateManifest = () => {
         "matches": ["*://*/*"],
       }
     ],
+    declarative_net_request: {
+      rule_resources: [
+        {
+          "id": "ruleset",
+          "enabled": true,
+          "path": "declarative_net.json"
+        }
+      ]
+    },
     permissions: [
       'storage',
       'alarms',
       'notifications',
+      'declarativeNetRequest',
     ],
     "optional_permissions": [
       "scripting",
@@ -269,6 +279,17 @@ mkdirp(path.join(__dirname, '../dist/webextension')).then(err => {
   extra.copy(
     path.join(__dirname, '../assets/'),
     path.join(__dirname, '../dist/webextension/'),
+    err => {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      }
+    },
+  );
+
+  extra.copy(
+    path.join(__dirname, '../src/declarative_net.json'),
+    path.join(__dirname, '../dist/webextension/declarative_net.json'),
     err => {
       if (err) {
         console.error(err);
