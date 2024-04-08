@@ -103,7 +103,7 @@ function getOrigins(permissions: domainType[]) {
         return false;
       }
     })
-    .map(perm => `${new URL(perm.domain).origin}/`);
+    .map(perm => `${new URL(perm.domain)}`);
 }
 
 export async function requestPermissions(permissions: domainType[]) {

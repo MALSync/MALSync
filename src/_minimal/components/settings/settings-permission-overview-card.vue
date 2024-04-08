@@ -8,6 +8,9 @@
         <p v-for="perm in permission.match" :key="perm">
           <CodeBlock>{{ perm }}</CodeBlock>
         </p>
+        <p v-for="perm in permission.api" :key="perm">
+          <CodeBlock>{{ perm }}</CodeBlock>
+        </p>
       </template>
       <template v-else>
         <div v-for="(page, index) in permissions" :key="index">
@@ -15,6 +18,9 @@
             <TextIcon :icon="icon(page.permission.value)">{{ page.name }}</TextIcon>
           </h3>
           <p v-for="perm in page.match" :key="perm">
+            <CodeBlock>{{ perm }}</CodeBlock>
+          </p>
+          <p v-for="perm in page.api" :key="perm">
             <CodeBlock>{{ perm }}</CodeBlock>
           </p>
         </div>

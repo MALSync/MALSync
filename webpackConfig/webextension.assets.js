@@ -14,7 +14,9 @@ const pages = pagesUtils.pages();
 const generateMatchExcludes = pagesUtils.generateMatchExcludes;
 
 const mode = process.env.CI_MODE || 'default';
+const appTarget = process.env.APP_TARGET || 'general';
 console.log('Mode', mode);
+console.log('appTarget', appTarget);
 
 const malUrls = { myanimelist: pageUrls.myanimelist };
 const aniUrls = { anilist: pageUrls.anilist };
@@ -113,14 +115,17 @@ const generateManifest = () => {
     description: '__MSG_Package_Description__',
     author: packageJson.author,
     default_locale: 'en',
-    applications: {
+    browser_specific_settings: {
       gecko: {
         id: '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}',
       },
     },
-    background: {
-      service_worker: 'background.js',
-    },
+    background: appTarget === 'firefox' ?
+      {
+        scripts: ['background.js'],
+      } : {
+        service_worker: 'background.js',
+      },
     action: {
       default_popup: 'popup.html',
       default_icon: 'icons/icon16.png',
@@ -161,6 +166,9 @@ const generateManifest = () => {
     ],
     host_permissions: [
       ...httpPermissionsJson,
+      ...(appTarget === 'firefox' ? [
+        "<all_urls>",
+      ] : []),
     ],
     "optional_host_permissions": [
       "*://*/*",
@@ -168,9 +176,9 @@ const generateManifest = () => {
   };
 
   if (mode === 'travis') {
-    delete mani.applications;
+    delete mani.browser_specific_settings;
   } else if (mode === 'dev') {
-    delete mani.applications;
+    delete mani.browser_specific_settings;
     mani.name = `${mani.name} (DEV)`;
     mani.version = new Date()
       .toISOString()

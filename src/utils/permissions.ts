@@ -32,7 +32,9 @@ export class PermissionsHandler {
 
     const manifest = chrome.runtime.getManifest();
 
-    this.permissionsObject.required.api = manifest.host_permissions;
+    this.permissionsObject.required.api = manifest.host_permissions.filter(
+      el => el !== '<all_urls>',
+    );
 
     manifest.content_scripts!.forEach(page => {
       if (page.matches) {
@@ -41,7 +43,7 @@ export class PermissionsHandler {
           permission: ref('unknown'),
         };
 
-        const script = page.js?.find(e => /^content\/page_/.test(e) || e.includes('iframe.js'));
+        const script = page.js?.find(e => /content\/page_/.test(e) || e.includes('iframe.js'));
 
         if (!script) {
           this.permissionsObject.required.match = this.permissionsObject.required.match.concat(
@@ -57,7 +59,7 @@ export class PermissionsHandler {
           return;
         }
 
-        obj.name = script.replace('content/page_', '').replace('.js', '');
+        obj.name = script.replace(/^.*content\/page_/, '').replace('.js', '');
 
         this.permissionsObject!.pages.push(obj);
       }
@@ -91,8 +93,10 @@ export class PermissionsHandler {
     permissions: chrome.permissions.Permissions,
   ) {
     if (!element.match.every(permission => permissions.origins!.includes(permission))) {
-      element.permission.value = 'denied';
-      return;
+      if (!(await chrome.permissions.contains({ origins: element.match }))) {
+        element.permission.value = 'denied';
+        return;
+      }
     }
 
     if (element.api && !(await chrome.permissions.contains({ origins: element.api }))) {
@@ -103,7 +107,29 @@ export class PermissionsHandler {
     element.permission.value = 'granted';
   }
 
-  public requestPermissions() {
-    alert('Requesting permissions');
+  public async requestPermissions() {
+    const permissions = {
+      origins: this.permissionsObject.required.match,
+    };
+
+    if (this.permissionsObject.required.api) {
+      permissions.origins = permissions.origins.concat(this.permissionsObject.required.api);
+    }
+
+    if (this.permissionsObject.player.match) {
+      permissions.origins = permissions.origins.concat(this.permissionsObject.player.match);
+    }
+
+    if (this.permissionsObject.pages) {
+      permissions.origins = permissions.origins.concat(
+        this.permissionsObject.pages.flatMap(page => page.match),
+      );
+    }
+
+    const granted = await chrome.permissions.request(permissions);
+
+    await this.checkPermissions();
+
+    return granted;
   }
 }
