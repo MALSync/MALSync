@@ -11,6 +11,7 @@ export type permissionElement = {
 
 export class PermissionsHandler {
   protected permissionsObject: {
+    general: Ref<permissionType>;
     required: permissionElement;
     player: permissionElement;
     pages: permissionElement[];
@@ -18,6 +19,7 @@ export class PermissionsHandler {
 
   constructor() {
     this.permissionsObject = {
+      general: ref('unknown'),
       required: {
         match: [],
         api: [],
@@ -81,30 +83,37 @@ export class PermissionsHandler {
   public async checkPermissions() {
     const permissions = await chrome.permissions.getAll();
 
-    await this.testPermissionElement(this.permissionsObject.required, permissions);
-    await this.testPermissionElement(this.permissionsObject.player, permissions);
-    await Promise.all(
-      this.permissionsObject.pages.map(page => this.testPermissionElement(page, permissions)),
-    );
+    const results = await Promise.all([
+      this.testPermissionElement(this.permissionsObject.required, permissions),
+      this.testPermissionElement(this.permissionsObject.player, permissions),
+      ...this.permissionsObject.pages.map(page => this.testPermissionElement(page, permissions)),
+    ]);
+
+    if (results.includes('denied')) {
+      this.permissionsObject.general.value = 'denied';
+    } else {
+      this.permissionsObject.general.value = 'granted';
+    }
   }
 
   protected async testPermissionElement(
     element: permissionElement,
     permissions: chrome.permissions.Permissions,
-  ) {
+  ): Promise<permissionType> {
     if (!element.match.every(permission => permissions.origins!.includes(permission))) {
       if (!(await chrome.permissions.contains({ origins: element.match }))) {
         element.permission.value = 'denied';
-        return;
+        return 'denied';
       }
     }
 
     if (element.api && !(await chrome.permissions.contains({ origins: element.api }))) {
       element.permission.value = 'denied';
-      return;
+      return 'denied';
     }
 
     element.permission.value = 'granted';
+    return 'granted';
   }
 
   public async requestPermissions() {
@@ -131,5 +140,9 @@ export class PermissionsHandler {
     await this.checkPermissions();
 
     return granted;
+  }
+
+  public hasAllPermissions() {
+    return this.permissionsObject.general.value === 'granted';
   }
 }

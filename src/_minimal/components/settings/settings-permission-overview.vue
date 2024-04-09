@@ -13,9 +13,18 @@
     </Section>
 
     <SessionSupportsPermissions>
-      <FormButton color="secondary" padding="large" @click="perm.requestPermissions()">
+      <FormButton
+        v-if="!perm.hasAllPermissions()"
+        color="secondary"
+        padding="large"
+        @click="perm.requestPermissions()"
+      >
         {{ lang('Add') }}
       </FormButton>
+      <SettingsCustomDomainsMissingPermissions
+        v-else
+        :title="lang('settings_custom_domains_button')"
+      />
     </SessionSupportsPermissions>
   </div>
 </template>
@@ -24,6 +33,7 @@
 import Section from '../section.vue';
 import PermissionCard from './settings-permission-overview-card.vue';
 import SessionSupportsPermissions from '../session-supports-permissions.vue';
+import SettingsCustomDomainsMissingPermissions from './settings-custom-domains-missing-permissions.vue';
 import FormButton from '../form/form-button.vue';
 
 import { PermissionsHandler } from '../../../utils/permissions';

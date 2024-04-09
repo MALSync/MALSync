@@ -47,7 +47,6 @@ import {
   getPageOptions,
   MissingPermissions,
   requestPermissions,
-  sessionSupportsPermissions,
 } from '../../../utils/customDomains';
 import Card from '../card.vue';
 import Header from '../header.vue';
@@ -72,8 +71,6 @@ temp.init().then(() => {
 });
 
 const options = getPageOptions();
-
-const supportsPermissions = sessionSupportsPermissions();
 
 const model = computed({
   get() {
