@@ -145,4 +145,8 @@ export class PermissionsHandler {
   public hasAllPermissions() {
     return this.permissionsObject.general.value === 'granted';
   }
+
+  public getRequiredState() {
+    return this.permissionsObject.required.permission;
+  }
 }

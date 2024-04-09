@@ -30,6 +30,7 @@
 </template>
 
 <script lang="ts" setup>
+import { watch } from 'vue';
 import Section from '../section.vue';
 import PermissionCard from './settings-permission-overview-card.vue';
 import SessionSupportsPermissions from '../session-supports-permissions.vue';
@@ -38,8 +39,20 @@ import FormButton from '../form/form-button.vue';
 
 import { PermissionsHandler } from '../../../utils/permissions';
 
+const emits = defineEmits(['required']);
+
 const perm = new PermissionsHandler();
 perm.checkPermissions();
+
+watch(
+  perm.getRequiredState(),
+  value => {
+    if (value === 'granted') {
+      emits('required');
+    }
+  },
+  { immediate: true },
+);
 </script>
 
 <style lang="less" scoped></style>
