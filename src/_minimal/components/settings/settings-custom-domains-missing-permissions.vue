@@ -31,12 +31,11 @@
       <Section v-if="!hasAllPermissions">
         {{ lang('settings_custom_domains_missing_permissions_long') }}
       </Section>
-      <FormButton v-if="!supportsPermissions" color="secondary" link="https://malsync.moe/pwa">
-        {{ lang('settings_custom_domains_permissions_not_supported') }}
-      </FormButton>
-      <FormButton v-else color="secondary" padding="large" @click="add()">
-        {{ lang('Add') }}
-      </FormButton>
+      <SessionSupportsPermissions>
+        <FormButton color="secondary" padding="large" @click="add()">
+          {{ lang('Add') }}
+        </FormButton>
+      </SessionSupportsPermissions>
     </Card>
   </div>
 </template>
@@ -57,6 +56,7 @@ import Section from '../section.vue';
 import FormButton from '../form/form-button.vue';
 import { domainType } from '../../../background/customDomain';
 import Description from '../description.vue';
+import SessionSupportsPermissions from '../session-supports-permissions.vue';
 
 defineProps({
   title: {

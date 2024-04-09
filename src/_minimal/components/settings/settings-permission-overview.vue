@@ -12,15 +12,18 @@
       <PermissionCard title="Video player" :permission="perm.getPlayerPermissions()" />
     </Section>
 
-    <FormButton color="secondary" padding="large" @click="perm.requestPermissions()">
-      {{ lang('Add') }}
-    </FormButton>
+    <SessionSupportsPermissions>
+      <FormButton color="secondary" padding="large" @click="perm.requestPermissions()">
+        {{ lang('Add') }}
+      </FormButton>
+    </SessionSupportsPermissions>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Section from '../section.vue';
 import PermissionCard from './settings-permission-overview-card.vue';
+import SessionSupportsPermissions from '../session-supports-permissions.vue';
 import FormButton from '../form/form-button.vue';
 
 import { PermissionsHandler } from '../../../utils/permissions';
