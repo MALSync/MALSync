@@ -500,6 +500,7 @@ module.exports = {
       '*://vidplay.lol/e/*',
       '*://vidplay.online/e/*',
       '*://a9bfed0818.nl/e/*',
+      '*://vid142.site/e/*',
     ],
   },
   // gogo
