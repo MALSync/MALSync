@@ -23,7 +23,6 @@ jobs:
 
     - name: Run
       run: npm run build:autoUrls
-      continue-on-error: true
       env:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}

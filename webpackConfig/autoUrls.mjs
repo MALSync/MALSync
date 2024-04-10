@@ -195,7 +195,7 @@ async function start() {
     let lastError = null;
     const tasks = {
         voe,
-        vidmoly,
+        // vidmoly,
         mixdrop,
         gogostream,
         nineanime,
