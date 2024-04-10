@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const OtakuFR: pageInterface = {
   name: 'OtakuFR',
-  domain: 'https://otakufr.co',
+  domain: 'https://otakufr.cc',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {

@@ -1,6 +1,6 @@
 {
-  "search": "https://otakufr.co/toute-la-liste-affiches/?q={searchtermPlus}",
+  "search": "https://otakufr.cc/toute-la-liste-affiches/?q={searchtermPlus}",
   "urls": {
-    "match": ["*://otakufr.co/*"]
+    "match": ["*://otakufr.co/*", "*://otakufr.cc/*"]
   }
 }
