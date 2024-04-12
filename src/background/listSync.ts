@@ -1,4 +1,5 @@
 import * as Sync from '../utils/syncHandler';
+import { KeepAlive } from './keepAlive';
 
 export function listSyncInit() {
   chrome.alarms.get('listSync', async function (a) {
@@ -24,8 +25,13 @@ export function listSyncInit() {
       api.storage.set('listSyncLast', Date.now());
       api.settings.init().then(async () => {
         console.groupCollapsed('listSync');
-        await Sync.background.sync();
-        console.groupEnd();
+        const alive = new KeepAlive();
+        alive.start();
+
+        Sync.background.sync().finally(() => {
+          alive.stop();
+          console.groupEnd();
+        });
       });
     }
   });

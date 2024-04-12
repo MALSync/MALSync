@@ -2,6 +2,7 @@ import { Cache } from '../utils/Cache';
 import { getList } from '../_provider/listFactory';
 import { listElement } from '../_provider/listAbstract';
 import { xhrResponseI } from '../api/messageInterface';
+import { KeepAlive } from './keepAlive';
 
 export interface releaseItemInterface {
   timestamp: number;
@@ -61,6 +62,9 @@ export async function initUserProgressScheduler() {
 }
 
 export async function main() {
+  const alive = new KeepAlive();
+  alive.start();
+
   try {
     setBadgeText('⌛');
     await api.settings.init();
@@ -75,11 +79,13 @@ export async function main() {
     }
     con.log('Progress done');
     setBadgeText('');
+    alive.stop();
     return true;
   } catch (e) {
     con.log('Progress Failed', e);
   }
   setBadgeText('');
+  alive.stop();
   return false;
 }
 
