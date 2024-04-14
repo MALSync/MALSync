@@ -1,0 +1,6 @@
+{
+  "search": "https://animebuff.ru/search?q={searchtermPlus}",
+  "urls": {
+      "match": ["*://animebuff.ru/anime/*"]
+  }
+}

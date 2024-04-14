@@ -115,6 +115,7 @@ import { Animelon } from './Animelon/main';
 import { AnimeSama } from './AnimeSama/main';
 import { MangaFire } from './MangaFire/main';
 import { projectsuki } from './projectsuki/main';
+import { AnimeBuff } from './AnimeBuff/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
 import { AnimeKO } from './AnimeKO/main';
 import { AnimeGO } from './AnimeGO/main';
@@ -248,6 +249,7 @@ export const pages = {
   AnimeSama,
   MangaFire,
   projectsuki,
+  AnimeBuff,
   AnimeOnegai,
   AnimeKO,
   AnimeGO,
