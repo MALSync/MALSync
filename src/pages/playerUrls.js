@@ -263,6 +263,7 @@ module.exports = {
       '*://*.mixdropjmk.pw/e/*',
       '*://*.mixdrop21.net/e/*',
       '*://*.mixdrop.si/e/*',
+      '*://*.mixdrop.nu/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
