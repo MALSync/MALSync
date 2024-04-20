@@ -1204,9 +1204,9 @@
         "description": "Notifications"
     },
     "settings_Notifications_Sticky": {
-      "message": "Sticky Notifications",
-      "description": "Requires interaction to dismiss; ignores system notification timeout"
-  },
+        "message": "Sticky Notifications",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
     "settings_Debugging": {
         "message": "Debugging",
         "description": "Debugging"
@@ -1256,7 +1256,7 @@
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
-        "message": "Malsync Icon",
+        "message": "MAL-Sync Icon",
         "description": "Dropdown option to show the malsync icon on discord"
     },
     "settings_enabled": {
