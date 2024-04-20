@@ -46,8 +46,9 @@ export const Guya: pageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '.ReaderImageWrapper',
-          mode: 'countAbove',
+          selector: '.rdr-page-selector-counter',
+          mode: 'text',
+          regex: '^\\d+',
         },
         total: {
           selector: '.ReaderImageWrapper',
