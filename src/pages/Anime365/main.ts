@@ -30,14 +30,11 @@ export const Anime365: pageInterface = {
     return false;
   },
   getImage() {
-    if (Anime365.isOverviewPage!(window.location.href)) {
-      return utils.absoluteLink(
-        j.$('meta[property~="og:image"]').attr('content') ||
-          j.$('.m-catalog-item__poster img').attr('src'),
-        Anime365.domain[0],
-      );
-    }
-    return undefined;
+    return utils.absoluteLink(
+      j.$('meta[property~="og:image"]').attr('content') ||
+        j.$('.m-catalog-item__poster img').attr('src'),
+      window.location.hostname,
+    );
   },
   // Parsing from page could be very buggy
   overview: {
@@ -71,7 +68,7 @@ export const Anime365: pageInterface = {
       return Anime365.overview!.getIdentifier(url);
     },
     getOverviewUrl(url) {
-      return `https://${Anime365.domain[0]}/catalog/${Anime365.sync.getIdentifier(url)}`;
+      return `https://${utils.urlPart(url, 2)}/catalog/${Anime365.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       const ep_meta = j.$('meta[property~="ya:ovs:episode"]');
@@ -85,7 +82,7 @@ export const Anime365: pageInterface = {
     nextEpUrl(url) {
       const rightIcon = j.$('.m-select-sibling-episode .waves-effect:has(i.right)');
       if (rightIcon.length > 0)
-        return utils.absoluteLink(rightIcon.attr('href'), Anime365.domain[0]);
+        return utils.absoluteLink(rightIcon.attr('href'), window.location.hostname);
       return undefined;
     },
     uiSelector(selector) {
