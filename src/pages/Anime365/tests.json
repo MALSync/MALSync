@@ -1,0 +1,22 @@
+{
+  "title": "Anime365",
+  "url": "https://smotret-anime.com",
+  "testCases": [
+    {
+      "url": "https://smotret-anime.com/catalog/genres",
+      "expected": {
+        "sync": false
+      }
+    },
+    {
+      "url": "https://smotret-anime.com/catalog/horimiya-24061/10-seriya-254224/russkie-subtitry-3626417",
+      "expected": {
+        "sync": true,
+        "title": "Horimiya",
+        "identifier": "horimiya-24061",
+        "episode": 10,
+        "overviewUrl": "https://smotret-anime.com/catalog/horimiya-24061"
+      }
+    }
+  ]
+}

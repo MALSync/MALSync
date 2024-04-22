@@ -224,6 +224,14 @@ module.exports = {
   aniboom: {
     match: ['*://aniboom.one/*'],
   },
+  // Anime365
+  anime365: {
+    match: [
+      '*://smotret-anime.com/translations/embed/*',
+      '*://anime365.ru/translations/embed/*',
+      '*://anime-365.ru/translations/embed/*',
+    ],
+  },
   // kickassanime
   animopacestream: {
     match: ['*://animo-pace-stream.io/*'],

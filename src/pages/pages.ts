@@ -37,6 +37,7 @@ import { MangaPark } from './MangaPark/main';
 import { AnimesHouse } from './AnimesHouse/main';
 import { AnimeXin } from './AnimeXin/main';
 import { MonosChinos } from './MonosChinos/main';
+import { Anime365 } from './Anime365/main';
 import { AnimeFire } from './AnimeFire/main';
 import { OtakuFR } from './OtakuFR/main';
 import { mangatx } from './mangatx/main';
@@ -170,6 +171,7 @@ export const pages = {
   AnimesHouse,
   AnimeXin,
   MonosChinos,
+  Anime365,
   AnimeFire,
   OtakuFR,
   mangatx,
