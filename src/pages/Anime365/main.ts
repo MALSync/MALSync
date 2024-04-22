@@ -1,6 +1,8 @@
 import { urlPart } from '../../utils/general';
 import { pageInterface } from '../pageInterface';
 
+// const logger = con.m('Anime365', '#1b5e20');
+
 function isNumeric(str: string) {
   return !Number.isNaN(parseInt(str));
 }
@@ -94,8 +96,20 @@ export const Anime365: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     utils.urlChangeDetect(() => {
-      page.reset();
-      page.handlePage();
+      utils.waitUntilTrue(
+        () => {
+          return (
+            j.$('.body-container > .section > .container > .row > .col:last-of-type > .card')
+              .length > 0
+          );
+        },
+        () => {
+          j.$(() => {
+            page.reset();
+            page.handlePage();
+          });
+        },
+      );
     });
     j.$(() => {
       page.handlePage();
