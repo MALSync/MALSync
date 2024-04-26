@@ -143,7 +143,7 @@ export class PermissionsHandler {
   }
 
   public hasAllPermissions() {
-    return this.permissionsObject.general.value === 'granted';
+    return this.permissionsObject.general.value !== 'denied';
   }
 
   public getRequiredState() {
