@@ -9,3 +9,13 @@ export const permissionsOverview: ConfObj[] = [
     component: SettingsPermissionsOverview,
   },
 ];
+
+export const missingGeneralPermissions: ConfObj = {
+  key: 'permission-overview',
+  system: 'webextension',
+  title: () => api.storage.lang('settings_custom_domains_button'),
+  component: SettingsPermissionsOverview,
+  props: {
+    requiredOnly: true,
+  },
+};

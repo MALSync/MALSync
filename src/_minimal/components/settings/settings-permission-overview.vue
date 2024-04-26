@@ -1,5 +1,14 @@
 <template>
-  <div class="permissions">
+  <component
+    :is="requiredOnly ? Card : 'div'"
+    v-if="!requiredOnly || !perm.hasAllPermissions()"
+    class="permissions"
+    border="secondary"
+  >
+    <Header v-if="requiredOnly" :spacer="true">
+      {{ lang('settings_custom_domains_missing_permissions_header') }}
+    </Header>
+
     <Section spacer="half" direction="both">
       <PermissionCard title="Required" :permission="perm.getRequiredPermissions()" />
     </Section>
@@ -26,7 +35,7 @@
         :title="lang('settings_custom_domains_button')"
       />
     </SessionSupportsPermissions>
-  </div>
+  </component>
 </template>
 
 <script lang="ts" setup>
@@ -36,8 +45,17 @@ import PermissionCard from './settings-permission-overview-card.vue';
 import SessionSupportsPermissions from '../session-supports-permissions.vue';
 import SettingsCustomDomainsMissingPermissions from './settings-custom-domains-missing-permissions.vue';
 import FormButton from '../form/form-button.vue';
+import Card from '../card.vue';
+import Header from '../header.vue';
 
 import { PermissionsHandler } from '../../../utils/permissions';
+
+defineProps({
+  requiredOnly: {
+    type: Boolean,
+    default: false,
+  },
+});
 
 const emits = defineEmits(['required']);
 
