@@ -185,49 +185,58 @@ function xhrAction(
     (options.headers as [string, string][]).push(['type', 'addon']);
   }
 
-  fetch(url, options).then(async response => {
-    if (response.status === 429) {
-      let limits: { timeout: number; tries: number; cutoff: number };
-      if (environment === 'content') {
-        limits = {
-          timeout: 30000,
-          tries: 4,
-          cutoff: 180000,
-        };
-      } else {
-        limits = {
-          timeout: 300000,
-          tries: 4,
-          cutoff: 30 * 60 * 1000,
-        };
+  fetch(url, options)
+    .then(async response => {
+      if (response.status === 429) {
+        let limits: { timeout: number; tries: number; cutoff: number };
+        if (environment === 'content') {
+          limits = {
+            timeout: 30000,
+            tries: 4,
+            cutoff: 180000,
+          };
+        } else {
+          limits = {
+            timeout: 300000,
+            tries: 4,
+            cutoff: 30 * 60 * 1000,
+          };
+        }
+
+        if (
+          retry.try < limits.tries &&
+          !utils.rateLimitExclude.test(response.url) &&
+          new Date().getTime() - retry.date.getTime() < limits.cutoff
+        ) {
+          con.error('RATE LIMIT');
+          setTimeout(() => {
+            retry.try++;
+            xhrAction(message, sender, sendResponse, environment, retry);
+            api.storage.set('rateLimit', false);
+          }, limits.timeout);
+          if (environment === 'content') api.storage.set('rateLimit', true);
+          return;
+        }
       }
 
-      if (
-        retry.try < limits.tries &&
-        !utils.rateLimitExclude.test(response.url) &&
-        new Date().getTime() - retry.date.getTime() < limits.cutoff
-      ) {
-        con.error('RATE LIMIT');
-        setTimeout(() => {
-          retry.try++;
-          xhrAction(message, sender, sendResponse, environment, retry);
-          api.storage.set('rateLimit', false);
-        }, limits.timeout);
-        if (environment === 'content') api.storage.set('rateLimit', true);
-        return;
+      if (environment === 'background') {
+        await utils.wait(5000);
       }
-    }
 
-    if (environment === 'background') {
-      await utils.wait(5000);
-    }
-
-    const responseObj: xhrResponseI = {
-      finalUrl: response.url,
-      responseText: await response.text(),
-      status: response.status,
-    };
-    sendResponse(responseObj);
-  });
+      const responseObj: xhrResponseI = {
+        finalUrl: response.url,
+        responseText: await response.text(),
+        status: response.status,
+      };
+      sendResponse(responseObj);
+    })
+    .catch(err => {
+      const responseObj: xhrResponseI = {
+        finalUrl: '',
+        responseText: err.message,
+        status: 0,
+      };
+      sendResponse(responseObj);
+    });
   return true;
 }
