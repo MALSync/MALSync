@@ -14,9 +14,10 @@ import { PermissionsHandler } from '../../../utils/permissions';
 import { sessionSupportsPermissions } from '../../../utils/customDomains';
 
 const supportsPermissions = sessionSupportsPermissions();
+const mode = $('html').attr('mode');
 
 const perm = new PermissionsHandler();
-if (supportsPermissions) perm.checkPermissions();
+if (supportsPermissions && mode !== 'install') perm.checkPermissions();
 </script>
 
 <style lang="less" scoped>

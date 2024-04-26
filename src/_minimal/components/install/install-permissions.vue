@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Header :spacer="true"> 🔑 {{ lang('settings_permissions_overview') }} </Header>
+    <Header :spacer="true">
+      🔑 {{ lang('settings_custom_domains_missing_permissions_header') }}
+    </Header>
     <Section>
       <p>
         <SettingsPermissionsOverview @required="clickHandler()" />
