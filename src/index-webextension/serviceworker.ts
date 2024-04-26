@@ -61,7 +61,7 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
 
 chrome.runtime.onInstalled.addListener(async function (details) {
   if (details.reason === 'install') {
-    chrome.tabs.create({ url: chrome.extension.getURL('install.html') }, function (tab) {
+    chrome.tabs.create({ url: chrome.runtime.getURL('install.html') }, function (tab) {
       con.info('Open installPage');
     });
   } else if (details.reason === 'update') {
