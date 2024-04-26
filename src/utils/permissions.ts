@@ -146,6 +146,10 @@ export class PermissionsHandler {
     return this.permissionsObject.general.value !== 'denied';
   }
 
+  public hasRequiredPermissions() {
+    return this.permissionsObject.required.permission.value !== 'denied';
+  }
+
   public getRequiredState() {
     return this.permissionsObject.required.permission;
   }

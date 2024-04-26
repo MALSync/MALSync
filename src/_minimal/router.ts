@@ -57,7 +57,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Install',
     component: () => import('./views/install.vue'),
   },
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('./views/notFound.vue'), },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('./views/notFound.vue') },
 ];
 
 let scrollUntilDebounce;
