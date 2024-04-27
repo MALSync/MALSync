@@ -685,6 +685,7 @@ module.exports = {
       '*://ryanagoinvolve.com/e/*',
       '*://jasonresponsemeasure.com/e/*',
       '*://graceaddresscommunity.com/e/*',
+      '*://shannonpersonalcost.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
