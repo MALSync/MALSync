@@ -1,6 +1,6 @@
 {
-  "search": "https://toonily.net/?s={searchtermPlus}&post_type=wp-manga",
+  "search": "https://toonily.com/?s={searchtermPlus}&post_type=wp-manga",
   "urls": {
-    "match": ["*://toonily.net/manga/*"]
+    "match": ["*://toonily.com/webtoon/*"]
   }
 }
