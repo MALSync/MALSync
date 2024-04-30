@@ -897,7 +897,7 @@ module.exports = {
   },
   // animeflix
   animeflix: {
-    match: ['*://api.animeflix.live/*', '*://api.animeflix.dev/*'],
+    match: ['*://api.animeflix.live/*', '*://api.animeflix.dev/*', '*://*.animeflix.ci/player?*'],
   },
   // zoro
   megacloud: {
