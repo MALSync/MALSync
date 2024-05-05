@@ -686,6 +686,7 @@ module.exports = {
       '*://jasonresponsemeasure.com/e/*',
       '*://graceaddresscommunity.com/e/*',
       '*://shannonpersonalcost.com/e/*',
+      '*://cindyeyefinal.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
