@@ -19,7 +19,7 @@ export const AnimesOnline: pageInterface = {
       return j.$(j.$('.breadcrumb li')[2]).text().trim().replace('- Dublado', '');
     },
     getOverviewUrl(url) {
-      return j.$(j.$('.breadcrumb li')[2]).find('a').attr('href') ?? "";
+      return j.$(j.$('.breadcrumb li')[2]).find('a').attr('href') ?? '';
     },
     getEpisode(url) {
       return Number(j.$(j.$('.breadcrumb li')[3]).text().split('ep')[1].trim());
@@ -30,7 +30,7 @@ export const AnimesOnline: pageInterface = {
   },
   overview: {
     getTitle(url) {
-        return j.$(j.$('.breadcrumb li')[2]).text().replace('- Dublado', '').trim();
+      return j.$(j.$('.breadcrumb li')[2]).text().replace('- Dublado', '').trim();
     },
     getIdentifier(url) {
       return j.$(j.$('.breadcrumb li')[2]).text().replace('- Dublado', '').trim();
@@ -46,7 +46,10 @@ export const AnimesOnline: pageInterface = {
         return j.$('.episode-card');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(j.$(selector.find('a').first()).attr('href'), AnimesOnline.domain);
+        return utils.absoluteLink(
+          j.$(selector.find('a').first()).attr('href'),
+          AnimesOnline.domain,
+        );
       },
       elementEp(selector) {
         return Number(selector.find('.card-title span').text().split('EP')[1].trim());
