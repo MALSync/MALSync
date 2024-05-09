@@ -104,7 +104,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@types/chrome": "0.0.265",
+    "@types/chrome": "0.0.267",
     "@vue/eslint-config-typescript": "^13.0.0",
     "dexie": "^3.2.7",
     "dompurify": "^3.0.11",
