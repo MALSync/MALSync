@@ -1,5 +1,28 @@
 import { pageInterface } from '../pageInterface';
 
+let originalSrc;
+const changeSrc = (currentPlayer, currentTries = 0) => {
+  const tempSrc = $(`#tab-${currentPlayer} video`).attr('src');
+
+  if (tempSrc === undefined) {
+    if (currentTries >= 100) {
+      alert('MAL-SYNC: Cant find target src video, please refresh the page and try again!');
+      return;
+    }
+
+    setTimeout(() => {
+      currentTries++;
+      changeSrc(currentPlayer, currentTries);
+    }, 50);
+    return;
+  }
+
+  $('.player.current').removeClass('current');
+  $('#tab-1').addClass('current');
+
+  $($('video')[0]).attr('src', currentPlayer === 1 ? originalSrc : tempSrc ?? originalSrc);
+};
+
 export const AnimesOnline: pageInterface = {
   name: 'Animes Online',
   domain: 'animesonline.in',
@@ -61,7 +84,23 @@ export const AnimesOnline: pageInterface = {
       api.storage.addStyle(
         require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
       );
+
+      originalSrc = $($('.player video')[0]).attr('src');
+
       page.handlePage();
+
+      $('.player-option a').on('click', function () {
+        const currentPlayer = Number($(this).parent().data('tab').split('-')[1]);
+
+        // required to make a first click so it thinks that the player is setup and playing
+        $('video')[0].click();
+        // @ts-ignore
+        $('video')[0].pause();
+
+        setTimeout(() => {
+          changeSrc(currentPlayer);
+        }, 500);
+      });
     });
   },
 };
