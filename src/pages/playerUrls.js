@@ -264,6 +264,7 @@ module.exports = {
       '*://*.mixdrop21.net/e/*',
       '*://*.mixdrop.si/e/*',
       '*://*.mixdrop.nu/e/*',
+      '*://*.uka257.mixdrop.nu/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
