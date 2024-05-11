@@ -1,0 +1,30 @@
+{
+  "title": "Miruro",
+  "url": "https://www.miruro.tv",
+  "testCases": [
+    {
+      "url": "https://www.miruro.tv/watch/139630/boku-no-hero-academia-6th-season/1",
+      "expected": {
+        "sync": true,
+        "title": "boku no hero academia 6th season",
+        "identifier": "139630-1",
+        "uiSelector": false,
+        "epList": {
+          "5": "https://www.miruro.tv/watch/139630/boku-no-hero-academia-6th-season/5"
+        }
+      }
+    },
+    {
+      "url": "https://www.miruro.tv/watch/101280/tensei-shitara-slime-datta-ken/19",
+      "expected": {
+        "sync": true,
+        "title": "tensei shitara slime datta ken",
+        "identifier": "101280-19",
+        "uiSelector": false,
+        "epList": {
+          "5": "https://www.miruro.tv/watch/101280/tensei-shitara-slime-datta-ken/5"
+        }
+      }
+    }
+  ]
+}
