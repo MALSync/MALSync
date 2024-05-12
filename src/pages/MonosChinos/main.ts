@@ -1,4 +1,5 @@
 import { pageInterface } from '../pageInterface';
+import * as j from 'jquery'; // Importar jQuery
 
 export const MonosChinos: pageInterface = {
   name: 'MonosChinos',
@@ -13,20 +14,22 @@ export const MonosChinos: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.heromain_h1')
-        .first()
-        .text()
-        .replace(/(\. )?(\d+\s+)(Sub|Dub)(\s+Español)$/gi, '')
-        .replace(/-[^-]*$/gi, '')
-        .replace(/^ver/gi, '')
-        .trim();
-    },
+      const regex = /Ver\s+(.*?)\s*(?:-)\s*(\d+)/i;
+      const match = j('body > div.container.mt-3 > div > div.col-lg-9.col-md-9.col-12 > h1').first().text().match(regex);
+      
+      if (match && match.length === 3) {
+        const title = match[1];
+        const cleanedTitle = title.trim();
+        return cleanedTitle;
+      } else {
+        return "";
+      }
+    },    
     getIdentifier(url) {
-      return MonosChinos.sync.getOverviewUrl(url).split('/')[4];
+      return MonosChinos.sync.getTitle(url); // Llamar a getTitle para obtener el identificador
     },
     getOverviewUrl(url) {
-      return j.$('.lista a').first().attr('href') || '';
+      return $('.lista a').first().attr('href') || '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -44,7 +47,7 @@ export const MonosChinos: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j.$('.derecha a').first().attr('href');
+      const href = $('.derecha a').first().attr('href');
       if (href) {
         if (MonosChinos.sync.getEpisode(url) < MonosChinos.sync.getEpisode(href)) {
           return href;
@@ -55,23 +58,18 @@ export const MonosChinos: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1')
-        .first()
-        .text()
-        .replace(/(Sub|Dub)(\s+Español)$/gi, '')
-        .trim();
+      return $('h1').first().text().replace(/(Sub|Dub)(\s+Español)$/gi, '').trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return MonosChinos.sync.getTitle(url); // Llamar a getTitle para obtener el identificador
     },
     uiSelector(selector) {
-      j.$('.heromain2').first().before(j.html(selector));
+      $('.heromain2').first().before($(selector)); 
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.allanimes .col-item');
+        return $('.allanimes .col-item');
       },
       elementUrl(selector) {
         return selector.find('a').first().attr('href') || '';
@@ -85,7 +83,7 @@ export const MonosChinos: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(function () {
+    $(document).ready(function () { 
       if (document.title.includes('MonosChinos - Anime sub español y latino')) {
         con.error('404');
         return;
