@@ -23,7 +23,11 @@ export const Miruro: pageInterface = {
       return `${utils.urlPart(url, 4)}-${utils.urlPart(url, 6)}`;
     },
     getOverviewUrl(url) {
-      return url;
+      const href = `https://${window.location.hostname}/watch/${utils.urlPart(url, 4)}`;
+      if (typeof href !== 'undefined') {
+        return utils.absoluteLink(href, Miruro.domain);
+      }
+      return '';
     },
     getEpisode(url) {
       const temp = utils.urlPart(url, 6);
@@ -47,14 +51,13 @@ export const Miruro: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    page.url = window.location.href;
     ready();
     utils.urlChangeDetect(function () {
       ready();
     });
     function ready() {
       page.reset();
-      if (page.url.split('/')[3] === 'watch') {
+      if (utils.urlPart(page.url, 3) === 'watch' && utils.urlPart(page.url, 5).trim() !== '') {
         utils.waitUntilTrue(
           function () {
             if (j.$('.player[data-media-player] .vds-poster').length) {
