@@ -688,6 +688,7 @@ module.exports = {
       '*://graceaddresscommunity.com/e/*',
       '*://shannonpersonalcost.com/e/*',
       '*://cindyeyefinal.com/e/*',
+      '*://michaelapplysome.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
