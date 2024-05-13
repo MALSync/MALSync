@@ -84,7 +84,6 @@ import { ReadManhua } from './ReadManhua/main';
 import { FlameScans } from './FlameScans/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
-import { Funimation } from './Funimation/main';
 import { Kitsune } from './Kitsune/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
@@ -217,7 +216,6 @@ export const pages = {
   FlameScans,
   ImmortalUpdates,
   Zoro,
-  Funimation,
   Kitsune,
   LHTranslation,
   MangasOrigines,

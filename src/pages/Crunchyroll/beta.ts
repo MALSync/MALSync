@@ -1,18 +1,7 @@
 import { pageInterface } from '../pageInterface';
 import { ScriptProxy } from '../../utils/scriptProxy';
 
-const proxy = new ScriptProxy();
-
-proxy.addCaptureVariable(
-  'auth',
-  `
-    if (window.hasOwnProperty("__APP_CONFIG__")) {
-      return __APP_CONFIG__.cxApiParams
-    } else {
-      return undefined;
-    }
-  `,
-);
+const proxy = new ScriptProxy('Crunchyroll');
 
 interface SeasonType {
   __class__: string;
@@ -160,12 +149,14 @@ export const beta: pageInterface = {
       },
     },
   },
-  init(page) {
+  async init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./styleBeta.less').toString(),
     );
     let firstCall = true;
     let placeholderInterval;
+
+    await proxy.injectScript();
 
     // Episode list update
     utils.changeDetect(
@@ -252,7 +243,7 @@ async function auth() {
 async function getAuthData() {
   const logger = authLogger.m('Data');
   logger.log('start');
-  const data = (await proxy.getProxyVariable('auth')) as
+  const data = (await proxy.getData()) as
     | {
         accountAuthClientId: string;
         anonClientId: string;

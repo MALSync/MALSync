@@ -96,7 +96,7 @@ export const webextension: storageInterface = {
   },
 
   assetUrl(filename) {
-    return chrome.extension.getURL(`assets/${filename}`);
+    return chrome.runtime.getURL(`assets/${filename}`);
   },
 
   injectCssResource(res, head) {
@@ -105,12 +105,17 @@ export const webextension: storageInterface = {
 
   injectjsResource(res, head) {
     const s = document.createElement('script');
-    s.src = chrome.extension.getURL(`vendor/${res}`);
+    s.src = chrome.runtime.getURL(`vendor/${res}`);
     s.onload = function () {
       // @ts-ignore
       this.remove();
     };
     head.get(0).appendChild(s);
+  },
+
+  addProxyScriptToTag(tag, name) {
+    tag.src = chrome.runtime.getURL(`/content/proxy/proxy_${name}.js`);
+    return tag;
   },
 
   updateDom(head) {

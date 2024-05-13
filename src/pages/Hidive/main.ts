@@ -2,75 +2,8 @@ import { ScriptProxy } from '../../utils/scriptProxy';
 import { pageInterface } from '../pageInterface';
 
 let handleInterval;
-const proxy = new ScriptProxy();
-proxy.addCaptureVariable(
-  'episodesInformation',
-  `
-    if (!window.fetchOverride) {
-      window.malsyncData = {};
-
-      var originalFetch = fetch;
-      fetch = (input, init) => originalFetch(input, init)
-        .then(response => {
-          try {
-            let url = input.url || input;
-            if (url.includes('/api/')) {
-              res = response.clone();
-              res.json().then(data => {
-                if (data && data.type && data.type === 'VOD' && data.id) {
-                  window.malsyncData[data.id] = data;
-                  checkForTitle(url, data, init).then((title) => {
-                    if (title) {
-                      window.malsyncData[data.id].malsync_title = title;
-                    }
-                  }).finally(() => {
-                    window.malsyncData[data.id].done = true;
-                  });
-                }
-              });
-            }
-
-          } catch (e) {
-            console.error('MALSYNC', e);
-          }
-
-          return response;
-        });
-
-      console.log('MALSYNC', "Fetch override added.");
-      window.fetchOverride = true;
-    }
-
-    if (window.hasOwnProperty("malsyncData")) {
-      return window.malsyncData;
-    } else {
-      return undefined;
-    }
-
-    async function checkForTitle(url, data, options) {
-      if (!url) return;
-      if (!data.episodeInformation || !data.episodeInformation.season) return;
-      const seriesId = String(data.episodeInformation.season);
-      if (!seriesId) return;
-      const storageTitle = window.sessionStorage.getItem('malsyncData_' + seriesId);
-      if (storageTitle) return storageTitle;
-      url = new URL(url);
-      url.pathname = 'api/v1/view';
-      url.search = \`?type=season&id=\${seriesId}\`;
-      return originalFetch(url.toString(), options)
-        .then(response => {
-          return response.json().then(data => {
-            const header = data.elements.find(x => x.$zone === 'header');
-            if (!header) return;
-            const title = header.attributes.header.attributes.text;
-            if (!title) return;
-            window.sessionStorage.setItem('malsyncData_' + seriesId, title);
-            return title;
-          });
-        });
-    }
-  `,
-);
+const proxy = new ScriptProxy('Hidive');
+let proxy_data: any = null;
 
 export const Hidive: pageInterface = {
   name: 'Hidive',
@@ -163,11 +96,12 @@ export const Hidive: pageInterface = {
     },
   },
 
-  init(page) {
-    proxy.addProxy();
+  async init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+
+    await proxy.injectScript();
 
     j.$(document).ready(() => handle());
     utils.urlChangeDetect(() => handle());
@@ -178,7 +112,9 @@ export const Hidive: pageInterface = {
         const video = videoId();
         handleInterval = utils.waitUntilTrue(
           () => {
-            proxy.addProxy();
+            proxy.getData().then(data => {
+              proxy_data = data;
+            });
             const info = epInfo(video);
             return info && info.done;
           },
@@ -200,7 +136,7 @@ function videoId() {
 }
 
 function epInfo(videoIdentifier: number) {
-  const eps = proxy.getCaptureVariable('episodesInformation');
+  const eps = proxy_data;
   if (!eps || !eps[videoIdentifier]) return undefined;
   con.m('Episode').m(videoIdentifier).log(eps[videoIdentifier]);
   return eps[videoIdentifier];

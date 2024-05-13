@@ -66,7 +66,7 @@ export default {
     openWindow(e) {
       e.preventDefault();
       e.stopPropagation();
-      const win = window.open(chrome.extension.getURL('window.html'), '_blank');
+      const win = window.open(chrome.runtime.getURL('window.html'), '_blank');
       if (win) {
         win.focus();
       } else {

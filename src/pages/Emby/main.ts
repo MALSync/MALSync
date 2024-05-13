@@ -2,17 +2,7 @@ import { ScriptProxy } from '../../utils/scriptProxy';
 import { pageInterface } from '../pageInterface';
 
 // Define the variable proxy element:
-const proxy = new ScriptProxy();
-proxy.addCaptureVariable(
-  'ApiClient',
-  `
-    if (window.hasOwnProperty("ApiClient")) {
-      return ApiClient;
-    } else {
-      return undefined;
-    }
-  `,
-);
+const proxy = new ScriptProxy('Emby');
 
 let item: any;
 
@@ -211,28 +201,19 @@ async function testApi() {
 }
 
 async function checkApiClient() {
-  return new Promise((resolve, reject) => {
-    proxy.addProxy(async (caller: ScriptProxy) => {
-      try {
-        const apiClient: any = proxy.getCaptureVariable('ApiClient');
-        con.m('apiClient').log(apiClient);
-        if (
-          apiClient &&
-          apiClient._serverInfo &&
-          apiClient._serverInfo.RemoteAddress &&
-          apiClient._serverInfo.AccessToken
-        ) {
-          await setBase(`${apiClient._serverInfo.RemoteAddress}/emby`);
-          await setApiKey(apiClient._serverInfo.AccessToken);
-          resolve(true);
-          return;
-        }
-        reject();
-      } catch (e) {
-        reject(e);
-      }
-    });
-  });
+  const apiClient: any = await proxy.getData();
+  con.m('apiClient').log(apiClient);
+  if (
+    apiClient &&
+    apiClient._serverInfo &&
+    apiClient._serverInfo.RemoteAddress &&
+    apiClient._serverInfo.AccessToken
+  ) {
+    await setBase(`${apiClient._serverInfo.RemoteAddress}/emby`);
+    await setApiKey(apiClient._serverInfo.AccessToken);
+    return;
+  }
+  throw 'No ApiClient';
 }
 
 async function askForApiKey() {
@@ -316,10 +297,12 @@ export const Emby: pageInterface = {
       j.$('.page:not(.hide) .nameContainer').first().append(j.html(selector));
     },
   },
-  init(page) {
+  async init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+
+    await proxy.injectScript();
 
     j.$(document).ready(function () {
       prepareApi().then(() => {

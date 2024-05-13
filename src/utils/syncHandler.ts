@@ -374,7 +374,7 @@ function setBadgeText(text: string) {
   // @ts-ignore
   if (api.type === 'userscript') return;
   try {
-    chrome.browserAction.setBadgeText({ text });
+    chrome.action.setBadgeText({ text });
   } catch (e) {
     con.error(e);
   }

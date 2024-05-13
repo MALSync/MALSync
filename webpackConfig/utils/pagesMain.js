@@ -22,4 +22,7 @@ module.exports = {
       };
     });
   },
+  proxies: function() {
+    return ts.open('../../src/pages/scriptProxies.ts').proxies;
+  },
 };

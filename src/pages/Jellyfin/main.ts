@@ -4,17 +4,7 @@ import { ScriptProxy } from '../../utils/scriptProxy';
 import { pageInterface } from '../pageInterface';
 
 // Define the variable proxy element:
-const proxy = new ScriptProxy();
-proxy.addCaptureVariable(
-  'ApiClient',
-  `
-    if (window.hasOwnProperty("ApiClient")) {
-      return ApiClient;
-    } else {
-      return undefined;
-    }
-  `,
-);
+const proxy = new ScriptProxy('Jellyfin');
 
 let item: any;
 
@@ -275,67 +265,56 @@ async function testApi(retry = 0) {
 }
 
 async function checkApiClient() {
-  return new Promise((resolve, reject) => {
-    proxy.addProxy(async (caller: ScriptProxy) => {
-      const apiClient: any = proxy.getCaptureVariable('ApiClient');
-      con.m('apiClient').log(apiClient);
+  const apiClient = await proxy.getData();
+  con.m('apiClient').log(apiClient);
 
-      if (apiClient) {
-        if (apiClient._serverInfo && apiClient._serverInfo.AccessToken) {
-          setApiKey(apiClient._serverInfo.AccessToken);
-        }
-        if (apiClient._serverAddress) {
-          setBase(apiClient._serverAddress);
-        }
-        if (apiClient._currentUser && apiClient._currentUser.Id) {
-          setUser(apiClient._currentUser.Id);
-        } else if (apiClient._serverInfo && apiClient._serverInfo.UserId) {
-          setUser(apiClient._serverInfo.UserId);
-        }
-        resolve(true);
-        return;
-      }
-      reject();
-    });
-  });
+  if (apiClient) {
+    if (apiClient._serverInfo && apiClient._serverInfo.AccessToken) {
+      setApiKey(apiClient._serverInfo.AccessToken);
+    }
+    if (apiClient._serverAddress) {
+      setBase(apiClient._serverAddress);
+    }
+    if (apiClient._currentUser && apiClient._currentUser.Id) {
+      setUser(apiClient._currentUser.Id);
+    } else if (apiClient._serverInfo && apiClient._serverInfo.UserId) {
+      setUser(apiClient._serverInfo.UserId);
+    }
+    return true;
+  }
+  throw 'No ApiClient';
 }
 
 async function getDeviceId(): Promise<string> {
-  return new Promise((resolve, reject) => {
-    proxy.addProxy(async (caller: ScriptProxy) => {
-      const apiClient: any = proxy.getCaptureVariable('ApiClient');
-      con.m('apiClient').log(apiClient);
+  const apiClient = await proxy.getData();
+  con.m('apiClient').log(apiClient);
 
-      if (apiClient && apiClient._deviceId) {
-        con.m('apiClient').log('clientId', apiClient._deviceId);
-        resolve(apiClient._deviceId);
-        return;
-      }
-      reject();
-    });
-  });
+  if (apiClient && apiClient._deviceId) {
+    con.m('apiClient').log('clientId', apiClient._deviceId);
+    return apiClient._deviceId;
+  }
+
+  throw 'No DeviceId';
 }
 
-function checkIfAuthIsUpToDate() {
-  proxy.addProxy(async (caller: ScriptProxy) => {
-    const apiClient: any = proxy.getCaptureVariable('ApiClient');
-    con.m('apiClient').log(apiClient);
-    const curKey = getApiKey();
+async function checkIfAuthIsUpToDate() {
+  const apiClient = await proxy.getData();
+  con.m('apiClient').log(apiClient);
+  const curKey = getApiKey();
 
-    if (
-      apiClient &&
-      apiClient._serverInfo &&
-      apiClient._serverInfo.AccessToken &&
-      curKey === apiClient._serverInfo.AccessToken
-    ) {
-      return;
-    }
-    con.error('Reset Authentication');
-    await setBase('');
-    await setApiKey('');
-    await setUser('');
-    await checkApiClient();
-  });
+  if (
+    apiClient &&
+    apiClient._serverInfo &&
+    apiClient._serverInfo.AccessToken &&
+    curKey === apiClient._serverInfo.AccessToken
+  ) {
+    return;
+  }
+  con.error('Reset Authentication');
+  await setBase('');
+  await setApiKey('');
+  await setUser('');
+  await checkApiClient();
 }
 
 // Helper
@@ -410,10 +389,13 @@ export const Jellyfin: pageInterface = {
       j.$('.page:not(.hide) .detailPageContent').first().prepend(j.html(selector));
     },
   },
-  init(page) {
+  async init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+
+    await proxy.injectScript();
+
     testApi().then(() => {
       con.info('Authenticated');
       utils.changeDetect(
