@@ -1,0 +1,10 @@
+{
+  "search": "https://smotret-anime.com/catalog/search?q={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://smotret-anime.com/catalog/*",
+      "*://anime365.ru/catalog/*",
+      "*://anime-365.ru/catalog/*"
+    ]
+  }
+}
