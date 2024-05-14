@@ -12,6 +12,10 @@ export const AnimeBuff: pageInterface = {
     if (utils.urlPart(url, 5) !== '') {
       return false;
     }
+    // Catalog: https://animebuff.ru/anime/
+    if (utils.urlPart(url, 4) === '') {
+      return false;
+    }
     // Handle 404 error
     if (j.$('.error-404').length > 0) {
       return false;
