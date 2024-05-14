@@ -33,6 +33,7 @@ import installStart from '../components/install/install-start.vue';
 import installHow from '../components/install/install-how.vue';
 import installCorrect from '../components/install/install-correct.vue';
 import installLinks from '../components/install/install-links.vue';
+import installPermissions from '../components/install/install-permissions.vue';
 import installProvider from '../components/install/install-provider.vue';
 import installLogin from '../components/install/install-login.vue';
 import Section from '../components/section.vue';
@@ -67,6 +68,12 @@ const pages = [
     card: true,
     limited: true,
     buttons: 'back',
+  },
+  {
+    component: installPermissions,
+    card: true,
+    limited: true,
+    buttons: false,
   },
   {
     component: installLogin,

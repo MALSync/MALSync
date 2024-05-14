@@ -31,15 +31,6 @@ export function getBaseText(element) {
   return text;
 }
 
-/**
- * Generates a (hex) string ID for randomisation/verification.
- */
-export function generateUniqueID(arraySize = 10): string {
-  const array = new Uint32Array(arraySize);
-  window.crypto.getRandomValues(array);
-  return Array.from(array, value => value.toString(16)).join('');
-}
-
 export function favicon(domain) {
   if (!domain) return '';
   const res = domain.match(/^(https?:\/\/)?[^/]+/);

@@ -21,6 +21,8 @@ export interface storageInterface {
 
   injectjsResource(res: string, head): void;
 
+  addProxyScriptToTag(tag: HTMLScriptElement, name: string): HTMLScriptElement;
+
   updateDom(head): void;
 
   storageOnChanged(cb: (changes, namespace) => void): any;

@@ -1,10 +1,5 @@
+/* eslint-disable es/no-dynamic-import */
 import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router';
-import Bookmarks from './views/bookmarks.vue';
-import Overview from './views/overview.vue';
-import Settings from './views/settings.vue';
-import Search from './views/search.vue';
-import Install from './views/install.vue';
-import NotFound from './views/notFound.vue';
 import { getUrlObj, setUrlObj } from './utils/state';
 
 const routes: Array<RouteRecordRaw> = [
@@ -26,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/book/:type/:state',
     name: 'Bookmarks',
-    component: Bookmarks,
+    component: () => import('./views/bookmarks.vue'),
     props: {
       type: String,
       state: Number,
@@ -35,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/:type/:slug',
     name: 'Overview',
-    component: Overview,
+    component: () => import('./views/overview.vue'),
     meta: {
       key: true,
     },
@@ -43,7 +38,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/settings/:path*',
     name: 'Settings',
-    component: Settings,
+    component: () => import('./views/settings.vue'),
   },
   {
     path: '/search',
@@ -52,7 +47,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/search/:type',
     name: 'Search',
-    component: Search,
+    component: () => import('./views/search.vue'),
     props: {
       type: String,
     },
@@ -60,9 +55,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/install',
     name: 'Install',
-    component: Install,
+    component: () => import('./views/install.vue'),
   },
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('./views/notFound.vue') },
 ];
 
 let scrollUntilDebounce;

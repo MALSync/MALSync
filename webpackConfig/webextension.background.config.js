@@ -13,7 +13,6 @@ plugins = [
     con: path.resolve(__dirname, './../src/utils/consoleBG'),
     utils: path.resolve(__dirname, './../src/utils/general'),
     api: path.resolve(__dirname, './../src/api/webextension'),
-    j: path.resolve(__dirname, './../src/utils/j'),
   }),
   new webpack.DefinePlugin({
     __VUE_OPTIONS_API__: true,
@@ -24,7 +23,7 @@ plugins = [
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, '..', 'src/background.ts'),
+    index: path.join(__dirname, '..', 'src/index-webextension/serviceworker.ts'),
   },
   module: {
     rules: [

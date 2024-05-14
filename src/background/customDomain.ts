@@ -5,85 +5,59 @@ const logger = con.m('Custom Domain');
 export type domainType = { domain: string; page: string; auto?: boolean };
 
 export async function initCustomDomain() {
-  await setListener();
   updateListener();
+  await registerScripts();
   logger.log('Initialed');
 }
 
 function updateListener() {
-  chrome.permissions.onAdded.addListener(setListener);
-  chrome.permissions.onRemoved.addListener(setListener);
+  chrome.permissions.onAdded.addListener(registerScripts);
+  chrome.permissions.onRemoved.addListener(registerScripts);
   api.storage.storageOnChanged((changes, namespace) => {
     if (namespace === 'sync' && changes['settings/customDomains']) {
       logger.log('settings/customDomains changed');
-      setListener();
+      registerScripts();
     }
   });
 }
 
-async function setListener() {
-  if (typeof chrome.webNavigation === 'undefined') {
+async function registerScripts() {
+  if (typeof chrome.scripting === 'undefined') {
     con.error('Custom Domain is not possible');
     return;
   }
+
   const domains: domainType[] = await api.settings.getAsync('customDomains');
-  clearListener();
-  if (domains) domains.forEach(d => singleListener(d));
+  await chrome.scripting.unregisterContentScripts();
+  if (domains) {
+    await Promise.all(domains.map(registerScript));
+  }
+
+  const scripts = await chrome.scripting.getRegisteredContentScripts();
+  logger.log(scripts);
 }
 
-let listenerArray: any[] = [];
-
-function clearListener() {
-  logger.log('Clear listener', listenerArray.length);
-  listenerArray.forEach(listen => chrome.webNavigation.onCompleted.removeListener(listen));
-  listenerArray = [];
-}
-
-function loadScriptPromise(tabId, frameId, file) {
-  return new Promise((resolve, reject) => {
-    chrome.tabs.executeScript(
-      tabId,
-      {
-        file,
-        frameId,
-      },
-      res => {
-        resolve(res);
-      },
-    );
-  });
-}
-
-function singleListener(domainConfig: domainType) {
-  const callback = async data => {
-    logger.m('Navigation').log(domainConfig, data);
-    if (domainConfig.page === 'iframe') {
-      if (!data.frameId) {
-        logger.m('Navigation').log('Do not inject iframe on root page');
-        return;
-      }
-      await loadScriptPromise(data.tabId, data.frameId, 'vendor/jquery.min.js');
-      await loadScriptPromise(data.tabId, data.frameId, 'i18n.js');
-      await loadScriptPromise(data.tabId, data.frameId, 'content/iframe.js');
-    } else {
-      if (data.frameId) {
-        logger.m('Navigation').log('Do not inject page scripts in Iframe');
-        return;
-      }
-      await loadScriptPromise(data.tabId, data.frameId, 'vendor/jquery.min.js');
-      await loadScriptPromise(data.tabId, data.frameId, 'i18n.js');
-      await loadScriptPromise(data.tabId, data.frameId, `content/page_${domainConfig.page}.js`);
-      await loadScriptPromise(data.tabId, data.frameId, 'content/content-script.js');
-    }
-  };
-  listenerArray.push(callback);
-
+async function registerScript(domainConfig: domainType) {
   const fixDomain = utils.makeDomainCompatible(domainConfig.domain);
 
   try {
-    chrome.webNavigation.onCompleted.addListener(callback, {
-      url: [{ originAndPathMatches: fixDomain }],
-    });
+    const scriptConfig = {
+      id: fixDomain,
+      js: ['vendor/jquery.min.js', 'i18n.js'],
+      matches: [fixDomain],
+      allFrames: false,
+      runAt: 'document_start' as const,
+    };
+
+    if (domainConfig.page === 'iframe') {
+      scriptConfig.js.push('content/iframe.js');
+      scriptConfig.allFrames = true;
+    } else {
+      scriptConfig.js.push(`content/page_${domainConfig.page}.js`);
+      scriptConfig.js.push('content/content-script.js');
+    }
+
+    await chrome.scripting.registerContentScripts([scriptConfig]);
   } catch (e) {
     logger.error(`Could not add listener for ${fixDomain}`, e);
     return;

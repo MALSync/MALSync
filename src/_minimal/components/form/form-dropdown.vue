@@ -1,15 +1,22 @@
 <template>
   <button
     ref="triggerNode"
+    tabindex="-1"
     class="dropdown"
     :class="`${size} ${disabled ? 'disabled' : ''}`"
-    @blur="open = false"
+    @blur="blur()"
     @keydown="keyDown($event)"
   >
     <div
+      tabindex="0"
       class="selector"
       :class="{ animate }"
+      @mousedown.prevent
       @click="
+        open = !open;
+        $el.focus();
+      "
+      @keypress:enter="
         open = !open;
         $el.focus();
       "
@@ -248,6 +255,12 @@ function keyDown(event: KeyboardEvent) {
 
   event.preventDefault();
 }
+
+function blur() {
+  nextTick().then(() => {
+    open.value = false;
+  });
+}
 </script>
 
 <style lang="less" scoped>
@@ -259,10 +272,18 @@ function keyDown(event: KeyboardEvent) {
   position: relative;
   display: inline-block;
 
+  &:focus-visible {
+    outline: none;
+  }
+
   .selector {
     .link();
     &.animate {
       .click-move-down();
+    }
+
+    &:focus-visible {
+      .focus-outline();
     }
   }
 
