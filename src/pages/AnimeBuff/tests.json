@@ -1,0 +1,26 @@
+{
+    "title": "AnimeBuff",
+    "url": "https://animebuff.ru",
+    "testCases": [
+        {
+            "url": "https://animebuff.ru/anime/horimiya",
+            "expected": {
+                "sync": true,
+                "title": "Horimiya",
+                "identifier": "horimiya",
+                "episode": 1,
+                "overviewUrl": "https://animebuff.ru/anime/horimiya"
+            }
+        },
+        {
+            "url": "https://animebuff.ru/anime/yuri-na-ldu",
+            "expected": {
+                "sync": true,
+                "title": "Yuri!!! on Ice",
+                "identifier": "yuri-na-ldu",
+                "episode": 1,
+                "overviewUrl": "https://animebuff.ru/anime/yuri-na-ldu"
+            }
+        }
+    ]
+}
