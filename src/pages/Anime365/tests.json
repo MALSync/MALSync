@@ -3,9 +3,12 @@
   "url": "https://smotret-anime.com",
   "testCases": [
     {
-      "url": "https://smotret-anime.com/catalog/genres",
+      "url": "https://smotret-anime.com/catalog/wotaku-ni-koi-wa-muzukashii-17750",
       "expected": {
-        "sync": false
+        "sync": false,
+        "title": "Wotaku ni Koi wa Muzukashii / Otakoi",
+        "identifier": "wotaku-ni-koi-wa-muzukashii-17750",
+        "uiSelector": true
       }
     },
     {
@@ -15,7 +18,8 @@
         "title": "Horimiya",
         "identifier": "horimiya-24061",
         "episode": 10,
-        "overviewUrl": "https://smotret-anime.com/catalog/horimiya-24061"
+        "overviewUrl": "https://smotret-anime.com/catalog/horimiya-24061",
+        "uiSelector": true
       }
     }
   ]

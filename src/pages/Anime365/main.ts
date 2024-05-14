@@ -41,7 +41,7 @@ export const Anime365: pageInterface = {
   // Parsing from page could be very buggy
   overview: {
     getTitle(url) {
-      return j.$('.card-content .line-2').clone().children().remove().end().text().trim();
+      return utils.getBaseText(j.$('.card-content .line-2')).trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -57,9 +57,7 @@ export const Anime365: pageInterface = {
       let resSelector = '<div class="card"><div class="card-content">';
       resSelector += selector;
       resSelector += '</div></div>';
-      j.$('.body-container > .section > .container > .row > .col:last-of-type > .card')
-        .first()
-        .after(j.html(resSelector));
+      j.$('.body-container .col:last-of-type > .card').first().after(j.html(resSelector));
     },
   },
   sync: {
@@ -98,10 +96,7 @@ export const Anime365: pageInterface = {
     utils.urlChangeDetect(() => {
       utils.waitUntilTrue(
         () => {
-          return (
-            j.$('.body-container > .section > .container > .row > .col:last-of-type > .card')
-              .length > 0
-          );
+          return j.$('.card-image').length > 0;
         },
         () => {
           j.$(() => {
