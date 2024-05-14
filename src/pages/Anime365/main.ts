@@ -82,7 +82,7 @@ export const Anime365: pageInterface = {
     nextEpUrl(url) {
       const rightIcon = j.$('.m-select-sibling-episode .waves-effect:has(i.right)');
       if (rightIcon.length > 0)
-        return utils.absoluteLink(rightIcon.attr('href'), window.location.hostname);
+        return utils.absoluteLink(rightIcon.attr('href'), window.location.origin);
       return undefined;
     },
     uiSelector(selector) {
