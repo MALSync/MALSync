@@ -1,29 +1,29 @@
 {
   "title": "Toonily",
-  "url": "https://toonily.net/",
+  "url": "https://toonily.com/",
   "testCases": [
     {
-      "url": "https://toonily.net/manga/above-all-gods/chapter-173-5/",
+      "url": "https://toonily.com/webtoon/skeleton-protect-dungeon/chapter-125/",
       "expected": {
         "sync": true,
-        "title": "Above All Gods",
-        "identifier": "above-all-gods",
-        "overviewUrl": "https://toonily.net/manga/above-all-gods/",
-        "nextEpUrl": "https://toonily.net/manga/above-all-gods/chapter-174/",
-        "episode": 173,
+        "title": "Skeleton Soldier Couldn’t Protect the Dungeon",
+        "identifier": "skeleton-protect-dungeon",
+        "overviewUrl": "https://toonily.com/webtoon/skeleton-protect-dungeon/",
+        "nextEpUrl": "https://toonily.com/webtoon/skeleton-protect-dungeon/chapter-126/",
+        "episode": 125,
         "uiSelector": false
       }
     },
     {
-      "url": "https://toonily.net/manga/above-all-gods/",
+      "url": "https://toonily.com/webtoon/skeleton-protect-dungeon/",
       "expected": {
         "sync": false,
-        "title": "Above All Gods",
-        "identifier": "above-all-gods",
+        "title": "Skeleton Soldier Couldn’t Protect the Dungeon",
+        "identifier": "skeleton-protect-dungeon",
         "uiSelector": true,
         "epList": {
-          "20": "https://toonily.net/manga/above-all-gods/chapter-20/",
-          "177": "https://toonily.net/manga/above-all-gods/chapter-177/"
+          "120": "https://toonily.com/webtoon/skeleton-protect-dungeon/chapter-120/",
+          "125": "https://toonily.com/webtoon/skeleton-protect-dungeon/chapter-125/"
         }
       }
     }
