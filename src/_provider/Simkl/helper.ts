@@ -165,6 +165,10 @@ export async function call(
   if (login) headers.Authorization = `Bearer ${api.settings.get('simklToken')}`;
   else logger.log('No login');
 
+  if (method === 'GET') {
+    sData = undefined;
+  }
+
   return api.request
     .xhr(method, {
       url,

@@ -36,7 +36,7 @@ export const search: searchInterface = async function (
 
 async function call(
   url,
-  sData = {},
+  sData = {} as any,
   asParameter = false,
   methode: 'GET' | 'POST' = 'GET',
   login = true,
@@ -55,6 +55,10 @@ async function call(
 
   if (!login) {
     con.log('No login');
+  }
+
+  if (methode === 'GET') {
+    sData = undefined;
   }
 
   return api.request
