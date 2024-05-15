@@ -16,11 +16,11 @@ export const Miruro: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return utils.urlPart(url, 5).replace(/-/g, ' ').trim();
+      return j.$('.anime-title').text();
     },
     getIdentifier(url) {
       // '139630-1' for https://www.miruro.tv/watch/139630/boku-no-hero-academia-6th-season/1
-      return `${utils.urlPart(url, 4)}-${utils.urlPart(url, 6)}`;
+      return `${utils.urlPart(url, 4)}`;
     },
     getOverviewUrl(url) {
       const href = `https://${window.location.hostname}/watch/${utils.urlPart(url, 4)}`;
@@ -35,19 +35,31 @@ export const Miruro: pageInterface = {
       return Number(temp);
     },
     nextEpUrl(url) {
-      const href = `https://${window.location.hostname}/watch/${utils.urlPart(url, 4)}/${utils.urlPart(url, 5)}/${Miruro.sync.getEpisode(url) + 1}`;
+      const totalEpisodeNumber = `${j.$("select option[value*='-']").last().val()}`.split('-');
+      const nextEpisodeNumber = Miruro.sync.getEpisode(url) + 1;
+      let href;
+      if (totalEpisodeNumber.length > 1 && nextEpisodeNumber <= Number(totalEpisodeNumber[1]) + 1) {
+        href = `https://${window.location.hostname}/watch/${utils.urlPart(url, 4)}/${utils.urlPart(url, 5)}/${nextEpisodeNumber}`;
+      }
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Miruro.domain);
       }
       return '';
     },
     getMalUrl(provider) {
-      if (provider === 'ANILIST')
-        return `https://anilist.co/anime/${utils.urlPart(window.location.href, 4)}`;
+      const myanimelistBtn = j.$("a[href^='https://myanimelist.net']");
+      const anilistBtn = j.$("a[href^='https://anilist.co']");
+      if (provider === 'ANILIST' && anilistBtn.length > 0) {
+        return `${anilistBtn.attr('href')}`;
+      }
+      if (provider === 'MAL' && myanimelistBtn.length > 0) {
+        return `${myanimelistBtn.attr('href')}`;
+      }
       return false;
     },
   },
   init(page) {
+    let interval;
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
@@ -58,7 +70,8 @@ export const Miruro: pageInterface = {
     function ready() {
       page.reset();
       if (utils.urlPart(page.url, 3) === 'watch' && utils.urlPart(page.url, 5).trim() !== '') {
-        utils.waitUntilTrue(
+        clearInterval(interval);
+        interval = utils.waitUntilTrue(
           function () {
             if (j.$('.player[data-media-player] .vds-poster').length) {
               return true;
@@ -67,6 +80,7 @@ export const Miruro: pageInterface = {
           },
           function () {
             page.handlePage();
+            // globalThis.page = page; uncomment for testing from console
           },
         );
       }
