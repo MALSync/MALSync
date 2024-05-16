@@ -14,7 +14,7 @@ export const MonosChinos: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('.heromain_h1')
+        .$('.fs-3.my-3.text-light')
         .first()
         .text()
         .replace(/(\. )?(\d+\s+)(Sub|Dub)(\s+Español)$/gi, '')
@@ -26,7 +26,11 @@ export const MonosChinos: pageInterface = {
       return MonosChinos.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return j.$('.lista a').first().attr('href') || '';
+      const href = j
+        .$('.d-flex.justify-content-center.align-items-center.gap-3.mt-1 a')
+        .first()
+        .attr('href');
+      return href ? href.replace(/episodio-\d+/, 'sub-espanol').replace('/ver/', '/anime/') : '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -44,7 +48,10 @@ export const MonosChinos: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j.$('.derecha a').first().attr('href');
+      const href = j
+        .$('.d-flex.justify-content-center.align-items-center.gap-3.mt-1 a')
+        .last()
+        .attr('href');
       if (href) {
         if (MonosChinos.sync.getEpisode(url) < MonosChinos.sync.getEpisode(href)) {
           return href;
@@ -66,12 +73,12 @@ export const MonosChinos: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('.heromain2').first().before(j.html(selector));
+      j.$('.nav').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.allanimes .col-item');
+        return j.$('.eplist .col');
       },
       elementUrl(selector) {
         return selector.find('a').first().attr('href') || '';
