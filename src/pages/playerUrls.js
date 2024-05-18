@@ -407,6 +407,10 @@ module.exports = {
       '*://*.embtaku.pro/streaming.php?*',
       '*://*.embtaku.pro/load.php?*',
       '*://*.embtaku.pro/loadserver.php?*',
+      '*://*.embtaku.com/embedplus*',
+      '*://*.embtaku.com/streaming.php?*',
+      '*://*.embtaku.com/load.php?*',
+      '*://*.embtaku.com/loadserver.php?*',
       // auto-gogostream-replace-dont-remove
     ],
   },
@@ -631,6 +635,7 @@ module.exports = {
       '*://shannonpersonalcost.com/e/*',
       '*://cindyeyefinal.com/e/*',
       '*://michaelapplysome.com/e/*',
+      '*://sethniceletter.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

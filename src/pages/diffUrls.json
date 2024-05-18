@@ -295,9 +295,18 @@
     "OtakuFR": [
       "https://otakufr.cc/*"
     ],
+    "Toonily": [
+      "https://toonily.com/webtoon/*"
+    ],
     "iframe": [
-      "https://mixdrop.nu/e/*",
+      "https://smotret-anime.com/translations/embed/*",
+      "https://anime365.ru/translations/embed/*",
+      "https://anime-365.ru/translations/embed/*",
       "https://uka257.mixdrop.nu/e/*",
+      "https://embtaku.com/embedplus*",
+      "https://embtaku.com/streaming.php?*",
+      "https://embtaku.com/load.php?*",
+      "https://embtaku.com/loadserver.php?*",
       "https://a9bfed0818.nl/e/*",
       "https://vid142.site/e/*",
       "https://jamesstartstudent.com/e/*",
@@ -307,6 +316,7 @@
       "https://shannonpersonalcost.com/e/*",
       "https://cindyeyefinal.com/e/*",
       "https://michaelapplysome.com/e/*",
+      "https://sethniceletter.com/e/*",
       "https://animeflix.ci/player?*"
     ]
   }
