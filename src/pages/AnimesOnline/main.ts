@@ -6,7 +6,10 @@ const changeSrc = (currentPlayer, currentTries = 0) => {
 
   if (tempSrc === undefined) {
     if (currentTries >= 100) {
-      alert('MAL-SYNC: Cant find target src video, please refresh the page and try again!');
+      utils.flashm(`MAL-SYNC: Cant find target src video, please refresh the page and try again!`, {
+        error: true,
+        type: 'error',
+      });
       return;
     }
 
@@ -25,7 +28,7 @@ const changeSrc = (currentPlayer, currentTries = 0) => {
 
 export const AnimesOnline: pageInterface = {
   name: 'Animes Online',
-  domain: 'animesonline.in',
+  domain: 'https://animesonline.in',
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
@@ -39,7 +42,7 @@ export const AnimesOnline: pageInterface = {
       return j.$(j.$('.breadcrumb li')[2]).text().replace('- Dublado', '').trim();
     },
     getIdentifier(url) {
-      return j.$(j.$('.breadcrumb li')[2]).text().trim().replace('- Dublado', '');
+      return AnimesOnline.sync.getTitle(url);
     },
     getOverviewUrl(url) {
       return j.$(j.$('.breadcrumb li')[2]).find('a').attr('href') ?? '';
@@ -53,10 +56,10 @@ export const AnimesOnline: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$(j.$('.breadcrumb li')[2]).text().replace('- Dublado', '').trim();
+      return AnimesOnline.sync.getTitle(url);
     },
     getIdentifier(url) {
-      return j.$(j.$('.breadcrumb li')[2]).text().replace('- Dublado', '').trim();
+      return AnimesOnline.sync.getTitle(url);
     },
     uiSelector(selector) {
       j.$('.banner-infos > .info:last-child').after(
