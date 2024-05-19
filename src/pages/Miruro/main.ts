@@ -57,6 +57,9 @@ export const Miruro: pageInterface = {
       }
       return false;
     },
+    uiSelector(selector) {
+      j.$('.player').parent().before(j.html(selector));
+    },
   },
   init(page) {
     let interval;
