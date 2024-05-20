@@ -18,9 +18,8 @@ export const MonosChinos: pageInterface = {
       
       if (match && match.length === 3) {
         return match[1].trim();
-      } else {
-        return "";
       }
+      return '';
     },
     getIdentifier(url) {
       return MonosChinos.sync.getTitle(url);
@@ -55,13 +54,17 @@ export const MonosChinos: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('h1').first().text().replace(/(Sub|Dub)(\s+Español)$/gi, '').trim();
+      return j.$('h1')
+        .first()
+        .text()
+        .replace(/(Sub|Dub)(\s+Español)$/gi, '')
+        .trim();
     },
     getIdentifier(url) {
-      return MonosChinos.sync.getTitle(url); 
+      return MonosChinos.sync.getTitle(url);
     },
     uiSelector(selector) {
-      j.$('.heromain2').first().before(j.$(selector)); 
+      j.$('.heromain2').first().before(j.html(selector)); 
     },
     list: {
       offsetHandler: false,
