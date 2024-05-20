@@ -23,7 +23,7 @@ export const MonosChinos: pageInterface = {
       }
     },
     getIdentifier(url) {
-      return MonosChinos.sync.getTitle(url); // Llamar a getTitle para obtener el identificador
+      return MonosChinos.sync.getTitle(url);
     },
     getOverviewUrl(url) {
       return j.$('.lista a').first().attr('href') || '';
@@ -58,7 +58,7 @@ export const MonosChinos: pageInterface = {
       return j.$('h1').first().text().replace(/(Sub|Dub)(\s+Español)$/gi, '').trim();
     },
     getIdentifier(url) {
-      return MonosChinos.sync.getTitle(url); // Llamar a getTitle para obtener el identificador
+      return MonosChinos.sync.getTitle(url); 
     },
     uiSelector(selector) {
       j.$('.heromain2').first().before(j.$(selector)); 
