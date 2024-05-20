@@ -17,9 +17,7 @@ export const MonosChinos: pageInterface = {
       const match = j.$('h1').first().text().match(regex);
       
       if (match && match.length === 3) {
-        const title = match[1];
-        const cleanedTitle = title.trim();
-        return cleanedTitle;
+        return match[1].trim();
       } else {
         return "";
       }
