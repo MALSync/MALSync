@@ -14,7 +14,7 @@ export const MonosChinos: pageInterface = {
   sync: {
     getTitle(url) {
       const regex = /Ver\s+(.*?)\s*(?:-)\s*(\d+)/i;
-      const match = j.$('body > div.container.mt-3 > div > div.col-lg-9.col-md-9.col-12 > h1').first().text().match(regex);
+      const match = j.$('h1').first().text().match(regex);
       
       if (match && match.length === 3) {
         const title = match[1];
@@ -23,7 +23,7 @@ export const MonosChinos: pageInterface = {
       } else {
         return "";
       }
-    },    
+    },
     getIdentifier(url) {
       return MonosChinos.sync.getTitle(url); // Llamar a getTitle para obtener el identificador
     },
