@@ -14,7 +14,7 @@ export const MonosChinos: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('.heromain_h1')
+        .$('h1')
         .first()
         .text()
         .replace(/(\. )?(\d+\s+)(Sub|Dub)(\s+Español)$/gi, '')
@@ -23,10 +23,10 @@ export const MonosChinos: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return MonosChinos.sync.getOverviewUrl(url).split('/')[4];
+      return MonosChinos.overview!.getIdentifier(MonosChinos.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      return j.$('.lista a').first().attr('href') || '';
+      return j.$('.justify-content-center a[href*="/anime/"]').first().attr('href') || '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -44,7 +44,7 @@ export const MonosChinos: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j.$('.derecha a').first().attr('href');
+      const href = j.$('.justify-content-center a[href*="/ver/"]').last().attr('href');
       if (href) {
         if (MonosChinos.sync.getEpisode(url) < MonosChinos.sync.getEpisode(href)) {
           return href;
@@ -66,12 +66,12 @@ export const MonosChinos: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('.heromain2').first().before(j.html(selector));
+      j.$('#myTab').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.allanimes .col-item');
+        return j.$('.eplist .col');
       },
       elementUrl(selector) {
         return selector.find('a').first().attr('href') || '';
@@ -93,6 +93,10 @@ export const MonosChinos: pageInterface = {
       if (page.url.split('/')[3] === 'ver' || page.url.split('/')[3] === 'anime') {
         page.handlePage();
       }
+      utils.waitUntilTrue(
+        () => MonosChinos.overview!.list!.elementsSelector().length > 0,
+        () => page.handleList(),
+      );
     });
   },
 };
