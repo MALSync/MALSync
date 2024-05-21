@@ -61,10 +61,21 @@ export const Miruro: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    ready();
-    utils.urlChangeDetect(function () {
+    utils.urlChangeDetect(() => {
       ready();
     });
+    utils.waitUntilTrue(
+      () => {
+        if (j.$('.player[data-media-player]').length) {
+          return true;
+        }
+        return false;
+      },
+      () => {
+        ready();
+        // globalThis.page = page; uncomment for testing from console
+      },
+    );
     function ready() {
       page.reset();
       page.handlePage();
