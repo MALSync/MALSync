@@ -792,6 +792,7 @@ module.exports = {
       '*://filemoon.top/e/*',
       '*://fmoonembed.pro/e/*',
       '*://rgeyyddl.skin/e/*',
+      '*://designparty.sx/e/*',
     ],
   },
   // toonanime
