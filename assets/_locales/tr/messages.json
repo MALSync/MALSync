@@ -956,7 +956,7 @@
         "description": "Show button to view the anime/manga on MAL or another provider"
     },
     "settings_presenceShowMalsync": {
-        "message": "Oynuyor etkinliğinde başlık kısmında anime/manga'nın başlığı yerine Mal-Sync'i göster",
+        "message": "Oynuyor etkinliğinde başlık kısmında anime/manga'nın başlığı yerine MAL-Sync'i göster",
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     },
     "Synchronize": {
@@ -1522,5 +1522,21 @@
                 "example": "MyAnimeList"
             }
         }
+    },
+    "settings_AskBefore": {
+        "message": "Bölümün başında 'tamamlandı' onay kutusunu göster",
+        "description": "Option to not show the 'completed' message during the episode"
+    },
+    "settings_LocalSync_Label": {
+        "message": "Yerel Senkronizasyon Dışa Aktar",
+        "description": "Label where the import/export buttons are to backup the local saved anime/manga"
+    },
+    "settings_LocalSync_Help_Before": {
+        "message": "Sorun yaşarsanız lütfen tekrar deneyin",
+        "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
+    },
+    "settings_LocalSync_Help_LinkText": {
+        "message": "bu pencere",
+        "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
     }
 }

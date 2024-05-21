@@ -926,7 +926,7 @@
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
-        "message": "Ícono de Malsync",
+        "message": "Ícono de MAL-Sync",
         "description": "Dropdown option to show the malsync icon on discord"
     },
     "settings_enabled": {
@@ -974,7 +974,7 @@
         "description": "Show button to view the anime/manga on MAL or another provider"
     },
     "settings_presenceShowMalsync": {
-        "message": "Mostrar Mal-Sync en el título de presencia en lugar de anime/manga",
+        "message": "Mostrar MAL-Sync en el título de la presencia en lugar del anime/manga",
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     },
     "updateCheck_Refresh": {
@@ -1034,7 +1034,7 @@
         "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-        "message": "La sincronización con la base de datos sólo se produce cuando abres un episodio o un capítulo en cualquiera de las $Link1$páginas soportadas$LinkEnd1$ - ¡no te preocupes, seguro que tenemos tu sitio web favorito en la lista!",
+        "message": "La sincronización con la base de datos sólo se produce al abrir un episodio o capítulo en cualquiera de las $Link1$páginas soportadas$LinkEnd1$ - no te preocupes, seguro que tenemos tu sitio web favorito en la lista!",
         "description": "How to use description text",
         "placeholders": {
             "Link1": {
@@ -1056,7 +1056,7 @@
         }
     },
     "installPage_Wrong": {
-        "message": "Aprende a arreglar la entrada incorrecta de MAL",
+        "message": "Cómo corregir un anime o manga detectado incorrectamente",
         "description": "Header of the wrong section on the install page"
     },
     "installPage_Wrong_Description": {
@@ -1268,7 +1268,7 @@
         "description": "Asking to allow missing domain permissions"
     },
     "settings_custom_domains_disclaimer": {
-        "message": "Por favor, ¡utilícelo sólo si sabe lo que está haciendo!",
+        "message": "Esta función permite añadir dominios personalizados a sitios existentes para gestionar cambios de dominio y fuentes auto-alojadas, pero no puede añadir sitios nuevos.",
         "description": "Text on the custom domain configuration page"
     },
     "settings_custom_domains_wrong": {
@@ -1434,5 +1434,113 @@
     "settings_Mangasync_readerTracking": {
         "message": "Sincronizar manga después de 90% de las páginas",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+    },
+    "back": {
+        "message": "Atrás",
+        "description": "Back button"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "Notificaciones Adhesivas",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
+    "settings_AskBefore": {
+        "message": "Mostrar diálogo de confirmación de 'completado' al inicio del episodio/capítulo",
+        "description": "Option to not show the 'completed' message during the episode"
+    },
+    "installPage_Start_Description": {
+        "message": "Hagamos una sencilla sesión informativa para empezar - tomará menos de un minuto!",
+        "description": "Start description text"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "Básicamente, los enlaces rápidos son botones que abren el sitio de streaming/lectura que elijas - se encuentran en todas las páginas de anime/manga.",
+        "description": "paragraph one of the description"
+    },
+    "next": {
+        "message": "Siguiente",
+        "description": "Next button"
+    },
+    "start": {
+        "message": "Iniciar",
+        "description": "Start button"
+    },
+    "settings_LocalSync_Label": {
+        "message": "Exportar sincronización local",
+        "description": "Label where the import/export buttons are to backup the local saved anime/manga"
+    },
+    "settings_LocalSync_Help_Before": {
+        "message": "Si tienes problemas, vuelve a intentarlo en",
+        "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
+    },
+    "settings_LocalSync_Help_LinkText": {
+        "message": "esta ventana",
+        "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
+    },
+    "installPage_Login_Successful": {
+        "message": "¡Fantástico, $Username$! Ya estás autenticado y listo para empezar.",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "Minimiza los grandes cuadros de aviso en MAL-Sync, que cubrirían la mayor parte de la pantalla, tras un clic.",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Hace que el indicador de progreso (en la parte inferior de tu pantalla) sea transparente por defecto y se oculte más rápido",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "El navegador o la ventana actual no soportan la adición de permisos, por favor vuelve a intentarlo con la url https://malsync.moe/pwa o utiliza el popup de la extensión.",
+        "description": "Text that is shown when the browser does not support adding new permissions"
+    },
+    "installPage_Description_paragraph2": {
+        "message": "Por ejemplo, si te gusta ver anime en Crunchyroll, el enlace rápido de Crunchyroll aparecerá en todas las páginas de anime. Es una forma cómoda de acceder a tus sitios favoritos con un solo clic!",
+        "description": "paragraph two of the description"
+    },
+    "overview_synonyms": {
+        "message": "Sinónimos",
+        "description": "Text of a button that shows the alternative names for an entry"
+    },
+    "list_sorting_airing_date": {
+        "message": "Fecha de emisión",
+        "description": "Dropdown option to sort list by airing date"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Permite actualizar rápidamente tu recuento de episodios, valoración y estado en AniList sin tener que abrir el popover.",
+        "description": "Tooltip for the Update UI option"
+    },
+    "settings_permissions_overview": {
+        "message": "Permisos",
+        "description": "Button that leads to where permissions to sites can be managed"
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "La sincronización espera hasta que se haya visto el 85% del vídeo.",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "La sincronización se produce al cargar la página y en algunas páginas espera hasta que se haya leído el 80% del capítulo.",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "La sincronización puede configurarse más tarde en los ajustes - siéntete libre de personalizarla a tu manera!",
+        "description": "The synchronization settings can be changed later"
+    },
+    "installPage_Links": {
+        "message": "Elija sus enlaces rápidos preferidos - sus sitios favoritos a un clic de distancia",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "Error_Blocked": {
+        "message": "Tu IP ha sido baneada en $Page$, cambia tu IP o espera a que sea desbaneada. Una caída temporal también podría ser una razón.",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
     }
 }

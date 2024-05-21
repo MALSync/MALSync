@@ -120,11 +120,11 @@
         "description": "Dropped"
     },
     "UI_Status_planTo_anime": {
-        "message": "Geplant",
+        "message": "Plane zu schauen",
         "description": "Plan to Watch"
     },
     "UI_Status_planTo_manga": {
-        "message": "Geplant",
+        "message": "Plane zu lesen",
         "description": "Plan to Read"
     },
     "UI_Status_Rewatching_anime": {
@@ -272,11 +272,11 @@
         "description": "Start watching anime message"
     },
     "syncPage_flashConfirm_rewatch_finish_anime": {
-        "message": "Als abgeschlossen setzen?",
+        "message": "Erneutes schauen abschließen?",
         "description": "Finish rewatching anime message"
     },
     "syncPage_flashConfirm_rewatch_finish_manga": {
-        "message": "Als abgeschlossen setzen?",
+        "message": "Erneutes lesen abschließen?",
         "description": "Finish rereading manga message"
     },
     "syncPage_flashConfirm_start_manga": {
@@ -302,11 +302,11 @@
         }
     },
     "syncPage_flash_player_error": {
-        "message": "Video nicht gefunden. Bitte hier selber aktualisieren.",
+        "message": "Videoplayer nicht gefunden. Bitte hier manuell aktualisieren.",
         "description": "Message if the video player could not be recognized"
     },
     "syncPage_malObj_addAnime": {
-        "message": "Zu $page$ hinzufügen?",
+        "message": "Zu $page$ hinzufügen",
         "description": "add anime",
         "placeholders": {
             "page": {
@@ -350,7 +350,7 @@
         "description": "The token has been obtained and saved"
     },
     "kitsuClass_authentication_text": {
-        "message": "Um dich bei Kitsu anzumelden, musst du deine Zugangsdaten eingeben.<br> Diese werden nicht auf deinem Computer oder sonstwo gespeichert. <br> Die Daten werden ohne Umwege an kitsu gesendet und nur der zurückgegebene Zugangs-Token wird gespeichert. <br>",
+        "message": "Um dich bei Kitsu anzumelden, musst Du deine Zugangsdaten eingeben.<br>Diese werden nicht auf deinem Computer oder sonst wo gespeichert. <br>Die Daten werden ohne Umwege an Kitsu gesendet und nur der zurückgegebene Zugangs-Token wird gespeichert. <br>",
         "description": "Authentication text in Kitsu"
     },
     "kitsuClass_authentication_Password": {
@@ -362,7 +362,7 @@
         "description": "Login"
     },
     "kitsuClass_authentication_Success": {
-        "message": "Der Token wurde gespeichert. Die Seite kann jetzt geschlossen werden.",
+        "message": "Der Token wurde gespeichert, die Seite kann jetzt geschlossen werden.",
         "description": "Authentication success"
     },
     "kitsuClass_authentication_Wrong": {
@@ -751,10 +751,6 @@
         "message": "Schließe miniMAL beim Klick außerhalb",
         "description": "Clicking outside closes miniMAL"
     },
-    "settings_miniMAL_Display": {
-        "message": "Position",
-        "description": "Display to the"
-    },
     "settings_miniMAL_popup": {
         "message": "Erweiterungs-Popup",
         "description": "Header of the settings section for the extension popup"
@@ -922,7 +918,7 @@
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
-        "message": "Malsync-Symbol",
+        "message": "MAL-Sync-Symbol",
         "description": "Dropdown option to show the malsync icon on discord"
     },
     "settings_enabled": {
@@ -966,7 +962,7 @@
         "description": "Show button to view the anime/manga on MAL or another provider"
     },
     "settings_presenceShowMalsync": {
-        "message": "Zeige Mal-Sync im Titel der Presence anstatt Anime/Manga",
+        "message": "Zeige MAL-Sync im Titel der Presence anstatt Anime/Manga",
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     },
     "updateCheck_Refresh": {
@@ -1522,5 +1518,25 @@
     "overview_synonyms": {
         "message": "Synonyme",
         "description": "Text of a button that shows the alternative names for an entry"
+    },
+    "settings_LocalSync_Label": {
+        "message": "Lokaler Sync Export",
+        "description": "Label where the import/export buttons are to backup the local saved anime/manga"
+    },
+    "settings_LocalSync_Help_Before": {
+        "message": "Bei Problemen, bitte erneut versuchen in",
+        "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
+    },
+    "settings_LocalSync_Help_LinkText": {
+        "message": "diesem Fenster",
+        "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
+    },
+    "settings_AskBefore": {
+        "message": "Zeige \"Abeschlossen\"-Bestätigungsdialog bei Start der Episode/des Kapitel",
+        "description": "Option to not show the 'completed' message during the episode"
+    },
+    "settings_miniMAL_Display": {
+        "message": "Position",
+        "description": "Display to the"
     }
 }
