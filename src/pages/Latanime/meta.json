@@ -1,0 +1,8 @@
+{
+  "search": "https://latanime.org/buscar?q={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://latanime.org/*"
+    ]
+  }
+}
