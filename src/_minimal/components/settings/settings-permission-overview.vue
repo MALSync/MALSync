@@ -10,15 +10,24 @@
     </Header>
 
     <Section spacer="half" direction="both">
-      <PermissionCard title="Required" :permission="perm.getRequiredPermissions()" />
+      <PermissionCard
+        :title="lang('settings_permissions_required')"
+        :permission="perm.getRequiredPermissions()"
+      />
     </Section>
 
     <Section spacer="half" direction="both">
-      <PermissionCard title="Pages" :permissions="perm.getPagesPermissions()" />
+      <PermissionCard
+        :title="lang('settings_permissions_pages')"
+        :permissions="perm.getPagesPermissions()"
+      />
     </Section>
 
     <Section spacer="half" direction="both">
-      <PermissionCard title="Video player" :permission="perm.getPlayerPermissions()" />
+      <PermissionCard
+        :title="lang('settings_permissions_player')"
+        :permission="perm.getPlayerPermissions()"
+      />
     </Section>
 
     <SessionSupportsPermissions>

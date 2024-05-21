@@ -1287,6 +1287,18 @@
         "message": "Permissions",
         "description": "Button that leads to where permissions to sites can be managed"
     },
+    "settings_permissions_required": {
+        "message": "Required",
+        "description": "Header text for the list of required permissions"
+    },
+    "settings_permissions_pages": {
+        "message": "Pages",
+        "description": "Header text for the list of page permissions"
+    },
+    "settings_permissions_player": {
+        "message": "Video player",
+        "description": "Header text for the list of video player permissions"
+    },
     "settings_custom_domains_button": {
         "message": "Custom domains",
         "description": "Button that leads to the custom domain configuration page"
