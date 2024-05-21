@@ -1524,11 +1524,11 @@
         "description": "Label where the import/export buttons are to backup the local saved anime/manga"
     },
     "settings_LocalSync_Help_Before": {
-        "message": "Bei Problemen, bitte erneut versuchen",
+        "message": "Bei Problemen, bitte erneut versuchen in",
         "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
     },
     "settings_LocalSync_Help_LinkText": {
-        "message": "dieses Fenster",
+        "message": "diesem Fenster",
         "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
     },
     "settings_AskBefore": {
