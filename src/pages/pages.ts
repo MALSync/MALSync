@@ -37,6 +37,7 @@ import { MangaPark } from './MangaPark/main';
 import { AnimesHouse } from './AnimesHouse/main';
 import { AnimeXin } from './AnimeXin/main';
 import { MonosChinos } from './MonosChinos/main';
+import { Anime365 } from './Anime365/main';
 import { AnimeFire } from './AnimeFire/main';
 import { OtakuFR } from './OtakuFR/main';
 import { mangatx } from './mangatx/main';
@@ -84,7 +85,6 @@ import { ReadManhua } from './ReadManhua/main';
 import { FlameScans } from './FlameScans/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
-import { Funimation } from './Funimation/main';
 import { Kitsune } from './Kitsune/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
@@ -115,6 +115,7 @@ import { Animelon } from './Animelon/main';
 import { AnimeSama } from './AnimeSama/main';
 import { MangaFire } from './MangaFire/main';
 import { projectsuki } from './projectsuki/main';
+import { AnimeBuff } from './AnimeBuff/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
 import { AnimeKO } from './AnimeKO/main';
 import { AnimeGO } from './AnimeGO/main';
@@ -129,6 +130,7 @@ import { WitAnime } from './WitAnime/main';
 import { Suwayomi } from './Suwayomi/main';
 import { ManhuaUS } from './ManhuaUS/main';
 import { Taiyo } from './Taiyo/main';
+import { AnimesOnline } from './AnimesOnline/main';
 import { Miruro } from './Miruro/main';
 
 export const pages = {
@@ -171,6 +173,7 @@ export const pages = {
   AnimesHouse,
   AnimeXin,
   MonosChinos,
+  Anime365,
   AnimeFire,
   OtakuFR,
   mangatx,
@@ -218,7 +221,6 @@ export const pages = {
   FlameScans,
   ImmortalUpdates,
   Zoro,
-  Funimation,
   Kitsune,
   LHTranslation,
   MangasOrigines,
@@ -249,6 +251,7 @@ export const pages = {
   AnimeSama,
   MangaFire,
   projectsuki,
+  AnimeBuff,
   AnimeOnegai,
   AnimeKO,
   AnimeGO,
@@ -263,5 +266,6 @@ export const pages = {
   Suwayomi,
   ManhuaUS,
   Taiyo,
+  AnimesOnline,
   Miruro,
 };

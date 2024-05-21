@@ -79,6 +79,14 @@ export const userscriptLegacy: storageInterface = {
     head.get(0).appendChild(s);
   },
 
+  addProxyScriptToTag(tag, name) {
+    // @ts-ignore
+    const ps: { [key: string]: string } = proxyScripts;
+    if (!ps[name]) throw new Error(`Proxy script ${name} not found`);
+    tag.textContent = ps[name];
+    return tag;
+  },
+
   updateDom(head) {
     const s = document.createElement('script');
     s.text = `

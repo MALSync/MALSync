@@ -1,7 +1,18 @@
 <template>
   <Section spacer="full">
     <ImageText :image="profileRequest.data?.picture" :href="profileRequest.data?.href">
-      <template v-if="state === 'auth'">
+      <template v-if="profileRequest.error">
+        <Header> Error </Header>
+        <div>
+          <Link :to="{ name: 'Settings', params: { path: ['tracking', 'syncMode'] } }">
+            <TextIcon icon="keyboard_arrow_down" position="after" mode="flex">
+              {{ parameters.listObj.name }}
+            </TextIcon>
+          </Link>
+        </div>
+        <div>{{ profileRequest.error }}</div>
+      </template>
+      <template v-else-if="state === 'auth'">
         <Header>
           <MediaLink :href="profileRequest.data?.href">
             {{ profileRequest.data.username }}
@@ -20,7 +31,7 @@
           </TextIcon>
         </div>
       </template>
-      <template v-if="state === 'loading'">
+      <template v-else-if="state === 'loading'">
         <Header> {{ lang('Loading') }} </Header>
         <div>
           <Link :to="{ name: 'Settings', params: { path: ['tracking', 'syncMode'] } }">
@@ -31,7 +42,7 @@
         </div>
         <div>--</div>
       </template>
-      <template v-if="state === 'noAuth'">
+      <template v-else-if="state === 'noAuth'">
         <Header>{{ lang('settings_profile_no_login') }}</Header>
         <div>
           <Link :to="{ name: 'Settings', params: { path: ['tracking', 'syncMode'] } }">

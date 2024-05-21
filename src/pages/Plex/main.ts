@@ -8,20 +8,7 @@ const overviewSelector =
 const syncSelector =
   '[class*="MetadataPosterTitle-isSecondary"] [data-qa-id="metadataTitleLink"], [class*="MetadataPosterTitle-isSecondary"] [data-testid="metadataTitleLink"]';
 
-const proxy = new ScriptProxy();
-proxy.addCaptureVariable(
-  'auth',
-  `
-    if (window.hasOwnProperty("localStorage")) {
-      return {
-        apiKey: window.localStorage.myPlexAccessToken,
-        users: window.localStorage.users
-      }
-    } else {
-      return undefined;
-    }
-  `,
-);
+const proxy = new ScriptProxy('Plex');
 
 const auth: {
   apiKey: null | string;
@@ -142,86 +129,75 @@ async function apiCall(url) {
 async function authenticate() {
   const logger = con.m('auth');
   logger.log('Start');
-  return new Promise((resolve, reject) => {
-    proxy.addProxy(async (caller: ScriptProxy) => {
+  const tempAuth: any = await proxy.getData();
+  if (!tempAuth) throw 'authInfo not found';
+
+  if (!tempAuth.users) throw 'users not found';
+  const users = JSON.parse(tempAuth.users);
+
+  if (!tempAuth.apiKey) {
+    if (
+      users &&
+      users.users &&
+      users.users.length &&
+      (!users.users[0].servers.length ||
+        typeof users.users[0].servers[0].accessToken === 'undefined')
+    ) {
+      logger.log('Switching to no account mode');
+
+      auth.apiKey = null;
+      auth.serverApiKey = null;
+      auth.base = window.location.origin;
+
+      return;
+    }
+
+    throw 'apiKey not found';
+  }
+  auth.apiKey = tempAuth.apiKey;
+
+  const user = users.users.find(el => el.authToken === auth.apiKey);
+  if (!user) throw 'User not found';
+  logger.log('User found', user.id);
+  const serverId = user.lastPrimaryServerID;
+  logger.log('Server', serverId);
+  const server = user.servers.find(el => el.machineIdentifier === serverId);
+  if (!server) throw 'Server not found';
+  auth.serverApiKey = server.accessToken;
+  logger.log('Connections', server.connections);
+  if (!server.connections.length) throw 'No connection found';
+
+  // We try to get one working connection uri
+  let connection = server.connections[0];
+  if (server.connections.length > 1) {
+    for (let i = 0; i < server.connections.length; i += 1) {
+      const url = server.connections[i].uri;
+      logger.log(`Trying ${url}`);
+
       try {
-        const tempAuth: any = proxy.getCaptureVariable('auth');
-        if (!tempAuth) throw 'authInfo not found';
+        // eslint-disable-next-line no-await-in-loop
+        const data = await api.request.xhr('GET', {
+          url: `${url}/library/sections?X-Plex-Token=${auth.apiKey}`,
+          headers: {
+            Accept: 'application/json',
+          },
+        });
 
-        if (!tempAuth.users) throw 'users not found';
-        const users = JSON.parse(tempAuth.users);
-
-        if (!tempAuth.apiKey) {
-          if (
-            users &&
-            users.users &&
-            users.users.length &&
-            (!users.users[0].servers.length ||
-              typeof users.users[0].servers[0].accessToken === 'undefined')
-          ) {
-            logger.log('Switching to no account mode');
-
-            auth.apiKey = null;
-            auth.serverApiKey = null;
-            auth.base = window.location.origin;
-
-            resolve('');
-            return;
-          }
-
-          throw 'apiKey not found';
-        }
-        auth.apiKey = tempAuth.apiKey;
-
-        const user = users.users.find(el => el.authToken === auth.apiKey);
-        if (!user) throw 'User not found';
-        logger.log('User found', user.id);
-        const serverId = user.lastPrimaryServerID;
-        logger.log('Server', serverId);
-        const server = user.servers.find(el => el.machineIdentifier === serverId);
-        if (!server) throw 'Server not found';
-        auth.serverApiKey = server.accessToken;
-        logger.log('Connections', server.connections);
-        if (!server.connections.length) throw 'No connection found';
-
-        // We try to get one working connection uri
-        let connection = server.connections[0];
-        if (server.connections.length > 1) {
-          for (let i = 0; i < server.connections.length; i += 1) {
-            const url = server.connections[i].uri;
-            logger.log(`Trying ${url}`);
-
-            try {
-              // eslint-disable-next-line no-await-in-loop
-              const data = await api.request.xhr('GET', {
-                url: `${url}/library/sections?X-Plex-Token=${auth.apiKey}`,
-                headers: {
-                  Accept: 'application/json',
-                },
-              });
-
-              if (data.status !== 200) {
-                throw 'Not reached';
-              }
-
-              logger.log(`Reached ${url}`);
-              connection = server.connections[i];
-              break;
-            } catch (e) {
-              logger.log(`Ignoring unreachable server url ${url}`);
-            }
-          }
+        if (data.status !== 200) {
+          throw 'Not reached';
         }
 
-        auth.base = connection.uri;
-        logger.log('Done', auth);
-        resolve('');
+        logger.log(`Reached ${url}`);
+        connection = server.connections[i];
+        break;
       } catch (e) {
-        logger.error(e);
-        reject(e);
+        logger.log(`Ignoring unreachable server url ${url}`);
       }
-    });
-  });
+    }
+  }
+
+  auth.base = connection.uri;
+  logger.log('Done', auth);
 }
 
 export const Plex: pageInterface = {
@@ -269,10 +245,12 @@ export const Plex: pageInterface = {
       j.$(overviewSelector).first().after(j.html(selector));
     },
   },
-  init(page) {
+  async init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+
+    await proxy.injectScript();
 
     j.$(document).ready(function () {
       urlChange(page);

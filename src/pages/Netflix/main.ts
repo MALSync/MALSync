@@ -41,20 +41,10 @@ const genres = [
 ];
 
 // Define the variable proxy element:
-const proxy = new ScriptProxy();
-proxy.addCaptureVariable(
-  'netflix',
-  `
-    if (window.hasOwnProperty("netflix")) {
-      return netflix.reactContext;
-    } else {
-      return undefined;
-    }
-  `,
-);
+const proxy = new ScriptProxy('Netflix');
 
-function extractMetadata() {
-  const meta: any = proxy.getCaptureVariable('netflix');
+async function extractMetadata() {
+  const meta: any = await proxy.getData();
 
   if (!(meta instanceof Object)) {
     throw new Error('Invalid metadata');
@@ -63,8 +53,8 @@ function extractMetadata() {
   return meta;
 }
 
-function getSeries(page) {
-  const meta = extractMetadata();
+async function getSeries(page) {
+  const meta = await extractMetadata();
   const videoId = utils.urlPart(window.location.href, 4);
   api.request
     .xhr(
@@ -163,10 +153,13 @@ export const Netflix: pageInterface = {
       return '';
     },
   },
-  init(page) {
+  async init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+
+    await proxy.injectScript();
+
     j.$(document).ready(function () {
       ready();
     });
@@ -183,9 +176,7 @@ export const Netflix: pageInterface = {
             return j.$('[data-videoid]').length;
           },
           function () {
-            proxy.addProxy(async (caller: ScriptProxy) => {
-              getSeries(page);
-            });
+            getSeries(page);
           },
         );
       }

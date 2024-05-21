@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [{
+        "header": "user-agent",
+        "operation": "set",
+        "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+      }]
+    },
+    "condition": {
+      "urlFilter": "https://myanimelist.net/*",
+      "resourceTypes": ["xmlhttprequest"]
+    }
+  }
+]

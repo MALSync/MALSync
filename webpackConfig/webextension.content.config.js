@@ -1,10 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const { VueLoaderPlugin } = require('vue-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const pages = require('./utils/pages').pages();
 const { getKeys } = require('./utils/keys');
+const { getVirtualScript } = require('./utils/general');
 
 let entry = {
   'content-script': path.join(
@@ -57,8 +59,16 @@ let entry = {
 }
 
 pages.forEach(page => {
-  entry['page_' + page] =
-    'expose-loader?exposes=_Page|' + page + '!' + path.join(__dirname, '..', 'src/pages/', page, 'main.ts');
+  pageRoot = path.join(__dirname, '..', 'src/pages/', page);
+  entry['page_' + page] = 'expose-loader?exposes=_Page|' + page + '!' + path.join(pageRoot, 'main.ts');
+  if (fs.existsSync(path.join(pageRoot, 'proxy.ts'))) {
+    entry['proxy/proxy_' + page] = getVirtualScript('proxy_' + page, `
+      import { script } from './src/pages/${page}/proxy.ts';
+      import { ScriptProxyWrapper } from './src/utils/scriptProxyWrapper.ts';
+
+      ScriptProxyWrapper(script);
+    `);
+  }
 })
 
 console.log(entry);
