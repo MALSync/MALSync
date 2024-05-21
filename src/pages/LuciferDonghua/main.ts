@@ -6,7 +6,7 @@ export const LuciferDonghua: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    return url.indexOf('-episode-') > -1;
+    return url.indexOf('-episode-') > -1 || url.indexOf('-ep-') > -1;
   },
   isOverviewPage(url) {
     return url.indexOf('/anime') > -1;
@@ -16,7 +16,7 @@ export const LuciferDonghua: pageInterface = {
       return (j.$('.det a').text() || '').split('[')[0];
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 3).split('-episode-')[0];
+      return utils.urlPart(url, 3).split(url.indexOf('-episode-') > -1 ? '-episode-' : '-ep-')[0];
     },
     getOverviewUrl(url) {
       return j.$('.det a').attr('href') || '';
@@ -25,6 +25,10 @@ export const LuciferDonghua: pageInterface = {
       const ep = utils.urlPart(url, 3).match(/episode-(\d+)/i);
       if (ep && ep.length > 1) {
         return parseInt(ep[1]);
+      }
+      const ep2 = utils.urlPart(url, 3).match(/ep-(\d+)/i);
+      if (ep2 && ep2.length > 1) {
+        return parseInt(ep2[1]);
       }
       return NaN;
     },
