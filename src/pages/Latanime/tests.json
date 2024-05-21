@@ -1,0 +1,30 @@
+{
+  "title": "Latanime",
+  "url": "https://latanime.org/",
+  "testCases": [
+    {
+      "url": "https://latanime.org/ver/no-game-no-life-castellano-episodio-8",
+      "expected": {
+        "sync": true,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life-castellano",
+        "overviewUrl": "https://latanime.org/anime/no-game-no-life-castellano",
+        "nextEpUrl": "https://latanime.org/ver/no-game-no-life-castellano-episodio-9",
+        "episode": 8,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://latanime.org/anime/no-game-no-life-castellano",
+      "expected": {
+        "sync": false,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life-castellano",
+        "uiSelector": true,
+        "epList": {
+          "8": "https://latanime.org/ver/no-game-no-life-castellano-episodio-8"
+        }
+      }
+    }
+  ]
+}
