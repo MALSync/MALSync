@@ -51,8 +51,9 @@ export const Guya: pageInterface = {
           regex: '^\\d+',
         },
         total: {
-          selector: '.ReaderImageWrapper',
-          mode: 'count',
+          selector: '.rdr-page-selector-counter',
+          mode: 'text',
+          regex: '\\d+$',
         },
       },
     ],
