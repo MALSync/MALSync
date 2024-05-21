@@ -1542,5 +1542,17 @@
     "settings_permissions_overview": {
         "message": "Berechtigungen",
         "description": "Button that leads to where permissions to sites can be managed"
+    },
+    "settings_permissions_required": {
+        "message": "Erforderlich",
+        "description": "Header text for the list of required permissions"
+    },
+    "settings_permissions_pages": {
+        "message": "Seiten",
+        "description": "Header text for the list of page permissions"
+    },
+    "settings_permissions_player": {
+        "message": "Video-Player",
+        "description": "Header text for the list of video player permissions"
     }
 }
