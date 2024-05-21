@@ -1,0 +1,9 @@
+{
+  "search": "https://www.miruro.tv/search?query={searchterm}&sort=POPULARITY_DESC",
+  "urls": {
+    "match": [
+      "*://*.miruro.tv/*",
+      "*://*.miruro.online/*"
+    ]
+  }
+}

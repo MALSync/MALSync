@@ -131,6 +131,7 @@ import { Suwayomi } from './Suwayomi/main';
 import { ManhuaUS } from './ManhuaUS/main';
 import { Taiyo } from './Taiyo/main';
 import { AnimesOnline } from './AnimesOnline/main';
+import { Miruro } from './Miruro/main';
 
 export const pages = {
   nineAnime,
@@ -266,4 +267,5 @@ export const pages = {
   ManhuaUS,
   Taiyo,
   AnimesOnline,
+  Miruro,
 };
