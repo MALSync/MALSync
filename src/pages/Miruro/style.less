@@ -12,6 +12,10 @@
       color: var(--primary-accent) !important;
     }
   }
+  .ms-progress,
+  #malSyncProgress.ms-loading::before {
+    background: var(--primary-accent) !important;
+  }
 }
 
 #malStatus,
@@ -27,6 +31,11 @@
   text-decoration: none;
 }
 #malp {
+  border-radius: var(--global-border-radius);
+  background-color: var(--global-div-tr);
+  padding: 0.75rem;
+  margin: 0;
+
   select {
     padding: 0.5rem;
     background-color: var(--global-secondary-bg);

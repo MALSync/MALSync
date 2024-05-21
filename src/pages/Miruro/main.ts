@@ -6,20 +6,16 @@ export const Miruro: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    return Boolean(j.$('.player[data-media-player]').length);
+    return utils.urlPart(url, 3) === 'watch' && utils.urlPart(url, 5).trim() !== '';
   },
   isOverviewPage(url) {
     return false;
-  },
-  getImage() {
-    return $('.player[data-media-player] .vds-poster').attr('src');
   },
   sync: {
     getTitle(url) {
       return j.$('.anime-title').text();
     },
     getIdentifier(url) {
-      // '139630-1' for https://www.miruro.tv/watch/139630/boku-no-hero-academia-6th-season/1
       return `${utils.urlPart(url, 4)}`;
     },
     getOverviewUrl(url) {
@@ -50,19 +46,18 @@ export const Miruro: pageInterface = {
       const myanimelistBtn = j.$("a[href^='https://myanimelist.net']");
       const anilistBtn = j.$("a[href^='https://anilist.co']");
       if (provider === 'ANILIST' && anilistBtn.length > 0) {
-        return `${anilistBtn.attr('href')}`;
+        return `${anilistBtn.first().attr('href')}`;
       }
-      if (provider === 'MAL' && myanimelistBtn.length > 0) {
-        return `${myanimelistBtn.attr('href')}`;
+      if (myanimelistBtn.length > 0) {
+        return `${myanimelistBtn.first().attr('href')}`;
       }
       return false;
     },
     uiSelector(selector) {
-      j.$('.player').parent().before(j.html(selector));
+      j.$('.anime-title').parent().parent().before(j.html(selector));
     },
   },
   init(page) {
-    let interval;
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
@@ -72,21 +67,7 @@ export const Miruro: pageInterface = {
     });
     function ready() {
       page.reset();
-      if (utils.urlPart(page.url, 3) === 'watch' && utils.urlPart(page.url, 5).trim() !== '') {
-        clearInterval(interval);
-        interval = utils.waitUntilTrue(
-          function () {
-            if (j.$('.player[data-media-player] .vds-poster').length) {
-              return true;
-            }
-            return false;
-          },
-          function () {
-            page.handlePage();
-            // globalThis.page = page; uncomment for testing from console
-          },
-        );
-      }
+      page.handlePage();
     }
   },
 };
