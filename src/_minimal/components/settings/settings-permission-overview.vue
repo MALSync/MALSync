@@ -64,6 +64,10 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  title: {
+    type: String,
+    default: '',
+  },
 });
 
 const emits = defineEmits(['required']);
