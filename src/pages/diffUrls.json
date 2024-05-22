@@ -1,7 +1,4 @@
 {
-  "0.9.4": {
-    "iframe": []
-  },
   "0.9.5": {
     "AnimeUnity": [
       "https://www.animeunity.to/anime/*"
@@ -320,5 +317,8 @@
       "https://sethniceletter.com/e/*",
       "https://animeflix.ci/player?*"
     ]
+  },
+  "0.10.0": {
+    "iframe": []
   }
 }

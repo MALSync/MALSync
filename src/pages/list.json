@@ -195,12 +195,17 @@
     "name": "MonosChinos"
   },
   {
+    "domain": "https://smotret-anime.com",
+    "type": "anime",
+    "name": "Anime365"
+  },
+  {
     "domain": "https://animefire.net",
     "type": "anime",
     "name": "AnimeFire"
   },
   {
-    "domain": "https://otakufr.co",
+    "domain": "https://otakufr.cc",
     "type": "anime",
     "name": "OtakuFR"
   },
@@ -365,7 +370,7 @@
     "name": "AnimeSuge"
   },
   {
-    "domain": "https://toonily.net",
+    "domain": "https://toonily.com",
     "type": "manga",
     "name": "Toonily"
   },
@@ -428,11 +433,6 @@
     "domain": "https://hianime.to",
     "type": "anime",
     "name": "HiAnime"
-  },
-  {
-    "domain": "https://www.funimation.com",
-    "type": "anime",
-    "name": "Funimation"
   },
   {
     "domain": "https://beta.kitsune.tv",
@@ -585,6 +585,11 @@
     "name": "projectsuki"
   },
   {
+    "domain": "https://animebuff.ru",
+    "type": "anime",
+    "name": "AnimeBuff"
+  },
+  {
     "domain": "https://www.animeonegai.com",
     "type": "anime",
     "name": "AnimeOnegai"
@@ -653,5 +658,20 @@
     "domain": "https://taiyo.moe",
     "type": "manga",
     "name": "Taiyo"
+  },
+  {
+    "domain": "https://animesonline.in",
+    "type": "anime",
+    "name": "Animes Online"
+  },
+  {
+    "domain": "https://www.miruro.tv",
+    "type": "anime",
+    "name": "Miruro"
+  },
+  {
+    "domain": "https://latanime.org",
+    "type": "anime",
+    "name": "Latanime"
   }
 ]
