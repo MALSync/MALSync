@@ -1404,7 +1404,7 @@
         "description": "Placeholder text the field that sets the custom url name"
     },
     "settings_custom_position_below": {
-        "message": "Información a bajo",
+        "message": "Debajo de la información",
         "description": "Position of the quicklinks below the information section"
     },
     "list_sorting_unread": {
@@ -1452,7 +1452,7 @@
         "description": "Start description text"
     },
     "installPage_Description_paragraph1": {
-        "message": "Básicamente, los enlaces rápidos son botones que abren el sitio de streaming/lectura que elijas - se encuentran en todas las páginas de anime/manga.",
+        "message": "Los enlaces rápidos son botones que abren el sitio de streaming/lectura que elijas - se encuentran en todas las páginas de anime/manga dentro de la extensión.",
         "description": "paragraph one of the description"
     },
     "next": {
@@ -1534,7 +1534,7 @@
         "description": "Header for the quicklinks section during the install"
     },
     "Error_Blocked": {
-        "message": "Tu IP ha sido baneada en $Page$, cambia tu IP o espera a que sea desbaneada. Una caída temporal también podría ser una razón.",
+        "message": "Tu IP ha sido baneada en $Page$, cambia tu IP o espera a que sea desbaneada. Una caída temporal también podría ser el motivo.",
         "description": "Error message when the user is blocked on a website",
         "placeholders": {
             "Page": {
@@ -1542,5 +1542,17 @@
                 "example": "MyAnimeList"
             }
         }
+    },
+    "settings_permissions_required": {
+        "message": "Requerido",
+        "description": "Header text for the list of required permissions"
+    },
+    "settings_permissions_pages": {
+        "message": "Páginas",
+        "description": "Header text for the list of page permissions"
+    },
+    "settings_permissions_player": {
+        "message": "Reproductor de video",
+        "description": "Header text for the list of video player permissions"
     }
 }

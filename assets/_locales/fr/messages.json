@@ -1538,5 +1538,21 @@
     "settings_LocalSync_Help_Before": {
         "message": "En cas de problèmes, veuillez réessayer dans",
         "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
+    },
+    "settings_permissions_pages": {
+        "message": "Pages",
+        "description": "Header text for the list of page permissions"
+    },
+    "settings_permissions_player": {
+        "message": "Lecteurs vidéo",
+        "description": "Header text for the list of video player permissions"
+    },
+    "settings_permissions_required": {
+        "message": "Obligatoires",
+        "description": "Header text for the list of required permissions"
+    },
+    "settings_permissions_overview": {
+        "message": "Permissions",
+        "description": "Button that leads to where permissions to sites can be managed"
     }
 }
