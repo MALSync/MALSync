@@ -61,13 +61,16 @@ export const Miruro: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    ready();
-    utils.urlChangeDetect(function () {
-      ready();
-    });
+    let inte: NodeJS.Timer;
+    utils.urlChangeDetect(() => ready());
+    j.$(document).ready(() => ready());
     function ready() {
       page.reset();
-      page.handlePage();
+      clearInterval(inte);
+      inte = utils.waitUntilTrue(
+        () => Miruro.sync.getTitle(window.location.href),
+        () => page.handlePage(),
+      );
     }
   },
 };
