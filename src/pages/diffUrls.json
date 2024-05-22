@@ -302,7 +302,6 @@
       "https://smotret-anime.com/translations/embed/*",
       "https://anime365.ru/translations/embed/*",
       "https://anime-365.ru/translations/embed/*",
-      "https://mixdrop.nu/e/*",
       "https://uka257.mixdrop.nu/e/*",
       "https://embtaku.com/embedplus*",
       "https://embtaku.com/streaming.php?*",
@@ -318,6 +317,7 @@
       "https://cindyeyefinal.com/e/*",
       "https://michaelapplysome.com/e/*",
       "https://sethniceletter.com/e/*",
+      "https://designparty.sx/e/*",
       "https://animeflix.ci/player?*"
     ]
   }
