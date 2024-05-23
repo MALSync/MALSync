@@ -184,7 +184,7 @@
         "description": "Bad - Score"
     },
     "UI_Score_VeryBad": {
-        "message": "(3) Très Mauvais",
+        "message": "(3) Très mauvais",
         "description": "Very Bad - Score"
     },
     "UI_Score_Horrible": {
@@ -1492,7 +1492,7 @@
         "description": "paragraph two of the description"
     },
     "installPage_Login_Successful": {
-        "message": "Fantastique, $Username$ ! Vous êtes a présent connecté.",
+        "message": "Fantastique, $Username$ ! Vous êtes à présent connecté.",
         "description": "Text after the user successfully authenticated",
         "placeholders": {
             "Username": {
