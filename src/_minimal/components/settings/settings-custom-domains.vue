@@ -55,6 +55,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
+import { isValidPattern } from 'webext-patterns';
 import { checkPermissions, getPageOptions, requestPermissions } from '../../../utils/customDomains';
 import Card from '../card.vue';
 import FormDropdown from '../form/form-dropdown.vue';
@@ -100,14 +101,7 @@ function addPermission() {
 }
 
 function validDomain(domain) {
-  let origin;
-  try {
-    origin = new URL(domain).origin;
-  } catch (e) {
-    return false;
-  }
-
-  return /^https?:\/\/[a-zA-Z0-9.]+/.test(domain) && origin;
+  return isValidPattern(domain);
 }
 
 const hasAllPermissions = ref(false);
