@@ -185,7 +185,7 @@ const generateManifest = () => {
     ],
   };
 
-  if (mode === 'travis') {
+  if (mode === 'travis' && appTarget !== 'firefox') {
     delete mani.browser_specific_settings;
   } else if (mode === 'dev') {
     delete mani.browser_specific_settings;
