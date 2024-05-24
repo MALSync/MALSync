@@ -169,7 +169,7 @@ const generateManifest = () => {
       'storage',
       'alarms',
       'notifications',
-      'declarativeNetRequest',
+      'declarativeNetRequestWithHostAccess',
     ],
     "optional_permissions": [
       "scripting",
