@@ -309,7 +309,12 @@ export class Single extends SingleAbstract {
     });
   }
 
-  protected apiCall(mode, url, variables = {}, authentication = true) {
+  protected apiCall(
+    mode: 'GET' | 'POST' | 'DELETE' | 'PUT',
+    url,
+    variables = {},
+    authentication = true,
+  ) {
     return helper.apiCall(mode, url, variables, authentication).catch(e => {
       if (e instanceof NotAutenticatedError) throw new NotAutenticatedError(e.message);
       throw e;
@@ -318,7 +323,7 @@ export class Single extends SingleAbstract {
 
   protected kitsuSlugtoKitsu(kitsuSlug: string, type: any) {
     return this.apiCall(
-      'Get',
+      'GET',
       `https://kitsu.io/api/edge/${type}?filter[slug]=${kitsuSlug}&page[limit]=1&include=mappings`,
       {},
     )
@@ -326,7 +331,7 @@ export class Single extends SingleAbstract {
         if (e instanceof NotAutenticatedError) {
           this._authenticated = false;
           return this.apiCall(
-            'Get',
+            'GET',
             `https://kitsu.io/api/edge/${type}?filter[slug]=${kitsuSlug}&page[limit]=1&include=mappings`,
             {},
             false,
@@ -356,7 +361,7 @@ export class Single extends SingleAbstract {
 
   protected malToKitsu(malid: number, type: any) {
     return this.apiCall(
-      'Get',
+      'GET',
       `https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
       {},
     )
@@ -364,7 +369,7 @@ export class Single extends SingleAbstract {
         if (e instanceof NotAutenticatedError) {
           this._authenticated = false;
           return this.apiCall(
-            'Get',
+            'GET',
             `https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
             {},
             false,
@@ -382,7 +387,7 @@ export class Single extends SingleAbstract {
     if (typeof userId !== 'undefined' && userId) {
       return userId;
     }
-    return this.apiCall('Get', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
+    return this.apiCall('GET', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
       if (
         typeof res.data === 'undefined' ||
         !res.data.length ||

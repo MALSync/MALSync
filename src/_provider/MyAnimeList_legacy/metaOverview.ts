@@ -341,7 +341,39 @@ export class MetaOverview extends MetaOverviewAbstract {
     try {
       const relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
       const related = j.$.parseHTML(relatedBlock);
-      j.$.each(j.$(related).filter('table').find('tr'), function (index, value) {
+
+      j.$.each(
+        j.$(related).filter('.related-entries').find('.entry .content'),
+        function (index, value) {
+          const links: { url: string; title: string; type: string; id: number }[] = [];
+          j.$(value)
+            .find('a')
+            .each(function (indexB, valueB) {
+              const url =
+                utils.absoluteLink(j.$(valueB).attr('href'), 'https://myanimelist.net') || '';
+              if (url) {
+                links.push({
+                  url,
+                  title: j.$(valueB).parent().text(),
+                  type: utils.urlPart(url, 3),
+                  id: Number(utils.urlPart(url, 4)),
+                });
+              }
+            });
+          el.push({
+            type: j
+              .$(value)
+              .find('.relation')
+              .first()
+              .text()
+              .trim()
+              .replace(/\(.*\)$/gi, ''),
+            links,
+          });
+        },
+      );
+
+      j.$.each(j.$(related).filter('.related-entries').find('table tr'), function (index, value) {
         const links: { url: string; title: string; type: string; id: number }[] = [];
         j.$(value)
           .find('.borderClass')
@@ -353,7 +385,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             if (url) {
               links.push({
                 url,
-                title: j.$(valueB).text(),
+                title: j.$(valueB).parent().text(),
                 type: utils.urlPart(url, 3),
                 id: Number(utils.urlPart(url, 4)),
               });

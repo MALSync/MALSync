@@ -35,6 +35,36 @@ jobs:
         asset_name: webextension.zip
         asset_content_type: application/zip
 
+  webextension-firefox:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+      env:
+        APP_TARGET: firefox
+        CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+    - name: Pack
+      run: |
+        npm run package
+    - name: Upload webextension
+      id: upload-webextension-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./dist/webextension.zip
+        asset_name: webextension-firefox.zip
+        asset_content_type: application/zip
+
   userscript:
     runs-on: ubuntu-latest
     steps:

@@ -77,7 +77,12 @@ export function kitsuToMal(kitsuId: number, type: 'anime' | 'manga') {
     });
 }
 
-export function apiCall(mode, url, variables = {}, authentication = true) {
+export function apiCall(
+  mode: 'GET' | 'POST' | 'DELETE' | 'PUT',
+  url,
+  variables = {},
+  authentication = true,
+) {
   const headers: any = {
     'Content-Type': 'application/vnd.api+json',
     Accept: 'application/vnd.api+json',
@@ -87,7 +92,7 @@ export function apiCall(mode, url, variables = {}, authentication = true) {
     .xhr(mode, {
       url,
       headers,
-      data: JSON.stringify(variables),
+      data: mode !== 'GET' ? JSON.stringify(variables) : undefined,
     })
     .then(response => {
       if ((response.status > 499 && response.status < 600) || response.status === 0) {

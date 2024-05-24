@@ -1,9 +1,9 @@
 {
   "title": "Animeflix",
-  "url": "https://animeflix.live",
+  "url": "https://animeflix.gg",
   "testCases": [
     {
-      "url": "https://animeflix.live/watch/mahouka-koukou-no-rettousei-raihousha-hen-episode-3/",
+      "url": "https://animeflix.gg/watch/mahouka-koukou-no-rettousei-raihousha-hen-episode-3/",
       "expected": {
         "sync": true,
         "title": "Mahouka Koukou no Rettousei: Raihousha-hen",
@@ -15,15 +15,15 @@
       }
     },
     {
-      "url": "https://animeflix.live/?anime=no-game-no-life",
+      "url": "https://animeflix.gg/?anime=no-game-no-life",
       "expected": {
         "sync": false,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
         "uiSelector": true,
         "epList": {
-          "2": "https://animeflix.live/watch/no-game-no-life-episode-2/",
-          "4": "https://animeflix.live/watch/no-game-no-life-episode-4/"
+          "2": "https://animeflix.gg/watch/no-game-no-life-episode-2/",
+          "4": "https://animeflix.gg/watch/no-game-no-life-episode-4/"
         }
       }
     }

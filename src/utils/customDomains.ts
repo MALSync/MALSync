@@ -1,3 +1,4 @@
+import { isValidPattern } from 'webext-patterns';
 import { domainType } from '../background/customDomain';
 import { hasDomainPermission } from './manifest';
 import { greaterOrEqualCurrentVersion } from './version';
@@ -94,16 +95,7 @@ export async function hasMissingPermissions(): Promise<boolean> {
 }
 
 function getOrigins(permissions: domainType[]) {
-  return permissions
-    .filter(perm => {
-      try {
-        const url = new URL(perm.domain);
-        return Boolean(url.origin);
-      } catch (_) {
-        return false;
-      }
-    })
-    .map(perm => `${new URL(perm.domain)}`);
+  return permissions.filter(perm => isValidPattern(perm.domain)).map(perm => perm.domain);
 }
 
 export async function requestPermissions(permissions: domainType[]) {
