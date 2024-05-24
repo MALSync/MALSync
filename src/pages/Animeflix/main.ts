@@ -13,7 +13,7 @@ let jsonData = {
 
 export const Animeflix: pageInterface = {
   name: 'Animeflix',
-  domain: 'https://animeflix.live',
+  domain: 'https://animeflix.gg',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {

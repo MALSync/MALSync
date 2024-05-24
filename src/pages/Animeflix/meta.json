@@ -1,6 +1,6 @@
 {
-    "search": "https://animeflix.live/search/{searchterm}",
+    "search": "https://animeflix.gg/search/{searchterm}",
     "urls": {
-      "match": ["*://animeflix.live/*", "*://animeflix.icu/*", "*://animeflix.ro/*"]
+      "match": ["*://animeflix.gg/*", "*://animeflix.li/*"]
     }
   }
