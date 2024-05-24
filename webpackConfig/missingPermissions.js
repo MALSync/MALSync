@@ -55,18 +55,7 @@ function getDiff(oldUrls, oldDiff) {
   oldPages.forEach(page => {
     try {
       const urls = pagesUtils.urls(page);
-      const diffUrls = urls.match.filter(el => !oldUrls.includes(el)).map(el => {
-
-        if (oldDiff && oldDiff[page] && el.startsWith('*://*.')) {
-          for (const old of oldDiff[page]) {
-            if (old.endsWith('.' + el.replace('*://*.', ''))) {
-              return old;
-            }
-          }
-        }
-
-        return formatUrls(el)
-      });
+      const diffUrls = urls.match.filter(el => !oldUrls.includes(el));
       if (diffUrls.length) {
         res[page] = diffUrls;
       }
@@ -78,27 +67,9 @@ function getDiff(oldUrls, oldDiff) {
   // Iframe urls
   res['iframe'] = pagesUtils
     .generateMatchExcludes(playerUrls)
-    .match.filter(el => !oldUrls.includes(el))
-    .map(el => {
-      if(oldDiff && oldDiff.iframe && el.startsWith('*://*.')) {
-        for(const old of oldDiff.iframe) {
-          if(old.endsWith("." + el.replace('*://*.', ''))) {
-            return old;
-          }
-        }
-      }
-
-      return formatUrls(el)
-    });
+    .match.filter(el => !oldUrls.includes(el));
 
   return res;
-}
-
-function formatUrls(url) {
-  const urlParts = url.split('/');
-  urlParts[0] = urlParts[0].replace('*:', 'https:');
-  urlParts[2] = urlParts[2].replace(/^\*\./gi, '');
-  return urlParts.join('/');
 }
 
 function getUrls(manifest) {
