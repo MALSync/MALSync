@@ -40,7 +40,7 @@ function getImageBlob(url, fallback = false): Promise<string> {
       if (!r.ok) throw new Error('Could not get image');
       return r.blob();
     })
-    .then(blob => base64String(blob))
+    .then(blob => blobToBase64(blob))
     .catch(e => {
       if (!fallback) {
         con.info('Could not get image for notification', url);
@@ -50,7 +50,7 @@ function getImageBlob(url, fallback = false): Promise<string> {
     });
 }
 
-function base64String(blob: Blob): Promise<string> {
+function blobToBase64(blob: Blob): Promise<string> {
   return new Promise(resolve => {
     const reader = new FileReader();
     reader.onloadend = () => resolve(reader.result as string);
