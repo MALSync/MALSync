@@ -2,7 +2,7 @@ import {
   releaseItemInterface,
   progressIsOld,
   single as updateProgress,
-} from '../background/releaseProgress';
+} from '../background/releaseProgressUtils';
 import { timestampToShortTime } from './time';
 
 export class Progress {

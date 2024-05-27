@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import { PropType, ref } from 'vue';
-import { getProgressTypeList } from '../../../background/releaseProgress';
+import { getProgressTypeList } from '../../../background/releaseProgressUtils';
 import SettingsGeneral from './settings-general.vue';
 
 const properties = defineProps({
