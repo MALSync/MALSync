@@ -5,7 +5,10 @@ import { greaterOrEqualCurrentVersion } from './version';
 import { getPages } from './quicklinksBuilder';
 
 export function getPageOptions() {
-  const options = [{ key: 'iframe', title: 'Video Iframe' }];
+  const options = [
+    { key: 'iframe', title: 'Video Iframe' },
+    { key: 'hostpermission', title: 'Host Permission' },
+  ];
   getPages().forEach(page => {
     options.push({
       key: page.key,
