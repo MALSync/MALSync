@@ -266,7 +266,8 @@
   "0.10.1": {
     "iframe": [
       "*://*.mixdrop.sx/e/*",
-      "*://brucevotewithin.com/e/*"
+      "*://brucevotewithin.com/e/*",
+      "*://c4qhk0je.xyz/e/*"
     ]
   }
 }
