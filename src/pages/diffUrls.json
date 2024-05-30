@@ -1,62 +1,4 @@
 {
-  "0.9.5": {
-    "AnimeUnity": [
-      "https://www.animeunity.to/anime/*"
-    ],
-    "AsuraScans": [
-      "https://asuracomics.com/*"
-    ],
-    "Gogoanime": [
-      "https://gogoanimehd.to/*",
-      "https://gogoanime3.net/*",
-      "https://gogoanimehd.io/*"
-    ],
-    "LeviatanScans": [
-      "https://lscomic.com/*"
-    ],
-    "NekoSama": [
-      "https://animecat.net/*"
-    ],
-    "RealmScans": [
-      "https://realmscans.xyz/*"
-    ],
-    "Voiranime": [
-      "https://v5.voiranime.com/*"
-    ],
-    "Zoro": [
-      "https://aniwatch.to/*"
-    ],
-    "nineAnime": [
-      "https://aniwave.to/watch/*",
-      "https://aniwave.to/watch2gether/*",
-      "https://aniwave.bz/watch/*",
-      "https://aniwave.bz/watch2gether/*",
-      "https://aniwave.ws/watch/*",
-      "https://aniwave.ws/watch2gether/*"
-    ],
-    "iframe": [
-      "https://fusevideo.io/e/*",
-      "https://goone.pro/embedplus*",
-      "https://goone.pro/streaming.php?*",
-      "https://goone.pro/load.php?*",
-      "https://goone.pro/loadserver.php?*",
-      "https://vidplay.site/e/*",
-      "https://truepoweroflove.com/*",
-      "https://rationalityaloelike.com/e/*",
-      "https://wolfdyslectic.com/e/*",
-      "https://metagnathtuggers.com/e/*",
-      "https://gamoneinterrupted.com/e/*",
-      "https://chromotypic.com/e/*",
-      "https://crownmakermacaronicism.com/e/*",
-      "https://generatesnitrosate.com/e/*",
-      "https://yodelswartlike.com/e/*",
-      "https://figeterpiazine.com/e/*",
-      "https://cigarlessarefy.com/e/*",
-      "https://megacloud.tv/*",
-      "https://vixcloud.cc/*",
-      "https://vixcloud.co/*"
-    ]
-  },
   "0.9.6": {
     "AnimeXin": [
       "https://animexin.vip/*"
@@ -320,5 +262,11 @@
   },
   "0.10.0": {
     "iframe": []
+  },
+  "0.10.1": {
+    "iframe": [
+      "*://*.mixdrop.sx/e/*",
+      "*://brucevotewithin.com/e/*"
+    ]
   }
 }
