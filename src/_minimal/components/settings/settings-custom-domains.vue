@@ -73,9 +73,7 @@ defineProps({
   },
 });
 
-const options = getPageOptions()
-  .map(el => ({ title: el.title, value: el.key }))
-  .sort((a, b) => utils.sortAlphabetically(a.title, b.title));
+const options = getPageOptions().map(el => ({ title: el.title, value: el.key }));
 
 const permissions = ref([] as domainType[]);
 

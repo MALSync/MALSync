@@ -9,12 +9,14 @@ export function getPageOptions() {
     { key: 'iframe', title: 'Video Iframe' },
     { key: 'hostpermission', title: 'Host Permission' },
   ];
-  getPages().forEach(page => {
-    options.push({
-      key: page.key,
-      title: page.name,
+  getPages()
+    .sort((a, b) => utils.sortAlphabetically(a.name, b.name))
+    .forEach(page => {
+      options.push({
+        key: page.key,
+        title: page.name,
+      });
     });
-  });
   return options;
 }
 
