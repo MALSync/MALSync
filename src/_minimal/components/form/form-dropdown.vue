@@ -47,21 +47,27 @@
         defer
       >
         <div class="dropdown-pop-default" :style="`text-align: ${alignItems}`">
-          <div
-            v-for="option in options"
-            :key="option.value"
-            class="dropdown-pop-default-element"
-            :class="{
-              active: compareFunc(option.value, picked),
-              focus: activeKey === option.value,
-            }"
-            @click="select(option)"
-            @mouseover="activeKey = option.value"
-          >
-            <slot name="option" :option="option">
-              {{ option.title || option.label }}
-            </slot>
-          </div>
+          <template v-for="option in options" :key="option.value">
+            <Hr
+              v-if="option.title === '-_-_-' || option.label === '-_-_-'"
+              direction="both"
+              padding="half"
+            />
+            <div
+              v-else
+              class="dropdown-pop-default-element"
+              :class="{
+                active: compareFunc(option.value, picked),
+                focus: activeKey === option.value,
+              }"
+              @click="select(option)"
+              @mouseover="activeKey = option.value"
+            >
+              <slot name="option" :option="option">
+                {{ option.title || option.label }}
+              </slot>
+            </div>
+          </template>
         </div>
       </OverlayScrollbarsComponent>
     </div>
@@ -73,6 +79,7 @@ import { computed, PropType, ref, watch, nextTick } from 'vue';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
 import FormButton from './form-button.vue';
 import TextIcon from '../text-icon.vue';
+import Hr from '../hr.vue';
 import { usePopper } from '../../composables/popper';
 
 interface Option {

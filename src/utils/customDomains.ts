@@ -8,6 +8,7 @@ export function getPageOptions() {
   const options = [
     { key: 'iframe', title: 'Video Iframe' },
     { key: 'hostpermission', title: 'Host Permission' },
+    { key: 'spacer1', title: '-_-_-' },
   ];
   getPages()
     .sort((a, b) => utils.sortAlphabetically(a.name, b.name))
