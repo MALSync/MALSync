@@ -236,6 +236,7 @@ module.exports = {
       '*://*.mixdrop21.net/e/*',
       '*://*.mixdrop.si/e/*',
       '*://*.mixdrop.nu/e/*',
+      '*://*.mixdrop.sx/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -636,6 +637,7 @@ module.exports = {
       '*://cindyeyefinal.com/e/*',
       '*://michaelapplysome.com/e/*',
       '*://sethniceletter.com/e/*',
+      '*://brucevotewithin.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
