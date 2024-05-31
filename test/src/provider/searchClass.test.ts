@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import * as request from 'request';
 import { SearchClass } from '../../../src/_provider/Search/searchClass';
 
 describe('Sanitized Titel', function() {
@@ -75,6 +74,16 @@ describe('Titel Similarity', function() {
   });
 });
 
+const xhrFunction = async function xhr(post, conf, data) {
+  return fetch(conf).then(async response => {
+    return {
+      finalUrl: response.url,
+      responseText: await response.text(),
+      status: response.status,
+    };
+  });
+};
+
 describe('Mal Search', function() {
   before(function() {
     global.con = require('../../../src/utils/console');
@@ -83,16 +92,7 @@ describe('Mal Search', function() {
     global.con.info = function() {};
     global.api = {
       request: {
-        async xhr(post, conf, data) {
-          return new Promise(function(resolve, reject) {
-            request(conf, (error, response, body) => {
-              resolve({
-                responseText: body,
-                status: response.statusCode,
-              });
-            });
-          });
-        },
+        xhr: xhrFunction,
       },
     };
   });
@@ -155,16 +155,7 @@ describe('Page Search', function() {
     global.con.info = function() {};
     global.api = {
       request: {
-        async xhr(post, conf, data) {
-          return new Promise(function(resolve, reject) {
-            request(conf, (error, response, body) => {
-              resolve({
-                responseText: body,
-                status: response.statusCode,
-              });
-            });
-          });
-        },
+        xhr: xhrFunction,
       },
       settings: {
         get(val) {
@@ -253,16 +244,7 @@ describe('Full Search', function() {
     global.con.info = function() {};
     global.api = {
       request: {
-        async xhr(post, conf, data) {
-          return new Promise(function(resolve, reject) {
-            request(conf, (error, response, body) => {
-              resolve({
-                responseText: body,
-                status: response.statusCode,
-              });
-            });
-          });
-        },
+        xhr: xhrFunction,
       },
       settings: {
         get(val) {
