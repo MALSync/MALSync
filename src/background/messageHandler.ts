@@ -180,7 +180,7 @@ function xhrAction(
     url = message.url;
   }
 
-  if (url.includes('malsync.moe') || url.includes('simkl.com')) {
+  if (utils.isDomainMatching(url, 'malsync.moe') || utils.isDomainMatching(url, 'simkl.com')) {
     (options.headers as [string, string][]).push(['version', api.storage.version()]);
     (options.headers as [string, string][]).push(['type', 'addon']);
   }
