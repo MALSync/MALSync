@@ -639,6 +639,7 @@ module.exports = {
       '*://michaelapplysome.com/e/*',
       '*://sethniceletter.com/e/*',
       '*://brucevotewithin.com/e/*',
+      '*://rebeccaneverbase.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
