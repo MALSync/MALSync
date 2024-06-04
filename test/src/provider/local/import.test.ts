@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import { exportData, importData } from '../../../../src/_provider/Local/import';
+import * as utils from '../../../../src/utils/general';
 
 setGlobals();
 function setGlobals() {

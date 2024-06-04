@@ -15,5 +15,6 @@
   "https://api.malsync.moe/",
   "https://api.myanimelist.net/",
   "https://api.mangadex.org/",
-  "https://shikimori.one/"
+  "https://shikimori.one/",
+  "https://*.plex.direct/"
 ]

@@ -117,7 +117,6 @@ module.exports = {
       rules: {
         ...COMMON_RULES,
         // Import rules
-        'import/no-cycle': 'warn', // TODO
         'import/no-self-import': 'warn',
         // TS rules
         ...TYPESCRIPT_RULES,

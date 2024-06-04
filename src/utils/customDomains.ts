@@ -5,13 +5,19 @@ import { greaterOrEqualCurrentVersion } from './version';
 import { getPages } from './quicklinksBuilder';
 
 export function getPageOptions() {
-  const options = [{ key: 'iframe', title: 'Video Iframe' }];
-  getPages().forEach(page => {
-    options.push({
-      key: page.key,
-      title: page.name,
+  const options = [
+    { key: 'iframe', title: 'Video Iframe' },
+    { key: 'hostpermission', title: 'Host Permission' },
+    { key: 'spacer1', title: '-_-_-' },
+  ];
+  getPages()
+    .sort((a, b) => utils.sortAlphabetically(a.name, b.name))
+    .forEach(page => {
+      options.push({
+        key: page.key,
+        title: page.name,
+      });
     });
-  });
   return options;
 }
 

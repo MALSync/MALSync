@@ -12,7 +12,7 @@ const router = useRouter();
 
 const props = defineProps({
   to: {
-    type: Object as PropType<RouteLocationRaw>,
+    type: [Object, String] as PropType<RouteLocationRaw>,
     required: true,
   },
 });

@@ -8,7 +8,7 @@ export class ScriptProxy<T = any> {
     return this;
   }
 
-  async getData(): Promise<T> {
+  async getData(retry: number = 1): Promise<T> {
     return new Promise((resolve, reject) => {
       const eventId = generateUniqueID();
 
@@ -35,7 +35,14 @@ export class ScriptProxy<T = any> {
         if (!data) throw new Error('Result data not found');
         const result = JSON.parse(data);
         con.m('ScriptProxy').info('Result Received', result[this.elementId]);
-        resolve(result[this.elementId]);
+        if (!result[this.elementId] && retry > 0) {
+          con.m('ScriptProxy').info('Retrying');
+          setTimeout(() => {
+            resolve(this.getData(retry - 1));
+          }, 1000);
+        } else {
+          resolve(result[this.elementId]);
+        }
       };
 
       window.addEventListener('message', callbackFunction, false);
