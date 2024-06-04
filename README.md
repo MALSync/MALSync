@@ -282,7 +282,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animeflix.live"><img src="https://favicon.malsync.moe/?domain=https://animeflix.live"> Animeflix</a></td>
+                <td><a href="https://animeflix.gg"><img src="https://favicon.malsync.moe/?domain=https://animeflix.gg"> Animeflix</a></td>
                 <td></td>
                 <td></td>
               </tr><tr>

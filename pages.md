@@ -69,7 +69,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://animeflix.live"><img src="https://favicon.malsync.moe/?domain=https://animeflix.live"> Animeflix</a></td>
+    <td><a href="https://animeflix.gg"><img src="https://favicon.malsync.moe/?domain=https://animeflix.gg"> Animeflix</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
