@@ -640,6 +640,7 @@ module.exports = {
       '*://sethniceletter.com/e/*',
       '*://brucevotewithin.com/e/*',
       '*://rebeccaneverbase.com/e/*',
+      '*://loriwithinfamily.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
