@@ -155,6 +155,8 @@
     ]
   },
   "0.10.2": {
-    "iframe": []
+    "iframe": [
+      "*://loriwithinfamily.com/e/*"
+    ]
   }
 }
