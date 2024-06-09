@@ -71,15 +71,13 @@ export const NekoSama: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$(
-          '#stats > div > div.episodes > div.row.no-gutters.js-list-episode-container > div > div > div.text',
-        );
+        return j.$('#stats > div > div.episodes > div.row > div');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a').first().attr('href'), NekoSama.domain);
       },
       elementEp(selector) {
-        return Number(selector.find('a').first().find('span.episode').text().replace(/\D+/, ''));
+        return Number(selector.find('a').first().text().split('-').pop() || '');
       },
     },
   },
