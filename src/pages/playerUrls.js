@@ -799,6 +799,7 @@ module.exports = {
       '*://rgeyyddl.skin/e/*',
       '*://designparty.sx/e/*',
       '*://c4qhk0je.xyz/e/*',
+      '*://1azayf9w.xyz/e/*',
     ],
   },
   // toonanime
