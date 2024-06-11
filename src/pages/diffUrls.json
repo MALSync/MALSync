@@ -155,6 +155,9 @@
     ]
   },
   "0.10.2": {
+    "AsuraScans": [
+      "*://*.asuracomic.net/*"
+    ],
     "iframe": [
       "*://vid1a52.site/e/*",
       "*://loriwithinfamily.com/e/*",
