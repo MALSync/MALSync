@@ -452,6 +452,7 @@ module.exports = {
       '*://vidplay.online/e/*',
       '*://a9bfed0818.nl/e/*',
       '*://vid142.site/e/*',
+      '*://vid1a52.site/e/*',
     ],
   },
   // gogo
