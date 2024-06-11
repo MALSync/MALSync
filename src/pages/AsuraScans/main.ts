@@ -13,6 +13,7 @@ export function getInter(): pageInterface {
       'https://asura.gg',
       'https://asurascans.com',
       'https://asuratoon.com',
+      'https://asuracomic.net',
     ],
     languages: ['English'],
     type: 'manga',
