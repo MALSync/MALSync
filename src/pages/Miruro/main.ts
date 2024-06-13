@@ -26,7 +26,7 @@ export const Miruro: pageInterface = {
       return '';
     },
     getEpisode(url) {
-      const temp = utils.urlPart(url, 6);
+      const temp = utils.urlPart(url, 5);
       if (!temp) return NaN;
       return Number(temp);
     },
@@ -35,7 +35,7 @@ export const Miruro: pageInterface = {
       const nextEpisodeNumber = Miruro.sync.getEpisode(url) + 1;
       let href;
       if (totalEpisodeNumber.length > 1 && nextEpisodeNumber <= Number(totalEpisodeNumber[1]) + 1) {
-        href = `https://${window.location.hostname}/watch/${utils.urlPart(url, 4)}/${utils.urlPart(url, 5)}/${nextEpisodeNumber}`;
+        href = `https://${window.location.hostname}/watch/${utils.urlPart(url, 4)}/${nextEpisodeNumber}`;
       }
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Miruro.domain);

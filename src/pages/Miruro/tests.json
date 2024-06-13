@@ -3,7 +3,7 @@
   "url": "https://www.miruro.tv",
   "testCases": [
     {
-      "url": "https://www.miruro.tv/watch/139630/boku-no-hero-academia-6th-season/1",
+      "url": "https://www.miruro.tv/watch/139630/1",
       "expected": {
         "sync": true,
         "title": "My Hero Academia Season 6",
@@ -11,11 +11,11 @@
         "uiSelector": true,
         "overviewUrl": "https://www.miruro.tv/watch/139630",
         "episode": 1,
-        "nextEpUrl": "https://www.miruro.tv/watch/139630/boku-no-hero-academia-6th-season/2"
+        "nextEpUrl": "https://www.miruro.tv/watch/139630/2"
       }
     },
     {
-      "url": "https://www.miruro.tv/watch/101280/tensei-shitara-slime-datta-ken/19",
+      "url": "https://www.miruro.tv/watch/101280/19",
       "expected": {
         "sync": true,
         "title": "That Time I Got Reincarnated as a Slime",
@@ -23,11 +23,11 @@
         "uiSelector": true,
         "overviewUrl": "https://www.miruro.tv/watch/101280",
         "episode": 19,
-        "nextEpUrl": "https://www.miruro.tv/watch/101280/tensei-shitara-slime-datta-ken/20"
+        "nextEpUrl": "https://www.miruro.tv/watch/101280/20"
       }
     },
     {
-      "url": "https://www.miruro.tv/watch/104459/yuru-camp-season-2/13",
+      "url": "https://www.miruro.tv/watch/104459/13",
       "expected": {
         "sync": true,
         "title": "LAID-BACK CAMP SEASON2",
