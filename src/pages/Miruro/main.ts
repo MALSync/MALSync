@@ -13,7 +13,7 @@ export const Miruro: pageInterface = {
     );
   },
   isOverviewPage(url) {
-    return false;
+    return utils.urlPart(url, 3) === 'info' && utils.urlParam(url, 'id') !== null;
   },
   sync: {
     getTitle(url) {
@@ -23,7 +23,7 @@ export const Miruro: pageInterface = {
       return `${utils.urlParam(url, 'id')}`;
     },
     getOverviewUrl(url) {
-      const href = `https://${window.location.hostname}/watch?id=${utils.urlParam(url, 'id')}`;
+      const href = `https://${window.location.hostname}/info?id=${utils.urlParam(url, 'id')}`;
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Miruro.domain);
       }
@@ -61,6 +61,20 @@ export const Miruro: pageInterface = {
       j.$('.anime-title').parent().parent().before(j.html(selector));
     },
   },
+  overview: {
+    getTitle(url) {
+      return Miruro.sync.getTitle(url);
+    },
+    getIdentifier(url) {
+      return Miruro.sync.getIdentifier(url);
+    },
+    uiSelector(selector) {
+      j.$('.anime-title').parent().parent().parent().before(j.html(selector));
+    },
+    getMalUrl(provider) {
+      return Miruro.sync.getMalUrl!(provider);
+    },
+  },
   init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
@@ -69,10 +83,12 @@ export const Miruro: pageInterface = {
     utils.urlChangeDetect(() => ready());
     j.$(() => ready());
     function ready() {
+      if (!Miruro.isSyncPage(window.location.href) && !Miruro.isOverviewPage!(window.location.href))
+        return;
       page.reset();
       clearInterval(inte);
       inte = utils.waitUntilTrue(
-        () => Miruro.sync.getTitle(window.location.href) && Miruro.isSyncPage(window.location.href),
+        () => Miruro.sync.getTitle(window.location.href),
         () => page.handlePage(),
       );
     }
