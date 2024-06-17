@@ -123,7 +123,7 @@
     "string-similarity": "^4.0.4",
     "vue": "^3.4.27",
     "vue-dompurify-html": "^5.0.1",
-    "vue-router": "^4.3.2",
+    "vue-router": "^4.3.3",
     "vue-slider-component": "^4.1.0-beta.6",
     "vue-tsc": "^2.0.21",
     "vuedraggable": "^4.1.0",
