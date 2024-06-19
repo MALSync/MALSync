@@ -453,6 +453,7 @@ module.exports = {
       '*://a9bfed0818.nl/e/*',
       '*://vid142.site/e/*',
       '*://vid1a52.site/e/*',
+      '*://vid2a41.site/e/*',
     ],
   },
   // gogo
