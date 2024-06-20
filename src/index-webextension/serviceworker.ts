@@ -7,6 +7,12 @@ import { upgradewWizzards } from '../background/upgradeWizzards';
 import { cleanupCustomDomains, initCustomDomain } from '../background/customDomain';
 
 try {
+  chrome.runtime.onStartup.addListener(() => con.log('Browser started'));
+} catch (e) {
+  con.error(e);
+}
+
+try {
   initMessageHandler();
 } catch (e) {
   con.error(e);
