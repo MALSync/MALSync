@@ -14,10 +14,11 @@ export const NekoSama: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('#watch > div > div > h1').text()
+        .$('#watch > div > div > h1')
+        .text()
         .trim()
         .replace(/ (VOSTFR|VF)$/, '')
-        .replace(/ \d+$/, '')
+        .replace(/ \d+$/, '');
     },
     getIdentifier(url) {
       const urlPart5 = utils.urlPart(url, 5);
@@ -31,19 +32,22 @@ export const NekoSama: pageInterface = {
       return identifierMatches[0];
     },
     getOverviewUrl(url) {
-      const subdub = utils.urlPart(url, 5).match(/(?:_vostfr|_vf)?$/)
-      const endurl = utils.urlPart(url, 5).replace(/(-\d+)(_vostfr|_vf)?$/,'')
+      const subdub = utils.urlPart(url, 5).match(/(?:_vostfr|_vf)?$/);
+      const endurl = utils.urlPart(url, 5).replace(/(-\d+)(_vostfr|_vf)?$/, '');
 
-      return (NekoSama.domain + '/anime/info/' + endurl + subdub);
+      return `${NekoSama.domain}/anime/info/${endurl}${subdub}`;
     },
     getEpisode(url) {
-      const headerElementText = j
-        .$('#watch > div > div > h1')
-        .text();
+      const headerElementText = j.$('#watch > div > div > h1').text();
 
       if (!headerElementText) return NaN;
 
-      return Number(headerElementText.trim().replace(/ (VOSTFR|VF)$/, '').match(/\d+$/));
+      return Number(
+        headerElementText
+          .trim()
+          .replace(/ (VOSTFR|VF)$/, '')
+          .match(/\d+$/),
+      );
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
