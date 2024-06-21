@@ -83,9 +83,9 @@ export const Miruro: pageInterface = {
     utils.urlChangeDetect(() => ready());
     j.$(() => ready());
     function ready() {
+      page.reset();
       if (!Miruro.isSyncPage(window.location.href) && !Miruro.isOverviewPage!(window.location.href))
         return;
-      page.reset();
       clearInterval(inte);
       inte = utils.waitUntilTrue(
         () => Miruro.sync.getTitle(window.location.href),
