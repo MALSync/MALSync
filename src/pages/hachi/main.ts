@@ -42,7 +42,7 @@ export const hachi: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector: (selector: string) => {
-      j.$('div.mantine-Grid-root').first().prepend(j.html(selector));
+      j.$('#mal').first().prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,
