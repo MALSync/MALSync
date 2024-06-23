@@ -116,7 +116,7 @@
     "fuse.js": "^7.0.0",
     "hex-to-hsl": "^1.0.2",
     "jquery": "^3.6.2",
-    "overlayscrollbars": "^2.2.1",
+    "overlayscrollbars": "^2.9.1",
     "overlayscrollbars-vue": "^0.5.7",
     "popper-max-size-modifier": "^0.2.0",
     "semver": "^7.6.0",
