@@ -57,7 +57,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "vue-loader": "^17.4.2",
-    "web-ext": "^8.1.0",
+    "web-ext": "^8.2.0",
     "webpack": "^5.92.1",
     "webpack-cli": "^5.1.4"
   },
