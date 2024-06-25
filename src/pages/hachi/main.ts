@@ -26,7 +26,7 @@ export const hachi: pageInterface = {
     },
     nextEpUrl: () => {
       return utils.absoluteLink(
-        j.$('svg.tabler-icon.tabler-icon-arrow-badge-right-filled').parent('a').attr('href')!,
+        j.$('a[data-with-right-section="true"]').attr('href')!,
         hachi.domain,
       );
     },
