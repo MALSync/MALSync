@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const NekoSama: pageInterface = {
   name: 'NekoSama',
-  domain: 'https://animecat.net',
+  domain: ['https://animecat.net', 'https://neko-sama.fr'],
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
@@ -13,7 +13,12 @@ export const NekoSama: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('.details > div > h1 > a').text() || j.$('.details > div > h2 > a').text();
+      return j
+        .$('#watch > div > div > h1')
+        .text()
+        .trim()
+        .replace(/ (VOSTFR|VF)$/, '')
+        .replace(/ \d+$/, '');
     },
     getIdentifier(url) {
       const urlPart5 = utils.urlPart(url, 5);
@@ -27,21 +32,22 @@ export const NekoSama: pageInterface = {
       return identifierMatches[0];
     },
     getOverviewUrl(url) {
-      return (
-        NekoSama.domain +
-        (j.$('.details > div > h1 > a').attr('href') ||
-          j.$('.details > div > h2 > a').attr('href') ||
-          '')
-      );
+      const subdub = utils.urlPart(url, 5).match(/(?:_vostfr|_vf)?$/);
+      const endurl = utils.urlPart(url, 5).replace(/(-\d+)(_vostfr|_vf)?$/, '');
+
+      return `${NekoSama.domain}/anime/info/${endurl}${subdub}`;
     },
     getEpisode(url) {
-      const headerElementText = j
-        .$('#watch > div > div.row.no-gutters.anime-info > div.info > div > div > h2')
-        .text();
+      const headerElementText = j.$('#watch > div > div > h1').text();
 
       if (!headerElementText) return NaN;
 
-      return Number(headerElementText.split('Episode ').pop());
+      return Number(
+        headerElementText
+          .trim()
+          .replace(/ (VOSTFR|VF)$/, '')
+          .match(/\d+$/),
+      );
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
@@ -71,15 +77,13 @@ export const NekoSama: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$(
-          '#stats > div > div.episodes > div.row.no-gutters.js-list-episode-container > div > div > div.text',
-        );
+        return j.$('#stats > div > div.episodes > div.row > div');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a').first().attr('href'), NekoSama.domain);
       },
       elementEp(selector) {
-        return Number(selector.find('a').first().find('span.episode').text().replace(/\D+/, ''));
+        return Number(selector.find('a').first().text().split('-').pop() || '');
       },
     },
   },
