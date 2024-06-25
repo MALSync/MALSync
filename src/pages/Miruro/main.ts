@@ -6,27 +6,31 @@ export const Miruro: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    return utils.urlPart(url, 3) === 'watch' && utils.urlPart(url, 5).trim() !== '';
+    return (
+      utils.urlPart(url, 3) === 'watch' &&
+      utils.urlParam(url, 'id') !== null &&
+      utils.urlParam(url, 'ep') !== null
+    );
   },
   isOverviewPage(url) {
-    return false;
+    return utils.urlPart(url, 3) === 'info' && utils.urlParam(url, 'id') !== null;
   },
   sync: {
     getTitle(url) {
       return j.$('.anime-title').text();
     },
     getIdentifier(url) {
-      return `${utils.urlPart(url, 4)}`;
+      return `${utils.urlParam(url, 'id')}`;
     },
     getOverviewUrl(url) {
-      const href = `https://${window.location.hostname}/watch/${utils.urlPart(url, 4)}`;
+      const href = `https://${window.location.hostname}/info?id=${utils.urlParam(url, 'id')}`;
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Miruro.domain);
       }
       return '';
     },
     getEpisode(url) {
-      const temp = utils.urlPart(url, 6);
+      const temp = utils.urlParam(url, 'ep');
       if (!temp) return NaN;
       return Number(temp);
     },
@@ -35,7 +39,7 @@ export const Miruro: pageInterface = {
       const nextEpisodeNumber = Miruro.sync.getEpisode(url) + 1;
       let href;
       if (totalEpisodeNumber.length > 1 && nextEpisodeNumber <= Number(totalEpisodeNumber[1]) + 1) {
-        href = `https://${window.location.hostname}/watch/${utils.urlPart(url, 4)}/${utils.urlPart(url, 5)}/${nextEpisodeNumber}`;
+        href = `https://${window.location.hostname}/watch?id=${utils.urlParam(url, 'id')}&ep=${nextEpisodeNumber}`;
       }
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Miruro.domain);
@@ -57,15 +61,31 @@ export const Miruro: pageInterface = {
       j.$('.anime-title').parent().parent().before(j.html(selector));
     },
   },
+  overview: {
+    getTitle(url) {
+      return Miruro.sync.getTitle(url);
+    },
+    getIdentifier(url) {
+      return Miruro.sync.getIdentifier(url);
+    },
+    uiSelector(selector) {
+      j.$('.anime-title').parent().parent().parent().before(j.html(selector));
+    },
+    getMalUrl(provider) {
+      return Miruro.sync.getMalUrl!(provider);
+    },
+  },
   init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     let inte: NodeJS.Timer;
     utils.urlChangeDetect(() => ready());
-    j.$(document).ready(() => ready());
+    j.$(() => ready());
     function ready() {
       page.reset();
+      if (!Miruro.isSyncPage(window.location.href) && !Miruro.isOverviewPage!(window.location.href))
+        return;
       clearInterval(inte);
       inte = utils.waitUntilTrue(
         () => Miruro.sync.getTitle(window.location.href),

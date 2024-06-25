@@ -864,4 +864,8 @@ module.exports = {
       // auto-gogofilelions-replace-dont-remove
     ],
   },
+  // 9anime
+  megaf: {
+    match: ['*://megaf.cc/e/*'],
+  },
 };
