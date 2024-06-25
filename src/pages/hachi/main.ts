@@ -26,7 +26,7 @@ export const hachi: pageInterface = {
     },
     nextEpUrl: () => {
       return utils.absoluteLink(
-        j.$('svg.tabler-icon.tabler-icon-arrow-badge-right-filled').parent('a').attr('href')!,
+        j.$('a[data-with-right-section="true"]').attr('href')!,
         hachi.domain,
       );
     },
@@ -42,7 +42,7 @@ export const hachi: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector: (selector: string) => {
-      j.$('div.mantine-Grid-root').first().prepend(j.html(selector));
+      j.$('#mal').first().prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,
