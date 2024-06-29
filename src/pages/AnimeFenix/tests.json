@@ -1,0 +1,30 @@
+{
+  "title": "Animeflv",
+  "url": "https://animeflv.net",
+  "testCases": [
+    {
+      "url": "https://animeflv.net/anime/no-game-no-life",
+      "expected": {
+        "sync": false,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://animeflv.net/ver/no-game-no-life-5"
+        }
+      }
+    },
+    {
+      "url": "https://animeflv.net/ver/no-game-no-life-11",
+      "expected": {
+        "sync": true,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life",
+        "overviewUrl": "https://animeflv.net/anime/no-game-no-life",
+        "nextEpUrl": "https://animeflv.net/ver/no-game-no-life-12",
+        "episode": 11,
+        "uiSelector": true
+      }
+    }
+  ]
+}

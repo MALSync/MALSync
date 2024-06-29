@@ -1,0 +1,6 @@
+{
+  "search": "https://www3.animeflv.net/browse?q={searchtermPlus}",
+  "urls": {
+    "match": ["*://*.animeflv.net/anime/*", "*://*.animeflv.net/ver/*"]
+  }
+}
