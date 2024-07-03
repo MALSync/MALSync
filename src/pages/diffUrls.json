@@ -163,9 +163,9 @@
     ],
     "iframe": [
       "*://*.s3taku.com/embedplus*",
-      "*://*.s3taku.com/streaming.php?*",
-      "*://*.s3taku.com/load.php?*",
-      "*://*.s3taku.com/loadserver.php?*",
+      "*://*.s3taku.com/streaming.php*",
+      "*://*.s3taku.com/load.php*",
+      "*://*.s3taku.com/loadserver.php*",
       "*://vid1a52.site/e/*",
       "*://vid2a41.site/e/*",
       "*://loriwithinfamily.com/e/*",

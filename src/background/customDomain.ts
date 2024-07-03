@@ -39,7 +39,7 @@ async function registerScripts() {
 
 async function registerScript(domainConfig: domainType) {
   if (domainConfig.page === 'hostpermission') return;
-  const fixDomain = utils.makeDomainCompatible(domainConfig.domain);
+  const fixDomain = domainConfig.domain;
 
   try {
     const scriptConfig = {

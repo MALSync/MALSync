@@ -891,17 +891,6 @@ export function waitForPageToBeVisible() {
   });
 }
 
-export function makeDomainCompatible(domain: string) {
-  // Add '/' to end of origin if it doesn't exist
-  if (domain.split('/').length < 4) {
-    domain += '/';
-  }
-
-  // Remove all after ?
-  domain = domain.replace(/\?.*/, '?');
-  return domain;
-}
-
 export async function clearCache() {
   const cacheArray = await api.storage.list();
   let deleted = 0;
