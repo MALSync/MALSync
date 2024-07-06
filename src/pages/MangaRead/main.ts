@@ -26,19 +26,19 @@ export const MangaRead: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('div.c-breadcrumb-wrapper > div > ol > li:nth-child(2) > a').text();
+      return j.$('div.c-breadcrumb-wrapper > div > ol > li:nth-child(2) > a').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return j.$('div.c-breadcrump-wrapper > div > ol > li:nth-child(2) > a').attr('href') || '';
+      return j.$('div.c-breadcrumb-wrapper > div > ol > li:nth-child(2) > a').attr('href') || '';
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5);
-      const temp = episodePart.match(/chapter-([-\d]+)/gi);
+      const temp = episodePart.match(/chapter-([\d]+)/gi);
       if (!temp || !temp.length) return 0;
-      return Number(temp[0].replace('chapter-', '').replace('-', '.'));
+      return Number(temp[0].replace('chapter-', ''));
     },
     nextEpUrl(url) {
       return j.$('div.nav-links > div.nav-next > a.next_page').attr('href') || '';
@@ -58,13 +58,17 @@ export const MangaRead: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('div.post-title > h1').text();
+      return j.$('div.post-title > h1').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.tab-summary').first().after(j.html(`<div id="malthing"><h2>MAL-Sync</h2><div class="info">${selector}</div></div>`));
+      j.$('div.tab-summary')
+        .first()
+        .after(
+          j.html(`<div id="malthing"><h2>MAL-Sync</h2><div class="info">${selector}</div></div>`),
+        );
     },
     list: {
       offsetHandler: false,
