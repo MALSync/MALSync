@@ -673,5 +673,10 @@
     "domain": "https://latanime.org",
     "type": "anime",
     "name": "Latanime"
+  },
+  {
+    "domain": "https:www.mangahere.org",
+    "type": "manga",
+    "name": "MangaRead"
   }
 ]
