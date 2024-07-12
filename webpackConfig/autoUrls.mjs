@@ -29,7 +29,7 @@ async function gogostream() {
     const response = await fetch("https://gogoanime3.co/no-game-no-life-episode-9");
     const body = await response.text();
 
-    const iframe = body.match(/<iframe\s+src="(.+?streaming\.php.+?)"/i);
+    const iframe = body.match(/<iframe\s+src="([^"]*)"/i);
 
     const gogostream = new URL((iframe[1].startsWith('//') ? "https:" : '') + iframe[1]);
 
@@ -58,7 +58,7 @@ async function gogostream() {
       },
       {
         name: 'gogofilelions',
-        selector: '.filelions',
+        selector: '.vidhide',
       },
     ];
 
@@ -191,7 +191,7 @@ function addPlayerUrls(key, urls) {
 async function start() {
     let lastError = null;
     const tasks = {
-        voe,
+        // voe,
         // vidmoly,
         mixdrop,
         gogostream,
