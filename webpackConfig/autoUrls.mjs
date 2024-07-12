@@ -34,10 +34,7 @@ async function gogostream() {
     const gogostream = new URL((iframe[1].startsWith('//') ? "https:" : '') + iframe[1]);
 
     addPlayerUrls('gogostream', [
-        '*.' + gogostream.hostname + '/embedplus*',
-        '*.' + gogostream.hostname + '/streaming.php?*',
-        '*.' + gogostream.hostname + '/load.php?*',
-        '*.' + gogostream.hostname + '/loadserver.php?*',
+        '*.' + gogostream.hostname + '/*',
     ]);
 
     const $ = cheerio.load(body);
