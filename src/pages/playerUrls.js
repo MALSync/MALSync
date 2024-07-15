@@ -732,6 +732,7 @@ module.exports = {
       '*://designparty.sx/e/*',
       '*://c4qhk0je.xyz/e/*',
       '*://1azayf9w.xyz/e/*',
+      '*://81u6xl9d.xyz/e/*',
     ],
   },
   // toonanime
