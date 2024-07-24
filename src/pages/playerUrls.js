@@ -799,4 +799,8 @@ module.exports = {
   megaf: {
     match: ['*://megaf.cc/e/*'],
   },
+  // bakashi
+  doflix: {
+    match: ['*://doflix.net/*'],
+  },
 };
