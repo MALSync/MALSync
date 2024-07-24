@@ -1,7 +1,7 @@
 <template>
   <Theming />
   <MediaModal />
-  <SettingsPermissionOverviewSmall />
+  <SettingsPermissionOverviewSmall v-if="isExtension()" />
   <NavBar v-if="rootHtml.getAttribute('mode') !== 'install'" />
   <div class="content">
     <router-view v-slot="{ Component, route }">
@@ -42,6 +42,10 @@ function setBreakpoint() {
   }
 }
 setBreakpoint();
+
+function isExtension() {
+  return api.type === 'webextension';
+}
 
 onMounted(() => {
   rootWindow.addEventListener('resize', setBreakpoint);
