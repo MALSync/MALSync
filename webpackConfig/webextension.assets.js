@@ -126,6 +126,9 @@ const generateManifest = () => {
       } : {
         service_worker: 'background.js',
       },
+    content_security_policy: {
+      extension_pages: "script-src 'self'; object-src 'self';",
+    },
     action: {
       default_popup: 'popup.html',
       default_icon: 'icons/icon16.png',
