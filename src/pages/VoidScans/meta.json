@@ -1,6 +1,6 @@
 {
-  "search": "https://void-scans.com/?s={searchtermPlus}",
+  "search": "https://hivetoon.com/?s={searchtermPlus}",
   "urls": {
-    "match": ["*://void-scans.com/*"]
+    "match": ["*://hivetoon.com/*", "*://void-scans.com/*"]
   }
 }
