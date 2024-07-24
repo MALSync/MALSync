@@ -511,7 +511,7 @@ export class MyAnimeListClass {
 
   related() {
     $(document).ready(function () {
-      $('.anime_detail_related_anime a').each(function () {
+      $('.related-entries .title a, .related-entries .entries a').each(function () {
         const el = $(this);
         const url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
         if (typeof url !== 'undefined') {
