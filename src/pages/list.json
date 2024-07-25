@@ -510,7 +510,7 @@
     "name": "MangaBuddy"
   },
   {
-    "domain": "https://void-scans.com",
+    "domain": "https://hivetoon.com/",
     "type": "manga",
     "name": "VoidScans"
   },
@@ -540,7 +540,7 @@
     "name": "SovetRomantica"
   },
   {
-    "domain": "https://animationdigitalnetwork.fr",
+    "domain": "https://animationdigitalnetwork.com",
     "type": "anime",
     "name": "ADN"
   },
@@ -673,5 +673,15 @@
     "domain": "https://latanime.org",
     "type": "anime",
     "name": "Latanime"
+  },
+  {
+    "domain": "https://www.mangaread.org",
+    "type": "manga",
+    "name": "MangaRead"
+  },
+  {
+    "domain": "https://bakashi.tv",
+    "type": "anime",
+    "name": "Bakashi"
   }
 ]
