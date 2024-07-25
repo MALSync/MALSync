@@ -177,12 +177,7 @@ const generateManifest = () => {
     "optional_permissions": [
       "scripting",
     ],
-    host_permissions: [
-      ...httpPermissionsJson,
-      ...(appTarget === 'firefox' ? [
-        "<all_urls>",
-      ] : []),
-    ],
+    host_permissions: httpPermissionsJson,
     "optional_host_permissions": [
       "*://*/*",
     ],
