@@ -16,53 +16,53 @@ export const Bakashi: pageInterface = {
       return j.$('#titleHis').text().split('- EP')[0].trim();
     },
     getIdentifier(url) {
-      return Bakashi.sync.getTitle(url);
+      return Bakashi.overview!.getIdentifier(Bakashi.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      // @ts-ignore
-      return j.$('.pag_episodes>.item:nth-child(2)>a')[0].href ?? '';
+      return j.$('.pag_episodes .item:nth-child(2) a').first().attr('href') || '';
     },
     getEpisode(url) {
       return Number(j.$('#titleHis').text().split('- EP')[1].trim());
     },
     nextEpUrl(url) {
-      // @ts-ignore
-      return j.$('.pag_episodes>.item:nth-child(3)>a')[0].href ?? '';
+      return j.$('.pag_episodes .item:nth-child(3) a').first().attr('href') || '';
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('#single .sheader>.data>h1').text().trim();
+      return j.$('.sheader h1').text().trim();
     },
     getIdentifier(url) {
-      return Bakashi.overview?.getTitle(url) ?? '';
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#single .sgeneros').after(j.html(`<div title="MalSync">${j.html(selector)}</div>`));
+      j.$('#single .sgeneros')
+        .first()
+        .after(j.html(`<div title="MalSync">${j.html(selector)}</div>`));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        if ($('.episodios [class^="item-"]').length > 0) return j.$('.episodios [class^="item-"]');
+        if (j.$('.episodios [class^="item-"]').length) return j.$('.episodios [class^="item-"]');
         return j.$('.episodios .episodiotitle');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(j.$(selector.find('a').first()).attr('href'), Bakashi.domain);
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Bakashi.domain);
       },
       elementEp(selector) {
-        if ($('.episodios [class^="item-"]').length > 0)
+        if (j.$('.episodios [class^="item-"]').length)
           return Number(j.$(selector).find('.epnumber').text().trim());
         return Number(j.$(selector).siblings('.epnumber').text().trim());
       },
     },
   },
   init(page) {
-    setTimeout(function () {
+    j.$(function () {
       console.log('init mal');
       api.storage.addStyle(
         require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
       );
       page.handlePage();
-    }, 2000);
+    });
   },
 };

@@ -1,29 +1,12 @@
 @import './../pages';
 
+@textColor: #ffffff;
+@inputBackground: inherit;
+
 #malp {
+  .boxStyle(#424242);
+
   margin-top: 10px;
-}
-
-#MalData {
-  flex-direction: column;
-}
-
-#malStatus,
-#malTotal,
-#malEpisodes,
-#malUserRating,
-#malRating,
-#malVolumes,
-#malTotalVol,
-#malTotalCha,
-#AddMal {
-  color: #fff;
-  font-weight: 400;
-}
-
-// Fix spacing
-.MalLogin:last-child span::after {
-  content: ' ';
 }
 
 .mal-sync-active {
@@ -56,16 +39,6 @@
   padding: 2px;
   border-radius: 0 3px;
   font-size: 0.7em;
-}
-
-.malp-group {
-  display: flex !important;
-  margin-top: 4px;
-}
-
-.malp-group-label {
-  padding-top: 0 !important;
-  color: #1e73be;
 }
 
 .open-info-popup.floatbutton > i {
