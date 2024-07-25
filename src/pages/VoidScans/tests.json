@@ -1,28 +1,28 @@
 {
     "title": "VoidScans",
-    "url": "https://void-scans.com",
+    "url": "https://hivetoon.com",
     "testCases": [
       {
-        "url": "https://void-scans.com/1/questism-chapter-101/",
+        "url": "https://hivetoon.com/2023/questism-chapter-101/",
         "expected": {
           "sync": true,
           "title": "Questism",
           "identifier": "questism",
-          "overviewUrl": "https://void-scans.com/manga/questism/",
-          "nextEpUrl": "https://void-scans.com/1/questism-chapter-102/",
+          "overviewUrl": "https://hivetoon.com/manga/questism/",
+          "nextEpUrl": "https://hivetoon.com/2023/questism-chapter-102/",
           "episode": 101,
           "uiSelector": false
         }
       },
       {
-        "url": "https://void-scans.com/manga/questism/",
+        "url": "https://hivetoon.com/manga/questism/",
         "expected": {
           "sync": false,
           "title": "Questism",
           "identifier": "questism",
           "uiSelector": true,
           "epList": {
-            "62": "https://void-scans.com/questism-chapter-62/"
+            "62": "https://hivetoon.com/questism-chapter-62/"
           }
         }
       }

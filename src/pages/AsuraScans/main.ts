@@ -1,120 +1,99 @@
 import { pageInterface } from '../pageInterface';
 
-export const AsuraScans: pageInterface = getInter();
+export const AsuraScans: pageInterface = {
+  name: 'AsuraScans',
+  domain: [
+    'https://asuratoon.com',
+    'https://asuracomics.com',
+    'https://asura.gg',
+    'https://asurascans.com',
+    'https://asuratoon.com',
+    'https://asuracomic.net',
+  ],
+  languages: ['English'],
+  type: 'manga',
+  isSyncPage(url) {
+    return (
+      utils.urlPart(url, 3) === 'series' &&
+      Boolean(utils.urlPart(url, 4)) &&
+      utils.urlPart(url, 5) === 'chapter'
+    );
+  },
+  isOverviewPage(url) {
+    return (
+      utils.urlPart(url, 3) === 'series' && Boolean(utils.urlPart(url, 4)) && !utils.urlPart(url, 5)
+    );
+  },
+  sync: {
+    getTitle(url) {
+      const path = url.split('/').slice(3, 5).join('/');
+      return j.$(`a[href*="${path}"] span, a[href*="${path}"] h3`).first().text().trim();
+    },
+    getIdentifier(url) {
+      return AsuraScans.overview!.getIdentifier(AsuraScans.sync.getOverviewUrl(url));
+    },
+    getOverviewUrl(url) {
+      return url.split('/').slice(0, 5).join('/');
+    },
+    getEpisode(url) {
+      return Number(utils.urlPart(url, 6));
+    },
+    nextEpUrl(url) {
+      const currentChapter = AsuraScans.sync.getEpisode(url);
+      if (!currentChapter) return undefined;
 
-export function getInter(): pageInterface {
-  let thisSelf;
-  /* eslint-disable-next-line prefer-const */
-  thisSelf = {
-    name: 'AsuraScans',
-    domain: [
-      'https://asuratoon.com',
-      'https://asuracomics.com',
-      'https://asura.gg',
-      'https://asurascans.com',
-      'https://asuratoon.com',
-      'https://asuracomic.net',
-    ],
-    languages: ['English'],
-    type: 'manga',
-    isSyncPage(url) {
-      if (j.$('#readerarea').length) {
-        return true;
+      const path = `${url.split('/').slice(3, 6).join('/')}/${currentChapter + 1}`;
+
+      if (j.$(`a[href*="${path}"]`).length) {
+        return utils.absoluteLink(path, AsuraScans.domain);
       }
-      return false;
+
+      return undefined;
     },
-    isOverviewPage(url) {
-      return j.$('div.thumbook').length > 0 && j.$('div.bixbox.animefull').length > 0;
+  },
+  overview: {
+    getTitle(url) {
+      return j.$('.space-y-4 .text-xl').text().trim();
     },
-    sync: {
-      getTitle(url) {
-        return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox span')[1]).text().trim();
-      },
-      getIdentifier(url) {
-        return AsuraScans.overview!.getIdentifier(AsuraScans.sync.getOverviewUrl(url));
-      },
-      getOverviewUrl(url) {
-        return (
-          j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox a')[1]).attr('href') || ''
-        );
-      },
-      getEpisode(url) {
-        const episodePart = j.$('#chapter > option:selected').text();
-
-        const temp = episodePart.match(/cha?p?t?e?r?\s*(\d+)/i);
-
-        if (!temp || temp.length < 2) return 1;
-
-        return Number(temp[1]);
-      },
-      nextEpUrl(url) {
-        const next = j.$('a.ch-next-btn').attr('href');
-
-        if (next === '#/next/') return undefined;
-
-        return next;
-      },
+    getIdentifier(url) {
+      return utils.urlPart(url, 4).replace(/-[^-]+$/gi, '');
     },
-    overview: {
-      getTitle(url) {
-        return j.$('h1.entry-title').text().trim();
-      },
-      getIdentifier(url) {
-        return utils.urlPart(url, 4).replace(/^\d+-/gi, '');
-      },
-      uiSelector(selector) {
-        j.$('div.bixbox.animefull')
-          .first()
-          .after(j.html(`<div id= "malthing" class="bixbox animefull">${selector}</div>`));
-      },
-      list: {
-        offsetHandler: false,
-        elementsSelector() {
-          return j.$('div#chapterlist li div.chbox');
-        },
-        elementUrl(selector) {
-          return selector.find('a').first().attr('href') || '';
-        },
-        elementEp(selector) {
-          const elementEpN = selector.find('span').first().text();
-
-          const temp = elementEpN.match(/chapter \d+/gim);
-
-          if (!temp || temp.length === 0) return 0;
-
-          return Number(temp[0].replace(/\D+/g, ''));
-        },
-      },
+    uiSelector(selector) {
+      j.$('.space-y-4')
+        .first()
+        .after(j.html(`<div id= "malthing" class="dark:bg-[#222222] bg-white">${selector}</div>`));
     },
-    init(page) {
-      api.storage.addStyle(
-        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-      );
-      j.$(document).ready(function () {
-        if (document.title.includes('Page not found')) {
-          con.error('404');
-          return;
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('.overflow-y-auto > a');
+      },
+      elementUrl(selector) {
+        let href = selector.attr('href');
+        if (!href) return '';
+
+        if (utils.urlPart(href, 1) === 'chapter') {
+          href = `series/${href}`;
         }
 
-        if (AsuraScans.isSyncPage(window.location.href)) {
-          utils.waitUntilTrue(
-            function () {
-              if (
-                j.$('#chapter > option:selected').length &&
-                j.$('#chapter > option:selected').text() !== 'Select Chapter'
-              )
-                return true;
-              return false;
-            },
-            function () {
-              page.handlePage();
-            },
-          );
-        } else {
-          page.handlePage();
-        }
-      });
+        return utils.absoluteLink(href, AsuraScans.domain);
+      },
+      elementEp(selector) {
+        return AsuraScans.sync.getEpisode(AsuraScans.overview!.list!.elementUrl!(selector));
+      },
     },
-  };
-  return thisSelf;
-}
+  },
+  init(page) {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
+      if (document.title.includes('Page not found')) {
+        con.error('404');
+        return;
+      }
+
+      page.handlePage();
+    });
+  },
+};
