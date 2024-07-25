@@ -1,6 +1,5 @@
 {
   "search": "https://www.mangaread.org/?s={searchtermPlus}&post_type=wp-manga",
-  "searchDatabase": "",
   "urls": {
     "match": ["*://*.mangaread.org/manga/*"]
   }
