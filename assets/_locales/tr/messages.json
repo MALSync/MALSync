@@ -1,6 +1,6 @@
 {
     "Search": {
-        "message": "Ara",
+        "message": "Site Araması",
         "description": "Search"
     },
     "Show": {
@@ -1538,5 +1538,21 @@
     "settings_LocalSync_Help_LinkText": {
         "message": "bu pencere",
         "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
+    },
+    "settings_permissions_overview": {
+        "message": "İzinler",
+        "description": "Button that leads to where permissions to sites can be managed"
+    },
+    "settings_permissions_required": {
+        "message": "Gerekli",
+        "description": "Header text for the list of required permissions"
+    },
+    "settings_permissions_pages": {
+        "message": "Sayfalar",
+        "description": "Header text for the list of page permissions"
+    },
+    "settings_permissions_player": {
+        "message": "Video oynatıcı",
+        "description": "Header text for the list of video player permissions"
     }
 }

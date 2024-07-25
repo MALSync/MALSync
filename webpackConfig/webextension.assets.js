@@ -126,6 +126,9 @@ const generateManifest = () => {
       } : {
         service_worker: 'background.js',
       },
+    content_security_policy: {
+      extension_pages: "script-src 'self'; object-src 'self';",
+    },
     action: {
       default_popup: 'popup.html',
       default_icon: 'icons/icon16.png',
@@ -174,12 +177,7 @@ const generateManifest = () => {
     "optional_permissions": [
       "scripting",
     ],
-    host_permissions: [
-      ...httpPermissionsJson,
-      ...(appTarget === 'firefox' ? [
-        "<all_urls>",
-      ] : []),
-    ],
+    host_permissions: httpPermissionsJson,
     "optional_host_permissions": [
       "*://*/*",
     ],

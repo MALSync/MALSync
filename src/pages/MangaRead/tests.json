@@ -1,0 +1,70 @@
+{
+  "title": "MangaRead",
+  "url": "https://www.mangaread.org",
+  "testCases": [
+    {
+      "url": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/",
+      "expected": {
+        "sync": false,
+        "title": "Charlotte Has Five Disciples",
+        "identifier": "charlotte-has-five-disciples-manga",
+        "uiSelector": true,
+        "epList": {
+          "6": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-6/",
+          "42": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-42/",
+          "99": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-99-dance-with-me/",
+          "187": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-187/"
+        }
+      }
+    },
+    {
+      "url": "https://www.mangaread.org/manga/maou-gun-saikyou-no-majutsushi-wa-ningen-datta/",
+      "expected": {
+        "sync": false,
+        "title": "Maou Gun Saikyou No Majutsushi Wa Ningen Datta",
+        "identifier": "maou-gun-saikyou-no-majutsushi-wa-ningen-datta",
+        "uiSelector": true,
+        "epList": {
+          "9": "https://www.mangaread.org/manga/maou-gun-saikyou-no-majutsushi-wa-ningen-datta/chapter-9/",
+          "11": "https://www.mangaread.org/manga/maou-gun-saikyou-no-majutsushi-wa-ningen-datta/chapter-11-1/"
+        }
+      }
+    },
+    { 
+      "url": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-6/",
+      "expected": {
+        "sync": true,
+        "title": "Charlotte Has Five Disciples",
+        "identifier": "charlotte-has-five-disciples-manga",
+        "overviewUrl": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/",
+        "nextEpUrl": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-7/",
+        "episode": 6,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-142-5/",
+      "expected": {
+        "sync": true,
+        "title": "Charlotte Has Five Disciples",
+        "identifier": "charlotte-has-five-disciples-manga",
+        "overviewUrl": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/",
+        "nextEpUrl": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-143/",
+        "episode": 142,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-99-dance-with-me/",
+      "expected": {
+        "sync": true,
+        "title": "Charlotte Has Five Disciples",
+        "identifier": "charlotte-has-five-disciples-manga",
+        "overviewUrl": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/",
+        "nextEpUrl": "https://www.mangaread.org/manga/charlotte-has-five-disciples-manga/chapter-100-blood-on-my-hands/",
+        "episode": 99,
+        "uiSelector": false
+      }
+    }
+  ]
+}
