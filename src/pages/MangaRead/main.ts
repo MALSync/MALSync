@@ -3,7 +3,6 @@ import { pageInterface } from '../pageInterface';
 export const MangaRead: pageInterface = {
   name: 'MangaRead',
   domain: ['https://www.mangaread.org'],
-  database: undefined,
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
@@ -22,17 +21,17 @@ export const MangaRead: pageInterface = {
     );
   },
   getImage() {
-    return $('div.summary_image > a > img').attr('src');
+    return $('.summary_image img').first().attr('src');
   },
   sync: {
     getTitle(url) {
-      return j.$('div.c-breadcrumb-wrapper > div > ol > li:nth-child(2) > a').text().trim();
+      return j.$('.breadcrumb li:nth-child(2) a').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return j.$('div.c-breadcrumb-wrapper > div > ol > li:nth-child(2) > a').attr('href') || '';
+      return j.$('.breadcrumb li:nth-child(2) a').first().attr('href') || '';
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5);
@@ -41,7 +40,7 @@ export const MangaRead: pageInterface = {
       return Number(temp[0].replace('chapter-', ''));
     },
     nextEpUrl(url) {
-      return j.$('div.nav-links > div.nav-next > a.next_page').attr('href') || '';
+      return j.$('.nav-links a.next_page').attr('href') || '';
     },
     readerConfig: [
       {
@@ -58,13 +57,13 @@ export const MangaRead: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('div.post-title > h1').text().trim();
+      return j.$('.post-title h1').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.tab-summary')
+      j.$('.tab-summary')
         .first()
         .after(
           j.html(`<div id="malthing"><h2>MAL-Sync</h2><div class="info">${selector}</div></div>`),
@@ -73,13 +72,13 @@ export const MangaRead: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.listing-chapters_wrap > ul.version-chap > li.wp-manga-chapter');
+        return j.$('.listing-chapters_wrap .wp-manga-chapter');
       },
       elementUrl(selector) {
         return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
-        return MangaRead.sync.getEpisode(String(selector.find('a').first().attr('href')));
+        return MangaRead.sync.getEpisode(MangaRead.overview!.list!.elementUrl!(selector));
       },
     },
   },
