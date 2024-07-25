@@ -4,7 +4,7 @@
   "automergeType": "branch",
   "packageRules": [
     {
-      "matchPackagePatterns": ["eslint/*", "@types/*", "puppeteer/*"],
+      "matchPackagePatterns": ["eslint/*", "@types/*", "puppeteer/*", "vuejs/language-tools"],
       "rangeStrategy": "bump",
       "automerge": true
     },
