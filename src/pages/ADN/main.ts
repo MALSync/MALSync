@@ -2,21 +2,21 @@ import { pageInterface } from '../pageInterface';
 
 export const ADN: pageInterface = {
   name: 'ADN',
-  domain: 'https://animationdigitalnetwork.fr',
+  domain: 'https://animationdigitalnetwork.com',
   languages: ['French', 'German'],
   type: 'anime',
   isSyncPage(url) {
-    return utils.urlPart(url, 3) === 'video' && Boolean(utils.urlPart(url, 5));
+    return utils.urlPart(nUrl(url), 3) === 'video' && Boolean(utils.urlPart(nUrl(url), 5));
   },
   isOverviewPage(url) {
-    return utils.urlPart(url, 3) === 'video' && !utils.urlPart(url, 5);
+    return utils.urlPart(nUrl(url), 3) === 'video' && !utils.urlPart(nUrl(url), 5);
   },
   sync: {
     getTitle(url) {
       return j.$('div[data-testid="player-content"] h1 a').text().trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return utils.urlPart(nUrl(url), 4) || '';
     },
     getOverviewUrl(url) {
       return `${ADN.domain}/video/${ADN.sync.getIdentifier(url)}`;
@@ -30,15 +30,20 @@ export const ADN: pageInterface = {
       return $('div[data-testid="default-layout"] h1').first().text().trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return utils.urlPart(nUrl(url), 4) || '';
     },
     uiSelector(selector) {
-      j.$('div[data-testid="default-layout"] h2').first().before(j.html(selector));
+      j.$('#comments-panel, [data-testid="Homeshowlist"]')
+        .first()
+        .parent()
+        .children('div')
+        .first()
+        .append(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('[data-testid="default-layout"] ul li a[href^="/video/"][title]');
+        return j.$('[data-testid="default-layout"] ul li a[href*="/video/"][title]');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), ADN.domain);
@@ -56,16 +61,18 @@ export const ADN: pageInterface = {
     ADN.domain = window.location.origin;
 
     let listInterval = 0;
+    let checkInterval: NodeJS.Timer;
 
     utils.fullUrlChangeDetect(() => {
       page.reset();
+      clearInterval(checkInterval);
       if (ADN.isSyncPage(window.location.href)) {
-        utils.waitUntilTrue(
-          () => j.$('div[data-testid="video-player"]').length,
+        checkInterval = utils.waitUntilTrue(
+          () => ADN.sync!.getTitle(window.location.href),
           () => page.handlePage(),
         );
       } else if (ADN.isOverviewPage!(window.location.href)) {
-        utils.waitUntilTrue(
+        checkInterval = utils.waitUntilTrue(
           () => ADN.overview!.getTitle(window.location.href).length,
           () => page.handlePage(),
         );
@@ -88,4 +95,12 @@ function getEpisode(url, forceZero = false) {
   const temp = url.match(/(episode|folge)-(\d+)/i);
   if (!temp) return forceZero ? 0 : 1;
   return Number(temp[2]);
+}
+
+function nUrl(url) {
+  if (utils.urlPart(url, 4) === 'video') {
+    return url.replace(`/${utils.urlPart(url, 3)}/`, '/');
+  }
+
+  return url;
 }
