@@ -1,5 +1,5 @@
 {
-  "search": "https://bakashi.tv/busca?s={searchtermPlus}",
+  "search": "https://bakashi.tv/?s={searchtermPlus}",
   "urls": {
     "match": ["*://bakashi.tv/*"]
   }
