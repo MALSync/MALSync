@@ -15,17 +15,17 @@ function isSlug(part: string) {
 export const Anime365: pageInterface = {
   name: 'Anime365',
   languages: ['Russian'],
-  domain: ['https://smotret-anime.com', 'https://anime365.ru', 'https://anime-365.ru'],
+  domain: ['https://smotret-anime.net', 'https://anime365.ru', 'https://anime-365.ru'],
   type: 'anime',
   isSyncPage(url) {
-    // Example: https://smotret-anime.com/catalog/horimiya-24061/1-seriya-252417/angliyskie-subtitry-3494584
+    // Example: https://smotret-anime.net/catalog/horimiya-24061/1-seriya-252417/angliyskie-subtitry-3494584
     if (utils.urlPart(url, 5) !== '' && utils.urlPart(url, 3) === 'catalog') {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    // Example: https://smotret-anime.com/catalog/uzaki-chan-wa-asobitai-21810
+    // Example: https://smotret-anime.net/catalog/uzaki-chan-wa-asobitai-21810
     if (utils.urlPart(url, 5) === '' && utils.urlPart(url, 3) === 'catalog') {
       return isSlug(urlPart(url, 4));
     }

@@ -199,7 +199,7 @@ module.exports = {
   // Anime365
   anime365: {
     match: [
-      '*://smotret-anime.com/translations/embed/*',
+      '*://smotret-anime.net/translations/embed/*',
       '*://anime365.ru/translations/embed/*',
       '*://anime-365.ru/translations/embed/*',
     ],
