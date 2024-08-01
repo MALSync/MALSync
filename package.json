@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@cliqz/adblocker-puppeteer": "^1.31.1",
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.17",
     "@types/jquery": "^3.5.14",
     "@types/mocha": "^10.0.7",
     "@types/node": "^16.18.104",
@@ -21,7 +21,7 @@
     "@vue/compiler-sfc": "^3.4.30",
     "@vue/eslint-config-prettier": "^9.0.0",
     "archiver": "^7.0.1",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "chrome-webstore-upload": "^3.1.0",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
