@@ -9,7 +9,7 @@ function cleanUrl(url: string) {
 
 export const LuminousScans: pageInterface = {
   name: 'LuminousScans',
-  domain: 'https://luminousscans.com',
+  domain: ['https://luminous-scans.com', 'https://luminousscans.com'],
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
