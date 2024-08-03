@@ -87,6 +87,9 @@
     ]
   },
   "0.10.3": {
+    "LuminousScans": [
+      "*://luminous-scans.com/*"
+    ],
     "iframe": []
   }
 }
