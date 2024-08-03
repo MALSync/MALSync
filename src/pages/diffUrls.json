@@ -87,9 +87,14 @@
     ]
   },
   "0.10.3": {
+    "Anime365": [
+      "*://smotret-anime.net/catalog/*"
+    ],
     "LuminousScans": [
       "*://luminous-scans.com/*"
     ],
-    "iframe": []
+    "iframe": [
+      "*://smotret-anime.net/translations/embed/*"
+    ]
   }
 }
