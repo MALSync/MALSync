@@ -63,13 +63,15 @@ export const Miruro: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return Miruro.sync.getTitle(url);
+      if (j.$('#root [alt="Anime Banner"]+div h1').html())
+        return j.$('#root [alt="Anime Banner"]+div h1').html().split('<')[0];
+      return '';
     },
     getIdentifier(url) {
       return Miruro.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('.anime-title').parent().parent().parent().before(j.html(selector));
+      j.$('#root [alt="Anime Banner"]+div h1').after(j.html(selector));
     },
     getMalUrl(provider) {
       return Miruro.sync.getMalUrl!(provider);
@@ -88,8 +90,12 @@ export const Miruro: pageInterface = {
         return;
       clearInterval(inte);
       inte = utils.waitUntilTrue(
-        () => Miruro.sync.getTitle(window.location.href),
-        () => page.handlePage(),
+        () =>
+          Miruro.sync.getTitle(window.location.href) ||
+          Miruro.overview!.getTitle(window.location.href) !== '',
+        () => {
+          page.handlePage();
+        },
       );
     }
   },
