@@ -3,26 +3,26 @@
   "url": "https://reaperscans.com/",
   "testCases": [
     {
-      "url": "https://reaperscans.com/comics/4073-overgeared/chapters/71411621-chapter-83",
+      "url": "https://reaperscans.com/series/overgeared/chapter-83",
       "expected": {
         "sync": true,
         "title": "Overgeared",
-        "identifier": "4073-overgeared",
-        "overviewUrl": "https://reaperscans.com/comics/4073-overgeared",
-        "nextEpUrl": "https://reaperscans.com/comics/4073-overgeared/chapters/28887527-chapter-84",
+        "identifier": "overgeared",
+        "overviewUrl": "https://reaperscans.com/series/overgeared",
+        "nextEpUrl": "https://reaperscans.com/series/overgeared/chapter-84",
         "episode": 83,
         "uiSelector": false
       }
     },
     {
-      "url": "https://reaperscans.com/comics/4073-overgeared",
+      "url": "https://reaperscans.com/series/overgeared",
       "expected": {
         "sync": false,
         "title": "Overgeared",
-        "identifier": "4073-overgeared",
+        "identifier": "overgeared",
         "uiSelector": true,
         "epList": {
-          "195": "https://reaperscans.com/comics/4073-overgeared/chapters/56862331-chapter-195"
+          "230": "https://reaperscans.com/series/overgeared/chapter-230"
         }
       }
     }
