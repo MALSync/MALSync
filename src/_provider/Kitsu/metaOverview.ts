@@ -7,7 +7,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     super(url);
     this.logger = this.logger.m('Kitsu');
 
-    if (url.match(/kitsu\.io\/(anime|manga)\/.*/i)) {
+    if (url.match(/kitsu\.app\/(anime|manga)\/.*/i)) {
       this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.kitsuSlug = utils.urlPart(url, 4);
       this.malId = NaN;

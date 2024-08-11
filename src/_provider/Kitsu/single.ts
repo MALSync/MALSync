@@ -28,7 +28,7 @@ export class Single extends SingleAbstract {
   authenticationUrl = 'https://kitsu.app/404?mal-sync=authentication';
 
   protected handleUrl(url) {
-    if (url.match(/kitsu\.io\/(anime|manga)\/.*/i)) {
+    if (url.match(/kitsu\.app\/(anime|manga)\/.*/i)) {
       this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.ids.kitsu.slug = utils.urlPart(url, 4);
       return;
