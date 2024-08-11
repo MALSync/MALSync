@@ -5,7 +5,7 @@ import * as helper from './helper';
 export class UserList extends ListAbstract {
   name = 'Kitsu';
 
-  authenticationUrl = 'https://kitsu.io/404?mal-sync=authentication';
+  authenticationUrl = 'https://kitsu.app/404?mal-sync=authentication';
 
   async getUserObject() {
     const user = await this.userRequest();
@@ -19,7 +19,7 @@ export class UserList extends ListAbstract {
     return {
       username: user.attributes.name,
       picture: user.attributes.avatar?.large || '',
-      href: `https://kitsu.io/users/${user.attributes.slug || user.id}`,
+      href: `https://kitsu.app/users/${user.attributes.slug || user.id}`,
     };
   }
 
@@ -34,7 +34,7 @@ export class UserList extends ListAbstract {
   }
 
   private userRequest() {
-    return helper.apiCall('GET', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
+    return helper.apiCall('GET', 'https://kitsu.app/api/edge/users?filter[self]=true').then(res => {
       con.log(res);
       if (typeof res.data[0] === 'undefined') {
         throw new NotAutenticatedError('Not Authenticated');
@@ -121,7 +121,7 @@ export class UserList extends ListAbstract {
     return helper
       .apiCall(
         'GET',
-        `https://kitsu.io/api/edge/library-entries?filter[user_id]=${userid}${statusPart}&filter[kind]=${
+        `https://kitsu.app/api/edge/library-entries?filter[user_id]=${userid}${statusPart}&filter[kind]=${
           this.listType
         }&page[offset]=${this.offset}&page[limit]=50${sorting}&include=${this.listType},${
           this.listType
@@ -175,7 +175,7 @@ export class UserList extends ListAbstract {
           kitsuSlug: el.attributes.slug,
           type: listType,
           title: name,
-          url: `https://kitsu.io/${listType}/${el.attributes.slug}`,
+          url: `https://kitsu.app/${listType}/${el.attributes.slug}`,
           watchedEp: list.attributes.progress,
           totalEp: el.attributes.episodeCount,
           status: helper.translateList(list.attributes.status),
@@ -204,7 +204,7 @@ export class UserList extends ListAbstract {
           kitsuSlug: el.attributes.slug,
           type: listType,
           title: name,
-          url: `https://kitsu.io/${listType}/${el.attributes.slug}`,
+          url: `https://kitsu.app/${listType}/${el.attributes.slug}`,
           watchedEp: list.attributes.progress,
           totalEp: el.attributes.chapterCount,
           status: helper.translateList(list.attributes.status),

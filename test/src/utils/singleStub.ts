@@ -46,7 +46,7 @@ export const classConfigs: {
   },
   {
     name: 'Kitsu',
-    url: 'https://kitsu.io/anime/one-piece',
+    url: 'https://kitsu.app/anime/one-piece',
     class: KitsuSingle,
     internalStates: 100,
     setup: single => {

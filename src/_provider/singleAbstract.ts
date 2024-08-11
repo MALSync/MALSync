@@ -331,8 +331,8 @@ export abstract class SingleAbstract {
     if (this.ids.kitsu.id && name !== 'Kitsu') {
       res.push({
         name: 'Kitsu',
-        icon: 'https://kitsu.io/favicon-32x32-3e0ecb6fc5a6ae681e65dcbc2bdf1f17.png',
-        link: `https://kitsu.io/${this.type}/${this.ids.kitsu.id}`,
+        icon: 'https://kitsu.app/favicon-32x32-3e0ecb6fc5a6ae681e65dcbc2bdf1f17.png',
+        link: `https://kitsu.app/${this.type}/${this.ids.kitsu.id}`,
       });
     }
 

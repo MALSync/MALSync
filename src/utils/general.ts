@@ -852,7 +852,7 @@ export function pageUrl(
     case 'anilist':
       return `https://anilist.co/${type}/${id}`;
     case 'kitsu':
-      return `https://kitsu.io/${type}/${id}`;
+      return `https://kitsu.app/${type}/${id}`;
     case 'simkl':
       return `https://simkl.com/${type}/${id}`;
     default:

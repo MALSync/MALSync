@@ -86,7 +86,7 @@ export function pathToUrl(path: Path): string {
     return `https://anilist.co/${path.type}/${path.slug.substring(2)}`;
   }
   if (path.slug.startsWith('k:')) {
-    return `https://kitsu.io/${path.type}/${path.slug.substring(2)}`;
+    return `https://kitsu.app/${path.type}/${path.slug.substring(2)}`;
   }
   if (path.slug.startsWith('s:')) {
     return `https://simkl.com/${path.type}/${path.slug.substring(2)}`;

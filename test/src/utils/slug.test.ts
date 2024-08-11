@@ -64,26 +64,26 @@ const testCases = [
     expectedUrl: 'https://anilist.co/manga/78399',
   },
   {
-    input: 'https://kitsu.io/anime/no-game-no-life',
+    input: 'https://kitsu.app/anime/no-game-no-life',
     expect: {
       path: {
         type: 'anime',
         slug: 'k:no-game-no-life',
       },
-      url: 'https://kitsu.io/anime/no-game-no-life',
+      url: 'https://kitsu.app/anime/no-game-no-life',
     },
-    expectedUrl: 'https://kitsu.io/anime/no-game-no-life',
+    expectedUrl: 'https://kitsu.app/anime/no-game-no-life',
   },
   {
-    input: 'https://kitsu.io/manga/no-game-no-life-novel',
+    input: 'https://kitsu.app/manga/no-game-no-life-novel',
     expect: {
       path: {
         type: 'manga',
         slug: 'k:no-game-no-life-novel',
       },
-      url: 'https://kitsu.io/manga/no-game-no-life-novel',
+      url: 'https://kitsu.app/manga/no-game-no-life-novel',
     },
-    expectedUrl: 'https://kitsu.io/manga/no-game-no-life-novel',
+    expectedUrl: 'https://kitsu.app/manga/no-game-no-life-novel',
   },
   {
     input: 'https://simkl.com/anime/46128/no-game-no-life',

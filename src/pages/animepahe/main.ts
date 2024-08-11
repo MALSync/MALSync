@@ -58,7 +58,7 @@ export const animepahe: pageInterface = {
       }
       if (provider === 'KITSU') {
         const kitsu = $('meta[name=kitsu]').attr('content');
-        if (kitsu) return `https://kitsu.io/anime/${kitsu}`;
+        if (kitsu) return `https://kitsu.app/anime/${kitsu}`;
       }
       return false;
     },

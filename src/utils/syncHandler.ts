@@ -31,7 +31,7 @@ export function generateSync(
 
 export function getType(url) {
   if (utils.isDomainMatching(url, 'anilist.co')) return 'ANILIST';
-  if (utils.isDomainMatching(url, 'kitsu.io')) return 'KITSU';
+  if (utils.isDomainMatching(url, 'kitsu.app')) return 'KITSU';
   if (utils.isDomainMatching(url, 'myanimelist.net')) return 'MAL';
   if (utils.isDomainMatching(url, 'simkl.com')) return 'SIMKL';
   throw 'Type not found';

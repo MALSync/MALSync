@@ -54,7 +54,7 @@ export function getCacheKey(id, kitsuId) {
 export function malToKitsu(malid: number, type: 'anime' | 'manga') {
   return apiCall(
     'GET',
-    `https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
+    `https://kitsu.app/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
     {},
     false,
   );
@@ -63,7 +63,7 @@ export function malToKitsu(malid: number, type: 'anime' | 'manga') {
 export function kitsuToMal(kitsuId: number, type: 'anime' | 'manga') {
   return api.request
     .xhr('GET', {
-      url: `https://kitsu.io/api/edge/${type}/${kitsuId}/mappings?filter[externalSite]=myanimelist/${type}`,
+      url: `https://kitsu.app/api/edge/${type}/${kitsuId}/mappings?filter[externalSite]=myanimelist/${type}`,
       headers: {
         'Content-Type': 'application/vnd.api+json',
         Accept: 'application/vnd.api+json',
