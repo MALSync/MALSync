@@ -175,6 +175,10 @@ module.exports = {
   cda: {
     match: ['*://ebd.cda.pl/*'],
   },
+  // shinden animezone ogladajanime
+  lycoris: {
+    match: ['*://www.lycoris.cafe/*'],
+  },
   // kissanime/9anime/gogoanime/animekisa
   hydrax: {
     match: [
