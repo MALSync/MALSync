@@ -94,6 +94,7 @@
       "*://luminous-scans.com/*"
     ],
     "iframe": [
+      "*://www.lycoris.cafe/*",
       "*://smotret-anime.net/translations/embed/*"
     ]
   }
