@@ -27,7 +27,7 @@ function main() {
   } else if (utils.isDomainMatching(window.location.href, 'anilist.co')) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const anilist = new AnilistClass(window.location.href);
-  } else if (utils.isDomainMatching(window.location.href, 'kitsu.io')) {
+  } else if (utils.isDomainMatching(window.location.href, 'kitsu.app')) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const kitsu = new KitsuClass(window.location.href);
   } else if (utils.isDomainMatching(window.location.href, 'simkl.com')) {

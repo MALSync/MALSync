@@ -131,7 +131,7 @@ export class KitsuClass {
         $('#mal-sync-login #mal-sync-button').attr('disabled', 'disabled');
         $.ajax({
           type: 'POST',
-          url: 'https://kitsu.io/api/oauth/token',
+          url: 'https://kitsu.app/api/oauth/token',
           data: `grant_type=password&username=${encodeURIComponent(
             String($('#mal-sync-login #email').val()),
           )}&password=${encodeURIComponent(String($('#mal-sync-login #pass').val()))}`,

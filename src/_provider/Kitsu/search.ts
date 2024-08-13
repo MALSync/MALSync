@@ -10,7 +10,7 @@ export const search: searchInterface = async function (
   return helper
     .apiCall(
       'GET',
-      `https://kitsu.io/api/edge/${type}?filter[text]=${keyword}&page[limit]=20&page[offset]=0&fields[${type}]=id,slug,titles,averageRating,startDate,posterImage,coverImage,subtype,${
+      `https://kitsu.app/api/edge/${type}?filter[text]=${keyword}&page[limit]=20&page[offset]=0&fields[${type}]=id,slug,titles,averageRating,startDate,posterImage,coverImage,subtype,${
         type === 'anime' ? 'episodeCount' : 'chapterCount'
       }`,
       {},
@@ -24,7 +24,7 @@ export const search: searchInterface = async function (
           id: Number(item.id),
           name: helper.getTitle(item.attributes.titles, item.attributes.canonicalTitle),
           altNames: Object.values(item.attributes.titles),
-          url: `https://kitsu.io/${type}/${item.attributes.slug}`,
+          url: `https://kitsu.app/${type}/${item.attributes.slug}`,
           malUrl: async () => {
             const malId = await helper.kitsuToMal(item.id, type);
             return malId ? `https://myanimelist.net/${type}/${malId}` : null;

@@ -87,7 +87,7 @@ export const Mangadex: pageInterface = {
       if (provider === 'ANILIST' && mangaData.links?.al)
         return `https://anilist.co/manga/${mangaData.links.al}`;
       if (provider === 'KITSU' && mangaData.links?.kt)
-        return `https://kitsu.io/manga/${mangaData.links.kt}`;
+        return `https://kitsu.app/manga/${mangaData.links.kt}`;
       return false;
     },
     readerConfig: [

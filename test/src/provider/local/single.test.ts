@@ -67,7 +67,7 @@ function setGlobals() {
         type: 'anime',
       },
       {
-        url: 'https://kitsu.io/anime/no-game-no-life',
+        url: 'https://kitsu.app/anime/no-game-no-life',
         error: true,
         type: 'anime',
       },

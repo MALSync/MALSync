@@ -7,7 +7,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     super(url);
     this.logger = this.logger.m('Kitsu');
 
-    if (url.match(/kitsu\.io\/(anime|manga)\/.*/i)) {
+    if (url.match(/kitsu\.app\/(anime|manga)\/.*/i)) {
       this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.kitsuSlug = utils.urlPart(url, 4);
       this.malId = NaN;
@@ -79,7 +79,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
     return this.apiCall(
       'GET',
-      `https://kitsu.io/api/edge/${this.type}?filter[slug]=${this.kitsuSlug}&include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&nsfw=true`,
+      `https://kitsu.app/api/edge/${this.type}?filter[slug]=${this.kitsuSlug}&include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&nsfw=true`,
       {},
       true,
     ).then(res => {
@@ -249,7 +249,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         if (i.type === 'categories' && genres.length < 6) {
           genres.push({
             text: i.attributes.title,
-            url: `https://kitsu.io/${this.type}?categories=${i.attributes.slug}`,
+            url: `https://kitsu.app/${this.type}?categories=${i.attributes.slug}`,
           });
         }
       });
@@ -286,7 +286,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeInfo.included.forEach(function (i) {
         if (i.type === 'manga' || i.type === 'anime') {
           an[i.id] = {
-            url: `https://kitsu.io/${i.type}/${i.attributes.slug}`,
+            url: `https://kitsu.app/${i.type}/${i.attributes.slug}`,
             title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
             id: i.id,
             type: i.type,

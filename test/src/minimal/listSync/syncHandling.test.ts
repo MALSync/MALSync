@@ -32,7 +32,7 @@ const helper = {
       slaves: [helper.getItem(), helper.getItem()],
     };
 
-    el.slaves[0].url = 'https://kitsu.io/anime/no-game-no-life';
+    el.slaves[0].url = 'https://kitsu.app/anime/no-game-no-life';
     el.slaves[1].url = 'https://anilist.co/anime/19815/No-Game-No-Life/';
     return el;
   },
@@ -50,7 +50,7 @@ describe('Sync Handling', function() {
       expect(sync.getType('https://anilist.co/anime/19815/No-Game-No-Life/')).to.equal('ANILIST');
     });
     it('Kitsu', function() {
-      expect(sync.getType('https://kitsu.io/anime/no-game-no-life')).to.equal('KITSU');
+      expect(sync.getType('https://kitsu.app/anime/no-game-no-life')).to.equal('KITSU');
     });
     it('Simkl', function() {
       expect(sync.getType('https://simkl.com/anime/46128/no-game-no-life')).to.equal('SIMKL');

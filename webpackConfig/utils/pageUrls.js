@@ -23,7 +23,7 @@ module.exports = {
     match: ['*://anilist.co/*'],
   },
   kitsu: {
-    match: ['*://kitsu.io/*'],
+    match: ['*://kitsu.app/*'],
   },
   simkl: {
     match: ['*://simkl.com/*'],

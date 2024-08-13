@@ -10,7 +10,7 @@ type slugObject = {
 
 const malRegex = /^https:\/\/myanimelist\.net\/(anime|manga)\/(\d+)(\/|$)/;
 const anilistRegex = /^https:\/\/anilist\.co\/(anime|manga)\/(\d+)(\/|$)/;
-const kitsuRegex = /^https:\/\/kitsu\.io\/(anime|manga)\/([^/]+)(\/|$)/;
+const kitsuRegex = /^https:\/\/kitsu\.app\/(anime|manga)\/([^/]+)(\/|$)/;
 const simklRegex = /^https:\/\/simkl\.com\/(anime|manga)\/(\d+)(\/|$)/;
 const shikiRegex = /^https:\/\/shikimori\.one\/(animes|mangas|ranobe)\/\D?(\d+)/;
 const localRegex = /^local:\/\/([^/]+)\/(anime|manga)\/([^/]+)(\/|$)/;
@@ -86,7 +86,7 @@ export function pathToUrl(path: Path): string {
     return `https://anilist.co/${path.type}/${path.slug.substring(2)}`;
   }
   if (path.slug.startsWith('k:')) {
-    return `https://kitsu.io/${path.type}/${path.slug.substring(2)}`;
+    return `https://kitsu.app/${path.type}/${path.slug.substring(2)}`;
   }
   if (path.slug.startsWith('s:')) {
     return `https://simkl.com/${path.type}/${path.slug.substring(2)}`;
