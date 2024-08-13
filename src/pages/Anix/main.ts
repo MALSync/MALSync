@@ -80,7 +80,7 @@ export const Anix: pageInterface = {
 
     let wait: NodeJS.Timeout;
 
-    utils.urlChangeDetect(function () {
+    utils.fullUrlChangeDetect(function () {
       con.info('Url change');
       page.reset();
       clearTimeout(wait);
