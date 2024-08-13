@@ -77,7 +77,23 @@ export const ReaperScans: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      page.handlePage();
+      let checkInterval: NodeJS.Timer;
+
+      utils.fullUrlChangeDetect(() => {
+        page.reset();
+        clearInterval(checkInterval);
+        if (ReaperScans.isSyncPage(window.location.href)) {
+          checkInterval = utils.waitUntilTrue(
+            () => ReaperScans.sync!.getTitle(window.location.href),
+            () => page.handlePage(),
+          );
+        } else if (ReaperScans.isOverviewPage!(window.location.href)) {
+          checkInterval = utils.waitUntilTrue(
+            () => ReaperScans.overview!.getTitle(window.location.href),
+            () => page.handlePage(),
+          );
+        }
+      });
     });
 
     utils.changeDetect(
