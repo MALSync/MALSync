@@ -8,7 +8,7 @@ export const TempleScan: pageInterface = {
     return utils.urlPart(url, 5).startsWith('chapter');
   },
   isOverviewPage(url) {
-    return !utils.urlPart(url, 5);
+    return (url.split('/').length-1==4);
   },
   sync: {
     getTitle(url) {
