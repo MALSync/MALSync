@@ -19,7 +19,7 @@ export const TempleScan: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return TempleScan.domain + '/comic/' + utils.urlPart(url, 4);
+      return `${TempleScan.domain}/comic/${utils.urlPart(url, 4)}`;
     },
     getEpisode(url) {
       let temp = 0;
