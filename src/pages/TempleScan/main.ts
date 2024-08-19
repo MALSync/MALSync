@@ -9,7 +9,7 @@ export const TempleScan: pageInterface = {
     return utils.urlPart(url, 5).startsWith('chapter');
   },
   isOverviewPage(url) {
-    return url.split('/').length-1===4;
+    return url.split('/').length - 1 === 4;
   },
   sync: {
     getTitle(url) {
@@ -19,9 +19,7 @@ export const TempleScan: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return TempleScan.domain +
-         '/comic/' + 
-         utils.urlPart(url, 4);
+      return TempleScan.domain + '/comic/' + utils.urlPart(url, 4);
     },
     getEpisode(url) {
       let temp = 0;
