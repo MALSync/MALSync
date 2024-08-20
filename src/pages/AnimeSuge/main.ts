@@ -58,7 +58,6 @@ export const AnimeSuge: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    AnimeSuge.database = '9anime';
     utils.waitUntilTrue(
       function () {
         const loaded = j

@@ -76,7 +76,6 @@ export const Anix: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    Anix.database = '9anime';
 
     let wait: NodeJS.Timeout;
 
