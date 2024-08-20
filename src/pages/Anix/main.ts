@@ -10,7 +10,7 @@ export const Anix: pageInterface = {
   name: 'Anix',
   type: 'anime',
   isSyncPage(url: string): boolean {
-    return utils.urlPart(url, 3) === 'anime';
+    return ['anime', 'watch'].includes(utils.urlPart(url, 3));
   },
   isOverviewPage(url: string): boolean {
     return false;
