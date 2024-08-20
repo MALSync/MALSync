@@ -1,0 +1,59 @@
+{
+  "title": "TempleScan",
+  "url": "https://templescan.net/",
+  "testCases": [
+    {
+      "url": "https://templescan.net/comic/my-introverted-boy/chapter-51",
+      "expected": {
+        "sync": true,
+        "title": "My Introverted Boy",
+        "identifier": "my-introverted-boy",
+        "overviewUrl": "https://templescan.net/comic/my-introverted-boy",
+        "episode": 51,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://templescan.net/comic/my-introverted-boy/60610-chapter-36",
+      "expected": {
+        "sync": true,
+        "title": "My Introverted Boy",
+        "identifier": "my-introverted-boy",
+        "overviewUrl": "https://templescan.net/comic/my-introverted-boy",
+        "episode": 36,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://templescan.net/comic/into-the-thrill/chapter-26-5",
+      "expected": {
+        "sync": true,
+        "title": "Into the thrill",
+        "identifier": "into-the-thrill",
+        "overviewUrl": "https://templescan.net/comic/into-the-thrill",
+        "episode": 26,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://templescan.net/comic/be-honest-with-me/28985-chapter-09",
+      "expected": {
+        "sync": true,
+        "title": "Be Honest With Me",
+        "identifier": "be-honest-with-me",
+        "overviewUrl": "https://templescan.net/comic/be-honest-with-me",
+        "episode": 9,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://templescan.net/comic/my-introverted-boy",
+      "expected": {
+        "sync": false,
+        "title": "My Introverted Boy",
+        "identifier": "my-introverted-boy",
+        "uiSelector": true
+      }
+    }
+  ]
+}

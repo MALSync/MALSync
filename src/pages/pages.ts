@@ -135,6 +135,7 @@ import { Miruro } from './Miruro/main';
 import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { Bakashi } from './Bakashi/main';
+import { TempleScan } from './TempleScan/main';
 
 export const pages = {
   nineAnime,
@@ -274,4 +275,5 @@ export const pages = {
   Latanime,
   MangaRead,
   Bakashi,
+  TempleScan,
 };
