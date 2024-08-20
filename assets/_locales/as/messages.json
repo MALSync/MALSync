@@ -1,0 +1,1546 @@
+{
+    "Search": {
+        "message": "সন্ধান কৰক",
+        "description": "Button to open the site search links on mal, anilist ..."
+    },
+    "Show": {
+        "message": "দেখুৱাওক",
+        "description": "Show"
+    },
+    "Help": {
+        "message": "সহায়",
+        "description": "Help"
+    },
+    "Update": {
+        "message": "নবীকৰণ",
+        "description": "Update"
+    },
+    "Add": {
+        "message": "যোগ কৰক",
+        "description": "Button to add an anime/manga to user list"
+    },
+    "Reset": {
+        "message": "পুনঃস্থাপন",
+        "description": "Reset"
+    },
+    "Synchronize": {
+        "message": "সমন্বয় কৰক",
+        "description": "Button to Synchronize state with mal..."
+    },
+    "Remove": {
+        "message": "আঁতৰাওক",
+        "description": "Button for removing entry from MAL..."
+    },
+    "Loading": {
+        "message": "লোডিং",
+        "description": "Loading"
+    },
+    "Load": {
+        "message": "লোড কৰক",
+        "description": "Button to load content"
+    },
+    "Select": {
+        "message": "বাছনি কৰক",
+        "description": "Select"
+    },
+    "Yes": {
+        "message": "হয়",
+        "description": "Yes"
+    },
+    "Ok": {
+        "message": "ঠিক আছে",
+        "description": "Ok"
+    },
+    "No": {
+        "message": "নাই",
+        "description": "No"
+    },
+    "Cancel": {
+        "message": "বাতিল",
+        "description": "Cancel"
+    },
+    "updated": {
+        "message": "নবীকৃত",
+        "description": "Flash message that shows up after updating an anime/manga entry"
+    },
+    "removed": {
+        "message": "আঁতৰোৱা হৈছে",
+        "description": "Flash message that shows up after removing an anime/manga entry from user list"
+    },
+    "next": {
+        "message": "পৰৱৰ্তী",
+        "description": "Next button"
+    },
+    "back": {
+        "message": "পিছলৈ",
+        "description": "Back button"
+    },
+    "start": {
+        "message": "আৰম্ভ",
+        "description": "Start button"
+    },
+    "NothingFound": {
+        "message": "কোনো ধৰণৰ সামগ্ৰী পোৱা নগল",
+        "description": "Nothing Found"
+    },
+    "Not_Found": {
+        "message": "পোৱা নগল!",
+        "description": "Anime/Manga Not Found"
+    },
+    "NoEntries": {
+        "message": "কোনো দৰ্ৱ নাই",
+        "description": "No Entries"
+    },
+    "fullscreen": {
+        "message": "সম্পূৰ্ণ স্ক্ৰিন",
+        "description": "fullscreen"
+    },
+    "close": {
+        "message": "বন্ধ কৰক",
+        "description": "close"
+    },
+    "All": {
+        "message": "সকলো",
+        "description": "All"
+    },
+    "Anime": {
+        "message": "এনিমে",
+        "description": "General translation of anime for places like drop downs"
+    },
+    "Manga": {
+        "message": "মাঙ্গা",
+        "description": "General translation of manga for places like drop downs"
+    },
+    "Package_Description": {
+        "message": "MyAnimeList/AniList/Kitsu/Simkl/Shikimori ক বিভিন্ন চাইটত সংহত কৰে, স্বয়ংক্ৰিয় খণ্ড অনুসৰণৰ সৈতে।",
+        "description": "Description MALSync"
+    },
+    "UI_Status": {
+        "message": "অৱস্থা:",
+        "description": "Status"
+    },
+    "UI_Status_All": {
+        "message": "সকলো",
+        "description": "Dropdown text to show all anime on the users list"
+    },
+    "UI_Status_watching_anime": {
+        "message": "চাই আছে",
+        "description": "Watching"
+    },
+    "UI_Status_watching_manga": {
+        "message": "পঢ়ি আছে",
+        "description": "Reading"
+    },
+    "UI_Status_Completed": {
+        "message": "সম্পূৰ্ণ হৈছে",
+        "description": "Completed"
+    },
+    "UI_Status_OnHold": {
+        "message": "অপেক্ষাত আছে",
+        "description": "On-Hold"
+    },
+    "UI_Status_Dropped": {
+        "message": "এৰি দিয়া হৈছে",
+        "description": "Dropped"
+    },
+    "UI_Status_planTo_anime": {
+        "message": "চাবলৈ যোজনা কৰিছে",
+        "description": "Plan to Watch"
+    },
+    "UI_Status_planTo_manga": {
+        "message": "পঢ়িবলৈ যোজনা কৰিছে",
+        "description": "Plan to Read"
+    },
+    "UI_Status_Rewatching_anime": {
+        "message": "পুনৰ চাই আছে",
+        "description": "Status to rewatch anime"
+    },
+    "UI_Status_Rewatching_manga": {
+        "message": "পুনৰ পঢ়ি আছে",
+        "description": "Status to reread manga"
+    },
+    "UI_Episode": {
+        "message": "এপিচোড:",
+        "description": "Episode"
+    },
+    "UI_Volume": {
+        "message": "খণ্ড:",
+        "description": "Volume"
+    },
+    "UI_Chapter": {
+        "message": "অধ্যায়:",
+        "description": "Chapter"
+    },
+    "UI_Score": {
+        "message": "আপোনাৰ মুল্যায়ন:",
+        "description": "Score"
+    },
+    "UI_Score_Not_Rated": {
+        "message": "মুল্যায়ন কৰা নাই",
+        "description": "Text if nothing is selected in the rating dropdown"
+    },
+    "UI_Score_Masterpiece": {
+        "message": "(১০) অপূৰ্ব",
+        "description": "Masterpiece - Score"
+    },
+    "UI_Score_Great": {
+        "message": "(৯) মহান",
+        "description": "Great - Score"
+    },
+    "UI_Score_VeryGood": {
+        "message": "(৮) বেছি ভাল",
+        "description": "Very Good - Score"
+    },
+    "UI_Score_Good": {
+        "message": "(৭) ভাল",
+        "description": "Good - Score"
+    },
+    "UI_Score_Fine": {
+        "message": "(৬) মজিয়া",
+        "description": "Fine - Score"
+    },
+    "UI_Score_Average": {
+        "message": "(৫) সাধাৰণ",
+        "description": "Average - Score"
+    },
+    "UI_Score_Bad": {
+        "message": "(৪) বেয়া",
+        "description": "Bad - Score"
+    },
+    "UI_Score_VeryBad": {
+        "message": "(৩) অতি বেয়া",
+        "description": "Very Bad - Score"
+    },
+    "UI_Score_Horrible": {
+        "message": "(২) ভয়ংকৰ",
+        "description": "Horrible - Score"
+    },
+    "UI_Score_Appalling": {
+        "message": "(১) বিধ্বংসী",
+        "description": "Appalling - Score"
+    },
+    "UI_Rules": {
+        "message": "নিয়ম",
+        "description": "Rules text for the correction UI"
+    },
+    "syncPage_flashm_resumeMsg": {
+        "message": "পুনৰ আৰম্ভ কৰক $time$",
+        "description": "Video resume message",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "13:37"
+            }
+        }
+    },
+    "syncPage_flashm_sync_anime": {
+        "message": "$page$ এপিচোড $epNr$ লৈ নবীকৰণ কৰক",
+        "description": "Update MAL to episode 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga": {
+        "message": "$page$ অধ্যায় $epNr$ লৈ নবীকৰণ কৰক",
+        "description": "Update MAL to chapter 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "$page$ খণ্ড $epNr$ লৈ নবীকৰণ কৰক",
+        "description": "Update MAL to volume 3",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_undefined_undo": {
+        "message": "পুনৰ উদ্ধাৰ কৰক",
+        "description": "Undo button on 'synced' message"
+    },
+    "syncPage_flashm_sync_undefined_wrong": {
+        "message": "ভুল?",
+        "description": "Wrong/correction button on 'synced' message"
+    },
+    "syncPage_flashm_failded": {
+        "message": "নবীকৰণ বিফল",
+        "description": "When update to MAL failes"
+    },
+    "syncPage_flashConfirm_complete": {
+        "message": "সম্পূৰ্ণ বুলি চিহ্নিত কৰিবনে?",
+        "description": "Question when last episode is synced"
+    },
+    "syncPage_flashConfirm_start_anime": {
+        "message": "চাবলৈ আৰম্ভ কৰিবনে?",
+        "description": "Start watching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_finish_anime": {
+        "message": "পুনৰ চোৱাৰ শেষ কৰি পঠিয়াওক?",
+        "description": "Finish rewatching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_finish_manga": {
+        "message": "পুনৰ পঢ়াৰ শেষ কৰি পঠিয়াওক?",
+        "description": "Finish rereading manga message"
+    },
+    "syncPage_flashConfirm_start_manga": {
+        "message": "পঢ়িবলৈ আৰম্ভ কৰিবনে?",
+        "description": "Start reading manga message"
+    },
+    "syncPage_flashConfirm_rewatch_start_anime": {
+        "message": "এনিমে পুনৰ চাবনে?",
+        "description": "Start rewatching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_start_manga": {
+        "message": "মাঙ্গা পুনৰ পঢ়িবনে?",
+        "description": "Start rereading manga message"
+    },
+    "syncPage_flashConfirm_Anime_Correct": {
+        "message": "\"$anime$\" ঠিক আছে?",
+        "description": "Is anime correct",
+        "placeholders": {
+            "anime": {
+                "content": "$1",
+                "example": "No Game No Life"
+            }
+        }
+    },
+    "syncPage_flash_player_error": {
+        "message": "প্লেয়াৰ পোৱা নগল। অনুগ্ৰহ কৰি ইয়াত ম্যানুৱেলী আপডেট কৰক।",
+        "description": "Message if the video player could not be recognized"
+    },
+    "syncPage_malObj_addAnime": {
+        "message": "$page$ লৈ যোগ কৰক",
+        "description": "add anime",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "AniList"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_anime": {
+        "message": "এপিচোড $episode$",
+        "description": "Next episode message on streaming overview pages",
+        "placeholders": {
+            "episode": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_manga": {
+        "message": "অধ্যায় $chapter$",
+        "description": "Next chapter message on streaming overview pages",
+        "placeholders": {
+            "chapter": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+        "message": "$calcOffset$ এপিচোড অফচেট দেখা পোৱা হৈছে। এইটো ঠিক আছেনে?",
+        "description": "offsetHandler Episode",
+        "placeholders": {
+            "calcOffset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "anilistClass_authentication": {
+        "message": "টকেন সংৰক্ষণ কৰা হৈছে, আপুনি এতিয়া এই পৃষ্ঠা বন্ধ কৰিব পাৰে।",
+        "description": "The token has been obtained and saved"
+    },
+    "kitsuClass_authentication_Password": {
+        "message": "পাছৱৰ্ড",
+        "description": "Password"
+    },
+    "kitsuClass_authentication_Login": {
+        "message": "লগইন",
+        "description": "Login"
+    },
+    "kitsuClass_authentication_Success": {
+        "message": "টকেন সংৰক্ষণ কৰা হৈছে, আপুনি এতিয়া এই পৃষ্ঠা বন্ধ কৰিব পাৰে।",
+        "description": "Authentication success"
+    },
+    "kitsuClass_authentication_Wrong": {
+        "message": "প্ৰমাণপত্ৰ ভুল",
+        "description": "Credentials wrong"
+    },
+    "bookmarksItem_Years": {
+        "message": "বছৰ",
+        "description": "years"
+    },
+    "bookmarksItem_Year": {
+        "message": "বছৰ",
+        "description": "year"
+    },
+    "bookmarksItem_Days": {
+        "message": "দিন",
+        "description": "days"
+    },
+    "bookmarksItem_Day": {
+        "message": "দিন",
+        "description": "day"
+    },
+    "bookmarksItem_Hours": {
+        "message": "ঘণ্টা",
+        "description": "hours"
+    },
+    "bookmarksItem_Hour": {
+        "message": "ঘণ্টা",
+        "description": "hour"
+    },
+    "bookmarksItem_mins": {
+        "message": "মিনিট",
+        "description": "mins"
+    },
+    "bookmarksItem_min": {
+        "message": "মিনিট",
+        "description": "min"
+    },
+    "bookmarksItem_secs": {
+        "message": "ছেকেণ্ড",
+        "description": "seconds"
+    },
+    "bookmarksItem_sec": {
+        "message": "ছেকেণ্ড",
+        "description": "second"
+    },
+    "bookmarksItem_now": {
+        "message": "এতিয়া",
+        "description": "Now"
+    },
+    "bookmarksItem_ago": {
+        "message": "$time$ পূৰ্বে",
+        "description": "Text for time in the past",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Episode_anime": {
+        "message": "পৰৱৰ্তী এপিচোড $time$ ত অনুমান কৰা হৈছে",
+        "description": "Text for next episode estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_anime": {
+        "message": "শেষ খণ্ড $time$ পূৰ্বে মুক্তি পোৱা হৈছিল",
+        "description": "Text for last episode release time",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Episode_manga": {
+        "message": "পৰৱৰ্তী অধ্যায় $time$ ৰ ভিতৰত আহিব বুলি অনুমান কৰা হৈছে",
+        "description": "Text for next chapter estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_manga": {
+        "message": "শেষ অধ্যায় $time$ পূৰ্বে মুক্তি পোৱা হৈছিল",
+        "description": "Text for last chapter release time",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_next": {
+        "message": "পৰৱৰ্তী $time$ ৰ ভিতৰত",
+        "description": "Short Form Text for next episode/episode estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_incomplete": {
+        "message": "অসম্পূৰ্ণ",
+        "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
+    },
+    "prediction_ongoing": {
+        "message": "চলিত",
+        "description": "Header for the ongoing section in the translation/airing progress section"
+    },
+    "prediction_complete": {
+        "message": "সম্পূৰ্ণ",
+        "description": "Header for the complete translation/airing section"
+    },
+    "prediction_Airing": {
+        "message": "সম্প্ৰচাৰ $time$ ৰ ভিতৰত",
+        "description": "Text for airing estimation",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "correction_Offset": {
+        "message": "খণ্ডৰ অভিসৰণ",
+        "description": "Episode Offset"
+    },
+    "correction_Offset_text": {
+        "message": "যদি কোনো এনিমেৰ ১২ টা খণ্ড থাকে, কিন্তু ১-১২ ৰ সলনি ০-১১ সংখ্যা ব্যৱহাৰ কৰে, তেন্তে অভিসৰণৰ ক্ষেত্ৰত \" +1 \" টাইপ কৰক।",
+        "description": "Episode Offset - Text"
+    },
+    "correction_WrongUrl": {
+        "message": "এই URL কেৱল তেতিয়াহে সলনি কৰক যদি MAL ত এনিমে পৃষ্ঠাটো ভুল দেখুৱাই থাকে।",
+        "description": "URL is Wrong"
+    },
+    "correction_Search": {
+        "message": "শুদ্ধি অনুসন্ধান",
+        "description": "Correction Search"
+    },
+    "correction_Search_text": {
+        "message": "এই স্থানটো এনিমে বিচাৰিবলৈ, যেতিয়া \"MyAnimeList URL\" উল্লিখিত ভুল থাকে। &lt;br&gt;এনিমে অনুসন্ধান কৰিবলৈ নামটো টাইপ কৰিবলৈ আৰম্ভ কৰক, টাইপ কৰোতে ফলাফলৰ তালিকাটো স্বয়ংক্ৰিয়ভাৱে দেখা পোৱা যাব।",
+        "description": "Search text"
+    },
+    "correction_NoMal": {
+        "message": "যদি এনিমে/মাংগা MAL ত পোৱা নাযায়",
+        "description": "Anime/Manga not found in MAL"
+    },
+    "correction_NoEntry": {
+        "message": "MyAnimeList ত কোনো এন্ট্ৰি নাই",
+        "description": "No entry on MyAnimeList"
+    },
+    "correction_NewOffset": {
+        "message": "নতুন অভিসৰণ ($offset$) স্থাপন কৰা হৈছে।",
+        "description": "New Offset",
+        "placeholders": {
+            "offset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "correction_OffsetReset": {
+        "message": "অভিসৰণ পুনৰ স্থাপন কৰা হৈছে",
+        "description": "Offset reset"
+    },
+    "correction_NewUrl": {
+        "message": "নতুন URL '$malUrl$' স্থাপন কৰা হৈছে।",
+        "description": "New URL",
+        "placeholders": {
+            "malUrl": {
+                "content": "$1",
+                "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            }
+        }
+    },
+    "correction_NewUrlReset": {
+        "message": "MyAnimeList URL পুনৰ স্থাপন কৰা হৈছে",
+        "description": "URL reset"
+    },
+    "correction_DBRequest": {
+        "message": "ডাটাবেইচ সংশোধন অনুৰোধ জমা দিম নেকি?",
+        "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
+    },
+    "overview_synonyms": {
+        "message": "পৰ্যায়বাচী শব্দ",
+        "description": "Text of a button that shows the alternative names for an entry"
+    },
+    "overview_Continue_anime": {
+        "message": "দেখা চলাই যাওক",
+        "description": "Continue watching"
+    },
+    "overview_Continue_manga": {
+        "message": "পঢ়া চলাই যাওক",
+        "description": "Continue reading"
+    },
+    "overview_Next_Episode_anime": {
+        "message": "পৰৱৰ্তী খণ্ড",
+        "description": "Next Episode"
+    },
+    "overview_Next_Episode_manga": {
+        "message": "পৰৱৰ্তী অধ্যায়",
+        "description": "Next Chapter"
+    },
+    "overview_Resume_Episode_anime": {
+        "message": "খণ্ড পুনৰ আৰম্ভ কৰক",
+        "description": "Resume Episode"
+    },
+    "overview_Resume_Episode_manga": {
+        "message": "অধ্যায় পুনৰ আৰম্ভ কৰক",
+        "description": "Resume Chapter"
+    },
+    "overview_EditDetails": {
+        "message": "বিৱৰণ সম্পাদনা কৰক",
+        "description": "Edit Details"
+    },
+    "overview_Characters": {
+        "message": "চৰিত্ৰসমূহ",
+        "description": "Characters"
+    },
+    "overview_Information": {
+        "message": "তথ্য",
+        "description": "Header of the information section of the popup anime overview"
+    },
+    "overview_Related": {
+        "message": "সম্পৰ্কিত",
+        "description": "Header of the anime/manga relations section of the popup anime overview"
+    },
+    "overview_Streaming": {
+        "message": "সম্প্ৰচাৰ",
+        "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "overview_OpeningTheme": {
+        "message": "উদ্বোধনী থিম:",
+        "description": "Opening Theme"
+    },
+    "overview_EndingTheme": {
+        "message": "সমাপ্তি থিম:",
+        "description": "Ending Theme"
+    },
+    "overview_sidebar_Score": {
+        "message": "স্কোৰ:",
+        "description": "Info table on overview - Score: 7.65"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "MAL স্কোৰ:",
+        "description": "Info table on overview - MAL Score: 7.65"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "স্থান:",
+        "description": "Info table on overview - Ranked: #317"
+    },
+    "overview_sidebar_Format": {
+        "message": "ফৰ্মেট:",
+        "description": "Info table on overview - Format: Movie"
+    },
+    "overview_sidebar_Status": {
+        "message": "স্থিতি:",
+        "description": "Info table on overview - Status: Finished"
+    },
+    "overview_sidebar_Genres": {
+        "message": "ধৰ্মসমূহ:",
+        "description": "Info table on overview - Genres: Action"
+    },
+    "overview_sidebar_Rating": {
+        "message": "ৰেটিং:",
+        "description": "Info table on overview - Rating: PG-13"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "জনপ্ৰিয়তা:",
+        "description": "Info table on overview - Popularity: #15"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "আৰম্ভৰ তাৰিখ:",
+        "description": "Info table on overview - Start Date: 10.10.2010"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "সমাপ্তিৰ তাৰিখ:",
+        "description": "Info table on overview - End Date: 10.10.2010"
+    },
+    "overview_sidebar_Source": {
+        "message": "উৎস:",
+        "description": "Info table on overview - Source: Light Novel"
+    },
+    "overview_sidebar_Members": {
+        "message": "সদস্যসমূহ:",
+        "description": "Info table on overview - Members: 1337"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "সম্প্ৰচাৰ:",
+        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+    },
+    "overview_sidebar_Studios": {
+        "message": "ষ্টুডিঅ'সমূহ:",
+        "description": "Info table on overview - Studios: Madhouse"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "খণ্ডসমূহ:",
+        "description": "Info table on overview - Episodes: 12"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "অধ্যায়সমূহ:",
+        "description": "Info table on overview - Chapters: 12"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "খণ্ডসমূহ:",
+        "description": "Info table on overview - Volumes: 12"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "মুঠ প্লেতাইম:",
+        "description": "Info table on overview - Total Playtime: 276 mins"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "পচন্দসমূহ:",
+        "description": "Info table on overview - Favorites: 15423"
+    },
+    "overview_sidebar_Season": {
+        "message": "ঋতু:",
+        "description": "Info table on overview - Season: Spring 2014"
+    },
+    "overview_sidebar_external_links": {
+        "message": "বাহ্যিক সংযোগসমূহ:",
+        "description": "Info table on overview - External Links: Official Site, Hulu"
+    },
+    "overview_sidebar_Votes": {
+        "message": "ভোটসমূহ:",
+        "description": "Info table on overview - Votes: 1423"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "লাইচেঞ্চাৰ:",
+        "description": "Info table on overview - Licensor: AT-X"
+    },
+    "overview_sidebar_Aired": {
+        "message": "সম্প্ৰচাৰিত:",
+        "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
+    },
+    "overview_sidebar_Authors": {
+        "message": "লেখক:",
+        "description": "Info table on overview - Authors: Kamiya, Yuu"
+    },
+    "overview_sidebar_Serialization": {
+        "message": "ধাৰাবাহিকীকৰণ:",
+        "description": "Info table on overview - Serialization: Big Comic Original"
+    },
+    "overview_sidebar_Duration": {
+        "message": "অবধি:",
+        "description": "Info table on overview - Duration: 23 min"
+    },
+    "list_sorting_unread": {
+        "message": "অপঢ়া",
+        "description": "Dropdown option to sort list by unread"
+    },
+    "list_sorting_alpha": {
+        "message": "বৰ্ণানুক্ৰমিক",
+        "description": "Dropdown option to sort list alphabetic"
+    },
+    "list_sorting_history": {
+        "message": "শেষবাৰৰ আপডেট",
+        "description": "Dropdown option to sort list by last updated"
+    },
+    "list_sorting_score": {
+        "message": "স্কোৰ",
+        "description": "Dropdown option to sort list by score"
+    },
+    "list_sorting_airing_date": {
+        "message": "সম্প্ৰচাৰৰ তাৰিখ",
+        "description": "Dropdown option to sort list by airing date"
+    },
+    "search_Type": {
+        "message": "ধৰণ:",
+        "description": "Type"
+    },
+    "search_Score": {
+        "message": "স্কোৰ:",
+        "description": "Score"
+    },
+    "search_Year": {
+        "message": "বৰ্ষ:",
+        "description": "Year"
+    },
+    "settings_General": {
+        "message": "সাধাৰণ",
+        "description": "General"
+    },
+    "settings_Mode": {
+        "message": "মোড",
+        "description": "Mode"
+    },
+    "settings_Authenticate": {
+        "message": "প্ৰমাণীকৰণ কৰক",
+        "description": "Authenticate"
+    },
+    "settings_profile_no_login": {
+        "message": "লগইন নাই",
+        "description": "Text if not logged in"
+    },
+    "settings_profile_logout": {
+        "message": "লগআউট",
+        "description": "Button to logout"
+    },
+    "settings_profile_check": {
+        "message": "পৰীক্ষা কৰক",
+        "description": "Button to rechecks the login status"
+    },
+    "settings_profile_logged_via": {
+        "message": "লগ ইন কৰা হৈছে $provider$ যোগে",
+        "description": "Info about which provider is used to login",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "settings_LocalSync": {
+        "message": "স্থানীয় সংগ্ৰহৰ বিকল্প",
+        "description": "Option to activate the local storage fallback sync"
+    },
+    "settings_LocalSync_Import": {
+        "message": "আমদানি কৰক",
+        "description": "Button to import local storage fallback data"
+    },
+    "settings_LocalSync_Export": {
+        "message": "ৰপ্তানি কৰক",
+        "description": "Button to Export Local storage fallback data"
+    },
+    "settings_LocalSync_Label": {
+        "message": "স্থানীয় সংগ্ৰহ ৰপ্তানি",
+        "description": "Label where the import/export buttons are to backup the local saved anime/manga"
+    },
+    "settings_LocalSync_Help_Before": {
+        "message": "যদি সমস্যা হয়, অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক",
+        "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
+    },
+    "settings_LocalSync_Help_LinkText": {
+        "message": "এই জানালীত",
+        "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
+    },
+    "settings_Animesync": {
+        "message": "এনিমে সমল",
+        "description": "Anime sync"
+    },
+    "settings_Animesync_Video": {
+        "message": "ভিডিঅ'",
+        "description": "Video"
+    },
+    "settings_Animesync_Instant": {
+        "message": "তত্‍কালীন",
+        "description": "Instant"
+    },
+    "settings_Animesync_Manual": {
+        "message": "হস্তচালিত",
+        "description": "Manual"
+    },
+    "settings_Mangasync_readerTracking": {
+        "message": "পৃষ্ঠা ৯০% পঢ়াৰ পাছত মাংগা সংগ্ৰহ কৰক",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+    },
+    "settings_Mangasync": {
+        "message": "মাংগা সংগ্ৰহৰ বিকল্প",
+        "description": "Manga sync fallback in case the manga reader progress tracking does not work"
+    },
+    "settings_AskBefore": {
+        "message": "এপিছোড/চেপ্টাৰ আৰম্ভণিত 'সম্পূৰ্ণ' নিশ্চিতকৰণ সংলাপ দেখুৱাওক",
+        "description": "Option to not show the 'completed' message during the episode"
+    },
+    "settings_AutoTracking_Video": {
+        "message": "ভিডিঅ'ৰ প্ৰগতিৰ $videoDuration$% ত আপডেট কৰক",
+        "description": "Update Episode of video progress",
+        "placeholders": {
+            "videoDuration": {
+                "content": "$1",
+                "example": "85"
+            }
+        }
+    },
+    "settings_AutoTracking_Instant": {
+        "message": "তত্‍কালীন স্বয়ংক্ৰিয় ট্ৰেকিং $delay$ চেকেণ্ডৰ বাবে বিলম্বিত কৰক",
+        "description": "Delay instant autotracking",
+        "placeholders": {
+            "delay": {
+                "content": "$1",
+                "example": "15"
+            }
+        }
+    },
+    "settings_StreamingSite": {
+        "message": "দ্ৰুত সংযোগ",
+        "description": "Quicklinks"
+    },
+    "settings_StreamingSite_text": {
+        "message": "যদি অক্ষম কৰা হয়, এনিমে বাৰৰ MAL/AniList/Kitsu/Simkl ত সম্প্ৰচাৰ সংযোগ নেদেখায়।",
+        "description": "Streaming Site Links - Text"
+    },
+    "settings_StreamingSite_custom": {
+        "message": "কাস্টম অনুসন্ধান সংযোগসমূহ",
+        "description": "Header of the section where you can add your own custom search links"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "নাম",
+        "description": "Placeholder text the field that sets the custom url name"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "এনিমে অনুসন্ধান URL",
+        "description": "Form field title to enter the search url for anime"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "মাংগা অনুসন্ধান URL",
+        "description": "Form field title to enter the search url for manga"
+    },
+    "settings_Thumbnails": {
+        "message": "থাম্বনেইলসমূহ",
+        "description": "Thumbnails"
+    },
+    "settings_Thumbnails_text": {
+        "message": "এই অপশনটো MyAnimeListৰ থাম্বনেইল সমূহৰ আকাৰ সলনি কৰাৰ বাবে, যেনে: চৰিত্ৰ, লোক, পৰামৰ্শ আদি থাম্বনেইল।",
+        "description": "Thumbnails - Text"
+    },
+    "settings_Thumbnails_Large": {
+        "message": "বড়",
+        "description": "Thumbnails Large"
+    },
+    "settings_Thumbnails_Medium": {
+        "message": "মাঝারি",
+        "description": "Thumbnails Medium"
+    },
+    "settings_Thumbnails_Small": {
+        "message": "সৰু",
+        "description": "Thumbnails Small"
+    },
+    "settings_Thumbnails_Default": {
+        "message": "MAL ডিফল্ট",
+        "description": "Thumbnails MAL Default"
+    },
+    "settings_FriendScore": {
+        "message": "বিশদ পৃষ্ঠাত বন্ধু স্ক'ৰ",
+        "description": "Friend scores on detail page"
+    },
+    "settings_epPredictions": {
+        "message": "এপিসোডৰ সংখ্যাৰ অনুমান কৰক",
+        "description": "Estimate episode number"
+    },
+    "settings_malTags": {
+        "message": "টেগ/নোট ব্যৱহাৰ কৰক",
+        "description": "Use Tags/Notes"
+    },
+    "settings_malTags_Text": {
+        "message": "যদি সক্ষম কৰা হয়: আপোনাৰ অন্তিম ব্যৱহৃত ষ্ট্ৰীমিং পৃষ্ঠাটো স্থায়ীভাৱে (ব্ৰাউজাৰসমূহত) আপোনাৰ তালিকাত টেগ/নোট বিভাগত সংৰক্ষিত হয়। টেগ বিভাগত সংৰক্ষিত পাঠ খুব বিশ্ৰী হয়, এইটো কেৱল টেগ/নোট ব্যৱহাৰ নকৰা হলে শাৰা দিয়া হয়।",
+        "description": "Use Tags/Notes - Text"
+    },
+    "settings_malContinue": {
+        "message": "দেখা অব্যাহত ৰাখিবলৈ লিংকসমূহ",
+        "description": "Continue watching links"
+    },
+    "settings_malResume": {
+        "message": "দেখা পুনৰ আৰম্ভ কৰক লিংকসমূহ",
+        "description": "Resume watching links"
+    },
+    "settings_usedPage": {
+        "message": "অন্তিম ব্যৱহৃত পৃষ্ঠাৰ লিংকসমূহ",
+        "description": "Last used page links"
+    },
+    "settings_anilist_update_ui": {
+        "message": "UI আপডেট কৰক",
+        "description": "UI in the aniList sidebar to update episodes progress and the score"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "AniListত আপোনাৰ এপিসোডৰ গণনা, ৰেটিং আৰু স্থিতি তৎক্ষণাত আপডেট কৰাৰ সুবিধা দিয়ে, প’প’ভাৰ খোলাৰ প্ৰয়োজন নাই।",
+        "description": "Tooltip for the Update UI option"
+    },
+    "settings_miniMAL_floatButtonStealth": {
+        "message": "গোপন UI মোড",
+        "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "আপোনাৰ স্ক্ৰীনৰ তলত থকা প্ৰগতি সূচকটো ডিফল্টৰূপে স্বচ্ছ কৰে আৰু ই নিজকে সোনকালে লুকুৱাই ৰাখে।",
+        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_miniMAL_minimizeBigPopup": {
+        "message": "ডাঙৰ প’প-আপসমূহ ক্ষুদ্ৰ কৰক",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "MAL-Syncৰ ডাঙৰ প্ৰম্পট বক্সসমূহ, যি স্ক্ৰীনৰ সৰ্বাধিক আৱৰণ কৰি থকাটো এক ক্লিকত লুকুৱাই ৰাখে।",
+        "description": "Shows an 'action required' popup hidding big popups"
+    },
+    "settings_miniMAL_floatButtonCorrection": {
+        "message": "ভাসমান বুটামটো সঠিক UIত পুনৰ মেপ কৰক",
+        "description": "Remap floating button to the correction UI"
+    },
+    "settings_miniMAL_floatButtonHide": {
+        "message": "miniMALৰ ভাসমান মেনু বুটামটো লুকুৱাই ৰাখক",
+        "description": "Hide miniMAL floating menu button"
+    },
+    "settings_miniMAL_autoCloseMinimal": {
+        "message": "বাহিৰত ক্লিক কৰিলে miniMAL বন্ধ হয়",
+        "description": "Clicking outside closes miniMAL"
+    },
+    "settings_miniMAL_Display": {
+        "message": "প্ৰদৰ্শন কৰক",
+        "description": "Display to the"
+    },
+    "settings_miniMAL_popup": {
+        "message": "এক্সটেনচন প’প-আপ",
+        "description": "Header of the settings section for the extension popup"
+    },
+    "settings_miniMAL_theme": {
+        "message": "থিম",
+        "description": "Label for the theme switch dropdown (light/dark theme)"
+    },
+    "settings_miniMAL_window": {
+        "message": "অন্য সজলত খোলক",
+        "description": "Open miniMAL in separate window checkbox"
+    },
+    "settings_miniMAL_Display_Left": {
+        "message": "বাওঁফালে",
+        "description": "miniMAL Display Left"
+    },
+    "settings_miniMAL_Display_Center": {
+        "message": "কেন্দ্ৰত",
+        "description": "miniMAL Display Center"
+    },
+    "settings_miniMAL_Display_Right": {
+        "message": "সোঁফালে",
+        "description": "miniMAL Display Right"
+    },
+    "settings_miniMAL_Height": {
+        "message": "উচ্চতা (px / %)",
+        "description": "miniMAL Height"
+    },
+    "settings_miniMAL_Width": {
+        "message": "প্ৰস্থ (px / %)",
+        "description": "miniMAL Width"
+    },
+    "settings_miniMAL_pwa": {
+        "message": "PWA ৱেবছাইট",
+        "description": "Link to the PWA version of the extension popup"
+    },
+    "settings_donate": {
+        "message": "দান কৰক",
+        "description": "Link to donation page"
+    },
+    "settings_discord_join": {
+        "message": "আমাৰ Discord চাৰ্ভাৰত যোগ দিওক",
+        "description": "Link to join discord"
+    },
+    "settings_help": {
+        "message": "সহায়ৰ প্ৰয়োজন?",
+        "description": "Button that links to support"
+    },
+    "settings_miscellaneous": {
+        "message": "বিবিধ",
+        "description": "Header of the section of settings without specific theme"
+    },
+    "settings_listsync": {
+        "message": "তালিকা সিঙ্ক",
+        "description": "Header of the section of List Sync settings"
+    },
+    "settings_listsync_background": {
+        "message": "প্ৰতি দিন পটভূমিত সিঙ্ক কৰক",
+        "description": "Option to sync list once a day in the background"
+    },
+    "settings_progress": {
+        "message": "প্ৰগতিৰ অনুমান",
+        "description": "Header of the section of progress estimation settings"
+    },
+    "settings_onsite": {
+        "message": "অ’নছাইট",
+        "description": "Header of the section to change onsite website appearance and features"
+    },
+    "settings_theming": {
+        "message": "থিমিং",
+        "description": "Header of the theming section"
+    },
+    "settings_theming_sidebars": {
+        "message": "সাইডবাৰ",
+        "description": "Option to disable the sidebars in the extension popup"
+    },
+    "settings_theming_color": {
+        "message": "থিমৰ ৰং",
+        "description": "Option to select a custom theme color for the extension popup"
+    },
+    "settings_theming_background_image": {
+        "message": "পটভূমি চিত্ৰ",
+        "description": "Option to select a custom background image for the extension popup"
+    },
+    "settings_theming_background_opacity": {
+        "message": "পটভূমিৰ অস্পষ্টতা",
+        "description": "Option to set the transparency of the UI in front of the background image"
+    },
+    "settings_theming_theme_system": {
+        "message": "চিষ্টেম",
+        "description": "Dropdown option to set the theme to the system (dark/light) theme"
+    },
+    "settings_theming_theme_light": {
+        "message": "প্ৰকাশমান",
+        "description": "Dropdown option to set the theme to the light theme"
+    },
+    "settings_theming_theme_dark": {
+        "message": "আঁহলীয়া",
+        "description": "Dropdown option to set the theme to the dark theme"
+    },
+    "settings_theming_theme_custom": {
+        "message": "কাস্টম",
+        "description": "Dropdown option to set the theme to custom witch shows a color picker"
+    },
+    "settings_Shortcuts": {
+        "message": "চৰ্টকাটসমূহ",
+        "description": "Shortcuts"
+    },
+    "settings_miniMAL_Open": {
+        "message": "miniMAL খোলক",
+        "description": "miniMAL Open"
+    },
+    "settings_miniMAL_NotSet": {
+        "message": "সেট কৰা হোৱা নাই",
+        "description": "miniMAL Not Set"
+    },
+    "settings_loadPTWForProgress": {
+        "message": "প্ৰগতিৰ মূল্যায়নৰ বাবে PTW/PTR ল’ড কৰক",
+        "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
+    },
+    "settings_Video_Player": {
+        "message": "ভিডিঅ’ প্লেয়াৰ",
+        "description": "Video settings header"
+    },
+    "settings_Video_Fullscreen": {
+        "message": "স্বয়ংক্ৰিয় পূৰ্ণপৰ্দা",
+        "description": "Auto fullscreen toggle"
+    },
+    "settings_Video_Resume": {
+        "message": "স্বয়ংক্ৰিয় পুনৰ আৰম্ভ",
+        "description": "Auto resume video where you left off toggle"
+    },
+    "settings_autoNextEp": {
+        "message": "পৰৱৰ্তী এপিসোড স্বয়ংক্ৰিয়ভাৱে প্লে কৰক",
+        "description": "Autoplays the next episode after the video ends"
+    },
+    "settings_Shortcuts_Correction": {
+        "message": "এনিমে সম্পৰ্ক সংশোধন প’প-আপ খোলক",
+        "description": "Text for the correction ui shortcut"
+    },
+    "settings_Shortcuts_Sync": {
+        "message": "এপিসোড/অধ্যায় পঢ়া হিচাপে চিহ্নিত কৰক",
+        "description": "Text for the sync ui shortcut"
+    },
+    "settings_Shortcuts_Next_Episode": {
+        "message": "পৰৱৰ্তী এপিসোডৰ চৰ্টকাট খোলক",
+        "description": "Description for the next episode shortcut option"
+    },
+    "settings_Shortcuts_Skip_Forward": {
+        "message": "খোলাৰ অংশটো এৰাই যোৱা",
+        "description": "Description for the the opening skip shortcut"
+    },
+    "settings_Shortcuts_Skip_Backward": {
+        "message": "খোলাৰ অংশৰ আৰম্ভণিলৈ ফিৰাই যাওক",
+        "description": "Description for the the opening skip shortcut"
+    },
+    "settings_Shortcuts_Click": {
+        "message": "চৰ্টকাটৰ বাবে ক্লিক কৰক",
+        "description": "Shown if no shortcut is set for an option"
+    },
+    "settings_introSkip": {
+        "message": "খোলাৰ অংশ এৰাৰ সময় নিৰ্ধাৰণ কৰক ($Seconds$ ছেকেণ্ড)",
+        "description": "Skips video seconds",
+        "placeholders": {
+            "Seconds": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "settings_UpdateCheck": {
+        "message": "আপডেট পৰীক্ষা",
+        "description": "Update Check"
+    },
+    "settings_UpdateCheck_Text": {
+        "message": "পটভূমিত নতুন এপিসোড পৰীক্ষা কৰক।",
+        "description": "Update Check - Text"
+    },
+    "settings_Interval": {
+        "message": "অন্তৰাল",
+        "description": "Interval"
+    },
+    "settings_Interval_Off": {
+        "message": "বন্ধ",
+        "description": "Interval - Off"
+    },
+    "settings_Interval_Default_Anime": {
+        "message": "ডিফল্ট এনিমে",
+        "description": "Dropdown label for selecting the global progress anime source"
+    },
+    "settings_Interval_Default_Manga": {
+        "message": "ডিফল্ট মাংগা",
+        "description": "Dropdown label for selecting the global progress manga source"
+    },
+    "settings_ProgressCheck": {
+        "message": "প্ৰগতি পৰীক্ষা",
+        "description": "Header for the progress section in the settings"
+    },
+    "settings_Notifications": {
+        "message": "বিজ্ঞাপনসমূহ",
+        "description": "Notifications"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "আঁতৰিব নোৱৰা বিজ্ঞাপনসমূহ",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
+    "settings_Debugging": {
+        "message": "ডিবাগিং",
+        "description": "Debugging"
+    },
+    "settings_ETC": {
+        "message": "অন্যান্য",
+        "description": "ETC"
+    },
+    "settings_tracking": {
+        "message": "ট্ৰেকিং",
+        "description": "tracking settings header"
+    },
+    "settings_tracking_disabled": {
+        "message": "ট্ৰেকিং অক্ষম",
+        "description": "Header for section with websites with disabled tracking"
+    },
+    "settings_Userscriptmode": {
+        "message": "ইউজাৰস্ক্ৰিপ্ট মোড",
+        "description": "Userscript mode"
+    },
+    "settings_Userscriptmode_Text": {
+        "message": "কণ্টেন্ট স্ক্ৰিপ্ট অক্ষম কৰে। ই একে সময়তে এক্সটেনচন আৰু ইউজাৰস্ক্ৰিপ্ট সক্ষম কৰাৰ সুবিধা দিয়ে।",
+        "description": "Userscript mode - Text"
+    },
+    "settings_highlightAllEp": {
+        "message": "সকল এপিসোড/অধ্যায় হাইলাইট কৰক",
+        "description": "Highlight all Episodes/Chapters"
+    },
+    "settings_highlightAllEp_Text": {
+        "message": "এই অপশনটো এনিমে/মাংগা ছাইটসমূহত দেখা তালিকাত সকলো দেখা অধ্যায়/এপিসোড হাইলাইট কৰিব।",
+        "description": "Highlight all Episodes/Chapters - Text"
+    },
+    "settings_ClearCache": {
+        "message": "কেছ পৰিষ্কাৰ কৰক",
+        "description": "Clear Cache"
+    },
+    "settings_presence_largeimage": {
+        "message": "উপস্থিতিৰ চিত্ৰ",
+        "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+    },
+    "settings_presence_largeimage_cover": {
+        "message": "ক’ভাৰ চিত্ৰ",
+        "description": "Dropdown option to show the cover from mal on discord"
+    },
+    "settings_presence_largeimage_website": {
+        "message": "ৱেবছাইট আইকন",
+        "description": "Dropdown option to show the server icon on discord"
+    },
+    "settings_presence_largeimage_malsync": {
+        "message": "MAL-Sync প্ৰতীক",
+        "description": "Dropdown option to show the malsync icon on discord"
+    },
+    "settings_enabled": {
+        "message": "সক্ষম",
+        "description": "Checkbox if feature is enabled"
+    },
+    "settings_shortcut_tooltip": {
+        "message": "একোটা কীকেই সংক্ষিপ্ত পথ হিচাপে স্থাপন কৰা সুপারিশযোগ্য নহয়",
+        "description": "Shows this message if the users has only a single key set as shortcut"
+    },
+    "settings_progress_dropdown": {
+        "message": "অনুমান উৎস:",
+        "description": "Text over the dropdown to select the Episode estimation/prediction source"
+    },
+    "settings_progress_disabled": {
+        "message": "অক্ষম",
+        "description": "Dropdown option to disable the estimation for an anime/manga"
+    },
+    "settings_progress_default": {
+        "message": "প্ৰাথমিক",
+        "description": "Dropdown option to use the default in the estimation for an anime/manga"
+    },
+    "settings_website_button": {
+        "message": "ৱেবচাইটসমূহ",
+        "description": "Button that leads to the config page where individual pages can be disabled"
+    },
+    "settings_permissions_overview": {
+        "message": "অনুমতিসমূহ",
+        "description": "Button that leads to where permissions to sites can be managed"
+    },
+    "settings_permissions_required": {
+        "message": "আবশ্যক",
+        "description": "Header text for the list of required permissions"
+    },
+    "settings_permissions_pages": {
+        "message": "পৃষ্ঠা",
+        "description": "Header text for the list of page permissions"
+    },
+    "settings_permissions_player": {
+        "message": "ভিডিঅ' প্লেয়াৰ",
+        "description": "Header text for the list of video player permissions"
+    },
+    "settings_custom_domains_button": {
+        "message": "পছন্দৰ ড’মেইনসমূহ",
+        "description": "Button that leads to the custom domain configuration page"
+    },
+    "settings_custom_domains_missing_permissions_header": {
+        "message": "অনুমতিৰ অভাৱ পোৱা গ’ল",
+        "description": "Section header for asking to allow missing domain permissions"
+    },
+    "settings_custom_domains_missing_permissions_long": {
+        "message": "কিছু পৃষ্ঠাৰ অনুমতি এতিয়ালৈকে দিয়া হোৱা নাই",
+        "description": "Asking to allow missing domain permissions"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "ব্ৰাউজাৰ বা বৰ্তমান উইণ্ড’ৱত অনুমতি যোগ কৰা সমৰ্থিত নহয়, অনুগ্ৰহ কৰি URL https://malsync.moe/pwa ব্যৱহাৰ কৰি পুনৰ চেষ্টা কৰক বা এক্সটেনচন পপআপ ব্যৱহাৰ কৰক।",
+        "description": "Text that is shown when the browser does not support adding new permissions"
+    },
+    "settings_custom_domains_disclaimer": {
+        "message": "এই বৈশিষ্ট্যই ড’মেইন পৰিবৰ্তন আৰু স্বহোস্ট কৰা উৎসবোৰৰ বাবে বিদ্যমান ছাইটসমূহত পছন্দৰ ড’মেইন যোগ কৰিবলৈ সক্ষম কৰি তোলে, কিন্তু নতুন ছাইট যোগ কৰিবলৈ সক্ষম নহয়।",
+        "description": "Text on the custom domain configuration page"
+    },
+    "settings_custom_domains_wrong": {
+        "message": "কনফিগাৰেচন সঠিক নহয়!",
+        "description": "Error text if the configuration is not correct"
+    },
+    "settings_clean_tags_button": {
+        "message": "টেগসমূহ পৰিষ্কাৰ কৰক",
+        "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
+    },
+    "settings_more_info": {
+        "message": "অধিক তথ্য",
+        "description": "Link button which links to more informations"
+    },
+    "settings_read_more": {
+        "message": "অধিক পঢ়ক",
+        "description": "Button to show more of the description"
+    },
+    "settings_read_less": {
+        "message": "কম পঢ়ক",
+        "description": "Button to show less the description"
+    },
+    "settings_presenceShowButtons": {
+        "message": "MAL বা আন প্ৰদানকাৰীৰ ছাইটত এনিমে/মাঙ্গা চাবলৈ বুটাম দেখুৱাওক",
+        "description": "Show button to view the anime/manga on MAL or another provider"
+    },
+    "settings_presenceShowMalsync": {
+        "message": "এনিমে/মাঙ্গাৰ ঠাইত MAL-Sync শিৰোনামত দেখুৱাওক",
+        "description": "Show MAL-Sync in the title of the presence instead of anime/manga"
+    },
+    "updateCheck_Refresh": {
+        "message": "ৰিফ্ৰেছ কৰক",
+        "description": "Refresh"
+    },
+    "updateCheck_StartCheck": {
+        "message": "তল্লাচী আৰম্ভ কৰক",
+        "description": "Start Check"
+    },
+    "updateCheck_NotificationCheck": {
+        "message": "অধিসূচনা পৰীক্ষা",
+        "description": "Notification Check"
+    },
+    "updateCheck_Episode": {
+        "message": "এপিছ’ড",
+        "description": "Episode"
+    },
+    "updateCheck_Message": {
+        "message": "বার্তা",
+        "description": "Message"
+    },
+    "updateCheck_NotificationHistory": {
+        "message": "অধিসূচনাৰ ইতিবৃত্ত",
+        "description": "Notification History"
+    },
+    "minimalApp_Overview": {
+        "message": "সম্পৰ্কিত বিৱৰণ",
+        "description": "Overview"
+    },
+    "minimalApp_Reviews": {
+        "message": "সমালোচনা",
+        "description": "Reviews"
+    },
+    "minimalApp_Recommendations": {
+        "message": "পৰামৰ্শ",
+        "description": "Recommendations"
+    },
+    "minimalApp_Settings": {
+        "message": "ছেটিংছ",
+        "description": "Settings"
+    },
+    "minimalClass_Popup": {
+        "message": "অনুগ্ৰহ কৰি এই ৱেবচাইটৰ বাবে পপ-আপৰ অনুমতি দিয়ক",
+        "description": "Please allow pop-ups for this website"
+    },
+    "minimalClass_versionMsg_Text_1": {
+        "message": "MAL-Sync সংস্থাপন কৰাৰ বাবে ধন্যবাদ",
+        "description": "Update version - Text 1"
+    },
+    "installPage_Start_Description": {
+        "message": "আপোনাক আৰম্ভ কৰিবলৈ এটি সহজ ব্ৰীফিং কৰোঁ - ইয়াত এক মিনিটৰো কম সময় লাগিব!",
+        "description": "Start description text"
+    },
+    "installPage_Mode": {
+        "message": "আপুনি ব্যৱহাৰ কৰিবলৈ ইচ্ছা কৰা এনিমে ডেটাবেছ নিৰ্বাচন কৰক",
+        "description": "Header for the MAL-sync provider dropdown"
+    },
+    "installPage_Howto": {
+        "message": "MAL-Sync কেনেকৈ কাম কৰে বুজক",
+        "description": "Header for how to use section"
+    },
+    "installPage_Howto_Description": {
+        "message": "ডেটাবেছৰ সৈতে ছিংক তেতিয়াই হয় যেতিয়া আপুনি কোনো $Link1$সমৰ্থিত পৃষ্ঠা$LinkEnd1$ত এপিছ’ড বা অধ্যায় খোলক — চিন্তা নকৰিব, আপোনাৰ প্ৰিয় ৱেবছাইটৰ নাম আমাৰ তালিকাত আছে!",
+        "description": "How to use description text",
+        "placeholders": {
+            "Link1": {
+                "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
+                "example": "<a>"
+            },
+            "LinkEnd1": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "ভিডিঅ'ৰ ৮৫% চোৱাৰ পিছত ছিংক অপেক্ষা কৰে।",
+        "description": "When the sync is executed for anime"
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "ছিংক পৃষ্ঠাৰ লোডৰ পিছতে হয় আৰু কিছু পৃষ্ঠাৰ ক্ষেত্ৰত অধ্যায়ৰ ৮০% পঢ়া নোহোৱা পৰ্যন্ত অপেক্ষা কৰে।",
+        "description": "When the sync is executed for manga"
+    },
+    "installPage_Howto_Notes": {
+        "message": "ছিংক্ৰণাইজেচন পছন্দৰ দৰে ছেটিংছত কনফিগাৰ কৰা যাব - আপোনাৰ মুৰত থাকক!",
+        "description": "The synchronization settings can be changed later"
+    },
+    "installPage_Wrong": {
+        "message": "ভুলকৈ চিনাক্ত কৰা এনিমে বা মাঙ্গা কেনেকৈ ঠিক কৰিব",
+        "description": "Header of the wrong section on the install page"
+    },
+    "installPage_Wrong_Description": {
+        "message": "আপুনি GIF ত দেখুওৱা দৰে সহেজে সম্পৰ্ক পৰিবৰ্তন কৰিব পাৰিব। সেই পৃষ্ঠাত এটা এপিছ’ড অফছেটো স্থাপন কৰিব পাৰিব।",
+        "description": "Description of the wrong section on the install page"
+    },
+    "installPage_Links": {
+        "message": "পছন্দৰ কুইকলিংক বাছক - আপোনাৰ প্ৰিয় ছাইট এক ক্লিকৰ দূৰত্বৰ ভিতৰত",
+        "description": "Header for the quicklinks section during the install"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "কুইকলিংক বুলিলে মুলত: বুটামবোৰক বুজায় যিসকলে আপোনাৰ পছন্দৰ ষ্ট্ৰীমিং/পঢ়া ছাইট খুলি দিব - এইবোৰ এনিমে/মাঙ্গাৰ প্ৰতিটো বিৱৰণ পৃষ্ঠাত থকা থাকিব।",
+        "description": "paragraph one of the description"
+    },
+    "installPage_Description_paragraph2": {
+        "message": "উদাহৰণস্বৰূপে, যদি আপুনি ক্ৰাঞ্চিৰোলত এনিমে চাবলৈ চাহে, তেনেহলে ক্ৰাঞ্চিৰোলৰ কুইকলিংক প্ৰতিটো এনিমে পৃষ্ঠাত থাকিব। এটা ক্লিকৰ সহায়েৰে আপোনাৰ প্ৰিয় ছাইটত প্ৰৱেশ কৰাৰ এটি সুবিধাজনক উপায়!",
+        "description": "paragraph two of the description"
+    },
+    "installPage_Login_Successful": {
+        "message": "অসাধাৰণ, $Username$! আপুনি এতিয়া প্ৰমাণিত আৰু আৰম্ভ কৰিবলৈ সাজু।",
+        "description": "Text after the user successfully authenticated",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
+    },
+    "Emby_Authenticate": {
+        "message": "MAL-Sync কাৰ্য কৰিবলৈ Emby API কী প্ৰয়োজন। অধিক তথ্য $Link1$এই স্থানত$Link2$",
+        "description": "Emby Authentication",
+        "placeholders": {
+            "Link1": {
+                "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "Error_Authenticate": {
+        "message": "অনুগ্ৰহ কৰি প্ৰমাণীকৰণ কৰক $Link1$এই স্থানত$Link2$",
+        "description": "Update version - Text 3",
+        "placeholders": {
+            "Link1": {
+                "content": "<a target=\"_blank\" href=\"$1\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "Error_Blocked": {
+        "message": "আপোনাৰ IP $Page$ত নিষিদ্ধ হৈছে, আপোনাৰ IP পৰিবৰ্তন কৰক বা নিষেধাজ্ঞা আঁতৰাৰ বাবে অপেক্ষা কৰক। এটা অস্থায়ী বন্ধৰ বাবে এইটো হ’ব পাৰে।",
+        "description": "Error message when the user is blocked on a website",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "Discord_rpc_browsing": {
+        "message": "$Page$ত ব্ৰাউজিং",
+        "description": "Discord rich Presence text if on overview page",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "Mangadex"
+            }
+        }
+    },
+    "discord_rpc_view_anime": {
+        "message": "এনিমে চাওক",
+        "description": "Discord view anime button"
+    },
+    "discord_rpc_view_manga": {
+        "message": "মাঙ্গা চাওক",
+        "description": "Discord view manga button"
+    },
+    "nextEpShort_no_support": {
+        "message": "এই পৃষ্ঠাই পৰৱৰ্তী এপিছ’ড খোলাৰ সমৰ্থন নকৰে",
+        "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+    },
+    "nextEpShort_no_nextEp": {
+        "message": "পৰৱৰ্তী এপিছ’ড পোৱা নহ’ল",
+        "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+    },
+    "settings_filler": {
+        "message": "ফিলাৰ/পুনৰ্ক্ৰমিক এপিছ’ডৰ বাবে পৰীক্ষা কৰক",
+        "description": "Option to enable filler checking"
+    },
+    "settings_filler_text": {
+        "message": "এইটো পৰীক্ষা কৰিব যে MyAnimeList ত এপিছ’ডটো ফিলাৰ/পুনৰ্ক্ৰমিক হিচাপে চিনাক্ত কৰা হৈছে নে নহয়",
+        "description": "filler tooltip"
+    },
+    "filler_filler_confirm": {
+        "message": "এই এপিছ’ড MyAnimeList ত ফিলাৰ হিচাপে চিনাক্ত কৰা হৈছে, আপুনি এইটো এৰাই যাব চাহেনে?",
+        "description": "Question if the user wants to skip the filler"
+    },
+    "filler_recap_confirm": {
+        "message": "এই এপিছ’ড MyAnimeList ত পুনৰ্ক্ৰমিক হিচাপে চিনাক্ত কৰা হৈছে, আপুনি এইটো এৰাই যাব চাহেনে?",
+        "description": "Question if the user wants to skip the recap"
+    },
+    "settings_custom_domains_position": {
+        "message": "অৱস্থান",
+        "description": "Position of the quicklinks"
+    },
+    "settings_custom_position_below": {
+        "message": "তথ্যৰ তলত",
+        "description": "Position of the quicklinks below the information section"
+    }
+}
