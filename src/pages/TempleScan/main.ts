@@ -6,7 +6,7 @@ export const TempleScan: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    return utils.urlPart(url, 5).startsWith('chapter');
+    return utils.urlPart(url, 5).includes('chapter-');
   },
   isOverviewPage(url) {
     return url.split('/').length - 1 === 4;
