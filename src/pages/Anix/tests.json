@@ -3,17 +3,17 @@
   "url": "https://anix.to/",
   "testCases": [
     {
-      "url": "https://anix.to/anime/no-game-no-life-4qkm/ep-4",
+      "url": "https://anix.to/anime/no-game-no-life-ggx4/ep-4",
       "expected": {
         "sync": true,
         "title": "No Game, No Life",
-        "identifier": "4qkm",
-        "overviewUrl": "https://anix.to/anime/no-game-no-life-4qkm/ep-1",
-        "nextEpUrl": "https://anix.to/anime/no-game-no-life-4qkm/ep-5",
+        "identifier": "ggx4",
+        "overviewUrl": "https://anix.to/anime/no-game-no-life-ggx4/ep-1",
+        "nextEpUrl": "https://anix.to/anime/no-game-no-life-ggx4/ep-5",
         "episode": 4,
         "uiSelector": true,
         "epList": {
-          "5": "https://anix.to/anime/no-game-no-life-4qkm/ep-5"
+          "5": "https://anix.to/anime/no-game-no-life-ggx4/ep-5"
         }
       }
     }

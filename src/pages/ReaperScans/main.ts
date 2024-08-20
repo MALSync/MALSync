@@ -6,24 +6,21 @@ export const ReaperScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    return utils.urlPart(url, 5) === 'chapters';
+    return utils.urlPart(url, 5).startsWith('chapter');
   },
   isOverviewPage(url) {
-    if (url.split('/')[4] !== undefined && url.split('/')[4].length > 0) {
-      return true;
-    }
-    return false;
+    return !utils.urlPart(url, 5);
   },
   sync: {
     getTitle(url) {
-      return j.$('div.text-center > p').text().trim();
+      return j.$('h2').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j.$('.fa-list').closest('a[href*="/comics/"]').attr('href'),
+        j.$('.fa-house').closest('a[href*="/series/"]').first().attr('href'),
         ReaperScans.domain,
       );
     },
@@ -37,7 +34,7 @@ export const ReaperScans: pageInterface = {
       }
 
       if (!temp) {
-        const episodePart = utils.urlPart(url, 6).match(/chapter-(\d+)/i);
+        const episodePart = utils.urlPart(url, 5).match(/chapter-(\d+)/i);
         if (episodePart) temp = Number(episodePart[1]);
       }
 
@@ -46,7 +43,10 @@ export const ReaperScans: pageInterface = {
       return temp;
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(j.$('a:contains(Next)').attr('href'), ReaperScans.domain);
+      return utils.absoluteLink(
+        j.$('.fa-chevron-right').closest('a[href*="/series/"]').first().attr('href'),
+        ReaperScans.domain,
+      );
     },
   },
   overview: {
@@ -62,10 +62,10 @@ export const ReaperScans: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.pb-4 > div > div > ul > li');
+        return j.$('.grid a[href*="/series/"]');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a').first().attr('href'), ReaperScans.domain);
+        return utils.absoluteLink(selector.attr('href'), ReaperScans.domain);
       },
       elementEp(selector) {
         return ReaperScans.sync.getEpisode(ReaperScans.overview!.list!.elementUrl!(selector));
@@ -77,7 +77,23 @@ export const ReaperScans: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      page.handlePage();
+      let checkInterval: NodeJS.Timer;
+
+      utils.fullUrlChangeDetect(() => {
+        page.reset();
+        clearInterval(checkInterval);
+        if (ReaperScans.isSyncPage(window.location.href)) {
+          checkInterval = utils.waitUntilTrue(
+            () => ReaperScans.sync!.getTitle(window.location.href),
+            () => page.handlePage(),
+          );
+        } else if (ReaperScans.isOverviewPage!(window.location.href)) {
+          checkInterval = utils.waitUntilTrue(
+            () => ReaperScans.overview!.getTitle(window.location.href),
+            () => page.handlePage(),
+          );
+        }
+      });
     });
 
     utils.changeDetect(

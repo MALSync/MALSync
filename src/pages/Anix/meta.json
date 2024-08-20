@@ -2,9 +2,9 @@
   "search": "https://anix.to/filter?keyword={searchtermPlus}",
   "urls": {
     "match": [
-      "*://*.anix.to/anime/*",
-      "*://*.anix.ac/anime/*",
-      "*://*.anix.vc/anime/*"
+      "*://*.anix.to/*",
+      "*://*.anix.ac/*",
+      "*://*.anix.vc/*"
     ]
   }
 }

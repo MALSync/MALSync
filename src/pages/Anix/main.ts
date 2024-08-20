@@ -10,7 +10,10 @@ export const Anix: pageInterface = {
   name: 'Anix',
   type: 'anime',
   isSyncPage(url: string): boolean {
-    return true;
+    return utils.urlPart(url, 3) === 'anime';
+  },
+  isOverviewPage(url: string): boolean {
+    return false;
   },
   sync: {
     getTitle(url: string): string {
@@ -73,33 +76,34 @@ export const Anix: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    Anix.database = '9anime';
-    utils.waitUntilTrue(
-      function () {
-        const loaded = j
-          .$('div.range')
-          .toArray()
-          .some(el => el.style.display !== 'none');
-        return loaded && j.$(episodeLinkButtonsQuery).length;
-      },
-      function () {
-        con.info('Start check');
-        page.handlePage();
 
-        utils.urlChangeDetect(function () {
-          con.info('Url change');
-          page.reset();
+    let wait: NodeJS.Timeout;
+
+    utils.fullUrlChangeDetect(function () {
+      con.info('Url change');
+      page.reset();
+      clearTimeout(wait);
+      wait = utils.waitUntilTrue(
+        function () {
+          const loaded = j
+            .$('div.range')
+            .toArray()
+            .some(el => el.style.display !== 'none');
+          return loaded && j.$(episodeLinkButtonsQuery).length;
+        },
+        function () {
+          con.info('Start check');
           page.handlePage();
-        });
+        },
+      );
+    });
 
-        utils.changeDetect(
-          () => {
-            page.handleList();
-          },
-          () => {
-            return j.$('#ani-episode button').text();
-          },
-        );
+    utils.changeDetect(
+      () => {
+        page.handleList();
+      },
+      () => {
+        return j.$('#ani-episode button').text();
       },
     );
   },

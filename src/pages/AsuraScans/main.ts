@@ -61,7 +61,7 @@ export const AsuraScans: pageInterface = {
     uiSelector(selector) {
       j.$('.space-y-4')
         .first()
-        .after(j.html(`<div id= "malthing" class="dark:bg-[#222222] bg-white">${selector}</div>`));
+        .after(j.html(`<div id= "malthing" class="bg-[#222222]">${selector}</div>`));
     },
     list: {
       offsetHandler: false,
