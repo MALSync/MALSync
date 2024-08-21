@@ -90,8 +90,16 @@
     "Anime365": [
       "*://smotret-anime.net/catalog/*"
     ],
+    "Anix": [
+      "*://*.anix.to/*",
+      "*://*.anix.ac/*",
+      "*://*.anix.vc/*"
+    ],
     "LuminousScans": [
       "*://luminous-scans.com/*"
+    ],
+    "ReaperScans": [
+      "*://reaperscans.com/*"
     ],
     "iframe": [
       "*://www.lycoris.cafe/*",
