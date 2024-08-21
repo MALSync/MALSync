@@ -84,7 +84,7 @@ module.exports = {
     match: ['*://*.mega.nz/*'],
   },
   animeflv: {
-    match: ['*://*.animeflv.net/*'],
+    match: ['*://*.animeflv.net/*', '*://*.jwplayerhls.com/*'],
   },
   netu: {
     match: ['*://*.hqq.tv/*', '*://waaw.tv/*'],
