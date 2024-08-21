@@ -66,6 +66,8 @@
     ]
   },
   "0.10.4": {
-    "iframe": []
+    "iframe": [
+      "*://*.jwplayerhls.com/*"
+    ]
   }
 }
