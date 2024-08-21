@@ -48,7 +48,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://smotret-anime.com"><img src="https://favicon.malsync.moe/?domain=https://smotret-anime.com"> Anime365</a></td>
+    <td><a href="https://smotret-anime.net"><img src="https://favicon.malsync.moe/?domain=https://smotret-anime.net"> Anime365</a></td>
     <td>Russian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -708,7 +708,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://luminousscans.com"><img src="https://favicon.malsync.moe/?domain=https://luminousscans.com"> LuminousScans</a></td>
+    <td><a href="https://luminous-scans.com"><img src="https://favicon.malsync.moe/?domain=https://luminous-scans.com"> LuminousScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -936,6 +936,13 @@
     <td>Portuguese</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://templescan.net"><img src="https://favicon.malsync.moe/?domain=https://templescan.net"> TempleScan</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>

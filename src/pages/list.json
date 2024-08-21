@@ -195,7 +195,7 @@
     "name": "MonosChinos"
   },
   {
-    "domain": "https://smotret-anime.com",
+    "domain": "https://smotret-anime.net",
     "type": "anime",
     "name": "Anime365"
   },
@@ -495,7 +495,7 @@
     "name": "Animetoast"
   },
   {
-    "domain": "https://luminousscans.com",
+    "domain": "https://luminous-scans.com",
     "type": "manga",
     "name": "LuminousScans"
   },
@@ -683,5 +683,10 @@
     "domain": "https://bakashi.tv",
     "type": "anime",
     "name": "Bakashi"
+  },
+  {
+    "domain": "https://templescan.net",
+    "type": "manga",
+    "name": "TempleScan"
   }
 ]

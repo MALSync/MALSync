@@ -1,37 +1,4 @@
 {
-  "0.9.8": {
-    "Gogoanime": [
-      "https://anitaku.so/*"
-    ],
-    "OtakuFR": [
-      "https://otakufr.cc/*"
-    ],
-    "Toonily": [
-      "https://toonily.com/webtoon/*"
-    ],
-    "iframe": [
-      "https://smotret-anime.com/translations/embed/*",
-      "https://anime365.ru/translations/embed/*",
-      "https://anime-365.ru/translations/embed/*",
-      "https://mixdrop.nu/e/*",
-      "https://uka257.mixdrop.nu/e/*",
-      "https://embtaku.com/embedplus*",
-      "https://embtaku.com/streaming.php?*",
-      "https://embtaku.com/load.php?*",
-      "https://embtaku.com/loadserver.php?*",
-      "https://a9bfed0818.nl/e/*",
-      "https://vid142.site/e/*",
-      "https://jamesstartstudent.com/e/*",
-      "https://ryanagoinvolve.com/e/*",
-      "https://jasonresponsemeasure.com/e/*",
-      "https://graceaddresscommunity.com/e/*",
-      "https://shannonpersonalcost.com/e/*",
-      "https://cindyeyefinal.com/e/*",
-      "https://michaelapplysome.com/e/*",
-      "https://sethniceletter.com/e/*",
-      "https://animeflix.ci/player?*"
-    ]
-  },
   "0.10.0": {
     "iframe": []
   },
@@ -97,5 +64,8 @@
       "*://www.lycoris.cafe/*",
       "*://smotret-anime.net/translations/embed/*"
     ]
+  },
+  "0.10.4": {
+    "iframe": []
   }
 }
