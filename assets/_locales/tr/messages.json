@@ -1552,7 +1552,7 @@
         "description": "Header text for the list of page permissions"
     },
     "settings_permissions_player": {
-        "message": "Video oynatıcı",
+        "message": "Video Oynatıcı",
         "description": "Header text for the list of video player permissions"
     }
 }
