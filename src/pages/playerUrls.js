@@ -117,7 +117,7 @@ module.exports = {
     ],
   },
   vidoza: {
-    match: ['*://*.vidoza.net/*'],
+    match: ['*://*.vidoza.net/*', '*://*.videzz.net/*'],
   },
   gounlimited: {
     match: ['*://gounlimited.to/*'],
@@ -431,6 +431,7 @@ module.exports = {
       '*://dood.wf/e/*',
       '*://dood.re/e/*',
       '*://dooood.com/e/*',
+      '*://dood.li/e/*',
       // auto-gogodood-replace-dont-remove
     ],
   },
@@ -509,6 +510,7 @@ module.exports = {
       '*://brucevotewithin.com/e/*',
       '*://rebeccaneverbase.com/e/*',
       '*://loriwithinfamily.com/e/*',
+      '*://bethshouldercan.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
