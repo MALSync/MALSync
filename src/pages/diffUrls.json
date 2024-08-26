@@ -67,7 +67,10 @@
   },
   "0.10.4": {
     "iframe": [
-      "*://*.jwplayerhls.com/*"
+      "*://*.jwplayerhls.com/*",
+      "*://*.videzz.net/*",
+      "*://dood.li/e/*",
+      "*://bethshouldercan.com/e/*"
     ]
   }
 }
