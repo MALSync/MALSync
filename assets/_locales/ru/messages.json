@@ -1522,5 +1522,29 @@
     "settings_custom_position_below": {
         "message": "Информация снизу",
         "description": "Position of the quicklinks below the information section"
+    },
+    "settings_LocalSync_Label": {
+        "message": "Экспорт локального хранилища"
+    },
+    "settings_permissions_required": {
+        "message": "Необходимые"
+    },
+    "settings_permissions_pages": {
+        "message": "Страницы"
+    },
+    "settings_permissions_player": {
+        "message": "Видеоплееры"
+    },
+    "settings_AskBefore": {
+        "message": "Показывать подтверждение \"Завершено\" в начале серии/главы"
+    },
+    "settings_LocalSync_Help_Before": {
+        "message": "Если у вам есть проблемы, попробуйте повторить"
+    },
+    "settings_LocalSync_Help_LinkText": {
+        "message": "на этой странице"
+    },
+    "settings_permissions_overview": {
+        "message": "Разрешения"
     }
 }
