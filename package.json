@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@cliqz/adblocker-puppeteer": "^1.33.0",
-    "@types/chai": "^4.3.18",
+    "@types/chai": "^4.3.19",
     "@types/jquery": "^3.5.14",
     "@types/mocha": "^10.0.7",
     "@types/node": "^16.18.106",
