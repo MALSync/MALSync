@@ -66,6 +66,11 @@
     ]
   },
   "0.10.4": {
+    "Zoro": [
+      "*://hianime.nz/*",
+      "*://hianime.mn/*",
+      "*://hianime.sx/*"
+    ],
     "iframe": [
       "*://*.jwplayerhls.com/*",
       "*://*.videzz.net/*",
