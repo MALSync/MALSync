@@ -93,7 +93,7 @@ async function nineanime() {
 }
 
 async function zoro() {
-    const response = await fetch("https://aniwatch.gg");
+    const response = await fetch("https://hianime.tv");
     const body = await response.text();
 
     const $ = cheerio.load(body);
@@ -196,9 +196,9 @@ async function start() {
         mixdrop,
         gogostream,
         nineanime,
-        // zoro,
+        zoro,
         gogoanime,
-        kickassanime,
+        // kickassanime,
         anix,
     }
 
