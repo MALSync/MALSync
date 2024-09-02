@@ -5,7 +5,10 @@
       "*://aniwatch.to/*",
       "*://aniwatch.nz/*",
       "*://aniwatch.se/*",
-      "*://hianime.to/*"
+      "*://hianime.to/*",
+      "*://hianime.nz/*",
+      "*://hianime.mn/*",
+      "*://hianime.sx/*"
     ]
   }
 }
