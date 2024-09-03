@@ -33,7 +33,7 @@ export const ScyllaScans: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('span').eq(1).after(j.html(selector));
+      j.$('h2').eq(0).after(j.html(selector));
     },
   },
   init(page) {
