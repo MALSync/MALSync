@@ -136,6 +136,7 @@ import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { Bakashi } from './Bakashi/main';
 import { TempleScan } from './TempleScan/main';
+import { ScyllaScans } from './ScyllaScans/main';
 
 export const pages = {
   nineAnime,
@@ -276,4 +277,5 @@ export const pages = {
   MangaRead,
   Bakashi,
   TempleScan,
+  ScyllaScans,
 };
