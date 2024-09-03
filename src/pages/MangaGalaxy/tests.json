@@ -1,0 +1,37 @@
+{
+  "title": "MangaGalaxy",
+  "url": "https://mangagalaxy.net",
+  "testCases": [
+    {
+      "url": "https://mangagalaxy.net/series/i-became-a-childhood-friend-of-a-mid-level-boss/chapter-21",
+      "expected": {
+        "sync": true,
+        "title": "I Became a Childhood Friend of a Mid-Level Boss",
+        "identifier": "i-became-a-childhood-friend-of-a-mid-level-boss",
+        "overviewUrl": "https://mangagalaxy.net/series/i-became-a-childhood-friend-of-a-mid-level-boss",
+        "episode": 21,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangagalaxy.net/series/i-became-a-childhood-friend-of-a-mid-level-boss",
+      "expected": {
+        "sync": false,
+        "title": "I Became a Childhood Friend of a Mid-Level Boss",
+        "identifier": "i-became-a-childhood-friend-of-a-mid-level-boss",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://mangagalaxy.net/series/hardcore-leveling-warrior:-earth-game/chapter-45",
+      "expected": {
+        "sync": true,
+        "title": "Hardcore Leveling Warrior: Earth Game",
+        "identifier": "hardcore-leveling-warrior:-earth-game",
+        "overviewUrl": "https://mangagalaxy.net/series/hardcore-leveling-warrior:-earth-game",
+        "episode": 45,
+        "uiSelector": false
+      }
+    }
+  ]
+}
