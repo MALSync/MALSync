@@ -1,1 +1,404 @@
-{}
+{
+    "Show": {
+        "message": "Прикажи"
+    },
+    "Help": {
+        "message": "Помоћ"
+    },
+    "Update": {
+        "message": "Ажурирај"
+    },
+    "Reset": {
+        "message": "Поништи"
+    },
+    "Synchronize": {
+        "message": "Синхронизуј"
+    },
+    "Remove": {
+        "message": "Уклони"
+    },
+    "Loading": {
+        "message": "Учитавање"
+    },
+    "Load": {
+        "message": "Учитај"
+    },
+    "Select": {
+        "message": "Изабери"
+    },
+    "Yes": {
+        "message": "Да"
+    },
+    "Ok": {
+        "message": "Уреду"
+    },
+    "No": {
+        "message": "Не"
+    },
+    "Cancel": {
+        "message": "Откажи"
+    },
+    "removed": {
+        "message": "Уклоњено"
+    },
+    "next": {
+        "message": "Следеће"
+    },
+    "back": {
+        "message": "Назад"
+    },
+    "start": {
+        "message": "Почни"
+    },
+    "NothingFound": {
+        "message": "Ништа није пронађено"
+    },
+    "Not_Found": {
+        "message": "Није пронађено!"
+    },
+    "NoEntries": {
+        "message": "Нема записа"
+    },
+    "fullscreen": {
+        "message": "цели екран"
+    },
+    "close": {
+        "message": "затвори"
+    },
+    "All": {
+        "message": "Све"
+    },
+    "Manga": {
+        "message": "Манга"
+    },
+    "UI_Status_watching_anime": {
+        "message": "Гледам"
+    },
+    "UI_Status_watching_manga": {
+        "message": "Читам"
+    },
+    "UI_Status_Completed": {
+        "message": "Завршено"
+    },
+    "UI_Status_OnHold": {
+        "message": "На чекању"
+    },
+    "UI_Status_Dropped": {
+        "message": "Обустављено"
+    },
+    "UI_Status_planTo_manga": {
+        "message": "Планирам да Читам"
+    },
+    "UI_Status_Rewatching_anime": {
+        "message": "Поновно гледање"
+    },
+    "UI_Episode": {
+        "message": "Епизода:"
+    },
+    "UI_Volume": {
+        "message": "Том:"
+    },
+    "UI_Chapter": {
+        "message": "Поглавље:"
+    },
+    "UI_Score": {
+        "message": "Ваше оцене:"
+    },
+    "UI_Score_Not_Rated": {
+        "message": "Није оцењено"
+    },
+    "UI_Score_Masterpiece": {
+        "message": "(10) Ремек-дело"
+    },
+    "UI_Score_Great": {
+        "message": "(9) Одлично"
+    },
+    "UI_Score_VeryGood": {
+        "message": "(8) Врло добро"
+    },
+    "UI_Score_Good": {
+        "message": "(7) Добро"
+    },
+    "UI_Score_Fine": {
+        "message": "(6) У реду"
+    },
+    "UI_Score_Bad": {
+        "message": "(4) Лоше"
+    },
+    "UI_Score_VeryBad": {
+        "message": "(3) Врло лоше"
+    },
+    "UI_Score_Horrible": {
+        "message": "(2) Страшно"
+    },
+    "UI_Score_Appalling": {
+        "message": "(1) Срамотно"
+    },
+    "UI_Rules": {
+        "message": "Правила"
+    },
+    "syncPage_flashm_sync_anime": {
+        "message": "Ажурирај $page$ на епизоду $epNr$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga": {
+        "message": "Ажурирај $page$ на поглавље $epNr$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "Ажурирај $page$ на том $epNr$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_undefined_undo": {
+        "message": "Опозови"
+    },
+    "syncPage_flashm_sync_undefined_wrong": {
+        "message": "Погрешно?"
+    },
+    "syncPage_flashm_failded": {
+        "message": "Ажурирање није успело"
+    },
+    "syncPage_flashConfirm_complete": {
+        "message": "Означити као завршено?"
+    },
+    "syncPage_flashConfirm_start_anime": {
+        "message": "Почети са гледањем?"
+    },
+    "syncPage_flashConfirm_rewatch_finish_anime": {
+        "message": "Завршити са поновним гледањем?"
+    },
+    "syncPage_flashConfirm_rewatch_finish_manga": {
+        "message": "Завршити поновним читањем?"
+    },
+    "syncPage_flashConfirm_start_manga": {
+        "message": "Започети са читањем?"
+    },
+    "syncPage_flashConfirm_rewatch_start_anime": {
+        "message": "Поново гледати аниме?"
+    },
+    "syncPage_flashConfirm_rewatch_start_manga": {
+        "message": "Поново читати мангу?"
+    },
+    "syncPage_flashConfirm_Anime_Correct": {
+        "message": "Да ли је \"$anime$\" тачно?",
+        "placeholders": {
+            "anime": {
+                "content": "$1",
+                "example": "No Game No Life"
+            }
+        }
+    },
+    "syncPage_flash_player_error": {
+        "message": "Плејер није откривен. Молим вас, ручно га ажурирајте овде."
+    },
+    "syncPage_malObj_addAnime": {
+        "message": "Додај на $page$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "AniList"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_anime": {
+        "message": "Епизода $episode$",
+        "placeholders": {
+            "episode": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_manga": {
+        "message": "Поглавље $chapter$",
+        "placeholders": {
+            "chapter": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+        "message": "Откривен је могући офсет епизоде од $calcOffset$. Да ли је то исправно?",
+        "placeholders": {
+            "calcOffset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "kitsuClass_authentication_Password": {
+        "message": "Лозинка"
+    },
+    "kitsuClass_authentication_Login": {
+        "message": "Пријава"
+    },
+    "kitsuClass_authentication_Success": {
+        "message": "Токен је сачуван, сада можете затворити ову страницу."
+    },
+    "bookmarksItem_Years": {
+        "message": "године"
+    },
+    "bookmarksItem_Year": {
+        "message": "година"
+    },
+    "bookmarksItem_Days": {
+        "message": "дани"
+    },
+    "bookmarksItem_Day": {
+        "message": "дан"
+    },
+    "bookmarksItem_Hours": {
+        "message": "сати"
+    },
+    "bookmarksItem_Hour": {
+        "message": "сат"
+    },
+    "bookmarksItem_mins": {
+        "message": "минута"
+    },
+    "bookmarksItem_min": {
+        "message": "минут"
+    },
+    "bookmarksItem_sec": {
+        "message": "секунда"
+    },
+    "bookmarksItem_now": {
+        "message": "Сада"
+    },
+    "bookmarksItem_ago": {
+        "message": "пре $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_anime": {
+        "message": "Последња епизода објављена пре $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Episode_manga": {
+        "message": "Следеће поглавље процењено у $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_manga": {
+        "message": "Последње поглавље објављено пре $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_next": {
+        "message": "Следећe у $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_incomplete": {
+        "message": "непотпуно"
+    },
+    "Search": {
+        "message": "Претрага сајта"
+    },
+    "Package_Description": {
+        "message": "Интегрише MyAnimeList/AniList/Kitsu/Simkl/Shikimori на различите сајтове, уз аутоматско праћење епизода."
+    },
+    "UI_Status": {
+        "message": "Статус:"
+    },
+    "UI_Status_All": {
+        "message": "Све"
+    },
+    "anilistClass_authentication": {
+        "message": "Токен је сачуван, сада можете затворити ову страницу"
+    },
+    "Add": {
+        "message": "Додај"
+    },
+    "UI_Status_planTo_anime": {
+        "message": "Планирам да Гледам"
+    },
+    "UI_Status_Rewatching_manga": {
+        "message": "Поновно читање"
+    },
+    "kitsuClass_authentication_text": {
+        "message": "Да бисте се пријавили на Kitsu, потребно је да унесете е-маил адресу и лозинку вашег налога.<br>Ваши подаци нису сачувани на вашем рачунару или било где другом.<br>Они се директно шаљу Kitsu-у. Само враћени приступни токен се чува.<br>"
+    },
+    "kitsuClass_authentication_Wrong": {
+        "message": "Подаци нису исправни"
+    },
+    "prediction_Episode_anime": {
+        "message": "Следећа епизода процењена за $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "updated": {
+        "message": "Ажурирано"
+    },
+    "Anime": {
+        "message": "Аниме"
+    },
+    "UI_Score_Average": {
+        "message": "(5) Просечно"
+    },
+    "syncPage_flashm_resumeMsg": {
+        "message": "Настави у $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "13:37"
+            }
+        }
+    },
+    "bookmarksItem_secs": {
+        "message": "секунди"
+    }
+}
