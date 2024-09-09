@@ -76,7 +76,7 @@ export const video: ConfObj[] = [
       component: 'input',
       option: 'introSkip',
       props: {
-        validation: value => Boolean(Number(value) > 4),
+        validation: value => Boolean(Number(value) > 0),
       },
     },
     component: SettingsGeneral,
