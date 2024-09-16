@@ -25,7 +25,7 @@
     "chrome-webstore-upload": "^3.1.1",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-es": "^4.1.0",
     "eslint-plugin-import": "^2.30.0",
