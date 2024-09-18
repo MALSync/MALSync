@@ -741,4 +741,8 @@ module.exports = {
   doflix: {
     match: ['*://doflix.net/*'],
   },
+  // anilib
+  anilib: {
+    match: ['*://*.anilib.me/*'],
+  },
 };
