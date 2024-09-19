@@ -1,0 +1,6 @@
+{
+  "search": "https://misterdonghua.com/?s={searchterm}",
+  "urls": {
+    "match": ["*://*.misterdonghua.com/*", "*://*.luciferdonghua.in/*", "*://*.luciferdonghua.co.in/*"]
+  }
+}

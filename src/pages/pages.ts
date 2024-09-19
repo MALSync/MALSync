@@ -136,6 +136,8 @@ import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { Bakashi } from './Bakashi/main';
 import { TempleScan } from './TempleScan/main';
+import { MisterDonghua } from './MisterDonghua/main';
+import { DonghuaStream } from './DonghuaStream/main';
 
 export const pages = {
   nineAnime,
@@ -276,4 +278,6 @@ export const pages = {
   MangaRead,
   Bakashi,
   TempleScan,
+  MisterDonghua,
+  DonghuaStream,
 };
