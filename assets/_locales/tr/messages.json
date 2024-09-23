@@ -1,6 +1,6 @@
 {
     "Search": {
-        "message": "Site Araması",
+        "message": "Sitede Ara",
         "description": "Search"
     },
     "Show": {
@@ -64,7 +64,7 @@
         "description": "All"
     },
     "Package_Description": {
-        "message": "MAL/AniList/Kitsu/Simkl/Shikimori'yi otomatik bölüm takibi ile çeşitli sitelere entegre eder.",
+        "message": "MyAnimeList/AniList/Kitsu/Simkl/Shikimori'yi çeşitli sitelere entegre eder ve otomatik bölüm takibi yapar.",
         "description": "Description MALSync"
     },
     "UI_Status": {
