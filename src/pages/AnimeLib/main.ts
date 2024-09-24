@@ -1,5 +1,28 @@
+/* eslint-disable global-require */
 import { pageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
+import { IAnime, IEpisode, IEpisodes } from './api';
+
+let interval: number | NodeJS.Timeout;
+
+const anime: IAnime = {
+  data: {
+    id: 0,
+    name: '',
+    rus_name: '',
+    eng_name: '',
+    slug_url: '',
+    cover: {
+      default: '',
+    },
+  },
+  player: {
+    episode: 0,
+    total: 0,
+    season: 0,
+    next: undefined,
+  },
+};
 
 export const AnimeLib: pageInterface = {
   domain: 'https://anilib.me',
@@ -7,7 +30,8 @@ export const AnimeLib: pageInterface = {
   name: 'AnimeLib',
   type: 'anime',
   getImage() {
-    return $('.cover > img').attr('src');
+    con.info('getImage', anime.data.cover.default);
+    return anime.data.cover.default;
   },
   isSyncPage(url: string): boolean {
     return utils.urlPart(url, 6) !== '' && utils.urlPart(url, 4) === 'anime';
@@ -17,75 +41,112 @@ export const AnimeLib: pageInterface = {
   },
   sync: {
     getTitle(url: string): string {
-      return j.$('.am_ap > h1').text().trim();
+      con.info('getTitle', anime.data.eng_name);
+      return anime.data.eng_name || anime.data.name || anime.data.rus_name;
     },
     getIdentifier(url: string): string {
-      return utils.urlPart(url, 5);
+      con.info('getIdentifier', anime.data.id);
+      return anime.data.id.toString();
     },
     getOverviewUrl(url: string): string {
-      const partUrl = j.$('.am_ap a').attr('href')!.split('?')[0];
-      const overview = utils.absoluteLink(partUrl, AnimeLib.domain);
-      return overview;
+      con.info(
+        'getOverviewUrl',
+        utils.absoluteLink(`ru/anime/${anime.data.slug_url}`, AnimeLib.domain),
+      );
+      return utils.absoluteLink(`ru/anime/${anime.data.slug_url}`, AnimeLib.domain);
     },
     getEpisode(url: string): number {
-      return parseInt(j.$('.t4_f5').text());
+      con.info('getEpisode', anime.player.episode);
+      return anime.player.episode;
     },
     nextEpUrl(url: string): string | undefined {
-      let id = j.$('.t4_f5').next().attr('id');
-      if (!id) return undefined;
-      id = id.replace('_', '=');
-      const ep = url.split('?').shift();
-      return `${ep}?${id}`;
+      con.info('nextEpUrl', anime.player.next);
+      return anime.player.next;
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('.o6_o8 > span').text().trim();
+      con.info('getTitle', anime.data.eng_name);
+      return anime.data.eng_name || anime.data.name || anime.data.rus_name;
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 5);
+      con.info('getIdentifier', anime.data.id);
+      return anime.data.id.toString();
     },
     uiSelector(selector) {
       j.$('.tabs._border').before(j.html(selector));
     },
   },
+
   init(page: SyncPage) {
     api.storage.addStyle(
-      // eslint-disable-next-line global-require
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
 
-    let interval: number | NodeJS.Timeout;
-    utils.changeDetect(check, () => {
-      return j.$('meta[property="og:url').attr('content');
+    j.$(() => {
+      utils.fullUrlChangeDetect(check, true);
     });
-    check();
 
-    function check() {
+    async function check() {
       page.reset();
+      clearInterval(interval);
       con.info('Start checking current page');
-      // when we are on SYNC page
+
+      if (!AnimeLib.isSyncPage(page.url) && !AnimeLib.isOverviewPage!(page.url)) return;
+
+      // NOTE - We are on the SYNC page
       if (AnimeLib.isSyncPage(page.url)) {
         con.info('This is a sync page');
-        clearInterval(interval);
-        interval = utils.changeDetect(
-          () => {
-            page.reset();
-            page.handlePage();
-          },
-          () => {
-            return detectChangeInPlayer();
-          },
-          true,
-        );
+
+        const animeId = utils.urlPart(page.url, 5);
+        const { data: animeData } = await getAnimeData(animeId);
+
+        anime.data = animeData;
+
+        con.info('anime', anime);
+
+        const { data: episodes } = await getEpisodesData(animeId);
+
+        con.info('episoeds', episodes);
+
+        const episodeID = utils.urlParam(page.url, 'episode');
+        if (episodeID) {
+          const episode = await getEpisodeData(episodeID);
+          con.info('episode', episode);
+
+          anime.player.episode = Number(episode.number || episode.number_secondary);
+          anime.player.season = Number(episode.season || 0);
+
+          const currentEpisode = episodes.find(e => e.id === Number(episodeID));
+          if (currentEpisode) {
+            const currentIndex = episodes.indexOf(currentEpisode);
+            if (currentIndex + 1 < episodes.length - 1) {
+              const nextId = episodes[currentIndex + 1].id;
+              anime.player.next = utils.absoluteLink(
+                `ru/anime/${animeId}/watch?episode=${nextId}`,
+                AnimeLib.domain,
+              );
+            }
+          }
+        }
+
+        interval = utils.fullUrlChangeDetect(() => {
+          page.reset();
+          page.handlePage();
+        });
       }
-      // when we are on OVERVIEW page
+
+      // NOTE - We are on the OVERVIEW page
       if (AnimeLib.isOverviewPage!(page.url)) {
         con.info('This is an overview page');
-        clearInterval(interval);
+        const { data: animeData } = await getAnimeData(utils.urlPart(page.url, 5));
+
+        anime.data = animeData;
+        con.info('anime', anime);
+
         interval = utils.waitUntilTrue(
           () => {
-            return !!j.$('.tabs-item').length;
+            return j.$('.tabs-item').length;
           },
           () => {
             page.handlePage();
@@ -94,18 +155,24 @@ export const AnimeLib: pageInterface = {
         );
       }
     }
-
-    function detectChangeInPlayer() {
-      const episode = j.$('.t4_f5').text();
-      // .i_m   - AnimeLib player (video)
-      // .mn_mo - Kodik player (iframe)
-      const player = j.$(j.$('.i_m') || j.$('.mn_mo')).attr('src');
-      const dubSub = j.$('.tabs-item.is-active').text();
-      return JSON.stringify({
-        episode,
-        player,
-        dubSub,
-      });
-    }
   },
 };
+
+function apiRequest(path: string) {
+  return api.request.xhr('GET', `https://api.mangalib.me/api/${path}`);
+}
+
+async function getAnimeData(anime_id: string): Promise<IAnime> {
+  const data = await apiRequest(`anime/${anime_id}`);
+  return JSON.parse(data.responseText);
+}
+
+async function getEpisodeData(episode_id: string): Promise<IEpisode> {
+  const data = await apiRequest(`episodes/${episode_id}`);
+  return JSON.parse(data.responseText);
+}
+
+async function getEpisodesData(anime_id: string): Promise<IEpisodes> {
+  const data = await apiRequest(`episodes?anime_id=${anime_id}`);
+  return JSON.parse(data.responseText);
+}
