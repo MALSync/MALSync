@@ -48,10 +48,14 @@ export interface Meta {
 }
 
 export interface IEpisodes {
-  data: IEpisode[];
+  data: IEpisodeData[];
 }
 
 export interface IEpisode {
+  data: IEpisodeData;
+}
+
+export interface IEpisodeData {
   id: number;
   model: Model;
   name: string;

@@ -92,57 +92,34 @@ export const AnimeLib: pageInterface = {
       clearInterval(interval);
       con.info('Start checking current page');
 
-      if (!AnimeLib.isSyncPage(page.url) && !AnimeLib.isOverviewPage!(page.url)) return;
+      if (
+        !AnimeLib.isSyncPage(window.location.href) &&
+        !AnimeLib.isOverviewPage!(window.location.href)
+      )
+        return;
 
       // NOTE - We are on the SYNC page
-      if (AnimeLib.isSyncPage(page.url)) {
+      if (AnimeLib.isSyncPage(window.location.href)) {
         con.info('This is a sync page');
 
-        const animeId = utils.urlPart(page.url, 5);
-        const { data: animeData } = await getAnimeData(animeId);
+        await updateSyncPage();
 
-        anime.data = animeData;
-
-        con.info('anime', anime);
-
-        const { data: episodes } = await getEpisodesData(animeId);
-
-        con.info('episoeds', episodes);
-
-        const episodeID = utils.urlParam(page.url, 'episode');
-        if (episodeID) {
-          const episode = await getEpisodeData(episodeID);
-          con.info('episode', episode);
-
-          anime.player.episode = Number(episode.number || episode.number_secondary);
-          anime.player.season = Number(episode.season || 0);
-
-          const currentEpisode = episodes.find(e => e.id === Number(episodeID));
-          if (currentEpisode) {
-            const currentIndex = episodes.indexOf(currentEpisode);
-            if (currentIndex + 1 < episodes.length - 1) {
-              const nextId = episodes[currentIndex + 1].id;
-              anime.player.next = utils.absoluteLink(
-                `ru/anime/${animeId}/watch?episode=${nextId}`,
-                AnimeLib.domain,
-              );
-            }
-          }
-        }
-
-        interval = utils.fullUrlChangeDetect(() => {
-          page.reset();
-          page.handlePage();
-        });
+        interval = utils.changeDetect(
+          async () => {
+            page.reset();
+            await updateSyncPage();
+            page.handlePage();
+          },
+          () => window.location.search.split('?')[1],
+          true,
+        );
       }
 
       // NOTE - We are on the OVERVIEW page
-      if (AnimeLib.isOverviewPage!(page.url)) {
+      if (AnimeLib.isOverviewPage!(window.location.href)) {
         con.info('This is an overview page');
-        const { data: animeData } = await getAnimeData(utils.urlPart(page.url, 5));
 
-        anime.data = animeData;
-        con.info('anime', anime);
+        await updateOverviewPage();
 
         interval = utils.waitUntilTrue(
           () => {
@@ -157,6 +134,47 @@ export const AnimeLib: pageInterface = {
     }
   },
 };
+
+async function updateOverviewPage() {
+  const { data: animeData } = await getAnimeData(utils.urlPart(window.location.href, 5));
+  anime.data = animeData;
+  con.info('anime', anime);
+}
+
+async function updateSyncPage() {
+  const animeId = utils.urlPart(window.location.href, 5);
+  const { data: animeData } = await getAnimeData(animeId);
+
+  anime.data = animeData;
+
+  con.info('anime', anime);
+
+  const { data: episodes } = await getEpisodesData(animeId);
+
+  con.info('episoeds', episodes);
+
+  const episodeID = utils.urlParam(window.location.href, 'episode');
+  con.info('episodeID', episodeID);
+  if (episodeID) {
+    const { data: episode } = await getEpisodeData(episodeID);
+    con.info('episode', episode);
+
+    anime.player.episode = Number(episode.number || episode.number_secondary);
+    anime.player.season = Number(episode.season || 0);
+
+    const currentEpisode = episodes.find(e => e.id === Number(episodeID));
+    if (currentEpisode) {
+      const currentIndex = episodes.indexOf(currentEpisode);
+      if (currentIndex + 1 < episodes.length - 1) {
+        const nextId = episodes[currentIndex + 1].id;
+        anime.player.next = utils.absoluteLink(
+          `ru/anime/${animeId}/watch?episode=${nextId}`,
+          AnimeLib.domain,
+        );
+      }
+    }
+  }
+}
 
 function apiRequest(path: string) {
   return api.request.xhr('GET', `https://api.mangalib.me/api/${path}`);
