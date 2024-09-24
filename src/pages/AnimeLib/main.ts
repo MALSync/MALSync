@@ -30,7 +30,6 @@ export const AnimeLib: pageInterface = {
   name: 'AnimeLib',
   type: 'anime',
   getImage() {
-    con.info('getImage', anime.data.cover.default);
     return anime.data.cover.default;
   },
   isSyncPage(url: string): boolean {
@@ -41,40 +40,42 @@ export const AnimeLib: pageInterface = {
   },
   sync: {
     getTitle(url: string): string {
-      con.info('getTitle', anime.data.eng_name);
       return anime.data.eng_name || anime.data.name || anime.data.rus_name;
     },
     getIdentifier(url: string): string {
-      con.info('getIdentifier', anime.data.id);
       return anime.data.id.toString();
     },
     getOverviewUrl(url: string): string {
-      con.info(
-        'getOverviewUrl',
-        utils.absoluteLink(`ru/anime/${anime.data.slug_url}`, AnimeLib.domain),
-      );
       return utils.absoluteLink(`ru/anime/${anime.data.slug_url}`, AnimeLib.domain);
     },
     getEpisode(url: string): number {
-      con.info('getEpisode', anime.player.episode);
       return anime.player.episode;
     },
     nextEpUrl(url: string): string | undefined {
-      con.info('nextEpUrl', anime.player.next);
       return anime.player.next;
+    },
+    getMalUrl(provider) {
+      if (anime.data.shikimori_href) {
+        const id = anime.data.shikimori_href.match(/\/[a-z]?(\d+)/);
+        if (id) {
+          return `https://myanimelist.net/anime/${id[1]}`;
+        }
+      }
+      return false;
     },
   },
   overview: {
     getTitle(url) {
-      con.info('getTitle', anime.data.eng_name);
       return anime.data.eng_name || anime.data.name || anime.data.rus_name;
     },
     getIdentifier(url) {
-      con.info('getIdentifier', anime.data.id);
       return anime.data.id.toString();
     },
     uiSelector(selector) {
       j.$('.tabs._border').before(j.html(selector));
+    },
+    getMalUrl(provider) {
+      return AnimeLib.sync.getMalUrl!(provider);
     },
   },
 
@@ -100,8 +101,6 @@ export const AnimeLib: pageInterface = {
 
       // NOTE - We are on the SYNC page
       if (AnimeLib.isSyncPage(window.location.href)) {
-        con.info('This is a sync page');
-
         await updateSyncPage();
 
         interval = utils.changeDetect(
@@ -117,8 +116,6 @@ export const AnimeLib: pageInterface = {
 
       // NOTE - We are on the OVERVIEW page
       if (AnimeLib.isOverviewPage!(window.location.href)) {
-        con.info('This is an overview page');
-
         await updateOverviewPage();
 
         interval = utils.waitUntilTrue(
@@ -138,26 +135,17 @@ export const AnimeLib: pageInterface = {
 async function updateOverviewPage() {
   const { data: animeData } = await getAnimeData(utils.urlPart(window.location.href, 5));
   anime.data = animeData;
-  con.info('anime', anime);
 }
 
 async function updateSyncPage() {
   const animeId = utils.urlPart(window.location.href, 5);
   const { data: animeData } = await getAnimeData(animeId);
-
   anime.data = animeData;
 
-  con.info('anime', anime);
-
   const { data: episodes } = await getEpisodesData(animeId);
-
-  con.info('episoeds', episodes);
-
   const episodeID = utils.urlParam(window.location.href, 'episode');
-  con.info('episodeID', episodeID);
   if (episodeID) {
     const { data: episode } = await getEpisodeData(episodeID);
-    con.info('episode', episode);
 
     anime.player.episode = Number(episode.number || episode.number_secondary);
     anime.player.season = Number(episode.season || 0);
