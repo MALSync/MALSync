@@ -1,6 +1,6 @@
 {
-  "search": "https://mangalib.me/manga-list?name={searchterm}",
+  "search": "https://test-front.mangalib.me/ru/catalog?q={searchterm}",
   "urls": {
-    "match": ["*://mangalib.me/*"]
+    "match": ["*://*.mangalib.me/*"]
   }
 }
