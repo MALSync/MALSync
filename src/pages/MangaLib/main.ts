@@ -1,5 +1,7 @@
+/* eslint-disable global-require */
 import { pageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
+import { Manga, getMangaData, getChapterData, getChaptersData } from '../AnimeLib/api';
 
 const { asyncWaitUntilTrue: awaitReaderLoading, reset: resetAwaitReader } =
   utils.getAsyncWaitUntilTrue(() => j.$('main img').length);
@@ -7,34 +9,33 @@ const { asyncWaitUntilTrue: awaitReaderLoading, reset: resetAwaitReader } =
 const { asyncWaitUntilTrue: awaitOverviewLoading, reset: resetAwaitOverview } =
   utils.getAsyncWaitUntilTrue(() => j.$('.n1_n3').length);
 
-type TMangaData = {
-  id: string;
-  title: string;
-  cover: string;
+const manga: Manga = {
+  data: {
+    id: 0,
+    name: '',
+    rus_name: '',
+    eng_name: '',
+    slug_url: '',
+    cover: {
+      thumbnail: '',
+      default: '',
+    },
+  },
   reader: {
-    volume: number;
-    chapter: number;
-  };
-};
-
-const mangaData: TMangaData = {
-  id: '',
-  title: '',
-  cover: '',
-  reader: {
-    volume: 0,
     chapter: 0,
+    total: 0,
+    volume: 0,
+    next: undefined,
   },
 };
-
 export const MangaLib: pageInterface = {
   name: 'MangaLib',
   domain: ['https://test-front.mangalib.me'],
   languages: ['Russian'],
   type: 'manga',
   getImage() {
-    con.info('getImage', mangaData.cover);
-    return mangaData.cover;
+    con.info('getImage', manga.data.cover);
+    return manga.data.cover.default || manga.data.cover.thumbnail;
   },
   isSyncPage(url) {
     con.info('isSyncPage', utils.urlPart(url, 5) === 'read');
@@ -46,33 +47,32 @@ export const MangaLib: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      con.info('getTitle', mangaData.title);
-      return mangaData.title;
+      con.info('getTitle', manga.data.eng_name);
+      return manga.data.eng_name || manga.data.name || manga.data.rus_name;
     },
     getIdentifier(url) {
-      con.info('getIdentifier', mangaData.id);
-      return mangaData.id;
+      con.info('getIdentifier', manga.data.id);
+      return manga.data.id.toString();
     },
     getOverviewUrl(url) {
-      con.info('getOverviewUrl', utils.absoluteLink(`ru/manga/${mangaData.id}`, MangaLib.domain));
-      return utils.absoluteLink(`ru/manga/${mangaData.id}`, MangaLib.domain);
+      con.info('getOverviewUrl', utils.absoluteLink(`ru/manga/${manga.data.id}`, MangaLib.domain));
+      return utils.absoluteLink(`ru/manga/${manga.data.id}`, MangaLib.domain);
     },
     getEpisode(url) {
-      con.info('getEpisode', mangaData.reader.chapter);
-      return mangaData.reader.chapter;
+      con.info('getEpisode', manga.reader.chapter);
+      return manga.reader.chapter;
     },
     getVolume(url) {
-      con.info('getVolume', mangaData.reader.volume);
-      return mangaData.reader.volume;
+      con.info('getVolume', manga.reader.volume);
+      return manga.reader.volume || 1;
     },
     nextEpUrl(url) {
-      const next = j.$('a.q2_bj.q2_r').last().attr('href');
-      con.info('nextEpUrl', utils.absoluteLink(next, MangaLib.domain));
-      return utils.absoluteLink(next, MangaLib.domain);
+      con.info('nextEpUrl', manga.reader.next);
+      return manga.reader.next;
     },
     readerConfig: [
       {
-        // TODO - Check this conditions
+        // TODO - Rewrite this conditions without random selectors
         condition: '.jv_jw[data-reader-mode="vertical"]',
         current: {
           selector: '.x7_k0',
@@ -102,12 +102,12 @@ export const MangaLib: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      con.info('getTitle', mangaData.title);
-      return mangaData.title;
+      con.info('getTitle', manga.data.eng_name);
+      return manga.data.eng_name || manga.data.name || manga.data.rus_name;
     },
     getIdentifier(url) {
-      con.info('getIdentifier', mangaData.id);
-      return mangaData.id;
+      con.info('getIdentifier', manga.data.id);
+      return manga.data.id.toString();
     },
     uiSelector(selector) {
       j.$('.tabs._border').before(j.html(selector));
@@ -115,7 +115,6 @@ export const MangaLib: pageInterface = {
   },
   init(page: SyncPage) {
     api.storage.addStyle(
-      // eslint-disable-next-line global-require
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
 
@@ -127,51 +126,69 @@ export const MangaLib: pageInterface = {
       page.reset();
       resetAwaitOverview();
       resetAwaitReader();
-      con.info('Start checking', page.url);
+      con.info('Start checking', window.location.href);
 
-      if (!MangaLib.isSyncPage(page.url) && !MangaLib.isOverviewPage!(page.url)) return;
-
-      let manga_id: string = '';
+      if (
+        !MangaLib.isSyncPage(window.location.href) &&
+        !MangaLib.isOverviewPage!(window.location.href)
+      )
+        return;
 
       // NOTE - if we are on sync page
-      if (MangaLib.isSyncPage(page.url)) {
+      if (MangaLib.isSyncPage(window.location.href)) {
         con.info('This is a sync page');
-        const v = utils.urlPart(page.url, 6).substring(1);
-        const c = utils.urlPart(page.url, 7).substring(1);
-        manga_id = utils.urlPart(page.url, 4);
-        mangaData.reader.chapter = Number(c);
-        mangaData.reader.volume = Number(v);
+        await updateSyncPage();
         await awaitReaderLoading();
       }
-      // NOTE - if we are on overview page
-      if (MangaLib.isOverviewPage!(page.url)) {
-        con.info('This is a overview page');
-        manga_id = utils.urlPart(page.url, 5);
 
+      // NOTE - if we are on overview page
+      if (MangaLib.isOverviewPage!(window.location.href)) {
+        con.info('This is a overview page');
+        await updateOverviewPage();
         await awaitOverviewLoading();
       }
-
-      // NOTE - handling data for manga
-      const { data } = await getData(manga_id);
-      con.log('manga_id', manga_id);
-      con.log('data', data);
-      mangaData.id = data.slug_url;
-      mangaData.cover = data.cover.default;
-      if (data.eng_name) {
-        mangaData.title = data.eng_name;
-      } else if (data.name) mangaData.title = data.name;
-      else if (data.ru_name) mangaData.title = data.ru_name;
 
       page.handlePage();
     }
   },
 };
 
-function apiRequest(path: string) {
-  return api.request.xhr('GET', `https://api.mangalib.me/api/${path}`);
+async function updateOverviewPage() {
+  const mangaSlug = utils.urlPart(window.location.href, 5);
+  const { data: mangaData } = await getMangaData(mangaSlug);
+  manga.data = mangaData;
 }
+async function updateSyncPage() {
+  const mangaSlug = utils.urlPart(window.location.href, 4);
+  const { data: mangaData } = await getMangaData(mangaSlug);
+  manga.data = mangaData;
 
-async function getData(manga_id: string) {
-  const data = await apiRequest(`manga/${manga_id}`);
-  return JSON.parse(data.responseText);
+  const volumeString = utils.urlPart(window.location.href, 6);
+  const chapterString = utils.urlPart(window.location.href, 7);
+
+  if (volumeString && chapterString) {
+    const { data: chapter } = await getChapterData(
+      mangaSlug,
+      chapterString,
+      volumeString.substring(1),
+    );
+    manga.reader.chapter = Number(chapter.number || chapter.number_secondary || 1);
+    manga.reader.volume = Number(chapter.volume || 1);
+
+    const { data: chapters } = await getChaptersData(mangaSlug);
+    if (chapters) {
+      manga.reader.total = chapters.length;
+      const currentEpisode = chapters.find(e => e.id === Number(manga.data.id));
+      if (currentEpisode) {
+        const currentIndex = chapters.indexOf(currentEpisode);
+        if (currentIndex + 1 < manga.reader.total - 1) {
+          const nextChapter = chapters[currentIndex + 1].number;
+          manga.reader.next = utils.absoluteLink(
+            `ru/${mangaSlug}/read/${volumeString}/c${nextChapter}`,
+            MangaLib.domain,
+          );
+        }
+      }
+    }
+  }
 }
