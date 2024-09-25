@@ -1,11 +1,11 @@
 /* eslint-disable global-require */
 import { pageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
-import { IAnime, IEpisode, IEpisodes } from './api';
+import { Anime, getAnimeData, getEpisodeData, getEpisodesData } from './api';
 
 let interval: number | NodeJS.Timeout;
 
-const anime: IAnime = {
+const anime: Anime = {
   data: {
     id: 0,
     name: '',
@@ -14,6 +14,7 @@ const anime: IAnime = {
     slug_url: '',
     cover: {
       default: '',
+      thumbnail: '',
     },
   },
   player: {
@@ -30,7 +31,7 @@ export const AnimeLib: pageInterface = {
   name: 'AnimeLib',
   type: 'anime',
   getImage() {
-    return anime.data.cover.default;
+    return anime.data.cover.default || anime.data.cover.thumbnail;
   },
   isSyncPage(url: string): boolean {
     return utils.urlPart(url, 6) !== '' && utils.urlPart(url, 4) === 'anime';
@@ -91,8 +92,6 @@ export const AnimeLib: pageInterface = {
     async function check() {
       page.reset();
       clearInterval(interval);
-      con.info('Start checking current page');
-
       if (
         !AnimeLib.isSyncPage(window.location.href) &&
         !AnimeLib.isOverviewPage!(window.location.href)
@@ -109,7 +108,7 @@ export const AnimeLib: pageInterface = {
             await updateSyncPage();
             page.handlePage();
           },
-          () => window.location.search.split('?')[1],
+          () => window.location.search,
           true,
         );
       }
@@ -149,11 +148,12 @@ async function updateSyncPage() {
 
     anime.player.episode = Number(episode.number || episode.number_secondary);
     anime.player.season = Number(episode.season || 0);
+    anime.player.total = episodes.length;
 
     const currentEpisode = episodes.find(e => e.id === Number(episodeID));
     if (currentEpisode) {
       const currentIndex = episodes.indexOf(currentEpisode);
-      if (currentIndex + 1 < episodes.length - 1) {
+      if (currentIndex + 1 < anime.player.total - 1) {
         const nextId = episodes[currentIndex + 1].id;
         anime.player.next = utils.absoluteLink(
           `ru/anime/${animeId}/watch?episode=${nextId}`,
@@ -162,23 +162,4 @@ async function updateSyncPage() {
       }
     }
   }
-}
-
-function apiRequest(path: string) {
-  return api.request.xhr('GET', `https://api.mangalib.me/api/${path}`);
-}
-
-async function getAnimeData(anime_id: string): Promise<IAnime> {
-  const data = await apiRequest(`anime/${anime_id}`);
-  return JSON.parse(data.responseText);
-}
-
-async function getEpisodeData(episode_id: string): Promise<IEpisode> {
-  const data = await apiRequest(`episodes/${episode_id}`);
-  return JSON.parse(data.responseText);
-}
-
-async function getEpisodesData(anime_id: string): Promise<IEpisodes> {
-  const data = await apiRequest(`episodes?anime_id=${anime_id}`);
-  return JSON.parse(data.responseText);
 }

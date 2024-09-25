@@ -1,18 +1,41 @@
 /* eslint-disable no-shadow */
-export interface IAnime {
+
+const API_DOMAIN = 'https://api.mangalib.me/api';
+export interface Anime {
   data: Data;
   meta?: Meta;
   player: Player;
 }
-
-export interface Player {
+export interface Manga {
+  data: Data;
+  meta?: Meta;
+  reader: Reader;
+}
+export interface Chapters {
+  data: ChapterData[];
+}
+export interface Chapter {
+  data: ChapterData;
+}
+export interface Episodes {
+  data: EpisodeData[];
+}
+export interface Episode {
+  data: EpisodeData;
+}
+interface Player {
   episode: number;
-  total: number;
+  total?: number;
   season?: number;
   next?: string;
 }
-
-export interface Data {
+interface Reader {
+  chapter: number;
+  total?: number;
+  volume?: number;
+  next?: string;
+}
+interface Data {
   id: number;
   name: string;
   rus_name: string;
@@ -30,34 +53,22 @@ export interface Data {
   shikimori_href?: string;
   shiki_rate?: number;
 }
-
-export interface Label {
+interface Label {
   id: number;
   label: string;
 }
-
-export interface Cover {
+interface Cover {
   filename?: string;
-  thumbnail?: string;
+  thumbnail: string;
   default: string;
   md?: string;
 }
-
-export interface Meta {
+interface Meta {
   country: string;
 }
-
-export interface IEpisodes {
-  data: IEpisodeData[];
-}
-
-export interface IEpisode {
-  data: IEpisodeData;
-}
-
-export interface IEpisodeData {
+interface EpisodeData {
   id: number;
-  model: Model;
+  model: string;
   name: string;
   number: string;
   number_secondary: string;
@@ -66,22 +77,112 @@ export interface IEpisodeData {
   anime_id: number;
   created_at: Date;
   item_number: number;
-  type: Model;
+  type: string;
+}
+interface Status {
+  id: string;
+  label: string;
+  abbr: unknown;
+}
+interface ChapterData {
+  id: number;
+  index: number;
+  item_number: number;
+  volume: string;
+  number: string;
+  number_secondary: string;
+  name: null | string;
+  branches_count: number;
+  branches: Branch[];
+}
+interface Branch {
+  id: number;
+  branch_id: number;
+  created_at: Date;
+  teams: Team[];
+  user: User;
+}
+interface Team {
+  id: number;
+  slug: string;
+  slug_url: string;
+  model: string;
+  name: string;
+  cover: Cover;
+}
+interface User {
+  username: string;
+  id: number;
 }
 
-export enum Statuses {
-  ПолноценныйЭпизод = 'Полноценный эпизод',
+function apiRequest(path: string) {
+  return api.request.xhr('GET', `${API_DOMAIN}/${path}`);
 }
 
-export enum Model {
-  Episodes = 'episodes',
+// NOTE - Anime API
+/**
+ *
+ * @param anime_slug - Can ONLY be like {@link Data.slug_url} from {@link Data}
+ * @returns Promise with {@link Anime} object
+ */
+export async function getAnimeData(anime_slug: string): Promise<Anime> {
+  const data = await apiRequest(`anime/${anime_slug}`);
+  return JSON.parse(data.responseText);
+}
+/**
+ *
+ * @param episode_id - {@link EpisodeData.id} from {@link EpisodeData}
+ * @returns Promise with {@link Episode} object
+ */
+export async function getEpisodeData(episode_id: string): Promise<Episode> {
+  const data = await apiRequest(`episodes/${episode_id}`);
+  return JSON.parse(data.responseText);
+}
+/**
+ *
+ * @param anime_id - Either like {@link Data.id} or {@link Data.slug_url} from {@link Data}
+ * @returns Promise with {@link Episodes} object
+ */
+export async function getEpisodesData(anime_id: string): Promise<Episodes> {
+  const data = await apiRequest(`episodes?anime_id=${anime_id}`);
+  return JSON.parse(data.responseText);
 }
 
-export interface Status {
-  id: ID;
-  label: Statuses;
-  abbr: null;
+// NOTE - Manga API
+/**
+ *
+ * @param manga_slug - Can ONLY be like {@link Data.slug_url} from {@link Data}
+ * @returns Promise with {@link Manga} object
+ */
+export async function getMangaData(manga_slug: string): Promise<Manga> {
+  const data = await apiRequest(`manga/${manga_slug}`);
+  return JSON.parse(data.responseText);
 }
-export enum ID {
-  Default = 'default',
+/**
+ *
+ * @param manga_slug - Can ONLY be like {@link Data.slug_url} from {@link Data}
+ * @param chapter_number - {@link ChapterData.number} from {@link ChapterData}
+ * @param volume_number - {@link ChapterData.volume} from {@link ChapterData}
+ * @param branch_id - {@link Branch.branch_id} from {@link Branch}
+ * @returns Promise with {@link Chapter} object
+ */
+export async function getChapterData(
+  manga_slug: string,
+  chapter_number: string,
+  volume_number: string,
+  branch_id?: string | number,
+): Promise<Chapter> {
+  const data = await apiRequest(
+    `manga/${manga_slug}/chapter?number=${chapter_number}&volume=${volume_number}&branch_id=${branch_id}`,
+  );
+  return JSON.parse(data.responseText);
+}
+/**
+ *
+ * @param manga_id - Either like {@link Data.id} or {@link Data.slug_url} from {@link Data} object
+ * @returns Promise with {@link Chapters} object
+ */
+export async function getChaptersData(manga_id: string): Promise<Chapters> {
+  const data = await apiRequest(`manga/${manga_id}/chapters`);
+  return JSON.parse(data.responseText);
 }
