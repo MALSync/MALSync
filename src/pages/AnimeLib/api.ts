@@ -49,9 +49,14 @@ interface Data {
   is_licensed?: boolean;
   model?: string;
   status?: Label;
+  items_count?: Count;
   releaseDateString?: string;
   shikimori_href?: string;
   shiki_rate?: number;
+}
+interface Count {
+  uploaded: number;
+  total?: number | 0;
 }
 interface Label {
   id: number;
@@ -127,25 +132,37 @@ function apiRequest(path: string) {
  */
 export async function getAnimeData(anime_slug: string): Promise<Anime> {
   const data = await apiRequest(`anime/${anime_slug}`);
-  return JSON.parse(data.responseText);
+  try {
+    return JSON.parse(data.responseText);
+  } catch (e) {
+    return {} as Anime;
+  }
 }
 /**
- *
+ * Request may be blocked by MangaLib API since some requests are protected from accessing directly. CORS Same Origin Policy
  * @param episode_id - {@link EpisodeData.id} from {@link EpisodeData}
  * @returns Promise with {@link Episode} object
  */
 export async function getEpisodeData(episode_id: string): Promise<Episode> {
   const data = await apiRequest(`episodes/${episode_id}`);
-  return JSON.parse(data.responseText);
+  try {
+    return JSON.parse(data.responseText);
+  } catch (e) {
+    return {} as Episode;
+  }
 }
 /**
- *
+ * Request may be blocked by MangaLib API since some requests are protected from accessing directly. CORS Same Origin Policy
  * @param anime_id - Either like {@link Data.id} or {@link Data.slug_url} from {@link Data}
  * @returns Promise with {@link Episodes} object
  */
 export async function getEpisodesData(anime_id: string): Promise<Episodes> {
   const data = await apiRequest(`episodes?anime_id=${anime_id}`);
-  return JSON.parse(data.responseText);
+  try {
+    return JSON.parse(data.responseText);
+  } catch (e) {
+    return {} as Episodes;
+  }
 }
 
 // NOTE - Manga API
@@ -154,12 +171,16 @@ export async function getEpisodesData(anime_id: string): Promise<Episodes> {
  * @param manga_slug - Can ONLY be like {@link Data.slug_url} from {@link Data}
  * @returns Promise with {@link Manga} object
  */
-export async function getMangaData(manga_slug: string): Promise<Manga> {
-  const data = await apiRequest(`manga/${manga_slug}`);
-  return JSON.parse(data.responseText);
+export async function getMangaData(manga_slug: string): Promise<Manga | undefined> {
+  const data = await apiRequest(`manga/${manga_slug}?fields[]=chap_count`);
+  try {
+    return JSON.parse(data.responseText);
+  } catch (e) {
+    return undefined;
+  }
 }
 /**
- *
+ * Request may be blocked by MangaLib API since some requests are protected from accessing directly. CORS Same Origin Policy
  * @param manga_slug - Can ONLY be like {@link Data.slug_url} from {@link Data}
  * @param chapter_number - {@link ChapterData.number} from {@link ChapterData}
  * @param volume_number - {@link ChapterData.volume} from {@link ChapterData}
@@ -171,18 +192,26 @@ export async function getChapterData(
   chapter_number: string,
   volume_number: string,
   branch_id?: string | number,
-): Promise<Chapter> {
+): Promise<Chapter | undefined> {
   const data = await apiRequest(
-    `manga/${manga_slug}/chapter?number=${chapter_number}&volume=${volume_number}&branch_id=${branch_id}`,
+    `manga/${manga_slug}/chapter?number=${chapter_number}&volume=${volume_number}${branch_id ? `&branch_id=${branch_id}` : ''}`,
   );
-  return JSON.parse(data.responseText);
+  try {
+    return JSON.parse(data.responseText);
+  } catch (e) {
+    return undefined;
+  }
 }
 /**
- *
+ * Request may be blocked by MangaLib API since some requests are protected from accessing directly. CORS Same Origin Policy
  * @param manga_id - Either like {@link Data.id} or {@link Data.slug_url} from {@link Data} object
  * @returns Promise with {@link Chapters} object
  */
-export async function getChaptersData(manga_id: string): Promise<Chapters> {
+export async function getChaptersData(manga_id: string): Promise<Chapters | undefined> {
   const data = await apiRequest(`manga/${manga_id}/chapters`);
-  return JSON.parse(data.responseText);
+  try {
+    return JSON.parse(data.responseText);
+  } catch (e) {
+    return undefined;
+  }
 }

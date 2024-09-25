@@ -146,7 +146,7 @@ async function updateSyncPage() {
   if (episodeID) {
     const { data: episode } = await getEpisodeData(episodeID);
 
-    anime.player.episode = Number(episode.number || episode.number_secondary);
+    anime.player.episode = Number(episode.number || episode.item_number || 1);
     anime.player.season = Number(episode.season || 0);
     anime.player.total = episodes.length;
 
