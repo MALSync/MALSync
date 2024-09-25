@@ -73,28 +73,28 @@ export const MangaLib: pageInterface = {
     readerConfig: [
       {
         // TODO - Rewrite this conditions without random selectors
-        condition: '.jv_jw[data-reader-mode="vertical"]',
+        condition: '[data-reader-mode="vertical"]',
         current: {
-          selector: '.x7_k0',
+          selector: 'footer',
           mode: 'text',
-          regex: '\n(\\d+) / (\\d+)',
+          regex: '/(d+) / (d+)$/',
           group: 1,
         },
         total: {
-          selector: '.x7_k0',
+          selector: 'footer',
           mode: 'text',
-          regex: '\n(\\d+) / (\\d+)',
+          regex: '/(d+) / (d+)$/',
           group: 2,
         },
       },
       {
-        condition: '.jv_jw[data-reader-mode="horizontal"]',
+        condition: '[data-reader-mode="horizontal"]',
         current: {
-          selector: '.xy_j8',
+          selector: 'footer',
           mode: 'countAbove',
         },
         total: {
-          selector: '.xy_j8',
+          selector: 'footer',
           mode: 'count',
         },
       },
@@ -169,7 +169,7 @@ async function updateSyncPage() {
   if (volumeString && chapterString) {
     const { data: chapter } = await getChapterData(
       mangaSlug,
-      chapterString,
+      chapterString.substring(1),
       volumeString.substring(1),
     );
     manga.reader.chapter = Number(chapter.number || chapter.number_secondary || 1);
