@@ -190,7 +190,7 @@ export async function getMangaData(manga_slug: string): Promise<Manga | undefine
   const data = await apiRequest(`manga/${manga_slug}?fields[]=chap_count`);
   try {
     const check: Manga = JSON.parse(data.responseText);
-    if (check.data) throw 'No manga data found';
+    if (!check.data) throw 'No manga data found';
     return check;
   } catch (e) {
     return undefined;
