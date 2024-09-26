@@ -64,8 +64,8 @@ interface Label {
 }
 interface Cover {
   filename?: string;
-  thumbnail: string;
-  default: string;
+  thumbnail?: string;
+  default?: string;
   md?: string;
 }
 interface Meta {
@@ -124,18 +124,29 @@ function apiRequest(path: string) {
   return api.request.xhr('GET', `${API_DOMAIN}/${path}`);
 }
 
+/**
+ * Check if given URL belongs to API
+ * @param url - URL to check
+ * @returns `true` if URL belongs to API, `false` overwise
+ */
+export function isPageAPI(url: string): boolean {
+  const regex = /.*:\/\/(?!api.).*.?mangalib.me(?!\/?api\/)/;
+  return !regex.test(url);
+}
 // NOTE - Anime API
 /**
  *
  * @param anime_slug - Can ONLY be like {@link Data.slug_url} from {@link Data}
  * @returns Promise with {@link Anime} object
  */
-export async function getAnimeData(anime_slug: string): Promise<Anime> {
-  const data = await apiRequest(`anime/${anime_slug}`);
+export async function getAnimeData(anime_slug: string): Promise<Anime | undefined> {
+  const data = await apiRequest(`anime/${anime_slug}?fields[]=episodes_count`);
   try {
-    return JSON.parse(data.responseText);
+    const check: Anime = JSON.parse(data.responseText);
+    if (!check.data) throw 'No anime data found';
+    return check;
   } catch (e) {
-    return {} as Anime;
+    return undefined;
   }
 }
 /**
@@ -143,12 +154,14 @@ export async function getAnimeData(anime_slug: string): Promise<Anime> {
  * @param episode_id - {@link EpisodeData.id} from {@link EpisodeData}
  * @returns Promise with {@link Episode} object
  */
-export async function getEpisodeData(episode_id: string): Promise<Episode> {
+export async function getEpisodeData(episode_id: string): Promise<Episode | undefined> {
   const data = await apiRequest(`episodes/${episode_id}`);
   try {
-    return JSON.parse(data.responseText);
+    const check: Episode = JSON.parse(data.responseText);
+    if (!check.data) throw 'No episode data found';
+    return check;
   } catch (e) {
-    return {} as Episode;
+    return undefined;
   }
 }
 /**
@@ -156,12 +169,14 @@ export async function getEpisodeData(episode_id: string): Promise<Episode> {
  * @param anime_id - Either like {@link Data.id} or {@link Data.slug_url} from {@link Data}
  * @returns Promise with {@link Episodes} object
  */
-export async function getEpisodesData(anime_id: string): Promise<Episodes> {
+export async function getEpisodesData(anime_id: string): Promise<Episodes | undefined> {
   const data = await apiRequest(`episodes?anime_id=${anime_id}`);
   try {
-    return JSON.parse(data.responseText);
+    const check: Episodes = JSON.parse(data.responseText);
+    if (!check.data || !check.data.length) throw 'No episodes data found';
+    return check;
   } catch (e) {
-    return {} as Episodes;
+    return undefined;
   }
 }
 
@@ -174,7 +189,9 @@ export async function getEpisodesData(anime_id: string): Promise<Episodes> {
 export async function getMangaData(manga_slug: string): Promise<Manga | undefined> {
   const data = await apiRequest(`manga/${manga_slug}?fields[]=chap_count`);
   try {
-    return JSON.parse(data.responseText);
+    const check: Manga = JSON.parse(data.responseText);
+    if (check.data) throw 'No manga data found';
+    return check;
   } catch (e) {
     return undefined;
   }
@@ -197,7 +214,9 @@ export async function getChapterData(
     `manga/${manga_slug}/chapter?number=${chapter_number}&volume=${volume_number}${branch_id ? `&branch_id=${branch_id}` : ''}`,
   );
   try {
-    return JSON.parse(data.responseText);
+    const check: Chapter = JSON.parse(data.responseText);
+    if (!check.data) throw 'No chapter data found';
+    return check;
   } catch (e) {
     return undefined;
   }
@@ -210,7 +229,9 @@ export async function getChapterData(
 export async function getChaptersData(manga_id: string): Promise<Chapters | undefined> {
   const data = await apiRequest(`manga/${manga_id}/chapters`);
   try {
-    return JSON.parse(data.responseText);
+    const check: Chapters = JSON.parse(data.responseText);
+    if (!check.data || !check.data.length) throw 'No chapters data found';
+    return check;
   } catch (e) {
     return undefined;
   }

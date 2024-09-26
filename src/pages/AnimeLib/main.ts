@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 import { pageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
-import { Anime, getAnimeData, getEpisodeData, getEpisodesData } from './api';
+import { Anime, Episode, Episodes, getAnimeData, getEpisodeData, getEpisodesData } from './api';
 
 let interval: number | NodeJS.Timeout;
 
@@ -13,14 +13,14 @@ const anime: Anime = {
     eng_name: '',
     slug_url: '',
     cover: {
-      default: '',
-      thumbnail: '',
+      default: undefined,
+      thumbnail: undefined,
     },
   },
   player: {
-    episode: 0,
-    total: 0,
-    season: 0,
+    episode: 1,
+    total: 1,
+    season: 1,
     next: undefined,
   },
 };
@@ -109,7 +109,6 @@ export const AnimeLib: pageInterface = {
             page.handlePage();
           },
           () => window.location.search,
-          true,
         );
       }
 
@@ -127,39 +126,130 @@ export const AnimeLib: pageInterface = {
           500,
         );
       }
+
+      page.handlePage();
     }
   },
 };
 
 async function updateOverviewPage() {
-  const { data: animeData } = await getAnimeData(utils.urlPart(window.location.href, 5));
-  anime.data = animeData;
-}
-
-async function updateSyncPage() {
-  const animeId = utils.urlPart(window.location.href, 5);
-  const { data: animeData } = await getAnimeData(animeId);
-  anime.data = animeData;
-
-  const { data: episodes } = await getEpisodesData(animeId);
-  const episodeID = utils.urlParam(window.location.href, 'episode');
-  if (episodeID) {
-    const { data: episode } = await getEpisodeData(episodeID);
-
-    anime.player.episode = Number(episode.number || episode.item_number || 1);
-    anime.player.season = Number(episode.season || 0);
-    anime.player.total = episodes.length;
-
-    const currentEpisode = episodes.find(e => e.id === Number(episodeID));
-    if (currentEpisode) {
-      const currentIndex = episodes.indexOf(currentEpisode);
-      if (currentIndex + 1 < anime.player.total - 1) {
-        const nextId = episodes[currentIndex + 1].id;
-        anime.player.next = utils.absoluteLink(
-          `ru/anime/${animeId}/watch?episode=${nextId}`,
-          AnimeLib.domain,
-        );
+  const animeSlug = utils.urlPart(window.location.href, 5);
+  const data = await getAnimeData(animeSlug);
+  if (data) {
+    anime.data = data.data;
+  } else {
+    const metadataJson = j.$('script[type="application/ld+json"]').text();
+    if (!metadataJson) {
+      try {
+        const animeMetadata = JSON.parse(metadataJson)[1];
+        anime.data.rus_name = animeMetadata.name || animeMetadata.headline || '';
+        const alternativeHeadline = animeMetadata.alternativeHeadline[0];
+        anime.data.eng_name = alternativeHeadline || '';
+      } catch (e) {
+        anime.data.eng_name = j.$('.container h2').text();
       }
     }
   }
+}
+
+async function updateSyncPage() {
+  const animeSlug = utils.urlPart(window.location.href, 5);
+  const idRegex = animeSlug.match(/(\d+)/);
+  const animeId = Number(idRegex ? idRegex[0] : 0);
+  const currentEpisodeButton = j.$(`[data-scroll-id="${animeId}"] span`);
+  const episodeID = utils.urlParam(window.location.href, 'episode') || '0';
+
+  const animeData = await getAnimeData(animeSlug);
+  const episodesData = await getEpisodesData(animeSlug);
+  const episodeData = await getEpisodeData(episodeID);
+
+  const haveAnimeData = !!animeData;
+  const haveEpisodesData = !!episodesData;
+  const haveEpisodeData = !!episodeData;
+
+  if (haveAnimeData) {
+    getAnimeDataAPI(animeData);
+  } else {
+    getAnimeDataNoAPI(animeSlug, animeId);
+    if (!haveEpisodesData) {
+      getTotalEpisodesNoAPI();
+    }
+  }
+  if (haveEpisodesData) {
+    getNextEpisodeAPI(episodesData);
+    getTotalEpisodesAPI(undefined, episodesData);
+  } else {
+    getNextEpisodeNoAPI(currentEpisodeButton, animeId);
+    getTotalEpisodesAPI(animeData);
+  }
+  if (haveEpisodeData) {
+    getSeasonAPI(episodeData);
+    getCurrentEpisodeAPI(episodeData);
+  } else {
+    getCurrentEpisodeNoAPI(currentEpisodeButton);
+    getSeasonNoAPI();
+  }
+}
+
+function getTotalEpisodesNoAPI() {
+  const totalEpisodes = j.$('[data-scroll-id]').length;
+  anime.player.total = totalEpisodes;
+  return anime.player.total;
+}
+function getTotalEpisodesAPI(anime_data?: Anime, episodes_data?: Episodes) {
+  if (anime_data) {
+    anime.player.total =
+      anime_data.data.items_count!.total || anime_data.data.items_count!.uploaded;
+  }
+  if (episodes_data) {
+    anime.player.total = episodes_data.data.length;
+  }
+  return anime.player.total || 0;
+}
+function getCurrentEpisodeNoAPI(currentEpisodeButton: JQuery<HTMLElement>) {
+  if (currentEpisodeButton) {
+    anime.player.episode = Number(currentEpisodeButton.text().split(' ')[0]);
+  }
+}
+function getCurrentEpisodeAPI(episode_data: Episode) {
+  anime.player.episode = Number(episode_data.data.number || episode_data.data.item_number || 1);
+}
+function getNextEpisodeNoAPI(currentEpisodeButton: JQuery<HTMLElement>, animeId: number) {
+  const nextEpisodeButton = currentEpisodeButton.next();
+  if (nextEpisodeButton && nextEpisodeButton !== currentEpisodeButton) {
+    anime.player.next = window.location.href.replace(
+      animeId.toString(),
+      nextEpisodeButton.attr('data-scroll-id') || '',
+    );
+  }
+}
+function getNextEpisodeAPI(episodes_data: Episodes) {
+  const animeSlug = utils.urlPart(window.location.href, 5);
+  const episodeID = utils.urlParam(window.location.href, 'episode');
+  const currentEpisode = episodes_data.data.find(e => e.id === Number(episodeID));
+  if (currentEpisode) {
+    const currentIndex = episodes_data.data.indexOf(currentEpisode);
+    if (currentIndex + 1 < getTotalEpisodesAPI(undefined, episodes_data) - 1) {
+      const nextId = episodes_data.data[currentIndex + 1].id;
+      anime.player.next = utils.absoluteLink(
+        `ru/anime/${animeSlug}/watch?episode=${nextId}`,
+        AnimeLib.domain,
+      );
+    }
+  }
+}
+function getSeasonNoAPI() {
+  anime.player.season = 1;
+}
+function getSeasonAPI(episode_data: Episode) {
+  anime.player.season = Number(episode_data.data.season || 1);
+}
+function getAnimeDataNoAPI(animeSlug: string, animeId: number) {
+  anime.data.rus_name = j.$('h1 a').text();
+  anime.data.id = animeId;
+  anime.data.slug_url = animeSlug;
+  anime.data.cover.default = j.$('.cover img').attr('src') || '';
+}
+function getAnimeDataAPI(anime_data: Anime) {
+  anime.data = anime_data.data;
 }
