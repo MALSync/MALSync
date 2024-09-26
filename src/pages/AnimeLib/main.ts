@@ -180,7 +180,9 @@ async function updateSyncPage() {
     getTotalEpisodesAPI(undefined, episodesData);
   } else {
     getNextEpisodeNoAPI(currentEpisodeButton, animeId);
-    getTotalEpisodesAPI(animeData);
+    if (haveAnimeData) {
+      getTotalEpisodesAPI(animeData);
+    }
   }
   if (haveEpisodeData) {
     getSeasonAPI(episodeData);
