@@ -1,4 +1,3 @@
-import { nineAnime } from './nineAnime/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
 import { Gogoanime } from './Gogoanime/main';
@@ -71,7 +70,6 @@ import { MangaJar } from './MangaJar/main';
 import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
 import { AnimeWho } from './AnimeWho/main';
-import { AnimeSuge } from './AnimeSuge/main';
 import { Toonily } from './Toonily/main';
 import { Fumetsu } from './Fumetsu/main';
 import { FrixySubs } from './FrixySubs/main';
@@ -122,7 +120,6 @@ import { AnimeGO } from './AnimeGO/main';
 import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
-import { Anix } from './Anix/main';
 import { HinataSoul } from './HinataSoul/main';
 import { OgladajAnime } from './OgladajAnime/main';
 import { hachi } from './hachi/main';
@@ -138,7 +135,6 @@ import { Bakashi } from './Bakashi/main';
 import { TempleScan } from './TempleScan/main';
 
 export const pages = {
-  nineAnime,
   Crunchyroll,
   Mangadex,
   Gogoanime,
@@ -211,7 +207,6 @@ export const pages = {
   Otakustv,
   Komga,
   AnimeWho,
-  AnimeSuge,
   Toonily,
   Fumetsu,
   FrixySubs,
@@ -262,7 +257,6 @@ export const pages = {
   Animeflix,
   LuciferDonghua,
   NeoxScans,
-  Anix,
   HinataSoul,
   OgladajAnime,
   hachi,
