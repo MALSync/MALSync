@@ -71,6 +71,9 @@
       "*://hianime.mn/*",
       "*://hianime.sx/*"
     ],
+    "tmofans": [
+      "*://zonatmo.com/*"
+    ],
     "iframe": [
       "*://*.jwplayerhls.com/*",
       "*://*.videzz.net/*",
