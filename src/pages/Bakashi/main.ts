@@ -13,17 +13,17 @@ export const Bakashi: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('#titleHis').text().split('- EP')[0].trim();
+      return j.$('#titleHis').text().split('- EP')[0].trim() || j.$('.data h1').text().trim();
     },
     getIdentifier(url) {
       return Bakashi.overview!.getIdentifier(Bakashi.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      return j.$('.pag_episodes .item:nth-child(2) a').first().attr('href') || '';
+      return j.$('.pag_episodes .item:nth-child(2) a').first().attr('href') || window.location.href;
     },
     getEpisode(url) {
-      const episode = j.$('#titleHis').text().split('- EP')[1].trim();
-      return  episode ? Number(episode) : 1;
+      const episode = j.$('#titleHis').text().split('- EP')[1]?.trim();
+      return episode ? Number(episode) : 1;
     },
     nextEpUrl(url) {
       return j.$('.pag_episodes .item:nth-child(3) a').first().attr('href') || '';
