@@ -175,6 +175,9 @@ async function updateSyncPage() {
     if (current) {
       manga.reader.chapter = Number(current[2]);
       manga.reader.volume = Number(current[1]);
+    } else {
+      manga.reader.chapter = 1;
+      manga.reader.volume = 1;
     }
   }
 
@@ -183,13 +186,18 @@ async function updateSyncPage() {
   if (chaptersData) {
     const { data: chapters } = chaptersData;
     manga.reader.total = chapters.length;
-    const currentEpisode = chapters.find(e => e.number === manga.reader.chapter.toString());
+    const currentEpisode = chapters.find(
+      e =>
+        e.number === manga.reader.chapter.toString() &&
+        e.volume === manga.reader.volume!.toString(),
+    );
     if (currentEpisode) {
       const currentIndex = chapters.indexOf(currentEpisode);
       if (currentIndex + 1 < manga.reader.total - 1) {
         const nextChapter = chapters[currentIndex + 1].number;
+        const nextVolume = chapters[currentIndex + 1].volume;
         manga.reader.next = utils.absoluteLink(
-          `ru/${mangaSlug}/read/v${manga.reader.volume}/c${nextChapter}`,
+          `ru/${mangaSlug}/read/v${nextVolume}/c${nextChapter}`,
           MangaLib.domain,
         );
       }
