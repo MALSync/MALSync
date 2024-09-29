@@ -6,7 +6,7 @@ export const Bakashi: pageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    return utils.urlPart(url, 3).startsWith('episodio');
+    return ['episodio', 'filmes'].includes(url.split('/')[3]);
   },
   isOverviewPage(url) {
     return ['animes'].includes(utils.urlPart(url, 3));
@@ -22,7 +22,8 @@ export const Bakashi: pageInterface = {
       return j.$('.pag_episodes .item:nth-child(2) a').first().attr('href') || '';
     },
     getEpisode(url) {
-      return Number(j.$('#titleHis').text().split('- EP')[1].trim());
+      const episode = j.$('#titleHis').text().split('- EP')[1].trim();
+      return  episode ? Number(episode) : 1;
     },
     nextEpUrl(url) {
       return j.$('.pag_episodes .item:nth-child(3) a').first().attr('href') || '';
