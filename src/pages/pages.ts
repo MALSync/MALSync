@@ -25,7 +25,6 @@ import { mangalivre } from './mangalivre/main';
 import { tmofans } from './tmofans/main';
 import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
-import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
 import { PrimeVideo } from './PrimeVideo/main';
@@ -33,7 +32,6 @@ import { MangaKatana } from './MangaKatana/main';
 import { manga4life } from './manga4life/main';
 import { bato } from './bato/main';
 import { MangaPark } from './MangaPark/main';
-import { AnimesHouse } from './AnimesHouse/main';
 import { AnimeXin } from './AnimeXin/main';
 import { MonosChinos } from './MonosChinos/main';
 import { Anime365 } from './Anime365/main';
@@ -162,7 +160,6 @@ export const pages = {
   tmofans,
   MangaPlus,
   JapScan,
-  AnimesVision,
   Hulu,
   Hidive,
   PrimeVideo,
@@ -170,7 +167,6 @@ export const pages = {
   manga4life,
   bato,
   MangaPark,
-  AnimesHouse,
   AnimeXin,
   MonosChinos,
   Anime365,
