@@ -122,10 +122,62 @@ interface User {
   username: string;
   id: number;
 }
+interface Auth {
+  token: Token;
+  auth: AuthClass;
+  prevUrl: string;
+  timestamp: number;
+}
+
+interface AuthClass {
+  id: number;
+  username: string;
+  avatar: Avatar;
+  last_online_at: Date;
+  teams: unknown[];
+  permissions: unknown[];
+  roles: unknown[];
+  metadata: Metadata;
+}
+
+interface Avatar {
+  filename: string;
+  url: string;
+}
+
+interface Metadata {
+  auth_domains: { [key: string]: string };
+}
+
+interface Token {
+  token_type: string;
+  expires_in: number;
+  access_token: string;
+  refresh_token: string;
+  timestamp: number;
+}
 
 // NOTE - Requests
-function apiRequest(path: string) {
-  return api.request.xhr('GET', `${API_DOMAIN}/${path}`);
+function getAuthToken(): Token | undefined {
+  const auth = window.localStorage.getItem('auth');
+  if (auth) {
+    const { token }: Auth = JSON.parse(auth);
+    return token;
+  }
+  return undefined;
+}
+
+async function apiRequest(path: string) {
+  const url: Parameters<typeof api.request.xhr>[1] = {
+    url: `${API_DOMAIN}/${path}`,
+  };
+  const token = getAuthToken();
+  if (token) {
+    url.headers = {
+      Authorization: `Bearer ${token.access_token}`,
+    };
+  }
+  return api.request.xhr('GET', url);
 }
 
 /**
@@ -134,7 +186,7 @@ function apiRequest(path: string) {
  * @returns `true` if URL belongs to API, `false` overwise
  */
 export function isPageAPI(url: string): boolean {
-  const regex = /.*:\/\/(?!api\.)\w*\.?\w+.me\/(?!api)/gm;
+  const regex = /.*:\/\/(?!api\.).*\.?.+.me\/(?!api)/;
   return !regex.test(url);
 }
 // NOTE - Anime API
@@ -201,7 +253,7 @@ export async function getMangaData(manga_slug: string): Promise<Manga | undefine
   }
 }
 /**
- * Request may be blocked by MangaLib API since some requests are protected from accessing directly. CORS Same Origin Policy
+ *
  * @param manga_slug - Can ONLY be like {@link Data.slug_url} from {@link Data}
  * @param chapter_number - {@link ChapterData.number} from {@link ChapterData}
  * @param volume_number - {@link ChapterData.volume} from {@link ChapterData}
@@ -226,7 +278,7 @@ export async function getChapterData(
   }
 }
 /**
- * Request may be blocked by MangaLib API since some requests are protected from accessing directly. CORS Same Origin Policy
+ *
  * @param manga_id - Either like {@link Data.id} or {@link Data.slug_url} from {@link Data} object
  * @returns Promise with {@link Chapters} object
  */
