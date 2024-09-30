@@ -133,7 +133,7 @@ async function updateOverviewPage() {
     manga.data = data.data;
   } else {
     const metadataJson = j.$('script[type="application/ld+json"]').text();
-    if (!metadataJson) {
+    if (metadataJson) {
       try {
         const mangaMetadata = JSON.parse(metadataJson)[1];
         manga.data.rus_name = mangaMetadata.name || mangaMetadata.headline || '';
