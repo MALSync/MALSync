@@ -139,7 +139,7 @@ async function updateOverviewPage() {
     anime.data = data.data;
   } else {
     const metadataJson = j.$('script[type="application/ld+json"]').text();
-    if (!metadataJson) {
+    if (metadataJson) {
       try {
         const animeMetadata = JSON.parse(metadataJson)[1];
         anime.data.rus_name = animeMetadata.name || animeMetadata.headline || '';
