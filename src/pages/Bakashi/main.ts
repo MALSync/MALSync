@@ -6,23 +6,24 @@ export const Bakashi: pageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    return utils.urlPart(url, 3).startsWith('episodio');
+    return ['episodio', 'filmes'].includes(url.split('/')[3]);
   },
   isOverviewPage(url) {
     return ['animes'].includes(utils.urlPart(url, 3));
   },
   sync: {
     getTitle(url) {
-      return j.$('#titleHis').text().split('- EP')[0].trim();
+      return j.$('#titleHis').text().split('- EP')[0].trim() || j.$('.data h1').text().trim();
     },
     getIdentifier(url) {
       return Bakashi.overview!.getIdentifier(Bakashi.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      return j.$('.pag_episodes .item:nth-child(2) a').first().attr('href') || '';
+      return j.$('.pag_episodes .item:nth-child(2) a').first().attr('href') || window.location.href;
     },
     getEpisode(url) {
-      return Number(j.$('#titleHis').text().split('- EP')[1].trim());
+      const episode = j.$('#titleHis').text().split('- EP')[1]?.trim();
+      return episode ? Number(episode) : 1;
     },
     nextEpUrl(url) {
       return j.$('.pag_episodes .item:nth-child(3) a').first().attr('href') || '';
