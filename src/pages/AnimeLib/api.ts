@@ -34,6 +34,9 @@ interface Reader {
   total?: number;
   volume?: number;
   next?: string;
+  total_subchapters?: number;
+  current_subchapter_index?: number;
+  current_subchapter?: number;
 }
 interface Data {
   id: number;
@@ -120,6 +123,7 @@ interface User {
   id: number;
 }
 
+// NOTE - Requests
 function apiRequest(path: string) {
   return api.request.xhr('GET', `${API_DOMAIN}/${path}`);
 }
@@ -130,7 +134,7 @@ function apiRequest(path: string) {
  * @returns `true` if URL belongs to API, `false` overwise
  */
 export function isPageAPI(url: string): boolean {
-  const regex = /.*:\/\/(?!api.).*.?mangalib.me(?!\/?api\/)/;
+  const regex = /.*:\/\/(?!api\.)\w*\.?\w+.me\/(?!api)/gm;
   return !regex.test(url);
 }
 // NOTE - Anime API
