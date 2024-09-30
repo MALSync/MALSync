@@ -4,11 +4,13 @@ import * as helper from './helper';
 export const search: searchInterface = async function (
   keyword,
   type: 'anime' | 'manga',
-  options = {},
+  options: {
+    novel?: boolean;
+  } = { novel: false },
   sync = false,
 ) {
   const list: helper.MetaRequest[] = await helper.apiCall({
-    path: `${type}s`,
+    path: `${options.novel ? 'ranobe' : `${type}s`}`,
     parameter: { limit: 25, search: keyword },
     type: 'GET',
   });
@@ -20,7 +22,11 @@ export const search: searchInterface = async function (
       altNames: [item.name, item.russian].filter(el => el),
       url: helper.domain + item.url,
       malUrl: () => {
-        return Promise.resolve(item.id ? `https://myanimelist.net/${type}/${item.id}` : null);
+        return Promise.resolve(
+          item.id
+            ? `https://myanimelist.net/${options.novel ? 'manga' : 'anime'}/${item.id}`
+            : null,
+        );
       },
       image: helper.domain + item.image.preview,
       imageLarge: helper.domain + item.image.original,

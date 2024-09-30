@@ -4,8 +4,9 @@ import { searchResult } from '../_provider/definitions';
 export async function normalSearch(
   searchterm: string,
   type: 'anime' | 'manga',
+  options = {},
 ): Promise<searchResult[]> {
-  return search(searchterm, type).then(res =>
+  return search(searchterm, type, options).then(res =>
     Promise.all(
       res.map(async el => {
         const dbEntry = await api.request.database('entry', { id: el.id, type });
