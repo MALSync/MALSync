@@ -24,7 +24,7 @@ export const search: searchInterface = async function (
       malUrl: () => {
         return Promise.resolve(
           item.id
-            ? `https://myanimelist.net/${options.novel ? 'manga' : 'anime'}/${item.id}`
+            ? `https://myanimelist.net/${options.novel ? 'manga' : item.kind}/${item.id}`
             : null,
         );
       },
