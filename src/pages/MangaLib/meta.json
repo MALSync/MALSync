@@ -1,9 +1,11 @@
 {
-  "search": "https://test-front.mangalib.me/ru/catalog?q={searchterm}",
+  "search": "https://mangalib.org/ru/catalog?q={searchterm}",
   "urls": {
     "match": [
-      "*://*.mangalib.me/*",
-      "*://mangalib.org/*",
+      "*://mangalib.org/*"
+      
+    ],
+    "add-later": [
       "*://mangalib.me/*"
     ]
   }

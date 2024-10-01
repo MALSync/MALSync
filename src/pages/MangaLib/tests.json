@@ -1,29 +1,29 @@
 {
   "title": "mangalib",
-  "url": "https://mangalib.me/",
+  "url": "https://mangalib.org/",
   "testCases": [
     {
-      "url": "https://mangalib.me/ijiranaide-nagatoro-san/v18/c132",
+      "url": "https://mangalib.org/ijiranaide-nagatoro-san/v18/c132",
       "expected": {
         "sync": true,
         "title": "Please don't bully me, Nagatoro",
         "identifier": "ijiranaide-nagatoro-san",
-        "overviewUrl": "https://mangalib.me/ijiranaide-nagatoro-san",
-        "nextEpUrl": "https://mangalib.me/ijiranaide-nagatoro-san/v18/c133",
+        "overviewUrl": "https://mangalib.org/ijiranaide-nagatoro-san",
+        "nextEpUrl": "https://mangalib.org/ijiranaide-nagatoro-san/v18/c133",
         "episode": 132,
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangalib.me/4-cut-hero",
+      "url": "https://mangalib.org/4-cut-hero",
       "expected": {
         "sync": false,
         "title": "4 Cut Hero",
         "identifier": "4-cut-hero",
         "uiSelector": true,
         "epList": {
-          "227": "https://mangalib.me/4-cut-hero/v2/c227",
-          "2": "https://mangalib.me/4-cut-hero/v2/c2"
+          "227": "https://mangalib.org/4-cut-hero/v2/c227",
+          "2": "https://mangalib.org/4-cut-hero/v2/c2"
         }
       }
     }
