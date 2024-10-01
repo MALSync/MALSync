@@ -186,7 +186,7 @@ async function apiRequest(path: string) {
  * @returns `true` if URL belongs to API, `false` overwise
  */
 export function isPageAPI(url: string): boolean {
-  const regex = /.*:\/\/(?!api\.).*\.?.+.me\/(?!api)/;
+  const regex = /.*:\/\/(?!api\.).*\.?.+\..+\/(?!api)/;
   return !regex.test(url);
 }
 // NOTE - Anime API
