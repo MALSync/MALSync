@@ -169,8 +169,10 @@ async function updateSyncPage() {
   }
   getChapterWithVolumeNoAPI();
   if (haveChaptersData) {
-    getTotalChaptersAPI(undefined, chaptersData);
     getNextChapterAPI(mangaSlug, chaptersData);
+    if (!haveMangaData) {
+      getTotalChaptersAPI(undefined, chaptersData);
+    }
   } else {
     getNextChapterNoAPI();
   }
@@ -201,7 +203,7 @@ function getNextChapterAPI(mangaSlug: string, chapters_data: Chapters) {
   );
   if (currentEpisode) {
     const currentIndex = chapters_data.data.indexOf(currentEpisode);
-    if (currentIndex + 1 < manga.reader.total! - 1) {
+    if (currentIndex + 1 < getTotalChaptersAPI(undefined, chapters_data) - 1) {
       const nextChapter = chapters_data.data[currentIndex + 1].number;
       const nextVolume = chapters_data.data[currentIndex + 1].volume;
       manga.reader.next = utils.absoluteLink(
