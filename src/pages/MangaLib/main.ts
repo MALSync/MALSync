@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 import { pageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
-import { Manga, getMangaData, getChaptersData, isPageAPI } from '../AnimeLib/api';
+import { Manga, getMangaData, getChaptersData, isPageAPI, Chapters } from '../AnimeLib/api';
 
 const { asyncWaitUntilTrue: awaitReaderLoading, reset: resetAwaitReader } =
   utils.getAsyncWaitUntilTrue(() => j.$('main img').length);
@@ -30,7 +30,7 @@ const manga: Manga = {
 };
 export const MangaLib: pageInterface = {
   name: 'MangaLib',
-  domain: ['https://test-front.mangalib.me'],
+  domain: ['https://test-front.mangalib.me', 'https://mangalib.org', 'https://mangalib.me'],
   languages: ['Russian'],
   type: 'manga',
   getImage() {
@@ -147,25 +147,72 @@ async function updateOverviewPage() {
 }
 async function updateSyncPage() {
   const mangaSlug = utils.urlPart(window.location.href, 4);
+  const idRegex = mangaSlug.match(/(\d+)/);
+  const mangaId = Number(idRegex ? idRegex[0] : 0);
 
-  // NOTE - Trying to get current manga from API, selectors overwise
-  const data = await getMangaData(mangaSlug);
-  if (data) {
-    manga.data = data.data;
+  const mangaData = await getMangaData(mangaSlug);
+  const chaptersData = await getChaptersData(mangaSlug);
+
+  const haveMangaData = !!mangaData;
+  const haveChaptersData = !!chaptersData;
+
+  if (haveMangaData) {
+    getTotalChaptersAPI(mangaData, undefined);
+    getMangaDataAPI(mangaData);
   } else {
-    const idRegex = mangaSlug.match(/(\d+)/);
-    manga.data.eng_name = j.$('a>div[data-media-up="sm"]').text();
-    manga.data.id = idRegex ? Number(idRegex[0]) : 0;
-    manga.data.slug_url = mangaSlug;
-    // NOTE - There is no way no get cover image on sync page...
-    manga.data.cover.default = undefined;
-    manga.data.cover.thumbnail = undefined;
+    getMangaDataNoAPI(mangaSlug, mangaId);
+    if (!haveChaptersData) {
+      getTotalChaptersNoAPI();
+    }
   }
+  getChapterWithVolumeNoAPI();
+  if (haveChaptersData) {
+    getTotalChaptersAPI(undefined, chaptersData);
+    getNextChapterAPI(mangaSlug, chaptersData);
+  } else {
+    getNextChapterNoAPI();
+  }
+}
 
+function getTotalChaptersNoAPI() {
+  // NOTE - No way to get total without API
+  manga.reader.total = 1;
+}
+function getTotalChaptersAPI(manga_data?: Manga, chapters_data?: Chapters) {
+  if (manga_data) {
+    manga.reader.total =
+      manga_data.data.items_count!.total || manga_data.data.items_count!.uploaded;
+  }
+  if (chapters_data) {
+    manga.reader.total = chapters_data.data.length;
+  }
+  return manga.reader.total || 1;
+}
+function getNextChapterNoAPI() {
+  const nextButton = j.$('header a[href]').last();
+  manga.reader.next = utils.absoluteLink(nextButton.attr('href'), MangaLib.domain);
+}
+function getNextChapterAPI(mangaSlug: string, chapters_data: Chapters) {
+  const currentEpisode = chapters_data.data.find(
+    e =>
+      e.number === manga.reader.chapter.toString() && e.volume === manga.reader.volume!.toString(),
+  );
+  if (currentEpisode) {
+    const currentIndex = chapters_data.data.indexOf(currentEpisode);
+    if (currentIndex + 1 < manga.reader.total! - 1) {
+      const nextChapter = chapters_data.data[currentIndex + 1].number;
+      const nextVolume = chapters_data.data[currentIndex + 1].volume;
+      manga.reader.next = utils.absoluteLink(
+        `ru/${mangaSlug}/read/v${nextVolume}/c${nextChapter}`,
+        MangaLib.domain,
+      );
+    }
+  }
+}
+function getChapterWithVolumeNoAPI() {
   const volumeString = utils.urlPart(window.location.href, 6);
   const chapterString = utils.urlPart(window.location.href, 7);
 
-  // NOTE - Trying to get chapter+volume from url, selectors overwise
   if (volumeString && chapterString) {
     manga.reader.chapter = Number(chapterString.substring(1));
     manga.reader.volume = Number(volumeString.substring(1));
@@ -180,33 +227,15 @@ async function updateSyncPage() {
       manga.reader.volume = 1;
     }
   }
-
-  // NOTE - Trying to get chapters from API, selectors overwise
-  const chaptersData = await getChaptersData(mangaSlug);
-  if (chaptersData) {
-    const { data: chapters } = chaptersData;
-    manga.reader.total = chapters.length;
-    const currentEpisode = chapters.find(
-      e =>
-        e.number === manga.reader.chapter.toString() &&
-        e.volume === manga.reader.volume!.toString(),
-    );
-    if (currentEpisode) {
-      const currentIndex = chapters.indexOf(currentEpisode);
-      if (currentIndex + 1 < manga.reader.total - 1) {
-        const nextChapter = chapters[currentIndex + 1].number;
-        const nextVolume = chapters[currentIndex + 1].volume;
-        manga.reader.next = utils.absoluteLink(
-          `ru/${mangaSlug}/read/v${nextVolume}/c${nextChapter}`,
-          MangaLib.domain,
-        );
-      }
-    }
-  } else {
-    const nextButton = j.$('header a[href]').last();
-    manga.reader.next = utils.absoluteLink(nextButton.attr('href'), MangaLib.domain);
-    if (data) {
-      manga.reader.total = data.data.items_count!.total || data.data.items_count!.uploaded;
-    }
-  }
+}
+function getMangaDataNoAPI(mangaSlug: string, mangaId: number) {
+  manga.data.eng_name = j.$('a>div[data-media-up="sm"]').text();
+  manga.data.id = mangaId;
+  manga.data.slug_url = mangaSlug;
+  // NOTE - There is no way no get cover image on sync page...
+  manga.data.cover.default = undefined;
+  manga.data.cover.thumbnail = undefined;
+}
+function getMangaDataAPI(manga_data: Manga) {
+  manga.data = manga_data.data;
 }

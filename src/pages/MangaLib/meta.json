@@ -1,6 +1,10 @@
 {
   "search": "https://test-front.mangalib.me/ru/catalog?q={searchterm}",
   "urls": {
-    "match": ["*://*.mangalib.me/*"]
+    "match": [
+      "*://*.mangalib.me/*",
+      "*://mangalib.org/*",
+      "*://mangalib.me/*"
+    ]
   }
 }
