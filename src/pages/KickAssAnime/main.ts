@@ -13,7 +13,7 @@ export const KickAssAnime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return (window as any).KAA.data[0].episode.title;
+      return (window as any).KAA?.data[0]?.episode?.title;
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
@@ -22,7 +22,7 @@ export const KickAssAnime: pageInterface = {
       return `${KickAssAnime.domain}/${KickAssAnime.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      return Number((window as any).KAA.data[0].episode.episode_number);
+      return Number((window as any).KAA?.data[0]?.episode?.episode_number);
     },
   },
   overview: {
