@@ -1,0 +1,6 @@
+{
+  "search": "https://donghuastream.org/?s={searchterm}",
+  "urls": {
+    "match": ["*://*.donghuastream.org/*"]
+  }
+}
