@@ -13,7 +13,7 @@ export const KickAssAnime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return $('h1').first().text();
+      return (window as any).KAA.data[0].episode.title;
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
@@ -22,13 +22,7 @@ export const KickAssAnime: pageInterface = {
       return `${KickAssAnime.domain}/${KickAssAnime.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      const epText = $('.v-card__title .text-overline').first().text();
-
-      const epParts = epText.match(/episode (\d+)/im);
-
-      if (!epParts) return NaN;
-
-      return Number(epParts[1]);
+      return Number((window as any).KAA.data[0].episode.episode_number);
     },
   },
   overview: {
