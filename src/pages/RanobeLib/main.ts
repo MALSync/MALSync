@@ -240,7 +240,7 @@ async function updateSyncPage() {
         c.volume === `${novel.reader.volume}`,
     );
 
-    if (subChapters.length > 1) {
+    if (subChapters.length > 1 && !subChapters.find(c => c.number.includes('.'))) {
       novel.reader.total_subchapters = subChapters.length;
       const currentSubChapter = subChapters.find(
         c => c.number === novel.reader.current_subchapter!.toString(),
