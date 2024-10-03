@@ -3,7 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const tmofans: pageInterface = {
   name: 'tmofans',
   domain: [
-    'https://zonatmo.com',
+    'https://zonatmo.com',  
     'https://visortmo.com',
     'https://lectortmo.com',
     'https://tmofans.com',
@@ -25,7 +25,7 @@ export const tmofans: pageInterface = {
     },
     getOverviewUrl(url) {
       const path = j.$('.nav-link[href*="library"]').last().attr('href');
-
+      
       return path ? utils.absoluteLink(path, ['https://zonatmo.com']) : '';
     },
     getEpisode(url) {
