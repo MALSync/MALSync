@@ -1,27 +1,12 @@
 /* eslint-disable no-shadow */
 
 const API_DOMAIN = 'https://api.mangalib.me/api';
+
+// NOTE - ANIME API Interfaces
 export interface Anime {
   data: Data;
   meta?: Meta;
   player: Player;
-}
-export interface Manga {
-  data: Data;
-  meta?: Meta;
-  reader: Reader;
-}
-export interface Chapters {
-  data: ChapterData[];
-}
-export interface Chapter {
-  data: ChapterData;
-}
-export interface Episodes {
-  data: EpisodeData[];
-}
-export interface Episode {
-  data: EpisodeData;
 }
 interface Player {
   episode: number;
@@ -29,15 +14,160 @@ interface Player {
   season?: number;
   next?: string;
 }
+export interface Episodes {
+  data: EpisodesData[];
+}
+export interface Episode {
+  data: EpisodeData;
+}
+interface EpisodesData {
+  id: number;
+  model: string;
+  name: string;
+  number: string;
+  number_secondary: string;
+  season: string;
+  status: Status;
+  anime_id: number;
+  created_at: Date;
+  item_number: number;
+  type: string;
+}
+interface EpisodeData extends Omit<EpisodesData, 'item_number'> {
+  id: number;
+  model: string;
+  name: string;
+  number: string;
+  number_secondary: string;
+  season: string;
+  status: Status;
+  anime_id: number;
+  created_at: Date;
+  players: PlayerElement[];
+  type: string;
+}
+interface PlayerElement {
+  id: number;
+  episode_id: number;
+  player: string;
+  translation_type: TranslationType;
+  team: Team;
+  created_at: Date;
+  timecode: Timecode[];
+  subtitles?: unknown[];
+  video?: Video;
+  src?: string;
+}
+interface Timecode {
+  type: string;
+  from: string;
+  to: string;
+}
+interface TranslationType {
+  id: number;
+  label: {};
+}
+interface Video {
+  id: number;
+  quality: Quality[];
+}
+interface Quality {
+  href: string;
+  quality: number;
+  bitrate: number;
+}
+interface Status {
+  id: string;
+  label: string;
+  abbr: unknown;
+}
+
+// NOTE - MANGA API Interfaces
+export interface Manga {
+  data: Data;
+  meta?: Meta;
+  reader: Reader;
+}
+export interface Chapters {
+  data: ChaptersData[];
+}
+export interface Chapter {
+  data: ChapterData;
+}
 interface Reader {
   chapter: number;
   total?: number;
   volume?: number;
   next?: string;
   total_subchapters?: number;
+  total_subchapters_pages?: number;
   current_subchapter_index?: number;
   current_subchapter?: number;
 }
+interface ChaptersData {
+  id: number;
+  index: number;
+  item_number: number;
+  volume: string;
+  number: string;
+  number_secondary: string;
+  name: null | string;
+  branches_count: number;
+  branches: Branch[];
+}
+interface ChapterData {
+  id: number;
+  model?: string;
+  volume: string;
+  number: string;
+  number_secondary: string;
+  name?: string;
+  slug: string;
+  branch_id: null;
+  manga_id: number;
+  created_at?: Date;
+  moderated?: {};
+  likes_count?: number;
+  is_liked?: null | true;
+  teams?: Team[];
+  type?: string;
+  pages: Page[];
+}
+interface Page {
+  id: number;
+  image: string;
+  slug: number;
+  external?: number;
+  chunks?: number;
+  chapter_id: number;
+  created_at?: Date;
+  updated_at?: string;
+  height: number;
+  width: number;
+  url: string;
+  ratio?: string;
+}
+interface Branch {
+  id: number;
+  branch_id: number;
+  created_at: Date;
+  teams: Team[];
+  user: User;
+}
+interface Team {
+  id: number;
+  slug: string;
+  slug_url: string;
+  model: string;
+  name: string;
+  cover: Cover;
+}
+interface User {
+  username: string;
+  id: number;
+}
+
+// NOTE - Other API Interfaces
 interface Data {
   id: number;
   name: string;
@@ -74,61 +204,14 @@ interface Cover {
 interface Meta {
   country: string;
 }
-interface EpisodeData {
-  id: number;
-  model: string;
-  name: string;
-  number: string;
-  number_secondary: string;
-  season: string;
-  status: Status;
-  anime_id: number;
-  created_at: Date;
-  item_number: number;
-  type: string;
-}
-interface Status {
-  id: string;
-  label: string;
-  abbr: unknown;
-}
-interface ChapterData {
-  id: number;
-  index: number;
-  item_number: number;
-  volume: string;
-  number: string;
-  number_secondary: string;
-  name: null | string;
-  branches_count: number;
-  branches: Branch[];
-}
-interface Branch {
-  id: number;
-  branch_id: number;
-  created_at: Date;
-  teams: Team[];
-  user: User;
-}
-interface Team {
-  id: number;
-  slug: string;
-  slug_url: string;
-  model: string;
-  name: string;
-  cover: Cover;
-}
-interface User {
-  username: string;
-  id: number;
-}
+
+// NOTE - AUTH API Interfaces
 interface Auth {
   token: Token;
   auth: AuthClass;
   prevUrl: string;
   timestamp: number;
 }
-
 interface AuthClass {
   id: number;
   username: string;
@@ -139,16 +222,13 @@ interface AuthClass {
   roles: unknown[];
   metadata: Metadata;
 }
-
+interface Metadata {
+  auth_domains: { [key: string]: string };
+}
 interface Avatar {
   filename: string;
   url: string;
 }
-
-interface Metadata {
-  auth_domains: { [key: string]: string };
-}
-
 interface Token {
   token_type: string;
   expires_in: number;

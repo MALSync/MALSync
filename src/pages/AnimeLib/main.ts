@@ -214,7 +214,7 @@ function getCurrentEpisodeNoAPI(currentEpisodeButton: JQuery<HTMLElement>) {
   }
 }
 function getCurrentEpisodeAPI(episode_data: Episode) {
-  anime.player.episode = Number(episode_data.data.number || episode_data.data.item_number || 1);
+  anime.player.episode = Number(episode_data.data.number || 1);
 }
 function getNextEpisodeNoAPI(currentEpisodeButton: JQuery<HTMLElement>, animeId: number) {
   const nextEpisodeButton = currentEpisodeButton.next();
