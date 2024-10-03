@@ -1,7 +1,9 @@
+/* eslint-disable new-cap */
 /* eslint-disable global-require */
 import { pageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
 import { Manga, getMangaData, getChaptersData, isPageAPI, Chapters } from '../AnimeLib/api';
+import { text } from '../../utils/mangaProgress/modes/text';
 
 const { asyncWaitUntilTrue: awaitReaderLoading, reset: resetAwaitReader } =
   utils.getAsyncWaitUntilTrue(() => j.$('main img').length);
@@ -25,6 +27,9 @@ const manga: Manga = {
     chapter: 0,
     total: 1,
     volume: 0,
+    total_subchapters: 1,
+    current_subchapter: 0,
+    current_subchapter_index: 0,
     next: undefined,
   },
 };
@@ -66,16 +71,39 @@ export const MangaLib: pageInterface = {
     readerConfig: [
       {
         current: {
-          selector: 'footer',
-          mode: 'text',
-          regex: '(\\d+) / (\\d+)$',
-          group: 1,
+          mode: 'callback',
+          callback: () => {
+            // NOTE - if chapter numbers are floats - 1.1 - 1.2 - 1.3 - 2.1 - 2.2 - 2.3
+            // We count 'subchapters' as pages since 1.1 + 1.2 + 1.3 = WHOLE CHAPTER
+            // If chapter are not floats we are switching to classic 'countAbove' variant
+            let current = manga.reader.current_subchapter_index! + 1;
+            if (!/\d+\.\d+/.test(utils.urlPart(window.location.href, 7))) {
+              current = new text().getProgress({
+                selector: 'footer',
+                regex: '(\\d+) / (\\d+)$',
+                group: 1,
+              });
+            }
+            return current;
+          },
         },
         total: {
-          selector: 'footer',
-          mode: 'text',
-          regex: '(\\d+) / (\\d+)$',
-          group: 2,
+          mode: 'callback',
+          callback: () => {
+            // NOTE - For total pages we are using total number of 'subchapters' - 1.1 - 1.2 - 1.3 = 3 pages
+            // We can only get them from 'getChaptersData' API call
+            // If total subchapters = 1 we are switching to classic 'count' variant since subchapters = 1 means chapter number is not float
+            // NOTE - Bypass 90% limit to make sure we read the last subchapter
+            let total = (manga.reader.total_subchapters! / 90) * 100;
+            if (!/\d+\.\d+/.test(utils.urlPart(window.location.href, 7))) {
+              total = new text().getProgress({
+                selector: 'footer',
+                regex: '(\\d+) / (\\d+)$',
+                group: 2,
+              });
+            }
+            return total;
+          },
         },
       },
     ],
@@ -169,6 +197,7 @@ async function updateSyncPage() {
   }
   getChapterWithVolumeNoAPI();
   if (haveChaptersData) {
+    getSubchaptersAPI(chaptersData);
     getNextChapterAPI(mangaSlug, chaptersData);
     if (!haveMangaData) {
       getTotalChaptersAPI(undefined, chaptersData);
@@ -181,6 +210,8 @@ async function updateSyncPage() {
 function getTotalChaptersNoAPI() {
   // NOTE - No way to get total without API
   manga.reader.total = 1;
+  manga.reader.total_subchapters = 1;
+  manga.reader.current_subchapter_index = 0;
 }
 function getTotalChaptersAPI(manga_data?: Manga, chapters_data?: Chapters) {
   if (manga_data) {
@@ -195,11 +226,30 @@ function getTotalChaptersAPI(manga_data?: Manga, chapters_data?: Chapters) {
 function getNextChapterNoAPI() {
   const nextButton = j.$('header a[href]').last();
   manga.reader.next = utils.absoluteLink(nextButton.attr('href'), MangaLib.domain);
+  manga.reader.total_subchapters = 1;
+  manga.reader.current_subchapter_index = 0;
+}
+function getSubchaptersAPI(chapters_data: Chapters) {
+  const subChapters = chapters_data.data.filter(
+    c =>
+      c.number.split('.')[0] === `${manga.reader.chapter}` && c.volume === `${manga.reader.volume}`,
+  );
+  if (subChapters.length > 1 && !subChapters.find(c => !c.number.includes('.'))) {
+    manga.reader.total_subchapters = subChapters.length;
+    const currentSubChapter = subChapters.find(
+      c => c.number === manga.reader.current_subchapter!.toString(),
+    );
+    if (currentSubChapter) {
+      manga.reader.current_subchapter_index = subChapters.indexOf(currentSubChapter);
+    }
+  } else {
+    manga.reader.total_subchapters = 1;
+    manga.reader.current_subchapter_index = 0;
+  }
 }
 function getNextChapterAPI(mangaSlug: string, chapters_data: Chapters) {
   const currentEpisode = chapters_data.data.find(
-    e =>
-      e.number === manga.reader.chapter.toString() && e.volume === manga.reader.volume!.toString(),
+    e => e.number === `${manga.reader.current_subchapter}` && e.volume === `${manga.reader.volume}`,
   );
   if (currentEpisode) {
     const currentIndex = chapters_data.data.indexOf(currentEpisode);
@@ -218,13 +268,15 @@ function getChapterWithVolumeNoAPI() {
   const chapterString = utils.urlPart(window.location.href, 7);
 
   if (volumeString && chapterString) {
-    manga.reader.chapter = Number(chapterString.substring(1));
+    manga.reader.current_subchapter = Number(chapterString.substring(1));
+    manga.reader.chapter = Math.floor(Number(chapterString.substring(1)));
     manga.reader.volume = Number(volumeString.substring(1));
   } else {
     const match = /(\d+\.\d+|\d+)\D+(\d+\.\d+|\d+)/;
     const current = j.$('header [data-media-up] div').last().text().match(match);
     if (current) {
-      manga.reader.chapter = Number(current[2]);
+      manga.reader.current_subchapter = Number(current[2]);
+      manga.reader.chapter = Math.floor(Number(current[2]));
       manga.reader.volume = Number(current[1]);
     } else {
       manga.reader.chapter = 1;
