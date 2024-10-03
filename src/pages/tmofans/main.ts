@@ -3,10 +3,10 @@ import { pageInterface } from '../pageInterface';
 export const tmofans: pageInterface = {
   name: 'tmofans',
   domain: [
+    'https://zonatmo.com',
     'https://visortmo.com',
     'https://lectortmo.com',
     'https://tmofans.com',
-    'https://zonatmo.com',
   ],
   languages: ['Spanish'],
   type: 'manga',
@@ -25,7 +25,8 @@ export const tmofans: pageInterface = {
     },
     getOverviewUrl(url) {
       const path = j.$('.nav-link[href*="library"]').last().attr('href');
-      return path ? utils.absoluteLink(path, tmofans.domain) : '';
+
+      return path ? utils.absoluteLink(path, ['https://zonatmo.com']) : '';
     },
     getEpisode(url) {
       const episodePart = utils.getBaseText($('#app h2').first()).trim();
