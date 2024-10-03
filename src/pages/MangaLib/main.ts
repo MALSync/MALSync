@@ -75,7 +75,7 @@ export const MangaLib: pageInterface = {
           callback: () => {
             // NOTE - if chapter numbers are floats - 1.1 - 1.2 - 1.3 - 2.1 - 2.2 - 2.3
             // We count 'subchapters' as pages since 1.1 + 1.2 + 1.3 = WHOLE CHAPTER
-            // If chapter are not floats we are switching to classic 'countAbove' variant
+            // If chapter are not floats we are switching to classic 'text' variant
             let current = manga.reader.current_subchapter_index! + 1;
             if (!/\d+\.\d+/.test(utils.urlPart(window.location.href, 7))) {
               current = new text().getProgress({
@@ -92,7 +92,7 @@ export const MangaLib: pageInterface = {
           callback: () => {
             // NOTE - For total pages we are using total number of 'subchapters' - 1.1 - 1.2 - 1.3 = 3 pages
             // We can only get them from 'getChaptersData' API call
-            // If total subchapters = 1 we are switching to classic 'count' variant since subchapters = 1 means chapter number is not float
+            // If total subchapters = 1 we are switching to classic 'text' variant since subchapters = 1 means chapter number is not float
             // NOTE - Bypass 90% limit to make sure we read the last subchapter
             let total = (manga.reader.total_subchapters! / 90) * 100;
             if (!/\d+\.\d+/.test(utils.urlPart(window.location.href, 7))) {
