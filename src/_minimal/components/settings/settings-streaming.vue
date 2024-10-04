@@ -6,6 +6,20 @@
           <FormButton color="secondary" padding="slim" @click="orderMode = !orderMode">
             <span class="material-icons">{{ orderMode ? 'edit_attributes' : 'low_priority' }}</span>
           </FormButton>
+          <FormButton
+            v-visible="!orderMode"
+            title="Anime"
+            :color="animeFilter ? 'secondary' : 'default'"
+            padding="pill"
+            @click="animeFilter = !animeFilter"
+          />
+          <FormButton
+            v-visible="!orderMode"
+            title="Manga"
+            :color="mangaFilter ? 'secondary' : 'default'"
+            padding="pill"
+            @click="mangaFilter = !mangaFilter"
+          />
           <FormText
             v-model="search"
             v-visible="!orderMode"
@@ -157,12 +171,20 @@ const search = ref('');
 const customName = ref('');
 const customAnime = ref('');
 const customManga = ref('');
+const animeFilter = ref(true);
+const mangaFilter = ref(true);
 
 const linksWithState = computed(() => {
   return [...quicklinks, ...model.value.filter(el => typeof el === 'object' && el)]
     .filter(el => {
       if (!search.value) return true;
       return el.name.toLowerCase().includes(search.value.toLowerCase());
+    })
+    .filter(el => {
+      if (animeFilter.value && mangaFilter.value) return true;
+      if (animeFilter.value) return el.search.anime;
+      if (mangaFilter.value) return el.search.manga;
+      return false;
     })
     .map(el => {
       el.active = model.value.includes(el.name) || el.custom;
