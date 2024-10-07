@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable global-require */
 import { SyncPage } from '../syncPage';
-import { Manga, getMangaData, getChaptersData, isPageAPI } from '../AnimeLib/api';
+import { Manga, getMangaData, getChaptersData, isPageAPI, Chapters } from '../AnimeLib/api';
 import { pageInterface } from '../pageInterface';
 import { countAbove } from '../../utils/mangaProgress/modes/countAbove';
 import { count } from '../../utils/mangaProgress/modes/count';
@@ -197,25 +197,92 @@ async function updateOverviewPage() {
 }
 async function updateSyncPage() {
   const novelSlug = utils.urlPart(window.location.href, 4);
+  const novelData = await getMangaData(novelSlug);
+  const chaptersData = await getChaptersData(novelSlug);
+  const idRegex = novelSlug.match(/(\d+)/);
+  const novelId = Number(idRegex ? idRegex[0] : 0);
 
-  // NOTE - Trying to get current manga from API, selectors overwise
-  const data = await getMangaData(novelSlug);
-  if (data) {
-    novel.data = data.data;
+  const haveNovelData = !!novelData;
+  const haveChaptersData = !!chaptersData;
+
+  if (haveNovelData) {
+    getTotalChaptersAPI(novelData, undefined);
+    getMangaDataAPI(novelData);
   } else {
-    const idRegex = novelSlug.match(/(\d+)/);
-    novel.data.eng_name = j.$('a>div[data-media-up="sm"]').text();
-    novel.data.id = idRegex ? Number(idRegex[0]) : 0;
-    novel.data.slug_url = novelSlug;
-    // NOTE - There is no way no get cover image on sync page...
-    novel.data.cover.default = undefined;
-    novel.data.cover.thumbnail = undefined;
+    getMangaDataNoAPI(novelSlug, novelId);
+    if (!haveChaptersData) {
+      getTotalChaptersNoAPI();
+    }
   }
-
+  getChapterWithVolumeNoAPI();
+  if (haveChaptersData) {
+    getSubchaptersAPI(chaptersData);
+    getNextChapterAPI(novelSlug, chaptersData);
+    if (!haveNovelData) {
+      getTotalChaptersAPI(undefined, chaptersData);
+    }
+  } else {
+    getNextChapterNoAPI();
+  }
+}
+function getTotalChaptersNoAPI() {
+  // NOTE - No way to get total without API
+  novel.reader.total = 1;
+  novel.reader.total_subchapters = 1;
+  novel.reader.current_subchapter_index = 0;
+}
+function getTotalChaptersAPI(novel_data?: Manga, chapters_data?: Chapters) {
+  if (novel_data) {
+    novel.reader.total =
+      novel_data.data.items_count!.total || novel_data.data.items_count!.uploaded;
+  }
+  if (chapters_data) {
+    novel.reader.total = chapters_data.data.length;
+  }
+  return novel.reader.total || 1;
+}
+function getNextChapterNoAPI() {
+  const nextButton = j.$('header a[href]').last();
+  novel.reader.next = utils.absoluteLink(nextButton.attr('href'), RanobeLib.domain);
+}
+function getSubchaptersAPI(chapters_data: Chapters) {
+  const subChapters = chapters_data.data.filter(
+    c =>
+      c.number.split('.')[0] === `${novel.reader.chapter}` && c.volume === `${novel.reader.volume}`,
+  );
+  if (subChapters.length > 1 && !subChapters.find(c => !c.number.includes('.'))) {
+    novel.reader.total_subchapters = subChapters.length;
+    const currentSubChapter = subChapters.find(
+      c => c.number === novel.reader.current_subchapter!.toString(),
+    );
+    if (currentSubChapter) {
+      novel.reader.current_subchapter_index = subChapters.indexOf(currentSubChapter);
+    }
+  } else {
+    novel.reader.total_subchapters = 1;
+    novel.reader.current_subchapter_index = 0;
+  }
+}
+function getNextChapterAPI(novel_slug: string, chapters_data: Chapters) {
+  const currentEpisode = chapters_data.data.find(
+    e => e.number === `${novel.reader.current_subchapter}` && e.volume === `${novel.reader.volume}`,
+  );
+  if (currentEpisode) {
+    const currentIndex = chapters_data.data.indexOf(currentEpisode);
+    if (currentIndex + 1 < getTotalChaptersAPI(undefined, chapters_data) - 1) {
+      const nextChapter = chapters_data.data[currentIndex + 1].number;
+      const nextVolume = chapters_data.data[currentIndex + 1].volume;
+      novel.reader.next = utils.absoluteLink(
+        `ru/${novel_slug}/read/v${nextVolume}/c${nextChapter}`,
+        RanobeLib.domain,
+      );
+    }
+  }
+}
+function getChapterWithVolumeNoAPI() {
   const volumeString = utils.urlPart(window.location.href, 6);
   const chapterString = utils.urlPart(window.location.href, 7);
 
-  // NOTE - Trying to get chapter+volume from url, selectors overwise
   if (volumeString && chapterString) {
     novel.reader.current_subchapter = Number(chapterString.substring(1));
     novel.reader.chapter = Math.floor(Number(chapterString.substring(1)));
@@ -229,52 +296,15 @@ async function updateSyncPage() {
       novel.reader.volume = Number(current[1]);
     }
   }
-
-  // NOTE - Trying to get chapters from API, selectors overwise
-  const chaptersData = await getChaptersData(novelSlug);
-  if (chaptersData) {
-    const { data: chapters } = chaptersData;
-    const subChapters = chapters.filter(
-      c =>
-        c.number.split('.')[0] === `${novel.reader.chapter}` &&
-        c.volume === `${novel.reader.volume}`,
-    );
-
-    if (subChapters.length > 1 && !subChapters.find(c => c.number.includes('.'))) {
-      novel.reader.total_subchapters = subChapters.length;
-      const currentSubChapter = subChapters.find(
-        c => c.number === novel.reader.current_subchapter!.toString(),
-      );
-      if (currentSubChapter) {
-        novel.reader.current_subchapter_index = subChapters.indexOf(currentSubChapter);
-      }
-    } else {
-      novel.reader.total_subchapters = 1;
-      novel.reader.current_subchapter_index = 0;
-    }
-    novel.reader.total = chapters.length;
-    const currentEpisode = chapters.find(
-      e =>
-        e.number === `${novel.reader.current_subchapter}` && e.volume === `${novel.reader.volume}`,
-    );
-    if (currentEpisode) {
-      const currentIndex = chapters.indexOf(currentEpisode);
-      if (currentIndex + 1 < novel.reader.total - 1) {
-        const nextChapter = chapters[currentIndex + 1].number;
-        const nextVolume = chapters[currentIndex + 1].volume;
-        novel.reader.next = utils.absoluteLink(
-          `ru/${novelSlug}/read/v${nextVolume}/c${nextChapter}`,
-          RanobeLib.domain,
-        );
-      }
-    }
-  } else {
-    const nextButton = j.$('header a[href]').last();
-    novel.reader.next = utils.absoluteLink(nextButton.attr('href'), RanobeLib.domain);
-    if (data) {
-      novel.reader.total = data.data.items_count!.total || data.data.items_count!.uploaded;
-    }
-    novel.reader.total_subchapters = 1;
-    novel.reader.current_subchapter_index = 0;
-  }
+}
+function getMangaDataNoAPI(novel_slug: string, novelId: number) {
+  novel.data.eng_name = j.$('a>div[data-media-up="sm"]').text();
+  novel.data.id = novelId;
+  novel.data.slug_url = novel_slug;
+  // NOTE - There is no way no get cover image on sync page...
+  novel.data.cover.default = undefined;
+  novel.data.cover.thumbnail = undefined;
+}
+function getMangaDataAPI(novel_data: Manga) {
+  novel.data = novel_data.data;
 }
