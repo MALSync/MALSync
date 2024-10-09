@@ -66,6 +66,9 @@
     ]
   },
   "0.10.4": {
+    "FlameScans": [
+      "*://flamecomics.me/*"
+    ],
     "Zoro": [
       "*://hianime.nz/*",
       "*://hianime.mn/*",
