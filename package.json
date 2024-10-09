@@ -14,7 +14,7 @@
     "@cliqz/adblocker-puppeteer": "^1.33.2",
     "@types/chai": "^4.3.20",
     "@types/jquery": "^3.5.14",
-    "@types/mocha": "^10.0.8",
+    "@types/mocha": "^10.0.9",
     "@types/node": "^16.18.112",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
