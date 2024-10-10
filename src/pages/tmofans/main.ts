@@ -26,7 +26,7 @@ export const tmofans: pageInterface = {
     getOverviewUrl(url) {
       const path = j.$('.nav-link[href*="library"]').last().attr('href');
 
-      return path ? utils.absoluteLink(path, ['https://zonatmo.com']) : '';
+      return path ? utils.absoluteLink(path, tmofans.domain) : '';
     },
     getEpisode(url) {
       const episodePart = utils.getBaseText($('#app h2').first()).trim();
