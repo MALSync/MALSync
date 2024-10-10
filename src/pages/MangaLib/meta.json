@@ -1,0 +1,12 @@
+{
+  "search": "https://mangalib.org/ru/catalog?q={searchterm}",
+  "urls": {
+    "match": [
+      "*://mangalib.org/*"
+      
+    ],
+    "add-later": [
+      "*://mangalib.me/*"
+    ]
+  }
+}
