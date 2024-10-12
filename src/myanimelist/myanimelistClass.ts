@@ -677,7 +677,6 @@ export class MyAnimeListClass {
 
   //Detect when the youtube embed iframe is opened, because it doesn't exist until the video is opened.
   waitForElement(selector): Promise<Element> {
-    console.log("WAIT: Waiting for element", selector);
     //Return a new Promise which will be resolved later.
     return new Promise((resolve) => {
       //If the element is already there, resolve it.
