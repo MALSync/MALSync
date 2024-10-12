@@ -661,37 +661,37 @@ export class MyAnimeListClass {
     });
   }
 
-  //Add 'allow="fullscreen"' attribue to the iframe of the youtube video to be able to enable the fullscreen button of the video.
+  // Add 'allow="fullscreen"' attribue to the iframe of the youtube video to be able to enable the fullscreen button of the video.
   async enableYoutubeFullscreenButton() {
-    //Fetch the iframe element and store it.
-    const videoFrame: Element = await this.waitForElement("#fancybox-frame");
-    //Have to do this because 'allow' has to be before 'src' or it won't enable the fullscreen button.
-    var srcLink = videoFrame.getAttribute("src");
-    videoFrame.removeAttribute("src");
-    videoFrame.setAttribute("allow", "fullscreen");
+    // Fetch the iframe element and store it.
+    const videoFrame: Element = await this.waitForElement('#fancybox-frame');
+    // Have to do this because 'allow' has to be before 'src' or it won't enable the fullscreen button.
+    var srcLink = videoFrame.getAttribute('src');
+    videoFrame.removeAttribute('src');
+    videoFrame.setAttribute('allow', 'fullscreen');
     if (srcLink)
-      videoFrame.setAttribute("src", srcLink);
+      videoFrame.setAttribute('src', srcLink);
     else
       error("'src' link not found for youtube video");
   }
 
-  //Detect when the youtube embed iframe is opened, because it doesn't exist until the video is opened.
+  // Detect when the youtube embed iframe is opened, because it doesn't exist until the video is opened.
   waitForElement(selector): Promise<Element> {
-    //Return a new Promise which will be resolved later.
+    // Return a new Promise which will be resolved later.
     return new Promise((resolve) => {
-      //If the element is already there, resolve it.
+      // If the element is already there, resolve it.
       if (document.querySelector(selector)) {
         resolve(document.querySelector(selector));
       }
-      //Create a new MutationObserver to detect when the iframe with id #fancybox-frame is added to the DOM.
+      // Create a new MutationObserver to detect when the iframe with id #fancybox-frame is added to the DOM.
       const observer = new MutationObserver((mutations) => {
-        //When element is added, resolve it.
+        // When element is added, resolve it.
         if (document.querySelector(selector)) {
           // observer.disconnect();
           resolve(document.querySelector(selector));
         }
       });
-      //Observe the entire document for changes, also as every descendants.
+      // Observe the entire document for changes, also as every descendants.
       observer.observe(document.documentElement, {
         childList: true,
         subtree: true,
