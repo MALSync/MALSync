@@ -1,9 +1,11 @@
+// import { ConfObj } from './../_provider/definitions';
 import { Single as ApiSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 
 import { UserList as ApiList } from '../_provider/MyAnimeList_hybrid/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
-import { waitForPageToBeVisible } from '../utils/general';
+import { elementInViewport, waitForPageToBeVisible } from '../utils/general';
+import { log, error, info, debug } from '../utils/console';
 
 export class MyAnimeListClass {
   page:
@@ -259,7 +261,7 @@ export class MyAnimeListClass {
             page.name
           }<span title="${
             page.name
-          }" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span></h2>`;
+            }" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span></h2>`;
           html += tempHtml;
           html += '<br class="mal_links" />';
         });
@@ -308,10 +310,10 @@ export class MyAnimeListClass {
         <div class="data title progress" id="mal-sync-stream-div" style="padding-left: 5px; display: inline-block; position: relative; top: -12px; height: 0px;">
           <a class="mal-sync-stream" title="${
             streamUrl ? streamUrl.split("/")[2] : ""
-          }" target="_blank" style="margin: 0 0; display: inline-block; height: 0;" href="${streamUrl}">
+              }" target="_blank" style="margin: 0 0; display: inline-block; height: 0;" href="${streamUrl}">
             <img style="display: block;" src="${utils.favicon(
-              streamUrl ? streamUrl.split("/")[2] : ""
-            )}">
+                streamUrl ? streamUrl.split("/")[2] : ""
+              )}">
           </a>
         </div>`)
           );
@@ -519,7 +521,7 @@ export class MyAnimeListClass {
           j.html(`
           <a class="mal-sync-stream" title="${
             options.u.split("/")[2]
-          }" target="_blank" style="margin: 0 0;" href="${options.u}">
+            }" target="_blank" style="margin: 0 0;" href="${options.u}">
             <img src="${utils.favicon(options.u.split("/")[2])}">
           </a>`)
         );
@@ -659,28 +661,39 @@ export class MyAnimeListClass {
     });
   }
 
-  //Add `allow="fullscreen"` attribue to the iframe of the youtube video to be able to enable the fullscreen button of the video.
+  //Add 'allow="fullscreen"' attribue to the iframe of the youtube video to be able to enable the fullscreen button of the video.
   async enableYoutubeFullscreenButton() {
+    //Fetch the iframe element and store it.
     const videoFrame: Element = await this.waitForElement("#fancybox-frame");
+    //Have to do this because 'allow' has to be before 'src' or it won't enable the fullscreen button.
+    var srcLink = videoFrame.getAttribute("src");
+    videoFrame.removeAttribute("src");
     videoFrame.setAttribute("allow", "fullscreen");
+    if (srcLink)
+      videoFrame.setAttribute("src", srcLink);
+    else
+      error("'src' link not found for youtube video");
   }
 
-  //Detect when iframe is opened, because it doesn't exist until the video is opened.
-  async waitForElement(selector): Promise<Element> {
+  //Detect when the youtube embed iframe is opened, because it doesn't exist until the video is opened.
+  waitForElement(selector): Promise<Element> {
+    console.log("WAIT: Waiting for element", selector);
+    //Return a new Promise which will be resolved later.
     return new Promise((resolve) => {
+      //If the element is already there, resolve it.
       if (document.querySelector(selector)) {
-        return resolve(document.querySelector(selector));
+        resolve(document.querySelector(selector));
       }
-
+      //Create a new MutationObserver to detect when the iframe with id #fancybox-frame is added to the DOM.
       const observer = new MutationObserver((mutations) => {
+        //When element is added, resolve it.
         if (document.querySelector(selector)) {
-          observer.disconnect();
+          // observer.disconnect();
           resolve(document.querySelector(selector));
         }
       });
-
-      // If you get "parameter 1 is not of type 'Node'" error, see https://stackoverflow.com/a/77855838/492336
-      observer.observe(document.body, {
+      //Observe the entire document for changes, also as every descendants.
+      observer.observe(document.documentElement, {
         childList: true,
         subtree: true,
       });
