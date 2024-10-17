@@ -1,9 +1,9 @@
 {
-  "title": "Lucifer Donghua",
-  "url": "https://luciferdonghua.in",
+  "title": "Mister Donghua",
+  "url": "https://misterdonghua.com",
   "testCases": [
     {
-      "url": "https://luciferdonghua.in/anime/tales-of-demons-and-gods-season-6/",
+      "url": "https://misterdonghua.com/anime/tales-of-demons-and-gods-season-6/",
       "expected": {
         "sync": false,
         "title": "Tales of Demons and Gods Season 6",

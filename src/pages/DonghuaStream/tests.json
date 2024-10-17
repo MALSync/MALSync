@@ -1,0 +1,16 @@
+{
+  "title": "Donghua Stream",
+  "url": "https://",
+  "testCases": [
+    {
+      "url": "https://donghuastream.org/anime/swallowed-star-season-4/",
+      "expected": {
+        "sync": false,
+        "title": " Swallowed Star Season 4",
+        "identifier": "swallowed-star-season-4",
+        "uiSelector": true
+      }
+    }
+
+  ]
+}
