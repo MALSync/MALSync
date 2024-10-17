@@ -1,4 +1,3 @@
-import { nineAnime } from './nineAnime/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
 import { Gogoanime } from './Gogoanime/main';
@@ -26,7 +25,6 @@ import { mangalivre } from './mangalivre/main';
 import { tmofans } from './tmofans/main';
 import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
-import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
 import { PrimeVideo } from './PrimeVideo/main';
@@ -34,7 +32,6 @@ import { MangaKatana } from './MangaKatana/main';
 import { manga4life } from './manga4life/main';
 import { bato } from './bato/main';
 import { MangaPark } from './MangaPark/main';
-import { AnimesHouse } from './AnimesHouse/main';
 import { AnimeXin } from './AnimeXin/main';
 import { MonosChinos } from './MonosChinos/main';
 import { Anime365 } from './Anime365/main';
@@ -71,7 +68,6 @@ import { MangaJar } from './MangaJar/main';
 import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
 import { AnimeWho } from './AnimeWho/main';
-import { AnimeSuge } from './AnimeSuge/main';
 import { Toonily } from './Toonily/main';
 import { Fumetsu } from './Fumetsu/main';
 import { FrixySubs } from './FrixySubs/main';
@@ -122,7 +118,6 @@ import { AnimeGO } from './AnimeGO/main';
 import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
-import { Anix } from './Anix/main';
 import { HinataSoul } from './HinataSoul/main';
 import { OgladajAnime } from './OgladajAnime/main';
 import { hachi } from './hachi/main';
@@ -138,7 +133,6 @@ import { Bakashi } from './Bakashi/main';
 import { TempleScan } from './TempleScan/main';
 
 export const pages = {
-  nineAnime,
   Crunchyroll,
   Mangadex,
   Gogoanime,
@@ -166,7 +160,6 @@ export const pages = {
   tmofans,
   MangaPlus,
   JapScan,
-  AnimesVision,
   Hulu,
   Hidive,
   PrimeVideo,
@@ -174,7 +167,6 @@ export const pages = {
   manga4life,
   bato,
   MangaPark,
-  AnimesHouse,
   AnimeXin,
   MonosChinos,
   Anime365,
@@ -211,7 +203,6 @@ export const pages = {
   Otakustv,
   Komga,
   AnimeWho,
-  AnimeSuge,
   Toonily,
   Fumetsu,
   FrixySubs,
@@ -262,7 +253,6 @@ export const pages = {
   Animeflix,
   LuciferDonghua,
   NeoxScans,
-  Anix,
   HinataSoul,
   OgladajAnime,
   hachi,
