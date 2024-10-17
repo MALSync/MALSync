@@ -129,7 +129,7 @@ module.exports = {
     match: ['*://animedaisuki.moe/embed/*'],
   },
   dailymotion: {
-    match: ['*://www.dailymotion.com/embed/*'],
+    match: ['*://www.dailymotion.com/embed/*', '*://geo.dailymotion.com/*'],
   },
   // gogoanime
   theVideo: {
