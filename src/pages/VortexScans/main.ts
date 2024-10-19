@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
-export const MangaGalaxy: pageInterface = {
-  name: 'MangaGalaxy',
-  domain: 'https://mangagalaxy.net',
+export const VortexScans: pageInterface = {
+  name: 'VortexScans',
+  domain: 'https://vortexscans.org',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
@@ -15,13 +15,13 @@ export const MangaGalaxy: pageInterface = {
     getTitle(url) {
       let temp = '';
       temp = j.$('div').eq(9).text().trim();
-      return temp.slice(0, temp.lastIndexOf(' ') - 8);
+      return temp.split(" Chapter")[0];
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return `${MangaGalaxy.domain}/series/${utils.urlPart(url, 4)}`;
+      return `${VortexScans.domain}/series/${utils.urlPart(url, 4)}`;
     },
     getEpisode(url) {
       let temp = 0;
@@ -44,13 +44,13 @@ export const MangaGalaxy: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('h1').eq(0).text().trim();
+      return j.$('body > div:nth-child(1) > main > div > article > section > div > div.flex.w-full.flex-col.gap-3.px-4.py-4 > div.flex.flex-col.gap-1.md\\:gap-2 > h1').eq(0).text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('h1').eq(0).after(j.html(selector));
+      j.$('body > div:nth-child(1) > main > div > article > section > div > div.flex.w-full.flex-col.gap-3.px-4.py-4 > div.flex.flex-col.gap-1.md\\:gap-2 > h1').eq(0).after(j.html(selector));
     },
   },
   init(page) {
@@ -63,14 +63,14 @@ export const MangaGalaxy: pageInterface = {
       utils.fullUrlChangeDetect(() => {
         page.reset();
         clearInterval(checkInterval);
-        if (MangaGalaxy.isSyncPage(window.location.href)) {
+        if (VortexScans.isSyncPage(window.location.href)) {
           checkInterval = utils.waitUntilTrue(
-            () => MangaGalaxy.sync!.getTitle(window.location.href),
+            () => VortexScans.sync!.getTitle(window.location.href),
             () => page.handlePage(),
           );
-        } else if (MangaGalaxy.isOverviewPage!(window.location.href)) {
+        } else if (VortexScans.isOverviewPage!(window.location.href)) {
           checkInterval = utils.waitUntilTrue(
-            () => MangaGalaxy.overview!.getTitle(window.location.href),
+            () => VortexScans.overview!.getTitle(window.location.href),
             () => page.handlePage(),
           );
         }

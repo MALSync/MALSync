@@ -137,7 +137,7 @@ import { MangaRead } from './MangaRead/main';
 import { Bakashi } from './Bakashi/main';
 import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
-import { MangaGalaxy } from './MangaGalaxy/main';
+import { VortexScans } from './VortexScans/main';
 
 export const pages = {
   nineAnime,
@@ -279,5 +279,5 @@ export const pages = {
   Bakashi,
   TempleScan,
   ScyllaScans,
-  MangaGalaxy,
+  VortexScans,
 };
