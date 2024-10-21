@@ -50,30 +50,21 @@ export const RanobeLib: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      con.info('getTitle', novel.data.eng_name || novel.data.name || novel.data.rus_name);
       return novel.data.eng_name || novel.data.name || novel.data.rus_name;
     },
     getIdentifier(url) {
-      con.info('getIdentifier', novel.data.id.toString());
       return novel.data.id.toString();
     },
     getOverviewUrl(url) {
-      con.info(
-        'getOverviewUrl',
-        utils.absoluteLink(`ru/book/${novel.data.slug_url}`, RanobeLib.domain),
-      );
       return utils.absoluteLink(`ru/book/${novel.data.slug_url}`, RanobeLib.domain);
     },
     getEpisode(url) {
-      con.info('getEpisode', novel.reader.chapter);
       return novel.reader.chapter;
     },
     getVolume(url) {
-      con.info('getVolume', novel.reader.volume || 1);
       return novel.reader.volume || 1;
     },
     nextEpUrl(url) {
-      con.info('nextEpUrl', novel.reader.next);
       return novel.reader.next;
     },
     readerConfig: [
@@ -114,11 +105,9 @@ export const RanobeLib: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      con.info('getTitle', novel.data.eng_name || novel.data.name || novel.data.rus_name);
       return novel.data.eng_name || novel.data.name || novel.data.rus_name;
     },
     getIdentifier(url) {
-      con.info('getIdentifier', novel.data.id.toString());
       return novel.data.id.toString();
     },
     uiSelector(selector) {
@@ -169,8 +158,7 @@ export const RanobeLib: pageInterface = {
         await updateOverviewPage();
         await awaitOverviewLoading();
       }
-      con.info('Novel data', novel.data);
-      con.info('Novel reader', novel.reader);
+
       page.handlePage();
     }
   },
