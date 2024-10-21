@@ -39,6 +39,9 @@ export class SearchClass extends SearchClassExtend {
       });
       this.vueInstance.searchClass = this;
       this.vueInstance.syncMode = syncMode;
+      this.vueInstance.options = {
+        novel: this.type === 'novel',
+      };
       this.vueInstance.unmountFnc = () => {
         resolve(this.changed);
         flasmessage.remove();
