@@ -136,9 +136,11 @@ import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { Bakashi } from './Bakashi/main';
 import { TempleScan } from './TempleScan/main';
+import { Anime3rb } from './Anime3rb/main';
 
 export const pages = {
   nineAnime,
+  Anime3rb,
   Crunchyroll,
   Mangadex,
   Gogoanime,
