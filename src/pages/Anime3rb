@@ -1,0 +1,27 @@
+{
+    "title": "Anime3rb",
+    "url": "https://Anime3rb.com/",
+    "testCases": [
+      {
+        "url": "https://anime3rb.com/episode/charlotte/12",
+        "expected": {
+          "sync": true,
+          "title": "Charlotte",
+          "identifier": "Charlotte",
+          "overviewUrl": "https://anime3rb.com/episode/charlotte/12",
+          "nextEpUrl": "https://anime3rb.com/episode/charlotte/13",
+          "episode": 12,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://anime3rb.com/episode/charlotte/12",
+        "expected": {
+          "sync": false,
+          "title": "Charlotte",
+          "identifier": "Charlotte",
+          "uiSelector": true
+        }
+      }
+    ]
+}
