@@ -1,3 +1,4 @@
+import moment from 'moment-timezone';
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
@@ -141,11 +142,13 @@ export class MetaOverview extends MetaOverviewAbstract {
         body: [{ text: data.year }],
       });
 
-    if (data.airs && data.airs)
+    if (data.airs && data.airs) {
+      const time24hr = moment(data.airs.time, ['h:mm A']).format('HH:mm');
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Broadcast'),
-        body: [{ text: `${data.airs.day} at ${data.airs.time}` }],
+        body: [{ text: `${data.airs.day} at ${time24hr} (JST)` }],
       });
+    }
 
     if (data.network && data.network)
       this.meta.info.push({

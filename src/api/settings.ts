@@ -1,4 +1,5 @@
 import { reactive, ref } from 'vue';
+import moment from 'moment-timezone';
 
 export const settingsObj = {
   options: reactive({
@@ -44,6 +45,8 @@ export const settingsObj = {
     malThumbnail: 100,
     friendScore: true,
     loadPTWForProgress: false,
+
+    timezone: moment.tz.guess(),
 
     quicklinks: [
       'Aniwave',
