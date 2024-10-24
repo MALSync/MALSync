@@ -21,6 +21,10 @@ export interface Overview {
     title: string;
     body: {
       text: string;
+      date?: {
+        date: Date;
+        type: string;
+      };
       url?: string;
       subtext?: string;
     }[];
