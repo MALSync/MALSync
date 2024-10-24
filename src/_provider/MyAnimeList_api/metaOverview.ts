@@ -270,6 +270,41 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
 
     if (data.broadcast) {
+      if (data.broadcast.day_of_the_week && data.broadcast.start_time) {
+        const daysOfWeek = [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday',
+        ];
+
+        const dayIndex = daysOfWeek.findIndex(
+          day => day.toLowerCase() === data.broadcast.day_of_the_week.toLowerCase(),
+        );
+
+        if (dayIndex !== -1) {
+          const [hours, minutes] = data.broadcast.start_time.split(':').map(Number);
+
+          const broadcastDate = new Date();
+          broadcastDate.setHours(hours, minutes, 0, 0);
+          broadcastDate.setDate(dayIndex);
+          this.meta.info.push({
+            title: api.storage.lang('overview_sidebar_Broadcast'),
+            body: [
+              {
+                date: { date: broadcastDate, type: 'weektime' },
+                text: '',
+              },
+            ],
+          });
+
+          return;
+        }
+      }
+
       let format = '';
       if (data.broadcast.day_of_the_week) format += `${data.broadcast.day_of_the_week} `;
       if (data.broadcast.day_of_the_week && data.broadcast.start_time) format += 'at ';

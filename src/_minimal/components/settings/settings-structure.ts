@@ -9,7 +9,6 @@ import { customDomains, missingPermissions } from './settings-structure-custom-d
 import { onsite } from './settings-structure-onsite';
 import { discord } from './settings-structure-discord';
 import { etc } from './settings-structure-etc';
-import { timezone } from './settings-structure-timezone';
 import { video } from './settings-structure-video';
 import { minimal } from './settings-structure-minimal';
 import { estimation } from './settings-structure-estimation';
@@ -141,15 +140,6 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: discord,
-  },
-  {
-    key: 'timezone',
-    title: () => api.storage.lang('settings_timezone'),
-    props: {
-      icon: 'schedule',
-    },
-    component: SettingsGroup,
-    children: timezone,
   },
   {
     key: 'miscellaneous',

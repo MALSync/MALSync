@@ -1,4 +1,3 @@
-import moment from 'moment-timezone';
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
@@ -143,10 +142,51 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
 
     if (data.airs && data.airs) {
-      const time24hr = moment(data.airs.time, ['h:mm A']).format('HH:mm');
+      const daysOfWeek = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+      ];
+
+      const dayIndex = daysOfWeek.findIndex(
+        day => day.toLowerCase() === data.airs.day.toLowerCase(),
+      );
+
+      if (dayIndex !== -1) {
+        const [time, modifier] = data.airs.time.split(' ');
+        const split = time.split(':').map(Number);
+
+        let hours = split[0];
+        const minutes = split[1];
+        if (modifier.toLowerCase() === 'pm' && hours !== 12) {
+          hours += 12;
+        } else if (modifier.toLowerCase() === 'am' && hours === 12) {
+          hours = 0;
+        }
+
+        const broadcastDate = new Date();
+        broadcastDate.setHours(hours, minutes, 0, 0);
+        broadcastDate.setDate(dayIndex);
+        this.meta.info.push({
+          title: api.storage.lang('overview_sidebar_Broadcast'),
+          body: [
+            {
+              date: { date: broadcastDate, type: 'weektime' },
+              text: '',
+            },
+          ],
+        });
+
+        return;
+      }
+
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Broadcast'),
-        body: [{ text: `${data.airs.day} at ${time24hr} (JST)` }],
+        body: [{ text: `${data.airs.day} at ${data.airs.time}` }],
       });
     }
 

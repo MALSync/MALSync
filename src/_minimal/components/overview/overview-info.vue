@@ -9,8 +9,15 @@
             <MediaLink v-if="link.url" dir="auto" color="secondary" :href="link.url">
               {{ link.text }}
             </MediaLink>
+            <div v-else-if="link.date && link.date.type === 'weektime'">
+              <span dir="auto">{{ getUserTzText(link.date.date) }}</span>
+              <br />
+              <span>{{ getUTCText(link.date.date) }}</span>
+              <br />
+              <span>{{ getJapanTzText(link.date.date) }}</span>
+            </div>
             <span v-else dir="auto">
-              {{ getText(link.text, item.title) }}
+              {{ link.text }}
             </span>
             <span v-if="link.subtext" class="subtext">({{ link.subtext }})</span>
             <span v-if="Number(index) + 1 < item.body.length" dir="auto">, </span>
@@ -60,7 +67,6 @@
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import moment from 'moment-timezone';
 import { timestampToShortTime } from '../../../utils/time';
 import { Overview } from '../../../_provider/metaOverviewAbstract';
 import { SingleAbstract } from '../../../_provider/singleAbstract';
@@ -91,22 +97,64 @@ function getTitle(item) {
   return '';
 }
 
-function getText(text, title) {
-  if (title === api.storage.lang('overview_sidebar_Broadcast')) {
-    const match = text.match(/(\w+)\s+at\s+(\d{2}:\d{2})\s+\(JST\)/i);
-    if (match) {
-      const dayString = match[1];
-      const timeString = match[2];
-      const originalTime = moment.tz(timeString, 'HH:mm', 'Asia/Tokyo');
-      const convertedTime = originalTime.clone().tz(api.settings.get('timezone')).format('HH:mm');
-      const originalDay = moment.tz(dayString, 'dddd', 'Asia/Tokyo');
-      const convertedDay = originalDay.clone().tz(api.settings.get('timezone')).format('dddd');
-      const format = text
-        .replace(dayString, `${convertedDay}s`)
-        .replace(timeString, convertedTime)
-        .replace('(JST)', '');
-      return format;
-    }
+function getRawDate(text) {
+  const date = new Date(text);
+  const formattedDate = `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')} +0900`;
+
+  return formattedDate;
+}
+
+function getUserTzText(text) {
+  const rawDate = getRawDate(text);
+
+  if (rawDate) {
+    const userLang = navigator.language;
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZoneName: 'short',
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+
+    return new Date(rawDate).toLocaleString(userLang, options);
+  }
+
+  return text;
+}
+
+function getUTCText(text) {
+  const rawDate = getRawDate(text);
+
+  if (rawDate) {
+    const userLang = navigator.language;
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZoneName: 'short',
+      timeZone: 'UTC',
+    };
+
+    return new Date(rawDate).toLocaleString(userLang, options);
+  }
+
+  return text;
+}
+
+function getJapanTzText(text) {
+  const rawDate = getRawDate(text);
+
+  if (rawDate) {
+    const userLang = navigator.language;
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: 'Asia/Tokyo',
+    };
+
+    return `${new Date(rawDate).toLocaleString(userLang, options)} JST`;
   }
 
   return text;

@@ -191,6 +191,39 @@ export class MetaOverview extends MetaOverviewAbstract {
 
         if (!aTags.length) {
           body = textTags.map(el => {
+            const match = el.match(/(\w+)\s+at\s+(\d{2}:\d{2})\s+\(JST\)/i);
+
+            if (match) {
+              const dayString = match[1];
+              const timeString = match[2];
+
+              const daysOfWeek = [
+                'Mondays',
+                'Tuesdays',
+                'Wednesdays',
+                'Thursdays',
+                'Fridays',
+                'Saturdays',
+                'Sundays',
+              ];
+              const dayIndex = daysOfWeek.findIndex(
+                day => day.toLowerCase() === dayString.toLowerCase(),
+              );
+
+              if (dayIndex !== -1) {
+                const [hours, minutes] = timeString.split(':').map(Number);
+
+                const jstDate = new Date();
+                jstDate.setHours(hours, minutes, 0, 0);
+                jstDate.setDate(dayIndex);
+
+                return {
+                  date: { date: jstDate, type: 'weektime' },
+                  text: '',
+                };
+              }
+            }
+
             return {
               text: el,
             };
