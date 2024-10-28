@@ -170,16 +170,20 @@ async function updateOverviewPage() {
   if (data) {
     novel.data = data.data;
   } else {
+    const idRegex = novelSlug.match(/(\d+)/);
+    const animeId = Number(idRegex ? idRegex[0] : 0);
+    novel.data.id = animeId;
+    novel.data.slug_url = novelSlug;
     const metadataJson = j.$('script[type="application/ld+json"]').text();
-    if (metadataJson) {
-      try {
-        const mangaMetadata = JSON.parse(metadataJson)[1];
-        novel.data.rus_name = mangaMetadata.name || mangaMetadata.headline || '';
-        const alternativeHeadline = mangaMetadata.alternativeHeadline[0];
-        novel.data.eng_name = alternativeHeadline || '';
-      } catch (e) {
-        novel.data.eng_name = j.$('.container h2').text();
-      }
+    const novelMetadata = metadataJson ? JSON.parse(metadataJson)[1] : null;
+    if (novelMetadata) {
+      novel.data.rus_name = novelMetadata.name || novelMetadata.headline || '';
+      novel.data.eng_name = novelMetadata.alternativeHeadline[0] || '';
+      novel.data.cover.default = novelMetadata.image || '';
+    } else {
+      novel.data.rus_name = j.$('.container h1').text() || '';
+      novel.data.eng_name = j.$('.container h2').text() || '';
+      novel.data.cover.default = j.$('.cover__img').attr('src') || '';
     }
   }
 }
