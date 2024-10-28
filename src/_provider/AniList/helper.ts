@@ -46,12 +46,12 @@ export function getFuzzyDate(date?: startFinishDate): fuzzyDate {
     month: null,
     day: null,
   };
-
-  const regexMatch = date?.match(/^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/)?.groups;
-  if (regexMatch) {
-    fuzzyDate.year = parseInt(regexMatch.year);
-    fuzzyDate.month = parseInt(regexMatch.month);
-    fuzzyDate.day = parseInt(regexMatch.day);
+  // ES6 doesn't support named capture groups
+  const regexMatch = date?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (regexMatch?.[1] && regexMatch?.[2] && regexMatch?.[3]) {
+    fuzzyDate.year = parseInt(regexMatch[1]);
+    fuzzyDate.month = parseInt(regexMatch[2]);
+    fuzzyDate.day = parseInt(regexMatch[3]);
   }
 
   return fuzzyDate;
