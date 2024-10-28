@@ -96,3 +96,30 @@ describe('Score', () => {
     });
   });
 });
+
+describe('Start/Finish Dates', () => {
+  Api.setGlobals();
+  Api.setStub({});
+
+  classConfigs.forEach(config => {
+    describe(config.name, () => {
+      it('Check start/finish date', () => {
+        const single = getSingle(config.name);
+
+        single.setStartDate('1970-01-01');
+        if (single.datesSupport) {
+          expect(single.getStartDate()).to.be.equal('1970-01-01');
+        } else {
+          expect(single.getStartDate()).to.be.equal(null);
+        }
+
+        single.setFinishDate('1970-01-02');
+        if (single.datesSupport) {
+          expect(single.getFinishDate()).to.be.equal('1970-01-02');
+        } else {
+          expect(single.getFinishDate()).to.be.equal(null);
+        }
+      });
+    });
+  });
+});
