@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import { status } from '../definitions';
+import { status, fuzzyDate, startFinishDate } from '../definitions';
 import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
 const logger = con.m('anilist', '#3db4f2');
@@ -26,6 +26,35 @@ export enum statusTranslate {
   'DROPPED' = status.Dropped,
   'PAUSED' = status.Onhold,
   'REPEATING' = status.Rewatching,
+}
+
+export function parseFuzzyDate(date?: fuzzyDate): startFinishDate | null {
+  if (!date?.year || !date?.month || !date?.day) {
+    return null;
+  }
+
+  const year = String(date.year).padStart(4, '0');
+  const month = String(date.month).padStart(2, '0');
+  const day = String(date.day).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+export function getFuzzyDate(date?: startFinishDate): fuzzyDate {
+  const fuzzyDate: fuzzyDate = {
+    year: null,
+    month: null,
+    day: null,
+  };
+
+  const regexMatch = date?.match(/^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/)?.groups;
+  if (regexMatch) {
+    fuzzyDate.year = parseInt(regexMatch.year);
+    fuzzyDate.month = parseInt(regexMatch.month);
+    fuzzyDate.day = parseInt(regexMatch.day);
+  }
+
+  return fuzzyDate;
 }
 
 export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {

@@ -117,6 +117,16 @@ export class UserList extends ListAbstract {
         }
         mediaList (status: $status, type: $type, userName: $userName, sort: $sort) {
           status
+          startedAt {
+            year
+            month
+            day
+          }
+          completedAt {
+            year
+            month
+            day
+          }
           score(format: POINT_100)
           progress
           progressVolumes
@@ -206,6 +216,8 @@ export class UserList extends ListAbstract {
           watchedEp: el.progress,
           totalEp: el.media.episodes,
           status: helper.translateList(el.status),
+          startDate: helper.parseFuzzyDate(el.startedAt),
+          finishDate: helper.parseFuzzyDate(el.completedAt),
           score: Math.round(el.score / 10),
           image: helper.imgCheck(el.media.coverImage.large),
           imageLarge: helper.imgCheck(el.media.coverImage.extraLarge),
@@ -225,6 +237,8 @@ export class UserList extends ListAbstract {
           watchedEp: el.progress,
           totalEp: el.media.chapters,
           status: helper.translateList(el.status),
+          startDate: helper.parseFuzzyDate(el.startedAt),
+          finishDate: helper.parseFuzzyDate(el.completedAt),
           score: Math.round(el.score / 10),
           image: helper.imgCheck(el.media.coverImage.large),
           imageLarge: helper.imgCheck(el.media.coverImage.extraLarge),

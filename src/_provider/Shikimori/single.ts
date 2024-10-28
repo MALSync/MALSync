@@ -18,6 +18,8 @@ export class Single extends SingleAbstract {
 
   authenticationUrl = helper.authUrl;
 
+  protected datesSupport = false;
+
   protected handleUrl(url) {
     if (url.match(/shikimori\.one\/(animes|mangas|ranobe)\/\D?\d+/i)) {
       this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
@@ -49,6 +51,22 @@ export class Single extends SingleAbstract {
 
   _setStatus(status) {
     this.animeInfo!.status = helper.statusTranslate[status] as helper.StatusType;
+  }
+
+  _setStartDate(startDate) {
+    // Unsupported
+  }
+
+  _getStartDate() {
+    return null;
+  }
+
+  _setFinishDate(finishDate) {
+    // Unsupported
+  }
+
+  _getFinishDate() {
+    return null;
   }
 
   _getScore() {

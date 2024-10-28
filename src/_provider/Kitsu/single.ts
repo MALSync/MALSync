@@ -65,6 +65,22 @@ export class Single extends SingleAbstract {
     this.listI().attributes.status = helper.translateList(status, parseInt(status.toString()));
   }
 
+  _setStartDate(startDate) {
+    this.listI().attributes.startedAt = helper.dateToTimestamp(startDate);
+  }
+
+  _getStartDate() {
+    return helper.timestampToDate(this.listI().attributes.startedAt);
+  }
+
+  _setFinishDate(finishDate) {
+    this.listI().attributes.finishedAt = helper.dateToTimestamp(finishDate);
+  }
+
+  _getFinishDate() {
+    return helper.timestampToDate(this.listI().attributes.finishedAt);
+  }
+
   _getScore() {
     if (!this.listI().attributes.ratingHundred) return 0;
     const score = Math.round(this.listI().attributes.ratingHundred / 10);
@@ -224,6 +240,8 @@ export class Single extends SingleAbstract {
               reconsumeCount: false,
               ratingTwenty: null,
               status: 'planned',
+              startedAt: null,
+              finishedAt: null,
             },
           };
           if (typeof kitsuRes !== 'undefined') {
@@ -268,6 +286,8 @@ export class Single extends SingleAbstract {
           reconsumeCount: this.listI().attributes.reconsumeCount,
           ratingTwenty: this._getTwentyScore(),
           status: this.listI().attributes.status,
+          startedAt: this.listI().attributes.startedAt,
+          finishedAt: this.listI().attributes.finishedAt,
         },
         type: 'library-entries',
       },

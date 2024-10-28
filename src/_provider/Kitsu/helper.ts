@@ -1,3 +1,4 @@
+import { startFinishDate } from '../definitions';
 import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
 const logger = con.m('kitsu', '#d65e43');
@@ -14,6 +15,22 @@ export function translateList(aniStatus, malStatus: null | number = null) {
     return Object.keys(list).find(key => list[key] === malStatus);
   }
   return list[aniStatus];
+}
+
+export function timestampToDate(timestamp: string | null): startFinishDate | null {
+  if (typeof timestamp !== 'string') {
+    return null;
+  }
+
+  return timestamp.substring(0, 10);
+}
+
+export function dateToTimestamp(date: startFinishDate | null): string | null {
+  if (typeof date !== 'string') {
+    return null;
+  }
+
+  return `${date}T00:00:00.000Z`;
 }
 
 export function getTitle(titles, canonicalTitle) {

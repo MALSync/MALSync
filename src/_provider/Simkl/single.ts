@@ -27,6 +27,8 @@ export class Single extends SingleAbstract {
 
   protected rewatchingSupport = false;
 
+  protected datesSupport = false;
+
   protected handleUrl(url) {
     if (url.match(/simkl\.com\/(anime|manga)\/\d*/i)) {
       this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
@@ -60,6 +62,22 @@ export class Single extends SingleAbstract {
     status = helper.translateList(status, parseInt(status.toString()));
     if (status !== this.animeInfo.status) this.statusUpdate = true;
     this.animeInfo.status = status;
+  }
+
+  _setStartDate(startDate) {
+    // Unsupported
+  }
+
+  _getStartDate() {
+    return null;
+  }
+
+  _setFinishDate(finishDate) {
+    // Unsupported
+  }
+
+  _getFinishDate() {
+    return null;
   }
 
   _getScore() {

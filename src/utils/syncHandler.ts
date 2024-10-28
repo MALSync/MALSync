@@ -82,6 +82,16 @@ export function changeCheck(item, mode) {
         item.diff = true;
         slave.diff.status = item.master.status;
       }
+      if (['MAL', 'ANILIST', 'KITSU'].includes(getType(slave.url))) {
+        if (slave.startDate !== item.master.startDate) {
+          item.diff = true;
+          slave.diff.startDate = item.master.startDate;
+        }
+        if (slave.finishDate !== item.master.finishDate) {
+          item.diff = true;
+          slave.diff.finishDate = item.master.finishDate;
+        }
+      }
       if (slave.score !== item.master.score) {
         item.diff = true;
         slave.diff.score = item.master.score;
@@ -108,6 +118,8 @@ export function missingCheck(item, missing, types, mode) {
           watchedEp: item.master.watchedEp,
           score: item.master.score,
           status: item.master.status,
+          startDate: item.master.startDate,
+          finishDate: item.master.finishDate,
           url: `https://myanimelist.net/${item.master.type}/${item.master.malId}`,
           error: null,
         });
@@ -158,6 +170,8 @@ export async function syncMissing(item) {
   item.diff = {
     watchedEp: item.watchedEp,
     status: item.status,
+    startDate: item.startDate,
+    finishDate: item.finishDate,
     score: item.score,
   };
   return syncItem(item, item.syncType);
@@ -186,6 +200,9 @@ export function syncItem(slave, pageType) {
           singleClass.setEpisode(slave.diff.watchedEp);
         if (typeof slave.diff.status !== 'undefined') singleClass.setStatus(slave.diff.status);
         if (typeof slave.diff.score !== 'undefined') singleClass.setScore(slave.diff.score);
+        // 'null' is valid for start/finish date
+        if (slave.diff.startDate !== undefined) singleClass.setStartDate(slave.diff.startDate);
+        if (slave.diff.finishDate !== undefined) singleClass.setFinishDate(slave.diff.finishDate);
         return singleClass.sync();
       })
       .then(() => {

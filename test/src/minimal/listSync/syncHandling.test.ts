@@ -20,6 +20,8 @@ const helper = {
       watchedEp: 15,
       totalEp: 24,
       status: 6,
+      startDate: null,
+      finishDate: null,
       score: 6,
       diff: {},
       url: 'https://myanimelist.net/anime/19815',
@@ -110,6 +112,28 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.status = 2;
       const diff = { status: 2 };
+      sync.changeCheck(item, mode);
+      expect(item.diff).to.equal(true);
+      expect(item.slaves[0].diff).to.deep.equal(diff);
+      expect(item.slaves[1].diff).to.deep.equal(diff);
+    });
+
+    it('Start Date Change', function() {
+      const item = helper.getMasterSlave();
+      // @ts-ignore
+      item.master.startDate = '1970-01-01';
+      const diff = { startDate: '1970-01-01' };
+      sync.changeCheck(item, mode);
+      expect(item.diff).to.equal(true);
+      expect(item.slaves[0].diff).to.deep.equal(diff);
+      expect(item.slaves[1].diff).to.deep.equal(diff);
+    });
+
+    it('Finish Date Change', function() {
+      const item = helper.getMasterSlave();
+      // @ts-ignore
+      item.master.finishDate = '1970-01-01';
+      const diff = { finishDate: '1970-01-01' };
       sync.changeCheck(item, mode);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);

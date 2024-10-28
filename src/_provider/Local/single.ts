@@ -24,6 +24,8 @@ export class Single extends SingleAbstract {
 
   authenticationUrl = '';
 
+  protected datesSupport = false;
+
   protected handleUrl(url) {
     if (url.match(/local:\/\/.*/i)) {
       this.id = utils.urlPart(url, 4);
@@ -55,6 +57,22 @@ export class Single extends SingleAbstract {
 
   _setStatus(status) {
     this.animeInfo.status = status;
+  }
+
+  _setStartDate(startDate) {
+    // Unsupported
+  }
+
+  _getStartDate() {
+    return null;
+  }
+
+  _setFinishDate(finishDate) {
+    // Unsupported
+  }
+
+  _getFinishDate() {
+    return null;
   }
 
   _getScore() {

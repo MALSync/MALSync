@@ -179,6 +179,8 @@ export class UserList extends ListAbstract {
           watchedEp: list.attributes.progress,
           totalEp: el.attributes.episodeCount,
           status: helper.translateList(list.attributes.status),
+          startDate: helper.timestampToDate(list.attributes.startedAt),
+          finishDate: helper.timestampToDate(list.attributes.finishedAt),
           score: Math.round(list.attributes.ratingTwenty / 2),
           image:
             el.attributes.posterImage && el.attributes.posterImage.small
@@ -208,6 +210,8 @@ export class UserList extends ListAbstract {
           watchedEp: list.attributes.progress,
           totalEp: el.attributes.chapterCount,
           status: helper.translateList(list.attributes.status),
+          startDate: helper.timestampToDate(list.attributes.startedAt),
+          finishDate: helper.timestampToDate(list.attributes.finishedAt),
           score: Math.round(list.attributes.ratingTwenty / 2),
           image:
             el.attributes.posterImage && el.attributes.posterImage.small

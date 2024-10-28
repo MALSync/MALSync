@@ -108,6 +108,8 @@
                 </div>
                 <div>EP: {{ item.master.watchedEp }}</div>
                 <div>Status: {{ item.master.status }}</div>
+                <div>Start Date: {{ item.master.startDate ?? 'not set' }}</div>
+                <div>Finish Date: {{ item.master.finishDate ?? 'not set' }}</div>
                 <div>Score: {{ item.master.score }}</div>
               </FormButton>
               <FormButton
@@ -133,6 +135,18 @@
                   Status: {{ slave.status }}
                   <span v-if="slave.diff && slave.diff.status" class="highlight">
                     → {{ slave.diff.status }}
+                  </span>
+                </div>
+                <div>
+                  Start Date: {{ slave.startDate ?? 'not set' }}
+                  <span v-if="slave.diff && slave.diff.startDate !== undefined" class="highlight">
+                    → {{ slave.diff.startDate ?? 'not set' }}
+                  </span>
+                </div>
+                <div>
+                  Finish Date: {{ slave.finishDate ?? 'not set' }}
+                  <span v-if="slave.diff && slave.diff.finishDate !== undefined" class="highlight">
+                    → {{ slave.diff.finishDate ?? 'not set' }}
                   </span>
                 </div>
                 <div>
@@ -163,6 +177,8 @@
               </div>
               <div>EP: {{ item.watchedEp }}</div>
               <div>Status: {{ item.status }}</div>
+              <div>Start Date: {{ item.startDate ?? 'not set' }}</div>
+              <div>Finish Date: {{ item.finishDate ?? 'not set' }}</div>
               <div>Score: {{ item.score }}</div>
               <FormButton v-if="item.error" :animation="false" color="secondary" padding="mini">
                 {{ item.error }}

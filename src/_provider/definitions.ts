@@ -36,6 +36,15 @@ export enum score {
 // score range 0 - 100
 export type score100 = number;
 
+// YYYY-MM-DD format
+export type startFinishDate = string;
+
+export type fuzzyDate = {
+  year: number | null;
+  month: number | null;
+  day: number | null;
+};
+
 export type searchResult = {
   id: number;
   name: string;

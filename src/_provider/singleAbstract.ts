@@ -36,6 +36,8 @@ export abstract class SingleAbstract {
 
   protected rewatchingSupport = true;
 
+  protected datesSupport = true;
+
   protected ids = {
     mal: NaN,
     ani: NaN,
@@ -92,6 +94,42 @@ export abstract class SingleAbstract {
   public getStatus(): definitions.status {
     if (!this.isOnList()) return definitions.status.NoState;
     return this._getStatus();
+  }
+
+  abstract _setStartDate(startDate: definitions.startFinishDate): void;
+
+  public setStartDate(startDate: definitions.startFinishDate): SingleAbstract {
+    if (this.datesSupport) {
+      this._setStartDate(startDate);
+    }
+    return this;
+  }
+
+  abstract _getStartDate(): definitions.startFinishDate | null;
+
+  public getStartDate(): definitions.startFinishDate | null {
+    if (this.datesSupport) {
+      return this._getStartDate();
+    }
+    return null;
+  }
+
+  abstract _setFinishDate(finishDate: definitions.startFinishDate): void;
+
+  public setFinishDate(finishDate: definitions.startFinishDate): SingleAbstract {
+    if (this.datesSupport) {
+      this._setFinishDate(finishDate);
+    }
+    return this;
+  }
+
+  abstract _getFinishDate(): definitions.startFinishDate | null;
+
+  public getFinishDate(): definitions.startFinishDate | null {
+    if (this.datesSupport) {
+      return this._getFinishDate();
+    }
+    return null;
   }
 
   public getScoreMode() {
