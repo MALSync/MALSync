@@ -138,16 +138,20 @@ async function updateOverviewPage() {
   if (data) {
     anime.data = data.data;
   } else {
+    const idRegex = animeSlug.match(/(\d+)/);
+    const animeId = Number(idRegex ? idRegex[0] : 0);
+    anime.data.id = animeId;
+    anime.data.slug_url = animeSlug;
     const metadataJson = j.$('script[type="application/ld+json"]').text();
-    if (metadataJson) {
-      try {
-        const animeMetadata = JSON.parse(metadataJson)[1];
-        anime.data.rus_name = animeMetadata.name || animeMetadata.headline || '';
-        const alternativeHeadline = animeMetadata.alternativeHeadline[0];
-        anime.data.eng_name = alternativeHeadline || '';
-      } catch (e) {
-        anime.data.eng_name = j.$('.container h2').text();
-      }
+    const animeMetadata = metadataJson ? JSON.parse(metadataJson)[1] : null;
+    if (animeMetadata) {
+      anime.data.rus_name = animeMetadata.name || animeMetadata.headline || '';
+      anime.data.eng_name = animeMetadata.alternativeHeadline[0] || '';
+      anime.data.cover.default = animeMetadata.image || '';
+    } else {
+      anime.data.rus_name = j.$('.container h1').text() || '';
+      anime.data.eng_name = j.$('.container h2').text() || '';
+      anime.data.cover.default = j.$('.cover__img').attr('src') || '';
     }
   }
 }
@@ -250,7 +254,7 @@ function getAnimeDataNoAPI(animeSlug: string, animeId: number) {
   anime.data.rus_name = j.$('h1 a').text();
   anime.data.id = animeId;
   anime.data.slug_url = animeSlug;
-  anime.data.cover.default = j.$('.cover img').attr('src') || '';
+  anime.data.cover.default = j.$('.cover img').first().attr('src') || '';
 }
 function getAnimeDataAPI(anime_data: Anime) {
   anime.data = anime_data.data;
