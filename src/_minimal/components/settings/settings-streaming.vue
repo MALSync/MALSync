@@ -53,26 +53,28 @@
       <Header :spacer="true">{{ lang('settings_StreamingSite_custom') }}</Header>
       <Section>
         <table>
-          <tr class="row">
-            <td><CodeBlock>{searchterm}</CodeBlock></td>
-            <td>=> <CodeBlock>no%20game%20no%20life</CodeBlock></td>
-          </tr>
-          <tr class="row">
-            <td><CodeBlock>{searchtermPlus}</CodeBlock></td>
-            <td>=> <CodeBlock>no+game+no+life</CodeBlock></td>
-          </tr>
-          <tr class="row">
-            <td><CodeBlock>{searchtermMinus}</CodeBlock></td>
-            <td>=> <CodeBlock>no-game-no-life</CodeBlock></td>
-          </tr>
-          <tr class="row">
-            <td><CodeBlock>{searchtermUnderscore}</CodeBlock></td>
-            <td>=> <CodeBlock>no_game_no_life</CodeBlock></td>
-          </tr>
-          <tr>
-            <td><CodeBlock>{searchtermRaw}</CodeBlock></td>
-            <td>=> <CodeBlock>no game no life</CodeBlock></td>
-          </tr>
+          <tbody>
+            <tr class="row">
+              <td><CodeBlock>{searchterm}</CodeBlock></td>
+              <td>=> <CodeBlock>no%20game%20no%20life</CodeBlock></td>
+            </tr>
+            <tr class="row">
+              <td><CodeBlock>{searchtermPlus}</CodeBlock></td>
+              <td>=> <CodeBlock>no+game+no+life</CodeBlock></td>
+            </tr>
+            <tr class="row">
+              <td><CodeBlock>{searchtermMinus}</CodeBlock></td>
+              <td>=> <CodeBlock>no-game-no-life</CodeBlock></td>
+            </tr>
+            <tr class="row">
+              <td><CodeBlock>{searchtermUnderscore}</CodeBlock></td>
+              <td>=> <CodeBlock>no_game_no_life</CodeBlock></td>
+            </tr>
+            <tr>
+              <td><CodeBlock>{searchtermRaw}</CodeBlock></td>
+              <td>=> <CodeBlock>no game no life</CodeBlock></td>
+            </tr>
+          </tbody>
         </table>
       </Section>
 
