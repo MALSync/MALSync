@@ -13,9 +13,7 @@ export const VortexScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      let temp = '';
-      temp = j.$('div').eq(9).text().trim();
-      return temp.split(' Chapter')[0];
+      return document.title.trim().split(' Chapter')[0];
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -44,23 +42,13 @@ export const VortexScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$(
-          'body > div:nth-child(1) > main > div > article > section > div > div.flex.w-full.flex-col.gap-3.px-4.py-4 > div.flex.flex-col.gap-1.md\\:gap-2 > h1',
-        )
-        .eq(0)
-        .text()
-        .trim();
+      return j.$('h1[itemprop="name"]').eq(0).text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$(
-        'body > div:nth-child(1) > main > div > article > section > div > div.flex.w-full.flex-col.gap-3.px-4.py-4 > div.flex.flex-col.gap-1.md\\:gap-2 > h1',
-      )
-        .eq(0)
-        .after(j.html(selector));
+      j.$('h1[itemprop="name"]').eq(0).after(j.html(selector));
     },
   },
   init(page) {
