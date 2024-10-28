@@ -106,8 +106,11 @@
                 <div>
                   ID: <MediaLink :href="item.master.url">{{ item.master.uid }}</MediaLink>
                 </div>
-                <div>EP: {{ item.master.watchedEp }}</div>
-                <div>Status: {{ item.master.status }}</div>
+                <div>
+                  {{ item.master.type === 'anime' ? 'Ep' : 'Ch' }}: {{ item.master.watchedEp }}
+                </div>
+                <div v-if="item.master.type === 'manga'">Vol: {{ item.master.readVol }}</div>
+                <div>Status: {{ getStatusText(item.master.type, item.master.status) }}</div>
                 <div>Start Date: {{ item.master.startDate ?? 'not set' }}</div>
                 <div>Finish Date: {{ item.master.finishDate ?? 'not set' }}</div>
                 <div>Score: {{ item.master.score }}</div>
@@ -123,36 +126,42 @@
                   ID: <MediaLink :href="slave.url">{{ slave.uid }}</MediaLink>
                 </div>
                 <div>
-                  EP: {{ slave.watchedEp }}
-                  <span v-if="slave.diff && slave.diff.watchedEp" class="highlight">
-                    →
-                    <FormButton :animation="false" color="primary" padding="mini">
-                      {{ slave.diff.watchedEp }}
-                    </FormButton>
+                  {{ slave.type === 'anime' ? 'Ep' : 'Ch' }}: {{ slave.watchedEp }}
+                  <span v-if="slave.diff && slave.diff.watchedEp">
+                    → <text class="highlight">{{ slave.diff.watchedEp }}</text>
+                  </span>
+                </div>
+                <div v-if="slave.type === 'manga'">
+                  Vol: {{ slave.readVol }}
+                  <span v-if="slave.diff && slave.diff.readVol">
+                    → <text class="highlight">{{ slave.diff.readVol }}</text>
                   </span>
                 </div>
                 <div>
-                  Status: {{ slave.status }}
-                  <span v-if="slave.diff && slave.diff.status" class="highlight">
-                    → {{ slave.diff.status }}
+                  Status: {{ getStatusText(slave.type, slave.status) }}
+                  <span v-if="slave.diff && slave.diff.status">
+                    →
+                    <text class="highlight">{{
+                      getStatusText(slave.type, slave.diff.status)
+                    }}</text>
                   </span>
                 </div>
                 <div>
                   Start Date: {{ slave.startDate ?? 'not set' }}
-                  <span v-if="slave.diff && slave.diff.startDate !== undefined" class="highlight">
-                    → {{ slave.diff.startDate ?? 'not set' }}
+                  <span v-if="slave.diff && slave.diff.startDate !== undefined">
+                    → <text class="highlight">{{ slave.diff.startDate ?? 'not set' }}</text>
                   </span>
                 </div>
                 <div>
                   Finish Date: {{ slave.finishDate ?? 'not set' }}
-                  <span v-if="slave.diff && slave.diff.finishDate !== undefined" class="highlight">
-                    → {{ slave.diff.finishDate ?? 'not set' }}
+                  <span v-if="slave.diff && slave.diff.finishDate !== undefined">
+                    → <text class="highlight">{{ slave.diff.finishDate ?? 'not set' }}</text>
                   </span>
                 </div>
                 <div>
                   Score: {{ slave.score }}
-                  <span v-if="slave.diff && slave.diff.score" class="highlight">
-                    → {{ slave.diff.score }}
+                  <span v-if="slave.diff && slave.diff.score">
+                    → <text class="highlight">{{ slave.diff.score }}</text>
                   </span>
                 </div>
               </FormButton>
@@ -168,15 +177,16 @@
         <Section v-for="(item, index) in syncRequest.data.missing" :key="index" spacer="half">
           <Card class="missing">
             <Header spacer="half">
-              {{ item.title }}
+              {{ item.title && console.log(item) }}
             </Header>
             <FormButton :animation="false">
               <div>{{ item.syncType }}</div>
               <div>
                 ID: <MediaLink :href="item.url">{{ item.malId }}</MediaLink>
               </div>
-              <div>EP: {{ item.watchedEp }}</div>
-              <div>Status: {{ item.status }}</div>
+              <div>{{ item.type === 'anime' ? 'Ep' : 'Ch' }}: {{ item.watchedEp }}</div>
+              <div v-if="item.type === 'manga'">Vol: {{ item.readVol }}</div>
+              <div>Status: {{ getStatusText(item.type, item.status) }}</div>
               <div>Start Date: {{ item.startDate ?? 'not set' }}</div>
               <div>Finish Date: {{ item.finishDate ?? 'not set' }}</div>
               <div>Score: {{ item.score }}</div>
@@ -194,6 +204,7 @@
 <script lang="ts" setup>
 import { computed, reactive, ref } from 'vue';
 import * as sync from '../../../utils/syncHandler';
+import { getStatusText } from '../../../utils/general';
 import { createRequest } from '../../utils/reactive';
 import Card from '../card.vue';
 import FormSwitch from '../form/form-switch.vue';
@@ -369,7 +380,10 @@ updateBackgroundSyncState();
   }
 
   .highlight {
-    color: var(--primary-color);
+    background-color: var(--cl-primary);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
   }
 }
 </style>

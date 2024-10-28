@@ -14,8 +14,12 @@ export interface listElement {
   title: string;
   url: string;
   watchedEp: number;
+  readVol?: number;
   totalEp: number;
+  totalVol?: number;
   status: number;
+  startDate: string | null;
+  finishDate: string | null;
   score: number;
   image: string;
   imageLarge: string;

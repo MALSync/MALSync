@@ -8,6 +8,7 @@ import { UserList as AnilistList } from '../_provider/AniList/list';
 import { UserList as KitsuList } from '../_provider/Kitsu/list';
 import { UserList as SimklList } from '../_provider/Simkl/list';
 import { getSyncMode } from '../_provider/helper';
+import { listElement } from '../_provider/listAbstract';
 
 export function generateSync(
   masterList: object,
@@ -78,6 +79,17 @@ export function changeCheck(item, mode) {
           slave.diff.watchedEp = item.master.watchedEp;
         }
       }
+      if (item.master.type === 'manga' && slave.readVol !== item.master.readVol) {
+        if (item.master.status === 2) {
+          if (slave.readVol !== slave.totalVol) {
+            item.diff = true;
+            slave.diff.readVol = slave.totalVol;
+          }
+        } else {
+          item.diff = true;
+          slave.diff.readVol = item.master.readVol;
+        }
+      }
       if (slave.status !== item.master.status) {
         item.diff = true;
         slave.diff.status = item.master.status;
@@ -111,8 +123,9 @@ export function missingCheck(item, missing, types, mode) {
     for (const t in types) {
       const type = types[t];
       if (!tempTypes.includes(type)) {
-        missing.push({
+        const entry = {
           title: item.master.title,
+          type: item.master.type,
           syncType: type,
           malId: item.master.malId,
           watchedEp: item.master.watchedEp,
@@ -122,7 +135,11 @@ export function missingCheck(item, missing, types, mode) {
           finishDate: item.master.finishDate,
           url: `https://myanimelist.net/${item.master.type}/${item.master.malId}`,
           error: null,
-        });
+        } as Partial<listElement>;
+        if (item.master.type === 'manga') {
+          entry.readVol = item.master.readVol;
+        }
+        missing.push(entry);
       }
     }
   }
@@ -174,6 +191,9 @@ export async function syncMissing(item) {
     finishDate: item.finishDate,
     score: item.score,
   };
+  if (item.type === 'manga') {
+    item.diff.readVol = item.readVol;
+  }
   return syncItem(item, item.syncType);
 }
 
@@ -198,6 +218,7 @@ export function syncItem(slave, pageType) {
       .then(() => {
         if (typeof slave.diff.watchedEp !== 'undefined')
           singleClass.setEpisode(slave.diff.watchedEp);
+        if (typeof slave.diff.readVol !== 'undefined') singleClass.setVolume(slave.diff.readVol);
         if (typeof slave.diff.status !== 'undefined') singleClass.setStatus(slave.diff.status);
         if (typeof slave.diff.score !== 'undefined') singleClass.setScore(slave.diff.score);
         // 'null' is valid for start/finish date

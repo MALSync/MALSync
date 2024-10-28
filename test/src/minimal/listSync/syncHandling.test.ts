@@ -190,7 +190,6 @@ describe('Sync Handling', function() {
       res.error = null;
       delete res.diff;
       delete res.totalEp;
-      delete res.type;
       delete res.uid;
 
       sync.missingCheck(item, miss, typeArray, mode);
@@ -206,7 +205,6 @@ describe('Sync Handling', function() {
       res.error = null;
       delete res.diff;
       delete res.totalEp;
-      delete res.type;
       delete res.uid;
 
       delete item.master;
