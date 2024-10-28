@@ -166,7 +166,6 @@ export class UserList extends ListAbstract {
         );
       }
     }
-    console.log(newData);
     return newData;
   }
 
