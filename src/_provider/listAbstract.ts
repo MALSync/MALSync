@@ -13,6 +13,7 @@ export interface listElement {
   type: 'anime' | 'manga';
   title: string;
   url: string;
+  score: number;
   watchedEp: number;
   readVol?: number;
   totalEp: number;
@@ -20,7 +21,7 @@ export interface listElement {
   status: number;
   startDate: string | null;
   finishDate: string | null;
-  score: number;
+  rewatchCount: number;
   image: string;
   imageLarge: string;
   imageBanner?: string;

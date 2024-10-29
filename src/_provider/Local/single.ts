@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import { UrlNotSupportedError } from '../Errors';
+import * as definitions from '../definitions';
 
 // local://crunchyroll/anime/nogamenolife
 
@@ -23,6 +24,8 @@ export class Single extends SingleAbstract {
   shortName = 'Local';
 
   authenticationUrl = '';
+
+  protected rewatchingSupport = false;
 
   protected datesSupport = false;
 
@@ -56,14 +59,21 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
+    if (status === definitions.status.Rewatching && !this.supportsRewatching()) {
+      status = definitions.status.Watching;
+    }
     this.animeInfo.status = status;
+  }
+
+  _getStartDate() {
+    return null;
   }
 
   _setStartDate(startDate) {
     // Unsupported
   }
 
-  _getStartDate() {
+  _getFinishDate() {
     return null;
   }
 
@@ -71,8 +81,12 @@ export class Single extends SingleAbstract {
     // Unsupported
   }
 
-  _getFinishDate() {
+  _getRewatchCount() {
     return null;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    // Unsupported
   }
 
   _getScore() {

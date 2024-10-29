@@ -53,20 +53,28 @@ export class Single extends SingleAbstract {
     this.animeInfo.mediaListEntry.status = helper.statusTranslate[status];
   }
 
+  _getStartDate() {
+    return helper.parseFuzzyDate(this.animeInfo.mediaListEntry.startedAt);
+  }
+
   _setStartDate(startDate) {
     this.animeInfo.mediaListEntry.startedAt = helper.getFuzzyDate(startDate);
   }
 
-  _getStartDate() {
-    return helper.parseFuzzyDate(this.animeInfo.mediaListEntry.startedAt);
+  _getFinishDate() {
+    return helper.parseFuzzyDate(this.animeInfo.mediaListEntry.completedAt);
   }
 
   _setFinishDate(finishDate) {
     this.animeInfo.mediaListEntry.completedAt = helper.getFuzzyDate(finishDate);
   }
 
-  _getFinishDate() {
-    return helper.parseFuzzyDate(this.animeInfo.mediaListEntry.completedAt);
+  _getRewatchCount() {
+    return this.animeInfo.mediaListEntry.repeat;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    this.animeInfo.mediaListEntry.repeat = rewatchCount;
   }
 
   _getScore() {
@@ -243,8 +251,8 @@ export class Single extends SingleAbstract {
 
   async _sync() {
     let query = `
-      mutation ($mediaId: Int, $status: MediaListStatus, $startedAt: FuzzyDateInput, $completedAt: FuzzyDateInput, $progress: Int, $scoreRaw: Int, $notes: String) {
-        SaveMediaListEntry (mediaId: $mediaId, status: $status, startedAt: $startedAt, completedAt: $completedAt, progress: $progress, scoreRaw: $scoreRaw, notes: $notes) {
+      mutation ($mediaId: Int, $status: MediaListStatus, $startedAt: FuzzyDateInput, $completedAt: FuzzyDateInput, $progress: Int, $scoreRaw: Int, $repeat: Int, $notes: String) {
+        SaveMediaListEntry (mediaId: $mediaId, status: $status, startedAt: $startedAt, completedAt: $completedAt, progress: $progress, scoreRaw: $scoreRaw, repeat: $repeat, notes: $notes) {
           id
           status
           progress
@@ -258,14 +266,15 @@ export class Single extends SingleAbstract {
       completedAt: this.animeInfo.mediaListEntry.completedAt,
       progress: this.animeInfo.mediaListEntry.progress,
       scoreRaw: this.animeInfo.mediaListEntry.score,
+      repeat: this.animeInfo.mediaListEntry.repeat,
       notes: this.animeInfo.mediaListEntry.notes,
       volumes: null,
     };
 
     if (this.type === 'manga') {
       query = `
-        mutation ($mediaId: Int, $status: MediaListStatus, $startedAt: FuzzyDateInput, $completedAt: FuzzyDateInput, $progress: Int, $scoreRaw: Int, $notes: String, $volumes: Int) {
-          SaveMediaListEntry (mediaId: $mediaId, status: $status, startedAt: $startedAt, completedAt: $completedAt, progress: $progress, scoreRaw: $scoreRaw, notes: $notes, progressVolumes: $volumes) {
+        mutation ($mediaId: Int, $status: MediaListStatus, $startedAt: FuzzyDateInput, $completedAt: FuzzyDateInput, $progress: Int, $scoreRaw: Int, $repeat: Int, $notes: String, $volumes: Int) {
+          SaveMediaListEntry (mediaId: $mediaId, status: $status, startedAt: $startedAt, completedAt: $completedAt, progress: $progress, scoreRaw: $scoreRaw, repeat: $repeat, notes: $notes, progressVolumes: $volumes) {
             id
             status
             progress

@@ -106,6 +106,7 @@
                 <div>
                   ID: <MediaLink :href="item.master.url">{{ item.master.uid }}</MediaLink>
                 </div>
+                <div>Score: {{ item.master.score }}</div>
                 <div>
                   {{ item.master.type === 'anime' ? 'Ep' : 'Ch' }}: {{ item.master.watchedEp }}
                 </div>
@@ -113,7 +114,10 @@
                 <div>Status: {{ getStatusText(item.master.type, item.master.status) }}</div>
                 <div>Start Date: {{ item.master.startDate ?? 'not set' }}</div>
                 <div>Finish Date: {{ item.master.finishDate ?? 'not set' }}</div>
-                <div>Score: {{ item.master.score }}</div>
+                <div>
+                  {{ item.master.type === 'anime' ? 'Rewatch' : 'Reread' }} Count:
+                  {{ item.master.rewatchCount ?? 0 }}
+                </div>
               </FormButton>
               <FormButton
                 v-for="slave in item.slaves"
@@ -126,20 +130,26 @@
                   ID: <MediaLink :href="slave.url">{{ slave.uid }}</MediaLink>
                 </div>
                 <div>
+                  Score: {{ slave.score }}
+                  <span v-if="slave.diff && slave.diff.score !== undefined">
+                    → <text class="highlight">{{ slave.diff.score }}</text>
+                  </span>
+                </div>
+                <div>
                   {{ slave.type === 'anime' ? 'Ep' : 'Ch' }}: {{ slave.watchedEp }}
-                  <span v-if="slave.diff && slave.diff.watchedEp">
+                  <span v-if="slave.diff && slave.diff.watchedEp !== undefined">
                     → <text class="highlight">{{ slave.diff.watchedEp }}</text>
                   </span>
                 </div>
                 <div v-if="slave.type === 'manga'">
                   Vol: {{ slave.readVol }}
-                  <span v-if="slave.diff && slave.diff.readVol">
+                  <span v-if="slave.diff && slave.diff.readVol !== undefined">
                     → <text class="highlight">{{ slave.diff.readVol }}</text>
                   </span>
                 </div>
                 <div>
                   Status: {{ getStatusText(slave.type, slave.status) }}
-                  <span v-if="slave.diff && slave.diff.status">
+                  <span v-if="slave.diff && slave.diff.status !== undefined">
                     →
                     <text class="highlight">{{
                       getStatusText(slave.type, slave.diff.status)
@@ -159,9 +169,10 @@
                   </span>
                 </div>
                 <div>
-                  Score: {{ slave.score }}
-                  <span v-if="slave.diff && slave.diff.score">
-                    → <text class="highlight">{{ slave.diff.score }}</text>
+                  {{ slave.type === 'anime' ? 'Rewatch' : 'Reread' }} Count:
+                  {{ slave.rewatchCount ?? 0 }}
+                  <span v-if="slave.diff && slave.diff.rewatchCount !== undefined">
+                    → <text class="highlight">{{ slave.diff.rewatchCount }}</text>
                   </span>
                 </div>
               </FormButton>
@@ -184,12 +195,16 @@
               <div>
                 ID: <MediaLink :href="item.url">{{ item.malId }}</MediaLink>
               </div>
+              <div>Score: {{ item.score }}</div>
               <div>{{ item.type === 'anime' ? 'Ep' : 'Ch' }}: {{ item.watchedEp }}</div>
               <div v-if="item.type === 'manga'">Vol: {{ item.readVol }}</div>
               <div>Status: {{ getStatusText(item.type, item.status) }}</div>
               <div>Start Date: {{ item.startDate ?? 'not set' }}</div>
               <div>Finish Date: {{ item.finishDate ?? 'not set' }}</div>
-              <div>Score: {{ item.score }}</div>
+              <div>
+                {{ item.type === 'anime' ? 'Rewatch' : 'Reread' }} Count:
+                {{ item.rewatchCount ?? 0 }}
+              </div>
               <FormButton v-if="item.error" :animation="false" color="secondary" padding="mini">
                 {{ item.error }}
               </FormButton>

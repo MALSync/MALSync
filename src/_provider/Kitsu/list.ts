@@ -176,12 +176,13 @@ export class UserList extends ListAbstract {
           type: listType,
           title: name,
           url: `https://kitsu.app/${listType}/${el.attributes.slug}`,
+          score: Math.round(list.attributes.ratingTwenty / 2),
           watchedEp: list.attributes.progress,
           totalEp: el.attributes.episodeCount,
           status: helper.translateList(list.attributes.status),
           startDate: helper.timestampToDate(list.attributes.startedAt),
           finishDate: helper.timestampToDate(list.attributes.finishedAt),
-          score: Math.round(list.attributes.ratingTwenty / 2),
+          rewatchCount: list.attributes.reconsumeCount,
           image:
             el.attributes.posterImage && el.attributes.posterImage.small
               ? el.attributes.posterImage.small
@@ -207,6 +208,7 @@ export class UserList extends ListAbstract {
           type: listType,
           title: name,
           url: `https://kitsu.app/${listType}/${el.attributes.slug}`,
+          score: Math.round(list.attributes.ratingTwenty / 2),
           watchedEp: list.attributes.progress,
           readVol: list.attributes.volumesOwned,
           totalEp: el.attributes.chapterCount,
@@ -214,7 +216,7 @@ export class UserList extends ListAbstract {
           status: helper.translateList(list.attributes.status),
           startDate: helper.timestampToDate(list.attributes.startedAt),
           finishDate: helper.timestampToDate(list.attributes.finishedAt),
-          score: Math.round(list.attributes.ratingTwenty / 2),
+          rewatchCount: el.attributes.reconsumeCount,
           image:
             el.attributes.posterImage && el.attributes.posterImage.small
               ? el.attributes.posterImage.small

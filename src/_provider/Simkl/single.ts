@@ -80,6 +80,14 @@ export class Single extends SingleAbstract {
     return null;
   }
 
+  _setRewatchCount(rewatchCount) {
+    // Unsupported
+  }
+
+  _getRewatchCount() {
+    return null;
+  }
+
   _getScore() {
     const score = this.animeInfo.user_rating;
     if (score === null) return 0;

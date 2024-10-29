@@ -127,6 +127,7 @@ export class UserList extends ListAbstract {
             month
             day
           }
+          repeat
           score(format: POINT_100)
           progress
           progressVolumes
@@ -213,12 +214,13 @@ export class UserList extends ListAbstract {
           type: listType,
           title: el.media.title.userPreferred,
           url: el.media.siteUrl,
+          score: Math.round(el.score / 10),
           watchedEp: el.progress,
           totalEp: el.media.episodes,
           status: helper.translateList(el.status),
           startDate: helper.parseFuzzyDate(el.startedAt),
           finishDate: helper.parseFuzzyDate(el.completedAt),
-          score: Math.round(el.score / 10),
+          rewatchCount: el.repeat,
           image: helper.imgCheck(el.media.coverImage.large),
           imageLarge: helper.imgCheck(el.media.coverImage.extraLarge),
           imageBanner: helper.imgCheck(el.media.bannerImage),
@@ -234,6 +236,7 @@ export class UserList extends ListAbstract {
           type: listType,
           title: el.media.title.userPreferred,
           url: el.media.siteUrl,
+          score: Math.round(el.score / 10),
           watchedEp: el.progress,
           readVol: el.progressVolumes,
           totalEp: el.media.chapters,
@@ -241,7 +244,7 @@ export class UserList extends ListAbstract {
           status: helper.translateList(el.status),
           startDate: helper.parseFuzzyDate(el.startedAt),
           finishDate: helper.parseFuzzyDate(el.completedAt),
-          score: Math.round(el.score / 10),
+          rewatchCount: el.repeat,
           image: helper.imgCheck(el.media.coverImage.large),
           imageLarge: helper.imgCheck(el.media.coverImage.extraLarge),
           imageBanner: helper.imgCheck(el.media.bannerImage),

@@ -71,20 +71,35 @@ export class Single extends SingleAbstract {
     }
   }
 
+  _getStartDate() {
+    return this.animeInfo.my_list_status.start_date;
+  }
+
   _setStartDate(startDate) {
     this.animeInfo.my_list_status.start_date = startDate;
   }
 
-  _getStartDate() {
-    return this.animeInfo.my_list_status.start_date;
+  _getFinishDate() {
+    return this.animeInfo.my_list_status.finish_date;
   }
 
   _setFinishDate(finishDate) {
     this.animeInfo.my_list_status.finish_date = finishDate;
   }
 
-  _getFinishDate() {
-    return this.animeInfo.my_list_status.finish_date;
+  _getRewatchCount() {
+    if (this.type === 'manga') {
+      return this.animeInfo.my_list_status.num_times_reread;
+    }
+    return this.animeInfo.my_list_status.num_times_rewatched;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    if (this.type === 'manga') {
+      this.animeInfo.my_list_status.num_times_reread = rewatchCount;
+    } else {
+      this.animeInfo.my_list_status.num_times_rewatched = rewatchCount;
+    }
   }
 
   _getScore() {
@@ -232,6 +247,7 @@ export class Single extends SingleAbstract {
               is_rereading: false,
               num_chapters_read: 0,
               num_volumes_read: 0,
+              num_times_reread: 0,
               score: 0,
               status: 'plan_to_read',
               tags: [],
@@ -240,6 +256,7 @@ export class Single extends SingleAbstract {
             this.animeInfo.my_list_status = {
               is_rewatching: false,
               num_watched_episodes: 0,
+              num_times_rewatched: 0,
               score: 0,
               status: 'plan_to_watch',
               tags: [],

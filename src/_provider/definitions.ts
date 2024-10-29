@@ -45,6 +45,8 @@ export type fuzzyDate = {
   day: number | null;
 };
 
+export type rewatchCount = number;
+
 export type searchResult = {
   id: number;
   name: string;

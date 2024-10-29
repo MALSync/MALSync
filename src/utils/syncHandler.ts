@@ -35,6 +35,7 @@ export function getType(url) {
   if (utils.isDomainMatching(url, 'kitsu.app')) return 'KITSU';
   if (utils.isDomainMatching(url, 'myanimelist.net')) return 'MAL';
   if (utils.isDomainMatching(url, 'simkl.com')) return 'SIMKL';
+  if (utils.isDomainMatching(url, 'shikimori.one')) return 'SHIKI';
   throw 'Type not found';
 }
 
@@ -68,6 +69,10 @@ export function changeCheck(item, mode) {
   if (item.master && item.master.uid) {
     for (let i = 0; i < item.slaves.length; i++) {
       const slave = item.slaves[i];
+      if (slave.score !== item.master.score) {
+        item.diff = true;
+        slave.diff.score = item.master.score;
+      }
       if (slave.watchedEp !== item.master.watchedEp) {
         if (item.master.status === 2) {
           if (slave.watchedEp !== slave.totalEp) {
@@ -104,9 +109,11 @@ export function changeCheck(item, mode) {
           slave.diff.finishDate = item.master.finishDate;
         }
       }
-      if (slave.score !== item.master.score) {
-        item.diff = true;
-        slave.diff.score = item.master.score;
+      if (['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(getType(slave.url))) {
+        if ((slave.rewatchCount ?? 0) !== (item.master.rewatchCount ?? 0)) {
+          item.diff = true;
+          slave.diff.rewatchCount = item.master.rewatchCount ?? 0;
+        }
       }
     }
   }
@@ -128,11 +135,12 @@ export function missingCheck(item, missing, types, mode) {
           type: item.master.type,
           syncType: type,
           malId: item.master.malId,
-          watchedEp: item.master.watchedEp,
           score: item.master.score,
+          watchedEp: item.master.watchedEp,
           status: item.master.status,
           startDate: item.master.startDate,
           finishDate: item.master.finishDate,
+          rewatchCount: item.master.rewatchCount,
           url: `https://myanimelist.net/${item.master.type}/${item.master.malId}`,
           error: null,
         } as Partial<listElement>;
@@ -185,11 +193,12 @@ export async function syncListItem(item) {
 
 export async function syncMissing(item) {
   item.diff = {
+    score: item.score,
     watchedEp: item.watchedEp,
     status: item.status,
     startDate: item.startDate,
     finishDate: item.finishDate,
-    score: item.score,
+    rewatchCount: item.rewatchCount,
   };
   if (item.type === 'manga') {
     item.diff.readVol = item.readVol;
@@ -216,14 +225,16 @@ export function syncItem(slave, pageType) {
     return singleClass
       .update()
       .then(() => {
+        if (typeof slave.diff.score !== 'undefined') singleClass.setScore(slave.diff.score);
         if (typeof slave.diff.watchedEp !== 'undefined')
           singleClass.setEpisode(slave.diff.watchedEp);
         if (typeof slave.diff.readVol !== 'undefined') singleClass.setVolume(slave.diff.readVol);
         if (typeof slave.diff.status !== 'undefined') singleClass.setStatus(slave.diff.status);
-        if (typeof slave.diff.score !== 'undefined') singleClass.setScore(slave.diff.score);
         // 'null' is valid for start/finish date
         if (slave.diff.startDate !== undefined) singleClass.setStartDate(slave.diff.startDate);
         if (slave.diff.finishDate !== undefined) singleClass.setFinishDate(slave.diff.finishDate);
+        if (typeof slave.diff.rewatchCount !== 'undefined')
+          singleClass.setRewatchCount(slave.diff.rewatchCount);
         return singleClass.sync();
       })
       .then(() => {

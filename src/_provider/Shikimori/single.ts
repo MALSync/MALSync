@@ -53,11 +53,15 @@ export class Single extends SingleAbstract {
     this.animeInfo!.status = helper.statusTranslate[status] as helper.StatusType;
   }
 
+  _getStartDate() {
+    return null;
+  }
+
   _setStartDate(startDate) {
     // Unsupported
   }
 
-  _getStartDate() {
+  _getFinishDate() {
     return null;
   }
 
@@ -65,8 +69,12 @@ export class Single extends SingleAbstract {
     // Unsupported
   }
 
-  _getFinishDate() {
-    return null;
+  _getRewatchCount() {
+    return this.animeInfo!.rewatches;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    this.animeInfo!.rewatches = rewatchCount;
   }
 
   _getScore() {

@@ -69,6 +69,10 @@ export abstract class SingleAbstract {
     return this.rewatchingSupport;
   }
 
+  public supportsDates() {
+    return this.datesSupport;
+  }
+
   public abstract getCacheKey();
 
   public abstract getPageId();
@@ -99,7 +103,7 @@ export abstract class SingleAbstract {
   abstract _setStartDate(startDate: definitions.startFinishDate): void;
 
   public setStartDate(startDate: definitions.startFinishDate): SingleAbstract {
-    if (this.datesSupport) {
+    if (this.supportsDates()) {
       this._setStartDate(startDate);
     }
     return this;
@@ -108,7 +112,7 @@ export abstract class SingleAbstract {
   abstract _getStartDate(): definitions.startFinishDate | null;
 
   public getStartDate(): definitions.startFinishDate | null {
-    if (this.datesSupport) {
+    if (this.supportsDates()) {
       return this._getStartDate();
     }
     return null;
@@ -117,7 +121,7 @@ export abstract class SingleAbstract {
   abstract _setFinishDate(finishDate: definitions.startFinishDate): void;
 
   public setFinishDate(finishDate: definitions.startFinishDate): SingleAbstract {
-    if (this.datesSupport) {
+    if (this.supportsDates()) {
       this._setFinishDate(finishDate);
     }
     return this;
@@ -126,8 +130,26 @@ export abstract class SingleAbstract {
   abstract _getFinishDate(): definitions.startFinishDate | null;
 
   public getFinishDate(): definitions.startFinishDate | null {
-    if (this.datesSupport) {
+    if (this.supportsDates()) {
       return this._getFinishDate();
+    }
+    return null;
+  }
+
+  abstract _setRewatchCount(rewatchCount: definitions.rewatchCount): void;
+
+  public setRewatchCount(rewatchCount: definitions.rewatchCount): SingleAbstract {
+    if (this.supportsRewatching()) {
+      this._setRewatchCount(rewatchCount);
+    }
+    return this;
+  }
+
+  abstract _getRewatchCount(): definitions.rewatchCount | null;
+
+  public getRewatchCount(): definitions.rewatchCount | null {
+    if (this.supportsRewatching()) {
+      return this._getRewatchCount();
     }
     return null;
   }
@@ -788,7 +810,7 @@ export abstract class SingleAbstract {
       },
     ];
 
-    if (this.rewatchingSupport) {
+    if (this.supportsRewatching()) {
       statusEs.push({
         value: '23',
         label: api.storage.lang(`UI_Status_Rewatching_${this.getType()}`),

@@ -17,12 +17,13 @@ const helper = {
       type: 'anime',
       uid: 22,
       malId: 19815,
+      score: 6,
       watchedEp: 15,
       totalEp: 24,
       status: 6,
       startDate: null,
       finishDate: null,
-      score: 6,
+      rewatchCount: 0,
       diff: {},
       url: 'https://myanimelist.net/anime/19815',
     };
@@ -98,6 +99,16 @@ describe('Sync Handling', function() {
       expect(item.slaves[1].diff).to.deep.equal(diff);
     });
 
+    it('Score Change', function() {
+      const item = helper.getMasterSlave();
+      item.master.score = 2;
+      const diff = { score: 2 };
+      sync.changeCheck(item, mode);
+      expect(item.diff).to.equal(true);
+      expect(item.slaves[0].diff).to.deep.equal(diff);
+      expect(item.slaves[1].diff).to.deep.equal(diff);
+    });
+
     it('Episode Change', function() {
       const item = helper.getMasterSlave();
       item.master.watchedEp = 22;
@@ -140,10 +151,10 @@ describe('Sync Handling', function() {
       expect(item.slaves[1].diff).to.deep.equal(diff);
     });
 
-    it('Score Change', function() {
+    it('Rewatch Count Change', function() {
       const item = helper.getMasterSlave();
-      item.master.score = 2;
-      const diff = { score: 2 };
+      item.master.rewatchCount = 2;
+      const diff = { rewatchCount: 2 };
       sync.changeCheck(item, mode);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);

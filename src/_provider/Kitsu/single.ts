@@ -65,20 +65,28 @@ export class Single extends SingleAbstract {
     this.listI().attributes.status = helper.translateList(status, parseInt(status.toString()));
   }
 
+  _getStartDate() {
+    return helper.timestampToDate(this.listI().attributes.startedAt);
+  }
+
   _setStartDate(startDate) {
     this.listI().attributes.startedAt = helper.dateToTimestamp(startDate);
   }
 
-  _getStartDate() {
-    return helper.timestampToDate(this.listI().attributes.startedAt);
+  _getFinishDate() {
+    return helper.timestampToDate(this.listI().attributes.finishedAt);
   }
 
   _setFinishDate(finishDate) {
     this.listI().attributes.finishedAt = helper.dateToTimestamp(finishDate);
   }
 
-  _getFinishDate() {
-    return helper.timestampToDate(this.listI().attributes.finishedAt);
+  _getRewatchCount() {
+    return this.listI().attributes.reconsumeCount;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    this.listI().attributes.reconsumeCount = rewatchCount;
   }
 
   _getScore() {
@@ -237,7 +245,7 @@ export class Single extends SingleAbstract {
               progress: 0,
               volumesOwned: 0,
               reconsuming: false,
-              reconsumeCount: false,
+              reconsumeCount: 0,
               ratingTwenty: null,
               status: 'planned',
               startedAt: null,
