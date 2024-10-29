@@ -177,7 +177,7 @@
         <Section v-for="(item, index) in syncRequest.data.missing" :key="index" spacer="half">
           <Card class="missing">
             <Header spacer="half">
-              {{ item.title && console.log(item) }}
+              {{ item.title }}
             </Header>
             <FormButton :animation="false">
               <div>{{ item.syncType }}</div>
