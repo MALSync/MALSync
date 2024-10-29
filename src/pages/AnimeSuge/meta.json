@@ -1,8 +1,0 @@
-{
-  "urls": {
-    "match": [
-      "*://animesuge.io/anime/*",
-      "*://animesuge.to/anime/*"
-    ]
-  }
-}
