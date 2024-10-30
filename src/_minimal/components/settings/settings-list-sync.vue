@@ -305,6 +305,11 @@ const syncRequest = createRequest(parameters, async params => {
       list: null,
       master: false,
     },
+    shiki: {
+      text: 'Init',
+      list: null,
+      master: false,
+    },
   });
 
   providerList.value = sync.getListProvider({
@@ -312,6 +317,7 @@ const syncRequest = createRequest(parameters, async params => {
     anilist: listProvider.anilist,
     kitsu: listProvider.kitsu,
     simkl: listProvider.simkl,
+    shiki: listProvider.shiki,
   });
 
   const listOptions = await sync.retriveLists(providerList.value, params.value.type, sync.getList);

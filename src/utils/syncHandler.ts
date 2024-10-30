@@ -2,11 +2,13 @@ import { Single as MalSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { Single as AniListSingle } from '../_provider/AniList/single';
 import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
+import { Single as ShikiSingle } from '../_provider/Shikimori/single';
 
 import { UserList as MalList } from '../_provider/MyAnimeList_hybrid/list';
 import { UserList as AnilistList } from '../_provider/AniList/list';
 import { UserList as KitsuList } from '../_provider/Kitsu/list';
 import { UserList as SimklList } from '../_provider/Simkl/list';
+import { UserList as ShikiList } from '../_provider/Shikimori/list';
 import { getSyncMode } from '../_provider/helper';
 import { listElement } from '../_provider/listAbstract';
 
@@ -218,6 +220,8 @@ export function syncItem(slave, pageType) {
       singleClass = new KitsuSingle(slave.url);
     } else if (pageType === 'SIMKL') {
       singleClass = new SimklSingle(slave.url);
+    } else if (pageType === 'SHIKI') {
+      singleClass = new ShikiSingle(slave.url);
     } else {
       throw 'No sync type';
     }
@@ -321,6 +325,11 @@ export function getListProvider(providerSettingList) {
       providerSettings: providerSettingList.simkl,
       listProvider: SimklList,
     },
+    {
+      providerType: 'SHIKI',
+      providerSettings: providerSettingList.shiki,
+      listProvider: ShikiList,
+    },
   ];
 }
 
@@ -397,6 +406,11 @@ export const background = {
           master: false,
         },
         simkl: {
+          text: 'Init',
+          list: null,
+          master: false,
+        },
+        shiki: {
           text: 'Init',
           list: null,
           master: false,
