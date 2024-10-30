@@ -119,11 +119,12 @@
                   {{ getStatusText(item.master.type, item.master.status) }}
                 </div>
                 <div>
-                  {{ lang('settings_listsync_startdate') }} {{ item.master.startDate ?? 'not set' }}
+                  {{ lang('settings_listsync_startdate') }}
+                  {{ item.master.startDate ?? lang('settings_listsync_unknowndate') }}
                 </div>
                 <div>
                   {{ lang('settings_listsync_finishdate') }}
-                  {{ item.master.finishDate ?? 'not set' }}
+                  {{ item.master.finishDate ?? lang('settings_listsync_unknowndate') }}
                 </div>
                 <div>
                   {{ lang(`settings_listsync_repeatcount_${item.master.type}`) }}
@@ -169,15 +170,23 @@
                   </span>
                 </div>
                 <div>
-                  {{ lang('settings_listsync_startdate') }} {{ slave.startDate ?? 'not set' }}
+                  {{ lang('settings_listsync_startdate') }}
+                  {{ slave.startDate ?? lang('settings_listsync_unknowndate') }}
                   <span v-if="slave.diff && slave.diff.startDate !== undefined">
-                    → <text class="highlight">{{ slave.diff.startDate ?? 'not set' }}</text>
+                    →
+                    <text class="highlight">{{
+                      slave.diff.startDate ?? lang('settings_listsync_unknowndate')
+                    }}</text>
                   </span>
                 </div>
                 <div>
-                  {{ lang('settings_listsync_finishdate') }} {{ slave.finishDate ?? 'not set' }}
+                  {{ lang('settings_listsync_finishdate') }}
+                  {{ slave.finishDate ?? lang('settings_listsync_unknowndate') }}
                   <span v-if="slave.diff && slave.diff.finishDate !== undefined">
-                    → <text class="highlight">{{ slave.diff.finishDate ?? 'not set' }}</text>
+                    →
+                    <text class="highlight">{{
+                      slave.diff.finishDate ?? lang('settings_listsync_unknowndate')
+                    }}</text>
                   </span>
                 </div>
                 <div>
@@ -215,9 +224,13 @@
               <div>
                 {{ lang('settings_listsync_status') }} {{ getStatusText(item.type, item.status) }}
               </div>
-              <div>{{ lang('settings_listsync_startdate') }} {{ item.startDate ?? 'not set' }}</div>
               <div>
-                {{ lang('settings_listsync_finishdate') }} {{ item.finishDate ?? 'not set' }}
+                {{ lang('settings_listsync_startdate') }}
+                {{ item.startDate ?? lang('settings_listsync_unknowndate') }}
+              </div>
+              <div>
+                {{ lang('settings_listsync_finishdate') }}
+                {{ item.finishDate ?? lang('settings_listsync_unknowndate') }}
               </div>
               <div>
                 {{ lang(`settings_listsync_repeatcount_${item.type}`) }}

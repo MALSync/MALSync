@@ -1117,6 +1117,10 @@
         "message": "finish Date:",
         "description": "List Sync label to display the user's finish date for an entry on a specific provider"
     },
+    "settings_listsync_unknowndate": {
+        "message": "not set",
+        "description": "List Sync message to show when a Start or Finish Date is not set for an entry"
+    },
     "settings_listsync_repeatcount_anime": {
         "message": "Rewatch Count:",
         "description": "List Sync label to display the user's rewatch count for an anime on a specific provider"
