@@ -15,7 +15,7 @@
       <template v-else>
         <div v-for="(page, index) in permissions" :key="index">
           <h3>
-            <TextIcon :icon="icon(page.permission.value)">{{ page.name }}</TextIcon>
+            <TextIcon :icon="icon((page.permission as any).value)">{{ page.name }}</TextIcon>
           </h3>
           <p v-for="perm in page.match" :key="perm">
             <CodeBlock>{{ perm }}</CodeBlock>

@@ -80,6 +80,7 @@
     "iframe": [
       "*://*.jwplayerhls.com/*",
       "*://*.videzz.net/*",
+      "*://geo.dailymotion.com/*",
       "*://dood.li/e/*",
       "*://bethshouldercan.com/e/*"
     ]

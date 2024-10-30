@@ -9,7 +9,7 @@ export const ReaperScans: pageInterface = {
     return utils.urlPart(url, 5).startsWith('chapter');
   },
   isOverviewPage(url) {
-    return !utils.urlPart(url, 5);
+    return !utils.urlPart(url, 5) && url.includes('/series/');
   },
   sync: {
     getTitle(url) {

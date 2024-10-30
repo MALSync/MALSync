@@ -2,7 +2,7 @@
   <Section>
     <TransitionStaggered>
       <template v-for="item in list" :key="item.title">
-        <BookmarksList :item="item" />
+        <BookmarksList :item="item as bookmarkItem" />
       </template>
     </TransitionStaggered>
   </Section>
@@ -10,7 +10,7 @@
     <Grid :min-width="130">
       <TransitionStaggered>
         <template v-for="item in list" :key="item.title">
-          <BookmarksTiles :item="item" />
+          <BookmarksTiles :item="item as bookmarkItem" />
         </template>
       </TransitionStaggered>
     </Grid>
@@ -19,7 +19,7 @@
     <Grid :min-width="190">
       <TransitionStaggered>
         <template v-for="item in list" :key="item.title">
-          <BookmarksCardsFull :item="item" />
+          <BookmarksCardsFull :item="item as bookmarkItem" />
         </template>
       </TransitionStaggered>
     </Grid>
@@ -28,7 +28,7 @@
     <Grid :min-width="350">
       <TransitionStaggered>
         <template v-for="item in list" :key="item.title">
-          <BookmarksCards :item="item" />
+          <BookmarksCards :item="item as bookmarkItem" />
         </template>
       </TransitionStaggered>
     </Grid>
