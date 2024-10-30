@@ -69,6 +69,10 @@ export function mapToArray(provierList, resultList, masterM = false) {
 
 export function changeCheck(item, mode) {
   if (item.master && item.master.uid) {
+    const checkDates = ['MAL', 'ANILIST', 'KITSU'].includes(getType(item.master.url));
+    const checkRewatchCount = ['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(
+      getType(item.master.url),
+    );
     for (let i = 0; i < item.slaves.length; i++) {
       const slave = item.slaves[i];
       if (slave.score !== item.master.score) {
@@ -101,7 +105,7 @@ export function changeCheck(item, mode) {
         item.diff = true;
         slave.diff.status = item.master.status;
       }
-      if (['MAL', 'ANILIST', 'KITSU'].includes(getType(slave.url))) {
+      if (checkDates && ['MAL', 'ANILIST', 'KITSU'].includes(getType(slave.url))) {
         if (slave.startDate !== item.master.startDate) {
           item.diff = true;
           slave.diff.startDate = item.master.startDate;
@@ -111,7 +115,7 @@ export function changeCheck(item, mode) {
           slave.diff.finishDate = item.master.finishDate;
         }
       }
-      if (['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(getType(slave.url))) {
+      if (checkRewatchCount && ['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(getType(slave.url))) {
         if ((slave.rewatchCount ?? 0) !== (item.master.rewatchCount ?? 0)) {
           item.diff = true;
           slave.diff.rewatchCount = item.master.rewatchCount ?? 0;
