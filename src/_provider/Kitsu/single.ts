@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
 import { point20decimal } from '../ScoreMode/point20decimal';
@@ -51,13 +52,13 @@ export class Single extends SingleAbstract {
 
   _getStatus() {
     if (this.listI().attributes.reconsuming && this.listI().attributes.status === 'current')
-      return 23;
+      return definitions.status.Rewatching;
     return parseInt(helper.translateList(this.listI().attributes.status));
   }
 
   _setStatus(status) {
-    if (status === 23) {
-      status = 1;
+    if (status === definitions.status.Rewatching) {
+      status = definitions.status.Watching;
       this.listI().attributes.reconsuming = true;
     } else {
       this.listI().attributes.reconsuming = false;

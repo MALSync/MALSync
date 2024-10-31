@@ -1,5 +1,6 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 
 export class UserList extends ListAbstract {
   name = 'MyAnimeList';
@@ -59,8 +60,8 @@ export class UserList extends ListAbstract {
       case 'airing_date':
         return `${this.listType}_start_date`;
       default:
-        if (this.status === 1) return this.getOrder('updated');
-        if (this.status === 6) return this.getOrder('updated');
+        if (this.status === definitions.status.Watching) return this.getOrder('updated');
+        if (this.status === definitions.status.PlanToWatch) return this.getOrder('updated');
         return this.getOrder('alpha');
     }
   }
@@ -88,7 +89,7 @@ export class UserList extends ListAbstract {
     );
 
     let curSt = '';
-    if (this.status !== 7) {
+    if (this.status !== definitions.status.All) {
       if (this.listType === 'manga') {
         curSt = `&status=${helper.mangaStatus[this.status]}`;
       } else {

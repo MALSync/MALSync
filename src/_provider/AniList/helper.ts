@@ -6,12 +6,12 @@ const logger = con.m('anilist', '#3db4f2');
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
-    CURRENT: 1,
-    PLANNING: 6,
-    COMPLETED: 2,
-    DROPPED: 4,
-    PAUSED: 3,
-    REPEATING: 1,
+    CURRENT: status.Watching,
+    PLANNING: status.PlanToWatch,
+    COMPLETED: status.Completed,
+    DROPPED: status.Dropped,
+    PAUSED: status.Onhold,
+    REPEATING: status.Watching,
   };
   if (malStatus !== null) {
     return Object.keys(list).find(key => list[key] === malStatus);

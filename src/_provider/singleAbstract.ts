@@ -798,21 +798,27 @@ export abstract class SingleAbstract {
   public getStatusCheckbox() {
     const statusEs = [
       {
-        value: '1',
+        value: definitions.status.Watching.toString(),
         label: api.storage.lang(`UI_Status_watching_${this.getType()}`),
       },
-      { value: '2', label: api.storage.lang('UI_Status_Completed') },
-      { value: '3', label: api.storage.lang('UI_Status_OnHold') },
-      { value: '4', label: api.storage.lang('UI_Status_Dropped') },
       {
-        value: '6',
+        value: definitions.status.Completed.toString(),
+        label: api.storage.lang('UI_Status_Completed'),
+      },
+      { value: definitions.status.Onhold.toString(), label: api.storage.lang('UI_Status_OnHold') },
+      {
+        value: definitions.status.Dropped.toString(),
+        label: api.storage.lang('UI_Status_Dropped'),
+      },
+      {
+        value: definitions.status.PlanToWatch.toString(),
         label: api.storage.lang(`UI_Status_planTo_${this.getType()}`),
       },
     ];
 
     if (this.supportsRewatching()) {
       statusEs.push({
-        value: '23',
+        value: definitions.status.Rewatching.toString(),
         label: api.storage.lang(`UI_Status_Rewatching_${this.getType()}`),
       });
     }

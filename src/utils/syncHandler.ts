@@ -11,6 +11,7 @@ import { UserList as SimklList } from '../_provider/Simkl/list';
 import { UserList as ShikiList } from '../_provider/Shikimori/list';
 import { getSyncMode } from '../_provider/helper';
 import { listElement } from '../_provider/listAbstract';
+import { status } from '../_provider/definitions';
 
 export function generateSync(
   masterList: object,
@@ -67,12 +68,18 @@ export function mapToArray(provierList, resultList, masterM = false) {
   }
 }
 
+export function shouldCheckDates(item) {
+  return ['MAL', 'ANILIST', 'KITSU'].includes(getType(item.url));
+}
+
+export function shouldCheckRewatchCount(item) {
+  return ['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(getType(item.url));
+}
+
 export function changeCheck(item, mode) {
   if (item.master && item.master.uid) {
-    const checkDates = ['MAL', 'ANILIST', 'KITSU'].includes(getType(item.master.url));
-    const checkRewatchCount = ['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(
-      getType(item.master.url),
-    );
+    const checkDates = shouldCheckDates(item.master);
+    const checkRewatchCount = shouldCheckRewatchCount(item.master);
     for (let i = 0; i < item.slaves.length; i++) {
       const slave = item.slaves[i];
       if (slave.score !== item.master.score) {
@@ -80,7 +87,7 @@ export function changeCheck(item, mode) {
         slave.diff.score = item.master.score;
       }
       if (slave.watchedEp !== item.master.watchedEp) {
-        if (item.master.status === 2) {
+        if (item.master.status === status.Completed) {
           if (slave.watchedEp !== slave.totalEp) {
             item.diff = true;
             slave.diff.watchedEp = slave.totalEp;
@@ -91,7 +98,7 @@ export function changeCheck(item, mode) {
         }
       }
       if (item.master.type === 'manga' && slave.readVol !== item.master.readVol) {
-        if (item.master.status === 2) {
+        if (item.master.status === status.Completed) {
           if (slave.readVol !== slave.totalVol) {
             item.diff = true;
             slave.diff.readVol = slave.totalVol;
@@ -105,7 +112,7 @@ export function changeCheck(item, mode) {
         item.diff = true;
         slave.diff.status = item.master.status;
       }
-      if (checkDates && ['MAL', 'ANILIST', 'KITSU'].includes(getType(slave.url))) {
+      if (checkDates && shouldCheckDates(slave)) {
         if (slave.startDate !== item.master.startDate) {
           item.diff = true;
           slave.diff.startDate = item.master.startDate;
@@ -115,7 +122,7 @@ export function changeCheck(item, mode) {
           slave.diff.finishDate = item.master.finishDate;
         }
       }
-      if (checkRewatchCount && ['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(getType(slave.url))) {
+      if (checkRewatchCount && shouldCheckRewatchCount(slave)) {
         if ((slave.rewatchCount ?? 0) !== (item.master.rewatchCount ?? 0)) {
           item.diff = true;
           slave.diff.rewatchCount = item.master.rewatchCount ?? 0;

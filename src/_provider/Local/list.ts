@@ -1,5 +1,6 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 
 export class UserList extends ListAbstract {
   name = 'local';
@@ -27,7 +28,7 @@ export class UserList extends ListAbstract {
       if (this.getRegex(listType).test(key)) {
         const el = data[key];
         con.log(key, el);
-        if (status !== 7 && parseInt(el.status) !== status) {
+        if (status !== definitions.status.All && parseInt(el.status) !== status) {
           continue;
         }
         if (listType === 'anime') {

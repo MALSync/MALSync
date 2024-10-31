@@ -188,7 +188,7 @@ export class Single extends SingleAbstract {
         progress: 0,
         volumeprogress: 0,
         score: 0,
-        status: 6,
+        status: definitions.status.PlanToWatch,
       };
     }
   }

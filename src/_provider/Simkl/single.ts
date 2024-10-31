@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 
 export class Single extends SingleAbstract {
@@ -58,9 +59,13 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
-    if (status === 23) status = 1;
+    if (status === definitions.status.Rewatching) {
+      status = definitions.status.Watching;
+    }
     status = helper.translateList(status, parseInt(status.toString()));
-    if (status !== this.animeInfo.status) this.statusUpdate = true;
+    if (status !== this.animeInfo.status) {
+      this.statusUpdate = true;
+    }
     this.animeInfo.status = status;
   }
 
@@ -118,7 +123,9 @@ export class Single extends SingleAbstract {
   }
 
   _getEpisode() {
-    if (this._getStatus() === 2) return this._getTotalEpisodes();
+    if (this._getStatus() === definitions.status.Completed) {
+      return this._getTotalEpisodes();
+    }
     return this.curWatchedEp;
   }
 

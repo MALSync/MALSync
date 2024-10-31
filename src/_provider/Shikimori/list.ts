@@ -1,5 +1,6 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 
 const pageSize = 25;
 
@@ -43,7 +44,7 @@ export class UserList extends ListAbstract {
 
     if (!this.tempList.length) {
       let curSt = '';
-      if (this.status !== 7) {
+      if (this.status !== definitions.status.All) {
         curSt = helper.statusTranslate[this.status];
       }
 

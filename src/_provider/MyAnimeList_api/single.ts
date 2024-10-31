@@ -1,6 +1,7 @@
 import { SingleAbstract } from '../singleAbstract';
 import { NotAutenticatedError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 import { malToAnilist } from '../AniList/helper';
 import { Cache } from '../../utils/Cache';
 
@@ -45,13 +46,15 @@ export class Single extends SingleAbstract {
     } else {
       curSt = parseInt(helper.animeStatus[this.animeInfo.my_list_status.status]);
     }
-    if (this.getRewatching() && curSt === 2) return 23;
+    if (this.getRewatching() && curSt === definitions.status.Completed) {
+      return definitions.status.Rewatching;
+    }
     return curSt;
   }
 
   _setStatus(status) {
-    if (status === 23) {
-      status = 2;
+    if (status === definitions.status.Rewatching) {
+      status = definitions.status.Completed;
       this.setRewatching(true);
     } else {
       this.setRewatching(false);

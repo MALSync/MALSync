@@ -1,6 +1,7 @@
 import { NotAutenticatedError } from '../Errors';
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 
 export class UserList extends ListAbstract {
   name = 'Kitsu';
@@ -89,8 +90,8 @@ export class UserList extends ListAbstract {
       case 'score':
         return `${pre}rating`;
       default:
-        if (this.status === 1) return this.getOrder('updated');
-        if (this.status === 6) return this.getOrder('updated');
+        if (this.status === definitions.status.Watching) return this.getOrder('updated');
+        if (this.status === definitions.status.PlanToWatch) return this.getOrder('updated');
         return this.getOrder('alpha');
     }
   }
@@ -106,7 +107,7 @@ export class UserList extends ListAbstract {
       sorting = `&sort=${order}`;
     }
 
-    if (this.status !== 7) {
+    if (this.status !== definitions.status.All) {
       const statusTemp = helper.translateList(this.status, this.status);
       statusPart = `&filter[status]=${statusTemp}`;
     }
