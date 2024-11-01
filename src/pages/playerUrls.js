@@ -741,4 +741,8 @@ module.exports = {
   doflix: {
     match: ['*://doflix.net/*'],
   },
+  // animesama
+  oneupload: {
+    match: ['*://oneupload.to/*'],
+  },
 };
