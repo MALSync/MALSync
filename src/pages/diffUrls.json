@@ -85,7 +85,8 @@
       "*://*.videzz.net/*",
       "*://geo.dailymotion.com/*",
       "*://dood.li/e/*",
-      "*://bethshouldercan.com/e/*"
+      "*://bethshouldercan.com/e/*",
+      "*://oneupload.to/*"
     ]
   }
 }
