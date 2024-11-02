@@ -62,6 +62,7 @@ export default [
         },
         globals: {
           ...globals.webextensions,
+          ...globals.serviceworker,
           api: 'readonly',
           con: 'readonly',
           utils: 'readonly',
