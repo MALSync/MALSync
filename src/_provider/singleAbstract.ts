@@ -225,7 +225,7 @@ export abstract class SingleAbstract {
       state: 'complete' | 'ongoing' | 'dropped' | 'discontinued';
       type: 'dub' | 'sub';
       dropped: boolean;
-      episode: Number;
+      episode: number;
       lastEp?: {
         total: number;
         timestamp?: number;
