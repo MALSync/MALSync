@@ -5,6 +5,7 @@ import { predictionXhrGET } from '../background/releaseProgressUtils';
 
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
+import { returnYYYYMMDD } from '../utils/general';
 import { errorMessage as _errorMessage } from './Errors';
 import { point10 } from './ScoreMode/point10';
 import { SyncTypes } from './helper';
@@ -632,6 +633,8 @@ export abstract class SingleAbstract {
       episode: this.getEpisode(),
       volume: this.getVolume(),
       status: this.getStatus(),
+      startDate: this.getStartDate(),
+      finishDate: this.getFinishDate(),
       score: this.getScore(),
       absoluteScore: this.getAbsoluteScore(),
     };
@@ -642,6 +645,8 @@ export abstract class SingleAbstract {
     this.setEpisode(state.episode);
     this.setVolume(state.volume);
     this.setStatus(state.status);
+    this.setStartDate(state.startDate);
+    this.setFinishDate(state.finishDate);
     this.setScore(state.score);
     if (state.absoluteScore) this.setAbsoluteScore(state.absoluteScore);
   }
@@ -716,7 +721,10 @@ export abstract class SingleAbstract {
     return utils
       .flashConfirm(api.storage.lang(`syncPage_flashConfirm_start_${this.getType()}`), 'add')
       .then(res => {
-        if (res) this.setStatus(definitions.status.Watching);
+        if (res) {
+          this.setStatus(definitions.status.Watching);
+          this.setStartDate(returnYYYYMMDD());
+        }
         return res;
       });
   }
@@ -738,6 +746,10 @@ export abstract class SingleAbstract {
       .then(res => {
         if (res) {
           this.setStatus(definitions.status.Completed);
+          this.setFinishDate(returnYYYYMMDD());
+          if (!this.getStartDate()) {
+            this.setStartDate(returnYYYYMMDD());
+          }
           const finishScore = Number(j.$('#finish_score').val());
           if (finishScore > 0) {
             this.logger.log(`finish_score: ${j.$('#finish_score :selected').val()}`);
