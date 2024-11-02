@@ -635,6 +635,7 @@ export abstract class SingleAbstract {
       status: this.getStatus(),
       startDate: this.getStartDate(),
       finishDate: this.getFinishDate(),
+      rewatchCount: this.getRewatchCount(),
       score: this.getScore(),
       absoluteScore: this.getAbsoluteScore(),
     };
@@ -647,6 +648,7 @@ export abstract class SingleAbstract {
     this.setStatus(state.status);
     this.setStartDate(state.startDate);
     this.setFinishDate(state.finishDate);
+    this.setRewatchCount(state.rewatchCount);
     this.setScore(state.score);
     if (state.absoluteScore) this.setAbsoluteScore(state.absoluteScore);
   }
