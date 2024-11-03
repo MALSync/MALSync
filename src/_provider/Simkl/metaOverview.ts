@@ -175,8 +175,8 @@ export class MetaOverview extends MetaOverviewAbstract {
           title: api.storage.lang('overview_sidebar_Broadcast'),
           body: [
             {
-              date: { date: broadcastDate, type: 'weektime' },
-              text: '',
+              date: broadcastDate,
+              type: 'weektime',
             },
           ],
         });

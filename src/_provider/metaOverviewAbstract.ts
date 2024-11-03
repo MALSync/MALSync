@@ -19,15 +19,16 @@ export interface Overview {
   }[];
   info: {
     title: string;
-    body: {
-      text: string;
-      date?: {
-        date: Date;
-        type: string;
-      };
-      url?: string;
-      subtext?: string;
-    }[];
+    body: (
+      {
+        text: string;
+        url?: string;
+        subtext?: string;
+      } | {
+        date: Date | string,
+        type: 'weektime',
+      }
+    )[];
   }[];
   openingSongs: {
     title: string;

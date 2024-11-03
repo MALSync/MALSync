@@ -5,22 +5,27 @@
       <div v-for="item in info" :key="item.title" class="item">
         <div class="type">{{ item.title }}</div>
         <div class="content">
-          <template v-for="(link, index) in item.body" :key="link.text">
-            <MediaLink v-if="link.url" dir="auto" color="secondary" :href="link.url">
-              {{ link.text }}
-            </MediaLink>
-            <div v-else-if="link.date && link.date.type === 'weektime'">
-              <span dir="auto">{{ getUserTzText(link.date.date) }}</span>
-              <br />
-              <span>{{ getUTCText(link.date.date) }}</span>
-              <br />
-              <span>{{ getJapanTzText(link.date.date) }}</span>
+          <template v-for="(link, index) in item.body" :key="link">
+            <div v-if="'type' in link && link.type === 'weektime' && link.date">
+              <template v-if="link.date instanceof Date">
+                <span dir="auto">{{ getUserTzText(link.date) }}</span>
+                <br />
+                <span>{{ getUTCText(link.date) }}</span>
+                <br />
+                <span>{{ getJapanTzText(link.date) }}</span>
+              </template>
+              <template v-else>{{ link.date }}</template>
             </div>
-            <span v-else dir="auto">
-              {{ link.text }}
-            </span>
-            <span v-if="link.subtext" class="subtext">({{ link.subtext }})</span>
-            <span v-if="Number(index) + 1 < item.body.length" dir="auto">, </span>
+            <template v-else-if="!('type' in link)">
+              <MediaLink v-if="link.url" dir="auto" color="secondary" :href="link.url">
+                {{ link.text }}
+              </MediaLink>
+              <span v-else dir="auto">
+                {{ link.text }}
+              </span>
+              <span v-if="link.subtext" class="subtext">({{ link.subtext }})</span>
+              <span v-if="Number(index) + 1 < item.body.length" dir="auto">, </span>
+            </template>
           </template>
         </div>
       </div>

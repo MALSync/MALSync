@@ -218,8 +218,8 @@ export class MetaOverview extends MetaOverviewAbstract {
                 jstDate.setDate(dayIndex);
 
                 return {
-                  date: { date: jstDate, type: 'weektime' },
-                  text: '',
+                  date:  jstDate,
+                  type: 'weektime',
                 };
               }
             }
