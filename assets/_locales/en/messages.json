@@ -1049,10 +1049,6 @@
         "message": "Need help?",
         "description": "Button that links to support"
     },
-    "settings_timezone": {
-        "message": "Timezone",
-        "description": "Header of the section of Timezone settings"
-    },
     "settings_miscellaneous": {
         "message": "Miscellaneous",
         "description": "Header of the section of settings without specific theme"

@@ -45,8 +45,6 @@ export const settingsObj = {
     friendScore: true,
     loadPTWForProgress: false,
 
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-
     quicklinks: [
       'Aniwave',
       'Crunchyroll',
