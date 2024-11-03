@@ -172,7 +172,6 @@ export class MetaOverview extends MetaOverviewAbstract {
         const title = j.$(value).find('.dark_text').text();
         j.$(value).find('.dark_text').remove();
 
-        // @ts-ignore
         const aTags: { text: string; url: string; subtext?: string }[] = j
           .$(value)
           .find('a')
@@ -181,7 +180,8 @@ export class MetaOverview extends MetaOverviewAbstract {
               text: j.$(el).text().trim(),
               url: utils.absoluteLink(j.$(el).attr('href'), 'https://myanimelist.net'),
             };
-          });
+          })
+          .toArray();
 
         j.$(value).find('a, span').remove();
 
@@ -229,8 +229,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             };
           });
         } else if (aTags.length === textTags.length) {
-          body = aTags.map((i, el) => {
-            // @ts-ignore
+          body = aTags.map((el, i) => {
             el.subtext = textTags[i]
               .trim()
               .replace(/(^\(|\)$)/gi, '')
