@@ -1,5 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
+import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -197,28 +198,11 @@ export class MetaOverview extends MetaOverviewAbstract {
               const dayString = match[1];
               const timeString = match[2];
 
-              const daysOfWeek = [
-                'Mondays',
-                'Tuesdays',
-                'Wednesdays',
-                'Thursdays',
-                'Fridays',
-                'Saturdays',
-                'Sundays',
-              ];
-              const dayIndex = daysOfWeek.findIndex(
-                day => day.toLowerCase() === dayString.toLowerCase(),
-              );
-
-              if (dayIndex !== -1) {
-                const [hours, minutes] = timeString.split(':').map(Number);
-
-                const jstDate = new Date();
-                jstDate.setHours(hours, minutes, 0, 0);
-                jstDate.setDate(dayIndex);
-
+              const weekDate = getWeektime(dayString, timeString);
+              if (weekDate) {
+                const broadcastDate = dateFromTimezoneToTimezone(weekDate, 'Asia/Tokyo');
                 return {
-                  date: jstDate,
+                  date: broadcastDate,
                   type: 'weektime',
                 };
               }

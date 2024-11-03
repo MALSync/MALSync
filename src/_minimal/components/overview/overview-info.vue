@@ -102,7 +102,7 @@ function getTitle(item) {
   return '';
 }
 
-function getTimezoneDate(dateElement, timezone = Intl.DateTimeFormat().resolvedOptions().timeZone) {
+function getTimezoneDate(dateElement: Date | string, timezone = Intl.DateTimeFormat().resolvedOptions().timeZone) {
   const userLang = navigator.language;
   const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
@@ -112,7 +112,8 @@ function getTimezoneDate(dateElement, timezone = Intl.DateTimeFormat().resolvedO
     timeZone: timezone,
   };
 
-  return dateElement.toLocaleString(userLang, options) + (timezone === 'Asia/Tokyo' ? ' JST' : '');
+  const date = typeof dateElement === 'string' ? new Date(dateElement) : dateElement;
+  return date.toLocaleString(userLang, options) + (timezone === 'Asia/Tokyo' ? ' JST' : '');
 }
 </script>
 

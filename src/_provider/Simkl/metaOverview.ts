@@ -1,6 +1,7 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -141,52 +142,26 @@ export class MetaOverview extends MetaOverviewAbstract {
         body: [{ text: data.year }],
       });
 
-    if (data.airs && data.airs) {
-      const daysOfWeek = [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ];
+    if (data.airs && data.airs.day && data.airs.time) {
+      let body: any = [{ text: `${data.airs.day} at ${data.airs.time}` }];
 
-      const dayIndex = daysOfWeek.findIndex(
-        day => day.toLowerCase() === data.airs.day.toLowerCase(),
-      );
-
-      if (dayIndex !== -1) {
-        const [time, modifier] = data.airs.time.split(' ');
-        const split = time.split(':').map(Number);
-
-        let hours = split[0];
-        const minutes = split[1];
-        if (modifier.toLowerCase() === 'pm' && hours !== 12) {
-          hours += 12;
-        } else if (modifier.toLowerCase() === 'am' && hours === 12) {
-          hours = 0;
-        }
-
-        const broadcastDate = new Date();
-        broadcastDate.setHours(hours, minutes, 0, 0);
-        broadcastDate.setDate(dayIndex);
-        this.meta.info.push({
-          title: api.storage.lang('overview_sidebar_Broadcast'),
-          body: [
-            {
-              date: broadcastDate,
-              type: 'weektime',
-            },
-          ],
-        });
-
-        return;
+      const weekDate = getWeektime(data.airs.day, data.airs.time);
+      if (weekDate) {
+        const broadcastDate = dateFromTimezoneToTimezone(
+          weekDate,
+          data.airs.timezone || 'Asia/Tokyo',
+        );
+        body = [
+          {
+            date: broadcastDate,
+            type: 'weektime',
+          },
+        ];
       }
 
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Broadcast'),
-        body: [{ text: `${data.airs.day} at ${data.airs.time}` }],
+        body,
       });
     }
 
