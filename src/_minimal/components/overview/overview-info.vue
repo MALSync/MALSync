@@ -7,7 +7,7 @@
         <div class="content">
           <template v-for="(link, index) in item.body" :key="link">
             <div v-if="'type' in link && link.type === 'weektime' && link.date">
-              <template v-if="link.date instanceof Date">
+              <template v-if="link.date instanceof Date || !isNaN(Date.parse(link.date))">
                 <span dir="auto">{{ getUserTzText(link.date) }}</span>
                 <br />
                 <span>{{ getUTCText(link.date) }}</span>
