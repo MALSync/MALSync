@@ -8,11 +8,11 @@
           <template v-for="(link, index) in item.body" :key="link">
             <div v-if="'type' in link && link.type === 'weektime' && link.date">
               <template v-if="link.date instanceof Date || !isNaN(Date.parse(link.date))">
-                <span dir="auto">{{ getUserTzText(link.date) }}</span>
+                <span dir="auto">{{ getTimezoneDate(link.date) }}</span>
                 <br />
-                <span>{{ getUTCText(link.date) }}</span>
+                <span>{{ getTimezoneDate(link.date, 'UTC') }}</span>
                 <br />
-                <span>{{ getJapanTzText(link.date) }}</span>
+                <span>{{ getTimezoneDate(link.date, 'Asia/Tokyo') }}</span>
               </template>
               <template v-else>{{ link.date }}</template>
             </div>
@@ -102,67 +102,17 @@ function getTitle(item) {
   return '';
 }
 
-function getRawDate(text) {
-  const date = new Date(text);
-  const formattedDate = `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')} +0900`;
+function getTimezoneDate(dateElement, timezone = Intl.DateTimeFormat().resolvedOptions().timeZone) {
+  const userLang = navigator.language;
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZoneName: timezone === 'Asia/Tokyo' ? undefined : 'short',
+    timeZone: timezone,
+  };
 
-  return formattedDate;
-}
-
-function getUserTzText(text) {
-  const rawDate = getRawDate(text);
-
-  if (rawDate) {
-    const userLang = navigator.language;
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZoneName: 'short',
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    };
-
-    return new Date(rawDate).toLocaleString(userLang, options);
-  }
-
-  return text;
-}
-
-function getUTCText(text) {
-  const rawDate = getRawDate(text);
-
-  if (rawDate) {
-    const userLang = navigator.language;
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZoneName: 'short',
-      timeZone: 'UTC',
-    };
-
-    return new Date(rawDate).toLocaleString(userLang, options);
-  }
-
-  return text;
-}
-
-function getJapanTzText(text) {
-  const rawDate = getRawDate(text);
-
-  if (rawDate) {
-    const userLang = navigator.language;
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZone: 'Asia/Tokyo',
-    };
-
-    return `${new Date(rawDate).toLocaleString(userLang, options)} JST`;
-  }
-
-  return text;
+  return dateElement.toLocaleString(userLang, options) + (timezone === 'Asia/Tokyo' ? ' JST' : '');
 }
 </script>
 
