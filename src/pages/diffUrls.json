@@ -70,7 +70,8 @@
       "*://flamecomics.me/*"
     ],
     "Gogoanime": [
-      "*://*.gogoanime3.cc/*"
+      "*://*.gogoanime3.cc/*",
+      "*://*.anitaku.bz/*"
     ],
     "Zoro": [
       "*://hianime.nz/*",
