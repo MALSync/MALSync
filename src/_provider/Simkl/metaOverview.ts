@@ -171,7 +171,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.runtime && data.runtime)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${data.runtime}mins` }],
+        body: [{ text: `${data.runtime} ${api.storage.lang('bookmarksItem_mins')}` }],
       });
 
     if (data.certification && data.certification)
