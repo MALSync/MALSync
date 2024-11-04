@@ -1550,5 +1550,9 @@
     "settings_custom_position_below": {
         "message": "Below Information",
         "description": "Position of the quicklinks below the information section"
+    },
+    "settings_forceEn": {
+        "message": "Force English",
+        "description": "Forces english language in the extension's components"
     }
 }
