@@ -1,3 +1,5 @@
+import { localStore } from './localStore';
+
 declare let browser: any;
 
 export function urlPart(url: string, part: number) {
@@ -891,11 +893,20 @@ export function waitForPageToBeVisible() {
   });
 }
 
+export function getBrowserCurrentLocale() {
+  try {
+    return chrome.i18n.getUILanguage();
+  } catch (e) {
+    return navigator.language;
+  }
+}
+
 export async function clearCache() {
   const cacheArray = await api.storage.list();
   let deleted = 0;
-
-  j.$.each(cacheArray, function (index, cache) {
+  localStore.clear();
+  con.log('Local storage was cleared!');
+  j.$.each(cacheArray, (index, cache) => {
     if (!utils.syncRegex.test(String(index)) && !/(^tagSettings\/.*)/.test(String(index))) {
       api.storage.remove(String(index));
       deleted++;
