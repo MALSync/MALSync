@@ -1,4 +1,5 @@
 import { Cache } from '../utils/Cache';
+import { getBrowserCurrentLocale } from '../utils/general';
 
 export interface Overview {
   title: string;
@@ -109,17 +110,26 @@ export abstract class MetaOverviewAbstract {
   async init() {
     if (this.run) return this;
 
-    if (await this.getCache().hasValueAndIsNotEmpty()) {
+    const cache = await this.getCache();
+    if (await cache.hasValueAndIsNotEmpty()) {
       this.logger.log('Cached');
-      this.meta = await this.getCache().getValue();
-      this.run = true;
-      await this.fillOverviewState();
-      return this;
+      const data = await cache.getValue();
+      const locale = getBrowserCurrentLocale();
+
+      if (data.locale === locale) {
+        delete data.locale;
+        this.meta = data;
+        this.run = true;
+        await this.fillOverviewState();
+        return this;
+      }
+      this.logger.log(`Locale changed [${data.locale} -> ${locale}], re-initializing...`);
+      await cache.clearValue();
     }
 
     await this._init();
     this.run = true;
-    this.getCache().setValue(this.getMeta());
+    this.getCache().setValue({ ...this.getMeta(), locale: getBrowserCurrentLocale() });
     await this.fillOverviewState();
     return this;
   }
@@ -165,7 +175,7 @@ export abstract class MetaOverviewAbstract {
     return this.meta;
   }
 
-  cacheObj: any = undefined;
+  cacheObj?: Cache = undefined;
 
   getCache() {
     if (this.cacheObj) return this.cacheObj;
