@@ -49,6 +49,18 @@ export const WeebCentral: pageInterface = {
         .attr('href');
       return nextButton;
     },
+    readerConfig: [
+      {
+        current: {
+          selector: 'main img',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: 'main img',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     getTitle(url) {
