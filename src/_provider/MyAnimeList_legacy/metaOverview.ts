@@ -234,7 +234,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
       if (body.length) {
         html.push({
-          title: 'External Links',
+          title: `${api.storage.lang('overview_sidebar_external_links')}`,
           body,
         });
       }
