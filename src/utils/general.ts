@@ -893,19 +893,11 @@ export function waitForPageToBeVisible() {
   });
 }
 
-export function getBrowserCurrentLocale() {
-  try {
-    return chrome.i18n.getUILanguage();
-  } catch (e) {
-    return navigator.language;
-  }
-}
-
 export async function clearCache() {
   const cacheArray = await api.storage.list();
   let deleted = 0;
-  localStore.clear();
-  con.log('Local storage was cleared!');
+  if (api.type === 'webextension') localStore.clear();
+
   j.$.each(cacheArray, (index, cache) => {
     if (!utils.syncRegex.test(String(index)) && !/(^tagSettings\/.*)/.test(String(index))) {
       api.storage.remove(String(index));
