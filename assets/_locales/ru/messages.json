@@ -1546,5 +1546,9 @@
     },
     "settings_permissions_overview": {
         "message": "Разрешения"
+    },
+    "locale": {
+        "message": "ru",
+        "description": "Current locale"
     }
 }

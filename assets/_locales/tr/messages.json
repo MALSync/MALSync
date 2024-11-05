@@ -1554,5 +1554,9 @@
     "settings_permissions_player": {
         "message": "Video Oynatıcı",
         "description": "Header text for the list of video player permissions"
+    },
+    "locale": {
+        "message": "tr",
+        "description": "Current locale"
     }
 }

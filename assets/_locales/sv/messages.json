@@ -782,5 +782,9 @@
                 "example": "</a>"
             }
         }
+    },
+    "locale": {
+        "message": "sv",
+        "description": "Current locale"
     }
 }

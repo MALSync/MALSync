@@ -336,5 +336,9 @@
     "UI_Score_Horrible": {
         "message": "(2) 끔찍한",
         "description": "Horrible - Score"
+    },
+    "locale": {
+        "message": "ko",
+        "description": "Current locale"
     }
 }
