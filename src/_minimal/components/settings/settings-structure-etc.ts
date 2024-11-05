@@ -7,7 +7,7 @@ import { localStore } from '../../../utils/localStore';
 export const etc: ConfObj[] = [
   {
     key: 'forceEn',
-    title: () => api.storage.lang('settings_forceEn'),
+    title: 'Force English',
     props: {
       component: 'checkbox',
       option: 'forceEn',
