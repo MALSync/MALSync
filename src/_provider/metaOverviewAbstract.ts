@@ -1,5 +1,4 @@
 import { Cache } from '../utils/Cache';
-import { getBrowserCurrentLocale } from '../utils/general';
 
 export interface Overview {
   title: string;
@@ -113,23 +112,22 @@ export abstract class MetaOverviewAbstract {
     const cache = await this.getCache();
     if (await cache.hasValueAndIsNotEmpty()) {
       this.logger.log('Cached');
-      const data = await cache.getValue();
-      const locale = getBrowserCurrentLocale();
+      const cacheLocale = cache.getLocale();
+      const locale = api.storage.lang('locale');
 
-      if (data.locale === locale) {
-        delete data.locale;
-        this.meta = data;
+      if (cacheLocale === locale) {
+        this.meta = await cache.getValue();
         this.run = true;
         await this.fillOverviewState();
         return this;
       }
-      this.logger.log(`Locale changed [${data.locale} -> ${locale}], re-initializing...`);
+      this.logger.log(`Locale changed [${cacheLocale} -> ${locale}], re-initializing...`);
       await cache.clearValue();
     }
 
     await this._init();
     this.run = true;
-    this.getCache().setValue({ ...this.getMeta(), locale: getBrowserCurrentLocale() });
+    this.getCache().setValue(this.getMeta());
     await this.fillOverviewState();
     return this;
   }
@@ -179,7 +177,10 @@ export abstract class MetaOverviewAbstract {
 
   getCache() {
     if (this.cacheObj) return this.cacheObj;
-    this.cacheObj = new Cache(`v3/${this.url}`, 5 * 24 * 60 * 60 * 1000);
+    this.cacheObj = new Cache(
+      `v3/${api.storage.lang('locale')}/${this.url}}`,
+      5 * 24 * 60 * 60 * 1000,
+    );
     return this.cacheObj;
   }
 }
