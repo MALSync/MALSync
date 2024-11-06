@@ -896,14 +896,13 @@ export function waitForPageToBeVisible() {
 export async function clearCache() {
   const cacheArray = await api.storage.list();
   let deleted = 0;
-  if (api.type === 'webextension') localStore.clear();
 
-  j.$.each(cacheArray, (index, cache) => {
-    if (!utils.syncRegex.test(String(index)) && !/(^tagSettings\/.*)/.test(String(index))) {
-      api.storage.remove(String(index));
+  for (let i = 0; i < cacheArray.length; i++) {
+    if (!utils.syncRegex.test(`${i}`) && !/(^tagSettings\/.*)/.test(`${i}`)) {
+      api.storage.remove(`${i}`);
       deleted++;
     }
-  });
+  }
 
   utils.flashm(`Cache Cleared [${deleted}]`);
 }

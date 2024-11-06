@@ -87,8 +87,4 @@ export class Cache {
     }
     return api.storage.get(this.key);
   }
-
-  getLocale() {
-    return this.key.split('/')[1];
-  }
 }

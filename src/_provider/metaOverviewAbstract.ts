@@ -109,25 +109,18 @@ export abstract class MetaOverviewAbstract {
   async init() {
     if (this.run) return this;
 
-    const cache = await this.getCache();
+    const cache = this.getCache();
     if (await cache.hasValueAndIsNotEmpty()) {
       this.logger.log('Cached');
-      const cacheLocale = cache.getLocale();
-      const locale = api.storage.lang('locale');
-
-      if (cacheLocale === locale) {
-        this.meta = await cache.getValue();
-        this.run = true;
-        await this.fillOverviewState();
-        return this;
-      }
-      this.logger.log(`Locale changed [${cacheLocale} -> ${locale}], re-initializing...`);
-      await cache.clearValue();
+      this.meta = await cache.getValue();
+      this.run = true;
+      await this.fillOverviewState();
+      return this;
     }
 
     await this._init();
     this.run = true;
-    this.getCache().setValue(this.getMeta());
+    await cache.setValue(this.getMeta());
     await this.fillOverviewState();
     return this;
   }
