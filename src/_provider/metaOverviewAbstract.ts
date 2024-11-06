@@ -177,7 +177,7 @@ export abstract class MetaOverviewAbstract {
   getCache() {
     if (this.cacheObj) return this.cacheObj;
     this.cacheObj = new Cache(
-      `v4/${api.storage.lang('locale')}/${this.url}}`,
+      `v4/${api.storage.lang('locale')}/${this.url}`,
       5 * 24 * 60 * 60 * 1000,
     );
     return this.cacheObj;
