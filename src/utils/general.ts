@@ -895,9 +895,9 @@ export async function clearCache() {
   const cacheObj = await api.storage.list();
   let deleted = 0;
 
-  for (let i = 0; i < Object.keys(cacheObj).length; i++) {
-    if (!utils.syncRegex.test(`${i}`) && !/(^tagSettings\/.*)/.test(`${i}`)) {
-      api.storage.remove(`${i}`);
+  for (const key in cacheObj) {
+    if (!utils.syncRegex.test(key) && !/(^tagSettings\/.*)/.test(key)) {
+      api.storage.remove(key);
       deleted++;
     }
   }
