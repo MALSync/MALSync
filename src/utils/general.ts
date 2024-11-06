@@ -892,10 +892,10 @@ export function waitForPageToBeVisible() {
 }
 
 export async function clearCache() {
-  const cacheArray = await api.storage.list();
+  const cacheObj = await api.storage.list();
   let deleted = 0;
 
-  for (let i = 0; i < cacheArray.length; i++) {
+  for (let i = 0; i < Object.keys(cacheObj).length; i++) {
     if (!utils.syncRegex.test(`${i}`) && !/(^tagSettings\/.*)/.test(`${i}`)) {
       api.storage.remove(`${i}`);
       deleted++;
