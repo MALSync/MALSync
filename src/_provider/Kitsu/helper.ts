@@ -17,7 +17,7 @@ export function translateList(aniStatus, malStatus: null | number = null) {
   return list[aniStatus];
 }
 
-export function timestampToDate(timestamp: string | null): startFinishDate | null {
+export function timestampToDate(timestamp: string | null): startFinishDate {
   if (typeof timestamp !== 'string') {
     return null;
   }
@@ -25,7 +25,7 @@ export function timestampToDate(timestamp: string | null): startFinishDate | nul
   return timestamp.substring(0, 10);
 }
 
-export function dateToTimestamp(date: startFinishDate | null): string | null {
+export function dateToTimestamp(date: startFinishDate): string | null {
   if (typeof date !== 'string') {
     return null;
   }

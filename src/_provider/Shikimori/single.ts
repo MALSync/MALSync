@@ -53,20 +53,20 @@ export class Single extends SingleAbstract {
     this.animeInfo!.status = helper.statusTranslate[status] as helper.StatusType;
   }
 
-  _getStartDate() {
-    return null;
+  _getStartDate(): never {
+    throw new Error('Shikimori does not support Start Date');
   }
 
   _setStartDate(startDate) {
-    // Unsupported
+    throw new Error('Shikimori does not support Start Date');
   }
 
-  _getFinishDate() {
-    return null;
+  _getFinishDate(): never {
+    throw new Error('Shikimori does not support Finish Date');
   }
 
   _setFinishDate(finishDate) {
-    // Unsupported
+    throw new Error('Shikimori does not support Finish Date');
   }
 
   _getRewatchCount() {

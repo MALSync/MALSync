@@ -65,28 +65,28 @@ export class Single extends SingleAbstract {
     this.animeInfo.status = status;
   }
 
-  _getStartDate() {
-    return null;
+  _getStartDate(): never {
+    throw new Error('Local sync does not support Start Date');
   }
 
   _setStartDate(startDate) {
-    // Unsupported
+    throw new Error('Local sync does not support Start Date');
   }
 
-  _getFinishDate() {
-    return null;
+  _getFinishDate(): never {
+    throw new Error('Local sync does not support Finish Date');
   }
 
   _setFinishDate(finishDate) {
-    // Unsupported
+    throw new Error('Local sync does not support Finish Date');
   }
 
-  _getRewatchCount() {
-    return null;
+  _getRewatchCount(): never {
+    throw new Error('Local sync does not support Rewatch Count');
   }
 
   _setRewatchCount(rewatchCount) {
-    // Unsupported
+    throw new Error('Local sync does not support Rewatch Count');
   }
 
   _getScore() {

@@ -28,7 +28,7 @@ export enum statusTranslate {
   'REPEATING' = status.Rewatching,
 }
 
-export function parseFuzzyDate(date?: fuzzyDate): startFinishDate | null {
+export function parseFuzzyDate(date?: fuzzyDate): startFinishDate {
   if (!date?.year || !date?.month || !date?.day) {
     return null;
   }

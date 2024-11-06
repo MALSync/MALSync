@@ -69,28 +69,28 @@ export class Single extends SingleAbstract {
     this.animeInfo.status = status;
   }
 
-  _setStartDate(startDate) {
-    // Unsupported
+  _getStartDate(): never {
+    throw new Error('Simkl does not support Start Date');
   }
 
-  _getStartDate() {
-    return null;
+  _setStartDate(startDate) {
+    throw new Error('Simkl does not support Start Date');
+  }
+
+  _getFinishDate(): never {
+    throw new Error('Simkl does not support Finish Date');
   }
 
   _setFinishDate(finishDate) {
-    // Unsupported
+    throw new Error('Simkl does not support Finish Date');
   }
 
-  _getFinishDate() {
-    return null;
+  _getRewatchCount(): never {
+    throw new Error('Simkl does not support Rewatch Count');
   }
 
   _setRewatchCount(rewatchCount) {
-    // Unsupported
-  }
-
-  _getRewatchCount() {
-    return null;
+    throw new Error('Simkl does not support Rewatch Count');
   }
 
   _getScore() {

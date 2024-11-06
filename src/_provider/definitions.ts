@@ -37,7 +37,7 @@ export enum score {
 export type score100 = number;
 
 // YYYY-MM-DD format
-export type startFinishDate = string;
+export type startFinishDate = string | null;
 
 export type fuzzyDate = {
   year: number | null;

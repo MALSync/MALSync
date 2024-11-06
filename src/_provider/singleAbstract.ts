@@ -110,9 +110,9 @@ export abstract class SingleAbstract {
     return this;
   }
 
-  abstract _getStartDate(): definitions.startFinishDate | null;
+  abstract _getStartDate(): definitions.startFinishDate;
 
-  public getStartDate(): definitions.startFinishDate | null {
+  public getStartDate(): definitions.startFinishDate {
     if (this.supportsDates()) {
       return this._getStartDate();
     }
@@ -128,9 +128,9 @@ export abstract class SingleAbstract {
     return this;
   }
 
-  abstract _getFinishDate(): definitions.startFinishDate | null;
+  abstract _getFinishDate(): definitions.startFinishDate;
 
-  public getFinishDate(): definitions.startFinishDate | null {
+  public getFinishDate(): definitions.startFinishDate {
     if (this.supportsDates()) {
       return this._getFinishDate();
     }
