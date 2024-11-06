@@ -19,11 +19,17 @@ export interface Overview {
   }[];
   info: {
     title: string;
-    body: {
-      text: string;
-      url?: string;
-      subtext?: string;
-    }[];
+    body: (
+      | {
+          text: string;
+          url?: string;
+          subtext?: string;
+        }
+      | {
+          date: Date | string;
+          type: 'weektime';
+        }
+    )[];
   }[];
   openingSongs: {
     title: string;
@@ -171,7 +177,7 @@ export abstract class MetaOverviewAbstract {
   getCache() {
     if (this.cacheObj) return this.cacheObj;
     this.cacheObj = new Cache(
-      `v3/${api.storage.lang('locale')}/${this.url}}`,
+      `v4/${api.storage.lang('locale')}/${this.url}}`,
       5 * 24 * 60 * 60 * 1000,
     );
     return this.cacheObj;
