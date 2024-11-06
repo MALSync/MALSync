@@ -1,5 +1,3 @@
-import { localStore } from './localStore';
-
 declare let browser: any;
 
 export function urlPart(url: string, part: number) {
