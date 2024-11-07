@@ -75,7 +75,7 @@ export class Single extends SingleAbstract {
   }
 
   _getStartDate() {
-    return this.animeInfo.my_list_status.start_date;
+    return helper.getRoundedDate(this.animeInfo.my_list_status.start_date);
   }
 
   _setStartDate(startDate) {
@@ -83,7 +83,7 @@ export class Single extends SingleAbstract {
   }
 
   _getFinishDate() {
-    return this.animeInfo.my_list_status.finish_date;
+    return helper.getRoundedDate(this.animeInfo.my_list_status.finish_date);
   }
 
   _setFinishDate(finishDate) {
