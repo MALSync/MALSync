@@ -66,6 +66,9 @@
     ]
   },
   "0.10.4": {
+    "AnimeXin": [
+      "*://animexin.top/*"
+    ],
     "FlameScans": [
       "*://flamecomics.me/*"
     ],
