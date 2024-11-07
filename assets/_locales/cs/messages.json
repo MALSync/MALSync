@@ -62,5 +62,9 @@
     "syncPage_flashConfirm_start_anime": {
         "message": "Začít sledovat?",
         "description": "Start watching anime message"
+    },
+    "locale": {
+        "message": "cs",
+        "description": "Current locale"
     }
 }

@@ -1136,5 +1136,9 @@
     "settings_custom_domains_position": {
         "message": "Positie",
         "description": "Position of the quicklinks"
+    },
+    "locale": {
+        "message": "nl",
+        "description": "Current locale"
     }
 }
