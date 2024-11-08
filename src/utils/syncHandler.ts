@@ -236,6 +236,7 @@ export function syncItem(slave, pageType) {
     } else {
       throw 'No sync type';
     }
+    singleClass.setSyncMethod('listSync');
 
     return singleClass
       .update()

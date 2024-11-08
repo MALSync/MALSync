@@ -8,6 +8,8 @@ import { Component } from 'vue';
 
 export type contentType = 'anime' | 'manga';
 
+export type syncMethod = 'normal' | 'listSync';
+
 export enum status {
   NoState = 0,
   Watching = 1,

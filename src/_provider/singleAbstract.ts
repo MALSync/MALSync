@@ -23,6 +23,8 @@ export abstract class SingleAbstract {
 
   protected type: definitions.contentType | null = null;
 
+  protected syncMethod: definitions.syncMethod = 'normal';
+
   protected persistanceState;
 
   protected undoState;
@@ -442,6 +444,7 @@ export abstract class SingleAbstract {
     this._setTags(
       await utils.setEntrySettings(this.type, this.getCacheKey(), this.options, this._getTags()),
     );
+    this.fixDates();
     return this._sync()
       .catch(e => {
         this.lastError = e;
@@ -665,6 +668,37 @@ export abstract class SingleAbstract {
       return diff;
     }
     return undefined;
+  }
+
+  public getSyncMethod(): definitions.syncMethod {
+    return this.syncMethod;
+  }
+
+  public setSyncMethod(method: definitions.syncMethod) {
+    this.syncMethod = method;
+  }
+
+  private fixDates() {
+    if (!this.supportsDates() || this.getSyncMethod() === 'listSync') {
+      return;
+    }
+
+    const today = returnYYYYMMDD();
+    if (
+      this.getStartDate() === null &&
+      this._getStatus() === definitions.status.Watching &&
+      this._getEpisode() > 0
+    ) {
+      this.setStartDate(today);
+    }
+
+    if (this.getFinishDate() === null && this._getStatus() === definitions.status.Completed) {
+      this.setFinishDate(today);
+
+      if (this.getStartDate() === null) {
+        this.setStartDate(today);
+      }
+    }
   }
 
   public async lifeCycleHook(state: 'afterCheckSync' | 'beforeSync') {
