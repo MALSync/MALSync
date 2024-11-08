@@ -210,7 +210,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     )
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${this.animeI().attributes.episodeLength} mins` }],
+        body: [
+          {
+            text: `${this.animeI().attributes.episodeLength} ${api.storage.lang('bookmarksItem_mins')}`,
+          },
+        ],
       });
 
     if (
@@ -275,7 +279,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     )
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Total_Playtime'),
-        body: [{ text: `${this.animeI().attributes.totalLength} mins` }],
+        body: [
+          {
+            text: `${this.animeI().attributes.totalLength} ${api.storage.lang('bookmarksItem_mins')}`,
+          },
+        ],
       });
   }
 

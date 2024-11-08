@@ -1542,5 +1542,9 @@
     "settings_custom_position_below": {
         "message": "তথ্যৰ তলত",
         "description": "Position of the quicklinks below the information section"
+    },
+    "locale": {
+        "message": "as",
+        "description": "Current locale"
     }
 }

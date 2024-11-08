@@ -1,6 +1,6 @@
 {
   "search": "https://animexin.vip/?s={searchtermPlus}",
   "urls": {
-    "match": ["*://animexin.vip/*", "*://animexin.xyz/*", "*://animexinax.com/*"]
+    "match": ["*://animexin.vip/*", "*://animexin.xyz/*", "*://animexinax.com/*", "*://animexin.top/*"]
   }
 }

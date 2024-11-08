@@ -1090,5 +1090,9 @@
     "filler_recap_confirm": {
         "message": "ตอนนี้ได้รับการทำเครื่องหมายว่าเป็นการสรุปที่ MyAnimelist คุณต้องการข้าม?",
         "description": "Question if the user wants to skip the recap"
+    },
+    "locale": {
+        "message": "th",
+        "description": "Current locale"
     }
 }

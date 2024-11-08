@@ -66,6 +66,9 @@
     ]
   },
   "0.10.4": {
+    "AnimeXin": [
+      "*://animexin.top/*"
+    ],
     "FlameScans": [
       "*://flamecomics.me/*"
     ],
@@ -87,7 +90,10 @@
       "*://geo.dailymotion.com/*",
       "*://dood.li/e/*",
       "*://bethshouldercan.com/e/*",
-      "*://oneupload.to/*"
+      "*://hlswish.com/e/*",
+      "*://oneupload.to/*",
+      "*://player.vimeo.com/*",
+      "*://rumble.com/embed/*"
     ]
   }
 }

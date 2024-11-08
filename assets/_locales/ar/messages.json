@@ -1514,5 +1514,9 @@
     "installPage_Description_paragraph2": {
         "message": "على سبيل المثال ، إذا كنت ترغب في مشاهدة الأنمي على Crunchyroll ، فسيظهر الرابط السريع ل Crunchyroll في كل صفحة أنمي. هي طريقة ملائمة للوصول إلى مواقعك المفضلة بنقرة واحدة فقط!",
         "description": "paragraph two of the description"
+    },
+    "locale": {
+        "message": "ar",
+        "description": "Current locale"
     }
 }
