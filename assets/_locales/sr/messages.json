@@ -1207,5 +1207,9 @@
     },
     "settings_filler_text": {
         "message": "Ово ће проверити да ли је епизода обележена као филер/резиме на MyAnimeList"
+    },
+    "locale": {
+        "message": "sr",
+        "description": "Current locale"
     }
 }

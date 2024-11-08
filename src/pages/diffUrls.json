@@ -66,8 +66,15 @@
     ]
   },
   "0.10.4": {
+    "AnimeXin": [
+      "*://animexin.top/*"
+    ],
     "FlameScans": [
       "*://flamecomics.me/*"
+    ],
+    "Gogoanime": [
+      "*://*.gogoanime3.cc/*",
+      "*://*.anitaku.bz/*"
     ],
     "Zoro": [
       "*://hianime.nz/*",
@@ -82,7 +89,11 @@
       "*://*.videzz.net/*",
       "*://geo.dailymotion.com/*",
       "*://dood.li/e/*",
-      "*://bethshouldercan.com/e/*"
+      "*://bethshouldercan.com/e/*",
+      "*://hlswish.com/e/*",
+      "*://oneupload.to/*",
+      "*://player.vimeo.com/*",
+      "*://rumble.com/embed/*"
     ]
   }
 }

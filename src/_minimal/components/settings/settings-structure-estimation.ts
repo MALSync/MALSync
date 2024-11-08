@@ -51,21 +51,24 @@ export const estimation: ConfObj[] = [
     key: 'progressInterval',
     title: () => api.storage.lang('settings_Interval'),
     change: () => startProgressSync(),
-    props: () => ({
-      component: 'dropdown',
-      option: 'progressInterval',
-      props: {
-        options: [
-          { title: api.storage.lang('settings_Interval_Off'), value: '0' },
-          { title: '30min', value: '30' },
-          { title: '1h', value: '60' },
-          { title: '2h', value: '120' },
-          { title: '4h', value: '240' },
-          { title: '12h', value: '720' },
-          { title: '24h', value: '1440' },
-        ],
-      },
-    }),
+    props: () => {
+      const hours = api.storage.lang('bookmarksItem_Hours');
+      return {
+        component: 'dropdown',
+        option: 'progressInterval',
+        props: {
+          options: [
+            { title: api.storage.lang('settings_Interval_Off'), value: '0' },
+            { title: `30 ${api.storage.lang('bookmarksItem_mins')}`, value: '30' },
+            { title: `1 ${api.storage.lang('bookmarksItem_Hour')}`, value: '60' },
+            { title: `2 ${hours}`, value: '120' },
+            { title: `4 ${hours}`, value: '240' },
+            { title: `12 ${hours}`, value: '720' },
+            { title: `24 ${hours}`, value: '1440' },
+          ],
+        },
+      };
+    },
     component: SettingsGeneral,
   },
   {

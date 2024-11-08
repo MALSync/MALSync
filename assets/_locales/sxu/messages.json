@@ -50,5 +50,9 @@
     "updated": {
         "message": "Aggdualisierd",
         "description": "Flash message that shows up after updating an anime/manga entry"
+    },
+    "locale": {
+        "message": "sxu",
+        "description": "Current locale"
     }
 }

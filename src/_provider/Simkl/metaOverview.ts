@@ -1,6 +1,7 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -141,11 +142,28 @@ export class MetaOverview extends MetaOverviewAbstract {
         body: [{ text: data.year }],
       });
 
-    if (data.airs && data.airs)
+    if (data.airs && data.airs.day && data.airs.time) {
+      let body: any = [{ text: `${data.airs.day} at ${data.airs.time}` }];
+
+      const weekDate = getWeektime(data.airs.day, data.airs.time);
+      if (weekDate) {
+        const broadcastDate = dateFromTimezoneToTimezone(
+          weekDate,
+          data.airs.timezone || 'Asia/Tokyo',
+        );
+        body = [
+          {
+            date: broadcastDate,
+            type: 'weektime',
+          },
+        ];
+      }
+
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Broadcast'),
-        body: [{ text: `${data.airs.day} at ${data.airs.time}` }],
+        body,
       });
+    }
 
     if (data.network && data.network)
       this.meta.info.push({
@@ -171,7 +189,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.runtime && data.runtime)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${data.runtime}mins` }],
+        body: [{ text: `${data.runtime} ${api.storage.lang('bookmarksItem_mins')}` }],
       });
 
     if (data.certification && data.certification)

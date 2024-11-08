@@ -1,5 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
+import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -172,7 +173,6 @@ export class MetaOverview extends MetaOverviewAbstract {
         const title = j.$(value).find('.dark_text').text();
         j.$(value).find('.dark_text').remove();
 
-        // @ts-ignore
         const aTags: { text: string; url: string; subtext?: string }[] = j
           .$(value)
           .find('a')
@@ -181,7 +181,8 @@ export class MetaOverview extends MetaOverviewAbstract {
               text: j.$(el).text().trim(),
               url: utils.absoluteLink(j.$(el).attr('href'), 'https://myanimelist.net'),
             };
-          });
+          })
+          .toArray();
 
         j.$(value).find('a, span').remove();
 
@@ -191,13 +192,28 @@ export class MetaOverview extends MetaOverviewAbstract {
 
         if (!aTags.length) {
           body = textTags.map(el => {
+            const match = el.match(/(\w+)\s+at\s+(\d{2}:\d{2})\s+\(JST\)/i);
+
+            if (match) {
+              const dayString = match[1];
+              const timeString = match[2];
+
+              const weekDate = getWeektime(dayString, timeString);
+              if (weekDate) {
+                const broadcastDate = dateFromTimezoneToTimezone(weekDate, 'Asia/Tokyo');
+                return {
+                  date: broadcastDate,
+                  type: 'weektime',
+                };
+              }
+            }
+
             return {
               text: el,
             };
           });
         } else if (aTags.length === textTags.length) {
-          body = aTags.map((i, el) => {
-            // @ts-ignore
+          body = aTags.map((el, i) => {
             el.subtext = textTags[i]
               .trim()
               .replace(/(^\(|\)$)/gi, '')
@@ -234,7 +250,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
       if (body.length) {
         html.push({
-          title: 'External Links',
+          title: `${api.storage.lang('overview_sidebar_external_links')}`,
           body,
         });
       }

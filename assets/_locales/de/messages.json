@@ -1554,5 +1554,9 @@
     "settings_permissions_player": {
         "message": "Video-Player",
         "description": "Header text for the list of video player permissions"
+    },
+    "locale": {
+        "message": "de",
+        "description": "Current locale"
     }
 }

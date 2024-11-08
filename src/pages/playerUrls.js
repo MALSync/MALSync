@@ -723,6 +723,7 @@ module.exports = {
       '*://streamwish.to/e/*',
       '*://sfastwish.com/e/*',
       '*://awish.pro/e/*',
+      '*://hlswish.com/e/*',
       // auto-gogostreamwish-replace-dont-remove
     ],
   },
@@ -740,5 +741,17 @@ module.exports = {
   // bakashi
   doflix: {
     match: ['*://doflix.net/*'],
+  },
+  // animesama
+  oneupload: {
+    match: ['*://oneupload.to/*'],
+  },
+  // animexin
+  vimeo: {
+    match: ['*://player.vimeo.com/*'],
+  },
+  // animexin
+  rumble: {
+    match: ['*://rumble.com/embed/*'],
   },
 };
