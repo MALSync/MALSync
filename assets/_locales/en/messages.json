@@ -401,6 +401,30 @@
         "message": "year",
         "description": "year"
     },
+    "bookmarksItem_Quarters": {
+        "message": "quarters",
+        "description": "quarters"
+    },
+    "bookmarksItem_Quarter": {
+        "message": "quarter",
+        "description": "quarter"
+    },
+    "bookmarksItem_Months": {
+        "message": "months",
+        "description": "months"
+    },
+    "bookmarksItem_Month": {
+        "message": "month",
+        "description": "month"
+    },
+    "bookmarksItem_Weeks": {
+        "message": "weeks",
+        "description": "weeks"
+    },
+    "bookmarksItem_Week": {
+        "message": "week",
+        "description": "week"
+    },
     "bookmarksItem_Days": {
         "message": "days",
         "description": "days"
@@ -458,7 +482,7 @@
         }
     },
     "prediction_Last_anime": {
-        "message": "Last episode released $time$ ago",
+        "message": "Last episode released $time$",
         "description": "Text for last episode release time",
         "placeholders": {
             "time": {
@@ -478,7 +502,7 @@
         }
     },
     "prediction_Last_manga": {
-        "message": "Last chapter released $time$ ago",
+        "message": "Last chapter released $time$",
         "description": "Text for last chapter release time",
         "placeholders": {
             "time": {
@@ -742,6 +766,30 @@
     "overview_sidebar_Duration": {
         "message": "Duration:",
         "description": "Info table on overview - Duration: 23 min"
+    },
+    "overview_sidebar_Published": {
+        "message": "Published:",
+        "description": "Info table on overview - Published: 2014-04-09"
+    },
+    "overview_sidebar_Premiered": {
+        "message": "Premiered:",
+        "description": "Info table on overview - Premiered: Fall 2024"
+    },
+    "overview_sidebar_Producers": {
+        "message": "Producers:",
+        "description": "Info table on overview - Producers: Kamiya, Yuu"
+    },
+    "overview_sidebar_Licensors": {
+        "message": "Licensors:",
+        "description": "Info table on overview - Licensors: AT-X"
+    },
+    "overview_sidebar_Themes": {
+        "message": "Themes:",
+        "description": "Info table on overview - Themes: Isekai"
+    },
+    "overview_sidebar_Type": {
+        "message": "Type:",
+        "description": "Info table on overview - Type: TV"
     },
     "list_sorting_unread": {
         "message": "Unread",
@@ -1128,6 +1176,10 @@
     "settings_listsync_repeatcount_manga": {
         "message": "Reread Count:",
         "description": "List Sync label to display the user's reread count for a manga on a specific provider"
+    },
+    "settings_listsync_provider_done": {
+        "message": "Done",
+        "description": "Provider done loading your list"
     },
     "settings_progress": {
         "message": "Progress estimation",
