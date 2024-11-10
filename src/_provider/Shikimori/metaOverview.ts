@@ -1,6 +1,7 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import { getDateInLocale, getDurationInLocale } from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -192,7 +193,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.meta.duration)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${data.meta.duration} ${api.storage.lang('bookmarksItem_mins')}` }],
+        body: [
+          {
+            text: `${getDurationInLocale({ minutes: data.meta.duration })}`,
+          },
+        ],
       });
 
     if (data.meta.status)
@@ -204,7 +209,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.meta.aired_on)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Start_Date'),
-        body: [{ text: data.meta.aired_on }],
+        body: [{ text: `${getDateInLocale(data.meta.aired_on)}` }],
       });
 
     if (this.type === 'manga' && data.roles && data.roles.length) {

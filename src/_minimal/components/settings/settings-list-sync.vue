@@ -120,11 +120,11 @@
                 </div>
                 <div>
                   {{ lang('settings_listsync_startdate') }}
-                  {{ item.master.startDate ?? lang('settings_listsync_unknowndate') }}
+                  {{ item.master.startDate ? getDateInLocale(item.master.startDate) : lang('settings_listsync_unknowndate') }}
                 </div>
                 <div>
                   {{ lang('settings_listsync_finishdate') }}
-                  {{ item.master.finishDate ?? lang('settings_listsync_unknowndate') }}
+                  {{ item.master.finishDate ? getDateInLocale(item.master.finishDate) : lang('settings_listsync_unknowndate') }}
                 </div>
                 <div>
                   {{ lang(`settings_listsync_repeatcount_${item.master.type}`) }}
@@ -175,7 +175,7 @@
                   <span v-if="slave.diff && slave.diff.startDate !== undefined">
                     →
                     <text class="highlight">{{
-                      slave.diff.startDate ?? lang('settings_listsync_unknowndate')
+                      slave.diff.startDate ? getDateInLocale(slave.diff.startDate) : lang('settings_listsync_unknowndate')
                     }}</text>
                   </span>
                 </div>
@@ -185,7 +185,7 @@
                   <span v-if="slave.diff && slave.diff.finishDate !== undefined">
                     →
                     <text class="highlight">{{
-                      slave.diff.finishDate ?? lang('settings_listsync_unknowndate')
+                      slave.diff.finishDate ? getDateInLocale(slave.diff.finishDate) : lang('settings_listsync_unknowndate')
                     }}</text>
                   </span>
                 </div>
@@ -226,11 +226,11 @@
               </div>
               <div>
                 {{ lang('settings_listsync_startdate') }}
-                {{ item.startDate ?? lang('settings_listsync_unknowndate') }}
+                {{ item.startDate ? getDateInLocale(item.startDate) : lang('settings_listsync_unknowndate') }}
               </div>
               <div>
                 {{ lang('settings_listsync_finishdate') }}
-                {{ item.finishDate ?? lang('settings_listsync_unknowndate') }}
+                {{ item.finishDate ? getDateInLocale(item.finishDate) : lang('settings_listsync_unknowndate') }}
               </div>
               <div>
                 {{ lang(`settings_listsync_repeatcount_${item.type}`) }}
@@ -263,6 +263,7 @@ import Description from '../description.vue';
 import CodeBlock from '../code-block.vue';
 import SettingsGeneral from './settings-general.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
+import { getDateInLocale } from '../../../utils/time';
 
 defineProps({
   title: {

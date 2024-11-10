@@ -1,6 +1,7 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import { getDateInLocale, getDurationInLocale } from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -212,7 +213,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Duration'),
         body: [
           {
-            text: `${this.animeI().attributes.episodeLength} ${api.storage.lang('bookmarksItem_mins')}`,
+            text: `${getDurationInLocale({ minutes: this.animeI().attributes.episodeLength })}`,
           },
         ],
       });
@@ -229,22 +230,24 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     }
 
-    if (
-      typeof this.animeI().attributes.startDate !== 'undefined' &&
-      this.animeI().attributes.startDate !== null
-    )
+    if (this.animeI().attributes.startDate)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Start_Date'),
-        body: [{ text: this.animeI().attributes.startDate }],
+        body: [
+          {
+            text: getDateInLocale(this.animeI().attributes.startDate),
+          },
+        ],
       });
 
-    if (
-      typeof this.animeI().attributes.endDate !== 'undefined' &&
-      this.animeI().attributes.endDate !== null
-    )
+    if (this.animeI().attributes.endDate)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_End_Date'),
-        body: [{ text: this.animeI().attributes.endDate }],
+        body: [
+          {
+            text: getDateInLocale(this.animeI().attributes.endDate),
+          },
+        ],
       });
 
     const genres: any[] = [];
@@ -273,15 +276,12 @@ export class MetaOverview extends MetaOverviewAbstract {
         body: [{ text: this.animeI().attributes.ageRating }],
       });
 
-    if (
-      typeof this.animeI().attributes.totalLength !== 'undefined' &&
-      this.animeI().attributes.totalLength !== null
-    )
+    if (this.animeI().attributes.totalLength)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Total_Playtime'),
         body: [
           {
-            text: `${this.animeI().attributes.totalLength} ${api.storage.lang('bookmarksItem_mins')}`,
+            text: `${getDurationInLocale({ minutes: this.animeI().attributes.totalLength })}`,
           },
         ],
       });

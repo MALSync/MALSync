@@ -3,7 +3,7 @@ import {
   progressIsOld,
   single as updateProgress,
 } from '../background/releaseProgressUtils';
-import { timestampToShortTime } from './time';
+import { getRelativeFromTimestampInLocale } from './time';
 
 export class Progress {
   protected logger;
@@ -103,7 +103,7 @@ export class Progress {
   }
 
   getPrediction(): string {
-    return timestampToShortTime(this.getPredictionTimestamp());
+    return getRelativeFromTimestampInLocale(this.getPredictionTimestamp());
   }
 
   getPredictionText(): string {
@@ -117,7 +117,7 @@ export class Progress {
   }
 
   getLast(ago = true): string {
-    return timestampToShortTime(this.getLastTimestamp(), ago);
+    return getRelativeFromTimestampInLocale(this.getLastTimestamp());
   }
 
   getLastText(): string {

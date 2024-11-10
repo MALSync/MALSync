@@ -1,7 +1,7 @@
 import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { timestampToShortDate } from '../../utils/time';
+import { getDateInLocale, getDurationInLocale } from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -322,7 +322,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.data.Media.duration)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${data.data.Media.duration} ${api.storage.lang('bookmarksItem_mins')}` }],
+        body: [
+          {
+            text: `${getDurationInLocale({ minutes: data.data.Media.duration })}`,
+          },
+        ],
       });
 
     if (data.data.Media.status) {
@@ -339,7 +343,13 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Start_Date'),
         body: [
           {
-            text: `${data.data.Media.startDate.year}-${data.data.Media.startDate.month}-${data.data.Media.startDate.day}`,
+            text: getDateInLocale(
+              new Date(
+                data.data.Media.startDate.year,
+                data.data.Media.startDate.month,
+                data.data.Media.startDate.day,
+              ),
+            ),
           },
         ],
       });
@@ -349,7 +359,13 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_End_Date'),
         body: [
           {
-            text: `${data.data.Media.endDate.year}-${data.data.Media.endDate.month}-${data.data.Media.endDate.day}`,
+            text: getDateInLocale(
+              new Date(
+                data.data.Media.endDate.year,
+                data.data.Media.endDate.month,
+                data.data.Media.endDate.day,
+              ),
+            ),
           },
         ],
       });
@@ -468,7 +484,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       reviews.push({
         body: {
           people: i.rating,
-          date: timestampToShortDate(i.createdAt * 1000),
+          date: getDateInLocale(i.createdAt * 1000, 'short'),
           rating: i.score,
           text: i.body,
         },

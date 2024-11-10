@@ -1,6 +1,12 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
-import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
+import {
+  dateFromTimezoneToTimezone,
+  getDateInLocale,
+  getDateRangeInLocale,
+  getDurationInLocale,
+  getWeektime,
+} from '../../utils/time';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -146,7 +152,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       const statsBlock = data.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
       // @ts-ignore
       const tempHtml = j.$.parseHTML(statsBlock);
-
+      const This = this;
       j.$.each(j.$(tempHtml).filter('div').slice(0, 5), function (index, value) {
         const title = j.$(value).find('.dark_text').text();
         const body =
@@ -154,7 +160,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             ? j.$(value).find('span[itemprop=ratingValue]').text()
             : j.$(value).clone().children().remove().end().text();
         stats.push({
-          title,
+          title: This.translateTitles(title),
           body: body.trim(),
         });
       });
@@ -170,7 +176,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       const infoBlock = data.split('<h2>Information</h2>')[1].split('<h2>')[0];
       const infoData = j.$.parseHTML(infoBlock);
       j.$.each(j.$(infoData).filter('div'), (index, value) => {
-        const title = j.$(value).find('.dark_text').text();
+        let title = j.$(value).find('.dark_text').text();
         j.$(value).find('.dark_text').remove();
 
         const aTags: { text: string; url: string; subtext?: string }[] = j
@@ -209,7 +215,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             }
 
             return {
-              text: el,
+              text: el.trim(),
             };
           });
         } else if (aTags.length === textTags.length) {
@@ -223,9 +229,49 @@ export class MetaOverview extends MetaOverviewAbstract {
         } else {
           body = aTags;
         }
-
+        switch (title.trim()) { 
+          case 'Published:':
+          case 'Aired:': {
+            title = title === 'Published:' ? api.storage.lang('overview_sidebar_Published') : api.storage.lang('overview_sidebar_Aired');
+            const range = body.map(e => e.text.toString()).toString();
+            // NOTE - For anime/continuous aired titles with start and end date
+            if (range.includes(' to ')) {
+              const start = range.split('to')[0].trim();
+              const end = range.split('to')[1].trim();
+              const rangeDate = getDateRangeInLocale(new Date(start), new Date(end));
+              body = [{ text: rangeDate }];
+              break;
+            }
+            // NOTE - For movies/titles with only 1 air date
+            body = [{ text: `${getDateInLocale(new Date(range))}` }];
+            break;
+          }
+          case 'Duration:': {
+            title = api.storage.lang('overview_sidebar_Duration');
+            const durationString: string = body[0].text;
+            const match = durationString.match(/\d+/g);
+            // NOTE - For anime with episodes
+            if (match) {
+              if (durationString.includes('min') && match.length === 1) {
+                const minutes = Number(match[0]);
+                const result = getDurationInLocale({ minutes });
+                body = [{ text: `${result}` }];
+                break;
+              }
+              // NOTE - For movies with total duration
+              const hours = Number(match[0]) || 0;
+              const minutes = Number(match[1]) || 0;
+              const result = getDurationInLocale({ hours, minutes });
+              body = [{ text: `${result}` }];
+              break;
+            }
+          }
+          default:
+            break;
+        }
+        title = this.translateTitles(title);
         html.push({
-          title: title.trim(),
+          title,
           body,
         });
       });
@@ -234,6 +280,13 @@ export class MetaOverview extends MetaOverviewAbstract {
       console.log('[iframeOverview] Error:', e);
     }
     this.meta.info = html;
+  }
+
+  translateTitles(title: string) {
+    const clearTitle = title.replace(':', '').trim();
+    const titleTranslated = api.storage.lang(`overview_sidebar_${clearTitle}`);
+    return titleTranslated || title;
+    
   }
 
   getExternalLinks(html, data) {
