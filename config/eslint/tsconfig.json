@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "./dist",
+    "allowJs": true,
+    "checkJs": true,
+    "outDir": "./src/",
     "noImplicitAny": false,
     "noImplicitThis": false,
     "module": "ESNext",
@@ -10,18 +11,13 @@
     "lib": ["es2021", "dom"],
     "jsx": "preserve",
     "allowJs": true,
-    "checkJs": true,
     "sourceMap": true,
     "strict": true,
     "useUnknownInCatchVariables": false,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "src/**/*.vue"],
-  "exclude": [
-    "dist",
-    "**/*.test.ts",
-    "**/*.exclude.ts",
-    "node_modules"
+  "include": [
+    "./eslint.mjs"
   ]
 }

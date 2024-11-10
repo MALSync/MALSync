@@ -30,7 +30,7 @@ export const Hdrezka: pageInterface = {
       if (!j.$('.malsync-section').length) {
         j.$('.b-post__infotable')
           .first()
-          .before(j.html(`<div class="b-sidelinks__link malsync-section"></div>`));
+          .before(j.html('<div class="b-sidelinks__link malsync-section"></div>'));
       }
 
       j.$('.malsync-section').html(j.html(selector));

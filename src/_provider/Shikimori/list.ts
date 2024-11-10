@@ -51,7 +51,7 @@ export class UserList extends ListAbstract {
       const userId = await helper.userId();
 
       this.tempList = await helper.apiCall({
-        path: `v2/user_rates`,
+        path: 'v2/user_rates',
         type: 'GET',
         parameter: {
           user_id: userId,
@@ -88,7 +88,7 @@ export class UserList extends ListAbstract {
       const diffArr = ids.filter((o: any) => !keyedIds.includes(o));
       if (diffArr.length) {
         const diffMetadata: helper.MetaRequest[] = await helper.apiCall({
-          path: `ranobe`,
+          path: 'ranobe',
           parameter: { ids: diffArr.join(','), limit: pageSize },
           type: 'GET',
         });

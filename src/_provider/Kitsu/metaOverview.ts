@@ -85,7 +85,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     ).then(res => {
       try {
         res.data = res.data[0];
-        // eslint-disable-next-line no-unused-expressions
+        // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
         res.data.attributes.slug;
       } catch (e) {
         throw new NotFoundError(e.message);

@@ -7,7 +7,7 @@ export const AnimeId: pageInterface = {
   languages: ['Spanish'],
   type: 'anime',
   isSyncPage(url) {
-    if (utils.urlPart(url, 3) === `v`) return true;
+    if (utils.urlPart(url, 3) === 'v') return true;
 
     return false;
   },
@@ -18,25 +18,25 @@ export const AnimeId: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$(`#infoanime h1 a`)[0].innerText;
+      return j.$('#infoanime h1 a')[0].innerText;
     },
     getIdentifier(url) {
-      return j.$(`#infoanime h1 a`)[0].getAttribute(`href`)?.split(`/`).pop() || '';
+      return j.$('#infoanime h1 a')[0].getAttribute('href')?.split('/').pop() || '';
     },
     getOverviewUrl(url) {
-      return `${AnimeId.domain}${$(`#infoanime h1 a`)[0].getAttribute(`href`)}`;
+      return `${AnimeId.domain}${$('#infoanime h1 a')[0].getAttribute('href')}`;
     },
     getEpisode(url) {
-      return Number.parseInt(j.$(`#infoanime strong`)[0].innerText.replace('Capítulo ', '').trim());
+      return Number.parseInt(j.$('#infoanime strong')[0].innerText.replace('Capítulo ', '').trim());
     },
     nextEpUrl(url) {
-      const epi = `${AnimeId.domain}${j.$(`.buttons li a`)[2].getAttribute(`href`)}`;
+      const epi = `${AnimeId.domain}${j.$('.buttons li a')[2].getAttribute('href')}`;
       return epi;
     },
   },
   overview: {
     getTitle(url) {
-      return j.$(`article hgroup h1`).text();
+      return j.$('article hgroup h1').text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
@@ -47,7 +47,7 @@ export const AnimeId: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$(`section#capitulos li a`);
+        return j.$('section#capitulos li a');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), AnimeId.domain);

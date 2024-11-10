@@ -1,4 +1,3 @@
-/* eslint-disable es/no-dynamic-import */
 import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router';
 import { getUrlObj, setUrlObj } from './utils/state';
 
