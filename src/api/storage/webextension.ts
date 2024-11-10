@@ -41,7 +41,7 @@ export const webextension: storageInterface = {
     });
   },
 
-  async list(type = 'local'): Promise<any> {
+  async list(type = 'local'): Promise<{ [key: string]: any }> {
     return new Promise((resolve, reject) => {
       if (type === 'local') {
         chrome.storage.local.get(null, function (results) {

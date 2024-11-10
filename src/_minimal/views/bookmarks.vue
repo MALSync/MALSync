@@ -22,7 +22,7 @@
         "
       />
       <FormButton padding="pill" @click="refresh()">
-        <div class="material-icons m-pill" title="refresh">refresh</div>
+        <div class="material-icons m-pill" :title="lang('updateCheck_Refresh')">refresh</div>
       </FormButton>
       <FormButton
         v-if="parameters.state === 6"

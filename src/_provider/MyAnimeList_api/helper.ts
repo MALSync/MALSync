@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import { status } from '../definitions';
+import { startFinishDate, status } from '../definitions';
 import { clientId } from '../../utils/oauth';
 import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
@@ -140,4 +140,24 @@ export enum mangaStatus {
   'on_hold' = status.Onhold,
   'dropped' = status.Dropped,
   'plan_to_read' = status.PlanToWatch,
+}
+
+export function getRoundedDate(date?: string): startFinishDate {
+  if (!date || !/^\d{4}(?:-\d\d){0,2}$/.test(date)) {
+    return null;
+  }
+
+  const year = date.substring(0, 4);
+
+  let month = date.substring(5, 7);
+  if (month.length !== 2) {
+    month = '01';
+  }
+
+  let day = date.substring(8, 10);
+  if (day.length !== 2) {
+    day = '01';
+  }
+
+  return `${year}-${month}-${day}`;
 }

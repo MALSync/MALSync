@@ -1,9 +1,9 @@
 import { SingleAbstract } from '../singleAbstract';
 import { NotAutenticatedError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 import { malToAnilist } from '../AniList/helper';
 import { Cache } from '../../utils/Cache';
-import { returnYYYYMMDD } from '../../utils/general';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -46,13 +46,15 @@ export class Single extends SingleAbstract {
     } else {
       curSt = parseInt(helper.animeStatus[this.animeInfo.my_list_status.status]);
     }
-    if (this.getRewatching() && curSt === 2) return 23;
+    if (this.getRewatching() && curSt === definitions.status.Completed) {
+      return definitions.status.Rewatching;
+    }
     return curSt;
   }
 
   _setStatus(status) {
-    if (status === 23) {
-      status = 2;
+    if (status === definitions.status.Rewatching) {
+      status = definitions.status.Completed;
       this.setRewatching(true);
     } else {
       this.setRewatching(false);
@@ -69,6 +71,37 @@ export class Single extends SingleAbstract {
       this.animeInfo.my_list_status.num_times_reread++;
     } else {
       this.animeInfo.my_list_status.num_times_rewatched++;
+    }
+  }
+
+  _getStartDate() {
+    return helper.getRoundedDate(this.animeInfo.my_list_status.start_date);
+  }
+
+  _setStartDate(startDate) {
+    this.animeInfo.my_list_status.start_date = startDate;
+  }
+
+  _getFinishDate() {
+    return helper.getRoundedDate(this.animeInfo.my_list_status.finish_date);
+  }
+
+  _setFinishDate(finishDate) {
+    this.animeInfo.my_list_status.finish_date = finishDate;
+  }
+
+  _getRewatchCount() {
+    if (this.type === 'manga') {
+      return this.animeInfo.my_list_status.num_times_reread;
+    }
+    return this.animeInfo.my_list_status.num_times_rewatched;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    if (this.type === 'manga') {
+      this.animeInfo.my_list_status.num_times_reread = rewatchCount;
+    } else {
+      this.animeInfo.my_list_status.num_times_rewatched = rewatchCount;
     }
   }
 
@@ -217,6 +250,7 @@ export class Single extends SingleAbstract {
               is_rereading: false,
               num_chapters_read: 0,
               num_volumes_read: 0,
+              num_times_reread: 0,
               score: 0,
               status: 'plan_to_read',
               tags: [],
@@ -225,6 +259,7 @@ export class Single extends SingleAbstract {
             this.animeInfo.my_list_status = {
               is_rewatching: false,
               num_watched_episodes: 0,
+              num_times_rewatched: 0,
               score: 0,
               status: 'plan_to_watch',
               tags: [],
@@ -245,25 +280,6 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
-    if (
-      typeof this.animeInfo.my_list_status.start_date === 'undefined' &&
-      this._getStatus() === 1 &&
-      this._getEpisode() > 0
-    ) {
-      this.animeInfo.my_list_status.start_date = returnYYYYMMDD();
-    }
-
-    if (
-      typeof this.animeInfo.my_list_status.finish_date === 'undefined' &&
-      this._getStatus() === 2
-    ) {
-      this.animeInfo.my_list_status.finish_date = returnYYYYMMDD();
-
-      if (typeof this.animeInfo.my_list_status.start_date === 'undefined') {
-        this.animeInfo.my_list_status.start_date = returnYYYYMMDD();
-      }
-    }
-
     const sentData = {};
     for (const property in this.animeInfo.my_list_status) {
       switch (property) {
@@ -281,9 +297,11 @@ export class Single extends SingleAbstract {
         case 'tags':
         case 'comments':
         case 'status':
+          sentData[property] = this.animeInfo.my_list_status[property];
+          break;
         case 'start_date':
         case 'finish_date':
-          sentData[property] = this.animeInfo.my_list_status[property];
+          sentData[property] = this.animeInfo.my_list_status[property] ?? '';
           break;
         default:
       }

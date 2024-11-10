@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import { UrlNotSupportedError } from '../Errors';
+import * as definitions from '../definitions';
 
 // local://crunchyroll/anime/nogamenolife
 
@@ -23,6 +24,10 @@ export class Single extends SingleAbstract {
   shortName = 'Local';
 
   authenticationUrl = '';
+
+  protected rewatchingSupport = false;
+
+  protected datesSupport = false;
 
   protected handleUrl(url) {
     if (url.match(/local:\/\/.*/i)) {
@@ -54,7 +59,34 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
+    if (status === definitions.status.Rewatching && !this.supportsRewatching()) {
+      status = definitions.status.Watching;
+    }
     this.animeInfo.status = status;
+  }
+
+  _getStartDate(): never {
+    throw new Error('Local sync does not support Start Date');
+  }
+
+  _setStartDate(startDate) {
+    throw new Error('Local sync does not support Start Date');
+  }
+
+  _getFinishDate(): never {
+    throw new Error('Local sync does not support Finish Date');
+  }
+
+  _setFinishDate(finishDate) {
+    throw new Error('Local sync does not support Finish Date');
+  }
+
+  _getRewatchCount(): never {
+    throw new Error('Local sync does not support Rewatch Count');
+  }
+
+  _setRewatchCount(rewatchCount) {
+    throw new Error('Local sync does not support Rewatch Count');
   }
 
   _getScore() {
@@ -156,7 +188,7 @@ export class Single extends SingleAbstract {
         progress: 0,
         volumeprogress: 0,
         score: 0,
-        status: 6,
+        status: definitions.status.PlanToWatch,
       };
     }
   }

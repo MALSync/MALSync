@@ -96,3 +96,50 @@ describe('Score', () => {
     });
   });
 });
+
+describe('Start/Finish Dates', () => {
+  Api.setGlobals();
+  Api.setStub({});
+
+  classConfigs.forEach(config => {
+    describe(config.name, () => {
+      it('Check start/finish date', () => {
+        const single = getSingle(config.name);
+
+        single.setStartDate('1970-01-01');
+        if (single.supportsDates()) {
+          expect(single.getStartDate()).to.equal('1970-01-01');
+        } else {
+          expect(single.getStartDate()).to.equal(null);
+        }
+
+        single.setFinishDate('1970-01-02');
+        if (single.supportsDates()) {
+          expect(single.getFinishDate()).to.equal('1970-01-02');
+        } else {
+          expect(single.getFinishDate()).to.equal(null);
+        }
+      });
+    });
+  });
+});
+
+describe('Rewatch Count', () => {
+  Api.setGlobals();
+  Api.setStub({});
+
+  classConfigs.forEach(config => {
+    describe(config.name, () => {
+      it('Check Rewatch Count', () => {
+        const single = getSingle(config.name);
+
+        single.setRewatchCount(2);
+        if (single.supportsRewatching()) {
+          expect(single.getRewatchCount()).to.equal(2);
+        } else {
+          expect(single.getRewatchCount()).to.equal(null);
+        }
+      });
+    });
+  });
+});

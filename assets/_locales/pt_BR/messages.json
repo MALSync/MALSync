@@ -1522,5 +1522,9 @@
                 "example": "lolamtisch"
             }
         }
+    },
+    "locale": {
+        "message": "pt_BR",
+        "description": "Current locale"
     }
 }

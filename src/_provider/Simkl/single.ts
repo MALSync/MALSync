@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 
 export class Single extends SingleAbstract {
@@ -26,6 +27,8 @@ export class Single extends SingleAbstract {
   authenticationUrl = helper.getAuthUrl();
 
   protected rewatchingSupport = false;
+
+  protected datesSupport = false;
 
   protected handleUrl(url) {
     if (url.match(/simkl\.com\/(anime|manga)\/\d*/i)) {
@@ -56,10 +59,38 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
-    if (status === 23) status = 1;
+    if (status === definitions.status.Rewatching) {
+      status = definitions.status.Watching;
+    }
     status = helper.translateList(status, parseInt(status.toString()));
-    if (status !== this.animeInfo.status) this.statusUpdate = true;
+    if (status !== this.animeInfo.status) {
+      this.statusUpdate = true;
+    }
     this.animeInfo.status = status;
+  }
+
+  _getStartDate(): never {
+    throw new Error('Simkl does not support Start Date');
+  }
+
+  _setStartDate(startDate) {
+    throw new Error('Simkl does not support Start Date');
+  }
+
+  _getFinishDate(): never {
+    throw new Error('Simkl does not support Finish Date');
+  }
+
+  _setFinishDate(finishDate) {
+    throw new Error('Simkl does not support Finish Date');
+  }
+
+  _getRewatchCount(): never {
+    throw new Error('Simkl does not support Rewatch Count');
+  }
+
+  _setRewatchCount(rewatchCount) {
+    throw new Error('Simkl does not support Rewatch Count');
   }
 
   _getScore() {
@@ -92,7 +123,9 @@ export class Single extends SingleAbstract {
   }
 
   _getEpisode() {
-    if (this._getStatus() === 2) return this._getTotalEpisodes();
+    if (this._getStatus() === definitions.status.Completed) {
+      return this._getTotalEpisodes();
+    }
     return this.curWatchedEp;
   }
 
@@ -192,7 +225,7 @@ export class Single extends SingleAbstract {
             if (!el) throw new NotFoundError('Anime not found');
           } else {
             el = await this.call('https://api.simkl.com/search/id', de, true);
-            if (!el) throw new NotFoundError('Anime not found');
+            if (!el?.length) throw new NotFoundError('Anime not found');
             if (el[0].mal && el[0].mal.type && el[0].mal.type === 'Special')
               throw new Error('Is a special');
             el = el[0];
