@@ -1,6 +1,12 @@
 /* eslint-disable no-shadow */
 import { status, fuzzyDate, startFinishDate } from '../definitions';
-import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
+import {
+  NotAutenticatedError,
+  NotFoundError,
+  parseJson,
+  ServerOfflineError,
+  UnexpectedResponseError,
+} from '../Errors';
 
 const logger = con.m('anilist', '#3db4f2');
 
@@ -156,35 +162,40 @@ export async function apiCall(query, variables, requiresAuthentication = true) {
       }),
     })
     .then(response => {
-      if ((response.status > 499 && response.status < 600) || response.status === 0) {
-        throw new ServerOfflineError(`Server Offline status: ${response.status}`);
-      }
-      if (response.status === 403) {
-        throw new Error(api.storage.lang('Error_Blocked', ['AniList']));
-      }
+      try {
+        const res = parseJson(response.responseText);
 
-      const res = parseJson(response.responseText);
-
-      if (typeof res.errors !== 'undefined' && res.errors.length) {
-        logger.error('[SINGLE]', 'Error', res.errors);
-        const error = res.errors[0];
-        switch (error.status) {
-          case 400:
-            if (error.message === 'Invalid token' && !requiresAuthentication) {
-              api.settings.set('anilistToken', null);
-              return apiCall(query, variables, requiresAuthentication);
-            }
-            if (error.message === 'validation') throw new Error('Wrong request format');
-            if (error.message.includes('invalid')) throw new Error('Wrong request format');
-            throw new NotAutenticatedError(error.message);
-          case 404:
-            throw new NotFoundError(error.message);
-          default:
-            throw new Error(error.message);
+        if (typeof res.errors !== 'undefined' && res.errors.length) {
+          logger.error('[SINGLE]', 'Error', res.errors);
+          const error = res.errors[0];
+          switch (error.status) {
+            case 400:
+              if (error.message === 'Invalid token' && !requiresAuthentication) {
+                api.settings.set('anilistToken', null);
+                return apiCall(query, variables, requiresAuthentication);
+              }
+              if (error.message === 'validation') throw new Error('Wrong request format');
+              if (error.message.includes('invalid')) throw new Error('Wrong request format');
+              throw new NotAutenticatedError(error.message);
+            case 404:
+              throw new NotFoundError(error.message);
+            default:
+              throw new Error(error.message);
+          }
         }
-      }
 
-      return res;
+        return res;
+      } catch (err) {
+        if (err instanceof UnexpectedResponseError) {
+          if ((response.status > 499 && response.status < 600) || response.status === 0) {
+            throw new ServerOfflineError(`Server Offline status: ${response.status}`);
+          }
+          if (response.status === 403) {
+            throw new Error(api.storage.lang('Error_Blocked', ['AniList']));
+          }
+        }
+        throw err;
+      }
     });
 }
 
