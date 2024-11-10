@@ -135,7 +135,7 @@ async function refreshToken(refresh_token: string) {
   });
 }
 
-export function userRequest(): Promise<userRequest> {
+export function userRequest(): Promise<userRequestInterface> {
   return apiCall({
     type: 'GET',
     path: 'users/whoami',
@@ -229,7 +229,7 @@ export interface MetaRequest {
   released_on: string;
 }
 
-export interface userRequest {
+export interface userRequestInterface {
   id: number;
   nickname: string;
   avatar: string;
