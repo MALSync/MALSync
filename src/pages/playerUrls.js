@@ -347,6 +347,7 @@ module.exports = {
       '*://*.embtaku.pro/*',
       '*://*.embtaku.com/*',
       '*://*.s3taku.com/*',
+      '*://*.s3embtaku.pro/*',
       // auto-gogostream-replace-dont-remove
     ],
   },
