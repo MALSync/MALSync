@@ -1114,7 +1114,7 @@
         "description": "List Sync label to display the user's start date for an entry on a specific provider"
     },
     "settings_listsync_finishdate": {
-        "message": "finish Date:",
+        "message": "Finish Date:",
         "description": "List Sync label to display the user's finish date for an entry on a specific provider"
     },
     "settings_listsync_unknowndate": {
