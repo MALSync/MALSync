@@ -26,12 +26,12 @@ export function translateList(aniStatus, malStatus: null | number = null) {
 }
 
 export enum statusTranslate {
-  'CURRENT' = status.Watching,
-  'PLANNING' = status.PlanToWatch,
-  'COMPLETED' = status.Completed,
-  'DROPPED' = status.Dropped,
-  'PAUSED' = status.Onhold,
-  'REPEATING' = status.Rewatching,
+  CURRENT = status.Watching,
+  PLANNING = status.PlanToWatch,
+  COMPLETED = status.Completed,
+  DROPPED = status.Dropped,
+  PAUSED = status.Onhold,
+  REPEATING = status.Rewatching,
 }
 
 export function parseFuzzyDate(date?: fuzzyDate): startFinishDate {

@@ -464,7 +464,7 @@ export function getStatusText(type: 'anime' | 'manga', state) {
     case 6:
       return api.storage.lang(`UI_Status_planTo_${type}`);
     case 7:
-      return api.storage.lang(`UI_Status_All`);
+      return api.storage.lang('UI_Status_All');
     case 23:
       return api.storage.lang(`UI_Status_Rewatching_${type}`);
     default:

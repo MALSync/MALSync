@@ -65,7 +65,7 @@ export async function apiCall(options: {
             throw new NotFoundError(res.message ?? res.error);
           case 'invalid_content':
             throw new Error(
-              `This Entry is currently pending approval. It can´t be saved to mal for now`,
+              'This Entry is currently pending approval. It can´t be saved to mal for now',
             );
           default:
             throw new Error(res.message ?? res.error);
@@ -127,19 +127,19 @@ function checkIfBanned(text: string) {
 }
 
 export enum animeStatus {
-  'watching' = status.Watching,
-  'completed' = status.Completed,
-  'on_hold' = status.Onhold,
-  'dropped' = status.Dropped,
-  'plan_to_watch' = status.PlanToWatch,
+  watching = status.Watching,
+  completed = status.Completed,
+  on_hold = status.Onhold,
+  dropped = status.Dropped,
+  plan_to_watch = status.PlanToWatch,
 }
 
 export enum mangaStatus {
-  'reading' = status.Watching,
-  'completed' = status.Completed,
-  'on_hold' = status.Onhold,
-  'dropped' = status.Dropped,
-  'plan_to_read' = status.PlanToWatch,
+  reading = status.Watching,
+  completed = status.Completed,
+  on_hold = status.Onhold,
+  dropped = status.Dropped,
+  plan_to_read = status.PlanToWatch,
 }
 
 export function getRoundedDate(date?: string): startFinishDate {

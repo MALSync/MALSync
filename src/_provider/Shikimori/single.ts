@@ -178,7 +178,7 @@ export class Single extends SingleAbstract {
     this.animeMeta = metadata;
 
     const rating = await helper.apiCall({
-      path: `v2/user_rates`,
+      path: 'v2/user_rates',
       type: 'GET',
       parameter: {
         target_id: this.ids.mal,
