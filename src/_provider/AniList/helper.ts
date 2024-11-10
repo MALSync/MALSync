@@ -1,17 +1,17 @@
 /* eslint-disable no-shadow */
-import { status } from '../definitions';
+import { status, fuzzyDate, startFinishDate } from '../definitions';
 import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
 const logger = con.m('anilist', '#3db4f2');
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
-    CURRENT: 1,
-    PLANNING: 6,
-    COMPLETED: 2,
-    DROPPED: 4,
-    PAUSED: 3,
-    REPEATING: 1,
+    CURRENT: status.Watching,
+    PLANNING: status.PlanToWatch,
+    COMPLETED: status.Completed,
+    DROPPED: status.Dropped,
+    PAUSED: status.Onhold,
+    REPEATING: status.Watching,
   };
   if (malStatus !== null) {
     return Object.keys(list).find(key => list[key] === malStatus);
@@ -26,6 +26,35 @@ export enum statusTranslate {
   'DROPPED' = status.Dropped,
   'PAUSED' = status.Onhold,
   'REPEATING' = status.Rewatching,
+}
+
+export function parseFuzzyDate(date?: fuzzyDate): startFinishDate {
+  if (!date?.year || !date?.month || !date?.day) {
+    return null;
+  }
+
+  const year = String(date.year).padStart(4, '0');
+  const month = String(date.month).padStart(2, '0');
+  const day = String(date.day).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+export function getFuzzyDate(date?: startFinishDate): fuzzyDate {
+  const fuzzyDate: fuzzyDate = {
+    year: null,
+    month: null,
+    day: null,
+  };
+  // ES6 doesn't support named capture groups
+  const regexMatch = date?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (regexMatch?.[1] && regexMatch?.[2] && regexMatch?.[3]) {
+    fuzzyDate.year = parseInt(regexMatch[1]);
+    fuzzyDate.month = parseInt(regexMatch[2]);
+    fuzzyDate.day = parseInt(regexMatch[3]);
+  }
+
+  return fuzzyDate;
 }
 
 export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {

@@ -863,8 +863,8 @@ export function pageUrl(
 export function returnYYYYMMDD(numFromToday = 0) {
   const d = new Date();
   d.setDate(d.getDate() + numFromToday);
-  const month = d.getMonth() < 9 ? `0${d.getMonth() + 1}` : d.getMonth() + 1;
-  const day = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
+  const month = (d.getMonth() + 1).toString().padStart(2, '0');
+  const day = d.getDate().toString().padStart(2, '0');
   return `${d.getFullYear()}-${month}-${day}`;
 }
 

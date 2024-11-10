@@ -17,10 +17,13 @@ const helper = {
       type: 'anime',
       uid: 22,
       malId: 19815,
+      score: 6,
       watchedEp: 15,
       totalEp: 24,
       status: 6,
-      score: 6,
+      startDate: null,
+      finishDate: null,
+      rewatchCount: 0,
       diff: {},
       url: 'https://myanimelist.net/anime/19815',
     };
@@ -54,6 +57,9 @@ describe('Sync Handling', function() {
     });
     it('Simkl', function() {
       expect(sync.getType('https://simkl.com/anime/46128/no-game-no-life')).to.equal('SIMKL');
+    });
+    it('Shiki', function() {
+      expect(sync.getType('https://shikimori.one/animes/z19815-no-game-no-life')).to.equal('SHIKI');
     });
     it('Random', function() {
       expect(() => sync.getType('Random')).to.throw();
@@ -96,6 +102,16 @@ describe('Sync Handling', function() {
       expect(item.slaves[1].diff).to.deep.equal(diff);
     });
 
+    it('Score Change', function() {
+      const item = helper.getMasterSlave();
+      item.master.score = 2;
+      const diff = { score: 2 };
+      sync.changeCheck(item, mode);
+      expect(item.diff).to.equal(true);
+      expect(item.slaves[0].diff).to.deep.equal(diff);
+      expect(item.slaves[1].diff).to.deep.equal(diff);
+    });
+
     it('Episode Change', function() {
       const item = helper.getMasterSlave();
       item.master.watchedEp = 22;
@@ -116,10 +132,32 @@ describe('Sync Handling', function() {
       expect(item.slaves[1].diff).to.deep.equal(diff);
     });
 
-    it('Score Change', function() {
+    it('Start Date Change', function() {
       const item = helper.getMasterSlave();
-      item.master.score = 2;
-      const diff = { score: 2 };
+      // @ts-ignore
+      item.master.startDate = '1970-01-01';
+      const diff = { startDate: '1970-01-01' };
+      sync.changeCheck(item, mode);
+      expect(item.diff).to.equal(true);
+      expect(item.slaves[0].diff).to.deep.equal(diff);
+      expect(item.slaves[1].diff).to.deep.equal(diff);
+    });
+
+    it('Finish Date Change', function() {
+      const item = helper.getMasterSlave();
+      // @ts-ignore
+      item.master.finishDate = '1970-01-01';
+      const diff = { finishDate: '1970-01-01' };
+      sync.changeCheck(item, mode);
+      expect(item.diff).to.equal(true);
+      expect(item.slaves[0].diff).to.deep.equal(diff);
+      expect(item.slaves[1].diff).to.deep.equal(diff);
+    });
+
+    it('Rewatch Count Change', function() {
+      const item = helper.getMasterSlave();
+      item.master.rewatchCount = 2;
+      const diff = { rewatchCount: 2 };
       sync.changeCheck(item, mode);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
@@ -166,7 +204,6 @@ describe('Sync Handling', function() {
       res.error = null;
       delete res.diff;
       delete res.totalEp;
-      delete res.type;
       delete res.uid;
 
       sync.missingCheck(item, miss, typeArray, mode);
@@ -182,7 +219,6 @@ describe('Sync Handling', function() {
       res.error = null;
       delete res.diff;
       delete res.totalEp;
-      delete res.type;
       delete res.uid;
 
       delete item.master;
@@ -238,15 +274,16 @@ describe('Sync Handling', function() {
       anilist: 'anilist',
       kitsu: 'kitsu',
       simkl: 'simkl',
+      shiki: 'shiki',
     });
     it('providerType', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'SIMKL']);
+        expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'SIMKL', 'SHIKI']);
       }
     });
     it('providerSettings', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl']);
+        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl', 'shiki']);
       }
     });
   });
@@ -274,6 +311,11 @@ describe('Sync Handling', function() {
           list: null,
           master: false,
         },
+        shiki: {
+          text: 'Init',
+          list: null,
+          master: false,
+        }
       });
 
       for (const i in providerList) {
@@ -303,7 +345,7 @@ describe('Sync Handling', function() {
       expect(res.master).equal('MAL');
       expect(res.slaves).to.not.include('MAL');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
-      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'KITSU', 'SIMKL']);
+      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'KITSU', 'SIMKL', 'SHIKI']);
     });
 
     it('ANILIST Master', async function() {
@@ -370,6 +412,21 @@ describe('Sync Handling', function() {
       expect(res.slaves).to.not.include('MAL');
     });
 
+    it('SHIKI Master', async function() {
+      const stub = Api.getStub({
+        settings: {
+          syncMode: 'SHIKI',
+        },
+      });
+      Api.setStub(stub);
+      const providerList = getProviderListList();
+      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+
+      expect(res.master).equal('SHIKI');
+      expect(res.slaves).to.have.length(res.typeArray.length - 1);
+      expect(res.slaves).to.not.include('SHIKI');
+    });
+
     it('typeArray', async function() {
       getListStub = (prov, type) => {
         return new Promise((resolve, reject) => {
@@ -391,7 +448,7 @@ describe('Sync Handling', function() {
       const providerList = getProviderListList();
       const res = await sync.retriveLists(providerList, 'anime', getListStub);
 
-      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'SIMKL']);
+      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'SIMKL', 'SHIKI']);
     });
   });
 });

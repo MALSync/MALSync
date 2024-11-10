@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
 import { point20decimal } from '../ScoreMode/point20decimal';
@@ -51,18 +52,42 @@ export class Single extends SingleAbstract {
 
   _getStatus() {
     if (this.listI().attributes.reconsuming && this.listI().attributes.status === 'current')
-      return 23;
+      return definitions.status.Rewatching;
     return parseInt(helper.translateList(this.listI().attributes.status));
   }
 
   _setStatus(status) {
-    if (status === 23) {
-      status = 1;
+    if (status === definitions.status.Rewatching) {
+      status = definitions.status.Watching;
       this.listI().attributes.reconsuming = true;
     } else {
       this.listI().attributes.reconsuming = false;
     }
     this.listI().attributes.status = helper.translateList(status, parseInt(status.toString()));
+  }
+
+  _getStartDate() {
+    return helper.timestampToDate(this.listI().attributes.startedAt);
+  }
+
+  _setStartDate(startDate) {
+    this.listI().attributes.startedAt = helper.dateToTimestamp(startDate);
+  }
+
+  _getFinishDate() {
+    return helper.timestampToDate(this.listI().attributes.finishedAt);
+  }
+
+  _setFinishDate(finishDate) {
+    this.listI().attributes.finishedAt = helper.dateToTimestamp(finishDate);
+  }
+
+  _getRewatchCount() {
+    return this.listI().attributes.reconsumeCount;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    this.listI().attributes.reconsumeCount = rewatchCount;
   }
 
   _getScore() {
@@ -221,9 +246,11 @@ export class Single extends SingleAbstract {
               progress: 0,
               volumesOwned: 0,
               reconsuming: false,
-              reconsumeCount: false,
+              reconsumeCount: 0,
               ratingTwenty: null,
               status: 'planned',
+              startedAt: null,
+              finishedAt: null,
             },
           };
           if (typeof kitsuRes !== 'undefined') {
@@ -268,6 +295,8 @@ export class Single extends SingleAbstract {
           reconsumeCount: this.listI().attributes.reconsumeCount,
           ratingTwenty: this._getTwentyScore(),
           status: this.listI().attributes.status,
+          startedAt: this.listI().attributes.startedAt,
+          finishedAt: this.listI().attributes.finishedAt,
         },
         type: 'library-entries',
       },
