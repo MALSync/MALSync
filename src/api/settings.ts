@@ -62,6 +62,7 @@ export const settingsObj = {
       'MangaPlus',
       'MangaReader',
       'ComicK',
+      'WeebCentral',
     ],
     quicklinksPosition: 'default',
 

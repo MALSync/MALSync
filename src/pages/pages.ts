@@ -132,6 +132,7 @@ import { Bakashi } from './Bakashi/main';
 import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
 import { VortexScans } from './VortexScans/main';
+import { WeebCentral } from './WeebCentral/main';
 
 export const pages = {
   Crunchyroll,
@@ -268,4 +269,5 @@ export const pages = {
   TempleScan,
   ScyllaScans,
   VortexScans,
+  WeebCentral,
 };
