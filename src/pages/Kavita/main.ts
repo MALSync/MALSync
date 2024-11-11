@@ -1,19 +1,16 @@
 import { pageInterface } from '../pageInterface';
 import { pathToUrl, urlToSlug } from '../../utils/slugs';
 
-
 async function apiCall(url: string) {
-  let authToken = JSON.parse(window.localStorage.getItem!("kavita-user") || '{}').token;
-  return api.request
-    .xhr('GET', {
-      url: url,
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${authToken}`
-      },
-    });
+  const authToken = JSON.parse(window.localStorage.getItem('kavita-user') || '{}').token;
+  return api.request.xhr('GET', {
+    url,
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    },
+  });
 }
-
 
 const chapterDetails = {
   volumeNum: '',
@@ -29,10 +26,10 @@ const seriesDetails = {
 };
 
 async function getChapterProgress() {
-  let chapterID = window.location.pathname.split("/")[6];
-  let url = `${window.location.origin}/api/reader/get-progress?chapterid=${chapterID}`;
-  let response = await apiCall(url);
-  let responseJSON = JSON.parse(response.responseText);
+  const chapterID = window.location.pathname.split('/')[6];
+  const url = `${window.location.origin}/api/reader/get-progress?chapterid=${chapterID}`;
+  const response = await apiCall(url);
+  const responseJSON = JSON.parse(response.responseText);
   con.log('Chapter Progress Retrieved', response);
 
   // Handle weird kavita api case where current page number is 1 lesser than what it actually is
@@ -42,8 +39,7 @@ async function getChapterProgress() {
   } else {
     chapterDetails.currentPageNum = chapterDetails.totalPageNum;
   }
-
-};
+}
 
 export const Kavita: pageInterface = {
   name: 'Kavita',
@@ -66,10 +62,11 @@ export const Kavita: pageInterface = {
       return seriesDetails.seriesID;
     },
     getOverviewUrl(url) {
-      return window.location.href.split("/").slice(0, 7).join("/");
+      return window.location.href.split('/').slice(0, 7).join('/');
     },
     getEpisode(url) {
-      if (!chapterDetails.chapterNum || !parseInt(chapterDetails.chapterNum)) throw 'No chapter number';
+      if (!chapterDetails.chapterNum || !parseInt(chapterDetails.chapterNum))
+        throw 'No chapter number';
       return parseInt(chapterDetails.chapterNum);
     },
     getVolume(url) {
@@ -118,32 +115,30 @@ export const Kavita: pageInterface = {
     check();
 
     async function getSeriesDetails() {
-      let seriesID = window.location.pathname.split("/")[4];
+      const seriesID = window.location.pathname.split('/')[4];
 
-      let url = `${window.location.origin}/api/series/${seriesID}`;
-      let response = await apiCall(url);
-      let responseJSON = JSON.parse(response.responseText);
+      const url = `${window.location.origin}/api/series/${seriesID}`;
+      const response = await apiCall(url);
+      const responseJSON = JSON.parse(response.responseText);
       con.log('Series Details Retrieved', responseJSON);
 
       seriesDetails.seriesTitle = responseJSON.name;
       seriesDetails.seriesID = seriesID;
       seriesDetails.totalPageNum = responseJSON.pages;
-    };
+    }
 
     async function getChapterDetails() {
-      let chapterID = window.location.pathname.split("/")[6];
+      const chapterID = window.location.pathname.split('/')[6];
 
-      let url = `${window.location.origin}/api/reader/chapter-info?chapterid=${chapterID}`;
-      let response = await apiCall(url);
-      let responseJSON = JSON.parse(response.responseText);
+      const url = `${window.location.origin}/api/reader/chapter-info?chapterid=${chapterID}`;
+      const response = await apiCall(url);
+      const responseJSON = JSON.parse(response.responseText);
       con.log('Chapter Info Retrieved', response);
 
       chapterDetails.volumeNum = responseJSON.volumeNumber;
       chapterDetails.chapterNum = responseJSON.chapterNumber;
       chapterDetails.totalPageNum = responseJSON.pages;
-
-    };
-
+    }
 
     function resetDetails() {
       chapterDetails.volumeNum = '';
@@ -158,12 +153,9 @@ export const Kavita: pageInterface = {
 
     async function check() {
       page.reset();
-      con.log('check called')
+      con.log('check called');
       clearInterval(progressUpdater);
-      if (
-        !Kavita.isSyncPage!(window.location.href) &&
-        !Kavita.isOverviewPage!(window.location.href)
-      )
+      if (!Kavita.isSyncPage(window.location.href) && !Kavita.isOverviewPage!(window.location.href))
         return;
 
       await getSeriesDetails();
