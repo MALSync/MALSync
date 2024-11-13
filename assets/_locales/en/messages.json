@@ -401,30 +401,6 @@
         "message": "year",
         "description": "year"
     },
-    "bookmarksItem_Quarters": {
-        "message": "quarters",
-        "description": "quarters"
-    },
-    "bookmarksItem_Quarter": {
-        "message": "quarter",
-        "description": "quarter"
-    },
-    "bookmarksItem_Months": {
-        "message": "months",
-        "description": "months"
-    },
-    "bookmarksItem_Month": {
-        "message": "month",
-        "description": "month"
-    },
-    "bookmarksItem_Weeks": {
-        "message": "weeks",
-        "description": "weeks"
-    },
-    "bookmarksItem_Week": {
-        "message": "week",
-        "description": "week"
-    },
     "bookmarksItem_Days": {
         "message": "days",
         "description": "days"

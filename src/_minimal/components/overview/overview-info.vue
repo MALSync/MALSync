@@ -77,7 +77,7 @@ import { SingleAbstract } from '../../../_provider/singleAbstract';
 import Header from '../header.vue';
 import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
-import { getDateTimeInLocale, getRelativeFromTimestampInLocale } from '../../../utils/time';
+import { getDateTimeInLocale, getProgressDateTimeInLocale } from '../../../utils/time';
 
 defineProps({
   info: {
@@ -92,11 +92,11 @@ defineProps({
 
 function getTitle(item) {
   if (item.lastEp && item.lastEp.timestamp) {
-    return getRelativeFromTimestampInLocale(item.lastEp.timestamp);
+    return getProgressDateTimeInLocale(item.lastEp.timestamp);
   }
   if (item.predicition && item.predicition.timestamp) {
     return api.storage.lang('prediction_next', [
-      getRelativeFromTimestampInLocale(item.predicition.timestamp),
+    getProgressDateTimeInLocale(item.predicition.timestamp),
     ]);
   }
   return '';

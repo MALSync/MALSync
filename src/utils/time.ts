@@ -8,7 +8,9 @@ export interface timeElement {
   s: number;
 }
 
+//TODO - Remove when TS adds support for Intl.DurationFormat
 export interface durationFormat {
+  years?: number;
   months?: number;
   weeks?: number;
   days?: number;
@@ -20,9 +22,8 @@ export interface durationFormat {
   nanoseconds?: number;
 }
 
-export const dateUnitToMs = {
+const dateUnitToMs = {
   year: 365 * 24 * 60 * 60 * 1000,
-  quarter: 3 * 30 * 24 * 60 * 60 * 1000,
   month: 30 * 24 * 60 * 60 * 1000,
   week: 7 * 24 * 60 * 60 * 1000,
   day: 24 * 60 * 60 * 1000,
@@ -33,7 +34,7 @@ export const dateUnitToMs = {
 
 type durationFormatStyle = 'long' | 'short' | 'narrow' | 'digital';
 
-export function dateTimeToText(el: timeElement): string {
+export function timeToString(el: timeElement): string {
   let output = '';
 
   if (el.y === 1) {
@@ -69,6 +70,128 @@ export function dateTimeToText(el: timeElement): string {
   return output.trim();
 }
 
+export function shortTime(el: timeElement): timeElement {
+  if (el.y > 1) {
+    if (el.d > 182) {
+      return {
+        y: el.y + 1,
+        d: 0,
+        h: 0,
+        m: 0,
+        s: 0,
+      };
+    }
+    return {
+      y: el.y,
+      d: 0,
+      h: 0,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.y) {
+    return {
+      y: el.y,
+      d: el.d,
+      h: 0,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.d > 3) {
+    if (el.h > 11) {
+      return {
+        y: 0,
+        d: el.d + 1,
+        h: 0,
+        m: 0,
+        s: 0,
+      };
+    }
+    return {
+      y: 0,
+      d: el.d,
+      h: 0,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.d) {
+    return {
+      y: 0,
+      d: el.d,
+      h: el.h,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.h > 5) {
+    if (el.m > 29) {
+      return {
+        y: 0,
+        d: 0,
+        h: el.h + 1,
+        m: 0,
+        s: 0,
+      };
+    }
+    return {
+      y: 0,
+      d: 0,
+      h: el.h,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.h) {
+    return {
+      y: 0,
+      d: 0,
+      h: el.h,
+      m: el.m,
+      s: 0,
+    };
+  }
+  if (el.m > 14) {
+    return {
+      y: 0,
+      d: 0,
+      h: 0,
+      m: el.m,
+      s: 0,
+    };
+  }
+  return {
+    y: 0,
+    d: 0,
+    h: 0,
+    m: el.m,
+    s: el.s,
+  };
+}
+
+function timestampToTime(timestamp: number) : {time: durationFormat, isFuture: boolean} {
+  const map: durationFormat = {};
+  const isFuture = timestamp > Date.now();
+  let timestampAbs = Math.abs(timestamp - Date.now());
+
+  for (const key in dateUnitToMs) {
+    const value = Math.floor(timestampAbs / dateUnitToMs[key]);
+    map[`${key}s`] = value;
+  }
+  const mapKeys = Object.keys(map);
+  for (let i = 1; i < mapKeys.length; i++) {
+    const keyPrev = mapKeys[i - 1];
+    const valuePrev = map[keyPrev];
+    const keyCurr = mapKeys[i];
+
+    timestampAbs = timestampAbs - dateUnitToMs[keyPrev.slice(0, -1)] * valuePrev;
+    const valueCurr = Math.floor(timestampAbs / dateUnitToMs[keyCurr.slice(0, -1)]);
+    map[keyCurr] = valueCurr;
+  }
+  return {time: map, isFuture};
+}
+
 // TODO: Delete @ts-expect-error comments after TS adds support for Intl.DurationFormat
 export function getDurationInLocale(
   duration: durationFormat,
@@ -85,8 +208,8 @@ export function getDurationInLocale(
 
   // @ts-expect-error surely it works
   if (!Intl.DurationFormat) {
-    return dateTimeToText({
-      y: 0,
+    return timeToString({
+      y: inputDuration.years || 0,
       d: inputDuration.days || 0,
       h: inputDuration.hours || 0,
       m: inputDuration.minutes || 0,
@@ -97,7 +220,7 @@ export function getDurationInLocale(
   return new Intl.DurationFormat(locale, { style }).format(inputDuration);
 }
 
-export function minsSecsToHoursMins(minutes: number = 0, seconds: number = 0): durationFormat {
+function minsSecsToHoursMins(minutes: number = 0, seconds: number = 0): durationFormat {
   try {
     const totalSeconds = minutes * 60 + seconds;
     const hours = Math.floor(totalSeconds / 3600);
@@ -110,159 +233,45 @@ export function minsSecsToHoursMins(minutes: number = 0, seconds: number = 0): d
     return {} as durationFormat;
   }
 }
+
 export function isValidDate(date: Date | number | null | undefined): boolean {
   if (!date) return false;
   if (typeof date === 'number') return true;
   return date instanceof Date && !Number.isNaN(date.getTime());
 }
 
-export function relativeTimeToTimestamp(value: number, unit: Intl.RelativeTimeFormatUnit): number {
-  const ms = dateUnitToMs[unit];
-  if (!ms) return NaN;
-  const relativeMs = ms * value;
-  const timestamp = Date.now() + relativeMs;
-  return timestamp;
-}
-
-export function timestampToRelativeTime(
-  timestamp: number,
-  floor: boolean = true,
-): [number, Intl.RelativeTimeFormatUnit][] {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const map: any[] = [];
-  const diff = timestamp > Date.now();
-  let timestampAbs = Math.abs(timestamp - Date.now());
-
-  for (const key in dateUnitToMs) {
-    if (timestampAbs < dateUnitToMs[key]) continue;
-    map.push([Math.floor(timestampAbs / dateUnitToMs[key]), key as Intl.RelativeTimeFormatUnit]);
-  }
-  map.sort((a, b) => a[1] - b[1]);
-  if (floor) return [[map[0][0] * (diff ? 1 : -1), map[0][1]]];
-
-  for (let i = 0; i < map.length; i++) {
-    if (i === 0) continue;
-    const [valuePrev, keyPrev] = map[i - 1];
-    const [, keyCurr] = map[i];
-    timestampAbs = timestampAbs - dateUnitToMs[keyPrev] * valuePrev;
-    const valueCurr = Math.floor(timestampAbs / dateUnitToMs[keyCurr]);
-    map[i] = [keyCurr, valueCurr];
-  }
-  for (let i = 0; i < map.length; i++) map[i][0] *= diff ? 1 : -1;
-  return map.filter(el => el[0] !== 0) as [[number, Intl.RelativeTimeFormatUnit]];
-}
-
-export function relativeToText(value: number, unit: Intl.RelativeTimeFormatUnit): string {
-  const absValue = Math.abs(value);
-  let output = `${absValue}`;
-
-  switch (unit) {
-    case 'years':
-    case 'year':
-      output +=
-        absValue > 1
-          ? api.storage.lang('bookmarksItem_Years')
-          : api.storage.lang('bookmarksItem_Year');
-      break;
-    case 'quarters':
-    case 'quarter':
-      output +=
-        absValue > 1
-          ? api.storage.lang('bookmarksItem_Quarters')
-          : api.storage.lang('bookmarksItem_Quarter');
-      break;
-    case 'months':
-    case 'month':
-      output +=
-        absValue > 1
-          ? api.storage.lang('bookmarksItem_Months')
-          : api.storage.lang('bookmarksItem_Month');
-      break;
-    case 'weeks':
-    case 'week':
-      output +=
-        absValue > 1
-          ? api.storage.lang('bookmarksItem_Weeks')
-          : api.storage.lang('bookmarksItem_Week');
-      break;
-    case 'days':
-    case 'day':
-      output +=
-        absValue > 1
-          ? api.storage.lang('bookmarksItem_Days')
-          : api.storage.lang('bookmarksItem_Day');
-      break;
-    case 'hours':
-    case 'hour':
-      output +=
-        absValue > 1
-          ? api.storage.lang('bookmarksItem_Hours')
-          : api.storage.lang('bookmarksItem_Hour');
-      break;
-    case 'minutes':
-    case 'minute':
-      output +=
-        absValue > 1
-          ? api.storage.lang('bookmarksItem_mins')
-          : api.storage.lang('bookmarksItem_min');
-      break;
-    case 'seconds':
-    case 'second':
-      if (absValue <= 30) return api.storage.lang('bookmarksItem_now');
-      output +=
-        absValue > 1
-          ? api.storage.lang('bookmarksItem_secs')
-          : api.storage.lang('bookmarksItem_sec');
-      break;
-    default:
-      break;
-  }
-  if (value < 0) return api.storage.lang('bookmarksItem_ago', [`${output}`]);
-
-  return output.trim();
-}
-
-export function getRelativeFromTimestampInLocale(
-  timestamp: number,
-  locale?: Intl.LocalesArgument,
-  style?: Intl.RelativeTimeFormatOptions,
-): string {
-  return getRelativeDateTimeInLocale(undefined, undefined, timestamp, locale, style);
-}
-
-export function getRelativeFromUnitInLocale(
-  value: number,
-  unit: Intl.RelativeTimeFormatUnit,
-  locale?: Intl.LocalesArgument,
-  style?: Intl.RelativeTimeFormatOptions,
-): string {
-  return getRelativeDateTimeInLocale(value, unit, undefined, locale, style);
-}
-
-function getRelativeDateTimeInLocale(
-  value?: number,
-  unit?: Intl.RelativeTimeFormatUnit,
-  timestamp?: number,
+// TODO: Delete @ts-expect-error comments after TS adds support for Intl.DurationFormat
+export function getProgressDateTimeInLocale(
+  timestamp: number | null,
   locale: Intl.LocalesArgument = api.storage.lang('locale'),
-  style: Intl.RelativeTimeFormatOptions = {
-    numeric: 'auto',
-    style: 'short',
-  },
+  style: durationFormatStyle = 'narrow',
 ): string {
-  if (timestamp) {
-    const [relValue, relUnit] = timestampToRelativeTime(timestamp)[0];
-    if (!Intl.RelativeTimeFormat) {
-      return relativeToText(relValue, relUnit);
-    }
-    return new Intl.RelativeTimeFormat(locale, style).format(relValue, relUnit);
+  if (!timestamp) return '';
+  const result = timestampToTime(timestamp);
+  const short = shortTime({
+    y: result.time.years || 0,
+    d: result.time.days || 0,
+    h: result.time.hours || 0,
+    m: result.time.minutes || 0,
+    s: result.time.seconds || 0,
+  });
+  if (!short.y && !short.d && !short.h && !short.m && short.s <= 30) {
+    return api.storage.lang('bookmarksItem_now');
   }
-  if (value && unit) {
-    if (!Intl.RelativeTimeFormat) {
-      return relativeToText(value, unit);
-    }
-    return new Intl.RelativeTimeFormat(locale, style).format(value, unit);
+  // @ts-expect-error surely it works
+  if (!Intl.DurationFormat) {
+    const timeString = timeToString(short);
+    return result.isFuture ? timeString : api.storage.lang('bookmarksItem_ago', [timeString]);
   }
-  return '';
+  // @ts-expect-error surely it works
+  const durationFormat = new Intl.DurationFormat(locale, { style }).format({
+    years: short.y,
+    days: short.d,
+    hours: short.h,
+    minutes: short.m,
+    seconds: short.s,
+  } as durationFormat);
+  return result.isFuture ? durationFormat : api.storage.lang('bookmarksItem_ago', [durationFormat]);
 }
 
 export function getDateRangeInLocale(
@@ -299,6 +308,18 @@ export function getTimeRangeInLocale(
   return getDateTimeRangeInLocale(fromElement!, toElement!, locale, { timeStyle: style });
 }
 
+export function getDateTimeRangeInLocale(
+  from: Date | number,
+  to: Date | number,
+  locale: Intl.LocalesArgument = api.storage.lang('locale'),
+  style: Intl.DateTimeFormatOptions | undefined = undefined,
+): string {
+  if (!Intl.DateTimeFormat) {
+    return `${from.toLocaleString(locale, style)} - ${to.toLocaleString(locale, style)}`;
+  }
+  return new Intl.DateTimeFormat(locale, style).formatRange(from, to);
+}
+
 export function getDateInLocale(
   date: Date | string | number | null | undefined,
   locale?: Intl.LocalesArgument,
@@ -328,18 +349,6 @@ export function getDateTimeInLocale(
     return date.toLocaleString(locale, style);
   }
   return new Intl.DateTimeFormat(locale, style).format(date);
-}
-
-export function getDateTimeRangeInLocale(
-  from: Date | number,
-  to: Date | number,
-  locale: Intl.LocalesArgument = api.storage.lang('locale'),
-  style: Intl.DateTimeFormatOptions | undefined = undefined,
-): string {
-  if (!Intl.DateTimeFormat) {
-    return `${from.toLocaleString(locale, style)} - ${to.toLocaleString(locale, style)}`;
-  }
-  return new Intl.DateTimeFormat(locale, style).formatRange(from, to);
 }
 
 export function dateFromTimezoneToTimezone(
