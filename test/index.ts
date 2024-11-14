@@ -1,8 +1,16 @@
 import { pages as part1 } from '../src/pages/pages';
 import { pages as part2 } from '../src/pages-adult/pages';
 import { getPageConfig } from '../src/utils/test';
+import { xhrAction } from '../src/background/messageHandler';
 
 const pages = { ...part1, ...part2 };
+
+// @ts-ignore
+window.chrome.runtime.sendMessage = (message: any, callback: (response: any) => void) => {
+  if (message.name === 'xhr') {
+    return xhrAction(message, 'test', callback, 'testing');
+  }
+}
 
 // @ts-ignore
 window.MalSyncTest = async function() {

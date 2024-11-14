@@ -46,7 +46,6 @@ export const settingsObj = {
     loadPTWForProgress: false,
 
     quicklinks: [
-      'Aniwave',
       'Crunchyroll',
       'Gogoanime',
       'Mangadex',

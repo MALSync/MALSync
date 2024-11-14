@@ -322,7 +322,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.data.Media.duration)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${data.data.Media.duration} mins` }],
+        body: [{ text: `${data.data.Media.duration} ${api.storage.lang('bookmarksItem_mins')}` }],
       });
 
     if (data.data.Media.status) {

@@ -1,0 +1,6 @@
+{
+  "search": "https://anilib.me/ru/catalog?q={searchterm}",
+  "urls": {
+    "match": [ "*://anilib.me/*" ]
+  }
+}

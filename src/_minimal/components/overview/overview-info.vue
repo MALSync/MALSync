@@ -5,15 +5,27 @@
       <div v-for="item in info" :key="item.title" class="item">
         <div class="type">{{ item.title }}</div>
         <div class="content">
-          <template v-for="(link, index) in item.body" :key="link.text">
-            <MediaLink v-if="link.url" dir="auto" color="secondary" :href="link.url">
-              {{ link.text }}
-            </MediaLink>
-            <span v-else dir="auto">
-              {{ link.text }}
-            </span>
-            <span v-if="link.subtext" class="subtext">({{ link.subtext }})</span>
-            <span v-if="Number(index) + 1 < item.body.length" dir="auto">, </span>
+          <template v-for="(link, index) in item.body" :key="link">
+            <div v-if="'type' in link && link.type === 'weektime' && link.date">
+              <template v-if="link.date instanceof Date || !isNaN(Date.parse(link.date))">
+                <span dir="auto">{{ getTimezoneDate(link.date) }}</span>
+                <br />
+                <span>{{ getTimezoneDate(link.date, 'UTC') }}</span>
+                <br />
+                <span>{{ getTimezoneDate(link.date, 'Asia/Tokyo') }}</span>
+              </template>
+              <template v-else>{{ link.date }}</template>
+            </div>
+            <template v-else-if="!('type' in link)">
+              <MediaLink v-if="link.url" dir="auto" color="secondary" :href="link.url">
+                {{ link.text }}
+              </MediaLink>
+              <span v-else dir="auto">
+                {{ link.text }}
+              </span>
+              <span v-if="link.subtext" class="subtext">({{ link.subtext }})</span>
+              <span v-if="Number(index) + 1 < item.body.length" dir="auto">, </span>
+            </template>
           </template>
         </div>
       </div>
@@ -88,6 +100,23 @@ function getTitle(item) {
     ]);
   }
   return '';
+}
+
+function getTimezoneDate(
+  dateElement: Date | string,
+  timezone = Intl.DateTimeFormat().resolvedOptions().timeZone,
+) {
+  const userLang = navigator.language;
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZoneName: timezone === 'Asia/Tokyo' ? undefined : 'short',
+    timeZone: timezone,
+  };
+
+  const date = typeof dateElement === 'string' ? new Date(dateElement) : dateElement;
+  return date.toLocaleString(userLang, options) + (timezone === 'Asia/Tokyo' ? ' JST' : '');
 }
 </script>
 

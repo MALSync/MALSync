@@ -1,5 +1,6 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 
 const pageSize = 25;
 
@@ -43,14 +44,14 @@ export class UserList extends ListAbstract {
 
     if (!this.tempList.length) {
       let curSt = '';
-      if (this.status !== 7) {
+      if (this.status !== definitions.status.All) {
         curSt = helper.statusTranslate[this.status];
       }
 
       const userId = await helper.userId();
 
       this.tempList = await helper.apiCall({
-        path: `v2/user_rates`,
+        path: 'v2/user_rates',
         type: 'GET',
         parameter: {
           user_id: userId,
@@ -87,7 +88,7 @@ export class UserList extends ListAbstract {
       const diffArr = ids.filter((o: any) => !keyedIds.includes(o));
       if (diffArr.length) {
         const diffMetadata: helper.MetaRequest[] = await helper.apiCall({
-          path: `ranobe`,
+          path: 'ranobe',
           parameter: { ids: diffArr.join(','), limit: pageSize },
           type: 'GET',
         });
@@ -119,10 +120,13 @@ export class UserList extends ListAbstract {
         type: entry.target_type === 'Anime' ? 'anime' : 'manga',
         title: helper.title(meta.russian, meta.name),
         url: `${helper.domain}${meta.url}`,
-        watchedEp: entry.target_type === 'Anime' ? entry.episodes : entry.chapters,
-        totalEp: entry.target_type === 'Anime' ? meta.episodes : meta.chapters,
-        status: helper.statusTranslate[entry.status],
         score: entry.score ? entry.score : 0,
+        watchedEp: entry.target_type === 'Anime' ? entry.episodes : entry.chapters,
+        readVol: entry.target_type === 'Anime' ? undefined : entry.volumes,
+        totalEp: entry.target_type === 'Anime' ? meta.episodes : meta.chapters,
+        totalVol: entry.target_type === 'Anime' ? undefined : meta.volumes,
+        status: helper.statusTranslate[entry.status],
+        rewatchCount: entry.rewatches,
         image: meta.image.original ? `${helper.domain}${meta.image.original}` : '',
         imageLarge: meta.image.original ? `${helper.domain}${meta.image.original}` : '',
         tags: entry.text,

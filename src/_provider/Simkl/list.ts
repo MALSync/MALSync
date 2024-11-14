@@ -1,6 +1,7 @@
 import { NotAutenticatedError } from '../Errors';
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 
 export class UserList extends ListAbstract {
   name = 'Simkl';
@@ -47,12 +48,14 @@ export class UserList extends ListAbstract {
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
       const st = this.translateList(el.status);
-      if (status !== 7 && parseInt(st) !== status) {
+      if (status !== definitions.status.All && parseInt(st) !== status) {
         continue;
       }
 
       let curep = this.getEpisode(el.last_watched);
-      if (st === 2) curep = el.total_episodes_count;
+      if (st === definitions.status.Completed) {
+        curep = el.total_episodes_count;
+      }
 
       if (listType === 'anime') {
         const tempData = await this.fn({
@@ -63,10 +66,10 @@ export class UserList extends ListAbstract {
           type: listType,
           title: el.show.title,
           url: `https://simkl.com/${listType}/${el.show.ids.simkl}`,
+          score: el.user_rating ? el.user_rating : 0,
           watchedEp: curep,
           totalEp: el.total_episodes_count,
           status: st,
-          score: el.user_rating ? el.user_rating : 0,
           image: `https://simkl.in/posters/${el.show.poster}_ca.jpg`,
           imageLarge: `https://simkl.in/posters/${el.show.poster}_m.jpg`,
           imageBanner: `https://simkl.in/posters/${el.show.poster}_w.jpg`,

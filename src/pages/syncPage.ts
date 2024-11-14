@@ -809,7 +809,7 @@ export class SyncPage {
       j.$('#malRating').after(
         j.html(
           `<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>${api.storage.lang(
-            `syncPage_malObj_addAnime`,
+            'syncPage_malObj_addAnime',
             [this.singleObj.shortName],
           )}</a></span>`,
         ),

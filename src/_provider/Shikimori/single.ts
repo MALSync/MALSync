@@ -18,6 +18,8 @@ export class Single extends SingleAbstract {
 
   authenticationUrl = helper.authUrl;
 
+  protected datesSupport = false;
+
   protected handleUrl(url) {
     if (url.match(/shikimori\.one\/(animes|mangas|ranobe)\/\D?\d+/i)) {
       this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
@@ -49,6 +51,30 @@ export class Single extends SingleAbstract {
 
   _setStatus(status) {
     this.animeInfo!.status = helper.statusTranslate[status] as helper.StatusType;
+  }
+
+  _getStartDate(): never {
+    throw new Error('Shikimori does not support Start Date');
+  }
+
+  _setStartDate(startDate) {
+    throw new Error('Shikimori does not support Start Date');
+  }
+
+  _getFinishDate(): never {
+    throw new Error('Shikimori does not support Finish Date');
+  }
+
+  _setFinishDate(finishDate) {
+    throw new Error('Shikimori does not support Finish Date');
+  }
+
+  _getRewatchCount() {
+    return this.animeInfo!.rewatches;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    this.animeInfo!.rewatches = rewatchCount;
   }
 
   _getScore() {
@@ -152,7 +178,7 @@ export class Single extends SingleAbstract {
     this.animeMeta = metadata;
 
     const rating = await helper.apiCall({
-      path: `v2/user_rates`,
+      path: 'v2/user_rates',
       type: 'GET',
       parameter: {
         target_id: this.ids.mal,

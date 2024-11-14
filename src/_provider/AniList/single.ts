@@ -53,6 +53,30 @@ export class Single extends SingleAbstract {
     this.animeInfo.mediaListEntry.status = helper.statusTranslate[status];
   }
 
+  _getStartDate() {
+    return helper.parseFuzzyDate(this.animeInfo.mediaListEntry.startedAt);
+  }
+
+  _setStartDate(startDate) {
+    this.animeInfo.mediaListEntry.startedAt = helper.getFuzzyDate(startDate);
+  }
+
+  _getFinishDate() {
+    return helper.parseFuzzyDate(this.animeInfo.mediaListEntry.completedAt);
+  }
+
+  _setFinishDate(finishDate) {
+    this.animeInfo.mediaListEntry.completedAt = helper.getFuzzyDate(finishDate);
+  }
+
+  _getRewatchCount() {
+    return this.animeInfo.mediaListEntry.repeat;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    this.animeInfo.mediaListEntry.repeat = rewatchCount;
+  }
+
   _getScore() {
     if (Number(this.animeInfo.mediaListEntry.score) === 0) return 0;
     const score = Math.round(Number(this.animeInfo.mediaListEntry.score) / 10);
@@ -153,6 +177,16 @@ export class Single extends SingleAbstract {
         mediaListEntry {
           id
           status
+          startedAt {
+            year
+            month
+            day
+          }
+          completedAt {
+            year
+            month
+            day
+          }
           progress
           progressVolumes
           score(format: POINT_100)
@@ -198,6 +232,16 @@ export class Single extends SingleAbstract {
             repeat: 0,
             score: 0,
             status: 'PLANNING',
+            startedAt: {
+              year: null,
+              month: null,
+              day: null,
+            },
+            completedAt: {
+              year: null,
+              month: null,
+              day: null,
+            },
           };
         }
 
@@ -207,8 +251,8 @@ export class Single extends SingleAbstract {
 
   async _sync() {
     let query = `
-      mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String) {
-        SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes) {
+      mutation ($mediaId: Int, $status: MediaListStatus, $startedAt: FuzzyDateInput, $completedAt: FuzzyDateInput, $progress: Int, $scoreRaw: Int, $repeat: Int, $notes: String) {
+        SaveMediaListEntry (mediaId: $mediaId, status: $status, startedAt: $startedAt, completedAt: $completedAt, progress: $progress, scoreRaw: $scoreRaw, repeat: $repeat, notes: $notes) {
           id
           status
           progress
@@ -218,16 +262,19 @@ export class Single extends SingleAbstract {
     const variables = {
       mediaId: this.ids.ani,
       status: this.animeInfo.mediaListEntry.status,
+      startedAt: this.animeInfo.mediaListEntry.startedAt,
+      completedAt: this.animeInfo.mediaListEntry.completedAt,
       progress: this.animeInfo.mediaListEntry.progress,
       scoreRaw: this.animeInfo.mediaListEntry.score,
+      repeat: this.animeInfo.mediaListEntry.repeat,
       notes: this.animeInfo.mediaListEntry.notes,
       volumes: null,
     };
 
     if (this.type === 'manga') {
       query = `
-        mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String, $volumes: Int) {
-          SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes, progressVolumes: $volumes) {
+        mutation ($mediaId: Int, $status: MediaListStatus, $startedAt: FuzzyDateInput, $completedAt: FuzzyDateInput, $progress: Int, $scoreRaw: Int, $repeat: Int, $notes: String, $volumes: Int) {
+          SaveMediaListEntry (mediaId: $mediaId, status: $status, startedAt: $startedAt, completedAt: $completedAt, progress: $progress, scoreRaw: $scoreRaw, repeat: $repeat, notes: $notes, progressVolumes: $volumes) {
             id
             status
             progress

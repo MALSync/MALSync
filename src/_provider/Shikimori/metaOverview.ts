@@ -6,7 +6,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
     this.logger = this.logger.m('Shiki');
-    if (url.match(/shikimori\.one\/(animes|mangas)\/\D?\d+/i)) {
+    if (url.match(/shikimori\.one\/(animes|mangas|ranobe)\/\D?\d+/i)) {
       this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
       const res = utils.urlPart(url, 4).match(/^\D?(\d+)/);
       if (res && res[1]) {
@@ -100,7 +100,7 @@ export class MetaOverview extends MetaOverviewAbstract {
               i.roles_russian.length ? i.roles_russian[0] : null,
               i.roles.length ? i.roles[0] : null,
             ),
-            url: helper.domain + i.character.url,
+            url: `${helper.domain}${i.character.url}`,
           });
         }
 
@@ -117,37 +117,66 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private statistics(data) {
-    if (data.meta.score && Number(data.meta.score))
+    if (data.meta.score)
       this.meta.statistics.push({
         title: api.storage.lang('overview_sidebar_Score'),
         body: data.meta.score,
       });
 
     if (data.meta.rates_statuses_stats) {
-      const wat = data.meta.rates_statuses_stats.find(el => el.name === 'Watching');
+      const watching = data.meta.rates_statuses_stats.find(el =>
+        ['Watching', 'Смотрю'].includes(el.name),
+      );
+      const planned = data.meta.rates_statuses_stats.find(el =>
+        ['Planned to Read', 'Planned to Watch', 'Запланировано'].includes(el.name),
+      );
+      const reading = data.meta.rates_statuses_stats.find(el =>
+        ['Reading', 'Читаю'].includes(el.name),
+      );
+      const dropped = data.meta.rates_statuses_stats.find(el =>
+        ['Dropped', 'Брошено'].includes(el.name),
+      );
+      const hold = data.meta.rates_statuses_stats.find(el =>
+        ['On Hold', 'Отложено'].includes(el.name),
+      );
+      const completed = data.meta.rates_statuses_stats.find(el =>
+        ['Completed', 'Просмотрено', 'Прочитано'].includes(el.name),
+      );
 
-      if (wat && wat.value) {
+      if (watching && watching.value) {
         this.meta.statistics.push({
-          title: 'Watching:',
-          body: wat.value,
+          title: `${api.storage.lang('UI_Status_watching_anime')}:`,
+          body: watching.value,
         });
       }
-
-      const red = data.meta.rates_statuses_stats.find(el => el.name === 'Reading');
-
-      if (red && red.value) {
+      if (planned && planned.value) {
         this.meta.statistics.push({
-          title: 'Reading:',
-          body: red.value,
+          title: `${this.type === 'manga' ? api.storage.lang('UI_Status_planTo_manga') : api.storage.lang('UI_Status_planTo_anime')}:`,
+          body: planned.value,
         });
       }
-
-      const com = data.meta.rates_statuses_stats.find(el => el.name === 'Completed');
-
-      if (com && com.value) {
+      if (reading && reading.value) {
         this.meta.statistics.push({
-          title: 'Completed:',
-          body: com.value,
+          title: `${api.storage.lang('UI_Status_watching_manga')}:`,
+          body: reading.value,
+        });
+      }
+      if (dropped && dropped.value) {
+        this.meta.statistics.push({
+          title: `${api.storage.lang('UI_Status_Dropped')}:`,
+          body: dropped.value,
+        });
+      }
+      if (hold && hold.value) {
+        this.meta.statistics.push({
+          title: `${api.storage.lang('UI_Status_OnHold')}:`,
+          body: hold.value,
+        });
+      }
+      if (completed && completed.value) {
+        this.meta.statistics.push({
+          title: `${api.storage.lang('UI_Status_Completed')}:`,
+          body: completed.value,
         });
       }
     }
@@ -163,7 +192,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.meta.duration)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${data.meta.duration} mins` }],
+        body: [{ text: `${data.meta.duration} ${api.storage.lang('bookmarksItem_mins')}` }],
       });
 
     if (data.meta.status)
@@ -179,7 +208,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
 
     if (this.type === 'manga' && data.roles && data.roles.length) {
-      const authors: any = [];
+      const authors: (typeof this.meta.info)[0]['body'] = [];
       data.roles.forEach(i => {
         if (i.person && i.person.id) {
           let text = helper.title(i.person.russian, i.person.name);
@@ -187,20 +216,20 @@ export class MetaOverview extends MetaOverviewAbstract {
 
           authors.push({
             text,
-            url: helper.domain + i.person.url,
+            url: `${helper.domain}${i.person.url}`,
           });
         }
       });
 
       if (authors.length)
         this.meta.info.push({
-          title: 'Authors:',
+          title: `${api.storage.lang('overview_sidebar_Authors')}:`,
           body: authors,
         });
     }
 
     if (data.meta.studios && data.meta.studios.length) {
-      const studios: any = [];
+      const studios: (typeof this.meta.info)[0]['body'] = [];
       data.meta.studios.forEach(i => {
         studios.push({
           text: i.name,
@@ -215,7 +244,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         });
     }
 
-    const genres: any = [];
+    const genres: (typeof this.meta.info)[0]['body'] = [];
     data.meta.genres.forEach(i => {
       genres.push({
         text: i.name,
@@ -230,7 +259,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private related(data) {
-    const links: any = {};
+    const links: typeof this.meta.related = [];
 
     data.related.forEach(element => {
       if (!links[element.relation]) {
@@ -241,7 +270,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       }
 
       let meta = element.manga;
-      let type = 'manga';
+      let type: 'anime' | 'manga' = 'manga';
       if (element.anime && element.anime.id) {
         meta = element.anime;
         type = 'anime';

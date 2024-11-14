@@ -3,6 +3,7 @@ import { anilist } from './AniList/templates';
 import { kitsu } from './Kitsu/templates';
 import { simkl } from './Simkl/templates';
 import { local } from './Local/templates';
+import { shiki } from './Shikimori/templates';
 
 function getSyncMode() {
   return api.settings.get('syncMode');
@@ -21,6 +22,9 @@ export function providerTemplates(malUrl?) {
   }
   if (syncMode === 'KITSU') {
     return kitsu;
+  }
+  if (syncMode === 'SHIKI') {
+    return shiki;
   }
   return simkl;
 }

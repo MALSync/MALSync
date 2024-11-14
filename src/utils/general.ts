@@ -464,7 +464,7 @@ export function getStatusText(type: 'anime' | 'manga', state) {
     case 6:
       return api.storage.lang(`UI_Status_planTo_${type}`);
     case 7:
-      return api.storage.lang(`UI_Status_All`);
+      return api.storage.lang('UI_Status_All');
     case 23:
       return api.storage.lang(`UI_Status_Rewatching_${type}`);
     default:
@@ -863,8 +863,8 @@ export function pageUrl(
 export function returnYYYYMMDD(numFromToday = 0) {
   const d = new Date();
   d.setDate(d.getDate() + numFromToday);
-  const month = d.getMonth() < 9 ? `0${d.getMonth() + 1}` : d.getMonth() + 1;
-  const day = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
+  const month = (d.getMonth() + 1).toString().padStart(2, '0');
+  const day = d.getDate().toString().padStart(2, '0');
   return `${d.getFullYear()}-${month}-${day}`;
 }
 
@@ -892,15 +892,15 @@ export function waitForPageToBeVisible() {
 }
 
 export async function clearCache() {
-  const cacheArray = await api.storage.list();
+  const cacheObj = await api.storage.list();
   let deleted = 0;
 
-  j.$.each(cacheArray, function (index, cache) {
-    if (!utils.syncRegex.test(String(index)) && !/(^tagSettings\/.*)/.test(String(index))) {
-      api.storage.remove(String(index));
+  for (const key in cacheObj) {
+    if (!utils.syncRegex.test(key) && !/(^tagSettings\/.*)/.test(key)) {
+      api.storage.remove(key);
       deleted++;
     }
-  });
+  }
 
   utils.flashm(`Cache Cleared [${deleted}]`);
 }
