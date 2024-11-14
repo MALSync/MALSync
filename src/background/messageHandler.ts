@@ -155,7 +155,7 @@ function emitterAction(message: emitter, sender, sendResponse) {
   return undefined;
 }
 
-function xhrAction(
+export function xhrAction(
   message: xhrI,
   sender,
   sendResponse,
@@ -183,6 +183,10 @@ function xhrAction(
   if (utils.isDomainMatching(url, 'malsync.moe') || utils.isDomainMatching(url, 'simkl.com')) {
     (options.headers as [string, string][]).push(['version', api.storage.version()]);
     (options.headers as [string, string][]).push(['type', 'addon']);
+  }
+
+  if (environment === 'testing') {
+    (options.headers as [string, string][]).push(['X-MALSYNC-TEST', JSON.stringify(message)]);
   }
 
   fetch(url, options)
