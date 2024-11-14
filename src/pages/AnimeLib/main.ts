@@ -101,6 +101,7 @@ export const AnimeLib: pageInterface = {
       // NOTE - We are on the SYNC page
       if (AnimeLib.isSyncPage(window.location.href)) {
         await updateSyncPage();
+        page.handlePage();
 
         interval = utils.changeDetect(
           async () => {
@@ -126,8 +127,6 @@ export const AnimeLib: pageInterface = {
           500,
         );
       }
-
-      page.handlePage();
     }
   },
 };

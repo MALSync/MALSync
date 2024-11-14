@@ -741,8 +741,16 @@ module.exports = {
   doflix: {
     match: ['*://doflix.net/*'],
   },
-  // anilib
-  anilib: {
-    match: ['*://*.anilib.me/*'],
+  // animesama
+  oneupload: {
+    match: ['*://oneupload.to/*'],
+  },
+  // animexin
+  vimeo: {
+    match: ['*://player.vimeo.com/*'],
+  },
+  // animexin
+  rumble: {
+    match: ['*://rumble.com/embed/*'],
   },
 };
