@@ -76,7 +76,7 @@ export const Kavita: pageInterface = {
       return parseInt(chapterDetails.volumeNum);
     },
     getMalUrl(provider) {
-      if (provider === 'MAL' && seriesDetails.malLink) return seriesDetails.malLink;
+      if (seriesDetails.malLink) return seriesDetails.malLink;
       if (provider === 'ANILIST' && seriesDetails.anilistLink) return seriesDetails.anilistLink;
       if (provider === 'KITSU' && seriesDetails.kitsuLink) return seriesDetails.kitsuLink;
       return false;
@@ -106,6 +106,9 @@ export const Kavita: pageInterface = {
     uiSelector(selector) {
       return j.$('h4').first().after(j.html(selector));
     },
+    getMalUrl(provider) {
+      return Kavita.sync.getMalUrl!(provider);
+    },
   },
   init(page) {
     api.storage.addStyle(
@@ -115,13 +118,13 @@ export const Kavita: pageInterface = {
     let progressUpdater;
     utils.changeDetect(
       () => {
-        check();
+        waitForPageLoad();
       },
       () => {
         return utils.urlStrip(window.location.href);
       },
     );
-    waitForPageLoad(check);
+    waitForPageLoad();
 
     async function getSeriesDetails() {
       const seriesID = window.location.pathname.split('/')[4];
@@ -149,32 +152,41 @@ export const Kavita: pageInterface = {
       chapterDetails.totalPageNum = responseJSON.pages;
     }
 
-    function waitForPageLoad(callback) {
-      utils.waitUntilTrue(
-        () => j.$('.spinner-border span').length,
-        () => {
+    function waitForPageLoad() {
+      let checkRan = false;
+      const intervalId = setInterval(async () => {
+        if (j.$('.spinner-border span').length) {
+          clearInterval(intervalId);
           utils.waitUntilTrue(
             () => j.$('.spinner-border span').length === 0,
             () => {
-              callback();
+              checkRan = true;
+              check();
             },
           );
-        },
-      );
+        }
+      }, 100);
+
+      // After 0.5 seconds, proceed with check() if it hasn't been run yet
+      setTimeout(() => {
+        clearInterval(intervalId);
+        if (!checkRan) {
+          check();
+        }
+      }, 500);
     }
 
     function getLinks() {
       seriesDetails.anilistLink =
         j.$('[href^="https://anilist.co/manga/"]').attr('href') ?? seriesDetails.anilistLink;
       seriesDetails.malLink =
-        j.$('[href^="https://myanimlist.net/manga/"]').attr('href') ?? seriesDetails.malLink;
+        j.$('[href^="https://myanimelist.net/manga/"]').attr('href') ?? seriesDetails.malLink;
       seriesDetails.kitsuLink =
         j.$('[href^="https://kitsu.app/manga/"]').attr('href') ?? seriesDetails.kitsuLink;
     }
 
     async function check() {
       page.reset();
-      con.log('check called');
       clearInterval(progressUpdater);
       if (!Kavita.isSyncPage(window.location.href) && !Kavita.isOverviewPage!(window.location.href))
         return;
