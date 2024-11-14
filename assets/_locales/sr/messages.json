@@ -1,0 +1,1215 @@
+{
+    "Show": {
+        "message": "Прикажи"
+    },
+    "Help": {
+        "message": "Помоћ"
+    },
+    "Update": {
+        "message": "Ажурирај"
+    },
+    "Reset": {
+        "message": "Поништи"
+    },
+    "Synchronize": {
+        "message": "Синхронизуј"
+    },
+    "Remove": {
+        "message": "Уклони"
+    },
+    "Loading": {
+        "message": "Учитавање"
+    },
+    "Load": {
+        "message": "Учитај"
+    },
+    "Select": {
+        "message": "Изабери"
+    },
+    "Yes": {
+        "message": "Да"
+    },
+    "Ok": {
+        "message": "Уреду"
+    },
+    "No": {
+        "message": "Не"
+    },
+    "Cancel": {
+        "message": "Откажи"
+    },
+    "removed": {
+        "message": "Уклоњено"
+    },
+    "next": {
+        "message": "Следеће"
+    },
+    "back": {
+        "message": "Назад"
+    },
+    "start": {
+        "message": "Почни"
+    },
+    "NothingFound": {
+        "message": "Ништа није пронађено"
+    },
+    "Not_Found": {
+        "message": "Није пронађено!"
+    },
+    "NoEntries": {
+        "message": "Нема записа"
+    },
+    "fullscreen": {
+        "message": "цели екран"
+    },
+    "close": {
+        "message": "затвори"
+    },
+    "All": {
+        "message": "Све"
+    },
+    "Manga": {
+        "message": "Манга"
+    },
+    "UI_Status_watching_anime": {
+        "message": "Гледам"
+    },
+    "UI_Status_watching_manga": {
+        "message": "Читам"
+    },
+    "UI_Status_Completed": {
+        "message": "Завршено"
+    },
+    "UI_Status_OnHold": {
+        "message": "На чекању"
+    },
+    "UI_Status_Dropped": {
+        "message": "Обустављено"
+    },
+    "UI_Status_planTo_manga": {
+        "message": "Планирам да Читам"
+    },
+    "UI_Status_Rewatching_anime": {
+        "message": "Поновно гледање"
+    },
+    "UI_Episode": {
+        "message": "Епизода:"
+    },
+    "UI_Volume": {
+        "message": "Том:"
+    },
+    "UI_Chapter": {
+        "message": "Поглавље:"
+    },
+    "UI_Score": {
+        "message": "Ваше оцене:"
+    },
+    "UI_Score_Not_Rated": {
+        "message": "Није оцењено"
+    },
+    "UI_Score_Masterpiece": {
+        "message": "(10) Ремек-дело"
+    },
+    "UI_Score_Great": {
+        "message": "(9) Одлично"
+    },
+    "UI_Score_VeryGood": {
+        "message": "(8) Врло добро"
+    },
+    "UI_Score_Good": {
+        "message": "(7) Добро"
+    },
+    "UI_Score_Fine": {
+        "message": "(6) У реду"
+    },
+    "UI_Score_Bad": {
+        "message": "(4) Лоше"
+    },
+    "UI_Score_VeryBad": {
+        "message": "(3) Врло лоше"
+    },
+    "UI_Score_Horrible": {
+        "message": "(2) Страшно"
+    },
+    "UI_Score_Appalling": {
+        "message": "(1) Срамотно"
+    },
+    "UI_Rules": {
+        "message": "Правила"
+    },
+    "syncPage_flashm_sync_anime": {
+        "message": "Ажурирај $page$ на епизоду $epNr$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga": {
+        "message": "Ажурирај $page$ на поглавље $epNr$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "Ажурирај $page$ на том $epNr$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_undefined_undo": {
+        "message": "Опозови"
+    },
+    "syncPage_flashm_sync_undefined_wrong": {
+        "message": "Погрешно?"
+    },
+    "syncPage_flashm_failded": {
+        "message": "Ажурирање није успело"
+    },
+    "syncPage_flashConfirm_complete": {
+        "message": "Означити као завршено?"
+    },
+    "syncPage_flashConfirm_start_anime": {
+        "message": "Почети са гледањем?"
+    },
+    "syncPage_flashConfirm_rewatch_finish_anime": {
+        "message": "Завршити са поновним гледањем?"
+    },
+    "syncPage_flashConfirm_rewatch_finish_manga": {
+        "message": "Завршити поновним читањем?"
+    },
+    "syncPage_flashConfirm_start_manga": {
+        "message": "Започети са читањем?"
+    },
+    "syncPage_flashConfirm_rewatch_start_anime": {
+        "message": "Поново гледати аниме?"
+    },
+    "syncPage_flashConfirm_rewatch_start_manga": {
+        "message": "Поново читати мангу?"
+    },
+    "syncPage_flashConfirm_Anime_Correct": {
+        "message": "Да ли је \"$anime$\" тачно?",
+        "placeholders": {
+            "anime": {
+                "content": "$1",
+                "example": "No Game No Life"
+            }
+        }
+    },
+    "syncPage_flash_player_error": {
+        "message": "Плејер није откривен. Молим вас, ручно га ажурирајте овде."
+    },
+    "syncPage_malObj_addAnime": {
+        "message": "Додај на $page$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "AniList"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_anime": {
+        "message": "Епизода $episode$",
+        "placeholders": {
+            "episode": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_manga": {
+        "message": "Поглавље $chapter$",
+        "placeholders": {
+            "chapter": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+        "message": "Откривен је могући офсет епизоде од $calcOffset$. Да ли је то исправно?",
+        "placeholders": {
+            "calcOffset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "kitsuClass_authentication_Password": {
+        "message": "Лозинка"
+    },
+    "kitsuClass_authentication_Login": {
+        "message": "Пријава"
+    },
+    "kitsuClass_authentication_Success": {
+        "message": "Токен је сачуван, сада можете затворити ову страницу."
+    },
+    "bookmarksItem_Years": {
+        "message": "године"
+    },
+    "bookmarksItem_Year": {
+        "message": "година"
+    },
+    "bookmarksItem_Days": {
+        "message": "дани"
+    },
+    "bookmarksItem_Day": {
+        "message": "дан"
+    },
+    "bookmarksItem_Hours": {
+        "message": "сати"
+    },
+    "bookmarksItem_Hour": {
+        "message": "сат"
+    },
+    "bookmarksItem_mins": {
+        "message": "минута"
+    },
+    "bookmarksItem_min": {
+        "message": "минут"
+    },
+    "bookmarksItem_sec": {
+        "message": "секунда"
+    },
+    "bookmarksItem_now": {
+        "message": "Сада"
+    },
+    "bookmarksItem_ago": {
+        "message": "пре $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_anime": {
+        "message": "Последња епизода објављена пре $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Episode_manga": {
+        "message": "Следеће поглавље процењено у $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_manga": {
+        "message": "Последње поглавље објављено пре $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_next": {
+        "message": "Следећe у $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_incomplete": {
+        "message": "непотпуно"
+    },
+    "Search": {
+        "message": "Претрага сајта"
+    },
+    "Package_Description": {
+        "message": "Интегрише MyAnimeList/AniList/Kitsu/Simkl/Shikimori на различите сајтове, уз аутоматско праћење епизода."
+    },
+    "UI_Status": {
+        "message": "Статус:"
+    },
+    "UI_Status_All": {
+        "message": "Све"
+    },
+    "anilistClass_authentication": {
+        "message": "Токен је сачуван, сада можете затворити ову страницу"
+    },
+    "Add": {
+        "message": "Додај"
+    },
+    "UI_Status_planTo_anime": {
+        "message": "Планирам да Гледам"
+    },
+    "UI_Status_Rewatching_manga": {
+        "message": "Поновно читање"
+    },
+    "kitsuClass_authentication_text": {
+        "message": "Да бисте се пријавили на Kitsu, потребно је да унесете е-маил адресу и лозинку вашег налога.<br>Ваши подаци нису сачувани на вашем рачунару или било где другом.<br>Они се директно шаљу Kitsu-у. Само враћени приступни токен се чува.<br>"
+    },
+    "kitsuClass_authentication_Wrong": {
+        "message": "Подаци нису исправни"
+    },
+    "prediction_Episode_anime": {
+        "message": "Следећа епизода процењена за $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "updated": {
+        "message": "Ажурирано"
+    },
+    "Anime": {
+        "message": "Аниме"
+    },
+    "UI_Score_Average": {
+        "message": "(5) Просечно"
+    },
+    "syncPage_flashm_resumeMsg": {
+        "message": "Настави у $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "13:37"
+            }
+        }
+    },
+    "bookmarksItem_secs": {
+        "message": "секунди"
+    },
+    "prediction_ongoing": {
+        "message": "У току"
+    },
+    "prediction_complete": {
+        "message": "Завршено"
+    },
+    "prediction_Airing": {
+        "message": "Емитовање за $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "correction_Offset": {
+        "message": "Офсет епизоде"
+    },
+    "correction_Search": {
+        "message": "Претрага исправки"
+    },
+    "correction_WrongUrl": {
+        "message": "Промените ову URL адресу само ако указује на погрешну аниме страницу на MAL-у."
+    },
+    "correction_NoMal": {
+        "message": "Ако се Аниме/Манга не може наћи на MAL-у"
+    },
+    "correction_NoEntry": {
+        "message": "Нема уноса на MyAnimeList"
+    },
+    "correction_NewOffset": {
+        "message": "Нови помак (офсет) ($offset$) је подешен.",
+        "placeholders": {
+            "offset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "correction_NewUrl": {
+        "message": "Нови URL '$malUrl$' је подешен.",
+        "placeholders": {
+            "malUrl": {
+                "content": "$1",
+                "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            }
+        }
+    },
+    "correction_OffsetReset": {
+        "message": "Помак (офсет) је ресетован"
+    },
+    "overview_synonyms": {
+        "message": "Синоними"
+    },
+    "overview_Continue_anime": {
+        "message": "Наставите да гледате"
+    },
+    "overview_Continue_manga": {
+        "message": "Наставите са читањем"
+    },
+    "overview_Next_Episode_anime": {
+        "message": "Следећа епизода"
+    },
+    "overview_Next_Episode_manga": {
+        "message": "Следеће поглавље"
+    },
+    "overview_Resume_Episode_anime": {
+        "message": "Настави епизоду"
+    },
+    "overview_Resume_Episode_manga": {
+        "message": "Настави поглавље"
+    },
+    "overview_EditDetails": {
+        "message": "Уреди детаље"
+    },
+    "overview_Characters": {
+        "message": "Ликови"
+    },
+    "overview_Information": {
+        "message": "Информације"
+    },
+    "overview_Related": {
+        "message": "Повезано"
+    },
+    "overview_OpeningTheme": {
+        "message": "Уводна шпица:"
+    },
+    "overview_EndingTheme": {
+        "message": "Завршна шпица:"
+    },
+    "overview_sidebar_Score": {
+        "message": "Оцена:"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "MAL оцена:"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "Позиција:"
+    },
+    "overview_sidebar_Format": {
+        "message": "Формат:"
+    },
+    "overview_sidebar_Genres": {
+        "message": "Жанрови:"
+    },
+    "overview_Streaming": {
+        "message": "Емитовање"
+    },
+    "overview_sidebar_Rating": {
+        "message": "Оцена:"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "Популарност:"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "Датум почетка:"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "Датум завршетка:"
+    },
+    "overview_sidebar_Source": {
+        "message": "Извор:"
+    },
+    "overview_sidebar_Members": {
+        "message": "Чланови:"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "Емитовање:"
+    },
+    "overview_sidebar_Studios": {
+        "message": "Студији:"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "Поглавља:"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "Томови:"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "Омиљени:"
+    },
+    "overview_sidebar_Season": {
+        "message": "Сезона:"
+    },
+    "overview_sidebar_external_links": {
+        "message": "Спољашње везе:"
+    },
+    "overview_sidebar_Aired": {
+        "message": "Емитовано:"
+    },
+    "overview_sidebar_Authors": {
+        "message": "Аутори:"
+    },
+    "overview_sidebar_Serialization": {
+        "message": "Серијализација:"
+    },
+    "overview_sidebar_Duration": {
+        "message": "Трајање:"
+    },
+    "list_sorting_unread": {
+        "message": "Непрочитано"
+    },
+    "list_sorting_alpha": {
+        "message": "Абецедно"
+    },
+    "list_sorting_history": {
+        "message": "Последње ажурирано"
+    },
+    "list_sorting_score": {
+        "message": "Оцена"
+    },
+    "search_Type": {
+        "message": "Тип:"
+    },
+    "search_Year": {
+        "message": "Година:"
+    },
+    "settings_General": {
+        "message": "Опште"
+    },
+    "settings_Mode": {
+        "message": "Режим"
+    },
+    "settings_profile_logout": {
+        "message": "Одјава"
+    },
+    "settings_profile_check": {
+        "message": "Провери"
+    },
+    "settings_profile_logged_via": {
+        "message": "Пријављен преко $provider$",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "settings_LocalSync": {
+        "message": "Локално складиштење као резервна опција"
+    },
+    "settings_LocalSync_Import": {
+        "message": "Увоз"
+    },
+    "settings_LocalSync_Export": {
+        "message": "Извоз"
+    },
+    "settings_LocalSync_Help_Before": {
+        "message": "Ако имате проблема, покушајте поново"
+    },
+    "settings_LocalSync_Help_LinkText": {
+        "message": "овај прозор"
+    },
+    "settings_Animesync": {
+        "message": "Синхронизација Анимеа"
+    },
+    "settings_Animesync_Video": {
+        "message": "Видео"
+    },
+    "settings_Animesync_Instant": {
+        "message": "Одмах"
+    },
+    "settings_Animesync_Manual": {
+        "message": "Ручно"
+    },
+    "settings_Mangasync": {
+        "message": "Резервна опција синхронизације манге"
+    },
+    "settings_AskBefore": {
+        "message": "Прикажи дијалог за потврду „завршено“ на почетку епизоде/поглавља"
+    },
+    "settings_AutoTracking_Video": {
+        "message": "Ажурирање о $videoDuration$% напретка видеа",
+        "placeholders": {
+            "videoDuration": {
+                "content": "$1",
+                "example": "85"
+            }
+        }
+    },
+    "settings_StreamingSite": {
+        "message": "Брзе везе"
+    },
+    "settings_StreamingSite_custom": {
+        "message": "Прилагођене везе за претрагу"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "Назив"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "URL за претрагу манги"
+    },
+    "settings_Thumbnails": {
+        "message": "Сличице"
+    },
+    "settings_Thumbnails_Large": {
+        "message": "Велика"
+    },
+    "settings_Thumbnails_Medium": {
+        "message": "Средња"
+    },
+    "settings_Thumbnails_Small": {
+        "message": "Мала"
+    },
+    "settings_StreamingSite_text": {
+        "message": "Ако је онемогућено, сајт за емитовање више неће бити приказан у бочној траци анимеа на MyAnimeList/AniList/Kitsu/Simkl."
+    },
+    "settings_Authenticate": {
+        "message": "Аутентификујте се"
+    },
+    "settings_Thumbnails_Default": {
+        "message": "MAL Подразумеване"
+    },
+    "settings_FriendScore": {
+        "message": "Оцене пријатеља на страници детаља"
+    },
+    "settings_epPredictions": {
+        "message": "Процена броја епизода"
+    },
+    "settings_malTags": {
+        "message": "Користите Ознаке/Белешке"
+    },
+    "settings_malTags_Text": {
+        "message": "Ако је омогућено: Последња страница за емитовање коју сте користили биће трајно (кроз све прегледаче) сачувана у одељку Ознака/Напомене на вашој листи. Сачувани низ у одељку ознака изгледа неугледно и стварно се препоручује само ако не користите одељак Ознака/Белешке."
+    },
+    "settings_malContinue": {
+        "message": "Наставите да гледате везе"
+    },
+    "settings_malResume": {
+        "message": "Наставите са гледањем веза"
+    },
+    "settings_miniMAL_floatButtonStealth": {
+        "message": "Режим скривеног корисничког интерфејса"
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Чини индикатор напредовања (на дну вашег екрана) провидним и чини га да се брже сакрије"
+    },
+    "settings_miniMAL_minimizeBigPopup": {
+        "message": "Смањите велике искачуће прозоре"
+    },
+    "settings_miniMAL_floatButtonCorrection": {
+        "message": "Ремапирај плутајуће дугме на кориснички интерфејс за корекцију"
+    },
+    "settings_miniMAL_floatButtonHide": {
+        "message": "Сакријте плутајући мени тастер miniMAL"
+    },
+    "settings_miniMAL_autoCloseMinimal": {
+        "message": "Кликом ван оквира затвара се miniMAL"
+    },
+    "settings_miniMAL_Display": {
+        "message": "Прикажи на"
+    },
+    "settings_miniMAL_popup": {
+        "message": "Искачући прозор додатка"
+    },
+    "settings_miniMAL_theme": {
+        "message": "Тема"
+    },
+    "settings_miniMAL_window": {
+        "message": "Отвори у одвојеном прозору"
+    },
+    "settings_miniMAL_Display_Left": {
+        "message": "Лево"
+    },
+    "settings_miniMAL_Display_Center": {
+        "message": "Центар"
+    },
+    "settings_miniMAL_Display_Right": {
+        "message": "Десно"
+    },
+    "settings_miniMAL_Height": {
+        "message": "Висина (px / %)"
+    },
+    "settings_miniMAL_Width": {
+        "message": "Ширина (px / %)"
+    },
+    "settings_miniMAL_pwa": {
+        "message": "PWA сајт"
+    },
+    "settings_donate": {
+        "message": "Донирајте"
+    },
+    "settings_help": {
+        "message": "Треба вам помоћ?"
+    },
+    "settings_miscellaneous": {
+        "message": "Разно"
+    },
+    "settings_listsync": {
+        "message": "Синхронизација листе"
+    },
+    "settings_listsync_background": {
+        "message": "Синхронизуј свакодневно у позадини"
+    },
+    "settings_progress": {
+        "message": "Процена напретка"
+    },
+    "settings_theming": {
+        "message": "Тема"
+    },
+    "settings_theming_sidebars": {
+        "message": "Бочне траке"
+    },
+    "settings_theming_color": {
+        "message": "Боја теме"
+    },
+    "settings_theming_background_image": {
+        "message": "Позадинска слика"
+    },
+    "settings_theming_background_opacity": {
+        "message": "Прозирност позадине"
+    },
+    "settings_theming_theme_system": {
+        "message": "Систем"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Мрачна"
+    },
+    "settings_theming_theme_light": {
+        "message": "Светла"
+    },
+    "settings_Shortcuts": {
+        "message": "Пречице"
+    },
+    "settings_loadPTWForProgress": {
+        "message": "Учитај PTW/PTR за процену напредовања"
+    },
+    "settings_Video_Player": {
+        "message": "Видеоплејер"
+    },
+    "settings_Video_Fullscreen": {
+        "message": "Аутоматски преко целог екрана"
+    },
+    "settings_autoNextEp": {
+        "message": "Аутоматска репродукција следеће епизоде"
+    },
+    "settings_Shortcuts_Sync": {
+        "message": "Поставите епизоду/поглавље као прочитано"
+    },
+    "settings_Shortcuts_Next_Episode": {
+        "message": "Отворите пречицу за следећу епизоду"
+    },
+    "settings_Shortcuts_Skip_Forward": {
+        "message": "Прескаче уводну шпицу"
+    },
+    "settings_Shortcuts_Skip_Backward": {
+        "message": "Вратите се на почетак уводне шпице"
+    },
+    "settings_Shortcuts_Click": {
+        "message": "Кликните да бисте унели пречицу"
+    },
+    "settings_UpdateCheck": {
+        "message": "Провера ажурирања"
+    },
+    "settings_UpdateCheck_Text": {
+        "message": "Проверава нове епизоде у позадини."
+    },
+    "settings_Interval": {
+        "message": "Интервал"
+    },
+    "settings_Interval_Off": {
+        "message": "Искључено"
+    },
+    "settings_Interval_Default_Anime": {
+        "message": "Подразумевани Аниме"
+    },
+    "settings_ProgressCheck": {
+        "message": "Провера напретка"
+    },
+    "settings_Notifications": {
+        "message": "Обавештења"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "Лепљива обавештења"
+    },
+    "settings_Debugging": {
+        "message": "Отклањање грешака"
+    },
+    "settings_ETC": {
+        "message": "ОСТАЛО"
+    },
+    "settings_tracking": {
+        "message": "Праћење"
+    },
+    "settings_Userscriptmode": {
+        "message": "РЕжим корисничке скрипте"
+    },
+    "settings_highlightAllEp": {
+        "message": "Означи све Епизоде/Поглавља"
+    },
+    "settings_highlightAllEp_Text": {
+        "message": "Ова опција ће истаћи сва гледана поглавља/епизоде на листи коју можете пронаћи на неким аниме/манга сајтовима"
+    },
+    "settings_ClearCache": {
+        "message": "Обриши кеш"
+    },
+    "settings_presence_largeimage": {
+        "message": "Слика присуства"
+    },
+    "settings_presence_largeimage_cover": {
+        "message": "Насловна слика"
+    },
+    "settings_presence_largeimage_malsync": {
+        "message": "MAL-Sync Иконица"
+    },
+    "settings_enabled": {
+        "message": "Омогућено"
+    },
+    "settings_shortcut_tooltip": {
+        "message": "Не препоручује се постављање пречице на један тастер"
+    },
+    "settings_progress_dropdown": {
+        "message": "Извор процене:"
+    },
+    "settings_progress_disabled": {
+        "message": "Онемогућено"
+    },
+    "settings_website_button": {
+        "message": "Вебсајтови"
+    },
+    "settings_permissions_overview": {
+        "message": "Дозволе"
+    },
+    "settings_permissions_required": {
+        "message": "Обавезно"
+    },
+    "settings_permissions_pages": {
+        "message": "Страница"
+    },
+    "settings_permissions_player": {
+        "message": "Видеоплејер"
+    },
+    "settings_custom_domains_button": {
+        "message": "Прилагођени домени"
+    },
+    "settings_custom_domains_missing_permissions_long": {
+        "message": "Неке дозволе за страницу још увек нису одобрене"
+    },
+    "settings_custom_domains_wrong": {
+        "message": "Конфигурација није тачна!"
+    },
+    "settings_clean_tags_button": {
+        "message": "Очистите ознаке"
+    },
+    "settings_more_info": {
+        "message": "Више информација"
+    },
+    "settings_read_less": {
+        "message": "Читај мање"
+    },
+    "settings_read_more": {
+        "message": "Читај више"
+    },
+    "settings_presenceShowButtons": {
+        "message": "Прикажи дугме за преглед анимеа/манги на MAL-у или другом провајдеру"
+    },
+    "updateCheck_Refresh": {
+        "message": "Освежи"
+    },
+    "updateCheck_StartCheck": {
+        "message": "Започни проверу"
+    },
+    "updateCheck_NotificationCheck": {
+        "message": "Провера обавештења"
+    },
+    "updateCheck_Episode": {
+        "message": "Епизода"
+    },
+    "updateCheck_Message": {
+        "message": "Порука"
+    },
+    "updateCheck_NotificationHistory": {
+        "message": "Историја обавештења"
+    },
+    "minimalApp_Overview": {
+        "message": "Преглед"
+    },
+    "minimalApp_Reviews": {
+        "message": "Рецензије"
+    },
+    "minimalApp_Recommendations": {
+        "message": "Препоруке"
+    },
+    "minimalApp_Settings": {
+        "message": "Подешавања"
+    },
+    "minimalClass_versionMsg_Text_1": {
+        "message": "Хвала Вам што сте инсталирали MAL-Sync"
+    },
+    "installPage_Start_Description": {
+        "message": "Хајде да направимо кратак увод да Вас упознамо са основама - траје мање од минута!"
+    },
+    "installPage_Howto": {
+        "message": "Схватите како MAL-Sync функционише"
+    },
+    "installPage_Howto_Anime_Description": {
+        "message": "Синхронизација чека док се не погледа 85% видеа."
+    },
+    "installPage_Howto_Manga_Description": {
+        "message": "Синхронизација се дешава приликом учитавања странице и чека неколико страница док 80% поглавља не буде прочитано."
+    },
+    "installPage_Howto_Notes": {
+        "message": "Синхронизација се може касније конфигурисати у подешавањима - слободно је прилагодите на свој начин!"
+    },
+    "installPage_Wrong": {
+        "message": "Како да поправите погрешно откривену аниме или мангу"
+    },
+    "installPage_Wrong_Description": {
+        "message": "Можете лако променити однос као што је приказано у GIF-у испод. Помак (офсет) епизоде може се подесити и на тој страници."
+    },
+    "installPage_Links": {
+        "message": "Изаберите жељене брзе везе - ваше омиљене странице на један клик од Вас"
+    },
+    "installPage_Description_paragraph1": {
+        "message": "Брзе везе су, у основи, дугмићи који отварају ваш сајт за емитовање/читање по избору - биће расположени на свакој страници прегледа за било који аниме/мангу."
+    },
+    "installPage_Description_paragraph2": {
+        "message": "На пример, ако волите да гледате аниме на Crunchyroll-у, брза веза за Crunchyroll ће се појавити на свакој страници анимеа. То је практичан начин да приступите вашим омиљеним страницама уз само један клик!"
+    },
+    "Emby_Authenticate": {
+        "message": "MAL-Sync захтева Emby API кључ да би радио. Више информација $Link1$Овде$Link2$",
+        "placeholders": {
+            "Link1": {
+                "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "Error_Authenticate": {
+        "message": "Молимо вас да се аутентификујете $Link1$Овде$Link2$",
+        "placeholders": {
+            "Link1": {
+                "content": "<a target=\"_blank\" href=\"$1\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "installPage_Login_Successful": {
+        "message": "Фантастично, $Username$! Сада сте аутентификовани и спремни за рад.",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
+    },
+    "Error_Blocked": {
+        "message": "Ваш IP адреса је забрањена на $Page$. Промените вашу IP адресу или сачекајте да се укине забрана. Привремени прекид услуге такође може бити узрок.",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "Discord_rpc_browsing": {
+        "message": "Прегледање $Page$",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "Mangadex"
+            }
+        }
+    },
+    "discord_rpc_view_anime": {
+        "message": "Погледајте Аниме"
+    },
+    "discord_rpc_view_manga": {
+        "message": "Погледајте Мангу"
+    },
+    "nextEpShort_no_nextEp": {
+        "message": "Није било могуће пронаћи следећу епизоду"
+    },
+    "settings_filler": {
+        "message": "Провери за филер/резиме епизоде"
+    },
+    "filler_filler_confirm": {
+        "message": "Ова епизода је обележена као филер на MyAnimeList. Да ли желите да је прескочите?"
+    },
+    "filler_recap_confirm": {
+        "message": "Ова епизода је обележена као резиме на MyAnimeList. Да ли желите да је прескочите?"
+    },
+    "settings_custom_domains_position": {
+        "message": "Положај"
+    },
+    "settings_custom_position_below": {
+        "message": "Испод информација"
+    },
+    "correction_Offset_text": {
+        "message": "Унесите померај (офсет) епизоде. Ако аниме има 12 епизода, али користи бројеве од 0 до 11 уместо од 1 до 12, једноставно укуцајте „+1“ у померај епизоде."
+    },
+    "correction_Search_text": {
+        "message": "Ово поље служи за проналажење анимеа када је потребно исправити „MyAnimeList URL“ приказан изнад.<br>Да бисте извршили претрагу, једноставно почните куцати назив анимеа, а листа резултата ће се аутоматски појавити док куцате."
+    },
+    "overview_sidebar_Votes": {
+        "message": "Гласови:"
+    },
+    "settings_anilist_update_ui": {
+        "message": "Ажурирајте кориснички интерфејс"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "Смањује велике оквире са упитима у MAL-Sync-у, који би покрили већину екрана, иза клика."
+    },
+    "settings_miniMAL_Open": {
+        "message": "Отвори miniMAL"
+    },
+    "settings_presence_largeimage_website": {
+        "message": "Иконица веб странице"
+    },
+    "settings_custom_domains_missing_permissions_header": {
+        "message": "Откривене су дозволе које недостају"
+    },
+    "nextEpShort_no_support": {
+        "message": "Ова страница не подржава отварање следеће епизоде"
+    },
+    "correction_DBRequest": {
+        "message": "Желите ли да пошаљете захтев за исправку базе података?"
+    },
+    "overview_sidebar_Status": {
+        "message": "Статус:"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "Укупно време репродукције:"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "Давалац лиценце:"
+    },
+    "list_sorting_airing_date": {
+        "message": "Датум емитовања"
+    },
+    "settings_Thumbnails_text": {
+        "message": "Ова опција је за промену величине сличица на MyAnimeList, нпр. сличице за везе, људе, препоруке и сл."
+    },
+    "settings_usedPage": {
+        "message": "Последње коришћене везе до страница"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Прилагођена"
+    },
+    "settings_Video_Resume": {
+        "message": "Аутоматски наставак"
+    },
+    "installPage_Mode": {
+        "message": "Изаберите коју аниме базу података желите да користите"
+    },
+    "search_Score": {
+        "message": "Оцена:"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Омогућава брзо ажурирање броја епизода, оцене и статуса на AniList без потребе да отварате искачући прозор."
+    },
+    "settings_Shortcuts_Correction": {
+        "message": "Отворите искачући прозор за исправљање односа анимеа"
+    },
+    "settings_Interval_Default_Manga": {
+        "message": "Подразумевана Манга"
+    },
+    "settings_tracking_disabled": {
+        "message": "Праћење је онемогућено"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "Прегледач или тренутни прозор не подржавају додавање дозвола. Молимо вас да покушате поново са URL-ом https://malsync.moe/pwa или користите искачући прозор додатка."
+    },
+    "minimalClass_Popup": {
+        "message": "Молимо Вас да дозволите искачуће прозоре за овај вебсајт"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "Епизоде:"
+    },
+    "settings_LocalSync_Label": {
+        "message": "Локални синхронизовани извоз"
+    },
+    "settings_Mangasync_readerTracking": {
+        "message": "Синхронизујте мангу после 90% страница"
+    },
+    "settings_custom_domains_disclaimer": {
+        "message": "Ова функција омогућава додавање прилагођених домена постојећим сајтовима ради обраде промена домена и самостално хостованих извора, али не може додати нове сајтове."
+    },
+    "correction_NewUrlReset": {
+        "message": "MyAnimeList URL је ресетован"
+    },
+    "settings_profile_no_login": {
+        "message": "Нема пријаве"
+    },
+    "settings_AutoTracking_Instant": {
+        "message": "Одложи тренутно аутоматско праћење за $delay$ секунди",
+        "placeholders": {
+            "delay": {
+                "content": "$1",
+                "example": "15"
+            }
+        }
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "URL за претрагу анимеа"
+    },
+    "settings_discord_join": {
+        "message": "Придружите се нашем Discord серверу"
+    },
+    "settings_onsite": {
+        "message": "На сајту"
+    },
+    "settings_miniMAL_NotSet": {
+        "message": "Није постављено"
+    },
+    "settings_introSkip": {
+        "message": "Подесите дужину прескакања уводне шпице ($Seconds$ секунди)",
+        "placeholders": {
+            "Seconds": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "settings_Userscriptmode_Text": {
+        "message": "Онемогућава скрипту за садржај. Ово омогућава да додатак и корисничка скрипта буду омогућени истовремено."
+    },
+    "settings_progress_default": {
+        "message": "Подразумевано"
+    },
+    "settings_presenceShowMalsync": {
+        "message": "Прикажи MAL-Sync у наслову присуства уместо анимеа/манге"
+    },
+    "installPage_Howto_Description": {
+        "message": "Синхронизација са базом података дешава се само када отворите епизоду или поглавље на било којој од $Link1$подржаних страница$LinkEnd1$ — не брините, сигурно имамо ваш омиљени сајт на списку!",
+        "placeholders": {
+            "Link1": {
+                "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
+                "example": "<a>"
+            },
+            "LinkEnd1": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "settings_filler_text": {
+        "message": "Ово ће проверити да ли је епизода обележена као филер/резиме на MyAnimeList"
+    },
+    "locale": {
+        "message": "sr",
+        "description": "Current locale"
+    }
+}

@@ -904,5 +904,9 @@
     "settings_malContinue": {
         "message": "हेर्न जारी राख्ने लिंकहरु",
         "description": "Continue watching links"
+    },
+    "locale": {
+        "message": "ne",
+        "description": "Current locale"
     }
 }

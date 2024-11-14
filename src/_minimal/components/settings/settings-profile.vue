@@ -18,7 +18,7 @@
             {{ profileRequest.data.username }}
           </MediaLink>
         </Header>
-        <div>
+        <div style="width: fit-content">
           <Link :to="{ name: 'Settings', params: { path: ['tracking', 'syncMode'] } }">
             <TextIcon icon="keyboard_arrow_down" position="after" mode="flex">
               {{ lang('settings_profile_logged_via', [parameters.listObj.name]) }}
@@ -136,6 +136,7 @@ const state = computed(() => {
   .link();
 
   color: var(--cl-light-text);
+  width: fit-content;
 }
 
 .button-flex {

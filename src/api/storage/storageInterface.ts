@@ -5,7 +5,7 @@ export interface storageInterface {
 
   remove(key: string): Promise<void>;
 
-  list(from?: string): Promise<any[]>;
+  list(from?: string): Promise<{ [key: string]: any }>;
 
   addStyle(css: string): Promise<void>;
 

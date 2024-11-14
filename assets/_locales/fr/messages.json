@@ -1554,5 +1554,9 @@
     "settings_permissions_overview": {
         "message": "Permissions",
         "description": "Button that leads to where permissions to sites can be managed"
+    },
+    "locale": {
+        "message": "fr",
+        "description": "Current locale"
     }
 }

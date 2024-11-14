@@ -1,7 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
 function GetOverviewAnchor() {
-  const anchor = document.querySelector(`a[href^="/anime"]`) as HTMLAnchorElement;
+  const anchor = document.querySelector('a[href^="/anime"]') as HTMLAnchorElement;
 
   if (!anchor) {
     throw Error("Can't find overview anchor element");
@@ -68,7 +68,7 @@ export const TRanimeizle: pageInterface = {
     },
     nextEpUrl: () => {
       const nextEpisodeAnchor = document.querySelector(
-        `.youtube-wrapper .my-15 a:first-child`,
+        '.youtube-wrapper .my-15 a:first-child',
       ) as HTMLAnchorElement;
 
       if (!nextEpisodeAnchor) {

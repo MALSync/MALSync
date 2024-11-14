@@ -1,5 +1,0 @@
-{
-  "urls": {
-    "match": ["*://*.neko-sama.fr/*", "*://animecat.net/*"]
-  }
-}

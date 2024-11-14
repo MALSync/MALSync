@@ -8,6 +8,8 @@ import { Component } from 'vue';
 
 export type contentType = 'anime' | 'manga';
 
+export type syncMethod = 'normal' | 'listSync';
+
 export enum status {
   NoState = 0,
   Watching = 1,
@@ -35,6 +37,17 @@ export enum score {
 
 // score range 0 - 100
 export type score100 = number;
+
+// YYYY-MM-DD format
+export type startFinishDate = string | null;
+
+export type fuzzyDate = {
+  year: number | null;
+  month: number | null;
+  day: number | null;
+};
+
+export type rewatchCount = number;
 
 export type searchResult = {
   id: number;

@@ -1,6 +1,6 @@
 {
   "search": "https://flamecomics.com/?s={searchtermPlus}",
   "urls": {
-    "match": ["*://flamecomics.com/*"]
+    "match": ["*://flamecomics.com/*", "*://flamecomics.me/*"]
   }
 }
