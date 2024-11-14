@@ -23,6 +23,9 @@ const seriesDetails = {
   seriesTitle: '',
   seriesID: '',
   totalPageNum: '',
+  anilistLink: '',
+  kitsuLink: '',
+  malLink: '',
 };
 
 async function getChapterProgress() {
@@ -65,12 +68,22 @@ export const Kavita: pageInterface = {
       return window.location.href.split('/').slice(0, 7).join('/');
     },
     getEpisode(url) {
-      if (!chapterDetails.chapterNum || !parseInt(chapterDetails.chapterNum))
+      if (
+        !chapterDetails.chapterNum ||
+        !parseInt(chapterDetails.chapterNum) ||
+        parseInt(chapterDetails.chapterNum) < 0
+      )
         throw 'No chapter number';
       return parseInt(chapterDetails.chapterNum);
     },
     getVolume(url) {
       return parseInt(chapterDetails.volumeNum);
+    },
+    getMalUrl(provider) {
+      if (provider === 'MAL' && seriesDetails.malLink) return seriesDetails.malLink;
+      if (provider === 'ANILIST' && seriesDetails.anilistLink) return seriesDetails.anilistLink;
+      if (provider === 'KITSU' && seriesDetails.kitsuLink) return seriesDetails.kitsuLink;
+      return false;
     },
     readerConfig: [
       {
@@ -112,7 +125,7 @@ export const Kavita: pageInterface = {
         return utils.urlStrip(window.location.href);
       },
     );
-    check();
+    waitForPageLoad(check);
 
     async function getSeriesDetails() {
       const seriesID = window.location.pathname.split('/')[4];
@@ -136,19 +149,31 @@ export const Kavita: pageInterface = {
       con.log('Chapter Info Retrieved', response);
 
       chapterDetails.volumeNum = responseJSON.volumeNumber;
-      chapterDetails.chapterNum = responseJSON.chapterNumber;
+      chapterDetails.chapterNum = responseJSON.chapterNumber < 0 ? 0 : responseJSON.chapterNumber;
       chapterDetails.totalPageNum = responseJSON.pages;
     }
 
-    function resetDetails() {
-      chapterDetails.volumeNum = '';
-      chapterDetails.chapterNum = '';
-      chapterDetails.currentPageNum = '';
-      chapterDetails.totalPageNum = '';
+    function waitForPageLoad(callback) {
+      utils.waitUntilTrue(
+        () => j.$('.spinner-border span').length,
+        () => {
+          utils.waitUntilTrue(
+            () => j.$('.spinner-border span').length === 0,
+            () => {
+              callback();
+            },
+          );
+        },
+      );
+    }
 
-      seriesDetails.seriesTitle = '';
-      seriesDetails.seriesID = '';
-      seriesDetails.totalPageNum = '';
+    function getLinks() {
+      seriesDetails.anilistLink =
+        j.$('[href^="https://anilist.co/manga/"]').attr('href') ?? seriesDetails.anilistLink;
+      seriesDetails.malLink =
+        j.$('[href^="https://myanimlist.net/manga/"]').attr('href') ?? seriesDetails.malLink;
+      seriesDetails.kitsuLink =
+        j.$('[href^="https://kitsu.app/manga/"]').attr('href') ?? seriesDetails.kitsuLink;
     }
 
     async function check() {
@@ -159,6 +184,9 @@ export const Kavita: pageInterface = {
         return;
 
       await getSeriesDetails();
+      if (Kavita.isOverviewPage!(window.location.href)) {
+        getLinks();
+      }
 
       if (Kavita.isSyncPage(window.location.href)) {
         await getChapterDetails();
