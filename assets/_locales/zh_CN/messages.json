@@ -1000,5 +1000,9 @@
     "overview_sidebar_Total_Playtime": {
         "message": "观看时长：",
         "description": "Info table on overview - Total Playtime: 276 mins"
+    },
+    "locale": {
+        "message": "zh_CN",
+        "description": "Current locale"
     }
 }

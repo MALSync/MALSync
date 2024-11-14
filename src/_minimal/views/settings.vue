@@ -1,10 +1,10 @@
 <template>
   <div class="settings-block" :class="{ designed: !components.path.length }">
     <transition :name="components.path.length ? 'slide-in' : 'slide-out'">
-      <div :key="components.path">
+      <div :key="components.path.join('/')">
         <Link
           v-if="components.path.length"
-          :to="{ name: 'Settings', params: { path: [components.path.slice(0, -1)] } }"
+          :to="{ name: 'Settings', params: { path: [components.path.slice(0, -1).join('/')] } }"
         >
           <div class="back-button">
             <Header weight="normal">

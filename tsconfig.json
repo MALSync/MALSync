@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "./src/",
+    "baseUrl": ".",
+    "outDir": "./dist",
     "noImplicitAny": false,
     "noImplicitThis": false,
     "module": "ESNext",
@@ -9,6 +10,7 @@
     "lib": ["es2021", "dom"],
     "jsx": "preserve",
     "allowJs": true,
+    "checkJs": true,
     "sourceMap": true,
     "strict": true,
     "useUnknownInCatchVariables": false,

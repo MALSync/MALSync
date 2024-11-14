@@ -1,3 +1,4 @@
+import { status } from '../definitions';
 import { NotAutenticatedError, parseJson, ServerOfflineError } from '../Errors';
 
 export const client_id = __MAL_SYNC_KEYS__.simkl.id;
@@ -8,11 +9,11 @@ export function getAuthUrl() {
 
 export function translateList(simklStatus, malStatus: null | number = null) {
   const list = {
-    watching: 1,
-    plantowatch: 6,
-    completed: 2,
-    notinteresting: 4,
-    hold: 3,
+    watching: status.Watching,
+    plantowatch: status.PlanToWatch,
+    completed: status.Completed,
+    notinteresting: status.Dropped,
+    hold: status.Onhold,
   };
   if (malStatus !== null) {
     return Object.keys(list).find(key => list[key] === malStatus);

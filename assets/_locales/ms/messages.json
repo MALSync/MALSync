@@ -1434,5 +1434,9 @@
     "filler_recap_confirm": {
         "message": "Episod ini telah ditandakan sebagai rekap pada MyAnimeList, adakah anda mahu melangkau?",
         "description": "Question if the user wants to skip the recap"
+    },
+    "locale": {
+        "message": "ms",
+        "description": "Current locale"
     }
 }

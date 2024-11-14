@@ -135,7 +135,7 @@ async function refreshToken(refresh_token: string) {
   });
 }
 
-export function userRequest(): Promise<userRequest> {
+export function userRequest(): Promise<userRequestInterface> {
   return apiCall({
     type: 'GET',
     path: 'users/whoami',
@@ -150,7 +150,7 @@ export function userRequest(): Promise<userRequest> {
 }
 
 export async function userId() {
-  const cacheObj = new Cache(`shiki/userId`, 4 * 60 * 60 * 1000);
+  const cacheObj = new Cache('shiki/userId', 4 * 60 * 60 * 1000);
 
   if (await cacheObj.hasValue()) {
     return cacheObj.getValue();
@@ -181,12 +181,12 @@ export type StatusType =
 
 // eslint-disable-next-line no-shadow
 export enum statusTranslate {
-  'watching' = status.Watching,
-  'planned' = status.PlanToWatch,
-  'completed' = status.Completed,
-  'dropped' = status.Dropped,
-  'on_hold' = status.Onhold,
-  'rewatching' = status.Rewatching,
+  watching = status.Watching,
+  planned = status.PlanToWatch,
+  completed = status.Completed,
+  dropped = status.Dropped,
+  on_hold = status.Onhold,
+  rewatching = status.Rewatching,
 }
 
 export interface StatusRequest {
@@ -229,7 +229,7 @@ export interface MetaRequest {
   released_on: string;
 }
 
-export interface userRequest {
+export interface userRequestInterface {
   id: number;
   nickname: string;
   avatar: string;

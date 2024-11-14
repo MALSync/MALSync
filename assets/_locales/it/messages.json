@@ -1148,5 +1148,9 @@
     "overview_Streaming": {
         "message": "Streaming",
         "description": "Header of the streaming link section of the popup anime overview"
+    },
+    "locale": {
+        "message": "it",
+        "description": "Current locale"
     }
 }

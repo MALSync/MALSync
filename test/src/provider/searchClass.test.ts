@@ -275,12 +275,12 @@ describe('Full Search', function() {
   it('Not Found', async function() {
     this.timeout(10000);
     const searchObj = new SearchClass(
-      'Avatar: The Last Airbender',
+      'Avatar: The Legend of Korra',
       'anime',
-      '5lmz',
+      'avatar-the-legend-of-korra',
     );
     searchObj.setPage({
-      database: '9anime',
+      database: 'Gogoanime',
       type: 'anime',
     });
     const result = await searchObj.searchForIt();

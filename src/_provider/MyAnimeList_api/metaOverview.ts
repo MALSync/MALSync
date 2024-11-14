@@ -2,7 +2,7 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { msDiffToShortTimeString } from '../../utils/time';
+import { dateFromTimezoneToTimezone, getWeektime, msDiffToShortTimeString } from '../../utils/time';
 
 enum mediaTypeDefinition {
   unknown = 'Unknown',
@@ -274,9 +274,25 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (data.broadcast.day_of_the_week) format += `${data.broadcast.day_of_the_week} `;
       if (data.broadcast.day_of_the_week && data.broadcast.start_time) format += 'at ';
       if (data.broadcast.start_time) format += `${data.broadcast.start_time} (JST)`;
+      let body: any = [{ text: format }];
+
+      if (data.broadcast.day_of_the_week && data.broadcast.start_time) {
+        const weekDate = getWeektime(data.broadcast.day_of_the_week, data.broadcast.start_time);
+
+        if (weekDate) {
+          const broadcastDate = dateFromTimezoneToTimezone(weekDate, 'Asia/Tokyo');
+          body = [
+            {
+              date: broadcastDate,
+              type: 'weektime',
+            },
+          ];
+        }
+      }
+
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Broadcast'),
-        body: [{ text: format }],
+        body,
       });
     }
 

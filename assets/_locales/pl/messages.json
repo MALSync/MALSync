@@ -1518,5 +1518,9 @@
     "settings_custom_position_below": {
         "message": "Poniższe informacje",
         "description": "Position of the quicklinks below the information section"
+    },
+    "locale": {
+        "message": "pl",
+        "description": "Current locale"
     }
 }

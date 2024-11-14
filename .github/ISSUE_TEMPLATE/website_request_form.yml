@@ -44,6 +44,6 @@ body:
     id: other-details
     attributes:
       label: Other details
-      description: Pleaee enter any other details for this website
+      description: Please enter any other details for this website
     validations:
       required: false

@@ -26,6 +26,17 @@
         "overviewUrl": "https://bakashi.tv/animes/one-piece/",
         "nextEpUrl": "https://bakashi.tv/episodio/one-piece-episodio-2/"
       }
+    },
+    {
+      "url": "https://bakashi.tv/filmes/spy-x-family-code-white/",
+      "expected": {
+        "sync": true,
+        "title": "SPY x FAMILY CODE: White",
+        "identifier": "spy-x-family-code-white",
+        "episode": 1,
+        "overviewUrl": "https://bakashi.tv/filmes/spy-x-family-code-white/",
+        "nextEpUrl": ""
+      }
     }
   ]
 }

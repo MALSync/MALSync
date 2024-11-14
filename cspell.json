@@ -1,7 +1,7 @@
 {
     // This the configuration file of Code Spell Checker extension, which will
     // help you to correct and maybe suggest correction of spelling errors
-    "version": "0.1",
+    "version": "0.2",
     "language": "en",
     "words": [
         "adblocker",

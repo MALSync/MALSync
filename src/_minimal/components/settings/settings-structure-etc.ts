@@ -2,6 +2,7 @@ import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
 import SettingsGroup from './settings-group.vue';
 import SettingsClearTags from './settings-clear-tags.vue';
+import { localStore } from '../../../utils/localStore';
 
 export const etc: ConfObj[] = [
   {
@@ -41,7 +42,10 @@ export const etc: ConfObj[] = [
       props: {
         color: 'primary',
         title: api.storage.lang('settings_ClearCache'),
-        click: () => utils.clearCache(),
+        click: () => {
+          utils.clearCache();
+          if (api.type === 'webextension') localStore.clear();
+        },
       },
     }),
     component: SettingsGeneral,

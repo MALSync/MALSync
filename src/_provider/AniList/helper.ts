@@ -1,17 +1,23 @@
 /* eslint-disable no-shadow */
-import { status } from '../definitions';
-import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
+import { status, fuzzyDate, startFinishDate } from '../definitions';
+import {
+  NotAutenticatedError,
+  NotFoundError,
+  parseJson,
+  ServerOfflineError,
+  UnexpectedResponseError,
+} from '../Errors';
 
 const logger = con.m('anilist', '#3db4f2');
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
-    CURRENT: 1,
-    PLANNING: 6,
-    COMPLETED: 2,
-    DROPPED: 4,
-    PAUSED: 3,
-    REPEATING: 1,
+    CURRENT: status.Watching,
+    PLANNING: status.PlanToWatch,
+    COMPLETED: status.Completed,
+    DROPPED: status.Dropped,
+    PAUSED: status.Onhold,
+    REPEATING: status.Watching,
   };
   if (malStatus !== null) {
     return Object.keys(list).find(key => list[key] === malStatus);
@@ -20,12 +26,41 @@ export function translateList(aniStatus, malStatus: null | number = null) {
 }
 
 export enum statusTranslate {
-  'CURRENT' = status.Watching,
-  'PLANNING' = status.PlanToWatch,
-  'COMPLETED' = status.Completed,
-  'DROPPED' = status.Dropped,
-  'PAUSED' = status.Onhold,
-  'REPEATING' = status.Rewatching,
+  CURRENT = status.Watching,
+  PLANNING = status.PlanToWatch,
+  COMPLETED = status.Completed,
+  DROPPED = status.Dropped,
+  PAUSED = status.Onhold,
+  REPEATING = status.Rewatching,
+}
+
+export function parseFuzzyDate(date?: fuzzyDate): startFinishDate {
+  if (!date?.year || !date?.month || !date?.day) {
+    return null;
+  }
+
+  const year = String(date.year).padStart(4, '0');
+  const month = String(date.month).padStart(2, '0');
+  const day = String(date.day).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+export function getFuzzyDate(date?: startFinishDate): fuzzyDate {
+  const fuzzyDate: fuzzyDate = {
+    year: null,
+    month: null,
+    day: null,
+  };
+  // ES6 doesn't support named capture groups
+  const regexMatch = date?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (regexMatch?.[1] && regexMatch?.[2] && regexMatch?.[3]) {
+    fuzzyDate.year = parseInt(regexMatch[1]);
+    fuzzyDate.month = parseInt(regexMatch[2]);
+    fuzzyDate.day = parseInt(regexMatch[3]);
+  }
+
+  return fuzzyDate;
 }
 
 export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {
@@ -127,35 +162,40 @@ export async function apiCall(query, variables, requiresAuthentication = true) {
       }),
     })
     .then(response => {
-      if ((response.status > 499 && response.status < 600) || response.status === 0) {
-        throw new ServerOfflineError(`Server Offline status: ${response.status}`);
-      }
-      if (response.status === 403) {
-        throw new Error(api.storage.lang('Error_Blocked', ['AniList']));
-      }
+      try {
+        const res = parseJson(response.responseText);
 
-      const res = parseJson(response.responseText);
-
-      if (typeof res.errors !== 'undefined' && res.errors.length) {
-        logger.error('[SINGLE]', 'Error', res.errors);
-        const error = res.errors[0];
-        switch (error.status) {
-          case 400:
-            if (error.message === 'Invalid token' && !requiresAuthentication) {
-              api.settings.set('anilistToken', null);
-              return apiCall(query, variables, requiresAuthentication);
-            }
-            if (error.message === 'validation') throw new Error('Wrong request format');
-            if (error.message.includes('invalid')) throw new Error('Wrong request format');
-            throw new NotAutenticatedError(error.message);
-          case 404:
-            throw new NotFoundError(error.message);
-          default:
-            throw new Error(error.message);
+        if (typeof res.errors !== 'undefined' && res.errors.length) {
+          logger.error('[SINGLE]', 'Error', res.errors);
+          const error = res.errors[0];
+          switch (error.status) {
+            case 400:
+              if (error.message === 'Invalid token' && !requiresAuthentication) {
+                api.settings.set('anilistToken', null);
+                return apiCall(query, variables, requiresAuthentication);
+              }
+              if (error.message === 'validation') throw new Error('Wrong request format');
+              if (error.message.includes('invalid')) throw new Error('Wrong request format');
+              throw new NotAutenticatedError(error.message);
+            case 404:
+              throw new NotFoundError(error.message);
+            default:
+              throw new Error(error.message);
+          }
         }
-      }
 
-      return res;
+        return res;
+      } catch (err) {
+        if (err instanceof UnexpectedResponseError) {
+          if ((response.status > 499 && response.status < 600) || response.status === 0) {
+            throw new ServerOfflineError(`Server Offline status: ${response.status}`);
+          }
+          if (response.status === 403) {
+            throw new Error(api.storage.lang('Error_Blocked', ['AniList']));
+          }
+        }
+        throw err;
+      }
     });
 }
 

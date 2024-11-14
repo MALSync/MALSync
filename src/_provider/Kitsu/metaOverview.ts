@@ -85,7 +85,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     ).then(res => {
       try {
         res.data = res.data[0];
-        // eslint-disable-next-line no-unused-expressions
+        // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
         res.data.attributes.slug;
       } catch (e) {
         throw new NotFoundError(e.message);
@@ -210,7 +210,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     )
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${this.animeI().attributes.episodeLength} mins` }],
+        body: [
+          {
+            text: `${this.animeI().attributes.episodeLength} ${api.storage.lang('bookmarksItem_mins')}`,
+          },
+        ],
       });
 
     if (
@@ -275,7 +279,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     )
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Total_Playtime'),
-        body: [{ text: `${this.animeI().attributes.totalLength} mins` }],
+        body: [
+          {
+            text: `${this.animeI().attributes.totalLength} ${api.storage.lang('bookmarksItem_mins')}`,
+          },
+        ],
       });
   }
 

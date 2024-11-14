@@ -1434,5 +1434,9 @@
     "settings_filler": {
         "message": "Periksa episode filler/recap",
         "description": "Option to enable filler checking"
+    },
+    "locale": {
+        "message": "id",
+        "description": "Current locale"
     }
 }

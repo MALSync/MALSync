@@ -129,7 +129,7 @@ module.exports = {
     match: ['*://animedaisuki.moe/embed/*'],
   },
   dailymotion: {
-    match: ['*://www.dailymotion.com/embed/*'],
+    match: ['*://www.dailymotion.com/embed/*', '*://geo.dailymotion.com/*'],
   },
   // gogoanime
   theVideo: {
@@ -347,6 +347,7 @@ module.exports = {
       '*://*.embtaku.pro/*',
       '*://*.embtaku.com/*',
       '*://*.s3taku.com/*',
+      '*://*.s3embtaku.pro/*',
       // auto-gogostream-replace-dont-remove
     ],
   },
@@ -723,6 +724,7 @@ module.exports = {
       '*://streamwish.to/e/*',
       '*://sfastwish.com/e/*',
       '*://awish.pro/e/*',
+      '*://hlswish.com/e/*',
       // auto-gogostreamwish-replace-dont-remove
     ],
   },
@@ -740,5 +742,17 @@ module.exports = {
   // bakashi
   doflix: {
     match: ['*://doflix.net/*'],
+  },
+  // animesama
+  oneupload: {
+    match: ['*://oneupload.to/*'],
+  },
+  // animexin
+  vimeo: {
+    match: ['*://player.vimeo.com/*'],
+  },
+  // animexin
+  rumble: {
+    match: ['*://rumble.com/embed/*'],
   },
 };
