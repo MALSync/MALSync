@@ -3,6 +3,7 @@
   "urls": {
     "match": [
       "*://mangalib.org/*",
+      "*://mangalib.me/*",
       "*://*.slashlib.me/*",
       "*://*.yaoilib.net/*"
       

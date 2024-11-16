@@ -1,29 +1,29 @@
 {
   "title": "mangalib",
-  "url": "https://mangalib.org/",
+  "url": "https://mangalib.me/",
   "testCases": [
     {
-      "url": "https://mangalib.org/ru/3757--ijiranaide-nagatoro-san/read/v18/c132",
+      "url": "https://mangalib.me/ru/3595--kimetsu-no-yaiba/read/v1/c1?ui=5921397",
       "expected": {
         "sync": true,
-        "title": "Please don't bully me, Nagatoro",
-        "identifier": "3757",
-        "overviewUrl": "https://mangalib.org/ru/manga/3757--ijiranaide-nagatoro-san",
-        "nextEpUrl": "https://mangalib.org/ru/3757--ijiranaide-nagatoro-san/read/v18/c133",
-        "episode": 132,
+        "title": "Blade of Demon Destruction",
+        "identifier": "7580",
+        "overviewUrl": "https://mangalib.me/ru/manga/3595--kimetsu-no-yaiba",
+        "nextEpUrl": "https://mangalib.me/ru/3595--kimetsu-no-yaiba/read/v1/c2",
+        "episode": 1,
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangalib.org/ru/manga/1286--4-cut-hero",
+      "url": "https://mangalib.me/ru/manga/1286--4-cut-hero",
       "expected": {
         "sync": false,
         "title": "Cartoon hero",
         "identifier": "1286",
         "uiSelector": true,
         "epList": {
-          "186": "https://mangalib.org/ru/1286--4-cut-hero/read/v2/c186",
-          "2": "https://mangalib.org/ru/1286--4-cut-hero/read/v1/c2"
+          "186": "https://mangalib.me/ru/1286--4-cut-hero/read/v2/c186",
+          "2": "https://mangalib.me/ru/1286--4-cut-hero/read/v1/c2"
         }
       }
     }
