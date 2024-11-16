@@ -58,7 +58,7 @@ export class MangaProgress {
   protected applyConfig() {
     for (const key in this.configs) {
       const config = this.configs[key];
-      if(typeof config.condition !== 'undefined'){
+      if (typeof config.condition !== 'undefined') {
         if (typeof config.condition === 'function' && config.condition() === false) continue;
         if (typeof config.condition === 'string' && !j.$(config.condition).length) continue;
       }

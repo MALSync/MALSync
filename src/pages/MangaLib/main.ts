@@ -35,7 +35,12 @@ const manga: Manga = {
 export const MangaLib: pageInterface = {
   name: 'MangaLib',
   // NOTE - Add mangalib.me when domain is updated to new version
-  domain: ['https://mangalib.org', 'https://mangalib.me', 'https://v2.slashlib.me', 'https://v1.yaoilib.net'],
+  domain: [
+    'https://mangalib.org',
+    'https://mangalib.me',
+    'https://v2.slashlib.me',
+    'https://v1.yaoilib.net',
+  ],
   languages: ['Russian'],
   type: 'manga',
   getImage() {
@@ -70,7 +75,11 @@ export const MangaLib: pageInterface = {
       {
         condition: () => {
           const isFloat = /\d+\.\d+/.test(utils.urlPart(window.location.href, 7));
-          if (isFloat && manga.reader.total_subchapters! > manga.reader.current_subchapter_index! + 1) return true;
+          if (
+            isFloat &&
+            manga.reader.total_subchapters! > manga.reader.current_subchapter_index! + 1
+          )
+            return true;
           return false;
         },
         current: {
