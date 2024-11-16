@@ -132,11 +132,8 @@ import { Bakashi } from './Bakashi/main';
 import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
 import { VortexScans } from './VortexScans/main';
-<<<<<<< HEAD
 import { AnimeLib } from './AnimeLib/main';
-=======
 import { Kavita } from './Kavita/main';
->>>>>>> Add Kavita Page
 
 export const pages = {
   Crunchyroll,
