@@ -68,9 +68,7 @@ export const Kavita: pageInterface = {
       return window.location.href.split('/').slice(0, 7).join('/');
     },
     getEpisode(url) {
-      if (!chapterDetails.chapterNum || !parseInt(chapterDetails.chapterNum))
-        throw 'No chapter number';
-      return parseInt(chapterDetails.chapterNum);
+      return parseInt(chapterDetails.chapterNum) || 1;
     },
     getVolume(url) {
       return parseInt(chapterDetails.volumeNum);
