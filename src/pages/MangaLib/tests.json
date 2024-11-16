@@ -3,7 +3,7 @@
   "url": "https://mangalib.me/",
   "testCases": [
     {
-      "url": "https://mangalib.me/ru/3595--kimetsu-no-yaiba/read/v1/c1?ui=5921397",
+      "url": "https://mangalib.me/ru/3595--kimetsu-no-yaiba/read/v1/c1",
       "expected": {
         "sync": true,
         "title": "Blade of Demon Destruction",
