@@ -69,7 +69,11 @@ export const RanobeLib: pageInterface = {
       {
         condition: () => {
           const isFloat = /\d+\.\d+/.test(utils.urlPart(window.location.href, 7));
-          if (isFloat && novel.reader.total_subchapters! > novel.reader.current_subchapter_index! + 1)return true;
+          if (
+            isFloat &&
+            novel.reader.total_subchapters! > novel.reader.current_subchapter_index! + 1
+          )
+            return true;
           return false;
         },
         current: {
