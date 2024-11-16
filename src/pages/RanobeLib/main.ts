@@ -4,8 +4,6 @@
 import { SyncPage } from '../syncPage';
 import { Manga, getMangaData, getChaptersData, isPageAPI, Chapters } from '../AnimeLib/api';
 import { pageInterface } from '../pageInterface';
-import { countAbove } from '../../utils/mangaProgress/modes/countAbove';
-import { count } from '../../utils/mangaProgress/modes/count';
 
 const { asyncWaitUntilTrue: awaitOverviewLoading, reset: resetAwaitOverview } =
   utils.getAsyncWaitUntilTrue(() => j.$('.tabs-item').length);
@@ -69,36 +67,28 @@ export const RanobeLib: pageInterface = {
     },
     readerConfig: [
       {
+        condition: () => {
+          const isFloat = /\d+\.\d+/.test(utils.urlPart(window.location.href, 7));
+          if (isFloat && novel.reader.total_subchapters! > novel.reader.current_subchapter_index! + 1)return true;
+          return false;
+        },
         current: {
           mode: 'callback',
-          callback: () => {
-            // NOTE - if chapter numbers are floats - 1.1 - 1.2 - 1.3 - 2.1 - 2.2 - 2.3
-            // We count 'subchapters' as pages since 1.1 + 1.2 + 1.3 = WHOLE CHAPTER
-            // If chapter are not floats we are switching to classic 'countAbove' variant
-            let current = novel.reader.current_subchapter_index! + 1;
-            if (!/\d+\.\d+/.test(utils.urlPart(window.location.href, 7))) {
-              current = new countAbove().getProgress({
-                selector: '[data-paragraph-index], .text-content p, .text-content img',
-              });
-            }
-            return current;
-          },
+          callback: () => novel.reader.current_subchapter_index! + 1,
         },
         total: {
           mode: 'callback',
-          callback: () => {
-            // NOTE - For total pages we are using total number of 'subchapters' - 1.1 - 1.2 - 1.3 = 3 pages
-            // We can only get them from 'getChaptersData' API call
-            // If total subchapters = 1 we are switching to classic 'count' variant since subchapters = 1 means chapter number is not float
-            // NOTE - Bypass 90% limit to make sure we read the last subchapter
-            let total = (novel.reader.total_subchapters! / 90) * 100;
-            if (!/\d+\.\d+/.test(utils.urlPart(window.location.href, 7))) {
-              total = new count().getProgress({
-                selector: '[data-paragraph-index], .text-content p, .text-content img',
-              });
-            }
-            return total;
-          },
+          callback: () => novel.reader.total_subchapters! + 1,
+        },
+      },
+      {
+        current: {
+          mode: 'countAbove',
+          selector: '[data-paragraph-index], .text-content p, .text-content img',
+        },
+        total: {
+          mode: 'count',
+          selector: '[data-paragraph-index], .text-content p, .text-content img',
         },
       },
     ],
