@@ -1,0 +1,7 @@
+{
+  "search": "https://www.disneyplus.com/browse/search",
+  "searchDatabase": "DisneyPlus",
+  "urls": {
+    "match": ["*://www.disneyplus.com/*"]
+  }
+}
