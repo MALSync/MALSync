@@ -195,6 +195,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+   <td><a href="https://aniworld.com.de"><img src="https://favicon.malsync.moe/?domain=https://aniworld.com.de"> Ani World</a></td>
+    <td>German</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://animewho.com"><img src="https://favicon.malsync.moe/?domain=https://animewho.com"> AnimeWho</a></td>
     <td>Turkish</td>
     <td>:heavy_check_mark:</td>
