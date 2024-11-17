@@ -7,7 +7,6 @@ const searchFirstXids = 5;
 const similarityThreshold = 0.9;
 const titleTypePreference = ['English', 'Synonym', 'Default', 'Japanese'];
 const rateLimitMs = 750;
-const debug = true;
 
 const proxy = new ScriptProxy('DisneyPlus');
 const logger = con.m('D+', '#0072d2');
