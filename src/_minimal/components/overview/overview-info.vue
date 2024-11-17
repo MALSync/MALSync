@@ -96,7 +96,7 @@ function getTitle(item) {
   }
   if (item.predicition && item.predicition.timestamp) {
     return api.storage.lang('prediction_next', [
-    getProgressDateTimeInLocale(item.predicition.timestamp),
+      getProgressDateTimeInLocale(item.predicition.timestamp),
     ]);
   }
   return '';
