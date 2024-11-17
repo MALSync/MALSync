@@ -8,7 +8,7 @@ export interface timeElement {
   s: number;
 }
 
-//TODO - Remove when TS adds support for Intl.DurationFormat
+// TODO - Remove when TS adds support for Intl.DurationFormat
 export interface durationFormat {
   years?: number;
   months?: number;
@@ -170,7 +170,7 @@ export function shortTime(el: timeElement): timeElement {
   };
 }
 
-function timestampToTime(timestamp: number) : {time: durationFormat, isFuture: boolean} {
+function timestampToTime(timestamp: number): { time: durationFormat; isFuture: boolean } {
   const map: durationFormat = {};
   const isFuture = timestamp > Date.now();
   let timestampAbs = Math.abs(timestamp - Date.now());
@@ -189,7 +189,7 @@ function timestampToTime(timestamp: number) : {time: durationFormat, isFuture: b
     const valueCurr = Math.floor(timestampAbs / dateUnitToMs[keyCurr.slice(0, -1)]);
     map[keyCurr] = valueCurr;
   }
-  return {time: map, isFuture};
+  return { time: map, isFuture };
 }
 
 // TODO: Delete @ts-expect-error comments after TS adds support for Intl.DurationFormat
