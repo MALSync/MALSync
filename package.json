@@ -8,7 +8,7 @@
   "description": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
   "engines": {
     "npm": ">=8.0.0",
-    "node": ">=20.0.0"
+    "node": ">=20.18.1"
   },
   "devDependencies": {
     "@cliqz/adblocker-puppeteer": "^1.34.0",
