@@ -7,7 +7,7 @@
       "expected": {
         "sync": true,
         "title": "Blade of Demon Destruction",
-        "identifier": "7580",
+        "identifier": "3595",
         "overviewUrl": "https://mangalib.me/ru/manga/3595--kimetsu-no-yaiba",
         "nextEpUrl": "https://mangalib.me/ru/3595--kimetsu-no-yaiba/read/v1/c2",
         "episode": 1,
@@ -20,11 +20,7 @@
         "sync": false,
         "title": "Cartoon hero",
         "identifier": "1286",
-        "uiSelector": true,
-        "epList": {
-          "186": "https://mangalib.me/ru/1286--4-cut-hero/read/v2/c186",
-          "2": "https://mangalib.me/ru/1286--4-cut-hero/read/v1/c2"
-        }
+        "uiSelector": true
       }
     }
   ]
