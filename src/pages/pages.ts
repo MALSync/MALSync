@@ -133,8 +133,10 @@ import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
 import { VortexScans } from './VortexScans/main';
 import { AnimeLib } from './AnimeLib/main';
+import { DisneyPlus } from './DisneyPlus/main';
 
 export const pages = {
+  DisneyPlus,
   Crunchyroll,
   Mangadex,
   Gogoanime,

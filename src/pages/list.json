@@ -35,6 +35,11 @@
     "name": "Netflix"
   },
   {
+    "domain": "https://disneyplus.com",
+    "type": "anime",
+    "name": "DisneyPlus"
+  },
+  {
     "domain": "https://animeflv.net",
     "type": "anime",
     "name": "Animeflv"

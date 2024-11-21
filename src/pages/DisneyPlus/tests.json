@@ -1,0 +1,42 @@
+{
+  "title": "DisneyPlus",
+  "url": "https://www.disneyplus.com",
+  "testCases": [
+    {
+      "url": "https://www.disneyplus.com/browse/entity-c649c634-7f8d-48a9-ba72-48bd4b9c8419",
+      "expected": {
+        "sync": false,
+        "title": "Bleach",
+        "identifier": "c649c634-7f8d-48a9-ba72-48bd4b9c8419"
+      }
+    },
+    {
+      "url": "https://www.disneyplus.com/play/75b4caf7-22d4-4683-afc4-c643863cb1e7",
+      "expected": {
+        "sync": true,
+        "title": "Bleach",
+        "identifier": "c649c634-7f8d-48a9-ba72-48bd4b9c8419",
+        "episode": 21,
+        "nextEpUrl": "https://www.disneyplus.com/play/87ba0c20-9e8e-4db1-9bde-2a354df69f3f"
+      }
+    },
+    {
+      "url": "https://www.disneyplus.com/browse/entity-9a14d04d-01f2-40d0-be62-a6c8ffe24137",
+      "expected": {
+        "sync": false,
+        "title": "Undead Unluck",
+        "identifier": "9a14d04d-01f2-40d0-be62-a6c8ffe24137"
+      }
+    },
+    {
+      "url": "https://www.disneyplus.com/play/65e19f8d-2255-4e99-9c48-acdc0c136067",
+      "expected": {
+        "sync": true,
+        "title": "Undead Unluck",
+        "identifier": "9a14d04d-01f2-40d0-be62-a6c8ffe24137",
+        "episode": 23,
+        "nextEpUrl": "https://www.disneyplus.com/play/fb48dfd8-100c-464e-bf78-de245097bba0"
+      }
+    }
+  ]
+}
