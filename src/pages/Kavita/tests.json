@@ -1,0 +1,26 @@
+{
+  "title": "Kavita",
+  "url": "https://demo.kavitareader.com",
+  "enabled": false,
+  "testCases": [
+    {
+      "url": "https://demo.kavitareader.com/library/3/series/15#storyline-tab",
+      "expected": {
+        "sync": false,
+        "title": "Give My Regards to Black Jack",
+        "identifier": "15",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://demo.kavitareader.com/library/3/series/15/manga/24?incognitoMode=false",
+      "expected": {
+        "sync": true,
+        "title": "Give My Regards to Black Jack",
+        "identifier": "15",
+        "overviewUrl": "https://demo.kavitareader.com/library/3/series/15",
+        "uiSelector": false
+      }
+    }
+  ]
+}
