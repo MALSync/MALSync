@@ -1,0 +1,26 @@
+{
+  "search": "https://mangalib.org/ru/catalog?q={searchterm}",
+  "urls": {
+    "match": [
+      "*://mangalib.org/*",
+      "*://mangalib.me/*",
+      "*://*.slashlib.me/*",
+      "*://*.yaoilib.net/*"
+      
+    ],
+    "add-later": {
+      "match": ["*://mangalib.me/*"]
+    },
+    "searchlinks": {
+      "slashlib": {
+        "name": "SlashLib",
+        "manga-url": "https://v2.slashlib.me/ru/catalog?q={searchterm}"
+      },
+      "yaoilib": {
+        "name": "SlashLib",
+        "manga-url": "https://v1.yaoilib.net/ru/catalog?q={searchterm}"
+      }
+      
+    }
+  }
+}
