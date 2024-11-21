@@ -133,6 +133,8 @@ import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
 import { VortexScans } from './VortexScans/main';
 import { AnimeLib } from './AnimeLib/main';
+import { Kavita } from './Kavita/main';
+import { MangaLib } from './MangaLib/main';
 import { RanobeLib } from './RanobeLib/main';
 
 export const pages = {
@@ -271,5 +273,7 @@ export const pages = {
   ScyllaScans,
   VortexScans,
   AnimeLib,
+  Kavita,
+  MangaLib,
   RanobeLib,
 };

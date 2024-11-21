@@ -205,59 +205,9 @@ interface Meta {
   country: string;
 }
 
-// NOTE - AUTH API Interfaces
-interface Auth {
-  token: Token;
-  auth: AuthClass;
-  prevUrl: string;
-  timestamp: number;
-}
-interface AuthClass {
-  id: number;
-  username: string;
-  avatar: Avatar;
-  last_online_at: Date;
-  teams: unknown[];
-  permissions: unknown[];
-  roles: unknown[];
-  metadata: Metadata;
-}
-interface Metadata {
-  auth_domains: { [key: string]: string };
-}
-interface Avatar {
-  filename: string;
-  url: string;
-}
-interface Token {
-  token_type: string;
-  expires_in: number;
-  access_token: string;
-  refresh_token: string;
-  timestamp: number;
-}
-
 // NOTE - Requests
-function getAuthToken(): Token | undefined {
-  const auth = window.localStorage.getItem('auth');
-  if (auth) {
-    const { token }: Auth = JSON.parse(auth);
-    return token;
-  }
-  return undefined;
-}
-
 async function apiRequest(path: string) {
-  const url: Parameters<typeof api.request.xhr>[1] = {
-    url: `${API_DOMAIN}/${path}`,
-  };
-  const token = getAuthToken();
-  if (token) {
-    url.headers = {
-      Authorization: `Bearer ${token.access_token}`,
-    };
-  }
-  return api.request.xhr('GET', url);
+  return api.request.xhr('GET', `${API_DOMAIN}/${path}`);
 }
 
 /**
