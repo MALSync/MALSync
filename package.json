@@ -118,7 +118,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@types/chrome": "0.0.283",
-    "dexie": "^4.0.9",
+    "dexie": "^4.0.10",
     "dompurify": "^3.1.7",
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.5",
