@@ -301,15 +301,12 @@ export function getTimeRangeInLocale(
   locale?: Intl.LocalesArgument,
   style: Intl.DateTimeFormatOptions['timeStyle'] = 'short',
 ) {
-  const fromElement = typeof from === 'string' ? new Date(from) : from;
-  const toElement = typeof to === 'string' ? new Date(to) : to;
-
-  if (!isValidDate(fromElement) || !isValidDate(toElement)) {
-    const checkFrom = getTimeInLocale(fromElement, locale, style);
-    const checkTo = getTimeInLocale(toElement, locale, style);
+  if (!isValidDate(from) || !isValidDate(to)) {
+    const checkFrom = getTimeInLocale(from, locale, style);
+    const checkTo = getTimeInLocale(to, locale, style);
     return `${checkFrom} - ${checkTo}`;
   }
-  return getDateTimeRangeInLocale(fromElement!, toElement!, locale, { timeStyle: style });
+  return getDateTimeRangeInLocale(from!, to!, locale, { timeStyle: style });
 }
 
 export function getDateTimeRangeInLocale(
@@ -339,9 +336,8 @@ export function getTimeInLocale(
   locale?: Intl.LocalesArgument,
   style: Intl.DateTimeFormatOptions['timeStyle'] = 'short',
 ) {
-  const timeElement = typeof time === 'string' ? new Date(time) : time;
-  if (!isValidDate(timeElement)) return '?';
-  return getDateTimeInLocale(timeElement!, locale, { timeStyle: style });
+  if (!isValidDate(time)) return '?';
+  return getDateTimeInLocale(time!, locale, { timeStyle: style });
 }
 
 export function getDateTimeInLocale(
