@@ -248,9 +248,13 @@ export function getProgressDateTimeInLocale(
 ): string {
   if (!timestamp) return '';
   const result = timestampToTime(timestamp);
+  let days = result.time.days || 0;
+  if (result.time.weeks) {
+    days += result.time.weeks * 7;
+  }
   const short = shortTime({
     y: result.time.years || 0,
-    d: result.time.days || 0,
+    d: days,
     h: result.time.hours || 0,
     m: result.time.minutes || 0,
     s: result.time.seconds || 0,
