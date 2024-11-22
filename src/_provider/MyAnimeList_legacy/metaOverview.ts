@@ -229,10 +229,13 @@ export class MetaOverview extends MetaOverviewAbstract {
         } else {
           body = aTags;
         }
-        switch (title.trim()) { 
+        switch (title.trim()) {
           case 'Published:':
           case 'Aired:': {
-            title = title === 'Published:' ? api.storage.lang('overview_sidebar_Published') : api.storage.lang('overview_sidebar_Aired');
+            title =
+              title === 'Published:'
+                ? api.storage.lang('overview_sidebar_Published')
+                : api.storage.lang('overview_sidebar_Aired');
             const range = body.map(e => e.text.toString()).toString();
             // NOTE - For anime/continuous aired titles with start and end date
             if (range.includes(' to ')) {
@@ -286,7 +289,6 @@ export class MetaOverview extends MetaOverviewAbstract {
     const clearTitle = title.replace(':', '').trim();
     const titleTranslated = api.storage.lang(`overview_sidebar_${clearTitle}`);
     return titleTranslated || title;
-    
   }
 
   getExternalLinks(html, data) {

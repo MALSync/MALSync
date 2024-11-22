@@ -767,6 +767,10 @@
         "message": "Type:",
         "description": "Info table on overview - Type: TV"
     },
+    "overview_sidebar_Demographic": {
+        "message": "Demographic:",
+        "description": "Info table on overview - Demographic: Shoujo"
+    },
     "list_sorting_unread": {
         "message": "Unread",
         "description": "Dropdown option to sort list by unread"
