@@ -170,7 +170,7 @@ export function shortTime(el: timeElement): timeElement {
   };
 }
 
-function timestampToTime(timestamp: number): { time: durationFormat; isFuture: boolean } {
+export function timestampToTime(timestamp: number): { time: durationFormat; isFuture: boolean } {
   const map: durationFormat = {};
   const isFuture = timestamp > Date.now();
   let timestampAbs = Math.abs(timestamp - Date.now());
@@ -220,7 +220,7 @@ export function getDurationInLocale(
   return new Intl.DurationFormat(locale, { style }).format(inputDuration);
 }
 
-function minsSecsToHoursMins(minutes: number = 0, seconds: number = 0): durationFormat {
+export function minsSecsToHoursMins(minutes: number = 0, seconds: number = 0): durationFormat {
   try {
     const totalSeconds = minutes * 60 + seconds;
     const hours = Math.floor(totalSeconds / 3600);
@@ -316,7 +316,7 @@ export function getDateTimeRangeInLocale(
   style: Intl.DateTimeFormatOptions | undefined = undefined,
 ): string {
   if (!Intl.DateTimeFormat) {
-    return `${from.toLocaleString(locale, style)} - ${to.toLocaleString(locale, style)}`;
+    return `${new Date(from).toLocaleString(locale, style)} - ${new Date(to).toLocaleString(locale, style)}`;
   }
   return new Intl.DateTimeFormat(locale, style).formatRange(from, to);
 }
@@ -346,7 +346,7 @@ export function getDateTimeInLocale(
   style: Intl.DateTimeFormatOptions | undefined = undefined,
 ): string {
   if (!Intl.DateTimeFormat) {
-    return date.toLocaleString(locale, style);
+    return new Date(date).toLocaleString(locale, style);
   }
   return new Intl.DateTimeFormat(locale, style).format(date);
 }
