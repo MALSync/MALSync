@@ -458,7 +458,7 @@
         }
     },
     "prediction_Last_anime": {
-        "message": "Last episode released $time$",
+        "message": "Last episode released $time$ ago",
         "description": "Text for last episode release time",
         "placeholders": {
             "time": {
@@ -478,7 +478,7 @@
         }
     },
     "prediction_Last_manga": {
-        "message": "Last chapter released $time$",
+        "message": "Last chapter released $time$ ago",
         "description": "Text for last chapter release time",
         "placeholders": {
             "time": {
