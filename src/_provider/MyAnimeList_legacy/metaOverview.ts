@@ -1,13 +1,9 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
-import {
-  dateFromTimezoneToTimezone,
-  getDateInLocale,
-  getDateRangeInLocale,
-  getDurationInLocale,
-  getWeektime,
-} from '../../utils/time';
+import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
+import { IntlWrapper } from '../../utils/IntlWrapper';
 
+const intl = new IntlWrapper();
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
@@ -160,7 +156,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             ? j.$(value).find('span[itemprop=ratingValue]').text()
             : j.$(value).clone().children().remove().end().text();
         stats.push({
-          title: This.translateTitles(title),
+          title: This.translateTitle(title),
           body: body.trim(),
         });
       });
@@ -241,12 +237,12 @@ export class MetaOverview extends MetaOverviewAbstract {
             if (range.includes(' to ')) {
               const start = range.split('to')[0].trim();
               const end = range.split('to')[1].trim();
-              const rangeDate = getDateRangeInLocale(new Date(start), new Date(end));
+              const rangeDate = intl.setDates(start, end).Range.Date.get();
               body = [{ text: rangeDate }];
               break;
             }
             // NOTE - For movies/titles with only 1 air date
-            body = [{ text: `${getDateInLocale(new Date(range))}` }];
+            body = [{ text: `${intl.setDate(range).DateTime.Date.get()}` }];
             break;
           }
           case 'Duration:': {
@@ -257,14 +253,14 @@ export class MetaOverview extends MetaOverviewAbstract {
             if (match) {
               if (durationString.includes('min') && match.length === 1) {
                 const minutes = Number(match[0]);
-                const result = getDurationInLocale({ minutes });
+                const result = intl.setDuration({ minutes }).Duration.get();
                 body = [{ text: `${result}` }];
                 break;
               }
               // NOTE - For movies with total duration
               const hours = Number(match[0]) || 0;
               const minutes = Number(match[1]) || 0;
-              const result = getDurationInLocale({ hours, minutes });
+              const result = intl.setDuration({ hours, minutes }).Duration.get();
               body = [{ text: `${result}` }];
               break;
             }
@@ -272,7 +268,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           default:
             break;
         }
-        title = this.translateTitles(title);
+        title = this.translateTitle(title);
         html.push({
           title,
           body,
@@ -285,7 +281,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.meta.info = html;
   }
 
-  translateTitles(title: string) {
+  translateTitle(title: string) {
     const clearTitle = title.replace(':', '').trim();
     const titleTranslated = api.storage.lang(`overview_sidebar_${clearTitle}`);
     return titleTranslated || title;

@@ -2,12 +2,10 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import {
-  dateFromTimezoneToTimezone,
-  getWeektime,
-  getDurationInLocale,
-  getDateRangeInLocale,
-} from '../../utils/time';
+import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
+import { IntlWrapper } from '../../utils/IntlWrapper';
+
+const intl = new IntlWrapper();
 
 enum mediaTypeDefinition {
   unknown = 'Unknown',
@@ -249,7 +247,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Aired'),
         body: [
           {
-            text: getDateRangeInLocale(data.start_date, data.end_date),
+            text: intl.setDates(data.start_date, data.end_date).Range.Date.get(),
           },
         ],
       });
@@ -358,7 +356,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Duration'),
         body: [
           {
-            text: `${getDurationInLocale({ seconds: data.average_episode_duration })}`,
+            text: `${intl.setTimestamp(data.average_episode_duration, 'seconds').Duration.get()}`,
           },
         ],
       });

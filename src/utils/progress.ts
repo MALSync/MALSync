@@ -3,7 +3,7 @@ import {
   progressIsOld,
   single as updateProgress,
 } from '../background/releaseProgressUtils';
-import { getProgressDateTimeInLocale } from './time';
+import { IntlWrapper } from './IntlWrapper';
 
 export class Progress {
   protected logger;
@@ -103,7 +103,8 @@ export class Progress {
   }
 
   getPrediction(): string {
-    return getProgressDateTimeInLocale(this.getPredictionTimestamp());
+    const progress = new IntlWrapper().setTimestamp(this.getPredictionTimestamp()).Progress.get();
+    return progress.time;
   }
 
   getPredictionText(): string {
@@ -117,7 +118,8 @@ export class Progress {
   }
 
   getLast(): string {
-    return getProgressDateTimeInLocale(this.getLastTimestamp());
+    const last = new IntlWrapper().setTimestamp(this.getLastTimestamp()).Progress.get();
+    return last.time;
   }
 
   getLastText(): string {

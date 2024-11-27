@@ -1,8 +1,10 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { dateFromTimezoneToTimezone, getWeektime, getDurationInLocale } from '../../utils/time';
+import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
+import { IntlWrapper } from '../../utils/IntlWrapper';
 
+const intl = new IntlWrapper();
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
@@ -191,7 +193,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Duration'),
         body: [
           {
-            text: `${getDurationInLocale({ minutes: data.runtime })}`,
+            text: `${intl.setTimestamp(data.runtime, 'minutes').Duration.get()}`,
           },
         ],
       });

@@ -77,7 +77,7 @@ import { SingleAbstract } from '../../../_provider/singleAbstract';
 import Header from '../header.vue';
 import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
-import { getDateTimeInLocale, getProgressDateTimeInLocale } from '../../../utils/time';
+import { IntlWrapper } from '../../../utils/IntlWrapper';
 
 defineProps({
   info: {
@@ -92,11 +92,11 @@ defineProps({
 
 function getTitle(item) {
   if (item.lastEp && item.lastEp.timestamp) {
-    return getProgressDateTimeInLocale(item.lastEp.timestamp);
+    return new IntlWrapper().setTimestamp(item.lastEp.timestamp).Progress.get().time;
   }
   if (item.predicition && item.predicition.timestamp) {
     return api.storage.lang('prediction_next', [
-      getProgressDateTimeInLocale(item.predicition.timestamp),
+      new IntlWrapper().setTimestamp(item.predicition.timestamp).Progress.get().time,
     ]);
   }
   return '';
@@ -106,7 +106,6 @@ function getTimezoneDate(
   dateElement: Date | string,
   timezone = Intl.DateTimeFormat().resolvedOptions().timeZone,
 ) {
-  const userLang = api.storage.lang('locale');
   const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
     hour: '2-digit',
@@ -116,7 +115,7 @@ function getTimezoneDate(
   };
 
   const date = typeof dateElement === 'string' ? new Date(dateElement) : dateElement;
-  return `${getDateTimeInLocale(date, userLang, options)}${timezone === 'Asia/Tokyo' ? ' JST' : ''}`;
+  return `${new IntlWrapper().setDate(date).DateTime.get(options)}${timezone === 'Asia/Tokyo' ? ' JST' : ''}`;
 }
 </script>
 

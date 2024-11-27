@@ -1,7 +1,9 @@
 import { ConfObj } from '../../../_provider/definitions';
-import { getDurationInLocale } from '../../../utils/time';
+import { IntlWrapper } from '../../../utils/IntlWrapper';
 import SettingsGeneral from './settings-general.vue';
 import SettingsProgressDropdown from './settings-progress-dropdown.vue';
+
+const intl = new IntlWrapper();
 
 function startProgressSync() {
   if (api.type === 'webextension') {
@@ -60,24 +62,24 @@ export const estimation: ConfObj[] = [
           options: [
             { title: api.storage.lang('settings_Interval_Off'), value: '0' },
             {
-              title: `${getDurationInLocale({ minutes: 30 }, 'long')}`,
+              title: `${intl.setDuration({ minutes: 30 }).Duration.get('long')}`,
               value: '30',
             },
-            { title: `${getDurationInLocale({ hours: 1 }, 'long')}`, value: '60' },
+            { title: `${intl.setDuration({ hours: 1 }).Duration.get('long')}`, value: '60' },
             {
-              title: `${getDurationInLocale({ hours: 2 }, 'long')}`,
+              title: `${intl.setDuration({ hours: 2 }).Duration.get('long')}`,
               value: '120',
             },
             {
-              title: `${getDurationInLocale({ hours: 4 }, 'long')}`,
+              title: `${intl.setDuration({ hours: 4 }).Duration.get('long')}`,
               value: '240',
             },
             {
-              title: `${getDurationInLocale({ hours: 12 }, 'long')}`,
+              title: `${intl.setDuration({ hours: 12 }).Duration.get('long')}`,
               value: '720',
             },
             {
-              title: `${getDurationInLocale({ hours: 24 }, 'long')}`,
+              title: `${intl.setDuration({ hours: 24 }).Duration.get('long')}`,
               value: '1440',
             },
           ],

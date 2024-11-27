@@ -1,7 +1,9 @@
 import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { getDateInLocale, getDurationInLocale } from '../../utils/time';
+import { IntlWrapper } from '../../utils/IntlWrapper';
+
+const intl = new IntlWrapper();
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -324,7 +326,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Duration'),
         body: [
           {
-            text: `${getDurationInLocale({ minutes: data.data.Media.duration })}`,
+            text: `${intl.setTimestamp(data.data.Media.duration, 'minutes').Duration.get()}`,
           },
         ],
       });
@@ -343,13 +345,15 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Start_Date'),
         body: [
           {
-            text: getDateInLocale(
-              new Date(
-                data.data.Media.startDate.year,
-                data.data.Media.startDate.month,
-                data.data.Media.startDate.day,
-              ),
-            ),
+            text: intl
+              .setDate(
+                new Date(
+                  data.data.Media.startDate.year,
+                  data.data.Media.startDate.month,
+                  data.data.Media.startDate.day,
+                ),
+              )
+              .DateTime.Date.get(),
           },
         ],
       });
@@ -359,13 +363,15 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_End_Date'),
         body: [
           {
-            text: getDateInLocale(
-              new Date(
-                data.data.Media.endDate.year,
-                data.data.Media.endDate.month,
-                data.data.Media.endDate.day,
-              ),
-            ),
+            text: intl
+              .setDate(
+                new Date(
+                  data.data.Media.endDate.year,
+                  data.data.Media.endDate.month,
+                  data.data.Media.endDate.day,
+                ),
+              )
+              .DateTime.Date.get(),
           },
         ],
       });
@@ -484,7 +490,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       reviews.push({
         body: {
           people: i.rating,
-          date: getDateInLocale(i.createdAt * 1000, 'short'),
+          date: intl.setTimestamp(i.createdAt * 1000).Progress.get('short').time,
           rating: i.score,
           text: i.body,
         },

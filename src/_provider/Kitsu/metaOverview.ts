@@ -1,8 +1,9 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { getDateInLocale, getDurationInLocale } from '../../utils/time';
+import { IntlWrapper } from '../../utils/IntlWrapper';
 
+const intl = new IntlWrapper();
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
@@ -213,7 +214,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Duration'),
         body: [
           {
-            text: `${getDurationInLocale({ minutes: this.animeI().attributes.episodeLength })}`,
+            text: `${intl.setTimestamp(this.animeI().attributes.episodeLength, 'minutes').Duration.get()}`,
           },
         ],
       });
@@ -235,7 +236,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Start_Date'),
         body: [
           {
-            text: getDateInLocale(this.animeI().attributes.startDate),
+            text: intl.setDate(this.animeI().attributes.startDate).DateTime.Date.get(),
           },
         ],
       });
@@ -245,7 +246,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_End_Date'),
         body: [
           {
-            text: getDateInLocale(this.animeI().attributes.endDate),
+            text: intl.setDate(this.animeI().attributes.endDate).DateTime.Date.get(),
           },
         ],
       });
@@ -281,7 +282,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Total_Playtime'),
         body: [
           {
-            text: `${getDurationInLocale({ minutes: this.animeI().attributes.totalLength })}`,
+            text: `${intl.setTimestamp(this.animeI().attributes.totalLength, 'minutes').Duration.get()}`,
           },
         ],
       });

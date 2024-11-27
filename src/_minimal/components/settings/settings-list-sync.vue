@@ -122,7 +122,7 @@
                   {{ lang('settings_listsync_startdate') }}
                   {{
                     item.master.startDate
-                      ? getDateInLocale(item.master.startDate)
+                      ? new IntlWrapper().setDate(item.master.startDate).DateTime.Date.get()
                       : lang('settings_listsync_unknowndate')
                   }}
                 </div>
@@ -130,7 +130,7 @@
                   {{ lang('settings_listsync_finishdate') }}
                   {{
                     item.master.finishDate
-                      ? getDateInLocale(item.master.finishDate)
+                      ? new IntlWrapper().setDate(item.master.finishDate).DateTime.Date.get()
                       : lang('settings_listsync_unknowndate')
                   }}
                 </div>
@@ -184,7 +184,7 @@
                     →
                     <text class="highlight">{{
                       slave.diff.startDate
-                        ? getDateInLocale(slave.diff.startDate)
+                        ? new IntlWrapper().setDate(slave.diff.startDate).DateTime.Date.get()
                         : lang('settings_listsync_unknowndate')
                     }}</text>
                   </span>
@@ -196,7 +196,7 @@
                     →
                     <text class="highlight">{{
                       slave.diff.finishDate
-                        ? getDateInLocale(slave.diff.finishDate)
+                        ? new IntlWrapper().setDate(slave.diff.finishDate).DateTime.Date.get()
                         : lang('settings_listsync_unknowndate')
                     }}</text>
                   </span>
@@ -240,7 +240,7 @@
                 {{ lang('settings_listsync_startdate') }}
                 {{
                   item.startDate
-                    ? getDateInLocale(item.startDate)
+                    ? new IntlWrapper().setDate(item.startDate).DateTime.Date.get()
                     : lang('settings_listsync_unknowndate')
                 }}
               </div>
@@ -248,7 +248,7 @@
                 {{ lang('settings_listsync_finishdate') }}
                 {{
                   item.finishDate
-                    ? getDateInLocale(item.finishDate)
+                    ? new IntlWrapper().setDate(item.finishDate).DateTime.Date.get()
                     : lang('settings_listsync_unknowndate')
                 }}
               </div>
@@ -283,7 +283,7 @@ import Description from '../description.vue';
 import CodeBlock from '../code-block.vue';
 import SettingsGeneral from './settings-general.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
-import { getDateInLocale } from '../../../utils/time';
+import { IntlWrapper } from '../../../utils/IntlWrapper';
 
 defineProps({
   title: {
