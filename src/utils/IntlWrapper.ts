@@ -1,8 +1,10 @@
+/* eslint-disable max-classes-per-file */
 /* eslint-disable no-case-declarations */
 // TODO: Delete @ts-expect-error comments after TS will add support for Intl.DurationFormat
 
 type durationFormatStyle = 'long' | 'short' | 'narrow' | 'digital';
-
+type durationStyle = 'Duration' | 'Progress' | 'M/H/D/Y';
+type Rules = 'None' | 'RangeDateTime' | 'RangeDate' | 'RangeTime' | 'DateTime' | 'Date' | 'Time';
 interface durationFormat {
   years?: number;
   months?: number;
@@ -26,68 +28,36 @@ const dateUnitToMs = {
   seconds: 1000,
 } as const;
 
-enum Rules {
-  DurationFormat,
-  Progress,
-  Range,
-  DateTime,
-}
-
-export class IntlWrapper {
-  // Output variables
-  protected output: {
-    text: string;
-    progress: {
-      time?: durationFormat;
-      isFuture: boolean;
-    };
-  } = {
-    text: '',
-    progress: {
-      isFuture: false,
-    },
-  };
-
-  // Input variables
-  protected from: Date | number = new Date();
-
-  protected to: Date | number = new Date();
-
-  protected locale: Intl.LocalesArgument = api.storage.lang('locale');
-
+export class IntlDuration {
   protected duration?: durationFormat;
 
-  protected timestamp?: number;
+  protected relativeTime?: number;
+
+  protected isFuture = false;
+
+  protected isNow = false;
+
+  protected locale: Intl.LocalesArgument;
+
+  protected durationFormatStyle: durationFormatStyle;
+
+  protected durationStyle: durationStyle;
 
   // @ts-expect-error surely it works
   protected isFallback = !Intl.DurationFormat;
 
-  constructor() {
-    return this;
-  }
-
-  // Setters
-  setTimestamp(timestamp: number, convertFrom?: keyof typeof dateUnitToMs) {
-    this.setDate(
-      convertFrom ? Number(IntlWrapper.toTimestamp(timestamp, convertFrom)) : Number(timestamp),
-    );
-    return this;
-  }
-
-  setDates(from: Date | number | string, to: Date | number | string) {
-    this.from = new Date(from);
-    this.to = new Date(to);
-    this.timestamp = this.from.getTime();
-    return this;
-  }
-
-  setDate(date: Date | number | string) {
-    this.setDates(date, date);
-    return this;
-  }
-
-  setDuration(duration: durationFormat) {
-    this.duration = duration;
+  constructor(
+    input: number | durationFormat = { minutes: 0 },
+    style: durationStyle = 'Duration',
+    convertFrom?: keyof typeof dateUnitToMs,
+    format: durationFormatStyle = 'narrow',
+    locale: Intl.LocalesArgument = api.storage.lang('locale'),
+  ) {
+    if (typeof input === 'number') this.setRelativeTime(input, convertFrom);
+    if (typeof input === 'object') this.setDuration(input);
+    this.locale = locale;
+    this.durationStyle = style;
+    this.durationFormatStyle = format;
     return this;
   }
 
@@ -96,69 +66,73 @@ export class IntlWrapper {
     return this;
   }
 
-  // Processing functions
-  protected transform(rule: Rules) {
-    switch (rule) {
-      case Rules.DurationFormat:
-        if (this.timestamp) this.output.progress = timestampToTime(this.timestamp);
-        if (this.duration) this.output.progress.time = this.duration;
+  setRelativeTime(relativeTime: number, convertFrom?: keyof typeof dateUnitToMs) {
+    this.relativeTime = Number(relativeTime);
+    if (convertFrom) this.toTimestamp(convertFrom);
+    return this;
+  }
+
+  setDuration(duration: durationFormat) {
+    this.duration = duration;
+    return this;
+  }
+
+  setDurationFormatStyle(style: durationFormatStyle) {
+    this.durationFormatStyle = style;
+    return this;
+  }
+
+  setDurationStyle(style: durationStyle) {
+    this.durationStyle = style;
+    return this;
+  }
+
+  protected checkForNow(): boolean {
+    if (!this.duration) return false;
+    const keys = Object.keys(this.duration);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      const value = this.duration[key];
+      if (value !== 0 && key !== 'seconds') return false;
+      if (value <= 30 && key === 'seconds') break;
+    }
+    return true;
+  }
+
+  protected transform() {
+    switch (this.durationStyle) {
+      case 'Duration':
+        if (this.relativeTime)
+          ({ time: this.duration, isFuture: this.isFuture } = timestampToTime(this.relativeTime));
         break;
-      case Rules.Progress:
-        if (this.timestamp) this.output.progress = timestampToTime(this.timestamp);
-        if (this.duration) this.output.progress.time = this.duration;
+      case 'Progress':
+        if (this.relativeTime)
+          ({ time: this.duration, isFuture: this.isFuture } = timestampToTime(this.relativeTime));
         break;
-      case Rules.Range:
-        break;
-      case Rules.DateTime:
+      case 'M/H/D/Y':
+        if (this.relativeTime)
+          ({ time: this.duration, isFuture: this.isFuture } = timestampToTime(this.relativeTime));
         break;
       default:
         break;
     }
-
     return this;
   }
 
-  protected format(
-    rule: Rules,
-    args?: { dateTimeStyle?: Intl.DateTimeFormatOptions; durationStyle?: durationFormatStyle },
-  ) {
-    switch (rule) {
-      case Rules.DurationFormat:
-        this.output.text = this.getDurationFormat(args ? args.durationStyle : undefined);
+  protected format() {
+    switch (this.durationStyle) {
+      case 'Duration':
         break;
-      case Rules.Progress:
-        if (!this.output.progress.time) {
-          this.output.text = '';
-          break;
-        }
-        this.output.progress.time = shortTime(this.output.progress.time);
+      case 'Progress':
+        if (!this.duration) break;
+        this.duration = shortTime(this.duration);
         if (this.checkForNow()) {
-          this.output.text = api.storage.lang('bookmarksItem_now');
-          break;
+          this.isNow = true;
         }
-        this.output.text = this.getDurationFormat(args ? args.durationStyle : undefined);
         break;
-      case Rules.Range:
-        const validFrom = isValidDate(this.from);
-        const validTo = isValidDate(this.to);
-        if (!validFrom || !validTo) {
-          const from = validFrom
-            ? this.getDateTimeText(this.from, args ? args.dateTimeStyle : undefined)
-            : '?';
-          const to = validTo
-            ? this.getDateTimeText(this.to, args ? args.dateTimeStyle : undefined)
-            : '?';
-          this.output.text = `${from} - ${to}`;
-          break;
-        }
-        this.output.text = this.getDateTimeRangeText(
-          this.from,
-          this.to,
-          args ? args.dateTimeStyle : undefined,
-        );
-        break;
-      case Rules.DateTime:
-        this.output.text = this.getDateTimeText(this.from, args ? args.dateTimeStyle : undefined);
+      case 'M/H/D/Y':
+        if (!this.duration) break;
+        this.duration = durationToMHDY(this.duration);
         break;
       default:
         break;
@@ -167,16 +141,83 @@ export class IntlWrapper {
     return this;
   }
 
-  // Intl wrapper functions
-  protected getDateTimeFormat(style: Intl.DateTimeFormatOptions | undefined = undefined) {
-    return new Intl.DateTimeFormat(this.locale, style);
+  static toTimestamp(time: number, from: keyof typeof dateUnitToMs): number {
+    return Date.now() + time * dateUnitToMs[from];
   }
 
-  protected getDateTimeText(
-    date: Date | number,
-    style: Intl.DateTimeFormatOptions | undefined = undefined,
+  toTimestamp(from: keyof typeof dateUnitToMs) {
+    if (!this.relativeTime) return this;
+    this.relativeTime = Date.now() + this.relativeTime * dateUnitToMs[from];
+    return this;
+  }
+
+  getText(): string {
+    this.transform().format();
+    if (!this.duration) return '';
+    if (this.isNow) return api.storage.lang('bookmarksItem_now');
+    if (this.isFallback) return timeToString(this.duration);
+    // @ts-expect-error surely it works
+    return new Intl.DurationFormat(this.locale, { style: this.durationFormatStyle }).format(
+      this.duration,
+    );
+  }
+
+  getRelativeTime() {
+    return this.relativeTime;
+  }
+
+  getDuration() {
+    return this.duration;
+  }
+
+  getIsFuture() {
+    return this.isFuture;
+  }
+
+  getIsNow() {
+    return this.isNow;
+  }
+
+  getLocale() {
+    return this.locale;
+  }
+
+  getDurationFormatStyle() {
+    return this.durationFormatStyle;
+  }
+
+  getDurationStyle() {
+    return this.durationStyle;
+  }
+}
+
+export class IntlRange {
+  protected from: IntlDateTime;
+
+  protected to: IntlDateTime;
+
+  protected text: string = '';
+
+  protected locale: Intl.LocalesArgument;
+
+  protected dateTimeFormatStyle: Intl.DateTimeFormatOptions;
+
+  constructor(
+    from: Date | number | string,
+    to: Date | number | string,
+    style: Intl.DateTimeFormatOptions = { dateStyle: 'medium' },
+    locale: Intl.LocalesArgument = api.storage.lang('locale'),
   ) {
-    return this.getDateTimeFormat(style).format(date);
+    this.from = new IntlDateTime(from);
+    this.to = new IntlDateTime(to);
+    this.dateTimeFormatStyle = style;
+    this.locale = locale;
+    return this;
+  }
+
+  setStyle(style: Intl.DateTimeFormatOptions) {
+    this.dateTimeFormatStyle = style;
+    return this;
   }
 
   protected getDateTimeRangeText(
@@ -184,102 +225,123 @@ export class IntlWrapper {
     to: Date | number,
     style: Intl.DateTimeFormatOptions | undefined = undefined,
   ) {
-    return this.getDateTimeFormat(style).formatRange(from, to);
+    return new Intl.DateTimeFormat(this.locale, style).formatRange(from, to);
   }
 
-  protected getDurationFormat(style: durationFormatStyle | undefined = undefined) {
-    if (!this.output.progress.time) return '';
-    if (this.isFallback) {
-      return timeToString(this.output.progress.time);
+  protected format() {
+    const validFrom = this.from.isValidDate();
+    const validTo = this.to.isValidDate();
+    if (!validFrom || !validTo) {
+      const from = validFrom ? this.from.getText() : '?';
+      const to = validTo ? this.to.getText() : '?';
+      this.text = `${from} - ${to}`;
+      return this;
     }
-    // @ts-expect-error surely it works
-    return new Intl.DurationFormat(this.locale, { style }).format(this.output.progress.time);
-  }
+    this.text = this.getDateTimeRangeText(
+      this.from.getDate(),
+      this.to.getDate(),
+      this.dateTimeFormatStyle,
+    );
 
-  // Utility
-  static toTimestamp(time: number, from: keyof typeof dateUnitToMs): number {
-    return Date.now() + time * dateUnitToMs[from];
-  }
-
-  protected checkForNow(): boolean {
-    if (!this.output.progress.time) return false;
-    const keys = Object.keys(this.output.progress.time);
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      const value = this.output.progress.time[key];
-      if (value !== 0 && key !== 'seconds') return false;
-      if (value <= 30 && key === 'seconds') break;
-    }
-    return true;
-  }
-
-  toTimestamp(from: keyof typeof dateUnitToMs) {
-    if (!this.timestamp) return this;
-    this.timestamp = Date.now() + this.timestamp * dateUnitToMs[from];
-    this.setDate(this.timestamp);
     return this;
   }
 
+  getText() {
+    this.format();
+    return this.text;
+  }
+}
+
+export class IntlDateTime {
+  // Output variables
+  protected text: string = '';
+
+  // Input variables
+  protected date: Date | number;
+
+  protected locale: Intl.LocalesArgument;
+
+  protected dateTimeFormatStyle: Intl.DateTimeFormatOptions;
+
+  constructor(
+    date: Date | number | string = new Date(),
+    style: Intl.DateTimeFormatOptions = { dateStyle: 'medium' },
+    locale: Intl.LocalesArgument = api.storage.lang('locale'),
+  ) {
+    this.locale = locale;
+    this.dateTimeFormatStyle = style;
+    this.date = new Date(date);
+    return this;
+  }
+
+  // Setters
+  setDate(date: Date | number | string) {
+    this.date = new Date(date);
+    return this;
+  }
+
+  setLocale(locale: Intl.LocalesArgument) {
+    this.locale = locale;
+    return this;
+  }
+
+  setStyle(options: Intl.DateTimeFormatOptions) {
+    this.dateTimeFormatStyle = options;
+    return this;
+  }
+
+  // Processing
+  protected format() {
+    if (!isValidDate(this.date)) this.text = '';
+    else this.text = this.getDateTimeText(this.date, this.dateTimeFormatStyle);
+    return this;
+  }
+
+  // Intl wrapper functions
+  protected getDateTimeText(
+    date: Date | number,
+    style: Intl.DateTimeFormatOptions | undefined = undefined,
+  ) {
+    return new Intl.DateTimeFormat(this.locale, style).format(date);
+  }
+
+  // Utility
+  isValidDate() {
+    return isValidDate(this.date);
+  }
+
   // Getters
-  Duration = {
-    get: (style: durationFormatStyle = 'narrow'): string => {
-      this.transform(Rules.DurationFormat).format(Rules.DurationFormat, {
-        durationStyle: style,
-      });
-      return this.output.text;
-    },
-  };
+  getDate() {
+    return this.date;
+  }
 
-  Progress = {
-    get: (style: durationFormatStyle = 'narrow') => {
-      this.transform(Rules.Progress).format(Rules.Progress, { durationStyle: style });
-      return { time: this.output.text, isFuture: this.output.progress.isFuture };
-    },
-  };
+  getLocale() {
+    return this.locale;
+  }
 
-  DateTime = {
-    get: (style?: Intl.DateTimeFormatOptions) => {
-      this.transform(Rules.DateTime).format(Rules.DateTime, {
-        dateTimeStyle: style,
-      });
-      return this.output.text;
-    },
-    Time: {
-      get: (style: Intl.DateTimeFormatOptions['timeStyle'] = 'short') => {
-        this.transform(Rules.DateTime).format(Rules.DateTime, {
-          dateTimeStyle: { timeStyle: style },
-        });
-        return this.output.text;
-      },
-    },
-    Date: {
-      get: (style: Intl.DateTimeFormatOptions['dateStyle'] = 'medium') => {
-        this.transform(Rules.DateTime).format(Rules.DateTime, {
-          dateTimeStyle: { dateStyle: style },
-        });
-        return this.output.text;
-      },
-    },
-  };
+  getStyle() {
+    return this.dateTimeFormatStyle;
+  }
 
-  Range = {
-    get: (style?: Intl.DateTimeFormatOptions) => {
-      this.transform(Rules.Range).format(Rules.Range, { dateTimeStyle: style });
-      return this.output.text;
-    },
-    Time: {
-      get: (style: Intl.DateTimeFormatOptions['timeStyle'] = 'short') => {
-        this.transform(Rules.Range).format(Rules.Range, { dateTimeStyle: { timeStyle: style } });
-        return this.output.text;
-      },
-    },
-    Date: {
-      get: (style: Intl.DateTimeFormatOptions['dateStyle'] = 'medium') => {
-        this.transform(Rules.Range).format(Rules.Range, { dateTimeStyle: { dateStyle: style } });
-        return this.output.text;
-      },
-    },
-  };
+  getRelative(
+    input: number | durationFormat,
+    style: durationStyle = 'Duration',
+    convertFrom?: keyof typeof dateUnitToMs,
+    format?: durationFormatStyle,
+  ) {
+    const duration = new IntlDuration(input, style, convertFrom, format, this.locale);
+    return duration.getText();
+  }
+
+  getText() {
+    this.format();
+    return this.text;
+  }
+
+  getRange(from: Date | number | string, to: Date | number | string) {
+    const range = new IntlRange(from, to, this.dateTimeFormatStyle, this.locale);
+    return range.getText();
+  }
 }
 
 // Utility for exporting
@@ -402,4 +464,14 @@ export function isValidDate(date: Date | string | number | null | undefined): bo
   if (typeof date === 'number') return true;
   const str = typeof date === 'string' ? new Date(date) : date;
   return str instanceof Date && !Number.isNaN(str.getTime());
+}
+
+export function durationToMHDY(duration: durationFormat): durationFormat {
+  const res = shortTime(duration);
+  return {
+    years: res.years || 0,
+    days: res.days || 0,
+    hours: res.hours || 0,
+    minutes: res.minutes || 0,
+  } as durationFormat;
 }

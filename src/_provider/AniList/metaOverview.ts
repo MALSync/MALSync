@@ -1,9 +1,9 @@
 import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { IntlWrapper } from '../../utils/IntlWrapper';
+import { IntlDateTime } from '../../utils/IntlWrapper';
 
-const intl = new IntlWrapper();
+const intl = new IntlDateTime();
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -326,7 +326,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Duration'),
         body: [
           {
-            text: `${intl.setTimestamp(data.data.Media.duration, 'minutes').Duration.get()}`,
+            text: `${intl.getRelative(data.data.Media.duration, 'Duration', 'minutes')}`,
           },
         ],
       });
@@ -353,7 +353,7 @@ export class MetaOverview extends MetaOverviewAbstract {
                   data.data.Media.startDate.day,
                 ),
               )
-              .DateTime.Date.get(),
+              .getText(),
           },
         ],
       });
@@ -371,7 +371,7 @@ export class MetaOverview extends MetaOverviewAbstract {
                   data.data.Media.endDate.day,
                 ),
               )
-              .DateTime.Date.get(),
+              .getText(),
           },
         ],
       });
@@ -490,7 +490,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       reviews.push({
         body: {
           people: i.rating,
-          date: intl.setTimestamp(i.createdAt * 1000).Progress.get('short').time,
+          date: intl.getRelative(i.createdAt, 'Progress', 'seconds', 'short'),
           rating: i.score,
           text: i.body,
         },

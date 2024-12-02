@@ -77,7 +77,7 @@ import { SingleAbstract } from '../../../_provider/singleAbstract';
 import Header from '../header.vue';
 import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
-import { IntlWrapper } from '../../../utils/IntlWrapper';
+import { IntlDateTime } from '../../../utils/IntlWrapper';
 
 defineProps({
   info: {
@@ -92,11 +92,11 @@ defineProps({
 
 function getTitle(item) {
   if (item.lastEp && item.lastEp.timestamp) {
-    return new IntlWrapper().setTimestamp(item.lastEp.timestamp).Progress.get().time;
+    return new IntlDateTime().getRelative(item.lastEp.timestamp, 'Progress');
   }
   if (item.predicition && item.predicition.timestamp) {
     return api.storage.lang('prediction_next', [
-      new IntlWrapper().setTimestamp(item.predicition.timestamp).Progress.get().time,
+      new IntlDateTime().getRelative(item.predicition.timestamp, 'Progress'),
     ]);
   }
   return '';
@@ -115,7 +115,7 @@ function getTimezoneDate(
   };
 
   const date = typeof dateElement === 'string' ? new Date(dateElement) : dateElement;
-  return `${new IntlWrapper().setDate(date).DateTime.get(options)}${timezone === 'Asia/Tokyo' ? ' JST' : ''}`;
+  return `${new IntlDateTime(date).setStyle(options).getText()}${timezone === 'Asia/Tokyo' ? ' JST' : ''}`;
 }
 </script>
 

@@ -1,9 +1,9 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
-import { IntlWrapper } from '../../utils/IntlWrapper';
+import { IntlDateTime } from '../../utils/IntlWrapper';
 
-const intl = new IntlWrapper();
+const intl = new IntlDateTime();
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
@@ -237,12 +237,12 @@ export class MetaOverview extends MetaOverviewAbstract {
             if (range.includes(' to ')) {
               const start = range.split('to')[0].trim();
               const end = range.split('to')[1].trim();
-              const rangeDate = intl.setDates(start, end).Range.Date.get();
+              const rangeDate = intl.getRange(start, end);
               body = [{ text: rangeDate }];
               break;
             }
             // NOTE - For movies/titles with only 1 air date
-            body = [{ text: `${intl.setDate(range).DateTime.Date.get()}` }];
+            body = [{ text: `${intl.setDate(range).getText()}` }];
             break;
           }
           case 'Duration:': {
@@ -253,14 +253,14 @@ export class MetaOverview extends MetaOverviewAbstract {
             if (match) {
               if (durationString.includes('min') && match.length === 1) {
                 const minutes = Number(match[0]);
-                const result = intl.setDuration({ minutes }).Duration.get();
+                const result = intl.getRelative({ minutes });
                 body = [{ text: `${result}` }];
                 break;
               }
               // NOTE - For movies with total duration
               const hours = Number(match[0]) || 0;
               const minutes = Number(match[1]) || 0;
-              const result = intl.setDuration({ hours, minutes }).Duration.get();
+              const result = intl.getRelative({ hours, minutes });
               body = [{ text: `${result}` }];
               break;
             }
