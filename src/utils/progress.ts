@@ -104,7 +104,7 @@ export class Progress {
 
   getPrediction(): string {
     const timestamp = Number(this.getPredictionTimestamp());
-    const progress = new IntlDateTime().getRelative(timestamp, 'Progress');
+    const progress = new IntlDateTime(timestamp).getRelativeNowText('Progress');
     return progress;
   }
 
@@ -115,12 +115,13 @@ export class Progress {
   }
 
   getLastTimestamp(): number {
+    if (!this.getProgressLastTimestamp()) return NaN;
     return this.getProgressLastTimestamp();
   }
 
   getLast(): string {
-    const timestamp = Number(this.getPredictionTimestamp());
-    const last = new IntlDateTime().getRelative(timestamp, 'Progress');
+    const timestamp = Number(this.getLastTimestamp());
+    const last = new IntlDateTime(timestamp).getRelativeNowText('Progress');
     return last;
   }
 

@@ -92,11 +92,11 @@ defineProps({
 
 function getTitle(item) {
   if (item.lastEp && item.lastEp.timestamp) {
-    return new IntlDateTime().getRelative(item.lastEp.timestamp, 'Progress');
+    return new IntlDateTime(item.lastEp.timestamp).getRelativeNowText('Progress');
   }
   if (item.predicition && item.predicition.timestamp) {
     return api.storage.lang('prediction_next', [
-      new IntlDateTime().getRelative(item.predicition.timestamp, 'Progress'),
+      new IntlDateTime(item.predicition.timestamp).getRelativeNowText('Progress'),
     ]);
   }
   return '';
@@ -115,7 +115,7 @@ function getTimezoneDate(
   };
 
   const date = typeof dateElement === 'string' ? new Date(dateElement) : dateElement;
-  return `${new IntlDateTime(date).setStyle(options).getText()}${timezone === 'Asia/Tokyo' ? ' JST' : ''}`;
+  return `${new IntlDateTime(date).getDateTimeText(options)}${timezone === 'Asia/Tokyo' ? ' JST' : ''}`;
 }
 </script>
 

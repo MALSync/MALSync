@@ -1,10 +1,9 @@
 /* eslint-disable max-classes-per-file */
-/* eslint-disable no-case-declarations */
 // TODO: Delete @ts-expect-error comments after TS will add support for Intl.DurationFormat
 
 type durationFormatStyle = 'long' | 'short' | 'narrow' | 'digital';
 type durationStyle = 'Duration' | 'Progress' | 'M/H/D/Y';
-type Rules = 'None' | 'RangeDateTime' | 'RangeDate' | 'RangeTime' | 'DateTime' | 'Date' | 'Time';
+
 interface durationFormat {
   years?: number;
   months?: number;
@@ -26,38 +25,19 @@ const dateUnitToMs = {
   hours: 60 * 60 * 1000,
   minutes: 60 * 1000,
   seconds: 1000,
+  milliseconds: 1,
 } as const;
 
 export class IntlDuration {
   protected duration?: durationFormat;
 
-  protected relativeTime?: number;
-
-  protected isFuture = false;
-
-  protected isNow = false;
-
   protected locale: Intl.LocalesArgument;
-
-  protected durationFormatStyle: durationFormatStyle;
-
-  protected durationStyle: durationStyle;
 
   // @ts-expect-error surely it works
   protected isFallback = !Intl.DurationFormat;
 
-  constructor(
-    input: number | durationFormat = { minutes: 0 },
-    style: durationStyle = 'Duration',
-    convertFrom?: keyof typeof dateUnitToMs,
-    format: durationFormatStyle = 'narrow',
-    locale: Intl.LocalesArgument = api.storage.lang('locale'),
-  ) {
-    if (typeof input === 'number') this.setRelativeTime(input, convertFrom);
-    if (typeof input === 'object') this.setDuration(input);
+  constructor(locale: Intl.LocalesArgument = api.storage.lang('locale')) {
     this.locale = locale;
-    this.durationStyle = style;
-    this.durationFormatStyle = format;
     return this;
   }
 
@@ -66,69 +46,47 @@ export class IntlDuration {
     return this;
   }
 
-  setRelativeTime(relativeTime: number, convertFrom?: keyof typeof dateUnitToMs) {
-    this.relativeTime = Number(relativeTime);
-    if (convertFrom) this.toTimestamp(convertFrom);
-    return this;
-  }
-
-  setDuration(duration: durationFormat) {
+  // For {hours: 2, minutes: 15}
+  setDuration(duration: durationFormat, style: durationStyle = 'Duration') {
     this.duration = duration;
+    this.process(style);
     return this;
   }
 
-  setDurationFormatStyle(style: durationFormatStyle) {
-    this.durationFormatStyle = style;
+  // For {minutes: 155}
+  setDurationFormatted(duration: durationFormat, style: durationStyle = 'Duration') {
+    const relativeTime = IntlDuration.durationToMs(duration);
+    this.setRelativeTime(relativeTime, 'milliseconds', style);
     return this;
   }
 
-  setDurationStyle(style: durationStyle) {
-    this.durationStyle = style;
+  // For 9000 (seconds) (relative unit - so don't need to convert)
+  setRelativeTime(
+    relativeTime: number,
+    convertFrom: keyof typeof dateUnitToMs,
+    style: durationStyle = 'Duration',
+  ) {
+    const duration = IntlDuration.relativeToDuration(relativeTime, convertFrom);
+    this.setDuration(duration, style);
     return this;
   }
 
-  protected checkForNow(): boolean {
-    if (!this.duration) return false;
-    const keys = Object.keys(this.duration);
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      const value = this.duration[key];
-      if (value !== 0 && key !== 'seconds') return false;
-      if (value <= 30 && key === 'seconds') break;
-    }
-    return true;
-  }
-
-  protected transform() {
-    switch (this.durationStyle) {
-      case 'Duration':
-        if (this.relativeTime)
-          ({ time: this.duration, isFuture: this.isFuture } = timestampToTime(this.relativeTime));
-        break;
-      case 'Progress':
-        if (this.relativeTime)
-          ({ time: this.duration, isFuture: this.isFuture } = timestampToTime(this.relativeTime));
-        break;
-      case 'M/H/D/Y':
-        if (this.relativeTime)
-          ({ time: this.duration, isFuture: this.isFuture } = timestampToTime(this.relativeTime));
-        break;
-      default:
-        break;
-    }
+  // For 1733320467580 (date timestamp) (absolute unit - need to convert to relative)
+  setTimestamp(
+    timestamp: number,
+    style: durationStyle = 'Duration',
+    relativeTo: Date | number = new Date(),
+  ) {
+    const duration = IntlDuration.timestampToDuration(timestamp, relativeTo);
+    this.setDuration(duration, style);
     return this;
   }
 
-  protected format() {
-    switch (this.durationStyle) {
-      case 'Duration':
-        break;
+  protected process(style: durationStyle) {
+    switch (style) {
       case 'Progress':
         if (!this.duration) break;
         this.duration = shortTime(this.duration);
-        if (this.checkForNow()) {
-          this.isNow = true;
-        }
         break;
       case 'M/H/D/Y':
         if (!this.duration) break;
@@ -137,57 +95,48 @@ export class IntlDuration {
       default:
         break;
     }
-
     return this;
   }
 
-  static toTimestamp(time: number, from: keyof typeof dateUnitToMs): number {
-    return Date.now() + time * dateUnitToMs[from];
+  static durationToMs(input: durationFormat): number {
+    const keys = Object.keys(input);
+    let timestamp = 0;
+    if (keys.length <= 0) return timestamp;
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      const value = input[key];
+      timestamp += dateUnitToMs[key] * value;
+    }
+    return timestamp;
   }
 
-  toTimestamp(from: keyof typeof dateUnitToMs) {
-    if (!this.relativeTime) return this;
-    this.relativeTime = Date.now() + this.relativeTime * dateUnitToMs[from];
-    return this;
+  static relativeToDuration(input: number, from: keyof typeof dateUnitToMs): durationFormat {
+    const relative = Date.now();
+    const timestamp = relative + input * dateUnitToMs[from];
+    return timestampToRelativeDuration(timestamp, relative).time;
   }
 
-  getText(): string {
-    this.transform().format();
+  static timestampToDuration(
+    timestamp: number,
+    relativeTo: Date | number = new Date(),
+  ): durationFormat {
+    const relative = new Date(relativeTo).getTime();
+    return timestampToRelativeDuration(timestamp, relative).time;
+  }
+
+  getRelativeText(format: durationFormatStyle = 'narrow'): string {
     if (!this.duration) return '';
-    if (this.isNow) return api.storage.lang('bookmarksItem_now');
     if (this.isFallback) return timeToString(this.duration);
     // @ts-expect-error surely it works
-    return new Intl.DurationFormat(this.locale, { style: this.durationFormatStyle }).format(
-      this.duration,
-    );
-  }
-
-  getRelativeTime() {
-    return this.relativeTime;
+    return new Intl.DurationFormat(this.locale, { style: format }).format(this.duration);
   }
 
   getDuration() {
     return this.duration;
   }
 
-  getIsFuture() {
-    return this.isFuture;
-  }
-
-  getIsNow() {
-    return this.isNow;
-  }
-
   getLocale() {
     return this.locale;
-  }
-
-  getDurationFormatStyle() {
-    return this.durationFormatStyle;
-  }
-
-  getDurationStyle() {
-    return this.durationStyle;
   }
 }
 
@@ -196,80 +145,44 @@ export class IntlRange {
 
   protected to: IntlDateTime;
 
-  protected text: string = '';
-
   protected locale: Intl.LocalesArgument;
-
-  protected dateTimeFormatStyle: Intl.DateTimeFormatOptions;
 
   constructor(
     from: Date | number | string,
     to: Date | number | string,
-    style: Intl.DateTimeFormatOptions = { dateStyle: 'medium' },
     locale: Intl.LocalesArgument = api.storage.lang('locale'),
   ) {
     this.from = new IntlDateTime(from);
     this.to = new IntlDateTime(to);
-    this.dateTimeFormatStyle = style;
     this.locale = locale;
     return this;
   }
 
-  setStyle(style: Intl.DateTimeFormatOptions) {
-    this.dateTimeFormatStyle = style;
-    return this;
-  }
-
-  protected getDateTimeRangeText(
-    from: Date | number,
-    to: Date | number,
-    style: Intl.DateTimeFormatOptions | undefined = undefined,
-  ) {
-    return new Intl.DateTimeFormat(this.locale, style).formatRange(from, to);
-  }
-
-  protected format() {
+  getDateTimeRangeText(style: Intl.DateTimeFormatOptions = { dateStyle: 'medium' }) {
     const validFrom = this.from.isValidDate();
     const validTo = this.to.isValidDate();
     if (!validFrom || !validTo) {
-      const from = validFrom ? this.from.getText() : '?';
-      const to = validTo ? this.to.getText() : '?';
-      this.text = `${from} - ${to}`;
-      return this;
+      const from = validFrom ? this.from.getDateTimeText() : '?';
+      const to = validTo ? this.to.getDateTimeText() : '?';
+      return `${from} - ${to}`;
     }
-    this.text = this.getDateTimeRangeText(
+    return new Intl.DateTimeFormat(this.locale, style).formatRange(
       this.from.getDate(),
       this.to.getDate(),
-      this.dateTimeFormatStyle,
     );
-
-    return this;
-  }
-
-  getText() {
-    this.format();
-    return this.text;
   }
 }
 
 export class IntlDateTime {
-  // Output variables
-  protected text: string = '';
-
-  // Input variables
-  protected date: Date | number;
+  protected date: Date;
 
   protected locale: Intl.LocalesArgument;
 
-  protected dateTimeFormatStyle: Intl.DateTimeFormatOptions;
-
   constructor(
-    date: Date | number | string = new Date(),
-    style: Intl.DateTimeFormatOptions = { dateStyle: 'medium' },
+    date: Date | number | string,
     locale: Intl.LocalesArgument = api.storage.lang('locale'),
   ) {
     this.locale = locale;
-    this.dateTimeFormatStyle = style;
     this.date = new Date(date);
     return this;
   }
@@ -285,29 +198,17 @@ export class IntlDateTime {
     return this;
   }
 
-  setStyle(options: Intl.DateTimeFormatOptions) {
-    this.dateTimeFormatStyle = options;
-    return this;
-  }
-
-  // Processing
-  protected format() {
-    if (!isValidDate(this.date)) this.text = '';
-    else this.text = this.getDateTimeText(this.date, this.dateTimeFormatStyle);
-    return this;
-  }
-
-  // Intl wrapper functions
-  protected getDateTimeText(
-    date: Date | number,
-    style: Intl.DateTimeFormatOptions | undefined = undefined,
-  ) {
-    return new Intl.DateTimeFormat(this.locale, style).format(date);
-  }
-
   // Utility
   isValidDate() {
     return isValidDate(this.date);
+  }
+
+  isNow() {
+    return checkForNow(this.date.getTime());
+  }
+
+  isFuture() {
+    return this.date.getTime() > Date.now();
   }
 
   // Getters
@@ -319,28 +220,27 @@ export class IntlDateTime {
     return this.locale;
   }
 
-  getStyle() {
-    return this.dateTimeFormatStyle;
+  getDateTimeText(style: Intl.DateTimeFormatOptions = { dateStyle: 'medium' }) {
+    if (!isValidDate(this.date)) return '';
+    return new Intl.DateTimeFormat(this.locale, style).format(this.date);
   }
 
-  getRelative(
-    input: number | durationFormat,
-    style: durationStyle = 'Duration',
-    convertFrom?: keyof typeof dateUnitToMs,
-    format?: durationFormatStyle,
-  ) {
-    const duration = new IntlDuration(input, style, convertFrom, format, this.locale);
-    return duration.getText();
+  getRelativeNowText(style: durationStyle = 'Duration', format?: durationFormatStyle) {
+    if (!this.isValidDate()) return '';
+    const relative = new IntlDuration().setLocale(this.locale);
+    relative.setTimestamp(this.date.getTime(), style);
+    const duration = relative.getDuration();
+    if (!duration) return '';
+    if (checkForNow(duration)) return api.storage.lang('bookmarksItem_now');
+    return relative.getRelativeText(format);
   }
 
-  getText() {
-    this.format();
-    return this.text;
-  }
-
-  getRange(from: Date | number | string, to: Date | number | string) {
-    const range = new IntlRange(from, to, this.dateTimeFormatStyle, this.locale);
-    return range.getText();
+  getRelativeNowFriendlyText(style: durationStyle = 'Duration', format?: durationFormatStyle) {
+    const relative = new IntlDuration().setLocale(this.locale);
+    relative.setTimestamp(this.date.getTime(), style);
+    const duration = relative.getDuration();
+    if (!duration) return '';
+    return relative.getRelativeText(format);
   }
 }
 
@@ -410,10 +310,14 @@ export function shortTime(time: durationFormat): durationFormat {
   };
 }
 
-export function timestampToTime(timestamp: number): { time: durationFormat; isFuture: boolean } {
+export function timestampToRelativeDuration(
+  timestamp: number,
+  relativeTo?: Date | number,
+): { time: durationFormat; isFuture: boolean } {
   const map: durationFormat = {};
-  const isFuture = timestamp > Date.now();
-  let timestampAbs = Math.abs(timestamp - Date.now());
+  const relative = relativeTo ? new Date(relativeTo).getTime() : Date.now();
+  const isFuture = timestamp > relative;
+  let timestampAbs = Math.abs(timestamp - relative);
 
   for (const key in dateUnitToMs) {
     const value = Math.floor(timestampAbs / dateUnitToMs[key]);
@@ -474,4 +378,19 @@ export function durationToMHDY(duration: durationFormat): durationFormat {
     hours: res.hours || 0,
     minutes: res.minutes || 0,
   } as durationFormat;
+}
+
+export function checkForNow(
+  input: durationFormat | number,
+  relativeTo: Date | number = new Date(),
+  threshold: durationFormat = { seconds: 30 },
+): boolean {
+  const relativeToTs = new Date(relativeTo).getTime();
+  const durationTs =
+    typeof input === 'number' ? input : IntlDuration.durationToMs(input) + relativeToTs;
+  const thresholdTs = IntlDuration.durationToMs(threshold);
+  const diff = Math.abs(durationTs - relativeToTs);
+
+  if (diff > thresholdTs) return false;
+  return true;
 }

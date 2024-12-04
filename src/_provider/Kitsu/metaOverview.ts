@@ -1,9 +1,8 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { IntlDateTime } from '../../utils/IntlWrapper';
+import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 
-const intl = new IntlDateTime();
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
@@ -214,7 +213,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Duration'),
         body: [
           {
-            text: `${intl.getRelative(this.animeI().attributes.episodeLength, 'Duration', 'minutes')}`,
+            text: `${new IntlDuration().setRelativeTime(this.animeI().attributes.episodeLength, 'minutes', 'Duration').getRelativeText()}`,
           },
         ],
       });
@@ -236,7 +235,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Start_Date'),
         body: [
           {
-            text: intl.setDate(this.animeI().attributes.startDate).getText(),
+            text: new IntlDateTime(this.animeI().attributes.startDate).getDateTimeText(),
           },
         ],
       });
@@ -246,7 +245,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_End_Date'),
         body: [
           {
-            text: intl.setDate(this.animeI().attributes.endDate).getText(),
+            text: new IntlDateTime(this.animeI().attributes.endDate).getDateTimeText(),
           },
         ],
       });
@@ -282,7 +281,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Total_Playtime'),
         body: [
           {
-            text: `${intl.getRelative(this.animeI().attributes.totalLength, 'Duration', 'minutes')}`,
+            text: `${new IntlDuration().setRelativeTime(this.animeI().attributes.totalLength, 'minutes', 'Duration').getRelativeText()}`,
           },
         ],
       });

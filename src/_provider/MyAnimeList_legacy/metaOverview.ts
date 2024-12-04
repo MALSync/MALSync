@@ -1,9 +1,8 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
-import { IntlDateTime } from '../../utils/IntlWrapper';
+import { IntlDateTime, IntlDuration, IntlRange } from '../../utils/IntlWrapper';
 
-const intl = new IntlDateTime();
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
@@ -237,12 +236,12 @@ export class MetaOverview extends MetaOverviewAbstract {
             if (range.includes(' to ')) {
               const start = range.split('to')[0].trim();
               const end = range.split('to')[1].trim();
-              const rangeDate = intl.getRange(start, end);
+              const rangeDate = new IntlRange(start, end).getDateTimeRangeText();
               body = [{ text: rangeDate }];
               break;
             }
             // NOTE - For movies/titles with only 1 air date
-            body = [{ text: `${intl.setDate(range).getText()}` }];
+            body = [{ text: `${new IntlDateTime(range).getDateTimeText()}` }];
             break;
           }
           case 'Duration:': {
@@ -253,14 +252,16 @@ export class MetaOverview extends MetaOverviewAbstract {
             if (match) {
               if (durationString.includes('min') && match.length === 1) {
                 const minutes = Number(match[0]);
-                const result = intl.getRelative({ minutes });
+                const result = new IntlDuration()
+                  .setDurationFormatted({ minutes })
+                  .getRelativeText();
                 body = [{ text: `${result}` }];
                 break;
               }
               // NOTE - For movies with total duration
               const hours = Number(match[0]) || 0;
               const minutes = Number(match[1]) || 0;
-              const result = intl.getRelative({ hours, minutes });
+              const result = new IntlDuration().setDuration({ hours, minutes }).getRelativeText();
               body = [{ text: `${result}` }];
               break;
             }

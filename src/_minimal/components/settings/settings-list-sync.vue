@@ -122,7 +122,7 @@
                   {{ lang('settings_listsync_startdate') }}
                   {{
                     item.master.startDate
-                      ? new IntlDateTime(item.master.startDate).getText()
+                      ? new IntlDateTime(item.master.startDate).getDateTimeText()
                       : lang('settings_listsync_unknowndate')
                   }}
                 </div>
@@ -130,7 +130,7 @@
                   {{ lang('settings_listsync_finishdate') }}
                   {{
                     item.master.finishDate
-                      ? new IntlDateTime(item.master.finishDate).getText()
+                      ? new IntlDateTime(item.master.finishDate).getDateTimeText()
                       : lang('settings_listsync_unknowndate')
                   }}
                 </div>
@@ -184,7 +184,7 @@
                     →
                     <text class="highlight">{{
                       slave.diff.startDate
-                        ? new IntlDateTime(slave.diff.startDate).getText()
+                        ? new IntlDateTime(slave.diff.startDate).getDateTimeText()
                         : lang('settings_listsync_unknowndate')
                     }}</text>
                   </span>
@@ -196,7 +196,7 @@
                     →
                     <text class="highlight">{{
                       slave.diff.finishDate
-                        ? new IntlDateTime(slave.diff.finishDate).getText()
+                        ? new IntlDateTime(slave.diff.finishDate).getDateTimeText()
                         : lang('settings_listsync_unknowndate')
                     }}</text>
                   </span>
@@ -240,7 +240,7 @@
                 {{ lang('settings_listsync_startdate') }}
                 {{
                   item.startDate
-                    ? new IntlDateTime(item.startDate).getText()
+                    ? new IntlDateTime(item.startDate).getDateTimeText()
                     : lang('settings_listsync_unknowndate')
                 }}
               </div>
@@ -248,7 +248,7 @@
                 {{ lang('settings_listsync_finishdate') }}
                 {{
                   item.finishDate
-                    ? new IntlDateTime(item.finishDate).getText()
+                    ? new IntlDateTime(item.finishDate).getDateTimeText()
                     : lang('settings_listsync_unknowndate')
                 }}
               </div>
