@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable max-classes-per-file */
 // TODO: Delete @ts-expect-error comments after TS will add support for Intl.DurationFormat
 
@@ -17,7 +18,7 @@ interface durationFormat {
   nanoseconds?: number;
 }
 
-const dateUnitToMs = {
+export const dateUnitToMs = {
   years: 365 * 24 * 60 * 60 * 1000,
   months: 30 * 24 * 60 * 60 * 1000,
   weeks: 7 * 24 * 60 * 60 * 1000,
@@ -47,55 +48,61 @@ export class IntlDuration {
   }
 
   // For {hours: 2, minutes: 15}
-  setDuration(duration: durationFormat, style: durationStyle = 'Duration') {
+  setDuration(duration: durationFormat) {
     this.duration = duration;
-    this.process(style);
     return this;
   }
 
   // For {minutes: 155}
   setDurationFormatted(duration: durationFormat, style: durationStyle = 'Duration') {
-    const relativeTime = IntlDuration.durationToMs(duration);
-    this.setRelativeTime(relativeTime, 'milliseconds', style);
+    const ms = IntlDuration.durationToMs(duration);
+    this.setRelativeTime(ms, 'milliseconds', style);
     return this;
   }
 
-  // For 9000 (seconds) (relative unit - so don't need to convert)
+  // For 9000 (seconds)
   setRelativeTime(
     relativeTime: number,
     convertFrom: keyof typeof dateUnitToMs,
     style: durationStyle = 'Duration',
   ) {
-    const duration = IntlDuration.relativeToDuration(relativeTime, convertFrom);
-    this.setDuration(duration, style);
+    const ms = relativeTime * dateUnitToMs[convertFrom];
+    this.duration = this.process(ms, style);
     return this;
   }
 
-  // For 1733320467580 (date timestamp) (absolute unit - need to convert to relative)
+  // For 1733320467580 (timestamp)
   setTimestamp(
     timestamp: number,
     style: durationStyle = 'Duration',
     relativeTo: Date | number = new Date(),
   ) {
-    const duration = IntlDuration.timestampToDuration(timestamp, relativeTo);
-    this.setDuration(duration, style);
+    const ms = timestamp - new Date(relativeTo).getTime();
+    this.setRelativeTime(ms, 'milliseconds', style);
     return this;
   }
 
-  protected process(style: durationStyle) {
+  protected process(relativeTime: number, style: durationStyle) {
     switch (style) {
+      case 'Duration':
+        return relativeToDuration(relativeTime, ['seconds', 'minutes', 'hours', 'days']).duration;
       case 'Progress':
-        if (!this.duration) break;
-        this.duration = shortTime(this.duration);
-        break;
+        if (!relativeTime) break;
+        const time = relativeToDuration(relativeTime, [
+          'seconds',
+          'minutes',
+          'hours',
+          'days',
+          'years',
+        ]);
+        return shortTime(time.duration);
       case 'M/H/D/Y':
-        if (!this.duration) break;
-        this.duration = durationToMHDY(this.duration);
-        break;
+        if (!relativeTime) break;
+        return relativeToDuration(relativeTime, ['minutes', 'hours', 'days', 'years']).duration;
       default:
-        break;
+        return {};
     }
-    return this;
+    return {};
   }
 
   static durationToMs(input: durationFormat): number {
@@ -108,20 +115,6 @@ export class IntlDuration {
       timestamp += dateUnitToMs[key] * value;
     }
     return timestamp;
-  }
-
-  static relativeToDuration(input: number, from: keyof typeof dateUnitToMs): durationFormat {
-    const relative = Date.now();
-    const timestamp = relative + input * dateUnitToMs[from];
-    return timestampToRelativeDuration(timestamp, relative).time;
-  }
-
-  static timestampToDuration(
-    timestamp: number,
-    relativeTo: Date | number = new Date(),
-  ): durationFormat {
-    const relative = new Date(relativeTo).getTime();
-    return timestampToRelativeDuration(timestamp, relative).time;
   }
 
   getRelativeText(format: durationFormatStyle = 'narrow'): string {
@@ -227,20 +220,16 @@ export class IntlDateTime {
 
   getRelativeNowText(style: durationStyle = 'Duration', format?: durationFormatStyle) {
     if (!this.isValidDate()) return '';
-    const relative = new IntlDuration().setLocale(this.locale);
+    const relative = new IntlDuration(this.locale);
     relative.setTimestamp(this.date.getTime(), style);
-    const duration = relative.getDuration();
-    if (!duration) return '';
-    if (checkForNow(duration)) return api.storage.lang('bookmarksItem_now');
     return relative.getRelativeText(format);
   }
 
   getRelativeNowFriendlyText(style: durationStyle = 'Duration', format?: durationFormatStyle) {
-    const relative = new IntlDuration().setLocale(this.locale);
-    relative.setTimestamp(this.date.getTime(), style);
-    const duration = relative.getDuration();
-    if (!duration) return '';
-    return relative.getRelativeText(format);
+    if (!this.isValidDate()) return '';
+    if (this.isNow()) return api.storage.lang('bookmarksItem_now');
+    const timeString = this.getRelativeNowText(style, format);
+    return this.isFuture() ? timeString : api.storage.lang('bookmarksItem_ago', [timeString]);
   }
 }
 
@@ -310,30 +299,32 @@ export function shortTime(time: durationFormat): durationFormat {
   };
 }
 
-export function timestampToRelativeDuration(
-  timestamp: number,
+export function relativeToDuration(
+  input: number,
+  units: (keyof typeof dateUnitToMs)[] = ['minutes', 'hours', 'days', 'years'],
   relativeTo?: Date | number,
-): { time: durationFormat; isFuture: boolean } {
-  const map: durationFormat = {};
-  const relative = relativeTo ? new Date(relativeTo).getTime() : Date.now();
-  const isFuture = timestamp > relative;
-  let timestampAbs = Math.abs(timestamp - relative);
+): { duration: durationFormat; isFuture: boolean } {
+  const duration: durationFormat = {};
+  const relative = new Date(relativeTo || 0).getTime();
+  let time = Math.abs(relative - input);
+  const isFuture = input > relative;
 
   for (const key in dateUnitToMs) {
-    const value = Math.floor(timestampAbs / dateUnitToMs[key]);
-    map[key] = value;
+    if (!units.includes(key as keyof typeof dateUnitToMs)) continue;
+    const value = Math.floor(time / dateUnitToMs[key]);
+    duration[key] = value;
   }
-  const mapKeys = Object.keys(map);
+  const mapKeys = Object.keys(duration);
   for (let i = 1; i < mapKeys.length; i++) {
     const keyPrev = mapKeys[i - 1];
-    const valuePrev = map[keyPrev];
+    const valuePrev = duration[keyPrev];
     const keyCurr = mapKeys[i];
 
-    timestampAbs -= dateUnitToMs[keyPrev] * valuePrev;
-    const valueCurr = Math.floor(timestampAbs / dateUnitToMs[keyCurr]);
-    map[keyCurr] = valueCurr;
+    time -= dateUnitToMs[keyPrev] * valuePrev;
+    const valueCurr = Math.floor(time / dateUnitToMs[keyCurr]);
+    duration[keyCurr] = valueCurr;
   }
-  return { time: map, isFuture };
+  return { duration, isFuture };
 }
 
 export function timeToString(time: durationFormat): string {
@@ -370,26 +361,15 @@ export function isValidDate(date: Date | string | number | null | undefined): bo
   return str instanceof Date && !Number.isNaN(str.getTime());
 }
 
-export function durationToMHDY(duration: durationFormat): durationFormat {
-  const res = shortTime(duration);
-  return {
-    years: res.years || 0,
-    days: res.days || 0,
-    hours: res.hours || 0,
-    minutes: res.minutes || 0,
-  } as durationFormat;
-}
-
 export function checkForNow(
-  input: durationFormat | number,
+  input: number,
   relativeTo: Date | number = new Date(),
   threshold: durationFormat = { seconds: 30 },
 ): boolean {
+  if (Number.isNaN(input)) return false;
   const relativeToTs = new Date(relativeTo).getTime();
-  const durationTs =
-    typeof input === 'number' ? input : IntlDuration.durationToMs(input) + relativeToTs;
   const thresholdTs = IntlDuration.durationToMs(threshold);
-  const diff = Math.abs(durationTs - relativeToTs);
+  const diff = Math.abs(input - relativeToTs);
 
   if (diff > thresholdTs) return false;
   return true;

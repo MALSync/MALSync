@@ -104,14 +104,19 @@ export class Progress {
 
   getPrediction(): string {
     const timestamp = Number(this.getPredictionTimestamp());
-    const progress = new IntlDateTime(timestamp).getRelativeNowText('Progress');
+    if (Number.isNaN(timestamp)) return '';
+    const progress = new IntlDateTime(timestamp).getRelativeNowFriendlyText('Progress');
     return progress;
   }
 
   getPredictionText(): string {
-    const pre = this.getPrediction();
-    if (pre) return api.storage.lang(`prediction_Episode_${this.type}`, [pre]);
-    return '';
+    const timestamp = Number(this.getPredictionTimestamp());
+    if (Number.isNaN(timestamp)) return '';
+    const dt = new IntlDateTime(Number(timestamp));
+    const time = dt.getRelativeNowText('Progress');
+    if (!dt.isValidDate()) return '';
+    if (dt.isNow()) return api.storage.lang('bookmarksItem_now');
+    return api.storage.lang(`prediction_Episode_${this.type}`, [time]);
   }
 
   getLastTimestamp(): number {
@@ -121,14 +126,19 @@ export class Progress {
 
   getLast(): string {
     const timestamp = Number(this.getLastTimestamp());
-    const last = new IntlDateTime(timestamp).getRelativeNowText('Progress');
+    if (Number.isNaN(timestamp)) return '';
+    const last = new IntlDateTime(timestamp).getRelativeNowFriendlyText('Progress');
     return last;
   }
 
   getLastText(): string {
-    const last = this.getLast();
-    if (last) return api.storage.lang(`prediction_Last_${this.type}`, [last]);
-    return '';
+    const timestamp = Number(this.getLastTimestamp());
+    if (Number.isNaN(timestamp)) return '';
+    const dt = new IntlDateTime(Number(timestamp));
+    const time = dt.getRelativeNowText('Progress');
+    if (!dt.isValidDate()) return '';
+    if (dt.isNow()) return api.storage.lang('bookmarksItem_now');
+    return api.storage.lang(`prediction_Last_${this.type}`, [time]);
   }
 
   getAuto(): string {
