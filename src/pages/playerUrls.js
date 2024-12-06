@@ -512,6 +512,7 @@ module.exports = {
       '*://rebeccaneverbase.com/e/*',
       '*://loriwithinfamily.com/e/*',
       '*://bethshouldercan.com/e/*',
+      '*://sandratableother.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
