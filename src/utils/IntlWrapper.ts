@@ -141,16 +141,16 @@ export class IntlDuration {
     return timestamp;
   }
 
-  getRelativeText(format: DurationFormatOptions = { style: 'narrow' }): string {
+  getRelativeText(options: DurationFormatOptions = { style: 'narrow' }): string {
     if (!this.duration) return '';
     if (this.isFallback) return timeToString(this.duration);
-    const options: DurationFormatOptions = format;
-    if (format.style === 'significantLongNarrow') {
-      options[Object.keys(this.duration)[0]] = 'long';
-      options.style = 'narrow';
+    const newOptions: DurationFormatOptions = options;
+    if (options.style === 'significantLongNarrow') {
+      newOptions[Object.keys(this.duration)[0]] = 'long';
+      newOptions.style = 'narrow';
     }
     // @ts-expect-error surely it works
-    return new Intl.DurationFormat(this.locale, options).format(this.duration);
+    return new Intl.DurationFormat(this.locale, newOptions).format(this.duration);
   }
 
   getDuration() {
@@ -249,22 +249,22 @@ export class IntlDateTime {
     return this.locale;
   }
 
-  getDateTimeText(style: Intl.DateTimeFormatOptions = { dateStyle: 'medium' }) {
+  getDateTimeText(options: Intl.DateTimeFormatOptions = { dateStyle: 'medium' }) {
     if (!isValidDate(this.date)) return '';
-    return new Intl.DateTimeFormat(this.locale, style).format(this.date);
+    return new Intl.DateTimeFormat(this.locale, options).format(this.date);
   }
 
-  getRelativeNowText(style: DurationStyle = 'Duration', format?: DurationFormatOptions) {
+  getRelativeNowText(style: DurationStyle = 'Duration', options?: DurationFormatOptions) {
     if (!this.isValidDate()) return '';
     const relative = new IntlDuration(this.locale);
     relative.setTimestamp(this.date.getTime(), style);
-    return relative.getRelativeText(format);
+    return relative.getRelativeText(options);
   }
 
-  getRelativeNowFriendlyText(style: DurationStyle = 'Duration', format?: DurationFormatOptions) {
+  getRelativeNowFriendlyText(style: DurationStyle = 'Duration', options?: DurationFormatOptions) {
     if (!this.isValidDate()) return '';
     if (this.isNow()) return api.storage.lang('bookmarksItem_now');
-    const timeString = this.getRelativeNowText(style, format);
+    const timeString = this.getRelativeNowText(style, options);
     return this.isFuture() ? timeString : api.storage.lang('bookmarksItem_ago', [timeString]);
   }
 }
