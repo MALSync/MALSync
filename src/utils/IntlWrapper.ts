@@ -2,10 +2,34 @@
 /* eslint-disable max-classes-per-file */
 // TODO: Delete @ts-expect-error comments after TS will add support for Intl.DurationFormat
 
-type durationFormatStyle = 'long' | 'short' | 'narrow' | 'digital';
-type durationStyle = 'Duration' | 'Progress' | 'M/H/D/Y';
+type DurationStyle = 'Duration' | 'Progress' | 'M/H/D/Y';
 
-interface durationFormat {
+interface DurationFormatOptions {
+  style?: 'long' | 'short' | 'narrow' | 'digital' | 'significantLongNarrow' | undefined;
+  years?: 'long' | 'short' | 'narrow' | undefined;
+  yearsDisplay?: 'auto' | 'always' | undefined;
+  months?: 'long' | 'short' | 'narrow' | undefined;
+  monthsDisplay?: 'auto' | 'always' | undefined;
+  weeks?: 'long' | 'short' | 'narrow' | undefined;
+  weeksDisplay?: 'auto' | 'always' | undefined;
+  days?: 'long' | 'short' | 'narrow' | undefined;
+  daysDisplay?: 'auto' | 'always' | undefined;
+  hours?: 'long' | 'short' | 'narrow' | 'numeric' | '2-digit' | undefined;
+  hoursDisplay?: 'auto' | 'always' | undefined;
+  minutes?: 'long' | 'short' | 'narrow' | 'numeric' | '2-digit' | undefined;
+  minutesDisplay?: 'auto' | 'always' | undefined;
+  seconds?: 'long' | 'short' | 'narrow' | 'numeric' | '2-digit' | undefined;
+  secondsDisplay?: 'auto' | 'always' | undefined;
+  milliseconds?: 'long' | 'short' | 'narrow' | 'numeric' | undefined;
+  millisecondsDisplay?: 'auto' | 'always' | undefined;
+  microseconds?: 'long' | 'short' | 'narrow' | 'numeric' | undefined;
+  microsecondsDisplay?: 'auto' | 'always' | undefined;
+  nanoseconds?: 'long' | 'short' | 'narrow' | 'numeric' | undefined;
+  nanosecondsDisplay?: 'auto' | 'always' | undefined;
+  fractionalDigits?: number | undefined;
+}
+
+interface DurationFormat {
   years?: number;
   months?: number;
   weeks?: number;
@@ -30,7 +54,7 @@ export const dateUnitToMs = {
 } as const;
 
 export class IntlDuration {
-  protected duration?: durationFormat;
+  protected duration?: DurationFormat;
 
   protected locale: Intl.LocalesArgument;
 
@@ -48,13 +72,13 @@ export class IntlDuration {
   }
 
   // For {hours: 2, minutes: 15}
-  setDuration(duration: durationFormat) {
+  setDuration(duration: DurationFormat) {
     this.duration = duration;
     return this;
   }
 
   // For {minutes: 155}
-  setDurationFormatted(duration: durationFormat, style: durationStyle = 'Duration') {
+  setDurationFormatted(duration: DurationFormat, style: DurationStyle = 'Duration') {
     const ms = IntlDuration.durationToMs(duration);
     this.setRelativeTime(ms, 'milliseconds', style);
     return this;
@@ -64,7 +88,7 @@ export class IntlDuration {
   setRelativeTime(
     relativeTime: number,
     convertFrom: keyof typeof dateUnitToMs,
-    style: durationStyle = 'Duration',
+    style: DurationStyle = 'Duration',
   ) {
     const ms = relativeTime * dateUnitToMs[convertFrom];
     this.duration = this.process(ms, style);
@@ -74,7 +98,7 @@ export class IntlDuration {
   // For 1733320467580 (timestamp)
   setTimestamp(
     timestamp: number,
-    style: durationStyle = 'Duration',
+    style: DurationStyle = 'Duration',
     relativeTo: Date | number = new Date(),
   ) {
     const ms = timestamp - new Date(relativeTo).getTime();
@@ -82,7 +106,7 @@ export class IntlDuration {
     return this;
   }
 
-  protected process(relativeTime: number, style: durationStyle) {
+  protected process(relativeTime: number, style: DurationStyle) {
     switch (style) {
       case 'Duration':
         return relativeToDuration(relativeTime, ['seconds', 'minutes', 'hours', 'days']).duration;
@@ -105,7 +129,7 @@ export class IntlDuration {
     return {};
   }
 
-  static durationToMs(input: durationFormat): number {
+  static durationToMs(input: DurationFormat): number {
     const keys = Object.keys(input);
     let timestamp = 0;
     if (keys.length <= 0) return timestamp;
@@ -117,11 +141,16 @@ export class IntlDuration {
     return timestamp;
   }
 
-  getRelativeText(format: durationFormatStyle = 'narrow'): string {
+  getRelativeText(format: DurationFormatOptions = { style: 'narrow' }): string {
     if (!this.duration) return '';
     if (this.isFallback) return timeToString(this.duration);
+    const options: DurationFormatOptions = format;
+    if (format.style === 'significantLongNarrow') {
+      options[Object.keys(this.duration)[0]] = 'long';
+      options.style = 'narrow';
+    }
     // @ts-expect-error surely it works
-    return new Intl.DurationFormat(this.locale, { style: format }).format(this.duration);
+    return new Intl.DurationFormat(this.locale, options).format(this.duration);
   }
 
   getDuration() {
@@ -176,6 +205,13 @@ export class IntlDateTime {
     locale: Intl.LocalesArgument = api.storage.lang('locale'),
   ) {
     this.locale = locale;
+    if (typeof date === 'string') {
+      const number = Number(date);
+      if (!Number.isNaN(number)) {
+        this.date = new Date(number);
+        return this;
+      }
+    }
     this.date = new Date(date);
     return this;
   }
@@ -218,14 +254,14 @@ export class IntlDateTime {
     return new Intl.DateTimeFormat(this.locale, style).format(this.date);
   }
 
-  getRelativeNowText(style: durationStyle = 'Duration', format?: durationFormatStyle) {
+  getRelativeNowText(style: DurationStyle = 'Duration', format?: DurationFormatOptions) {
     if (!this.isValidDate()) return '';
     const relative = new IntlDuration(this.locale);
     relative.setTimestamp(this.date.getTime(), style);
     return relative.getRelativeText(format);
   }
 
-  getRelativeNowFriendlyText(style: durationStyle = 'Duration', format?: durationFormatStyle) {
+  getRelativeNowFriendlyText(style: DurationStyle = 'Duration', format?: DurationFormatOptions) {
     if (!this.isValidDate()) return '';
     if (this.isNow()) return api.storage.lang('bookmarksItem_now');
     const timeString = this.getRelativeNowText(style, format);
@@ -234,7 +270,7 @@ export class IntlDateTime {
 }
 
 // Utility for exporting
-export function shortTime(time: durationFormat): durationFormat {
+export function shortTime(time: DurationFormat): DurationFormat {
   let totalDays = time.days || 0;
   if (time.years) {
     if (time.years > 1) {
@@ -303,8 +339,8 @@ export function relativeToDuration(
   input: number,
   units: (keyof typeof dateUnitToMs)[] = ['minutes', 'hours', 'days', 'years'],
   relativeTo?: Date | number,
-): { duration: durationFormat; isFuture: boolean } {
-  const duration: durationFormat = {};
+): { duration: DurationFormat; isFuture: boolean } {
+  const duration: DurationFormat = {};
   const relative = new Date(relativeTo || 0).getTime();
   let time = Math.abs(relative - input);
   const isFuture = input > relative;
@@ -327,7 +363,7 @@ export function relativeToDuration(
   return { duration, isFuture };
 }
 
-export function timeToString(time: durationFormat): string {
+export function timeToString(time: DurationFormat): string {
   let output = '';
 
   if (time.years) {
@@ -364,7 +400,7 @@ export function isValidDate(date: Date | string | number | null | undefined): bo
 export function checkForNow(
   input: number,
   relativeTo: Date | number = new Date(),
-  threshold: durationFormat = { seconds: 30 },
+  threshold: DurationFormat = { seconds: 30 },
 ): boolean {
   if (Number.isNaN(input)) return false;
   const relativeToTs = new Date(relativeTo).getTime();

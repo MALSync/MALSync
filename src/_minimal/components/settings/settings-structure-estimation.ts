@@ -62,27 +62,27 @@ export const estimation: ConfObj[] = [
           options: [
             { title: api.storage.lang('settings_Interval_Off'), value: '0' },
             {
-              title: `${intl.setDuration({ minutes: 30 }).getRelativeText('long')}`,
+              title: `${intl.setDuration({ minutes: 30 }).getRelativeText({ style: 'long' })}`,
               value: '30',
             },
             {
-              title: `${intl.setDuration({ hours: 1 }).getRelativeText('long')}`,
+              title: `${intl.setDuration({ hours: 1 }).getRelativeText({ style: 'long' })}`,
               value: '60',
             },
             {
-              title: `${intl.setDuration({ hours: 2 }).getRelativeText('long')}`,
+              title: `${intl.setDuration({ hours: 2 }).getRelativeText({ style: 'long' })}`,
               value: '120',
             },
             {
-              title: `${intl.setDuration({ hours: 4 }).getRelativeText('long')}`,
+              title: `${intl.setDuration({ hours: 4 }).getRelativeText({ style: 'long' })}`,
               value: '240',
             },
             {
-              title: `${intl.setDuration({ hours: 12 }).getRelativeText('long')}`,
+              title: `${intl.setDuration({ hours: 12 }).getRelativeText({ style: 'long' })}`,
               value: '720',
             },
             {
-              title: `${intl.setDuration({ hours: 24 }).getRelativeText('long')}`,
+              title: `${intl.setDuration({ hours: 24 }).getRelativeText({ style: 'long' })}`,
               value: '1440',
             },
           ],

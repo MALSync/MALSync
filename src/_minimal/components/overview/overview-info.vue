@@ -92,11 +92,15 @@ defineProps({
 
 function getTitle(item) {
   if (item.lastEp && item.lastEp.timestamp) {
-    return new IntlDateTime(item.lastEp.timestamp).getRelativeNowText('Progress');
+    return new IntlDateTime(Number(item.lastEp.timestamp)).getRelativeNowFriendlyText('Progress', {
+      style: 'long',
+    });
   }
   if (item.predicition && item.predicition.timestamp) {
     return api.storage.lang('prediction_next', [
-      new IntlDateTime(Number(item.predicition.timestamp)).getRelativeNowText('Progress'),
+      new IntlDateTime(Number(item.predicition.timestamp)).getRelativeNowFriendlyText('Progress', {
+        style: 'long',
+      }),
     ]);
   }
   return '';
