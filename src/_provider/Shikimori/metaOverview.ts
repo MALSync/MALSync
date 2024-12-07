@@ -1,6 +1,7 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -192,7 +193,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.meta.duration)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${data.meta.duration} ${api.storage.lang('bookmarksItem_mins')}` }],
+        body: [
+          {
+            text: `${new IntlDuration().setRelativeTime(data.meta.duration, 'minutes', 'Duration').getRelativeText()}`,
+          },
+        ],
       });
 
     if (data.meta.status)
@@ -204,7 +209,13 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.meta.aired_on)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Start_Date'),
-        body: [{ text: data.meta.aired_on }],
+        body: [{ text: `${new IntlDateTime(data.meta.aired_on).getDateTimeText()}` }],
+      });
+
+    if (data.meta.released_on)
+      this.meta.info.push({
+        title: api.storage.lang('overview_sidebar_End_Date'),
+        body: [{ text: `${new IntlDateTime(data.meta.released_on).getDateTimeText()}` }],
       });
 
     if (this.type === 'manga' && data.roles && data.roles.length) {
@@ -223,7 +234,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
       if (authors.length)
         this.meta.info.push({
-          title: `${api.storage.lang('overview_sidebar_Authors')}:`,
+          title: `${api.storage.lang('overview_sidebar_Authors')}`,
           body: authors,
         });
     }

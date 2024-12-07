@@ -1,6 +1,7 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -212,7 +213,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Duration'),
         body: [
           {
-            text: `${this.animeI().attributes.episodeLength} ${api.storage.lang('bookmarksItem_mins')}`,
+            text: `${new IntlDuration().setRelativeTime(this.animeI().attributes.episodeLength, 'minutes', 'Duration').getRelativeText()}`,
           },
         ],
       });
@@ -229,22 +230,24 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     }
 
-    if (
-      typeof this.animeI().attributes.startDate !== 'undefined' &&
-      this.animeI().attributes.startDate !== null
-    )
+    if (this.animeI().attributes.startDate)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Start_Date'),
-        body: [{ text: this.animeI().attributes.startDate }],
+        body: [
+          {
+            text: new IntlDateTime(this.animeI().attributes.startDate).getDateTimeText(),
+          },
+        ],
       });
 
-    if (
-      typeof this.animeI().attributes.endDate !== 'undefined' &&
-      this.animeI().attributes.endDate !== null
-    )
+    if (this.animeI().attributes.endDate)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_End_Date'),
-        body: [{ text: this.animeI().attributes.endDate }],
+        body: [
+          {
+            text: new IntlDateTime(this.animeI().attributes.endDate).getDateTimeText(),
+          },
+        ],
       });
 
     const genres: any[] = [];
@@ -273,15 +276,12 @@ export class MetaOverview extends MetaOverviewAbstract {
         body: [{ text: this.animeI().attributes.ageRating }],
       });
 
-    if (
-      typeof this.animeI().attributes.totalLength !== 'undefined' &&
-      this.animeI().attributes.totalLength !== null
-    )
+    if (this.animeI().attributes.totalLength)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Total_Playtime'),
         body: [
           {
-            text: `${this.animeI().attributes.totalLength} ${api.storage.lang('bookmarksItem_mins')}`,
+            text: `${new IntlDuration().setRelativeTime(this.animeI().attributes.totalLength, 'minutes', 'Duration').getRelativeText()}`,
           },
         ],
       });
