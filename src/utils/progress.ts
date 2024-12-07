@@ -113,7 +113,7 @@ export class Progress {
     const timestamp = Number(this.getPredictionTimestamp());
     if (Number.isNaN(timestamp)) return '';
     const dt = new IntlDateTime(Number(timestamp));
-    const time = dt.getRelativeNowText('Progress');
+    const time = dt.getRelativeNowText('Progress', 'long');
     if (!dt.isValidDate()) return '';
     if (dt.isNow()) return api.storage.lang('bookmarksItem_now');
     return api.storage.lang(`prediction_Episode_${this.type}`, [time]);
@@ -135,7 +135,7 @@ export class Progress {
     const timestamp = Number(this.getLastTimestamp());
     if (Number.isNaN(timestamp)) return '';
     const dt = new IntlDateTime(Number(timestamp));
-    const time = dt.getRelativeNowText('Progress');
+    const time = dt.getRelativeNowText('Progress', 'long');
     if (!dt.isValidDate()) return '';
     if (dt.isNow()) return api.storage.lang('bookmarksItem_now');
     return api.storage.lang(`prediction_Last_${this.type}`, [time]);

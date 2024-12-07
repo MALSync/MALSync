@@ -179,7 +179,11 @@
                 </div>
                 <div>
                   {{ lang('settings_listsync_startdate') }}
-                  {{ slave.startDate ?? lang('settings_listsync_unknowndate') }}
+                  {{
+                    slave.startDate
+                      ? new IntlDateTime(slave.startDate).getDateTimeText()
+                      : lang('settings_listsync_unknowndate')
+                  }}
                   <span v-if="slave.diff && slave.diff.startDate !== undefined">
                     →
                     <text class="highlight">{{
@@ -191,7 +195,11 @@
                 </div>
                 <div>
                   {{ lang('settings_listsync_finishdate') }}
-                  {{ slave.finishDate ?? lang('settings_listsync_unknowndate') }}
+                  {{
+                    slave.finishDate
+                      ? new IntlDateTime(slave.finishDate).getDateTimeText()
+                      : lang('settings_listsync_unknowndate')
+                  }}
                   <span v-if="slave.diff && slave.diff.finishDate !== undefined">
                     →
                     <text class="highlight">{{

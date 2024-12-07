@@ -484,9 +484,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       reviews.push({
         body: {
           people: i.rating,
-          date: new IntlDuration()
-            .setRelativeTime(i.createdAt, 'seconds', 'Progress')
-            .getRelativeText('short'),
+          date: new IntlDateTime(i.createdAt * 1000).getDateTimeText({ dateStyle: 'medium' }),
           rating: i.score,
           text: i.body,
         },
