@@ -53,7 +53,6 @@ export const settingsObj = {
       'MangaFox',
       'MangaSee',
       'MangaFire',
-      'YugenAnime',
       'HiAnime',
       'Hulu',
       'Netflix',
