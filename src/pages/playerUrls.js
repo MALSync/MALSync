@@ -536,15 +536,6 @@ module.exports = {
   evoload: {
     match: ['*://evoload.io/*'],
   },
-  // yugenanime
-  yugenanime: {
-    match: [
-      '*://yugenani.me/e/*',
-      '*://yugen.to/e/*',
-      '*://yugenanime.ro/e/*',
-      '*://yugenanime.tv/e/*',
-    ],
-  },
   // kickassanime
   kaaplay: {
     match: ['*://kaa-play.me/*', '*://kaavid.com/*', '*://vidnethub.net/*', '*://vidco.pro/*'],
