@@ -146,8 +146,15 @@ export class IntlDuration {
     if (this.isFallback) return timeToString(this.duration);
     const newOptions: DurationFormatOptions = options;
     if (options.style === 'significantLongNarrow') {
-      newOptions[Object.keys(this.duration)[0]] = 'long';
-      newOptions.style = 'narrow';
+      const keys = Object.keys(dateUnitToMs);
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        if (this.duration[key]) {
+          newOptions[key] = 'long';
+          newOptions.style = 'narrow';
+          break;
+        }
+      }
     }
     // @ts-expect-error surely it works
     return new Intl.DurationFormat(this.locale, newOptions).format(this.duration);
