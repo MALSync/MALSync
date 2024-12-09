@@ -1,3 +1,4 @@
+import { IntlDateTime } from '../../../utils/IntlWrapper';
 import { Review } from '../../../_provider/metaOverviewAbstract';
 
 export async function reviewMeta(malUrl: string): Promise<Review[]> {
@@ -24,7 +25,8 @@ export async function reviewMeta(malUrl: string): Promise<Review[]> {
 
       const rPeople = reactions.num;
 
-      const rDate = block.find('.update_at').text().trim();
+      const dateText = block.find('.update_at').text().trim();
+      const rDate = new IntlDateTime(dateText).getDateTimeText({ dateStyle: 'medium' });
 
       const rRating = Number(block.find('.rating .num').text());
 
