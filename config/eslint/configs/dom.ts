@@ -1,3 +1,5 @@
+/* eslint-disable es-x/no-import-meta */
+// @ts-nocheck
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { FlatCompat } from '@eslint/eslintrc';
