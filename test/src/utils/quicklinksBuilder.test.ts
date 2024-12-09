@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-
 import { searchSyntax, titleSearch } from '../../../src/utils/quicklinksBuilder';
 
 describe('quicklinksBuilder', function() {

@@ -3,7 +3,7 @@ import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } fr
 
 const logger = con.m('kitsu', '#d65e43');
 
-export function translateList(aniStatus, malStatus: null | number = null) {
+export function translateList(aniStatus: number, malStatus: null | number = null) {
   const list = {
     current: status.Watching,
     planned: status.PlanToWatch,

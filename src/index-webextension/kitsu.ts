@@ -1,7 +1,7 @@
 import { KitsuClass } from '../kitsu/kitsuClass';
 import { firebaseNotification } from '../utils/firebaseNotification';
 
-let lastFocus;
+let lastFocus: number;
 
 function main() {
   if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';

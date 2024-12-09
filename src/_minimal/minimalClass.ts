@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ComponentOptionsBase, ComponentPublicInstance, ref } from 'vue';
 import { createApp } from '../utils/Vue';
 import minimalApp from './minimalApp.vue';
 import { status } from '../_provider/definitions';
@@ -7,12 +7,12 @@ import { Progress } from '../utils/progress';
 import { urlToSlug } from '../utils/slugs';
 
 export class Minimal {
-  private minimalVue;
+  private minimalVue: ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string>, {}>;
 
   private fillState = ref(null);
 
   constructor(
-    public minimal,
+    public minimal: JQuery<HTMLElement>,
     closeFunction = () => window.close(),
     fullscreenFunction: null | Function = null,
   ) {
@@ -34,7 +34,7 @@ export class Minimal {
     });
   }
 
-  fill(data, home: boolean) {
+  fill(data: { url: any } | null, home: boolean) {
     if (data.url && home) {
       const slugObj = urlToSlug(data.url);
       if (slugObj && slugObj.path) {
