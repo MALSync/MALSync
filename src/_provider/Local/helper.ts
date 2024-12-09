@@ -3,7 +3,7 @@ export function getCacheKey(id, page) {
 }
 
 export async function getSyncList() {
-  let data;
+  let data: any[] | Promise<any[]>;
 
   // @ts-ignore
   if (api.type === 'userscript') {

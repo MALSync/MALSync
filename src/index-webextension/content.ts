@@ -4,7 +4,7 @@ import { shortcutListener } from '../utils/player';
 import { floatClick } from '../floatbutton/extension';
 import { pageInterface } from '../pages/pageInterface';
 
-let lastFocus;
+let lastFocus: number;
 
 declare let _Page: pageInterface;
 

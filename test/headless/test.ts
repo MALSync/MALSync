@@ -4,10 +4,7 @@ const { PuppeteerBlocker } = require('@cliqz/adblocker-puppeteer');
 const path = require('path');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
-const fs = require('fs');
-const dir = require('node-dir');
-
-const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
+const script = readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
 
 const testsArray = [];
 let changedFiles = [];
@@ -330,7 +327,7 @@ async function singleCase(block, test, page, testPage, retry = 0) {
 
   await page
     .addScriptTag({
-      content: fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'),
+      content: readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'),
     })
     .then(() => {
       return testJquery();
@@ -498,7 +495,7 @@ async function openPage(b) {
 
 async function initTestsArray() {
   new Promise((resolve, reject) => {
-    dir.readFiles(
+    readFiles(
       `${__dirname}/../../src/`,
       {
         match: /^tests.json$/,
@@ -549,13 +546,13 @@ async function initTestsArray() {
 }
 
 async function resetOnline(path) {
-  fs.readFile(path, 'utf8', function(err, data) {
+  readFile(path, 'utf8', function(err, data) {
     if (err) {
       return console.log(err);
     }
     const result = data.replace(/"offline" *: *true *,/g, `"offline": false,`);
 
-    fs.writeFile(path, result, 'utf8', function(err) {
+    writeFile(path, result, 'utf8', function(err) {
       if (err) return console.log(err);
     });
   });

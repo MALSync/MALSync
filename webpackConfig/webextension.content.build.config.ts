@@ -1,8 +1,8 @@
-const fs = require('fs');
-const pagesMain = require('./utils/pagesMain');
-const path = require('path');
+import { writeFileSync } from 'fs';
+import { completePages } from './utils/pagesMain';
+import { join } from 'path';
 
-const res = pagesMain.completePages().map(page => {
+const res = completePages().map(page => {
   const domain = Array.isArray(page.main.domain) ? page.main.domain[0] : page.main.domain;
   let search = { anime: null, manga: null };
   if (!page.meta.search) {
@@ -30,5 +30,5 @@ const res = pagesMain.completePages().map(page => {
   };
 });
 
-const descFile = path.join(__dirname, '../src/utils/quicklinks.json');
-fs.writeFileSync(descFile, JSON.stringify(res, null, 2), 'utf8');
+const descFile = join(__dirname, '../src/utils/quicklinks.json');
+writeFileSync(descFile, JSON.stringify(res, null, 2), 'utf8');

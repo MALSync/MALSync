@@ -1,7 +1,7 @@
 // Based on: https://github.com/webpack/webpack-sources/issues/92#issuecomment-709601572
 
-const webpack = require('webpack');
-const ModuleFilenameHelpers = require('webpack/lib/ModuleFilenameHelpers');
+import { Compilation } from 'webpack';
+import { matchObject } from 'webpack/lib/ModuleFilenameHelpers';
 
 class WrapperPlugin {
   /**
@@ -35,7 +35,7 @@ class WrapperPlugin {
         compilation.hooks.processAssets.tap(
           {
             name: 'WrapperPlugin',
-            stage: webpack.Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
+            stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
           },
           chunks => wrapChunks(compilation, chunks),
         );
@@ -63,7 +63,7 @@ class WrapperPlugin {
 
     function wrapChunks(compilation, chunks) {
       Object.keys(chunks).forEach(fileName => {
-        if (ModuleFilenameHelpers.matchObject(tester, fileName)) {
+        if (matchObject(tester, fileName)) {
           wrapFile(compilation, fileName, compilation.hash);
         }
       });
@@ -71,4 +71,4 @@ class WrapperPlugin {
   }
 }
 
-module.exports = WrapperPlugin;
+export default WrapperPlugin;

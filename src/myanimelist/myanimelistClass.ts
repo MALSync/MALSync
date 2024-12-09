@@ -1,6 +1,5 @@
 import { Single as ApiSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
-
 import { UserList as ApiList } from '../_provider/MyAnimeList_hybrid/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import { waitForPageToBeVisible } from '../utils/general';

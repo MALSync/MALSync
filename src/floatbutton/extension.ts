@@ -1,4 +1,4 @@
-export function floatClick(page) {
+export function floatClick(page): void {
   if (api.settings.get('floatButtonCorrection')) {
     con.log('Open correction');
     page.openCorrectionUi();

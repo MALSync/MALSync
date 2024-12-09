@@ -1,9 +1,9 @@
-const { exec } = require('child_process');
-const path = require('path');
-const fs = require('fs');
-const pagesUtils = require('./utils/pages');
-const playerUrls = require('../src/pages/playerUrls');
-const mkdirp = require('mkdirp');
+import { exec } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import pagesUtils from './utils/pages';
+import playerUrls from '../src/pages/playerUrls';
+import mkdirp from 'mkdirp';
 
 main();
 async function main() {

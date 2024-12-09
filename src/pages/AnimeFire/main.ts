@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const AnimeFire: pageInterface = {
   name: 'AnimeFire',
-  domain: 'https://animefire.net',
+  domain: 'https://animefire.vip',
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {

@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-export const quicklinks = require('./quicklinks.json');
+import quicklinks from './quicklinks.json';
 
 type QuicklinkGroup = 'home' | 'search' | 'link';
 
@@ -166,7 +166,7 @@ export function combinedLinks() {
 export function optionToCombined(link) {
   if (!link) return null;
   if (link.custom) return link;
-  return quicklinks.find(el => el.name === link);
+  return quicklinks.find((el: { name: any; }) => el.name === link);
 }
 
 export async function activeLinks(

@@ -1,6 +1,6 @@
 import { pageInterface } from '../pageInterface';
 
-let jsonData;
+let jsonData: { season: number; name: string; id: string; episode: number; nextEpisode: any; mal_id: any; anilist_id: any; };
 
 export const ADKami: pageInterface = {
   name: 'ADKami',

@@ -1,4 +1,4 @@
-export async function firebaseNotification() {
+export async function firebaseNotification(): Promise<void> {
   const schedule = await api.storage.get('timestampUpdate/firebaseNotification');
   if (typeof schedule === 'undefined' || j.$.now() - schedule > 10 * 60 * 1000) {
     await checkNotifications();

@@ -76,7 +76,7 @@ export class SyncPage {
   init() {
     const This = this;
     j.$(document).ready(function () {
-      initFloatButton(This, This.floatClick);
+      initFloatButton({ page: This, floatClick: This.floatClick });
     });
 
     if (this.testForCloudflare()) {

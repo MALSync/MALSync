@@ -1,3 +1,4 @@
+/* eslint-disable es-x/no-import-meta */
 import globals from 'globals';
 import { FlatCompat } from '@eslint/eslintrc';
 import { dirname } from 'node:path';

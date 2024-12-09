@@ -1,9 +1,9 @@
-const path = require('path');
-const extra = require('fs-extra');
-const fs = require('fs');
-const pagesMain = require('./utils/pagesMain');
+import { join } from 'path';
+import extra from 'fs-extra';
+import { writeFile, readFile } from 'fs';
+import { pages as _pages } from './utils/pagesMain';
 
-const pages = Object.values(pagesMain.pages());
+const pages = Object.values(_pages());
 
 pages.sort(function(a, b) {
   const textA = a.name.toUpperCase();
@@ -11,7 +11,7 @@ pages.sort(function(a, b) {
   return textA < textB ? -1 : textA > textB ? 1 : 0;
 });
 
-const hpages = Object.values(pagesMain.pages('../../src/pages-adult/pages.ts'));
+const hpages = Object.values(_pages('../../src/pages-adult/pages.ts'));
 
 hpages.sort(function(a, b) {
   const textA = a.name.toUpperCase();
@@ -79,7 +79,7 @@ function createTable() {
   </table>
   `;
 
-  fs.writeFile(path.join(__dirname, '../pages.md'), html, err => {
+  writeFile(join(__dirname, '../pages.md'), html, err => {
     if (err) {
       console.error(err);
       process.exit(1);
@@ -112,14 +112,14 @@ function adultDep() {
   </table>
   `;
 
-  const descFile = path.join(__dirname, '../src/pages-adult/README.md');
-  fs.readFile(descFile, 'utf8', function(err, data) {
+  const descFile = join(__dirname, '../src/pages-adult/README.md');
+  readFile(descFile, 'utf8', function(err, data) {
     if (err) {
       return console.log(err);
     }
     const result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, `<!--pages-->${html}<!--/pages-->`);
 
-    fs.writeFile(descFile, result, 'utf8', function(err) {
+    writeFile(descFile, result, 'utf8', function(err) {
       if (err) return console.log(err);
     });
   });
@@ -127,7 +127,7 @@ function adultDep() {
 
 readMe();
 function readMe() {
-  const pageList = Object.values(pagesMain.pages());
+  const pageList = Object.values(_pages());
 
   const animes = [];
   const mangas = [];
@@ -192,14 +192,14 @@ function readMe() {
   </table>
   `;
 
-  const descFile = path.join(__dirname, '../README.md');
-  fs.readFile(descFile, 'utf8', function(err, data) {
+  const descFile = join(__dirname, '../README.md');
+  readFile(descFile, 'utf8', function(err, data) {
     if (err) {
       return console.log(err);
     }
     const result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, `<!--pages-->${html}<!--/pages-->`);
 
-    fs.writeFile(descFile, result, 'utf8', function(err) {
+    writeFile(descFile, result, 'utf8', function(err) {
       if (err) return console.log(err);
     });
   });
@@ -207,7 +207,7 @@ function readMe() {
 
 createJson();
 function createJson() {
-  const pageList = Object.values(pagesMain.pages());
+  const pageList = Object.values(_pages());
   const res = [];
   for (var page in pageList) {
     page = pageList[page];
@@ -220,8 +220,8 @@ function createJson() {
     });
   }
 
-  const descFile = path.join(__dirname, '../src/pages/list.json');
-  fs.writeFile(descFile, JSON.stringify(res, null, 2), 'utf8', function(err) {
+  const descFile = join(__dirname, '../src/pages/list.json');
+  writeFile(descFile, JSON.stringify(res, null, 2), 'utf8', function(err) {
     if (err) return console.log(err);
   });
 }
