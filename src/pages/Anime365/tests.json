@@ -1,9 +1,9 @@
 {
   "title": "Anime365",
-  "url": "https://smotret-anime.net",
+  "url": "https://smotret-anime.org",
   "testCases": [
     {
-      "url": "https://smotret-anime.net/catalog/wotaku-ni-koi-wa-muzukashii-17750",
+      "url": "https://smotret-anime.org/catalog/wotaku-ni-koi-wa-muzukashii-17750",
       "expected": {
         "sync": false,
         "title": "Wotaku ni Koi wa Muzukashii / Otakoi",
@@ -12,15 +12,15 @@
       }
     },
     {
-      "url": "https://smotret-anime.net/catalog/horimiya-24061/10-seriya-254224/russkie-subtitry-3626417",
+      "url": "https://smotret-anime.org/catalog/horimiya-24061/10-seriya-254224/russkie-subtitry-3626417",
       "expected": {
         "sync": true,
         "title": "Horimiya",
         "identifier": "horimiya-24061",
         "episode": 10,
-        "overviewUrl": "https://smotret-anime.net/catalog/horimiya-24061",
+        "overviewUrl": "https://smotret-anime.org/catalog/horimiya-24061",
         "uiSelector": true,
-        "nextEpUrl": "https://smotret-anime.net/catalog/horimiya-24061/11-seriya-254362"
+        "nextEpUrl": "https://smotret-anime.org/catalog/horimiya-24061/11-seriya-254362"
       }
     }
   ]
