@@ -1,4 +1,4 @@
-export default /** @type {import('eslint').Linter.FlatConfig} */ ({
+export default /** @type {import('eslint').Linter.Config} */ ({
   rules: {
     'block-scoped-var': 'warn', // TODO
     'no-await-in-loop': 'warn', // TODO

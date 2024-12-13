@@ -1,4 +1,4 @@
-export default /** @type {import('eslint').Linter.FlatConfig} */ ({
+export default /** @type {import('eslint').Linter.Config} */ ({
   rules: {
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/ban-types': [

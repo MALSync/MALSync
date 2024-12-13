@@ -1,4 +1,4 @@
-export default /** @type {import('eslint').Linter.FlatConfig} */ ({
+export default /** @type {import('eslint').Linter.Config} */ ({
   rules: {
     'vue/no-useless-template-attributes': 'off',
     'vue/component-tags-order': 'off',

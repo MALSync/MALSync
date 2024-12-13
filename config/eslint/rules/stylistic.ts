@@ -5,7 +5,7 @@ const prettierCoveredRules = /** @type {import('eslint').Linter.RulesRecord} */ 
   '@stylistic/brace-style': 'off',
 });
 
-export default /** @type {import('eslint').Linter.FlatConfig} */ ({
+export default /** @type {import('eslint').Linter.Config} */ ({
   rules: {
     ...prettierCoveredRules,
     '@stylistic/operator-linebreak': [

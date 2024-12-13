@@ -1,24 +1,24 @@
-import { merge } from './utils/merge.mjs';
+import { merge } from './utils/merge.js';
 
-/** @satisfies {{ [scope: string]: () => Promise<{ default: import('eslint').Linter.FlatConfig }> }} */
+/** @satisfies {{ [scope: string]: () => Promise<{ default: import('eslint').Linter.Config }> }} */
 const configMap = {
   async node() {
-    return import('./configs/node.mjs');
+    return import('./configs/node');
   },
   async dom() {
-    return import('./configs/dom.mjs');
+    return import('./configs/dom');
   },
   async config() {
-    return import('./configs/config.mjs');
+    return import('./configs/config');
   },
   async typescript() {
-    return import('./configs/typescript.mjs');
+    return import('./configs/typescript');
   },
   'typescript-dom': async () => {
-    return import('./configs/typescript-dom.mjs');
+    return import('./configs/typescript-dom');
   },
   'vue-typescript': async () => {
-    return import('./configs/vue-typescript.mjs');
+    return import('./configs/vue-typescript');
   },
 };
 
@@ -53,5 +53,5 @@ export async function useConfig(config) {
   return mergedConfig;
 }
 
-export { merge } from './utils/merge.mjs';
-export { mergeAll } from './utils/mergeAllConfig.mjs';
+export { merge } from './utils/merge.js';
+export { mergeAll } from './utils/mergeAllConfig.js';

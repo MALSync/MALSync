@@ -10,7 +10,6 @@
     "target": "es2021",
     "lib": ["es2021", "dom"],
     "jsx": "preserve",
-    "allowJs": true,
     "sourceMap": true,
     "strict": true,
     "useUnknownInCatchVariables": false,
@@ -18,6 +17,6 @@
     "skipLibCheck": true
   },
   "include": [
-    "./eslint.mjs"
+    "eslint.ts"
   ]
 }

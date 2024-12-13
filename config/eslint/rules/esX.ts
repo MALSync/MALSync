@@ -1,4 +1,4 @@
-export default /** @type {import('eslint').Linter.FlatConfig} */ ({
+export default /** @type {import('eslint').Linter.Config} */ ({
   rules: {
     'es-x/no-optional-chaining': 'warn',
     'es-x/no-dynamic-import': 'off',
