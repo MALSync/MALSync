@@ -21,6 +21,10 @@ export const etc: ConfObj[] = [
       component: 'checkbox',
       option: 'malAltTitles',
     },
+    change: () => {
+      utils.clearCache();
+      if (api.type === 'webextension') localStore.clear();
+    },
     component: SettingsGeneral,
   },
   {
