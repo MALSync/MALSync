@@ -15,6 +15,15 @@ export const etc: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'malAltTitles',
+    title: 'Use English Mal Titles',
+    props: {
+      component: 'checkbox',
+      option: 'malAltTitles',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'cleanTagsUi',
     title: () => api.storage.lang('settings_clean_tags_button'),
     props: () => ({
