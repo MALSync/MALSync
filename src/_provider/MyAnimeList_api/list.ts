@@ -133,7 +133,7 @@ export class UserList extends ListAbstract {
             apiCacheKey: el.node.id,
             cacheKey: el.node.id,
             type: this.listType,
-            title: useAltTitle ? el.node.alternative_titles.en : el.node.title,
+            title: useAltTitle ? el.node.alternative_titles.en || el.node.title : el.node.title,
             url: `https://myanimelist.net/${this.listType}/${el.node.id}`,
             score: el.list_status.score,
             watchedEp: el.list_status.num_episodes_watched,
