@@ -1,6 +1,6 @@
-import * as definitions from '../definitions';
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 
 export class UserList extends ListAbstract {
   name = 'MyAnimeList';
