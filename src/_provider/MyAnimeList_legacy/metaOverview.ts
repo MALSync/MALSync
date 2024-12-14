@@ -22,7 +22,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.logger.log('Retrieve', this.type, `MAL: ${this.malId}`);
 
     const data = await this.getData();
-    this.logger.log('Data', data);
+    // this.logger.log('Data', data);
 
     this.title(data);
     this.description(data);
@@ -70,7 +70,6 @@ export class MetaOverview extends MetaOverviewAbstract {
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-
     this.meta.title = $('<div>').html(j.html(title)).text();
   }
 
