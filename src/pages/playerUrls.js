@@ -691,10 +691,6 @@ module.exports = {
   streamhide: {
     match: ['*://*.streamhide.to/e/*'],
   },
-  // animeflix
-  animeflix: {
-    match: ['*://api.animeflix.live/*', '*://api.animeflix.dev/*', '*://*.animeflix.ci/player?*'],
-  },
   // zoro
   megacloud: {
     match: ['*://megacloud.tv/*'],
