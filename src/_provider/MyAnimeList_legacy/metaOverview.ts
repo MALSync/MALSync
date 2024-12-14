@@ -51,26 +51,27 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     const useAltTitle = api.settings.get('malAltTitles');
 
-    if (useAltTitle) {
-      title = data
-        .split('class="title-english title-inherit">')[1]
-        .split('</')[0]
-        .split('<br')[0]
-        .replace(/&quot;/g, '"')
-        .replace(/&#039;/g, "'");
-    } else {
-      try {
+    try {
+      if (useAltTitle) {
+        title = data
+          .split('class="title-english title-inherit">')[1]
+          .split('</')[0]
+          .split('<br')[0]
+          .replace(/&quot;/g, '"')
+          .replace(/&#039;/g, "'");
+      } else {
         title = data
           .split('itemprop="name">')[1]
           .split('</')[0]
           .split('<br')[0]
           .replace(/&quot;/g, '"')
           .replace(/&#039;/g, "'");
-      } catch (e) {
-        console.log('[iframeOverview] Error:', e);
       }
+    } catch (e) {
+      console.log('[iframeOverview] Error:', e);
+    }
 
-      this.meta.title = $('<div>').html(j.html(title)).text();
+    this.meta.title = $('<div>').html(j.html(title)).text();
   }
 
   private description(data) {
