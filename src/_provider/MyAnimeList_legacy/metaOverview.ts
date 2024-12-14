@@ -22,7 +22,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.logger.log('Retrieve', this.type, `MAL: ${this.malId}`);
 
     const data = await this.getData();
-    // this.logger.log('Data', data);
+    this.logger.log('Data', data);
 
     this.title(data);
     this.description(data);
@@ -48,17 +48,29 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private title(data) {
     let title = '';
-    try {
+
+    const useAltTitle = api.settings.get('malAltTitles');
+
+    if (useAltTitle) {
       title = data
-        .split('itemprop="name">')[1]
+        .split('class="title-english title-inherit">')[1]
         .split('</')[0]
         .split('<br')[0]
         .replace(/&quot;/g, '"')
         .replace(/&#039;/g, "'");
-    } catch (e) {
-      console.log('[iframeOverview] Error:', e);
-    }
-    this.meta.title = $('<div>').html(j.html(title)).text();
+    } else {
+      try {
+        title = data
+          .split('itemprop="name">')[1]
+          .split('</')[0]
+          .split('<br')[0]
+          .replace(/&quot;/g, '"')
+          .replace(/&#039;/g, "'");
+      } catch (e) {
+        console.log('[iframeOverview] Error:', e);
+      }
+
+      this.meta.title = $('<div>').html(j.html(title)).text();
   }
 
   private description(data) {
