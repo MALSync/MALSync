@@ -8,6 +8,7 @@ function saveInList(key, el) {
       list = JSON.parse(list);
       if (!Array.isArray(list)) throw 'Not an array';
     } catch (e) {
+      con.error(e);
       list = [];
     }
     list.push({
@@ -42,6 +43,7 @@ function importList() {
       try {
         list = JSON.parse(list);
       } catch (e) {
+        con.error(e);
         list = [];
       }
       let curDate = await api.storage.get('tm-list-tagSettings');

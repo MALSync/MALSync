@@ -47,13 +47,13 @@ export function errorMessage(error, authenticationUrl: string) {
     return api.storage.lang('Error_Authenticate', [authenticationUrl]);
   }
   if (error instanceof ServerOfflineError) {
-    return `Server Offline`;
+    return 'Server Offline';
   }
   if (error instanceof UrlNotSupportedError) {
     return `Incorrect url provided [${error.message}]`;
   }
   if (error instanceof NotFoundError) {
-    return `Could not find this entry`;
+    return 'Could not find this entry';
   }
   return error.message;
 }

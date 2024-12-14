@@ -347,6 +347,7 @@ module.exports = {
       '*://*.embtaku.pro/*',
       '*://*.embtaku.com/*',
       '*://*.s3taku.com/*',
+      '*://*.s3embtaku.pro/*',
       // auto-gogostream-replace-dont-remove
     ],
   },
@@ -511,6 +512,7 @@ module.exports = {
       '*://rebeccaneverbase.com/e/*',
       '*://loriwithinfamily.com/e/*',
       '*://bethshouldercan.com/e/*',
+      '*://sandratableother.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

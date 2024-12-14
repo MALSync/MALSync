@@ -39,7 +39,7 @@ if (process.env.CI && !changedFiles.length) mode.quiet = true;
 async function getBrowser() {
   if (browser) return browser;
 
-  const tempBrowser = await puppeteer.launch({ headless: headless ? 'new' : false });
+  const tempBrowser = await puppeteer.launch({ headless: headless ? 'new' : false, args: ['--disable-web-security'] });
   browser = tempBrowser;
 
   return tempBrowser;
@@ -144,15 +144,34 @@ async function onlineTest(url, page) {
   }
 }
 
+function safeFileName(filename) {
+  return encodeURIComponent(filename.replace(/(^\/|\/$| )/g, '').replace(/\//g, '_')).toLowerCase();
+}
+
+function getRequestName(message) {
+  let url;
+  let requestBody = '';
+
+  if (typeof message.url === 'object') {
+    url = message.url.url;
+    if (message.url.data) {
+      requestBody = JSON.stringify(message.url.data);
+    }
+  } else {
+    url = message.url;
+  }
+
+  const urlObj = new URL(url);
+  return safeFileName(urlObj.pathname + urlObj.search + urlObj.hash + requestBody);
+}
+
 async function PreparePage(block, page, url, testPage) {
   const urlObj = new URL(url);
-  let name =
-    encodeURIComponent(
-      (urlObj.pathname + urlObj.search + urlObj.hash).replace(/(^\/|\/$| )/g, '').replace(/\//g, '_'),
-    ).toLowerCase()
+  let name = safeFileName(urlObj.pathname + urlObj.search + urlObj.hash);
 
   checkIfFolderExists(block, name);
-  const filePath = path.join(__dirname, '../dist/headless/clear/', block, name, 'index.html');
+  const pagePath = path.join(__dirname, '../dist/headless/clear/', block, name);
+  const filePath = path.join(pagePath, 'index.html');
 
   if (fs.existsSync(filePath)) {
     log(block, 'Cached', 2);
@@ -161,7 +180,16 @@ async function PreparePage(block, page, url, testPage) {
 
     page.on('request', (request) => {
       if (!request.isInterceptResolutionHandled()) {
-        if (request.url() === url || request.url() === url.replace(/#.*/, '')) {
+        if (request.headers()['x-malsync-test']) {
+          const requestMessage = JSON.parse(request.headers()['x-malsync-test']);
+          let requestName = getRequestName(requestMessage);
+          requestPath = path.join(pagePath, 'requests', requestName, 'data.json');
+          if (!fs.existsSync(requestPath)) {
+            return request.abort();
+          }
+          const content = fs.readFileSync(requestPath, 'utf8');
+          return request.respond({ status: 200, body: content });
+        } else if (request.url() === url || request.url() === url.replace(/#.*/, '')) {
           const content = fs.readFileSync(filePath, 'utf8');
           return request.respond({ status: 200, body: content, contentType: 'text/html' });
         } else if (request.resourceType() === 'image') {
@@ -187,6 +215,33 @@ async function PreparePage(block, page, url, testPage) {
     return null;
   } else {
     await page.setBypassCSP(true);
+    await page.setRequestInterception(true);
+
+    const requestData = {};
+
+    page.on('response', async (interceptedResponse) => {
+
+      if (interceptedResponse.request().headers()['x-malsync-test']) {
+        const requestMessage = JSON.parse(
+          interceptedResponse.request().headers()['x-malsync-test'],
+        );
+        const data = await interceptedResponse.text();
+        let requestName = getRequestName(requestMessage);
+
+        requestData[requestName] = data;
+
+        const requestFolder = path.join(pagePath, 'requests');
+        if (!fs.existsSync(requestFolder)) {
+          fs.mkdirSync(requestFolder);
+        }
+
+        const requestPath = path.join(pagePath, 'requests', requestName);
+        if (!fs.existsSync(requestPath)) {
+          fs.mkdirSync(requestPath);
+        }
+      }
+    });
+
     try {
       const [response] = await Promise.all([
         page.goto(url, { timeout: 0 }),
@@ -233,8 +288,13 @@ async function PreparePage(block, page, url, testPage) {
       content += '</script>';
     }
 
-    return () => {
+    return async () => {
+      // Wait for requests to finish
+      await new Promise(resolve => setTimeout(resolve, 5000));
       fs.writeFileSync(filePath, content);
+      for (const key in requestData) {
+        fs.writeFileSync(path.join(pagePath, 'requests', key, 'data.json'), requestData[key]);
+      }
     }
   }
 }
@@ -286,6 +346,21 @@ async function singleCase(block, test, page, testPage, retry = 0) {
     throw 'Blocked';
   }
 
+  await page.evaluate(() => console.log(`Adding chrome api`));
+  await page.addScriptTag({
+    content: `
+      window.chrome = {
+        runtime: {
+          onMessage: {
+            addListener: function(callback) {
+              console.log('chrome.runtime.onMessage.addListener', callback);
+            }
+          }
+        }
+      };
+    `,
+  });
+
   await page.evaluate(() => console.log(`Adding script`));
   await page.addScriptTag({ content: script });
 
@@ -336,7 +411,7 @@ async function singleCase(block, test, page, testPage, retry = 0) {
     }
   }
 
-  if (saveCallback) saveCallback();
+  if (saveCallback) await saveCallback();
 }
 
 async function testPageCase(block, testPage, b) {

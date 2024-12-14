@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "outDir": "./src/",
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "es2021",
+    "lib": ["es2021", "dom"],
+    "jsx": "preserve",
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "useUnknownInCatchVariables": false,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./eslint.mjs"
+  ]
+}

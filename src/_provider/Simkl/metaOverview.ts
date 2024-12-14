@@ -64,7 +64,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (Number.isNaN(this.simklId)) {
       const el = await this.call('https://api.simkl.com/search/id', de, true);
-      if (!el) throw new NotFoundError(`simklId: ${this.simklId}`);
+      if (!el?.length) throw new NotFoundError(`simklId: ${this.simklId}`);
       this.simklId = el[0].ids.simkl;
     }
 

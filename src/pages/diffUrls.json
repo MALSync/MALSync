@@ -69,6 +69,9 @@
     "AnimeXin": [
       "*://animexin.top/*"
     ],
+    "Bakashi": [
+      "*://bakashi.net/*"
+    ],
     "FlameScans": [
       "*://flamecomics.me/*"
     ],
@@ -88,8 +91,10 @@
       "*://*.jwplayerhls.com/*",
       "*://*.videzz.net/*",
       "*://geo.dailymotion.com/*",
+      "*://*.s3embtaku.pro/*",
       "*://dood.li/e/*",
       "*://bethshouldercan.com/e/*",
+      "*://sandratableother.com/e/*",
       "*://hlswish.com/e/*",
       "*://oneupload.to/*",
       "*://player.vimeo.com/*",

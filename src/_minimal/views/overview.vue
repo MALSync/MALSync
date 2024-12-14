@@ -182,7 +182,7 @@ import HR from '../components/hr.vue';
 import { NotFoundError, UrlNotSupportedError } from '../../_provider/Errors';
 import { getSingle } from '../../_provider/singleFactory';
 import MediaLink from '../components/media-link.vue';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 import { SingleAbstract } from '../../_provider/singleAbstract';
 import ErrorMeta from '../components/error/error-meta.vue';
 import PillDark from '../components/pill-dark.vue';

@@ -1,6 +1,7 @@
 import { NotAutenticatedError } from '../Errors';
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 
 export class UserList extends ListAbstract {
   name = 'Kitsu';
@@ -89,8 +90,8 @@ export class UserList extends ListAbstract {
       case 'score':
         return `${pre}rating`;
       default:
-        if (this.status === 1) return this.getOrder('updated');
-        if (this.status === 6) return this.getOrder('updated');
+        if (this.status === definitions.status.Watching) return this.getOrder('updated');
+        if (this.status === definitions.status.PlanToWatch) return this.getOrder('updated');
         return this.getOrder('alpha');
     }
   }
@@ -106,7 +107,7 @@ export class UserList extends ListAbstract {
       sorting = `&sort=${order}`;
     }
 
-    if (this.status !== 7) {
+    if (this.status !== definitions.status.All) {
       const statusTemp = helper.translateList(this.status, this.status);
       statusPart = `&filter[status]=${statusTemp}`;
     }
@@ -176,10 +177,13 @@ export class UserList extends ListAbstract {
           type: listType,
           title: name,
           url: `https://kitsu.app/${listType}/${el.attributes.slug}`,
+          score: Math.round(list.attributes.ratingTwenty / 2),
           watchedEp: list.attributes.progress,
           totalEp: el.attributes.episodeCount,
           status: helper.translateList(list.attributes.status),
-          score: Math.round(list.attributes.ratingTwenty / 2),
+          startDate: helper.timestampToDate(list.attributes.startedAt),
+          finishDate: helper.timestampToDate(list.attributes.finishedAt),
+          rewatchCount: list.attributes.reconsumeCount,
           image:
             el.attributes.posterImage && el.attributes.posterImage.small
               ? el.attributes.posterImage.small
@@ -205,10 +209,15 @@ export class UserList extends ListAbstract {
           type: listType,
           title: name,
           url: `https://kitsu.app/${listType}/${el.attributes.slug}`,
-          watchedEp: list.attributes.progress,
-          totalEp: el.attributes.chapterCount,
-          status: helper.translateList(list.attributes.status),
           score: Math.round(list.attributes.ratingTwenty / 2),
+          watchedEp: list.attributes.progress,
+          readVol: list.attributes.volumesOwned,
+          totalEp: el.attributes.chapterCount,
+          totalVol: el.attributes.volumeCount,
+          status: helper.translateList(list.attributes.status),
+          startDate: helper.timestampToDate(list.attributes.startedAt),
+          finishDate: helper.timestampToDate(list.attributes.finishedAt),
+          rewatchCount: el.attributes.reconsumeCount,
           image:
             el.attributes.posterImage && el.attributes.posterImage.small
               ? el.attributes.posterImage.small

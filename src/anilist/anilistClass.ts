@@ -248,7 +248,7 @@ export class AnilistClass {
     await malObj.fillRelations();
 
     $('.malsync-rel-link').remove();
-    $('h1').first().append(j.html(`<div class="malsync-rel-link" style="float: right;"></div>`));
+    $('h1').first().append(j.html('<div class="malsync-rel-link" style="float: right;"></div>'));
 
     malObj.getPageRelations().forEach(page => {
       $('.malsync-rel-link').append(

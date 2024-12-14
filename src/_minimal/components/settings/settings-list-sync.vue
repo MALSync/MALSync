@@ -39,7 +39,7 @@
           class="provider-item"
         >
           <FormButton v-if="provider.providerSettings.master" :animation="false" color="secondary">
-            Master
+            {{ lang('settings_listsync_master') }}
           </FormButton>
           <FormButton :animation="false" class="provider-item-content">
             <div>
@@ -47,7 +47,7 @@
             </div>
             <div v-dompurify-html="provider.providerSettings.text" />
             <div>
-              List:
+              {{ lang('settings_listsync_list') }}
               {{ provider.providerSettings.list ? provider.providerSettings.list.length : '??' }}
             </div>
           </FormButton>
@@ -60,14 +60,14 @@
     <Section v-if="!syncRequest.loading && syncRequest.data">
       <Card>
         <Section v-if="!syncing" spacer="half">
-          Items to sync:
+          {{ lang('settings_listsync_itemcount') }}
           <CodeBlock>
             <strong>{{ itemNumber }}</strong>
           </CodeBlock>
         </Section>
 
         <Section v-else spacer="half">
-          Syncing please wait:
+          {{ lang('settings_listsync_syncinprogress') }}
           <CodeBlock>
             <strong>{{ totalItems - itemNumber }} / {{ totalItems }}</strong>
           </CodeBlock>
@@ -79,13 +79,13 @@
           :disabled="syncing"
           @click="!syncing ? startSync() : ''"
         >
-          Sync
+          {{ lang('settings_listsync_syncbutton') }}
         </FormButton>
       </Card>
     </Section>
 
     <Section v-if="!syncRequest.loading && listDiff">
-      <Header spacer="half">Updates</Header>
+      <Header spacer="half">{{ lang('settings_listsync_updates') }}</Header>
       <Description :height="500">
         <Section v-for="(item, index) in listDiff" :key="index" spacer="half">
           <Card class="listDiff">
@@ -106,9 +106,30 @@
                 <div>
                   ID: <MediaLink :href="item.master.url">{{ item.master.uid }}</MediaLink>
                 </div>
-                <div>EP: {{ item.master.watchedEp }}</div>
-                <div>Status: {{ item.master.status }}</div>
-                <div>Score: {{ item.master.score }}</div>
+                <div>{{ lang('settings_listsync_score') }} {{ item.master.score }}</div>
+                <div>
+                  {{ lang(`settings_listsync_progress_${item.master.type}`) }}
+                  {{ item.master.watchedEp }}
+                </div>
+                <div v-if="item.master.type === 'manga'">
+                  {{ lang('settings_listsync_volume') }} {{ item.master.readVol }}
+                </div>
+                <div>
+                  {{ lang('settings_listsync_status') }}
+                  {{ getStatusText(item.master.type, item.master.status) }}
+                </div>
+                <div>
+                  {{ lang('settings_listsync_startdate') }}
+                  {{ item.master.startDate ?? lang('settings_listsync_unknowndate') }}
+                </div>
+                <div>
+                  {{ lang('settings_listsync_finishdate') }}
+                  {{ item.master.finishDate ?? lang('settings_listsync_unknowndate') }}
+                </div>
+                <div>
+                  {{ lang(`settings_listsync_repeatcount_${item.master.type}`) }}
+                  {{ item.master.rewatchCount ?? 0 }}
+                </div>
               </FormButton>
               <FormButton
                 v-for="slave in item.slaves"
@@ -121,24 +142,58 @@
                   ID: <MediaLink :href="slave.url">{{ slave.uid }}</MediaLink>
                 </div>
                 <div>
-                  EP: {{ slave.watchedEp }}
-                  <span v-if="slave.diff && slave.diff.watchedEp" class="highlight">
+                  {{ lang('settings_listsync_score') }} {{ slave.score }}
+                  <span v-if="slave.diff && slave.diff.score !== undefined">
+                    → <text class="highlight">{{ slave.diff.score }}</text>
+                  </span>
+                </div>
+                <div>
+                  {{ lang(`settings_listsync_progress_${slave.type}`) }} {{ slave.watchedEp }}
+                  <span v-if="slave.diff && slave.diff.watchedEp !== undefined">
+                    → <text class="highlight">{{ slave.diff.watchedEp }}</text>
+                  </span>
+                </div>
+                <div v-if="slave.type === 'manga'">
+                  {{ lang('settings_listsync_volume') }} {{ slave.readVol }}
+                  <span v-if="slave.diff && slave.diff.readVol !== undefined">
+                    → <text class="highlight">{{ slave.diff.readVol }}</text>
+                  </span>
+                </div>
+                <div>
+                  {{ lang('settings_listsync_status') }}
+                  {{ getStatusText(slave.type, slave.status) }}
+                  <span v-if="slave.diff && slave.diff.status !== undefined">
                     →
-                    <FormButton :animation="false" color="primary" padding="mini">
-                      {{ slave.diff.watchedEp }}
-                    </FormButton>
+                    <text class="highlight">{{
+                      getStatusText(slave.type, slave.diff.status)
+                    }}</text>
                   </span>
                 </div>
                 <div>
-                  Status: {{ slave.status }}
-                  <span v-if="slave.diff && slave.diff.status" class="highlight">
-                    → {{ slave.diff.status }}
+                  {{ lang('settings_listsync_startdate') }}
+                  {{ slave.startDate ?? lang('settings_listsync_unknowndate') }}
+                  <span v-if="slave.diff && slave.diff.startDate !== undefined">
+                    →
+                    <text class="highlight">{{
+                      slave.diff.startDate ?? lang('settings_listsync_unknowndate')
+                    }}</text>
                   </span>
                 </div>
                 <div>
-                  Score: {{ slave.score }}
-                  <span v-if="slave.diff && slave.diff.score" class="highlight">
-                    → {{ slave.diff.score }}
+                  {{ lang('settings_listsync_finishdate') }}
+                  {{ slave.finishDate ?? lang('settings_listsync_unknowndate') }}
+                  <span v-if="slave.diff && slave.diff.finishDate !== undefined">
+                    →
+                    <text class="highlight">{{
+                      slave.diff.finishDate ?? lang('settings_listsync_unknowndate')
+                    }}</text>
+                  </span>
+                </div>
+                <div>
+                  {{ lang(`settings_listsync_repeatcount_${slave.type}`) }}
+                  {{ slave.rewatchCount ?? 0 }}
+                  <span v-if="slave.diff && slave.diff.rewatchCount !== undefined">
+                    → <text class="highlight">{{ slave.diff.rewatchCount }}</text>
                   </span>
                 </div>
               </FormButton>
@@ -149,7 +204,7 @@
     </Section>
 
     <Section v-if="!syncRequest.loading && syncRequest.data && syncRequest.data.missing.length">
-      <Header spacer="half">Missing</Header>
+      <Header spacer="half">{{ lang('settings_listsync_missing') }}</Header>
       <Description :height="500">
         <Section v-for="(item, index) in syncRequest.data.missing" :key="index" spacer="half">
           <Card class="missing">
@@ -161,9 +216,26 @@
               <div>
                 ID: <MediaLink :href="item.url">{{ item.malId }}</MediaLink>
               </div>
-              <div>EP: {{ item.watchedEp }}</div>
-              <div>Status: {{ item.status }}</div>
-              <div>Score: {{ item.score }}</div>
+              <div>{{ lang('settings_listsync_score') }} {{ item.score }}</div>
+              <div>{{ lang(`settings_listsync_progress_${item.type}`) }} {{ item.watchedEp }}</div>
+              <div v-if="item.type === 'manga'">
+                {{ lang('settings_listsync_volume') }} {{ item.readVol }}
+              </div>
+              <div>
+                {{ lang('settings_listsync_status') }} {{ getStatusText(item.type, item.status) }}
+              </div>
+              <div>
+                {{ lang('settings_listsync_startdate') }}
+                {{ item.startDate ?? lang('settings_listsync_unknowndate') }}
+              </div>
+              <div>
+                {{ lang('settings_listsync_finishdate') }}
+                {{ item.finishDate ?? lang('settings_listsync_unknowndate') }}
+              </div>
+              <div>
+                {{ lang(`settings_listsync_repeatcount_${item.type}`) }}
+                {{ item.rewatchCount ?? 0 }}
+              </div>
               <FormButton v-if="item.error" :animation="false" color="secondary" padding="mini">
                 {{ item.error }}
               </FormButton>
@@ -178,6 +250,7 @@
 <script lang="ts" setup>
 import { computed, reactive, ref } from 'vue';
 import * as sync from '../../../utils/syncHandler';
+import { getStatusText } from '../../../utils/general';
 import { createRequest } from '../../utils/reactive';
 import Card from '../card.vue';
 import FormSwitch from '../form/form-switch.vue';
@@ -232,6 +305,11 @@ const syncRequest = createRequest(parameters, async params => {
       list: null,
       master: false,
     },
+    shiki: {
+      text: 'Init',
+      list: null,
+      master: false,
+    },
   });
 
   providerList.value = sync.getListProvider({
@@ -239,6 +317,7 @@ const syncRequest = createRequest(parameters, async params => {
     anilist: listProvider.anilist,
     kitsu: listProvider.kitsu,
     simkl: listProvider.simkl,
+    shiki: listProvider.shiki,
   });
 
   const listOptions = await sync.retriveLists(providerList.value, params.value.type, sync.getList);
@@ -353,7 +432,10 @@ updateBackgroundSyncState();
   }
 
   .highlight {
-    color: var(--primary-color);
+    background-color: var(--cl-primary);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
   }
 }
 </style>

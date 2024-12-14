@@ -1,5 +1,6 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 
 export class UserList extends ListAbstract {
   name = 'MyAnimeList';
@@ -59,8 +60,8 @@ export class UserList extends ListAbstract {
       case 'airing_date':
         return `${this.listType}_start_date`;
       default:
-        if (this.status === 1) return this.getOrder('updated');
-        if (this.status === 6) return this.getOrder('updated');
+        if (this.status === definitions.status.Watching) return this.getOrder('updated');
+        if (this.status === definitions.status.PlanToWatch) return this.getOrder('updated');
         return this.getOrder('alpha');
     }
   }
@@ -88,7 +89,7 @@ export class UserList extends ListAbstract {
     );
 
     let curSt = '';
-    if (this.status !== 7) {
+    if (this.status !== definitions.status.All) {
       if (this.listType === 'manga') {
         curSt = `&status=${helper.mangaStatus[this.status]}`;
       } else {
@@ -100,7 +101,7 @@ export class UserList extends ListAbstract {
       type: 'GET',
       path: `users/@me/${this.listType}list?nsfw=true&limit=${this.limit}&offset=${this.offset}${curSt}${sorting}`,
       fields: [
-        'list_status{tags,is_rewatching,is_rereading,start_date,finish_date}',
+        'list_status{tags,is_rewatching,is_rereading,start_date,finish_date,num_times_rewatched,num_times_reread}',
         'num_episodes',
         'num_chapters',
         'num_volumes',
@@ -130,10 +131,13 @@ export class UserList extends ListAbstract {
             type: this.listType,
             title: el.node.title,
             url: `https://myanimelist.net/${this.listType}/${el.node.id}`,
+            score: el.list_status.score,
             watchedEp: el.list_status.num_episodes_watched,
             totalEp: el.node.num_episodes,
             status: parseInt(helper.animeStatus[el.list_status.status]),
-            score: el.list_status.score,
+            startDate: helper.getRoundedDate(el.list_status.start_date),
+            finishDate: helper.getRoundedDate(el.list_status.finish_date),
+            rewatchCount: el.list_status.num_times_rewatched,
             image: el.node.main_picture?.medium ?? '',
             imageLarge: el.node.main_picture?.large || el.node.main_picture?.medium || '',
             tags: el.list_status.tags.length ? el.list_status.tags.join(',') : '',
@@ -150,10 +154,15 @@ export class UserList extends ListAbstract {
             type: this.listType,
             title: el.node.title,
             url: `https://myanimelist.net/${this.listType}/${el.node.id}`,
-            watchedEp: el.list_status.num_chapters_read,
-            totalEp: el.node.num_chapters,
-            status: parseInt(helper.mangaStatus[el.list_status.status]),
             score: el.list_status.score,
+            watchedEp: el.list_status.num_chapters_read,
+            readVol: el.list_status.num_volumes_read,
+            totalEp: el.node.num_chapters,
+            totalVol: el.node.num_volumes,
+            status: parseInt(helper.mangaStatus[el.list_status.status]),
+            startDate: helper.getRoundedDate(el.list_status.start_date),
+            finishDate: helper.getRoundedDate(el.list_status.finish_date),
+            rewatchCount: el.list_status.num_times_reread,
             image: el.node.main_picture?.medium ?? '',
             imageLarge: el.node.main_picture?.large || el.node.main_picture?.medium || '',
             tags: el.list_status.tags.length ? el.list_status.tags.join(',') : '',
@@ -162,7 +171,6 @@ export class UserList extends ListAbstract {
         );
       }
     }
-    console.log(newData);
     return newData;
   }
 

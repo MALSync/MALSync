@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Bakashi: pageInterface = {
   name: 'Bakashi',
-  domain: 'https://bakashi.tv',
+  domain: 'https://bakashi.net',
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
