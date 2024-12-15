@@ -2,24 +2,24 @@ import { pageInterface } from '../pageInterface';
 
 export const FlameScans: pageInterface = {
   name: 'FlameScans',
-  domain: 'https://flamecomics.com',
+  domain: 'https://flamecomics.xyz',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (j.$('div#content.readercontent').length) {
-      return true;
+    if (utils.urlPart(url, 5) === '') {
+      return false;
     }
-    return false;
+    return true;
   },
   sync: {
     getTitle(url) {
-      return j.$('.chapterbody .headpost a').text().trim();
+      return j.$('[class*="TopChapterNavbar_series_title"]').text().trim();
     },
     getIdentifier(url) {
       return replaceId(utils.urlPart(FlameScans.sync.getOverviewUrl(url), 4));
     },
     getOverviewUrl(url) {
-      const overviewUrl = j.$('.chapterbody .headpost a').attr('href') || '';
+      const overviewUrl = j.$('.mantine-Grid-inner').find('a:first').prop('href') || '';
 
       const temp = overviewUrl.split('/');
 
@@ -30,7 +30,7 @@ export const FlameScans: pageInterface = {
       return temp.join('/');
     },
     getEpisode(url) {
-      const elementEpN = j.$('select#chapter option[selected="selected"]').first().text();
+      const elementEpN = j.$('[class*="TopChapterNavbar_chapter_title"]').text().trim();
 
       const temp = elementEpN.match(/chapter \d+/gim);
 
@@ -39,22 +39,23 @@ export const FlameScans: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const next = j.$('a.ch-next-btn').attr('href');
+      const data = JSON.parse(j.$('#__NEXT_DATA__').text());
+      const next = data.props.pageProps.next || undefined;
 
       if (!next || next === '#/next/') return undefined;
 
-      const temp = next.split('/');
+      const temp = url.split('/');
 
-      if (temp[3] !== 'manga') return next;
-
-      temp.splice(3, 1);
+      temp.splice(5, 1);
+      
+      temp.push(next);
 
       return temp.join('/');
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('h1.entry-title').text().trim();
+      return j.$('h1.mantine-Title-root').text().trim();
     },
     getIdentifier(url) {
       if (utils.urlPart(url, 3) === 'series') {
@@ -63,24 +64,24 @@ export const FlameScans: pageInterface = {
       return replaceId(utils.urlPart(url, 5));
     },
     uiSelector(selector) {
-      j.$('.second-half .right-side .bixbox')
+      j.$('[class*="SeriesPage_coverWrapper"]')
         .first()
-        .before(
+        .after(
           j.html(
-            `<div id= "malthing" class="bixbox bxcl epcheck"><div class="releases"><h2>MAL-Sync</h2></div>${selector}</div>`,
+            `<div id= "malthing" style="background: #2e2e2e;border: 1px solid #3b3b3b;margin-top: 20px;"><div class="releases"><h2>MAL-Sync</h2></div>${selector}</div>`,
           ),
         );
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div#chapterlist li div.chbox');
+        return j.$('[class*="ChapterCard_chapterWrapper"]');
       },
       elementUrl(selector) {
-        return selector.parent().attr('href') || '';
+        return selector.prop('href') || '';
       },
       elementEp(selector) {
-        const elementEpN = selector.parents('li').attr('data-num') || '';
+        const elementEpN = selector.find('.mantine-Text-root').first().text().trim() || '';
 
         const temp = elementEpN.match(/\d+/gim);
 
@@ -99,13 +100,13 @@ export const FlameScans: pageInterface = {
         con.error('404');
         return;
       }
-      if (j.$('h1.entry-title').length && j.$('.epcheck').length) {
+      if (j.$('.mantine-Title-root').length && j.$('[class*="ChapterCard_chapterWrapper"]').length) {
         page.handlePage();
       }
-      if (j.$('div#content.readercontent').length) {
+      if (j.$('[class*="TopChapterNavbar_series_title"]').length) {
         utils.waitUntilTrue(
           function () {
-            if (j.$('select#chapter option[selected="selected"]').first().length) {
+            if (j.$('#__NEXT_DATA__').first().length) {
               return true;
             }
             return false;
