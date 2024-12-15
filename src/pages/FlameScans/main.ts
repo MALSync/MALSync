@@ -16,7 +16,7 @@ export const FlameScans: pageInterface = {
       return j.$('[class*="TopChapterNavbar_series_title"]').text().trim();
     },
     getIdentifier(url) {
-      return replaceId(utils.urlPart(FlameScans.sync.getOverviewUrl(url), 4));
+      return utils.urlPart(FlameScans.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
       const overviewUrl = j.$('.mantine-Grid-inner').find('a:first').prop('href') || '';
@@ -47,7 +47,7 @@ export const FlameScans: pageInterface = {
       const temp = url.split('/');
 
       temp.splice(5, 1);
-      
+
       temp.push(next);
 
       return temp.join('/');
@@ -59,9 +59,9 @@ export const FlameScans: pageInterface = {
     },
     getIdentifier(url) {
       if (utils.urlPart(url, 3) === 'series') {
-        return replaceId(utils.urlPart(url, 4));
+        return utils.urlPart(url, 4);
       }
-      return replaceId(utils.urlPart(url, 5));
+      return utils.urlPart(url, 5);
     },
     uiSelector(selector) {
       j.$('[class*="SeriesPage_coverWrapper"]')
@@ -100,7 +100,10 @@ export const FlameScans: pageInterface = {
         con.error('404');
         return;
       }
-      if (j.$('.mantine-Title-root').length && j.$('[class*="ChapterCard_chapterWrapper"]').length) {
+      if (
+        j.$('.mantine-Title-root').length &&
+        j.$('[class*="ChapterCard_chapterWrapper"]').length
+      ) {
         page.handlePage();
       }
       if (j.$('[class*="TopChapterNavbar_series_title"]').length) {
@@ -119,7 +122,3 @@ export const FlameScans: pageInterface = {
     });
   },
 };
-
-function replaceId(id: string) {
-  return id.replace(/^\d+-/g, '');
-}

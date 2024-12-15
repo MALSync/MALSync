@@ -1,5 +1,5 @@
 {
-  "search": "https://flamecomics.xyz/browse?search={searchtermPlus}",
+  "search": "https://flamecomics.xyz/browse?search={searchterm}",
   "urls": {
     "match": ["*://flamecomics.com/*", "*://flamecomics.me/*", "*://flamecomics.xyz/*"]
   }
