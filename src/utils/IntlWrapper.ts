@@ -2,9 +2,9 @@
 /* eslint-disable max-classes-per-file */
 // TODO: Delete @ts-expect-error comments after TS will add support for Intl.DurationFormat
 
-type DurationStyle = 'Duration' | 'Progress' | 'M/H/D/Y';
+export type DurationStyle = 'Duration' | 'Progress' | 'M/H/D/Y';
 
-interface DurationFormatOptions {
+export interface DurationFormatOptions {
   style?: 'long' | 'short' | 'narrow' | 'digital' | 'significantLongNarrow' | undefined;
   years?: 'long' | 'short' | 'narrow' | undefined;
   yearsDisplay?: 'auto' | 'always' | undefined;
@@ -29,7 +29,7 @@ interface DurationFormatOptions {
   fractionalDigits?: number | undefined;
 }
 
-interface DurationFormat {
+export interface DurationFormat {
   years?: number;
   months?: number;
   weeks?: number;
@@ -99,7 +99,7 @@ export class IntlDuration {
   setTimestamp(
     timestamp: number,
     style: DurationStyle = 'Duration',
-    relativeTo: Date | number = new Date(),
+    relativeTo: Date | number = Date.now(),
   ) {
     const ms = timestamp - new Date(relativeTo).getTime();
     this.setRelativeTime(ms, 'milliseconds', style);
@@ -138,7 +138,7 @@ export class IntlDuration {
       const value = input[key];
       timestamp += dateUnitToMs[key] * value;
     }
-    return timestamp;
+    return timestamp || 0;
   }
 
   getRelativeText(options: DurationFormatOptions = { style: 'narrow' }): string {
@@ -191,8 +191,8 @@ export class IntlRange {
     const validFrom = this.from.isValidDate();
     const validTo = this.to.isValidDate();
     if (!validFrom || !validTo) {
-      const from = validFrom ? this.from.getDateTimeText() : '?';
-      const to = validTo ? this.to.getDateTimeText() : '?';
+      const from = validFrom ? this.from.getDateTimeText(style) : '?';
+      const to = validTo ? this.to.getDateTimeText(style) : '?';
       return `${from} - ${to}`;
     }
     return new Intl.DateTimeFormat(this.locale, style).formatRange(
@@ -345,10 +345,10 @@ export function shortTime(time: DurationFormat): DurationFormat {
 export function relativeToDuration(
   input: number,
   units: (keyof typeof dateUnitToMs)[] = ['minutes', 'hours', 'days', 'years'],
-  relativeTo?: Date | number,
+  relativeTo: Date | number = 0,
 ): { duration: DurationFormat; isFuture: boolean } {
   const duration: DurationFormat = {};
-  const relative = new Date(relativeTo || 0).getTime();
+  const relative = new Date(relativeTo).getTime();
   let time = Math.abs(relative - input);
   const isFuture = input > relative;
 
@@ -406,7 +406,7 @@ export function isValidDate(date: Date | string | number | null | undefined): bo
 
 export function checkForNow(
   input: number,
-  relativeTo: Date | number = new Date(),
+  relativeTo: Date | number = Date.now(),
   threshold: DurationFormat = { seconds: 30 },
 ): boolean {
   if (Number.isNaN(input)) return false;
