@@ -1,1 +1,764 @@
-{}
+{
+    "Update": {
+        "message": "Оновити"
+    },
+    "Add": {
+        "message": "Додати"
+    },
+    "Reset": {
+        "message": "Скинути"
+    },
+    "Synchronize": {
+        "message": "Синхронізувати"
+    },
+    "Remove": {
+        "message": "Видалити"
+    },
+    "Loading": {
+        "message": "Завантаження"
+    },
+    "Load": {
+        "message": "Завантажити"
+    },
+    "Select": {
+        "message": "Вибрати"
+    },
+    "Yes": {
+        "message": "Так"
+    },
+    "Ok": {
+        "message": "Ок"
+    },
+    "No": {
+        "message": "Ні"
+    },
+    "Cancel": {
+        "message": "Відміна"
+    },
+    "updated": {
+        "message": "Оновлено"
+    },
+    "syncPage_flashConfirm_complete": {
+        "message": "Вказати як завершене?"
+    },
+    "syncPage_flashConfirm_start_anime": {
+        "message": "Почати перегляд?"
+    },
+    "syncPage_flashConfirm_rewatch_finish_manga": {
+        "message": "Закінчити повторне читання?"
+    },
+    "syncPage_flashConfirm_rewatch_start_anime": {
+        "message": "Передивитись аніме?"
+    },
+    "syncPage_flashConfirm_rewatch_start_manga": {
+        "message": "Перечитати мангу?"
+    },
+    "syncPage_flashConfirm_Anime_Correct": {
+        "message": "Обрано $anime$, вірно?",
+        "placeholders": {
+            "anime": {
+                "content": "$1",
+                "example": "No Game No Life"
+            }
+        }
+    },
+    "overview_sidebar_Aired": {
+        "message": "Дати ефіру:"
+    },
+    "overview_sidebar_Authors": {
+        "message": "Автори:"
+    },
+    "overview_sidebar_Duration": {
+        "message": "Тривалість:"
+    },
+    "list_sorting_unread": {
+        "message": "Не прочитано"
+    },
+    "list_sorting_score": {
+        "message": "За оцінкою"
+    },
+    "list_sorting_airing_date": {
+        "message": "За датою ефіру"
+    },
+    "search_Type": {
+        "message": "Тип:"
+    },
+    "search_Score": {
+        "message": "Оцінка:"
+    },
+    "search_Year": {
+        "message": "Рік:"
+    },
+    "settings_General": {
+        "message": "Загальні налаштування"
+    },
+    "settings_Mode": {
+        "message": "Режим відстеження"
+    },
+    "settings_Authenticate": {
+        "message": "Авторизація"
+    },
+    "settings_profile_no_login": {
+        "message": "Немає входу"
+    },
+    "settings_profile_logout": {
+        "message": "Вийти"
+    },
+    "settings_profile_check": {
+        "message": "Перевірити"
+    },
+    "settings_profile_logged_via": {
+        "message": "Вхід за допомогою $provider$",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "UI_Score_Fine": {
+        "message": "(6) Нормально"
+    },
+    "syncPage_flashm_sync_manga_volume": {
+        "message": "Оновити $page$ до $epNr$ тому",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flash_player_error": {
+        "message": "Відеоплеєр не виявлено. Будь ласка, оновіть вручну."
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+        "message": "Виявлено можливе зміщення серій $calcOffset$. Чи це правильно?",
+        "placeholders": {
+            "calcOffset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "kitsuClass_authentication_text": {
+        "message": "Щоб зайти з Kitsu, вам треба ввести e-mail та пароль від вашого акаунта. Введені дані не будуть збережені на вашому комп'ютері або де-небудь ще.<br>Їх буде відправлено безпосередньо на Kitsu. Тільки токен доступу для Kitsu буде збережений.<br>"
+    },
+    "correction_Offset_text": {
+        "message": "Якщо аніме має 12 серій, але використовує числа 0-11, а не 1-12, просто введіть « +1 » у зміщенні серій."
+    },
+    "overview_Information": {
+        "message": "Інформація"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "Загальний час перегляду:"
+    },
+    "settings_AskBefore": {
+        "message": "Показувати підтвердження «Завершено» на початку серії/глави"
+    },
+    "next": {
+        "message": "Далі"
+    },
+    "back": {
+        "message": "Назад"
+    },
+    "start": {
+        "message": "Старт"
+    },
+    "NothingFound": {
+        "message": "Нічого не знайдено"
+    },
+    "Not_Found": {
+        "message": "Не знайдено!"
+    },
+    "NoEntries": {
+        "message": "Немає даних"
+    },
+    "fullscreen": {
+        "message": "повноекранний режим"
+    },
+    "close": {
+        "message": "закрити"
+    },
+    "All": {
+        "message": "Все"
+    },
+    "UI_Status": {
+        "message": "Статус:"
+    },
+    "UI_Status_All": {
+        "message": "Все"
+    },
+    "UI_Status_watching_anime": {
+        "message": "Дивлюсь"
+    },
+    "UI_Status_watching_manga": {
+        "message": "Читаю"
+    },
+    "UI_Status_Completed": {
+        "message": "Завершено"
+    },
+    "UI_Status_OnHold": {
+        "message": "Відкладено"
+    },
+    "UI_Status_Dropped": {
+        "message": "Кинуто"
+    },
+    "UI_Status_planTo_anime": {
+        "message": "Заплановано до перегляду"
+    },
+    "UI_Status_planTo_manga": {
+        "message": "Заплановано до читання"
+    },
+    "UI_Status_Rewatching_anime": {
+        "message": "Передивляюсь"
+    },
+    "UI_Status_Rewatching_manga": {
+        "message": "Перечитую"
+    },
+    "UI_Episode": {
+        "message": "Серія:"
+    },
+    "UI_Volume": {
+        "message": "Том:"
+    },
+    "UI_Chapter": {
+        "message": "Глава:"
+    },
+    "UI_Score": {
+        "message": "Ваша оцінка:"
+    },
+    "UI_Score_Not_Rated": {
+        "message": "Немає оцінки"
+    },
+    "UI_Score_Masterpiece": {
+        "message": "(10) Шедевр"
+    },
+    "UI_Score_Great": {
+        "message": "(9) Чудово"
+    },
+    "UI_Score_VeryGood": {
+        "message": "(8) Дуже добре"
+    },
+    "UI_Score_Good": {
+        "message": "(7) Добре"
+    },
+    "UI_Score_Average": {
+        "message": "(5) Більш-менш"
+    },
+    "UI_Score_Bad": {
+        "message": "(4) Погано"
+    },
+    "UI_Score_VeryBad": {
+        "message": "(3) Дуже погано"
+    },
+    "UI_Score_Horrible": {
+        "message": "(2) Жахливо"
+    },
+    "UI_Score_Appalling": {
+        "message": "(1) Гірше не буває"
+    },
+    "UI_Rules": {
+        "message": "Правила"
+    },
+    "syncPage_flashm_sync_anime": {
+        "message": "Оновити $page$ до $epNr$ серії",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_manga": {
+        "message": "Оновити $page$ до $epNr$ глави",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            },
+            "epNr": {
+                "content": "$2",
+                "example": "3"
+            }
+        }
+    },
+    "syncPage_flashm_sync_undefined_undo": {
+        "message": "Відмінити"
+    },
+    "syncPage_flashm_sync_undefined_wrong": {
+        "message": "Помилка?"
+    },
+    "Manga": {
+        "message": "Манґа"
+    },
+    "syncPage_malObj_nextEp_anime": {
+        "message": "Серія $episode$",
+        "placeholders": {
+            "episode": {
+                "content": "$1",
+                "example": "5"
+            }
+        }
+    },
+    "syncPage_malObj_nextEp_manga": {
+        "message": "Глава $chapter$",
+        "placeholders": {
+            "chapter": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "anilistClass_authentication": {
+        "message": "Токен збережено, ви можете закрити цю сторінку"
+    },
+    "kitsuClass_authentication_Password": {
+        "message": "Пароль"
+    },
+    "kitsuClass_authentication_Login": {
+        "message": "Логін"
+    },
+    "kitsuClass_authentication_Success": {
+        "message": "Токен збережено, ви можете закрити цю сторінку."
+    },
+    "kitsuClass_authentication_Wrong": {
+        "message": "Невірні дані"
+    },
+    "bookmarksItem_Years": {
+        "message": "роки"
+    },
+    "bookmarksItem_Year": {
+        "message": "рік"
+    },
+    "bookmarksItem_Days": {
+        "message": "днів"
+    },
+    "bookmarksItem_Day": {
+        "message": "день"
+    },
+    "bookmarksItem_Hour": {
+        "message": "година"
+    },
+    "bookmarksItem_mins": {
+        "message": "хвилин"
+    },
+    "bookmarksItem_now": {
+        "message": "Зараз"
+    },
+    "bookmarksItem_ago": {
+        "message": "$time$ тому",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Episode_anime": {
+        "message": "Наступний епізод очікується через $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_anime": {
+        "message": "Остання серія вийшла $time$ тому",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Episode_manga": {
+        "message": "Наступна глава очікується через $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_Last_manga": {
+        "message": "Остання глава вийшла $time$ тому",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "prediction_incomplete": {
+        "message": "Незакінчено"
+    },
+    "bookmarksItem_Hours": {
+        "message": "години"
+    },
+    "bookmarksItem_min": {
+        "message": "хвилину"
+    },
+    "bookmarksItem_secs": {
+        "message": "секунд"
+    },
+    "bookmarksItem_sec": {
+        "message": "секунду"
+    },
+    "prediction_ongoing": {
+        "message": "Онгоїнг"
+    },
+    "prediction_complete": {
+        "message": "Закінчено"
+    },
+    "correction_Offset": {
+        "message": "Зміщення серій"
+    },
+    "correction_WrongUrl": {
+        "message": "Змінюйте цей URL тільки якщо він веде на неправильну сторінку тайтла на MAL."
+    },
+    "correction_Search": {
+        "message": "Пошук потрібного тайтла"
+    },
+    "correction_NoMal": {
+        "message": "Якщо аніме/манґу не вдається знайти на MAL"
+    },
+    "correction_NoEntry": {
+        "message": "Немає даних на MyAnimeList"
+    },
+    "correction_OffsetReset": {
+        "message": "Зміщення скинуто"
+    },
+    "correction_NewUrl": {
+        "message": "Новий URL '$malUrl$' встановлено.",
+        "placeholders": {
+            "malUrl": {
+                "content": "$1",
+                "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+            }
+        }
+    },
+    "correction_NewUrlReset": {
+        "message": "MyAnimeList URL скинуто"
+    },
+    "overview_synonyms": {
+        "message": "Синоніми"
+    },
+    "overview_Continue_anime": {
+        "message": "Продовжити перегляд"
+    },
+    "overview_Continue_manga": {
+        "message": "Продовжити читання"
+    },
+    "overview_Next_Episode_anime": {
+        "message": "Наступна серія"
+    },
+    "overview_Next_Episode_manga": {
+        "message": "Наступна глава"
+    },
+    "overview_Resume_Episode_anime": {
+        "message": "Відновити серію"
+    },
+    "overview_Resume_Episode_manga": {
+        "message": "Відновити главу"
+    },
+    "overview_EditDetails": {
+        "message": "Редагувати деталі"
+    },
+    "overview_Characters": {
+        "message": "Персонажі"
+    },
+    "overview_Related": {
+        "message": "Пов'язане"
+    },
+    "overview_Streaming": {
+        "message": "Дивитися на"
+    },
+    "overview_OpeningTheme": {
+        "message": "Опенінг:"
+    },
+    "overview_EndingTheme": {
+        "message": "Ендінг:"
+    },
+    "overview_sidebar_Score": {
+        "message": "Оцінка:"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "Оцінка MAL:"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "Рейтинг:"
+    },
+    "overview_sidebar_Format": {
+        "message": "Тип:"
+    },
+    "overview_sidebar_Status": {
+        "message": "Статус:"
+    },
+    "overview_sidebar_Genres": {
+        "message": "Жанри:"
+    },
+    "overview_sidebar_Rating": {
+        "message": "Віковий рейтинг:"
+    },
+    "overview_sidebar_Start_Date": {
+        "message": "Початок показу:"
+    },
+    "overview_sidebar_End_Date": {
+        "message": "Кінець показу:"
+    },
+    "overview_sidebar_Source": {
+        "message": "Засновано на:"
+    },
+    "overview_sidebar_Members": {
+        "message": "Учасники:"
+    },
+    "overview_sidebar_Broadcast": {
+        "message": "Ефір:"
+    },
+    "overview_sidebar_Studios": {
+        "message": "Студії:"
+    },
+    "overview_sidebar_Episodes": {
+        "message": "Епізоди:"
+    },
+    "overview_sidebar_Chapters": {
+        "message": "Глави:"
+    },
+    "overview_sidebar_Volumes": {
+        "message": "Томи:"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "В обраних:"
+    },
+    "overview_sidebar_Season": {
+        "message": "Сезон:"
+    },
+    "overview_sidebar_external_links": {
+        "message": "Зовнішні посилання:"
+    },
+    "overview_sidebar_Votes": {
+        "message": "Голоси:"
+    },
+    "settings_LocalSync_Import": {
+        "message": "Імпортувати"
+    },
+    "settings_LocalSync_Export": {
+        "message": "Експортувати"
+    },
+    "settings_LocalSync_Label": {
+        "message": "Експорт локального сховища"
+    },
+    "settings_LocalSync_Help_LinkText": {
+        "message": "на цій сторінці"
+    },
+    "settings_Animesync": {
+        "message": "Синхронізація аніме"
+    },
+    "settings_Animesync_Video": {
+        "message": "Відсоток"
+    },
+    "settings_Animesync_Instant": {
+        "message": "Миттєво"
+    },
+    "settings_Animesync_Manual": {
+        "message": "Вручну"
+    },
+    "settings_Mangasync_readerTracking": {
+        "message": "Синхронізувати манґу після прочитання 90% сторінок"
+    },
+    "settings_Mangasync": {
+        "message": "Синхронізація манґи"
+    },
+    "settings_AutoTracking_Video": {
+        "message": "Синхронізація після перегляду $videoDuration$% серії",
+        "placeholders": {
+            "videoDuration": {
+                "content": "$1",
+                "example": "85"
+            }
+        }
+    },
+    "settings_AutoTracking_Instant": {
+        "message": "Відкласти моментальний автотрекінг на $delay$ секунд",
+        "placeholders": {
+            "delay": {
+                "content": "$1",
+                "example": "15"
+            }
+        }
+    },
+    "settings_StreamingSite": {
+        "message": "Швидкі посилання на сайти аніме/манги"
+    },
+    "settings_StreamingSite_custom": {
+        "message": "Свої пошукові посилання"
+    },
+    "settings_StreamingSite_custom_url_name": {
+        "message": "Назва"
+    },
+    "settings_StreamingSite_custom_url_anime": {
+        "message": "URL для пошуку аніме"
+    },
+    "settings_StreamingSite_custom_url_manga": {
+        "message": "URL для пошуку манґи"
+    },
+    "settings_Thumbnails": {
+        "message": "Прев'ю зображень"
+    },
+    "settings_Thumbnails_text": {
+        "message": "Ця опція для зміни розміру прев'ю на MyAnimeList, тобто зображення персонажів, людей, рекоммендацій тощо."
+    },
+    "settings_Thumbnails_Large": {
+        "message": "Великі"
+    },
+    "settings_Thumbnails_Medium": {
+        "message": "Середні"
+    },
+    "settings_Thumbnails_Small": {
+        "message": "Маленькі"
+    },
+    "settings_Thumbnails_Default": {
+        "message": "За замовчуванням MAL"
+    },
+    "settings_epPredictions": {
+        "message": "Очікувана кількість серій"
+    },
+    "settings_malTags": {
+        "message": "Використовувати теги/нотатки"
+    },
+    "settings_malContinue": {
+        "message": "Кнопка «Наступна серія»"
+    },
+    "settings_malResume": {
+        "message": "Кнопка «Відновити перегляд»"
+    },
+    "settings_usedPage": {
+        "message": "Кнопки з останніми сайтами"
+    },
+    "settings_anilist_update_ui": {
+        "message": "Оновити UI"
+    },
+    "settings_miniMAL_floatButtonStealth": {
+        "message": "Непомітний режим інтерфейсу"
+    },
+    "settings_miniMAL_minimizeBigPopup": {
+        "message": "Мінімізувати великі спливаючі вікна"
+    },
+    "settings_miniMAL_minimizeBigPopup_tooltip": {
+        "message": "Згортає великі вікна в MAL-Sync, які можуть закрити більшу частину екрана, за кнопкою."
+    },
+    "Search": {
+        "message": "Пошук по сайтах"
+    },
+    "Show": {
+        "message": "Показати"
+    },
+    "Help": {
+        "message": "Допомога"
+    },
+    "removed": {
+        "message": "Видалено"
+    },
+    "Anime": {
+        "message": "Аніме"
+    },
+    "Package_Description": {
+        "message": "Додає MyAnimeList/AniList/Kitsu/Simkl/Shikimori на різні сайти, з авто оновленням переглянутих серій."
+    },
+    "syncPage_flashm_resumeMsg": {
+        "message": "Продовжити з $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "13:37"
+            }
+        }
+    },
+    "syncPage_flashm_failded": {
+        "message": "Не вдалося оновити"
+    },
+    "syncPage_flashConfirm_rewatch_finish_anime": {
+        "message": "Закінчити повторний перегляд?"
+    },
+    "syncPage_flashConfirm_start_manga": {
+        "message": "Розпочати читання?"
+    },
+    "syncPage_malObj_addAnime": {
+        "message": "Додати на $page$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "AniList"
+            }
+        }
+    },
+    "prediction_Airing": {
+        "message": "Показ через $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "correction_Search_text": {
+        "message": "Це поле призначене для пошуку аніме, коли вам потрібно виправити «MyAnimeList URL», зазначений вище.<br>Щоб здійснити пошук, просто почніть вводити назву аніме, і список з результатами буде автоматично з'являтися в процесі введення."
+    },
+    "correction_NewOffset": {
+        "message": "Нове зміщення ($offset$) встановлено.",
+        "placeholders": {
+            "offset": {
+                "content": "$1",
+                "example": "6"
+            }
+        }
+    },
+    "correction_DBRequest": {
+        "message": "Надіслати запит на виправлення?"
+    },
+    "overview_sidebar_Popularity": {
+        "message": "Популярність:"
+    },
+    "overview_sidebar_Licensor": {
+        "message": "Ліцензія:"
+    },
+    "overview_sidebar_Serialization": {
+        "message": "Видавалося:"
+    },
+    "list_sorting_alpha": {
+        "message": "За алфавітом"
+    },
+    "list_sorting_history": {
+        "message": "За останнім оновленням"
+    },
+    "settings_LocalSync": {
+        "message": "Резерв локального сховища"
+    },
+    "settings_LocalSync_Help_Before": {
+        "message": "Якщо у вас виникли проблеми, будь ласка, спробуйте ще раз"
+    },
+    "settings_FriendScore": {
+        "message": "Оцінки друзів на детальній сторінці"
+    },
+    "settings_StreamingSite_text": {
+        "message": "Якщо вимкнено посилання, то сайт більше не з'являтиметься на панелі на MyAnimeList/AniList/Kitsu/Simkl."
+    },
+    "settings_malTags_Text": {
+        "message": "Якщо увімкнено: сайт з аніме/мангою, який ви використовували минулого разу, буде збережено назавжди (у всіх браузерах) у списку тегів/поміток. Збережений рядок у секції тегів має не найкращий вигляд, тому рекомендується так робити тільки якщо ви не використовуєте список тегів/поміток на MyAnimeList."
+    },
+    "settings_miniMAL_floatButtonStealth_tooltip": {
+        "message": "Робить індикатор прогресу (знизу вашого екрана) прозорим за замовчуванням і приховує його швидше"
+    },
+    "settings_anilist_update_ui_tooltip": {
+        "message": "Дозволяє швидко оновлювати кількість епізодів, рейтинг і статус на AniList без необхідності відкривати спливаюче вікно."
+    }
+}
