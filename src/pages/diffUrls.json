@@ -66,6 +66,11 @@
     ]
   },
   "0.10.4": {
+    "Anime365": [
+      "*://smotret-anime.org/catalog/*",
+      "*://smotret-anime.online/catalog/*",
+      "*://smotret-anime.com/catalog/*"
+    ],
     "AnimeXin": [
       "*://animexin.top/*"
     ],
@@ -91,6 +96,9 @@
       "*://*.jwplayerhls.com/*",
       "*://*.videzz.net/*",
       "*://geo.dailymotion.com/*",
+      "*://smotret-anime.org/translations/embed/*",
+      "*://smotret-anime.online/translations/embed/*",
+      "*://smotret-anime.com/translations/embed/*",
       "*://*.s3embtaku.pro/*",
       "*://dood.li/e/*",
       "*://bethshouldercan.com/e/*",
