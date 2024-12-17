@@ -1166,5 +1166,27 @@
     },
     "installPage_Description_paragraph2": {
         "message": "Наприклад, якщо ви любите дивитися аніме на Crunchyroll, то швидке посилання Crunchyroll з'явиться на кожній сторінці аніме. Це зручний спосіб отримати доступ до улюблених сайтів одним клацанням миші!"
+    },
+    "installPage_Login_Successful": {
+        "message": "Чудово, $Username$! Тепер ви увійшли і готові до роботи.",
+        "placeholders": {
+            "Username": {
+                "content": "$1",
+                "example": "lolamtisch"
+            }
+        }
+    },
+    "Emby_Authenticate": {
+        "message": "Для роботи MAL-Sync потрібен ключ Emby API. Більше інформації $Link1$Here$Link2$",
+        "placeholders": {
+            "Link1": {
+                "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
     }
 }
