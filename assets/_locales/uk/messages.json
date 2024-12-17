@@ -760,5 +760,374 @@
     },
     "settings_anilist_update_ui_tooltip": {
         "message": "Дозволяє швидко оновлювати кількість епізодів, рейтинг і статус на AniList без необхідності відкривати спливаюче вікно."
+    },
+    "settings_miniMAL_Display": {
+        "message": "Відображати"
+    },
+    "settings_listsync_itemcount": {
+        "message": "До синхронізації:"
+    },
+    "settings_introSkip": {
+        "message": "Вказати тривалість пропуску опенингу ($Seconds$ секунд)",
+        "placeholders": {
+            "Seconds": {
+                "content": "$1",
+                "example": "30"
+            }
+        }
+    },
+    "settings_Userscriptmode_Text": {
+        "message": "Вимикає скрипти контенту. Це уможливлює одночасну роботу розширення і користувацьких скриптів."
+    },
+    "settings_miniMAL_window": {
+        "message": "Відкривати розширення в окремому вікні"
+    },
+    "settings_listsync_updates": {
+        "message": "Оновлення"
+    },
+    "settings_listsync_repeatcount_manga": {
+        "message": "Перечитано:"
+    },
+    "settings_loadPTWForProgress": {
+        "message": "Завантажувати «Подивитися/прочитати пізніше» для оцінки прогресу"
+    },
+    "settings_Shortcuts_Next_Episode": {
+        "message": "Відкрити наступну серію"
+    },
+    "settings_help": {
+        "message": "Потрібна допомога?"
+    },
+    "settings_listsync_syncbutton": {
+        "message": "Синхронізувати"
+    },
+    "settings_listsync_missing": {
+        "message": "Не вистачає"
+    },
+    "settings_miniMAL_NotSet": {
+        "message": "Не встановлено"
+    },
+    "settings_Notifications_Sticky": {
+        "message": "Закріплені вікна повідомлення"
+    },
+    "settings_UpdateCheck_Text": {
+        "message": "Перевіряє вихід нових серій у фоновому режимі."
+    },
+    "settings_presence_largeimage": {
+        "message": "Зображення статусу активності"
+    },
+    "settings_permissions_player": {
+        "message": "Відеоплеєри"
+    },
+    "settings_custom_domains_missing_permissions_long": {
+        "message": "Деяким сайтам ще не видано дозволів"
+    },
+    "settings_custom_domains_permissions_not_supported": {
+        "message": "Браузер або поточна сторінка не підтримує видачу дозволів, будь ласка, спробуйте за допомогою посилання https://malsync.moe/pwa або використовуйте спливаюче вікно розширення."
+    },
+    "settings_presenceShowButtons": {
+        "message": "Показувати кнопку відкриття аніме/манґи на MAL або іншому ресурсі"
+    },
+    "settings_custom_domains_disclaimer": {
+        "message": "Ця функція дає можливість додавати свої домени до вже наявних сайтів для роботи з безліччю доменів, а також із self-host варіантами, але ви не можете додавати нові сайти."
+    },
+    "minimalApp_Recommendations": {
+        "message": "Рекомендації"
+    },
+    "minimalClass_Popup": {
+        "message": "Будь ласка, дозвольте спливаючі вікна на цьому сайті"
+    },
+    "installPage_Mode": {
+        "message": "Виберіть який сайт для відстеження ви хочете використовувати"
+    },
+    "settings_miniMAL_floatButtonCorrection": {
+        "message": "Плаваюча кнопка відкриває вікно виправлення відстеження"
+    },
+    "settings_miniMAL_floatButtonHide": {
+        "message": "Сховати плаваючу кнопку"
+    },
+    "settings_miniMAL_autoCloseMinimal": {
+        "message": "Натискання зовні закриє miniMAL"
+    },
+    "settings_theming": {
+        "message": "Зміна теми"
+    },
+    "settings_miniMAL_popup": {
+        "message": "Спливаюче вікно розширення"
+    },
+    "settings_miniMAL_theme": {
+        "message": "Тема"
+    },
+    "settings_miniMAL_Display_Left": {
+        "message": "Зліва"
+    },
+    "settings_miniMAL_Display_Center": {
+        "message": "По центру"
+    },
+    "settings_miniMAL_Display_Right": {
+        "message": "Справа"
+    },
+    "settings_miniMAL_Height": {
+        "message": "Висота (px / %)"
+    },
+    "settings_miniMAL_Width": {
+        "message": "Ширина (px / %)"
+    },
+    "settings_miniMAL_pwa": {
+        "message": "PWA сторінка"
+    },
+    "settings_donate": {
+        "message": "Пожертвувати"
+    },
+    "settings_discord_join": {
+        "message": "Приєднатися до нашого Discord сервера"
+    },
+    "settings_miscellaneous": {
+        "message": "Інше"
+    },
+    "settings_listsync": {
+        "message": "Синхронізація списків"
+    },
+    "settings_listsync_background": {
+        "message": "Синхронізувати щодня на фоні"
+    },
+    "settings_listsync_master": {
+        "message": "Головний"
+    },
+    "settings_listsync_list": {
+        "message": "Список:"
+    },
+    "settings_listsync_syncinprogress": {
+        "message": "Синхронізація в процесі:"
+    },
+    "settings_listsync_score": {
+        "message": "Оцінка:"
+    },
+    "settings_listsync_progress_anime": {
+        "message": "Епізод:"
+    },
+    "settings_listsync_progress_manga": {
+        "message": "Глава:"
+    },
+    "settings_listsync_volume": {
+        "message": "Том:"
+    },
+    "settings_listsync_status": {
+        "message": "Статус:"
+    },
+    "settings_listsync_startdate": {
+        "message": "Дата початку:"
+    },
+    "settings_listsync_finishdate": {
+        "message": "Дата завершення:"
+    },
+    "settings_listsync_unknowndate": {
+        "message": "не встановлена"
+    },
+    "settings_listsync_repeatcount_anime": {
+        "message": "Повторний перегляд:"
+    },
+    "settings_progress": {
+        "message": "Оцінка прогресу"
+    },
+    "settings_onsite": {
+        "message": "На сторінці"
+    },
+    "settings_theming_sidebars": {
+        "message": "Бічні панелі"
+    },
+    "settings_theming_color": {
+        "message": "Колір теми"
+    },
+    "settings_theming_background_image": {
+        "message": "Фонове зображення"
+    },
+    "settings_theming_background_opacity": {
+        "message": "Прозорість зображення"
+    },
+    "settings_theming_theme_system": {
+        "message": "Система"
+    },
+    "settings_theming_theme_light": {
+        "message": "Світла"
+    },
+    "settings_theming_theme_dark": {
+        "message": "Темна"
+    },
+    "settings_theming_theme_custom": {
+        "message": "Власна"
+    },
+    "settings_Shortcuts": {
+        "message": "Гарячі клавіші"
+    },
+    "settings_miniMAL_Open": {
+        "message": "Відкрити miniMAL"
+    },
+    "settings_Video_Player": {
+        "message": "Відеоплеєр"
+    },
+    "settings_Video_Fullscreen": {
+        "message": "Автоматичний повний екран"
+    },
+    "settings_Video_Resume": {
+        "message": "Автоматичне відновлення"
+    },
+    "settings_autoNextEp": {
+        "message": "Автовідтворення наступної серії"
+    },
+    "settings_Shortcuts_Correction": {
+        "message": "Відкрити вікно виправлення відстеження"
+    },
+    "settings_Shortcuts_Sync": {
+        "message": "Вказати серію/главу як завершену"
+    },
+    "settings_Shortcuts_Skip_Forward": {
+        "message": "Пропустити опенінг"
+    },
+    "settings_Shortcuts_Skip_Backward": {
+        "message": "Повернутися на початок опенингу"
+    },
+    "settings_Shortcuts_Click": {
+        "message": "Введіть комбінацію клавіш"
+    },
+    "settings_UpdateCheck": {
+        "message": "Перевірка оновлень"
+    },
+    "settings_Interval": {
+        "message": "Інтервал"
+    },
+    "settings_Interval_Off": {
+        "message": "Вимкнути"
+    },
+    "settings_Interval_Default_Anime": {
+        "message": "Мова за замовчуванням (аніме)"
+    },
+    "settings_Interval_Default_Manga": {
+        "message": "Мова за замовчуванням (манґа)"
+    },
+    "settings_ProgressCheck": {
+        "message": "Звірка прогресу"
+    },
+    "settings_Notifications": {
+        "message": "Повідомлення"
+    },
+    "settings_Debugging": {
+        "message": "Дебаггінг"
+    },
+    "settings_ETC": {
+        "message": "Різне"
+    },
+    "settings_tracking": {
+        "message": "Відстеження"
+    },
+    "settings_tracking_disabled": {
+        "message": "Відстеження вимкнено"
+    },
+    "settings_Userscriptmode": {
+        "message": "Режим користувацьких скриптів"
+    },
+    "settings_highlightAllEp": {
+        "message": "Виділити всі серії/глави"
+    },
+    "settings_highlightAllEp_Text": {
+        "message": "Ця опція виділяє всі переглянуті глави/серії у списку, який ви можете знайти на деяких аніме і манґа сайтах"
+    },
+    "settings_ClearCache": {
+        "message": "Очистити кеш"
+    },
+    "settings_presence_largeimage_cover": {
+        "message": "Обкладинка"
+    },
+    "settings_presence_largeimage_website": {
+        "message": "Іконка сайту"
+    },
+    "settings_presence_largeimage_malsync": {
+        "message": "Іконка MAL-Sync"
+    },
+    "settings_enabled": {
+        "message": "Увімкнено"
+    },
+    "settings_shortcut_tooltip": {
+        "message": "Не рекомендується встановлювати дії на одну клавішу"
+    },
+    "settings_progress_dropdown": {
+        "message": "Імовірне джерело:"
+    },
+    "settings_progress_disabled": {
+        "message": "Вимкнено"
+    },
+    "settings_progress_default": {
+        "message": "За замовчуванням"
+    },
+    "settings_website_button": {
+        "message": "Сайти"
+    },
+    "settings_permissions_overview": {
+        "message": "Дозволи"
+    },
+    "settings_permissions_required": {
+        "message": "Необхідні"
+    },
+    "settings_permissions_pages": {
+        "message": "Сторінки"
+    },
+    "settings_custom_domains_button": {
+        "message": "Користувацькі домени"
+    },
+    "settings_custom_domains_missing_permissions_header": {
+        "message": "Виявлено відсутні дозволи"
+    },
+    "settings_custom_domains_wrong": {
+        "message": "Налаштування невірне!"
+    },
+    "settings_clean_tags_button": {
+        "message": "Очистити теги"
+    },
+    "settings_more_info": {
+        "message": "Більше інформації"
+    },
+    "settings_read_more": {
+        "message": "Читати докладніше"
+    },
+    "settings_read_less": {
+        "message": "Читати менше"
+    },
+    "settings_presenceShowMalsync": {
+        "message": "Показувати MAL-Sync у заголовку статусу активності замість аніме/манґи"
+    },
+    "updateCheck_Refresh": {
+        "message": "Оновити"
+    },
+    "updateCheck_StartCheck": {
+        "message": "Почати перевірку"
+    },
+    "updateCheck_NotificationCheck": {
+        "message": "Перевірка повідомлень"
+    },
+    "updateCheck_Episode": {
+        "message": "Серія"
+    },
+    "updateCheck_Message": {
+        "message": "Повідомлення"
+    },
+    "updateCheck_NotificationHistory": {
+        "message": "Історія повідомлень"
+    },
+    "minimalApp_Overview": {
+        "message": "Огляд"
+    },
+    "minimalApp_Reviews": {
+        "message": "Відгуки"
+    },
+    "minimalApp_Settings": {
+        "message": "Налаштування"
+    },
+    "minimalClass_versionMsg_Text_1": {
+        "message": "Дякую за встановлення MAL-Sync"
+    },
+    "installPage_Start_Description": {
+        "message": "Давай проведемо легкий інструктаж для початку роботи - це займе менше хвилини!"
+    },
+    "installPage_Howto": {
+        "message": "Як користуватися?"
     }
 }
