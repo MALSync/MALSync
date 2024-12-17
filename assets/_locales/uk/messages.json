@@ -1261,5 +1261,29 @@
     },
     "locale": {
         "message": "uk"
+    },
+    "overview_sidebar_Published": {
+        "message": "Опубліковано:"
+    },
+    "overview_sidebar_Premiered": {
+        "message": "Прем'єра:"
+    },
+    "overview_sidebar_Producers": {
+        "message": "Режисери:"
+    },
+    "overview_sidebar_Licensors": {
+        "message": "Ліцензіати:"
+    },
+    "overview_sidebar_Themes": {
+        "message": "Теми:"
+    },
+    "overview_sidebar_Type": {
+        "message": "Тип:"
+    },
+    "overview_sidebar_Demographic": {
+        "message": "Демографічні:"
+    },
+    "settings_listsync_provider_done": {
+        "message": "Готово"
     }
 }
