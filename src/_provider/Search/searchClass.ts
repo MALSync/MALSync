@@ -44,6 +44,7 @@ export class SearchClass {
     protected identifier: string,
   ) {
     this.identifier += '';
+    // REVIEW - Proposal, can we rename every 'titel' to 'title' except DE locale?
     this.sanitizedTitel = this.sanitizeTitel(this.title);
     this.logger = con.m('search', 'red');
   }
@@ -138,7 +139,7 @@ export class SearchClass {
 
   public sanitizeTitel(title) {
     let resTitle = title.replace(
-      / *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\))/i,
+      / *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\)|\(novel\)|\(wn\)|\(ln\))/i,
       '',
     );
     resTitle = resTitle.replace(/ *\([^)]+audio\)/i, '');
@@ -370,10 +371,12 @@ export class SearchClass {
     let url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(
       this.sanitizedTitel,
     )}`;
+    // NOTE - Novels on MAL can be:
+    // Light novel - type=2
+    // Novel       - type=8
+    // So best to search all types and then filter them
     if (this.type === 'novel') {
-      url = `https://myanimelist.net/${this.getNormalizedType()}.php?type=2&q=${encodeURI(
-        this.sanitizedTitel,
-      )}`;
+      url = `https://myanimelist.net/${this.getNormalizedType()}.php?type=0&q=${encodeURI(this.sanitizedTitel)}`;
     }
     logger.log(url);
 
@@ -389,6 +392,15 @@ export class SearchClass {
               .split('</tr>')[0];
             if (typeCheck.indexOf('Novel') !== -1) {
               logger.log('Novel Found check next entry');
+              return handleResult(response, i + 1, This);
+            }
+          }
+          if (This.type === 'novel') {
+            const typeCheck = response.responseText
+              .split(`href="${link}" id="si`)[1]
+              .split('</tr>')[0];
+            if (typeCheck.indexOf('Novel') === -1 && typeCheck.indexOf('Light Novel') === -1) {
+              logger.log('Novel Not found check next entry');
               return handleResult(response, i + 1, This);
             }
           }
