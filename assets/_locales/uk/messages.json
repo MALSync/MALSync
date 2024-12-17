@@ -1188,5 +1188,48 @@
                 "example": "</a>"
             }
         }
+    },
+    "Error_Authenticate": {
+        "message": "Будь ласка, авторизуйтесь $Link1$Here$Link2$",
+        "placeholders": {
+            "Link1": {
+                "content": "<a target=\"_blank\" href=\"$1\">",
+                "example": "<a>"
+            },
+            "Link2": {
+                "content": "</a>",
+                "example": "</a>"
+            }
+        }
+    },
+    "Error_Blocked": {
+        "message": "Ваш IP заблокований на $Page$, змініть ваш IP або почекайте поки його розблокують. Варіантом також може бути і тимчасове вимкнення.",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "Discord_rpc_browsing": {
+        "message": "Переглядається $Page$",
+        "placeholders": {
+            "Page": {
+                "content": "$1",
+                "example": "Mangadex"
+            }
+        }
+    },
+    "discord_rpc_view_anime": {
+        "message": "Подивитися аніме"
+    },
+    "discord_rpc_view_manga": {
+        "message": "Подивитися манґу"
+    },
+    "nextEpShort_no_support": {
+        "message": "Ця сторінка не підтримує перехід до наступної серії"
+    },
+    "nextEpShort_no_nextEp": {
+        "message": "Неможливо знайти наступну серію"
     }
 }
