@@ -1,27 +1,27 @@
 {
   "title": "tmofans",
-  "url": "https://visortmo.com/",
+  "url": "https://zonatmo.com/",
   "testCases": [
     {
-      "url": "https://visortmo.com/library/manga/320/one-piece",
+      "url": "https://zonatmo.com/library/manga/2992/one-piece-digital-colored-comics",
       "expected": {
         "sync": false,
-        "title": "One Piece",
-        "identifier": "one-piece",
+        "title": "ONE PIECE Full Color",
+        "identifier": "one-piece-digital-colored-comics",
         "uiSelector": true,
         "epList": {
-          "1091": "https://lectortmo.com/view_uploads/1310893"
+          "1051": "https://zonatmo.com/view_uploads/1557023"
         }
       }
     },
     {
-      "url": "https://visortmo.com/viewer/1a75a74709e4aeab2791ca782d32d51c/paginated",
+      "url": "https://zonatmo.com/viewer/1a75a74709e4aeab2791ca782d32d51c/paginated",
       "expected": {
         "sync": true,
         "title": "¿Qué pasaría si decido ayudar a dos hermanas que odian a los hombres?",
-        "identifier": "otokogirai-na-bijin-shimai-wo-namae-mo-tsugezu-ni-tasuketara-ittai-dou-naru",
+        "identifier": "otokogirainabijinshimaiwonamaemotsugezunitasuketaraittaidounaru",
         "episode": 3,
-        "overviewUrl": "https://visortmo.com/library/manga/78082/otokogirai-na-bijin-shimai-wo-namae-mo-tsugezu-ni-tasuketara-ittai-dou-naru",
+        "overviewUrl": "https://zonatmo.com/library/manga/78082/otokogirainabijinshimaiwonamaemotsugezunitasuketaraittaidounaru",
         "uiSelector": false
       }
     }
