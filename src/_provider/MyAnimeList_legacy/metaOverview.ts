@@ -49,7 +49,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   private title(data) {
     let title = '';
 
-    const useAltTitle = api.settings.get('malAltTitles');
+    const useAltTitle = api.settings.get('forceEnglishTitles');
 
     try {
       if (useAltTitle) {
@@ -59,6 +59,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           .split('<br')[0]
           .replace(/&quot;/g, '"')
           .replace(/&#039;/g, "'");
+        console.log(title, data);
       } else {
         title = data
           .split('itemprop="name">')[1]

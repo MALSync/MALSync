@@ -126,7 +126,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private title(data) {
-    const useAltTitle = api.settings.get('malAltTitles');
+    const useAltTitle = api.settings.get('forceEnglishTitles');
     if (useAltTitle) {
       this.meta.title = data.alternative_titles.en || data.title;
     } else {

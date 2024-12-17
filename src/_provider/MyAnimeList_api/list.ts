@@ -97,7 +97,7 @@ export class UserList extends ListAbstract {
       }
     }
 
-    const useAltTitle = api.settings.get('malAltTitles');
+    const useAltTitle = api.settings.get('forceEnglishTitles');
 
     return this.apiCall({
       type: 'GET',
@@ -122,7 +122,7 @@ export class UserList extends ListAbstract {
 
   public async prepareData(data): Promise<listElement[]> {
     const newData = [] as listElement[];
-    const useAltTitle = api.settings.get('malAltTitles');
+    const useAltTitle = api.settings.get('forceEnglishTitles');
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
       if (this.listType === 'anime') {
