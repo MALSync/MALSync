@@ -5,6 +5,7 @@ export const KickAssAnime: pageInterface = {
   domain: ['https://kickassanime.am', 'https://kaas.am'],
   languages: ['English'],
   type: 'anime',
+  database: 'KickAssAnime',
   isSyncPage(url) {
     return Boolean(utils.urlPart(url, 4));
   },
