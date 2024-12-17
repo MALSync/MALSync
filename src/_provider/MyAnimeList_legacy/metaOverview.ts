@@ -54,12 +54,12 @@ export class MetaOverview extends MetaOverviewAbstract {
     try {
       if (useAltTitle) {
         title = data
-          .split('class="title-english title-inherit">')[1]
+          .split('class="title-english')[1]
+          .split('>')[1]
           .split('</')[0]
           .split('<br')[0]
           .replace(/&quot;/g, '"')
           .replace(/&#039;/g, "'");
-        console.log(title, data);
       } else {
         title = data
           .split('itemprop="name">')[1]
