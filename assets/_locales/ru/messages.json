@@ -1613,5 +1613,29 @@
     },
     "settings_listsync_finishdate": {
         "message": "Дата завершения:"
+    },
+    "overview_sidebar_Published": {
+        "message": "Издано:"
+    },
+    "settings_listsync_provider_done": {
+        "message": "Готово"
+    },
+    "overview_sidebar_Demographic": {
+        "message": "Аудитория:"
+    },
+    "overview_sidebar_Premiered": {
+        "message": "Премьера:"
+    },
+    "overview_sidebar_Producers": {
+        "message": "Продюсеры:"
+    },
+    "overview_sidebar_Licensors": {
+        "message": "Лицензия:"
+    },
+    "overview_sidebar_Themes": {
+        "message": "Темы:"
+    },
+    "overview_sidebar_Type": {
+        "message": "Тип:"
     }
 }
