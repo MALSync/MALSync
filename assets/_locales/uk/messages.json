@@ -1231,5 +1231,35 @@
     },
     "nextEpShort_no_nextEp": {
         "message": "Неможливо знайти наступну серію"
+    },
+    "prediction_next": {
+        "message": "Доступно через $time$",
+        "placeholders": {
+            "time": {
+                "content": "$1",
+                "example": "2 days 1 hour"
+            }
+        }
+    },
+    "settings_filler": {
+        "message": "Перевіряти на наявність філерів і рекапів"
+    },
+    "settings_filler_text": {
+        "message": "Це перевірить, чи відмічений епізод як філлер або рекап у MyAnimeList"
+    },
+    "filler_filler_confirm": {
+        "message": "Цей епізод позначений як філлер на MyAnimeList, бажаєте пропустити?"
+    },
+    "filler_recap_confirm": {
+        "message": "Цей епізод позначений як рекап на MyAnimeList, бажаєте пропустити?"
+    },
+    "settings_custom_domains_position": {
+        "message": "Розташування"
+    },
+    "settings_custom_position_below": {
+        "message": "Інформація знизу"
+    },
+    "locale": {
+        "message": "uk"
     }
 }
