@@ -1,0 +1,31 @@
+{
+    "title": "WeebCentral",
+    "url": "https://weebcentral.com/",
+    "testCases": [
+      {
+        "url": "https://weebcentral.com/chapters/01J76XZ480RW84PPENM92DQWG6",
+        "expected": {
+          "sync": true,
+          "title": "Initial D",
+          "identifier": "01J76XY7P6VR0D8AQYQ9FNFTE7",
+          "overviewUrl": "https://weebcentral.com/series/01J76XY7P6VR0D8AQYQ9FNFTE7/Initial-D",
+          "episode": 706,
+          "uiSelector": false,
+          "nextEpUrl": "https://weebcentral.com/chapters/01J76XZ480R0DVMBBM8BD3A71J"
+        }
+      },
+      {
+        "url": "https://weebcentral.com/series/01J76XY7P6VR0D8AQYQ9FNFTE7/Initial-D",
+        "expected": {
+          "sync": false,
+          "title": "Initial D",
+          "identifier": "01J76XY7P6VR0D8AQYQ9FNFTE7",
+          "uiSelector": true,
+          "epList": {
+            "718": "https://weebcentral.com/chapters/01J76XZ480TGD1WH0DSD2J04H0",
+            "2": "https://weebcentral.com/chapters/01J76XZ47T7GZ48GZ9XZVF4BPF"
+          }
+        }
+      }
+    ]
+}
