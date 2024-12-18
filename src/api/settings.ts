@@ -8,6 +8,7 @@ export const settingsObj = {
     autoTrackingModemanga: 'instant',
     enablePages: {},
     forceEn: false,
+    forceEnglishTitles: false,
     rpc: true,
     presenceLargeImage: 'cover',
     presenceShowButtons: true,
