@@ -84,6 +84,9 @@
       "*://*.gogoanime3.cc/*",
       "*://*.anitaku.bz/*"
     ],
+    "Voiranime": [
+      "*://*.voiranime.com/*"
+    ],
     "Zoro": [
       "*://hianime.nz/*",
       "*://hianime.mn/*",

@@ -3,31 +3,31 @@
   "url": "http://voiranime.com",
   "testCases": [
     {
-      "url": "https://v5.voiranime.com/anime/no-game-no-life/no-game-no-life-06-vostfr/",
+      "url": "https://v6.voiranime.com/anime/no-game-no-life/no-game-no-life-06-vostfr/",
       "expected": {
         "sync": true,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
         "overviewUrl": "https://voiranime.com/anime/no-game-no-life",
-        "nextEpUrl": "https://v5.voiranime.com/anime/no-game-no-life/no-game-no-life-07-vostfr/",
+        "nextEpUrl": "https://v6.voiranime.com/anime/no-game-no-life/no-game-no-life-07-vostfr/",
         "episode": 6,
         "uiSelector": false
       }
     },
     {
-      "url": "https://v5.voiranime.com/anime/boku-no-hero-academia-2/boku-no-hero-academia-my-hero-academia-saison-2-04-vostfr/",
+      "url": "https://v6.voiranime.com/anime/boku-no-hero-academia-2/boku-no-hero-academia-my-hero-academia-saison-2-04-vostfr/",
       "expected": {
         "sync": true,
         "title": "Boku no Hero Academia 2",
         "identifier": "boku-no-hero-academia-2",
         "overviewUrl": "https://voiranime.com/anime/boku-no-hero-academia-2",
-        "nextEpUrl": "https://v5.voiranime.com/anime/boku-no-hero-academia-2/boku-no-hero-academia-my-hero-academia-saison-2-05-vostfr/",
+        "nextEpUrl": "https://v6.voiranime.com/anime/boku-no-hero-academia-2/boku-no-hero-academia-my-hero-academia-saison-2-05-vostfr/",
         "episode": 4,
         "uiSelector": false
       }
     },
     {
-      "url": "https://v5.voiranime.com/anime/no-game-no-life/",
+      "url": "https://v6.voiranime.com/anime/no-game-no-life/",
       "expected": {
         "sync": false,
         "title": "No Game No Life",
@@ -36,26 +36,26 @@
       }
     },
     {
-      "url": "https://v5.voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav2-vostfr/",
+      "url": "https://v6.voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav2-vostfr/",
       "expected": {
         "sync": true,
         "title": "Kujibiki Unbalance",
         "identifier": "kujibiki-unbalance",
         "overviewUrl": "https://voiranime.com/anime/kujibiki-unbalance",
-        "nextEpUrl": "https://v5.voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav3-vostfr/",
+        "nextEpUrl": "https://v6.voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav3-vostfr/",
         "episode": 2,
         "uiSelector": false
       }
     },
     {
-      "url": "https://v5.voiranime.com/anime/kujibiki-unbalance/",
+      "url": "https://v6.voiranime.com/anime/kujibiki-unbalance/",
       "expected": {
         "sync": false,
         "title": "Kujibiki Unbalance",
         "identifier": "kujibiki-unbalance",
         "uiSelector": true,
         "epList": {
-          "3": "https://v5.voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav3-vostfr/"
+          "3": "https://v6.voiranime.com/anime/kujibiki-unbalance/kujibiki-unbalance-oav3-vostfr/"
         }
       }
     },
