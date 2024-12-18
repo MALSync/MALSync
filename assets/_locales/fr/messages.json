@@ -1621,5 +1621,29 @@
     },
     "settings_listsync_unknowndate": {
         "message": "non indiqué"
+    },
+    "overview_sidebar_Published": {
+        "message": "Période de publication :"
+    },
+    "overview_sidebar_Themes": {
+        "message": "Thèmes :"
+    },
+    "settings_listsync_provider_done": {
+        "message": "Fait"
+    },
+    "overview_sidebar_Premiered": {
+        "message": "Première diffusion :"
+    },
+    "overview_sidebar_Producers": {
+        "message": "Production :"
+    },
+    "overview_sidebar_Licensors": {
+        "message": "Licence :"
+    },
+    "overview_sidebar_Type": {
+        "message": "Type :"
+    },
+    "overview_sidebar_Demographic": {
+        "message": "Audience cible :"
     }
 }
