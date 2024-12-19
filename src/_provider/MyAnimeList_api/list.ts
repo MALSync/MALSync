@@ -97,6 +97,8 @@ export class UserList extends ListAbstract {
       }
     }
 
+    const useAltTitle = api.settings.get('forceEnglishTitles');
+
     return this.apiCall({
       type: 'GET',
       path: `users/@me/${this.listType}list?nsfw=true&limit=${this.limit}&offset=${this.offset}${curSt}${sorting}`,
@@ -105,6 +107,7 @@ export class UserList extends ListAbstract {
         'num_episodes',
         'num_chapters',
         'num_volumes',
+        useAltTitle ? 'alternative_titles' : '',
       ],
     }).then(json => {
       if (json.paging && json.paging.next) {
@@ -119,6 +122,7 @@ export class UserList extends ListAbstract {
 
   public async prepareData(data): Promise<listElement[]> {
     const newData = [] as listElement[];
+    const useAltTitle = api.settings.get('forceEnglishTitles');
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
       if (this.listType === 'anime') {
@@ -129,7 +133,7 @@ export class UserList extends ListAbstract {
             apiCacheKey: el.node.id,
             cacheKey: el.node.id,
             type: this.listType,
-            title: el.node.title,
+            title: useAltTitle ? el.node.alternative_titles.en || el.node.title : el.node.title,
             url: `https://myanimelist.net/${this.listType}/${el.node.id}`,
             score: el.list_status.score,
             watchedEp: el.list_status.num_episodes_watched,
@@ -152,7 +156,7 @@ export class UserList extends ListAbstract {
             apiCacheKey: el.node.id,
             cacheKey: el.node.id,
             type: this.listType,
-            title: el.node.title,
+            title: useAltTitle ? el.node.alternative_titles.en || el.node.title : el.node.title,
             url: `https://myanimelist.net/${this.listType}/${el.node.id}`,
             score: el.list_status.score,
             watchedEp: el.list_status.num_chapters_read,

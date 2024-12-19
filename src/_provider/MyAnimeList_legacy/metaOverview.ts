@@ -49,13 +49,26 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private title(data) {
     let title = '';
+
+    const useAltTitle = api.settings.get('forceEnglishTitles');
+
     try {
-      title = data
-        .split('itemprop="name">')[1]
-        .split('</')[0]
-        .split('<br')[0]
-        .replace(/&quot;/g, '"')
-        .replace(/&#039;/g, "'");
+      if (useAltTitle) {
+        title = data
+          .split('class="title-english')[1]
+          .split('>')[1]
+          .split('</')[0]
+          .split('<br')[0]
+          .replace(/&quot;/g, '"')
+          .replace(/&#039;/g, "'");
+      } else {
+        title = data
+          .split('itemprop="name">')[1]
+          .split('</')[0]
+          .split('<br')[0]
+          .replace(/&quot;/g, '"')
+          .replace(/&#039;/g, "'");
+      }
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }

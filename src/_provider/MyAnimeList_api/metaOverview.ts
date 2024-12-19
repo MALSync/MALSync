@@ -127,7 +127,12 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private title(data) {
-    this.meta.title = data.title;
+    const useAltTitle = api.settings.get('forceEnglishTitles');
+    if (useAltTitle) {
+      this.meta.title = data.alternative_titles.en || data.title;
+    } else {
+      this.meta.title = data.title;
+    }
   }
 
   private description(data) {
