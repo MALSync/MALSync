@@ -113,7 +113,6 @@ import { AnimeBuff } from './AnimeBuff/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
 import { AnimeKO } from './AnimeKO/main';
 import { AnimeGO } from './AnimeGO/main';
-import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
 import { HinataSoul } from './HinataSoul/main';
@@ -251,7 +250,6 @@ export const pages = {
   AnimeOnegai,
   AnimeKO,
   AnimeGO,
-  Animeflix,
   LuciferDonghua,
   NeoxScans,
   HinataSoul,
