@@ -56,6 +56,7 @@
         :type="searchClass.getNormalizedType()"
         :sync-mode="Boolean(syncMode)"
         :current-id="searchClass.getId()"
+        :options="options"
         @clicked="setPage($event.url, $event.id)"
       ></search>
     </div>
@@ -81,6 +82,7 @@ export default {
     inputOffset: 0 as number | '0',
     minimized: false,
     syncMode: null,
+    options: {},
     searchClass: null as any,
     unmountFnc: () => {
       // placeholder
