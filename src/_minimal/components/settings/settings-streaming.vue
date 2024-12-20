@@ -11,14 +11,14 @@
             title="Anime"
             :color="animeFilter ? 'secondary' : 'default'"
             padding="pill"
-            @click="animeFilter = !animeFilter"
+            @click="(mangaFilter || !animeFilter) && (animeFilter = !animeFilter)"
           />
           <FormButton
             v-visible="!orderMode"
             title="Manga"
             :color="mangaFilter ? 'secondary' : 'default'"
             padding="pill"
-            @click="mangaFilter = !mangaFilter"
+            @click="(animeFilter || !mangaFilter) && (mangaFilter = !mangaFilter)"
           />
           <FormText
             v-model="search"
