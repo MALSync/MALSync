@@ -1,6 +1,0 @@
-{
-  "search": "https://anistream.moe/search/{searchterm}",
-  "urls": {
-    "match": ["*://anistream.moe/*"]
-  }
-}
