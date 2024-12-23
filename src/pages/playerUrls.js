@@ -540,7 +540,13 @@ module.exports = {
   },
   // kickassanime
   kaaplay: {
-    match: ['*://kaa-play.me/*', '*://kaavid.com/*', '*://vidnethub.net/*', '*://vidco.pro/*'],
+    match: [
+      '*://kaa-play.me/*',
+      '*://kaavid.com/*',
+      '*://vidnethub.net/*',
+      '*://vidco.pro/*',
+      '*://omegadthree.com/*',
+    ],
   },
   // animeshouse
   animeshouse: {
