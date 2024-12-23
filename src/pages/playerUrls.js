@@ -755,4 +755,8 @@ module.exports = {
   rumble: {
     match: ['*://rumble.com/embed/*'],
   },
+  // aninexus
+  rumble: {
+    match: ['*://fle-rvd0i9o8-moo.com/*', '*://dhtpre.com/*'],
+  },
 };
