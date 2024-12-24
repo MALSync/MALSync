@@ -739,9 +739,9 @@ module.exports = {
   megaf: {
     match: ['*://megaf.cc/e/*'],
   },
-  // bakashi
-  doflix: {
-    match: ['*://doflix.net/*'],
+  // Q1N
+  q1n: {
+    match: ['*://rogeriobetin.com/*', '*://nvlabs-fi-cdn.q9x.in/*'],
   },
   // animesama
   oneupload: {
