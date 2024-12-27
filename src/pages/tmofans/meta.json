@@ -1,8 +1,9 @@
 {
-  "search": "https://lectortmo.com/library?_pg=1&title={searchtermPlus}",
+  "search": "https://zonatmo.com/library?_pg=1&title={searchtermPlus}",
   "urls": {
     "match": [
       "*://tmofans.com/*",
+      "*://zonatmo.com/*",
       "*://lectortmo.com/*",
       "*://visortmo.com/*",
       "*://gastronomiaporpaises.com/*",
