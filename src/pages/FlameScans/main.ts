@@ -95,7 +95,7 @@ export const FlameScans: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(function () {
+    const pageReady = function () {
       if (document.title.includes('Page not found')) {
         con.error('404');
         return;
@@ -119,6 +119,28 @@ export const FlameScans: pageInterface = {
           },
         );
       }
-    });
+    }
+    j.$(document).ready(pageReady);
+    createPageChangeListener(pageReady)
   },
 };
+
+function createPageChangeListener(callback): void {
+  if (typeof callback !== 'function') {
+    throw new Error('Callback must be a function.');
+  }
+
+  const originalPushState = history.pushState;
+  const originalReplaceState = history.replaceState;
+  history.pushState = function (...args: Parameters<History['pushState']>) {
+    originalPushState.apply(this, args);
+    callback();
+  };
+
+  history.replaceState = function (...args: Parameters<History['replaceState']>) {
+    originalReplaceState.apply(this, args);
+    callback();
+  };
+
+  window.addEventListener('popstate', callback);
+}
