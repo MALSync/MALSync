@@ -119,9 +119,10 @@ export const FlameScans: pageInterface = {
           },
         );
       }
-    }
+    };
+
     j.$(document).ready(pageReady);
-    createPageChangeListener(pageReady)
+    createPageChangeListener(pageReady);
   },
 };
 
@@ -130,14 +131,14 @@ function createPageChangeListener(callback): void {
     throw new Error('Callback must be a function.');
   }
 
-  const originalPushState = history.pushState;
-  const originalReplaceState = history.replaceState;
-  history.pushState = function (...args: Parameters<History['pushState']>) {
+  const originalPushState = window.history.pushState;
+  const originalReplaceState = window.history.replaceState;
+  window.history.pushState = function (...args: Parameters<History['pushState']>) {
     originalPushState.apply(this, args);
     callback();
   };
 
-  history.replaceState = function (...args: Parameters<History['replaceState']>) {
+  window.history.replaceState = function (...args: Parameters<History['replaceState']>) {
     originalReplaceState.apply(this, args);
     callback();
   };
