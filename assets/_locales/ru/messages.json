@@ -495,11 +495,23 @@
     },
     "correction_NoMal": {
         "message": "Если аниме/манга не может быть найдена",
-        "description": "Anime/Manga not found in MAL"
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "Нет данных на MyAnimeList",
-        "description": "No entry on MyAnimeList"
+        "message": "Нет данных на $page$",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "Новое смещение ($offset$) установлено.",

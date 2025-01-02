@@ -423,10 +423,24 @@
         "message": "Претрага исправки"
     },
     "correction_WrongUrl": {
-        "message": "Промените ову URL адресу само ако указује на погрешну аниме страницу на MAL-у."
+        "message": "Промените ову URL адресу само ако указује на погрешну аниме страницу на $page$-у.",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoMal": {
-        "message": "Ако се Аниме/Манга не може наћи на MAL-у"
+        "message": "Ако се Аниме/Манга не може наћи на $page$-у",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
         "message": "Нема уноса на MyAnimeList"

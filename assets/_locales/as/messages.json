@@ -536,12 +536,24 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "যদি এনিমে/মাংগা MAL ত পোৱা নাযায়",
-        "description": "Anime/Manga not found in MAL"
+        "message": "যদি এনিমে/মাংগা $page$ ত পোৱা নাযায়",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "MyAnimeList ত কোনো এন্ট্ৰি নাই",
-        "description": "No entry on MyAnimeList"
+        "message": "$page$ ত কোনো এন্ট্ৰি নাই",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "নতুন অভিসৰণ ($offset$) স্থাপন কৰা হৈছে।",
