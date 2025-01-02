@@ -8,7 +8,8 @@
       "expected": {
         "sync": false,
         "title": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka V: Houjou no Megami-hen",
-        "identifier": "57066"
+        "identifier": "57066",
+        "uiSelector": true
       }
     },
     {

@@ -2,17 +2,19 @@ import { pageInterface } from '../pageInterface';
 
 export const Hikari: pageInterface = {
   name: 'Hikari',
-  domain: ['watch.hikaritv.xyz'],
+  domain: ['https://watch.hikaritv.xyz'],
   database: 'Hikari',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
+    const isWatchPage = utils.urlPart(url, 3) === 'watch';
     // sync page has an `eps` parameter denoting the current episode
-    return utils.urlPart(url, 2) === 'watch' && utils.urlParam(url, 'eps') !== null;
+    const hasEpNumber = utils.urlParam(url, 'eps') !== null;
+
+    return isWatchPage && hasEpNumber;
   },
   isOverviewPage(url) {
-    // TODO
-    return utils.urlPart(url, 2) === 'anime' && j.$('.main-wrapper').length > 0;
+    return utils.urlPart(url, 3) === 'anime';
   },
   sync: {
     getTitle(url) {
@@ -32,13 +34,13 @@ export const Hikari: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('.anime_info_body_bg > h1').first().text().trim();
+      return j.$('.film-name').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.anime_info_body').first().prepend(j.html(selector));
+      j.$('.film-name').first().prepend(j.html(selector));
     },
   },
   init(page) {
