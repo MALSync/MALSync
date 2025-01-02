@@ -41,7 +41,11 @@
           <FormButton v-if="provider.providerSettings.master" :animation="false" color="secondary">
             {{ lang('settings_listsync_master') }}
           </FormButton>
-          <FormButton v-else-if="provider.providerSettings.text === 'Done'" :animation="false" color="primary">
+          <FormButton
+            v-else-if="provider.providerSettings.text === 'Done'"
+            :animation="false"
+            color="primary"
+          >
             {{ lang('settings_listsync_slave') }}
           </FormButton>
           <FormButton :animation="false" class="provider-item-content">
