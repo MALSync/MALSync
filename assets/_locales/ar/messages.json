@@ -450,12 +450,24 @@
         "description": "Correction Search"
     },
     "correction_NoMal": {
-        "message": "إذا تعذر العثور على الأنمي / المانجا على MAL",
-        "description": "Anime/Manga not found in MAL"
+        "message": "إذا تعذر العثور على الأنمي / المانجا على $page$",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "لا توجد مدخلات على MyAnimeList",
-        "description": "No entry on MyAnimeList"
+        "message": "لا توجد مدخلات على $page$",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "مجموعة إزاحة جديدة ($offset$).",

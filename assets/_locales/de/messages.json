@@ -516,12 +516,24 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "Falls der Anime/Manga nicht auf MAL existiert",
-        "description": "Anime/Manga not found in MAL"
+        "message": "Bitte auswählen wenn der Anime/Manga nicht auf $page$ existiert",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "Kein Eintrag auf MyAnimeList",
-        "description": "No entry on MyAnimeList"
+        "message": "Kein Eintrag auf $page$",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "Neuer Offset ($offset$) gesetzt.",

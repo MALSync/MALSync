@@ -61,6 +61,18 @@ export const ComicK: pageInterface = {
           mode: 'count',
         },
       },
+      {
+        condition: '[id^="inav"]',
+        current: {
+          regex: '#page=(\\d+)',
+          group: 1,
+          mode: 'url',
+        },
+        total: {
+          selector: '[id^="inav"]',
+          mode: 'count',
+        },
+      },
     ],
   },
   overview: {
