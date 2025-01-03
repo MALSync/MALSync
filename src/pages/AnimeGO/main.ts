@@ -3,7 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeGO: pageInterface = {
   name: 'AnimeGO',
   languages: ['Russian'],
-  domain: ['https://animego.org'],
+  domain: ['https://animego.org', 'https://animego.me'],
   type: 'anime',
   isSyncPage(url) {
     return true;

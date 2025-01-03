@@ -1,6 +1,6 @@
 {
     "search": "https://animego.org/search/all?q={searchterm}",
     "urls": {
-        "match": ["*://animego.org/anime/*"]
+        "match": ["*://animego.org/anime/*", "*://animego.me/anime/*"]
     }
 }
