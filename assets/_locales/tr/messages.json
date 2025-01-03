@@ -1558,5 +1558,8 @@
     "locale": {
         "message": "tr",
         "description": "Current locale"
+    },
+    "overview_sidebar_Published": {
+        "message": "Yayınlandı:"
     }
 }
