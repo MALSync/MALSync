@@ -515,6 +515,7 @@ module.exports = {
       '*://loriwithinfamily.com/e/*',
       '*://bethshouldercan.com/e/*',
       '*://sandratableother.com/e/*',
+      '*://robertordercharacter.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
