@@ -71,6 +71,9 @@
       "*://smotret-anime.online/catalog/*",
       "*://smotret-anime.com/catalog/*"
     ],
+    "AnimeUnity": [
+      "*://*.animeunity.so/anime/*"
+    ],
     "AnimeXin": [
       "*://animexin.top/*"
     ],
@@ -106,6 +109,7 @@
       "*://dood.li/e/*",
       "*://bethshouldercan.com/e/*",
       "*://sandratableother.com/e/*",
+      "*://robertordercharacter.com/e/*",
       "*://omegadthree.com/*",
       "*://hlswish.com/e/*",
       "*://oneupload.to/*",
