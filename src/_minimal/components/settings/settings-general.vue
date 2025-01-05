@@ -1,7 +1,7 @@
 <template>
   <div class="option">
     <div v-if="labelSection" class="title">
-      <a v-if="path.length" class="anchor-link" :href="'#' + ['settings', ...path].join('/')" >
+      <a v-if="path.length" class="anchor-link" :href="'#' + ['settings', ...path].join('/')">
         <div class="material-icons">link</div>
       </a>
       <slot name="title">
