@@ -57,9 +57,6 @@ export const Miruro: pageInterface = {
       }
       return false;
     },
-    uiSelector(selector) {
-      j.$('.anime-title').parent().parent().before(j.html(selector));
-    },
   },
   overview: {
     getTitle(url) {
