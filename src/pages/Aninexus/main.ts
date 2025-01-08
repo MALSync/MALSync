@@ -2,12 +2,11 @@ import { pageInterface } from '../pageInterface';
 
 let jsonData;
 
-export const YugenAnime: pageInterface = {
-  name: 'YugenAnime',
-  domain: ['https://yugenanime.tv', 'https://yugenani.me', 'https://yugen.to'],
-  languages: ['English'],
+export const Aninexus: pageInterface = {
+  name: 'Aninexus',
+  domain: 'https://aninexus.to',
+  languages: ['German'],
   type: 'anime',
-  database: 'YugenAnime',
   isSyncPage(url) {
     return jsonData.page && jsonData.page === 'episode';
   },
@@ -40,32 +39,38 @@ export const YugenAnime: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return YugenAnime.sync.getTitle(url);
+      return Aninexus.sync.getTitle(url);
     },
     getIdentifier(url) {
-      return YugenAnime.sync.getIdentifier(url);
+      return Aninexus.sync.getIdentifier(url);
     },
     uiSelector(selector) {
       j.$(jsonData.selector_position).first().after(j.html(selector));
     },
     getMalUrl(provider) {
-      return YugenAnime.sync.getMalUrl!(provider);
+      return Aninexus.sync.getMalUrl!(provider);
     },
   },
   init(page) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(function () {
-      utils.waitUntilTrue(
-        function () {
-          return j.$('#syncData').length;
-        },
-        function () {
-          jsonData = JSON.parse(j.$('#syncData').text());
-          page.handlePage();
-        },
-      );
-    });
+
+    utils.changeDetect(loaded, () => j.$('#syncData').text());
+
+    loaded();
+
+    function loaded() {
+      page.reset();
+      const data = j.$('#syncData').text().replace(/: ?,/g, ': "",');
+      if (!data) {
+        con.error('Empty json');
+        page.reset();
+        return;
+      }
+      jsonData = JSON.parse(data);
+      con.log('JSON', jsonData);
+      page.handlePage();
+    }
   },
 };

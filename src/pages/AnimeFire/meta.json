@@ -1,5 +1,6 @@
 {
   "urls": {
+    "search": "https://animefire.plus/pesquisar/{searchterm(-)[noSpecial]}",
     "match": ["*://animefire.net/*", "*://animefire.plus/*"]
   }
 }

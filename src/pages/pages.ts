@@ -56,7 +56,6 @@ import { DeathTollScans } from './DeathTollScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
-import { YugenAnime } from './YugenAnime/main';
 import { MangaSee } from './MangaSee/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
@@ -136,6 +135,7 @@ import { WeebCentral } from './WeebCentral/main';
 import { AnimeLib } from './AnimeLib/main';
 import { Kavita } from './Kavita/main';
 import { MangaLib } from './MangaLib/main';
+import { Aninexus } from './Aninexus/main';
 
 export const pages = {
   Crunchyroll,
@@ -196,7 +196,6 @@ export const pages = {
   ManhuaPlus,
   Readm,
   tioanime,
-  YugenAnime,
   MangaSee,
   Okanime,
   BSTO,
@@ -276,4 +275,5 @@ export const pages = {
   AnimeLib,
   Kavita,
   MangaLib,
+  Aninexus,
 };

@@ -1,6 +1,9 @@
 import { ConfObj } from '../../../_provider/definitions';
+import { IntlDuration } from '../../../utils/IntlWrapper';
 import SettingsGeneral from './settings-general.vue';
 import SettingsProgressDropdown from './settings-progress-dropdown.vue';
+
+const intl = new IntlDuration();
 
 function startProgressSync() {
   if (api.type === 'webextension') {
@@ -52,19 +55,36 @@ export const estimation: ConfObj[] = [
     title: () => api.storage.lang('settings_Interval'),
     change: () => startProgressSync(),
     props: () => {
-      const hours = api.storage.lang('bookmarksItem_Hours');
       return {
         component: 'dropdown',
         option: 'progressInterval',
         props: {
           options: [
             { title: api.storage.lang('settings_Interval_Off'), value: '0' },
-            { title: `30 ${api.storage.lang('bookmarksItem_mins')}`, value: '30' },
-            { title: `1 ${api.storage.lang('bookmarksItem_Hour')}`, value: '60' },
-            { title: `2 ${hours}`, value: '120' },
-            { title: `4 ${hours}`, value: '240' },
-            { title: `12 ${hours}`, value: '720' },
-            { title: `24 ${hours}`, value: '1440' },
+            {
+              title: `${intl.setDuration({ minutes: 30 }).getRelativeText({ style: 'long' })}`,
+              value: '30',
+            },
+            {
+              title: `${intl.setDuration({ hours: 1 }).getRelativeText({ style: 'long' })}`,
+              value: '60',
+            },
+            {
+              title: `${intl.setDuration({ hours: 2 }).getRelativeText({ style: 'long' })}`,
+              value: '120',
+            },
+            {
+              title: `${intl.setDuration({ hours: 4 }).getRelativeText({ style: 'long' })}`,
+              value: '240',
+            },
+            {
+              title: `${intl.setDuration({ hours: 12 }).getRelativeText({ style: 'long' })}`,
+              value: '720',
+            },
+            {
+              title: `${intl.setDuration({ hours: 24 }).getRelativeText({ style: 'long' })}`,
+              value: '1440',
+            },
           ],
         },
       };
