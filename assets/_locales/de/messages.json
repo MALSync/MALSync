@@ -1642,5 +1642,14 @@
     },
     "overview_sidebar_Demographic": {
         "message": "Demografie:"
+    },
+    "settings_listsync_slave": {
+        "message": "Spiegel"
+    },
+    "settings_listsync_master": {
+        "message": "Primär"
+    },
+    "settings_listsync_list": {
+        "message": "Liste:"
     }
 }
