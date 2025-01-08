@@ -125,7 +125,7 @@ function getChapter(text: string) {
   const res = /(ch|chapter|episode|ep|chap|chp)\D?(\d+)/i.exec(text);
 
   if (!res) {
-    const res2 = /(\d+)$/i.exec(text);
+    const res2 = /((\d+\.)?\d+)$/i.exec(text);
     if (res2) {
       return Number(res2[1]) || NaN;
     }
