@@ -454,12 +454,24 @@
         }
     },
     "correction_NoMal": {
-        "message": "如果在MAL上找不到动画/漫画",
-        "description": "Anime/Manga not found in MAL"
+        "message": "如果在$page$上找不到动画/漫画",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "MyAnimeList无此条目",
-        "description": "No entry on MyAnimeList"
+        "message": "$page$无此条目",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "overview_Continue_anime": {
         "message": "继续观看",
