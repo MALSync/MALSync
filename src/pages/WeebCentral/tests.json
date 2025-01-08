@@ -26,6 +26,28 @@
             "2": "https://weebcentral.com/chapters/01J76XZ47T7GZ48GZ9XZVF4BPF"
           }
         }
+      },
+      {
+        "url": "https://weebcentral.com/chapters/01JH1X95RSVSEXTHG3759C7H54",
+        "expected": {
+          "sync": true,
+          "title": "Otaku ni Yasashii Gal wa Inai!",
+          "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
+          "episode": 40,
+          "overviewUrl": "https://weebcentral.com/series/01J76XYGSXQN8BNTPR0QXWQD2S/Otaku-ni-Yasashii-Gal-wa-Inai"
+        }
+      },
+      {
+        "url": "https://weebcentral.com/series/01J76XYGSXQN8BNTPR0QXWQD2S/Otaku-ni-Yasashii-Gal-wa-Inai",
+        "expected": {
+          "sync": false,
+          "title": "Otaku ni Yasashii Gal wa Inai!",
+          "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
+          "uiSelector": true,
+          "epList": {
+            "40": "https://weebcentral.com/chapters/01JH1X95RSVSEXTHG3759C7H54"
+          }
+        }
       }
     ]
 }

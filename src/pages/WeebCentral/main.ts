@@ -112,7 +112,13 @@ export const WeebCentral: pageInterface = {
 function getChapter(text: string) {
   const res = /(ch|chapter|episode|ep|chap|chp)\D?(\d+)/i.exec(text);
 
-  if (!res) return NaN;
+  if (!res) {
+    const res2 = /(\d+)$/i.exec(text);
+    if (res2) {
+      return Number(res2[1]) || NaN;
+    }
+    return NaN;
+  }
 
   return Number(res[2]) || NaN;
 }
