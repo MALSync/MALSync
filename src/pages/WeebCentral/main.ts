@@ -51,12 +51,24 @@ export const WeebCentral: pageInterface = {
     },
     readerConfig: [
       {
+        condition: () => j.$('[value="single_page"]').is(':checked'),
         current: {
-          selector: 'main img',
+          selector: '[onclick*="page_select_modal"]',
+          mode: 'text',
+          regex: '\\d+$',
+        },
+        total: {
+          selector: 'main img[src*="/manga/"]',
+          mode: 'count',
+        },
+      },
+      {
+        current: {
+          selector: 'main img[src*="/manga/"]',
           mode: 'countAbove',
         },
         total: {
-          selector: 'main img',
+          selector: 'main img[src*="/manga/"]',
           mode: 'count',
         },
       },
