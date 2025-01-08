@@ -129,11 +129,7 @@ export const WeebCentral: pageInterface = {
 };
 
 function getChapterText() {
-  return j
-    .$('section.w-full button[hx-target="#chapter-select-body"] span')
-    .first()
-    .text()
-    .trim();
+  return j.$('section.w-full button[hx-target="#chapter-select-body"] span').first().text().trim();
 }
 
 function getChapter(text: string) {
