@@ -35,12 +35,19 @@ export const WeebCentral: pageInterface = {
       );
     },
     getEpisode(url) {
-      const chapterText = j
-        .$('section.w-full button[hx-target="#chapter-select-body"] span')
-        .first()
-        .text()
-        .trim();
+      const chapterText = getChapterText();
       return getChapter(chapterText);
+    },
+    getVolume(url) {
+      const chapterText = getChapterText();
+
+      const res = /^s(\d+)\D/i.exec(chapterText);
+
+      if (!res) {
+        return NaN;
+      }
+
+      return Number(res[1]) || NaN;
     },
     nextEpUrl(url) {
       const nextButton = j
@@ -120,6 +127,14 @@ export const WeebCentral: pageInterface = {
     });
   },
 };
+
+function getChapterText() {
+  return j
+    .$('section.w-full button[hx-target="#chapter-select-body"] span')
+    .first()
+    .text()
+    .trim();
+}
 
 function getChapter(text: string) {
   const res = /(ch|chapter|episode|ep|chap|chp)\D?(\d+)/i.exec(text);
