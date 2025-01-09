@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const puppeteer = require('puppeteer');
-const { PuppeteerBlocker } = require('@cliqz/adblocker-puppeteer');
+const { PuppeteerBlocker } = require('@ghostery/adblocker-puppeteer');
 const path = require('path');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
@@ -386,6 +386,9 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   expect(text.identifier, 'Identifier').to.equal(test.expected.identifier);
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
+    if (test.expected.volume) {
+      expect(text.volume, 'Volume').to.equal(test.expected.volume);
+    }
     var textOverview =
       typeof text.overviewUrl !== 'undefined' ? text.overviewUrl.replace(/www[^.]*\./, '') : text.overviewUrl;
     var testOverview =

@@ -166,7 +166,7 @@ async function start() {
         voe,
         // vidmoly,
         mixdrop,
-        gogostream,
+        // gogostream,
         zoro,
         gogoanime,
         // kickassanime,

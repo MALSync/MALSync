@@ -414,12 +414,24 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "Anime/Manga MAL'da bulunamıyorsa",
-        "description": "Anime/Manga not found in MAL"
+        "message": "Anime/Manga $page$'da bulunamıyorsa",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "MAL'da böyle bir girdi yok",
-        "description": "No entry on MyAnimeList"
+        "message": "$page$'da böyle bir girdi yok",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "Yeni kayma değeri ($offset$) ayarla.",
@@ -1558,5 +1570,8 @@
     "locale": {
         "message": "tr",
         "description": "Current locale"
+    },
+    "overview_sidebar_Published": {
+        "message": "Yayınlandı:"
     }
 }

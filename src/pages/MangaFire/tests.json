@@ -7,7 +7,7 @@
         "expected": {
           "sync": false,
           "title": "Solo Leveling",
-          "identifier": "solo-leveling.52x0",
+          "identifier": "52x0",
           "uiSelector": true,
           "epList": {
             "4": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-4",
@@ -20,7 +20,7 @@
         "expected": {
           "sync": true,
           "title": "Solo Leveling",
-          "identifier": "solo-leveling.52x0",
+          "identifier": "52x0",
           "overviewUrl": "https://mangafire.to/manga/solo-leveling.52x0",
           "nextEpUrl": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-169",
           "episode": 168,

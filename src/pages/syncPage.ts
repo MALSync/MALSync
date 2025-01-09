@@ -870,6 +870,9 @@ export class SyncPage {
   handleList(searchCurrent = false, reTry = 0) {
     if (!this.singleObj) return; // Object not ready yet
     j.$('.mal-sync-active').removeClass('mal-sync-active');
+    j.$('[data-mal-sync-episode]').removeAttr('data-mal-sync-episode');
+    j.$('[data-mal-sync-episode-detected]').removeAttr('data-mal-sync-episode-detected');
+    j.$('[data-mal-sync-entry]').removeAttr('data-mal-sync-entry');
     if (
       typeof this.page.overview !== 'undefined' &&
       typeof this.page.overview.list !== 'undefined'
@@ -940,8 +943,29 @@ export class SyncPage {
 
       this.page.overview.list.elementsSelector().each(function (index, el) {
         try {
-          const elEp = parseInt(`${elementEp(j.$(el))}`) + parseInt(This.getOffset());
+          const epNumber = parseInt(`${elementEp(j.$(el))}`);
+
+          let offset = 0;
+          if (This.searchObj && This.searchObj.getRuledOffset(epNumber)) {
+            offset = Number(This.searchObj.getRuledOffset(epNumber));
+
+            const searchObjUrl = This.searchObj.getUrl();
+            const ruledUrl = This.searchObj.getRuledUrl(epNumber);
+
+            if (searchObjUrl !== ruledUrl) {
+              j.$(el).attr('data-mal-sync-entry', ruledUrl);
+              return;
+            }
+          }
+
+          const elEp = epNumber + offset;
           elementArray[elEp] = j.$(el);
+
+          j.$(el).attr('data-mal-sync-episode', elEp);
+          if (elEp !== epNumber) {
+            j.$(el).attr('data-mal-sync-episode-detected', epNumber);
+          }
+
           if (
             (api.settings.get('highlightAllEp') && elEp <= currentEpisode) ||
             elEp === currentEpisode
