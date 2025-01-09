@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const puppeteer = require('puppeteer');
-const { PuppeteerBlocker } = require('@cliqz/adblocker-puppeteer');
+const { PuppeteerBlocker } = require('@ghostery/adblocker-puppeteer');
 const path = require('path');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
