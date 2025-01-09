@@ -154,9 +154,8 @@ jobs:
       with:
         product-id: ${{ secrets.EDGE_PRODUCT_ID }}
         zip-path: dist/webextension.zip
+        api-key: ${{ secrets.EDGE_API_KEY }}
         client-id: ${{ secrets.EDGE_CLIENT_ID }}
-        client-secret: ${{ secrets.EDGE_CLIENT_SECRET }}
-        access-token-url: ${{ secrets.EDGE_ACCESS_TOKEN_URL }}
 
   firefox:
     runs-on: ubuntu-latest
