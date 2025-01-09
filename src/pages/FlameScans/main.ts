@@ -33,20 +33,6 @@ export const FlameScans: pageInterface = {
       const elementEpN = j.$('[class*="TopChapterNavbar_chapter_title"]').text().trim();
       return getChapter(elementEpN);
     },
-    nextEpUrl(url) {
-      const data = JSON.parse(j.$('#__NEXT_DATA__').text());
-      const next = data.props.pageProps.next || undefined;
-
-      if (!next || next === '#/next/') return undefined;
-
-      const temp = url.split('/');
-
-      temp.splice(5, 1);
-
-      temp.push(next);
-
-      return temp.join('/');
-    },
   },
   overview: {
     getTitle(url) {
@@ -92,8 +78,7 @@ export const FlameScans: pageInterface = {
         );
       } else if (FlameScans.isSyncPage!(window.location.href)) {
         waitDebounce = utils.waitUntilTrue(
-          () =>
-            FlameScans.sync.getTitle(window.location.href) && j.$('#__NEXT_DATA__').first().length,
+          () => FlameScans.sync.getTitle(window.location.href),
           () => page.handlePage(),
         );
       }
