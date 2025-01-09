@@ -43,9 +43,7 @@ export const WeebCentral: pageInterface = {
 
       const res = /^s(\d+)\D/i.exec(chapterText);
 
-      if (!res) {
-        return NaN;
-      }
+      if (!res) return NaN;
 
       return Number(res[1]) || NaN;
     },
