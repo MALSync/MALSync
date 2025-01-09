@@ -6,10 +6,10 @@ export const FlameScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (utils.urlPart(url, 5) === '') {
-      return false;
-    }
-    return true;
+    return utils.urlPart(url, 3) === 'series' && Boolean(utils.urlPart(url, 5));
+  },
+  isOverviewPage(url) {
+    return utils.urlPart(url, 3) === 'series' && !utils.urlPart(url, 5);
   },
   sync: {
     getTitle(url) {
@@ -31,12 +31,7 @@ export const FlameScans: pageInterface = {
     },
     getEpisode(url) {
       const elementEpN = j.$('[class*="TopChapterNavbar_chapter_title"]').text().trim();
-
-      const temp = elementEpN.match(/chapter \d+/gim);
-
-      if (!temp || temp.length === 0) return 0;
-
-      return Number(temp[0].replace(/\D+/g, ''));
+      return getChapter(elementEpN);
     },
     nextEpUrl(url) {
       const data = JSON.parse(j.$('#__NEXT_DATA__').text());
@@ -58,19 +53,10 @@ export const FlameScans: pageInterface = {
       return j.$('h1.mantine-Title-root').text().trim();
     },
     getIdentifier(url) {
-      if (utils.urlPart(url, 3) === 'series') {
-        return utils.urlPart(url, 4);
-      }
-      return utils.urlPart(url, 5);
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('[class*="SeriesPage_coverWrapper"]')
-        .first()
-        .after(
-          j.html(
-            `<div id= "malthing" style="background: #2e2e2e;border: 1px solid #3b3b3b;margin-top: 20px;"><div class="releases"><h2>MAL-Sync</h2></div>${selector}</div>`,
-          ),
-        );
+      j.$('.mantine-Title-root').last().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -82,12 +68,7 @@ export const FlameScans: pageInterface = {
       },
       elementEp(selector) {
         const elementEpN = selector.find('.mantine-Text-root').first().text().trim() || '';
-
-        const temp = elementEpN.match(/\d+/gim);
-
-        if (!temp || temp.length === 0) return 0;
-
-        return Number(temp[0].replace(/\D+/g, ''));
+        return getChapter(elementEpN);
       },
     },
   },
@@ -95,53 +76,39 @@ export const FlameScans: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+
+    let waitDebounce;
     const pageReady = function () {
+      page.reset();
+      clearInterval(waitDebounce)
       if (document.title.includes('Page not found')) {
         con.error('404');
         return;
       }
-      if (
-        j.$('.mantine-Title-root').length &&
-        j.$('[class*="ChapterCard_chapterWrapper"]').length
-      ) {
-        page.handlePage();
-      }
-      if (j.$('[class*="TopChapterNavbar_series_title"]').length) {
-        utils.waitUntilTrue(
-          function () {
-            if (j.$('#__NEXT_DATA__').first().length) {
-              return true;
-            }
-            return false;
-          },
-          function () {
-            page.handlePage();
-          },
+      if (FlameScans.isOverviewPage!(window.location.href)) {
+        waitDebounce = utils.waitUntilTrue(
+          () => FlameScans.overview!.getTitle(window.location.href),
+          () => page.handlePage(),
+        );
+      } else if (FlameScans.isSyncPage!(window.location.href)) {
+        waitDebounce = utils.waitUntilTrue(
+          () =>
+            FlameScans.sync.getTitle(window.location.href) && j.$('#__NEXT_DATA__').first().length,
+          () => page.handlePage(),
         );
       }
     };
 
-    j.$(document).ready(pageReady);
-    createPageChangeListener(pageReady);
+    j.$(document).ready(function () {
+      utils.fullUrlChangeDetect(pageReady);
+    });
   },
 };
 
-function createPageChangeListener(callback): void {
-  if (typeof callback !== 'function') {
-    throw new Error('Callback must be a function.');
-  }
+function getChapter(title) {
+  const temp = title.match(/chapter \d+/gim);
 
-  const originalPushState = window.history.pushState;
-  const originalReplaceState = window.history.replaceState;
-  window.history.pushState = function (...args: Parameters<History['pushState']>) {
-    originalPushState.apply(this, args);
-    callback();
-  };
+  if (!temp || temp.length === 0) return 0;
 
-  window.history.replaceState = function (...args: Parameters<History['replaceState']>) {
-    originalReplaceState.apply(this, args);
-    callback();
-  };
-
-  window.addEventListener('popstate', callback);
+  return Number(temp[0].replace(/\D+/g, ''));
 }
