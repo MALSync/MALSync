@@ -516,12 +516,24 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "Si l'anime/le manga ne peut pas être trouvé sur MAL",
-        "description": "Anime/Manga not found in MAL"
+        "message": "Si l'anime/le manga ne peut pas être trouvé sur $page$",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "Pas de résultat sur MyAnimeList",
-        "description": "No entry on MyAnimeList"
+        "message": "Pas de résultat sur $page$",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "Nouveau décalage ($offset$) défini.",
@@ -1558,5 +1570,80 @@
     "locale": {
         "message": "fr",
         "description": "Current locale"
+    },
+    "settings_listsync_status": {
+        "message": "Statut :"
+    },
+    "settings_listsync_list": {
+        "message": "Liste :"
+    },
+    "settings_listsync_itemcount": {
+        "message": "Éléments à synchroniser :"
+    },
+    "settings_listsync_syncbutton": {
+        "message": "Synchroniser"
+    },
+    "settings_listsync_updates": {
+        "message": "Éléments mis à jour"
+    },
+    "settings_listsync_missing": {
+        "message": "Éléments manquants"
+    },
+    "settings_listsync_score": {
+        "message": "Note :"
+    },
+    "settings_listsync_progress_manga": {
+        "message": "Ch. :"
+    },
+    "settings_listsync_progress_anime": {
+        "message": "Ép. :"
+    },
+    "settings_listsync_finishdate": {
+        "message": "Terminé le :"
+    },
+    "settings_listsync_repeatcount_anime": {
+        "message": "Nombre de re-visionnages :"
+    },
+    "settings_listsync_repeatcount_manga": {
+        "message": "Nombre de relectures :"
+    },
+    "settings_listsync_master": {
+        "message": "Liste principale"
+    },
+    "settings_listsync_syncinprogress": {
+        "message": "Synchronisation en cours, veuillez patienter :"
+    },
+    "settings_listsync_volume": {
+        "message": "Vol. :"
+    },
+    "settings_listsync_startdate": {
+        "message": "Commencé le :"
+    },
+    "settings_listsync_unknowndate": {
+        "message": "non indiqué"
+    },
+    "overview_sidebar_Published": {
+        "message": "Période de publication :"
+    },
+    "overview_sidebar_Themes": {
+        "message": "Thèmes :"
+    },
+    "settings_listsync_provider_done": {
+        "message": "Fait"
+    },
+    "overview_sidebar_Premiered": {
+        "message": "Première diffusion :"
+    },
+    "overview_sidebar_Producers": {
+        "message": "Production :"
+    },
+    "overview_sidebar_Licensors": {
+        "message": "Licence :"
+    },
+    "overview_sidebar_Type": {
+        "message": "Type :"
+    },
+    "overview_sidebar_Demographic": {
+        "message": "Audience cible :"
     }
 }

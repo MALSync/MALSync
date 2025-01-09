@@ -516,12 +516,24 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "Se o Anime/Mangá não pode ser encontrado no MAL",
-        "description": "Anime/Manga not found in MAL"
+        "message": "Se o Anime/Mangá não pode ser encontrado no $page$",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "Não encontrado no MyAnimeList",
-        "description": "No entry on MyAnimeList"
+        "message": "Não encontrado no $page$",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "Novo Deslocamento ($offset$) adicionado.",

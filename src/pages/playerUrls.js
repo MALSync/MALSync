@@ -515,6 +515,7 @@ module.exports = {
       '*://loriwithinfamily.com/e/*',
       '*://bethshouldercan.com/e/*',
       '*://sandratableother.com/e/*',
+      '*://robertordercharacter.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -689,10 +690,6 @@ module.exports = {
   // voiranime
   streamhide: {
     match: ['*://*.streamhide.to/e/*'],
-  },
-  // animeflix
-  animeflix: {
-    match: ['*://api.animeflix.live/*', '*://api.animeflix.dev/*', '*://*.animeflix.ci/player?*'],
   },
   // zoro
   megacloud: {

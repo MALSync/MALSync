@@ -113,7 +113,6 @@ import { AnimeBuff } from './AnimeBuff/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
 import { AnimeKO } from './AnimeKO/main';
 import { AnimeGO } from './AnimeGO/main';
-import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
 import { HinataSoul } from './HinataSoul/main';
@@ -131,6 +130,7 @@ import { Q1N } from './Q1N/main';
 import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
 import { VortexScans } from './VortexScans/main';
+import { WeebCentral } from './WeebCentral/main';
 import { AnimeLib } from './AnimeLib/main';
 import { Kavita } from './Kavita/main';
 import { MangaLib } from './MangaLib/main';
@@ -252,7 +252,6 @@ export const pages = {
   AnimeOnegai,
   AnimeKO,
   AnimeGO,
-  Animeflix,
   LuciferDonghua,
   NeoxScans,
   HinataSoul,
@@ -270,6 +269,7 @@ export const pages = {
   TempleScan,
   ScyllaScans,
   VortexScans,
+  WeebCentral,
   AnimeLib,
   Kavita,
   MangaLib,

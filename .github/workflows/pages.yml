@@ -29,6 +29,9 @@ jobs:
     - name: Decode
       run: node decrypt.js
       working-directory: test/dist/headless
+    # see https://github.com/puppeteer/puppeteer/issues/12818
+    - name: Disable AppArmor
+      run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
     - name: Page Tests
       run: |
         npm ci

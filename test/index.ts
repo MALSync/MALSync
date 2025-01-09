@@ -44,6 +44,9 @@ window.MalSyncTest = async function() {
           value.episode = parseInt(
             `${page.sync.getEpisode(window.location.href)}`,
           );
+          if (page.sync.getVolume) {
+            value.volume = parseInt(`${page.sync.getVolume(window.location.href)}`);
+          }
           value.overviewUrl = page.sync.getOverviewUrl(window.location.href);
           if (typeof page.sync.nextEpUrl !== 'undefined') {
             value.nextEpUrl = page.sync.nextEpUrl(window.location.href);

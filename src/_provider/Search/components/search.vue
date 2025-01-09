@@ -24,8 +24,10 @@
       <a class="result" href="" style="cursor: pointer" @click="clickItem($event, '')">
         <div class="image"></div>
         <div class="right">
-          <span class="title">{{ lang('correction_NoEntry') }}</span>
-          <p>{{ lang('correction_NoMal') }}</p>
+          <span class="title">{{
+            lang('correction_NoEntry', [providerTemplates('').shortName])
+          }}</span>
+          <p>{{ lang('correction_NoMal', [providerTemplates('').shortName]) }}</p>
         </div>
       </a>
       <a
@@ -61,6 +63,7 @@
 import { PropType } from 'vue';
 import { normalSearch } from '../../../utils/Search';
 import { searchResult } from '../../definitions';
+import { providerTemplates } from '../../../provider/templates';
 
 let searchTimeout;
 export default {
@@ -115,6 +118,7 @@ export default {
     lang: api.storage.lang,
     getStatusText: utils.getStatusText,
     episodeText: utils.episode,
+    providerTemplates,
     load() {
       if (this.searchKeyword) {
         this.loading = true;
