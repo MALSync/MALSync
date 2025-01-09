@@ -203,7 +203,9 @@ module.exports = {
   // Anime365
   anime365: {
     match: [
-      '*://smotret-anime.net/translations/embed/*',
+      '*://smotret-anime.org/translations/embed/*',
+      '*://smotret-anime.online/translations/embed/*',
+      '*://smotret-anime.com/translations/embed/*',
       '*://anime365.ru/translations/embed/*',
       '*://anime-365.ru/translations/embed/*',
     ],
@@ -538,7 +540,13 @@ module.exports = {
   },
   // kickassanime
   kaaplay: {
-    match: ['*://kaa-play.me/*', '*://kaavid.com/*', '*://vidnethub.net/*', '*://vidco.pro/*'],
+    match: [
+      '*://kaa-play.me/*',
+      '*://kaavid.com/*',
+      '*://vidnethub.net/*',
+      '*://vidco.pro/*',
+      '*://omegadthree.com/*',
+    ],
   },
   // animeshouse
   animeshouse: {
@@ -746,5 +754,9 @@ module.exports = {
   // animexin
   rumble: {
     match: ['*://rumble.com/embed/*'],
+  },
+  // aninexus
+  rumble: {
+    match: ['*://fle-rvd0i9o8-moo.com/*', '*://dhtpre.com/*'],
   },
 };

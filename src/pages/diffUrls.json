@@ -66,6 +66,11 @@
     ]
   },
   "0.10.4": {
+    "Anime365": [
+      "*://smotret-anime.org/catalog/*",
+      "*://smotret-anime.online/catalog/*",
+      "*://smotret-anime.com/catalog/*"
+    ],
     "AnimeXin": [
       "*://animexin.top/*"
     ],
@@ -79,6 +84,9 @@
       "*://*.gogoanime3.cc/*",
       "*://*.anitaku.bz/*"
     ],
+    "Voiranime": [
+      "*://*.voiranime.com/*"
+    ],
     "Zoro": [
       "*://hianime.nz/*",
       "*://hianime.mn/*",
@@ -91,14 +99,19 @@
       "*://*.jwplayerhls.com/*",
       "*://*.videzz.net/*",
       "*://geo.dailymotion.com/*",
+      "*://smotret-anime.org/translations/embed/*",
+      "*://smotret-anime.online/translations/embed/*",
+      "*://smotret-anime.com/translations/embed/*",
       "*://*.s3embtaku.pro/*",
       "*://dood.li/e/*",
       "*://bethshouldercan.com/e/*",
       "*://sandratableother.com/e/*",
+      "*://omegadthree.com/*",
       "*://hlswish.com/e/*",
       "*://oneupload.to/*",
       "*://player.vimeo.com/*",
-      "*://rumble.com/embed/*"
+      "*://fle-rvd0i9o8-moo.com/*",
+      "*://dhtpre.com/*"
     ]
   }
 }
