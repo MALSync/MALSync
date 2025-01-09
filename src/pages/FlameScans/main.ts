@@ -66,7 +66,7 @@ export const FlameScans: pageInterface = {
     let waitDebounce;
     const pageReady = function () {
       page.reset();
-      clearInterval(waitDebounce)
+      clearInterval(waitDebounce);
       if (document.title.includes('Page not found')) {
         con.error('404');
         return;
