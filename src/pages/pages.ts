@@ -135,6 +135,7 @@ import { AnimeLib } from './AnimeLib/main';
 import { Kavita } from './Kavita/main';
 import { MangaLib } from './MangaLib/main';
 import { Aninexus } from './Aninexus/main';
+import { Hikari } from './Hikari/main';
 
 export const pages = {
   Crunchyroll,
@@ -274,4 +275,5 @@ export const pages = {
   Kavita,
   MangaLib,
   Aninexus,
+  Hikari,
 };
