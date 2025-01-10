@@ -88,6 +88,9 @@
       "*://*.gogoanime3.cc/*",
       "*://*.anitaku.bz/*"
     ],
+    "tmofans": [
+      "*://zonatmo.com/*"
+    ],
     "Voiranime": [
       "*://*.voiranime.com/*"
     ],
@@ -95,9 +98,6 @@
       "*://hianime.nz/*",
       "*://hianime.mn/*",
       "*://hianime.sx/*"
-    ],
-    "tmofans": [
-      "*://zonatmo.com/*"
     ],
     "iframe": [
       "*://*.jwplayerhls.com/*",
