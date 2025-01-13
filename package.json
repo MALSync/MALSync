@@ -15,7 +15,7 @@
     "@cspell/eslint-plugin": "8.17.1",
     "@eslint/eslintrc": "3.2.0",
     "@eslint/js": "9.18.0",
-    "@stylistic/eslint-plugin": "2.12.1",
+    "@stylistic/eslint-plugin": "2.13.0",
     "@types/chai": "^4.3.20",
     "@types/eslint": "9.6.1",
     "@types/eslint__eslintrc": "2.1.2",
