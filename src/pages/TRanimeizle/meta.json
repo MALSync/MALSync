@@ -1,5 +1,11 @@
 {
   "urls": {
-    "match": ["*://tranimeizle.net/*", "*://www.tranimeizle.net/*", "*://tranimeizle.co/*", "*://www.tranimeizle.co/*"]
+    "match": [
+      "*://tranimeizle.net/*",
+      "*://www.tranimeizle.net/*",
+      "*://tranimeizle.co/*",
+      "*://www.tranimeizle.co/*",
+      "*://*.tranimeizle.top/*"
+    ]
   }
 }
