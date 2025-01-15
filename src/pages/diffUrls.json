@@ -119,6 +119,9 @@
     ]
   },
   "0.11.0": {
+    "TRanimeizle": [
+      "*://*.tranimeizle.top/*"
+    ],
     "iframe": []
   }
 }
