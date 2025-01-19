@@ -328,7 +328,7 @@
         "description": "Year"
     },
     "bookmarksItem_Days": {
-        "message": "günler",
+        "message": "gün",
         "description": "Days"
     },
     "bookmarksItem_Day": {
@@ -336,7 +336,7 @@
         "description": "Day"
     },
     "bookmarksItem_Hours": {
-        "message": "saatler",
+        "message": "saat",
         "description": "Hours"
     },
     "bookmarksItem_Hour": {
@@ -530,7 +530,7 @@
         "description": "Authenticate"
     },
     "settings_LocalSync": {
-        "message": "Yerel depolama yedeklemesi (log gibi)",
+        "message": "Dosyaları yerel olarak da yedekle",
         "description": "Option to activate the local storage fallback sync"
     },
     "settings_LocalSync_Import": {
@@ -562,7 +562,7 @@
         "description": "Manga sync"
     },
     "settings_AutoTracking_Video": {
-        "message": "Video'nun $videoDuration$% de bölümü güncelle",
+        "message": "Videonun $videoDuration$%'ine gelindiğinde bölümü güncelle",
         "description": "Update Episode of video progress",
         "placeholders": {
             "videoDuration": {
@@ -572,7 +572,7 @@
         }
     },
     "settings_AutoTracking_Instant": {
-        "message": "Anlık oto takibi $delay$ saniye geciktir",
+        "message": "Anlık otomatik takibi $delay$ saniye geciktir",
         "description": "Delay instant autotracking",
         "placeholders": {
             "delay": {
@@ -622,7 +622,7 @@
         "description": "Estimate episode number"
     },
     "settings_malTags": {
-        "message": "Tags/Notes'leri Kullan",
+        "message": "Etiketleri/Notları Kullan",
         "description": "Use Tags/Notes"
     },
     "settings_malTags_Text": {
@@ -718,7 +718,7 @@
         "description": "Text for the correction ui shortcut"
     },
     "settings_Shortcuts_Sync": {
-        "message": "Bölünü Okunmuş olarak ayarla",
+        "message": "Bölümü okunmuş olarak ayarlamak için kısayol tuşu",
         "description": "Text for the sync ui shortcut"
     },
     "settings_Shortcuts_Next_Episode": {
@@ -738,7 +738,7 @@
         "description": "Shown if no shortcut is set for an option"
     },
     "settings_introSkip": {
-        "message": "($Seconds$ saniye) Açılış atlama süresini ayarla",
+        "message": "Açılış atlama süresini ayarla ($Seconds$ saniye)",
         "description": "Skips video seconds",
         "placeholders": {
             "Seconds": {
@@ -952,7 +952,7 @@
         "description": "Flash message that shows up after removing an anime/manga entry from user list"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sayfaların %90'ından sonra mangayı senkronize et",
+        "message": "Sayfaların %90'ından sonra mangayı güncelle",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
     },
     "settings_read_more": {
@@ -980,7 +980,7 @@
         "description": "Button to load content"
     },
     "Anime": {
-        "message": "anime",
+        "message": "Anime",
         "description": "General translation of anime for places like drop downs"
     },
     "Manga": {
@@ -1070,7 +1070,7 @@
         "description": "Header of the information section of the popup anime overview"
     },
     "overview_Related": {
-        "message": "İlgili oldukları",
+        "message": "Bağlantılı oldukları",
         "description": "Header of the anime/manga relations section of the popup anime overview"
     },
     "overview_Streaming": {
@@ -1144,7 +1144,7 @@
         "description": "Button that links to support"
     },
     "settings_miscellaneous": {
-        "message": "Çeşitlilik",
+        "message": "Çeşitli Ayarlar",
         "description": "Header of the section of settings without specific theme"
     },
     "settings_listsync": {
@@ -1164,7 +1164,7 @@
         "description": "Header of the section to change onsite website appearance and features"
     },
     "settings_theming": {
-        "message": "Temalandırma",
+        "message": "Temalar",
         "description": "Header of the theming section"
     },
     "settings_theming_sidebars": {
@@ -1196,7 +1196,7 @@
         "description": "Dropdown label for selecting the global progress manga source"
     },
     "settings_tracking": {
-        "message": "Takip etme",
+        "message": "Takip Ayarları",
         "description": "tracking settings header"
     },
     "settings_tracking_disabled": {
@@ -1420,7 +1420,7 @@
         "description": "Shows an 'action required' popup hidding big popups"
     },
     "settings_Notifications_Sticky": {
-        "message": "Yapışkan Bildirimler",
+        "message": "Kalıcı Bildirimler",
         "description": "Requires interaction to dismiss; ignores system notification timeout"
     },
     "overview_sidebar_Genres": {
@@ -1573,5 +1573,68 @@
     },
     "overview_sidebar_Published": {
         "message": "Yayınlandı:"
+    },
+    "settings_ForceEnglishTitles": {
+        "message": "Başlıkları İngilziceye zorla"
+    },
+    "settings_listsync_syncinprogress": {
+        "message": "Senkronize ediliyor lütfen bekleyin:"
+    },
+    "settings_listsync_syncbutton": {
+        "message": "Senkronize et"
+    },
+    "settings_listsync_score": {
+        "message": "Puan:"
+    },
+    "settings_listsync_status": {
+        "message": "Durum:"
+    },
+    "settings_listsync_startdate": {
+        "message": "Başlanma Tarihi:"
+    },
+    "settings_listsync_finishdate": {
+        "message": "Bitirme Tarihi:"
+    },
+    "settings_listsync_repeatcount_anime": {
+        "message": "Yeniden İzleme Sayısı:"
+    },
+    "settings_listsync_itemcount": {
+        "message": "Senkronize edilecek öğeler:"
+    },
+    "settings_listsync_updates": {
+        "message": "Güncellenecekler"
+    },
+    "settings_listsync_progress_anime": {
+        "message": "B:"
+    },
+    "settings_listsync_unknowndate": {
+        "message": "ayarlanmadı"
+    },
+    "settings_listsync_repeatcount_manga": {
+        "message": "Yeniden Okuma Sayısı:"
+    },
+    "settings_listsync_provider_done": {
+        "message": "Tamamlandı"
+    },
+    "settings_listsync_list": {
+        "message": "Liste:"
+    },
+    "settings_listsync_missing": {
+        "message": "Eksik"
+    },
+    "overview_sidebar_Producers": {
+        "message": "Yapımcılar:"
+    },
+    "overview_sidebar_Themes": {
+        "message": "Temalar:"
+    },
+    "overview_sidebar_Type": {
+        "message": "Tür:"
+    },
+    "overview_sidebar_Licensors": {
+        "message": "Lisansör:"
+    },
+    "settings_listsync_master": {
+        "message": "Ana Site"
     }
 }
