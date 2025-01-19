@@ -1014,7 +1014,7 @@
         "description": "Info table on overview - Total Playtime: 276 mins"
     },
     "locale": {
-        "message": "zh_CN",
+        "message": "zh-CN",
         "description": "Current locale"
     }
 }

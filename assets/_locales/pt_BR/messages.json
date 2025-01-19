@@ -1536,7 +1536,7 @@
         }
     },
     "locale": {
-        "message": "pt_BR",
+        "message": "pt-BR",
         "description": "Current locale"
     }
 }
