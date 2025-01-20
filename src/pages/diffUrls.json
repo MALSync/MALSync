@@ -122,6 +122,8 @@
     "TRanimeizle": [
       "*://*.tranimeizle.top/*"
     ],
-    "iframe": []
+    "iframe": [
+      "*://*.bunniescdn.online/*"
+    ]
   }
 }
