@@ -158,7 +158,7 @@ async function multiple(Array: listElement[], type, logger = con.m('release')) {
       releaseItem.timestamp &&
       Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000
     ) {
-      logger.m(el.apiCacheKey).log('Fininshed');
+      logger.m(el.apiCacheKey).log('Finished');
     } else if (
       releaseItem &&
       !releaseItem.value &&
