@@ -123,6 +123,7 @@
       "*://*.tranimeizle.top/*"
     ],
     "iframe": [
+      "*://maxfinishseveral.com/e/*",
       "*://*.bunniescdn.online/*"
     ]
   }
