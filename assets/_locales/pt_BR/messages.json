@@ -938,7 +938,7 @@
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
-        "message": "Ícone do MalSync",
+        "message": "Ícone do Mal-Sync",
         "description": "Dropdown option to show the malsync icon on discord"
     },
     "settings_enabled": {
