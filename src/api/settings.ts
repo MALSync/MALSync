@@ -88,6 +88,7 @@ export const settingsObj = {
     notificationsSticky: true,
 
     bookMarksList: false,
+    bookMarksListManga: false,
 
     customDomains: [],
 
