@@ -49,7 +49,7 @@ export const Miruro: pageInterface = {
     getMalUrl(provider) {
       const myanimelistBtn = j.$("a[href^='https://myanimelist.net']");
       const anilistBtn = j.$("a[href^='https://anilist.co']");
-      if (provider === 'ANILIST' && anilistBtn.length > 0) {
+      if ((provider === 'ANILIST' || api.settings.get('syncFallback')) && anilistBtn.length > 0) {
         return `${anilistBtn.first().attr('href')}`;
       }
       if (myanimelistBtn.length > 0) {

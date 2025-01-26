@@ -605,6 +605,10 @@
         "message": "Mod",
         "description": "Mode"
     },
+    "settings_Fallback": {
+        "message": "Fallback to other modes",
+        "description": "Fallback to other modes"
+    },
     "settings_Authenticate": {
         "message": "Pengesahan",
         "description": "Authenticate"

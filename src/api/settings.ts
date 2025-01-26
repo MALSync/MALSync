@@ -16,6 +16,7 @@ export const settingsObj = {
     userscriptModeButton: false,
     syncMode: 'MAL',
     syncModeSimkl: 'MAL',
+    syncFallback: true,
     localSync: true,
     delay: 0,
     videoDuration: 85,

@@ -52,7 +52,7 @@ export const Kaguya: pageInterface = {
       j.$('#mal-sync').first().after(j.html(selector));
     },
     async getMalUrl(provider) {
-      if (provider === 'ANILIST' && jsonData.aniId)
+      if ((provider === 'ANILIST' || api.settings.get('syncFallback')) && jsonData.aniId)
         return `https://anilist.co/anime/${jsonData.aniId}`;
 
       if (jsonData.aniId) {

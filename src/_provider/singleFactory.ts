@@ -13,6 +13,26 @@ export function getSingle(url: string) {
   if (/^local:\/\//i.test(url)) {
     return new LocalSingle(url);
   }
+
+  if (api.settings.get('syncFallback')) {
+    const hostname = new URL(url).hostname;
+    if (hostname === 'myanimelist.net') {
+      return new MalSingle(url);
+    }
+    if (hostname === 'anilist.co') {
+      return new SnilistSingle(url);
+    }
+    if (hostname === 'kitsu.app') {
+      return new SitsuSingle(url);
+    }
+    if (hostname === 'simkl.com') {
+      return new SimklSingle(url);
+    }
+    if (hostname === 'shikimori.one') {
+      return new ShikiSingle(url);
+    }
+  }
+
   const syncMode = helper.getSyncMode(url);
   if (syncMode === 'MAL') {
     return new MalSingle(url);

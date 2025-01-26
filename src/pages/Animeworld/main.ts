@@ -30,7 +30,7 @@ export const Animeworld: pageInterface = {
         return malUrl;
       }
 
-      if (provider === 'ANILIST') {
+      if (provider === 'ANILIST' || api.settings.get('syncFallback')) {
         return j.$('#anilist-button').attr('href') || false;
       }
 

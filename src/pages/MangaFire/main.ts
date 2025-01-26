@@ -68,7 +68,7 @@ export const MangaFire: pageInterface = {
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) return `https://myanimelist.net/manga/${jsonData.mal_id}`;
-      if (provider === 'ANILIST' && jsonData.anilist_id)
+      if ((provider === 'ANILIST' || api.settings.get('syncFallback')) && jsonData.anilist_id)
         return `https://anilist.co/manga/${jsonData.anilist_id}`;
       return false;
     },

@@ -75,8 +75,10 @@ export const Kavita: pageInterface = {
     },
     getMalUrl(provider) {
       if (seriesDetails.malLink) return seriesDetails.malLink;
-      if (provider === 'ANILIST' && seriesDetails.anilistLink) return seriesDetails.anilistLink;
-      if (provider === 'KITSU' && seriesDetails.kitsuLink) return seriesDetails.kitsuLink;
+      if ((provider === 'ANILIST' || api.settings.get('syncFallback')) && seriesDetails.anilistLink)
+        return seriesDetails.anilistLink;
+      if ((provider === 'KITSU' || api.settings.get('syncFallback')) && seriesDetails.kitsuLink)
+        return seriesDetails.kitsuLink;
       return false;
     },
     readerConfig: [

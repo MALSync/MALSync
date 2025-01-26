@@ -38,7 +38,7 @@ export const ADKami: pageInterface = {
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) return `https://myanimelist.net/anime/${jsonData.mal_id}`;
-      if (provider === 'ANILIST') {
+      if (provider === 'ANILIST' || api.settings.get('syncFallback')) {
         if (jsonData.anilist_id) return `https://anilist.co/anime/${jsonData.anilist_id}`;
       }
       return false;

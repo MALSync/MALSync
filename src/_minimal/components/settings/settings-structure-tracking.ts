@@ -56,6 +56,19 @@ export const trackingSimple: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'syncFallback',
+    title: () => api.storage.lang('settings_Fallback'),
+    change: () => {
+      utils.clearCache();
+      if (api.type === 'webextension') localStore.clear();
+    },
+    props: {
+      component: 'checkbox',
+      option: 'syncFallback',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'syncModeSimkl',
     title: () => `${api.storage.lang('Manga')} ${api.storage.lang('settings_Mode')}`,
     condition: () => api.settings.get('syncMode') === 'SIMKL',

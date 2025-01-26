@@ -7,6 +7,7 @@ import { UserList as KitsuList } from './Kitsu/list';
 import { UserList as SimklList } from './Simkl/list';
 import { UserList as ShikiList } from './Shikimori/list';
 import { UserList as LocalList } from './Local/list';
+import { UserList as CombinedList } from './Combined/list';
 
 export async function getList(...args) {
   let tempList: listElement[] = [];
@@ -37,6 +38,9 @@ function getListObj(args, syncMode = '') {
 
   const [status, listType, sorting] = args;
 
+  if (api.settings.get('syncFallback')) {
+    return new CombinedList(status, listType, sorting);
+  }
   if (syncMode === 'MAL') {
     return new MalList(status, listType, sorting);
   }

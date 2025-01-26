@@ -36,7 +36,7 @@ export const AnimeOnsen: pageInterface = {
     getMalUrl(provider) {
       // get myanimelist anime url
       return new Promise(resolve => {
-        if (provider === 'MAL')
+        if (provider === 'MAL' || api.settings.get('syncFallback'))
           resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
         else resolve(false);
       });
@@ -92,7 +92,7 @@ export const AnimeOnsen: pageInterface = {
     getMalUrl(provider) {
       // get myanimelist anime url
       return new Promise(resolve => {
-        if (provider === 'MAL')
+        if (provider === 'MAL' || api.settings.get('syncFallback'))
           resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
         else resolve(false);
       });

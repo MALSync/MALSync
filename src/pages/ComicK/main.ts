@@ -30,7 +30,10 @@ export const ComicK: pageInterface = {
       if (jsonData.md_comic.links) {
         if (jsonData.md_comic.links.mal)
           return `https://myanimelist.net/manga/${jsonData.md_comic.links.mal}`;
-        if (provider === 'ANILIST' && jsonData.md_comic.links.al)
+        if (
+          (provider === 'ANILIST' || api.settings.get('syncFallback')) &&
+          jsonData.md_comic.links.al
+        )
           return `https://anilist.co/manga/${jsonData.md_comic.links.al}`;
       }
       return false;
@@ -88,7 +91,7 @@ export const ComicK: pageInterface = {
     getMalUrl(provider) {
       if (jsonData.links) {
         if (jsonData.links.mal) return `https://myanimelist.net/manga/${jsonData.links.mal}`;
-        if (provider === 'ANILIST' && jsonData.links.al)
+        if ((provider === 'ANILIST' || api.settings.get('syncFallback')) && jsonData.links.al)
           return `https://anilist.co/manga/${jsonData.links.al}`;
       }
       return false;

@@ -6,6 +6,11 @@ import { MetaOverview as AniMeta } from './AniList/metaOverview';
 import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';
 import { MetaOverview as ShikiMeta } from './Shikimori/metaOverview';
+import { Single as MalSingle } from './MyAnimeList_hybrid/single';
+import { Single as SnilistSingle } from './AniList/single';
+import { Single as SitsuSingle } from './Kitsu/single';
+import { Single as SimklSingle } from './Simkl/single';
+import { Single as ShikiSingle } from './Shikimori/single';
 
 export function getOverview(url, type, syncMode = '') {
   if (!syncMode) {
@@ -15,6 +20,26 @@ export function getOverview(url, type, syncMode = '') {
   if (/^local:\/\//i.test(url)) {
     return new LocalMeta(url);
   }
+
+  if (api.settings.get('syncFallback')) {
+    const hostname = new URL(url).hostname;
+    if (hostname === 'anilist.co') {
+      return new AniMeta(url);
+    }
+    if (hostname === 'kitsu.app') {
+      return new KitsuMeta(url);
+    }
+    if (hostname === 'simkl.com') {
+      return new SimklMeta(url);
+    }
+    if (hostname === 'shikimori.one') {
+      return new ShikiMeta(url);
+    }
+    if (hostname === 'myanimelist.net') {
+      return new MalMeta(url);
+    }
+  }
+
   if (syncMode === 'ANILIST') {
     return new AniMeta(url);
   }

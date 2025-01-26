@@ -44,7 +44,7 @@ export const Zoro: pageInterface = {
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) return `https://myanimelist.net/anime/${jsonData.mal_id}`;
-      if (provider === 'ANILIST' && jsonData.anilist_id)
+      if ((provider === 'ANILIST' || api.settings.get('syncFallback')) && jsonData.anilist_id)
         return `https://anilist.co/anime/${jsonData.anilist_id}`;
       return false;
     },

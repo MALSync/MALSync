@@ -64,8 +64,10 @@ export const Komga: pageInterface = {
     },
     getMalUrl(provider) {
       if (series.links.mal) return series.links.mal;
-      if (provider === 'ANILIST' && series.links.al) return series.links.al;
-      if (provider === 'KITSU' && series.links.kt) return series.links.kt;
+      if ((provider === 'ANILIST' || api.settings.get('syncFallback')) && series.links.al)
+        return series.links.al;
+      if ((provider === 'KITSU' || api.settings.get('syncFallback')) && series.links.kt)
+        return series.links.kt;
       return false;
     },
     readerConfig: [

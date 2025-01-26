@@ -48,7 +48,8 @@ export const Kitsune: pageInterface = {
       } catch (e) {
         // do nothing
       }
-      if (provider === 'ANILIST') return `https://anilist.co/anime/${jsonData.anilistId}`;
+      if (provider === 'ANILIST' || api.settings.get('syncFallback'))
+        return `https://anilist.co/anime/${jsonData.anilistId}`;
       return false;
     },
   },

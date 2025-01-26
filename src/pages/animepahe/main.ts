@@ -52,11 +52,11 @@ export const animepahe: pageInterface = {
     getMalUrl(provider) {
       const mal = $('meta[name=myanimelist]').attr('content');
       if (mal) return `https://myanimelist.net/anime/${mal}`;
-      if (provider === 'ANILIST') {
+      if (provider === 'ANILIST' || api.settings.get('syncFallback')) {
         const al = $('meta[name=anilist]').attr('content');
         if (al) return `https://anilist.co/anime/${al}`;
       }
-      if (provider === 'KITSU') {
+      if (provider === 'KITSU' || api.settings.get('syncFallback')) {
         const kitsu = $('meta[name=kitsu]').attr('content');
         if (kitsu) return `https://kitsu.app/anime/${kitsu}`;
       }

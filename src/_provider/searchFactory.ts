@@ -5,6 +5,7 @@ import { search as aniSearch } from './AniList/search';
 import { search as kitsuSearch } from './Kitsu/search';
 import { search as simklSearch } from './Simkl/search';
 import { search as shikiSearch } from './Shikimori/search';
+import { search as combinedSearch } from './Combined/search';
 
 export function search(
   keyword,
@@ -17,6 +18,9 @@ export function search(
     syncMode = helper.getSyncMode(type);
   }
 
+  if (api.settings.get('syncFallback')) {
+    return combinedSearch(keyword, type, options, sync);
+  }
   if (syncMode === 'KITSU') {
     return kitsuSearch(keyword, type, options, sync);
   }

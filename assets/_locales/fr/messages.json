@@ -627,6 +627,10 @@
         "message": "Mode",
         "description": "Mode"
     },
+    "settings_Fallback": {
+        "message": "Fallback to other modes",
+        "description": "Fallback to other modes"
+    },
     "settings_Authenticate": {
         "message": "Se connecter",
         "description": "Authenticate"
