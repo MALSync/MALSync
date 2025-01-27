@@ -15,7 +15,8 @@ export const Rawkuma: pageInterface = {
     getTitle(url) {
       return j
         .$('.ts-breadcrumb [itemprop="itemListElement"]:nth-child(2) [itemprop="name"]')
-        .text();
+        .text()
+        .replace(/\s+raw$/i, '');
     },
     getIdentifier(url) {
       return Rawkuma.overview!.getIdentifier(Rawkuma.sync.getOverviewUrl(url));
@@ -53,7 +54,10 @@ export const Rawkuma: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('div.infox > h1.entry-title').text();
+      return j
+        .$('div.infox > h1.entry-title')
+        .text()
+        .replace(/\s+raw$/i, '');
     },
     getIdentifier(url) {
       return utils.urlPart(url.replace('manga/', ''), 3);
