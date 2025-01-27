@@ -106,6 +106,7 @@ import { Docchi } from './Docchi/main';
 import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
+import { AnimeNoSub } from './AnimeNoSub/main';
 import { AnimeSama } from './AnimeSama/main';
 import { MangaFire } from './MangaFire/main';
 import { projectsuki } from './projectsuki/main';
@@ -245,6 +246,7 @@ export const pages = {
   FRAnime,
   FMTeam,
   Animelon,
+  AnimeNoSub,
   AnimeSama,
   MangaFire,
   projectsuki,

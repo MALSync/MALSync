@@ -688,6 +688,10 @@ module.exports = {
   animelon: {
     match: ['*://*.googlevideo.com/videoplayback?*'],
   },
+  // animenosub
+  animelon: {
+    match: ['*://gorro-chfzoaas.fun/lol/*', '*://vidmoly.to/embed-*', '*://animenosub.upn.one/#*'],
+  },
   // voiranime
   streamhide: {
     match: ['*://*.streamhide.to/e/*'],
