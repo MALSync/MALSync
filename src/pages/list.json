@@ -680,6 +680,11 @@
     "name": "MangaLib"
   },
   {
+    "domain": "https://rawkuma.com",
+    "type": "manga",
+    "name": "Rawkuma"
+  },
+  {
     "domain": "https://aninexus.to",
     "type": "anime",
     "name": "Aninexus"
