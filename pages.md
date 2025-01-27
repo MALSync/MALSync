@@ -869,13 +869,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://rawkuma.com"><img src="https://favicon.malsync.moe/?domain=https://rawkuma.com"> Rawkuma</a></td>
-    <td>Japanese</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://readm.today"><img src="https://favicon.malsync.moe/?domain=https://readm.today"> Readm</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -997,4 +990,3 @@
   </tr>
     </tbody>
   </table>
-  
