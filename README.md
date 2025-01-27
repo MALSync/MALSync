@@ -275,7 +275,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://animesonline.in"><img src="https://favicon.malsync.moe/?domain=https://animesonline.in"> Animes Online</a></td>
-                <td></td>
+                <td><a href="https://rawkuma.com"><img src="https://favicon.malsync.moe/?domain=https://rawkuma.com"> Rawkuma</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.miruro.tv"><img src="https://favicon.malsync.moe/?domain=https://www.miruro.tv"> Miruro</a></td>
