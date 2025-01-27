@@ -540,11 +540,6 @@
     "name": "Animelon"
   },
   {
-    "domain": "https://animenosub.to",
-    "type": "anime",
-    "name": "AnimeNoSub"
-  },
-  {
     "domain": "https://anime-sama.fr",
     "type": "anime",
     "name": "AnimeSama"
