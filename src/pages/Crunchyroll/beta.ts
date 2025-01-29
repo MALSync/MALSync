@@ -89,7 +89,7 @@ export const beta: pageInterface = {
     return Boolean(j.$('.erc-watch-episode-layout').length);
   },
   isOverviewPage(url) {
-    return utils.urlPart(url, 3) === 'series';
+    return Boolean(j.$('.erc-season-episode-list').length);
   },
   sync: {
     getTitle(url) {
