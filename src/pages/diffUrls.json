@@ -122,6 +122,9 @@
     "TRanimeizle": [
       "*://*.tranimeizle.top/*"
     ],
-    "iframe": []
+    "iframe": [
+      "*://maxfinishseveral.com/e/*",
+      "*://*.bunniescdn.online/*"
+    ]
   }
 }

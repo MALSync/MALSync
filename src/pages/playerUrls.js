@@ -516,6 +516,7 @@ module.exports = {
       '*://bethshouldercan.com/e/*',
       '*://sandratableother.com/e/*',
       '*://robertordercharacter.com/e/*',
+      '*://maxfinishseveral.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -755,5 +756,9 @@ module.exports = {
   // aninexus
   rumble: {
     match: ['*://fle-rvd0i9o8-moo.com/*', '*://dhtpre.com/*'],
+  },
+  // miruro
+  bun: {
+    match: ['*://*.bunniescdn.online/*'],
   },
 };

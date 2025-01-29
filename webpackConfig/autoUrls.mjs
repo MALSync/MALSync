@@ -168,7 +168,7 @@ async function start() {
         mixdrop,
         // gogostream,
         zoro,
-        gogoanime,
+        // gogoanime,
         // kickassanime,
     }
 
