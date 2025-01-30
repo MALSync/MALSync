@@ -48,7 +48,7 @@
     "mkdirp": "^1.0.4",
     "mocha": "^10.8.2",
     "node-dir": "^0.1.17",
-    "postcss-html": "^1.7.0",
+    "postcss-html": "^1.8.0",
     "postcss-less": "^6.0.0",
     "prettier": "^3.4.2",
     "puppeteer": "^24.1.1",
