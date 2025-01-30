@@ -135,6 +135,7 @@ import { WeebCentral } from './WeebCentral/main';
 import { AnimeLib } from './AnimeLib/main';
 import { Kavita } from './Kavita/main';
 import { MangaLib } from './MangaLib/main';
+import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
 
 export const pages = {
@@ -275,5 +276,6 @@ export const pages = {
   AnimeLib,
   Kavita,
   MangaLib,
+  Rawkuma,
   Aninexus,
 };
