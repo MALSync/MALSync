@@ -35,11 +35,14 @@ export const AnimeKAI: pageInterface = {
     uiSelector(selector) {
       j.$('#main-entity div.info').after(j.html(selector));
     },
-    getMalUrl(provider) {
-      if (isWatch2Gether()) {
-        return false;
-      }
-      const watchPage = j.$('watch-page');
+    async getMalUrl(provider) {
+      const watchPage = isWatch2Gether()
+        ? await fetch(AnimeKAI.sync.getOverviewUrl(window.location.href))
+            .then(res => res.text())
+            .then(text =>
+              j.$(new DOMParser().parseFromString(text, 'text/html')).find('#watch-page'),
+            )
+        : j.$('#watch-page');
       const malId = watchPage.data('mal-id');
       if (malId) {
         return `https://myanimelist.net/anime/${malId}`;
