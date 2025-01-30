@@ -494,7 +494,7 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "Если аниме/манга не может быть найдена",
+        "message": "Если аниме/манга не может быть найдена на $page$",
         "description": "Anime/Manga not found in MAL",
         "placeholders": {
             "page": {
@@ -1603,7 +1603,7 @@
         "message": "Перечитано:"
     },
     "settings_listsync_master": {
-        "message": "Главный"
+        "message": "Основной"
     },
     "settings_listsync_updates": {
         "message": "Обновления"
@@ -1637,5 +1637,11 @@
     },
     "overview_sidebar_Type": {
         "message": "Тип:"
+    },
+    "settings_listsync_slave": {
+        "message": "Зеркало"
+    },
+    "settings_ForceEnglishTitles": {
+        "message": "Названия произведений на Английском"
     }
 }
