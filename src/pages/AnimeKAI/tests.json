@@ -1,6 +1,7 @@
 {
   "title": "AnimeKAI",
   "url": "https://animekai.to/",
+  "bypassDetection": true,
   "testCases": [
     {
       "url": "https://animekai.to/watch/no-game-no-life-5xp8/ep-4",
