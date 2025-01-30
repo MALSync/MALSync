@@ -8,6 +8,7 @@ const fs = require('fs');
 const dir = require('node-dir');
 
 const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
+const bypassDetectionScript = fs.readFileSync(`${__dirname}/bypass-puppeteer-detection.js`, 'utf8');
 
 const testsArray = [];
 let changedFiles = [];
@@ -430,7 +431,7 @@ async function testPageCase(block, testPage, b) {
   }
 
   for (const testCase of testPage.testCases) {
-    const page = await openPage(b);
+    const page = await openPage(b, testCase.bypassDetection ?? testPage.bypassDetection);
     try {
       logC(block, testCase.url, 1);
       await Promise.race([
@@ -488,13 +489,57 @@ async function loopEl(testPage, headless = true) {
   }
 }
 
-async function openPage(b) {
+async function openPage(b, bypassDetection = false) {
   const page = await b.newPage();
 
   const blocker = await PuppeteerBlocker.fromPrebuiltAdsAndTracking(fetch);
   await blocker.enableBlockingInPage(page);
 
   await page.setViewport({ width: 1920, height: 1080 });
+  await page.setUserAgent(
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
+  );
+
+  if (bypassDetection) {
+    await page.on('request', async req => {
+      if (req.isInterceptResolutionHandled()) {
+        return;
+      }
+
+      if (req.frame()?.url() !== 'about:blank') {
+        req.continue();
+        return;
+      }
+
+      try {
+        const res = await fetch(req.url(), {
+          method: 'GET',
+          headers: req.headers(),
+        });
+        const html = await res.text();
+        const replaced = html.replace(/(?<=<head>)/, String.raw`
+          <script>
+            // <![CDATA[
+            (() => {
+              ${bypassDetectionScript}
+            })();
+            // ]]
+          </script>
+      `);
+        if (req.isInterceptResolutionHandled()) {
+          return;
+        }
+        req.respond({
+          status: res.status,
+          headers: res.headers,
+          body: replaced,
+          contentType: res.contentType,
+        });
+      } catch (e) {
+        req.abort('connectionaborted');
+      }
+    });
+  }
 
   return page;
 }
