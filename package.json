@@ -61,7 +61,7 @@
     "terser-webpack-plugin": "^5.3.11",
     "to-string-loader": "github:gajus/to-string-loader",
     "ts-deepmerge": "7.0.2",
-    "ts-loader": "^9.5.1",
+    "ts-loader": "^9.5.2",
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.2",
     "typescript": "5.7.3",
