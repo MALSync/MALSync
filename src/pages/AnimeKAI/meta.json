@@ -1,0 +1,9 @@
+{
+  "search": "https://animekai.to/browser?keyword={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://animekai.to/watch/*",
+      "*://animekai.to/watch2gether/*"
+    ]
+  }
+}
