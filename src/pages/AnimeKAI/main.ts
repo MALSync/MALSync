@@ -70,7 +70,7 @@ export const AnimeKAI: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), AnimeKAI.domain);
       },
       elementEp(selector) {
-        return Number(selector.data('num'));
+        return Number(selector.attr('num'));
       },
     },
   },
