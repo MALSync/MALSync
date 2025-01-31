@@ -28,26 +28,27 @@ export const AnimeKAI: pageInterface = {
       return parseInt(j.$('div.eplist a.active').attr('num') ?? j.$('#cur-ep-num')?.text() ?? '0');
     },
     nextEpUrl(url) {
-      const nextEp = j.$(`div.eplist a[num=${AnimeKAI.sync.getEpisode(url) + 1}]`)?.attr('href');
-      if (!nextEp) return nextEp;
-      return utils.absoluteLink(nextEp, AnimeKAI.domain);
+      const current = j.$('div.eplist a.active').parent();
+      const nextEp = current.next().find('a').attr('href');
+      if (nextEp) {
+        return nextEp;
+      }
+      return current.closest('ul.range').next().find('li:first-child a').attr('href');
     },
     uiSelector(selector) {
       j.$('#main-entity div.info').after(j.html(selector));
     },
     async getMalUrl(provider) {
-      const watchPage = isWatch2Gether()
-        ? await parsePage(AnimeKAI.sync.getOverviewUrl(window.location.href)).then(dom =>
-            dom.find('#watch-page'),
-          )
-        : j.$('#watch-page');
-      const malId = watchPage.data('mal-id');
-      if (malId) {
-        return `https://myanimelist.net/anime/${malId}`;
-      }
-      const alId = watchPage.data('al-id');
-      if (provider === 'ANILIST') {
-        return `https://anilist.co/anime/${alId}`;
+      const watchPage = j.$('#watch-page');
+      if (watchPage.length) {
+        const malId = watchPage.data('mal-id');
+        if (malId) {
+          return `https://myanimelist.net/anime/${malId}`;
+        }
+        const alId = watchPage.data('al-id');
+        if (provider === 'ANILIST') {
+          return `https://anilist.co/anime/${alId}`;
+        }
       }
       return false;
     },
@@ -148,10 +149,4 @@ export const AnimeKAI: pageInterface = {
 
 function isWatch2Gether() {
   return utils.urlPart(window.location.href, 3) === 'watch2gether';
-}
-
-function parsePage(url: string) {
-  return fetch(AnimeKAI.sync.getOverviewUrl(window.location.href))
-    .then(res => res.text())
-    .then(text => j.$(new DOMParser().parseFromString(text, 'text/html')));
 }
