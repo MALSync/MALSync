@@ -25,10 +25,10 @@ export const AnimeKAI: pageInterface = {
       return utils.absoluteLink(j.$('link[rel=canonical]').attr('href'), AnimeKAI.domain);
     },
     getEpisode(url) {
-      return parseInt(j.$('div.eplist a.active').attr('num') ?? '0');
+      return parseInt(j.$('div.eplist a.active').attr('num') ?? j.$('#cur-ep-num')?.text() ?? '0');
     },
     nextEpUrl(url) {
-      const nextEp = j.$(`div.eplist a[num=${AnimeKAI.sync.getEpisode(url) + 1}]`).attr('href');
+      const nextEp = j.$(`div.eplist a[num=${AnimeKAI.sync.getEpisode(url) + 1}]`)?.attr('href');
       if (!nextEp) return nextEp;
       return utils.absoluteLink(nextEp, AnimeKAI.domain);
     },
@@ -37,11 +37,9 @@ export const AnimeKAI: pageInterface = {
     },
     async getMalUrl(provider) {
       const watchPage = isWatch2Gether()
-        ? await fetch(AnimeKAI.sync.getOverviewUrl(window.location.href))
-            .then(res => res.text())
-            .then(text =>
-              j.$(new DOMParser().parseFromString(text, 'text/html')).find('#watch-page'),
-            )
+        ? await parsePage(AnimeKAI.sync.getOverviewUrl(window.location.href)).then(dom =>
+            dom.find('#watch-page'),
+          )
         : j.$('#watch-page');
       const malId = watchPage.data('mal-id');
       if (malId) {
@@ -150,4 +148,10 @@ export const AnimeKAI: pageInterface = {
 
 function isWatch2Gether() {
   return utils.urlPart(window.location.href, 3) === 'watch2gether';
+}
+
+function parsePage(url: string) {
+  return fetch(AnimeKAI.sync.getOverviewUrl(window.location.href))
+    .then(res => res.text())
+    .then(text => j.$(new DOMParser().parseFromString(text, 'text/html')));
 }
