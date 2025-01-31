@@ -46,7 +46,7 @@ export const AnimeKAI: pageInterface = {
           return `https://myanimelist.net/anime/${malId}`;
         }
         const alId = watchPage.data('al-id');
-        if (provider === 'ANILIST') {
+        if (alId && provider === 'ANILIST') {
           return `https://anilist.co/anime/${alId}`;
         }
       }
