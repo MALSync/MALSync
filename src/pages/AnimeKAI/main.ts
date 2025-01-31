@@ -137,7 +137,7 @@ export const AnimeKAI: pageInterface = {
               page.handleList();
             },
             () => {
-              return j.$('#w-episodes div.dropdown.filter.type > button').text();
+              return AnimeKAI.overview?.list?.elementsSelector().length;
             },
           );
         },
