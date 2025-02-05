@@ -39,7 +39,7 @@ if (process.env.CI && !changedFiles.length) mode.quiet = true;
 async function getBrowser() {
   if (browser) return browser;
 
-  const tempBrowser = await puppeteer.launch({ headless: false, args: ['--disable-web-security'] });
+  const tempBrowser = await puppeteer.launch({ headless: headless ? 'new' : false, args: ['--disable-web-security'] });
   browser = tempBrowser;
 
   return tempBrowser;
