@@ -777,4 +777,8 @@ module.exports = {
   bun: {
     match: ['*://*.bunniescdn.online/*'],
   },
+  // animekai
+  megaup: {
+    match: ['*://megaup.cc/e/*'],
+  }
 };

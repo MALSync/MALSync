@@ -137,6 +137,7 @@ import { Kavita } from './Kavita/main';
 import { MangaLib } from './MangaLib/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
+import { AnimeKAI } from './AnimeKAI/main';
 
 export const pages = {
   Crunchyroll,
@@ -278,4 +279,5 @@ export const pages = {
   MangaLib,
   Rawkuma,
   Aninexus,
+  AnimeKAI,
 };
