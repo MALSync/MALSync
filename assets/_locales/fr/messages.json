@@ -108,7 +108,7 @@
         "description": "Reading"
     },
     "UI_Status_Completed": {
-        "message": "Terminés",
+        "message": "Terminé",
         "description": "Completed"
     },
     "UI_Status_OnHold": {
@@ -116,7 +116,7 @@
         "description": "On-Hold"
     },
     "UI_Status_Dropped": {
-        "message": "Abandonnés",
+        "message": "Abandonné",
         "description": "Dropped"
     },
     "UI_Status_planTo_anime": {
@@ -1645,5 +1645,11 @@
     },
     "overview_sidebar_Demographic": {
         "message": "Audience cible :"
+    },
+    "settings_listsync_slave": {
+        "message": "Miroir"
+    },
+    "settings_ForceEnglishTitles": {
+        "message": "Afficher les titres en anglais"
     }
 }
