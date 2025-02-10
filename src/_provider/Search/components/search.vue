@@ -82,14 +82,6 @@ export default {
       type: Number,
       default: 0,
     },
-    options: {
-      type: Object,
-      default: () => {
-        return {
-          novel: false,
-        };
-      },
-    },
   },
   data() {
     return {
@@ -127,7 +119,7 @@ export default {
       if (this.searchKeyword) {
         this.loading = true;
 
-        normalSearch(this.searchKeyword, this.type, this.options).then(items => {
+        normalSearch(this.searchKeyword, this.type).then(items => {
           this.loading = false;
           this.items = items;
           this.$nextTick(() => {

@@ -24,7 +24,7 @@ interface SearchResult {
 }
 
 export class SearchClass {
-  private sanitizedTitel;
+  private sanitizedTitle;
 
   private page;
 
@@ -44,8 +44,7 @@ export class SearchClass {
     protected identifier: string,
   ) {
     this.identifier += '';
-    // REVIEW - Proposal, can we rename every 'titel' to 'title' except DE locale?
-    this.sanitizedTitel = this.sanitizeTitel(this.title);
+    this.sanitizedTitle = this.sanitizeTitle(this.title);
     this.logger = con.m('search', 'red');
   }
 
@@ -128,8 +127,8 @@ export class SearchClass {
     return 0;
   }
 
-  getSanitizedTitel() {
-    return this.sanitizedTitel;
+  getSanitizedTitle() {
+    return this.sanitizedTitle;
   }
 
   getNormalizedType() {
@@ -137,7 +136,7 @@ export class SearchClass {
     return 'manga';
   }
 
-  public sanitizeTitel(title) {
+  public sanitizeTitle(title) {
     let resTitle = title.replace(
       / *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\)|\(novel\)|\(wn\)|\(ln\))/i,
       '',
@@ -368,45 +367,32 @@ export class SearchClass {
   public async malSearch(): Promise<SearchResult | false> {
     const logger = this.logger.m('MAL');
 
-    let url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(
-      this.sanitizedTitel,
+    const url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(
+      this.sanitizedTitle,
     )}`;
-    // NOTE - Novels on MAL can be:
-    // Light novel - type=2
-    // Novel       - type=8
-    // So best to search all types and then filter them
-    if (this.type === 'novel') {
-      url = `https://myanimelist.net/${this.getNormalizedType()}.php?type=0&q=${encodeURI(this.sanitizedTitel)}`;
-    }
+
     logger.log(url);
 
-    function handleResult(response, i, This): SearchResult {
+    function handleResult(response, i, This: SearchClass): SearchResult {
       const link = getLink(response, i);
       let id = 0;
       let sim = { same: false, value: 0 };
       if (link !== false) {
         try {
-          if (This.type === 'manga') {
+          if (This.type === 'manga' || This.type === 'novel') {
             const typeCheck = response.responseText
               .split(`href="${link}" id="si`)[1]
               .split('</tr>')[0];
-            if (typeCheck.indexOf('Novel') !== -1) {
-              logger.log('Novel Found check next entry');
-              return handleResult(response, i + 1, This);
-            }
-          }
-          if (This.type === 'novel') {
-            const typeCheck = response.responseText
-              .split(`href="${link}" id="si`)[1]
-              .split('</tr>')[0];
-            if (typeCheck.indexOf('Novel') === -1 && typeCheck.indexOf('Light Novel') === -1) {
-              logger.log('Novel Not found check next entry');
+            const linkIsNovel = typeCheck.indexOf('Novel') !== -1;
+
+            if ((This.type === 'manga' && linkIsNovel) || (This.type === 'novel' && !linkIsNovel)) {
+              logger.log(`${linkIsNovel ? 'Novel Found' : 'Novel Not found'} check next entry`);
               return handleResult(response, i + 1, This);
             }
           }
 
-          const malTitel = getTitle(response, link);
-          sim = SearchClass.similarity(malTitel, This.sanitizedTitel);
+          const malTitle = getTitle(response, link);
+          sim = SearchClass.similarity(malTitle, This.sanitizedTitle);
           id = parseInt(link.split('/')[4]);
         } catch (e) {
           logger.error(e);
@@ -459,11 +445,11 @@ export class SearchClass {
   }
 
   public async pageSearch(): Promise<SearchResult | false> {
-    const searchResult = await pageSearch(this.sanitizedTitel, this.getNormalizedType());
+    const searchResult = await pageSearch(this.sanitizedTitle, this.getNormalizedType());
     let best: any = null;
     for (let i = 0; i < searchResult.length && i < 5; i++) {
       const el = searchResult[i];
-      const sim = SearchClass.similarity(el.name, this.sanitizedTitel, el.altNames);
+      const sim = SearchClass.similarity(el.name, this.sanitizedTitle, el.altNames);
       const tempBest = {
         index: i,
         similarity: sim,

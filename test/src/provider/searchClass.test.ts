@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { SearchClass } from '../../../src/_provider/Search/searchClass';
 
-describe('Sanitized Titel', function() {
+describe('Sanitized Title', function() {
   const titles = {
     'Full Metal Panic! (Dub)': 'Full Metal Panic!',
     'Full Metal Panic! (Sub)': 'Full Metal Panic!',
@@ -22,12 +22,12 @@ describe('Sanitized Titel', function() {
     const resTitle = titles[key];
     it(title, function() {
       const searchObj = new SearchClass(title, 'anime');
-      expect(searchObj.getSanitizedTitel()).to.equal(resTitle);
+      expect(searchObj.getSanitizedTitle()).to.equal(resTitle);
     });
   });
 });
 
-describe('Titel Similarity', function() {
+describe('Title Similarity', function() {
   const titles = [
     { title: 'Durarara!!x2 Shou', extTitle: 'Durarara!!x2 Shou', result: true },
     {
