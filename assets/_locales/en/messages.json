@@ -894,8 +894,18 @@
         "description": "Manual"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sync manga after 90% of the pages",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "Sync manga after reading $mangaCompletionPercentage$% of the pages",
+        "description": "Option to track the reading progress of a manga and if 10-100% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Update chapter to read at percentage",
+        "description": "Slider to control at what percentage a manga chapter is considered complete"
     },
     "settings_Mangasync": {
         "message": "Manga sync fallback",

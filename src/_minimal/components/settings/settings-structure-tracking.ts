@@ -135,10 +135,27 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'readerTracking',
-    title: () => api.storage.lang('settings_Mangasync_readerTracking'),
+    title: () =>
+      api.storage.lang('settings_Mangasync_readerTracking', [
+        api.settings.get('mangaCompletionPercentage'),
+      ]),
     props: {
       component: 'checkbox',
       option: 'readerTracking',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'mangaCompletionPercentage',
+    title: () => api.storage.lang('settings_Mangasync_readerTracking_percentage'),
+    condition: () => api.settings.get('readerTracking'),
+    props: {
+      component: 'input',
+      option: 'mangaCompletionPercentage',
+      props: {
+        suffix: '%',
+        validation: (value: number) => Boolean(value >= 10 && value < 100),
+      },
     },
     component: SettingsGeneral,
   },
