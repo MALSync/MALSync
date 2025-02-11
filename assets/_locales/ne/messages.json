@@ -364,12 +364,24 @@
         "description": "Correction Search"
     },
     "correction_NoMal": {
-        "message": "यदि एनिमे वा माङ्गा MAL मा फेला पार्न सकिँदैन",
-        "description": "Anime/Manga not found in MAL"
+        "message": "यदि एनिमे वा माङ्गा $page$ मा फेला पार्न सकिँदैन",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "MyAnimeList मा कुनै इन्ट्री छैन",
-        "description": "No entry on MyAnimeList"
+        "message": "$page$ मा कुनै इन्ट्री छैन",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "नयाँ अफसेट ($offset$) सेट।",

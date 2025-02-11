@@ -4,7 +4,8 @@
       "*://*.animeunity.it/anime/*",
       "*://*.animeunity.tv/anime/*",
       "*://*.animeunity.cc/anime/*",
-      "*://*.animeunity.to/anime/*"
+      "*://*.animeunity.to/anime/*",
+      "*://*.animeunity.so/anime/*"
     ]
   }
 }

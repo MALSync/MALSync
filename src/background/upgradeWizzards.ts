@@ -79,6 +79,13 @@ export async function upgradewWizzards(lastVersion) {
       },
     },
     {
+      version: '0.11.0',
+      name: 'Disable background listsync',
+      action: () => {
+        return api.storage.remove('backgroundListSync');
+      },
+    },
+    {
       version: '*',
       name: 'Remove auto domain permissions',
       action: () => {

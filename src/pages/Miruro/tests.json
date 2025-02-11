@@ -8,7 +8,7 @@
         "sync": true,
         "title": "My Hero Academia Season 6",
         "identifier": "139630",
-        "uiSelector": true,
+        "uiSelector": false,
         "overviewUrl": "https://www.miruro.tv/info?id=139630",
         "episode": 1,
         "nextEpUrl": "https://www.miruro.tv/watch?id=139630&ep=2"
@@ -20,7 +20,7 @@
         "sync": true,
         "title": "That Time I Got Reincarnated as a Slime",
         "identifier": "101280",
-        "uiSelector": true,
+        "uiSelector": false,
         "overviewUrl": "https://www.miruro.tv/info?id=101280",
         "episode": 19,
         "nextEpUrl": "https://www.miruro.tv/watch?id=101280&ep=20"
@@ -32,7 +32,7 @@
         "sync": true,
         "title": "LAID-BACK CAMP SEASON2",
         "identifier": "104459",
-        "uiSelector": true,
+        "uiSelector": false,
         "overviewUrl": "https://www.miruro.tv/info?id=104459",
         "episode": 13,
         "nextEpUrl": ""

@@ -1,7 +1,0 @@
-{
-  "search": "https://bakashi.tv/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://bakashi.tv/*"]
-  }
-}
-

@@ -41,6 +41,13 @@
           <FormButton v-if="provider.providerSettings.master" :animation="false" color="secondary">
             {{ lang('settings_listsync_master') }}
           </FormButton>
+          <FormButton
+            v-else-if="provider.providerSettings.text === 'Done'"
+            :animation="false"
+            color="primary"
+          >
+            {{ lang('settings_listsync_slave') }}
+          </FormButton>
           <FormButton :animation="false" class="provider-item-content">
             <div>
               {{ provider.providerType }}
@@ -120,11 +127,19 @@
                 </div>
                 <div>
                   {{ lang('settings_listsync_startdate') }}
-                  {{ item.master.startDate ?? lang('settings_listsync_unknowndate') }}
+                  {{
+                    item.master.startDate
+                      ? new IntlDateTime(item.master.startDate).getDateTimeText()
+                      : lang('settings_listsync_unknowndate')
+                  }}
                 </div>
                 <div>
                   {{ lang('settings_listsync_finishdate') }}
-                  {{ item.master.finishDate ?? lang('settings_listsync_unknowndate') }}
+                  {{
+                    item.master.finishDate
+                      ? new IntlDateTime(item.master.finishDate).getDateTimeText()
+                      : lang('settings_listsync_unknowndate')
+                  }}
                 </div>
                 <div>
                   {{ lang(`settings_listsync_repeatcount_${item.master.type}`) }}
@@ -171,21 +186,33 @@
                 </div>
                 <div>
                   {{ lang('settings_listsync_startdate') }}
-                  {{ slave.startDate ?? lang('settings_listsync_unknowndate') }}
+                  {{
+                    slave.startDate
+                      ? new IntlDateTime(slave.startDate).getDateTimeText()
+                      : lang('settings_listsync_unknowndate')
+                  }}
                   <span v-if="slave.diff && slave.diff.startDate !== undefined">
                     →
                     <text class="highlight">{{
-                      slave.diff.startDate ?? lang('settings_listsync_unknowndate')
+                      slave.diff.startDate
+                        ? new IntlDateTime(slave.diff.startDate).getDateTimeText()
+                        : lang('settings_listsync_unknowndate')
                     }}</text>
                   </span>
                 </div>
                 <div>
                   {{ lang('settings_listsync_finishdate') }}
-                  {{ slave.finishDate ?? lang('settings_listsync_unknowndate') }}
+                  {{
+                    slave.finishDate
+                      ? new IntlDateTime(slave.finishDate).getDateTimeText()
+                      : lang('settings_listsync_unknowndate')
+                  }}
                   <span v-if="slave.diff && slave.diff.finishDate !== undefined">
                     →
                     <text class="highlight">{{
-                      slave.diff.finishDate ?? lang('settings_listsync_unknowndate')
+                      slave.diff.finishDate
+                        ? new IntlDateTime(slave.diff.finishDate).getDateTimeText()
+                        : lang('settings_listsync_unknowndate')
                     }}</text>
                   </span>
                 </div>
@@ -226,11 +253,19 @@
               </div>
               <div>
                 {{ lang('settings_listsync_startdate') }}
-                {{ item.startDate ?? lang('settings_listsync_unknowndate') }}
+                {{
+                  item.startDate
+                    ? new IntlDateTime(item.startDate).getDateTimeText()
+                    : lang('settings_listsync_unknowndate')
+                }}
               </div>
               <div>
                 {{ lang('settings_listsync_finishdate') }}
-                {{ item.finishDate ?? lang('settings_listsync_unknowndate') }}
+                {{
+                  item.finishDate
+                    ? new IntlDateTime(item.finishDate).getDateTimeText()
+                    : lang('settings_listsync_unknowndate')
+                }}
               </div>
               <div>
                 {{ lang(`settings_listsync_repeatcount_${item.type}`) }}
@@ -263,6 +298,7 @@ import Description from '../description.vue';
 import CodeBlock from '../code-block.vue';
 import SettingsGeneral from './settings-general.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
+import { IntlDateTime } from '../../../utils/IntlWrapper';
 
 defineProps({
   title: {

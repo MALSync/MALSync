@@ -502,12 +502,24 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "หากไม่พบอะนิเมะ / มังงะ MAL",
-        "description": "Anime/Manga not found in MAL"
+        "message": "หากไม่พบอะนิเมะ / มังงะ $page$",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "ไม่มีรายการใน MyAnimelist",
-        "description": "No entry on MyAnimeList"
+        "message": "ไม่มีรายการใน $page$",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "ใหม่ชดเชย ($offset$) ตั้ง.",

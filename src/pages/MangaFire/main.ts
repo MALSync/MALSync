@@ -34,7 +34,7 @@ export const MangaFire: pageInterface = {
       return utils.htmlDecode(jsonData.name);
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return utils.urlPart(url, 4).split('.').pop()!;
     },
     getOverviewUrl(url) {
       return jsonData.manga_url;
@@ -91,7 +91,7 @@ export const MangaFire: pageInterface = {
       return utils.htmlDecode(jsonData.name);
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return utils.urlPart(url, 4).split('.').pop()!;
     },
     uiSelector(selector) {
       j.$('.manga-bottom .tab-content').prepend(j.html(selector));

@@ -72,12 +72,12 @@
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import { timestampToShortTime } from '../../../utils/time';
 import { Overview } from '../../../_provider/metaOverviewAbstract';
 import { SingleAbstract } from '../../../_provider/singleAbstract';
 import Header from '../header.vue';
 import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
+import { IntlDateTime } from '../../../utils/IntlWrapper';
 
 defineProps({
   info: {
@@ -92,11 +92,15 @@ defineProps({
 
 function getTitle(item) {
   if (item.lastEp && item.lastEp.timestamp) {
-    return timestampToShortTime(item.lastEp.timestamp);
+    return new IntlDateTime(Number(item.lastEp.timestamp)).getRelativeNowFriendlyText('Progress', {
+      style: 'long',
+    });
   }
   if (item.predicition && item.predicition.timestamp) {
     return api.storage.lang('prediction_next', [
-      timestampToShortTime(item.predicition.timestamp).trim(),
+      new IntlDateTime(Number(item.predicition.timestamp)).getRelativeNowFriendlyText('Progress', {
+        style: 'long',
+      }),
     ]);
   }
   return '';
@@ -106,7 +110,6 @@ function getTimezoneDate(
   dateElement: Date | string,
   timezone = Intl.DateTimeFormat().resolvedOptions().timeZone,
 ) {
-  const userLang = navigator.language;
   const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
     hour: '2-digit',
@@ -116,7 +119,7 @@ function getTimezoneDate(
   };
 
   const date = typeof dateElement === 'string' ? new Date(dateElement) : dateElement;
-  return date.toLocaleString(userLang, options) + (timezone === 'Asia/Tokyo' ? ' JST' : '');
+  return `${new IntlDateTime(date).getDateTimeText(options)}${timezone === 'Asia/Tokyo' ? ' JST' : ''}`;
 }
 </script>
 

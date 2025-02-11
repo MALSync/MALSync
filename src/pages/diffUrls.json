@@ -1,7 +1,4 @@
 {
-  "0.10.0": {
-    "iframe": []
-  },
   "0.10.1": {
     "iframe": [
       "*://*.mixdrop.sx/e/*",
@@ -66,35 +63,84 @@
     ]
   },
   "0.10.4": {
+    "Anime365": [
+      "*://smotret-anime.org/catalog/*",
+      "*://smotret-anime.online/catalog/*",
+      "*://smotret-anime.com/catalog/*"
+    ],
+    "AnimeGO": [
+      "*://animego.me/anime/*"
+    ],
+    "AnimeUnity": [
+      "*://*.animeunity.so/anime/*"
+    ],
     "AnimeXin": [
       "*://animexin.top/*"
     ],
     "FlameScans": [
-      "*://flamecomics.me/*"
+      "*://flamecomics.me/*",
+      "*://flamecomics.xyz/*"
     ],
     "Gogoanime": [
       "*://*.gogoanime3.cc/*",
       "*://*.anitaku.bz/*"
+    ],
+    "tmofans": [
+      "*://zonatmo.com/*"
+    ],
+    "Voiranime": [
+      "*://*.voiranime.com/*"
     ],
     "Zoro": [
       "*://hianime.nz/*",
       "*://hianime.mn/*",
       "*://hianime.sx/*"
     ],
-    "tmofans": [
-      "*://zonatmo.com/*"
-    ],
     "iframe": [
       "*://*.jwplayerhls.com/*",
       "*://*.videzz.net/*",
       "*://geo.dailymotion.com/*",
+      "*://smotret-anime.org/translations/embed/*",
+      "*://smotret-anime.online/translations/embed/*",
+      "*://smotret-anime.com/translations/embed/*",
       "*://*.s3embtaku.pro/*",
       "*://dood.li/e/*",
       "*://bethshouldercan.com/e/*",
+      "*://sandratableother.com/e/*",
+      "*://robertordercharacter.com/e/*",
+      "*://omegadthree.com/*",
       "*://hlswish.com/e/*",
+      "*://rogeriobetin.com/*",
+      "*://nvlabs-fi-cdn.q9x.in/*",
       "*://oneupload.to/*",
       "*://player.vimeo.com/*",
-      "*://rumble.com/embed/*"
+      "*://fle-rvd0i9o8-moo.com/*",
+      "*://dhtpre.com/*"
+    ]
+  },
+  "0.11.0": {
+    "KickAssAnime": [
+      "*://*.kaa.mx/*"
+    ],
+    "TRanimeizle": [
+      "*://*.tranimeizle.top/*"
+    ],
+    "iframe": [
+      "*://maxfinishseveral.com/e/*",
+      "*://filemoon.sx/lol/*",
+      "*://kerapoxy.cc/lol/*",
+      "*://vpcxz19p.xyz/lol/*",
+      "*://filemoon.top/lol/*",
+      "*://fmoonembed.pro/lol/*",
+      "*://rgeyyddl.skin/lol/*",
+      "*://designparty.sx/lol/*",
+      "*://c4qhk0je.xyz/lol/*",
+      "*://1azayf9w.xyz/lol/*",
+      "*://81u6xl9d.xyz/lol/*",
+      "*://gorro-chfzoaas.fun/e/*",
+      "*://gorro-chfzoaas.fun/lol/*",
+      "*://animenosub.upn.one/#*",
+      "*://*.bunniescdn.online/*"
     ]
   }
 }

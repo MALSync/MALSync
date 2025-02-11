@@ -16,11 +16,66 @@
   margin-right: 8px;
 }
 
-#malp span.MalLogin {
-  span {
-    margin-right: 10px;
-  }
-  span.info {
-    min-width: fit-content;
-  }
+#malp span.MalLogin span {
+  margin-right: 10px;
+}
+
+#malp span.MalLogin span.info {
+  min-width: fit-content;
+}
+
+#MalData {
+  background: #313d4f;
+  padding: 10px;
+  border-radius: 3px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.5rem;
+}
+
+#malp span.info.malp-group-label,
+.malp-group-value-section,
+#malRating.malp-group-field,
+#malTotal.malp-group-value,
+#malp span {
+  font-weight: bold;
+  color: #98a7c0;
+}
+
+.info.malp-group-label {
+  margin-right: 10px;
+}
+
+#malp span.malp-group {
+  padding: 10px;
+  border-radius: 3px;
+  background: #212935;
+  display: flex;
+  align-items: center;
+}
+
+#malStatus.malp-group-field.malp-group-select,
+#malEpisodes.malp-group-field.malp-group-input,
+#malUserRating.malp-group-field.malp-group-select,
+#malRating.malp-group-field {
+  color: #637cf9;
+}
+
+.MalLogin.malp-group.malp-group-score,
+.MalLogin.malp-group.malp-group-status {
+  display: flex;
+  align-items: center;
+}
+
+.MalLogin.malp-group select {
+  padding: 5px;
+  line-height: normal;
+}
+
+#malEpisodes {
+  width: 30px;
+}
+
+#malp.select.option {
+  background: #212935;
 }

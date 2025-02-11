@@ -1,7 +1,7 @@
 import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { timestampToShortDate } from '../../utils/time';
+import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -322,7 +322,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.data.Media.duration)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${data.data.Media.duration} ${api.storage.lang('bookmarksItem_mins')}` }],
+        body: [
+          {
+            text: `${new IntlDuration().setRelativeTime(data.data.Media.duration, 'minutes', 'Duration').getRelativeText()}`,
+          },
+        ],
       });
 
     if (data.data.Media.status) {
@@ -339,7 +343,13 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_Start_Date'),
         body: [
           {
-            text: `${data.data.Media.startDate.year}-${data.data.Media.startDate.month}-${data.data.Media.startDate.day}`,
+            text: new IntlDateTime(
+              new Date(
+                data.data.Media.startDate.year,
+                data.data.Media.startDate.month,
+                data.data.Media.startDate.day,
+              ),
+            ).getDateTimeText(),
           },
         ],
       });
@@ -349,7 +359,13 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: api.storage.lang('overview_sidebar_End_Date'),
         body: [
           {
-            text: `${data.data.Media.endDate.year}-${data.data.Media.endDate.month}-${data.data.Media.endDate.day}`,
+            text: new IntlDateTime(
+              new Date(
+                data.data.Media.endDate.year,
+                data.data.Media.endDate.month,
+                data.data.Media.endDate.day,
+              ),
+            ).getDateTimeText(),
           },
         ],
       });
@@ -468,7 +484,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       reviews.push({
         body: {
           people: i.rating,
-          date: timestampToShortDate(i.createdAt * 1000),
+          date: new IntlDateTime(i.createdAt * 1000).getDateTimeText({ dateStyle: 'medium' }),
           rating: i.score,
           text: i.body,
         },

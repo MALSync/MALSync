@@ -1,0 +1,74 @@
+{
+    "title": "WeebCentral",
+    "url": "https://weebcentral.com/",
+    "testCases": [
+      {
+        "url": "https://weebcentral.com/chapters/01J76XZ480RW84PPENM92DQWG6",
+        "expected": {
+          "sync": true,
+          "title": "Initial D",
+          "identifier": "01J76XY7P6VR0D8AQYQ9FNFTE7",
+          "overviewUrl": "https://weebcentral.com/series/01J76XY7P6VR0D8AQYQ9FNFTE7/Initial-D",
+          "episode": 706,
+          "uiSelector": false,
+          "nextEpUrl": "https://weebcentral.com/chapters/01J76XZ480R0DVMBBM8BD3A71J"
+        }
+      },
+      {
+        "url": "https://weebcentral.com/series/01J76XY7P6VR0D8AQYQ9FNFTE7/Initial-D",
+        "expected": {
+          "sync": false,
+          "title": "Initial D",
+          "identifier": "01J76XY7P6VR0D8AQYQ9FNFTE7",
+          "uiSelector": true,
+          "epList": {
+            "718": "https://weebcentral.com/chapters/01J76XZ480TGD1WH0DSD2J04H0",
+            "2": "https://weebcentral.com/chapters/01J76XZ47T7GZ48GZ9XZVF4BPF"
+          }
+        }
+      },
+      {
+        "url": "https://weebcentral.com/chapters/01JH1X95RSVSEXTHG3759C7H54",
+        "expected": {
+          "sync": true,
+          "title": "Otaku ni Yasashii Gal wa Inai!",
+          "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
+          "episode": 40,
+          "overviewUrl": "https://weebcentral.com/series/01J76XYGSXQN8BNTPR0QXWQD2S/Otaku-ni-Yasashii-Gal-wa-Inai"
+        }
+      },
+      {
+        "url": "https://weebcentral.com/series/01J76XYGSXQN8BNTPR0QXWQD2S/Otaku-ni-Yasashii-Gal-wa-Inai",
+        "expected": {
+          "sync": false,
+          "title": "Otaku ni Yasashii Gal wa Inai!",
+          "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
+          "uiSelector": true,
+          "epList": {
+            "40": "https://weebcentral.com/chapters/01JH1X95RSVSEXTHG3759C7H54"
+          }
+        }
+      },
+      {
+        "url": "https://weebcentral.com/chapters/01JH1T8AXF0D8BQR6PFF453WCD",
+        "expected": {
+          "sync": true,
+          "title": "To Your Eternity",
+          "identifier": "01J76XYBYX6EGVR7ZNC8VKFJD1",
+          "episode": 195,
+          "overviewUrl": "https://weebcentral.com/series/01J76XYBYX6EGVR7ZNC8VKFJD1/To-You-The-Immortal"
+        }
+      },
+      {
+        "url": "https://weebcentral.com/chapters/01JGZ90VRE0DX2G37X0MT4XP4N",
+        "expected": {
+          "sync": true,
+          "title": "Flawless",
+          "identifier": "01J76XYF352T2D7MEDFZWAB654",
+          "episode": 20,
+          "volume": 4,
+          "overviewUrl": "https://weebcentral.com/series/01J76XYF352T2D7MEDFZWAB654/Flawless"
+        }
+      }
+    ]
+}

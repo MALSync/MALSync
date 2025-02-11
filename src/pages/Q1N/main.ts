@@ -1,22 +1,22 @@
 import { pageInterface } from '../pageInterface';
 
-export const Bakashi: pageInterface = {
-  name: 'Bakashi',
-  domain: 'https://bakashi.tv',
+export const Q1N: pageInterface = {
+  name: 'Q1N',
+  domain: 'https://q1n.net',
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    return ['episodio', 'filmes'].includes(url.split('/')[3]);
+    return ['e', 'f'].includes(url.split('/')[3]);
   },
   isOverviewPage(url) {
-    return ['animes'].includes(utils.urlPart(url, 3));
+    return ['a'].includes(utils.urlPart(url, 3));
   },
   sync: {
     getTitle(url) {
       return j.$('#titleHis').text().split('- EP')[0].trim() || j.$('.data h1').text().trim();
     },
     getIdentifier(url) {
-      return Bakashi.overview!.getIdentifier(Bakashi.sync.getOverviewUrl(url));
+      return Q1N.overview!.getIdentifier(Q1N.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
       return j.$('.pag_episodes .item:nth-child(2) a').first().attr('href') || window.location.href;
@@ -48,7 +48,7 @@ export const Bakashi: pageInterface = {
         return j.$('.episodios .episodiotitle');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a').first().attr('href'), Bakashi.domain);
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Q1N.domain);
       },
       elementEp(selector) {
         if (j.$('.episodios [class^="item-"]').length)

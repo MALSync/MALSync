@@ -1,6 +1,9 @@
 <template>
   <div class="option">
     <div v-if="labelSection" class="title">
+      <a v-if="path.length" class="anchor-link" :href="'#' + ['settings', ...path].join('/')">
+        <div class="material-icons">link</div>
+      </a>
       <slot name="title">
         {{ typeof title === 'function' ? (title as any)() : title }}
       </slot>
@@ -24,7 +27,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, PropType, ref } from 'vue';
 import FormButton from '../form/form-button.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
 import FormColorPicker from '../form/form-color-picker.vue';
@@ -81,6 +84,10 @@ const properties = defineProps({
   labelSection: {
     type: Boolean,
     default: true,
+  },
+  path: {
+    type: Array as PropType<string[]>,
+    default: () => [],
   },
 });
 
@@ -165,6 +172,21 @@ if (properties.option) {
 
   &:hover::before {
     display: block;
+  }
+}
+
+.anchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 2px;
+  opacity: 0;
+
+  &:hover {
+    opacity: 1;
   }
 }
 </style>

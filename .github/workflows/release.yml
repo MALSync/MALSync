@@ -150,13 +150,12 @@ jobs:
       run: |
         npm run package
     - name: Deploy Edge
-      uses: wdzeng/edge-addon@v1
+      uses: wdzeng/edge-addon@v2
       with:
         product-id: ${{ secrets.EDGE_PRODUCT_ID }}
         zip-path: dist/webextension.zip
+        api-key: ${{ secrets.EDGE_API_KEY }}
         client-id: ${{ secrets.EDGE_CLIENT_ID }}
-        client-secret: ${{ secrets.EDGE_CLIENT_SECRET }}
-        access-token-url: ${{ secrets.EDGE_ACCESS_TOKEN_URL }}
 
   firefox:
     runs-on: ubuntu-latest

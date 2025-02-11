@@ -5,8 +5,11 @@ import path from 'path';
 
 // players
 async function voe() {
-    const response = await fetch('https://voe.sx/e/2sqxhth1ukzh', { redirect: 'manual' });
-    const url = new URL(response.headers.get("Location"));
+    const response = await fetch('https://voe.sx/e/2sqxhth1ukzh');
+    const body = await response.text();
+    const loc = body.match(/window\.location\.href = '(.*)'/i);
+
+    const url = new URL(loc[1]);
 
     addPlayerUrls('voe', [url.hostname + '/e/*']);
 }
@@ -160,12 +163,12 @@ function addPlayerUrls(key, urls) {
 async function start() {
     let lastError = null;
     const tasks = {
-        // voe,
+        voe,
         // vidmoly,
         mixdrop,
-        gogostream,
+        // gogostream,
         zoro,
-        gogoanime,
+        // gogoanime,
         // kickassanime,
     }
 

@@ -1,0 +1,27 @@
+{
+  "title": "Aninexus",
+  "url": "https://aninexus.to",
+  "testCases": [
+    {
+      "url": "https://aninexus.to/tv-show/the-do-over-damsel-conquers-the-dragon-emperor",
+      "expected": {
+        "sync": false,
+        "title": "The Do-Over Damsel Conquers the Dragon Emperor",
+        "identifier": 33,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://aninexus.to/episode/the-do-over-damsel-conquers-the-dragon-emperor/1-1",
+      "expected": {
+        "sync": true,
+        "title": "The Do-Over Damsel Conquers the Dragon Emperor",
+        "identifier": 33,
+        "overviewUrl": "https://aninexus.to/tv-show/the-do-over-damsel-conquers-the-dragon-emperor",
+        "nextEpUrl": "https://aninexus.to/episode/the-do-over-damsel-conquers-the-dragon-emperor/1-2",
+        "episode": 1,
+        "uiSelector": true
+      }
+    }
+  ]
+}

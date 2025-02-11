@@ -1,0 +1,6 @@
+{
+  "search": "https://aninexus.to/search/{searchterm}",
+  "urls": {
+    "match": ["*://aninexus.to/*"]
+  }
+}

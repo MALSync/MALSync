@@ -17,7 +17,7 @@ export const Miruro: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('.anime-title').text();
+      return j.$('.title a').first().text();
     },
     getIdentifier(url) {
       return `${utils.urlParam(url, 'id')}`;
@@ -57,21 +57,19 @@ export const Miruro: pageInterface = {
       }
       return false;
     },
-    uiSelector(selector) {
-      j.$('.anime-title').parent().parent().before(j.html(selector));
-    },
   },
   overview: {
     getTitle(url) {
-      if (j.$('#root [alt="Anime Banner"]+div h1').html())
-        return j.$('#root [alt="Anime Banner"]+div h1').html().split('<')[0];
+      if (j.$('#root h1').first().text()) {
+        return utils.getBaseText(j.$('#root h1').first()).trim();
+      }
       return '';
     },
     getIdentifier(url) {
       return Miruro.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('#root [alt="Anime Banner"]+div h1').after(j.html(selector));
+      j.$('#root h1').first().after(j.html(selector));
     },
     getMalUrl(provider) {
       return Miruro.sync.getMalUrl!(provider);

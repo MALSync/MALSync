@@ -1,18 +1,18 @@
 @import './../pages';
 
-@textColor: #b8b8b8;
-@inputBackground: #222;
-@activeEp: #002966 !important;
-
-#malthing {
-  padding: 10px;
-  margin-bottom: 10px;
-}
+@textColor: inherit;
+@activeEp: #003c967b !important;
 
 #malp {
-  span span.info {
-    color: #d9d9d9 !important;
+  .boxStyle(var(--mantine-color-dark-6));
+  [data-mantine-color-scheme='light'] & {
+    .boxStyle(var(--mantine-color-gray-1));
+  }
+  [data-mantine-color-scheme='dark'] & {
+    .boxStyle(var(--mantine-color-dark-6));
   }
 
-  margin: 15px 15px 0;
+  min-height: 52px;
+  margin-top: var(--mantine-spacing-sm);
+  margin-bottom: 0;
 }

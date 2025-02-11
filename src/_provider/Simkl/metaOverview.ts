@@ -2,6 +2,7 @@ import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
+import { IntlDuration } from '../../utils/IntlWrapper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -118,25 +119,25 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private info(data) {
-    if (data.anime_type && data.anime_type)
+    if (data.anime_type)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Format'),
         body: [{ text: data.anime_type }],
       });
 
-    if (data.total_episodes && data.total_episodes)
+    if (data.total_episodes)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Episodes'),
         body: [{ text: data.total_episodes }],
       });
 
-    if (data.status && data.status)
+    if (data.status)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Status'),
         body: [{ text: data.status }],
       });
 
-    if (data.year && data.year)
+    if (data.year)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Season'),
         body: [{ text: data.year }],
@@ -165,7 +166,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     }
 
-    if (data.network && data.network)
+    if (data.network)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Licensor'),
         body: [{ text: data.network }],
@@ -186,13 +187,17 @@ export class MetaOverview extends MetaOverviewAbstract {
         body: genres,
       });
 
-    if (data.runtime && data.runtime)
+    if (data.runtime)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${data.runtime} ${api.storage.lang('bookmarksItem_mins')}` }],
+        body: [
+          {
+            text: `${new IntlDuration().setRelativeTime(data.runtime, 'minutes', 'Duration').getRelativeText()}`,
+          },
+        ],
       });
 
-    if (data.certification && data.certification)
+    if (data.certification)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Rating'),
         body: [{ text: data.certification }],

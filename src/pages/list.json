@@ -1,10 +1,5 @@
 [
   {
-    "domain": "https://aniwave.to",
-    "type": "anime",
-    "name": "Aniwave"
-  },
-  {
     "domain": "https://www.crunchyroll.com",
     "type": "anime",
     "name": "Crunchyroll"
@@ -90,11 +85,6 @@
     "name": "VIZ"
   },
   {
-    "domain": "https://animecat.net",
-    "type": "anime",
-    "name": "NekoSama"
-  },
-  {
     "domain": "https://anime-odcinki.pl",
     "type": "anime",
     "name": "AnimeOdcinki"
@@ -125,7 +115,7 @@
     "name": "Mangá Livre"
   },
   {
-    "domain": "https://visortmo.com",
+    "domain": "https://zonatmo.com",
     "type": "manga",
     "name": "tmofans"
   },
@@ -138,11 +128,6 @@
     "domain": "https://www.japscan.ws",
     "type": "manga",
     "name": "JapScan"
-  },
-  {
-    "domain": "https://animes.vision",
-    "type": "anime",
-    "name": "AnimesVision"
   },
   {
     "domain": "https://www.hulu.com",
@@ -180,11 +165,6 @@
     "name": "MangaPark"
   },
   {
-    "domain": "https://animeshouse.net",
-    "type": "anime",
-    "name": "AnimesHouse"
-  },
-  {
     "domain": "https://animexin.vip",
     "type": "anime",
     "name": "AnimeXin"
@@ -195,7 +175,7 @@
     "name": "MonosChinos"
   },
   {
-    "domain": "https://smotret-anime.net",
+    "domain": "https://smotret-anime.org",
     "type": "anime",
     "name": "Anime365"
   },
@@ -310,11 +290,6 @@
     "name": "tioanime"
   },
   {
-    "domain": "https://yugenanime.tv",
-    "type": "anime",
-    "name": "YugenAnime"
-  },
-  {
     "domain": "https://mangasee123.com",
     "type": "manga",
     "name": "MangaSee"
@@ -363,11 +338,6 @@
     "domain": "https://animewho.com",
     "type": "anime",
     "name": "AnimeWho"
-  },
-  {
-    "domain": "https://animesuge.to",
-    "type": "anime",
-    "name": "AnimeSuge"
   },
   {
     "domain": "https://toonily.com",
@@ -420,7 +390,7 @@
     "name": "ReadManhua"
   },
   {
-    "domain": "https://flamecomics.com",
+    "domain": "https://flamecomics.xyz",
     "type": "manga",
     "name": "FlameScans"
   },
@@ -605,11 +575,6 @@
     "name": "AnimeGO"
   },
   {
-    "domain": "https://animeflix.gg",
-    "type": "anime",
-    "name": "Animeflix"
-  },
-  {
     "domain": "https://luciferdonghua.in",
     "type": "anime",
     "name": "Lucifer Donghua"
@@ -618,11 +583,6 @@
     "domain": "https://neoxscans.com/",
     "type": "manga",
     "name": "NeoxScans"
-  },
-  {
-    "domain": "https://anix.to",
-    "type": "anime",
-    "name": "Anix"
   },
   {
     "domain": "https://hinatasoul.com",
@@ -680,13 +640,48 @@
     "name": "MangaRead"
   },
   {
-    "domain": "https://bakashi.tv",
+    "domain": "https://q1n.net",
     "type": "anime",
-    "name": "Bakashi"
+    "name": "Q1N"
   },
   {
     "domain": "https://templescan.net",
     "type": "manga",
     "name": "TempleScan"
+  },
+  {
+    "domain": "https://scyllacomics.xyz",
+    "type": "manga",
+    "name": "ScyllaScans"
+  },
+  {
+    "domain": "https://vortexscans.org",
+    "type": "manga",
+    "name": "VortexScans"
+  },
+  {
+    "domain": "https://weebcentral.com",
+    "type": "manga",
+    "name": "WeebCentral"
+  },
+  {
+    "domain": "https://anilib.me",
+    "type": "anime",
+    "name": "AnimeLib"
+  },
+  {
+    "domain": "https://demo.kavitareader.com",
+    "type": "manga",
+    "name": "Kavita"
+  },
+  {
+    "domain": "https://mangalib.org",
+    "type": "manga",
+    "name": "MangaLib"
+  },
+  {
+    "domain": "https://aninexus.to",
+    "type": "anime",
+    "name": "Aninexus"
   }
 ]

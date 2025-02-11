@@ -114,6 +114,21 @@ export const tracking: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'forceEnglishTitles',
+    title: () => api.storage.lang('settings_ForceEnglishTitles'),
+    condition: () =>
+      api.settings.get('syncMode') === 'MAL' || api.settings.get('syncMode') === 'MALAPI',
+    props: {
+      component: 'checkbox',
+      option: 'forceEnglishTitles',
+    },
+    change: () => {
+      utils.clearCache();
+      if (api.type === 'webextension') localStore.clear();
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'hr',
     title: '',
     component: SettingsHr,

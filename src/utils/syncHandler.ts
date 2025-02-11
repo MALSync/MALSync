@@ -281,13 +281,13 @@ export async function retriveLists(
   const listP: any = [];
 
   providerList.forEach(pi => {
-    pi.providerSettings.text = 'Loading';
+    pi.providerSettings.text = api.storage.lang('Loading');
     // @ts-ignore
     listP.push(
       getListF(pi.listProvider, type)
         .then((list: any) => {
           pi.providerSettings.list = list;
-          pi.providerSettings.text = 'Done';
+          pi.providerSettings.text = api.storage.lang('settings_listsync_provider_done');
           if (masterMode === pi.providerType) pi.providerSettings.master = true;
           typeArray.push(pi.providerType);
         })

@@ -540,12 +540,24 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "If the Anime/Manga can't be found on MAL",
-        "description": "Anime/Manga not found in MAL"
+        "message": "Select this if the Anime/Manga does not exist on $page$",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "No entry on MyAnimeList",
-        "description": "No entry on MyAnimeList"
+        "message": "No entry on $page$",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "New Offset ($offset$) set.",
@@ -743,6 +755,34 @@
         "message": "Duration:",
         "description": "Info table on overview - Duration: 23 min"
     },
+    "overview_sidebar_Published": {
+        "message": "Published:",
+        "description": "Info table on overview - Published: 2014-04-09"
+    },
+    "overview_sidebar_Premiered": {
+        "message": "Premiered:",
+        "description": "Info table on overview - Premiered: Fall 2024"
+    },
+    "overview_sidebar_Producers": {
+        "message": "Producers:",
+        "description": "Info table on overview - Producers: Kamiya, Yuu"
+    },
+    "overview_sidebar_Licensors": {
+        "message": "Licensors:",
+        "description": "Info table on overview - Licensors: AT-X"
+    },
+    "overview_sidebar_Themes": {
+        "message": "Themes:",
+        "description": "Info table on overview - Themes: Isekai"
+    },
+    "overview_sidebar_Type": {
+        "message": "Type:",
+        "description": "Info table on overview - Type: TV"
+    },
+    "overview_sidebar_Demographic": {
+        "message": "Demographic:",
+        "description": "Info table on overview - Demographic: Shoujo"
+    },
     "list_sorting_unread": {
         "message": "Unread",
         "description": "Dropdown option to sort list by unread"
@@ -864,6 +904,10 @@
     "settings_AskBefore": {
         "message": "Show 'completed' confirmation dialog at the start of the episode/chapter",
         "description": "Option to not show the 'completed' message during the episode"
+    },
+    "settings_ForceEnglishTitles": {
+        "message": "Force titles to English",
+        "description": "Option to force the usage of English titles on MAL"
     },
     "settings_AutoTracking_Video": {
         "message": "Update on $videoDuration$% of video progress",
@@ -1062,8 +1106,12 @@
         "description": "Option to sync list once a day in the background"
     },
     "settings_listsync_master": {
-        "message": "Master",
+        "message": "Main",
         "description": "List Sync label to show which provider is considered as the primary provider"
+    },
+    "settings_listsync_slave": {
+        "message": "Mirror",
+        "description": "List Sync label to show which provider is considered a mirror of the primary provider"
     },
     "settings_listsync_list": {
         "message": "List:",
@@ -1128,6 +1176,10 @@
     "settings_listsync_repeatcount_manga": {
         "message": "Reread Count:",
         "description": "List Sync label to display the user's reread count for a manga on a specific provider"
+    },
+    "settings_listsync_provider_done": {
+        "message": "Done",
+        "description": "Provider done loading your list"
     },
     "settings_progress": {
         "message": "Progress estimation",

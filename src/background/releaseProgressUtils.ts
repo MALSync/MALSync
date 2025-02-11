@@ -91,7 +91,7 @@ export async function single(
     Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000 &&
     !force
   ) {
-    logger.log('Fininshed');
+    logger.log('Finished');
     return;
   }
 
@@ -150,7 +150,7 @@ export function progressIsOld(releaseItem: releaseItemInterface) {
     const diff = new Date().getTime() - releaseItem.timestamp;
 
     if (releaseItem.finished && diff < 7 * 24 * 60 * 60 * 1000) {
-      // logger.log('Fininshed');
+      // logger.log('Finished');
       return false;
     }
 

@@ -1,0 +1,6 @@
+{
+    "search": "https://weebcentral.com/search?text={searchterm}",
+    "urls": {
+      "match": ["*://weebcentral.com/*"]
+    }
+}

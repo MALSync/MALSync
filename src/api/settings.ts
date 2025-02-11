@@ -8,6 +8,7 @@ export const settingsObj = {
     autoTrackingModemanga: 'instant',
     enablePages: {},
     forceEn: false,
+    forceEnglishTitles: false,
     rpc: true,
     presenceLargeImage: 'cover',
     presenceShowButtons: true,
@@ -53,7 +54,6 @@ export const settingsObj = {
       'MangaFox',
       'MangaSee',
       'MangaFire',
-      'YugenAnime',
       'HiAnime',
       'Hulu',
       'Netflix',
@@ -62,6 +62,7 @@ export const settingsObj = {
       'MangaPlus',
       'MangaReader',
       'ComicK',
+      'WeebCentral',
     ],
     quicklinksPosition: 'default',
 

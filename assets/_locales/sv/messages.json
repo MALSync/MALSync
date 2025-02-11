@@ -356,12 +356,24 @@
         "description": "Search text"
     },
     "correction_NoMal": {
-        "message": "Ifall Animen/Mangan inte kan hittas på MyAnimeList",
-        "description": "Anime/Manga not found in MAL"
+        "message": "Ifall Animen/Mangan inte kan hittas på $page$",
+        "description": "Anime/Manga not found in MAL",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "Ingen post på MyAnimeList",
-        "description": "No entry on MyAnimeList"
+        "message": "Ingen post på $page$",
+        "description": "No entry on MyAnimeList",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NewOffset": {
         "message": "Ny förskjutning ",

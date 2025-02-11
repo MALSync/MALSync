@@ -15,7 +15,13 @@ function isSlug(part: string) {
 export const Anime365: pageInterface = {
   name: 'Anime365',
   languages: ['Russian'],
-  domain: ['https://smotret-anime.net', 'https://anime365.ru', 'https://anime-365.ru'],
+  domain: [
+    'https://smotret-anime.org',
+    'https://anime365.ru',
+    'https://anime-365.ru',
+    'https://smotret-anime.online',
+    'https://smotret-anime.com',
+  ],
   type: 'anime',
   isSyncPage(url) {
     // Example: https://smotret-anime.net/catalog/horimiya-24061/1-seriya-252417/angliyskie-subtitry-3494584
