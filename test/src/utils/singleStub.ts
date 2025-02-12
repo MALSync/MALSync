@@ -93,16 +93,20 @@ export const classConfigs: {
     class: ShikiSingle,
     internalStates: 10,
     setup: single => {
+      single.metaInfo = {};
       single.userRate = {
         id: '',
+        user_id: 0,
+        target_id: 0,
+        target_type: 'Anime',
         score: 0,
         status: 'planned',
         episodes: 0,
         chapters: 0,
         rewatches: 0,
         volumes: 0,
-        createdAt: new Date().toISOString().split('T')[0],
-        updatedAt: new Date().toISOString().split('T')[0],
+        created_at: new Date().toISOString().split('T')[0],
+        updated_at: new Date().toISOString().split('T')[0],
       };
     },
   },
