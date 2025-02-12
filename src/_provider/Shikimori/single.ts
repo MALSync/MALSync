@@ -1,7 +1,10 @@
-import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
+import { SingleAbstract } from '../singleAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
+import { Queries } from './queries';
+import { Anime, Manga, statusTranslate, UserRate, UserRateStatusEnum } from './types';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -10,17 +13,15 @@ export class Single extends SingleAbstract {
     return this;
   }
 
-  private animeMeta?: helper.MetaRequest;
-
-  private animeInfo?: helper.StatusRequest;
+  private userRate?: UserRate;
 
   shortName = 'Shiki';
 
+  datesSupport = false;
+
   authenticationUrl = helper.authUrl;
 
-  protected datesSupport = false;
-
-  protected handleUrl(url) {
+  protected handleUrl(url: string) {
     if (url.match(/shikimori\.one\/(animes|mangas|ranobe)\/\D?\d+/i)) {
       this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
       const res = utils.urlPart(url, 4).match(/^\D?(\d+)/);
@@ -46,11 +47,12 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
-    return helper.statusTranslate[this.animeInfo!.status];
+    return Number(statusTranslate[this.userRate!.status]);
   }
 
-  _setStatus(status) {
-    this.animeInfo!.status = helper.statusTranslate[status] as helper.StatusType;
+  _setStatus(status: definitions.status) {
+    if (!this.userRate) return;
+    this.userRate.status = statusTranslate[status] as UserRateStatusEnum;
   }
 
   _getStartDate(): never {
@@ -69,27 +71,36 @@ export class Single extends SingleAbstract {
     throw new Error('Shikimori does not support Finish Date');
   }
 
+  private getMediaData() {
+    if (!this.userRate) return undefined;
+    return this.type === 'manga' ? this.userRate.manga : this.userRate.anime;
+  }
+
   _getRewatchCount() {
-    return this.animeInfo!.rewatches;
+    if (!this.userRate) return 0;
+    return this.userRate.rewatches;
   }
 
   _setRewatchCount(rewatchCount) {
-    this.animeInfo!.rewatches = rewatchCount;
+    if (!this.userRate) return;
+    this.userRate.rewatches = rewatchCount;
   }
 
   _getScore() {
-    return this.animeInfo!.score;
+    if (!this.userRate) return 0;
+    return this.userRate.score;
   }
 
-  _setScore(score) {
-    this.animeInfo!.score = score;
+  _setScore(score: number) {
+    if (!this.userRate) return;
+    this.userRate.score = score;
   }
 
   _getAbsoluteScore() {
     return this.getScore() * 10;
   }
 
-  _setAbsoluteScore(score) {
+  _setAbsoluteScore(score: definitions.score100) {
     if (!score) {
       this.setScore(0);
       return;
@@ -103,107 +114,113 @@ export class Single extends SingleAbstract {
   }
 
   _getEpisode() {
+    if (!this.userRate) return 0;
     if (this.type === 'manga') {
-      return this.animeInfo!.chapters;
+      return this.userRate.chapters;
     }
-    return this.animeInfo!.episodes;
+    return this.userRate.episodes;
   }
 
-  _setEpisode(episode) {
+  _setEpisode(episode: number) {
+    if (!this.userRate) return;
     if (this.type === 'manga') {
-      this.animeInfo!.chapters = parseInt(`${episode}`);
+      this.userRate.chapters = episode;
       return;
     }
-    this.animeInfo!.episodes = parseInt(`${episode}`);
+    this.userRate.episodes = episode;
   }
 
   _getVolume() {
-    return this.animeInfo!.volumes;
+    if (!this.userRate) return 0;
+    return this.userRate.volumes;
   }
 
-  _setVolume(volume) {
-    this.animeInfo!.volumes = volume;
+  _setVolume(volume: number) {
+    if (!this.userRate) return;
+    this.userRate.volumes = volume;
   }
 
   _getTags() {
-    let tags = this.animeInfo!.text;
-    if (tags === null || tags === 'null') tags = '';
-    return tags;
+    if (!this.userRate) return '';
+    return this.userRate.text || '';
   }
 
-  _setTags(tags) {
-    this.animeInfo!.text = tags;
+  _setTags(tags: string) {
+    if (!this.userRate) return;
+    this.userRate.text = tags;
   }
 
   _getTitle() {
-    return helper.title(this.animeMeta!.russian, this.animeMeta!.name);
+    const media = this.getMediaData();
+    if (!media) return '';
+    return helper.title(media.russian || '', media.english || media.name);
   }
 
   _getTotalEpisodes() {
-    const eps = this.type === 'anime' ? this.animeMeta!.episodes : this.animeMeta!.chapters;
-    if (!eps) return 0;
-    return eps;
+    const media = this.getMediaData();
+    if (!media) return 0;
+    return this.type === 'manga' ? (media as Manga).chapters || 0 : (media as Anime).episodes || 0;
   }
 
   _getTotalVolumes() {
-    const vol = this.animeMeta!.volumes;
-    if (!vol) return 0;
-    return vol;
+    const media = this.getMediaData();
+    if (!media || this.type !== 'manga') return 0;
+    return (media as Manga).volumes || 0;
   }
 
   _getDisplayUrl() {
-    return this.animeMeta!.url ? `${helper.domain}${this.animeMeta!.url}` : this.url;
+    const media = this.getMediaData();
+    if (!media) return '';
+    return media.url || this.url;
   }
 
   _getImage() {
-    return this.animeMeta!.image.preview ? `${helper.domain}${this.animeMeta!.image.preview}` : '';
+    const media = this.getMediaData();
+    if (!media || !media.poster) return '';
+    return media.poster.mainUrl || media.poster.originalUrl || '';
   }
 
   _getRating() {
-    return Promise.resolve(this.animeMeta!.score);
+    if (!this.userRate) return Promise.resolve('0');
+    return Promise.resolve(`${this.userRate.score}`);
   }
 
+  // TODO - Rewrite this when GRAPHQL will be updated.
   async _update() {
     const userId = await helper.userId();
+    const metaInfo =
+      this.type === 'anime'
+        ? await Queries.Anime(`${this.ids.mal}`)
+        : await Queries.Manga(`${this.ids.mal}`);
+    if (!metaInfo) throw new NotFoundError(this.url);
 
-    const metadata = await helper.apiCall({
-      path: `${this.type}s/${this.ids.mal}`,
-      type: 'GET',
-    });
+    const newUserRate = await Queries.UserRateGet(
+      Number(userId),
+      this.ids.mal,
+      this.type === 'anime' ? 'Anime' : 'Manga',
+    );
 
-    if (!metadata.id) {
-      throw new NotFoundError(this.url);
-    }
-
-    this.animeMeta = metadata;
-
-    const rating = await helper.apiCall({
-      path: 'v2/user_rates',
-      type: 'GET',
-      parameter: {
-        target_id: this.ids.mal,
-        user_id: userId,
-        target_type: this.type === 'anime' ? 'Anime' : 'Manga',
-      },
-    });
-
-    if (!rating.length) {
+    if (!newUserRate) {
       this._onList = false;
-      this.animeInfo = {
-        user_id: userId,
-        target_id: this.ids.mal,
-        target_type: this.type === 'anime' ? 'Anime' : 'Manga',
+      this.userRate = {
+        id: '',
         score: 0,
         status: 'planned',
-        rewatches: 0,
         episodes: 0,
-        volumes: 0,
         chapters: 0,
-        text: '',
+        rewatches: 0,
+        volumes: 0,
+        createdAt: new Date().toISOString().split('T')[0],
+        updatedAt: new Date().toISOString().split('T')[0],
       };
     } else {
       this._onList = true;
-      [this.animeInfo] = rating;
+      this.userRate = helper.userRateConvert(newUserRate);
+      if (this.type === 'anime') {
+        this.userRate.anime = metaInfo as Anime;
+      } else {
+        this.userRate.manga = metaInfo as Manga;
+      }
     }
 
     this._authenticated = true;
@@ -212,26 +229,21 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
-    const mode = this._onList ? 'PUT' : 'POST';
-    const path = this._onList ? `v2/user_rates/${this.animeInfo!.id}` : 'v2/user_rates';
-
-    return helper.apiCall({
-      type: mode,
-      path,
-      dataObj: {
-        user_rate: this.animeInfo,
-      },
-    });
+    if (!this.userRate) {
+      return;
+    }
+    if (this._onList) {
+      await Queries.UserRateUpdate(this.userRate);
+    } else {
+      await Queries.UserRateAdd(this.userRate);
+    }
   }
 
   public getScoreMode() {
     return point10;
   }
 
-  _delete() {
-    return helper.apiCall({
-      type: 'DELETE',
-      path: `v2/user_rates/${this.animeInfo!.id}`,
-    });
+  async _delete() {
+    return Queries.UserRateDelete(this.userRate!.id);
   }
 }

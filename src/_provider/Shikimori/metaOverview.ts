@@ -2,6 +2,8 @@ import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
+import { Queries } from './queries';
+import { Anime, Manga, RelationKindEnum } from './types';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -31,6 +33,10 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.logger.log('Retrieve', this.type, this.malId);
 
     const data = await this.getData();
+    if (!data) {
+      this.logger.log('Error', data);
+      return;
+    }
     this.logger.log('Data', data);
 
     this.title(data);
@@ -41,193 +47,166 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.statistics(data);
     this.info(data);
     this.related(data);
+    this.openingSongs(data);
+    this.endingSongs(data);
 
     this.logger.log('Res', this.meta);
   }
 
   private async getData() {
-    const meta = await helper.apiCall({
-      path: `${this.type}s/${this.malId}`,
-      type: 'GET',
-    });
-
-    const roles = await helper.apiCall({
-      path: `${this.type}s/${this.malId}/roles`,
-      type: 'GET',
-    });
-
-    const related = await helper.apiCall({
-      path: `${this.type}s/${this.malId}/related`,
-      type: 'GET',
-    });
-
-    return {
-      meta,
-      roles,
-      related,
-    };
+    if (this.type === 'anime') {
+      const anime = await Queries.Anime(`${this.malId}`);
+      return anime;
+    }
+    const manga = await Queries.Manga(`${this.malId}`);
+    return manga;
   }
 
-  private title(data) {
-    this.meta.title = helper.title(data.meta.russian, data.meta.name, true);
+  private title(data: Anime | Manga) {
+    this.meta.title = helper.title(data.russian || '', data.english || data.name, true);
   }
 
-  private description(data) {
-    if (data.meta.description_html) this.meta.description = data.meta.description_html;
+  private description(data: Anime | Manga) {
+    this.meta.description = data.descriptionHtml || data.description || '';
   }
 
-  private image(data) {
-    this.meta.image = data.meta.image.original ? `${helper.domain}${data.meta.image.original}` : '';
-    this.meta.imageLarge = this.meta.image;
+  private image(data: Anime | Manga) {
+    this.meta.image = data.poster!.mainUrl || data.poster!.originalUrl || '';
+    this.meta.imageLarge = data.poster!.main2xUrl || data.poster!.originalUrl || '';
   }
 
-  private alternativeTitle(data) {
+  private alternativeTitle(data: Anime | Manga) {
     this.meta.alternativeTitle = [
-      ...(data.meta.english || []),
-      ...(data.meta.japanese || []),
-      ...(data.meta.synonyms || []),
-    ].filter(el => el);
+      ...[data.english || ''], // string
+      ...[data.japanese || ''], // string
+      ...(data.synonyms || []), // string array
+    ].filter(Boolean);
   }
 
-  private characters(data) {
-    const chars = data.roles;
+  private characters(data: Anime | Manga) {
+    const chars = data.characterRoles;
     if (chars) {
       chars.forEach(i => {
-        if (i.character && i.character.id) {
+        if (i.character && i.id) {
           this.meta.characters.push({
-            img: i.character.image.original ? `${helper.domain}${i.character.image.original}` : '',
-            name: helper.title(i.character.russian, i.character.name),
-            subtext: helper.title(
-              i.roles_russian.length ? i.roles_russian[0] : null,
-              i.roles.length ? i.roles[0] : null,
+            img: i.character.poster
+              ? i.character.poster.mainUrl || i.character.poster.originalUrl
+              : '',
+            name: helper.title(
+              i.character.russian || i.character.synonyms[0] || '',
+              i.character.name,
             ),
-            url: `${helper.domain}${i.character.url}`,
+            subtext: helper.title(i.rolesRu[0] || '', i.rolesEn[0] || ''),
+            url: i.character.url,
           });
         }
-
-        this.meta.characters.sort((a, b) => {
-          const roles = ['Main', 'Supporting'];
-          const aRole = a.subtext ? roles.indexOf(a.subtext) : 2;
-          const bRole = b.subtext ? roles.indexOf(b.subtext) : 2;
-          return aRole - bRole;
-        });
-
-        this.meta.characters = this.meta.characters.slice(0, 10);
       });
+      this.meta.characters.sort((a, b) => {
+        const roles = ['Main', 'Supporting'];
+        const aRole = a.subtext ? roles.indexOf(a.subtext) : 2;
+        const bRole = b.subtext ? roles.indexOf(b.subtext) : 2;
+        return aRole - bRole;
+      });
+      this.meta.characters = this.meta.characters.slice(0, 10);
     }
   }
 
-  private statistics(data) {
-    if (data.meta.score)
+  private statistics(data: Anime | Manga) {
+    if (data.score)
       this.meta.statistics.push({
         title: api.storage.lang('overview_sidebar_Score'),
-        body: data.meta.score,
+        body: `${data.score}`,
       });
 
-    if (data.meta.rates_statuses_stats) {
-      const watching = data.meta.rates_statuses_stats.find(el =>
-        ['Watching', 'Смотрю'].includes(el.name),
-      );
-      const planned = data.meta.rates_statuses_stats.find(el =>
-        ['Planned to Read', 'Planned to Watch', 'Запланировано'].includes(el.name),
-      );
-      const reading = data.meta.rates_statuses_stats.find(el =>
-        ['Reading', 'Читаю'].includes(el.name),
-      );
-      const dropped = data.meta.rates_statuses_stats.find(el =>
-        ['Dropped', 'Брошено'].includes(el.name),
-      );
-      const hold = data.meta.rates_statuses_stats.find(el =>
-        ['On Hold', 'Отложено'].includes(el.name),
-      );
-      const completed = data.meta.rates_statuses_stats.find(el =>
-        ['Completed', 'Просмотрено', 'Прочитано'].includes(el.name),
-      );
+    if (data.statusesStats) {
+      const watching = data.statusesStats.find(el => el.status === 'watching');
+      const completed = data.statusesStats.find(el => el.status === 'completed');
+      const dropped = data.statusesStats.find(el => el.status === 'dropped');
+      const oh_hold = data.statusesStats.find(el => el.status === 'on_hold');
+      const planned = data.statusesStats.find(el => el.status === 'planned');
 
-      if (watching && watching.value) {
+      if (watching && watching.count) {
         this.meta.statistics.push({
-          title: `${api.storage.lang('UI_Status_watching_anime')}:`,
-          body: watching.value,
+          title: `${api.storage.lang((data as Manga).chapters ? 'UI_Status_watching_manga' : 'UI_Status_watching_anime')}:`,
+          body: `${watching.count}`,
         });
       }
-      if (planned && planned.value) {
-        this.meta.statistics.push({
-          title: `${this.type === 'manga' ? api.storage.lang('UI_Status_planTo_manga') : api.storage.lang('UI_Status_planTo_anime')}:`,
-          body: planned.value,
-        });
-      }
-      if (reading && reading.value) {
-        this.meta.statistics.push({
-          title: `${api.storage.lang('UI_Status_watching_manga')}:`,
-          body: reading.value,
-        });
-      }
-      if (dropped && dropped.value) {
-        this.meta.statistics.push({
-          title: `${api.storage.lang('UI_Status_Dropped')}:`,
-          body: dropped.value,
-        });
-      }
-      if (hold && hold.value) {
-        this.meta.statistics.push({
-          title: `${api.storage.lang('UI_Status_OnHold')}:`,
-          body: hold.value,
-        });
-      }
-      if (completed && completed.value) {
+      if (completed && completed.count) {
         this.meta.statistics.push({
           title: `${api.storage.lang('UI_Status_Completed')}:`,
-          body: completed.value,
+          body: `${completed.count}`,
+        });
+      }
+      if (dropped && dropped.count) {
+        this.meta.statistics.push({
+          title: `${api.storage.lang('UI_Status_Dropped')}:`,
+          body: `${dropped.count}`,
+        });
+      }
+      if (oh_hold && oh_hold.count) {
+        this.meta.statistics.push({
+          title: `${api.storage.lang('UI_Status_OnHold')}:`,
+          body: `${oh_hold.count}`,
+        });
+      }
+      if (planned && planned.count) {
+        this.meta.statistics.push({
+          title: `${api.storage.lang((data as Manga).chapters ? 'UI_Status_planTo_manga' : 'UI_Status_planTo_anime')}:`,
+          body: `${planned.count}`,
         });
       }
     }
   }
 
-  private info(data) {
-    if (data.meta.kind)
+  private info(data: Anime | Manga) {
+    if (data.kind)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Format'),
-        body: [{ text: utils.upperCaseFirstLetter(data.meta.kind) }],
+        body: [{ text: utils.upperCaseFirstLetter(data.kind) }],
       });
 
-    if (data.meta.duration)
+    if ((data as Anime).duration)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
         body: [
           {
-            text: `${new IntlDuration().setRelativeTime(data.meta.duration, 'minutes', 'Duration').getRelativeText()}`,
+            text: `${new IntlDuration().setRelativeTime((data as Anime).duration || 0, 'minutes', 'Duration').getRelativeText()}`,
           },
         ],
       });
 
-    if (data.meta.status)
+    if (data.status)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Status'),
-        body: [{ text: utils.upperCaseFirstLetter(data.meta.status) }],
+        body: [{ text: utils.upperCaseFirstLetter(data.status) }],
       });
 
-    if (data.meta.aired_on)
-      this.meta.info.push({
-        title: api.storage.lang('overview_sidebar_Start_Date'),
-        body: [{ text: `${new IntlDateTime(data.meta.aired_on).getDateTimeText()}` }],
-      });
-
-    if (data.meta.released_on)
+    if (data.releasedOn && data.releasedOn.date)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_End_Date'),
-        body: [{ text: `${new IntlDateTime(data.meta.released_on).getDateTimeText()}` }],
+        body: [{ text: `${new IntlDateTime(data.releasedOn.date).getDateTimeText()}` }],
       });
 
-    if (this.type === 'manga' && data.roles && data.roles.length) {
-      const authors: (typeof this.meta.info)[0]['body'] = [];
-      data.roles.forEach(i => {
+    if (data.airedOn && data.airedOn.date)
+      this.meta.info.push({
+        title: api.storage.lang('overview_sidebar_Start_Date'),
+        body: [{ text: new IntlDateTime(data.airedOn.date).getDateTimeText() }],
+      });
+
+    if (this.type === 'manga' && data.personRoles && data.personRoles.length) {
+      const authors: {
+        text: string;
+        url: string;
+      }[] = [];
+      data.personRoles.forEach(i => {
         if (i.person && i.person.id) {
-          let text = helper.title(i.person.russian, i.person.name);
-          if (i.roles && i.roles.length) text += ` (${i.roles[0]})`;
+          let text = helper.title(i.person.russian || '', i.person.name || '');
+          if ((i.rolesRu && i.rolesRu.length) || (i.rolesEn && i.rolesEn.length))
+            text += ` (${i.rolesRu[0] || i.rolesEn[0] || ''})`;
 
           authors.push({
             text,
-            url: `${helper.domain}${i.person.url}`,
+            url: i.person.url,
           });
         }
       });
@@ -239,9 +218,12 @@ export class MetaOverview extends MetaOverviewAbstract {
         });
     }
 
-    if (data.meta.studios && data.meta.studios.length) {
-      const studios: (typeof this.meta.info)[0]['body'] = [];
-      data.meta.studios.forEach(i => {
+    if ((data as Anime).studios && (data as Anime).studios.length) {
+      const studios: {
+        text: string;
+        url: string;
+      }[] = [];
+      (data as Anime).studios.forEach(i => {
         studios.push({
           text: i.name,
           url: `https://shikimori.one/animes/studio/${i.id}`,
@@ -255,13 +237,18 @@ export class MetaOverview extends MetaOverviewAbstract {
         });
     }
 
-    const genres: (typeof this.meta.info)[0]['body'] = [];
-    data.meta.genres.forEach(i => {
-      genres.push({
-        text: i.name,
-        url: `https://shikimori.one/${this.type}s/genre/${i.id}`,
+    const genres: {
+      text: string;
+      url: string;
+    }[] = [];
+    if (data.genres && data.genres.length) {
+      data.genres.forEach(i => {
+        genres.push({
+          text: i.russian || i.name || '',
+          url: `https://shikimori.one/${this.type}s/genre/${i.id}`,
+        });
       });
-    });
+    }
     if (genres.length)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Genres'),
@@ -269,33 +256,77 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
   }
 
-  private related(data) {
-    const links: typeof this.meta.related = [];
+  private related(data: Anime | Manga) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const links: any = {};
 
-    data.related.forEach(element => {
-      if (!links[element.relation]) {
-        links[element.relation] = {
-          type: helper.title(element.relation_russian, element.relation),
-          links: [],
-        };
-      }
-
-      let meta = element.manga;
-      let type: 'anime' | 'manga' = 'manga';
-      if (element.anime && element.anime.id) {
-        meta = element.anime;
-        type = 'anime';
-      }
-
-      links[element.relation].links.push({
-        url: `${helper.domain}${meta.url}`,
-        title: helper.title(meta.russian, meta.name),
-        type,
-        id: meta.id,
+    if (data.related) {
+      data.related.forEach(el => {
+        if (!links[el.relationKind]) {
+          links[el.relationKind] = {
+            type: helper.title(el.relationText, RelationKindEnum[el.relationKind]),
+            links: [],
+          };
+        }
+        links[el.relationKind].links.push({
+          url: `${el.manga ? el.manga.url || '' : el.anime!.url || ''}`,
+          title: helper.title(
+            el.manga ? el.manga.russian || '' : el.anime!.russian || '',
+            el.manga ? el.manga.english || el.manga.name : el.anime!.english || el.anime!.name,
+          ),
+          type: (data as Manga).chapters ? 'manga' : 'anime',
+          id: el.manga ? el.manga.id : el.anime!.id,
+        });
       });
-    });
 
-    this.meta.related = Object.values(links);
+      this.meta.related = Object.values(links);
+    }
+  }
+
+  openingSongs(data: Anime | Manga) {
+    if (this.type !== 'anime') return;
+    const openingSongs: {
+      title: string;
+      author: string;
+      episode: string;
+      url?: string;
+    }[] = [];
+    const anime = data as Anime;
+    for (let i = 0; i < anime.videos.length; i++) {
+      const video = anime.videos[i];
+      if (video.kind !== 'op') continue;
+      openingSongs.push({
+        title: video.name || '',
+        author: '',
+        episode: '',
+        url: video.url,
+      });
+
+      this.meta.openingSongs = openingSongs;
+    }
+  }
+
+  endingSongs(data: Anime | Manga) {
+    if (this.type !== 'anime') return;
+    const endingSongs: {
+      title: string;
+      author: string;
+      episode: string;
+      url?: string;
+    }[] = [];
+    const anime = data as Anime;
+    for (let i = 0; i < anime.videos.length; i++) {
+      const video = anime.videos[i];
+      if (video.kind !== 'ed') continue;
+      endingSongs.push({
+        title: video.name || '',
+        author: '',
+        episode: '',
+        url: video.url,
+      });
+
+      this.meta.endingSongs = endingSongs;
+    }
   }
 
   protected apiCall = helper.apiCall;

@@ -18,7 +18,7 @@
         v-model="parameters.state"
         :type="parameters.type"
         :rewatching="
-          listRequest.data ? listRequest.data?.seperateRewatching : parameters.state === 23
+          listRequest.data ? listRequest.data?.separateRewatching : parameters.state === 23
         "
       />
       <FormButton padding="pill" @click="refresh()">

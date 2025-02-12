@@ -1,23 +1,36 @@
+/* eslint-disable no-await-in-loop */
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
-import * as definitions from '../definitions';
+import {
+  UserRateStatusEnum,
+  UserRate,
+  UserRates,
+  statusTranslate,
+  Anime,
+  Manga,
+  UserRateOrderInputType,
+} from './types';
+import { Queries } from './queries';
 
-const pageSize = 25;
-
+const limit = 25; // MAX 50
 export class UserList extends ListAbstract {
   name = 'Shiki';
 
-  public seperateRewatching = true;
-
   authenticationUrl = helper.authUrl;
 
-  tempList: helper.StatusRequest[] = [];
+  media: UserRates = {
+    data: {
+      userRates: [],
+    },
+  };
 
-  getUserObject() {
+  public separateRewatching = true;
+
+  async getUserObject() {
     return helper.userRequest().then(res => ({
-      username: res.nickname,
-      picture: res.image.x80,
-      href: res.url,
+      username: res.data.currentUser.nickname,
+      picture: res.data.currentUser.avatarUrl,
+      href: res.data.currentUser.url,
     }));
   }
 
@@ -26,15 +39,41 @@ export class UserList extends ListAbstract {
   }
 
   _getSortingOptions() {
-    return [];
+    return [
+      {
+        icon: 'history',
+        title: api.storage.lang('list_sorting_history'),
+        value: 'updated',
+        asc: true,
+      },
+    ];
   }
 
-  getSortingOptions() {
-    return [];
+  getOrder(sort: string): UserRateOrderInputType {
+    switch (sort) {
+      case 'updated':
+        return {
+          field: 'updated_at',
+          order: 'desc',
+        };
+      case 'updated_asc':
+        return {
+          field: 'updated_at',
+          order: 'asc',
+        };
+      default:
+        return {
+          field: 'updated_at',
+          order: 'desc',
+        };
+    }
   }
 
-  async getPart(): Promise<any> {
-    if (this.offset < 2) this.offset = 0;
+  async getPart(): Promise<listElement[]> {
+    this.media.data.userRates = [];
+    if (this.offset < 1) this.offset = 1;
+    if (!this.username) this.username = await this.getUsername();
+
     con.log(
       '[UserList][Shiki]',
       `username: ${this.username}`,
@@ -42,94 +81,49 @@ export class UserList extends ListAbstract {
       `offset: ${this.offset}`,
     );
 
-    if (!this.tempList.length) {
-      let curSt = '';
-      if (this.status !== definitions.status.All) {
-        curSt = helper.statusTranslate[this.status];
-      }
-
-      const userId = await helper.userId();
-
-      this.tempList = await helper.apiCall({
-        path: 'v2/user_rates',
-        type: 'GET',
-        parameter: {
-          user_id: userId,
-          target_type: this.listType === 'anime' ? 'Anime' : 'Manga',
-          status: curSt,
-        },
-      });
+    let curSt: UserRateStatusEnum | undefined;
+    if (this.status !== 7) {
+      curSt = statusTranslate[this.status] as UserRateStatusEnum;
     }
 
-    const list = this.tempList.slice(this.offset, this.offset + pageSize);
+    const order = this.getOrder(this.sort);
+    const userId = await helper.userId();
+    this.media = await Queries.UserRates(
+      Number(userId),
+      this.listType === 'anime' ? 'Anime' : 'Manga',
+      order,
+      curSt,
+      this.offset,
+      limit,
+    );
 
-    this.offset += pageSize;
+    this.offset += 1;
+    if (limit > this.media.data.userRates.length) this.done = true;
 
-    if (this.offset >= this.tempList.length) {
-      this.done = true;
-    }
-
-    const ids = list.map(el => el.target_id);
-
-    const metadata: helper.MetaRequest[] = await helper.apiCall({
-      path: `${this.listType}s`,
-      parameter: { ids: ids.join(','), limit: pageSize },
-      type: 'GET',
-    });
-
-    const keyedMetadata: { [key: string]: helper.MetaRequest } = {};
-    for (const key in metadata) {
-      const entry = metadata[key];
-      keyedMetadata[entry.id] = entry;
-    }
-
-    if (this.listType === 'manga') {
-      const keyedIds = Object.keys(keyedMetadata);
-      const diffArr = ids.filter((o: any) => !keyedIds.includes(o));
-      if (diffArr.length) {
-        const diffMetadata: helper.MetaRequest[] = await helper.apiCall({
-          path: 'ranobe',
-          parameter: { ids: diffArr.join(','), limit: pageSize },
-          type: 'GET',
-        });
-        for (const key in diffMetadata) {
-          const entry = diffMetadata[key];
-          keyedMetadata[entry.id] = entry;
-        }
-      }
-    }
-
-    return this.prepareData(list, keyedMetadata);
+    return this.prepareData(this.media.data.userRates);
   }
 
-  private async prepareData(
-    data: helper.StatusRequest[],
-    metadata: { [key: string]: helper.MetaRequest },
-  ): Promise<listElement[]> {
+  private async prepareData(data: UserRate[]): Promise<listElement[]> {
     const newData = [] as listElement[];
-    for (const key in data) {
-      const entry = data[key];
-      const meta = metadata[entry.target_id];
-
-      // eslint-disable-next-line no-await-in-loop
+    for (let i = 0; i < data.length; i++) {
+      const item = this.listType === 'anime' ? data[i].anime! : data[i].manga!;
       const tempData = await this.fn({
-        malId: entry.target_id,
-        apiCacheKey: entry.target_id,
-        uid: entry.target_id,
-        cacheKey: entry.target_id,
-        type: entry.target_type === 'Anime' ? 'anime' : 'manga',
-        title: helper.title(meta.russian, meta.name),
-        url: `${helper.domain}${meta.url}`,
-        score: entry.score ? entry.score : 0,
-        watchedEp: entry.target_type === 'Anime' ? entry.episodes : entry.chapters,
-        readVol: entry.target_type === 'Anime' ? undefined : entry.volumes,
-        totalEp: entry.target_type === 'Anime' ? meta.episodes : meta.chapters,
-        totalVol: entry.target_type === 'Anime' ? undefined : meta.volumes,
-        status: helper.statusTranslate[entry.status],
-        rewatchCount: entry.rewatches,
-        image: meta.image.original ? `${helper.domain}${meta.image.original}` : '',
-        imageLarge: meta.image.original ? `${helper.domain}${meta.image.original}` : '',
-        tags: entry.text,
+        malId: item.malId,
+        apiCacheKey: item.id,
+        uid: item.id,
+        cacheKey: item.id,
+        type: this.listType,
+        title: helper.title(item.russian || '', item.english || item.name),
+        url: item.url,
+        watchedEp: this.listType === 'anime' ? data[i].episodes : data[i].chapters,
+        totalEp:
+          this.listType === 'anime' ? (item as Anime).episodes || 0 : (item as Manga).chapters || 0,
+        status: statusTranslate[data[i].status],
+        score: data[i].score || 0,
+        image: item.poster!.mainUrl || '',
+        imageLarge: item.poster!.main2xUrl || '',
+        tags: data[i].text || '',
+        updatedAt: data[i].updatedAt,
       });
       newData.push(tempData);
     }
