@@ -1,5 +1,5 @@
 import { status } from '../definitions';
-import { NotAutenticatedError, parseJson, ServerOfflineError } from '../Errors';
+import { NotAuthenticatedError, parseJson, ServerOfflineError } from '../Errors';
 
 export const client_id = __MAL_SYNC_KEYS__.simkl.id;
 
@@ -199,7 +199,7 @@ export function errorHandling(res, code) {
     } else {
       switch (error) {
         case 'user_token_failed':
-          throw new NotAutenticatedError('user_token_failed');
+          throw new NotAuthenticatedError('user_token_failed');
         default:
           throw error;
       }

@@ -1,7 +1,7 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
-import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
+import { NotAuthenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
 import { point20decimal } from '../ScoreMode/point20decimal';
 import { smiley4 } from '../ScoreMode/smiley4';
@@ -227,7 +227,7 @@ export class Single extends SingleAbstract {
         );
       })
       .catch(e => {
-        if (e instanceof NotAutenticatedError) {
+        if (e instanceof NotAuthenticatedError) {
           this._authenticated = false;
           return { data: [], included: [] };
         }
@@ -280,7 +280,7 @@ export class Single extends SingleAbstract {
           throw new NotFoundError('Not found');
         }
 
-        if (!this._authenticated) throw new NotAutenticatedError('Not Authenticated');
+        if (!this._authenticated) throw new NotAuthenticatedError('Not Authenticated');
       });
   }
 
@@ -345,7 +345,7 @@ export class Single extends SingleAbstract {
     authentication = true,
   ) {
     return helper.apiCall(mode, url, variables, authentication).catch(e => {
-      if (e instanceof NotAutenticatedError) throw new NotAutenticatedError(e.message);
+      if (e instanceof NotAuthenticatedError) throw new NotAuthenticatedError(e.message);
       throw e;
     });
   }
@@ -357,7 +357,7 @@ export class Single extends SingleAbstract {
       {},
     )
       .catch(e => {
-        if (e instanceof NotAutenticatedError) {
+        if (e instanceof NotAuthenticatedError) {
           this._authenticated = false;
           return this.apiCall(
             'GET',
@@ -395,7 +395,7 @@ export class Single extends SingleAbstract {
       {},
     )
       .catch(e => {
-        if (e instanceof NotAutenticatedError) {
+        if (e instanceof NotAuthenticatedError) {
           this._authenticated = false;
           return this.apiCall(
             'GET',
@@ -422,7 +422,7 @@ export class Single extends SingleAbstract {
         !res.data.length ||
         typeof res.data[0] === 'undefined'
       ) {
-        throw new NotAutenticatedError('Not Authenticated');
+        throw new NotAuthenticatedError('Not Authenticated');
       }
       api.storage.set('kitsuUserId', res.data[0].id);
       return res.data[0].id;

@@ -42,7 +42,7 @@
 import { computed } from 'vue';
 import { createRequest } from '../../utils/reactive';
 import { getListbyType } from '../../../_provider/listFactory';
-import { NotAutenticatedError } from '../../../_provider/Errors';
+import { NotAuthenticatedError } from '../../../_provider/Errors';
 import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
 import SettingsGeneral from './settings-general.vue';
@@ -67,7 +67,7 @@ const parameters = computed(() => {
 const profileRequest = createRequest(parameters, params => {
   const { listObj } = params.value;
   return listObj.getUserObject().catch(e => {
-    if (e instanceof NotAutenticatedError) {
+    if (e instanceof NotAuthenticatedError) {
       return { username: '', picture: 'error', href: '' };
     }
     throw e;

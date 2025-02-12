@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import { startFinishDate, status } from '../definitions';
 import { clientId } from '../../utils/oauth';
-import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
+import { NotAuthenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
 export const apiDomain = 'https://api.myanimelist.net/v2/';
 
@@ -60,7 +60,7 @@ export async function apiCall(options: {
             if (await refreshToken(this.logger)) {
               return this.apiCall(options);
             }
-            throw new NotAutenticatedError(res.message ?? res.error);
+            throw new NotAuthenticatedError(res.message ?? res.error);
           case 'not_found':
             throw new NotFoundError(res.message ?? res.error);
           case 'invalid_content':

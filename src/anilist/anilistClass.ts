@@ -5,7 +5,7 @@ import { UserList } from '../_provider/AniList/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import updateUi from './updateUi.vue';
 import { waitForPageToBeVisible } from '../utils/general';
-import { NotAutenticatedError } from '../_provider/Errors';
+import { NotAuthenticatedError } from '../_provider/Errors';
 
 export class AnilistClass {
   page: any = null;
@@ -309,7 +309,7 @@ export class AnilistClass {
           fullListCallback(list);
         })
         .catch(e => {
-          if (e instanceof NotAutenticatedError) this.authError = true;
+          if (e instanceof NotAuthenticatedError) this.authError = true;
           con.error(e);
           listProvider.flashmError(e);
         });
