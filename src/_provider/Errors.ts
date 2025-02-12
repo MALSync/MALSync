@@ -34,6 +34,20 @@ export class UnexpectedResponseError extends Error {
   }
 }
 
+export class MissingParameterError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'MissingParameterError';
+  }
+}
+
+export class InvalidParameterError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidParameterError';
+  }
+}
+
 export function parseJson(json) {
   try {
     return JSON.parse(json);

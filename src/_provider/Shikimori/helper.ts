@@ -1,8 +1,13 @@
 /* eslint-disable import/no-cycle */
-import { NotAuthenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
+import {
+  NotAuthenticatedError,
+  NotFoundError,
+  ServerOfflineError,
+  MissingParameterError,
+  InvalidParameterError,
+} from '../Errors';
 import { Cache } from '../../utils/Cache';
 import { Queries } from './queries';
-import * as types from './types';
 
 const clientId = 'z3NJ84kK9iy5NU6SnhdCDB38rr4-jFIJ67bMIUDzdoo';
 
@@ -70,6 +75,7 @@ export async function apiCall(options: {
         return apiCall(options);
       }
 
+      // For REST API
       if (res && res.error) {
         switch (res.error) {
           case 'forbidden':
@@ -81,6 +87,17 @@ export async function apiCall(options: {
             throw new NotFoundError(res.message || res.error);
           default:
             throw new Error(res.message || res.error);
+        }
+      }
+      // For GraphQL API
+      if (res && res.errors && res.errors.length) {
+        const error = res.errors.join('\n');
+        if (error.includes('Missing parameter')) {
+          throw new MissingParameterError(error);
+        } else if (error.includes('Invalid parameter')) {
+          throw new InvalidParameterError(error);
+        } else {
+          throw new Error(error);
         }
       }
 
@@ -156,20 +173,4 @@ export function title(rus: string, eng: string, headline = false) {
   if (locale === 'ru') return rus || eng;
   if (headline && eng && rus) return `${eng} / ${rus}`;
   return eng || rus;
-}
-
-// TODO - Remove when GRAPHQL updates
-export function userRateConvert(userRate: types.UserRateV2): types.UserRate {
-  return {
-    id: userRate.id,
-    score: userRate.score,
-    status: userRate.status,
-    statusText: userRate.status,
-    episodes: userRate.episodes,
-    chapters: userRate.chapters,
-    rewatches: userRate.rewatches,
-    volumes: userRate.volumes,
-    updatedAt: userRate.updated_at,
-    createdAt: userRate.created_at,
-  } as types.UserRate;
 }

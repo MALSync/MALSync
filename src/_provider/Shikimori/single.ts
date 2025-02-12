@@ -4,8 +4,9 @@ import { SingleAbstract } from '../singleAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
 import { Queries } from './queries';
-import { Anime, Manga, statusTranslate, UserRate, UserRateStatusEnum } from './types';
+import { Anime, Manga, statusTranslate, UserRateStatusEnum, UserRateV2 } from './types';
 
+// TODO - Rewrite this when GRAPHQL updates.
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
     super(url);
@@ -13,7 +14,9 @@ export class Single extends SingleAbstract {
     return this;
   }
 
-  private userRate?: UserRate;
+  private userRate?: UserRateV2;
+
+  private metaInfo?: Anime | Manga;
 
   shortName = 'Shiki';
 
@@ -69,11 +72,6 @@ export class Single extends SingleAbstract {
 
   _setFinishDate(finishDate) {
     throw new Error('Shikimori does not support Finish Date');
-  }
-
-  private getMediaData() {
-    if (!this.userRate) return undefined;
-    return this.type === 'manga' ? this.userRate.manga : this.userRate.anime;
   }
 
   _getRewatchCount() {
@@ -151,33 +149,30 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
-    const media = this.getMediaData();
-    if (!media) return '';
-    return helper.title(media.russian || '', media.english || media.name);
+    if (!this.metaInfo) return '';
+    return helper.title(this.metaInfo.russian || '', this.metaInfo.english || this.metaInfo.name);
   }
 
   _getTotalEpisodes() {
-    const media = this.getMediaData();
-    if (!media) return 0;
-    return this.type === 'manga' ? (media as Manga).chapters || 0 : (media as Anime).episodes || 0;
+    if (!this.metaInfo) return 0;
+    return this.type === 'manga'
+      ? (this.metaInfo as Manga).chapters || 0
+      : (this.metaInfo as Anime).episodes || 0;
   }
 
   _getTotalVolumes() {
-    const media = this.getMediaData();
-    if (!media || this.type !== 'manga') return 0;
-    return (media as Manga).volumes || 0;
+    if (!this.metaInfo || this.type !== 'manga') return 0;
+    return (this.metaInfo as Manga).volumes || 0;
   }
 
   _getDisplayUrl() {
-    const media = this.getMediaData();
-    if (!media) return '';
-    return media.url || this.url;
+    if (!this.metaInfo) return '';
+    return this.metaInfo.url || this.url;
   }
 
   _getImage() {
-    const media = this.getMediaData();
-    if (!media || !media.poster) return '';
-    return media.poster.mainUrl || media.poster.originalUrl || '';
+    if (!this.metaInfo || !this.metaInfo.poster) return '';
+    return this.metaInfo.poster.mainUrl || this.metaInfo.poster.originalUrl || '';
   }
 
   _getRating() {
@@ -185,41 +180,44 @@ export class Single extends SingleAbstract {
     return Promise.resolve(`${this.userRate.score}`);
   }
 
-  // TODO - Rewrite this when GRAPHQL will be updated.
   async _update() {
     const userId = await helper.userId();
-    const metaInfo =
+    const meta =
       this.type === 'anime'
         ? await Queries.Anime(`${this.ids.mal}`)
         : await Queries.Manga(`${this.ids.mal}`);
-    if (!metaInfo) throw new NotFoundError(this.url);
+    if (!meta) throw new NotFoundError(this.url);
+    this.metaInfo = meta;
 
-    const newUserRate = await Queries.UserRateGet(
+    const currentUserRate = await Queries.UserRateGet(
       Number(userId),
       this.ids.mal,
       this.type === 'anime' ? 'Anime' : 'Manga',
     );
 
-    if (!newUserRate) {
+    if (!currentUserRate) {
       this._onList = false;
       this.userRate = {
         id: '',
+        user_id: Number(userId),
+        target_id: this.ids.mal,
+        target_type: this.type === 'anime' ? 'Anime' : 'Manga',
         score: 0,
         status: 'planned',
         episodes: 0,
         chapters: 0,
         rewatches: 0,
         volumes: 0,
-        createdAt: new Date().toISOString().split('T')[0],
-        updatedAt: new Date().toISOString().split('T')[0],
+        created_at: new Date().toISOString().split('T')[0],
+        updated_at: new Date().toISOString().split('T')[0],
       };
     } else {
       this._onList = true;
-      this.userRate = helper.userRateConvert(newUserRate);
+      this.userRate = currentUserRate;
       if (this.type === 'anime') {
-        this.userRate.anime = metaInfo as Anime;
+        this.metaInfo = meta as Anime;
       } else {
-        this.userRate.manga = metaInfo as Manga;
+        this.metaInfo = meta as Manga;
       }
     }
 
@@ -244,6 +242,9 @@ export class Single extends SingleAbstract {
   }
 
   async _delete() {
-    return Queries.UserRateDelete(this.userRate!.id);
+    if (!this.userRate) {
+      return;
+    }
+    await Queries.UserRateDelete(this.userRate.id);
   }
 }
