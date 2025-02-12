@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { NotAutenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
+import { NotAuthenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
 import { Cache } from '../../utils/Cache';
 import { Queries } from './queries';
 import * as types from './types';
@@ -23,7 +23,7 @@ export async function apiCall(options: {
   const token = api.settings.get('shikiToken');
 
   if (!token && !token.access_token && !options.auth) {
-    throw new NotAutenticatedError('No token set');
+    throw new NotAuthenticatedError('No token set');
   }
 
   let url = '';
@@ -65,7 +65,7 @@ export async function apiCall(options: {
       }
 
       if (response.status === 401) {
-        if (options.auth) throw new NotAutenticatedError(res.message || res.error);
+        if (options.auth) throw new NotAuthenticatedError(res.message || res.error);
         await refreshToken(token.refresh_token);
         return apiCall(options);
       }
@@ -74,7 +74,7 @@ export async function apiCall(options: {
         switch (res.error) {
           case 'forbidden':
           case 'invalid_token':
-            if (options.auth) throw new NotAutenticatedError(res.message || res.error);
+            if (options.auth) throw new NotAuthenticatedError(res.message || res.error);
             await refreshToken(token.refresh_token);
             return apiCall(options);
           case 'not_found':
