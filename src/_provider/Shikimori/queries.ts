@@ -423,6 +423,7 @@ export class Queries {
     return res[0] || undefined;
   }
 
+  // TODO - Rewrite this when GRAPHQL updates.
   static UserRateDelete(id: number | string): Promise<void> {
     return apiCall({
       type: 'DELETE',
@@ -431,39 +432,23 @@ export class Queries {
   }
 
   // TODO - Rewrite this when GRAPHQL updates.
-  static UserRateUpdate(userRate: Types.UserRate): Promise<void> {
+  static UserRateUpdate(userRate: Types.UserRateV2): Promise<void> {
     return apiCall({
       type: 'PUT',
       path: `v2/user_rates/${userRate.id}`,
       dataObj: {
-        user_rate: {
-          chapters: userRate.chapters,
-          episodes: userRate.episodes,
-          rewatches: userRate.rewatches,
-          score: userRate.score,
-          status: userRate.status,
-          text: userRate.text,
-          volumes: userRate.volumes,
-        },
+        user_rate: userRate,
       },
     });
   }
 
   // TODO - Rewrite this when GRAPHQL updates.
-  static UserRateAdd(userRate: Types.UserRate): Promise<void> {
+  static UserRateAdd(userRate: Types.UserRateV2): Promise<void> {
     return apiCall({
       type: 'POST',
       path: 'v2/user_rates',
       dataObj: {
-        user_rate: {
-          chapters: userRate.chapters,
-          episodes: userRate.episodes,
-          rewatches: userRate.rewatches,
-          score: userRate.score,
-          status: userRate.status,
-          text: userRate.text,
-          volumes: userRate.volumes,
-        },
+        user_rate: userRate,
       },
     });
   }
