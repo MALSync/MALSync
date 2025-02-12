@@ -3,6 +3,7 @@ import { Single as AnilistSingle } from '../../../src/_provider/AniList/single';
 import { Single as KitsuSingle } from '../../../src/_provider/Kitsu/single';
 import { Single as SimklSingle } from '../../../src/_provider/Simkl/single';
 import { Single as LocalSingle } from '../../../src/_provider/Local/single';
+import { Single as ShikiSingle } from '../../../src/_provider/Shikimori/single';
 
 export const classConfigs: {
   name: string;
@@ -87,6 +88,25 @@ export const classConfigs: {
     },
   },
   {
+    name: 'Shiki',
+    url: 'https://shikimori.one/animes/21-one-piece',
+    class: ShikiSingle,
+    internalStates: 10,
+    setup: single => {
+      single.userRate = {
+        id: '',
+        score: 0,
+        status: 'planned',
+        episodes: 0,
+        chapters: 0,
+        rewatches: 0,
+        volumes: 0,
+        createdAt: new Date().toISOString().split('T')[0],
+        updatedAt: new Date().toISOString().split('T')[0],
+      };
+    },
+  },
+  {
     name: 'Local',
     url: 'local://crunchyroll/anime/nogamenolife',
     class: LocalSingle,
@@ -107,11 +127,11 @@ export const classConfigs: {
 ];
 
 export function getSingle(pageName) {
-  const singelConfig = classConfigs.find((c) => c.name === pageName);
-  if (!singelConfig) {
+  const singleConfig = classConfigs.find((c) => c.name === pageName);
+  if (!singleConfig) {
     throw new Error(`Provider ${pageName} not found.`);
   }
-  const single = new singelConfig.class(singelConfig.url);
-  singelConfig.setup(single);
+  const single = new singleConfig.class(singleConfig.url);
+  singleConfig.setup(single);
   return single;
 }

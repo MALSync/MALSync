@@ -53,7 +53,7 @@ export abstract class ListAbstract {
 
   protected logger;
 
-  public seperateRewatching = false;
+  public separateRewatching = false;
 
   // Modes
   modes = {
