@@ -92,11 +92,8 @@ export class MetaOverview extends MetaOverviewAbstract {
             img: i.character.poster
               ? i.character.poster.mainUrl || i.character.poster.originalUrl
               : '',
-            name: helper.title(
-              i.character.russian || i.character.synonyms[0] || '',
-              i.character.name,
-            ),
-            subtext: helper.title(i.rolesRu[0] || '', i.rolesEn[0] || ''),
+            name: helper.title(i.character.russian || '', i.character.name),
+            subtext: helper.title(i.rolesRu ? i.rolesRu[0] : '', i.rolesEn ? i.rolesEn[0] : ''),
             url: i.character.url,
           });
         }
