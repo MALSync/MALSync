@@ -286,6 +286,9 @@ export class Queries {
     });
   }
 
+  /**
+   * @param limit - default 1, maximum 50
+   */
   static UserRates(
     userId: number,
     targetType: 'Anime' | 'Manga',
@@ -316,6 +319,7 @@ export class Queries {
   /**
    *
    * @param kind - single kind or separated my commas, can also use '!' to exclude kind.
+   * @param limit - default 25, maximum 50
    */
   static Animes(
     search?: string,
@@ -347,6 +351,7 @@ export class Queries {
   /**
    *
    * @param kind - single kind or separated my commas, can also use '!' to exclude kind.
+   * @param limit - default 25, maximum 50
    */
   static Mangas(
     search?: string,

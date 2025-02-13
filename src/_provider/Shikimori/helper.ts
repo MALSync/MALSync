@@ -75,7 +75,6 @@ export async function apiCall(options: {
         return apiCall(options);
       }
 
-      // For REST API
       if (res && res.error) {
         switch (res.error) {
           case 'forbidden':
@@ -89,16 +88,22 @@ export async function apiCall(options: {
             throw new Error(res.message || res.error);
         }
       }
-      // For GraphQL API
+
       if (res && res.errors && res.errors.length) {
-        const error = res.errors.join('\n');
-        if (error.includes('Missing parameter')) {
-          throw new MissingParameterError(error);
-        } else if (error.includes('Invalid parameter')) {
-          throw new InvalidParameterError(error);
+        let error = '';
+        if (res.errors[0].message) {
+          for (let i = 0; i < res.errors.length; i++) {
+            error += `${res.errors[i].message}${res.errors[i].path ? ` - Path: (${res.errors[i].path})` : ''}\n`;
+          }
         } else {
-          throw new Error(error);
+          error = res.errors.join('\n');
+          if (error.includes('Missing parameter')) {
+            throw new MissingParameterError(error);
+          } else if (error.includes('Invalid parameter')) {
+            throw new InvalidParameterError(error);
+          }
         }
+        throw new Error(error);
       }
 
       switch (response.status) {

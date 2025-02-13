@@ -81,9 +81,9 @@ export class UserList extends ListAbstract {
       `offset: ${this.offset}`,
     );
 
-    let curSt: UserRateStatusEnum | undefined;
+    let currentStatus: UserRateStatusEnum | undefined;
     if (this.status !== 7) {
-      curSt = statusTranslate[this.status] as UserRateStatusEnum;
+      currentStatus = statusTranslate[this.status] as UserRateStatusEnum;
     }
 
     const order = this.getOrder(this.sort);
@@ -92,7 +92,7 @@ export class UserList extends ListAbstract {
       Number(userId),
       this.listType === 'anime' ? 'Anime' : 'Manga',
       order,
-      curSt,
+      currentStatus,
       this.offset,
       limit,
     );

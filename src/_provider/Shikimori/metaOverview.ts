@@ -306,6 +306,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
   }
 
+  // NOTE - Is this even user anywhere?
   endingSongs(data: Anime | Manga) {
     if (this.type !== 'anime') return;
     const endingSongs: {
