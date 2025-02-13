@@ -74,6 +74,10 @@ export const AnimeKAI: pageInterface = {
       elementEp(selector) {
         return Number(selector.attr('num'));
       },
+      getTotal() {
+        const total = j.$('div.detail > div:contains("Episodes") > span').text();
+        return total ? parseInt(total) : undefined;
+      },
     },
   },
   init(page) {
