@@ -6,7 +6,7 @@ export const AnimeKAI: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    return true;
+    return isWatch() || isWatch2Gether();
   },
   sync: {
     getTitle(url) {
@@ -81,24 +81,44 @@ export const AnimeKAI: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
 
-    if (isWatch2Gether()) {
-      if (utils.urlPart(window.location.href, 4) !== 'rooms') {
-        con.error('not watch2gether room page');
-        return;
-      }
+    utils.changeDetect(
+      () => {
+        page.handleList();
+      },
+      () => {
+        return AnimeKAI.overview?.list?.elementsSelector().length;
+      },
+    );
 
-      utils.waitUntilTrue(
-        function () {
-          return (
-            AnimeKAI.sync.getTitle(window.location.href).length &&
-            AnimeKAI.sync.getEpisode(window.location.href)
-          );
-        },
-        function () {
-          con.info('Start check');
-          page.handlePage();
-          utils.changeDetect(
+    function waitFn() {
+      if (isWatch()) {
+        const loaded = j
+          .$('div.eplist')
+          .toArray()
+          .some(el => el.style.display !== 'none');
+
+        return loaded && j.$('div.eplist').length;
+      }
+      if (isWatch2Gether()) {
+        return (
+          AnimeKAI.sync.getTitle(window.location.href).length &&
+          AnimeKAI.sync.getEpisode(window.location.href)
+        );
+      }
+      return false;
+    }
+
+    let waitTimer: NodeJS.Timer | undefined;
+    let watch2getherTimer: number | undefined;
+
+    if (isWatch() || isWatch2Gether()) {
+      waitTimer = utils.waitUntilTrue(waitFn, function () {
+        con.info('Start check');
+        page.handlePage();
+        if (isWatch2Gether()) {
+          watch2getherTimer = utils.changeDetect(
             () => {
+              con.info('Check');
               page.reset();
               page.handlePage();
             },
@@ -109,42 +129,46 @@ export const AnimeKAI: pageInterface = {
               );
             },
           );
-        },
-      );
-    } else {
-      utils.waitUntilTrue(
-        function () {
-          const loaded = j
-            .$('div.eplist')
-            .toArray()
-            .some(el => el.style.display !== 'none');
-
-          return loaded && j.$('div.eplist').length;
-        },
-        function () {
-          con.info('Start check');
-          page.handlePage();
-
-          utils.urlChangeDetect(function () {
-            con.info('Check');
-            page.reset();
-            page.handlePage();
-          });
-
-          utils.changeDetect(
-            () => {
-              page.handleList();
-            },
-            () => {
-              return AnimeKAI.overview?.list?.elementsSelector().length;
-            },
-          );
-        },
-      );
+        }
+      });
     }
+
+    utils.urlChangeDetect(function () {
+      clearInterval(waitTimer);
+      clearInterval(watch2getherTimer);
+      if (isWatch() || isWatch2Gether()) {
+        waitTimer = utils.waitUntilTrue(waitFn, function () {
+          con.info('Check');
+          page.reset();
+          page.handlePage();
+          if (isWatch2Gether()) {
+            watch2getherTimer = utils.changeDetect(
+              () => {
+                con.info('Check');
+                page.reset();
+                page.handlePage();
+              },
+              () => {
+                return (
+                  AnimeKAI.sync.getTitle(window.location.href) +
+                  AnimeKAI.sync.getEpisode(window.location.href)
+                );
+              },
+            );
+          }
+        });
+      }
+    });
   },
 };
 
+function isWatch() {
+  return utils.urlPart(window.location.href, 3) === 'watch';
+}
+
 function isWatch2Gether() {
-  return utils.urlPart(window.location.href, 3) === 'watch2gether';
+  return (
+    utils.urlPart(window.location.href, 3) === 'watch2gether' &&
+    utils.urlPart(window.location.href, 4) === 'rooms'
+  );
 }
