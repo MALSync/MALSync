@@ -120,6 +120,7 @@ export const AnimeKAI: pageInterface = {
         con.info('Start check');
         page.handlePage();
         if (isWatch2Gether()) {
+          clearInterval(watch2getherTimer);
           watch2getherTimer = utils.changeDetect(
             () => {
               con.info('Check');
@@ -139,13 +140,16 @@ export const AnimeKAI: pageInterface = {
 
     utils.urlChangeDetect(function () {
       clearInterval(waitTimer);
+      waitTimer = undefined;
       clearInterval(watch2getherTimer);
+      watch2getherTimer = undefined;
       if (isWatch() || isWatch2Gether()) {
         waitTimer = utils.waitUntilTrue(waitFn, function () {
           con.info('Check');
           page.reset();
           page.handlePage();
           if (isWatch2Gether()) {
+            clearInterval(watch2getherTimer);
             watch2getherTimer = utils.changeDetect(
               () => {
                 con.info('Check');
