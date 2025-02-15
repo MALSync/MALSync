@@ -38,7 +38,7 @@ export const AnimeKAI: pageInterface = {
     uiSelector(selector) {
       j.$('#main-entity div.info').after(j.html(selector));
     },
-    async getMalUrl(provider) {
+    getMalUrl(provider) {
       const watchPage = j.$('#watch-page');
       if (watchPage.length) {
         const malId = watchPage.data('mal-id');
@@ -74,10 +74,6 @@ export const AnimeKAI: pageInterface = {
       elementEp(selector) {
         return Number(selector.attr('num'));
       },
-      getTotal() {
-        const total = j.$('div.detail > div:contains("Episodes") > span').text();
-        return total ? parseInt(total) : undefined;
-      },
     },
   },
   init(page) {
@@ -87,7 +83,9 @@ export const AnimeKAI: pageInterface = {
 
     utils.changeDetect(
       () => {
-        page.handleList();
+        if (AnimeKAI.overview?.list?.elementsSelector().length) {
+          page.handleList();
+        }
       },
       () => {
         return AnimeKAI.overview?.list?.elementsSelector().length;
@@ -115,30 +113,7 @@ export const AnimeKAI: pageInterface = {
     let waitTimer: NodeJS.Timer | undefined;
     let watch2getherTimer: number | undefined;
 
-    if (isWatch() || isWatch2Gether()) {
-      waitTimer = utils.waitUntilTrue(waitFn, function () {
-        con.info('Start check');
-        page.handlePage();
-        if (isWatch2Gether()) {
-          clearInterval(watch2getherTimer);
-          watch2getherTimer = utils.changeDetect(
-            () => {
-              con.info('Check');
-              page.reset();
-              page.handlePage();
-            },
-            () => {
-              return (
-                AnimeKAI.sync.getTitle(window.location.href) +
-                AnimeKAI.sync.getEpisode(window.location.href)
-              );
-            },
-          );
-        }
-      });
-    }
-
-    utils.urlChangeDetect(function () {
+    function check() {
       clearInterval(waitTimer);
       waitTimer = undefined;
       clearInterval(watch2getherTimer);
@@ -166,7 +141,12 @@ export const AnimeKAI: pageInterface = {
           }
         });
       }
+    }
+
+    j.$(document).ready(function () {
+      check();
     });
+    utils.urlChangeDetect(() => check());
   },
 };
 
