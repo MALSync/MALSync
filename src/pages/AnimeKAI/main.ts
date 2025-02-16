@@ -118,10 +118,10 @@ export const AnimeKAI: pageInterface = {
       waitTimer = undefined;
       clearInterval(watch2getherTimer);
       watch2getherTimer = undefined;
+      page.reset();
       if (isWatch() || isWatch2Gether()) {
         waitTimer = utils.waitUntilTrue(waitFn, function () {
           con.info('Check');
-          page.reset();
           page.handlePage();
           if (isWatch2Gether()) {
             clearInterval(watch2getherTimer);
