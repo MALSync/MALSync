@@ -138,6 +138,7 @@ import { MangaLib } from './MangaLib/main';
 import { RanobeLib } from './RanobeLib/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
+import { AnimeKAI } from './AnimeKAI/main';
 
 export const pages = {
   Crunchyroll,
@@ -280,4 +281,5 @@ export const pages = {
   RanobeLib,
   Rawkuma,
   Aninexus,
+  AnimeKAI,
 };

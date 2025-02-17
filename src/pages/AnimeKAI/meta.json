@@ -1,0 +1,8 @@
+{
+  "search": "https://animekai.to/browser?keyword={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://animekai.to/*"
+    ]
+  }
+}
