@@ -127,6 +127,7 @@
     ],
     "iframe": [
       "*://maxfinishseveral.com/e/*",
+      "*://krussdomi.com/*",
       "*://filemoon.sx/lol/*",
       "*://kerapoxy.cc/lol/*",
       "*://vpcxz19p.xyz/lol/*",
@@ -140,7 +141,8 @@
       "*://gorro-chfzoaas.fun/e/*",
       "*://gorro-chfzoaas.fun/lol/*",
       "*://animenosub.upn.one/#*",
-      "*://*.bunniescdn.online/*"
+      "*://*.bunniescdn.online/*",
+      "*://megaup.cc/e/*"
     ]
   }
 }
