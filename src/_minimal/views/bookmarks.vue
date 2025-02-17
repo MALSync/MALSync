@@ -266,10 +266,10 @@ const options = bookmarkFormats.map(format => ({
 
 const theme = computed({
   get() {
-    return api.settings.get('bookMarksList');
+    return api.settings.get(`bookMarksList${props.type === 'manga' ? 'Manga' : ''}`);
   },
   set(value) {
-    api.settings.set('bookMarksList', value);
+    api.settings.set(`bookMarksList${props.type === 'manga' ? 'Manga' : ''}`, value);
   },
 });
 

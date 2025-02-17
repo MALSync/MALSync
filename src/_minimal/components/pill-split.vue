@@ -1,5 +1,6 @@
 <template>
-  <div v-if="left || right" class="pill" :class="{ reverse }">
+  <div v-if="left || right" class="pill" :class="{ reverse, blurBackground: !img }">
+    <ImageLazy v-if="img" class="blur-img normal" :src="img" mode="cover" />
     <div v-if="left" class="left" :class="color"><slot name="left" /></div>
     <div v-if="right" class="right"><slot name="right" /></div>
   </div>
@@ -7,6 +8,7 @@
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
+import ImageLazy from './image-lazy.vue';
 
 defineProps({
   left: {
@@ -25,6 +27,11 @@ defineProps({
     type: String as PropType<'primary-dark' | 'secondary' | 'dark-background'>,
     default: 'primary-dark',
   },
+  img: {
+    type: String,
+    optional: true,
+    default: '',
+  },
 });
 </script>
 
@@ -34,10 +41,15 @@ defineProps({
   .border-pill();
   .block-select();
 
+  z-index: 1;
+  position: relative;
   display: inline-flex;
   overflow: hidden;
   background-color: #0000003b;
-  backdrop-filter: blur(5px);
+
+  &.blurBackground {
+    backdrop-filter: blur(5px);
+  }
 
   &.reverse {
     flex-direction: row-reverse;
@@ -65,6 +77,18 @@ defineProps({
   }
   & > .right {
     color: white;
+  }
+
+  .blur-img {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: var(--card-width);
+    height: var(--card-height);
+    display: block;
+    max-width: none;
+    filter: blur(5px) brightness(0.8);
+    z-index: -1;
   }
 }
 </style>

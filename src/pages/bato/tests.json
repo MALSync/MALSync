@@ -112,6 +112,30 @@
         "episode": 20,
         "uiSelector": false
       }
+    },
+    {
+      "url": "https://bato.to/chapter/2758705",
+      "expected": {
+        "sync": true,
+        "title": "Quality Assurance in Another World (Official)",
+        "identifier": "96406",
+        "overviewUrl": "https://bato.to/series/96406",
+        "nextEpUrl": "https://bato.to/chapter/2759638",
+        "episode": 70,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bato.to/title/96406-quality-assurance-in-another-world-official/2758705-vol_10-ch_70",
+      "expected": {
+        "sync": true,
+        "title": "Quality Assurance in Another World (Official)",
+        "identifier": "96406",
+        "overviewUrl": "https://bato.to/title/96406-quality-assurance-in-another-world-official",
+        "nextEpUrl": "https://bato.to/title/96406-quality-assurance-in-another-world-official/2759638-vol_10-ch_71",
+        "episode": 70,
+        "uiSelector": false
+      }
     }
   ]
 }

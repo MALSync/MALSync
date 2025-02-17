@@ -1,5 +1,5 @@
 import { pageInterface } from '../pageInterface';
-import { v3 } from './v3';
+import { v3, getChapter } from './v3';
 
 function getVersion() {
   return j.$('a.position-absolute > small').length > 0 ? 2 : 3;
@@ -149,11 +149,3 @@ export const bato: pageInterface = {
     });
   },
 };
-
-function getChapter(text: string) {
-  const res = /(ch|chapter|episode|ep|chap|chp)\D?(\d+)/i.exec(text);
-
-  if (!res) return NaN;
-
-  return Number(res[2]) || NaN;
-}

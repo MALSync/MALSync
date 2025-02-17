@@ -29,48 +29,27 @@ async function checkApi(page) {
     const url = videoEl.attr('src');
     con.log(url);
     let itemId = '';
-    let apiKey = '';
-    let apiBase = '';
-
     if (url) {
       if (/blob:/i.test(url)) {
-        apiBase = await getBase();
         itemId = await returnPlayingItemId();
-        apiKey = await getApiKey();
       } else {
-        apiBase = url.split('/').splice(0, 4).join('/');
         itemId = utils.urlPart(url, 5);
-        apiKey = await getApiKey();
-        await setBase(apiBase);
       }
     }
 
-    let reqUrl = `${apiBase}/Items?ids=${itemId}&api_key=${apiKey}`;
-    con.log('reqUrl', reqUrl, 'base', apiBase, 'apiKey', apiKey);
+    const response = await apiCall(`/Items?ids=${itemId}`);
+    const episodeInfo = JSON.parse(response.responseText).Items[0];
+    item = episodeInfo;
+    con.log('EpisodeInfo', episodeInfo);
 
-    api.request
-      .xhr('GET', reqUrl)
-      .then(response => {
-        const data = JSON.parse(response.responseText);
-        item = data.Items[0];
-        reqUrl = `${apiBase}/Genres?Ids=${item.SeriesId}&api_key=${apiKey}`;
-        con.log(data);
-        return api.request.xhr('GET', reqUrl);
-      })
-      .then(response => {
-        const genres: any = JSON.parse(response.responseText);
-        con.log('genres', genres);
-        for (let i = 0; i < genres.Items.length; i++) {
-          const genre = genres.Items[i];
-          if (genre.Name === 'Anime') {
-            con.info('Anime detected');
-            page.url = `${window.location.origin}/#!/itemdetails.html?id=${itemId}`;
-            page.handlePage(page.url);
-            $('html').removeClass('miniMAL-hide');
-            break;
-          }
-        }
-      });
+    const series = await serieInfo(episodeInfo.SeriesId);
+
+    if (series.isAnime) {
+      con.info('Anime detected');
+      page.url = `${window.location.origin}/#!/itemdetails.html?id=${itemId}`;
+      page.handlePage(page.url);
+      $('html').removeClass('miniMAL-hide');
+    }
   }
 }
 
@@ -78,27 +57,20 @@ async function urlChange(page) {
   $('html').addClass('miniMAL-hide');
   if (window.location.href.indexOf('id=') !== -1) {
     const id = utils.urlParam(window.location.href, 'id');
-    let reqUrl = `/Items?ids=${id}`;
-    apiCall(reqUrl).then(response => {
+    const reqUrl = `/Items?ids=${id}`;
+    await apiCall(reqUrl).then(async response => {
       const data = JSON.parse(response.responseText);
       switch (data.Items[0].Type) {
         case 'Season':
           con.log('Season', data);
           item = data.Items[0];
-          reqUrl = `/Genres?Ids=${item.SeriesId}`;
-          apiCall(reqUrl).then(response2 => {
-            const genres: any = JSON.parse(response2.responseText);
-            con.log('genres', genres);
-            for (let i = 0; i < genres.Items.length; i++) {
-              const genre = genres.Items[i];
-              if (genre.Name === 'Anime') {
-                con.info('Anime detected');
-                page.handlePage();
-                $('html').removeClass('miniMAL-hide');
-                break;
-              }
-            }
-          });
+          // eslint-disable-next-line no-case-declarations
+          const series = await serieInfo(item.SeriesId);
+          if (series.isAnime) {
+            con.info('Anime detected');
+            page.handlePage();
+            $('html').removeClass('miniMAL-hide');
+          }
           break;
         case 'Series':
           con.log('Series', data);
@@ -108,6 +80,26 @@ async function urlChange(page) {
       }
     });
   }
+}
+
+async function serieInfo(seriesId): Promise<{
+  isAnime: boolean;
+  seriesInfo: any;
+}> {
+  const reqUrl = `/Items?Ids=${seriesId}&fields=Genres,Path`;
+  return apiCall(reqUrl).then(response2 => {
+    const series = JSON.parse(response2.responseText);
+    con.log('SerieInfo', series);
+    const data = series.Items[0];
+    const foundAnime =
+      data.Genres.find(genre => genre === 'Anime') ||
+      data.Path.includes('Anime') ||
+      data.Path.includes('anime');
+    return {
+      isAnime: Boolean(foundAnime),
+      seriesInfo: data,
+    };
+  });
 }
 
 async function returnPlayingItemId() {
@@ -203,14 +195,33 @@ async function testApi() {
 async function checkApiClient() {
   const apiClient: any = await proxy.getData();
   con.m('apiClient').log(apiClient);
-  if (
-    apiClient &&
-    apiClient._serverInfo &&
-    apiClient._serverInfo.RemoteAddress &&
-    apiClient._serverInfo.AccessToken
-  ) {
-    await setBase(`${apiClient._serverInfo.RemoteAddress}/emby`);
-    await setApiKey(apiClient._serverInfo.AccessToken);
+
+  let domain = '';
+  let apiKey = '';
+
+  if (apiClient) {
+    if (
+      apiClient._serverInfo &&
+      apiClient._serverInfo.ManualAddressOnly &&
+      apiClient._serverInfo.ManualAddress
+    ) {
+      domain = apiClient._serverInfo.ManualAddress;
+    } else if (apiClient._serverAddress) {
+      domain = apiClient._serverAddress;
+    } else if (apiClient._serverInfo && apiClient._serverInfo.RemoteAddress) {
+      domain = apiClient._serverInfo.RemoteAddress;
+    }
+
+    if (apiClient._userAuthInfo && apiClient._userAuthInfo.AccessToken) {
+      apiKey = apiClient._userAuthInfo.AccessToken;
+    } else if (apiClient._serverInfo && apiClient._serverInfo.AccessToken) {
+      apiKey = apiClient._serverInfo.AccessToken;
+    }
+  }
+
+  if (domain && apiKey) {
+    await setBase(`${domain}/emby`);
+    await setApiKey(apiKey);
     return;
   }
   throw 'No ApiClient';

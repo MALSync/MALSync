@@ -91,8 +91,8 @@ export const v3: pageInterface = {
   },
 };
 
-function getChapter(text: string) {
-  const res = /(ch|chapter|episode|ep|chap|chp)\D?(\d+)/i.exec(text);
+export function getChapter(text: string) {
+  const res = /(ch|chapter|episode|ep|chap|chp|no\.?)\D?(\d+)/i.exec(text);
 
   if (!res) return NaN;
 
