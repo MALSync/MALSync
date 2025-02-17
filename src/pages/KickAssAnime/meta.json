@@ -8,7 +8,8 @@
       "*://*.kickassanime.ro/*",
       "*://*.kickassanime.am/*",
       "*://*.kickassanimes.io/*",
-      "*://*.kickassanime.mx/*"
+      "*://*.kickassanime.mx/*",
+      "*://*.kaa.mx/*"
     ]
   }
 }

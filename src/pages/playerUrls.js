@@ -462,7 +462,7 @@ module.exports = {
   saruch: {
     match: ['*://saruch.co/*'],
   },
-  // animewho voiranime
+  // animewho voiranime animanosub
   vidmoly: {
     match: [
       '*://vidmoly.me/*',
@@ -516,6 +516,7 @@ module.exports = {
       '*://bethshouldercan.com/e/*',
       '*://sandratableother.com/e/*',
       '*://robertordercharacter.com/e/*',
+      '*://maxfinishseveral.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -547,6 +548,7 @@ module.exports = {
       '*://vidnethub.net/*',
       '*://vidco.pro/*',
       '*://omegadthree.com/*',
+      '*://krussdomi.com/*',
     ],
   },
   // animeshouse
@@ -660,19 +662,31 @@ module.exports = {
       '*://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*',
     ],
   },
-  // 9anime
+  // 9anime animenosub
   filemoon: {
     match: [
       '*://filemoon.sx/e/*',
+      '*://filemoon.sx/lol/*',
       '*://kerapoxy.cc/e/*',
+      '*://kerapoxy.cc/lol/*',
       '*://vpcxz19p.xyz/e/*',
+      '*://vpcxz19p.xyz/lol/*',
       '*://filemoon.top/e/*',
+      '*://filemoon.top/lol/*',
       '*://fmoonembed.pro/e/*',
+      '*://fmoonembed.pro/lol/*',
       '*://rgeyyddl.skin/e/*',
+      '*://rgeyyddl.skin/lol/*',
       '*://designparty.sx/e/*',
+      '*://designparty.sx/lol/*',
       '*://c4qhk0je.xyz/e/*',
+      '*://c4qhk0je.xyz/lol/*',
       '*://1azayf9w.xyz/e/*',
+      '*://1azayf9w.xyz/lol/*',
       '*://81u6xl9d.xyz/e/*',
+      '*://81u6xl9d.xyz/lol/*',
+      '*://gorro-chfzoaas.fun/e/*',
+      '*://gorro-chfzoaas.fun/lol/*',
     ],
   },
   // toonanime
@@ -686,6 +700,10 @@ module.exports = {
   // animelon
   animelon: {
     match: ['*://*.googlevideo.com/videoplayback?*'],
+  },
+  // animenosub
+  animenosub: {
+    match: ['*://animenosub.upn.one/#*'],
   },
   // voiranime
   streamhide: {
@@ -756,4 +774,12 @@ module.exports = {
   rumble: {
     match: ['*://fle-rvd0i9o8-moo.com/*', '*://dhtpre.com/*'],
   },
+  // miruro
+  bun: {
+    match: ['*://*.bunniescdn.online/*'],
+  },
+  // animekai
+  megaup: {
+    match: ['*://megaup.cc/e/*'],
+  }
 };

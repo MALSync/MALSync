@@ -106,6 +106,7 @@ import { Docchi } from './Docchi/main';
 import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
+import { AnimeNoSub } from './AnimeNoSub/main';
 import { AnimeSama } from './AnimeSama/main';
 import { MangaFire } from './MangaFire/main';
 import { projectsuki } from './projectsuki/main';
@@ -134,7 +135,10 @@ import { WeebCentral } from './WeebCentral/main';
 import { AnimeLib } from './AnimeLib/main';
 import { Kavita } from './Kavita/main';
 import { MangaLib } from './MangaLib/main';
+import { RanobeLib } from './RanobeLib/main';
+import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
+import { AnimeKAI } from './AnimeKAI/main';
 import { Hikari } from './Hikari/main';
 
 export const pages = {
@@ -246,6 +250,7 @@ export const pages = {
   FRAnime,
   FMTeam,
   Animelon,
+  AnimeNoSub,
   AnimeSama,
   MangaFire,
   projectsuki,
@@ -274,6 +279,9 @@ export const pages = {
   AnimeLib,
   Kavita,
   MangaLib,
+  RanobeLib,
+  Rawkuma,
   Aninexus,
+  AnimeKAI,
   Hikari,
 };

@@ -119,9 +119,30 @@
     ]
   },
   "0.11.0": {
+    "KickAssAnime": [
+      "*://*.kaa.mx/*"
+    ],
     "TRanimeizle": [
       "*://*.tranimeizle.top/*"
     ],
-    "iframe": []
+    "iframe": [
+      "*://maxfinishseveral.com/e/*",
+      "*://krussdomi.com/*",
+      "*://filemoon.sx/lol/*",
+      "*://kerapoxy.cc/lol/*",
+      "*://vpcxz19p.xyz/lol/*",
+      "*://filemoon.top/lol/*",
+      "*://fmoonembed.pro/lol/*",
+      "*://rgeyyddl.skin/lol/*",
+      "*://designparty.sx/lol/*",
+      "*://c4qhk0je.xyz/lol/*",
+      "*://1azayf9w.xyz/lol/*",
+      "*://81u6xl9d.xyz/lol/*",
+      "*://gorro-chfzoaas.fun/e/*",
+      "*://gorro-chfzoaas.fun/lol/*",
+      "*://animenosub.upn.one/#*",
+      "*://*.bunniescdn.online/*",
+      "*://megaup.cc/e/*"
+    ]
   }
 }

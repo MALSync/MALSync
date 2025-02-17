@@ -24,6 +24,7 @@ export const settingsObj = {
     malResume: true,
     usedPage: true,
     epPredictions: true,
+    mangaCompletionPercentage: 90,
 
     theme: 'auto',
     themeSidebars: true,

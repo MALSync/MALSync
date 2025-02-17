@@ -52,7 +52,7 @@
       </div>
 
       <search
-        :keyword="searchClass.getSanitizedTitel()"
+        :keyword="searchClass.getSanitizedTitle()"
         :type="searchClass.getNormalizedType()"
         :sync-mode="Boolean(syncMode)"
         :current-id="searchClass.getId()"
