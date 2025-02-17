@@ -548,6 +548,7 @@ module.exports = {
       '*://vidnethub.net/*',
       '*://vidco.pro/*',
       '*://omegadthree.com/*',
+      '*://krussdomi.com/*',
     ],
   },
   // animeshouse
