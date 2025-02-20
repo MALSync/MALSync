@@ -90,6 +90,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://animekai.to"><img src="https://favicon.malsync.moe/?domain=https://animekai.to"> AnimeKAI</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://animeko.co"><img src="https://favicon.malsync.moe/?domain=https://animeko.co"> AnimeKO</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
@@ -108,6 +115,13 @@
     <td>English, Japanese</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://animenosub.to"><img src="https://favicon.malsync.moe/?domain=https://animenosub.to"> AnimeNoSub</a></td>
+    <td>English, Japanese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
@@ -313,6 +327,13 @@
     <td>:x:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://watch.hikaritv.xyz"><img src="https://favicon.malsync.moe/?domain=https://watch.hikaritv.xyz"> Hikari</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://hinatasoul.com"><img src="https://favicon.malsync.moe/?domain=https://hinatasoul.com"> HinataSoul</a></td>
     <td>Portuguese</td>
@@ -869,6 +890,20 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://ranobelib.me"><img src="https://favicon.malsync.moe/?domain=https://ranobelib.me"> RanobeLib</a></td>
+    <td>Russian</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://rawkuma.com"><img src="https://favicon.malsync.moe/?domain=https://rawkuma.com"> Rawkuma</a></td>
+    <td>Japanese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://readm.today"><img src="https://favicon.malsync.moe/?domain=https://readm.today"> Readm</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -990,3 +1025,4 @@
   </tr>
     </tbody>
   </table>
+  

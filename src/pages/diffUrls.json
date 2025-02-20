@@ -1,13 +1,4 @@
 {
-  "0.10.1": {
-    "iframe": [
-      "*://*.mixdrop.sx/e/*",
-      "*://*.mixdrop.ms/e/*",
-      "*://brucevotewithin.com/e/*",
-      "*://rebeccaneverbase.com/e/*",
-      "*://c4qhk0je.xyz/e/*"
-    ]
-  },
   "0.10.2": {
     "AsuraScans": [
       "*://*.asuracomic.net/*"
@@ -144,5 +135,8 @@
       "*://*.bunniescdn.online/*",
       "*://megaup.cc/e/*"
     ]
+  },
+  "0.11.1": {
+    "iframe": []
   }
 }

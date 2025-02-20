@@ -238,44 +238,48 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://neoxscans.com/"><img src="https://favicon.malsync.moe/?domain=https://neoxscans.com/"> NeoxScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://anime-sama.fr"><img src="https://favicon.malsync.moe/?domain=https://anime-sama.fr"> AnimeSama</a></td>
+                <td><a href="https://animenosub.to"><img src="https://favicon.malsync.moe/?domain=https://animenosub.to"> AnimeNoSub</a></td>
                 <td><a href="https://hachi.moe"><img src="https://favicon.malsync.moe/?domain=https://hachi.moe"> hachi</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animebuff.ru"><img src="https://favicon.malsync.moe/?domain=https://animebuff.ru"> AnimeBuff</a></td>
+                <td><a href="https://anime-sama.fr"><img src="https://favicon.malsync.moe/?domain=https://anime-sama.fr"> AnimeSama</a></td>
                 <td><a href="https://manhuaus.com"><img src="https://favicon.malsync.moe/?domain=https://manhuaus.com"> ManhuaUS</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.animeonegai.com"><img src="https://favicon.malsync.moe/?domain=https://www.animeonegai.com"> AnimeOnegai</a></td>
+                <td><a href="https://animebuff.ru"><img src="https://favicon.malsync.moe/?domain=https://animebuff.ru"> AnimeBuff</a></td>
                 <td><a href="https://taiyo.moe"><img src="https://favicon.malsync.moe/?domain=https://taiyo.moe"> Taiyo</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animeko.co"><img src="https://favicon.malsync.moe/?domain=https://animeko.co"> AnimeKO</a></td>
+                <td><a href="https://www.animeonegai.com"><img src="https://favicon.malsync.moe/?domain=https://www.animeonegai.com"> AnimeOnegai</a></td>
                 <td><a href="https://www.mangaread.org"><img src="https://favicon.malsync.moe/?domain=https://www.mangaread.org"> MangaRead</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animego.org"><img src="https://favicon.malsync.moe/?domain=https://animego.org"> AnimeGO</a></td>
+                <td><a href="https://animeko.co"><img src="https://favicon.malsync.moe/?domain=https://animeko.co"> AnimeKO</a></td>
                 <td><a href="https://templescan.net"><img src="https://favicon.malsync.moe/?domain=https://templescan.net"> TempleScan</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://luciferdonghua.in"><img src="https://favicon.malsync.moe/?domain=https://luciferdonghua.in"> Lucifer Donghua</a></td>
+                <td><a href="https://animego.org"><img src="https://favicon.malsync.moe/?domain=https://animego.org"> AnimeGO</a></td>
                 <td><a href="https://scyllacomics.xyz"><img src="https://favicon.malsync.moe/?domain=https://scyllacomics.xyz"> ScyllaScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://hinatasoul.com"><img src="https://favicon.malsync.moe/?domain=https://hinatasoul.com"> HinataSoul</a></td>
+                <td><a href="https://luciferdonghua.in"><img src="https://favicon.malsync.moe/?domain=https://luciferdonghua.in"> Lucifer Donghua</a></td>
                 <td><a href="https://vortexscans.org"><img src="https://favicon.malsync.moe/?domain=https://vortexscans.org"> VortexScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://ogladajanime.pl"><img src="https://favicon.malsync.moe/?domain=https://ogladajanime.pl"> OgladajAnime</a></td>
+                <td><a href="https://hinatasoul.com"><img src="https://favicon.malsync.moe/?domain=https://hinatasoul.com"> HinataSoul</a></td>
                 <td><a href="https://weebcentral.com"><img src="https://favicon.malsync.moe/?domain=https://weebcentral.com"> WeebCentral</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://witanime.pics"><img src="https://favicon.malsync.moe/?domain=https://witanime.pics"> WitAnime</a></td>
+                <td><a href="https://ogladajanime.pl"><img src="https://favicon.malsync.moe/?domain=https://ogladajanime.pl"> OgladajAnime</a></td>
                 <td><a href="https://mangalib.org"><img src="https://favicon.malsync.moe/?domain=https://mangalib.org"> MangaLib</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animesonline.in"><img src="https://favicon.malsync.moe/?domain=https://animesonline.in"> Animes Online</a></td>
+                <td><a href="https://witanime.pics"><img src="https://favicon.malsync.moe/?domain=https://witanime.pics"> WitAnime</a></td>
+                <td><a href="https://ranobelib.me"><img src="https://favicon.malsync.moe/?domain=https://ranobelib.me"> RanobeLib</a></td>
                 <td></td>
+              </tr><tr>
+                <td><a href="https://animesonline.in"><img src="https://favicon.malsync.moe/?domain=https://animesonline.in"> Animes Online</a></td>
+                <td><a href="https://rawkuma.com"><img src="https://favicon.malsync.moe/?domain=https://rawkuma.com"> Rawkuma</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.miruro.tv"><img src="https://favicon.malsync.moe/?domain=https://www.miruro.tv"> Miruro</a></td>
@@ -295,6 +299,14 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://aninexus.to"><img src="https://favicon.malsync.moe/?domain=https://aninexus.to"> Aninexus</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://animekai.to"><img src="https://favicon.malsync.moe/?domain=https://animekai.to"> AnimeKAI</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://watch.hikaritv.xyz"><img src="https://favicon.malsync.moe/?domain=https://watch.hikaritv.xyz"> Hikari</a></td>
                 <td></td>
                 <td></td>
               </tr>
