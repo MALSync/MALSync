@@ -892,7 +892,7 @@
         "description": "Manual"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "अध्यायको पृष्ठहरूको 90% पछि माङ्गा सिंक गर्नुहोस्",
+        "message": "अध्यायको पृष्ठहरूको $mangaCompletionPercentage$% पछि माङ्गा सिंक गर्नुहोस्",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
     },
     "settings_AutoTracking_Instant": {
