@@ -1408,7 +1408,7 @@
         "description": "Info table on overview - External Links: Official Site, Hulu"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sinkronkan manga setelah 90% dari halaman",
+        "message": "Sinkronkan manga setelah $mangaCompletionPercentage$% dari halaman",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
     },
     "settings_miniMAL_Display_Center": {
