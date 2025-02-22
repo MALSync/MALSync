@@ -47,8 +47,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.statistics(data);
     this.info(data);
     this.related(data);
-    this.openingSongs(data);
-    this.endingSongs(data);
+    this.processVideos(data);
 
     this.logger.log('Res', this.meta);
   }
@@ -208,11 +207,12 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
       });
 
-      if (authors.length)
+      if (authors.length) {
         this.meta.info.push({
           title: `${api.storage.lang('overview_sidebar_Authors')}`,
           body: authors,
         });
+      }
     }
 
     if ((data as Anime).studios && (data as Anime).studios.length) {
@@ -265,14 +265,15 @@ export class MetaOverview extends MetaOverviewAbstract {
             links: [],
           };
         }
+        const isManga = !!el.manga;
+        const related = isManga ? el.manga : el.anime;
+        if (!related) return;
+
         links[el.relationKind].links.push({
-          url: `${el.manga ? el.manga.url || '' : el.anime!.url || ''}`,
-          title: helper.title(
-            el.manga ? el.manga.russian || '' : el.anime!.russian || '',
-            el.manga ? el.manga.english || el.manga.name : el.anime!.english || el.anime!.name,
-          ),
-          type: (data as Manga).chapters ? 'manga' : 'anime',
-          id: el.manga ? el.manga.id : el.anime!.id,
+          url: related.url || '',
+          title: helper.title(related.russian || '', related.english || related.name),
+          type: isManga ? 'manga' : 'anime',
+          id: related.id,
         });
       });
 
@@ -280,50 +281,29 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
   }
 
-  openingSongs(data: Anime | Manga) {
+  // NOTE - Is this even used anywhere?
+  processVideos(data: Anime | Manga) {
     if (this.type !== 'anime') return;
-    const openingSongs: {
-      title: string;
-      author: string;
-      episode: string;
-      url?: string;
-    }[] = [];
-    const anime = data as Anime;
-    for (let i = 0; i < anime.videos.length; i++) {
-      const video = anime.videos[i];
-      if (video.kind !== 'op') continue;
-      openingSongs.push({
-        title: video.name || '',
-        author: '',
-        episode: '',
-        url: video.url,
-      });
 
-      this.meta.openingSongs = openingSongs;
-    }
-  }
-
-  // NOTE - Is this even user anywhere?
-  endingSongs(data: Anime | Manga) {
-    if (this.type !== 'anime') return;
-    const endingSongs: {
-      title: string;
-      author: string;
-      episode: string;
-      url?: string;
-    }[] = [];
-    const anime = data as Anime;
-    for (let i = 0; i < anime.videos.length; i++) {
-      const video = anime.videos[i];
-      if (video.kind !== 'ed') continue;
-      endingSongs.push({
-        title: video.name || '',
-        author: '',
-        episode: '',
-        url: video.url,
-      });
-
-      this.meta.endingSongs = endingSongs;
+    const videos = (data as Anime).videos || [];
+    for (let i = 0; i < videos.length; i++) {
+      const video = videos[i];
+      if (video.kind === 'op') {
+        this.meta.openingSongs.push({
+          title: video.name || api.storage.lang('overview_OpeningTheme'),
+          author: '',
+          episode: '',
+          url: video.url,
+        });
+      }
+      if (video.kind === 'ed') {
+        this.meta.endingSongs.push({
+          title: video.name || api.storage.lang('overview_EndingTheme'),
+          author: '',
+          episode: '',
+          url: video.url,
+        });
+      }
     }
   }
 
