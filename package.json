@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@ghostery/adblocker-puppeteer": "^2.5.0",
-    "@cspell/eslint-plugin": "8.17.4",
+    "@cspell/eslint-plugin": "8.17.5",
     "@eslint/eslintrc": "3.3.0",
     "@eslint/js": "9.21.0",
     "@stylistic/eslint-plugin": "3.1.0",
