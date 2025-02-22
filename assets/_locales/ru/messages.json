@@ -1643,5 +1643,8 @@
     },
     "settings_ForceEnglishTitles": {
         "message": "Названия произведений на Английском"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Сделать главу прочитанной после процента страниц"
     }
 }
