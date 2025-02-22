@@ -3,7 +3,8 @@
   "urls": {
     "match": [
       "*://*.miruro.tv/*",
-      "*://*.miruro.online/*"
+      "*://*.miruro.online/*",
+      "*://*.miruro.to/*"
     ]
   }
 }

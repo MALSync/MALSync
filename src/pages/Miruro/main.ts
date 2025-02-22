@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Miruro: pageInterface = {
   name: 'Miruro',
-  domain: ['https://www.miruro.tv', 'https://www.miruro.online'],
+  domain: ['https://www.miruro.tv', 'https://www.miruro.online', 'https://www.miruro.to'],
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
