@@ -42,9 +42,6 @@ export const Zoro: pageInterface = {
     nextEpUrl(url) {
       return jsonData.next_episode_url;
     },
-    uiSelector(selector) {
-      j.$('div.film-description').before(j.html(selector));
-    },
     getMalUrl(provider) {
       if (jsonData.mal_id) return `https://myanimelist.net/anime/${jsonData.mal_id}`;
       if (provider === 'ANILIST' && jsonData.anilist_id)
