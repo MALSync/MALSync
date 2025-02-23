@@ -12,7 +12,7 @@
         "overviewUrl": "https://gojo.wtf/anime/19815",
         "nextEpUrl": "https://gojo.wtf/watch/19815?ep=2",
         "episode": 1,
-        "uiSelector": true,
+        "uiSelector": false,
         "malUrl": "https://myanimelist.net/anime/19815",
         "epList": {
           "2": "https://gojo.wtf/watch/19815?ep=2"
@@ -28,7 +28,7 @@
         "overviewUrl": "https://gojo.wtf/anime/19815",
         "nextEpUrl": "https://gojo.wtf/watch/19815?ep=5",
         "episode": 4,
-        "uiSelector": true,
+        "uiSelector": false,
         "malUrl": "https://myanimelist.net/anime/19815",
         "epList": {
           "5": "https://gojo.wtf/watch/19815?ep=5"

@@ -41,9 +41,6 @@ export const Gojo: pageInterface = {
       }
       return undefined;
     },
-    uiSelector(selector) {
-      j.$('#root > main > div > div.INFO div:has(> a[href^="/anime/"])').after(j.html(selector));
-    },
     getMalUrl(provider) {
       if (provider === 'ANILIST') {
         return `https://anilist.co/anime/${Gojo.sync.getIdentifier(window.location.href)}`;
