@@ -275,7 +275,8 @@ const cleanDescription = computed(() => {
   if (!metaRequest.data) return '';
   const { description } = metaRequest.data;
   if (!description) return '';
-  return description.replace(/(< *\/? *br *\/? *>(\r|\n| )*){2,}/gim, '<br /><br />');
+  const cleanedBr = description.replace(/(< *\/? *br *\/? *>(\r|\n| )*){2,}/gim, '<br /><br />');
+  return cleanedBr.replace(/<a\b/gi, '<a target="_blank" rel="noopener noreferrer"');
 });
 
 const totalLoading = computed(() => {
@@ -352,6 +353,9 @@ const totalLoading = computed(() => {
   }
 
   .description-html {
+    :deep(a) {
+      color: var(--cl-secondary-text);
+    }
     &.preLine {
       white-space: pre-line;
     }
