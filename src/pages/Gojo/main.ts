@@ -122,13 +122,10 @@ export const Gojo: pageInterface = {
     }
 
     let waitTimer: NodeJS.Timer | undefined;
-    let watch2getherTimer: number | undefined;
 
     function check() {
       clearInterval(waitTimer);
       waitTimer = undefined;
-      clearInterval(watch2getherTimer);
-      watch2getherTimer = undefined;
       page.reset();
       if (Gojo.isSyncPage(window.location.href) || Gojo.isOverviewPage!(window.location.href)) {
         waitTimer = utils.waitUntilTrue(waitFn, function () {
