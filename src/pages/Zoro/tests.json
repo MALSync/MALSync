@@ -20,7 +20,7 @@
         "overviewUrl": "https://hianime.to/no-game-no-life-261",
         "nextEpUrl": "https://hianime.to/watch/no-game-no-life-261?ep=5335",
         "episode": 7,
-        "uiSelector": false
+        "uiSelector": true
       }
     },
     {
@@ -41,7 +41,7 @@
         "overviewUrl": "https://hianime.to/demon-slayer-the-hashira-meeting-arc-17859",
         "nextEpUrl": "",
         "episode": 1,
-        "uiSelector": false
+        "uiSelector": true
       }
     },
     {
