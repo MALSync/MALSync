@@ -1,6 +1,12 @@
 {
   "search": "https://manganato.com/search/story/{searchterm(_)[noSpecial]}",
   "urls": {
-    "match": ["*://manganato.com/*", "*://readmanganato.com/*", "*://chapmanganato.com/*", "*://chapmanganato.to/*"]
+    "match": [
+      "*://manganato.com/*",
+      "*://readmanganato.com/*",
+      "*://chapmanganato.com/*",
+      "*://chapmanganato.to/*",
+      "*://*.natomanga.com/*"
+    ]
   }
 }
