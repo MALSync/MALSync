@@ -687,6 +687,7 @@ module.exports = {
       '*://81u6xl9d.xyz/lol/*',
       '*://gorro-chfzoaas.fun/e/*',
       '*://gorro-chfzoaas.fun/lol/*',
+      '*://z7ihwgqj.fun/*',
     ],
   },
   // toonanime
@@ -740,6 +741,7 @@ module.exports = {
       '*://sfastwish.com/e/*',
       '*://awish.pro/e/*',
       '*://hlswish.com/e/*',
+      '*://swishsrv.com/e/*',
       // auto-gogostreamwish-replace-dont-remove
     ],
   },
@@ -781,5 +783,9 @@ module.exports = {
   // animekai
   megaup: {
     match: ['*://megaup.cc/e/*'],
-  }
+  },
+  // hikari
+  boosterx: {
+    match: ['*://boosterx.stream/*'],
+  },
 };
