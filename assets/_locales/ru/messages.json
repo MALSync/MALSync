@@ -1317,7 +1317,13 @@
     },
     "settings_Mangasync_readerTracking": {
         "message": "Синхронизировать мангу после прочтения $mangaCompletionPercentage$% страниц",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "settings_anilist_update_ui": {
         "message": "Обновить UI",

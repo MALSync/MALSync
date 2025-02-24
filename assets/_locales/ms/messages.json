@@ -1417,7 +1417,13 @@
     },
     "settings_Mangasync_readerTracking": {
         "message": "Segerakkan manga selepas $mangaCompletionPercentage$% halaman",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "settings_theming_background_opacity": {
         "message": "Kegelapan Latar Belakang",
