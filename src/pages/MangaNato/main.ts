@@ -6,6 +6,7 @@ export const MangaNato: pageInterface = {
     'https://chapmanganato.com',
     'https://manganato.com',
     'https://readmanganato.com',
+    'https://www.mangakakalot.gg/*',
     'https://www.natomanga.com',
     'https://www.nelomanga.com',
   ],
