@@ -934,7 +934,7 @@
         }
     },
     "settings_Mangasync_readerTracking": {
-        "message": "مزامنة المانجا بعد 90٪ من الصفحات",
+        "message": "مزامنة المانجا بعد $mangaCompletionPercentage$٪ من الصفحات",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
     },
     "settings_StreamingSite_text": {

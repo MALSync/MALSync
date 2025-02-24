@@ -1416,7 +1416,7 @@
         "description": "Info table on overview - Chapters: 12"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Segerakkan manga selepas 90% halaman",
+        "message": "Segerakkan manga selepas $mangaCompletionPercentage$% halaman",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
     },
     "settings_theming_background_opacity": {
