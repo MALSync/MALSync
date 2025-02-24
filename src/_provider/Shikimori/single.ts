@@ -176,8 +176,8 @@ export class Single extends SingleAbstract {
   }
 
   _getRating() {
-    if (!this.userRate) return Promise.resolve('0');
-    return Promise.resolve(`${this.userRate.score}`);
+    if (!this.metaInfo) return Promise.resolve('0');
+    return Promise.resolve(`${this.metaInfo.score}`);
   }
 
   async _update() {

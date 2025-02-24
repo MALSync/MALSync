@@ -94,6 +94,7 @@ const enum GRAPHQL {
       animes(limit: 1, ids: $ids) {
         id
         name
+        url
         russian
         english
         description
@@ -168,6 +169,7 @@ const enum GRAPHQL {
       mangas(limit: 1, ids: $ids) {
         id
         name
+        url
         russian
         english
         description
