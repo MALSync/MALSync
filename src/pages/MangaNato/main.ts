@@ -7,6 +7,7 @@ export const MangaNato: pageInterface = {
     'https://manganato.com',
     'https://readmanganato.com',
     'https://www.natomanga.com',
+    'https://www.nelomanga.com',
   ],
   database: 'MangaNato',
   languages: ['English'],

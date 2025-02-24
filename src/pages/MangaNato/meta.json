@@ -6,7 +6,8 @@
       "*://readmanganato.com/*",
       "*://chapmanganato.com/*",
       "*://chapmanganato.to/*",
-      "*://*.natomanga.com/*"
+      "*://*.natomanga.com/*",
+      "*://*.nelomanga.com/*"
     ]
   }
 }
