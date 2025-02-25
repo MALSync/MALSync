@@ -7,7 +7,7 @@ export class UserList extends ListAbstract {
 
   public compact = false;
 
-  public seperateRewatching = true;
+  public separateRewatching = true;
 
   authenticationUrl =
     'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
