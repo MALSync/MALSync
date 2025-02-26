@@ -99,12 +99,12 @@ export const AnimeKAI: pageInterface = {
           .toArray()
           .some(el => el.style.display !== 'none');
 
-        return loaded && j.$('div.eplist').length;
+        return loaded && j.$('div.eplist').length > 0 && window.location.hash.length > 0;
       }
       if (isWatch2Gether()) {
         return (
-          AnimeKAI.sync.getTitle(window.location.href).length &&
-          AnimeKAI.sync.getEpisode(window.location.href)
+          AnimeKAI.sync.getTitle(window.location.href).length > 0 &&
+          AnimeKAI.sync.getEpisode(window.location.href) > 0
         );
       }
       return false;
