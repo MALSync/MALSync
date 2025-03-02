@@ -7,7 +7,7 @@ export function generateUniqueID(arraySize = 10): string {
   return Array.from(array, value => value.toString(16)).join('');
 }
 
-export function ScriptProxyWrapper(fnc: () => void) {
+export function ScriptProxyWrapper(fnc: () => any) {
   const tag = document.currentScript as HTMLScriptElement;
   const idAttribute = tag.getAttribute('id')!;
   const logger = con.m('ScriptProxyWrapper');
@@ -24,19 +24,28 @@ export function ScriptProxyWrapper(fnc: () => void) {
       if (!eventData.data.eventId || eventData.data.resultId) return;
 
       const resultId = generateUniqueID();
-      const res = fnc();
 
-      const scriptElement = document.createElement('script');
-      scriptElement.id = resultId;
-      scriptElement.setAttribute(
-        `data-${eventData.data.eventId}`,
-        JSON.stringify({
-          [idAttribute]: res,
-        }),
-      );
-      document.documentElement.appendChild(scriptElement);
+      Promise.resolve(fnc()).then(res => {
+        const scriptElement = document.createElement('script');
+        scriptElement.id = resultId;
+        scriptElement.setAttribute(
+          `data-${eventData.data.eventId}`,
+          JSON.stringify(
+            {
+              [idAttribute]: res,
+            },
+            (k, v) => {
+              if (typeof v === 'function') {
+                return v.toString();
+              }
+              return v;
+            },
+          ),
+        );
+        document.documentElement.appendChild(scriptElement);
 
-      window.postMessage({ eventId: eventData.data.eventId, resultId }, '*');
+        window.postMessage({ eventId: eventData.data.eventId, resultId }, '*');
+      });
     },
     false,
   );

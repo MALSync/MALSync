@@ -140,6 +140,8 @@ import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
 import { AnimeKAI } from './AnimeKAI/main';
 import { Hikari } from './Hikari/main';
+import { CUSTOM_ANIME } from './CUSTOM_ANIME/main';
+import { CUSTOM_MANGA } from './CUSTOM_MANGA/main';
 
 export const pages = {
   Crunchyroll,
@@ -284,4 +286,6 @@ export const pages = {
   Aninexus,
   AnimeKAI,
   Hikari,
+  CUSTOM_ANIME,
+  CUSTOM_MANGA,
 };
