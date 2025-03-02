@@ -2,7 +2,7 @@ import jQuery from 'jquery';
 import { customPageInterface } from './customPageInterface';
 import { FunctionProxy } from '../../utils/functionProxy';
 import { generateUniqueID } from '../../utils/scriptProxyWrapper';
-import { simplePageInterface } from './simplePageInterface';
+import { simplePageInterface } from './simplePage';
 
 export function script() {
   const logger = con.m('Custom Page');
