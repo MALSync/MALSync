@@ -344,7 +344,7 @@
         "description": "Hour"
     },
     "bookmarksItem_mins": {
-        "message": "dakikalar",
+        "message": "dakika",
         "description": "mins"
     },
     "bookmarksItem_min": {
@@ -352,7 +352,7 @@
         "description": "min"
     },
     "bookmarksItem_secs": {
-        "message": "saniyeler",
+        "message": "saniye",
         "description": "seconds"
     },
     "bookmarksItem_sec": {
@@ -650,7 +650,7 @@
         "description": "Shows an 'action required' popup hidding big popups"
     },
     "settings_miniMAL_floatButtonCorrection": {
-        "message": "Kayan butonu düzeltme UI'sine ata",
+        "message": "Kayan butonu düzeltme arayüzüne ata",
         "description": "Remap floating button to the correction UI"
     },
     "settings_miniMAL_floatButtonHide": {
@@ -952,7 +952,7 @@
         "description": "Flash message that shows up after removing an anime/manga entry from user list"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sayfaların %$mangaCompletionPercentage$'ından sonra mangayı güncelle",
+        "message": "Sayfaların %$mangaCompletionPercentage$'si okunduktan sonra mangayı güncelle",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
         "placeholders": {
             "mangaCompletionPercentage": {
@@ -1642,5 +1642,23 @@
     },
     "settings_listsync_master": {
         "message": "Ana Site"
+    },
+    "settings_listsync_slave": {
+        "message": "Kopya"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Bölümü belirtilen yüzdeye göre okundu olarak güncelle"
+    },
+    "settings_listsync_progress_manga": {
+        "message": "B:"
+    },
+    "settings_listsync_volume": {
+        "message": "Cilt:"
+    },
+    "overview_sidebar_Premiered": {
+        "message": "Prömiyer:"
+    },
+    "overview_sidebar_Demographic": {
+        "message": "Tür:"
     }
 }
