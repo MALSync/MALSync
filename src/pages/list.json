@@ -540,6 +540,11 @@
     "name": "Animelon"
   },
   {
+    "domain": "https://animenosub.to",
+    "type": "anime",
+    "name": "AnimeNoSub"
+  },
+  {
     "domain": "https://anime-sama.fr",
     "type": "anime",
     "name": "AnimeSama"
@@ -680,8 +685,28 @@
     "name": "MangaLib"
   },
   {
+    "domain": "https://ranobelib.me",
+    "type": "manga",
+    "name": "RanobeLib"
+  },
+  {
+    "domain": "https://rawkuma.com",
+    "type": "manga",
+    "name": "Rawkuma"
+  },
+  {
     "domain": "https://aninexus.to",
     "type": "anime",
     "name": "Aninexus"
+  },
+  {
+    "domain": "https://animekai.to",
+    "type": "anime",
+    "name": "AnimeKAI"
+  },
+  {
+    "domain": "https://watch.hikaritv.xyz",
+    "type": "anime",
+    "name": "Hikari"
   }
 ]

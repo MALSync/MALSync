@@ -1154,8 +1154,14 @@
         "description": "Position of the quicklinks below the information section"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Synchroniser les mangas après 90 % des pages",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "Synchroniser les mangas après la lecture de $mangaCompletionPercentage$ % des pages",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "Synchronize": {
         "message": "Synchroniser",
@@ -1651,5 +1657,8 @@
     },
     "settings_ForceEnglishTitles": {
         "message": "Afficher les titres en anglais"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Proportion de pages lues avant mise à jour du numéro de chapitre"
     }
 }

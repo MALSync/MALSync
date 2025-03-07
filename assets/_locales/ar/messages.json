@@ -934,8 +934,14 @@
         }
     },
     "settings_Mangasync_readerTracking": {
-        "message": "مزامنة المانجا بعد 90٪ من الصفحات",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "مزامنة المانجا بعد $mangaCompletionPercentage$٪ من الصفحات",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "settings_StreamingSite_text": {
         "message": "إذا تم تعطيله ، فلن يظهر موقع البث بعد الآن في الشريط الجانبي للأنمي على MyAnimeList / AniList / Kitsu / Simkl.",

@@ -952,8 +952,14 @@
         "description": "Flash message that shows up after removing an anime/manga entry from user list"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sayfaların %90'ından sonra mangayı güncelle",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "Sayfaların %$mangaCompletionPercentage$'ından sonra mangayı güncelle",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "settings_read_more": {
         "message": "Daha fazla",

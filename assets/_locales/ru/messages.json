@@ -1316,8 +1316,14 @@
         "description": "Header of the theming section"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Синхронизировать мангу после прочтения 90% страниц",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "Синхронизировать мангу после прочтения $mangaCompletionPercentage$% страниц",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "settings_anilist_update_ui": {
         "message": "Обновить UI",
@@ -1643,5 +1649,8 @@
     },
     "settings_ForceEnglishTitles": {
         "message": "Названия произведений на Английском"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Сделать главу прочитанной после процента страниц"
     }
 }

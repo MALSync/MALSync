@@ -1,5 +1,5 @@
 <template>
-  <div class="book-element">
+  <div ref="card" class="book-element">
     <div :style="`--text: ${styleText}`">
       <ImageLazy class="img normal" :src="item.imageLarge" mode="cover" />
       <ImageLazy class="img blurred" :src="item.imageLarge" mode="cover" />
@@ -7,9 +7,12 @@
     <div class="gradient" :class="`gradient-${item.status}`" />
     <MediaLink class="link" :href="item.url" :title="title" />
     <div class="text">
-      <div class="top-text">
-        <MediaPillProgress :progress="item.progress" />
+      <div
+        class="top-text"
+        :style="`--card-width: ${cardWidth}px; --card-height: ${cardHeight}px;`"
+      >
         <MediaPill
+          :img="item.imageLarge"
           :score="item.score"
           :stream-url="item.streamUrl"
           :stream-icon="item.streamIcon"
@@ -18,6 +21,7 @@
           :progress-ep="item.progressEp"
           :progress-text="item.progressText"
         />
+        <MediaPillProgress :progress="item.progress" />
       </div>
       <div ref="text" class="bottomBox">
         <div class="title">
@@ -58,11 +62,18 @@ const title = computed(() => {
 });
 
 const text = ref(null) as Ref<HTMLElement | null>;
+const card = ref(null) as Ref<HTMLElement | null>;
 const textHeight = ref(0);
+const cardHeight = ref(0);
+const cardWidth = ref(0);
 
 const calcHeights = () => {
   if (text.value) {
     textHeight.value = text.value.clientHeight;
+  }
+  if (card.value) {
+    cardHeight.value = card.value.clientHeight;
+    cardWidth.value = card.value.clientWidth;
   }
 };
 

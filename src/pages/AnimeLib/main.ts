@@ -100,16 +100,22 @@ export const AnimeLib: pageInterface = {
 
       // NOTE - We are on the SYNC page
       if (AnimeLib.isSyncPage(window.location.href)) {
-        await updateSyncPage();
-        page.handlePage();
-
-        interval = utils.changeDetect(
+        utils.waitUntilTrue(
+          () => utils.urlParam(window.location.href, 'episode'),
           async () => {
-            page.reset();
             await updateSyncPage();
-            page.handlePage();
+            await page.handlePage();
+
+            interval = utils.changeDetect(
+              async () => {
+                page.reset();
+                await updateSyncPage();
+                await page.handlePage();
+              },
+              () => window.location.search,
+            );
           },
-          () => window.location.search,
+          100,
         );
       }
 
@@ -118,12 +124,8 @@ export const AnimeLib: pageInterface = {
         await updateOverviewPage();
 
         interval = utils.waitUntilTrue(
-          () => {
-            return j.$('.tabs-item').length;
-          },
-          () => {
-            page.handlePage();
-          },
+          () => j.$('.tabs-item').length,
+          () => page.handlePage(),
           500,
         );
       }
@@ -159,7 +161,7 @@ async function updateSyncPage() {
   const animeSlug = utils.urlPart(window.location.href, 5);
   const idRegex = animeSlug.match(/(\d+)/);
   const animeId = Number(idRegex ? idRegex[0] : 0);
-  const currentEpisodeButton = j.$(`[data-scroll-id="${animeId}"] span`);
+  const currentEpisodeButton = getCurrentEpisodeButton();
   const episodeID = utils.urlParam(window.location.href, 'episode') || '0';
 
   const animeData = await getAnimeData(animeSlug);
@@ -196,6 +198,17 @@ async function updateSyncPage() {
   }
 }
 
+function getCurrentEpisodeButton() {
+  const btns = j.$('[data-scroll-id]');
+  for (let i = 0; i < btns.length; i++) {
+    const btn = btns[i];
+    if (btn.classList.length > 1) {
+      return j.$(btn);
+    }
+  }
+  return undefined;
+}
+
 function getTotalEpisodesNoAPI() {
   const totalEpisodes = j.$('[data-scroll-id]').length;
   anime.player.total = totalEpisodes;
@@ -211,7 +224,7 @@ function getTotalEpisodesAPI(anime_data?: Anime, episodes_data?: Episodes) {
   }
   return anime.player.total || 0;
 }
-function getCurrentEpisodeNoAPI(currentEpisodeButton: JQuery<HTMLElement>) {
+function getCurrentEpisodeNoAPI(currentEpisodeButton: JQuery<HTMLElement> | undefined) {
   if (currentEpisodeButton) {
     anime.player.episode = Number(currentEpisodeButton.text().split(' ')[0]);
   }
@@ -219,13 +232,18 @@ function getCurrentEpisodeNoAPI(currentEpisodeButton: JQuery<HTMLElement>) {
 function getCurrentEpisodeAPI(episode_data: Episode) {
   anime.player.episode = Number(episode_data.data.number || 1);
 }
-function getNextEpisodeNoAPI(currentEpisodeButton: JQuery<HTMLElement>, animeId: number) {
-  const nextEpisodeButton = currentEpisodeButton.next();
-  if (nextEpisodeButton && nextEpisodeButton !== currentEpisodeButton) {
-    anime.player.next = window.location.href.replace(
-      animeId.toString(),
-      nextEpisodeButton.attr('data-scroll-id') || '',
-    );
+function getNextEpisodeNoAPI(
+  currentEpisodeButton: JQuery<HTMLElement> | undefined,
+  animeId: number,
+) {
+  if (currentEpisodeButton) {
+    const nextEpisodeButton = currentEpisodeButton.next();
+    if (nextEpisodeButton && nextEpisodeButton !== currentEpisodeButton) {
+      anime.player.next = window.location.href.replace(
+        animeId.toString(),
+        nextEpisodeButton.attr('data-scroll-id') || '',
+      );
+    }
   }
 }
 function getNextEpisodeAPI(episodes_data: Episodes) {

@@ -1292,8 +1292,14 @@
         "description": "Dropdown option to sort list by score"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Synchronizuj mange po przeczytaniu 90% rozdziału",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "Synchronizuj mange po przeczytaniu $mangaCompletionPercentage$% rozdziału",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "overview_sidebar_Score": {
         "message": "Ocena:",

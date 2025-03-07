@@ -1196,8 +1196,14 @@
         "description": "Button to rechecks the login status"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sincronizar mangá após 90% das páginas",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "Sincronizar mangá após $mangaCompletionPercentage$% das páginas",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "settings_donate": {
         "message": "Doar",

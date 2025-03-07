@@ -892,8 +892,14 @@
         "description": "Manual"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "अध्यायको पृष्ठहरूको 90% पछि माङ्गा सिंक गर्नुहोस्",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "अध्यायको पृष्ठहरूको $mangaCompletionPercentage$% पछि माङ्गा सिंक गर्नुहोस्",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "settings_AutoTracking_Instant": {
         "message": "तत्काल स्वतः ट्र्याकिङलाई $delay$ सेकेन्डले ढिलाइ गर्नुहोस्",

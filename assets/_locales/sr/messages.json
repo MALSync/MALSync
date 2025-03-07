@@ -1156,7 +1156,13 @@
         "message": "Локални синхронизовани извоз"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Синхронизујте мангу после 90% страница"
+        "message": "Синхронизујте мангу после $mangaCompletionPercentage$% страница",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "settings_custom_domains_disclaimer": {
         "message": "Ова функција омогућава додавање прилагођених домена постојећим сајтовима ради обраде промена домена и самостално хостованих извора, али не може додати нове сајтове."

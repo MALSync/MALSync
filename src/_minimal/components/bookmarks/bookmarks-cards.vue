@@ -1,19 +1,23 @@
 <template>
-  <div class="book-element">
+  <div ref="card" class="book-element">
     <ImageFit class="img" :src="item.imageBanner ? item.imageBanner : item.imageLarge" />
     <div class="gradient" :class="`gradient-${item.status}`" />
     <MediaLink class="link" :href="item.url" :title="item.title" />
     <div class="text">
       <div class="gradient-transition">
-        <div class="top-text">
-          <MediaPillProgress :progress="item.progress" />
+        <div
+          class="top-text"
+          :style="`--card-width: ${cardWidth}px; --card-height: ${cardHeight}px;`"
+        >
           <MediaPill
+            :img="item.imageLarge"
             :score="item.score"
             :stream-url="item.streamUrl"
             :stream-icon="item.streamIcon"
             :watched-ep="item.watchedEp"
             :show-ep="false"
           />
+          <MediaPillProgress :progress="item.progress" />
         </div>
       </div>
       <div class="gradient-text">
@@ -42,7 +46,7 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, PropType } from 'vue';
+import { inject, nextTick, onBeforeUnmount, onMounted, PropType, ref, Ref, watch } from 'vue';
 import { bookmarkItem } from '../../minimalClass';
 import ImageFit from '../image-fit.vue';
 import MediaLink from '../media-link.vue';
@@ -64,6 +68,40 @@ defineProps({
 const breakpoint = inject('breakpoint');
 
 const episodeLang = utils.episode;
+
+const card = ref(null) as Ref<HTMLElement | null>;
+const cardHeight = ref(0);
+const cardWidth = ref(0);
+
+const calcHeights = () => {
+  if (card.value) {
+    cardHeight.value = card.value.clientHeight;
+    cardWidth.value = card.value.clientWidth;
+  }
+};
+
+const resizeObserver = new ResizeObserver(() => {
+  calcHeights();
+});
+
+onMounted(() => {
+  nextTick(() => {
+    calcHeights();
+  });
+  calcHeights();
+});
+
+watch(
+  card,
+  value => {
+    if (value) resizeObserver.observe(value);
+  },
+  { immediate: true },
+);
+
+onBeforeUnmount(() => {
+  resizeObserver.disconnect();
+});
 </script>
 
 <style lang="less" scoped>

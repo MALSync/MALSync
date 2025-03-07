@@ -1444,8 +1444,14 @@
         "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sincronizar manga después de 90% de las páginas",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "Sincronizar manga después de $mangaCompletionPercentage$% de las páginas",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "back": {
         "message": "Atrás",

@@ -746,8 +746,14 @@
         "description": "Mode"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "漫画阅读到90%时同步",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read"
+        "message": "漫画阅读到$mangaCompletionPercentage$%时同步",
+        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+        "placeholders": {
+            "mangaCompletionPercentage": {
+                "content": "$1",
+                "example": "90"
+            }
+        }
     },
     "settings_AutoTracking_Video": {
         "message": "动画观看到$videoDuration$%时上传",
