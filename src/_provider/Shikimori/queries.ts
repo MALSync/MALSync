@@ -3,7 +3,7 @@ import { apiCall } from './helper';
 import * as Types from './types';
 
 const enum GRAPHQL {
-  CurrentUser_ = `
+  CurrentUser = `
     {
       currentUser {
         avatarUrl
@@ -13,7 +13,7 @@ const enum GRAPHQL {
         url
       }
     }`,
-  UserRates_ = `
+  UserRates = `
     query($order: UserRateOrderInputType, $page: PositiveInt, $limit: PositiveInt, $userId: ID, $animeTarget: Boolean! = false, $mangaTarget: Boolean! = false, $targetType: UserRateTargetTypeEnum, $status: UserRateStatusEnum){
       userRates(page: $page, limit: $limit, status: $status, userId: $userId, targetType: $targetType, order: $order) {
         id
@@ -55,7 +55,7 @@ const enum GRAPHQL {
       }
     }
   `,
-  Animes_ = `
+  Animes = `
     query($search: String, $limit: PositiveInt, $order: OrderEnum, $kind: AnimeKindString, $page: PositiveInt, $status: AnimeStatusString, $ids: String) {
       animes(search: $search, limit: $limit, order: $order, kind: $kind, page: $page, status: $status, ids: $ids) {
         id
@@ -89,7 +89,7 @@ const enum GRAPHQL {
         descriptionHtml
       }
     }`,
-  Anime_ = `
+  Anime = `
     query($ids: String!) {
       animes(limit: 1, ids: $ids) {
         id
@@ -164,7 +164,7 @@ const enum GRAPHQL {
         }
       }
     }`,
-  Manga_ = `
+  Manga = `
     query($ids: String!){
       mangas(limit: 1, ids: $ids) {
         id
@@ -237,7 +237,7 @@ const enum GRAPHQL {
         }
       }
     }`,
-  Mangas_ = `
+  Mangas = `
     query($search: String, $limit: PositiveInt, $order: OrderEnum, $kind: MangaKindString, $page: PositiveInt, $status: MangaStatusString, $ids: String) {
       mangas(search: $search, limit: $limit, order: $order, kind: $kind, page: $page, status: $status, ids: $ids) {
         id
@@ -275,7 +275,7 @@ export class Queries {
       type: 'POST',
       path: 'graphql',
       dataObj: {
-        query: GRAPHQL.CurrentUser_,
+        query: GRAPHQL.CurrentUser,
       },
     }).then((res: Types.CurrentUser) => {
       // TODO - Waiting for GRAPHQL update
@@ -303,7 +303,7 @@ export class Queries {
       type: 'POST',
       path: 'graphql',
       dataObj: {
-        query: GRAPHQL.UserRates_,
+        query: GRAPHQL.UserRates,
         variables: {
           userId,
           targetType,
@@ -336,7 +336,7 @@ export class Queries {
       type: 'POST',
       path: 'graphql',
       dataObj: {
-        query: GRAPHQL.Animes_,
+        query: GRAPHQL.Animes,
         variables: {
           ...(search ? { search } : {}),
           ...(ids ? { ids } : {}),
@@ -368,7 +368,7 @@ export class Queries {
       type: 'POST',
       path: 'graphql',
       dataObj: {
-        query: GRAPHQL.Mangas_,
+        query: GRAPHQL.Mangas,
         variables: {
           ...(search ? { search } : {}),
           ...(ids ? { ids } : {}),
@@ -387,7 +387,7 @@ export class Queries {
       type: 'POST',
       path: 'graphql',
       dataObj: {
-        query: GRAPHQL.Anime_,
+        query: GRAPHQL.Anime,
         variables: {
           ids: id,
         },
@@ -402,7 +402,7 @@ export class Queries {
       type: 'POST',
       path: 'graphql',
       dataObj: {
-        query: GRAPHQL.Manga_,
+        query: GRAPHQL.Manga,
         variables: {
           ids: id,
         },
