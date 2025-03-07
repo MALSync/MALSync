@@ -1,5 +1,4 @@
 {
-  "search": "https://kaas.am/search?q={searchterm}",
   "urls": {
     "match": [
       "*://*.kaas.am/*",

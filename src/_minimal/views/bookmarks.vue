@@ -18,7 +18,7 @@
         v-model="parameters.state"
         :type="parameters.type"
         :rewatching="
-          listRequest.data ? listRequest.data?.seperateRewatching : parameters.state === 23
+          listRequest.data ? listRequest.data?.separateRewatching : parameters.state === 23
         "
       />
       <FormButton padding="pill" @click="refresh()">
@@ -266,10 +266,10 @@ const options = bookmarkFormats.map(format => ({
 
 const theme = computed({
   get() {
-    return api.settings.get(`bookMarksList${props.type === 'manga' ? 'Manga' : ''}`);
+    return api.settings.get('bookMarksList');
   },
   set(value) {
-    api.settings.set(`bookMarksList${props.type === 'manga' ? 'Manga' : ''}`, value);
+    api.settings.set('bookMarksList', value);
   },
 });
 

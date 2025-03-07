@@ -1,4 +1,13 @@
 {
+  "0.10.1": {
+    "iframe": [
+      "*://*.mixdrop.sx/e/*",
+      "*://*.mixdrop.ms/e/*",
+      "*://brucevotewithin.com/e/*",
+      "*://rebeccaneverbase.com/e/*",
+      "*://c4qhk0je.xyz/e/*"
+    ]
+  },
   "0.10.2": {
     "AsuraScans": [
       "*://*.asuracomic.net/*"
@@ -118,7 +127,6 @@
     ],
     "iframe": [
       "*://maxfinishseveral.com/e/*",
-      "*://krussdomi.com/*",
       "*://filemoon.sx/lol/*",
       "*://kerapoxy.cc/lol/*",
       "*://vpcxz19p.xyz/lol/*",
@@ -132,19 +140,7 @@
       "*://gorro-chfzoaas.fun/e/*",
       "*://gorro-chfzoaas.fun/lol/*",
       "*://animenosub.upn.one/#*",
-      "*://*.bunniescdn.online/*",
-      "*://megaup.cc/e/*"
-    ]
-  },
-  "0.11.1": {
-    "Miruro": [
-      "*://*.miruro.to/*"
-    ],
-    "iframe": [
-      "*://z7ihwgqj.fun/*",
-      "*://megacloud.club/*",
-      "*://swishsrv.com/e/*",
-      "*://boosterx.stream/*"
+      "*://*.bunniescdn.online/*"
     ]
   }
 }

@@ -573,13 +573,7 @@
         "message": "Вручну"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Синхронізувати манґу після прочитання $mangaCompletionPercentage$% сторінок",
-        "placeholders": {
-            "mangaCompletionPercentage": {
-                "content": "$1",
-                "example": "90"
-            }
-        }
+        "message": "Синхронізувати манґу після прочитання 90% сторінок"
     },
     "settings_Mangasync": {
         "message": "Синхронізація манґи"
