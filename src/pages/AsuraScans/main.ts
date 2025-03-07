@@ -59,9 +59,8 @@ export const AsuraScans: pageInterface = {
       return utils.urlPart(url, 4).replace(/-[^-]+$/gi, '');
     },
     uiSelector(selector) {
-      j.$('.space-y-4 .text-xl')
+      j.$('.space-y-4')
         .first()
-        .parentsUntil('.space-y-4')
         .after(j.html(`<div id= "malthing" class="bg-[#222222]">${selector}</div>`));
     },
     list: {

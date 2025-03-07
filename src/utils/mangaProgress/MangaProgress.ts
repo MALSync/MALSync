@@ -80,7 +80,7 @@ export class MangaProgress {
   }
 
   protected getLimit() {
-    const percentage = api.settings.get('mangaCompletionPercentage');
+    const percentage = 90;
     const result = this.getProgress();
     if (result === null) return 0;
     const limit = Math.floor((result.total / 100) * percentage);

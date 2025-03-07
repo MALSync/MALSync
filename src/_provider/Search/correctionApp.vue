@@ -30,7 +30,7 @@
         @changed="val => (inputOffset = val)"
       ></input-button>
       <div v-if="inputOffset && inputOffset !== '0'" id="offsetUi">
-        <div v-for="index in episodeWindow" :key="index" class="offsetBox">
+        <div v-for="index in 5" :key="index" class="offsetBox">
           <div class="mdl-color--primary top">{{ index }}</div>
           <div
             class="bottom"
@@ -94,18 +94,13 @@ export default {
       return this.searchClass.rules;
     },
     currentStateEp() {
-      if (this.syncPage && this.syncPage.curState && this.syncPage.curState.detectedEpisode) {
-        return this.syncPage.curState.detectedEpisode;
+      if (this.syncPage && this.syncPage.curState && this.syncPage.curState.episode) {
+        return this.syncPage.curState.episode;
       }
-      return 1;
+      return undefined;
     },
     offset() {
       return this.searchClass.getOffset();
-    },
-    episodeWindow() {
-      let start = this.currentStateEp + parseInt(this.inputOffset) - 2;
-      if (start < 1) start = 1;
-      return Array.from({ length: 5 }, (_, i) => i + start);
     },
   },
   created() {

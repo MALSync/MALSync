@@ -1,5 +1,5 @@
 <template>
-  <PillSplit :right="Boolean(showEp || streamUrl)" :left="Boolean(score)" :img="img">
+  <PillSplit :right="Boolean(showEp || streamUrl)" :left="Boolean(score)">
     <template #left>
       <TextIcon icon="star">{{ score }}</TextIcon>
     </template>
@@ -64,11 +64,6 @@ const props = defineProps({
     default: null,
   },
   progressText: {
-    type: String,
-    optional: true,
-    default: '',
-  },
-  img: {
     type: String,
     optional: true,
     default: '',
