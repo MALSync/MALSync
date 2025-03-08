@@ -217,7 +217,7 @@ export class MyAnimeListClass {
     return title.replace(/(^watch|episode \d*$)/gi, '').trim();
   }
 
-  async malToKiss() {
+  malToKiss() {
     $(document).ready(() => {
       con.log('malToKiss');
 
@@ -226,26 +226,29 @@ export class MyAnimeListClass {
       activeLinks(this.type!, this.id, title).then(links => {
         const html: string[] = [];
 
-        if (utils.isPhone()) {
+        const information = $('h2:contains("Information")');
+        const externalLinks = $('h2:contains("External Links")');
+
+        if (information.hasClass('header3')) {
           html.push(
-            '<h2 class="header3 pb12">Quicklinks</h2><div class="pl12 pr12 pt8 pb12 "><table class="table-list"><tbody>',
+            '<h2 class="mal_links header3 pb12">Quicklinks</h2><div class="mal_links pl12 pr12 pt8 pb12 "><table class="mal_links table-list"><tbody>',
           );
 
           links.forEach(page => {
             html.push(`
-              <tr>
-                <td class="pr8 fs14 lh16">
-                  <span title="${page.name}" class="remove-mal-sync fl-r" style="font-weight: 100; cursor: pointer; color: grey;">x</span>
+              <tr title="${page.name.replace(/"/g, '&quot;')}" class="mal_links">
+                <td class="mal_links pr8 fs14 lh16">
+                  <span title="${page.name.replace(/"/g, '&quot;')}" class="remove-mal-sync fl-r" style="font-weight: 100; cursor: pointer; color: grey;">x</span>
                 </td>
-                <td class="list-title pr8 fn-grey5 fs14 lh16 ar">${page.name}</td>
-                <td class="pr8 fs14 lh16">
+                <td class="mal_links list-title  pr8 fn-grey5 fs14 lh16 ar">${page.name}</td>
+                <td class="mal_links pr8 fs14 lh16">
                   <img src="${utils.favicon(page.domain)}">
                 </td>
-                <td class="di-ib pb4 fs14 lh16 fw-b">
+                <td class="mal_links di-ib pb4 fs14 lh16 fw-b">
             `);
             page.links.forEach(stream => {
               html.push(`
-                <a target="_blank" href="${stream.url}">${stream.name}</a>
+                <a target="_blank" href="${stream.url.replace(/"/g, '&quot;')}">${stream.name}</a>
                 <br>
               `);
             });
@@ -257,35 +260,35 @@ export class MyAnimeListClass {
         } else {
           links.forEach(page => {
             html.push(`
-              <h2 id="${page.name}Links" class="mal_links">
-                <img src="${utils.favicon(page.domain)}"> ${page.name}
-                <span title="${page.name}" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span>
+              <h2 id="${page.name.replace(/"/g, '&quot;')}Links" title="${page.name.replace(/"/g, '&quot;')}" class="mal_links">
+                <img src="${utils.favicon(page.domain).replace(/"/g, '&quot;')}"> ${page.name}
+                <span title="${page.name.replace(/"/g, '&quot;')}" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span>
               </h2>`);
 
             page.links.forEach(stream => {
               html.push(`
-                <div class="mal_links" style="word-break: break-all;">
-                  <a target="_blank" href="${stream.url}">${stream.name}</a>
+                <div title="${page.name.replace(/"/g, '&quot;')}" class="mal_links" style="word-break: break-all;">
+                  <a target="_blank" href="${stream.url.replace(/"/g, '&quot;')}">${stream.name}</a>
                 </div>
               `);
             });
 
-            html.push('<br class="mal_links" />');
+            html.push(`<br title="${page.name.replace(/"/g, '&quot;')}" class="mal_links" />`);
           });
         }
 
         if (api.settings.get('quicklinksPosition') === 'below') {
-          if ($('h2:contains("External Links")').length) {
-            $('h2:contains("External Links")').before(j.html(html.join('')));
+          if (externalLinks.length) {
+            externalLinks.before(j.html(html.join('')));
           } else {
-            $('h2:contains("Information")')
+            information
               .parent()
-              .find('div.mt16')
+              .find('div.mt16, div.di-b')
               .last()
               .before(j.html(html.join('')));
           }
         } else {
-          $('h2:contains("Information")').before(j.html(html.join('')));
+          information.before(j.html(html.join('')));
         }
         $('.remove-mal-sync').click(function () {
           const key = $(this).attr('title');
