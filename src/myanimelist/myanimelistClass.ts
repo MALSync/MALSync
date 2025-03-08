@@ -293,7 +293,7 @@ export class MyAnimeListClass {
         $('.remove-mal-sync').click(function () {
           const key = $(this).attr('title');
           removeFromOptions(String(key));
-          window.location.reload();
+          $(`.mal_links[title="${key}"]`).remove();
         });
       });
     });
