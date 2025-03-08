@@ -224,31 +224,68 @@ export class MyAnimeListClass {
       const title = this.getTitle();
 
       activeLinks(this.type!, this.id, title).then(links => {
-        let html = '';
+        const html: string[] = [];
 
-        links.forEach(page => {
-          let tempHtml = '';
+        if (utils.isPhone()) {
+          html.push(
+            '<h2 class="header3 pb12">Quicklinks</h2><div class="pl12 pr12 pt8 pb12 "><table class="table-list"><tbody>',
+          );
 
-          page.links.forEach(stream => {
-            tempHtml += `<div class="mal_links" style="word-break: break-all;"><a target="_blank" href="${stream.url}">${stream.name}</a></div>`;
+          links.forEach(page => {
+            html.push(`
+              <tr>
+                <td class="pr8 fs14 lh16">
+                  <span title="${page.name}" class="remove-mal-sync fl-r" style="font-weight: 100; cursor: pointer; color: grey;">x</span>
+                </td>
+                <td class="list-title pr8 fn-grey5 fs14 lh16 ar">${page.name}</td>
+                <td class="pr8 fs14 lh16">
+                  <img src="${utils.favicon(page.domain)}">
+                </td>
+                <td class="di-ib pb4 fs14 lh16 fw-b">
+            `);
+            page.links.forEach(stream => {
+              html.push(`
+                <a target="_blank" href="${stream.url}">${stream.name}</a>
+                <br>
+              `);
+            });
+
+            html.push('</td></tr>');
           });
 
-          html += `<h2 id="${page.name}Links" class="mal_links"><img src="${utils.favicon(
-            page.domain,
-          )}"> ${page.name}<span title="${
-            page.name
-          }" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span></h2>`;
-          html += tempHtml;
-          html += '<br class="mal_links" />';
-        });
+          html.push('</tbody></table></div>');
+        } else {
+          links.forEach(page => {
+            html.push(`
+              <h2 id="${page.name}Links" class="mal_links">
+                <img src="${utils.favicon(page.domain)}"> ${page.name}
+                <span title="${page.name}" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span>
+              </h2>`);
+
+            page.links.forEach(stream => {
+              html.push(`
+                <div class="mal_links" style="word-break: break-all;">
+                  <a target="_blank" href="${stream.url}">${stream.name}</a>
+                </div>
+              `);
+            });
+
+            html.push('<br class="mal_links" />');
+          });
+        }
+
         if (api.settings.get('quicklinksPosition') === 'below') {
           if ($('h2:contains("External Links")').length) {
-            $('h2:contains("External Links")').before(j.html(html));
+            $('h2:contains("External Links")').before(j.html(html.join('')));
           } else {
-            $('h2:contains("Information")').parent().find('div.mt16').last().before(j.html(html));
+            $('h2:contains("Information")')
+              .parent()
+              .find('div.mt16')
+              .last()
+              .before(j.html(html.join('')));
           }
         } else {
-          $('h2:contains("Information")').before(j.html(html));
+          $('h2:contains("Information")').before(j.html(html.join('')));
         }
         $('.remove-mal-sync').click(function () {
           const key = $(this).attr('title');
