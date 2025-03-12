@@ -37,7 +37,7 @@ type TypeMismatchError<
   FunctionName extends string,
   ActualType,
   ExpectedType,
-> = `${FunctionName} requires input of type ${ExpectedType extends AllowedTypes ? ExpectedType : never}, but received ${ActualType extends AllowedTypes ? ActualType : never}`;
+> = `${FunctionName} requires input of type ${ExpectedType extends AllowedTypes ? ExpectedType : 'unknown'}, but received ${ActualType extends AllowedTypes ? ActualType : 'unknown'}`;
 
 type MatchesType<InputT, TargetT> = TargetT extends void
   ? true
@@ -60,4 +60,4 @@ interface ChibiGenerator<T> extends ChainableMethods<T, typeof functionsRegistry
 
 export type { ChibiGenerator };
 
-export const chibi = () => new ChibiGenerator();
+export const $c = new ChibiGenerator();
