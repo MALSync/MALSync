@@ -39,6 +39,16 @@ describe('ChibiConsumer', () => {
       expect(() => new ChibiConsumer(code).run()).to.throw(UnknownChibiFunctionError);
     })
   });
+
+  describe('context', () => {
+    it('should add and retrieve variables', () => {
+      const code = $c.urlFunction().run();
+      const consumer = new ChibiConsumer(code);
+      consumer.addVariable('url', 'hello');
+
+      expect(consumer.run()).to.equal('hello');
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {

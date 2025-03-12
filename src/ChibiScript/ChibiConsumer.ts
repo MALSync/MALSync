@@ -1,3 +1,4 @@
+import { ChibiCtx } from './ChibiCtx';
 import { UnknownChibiFunctionError } from './ChibiErrors';
 import type { ChibiJson } from './ChibiGenerator';
 import { functionsRegistry } from './functions';
@@ -5,8 +6,11 @@ import { functionsRegistry } from './functions';
 export class ChibiConsumer {
   private script: ChibiJson<any>;
 
+  private ctx: ChibiCtx;
+
   constructor(script) {
     this.script = script;
+    this.ctx = new ChibiCtx();
   }
 
   run() {
@@ -17,8 +21,12 @@ export class ChibiConsumer {
         throw new UnknownChibiFunctionError(functionName);
       }
       const func = functionsRegistry[functionName];
-      state = func(null, state, ...args);
+      state = func(this.ctx, state, ...args);
     }
     return state;
+  }
+
+  addVariable(name: string, value: any) {
+    this.ctx.set(name, value);
   }
 }
