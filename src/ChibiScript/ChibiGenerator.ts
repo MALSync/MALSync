@@ -25,7 +25,7 @@ class ChibiGenerator<T> {
     });
   }
 
-  export() {
+  run() {
     return this.value as unknown as ChibiJson<T>;
   }
 }
@@ -47,7 +47,11 @@ type MatchesType<InputT, TargetT> = TargetT extends void
 
 type ChainableMethods<T, R extends Record<string, (...args: any[]) => any>> = {
   [K in keyof R]: MatchesType<T, InputType<R[K]>> extends true
-    ? (...args: RemoveFirstTwo<Parameters<R[K]>>) => ChibiGenerator<ReturnType<R[K]>>
+    ? <Args extends RemoveFirstTwo<Parameters<R[K]>>>(
+        ...args: Args
+      ) => R[K] extends typeof ifFunction
+        ? ChibiGenerator<ReturnType<typeof ifFunction<Args>>>
+        : ChibiGenerator<ReturnType<R[K]>>
     : TypeMismatchError<string & K, T, InputType<R[K]>>;
 };
 
