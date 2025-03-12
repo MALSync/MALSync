@@ -1,9 +1,4 @@
-import booleanFunction from './functions/booleanFunction';
-import ifFunction from './functions/ifFunction';
-import regexFunction from './functions/regexFunction';
-import stringFunction from './functions/stringFunction';
-
-const functionsRegistry = { regexFunction, stringFunction, ifFunction, booleanFunction };
+import { functionsRegistry } from './functions';
 
 export type ChibiJson<T = void> = string[][] & { __type?: T };
 
@@ -49,8 +44,8 @@ type ChainableMethods<T, R extends Record<string, (...args: any[]) => any>> = {
   [K in keyof R]: MatchesType<T, InputType<R[K]>> extends true
     ? <Args extends RemoveFirstTwo<Parameters<R[K]>>>(
         ...args: Args
-      ) => R[K] extends typeof ifFunction
-        ? ChibiGenerator<ReturnType<typeof ifFunction<Args>>>
+      ) => R[K] extends typeof functionsRegistry.ifFunction
+        ? ChibiGenerator<ReturnType<typeof functionsRegistry.ifFunction<Args>>>
         : ChibiGenerator<ReturnType<R[K]>>
     : TypeMismatchError<string & K, T, InputType<R[K]>>;
 };
