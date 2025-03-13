@@ -42,7 +42,7 @@ describe('ChibiConsumer', () => {
 
   describe('context', () => {
     it('should add and retrieve variables', () => {
-      const code = $c.urlFunction().run();
+      const code = $c.url().run();
       const consumer = new ChibiConsumer();
       consumer.addVariable('url', 'hello');
 
