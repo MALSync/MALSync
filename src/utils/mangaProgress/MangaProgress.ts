@@ -2,7 +2,7 @@ import { collectorConfig, executeCollector } from './ModeFactory';
 import { Cache } from '../Cache';
 
 export type mangaProgressConfig = {
-  condition?: string | (() => boolean);
+  condition?: string | (() => Promise<boolean> | boolean);
   current: collectorConfig;
   total: collectorConfig;
 };
@@ -55,11 +55,11 @@ export class MangaProgress {
     return { current, total };
   }
 
-  protected applyConfig() {
+  protected async applyConfig() {
     for (const key in this.configs) {
       const config = this.configs[key];
       if (typeof config.condition !== 'undefined') {
-        if (typeof config.condition === 'function' && config.condition() === false) continue;
+        if (typeof config.condition === 'function' && !(await config.condition())) continue;
         if (typeof config.condition === 'string' && !j.$(config.condition).length) continue;
       }
       try {
@@ -105,8 +105,8 @@ export class MangaProgress {
     return result.current >= limit;
   }
 
-  execute() {
-    this.result = this.applyConfig();
+  async execute() {
+    this.result = await this.applyConfig();
   }
 
   async start() {
@@ -115,8 +115,8 @@ export class MangaProgress {
     return new Promise<boolean>((resolve, reject) => {
       this.stopPromise = () => resolve(false);
       let resolved = false;
-      this.interval = setInterval(() => {
-        this.execute();
+      this.interval = setInterval(async () => {
+        await this.execute();
 
         if (!this.isSuccessful()) {
           clearInterval(this.interval);
