@@ -19,10 +19,10 @@ export default {
     thenAction: Args[1],
     elseAction: Args[2],
   ): UnwrapJson<Args[1]> | UnwrapJson<Args[2]> {
-    const conditionState = ctx.getConsumer().run(condition);
+    const conditionState = ctx.run(condition);
     if (conditionState) {
-      return ctx.getConsumer().run(thenAction) as UnwrapJson<Args[1]>;
+      return ctx.run(thenAction) as UnwrapJson<Args[1]>;
     }
-    return ctx.getConsumer().run(elseAction) as UnwrapJson<Args[2]>;
+    return ctx.run(elseAction) as UnwrapJson<Args[2]>;
   },
 };

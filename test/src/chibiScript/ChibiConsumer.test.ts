@@ -7,7 +7,7 @@ describe('ChibiConsumer', () => {
   describe('function chaining', () => {
     it('should allow chaining string functions', () => {
       const code = $c.string('test').run();
-      expect(generateAndExecute(code)).to.equal('test');
+      expect(generateAndExecute(code).run()).to.equal('test');
     });
 
     it('should chain multiple functions correctly', () => {
@@ -16,7 +16,7 @@ describe('ChibiConsumer', () => {
         .regex('e.', 0)
         .run();
 
-      expect(generateAndExecute(code)).to.equal('el');
+      expect(generateAndExecute(code).run()).to.equal('el');
     });
 
     it('should chain ifFunction correctly', () => {
@@ -28,7 +28,7 @@ describe('ChibiConsumer', () => {
         )
         .run();
 
-      expect(generateAndExecute(code)).to.equal('hello');
+      expect(generateAndExecute(code).run()).to.equal('hello');
     });
 
     it('Handle unknown function', () => {
@@ -36,24 +36,34 @@ describe('ChibiConsumer', () => {
         'unknownFunction',
         'test',
       ]]
-      expect(() => new ChibiConsumer().run(code)).to.throw(UnknownChibiFunctionError);
+      expect(() => new ChibiConsumer(code).run()).to.throw(UnknownChibiFunctionError);
     })
   });
 
   describe('context', () => {
     it('should add and retrieve variables', () => {
       const code = $c.url().run();
-      const consumer = new ChibiConsumer();
+      const consumer = new ChibiConsumer(code);
       consumer.addVariable('url', 'hello');
 
-      expect(consumer.run(code)).to.equal('hello');
+      expect(consumer.run()).to.equal('hello');
+    });
+
+    it('should throw error when run is called multiple times', () => {
+      const code = $c.string('test').run();
+      const consumer = new ChibiConsumer(code);
+
+      expect(consumer.run()).to.equal('test');
+
+      expect(() => consumer.run()).to.throw();
     });
   });
 });
 
-function generateAndExecute(input: ChibiJson<any>, consumer: ChibiConsumer = new ChibiConsumer()) {
+function generateAndExecute(input: ChibiJson<any>) {
   const json = JSON.stringify(input);
   const script = JSON.parse(json);
+  const consumer = new ChibiConsumer(script);
 
-  return consumer.run(script);
+  return consumer;
 }

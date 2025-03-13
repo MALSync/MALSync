@@ -1,4 +1,6 @@
 import type { ChibiConsumer } from './ChibiConsumer';
+import type { ChibiJson } from './ChibiGenerator';
+import { ChibiReturn } from './ChibiReturn';
 
 export class ChibiCtx {
   private variables: Record<string, any>;
@@ -8,6 +10,10 @@ export class ChibiCtx {
   constructor(consumer: ChibiConsumer) {
     this.consumer = consumer;
     this.variables = {};
+  }
+
+  run(script: ChibiJson<any>) {
+    return this.getConsumer()._subroutine(script);
   }
 
   set(name: string, value: any) {
@@ -20,5 +26,9 @@ export class ChibiCtx {
 
   getConsumer() {
     return this.consumer;
+  }
+
+  return(value: any) {
+    return new ChibiReturn(value);
   }
 }

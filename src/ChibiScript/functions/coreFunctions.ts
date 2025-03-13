@@ -23,7 +23,7 @@ export default {
    * @returns The input value unchanged
    */
   return: (ctx: ChibiCtx, input: any): any => {
-    return input;
+    return ctx.return(input);
   },
 
   /**
@@ -47,7 +47,7 @@ export default {
    */
   setVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
     if (value !== undefined) {
-      const resolvedValue = ctx.getConsumer().run(value);
+      const resolvedValue = ctx.run(value);
       ctx.set(key, resolvedValue);
     } else {
       ctx.set(key, input);
