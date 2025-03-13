@@ -3,6 +3,7 @@ import controlFlowFunctions from './controlFlowFunctions';
 import stringFunctions from './stringFunctions';
 import domFunctions from './domFunctions';
 import coreFunctions from './coreFunctions';
+import utilsFunctions from './utilsFunctions';
 
 export default {
   ...literalFunctions,
@@ -10,4 +11,5 @@ export default {
   ...stringFunctions,
   ...domFunctions,
   ...coreFunctions,
+  ...utilsFunctions,
 };

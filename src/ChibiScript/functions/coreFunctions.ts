@@ -62,7 +62,7 @@ export default {
    * @returns The input value (for chaining)
    */
   log: (ctx: ChibiCtx, input: any, prefix: string = 'ChibiScript'): any => {
-    con.m(prefix).log(prefix, input);
+    con.m(prefix).log(input);
     return input;
   },
 
