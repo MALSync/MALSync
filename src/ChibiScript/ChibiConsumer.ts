@@ -4,19 +4,16 @@ import type { ChibiJson } from './ChibiGenerator';
 import { functionsRegistry } from './functions';
 
 export class ChibiConsumer {
-  private script: ChibiJson<any>;
-
   private ctx: ChibiCtx;
 
-  constructor(script) {
-    this.script = script;
-    this.ctx = new ChibiCtx();
+  constructor() {
+    this.ctx = new ChibiCtx(this);
   }
 
-  run() {
+  run(script: ChibiJson<any>) {
     let state = null;
     // eslint-disable-next-line no-restricted-syntax
-    for (const [functionName, ...args] of this.script) {
+    for (const [functionName, ...args] of script) {
       if (!functionsRegistry[functionName]) {
         throw new UnknownChibiFunctionError(functionName);
       }

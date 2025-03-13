@@ -1,4 +1,3 @@
-import { ChibiConsumer } from '../ChibiConsumer';
 import type { ChibiCtx } from '../ChibiCtx';
 import type { ChibiJson } from '../ChibiGenerator';
 
@@ -11,9 +10,9 @@ export default function ifFunction<Args extends any[]>(
   thenAction: Args[1],
   elseAction: Args[2],
 ): Unwrap<Args[1]> | Unwrap<Args[2]> {
-  const conditionState = new ChibiConsumer(condition).run();
+  const conditionState = ctx.getConsumer().run(condition);
   if (conditionState) {
-    return new ChibiConsumer(thenAction).run() as Unwrap<Args[1]>;
+    return ctx.getConsumer().run(thenAction) as Unwrap<Args[1]>;
   }
-  return new ChibiConsumer(elseAction).run() as Unwrap<Args[2]>;
+  return ctx.getConsumer().run(elseAction) as Unwrap<Args[2]>;
 }

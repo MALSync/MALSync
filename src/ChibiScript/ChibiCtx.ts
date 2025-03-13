@@ -1,7 +1,12 @@
+import type { ChibiConsumer } from './ChibiConsumer';
+
 export class ChibiCtx {
   private variables: Record<string, any>;
 
-  constructor() {
+  private consumer: ChibiConsumer;
+
+  constructor(consumer: ChibiConsumer) {
+    this.consumer = consumer;
     this.variables = {};
   }
 
@@ -11,5 +16,9 @@ export class ChibiCtx {
 
   get(name: string) {
     return this.variables[name];
+  }
+
+  getConsumer() {
+    return this.consumer;
   }
 }

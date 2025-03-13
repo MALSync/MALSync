@@ -36,24 +36,24 @@ describe('ChibiConsumer', () => {
         'unknownFunction',
         'test',
       ]]
-      expect(() => new ChibiConsumer(code).run()).to.throw(UnknownChibiFunctionError);
+      expect(() => new ChibiConsumer().run(code)).to.throw(UnknownChibiFunctionError);
     })
   });
 
   describe('context', () => {
     it('should add and retrieve variables', () => {
       const code = $c.urlFunction().run();
-      const consumer = new ChibiConsumer(code);
+      const consumer = new ChibiConsumer();
       consumer.addVariable('url', 'hello');
 
-      expect(consumer.run()).to.equal('hello');
+      expect(consumer.run(code)).to.equal('hello');
     });
   });
 });
 
-function generateAndExecute(input: ChibiJson<any>) {
+function generateAndExecute(input: ChibiJson<any>, consumer: ChibiConsumer = new ChibiConsumer()) {
   const json = JSON.stringify(input);
   const script = JSON.parse(json);
 
-  return new ChibiConsumer(script).run();
+  return consumer.run(script);
 }
