@@ -4,6 +4,7 @@ import stringFunctions from './stringFunctions';
 import domFunctions from './domFunctions';
 import coreFunctions from './coreFunctions';
 import utilsFunctions from './utilsFunctions';
+import conditionFunctions from './conditionFunctions';
 
 export default {
   ...literalFunctions,
@@ -12,4 +13,5 @@ export default {
   ...domFunctions,
   ...coreFunctions,
   ...utilsFunctions,
+  ...conditionFunctions,
 };

@@ -43,9 +43,9 @@ export default {
    * @param domain - Domain to use for converting relative URLs
    * @returns Absolute URL
    * @example
-   * absoluteLink("/path/to/page", "https://example.com") // returns "https://example.com/path/to/page"
+   * urlAbsolute("/path/to/page", "https://example.com") // returns "https://example.com/path/to/page"
    */
-  urlAbsoluteLink: (ctx: ChibiCtx, input: string, domain: string) => {
+  urlAbsolute: (ctx: ChibiCtx, input: string, domain: string) => {
     return utils.absoluteLink(input, domain);
   },
 
