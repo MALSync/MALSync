@@ -52,6 +52,10 @@ type MatchesType<InputT, TargetT> = TargetT extends void
 // List of function names that accept boolean rest parameters
 type BooleanRestParamFunctions = 'and' | 'or';
 
+type ArrayToEntryFunctions = 'first' | 'last' | 'at';
+
+type passthroughFunctions = 'slice' | 'reverse';
+
 type ChainableMethods<T, R extends Record<string, (...args: any[]) => any>> = {
   [K in keyof R]: MatchesType<T, InputType<R[K]>> extends true
     ? K extends BooleanRestParamFunctions
@@ -62,7 +66,11 @@ type ChainableMethods<T, R extends Record<string, (...args: any[]) => any>> = {
             ...args: Args
           ) => R[K] extends typeof functionsRegistry.if
             ? ChibiGenerator<ReturnType<typeof functionsRegistry.if<Args>>>
-            : ChibiGenerator<ReturnType<R[K]>>
+            : K extends ArrayToEntryFunctions
+              ? ChibiGenerator<ReturnType<typeof functionsRegistry.at<T extends any[] ? T : never>>>
+              : K extends passthroughFunctions
+                ? ChibiGenerator<T>
+                : ChibiGenerator<ReturnType<R[K]>>
     : TypeMismatchError<string & K, T, InputType<R[K]>>;
 };
 

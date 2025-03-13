@@ -1,5 +1,7 @@
 import type { ChibiCtx } from '../ChibiCtx';
 
+type GetElementType<T extends any[]> = T extends (infer U)[] ? U : never;
+
 export default {
   /**
    * Gets the first element from an array
@@ -8,7 +10,7 @@ export default {
    * @example
    * first([1, 2, 3]) // returns 1
    */
-  first: (ctx: ChibiCtx, input: any[]) => {
+  first: <T extends any[]>(ctx: ChibiCtx, input: T): GetElementType<T> => {
     return input[0];
   },
 
@@ -19,7 +21,7 @@ export default {
    * @example
    * last([1, 2, 3]) // returns 3
    */
-  last: (ctx: ChibiCtx, input: any[]) => {
+  last: <T extends any[]>(ctx: ChibiCtx, input: T): GetElementType<T> => {
     return input[input.length - 1];
   },
 
@@ -31,7 +33,7 @@ export default {
    * @example
    * at([1, 2, 3], 1) // returns 2
    */
-  at: (ctx: ChibiCtx, input: any[], index: number) => {
+  at: <T extends any[]>(ctx: ChibiCtx, input: T, index: number): GetElementType<T> => {
     return input[index];
   },
 
@@ -55,8 +57,8 @@ export default {
    * @example
    * slice([1, 2, 3, 4, 5], 1, 3) // returns [2, 3]
    */
-  slice: (ctx: ChibiCtx, input: any[], start: number, end?: number) => {
-    return input.slice(start, end);
+  slice: <T extends any[]>(ctx: ChibiCtx, input: T, start: number, end?: number) => {
+    return input.slice(start, end) as T;
   },
 
   /**
@@ -66,8 +68,8 @@ export default {
    * @example
    * reverse([1, 2, 3]) // returns [3, 2, 1]
    */
-  reverse: (ctx: ChibiCtx, input: any[]) => {
-    return input.reverse();
+  reverse: <T extends any[]>(ctx: ChibiCtx, input: T) => {
+    return input.reverse() as T;
   },
 
   /**
