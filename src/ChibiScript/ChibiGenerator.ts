@@ -80,3 +80,23 @@ export type { ChibiGenerator };
  * const script = $c.stringFunction("Hello, world!").run();
  */
 export const $c = new ChibiGenerator();
+
+// ## MatchesType Tests ##
+// Expect true
+type MatchesTypeTrue1 = MatchesType<string, string>;
+type MatchesTypeTrue2 = MatchesType<number, number>;
+type MatchesTypeTrue3 = MatchesType<bigint, bigint>;
+type MatchesTypeTrue4 = MatchesType<boolean, boolean>;
+type MatchesTypeTrue5 = MatchesType<null, null>;
+type MatchesTypeTrue6 = MatchesType<undefined, undefined>;
+type MatchesTypeTrue7 = MatchesType<boolean, void>;
+type MatchesTypeTrue8 = MatchesType<true, false>;
+type MatchesTypeTrue9 = MatchesType<string[], any[]>;
+
+// Expect false
+type MatchesTypeFalse1 = MatchesType<string, number>;
+type MatchesTypeFalse2 = MatchesType<number, string>;
+type MatchesTypeFalse3 = MatchesType<bigint, number>;
+type MatchesTypeFalse4 = MatchesType<boolean, number>;
+type MatchesTypeFalse5 = MatchesType<null, number>;
+type MatchesTypeFalse6 = MatchesType<undefined, number>;

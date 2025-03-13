@@ -5,6 +5,7 @@ import domFunctions from './domFunctions';
 import coreFunctions from './coreFunctions';
 import utilsFunctions from './utilsFunctions';
 import conditionFunctions from './conditionFunctions';
+import arrayFunctions from './arrayFunctions';
 
 export default {
   ...literalFunctions,
@@ -14,4 +15,5 @@ export default {
   ...coreFunctions,
   ...utilsFunctions,
   ...conditionFunctions,
+  ...arrayFunctions,
 };
