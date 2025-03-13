@@ -33,4 +33,14 @@ export default {
     if (value !== undefined) return value;
     return Number(input);
   },
+
+  /**
+   * Returns the provided array
+   * @input void
+   * @param value - array value to return
+   * @returns returns the array
+   */
+  array: (ctx: ChibiCtx, input: void, value: string[]) => {
+    return value;
+  },
 };
