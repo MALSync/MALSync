@@ -1,13 +1,11 @@
 import ifFunction from './ifFunction';
 import regexFunction from './regexFunction';
-import stringFunction from './stringFunction';
-import booleanFunction from './booleanFunction';
 import urlFunction from './urlFunction';
+import literalFunctions from './literalFunctions';
 
-export const functionsRegistry = {
+export default {
+  ...literalFunctions,
   regexFunction,
-  stringFunction,
   ifFunction,
-  booleanFunction,
   urlFunction,
 };

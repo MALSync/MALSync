@@ -6,13 +6,13 @@ import { UnknownChibiFunctionError } from '../../../src/chibiScript/ChibiErrors'
 describe('ChibiConsumer', () => {
   describe('function chaining', () => {
     it('should allow chaining string functions', () => {
-      const code = $c.stringFunction('test').run();
+      const code = $c.string('test').run();
       expect(generateAndExecute(code)).to.equal('test');
     });
 
     it('should chain multiple functions correctly', () => {
       const code = $c
-        .stringFunction('hello')
+        .string('hello')
         .regexFunction('e.', 0)
         .run();
 
@@ -22,9 +22,9 @@ describe('ChibiConsumer', () => {
     it('should chain ifFunction correctly', () => {
       const code = $c
         .ifFunction(
-          $c.booleanFunction(true).run(),
-          $c.stringFunction('hello').run(),
-          $c.stringFunction('world').run(),
+          $c.boolean(true).run(),
+          $c.string('hello').run(),
+          $c.string('world').run(),
         )
         .run();
 

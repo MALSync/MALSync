@@ -1,4 +1,4 @@
-import { functionsRegistry } from './functions';
+import functionsRegistry from './functions';
 
 export type ChibiJson<T = void> = string[][] & { __type?: T };
 
@@ -20,6 +20,11 @@ class ChibiGenerator<T> {
     });
   }
 
+  /**
+   * Finalizes and returns the built ChibiScript.
+   *
+   * @returns A ChibiJson representation of the built script
+   */
   run() {
     return this.value as unknown as ChibiJson<T>;
   }
@@ -57,4 +62,12 @@ interface ChibiGenerator<T> extends ChainableMethods<T, typeof functionsRegistry
 
 export type { ChibiGenerator };
 
+/**
+ * Global entry point for creating ChibiScript programs.
+ * Use this to start building a new ChibiScript.
+ *
+ * @example
+ * // Create a script that returns a string
+ * const script = $c.stringFunction("Hello, world!").run();
+ */
 export const $c = new ChibiGenerator();
