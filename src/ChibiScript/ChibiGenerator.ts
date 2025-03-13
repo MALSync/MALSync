@@ -51,8 +51,8 @@ type ChainableMethods<T, R extends Record<string, (...args: any[]) => any>> = {
       ? () => ChibiGenerator<ReturnType<R[K]>>
       : <Args extends RemoveFirstTwo<Parameters<R[K]>>>(
           ...args: Args
-        ) => R[K] extends typeof functionsRegistry.ifFunction
-          ? ChibiGenerator<ReturnType<typeof functionsRegistry.ifFunction<Args>>>
+        ) => R[K] extends typeof functionsRegistry.if
+          ? ChibiGenerator<ReturnType<typeof functionsRegistry.if<Args>>>
           : ChibiGenerator<ReturnType<R[K]>>
     : TypeMismatchError<string & K, T, InputType<R[K]>>;
 };

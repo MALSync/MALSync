@@ -3,6 +3,7 @@ import type { ChibiCtx } from '../ChibiCtx';
 export default {
   /**
    * Converts input to string or returns the provided static value
+   * @input any
    * @param value - Optional static string value to return instead of converting input
    * @returns A string representation of the input or the static value
    */
@@ -13,6 +14,7 @@ export default {
 
   /**
    * Converts input to boolean or returns the provided static value
+   * @input any
    * @param value - Optional static boolean value to return instead of converting input
    * @returns A boolean representation of the input or the static value
    */
@@ -23,6 +25,7 @@ export default {
 
   /**
    * Converts input to number or returns the provided static value
+   * @input any
    * @param value - Optional static number value to return instead of converting input
    * @returns A number representation of the input or the static value
    */

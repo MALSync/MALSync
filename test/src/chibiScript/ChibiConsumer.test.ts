@@ -21,7 +21,7 @@ describe('ChibiConsumer', () => {
 
     it('should chain ifFunction correctly', () => {
       const code = $c
-        .ifFunction(
+        .if(
           $c.boolean(true).run(),
           $c.string('hello').run(),
           $c.string('world').run(),
