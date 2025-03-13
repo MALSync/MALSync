@@ -42,11 +42,13 @@ type MatchesType<InputT, TargetT> = TargetT extends void
 
 type ChainableMethods<T, R extends Record<string, (...args: any[]) => any>> = {
   [K in keyof R]: MatchesType<T, InputType<R[K]>> extends true
-    ? <Args extends RemoveFirstTwo<Parameters<R[K]>>>(
-        ...args: Args
-      ) => R[K] extends typeof functionsRegistry.ifFunction
-        ? ChibiGenerator<ReturnType<typeof functionsRegistry.ifFunction<Args>>>
-        : ChibiGenerator<ReturnType<R[K]>>
+    ? RemoveFirstTwo<Parameters<R[K]>> extends never
+      ? () => ChibiGenerator<ReturnType<R[K]>>
+      : <Args extends RemoveFirstTwo<Parameters<R[K]>>>(
+          ...args: Args
+        ) => R[K] extends typeof functionsRegistry.ifFunction
+          ? ChibiGenerator<ReturnType<typeof functionsRegistry.ifFunction<Args>>>
+          : ChibiGenerator<ReturnType<R[K]>>
     : TypeMismatchError<string & K, T, InputType<R[K]>>;
 };
 
