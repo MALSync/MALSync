@@ -140,6 +140,10 @@
     "Miruro": [
       "*://*.miruro.to/*"
     ],
+    "Zoro": [
+      "*://hianime.bz/*",
+      "*://hianime.pe/*"
+    ],
     "iframe": [
       "*://z7ihwgqj.fun/*",
       "*://megacloud.club/*",
