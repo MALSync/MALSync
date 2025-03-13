@@ -68,6 +68,21 @@ describe('String Functions', () => {
       const code = $c.string('helloworld').regex('\\d+', 0).run();
       expect(() => generateAndExecute(code).run()).to.throw(/No match found/);
     });
+
+    it('should be case-insensitive by default', () => {
+      const code = $c.string('HELLO123').regex('hello(\\d+)', 1).run();
+      expect(generateAndExecute(code).run()).to.equal('123');
+    });
+
+    it('should respect provided flags', () => {
+      const code = $c.string('HELLO123').regex('hello(\\d+)', 1, '').run();
+      expect(() => generateAndExecute(code).run()).to.throw(/No match found/);
+    });
+
+    it('should use multiple flags', () => {
+      const code = $c.string('HELLO\n123').regex('hello(.*)', 1, 'is').run();
+      expect(generateAndExecute(code).run()).to.equal('\n123');
+    });
   });
 
   describe('toLowerCase', () => {

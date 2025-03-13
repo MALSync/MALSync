@@ -79,12 +79,13 @@ export default {
    * Checks if string matches a regular expression
    * @input string - String to test
    * @param pattern - Regular expression pattern
+   * @param flags - Regex flags (default: 'i' for case-insensitive)
    * @returns Boolean indicating if the string matches the pattern
    * @example
    * matches("abc123", "^[a-z]+\\d+$") // returns true
    */
-  matches: (ctx: ChibiCtx, input: string, pattern: string) => {
-    const regex = new RegExp(pattern);
+  matches: (ctx: ChibiCtx, input: string, pattern: string, flags: string = 'i') => {
+    const regex = new RegExp(pattern, flags);
     return regex.test(input);
   },
 

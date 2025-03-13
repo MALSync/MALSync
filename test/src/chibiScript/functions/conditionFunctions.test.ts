@@ -115,6 +115,16 @@ describe('Condition Functions', () => {
       const code = $c.string('abc123').matches('^\\d+$').run();
       expect(generateAndExecute(code).run()).to.be.false;
     });
+
+    it('should be case-insensitive by default', () => {
+      const code = $c.string('ABC123').matches('^[a-z]+\\d+$').run();
+      expect(generateAndExecute(code).run()).to.be.true;
+    });
+
+    it('should respect provided flags', () => {
+      const code = $c.string('ABC123').matches('^[a-z]+\\d+$', '').run();
+      expect(generateAndExecute(code).run()).to.be.false;
+    });
   });
 
   describe('and', () => {

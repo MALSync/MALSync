@@ -54,7 +54,7 @@ type BooleanRestParamFunctions = 'and' | 'or';
 
 type ArrayToEntryFunctions = 'first' | 'last' | 'at';
 
-type passthroughFunctions = 'slice' | 'reverse';
+type passthroughFunctions = 'slice' | 'reverse' | 'log';
 
 type ChainableMethods<T, R extends Record<string, (...args: any[]) => any>> = {
   [K in keyof R]: MatchesType<T, InputType<R[K]>> extends true
