@@ -11,12 +11,12 @@ describe('ChibiGenerator', () => {
     it('should chain multiple functions correctly', () => {
       const result = $c
         .string('hello')
-        .regexFunction('pattern', 1)
+        .regex('pattern', 1)
         .run();
 
       expect(result).to.deep.equal([
         ['string', 'hello'],
-        ['regexFunction', 'pattern', 1]
+        ['regex', 'pattern', 1]
       ]);
     });
   });

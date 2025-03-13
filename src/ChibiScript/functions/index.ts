@@ -1,11 +1,11 @@
-import regexFunction from './regexFunction';
 import urlFunction from './urlFunction';
 import literalFunctions from './literalFunctions';
 import controlFlowFunctions from './controlFlowFunctions';
+import stringFunctions from './stringFunctions';
 
 export default {
   ...literalFunctions,
   ...controlFlowFunctions,
-  regexFunction,
+  ...stringFunctions,
   urlFunction,
 };

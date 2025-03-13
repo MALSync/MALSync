@@ -13,7 +13,7 @@ describe('ChibiConsumer', () => {
     it('should chain multiple functions correctly', () => {
       const code = $c
         .string('hello')
-        .regexFunction('e.', 0)
+        .regex('e.', 0)
         .run();
 
       expect(generateAndExecute(code)).to.equal('el');
