@@ -9,6 +9,7 @@ export class ExtractJsonPlugin {
       entryName: '',
       typescriptFile: '',
       filename: '',
+      folderMode: false,
       ...options,
     };
   }
@@ -57,22 +58,44 @@ export class ExtractJsonPlugin {
           const module = require(outputPath);
           const jsonData = globalThis._extractJson.default();
 
-          const jsonString = JSON.stringify(jsonData, null, 2);
-          const outputFilePath = path.join(compiler.outputPath, filename);
+          if (this.options.folderMode) {
+            const folderPath = path.join(compiler.outputPath, filename);
 
-          const dirname = path.dirname(outputFilePath);
-          if (!fs.existsSync(dirname)) {
-            fs.mkdirSync(dirname, { recursive: true });
+            if (!fs.existsSync(folderPath)) {
+              fs.mkdirSync(folderPath, { recursive: true });
+            }
+
+            for (const [key, value] of Object.entries(jsonData)) {
+              const filePath = path.join(folderPath, `${key}.json`);
+              const jsonString = JSON.stringify(value, null, 2);
+              fs.writeFileSync(filePath, jsonString);
+
+              const stats = fs.statSync(filePath);
+
+              const fileSize = stats.size;
+              let fileSizeDisplay = `${fileSize} bytes`;
+              console.log(
+                `asset \x1b[32m${filename}/${key}.json\x1b[0m ${fileSizeDisplay} \x1b[33m[extracted]\x1b[0m`
+              );
+            }
+          } else {
+            const jsonString = JSON.stringify(jsonData, null, 2);
+            const outputFilePath = path.join(compiler.outputPath, filename);
+
+            const dirname = path.dirname(outputFilePath);
+            if (!fs.existsSync(dirname)) {
+              fs.mkdirSync(dirname, { recursive: true });
+            }
+            fs.writeFileSync(outputFilePath, jsonString);
+
+            const stats = fs.statSync(outputFilePath);
+            const fileSizeInBytes = stats.size;
+            let fileSizeDisplay = `${fileSizeInBytes} bytes`;
+
+            console.log(
+              `\nasset \x1b[32m${filename}\x1b[0m ${fileSizeDisplay} \x1b[33m[extracted]\x1b[0m (name: ${entryName})`,
+            );
           }
-          fs.writeFileSync(outputFilePath, jsonString);
-
-          const stats = fs.statSync(outputFilePath);
-          const fileSizeInBytes = stats.size;
-          let fileSizeDisplay = `${fileSizeInBytes} bytes`;
-
-          console.log(
-            `\nasset \x1b[32m${filename}\x1b[0m ${fileSizeDisplay} \x1b[33m[extracted]\x1b[0m (name: ${entryName})`,
-          );
 
           callback();
         } catch (error) {

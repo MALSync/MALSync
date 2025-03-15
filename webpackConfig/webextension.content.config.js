@@ -144,5 +144,11 @@ module.exports = {
       typescriptFile: path.join(__dirname, '..', 'src/pages-chibi/builder/chibiList.ts'),
       filename: 'chibi/list.json',
     }),
+    new ExtractJsonPlugin({
+      entryName: 'chibi-pages',
+      typescriptFile: path.join(__dirname, '..', 'src/pages-chibi/builder/chibiPages.ts'),
+      filename: 'chibi/pages',
+      folderMode: true,
+    }),
   ],
 };
