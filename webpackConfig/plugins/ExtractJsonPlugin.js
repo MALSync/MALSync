@@ -23,7 +23,7 @@ export class ExtractJsonPlugin {
         'expose-loader?exposes=_extractJson!' + typescriptFile,
         {
           name: entryName,
-          filename: 'temp/[name].js'
+          filename: '../temp/[name].js'
         },
       );
       entry.apply(compiler);
@@ -59,6 +59,11 @@ export class ExtractJsonPlugin {
 
           const jsonString = JSON.stringify(jsonData, null, 2);
           const outputFilePath = path.join(compiler.outputPath, filename);
+
+          const dirname = path.dirname(outputFilePath);
+          if (!fs.existsSync(dirname)) {
+            fs.mkdirSync(dirname, { recursive: true });
+          }
           fs.writeFileSync(outputFilePath, jsonString);
 
           const stats = fs.statSync(outputFilePath);

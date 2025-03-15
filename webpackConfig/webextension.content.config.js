@@ -7,6 +7,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const pages = require('./utils/pages').pages();
 const { getKeys } = require('./utils/keys');
 const { getVirtualScript } = require('./utils/general');
+const ExtractJsonPlugin = require('./plugins/ExtractJsonPlugin').default;
 
 let entry = {
   'content-script': path.join(
@@ -111,8 +112,8 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    filename: 'webextension/content/[name].js',
-    path: path.resolve(__dirname, '..', 'dist'),
+    filename: 'content/[name].js',
+    path: path.resolve(__dirname, '..', 'dist', 'webextension'),
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
@@ -137,6 +138,11 @@ module.exports = {
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
+    }),
+    new ExtractJsonPlugin({
+      entryName: 'chibi-list',
+      typescriptFile: path.join(__dirname, '..', 'src/pages-chibi/builder/chibiList.ts'),
+      filename: 'chibi/list.json',
     }),
   ],
 };
