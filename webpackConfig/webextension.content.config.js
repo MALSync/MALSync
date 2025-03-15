@@ -111,8 +111,8 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    filename: 'content/[name].js',
-    path: path.resolve(__dirname, '..', 'dist', 'webextension'),
+    filename: 'webextension/content/[name].js',
+    path: path.resolve(__dirname, '..', 'dist'),
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({

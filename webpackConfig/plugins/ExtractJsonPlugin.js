@@ -21,7 +21,10 @@ export class ExtractJsonPlugin {
       const entry = new webpack.EntryPlugin(
         context,
         'expose-loader?exposes=_extractJson!' + typescriptFile,
-        entryName,
+        {
+          name: entryName,
+          filename: 'temp/[name].js'
+        },
       );
       entry.apply(compiler);
     }
