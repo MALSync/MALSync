@@ -52,4 +52,11 @@ export interface PageInterfaceCompiled extends PageInterface {
 export type PageListInterface = Pick<
   PageInterfaceCompiled,
   'name' | 'type' | 'domain' | 'languages' | 'urls' | 'search' | 'database' | 'version'
->;
+> & {
+  /** The root URL to the page integration */
+  root?: string;
+};
+
+export type PageListJsonInterface = {
+  pages: { [key: string]: PageListInterface };
+};
