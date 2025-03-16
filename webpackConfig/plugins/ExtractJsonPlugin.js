@@ -54,7 +54,7 @@ export class ExtractJsonPlugin {
             delete require.cache[outputPath];
           }
           delete globalThis._extractJson;
-
+          global.jQuery = {};
           const module = require(outputPath);
           const jsonData = globalThis._extractJson.default();
 
