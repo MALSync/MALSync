@@ -11,6 +11,7 @@ export default (): PageListJsonInterface => {
   Object.keys(pages).forEach(key => {
     const pageObj = pages[key];
     definitions.pages[key] = {
+      key,
       name: pageObj.name,
       version: hashes[key],
       type: pageObj.type,

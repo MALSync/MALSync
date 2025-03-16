@@ -57,6 +57,7 @@ let entry = {
   ),
   iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   popup: path.join(__dirname, '..', 'src/popup.ts'),
+  chibi: 'expose-loader?exposes=_Page|Chibi!' + path.join(__dirname, '..', 'src', 'pages-chibi', 'ChibiProxy.ts'),
 }
 
 pages.forEach(page => {

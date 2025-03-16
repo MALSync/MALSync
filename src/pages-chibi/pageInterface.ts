@@ -53,6 +53,9 @@ export type PageListInterface = Pick<
   PageInterfaceCompiled,
   'name' | 'type' | 'domain' | 'languages' | 'urls' | 'search' | 'database' | 'version'
 > & {
+  /** The unique key of the page integration */
+  key: string;
+
   /** The root URL to the page integration */
   root?: string;
 };
@@ -60,3 +63,5 @@ export type PageListInterface = Pick<
 export type PageListJsonInterface = {
   pages: { [key: string]: PageListInterface };
 };
+
+export type PageJsonInterface = PageInterfaceCompiled;

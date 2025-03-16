@@ -1,4 +1,4 @@
-import { PageInterfaceCompiled, PageListJsonInterface } from '../pageInterface';
+import { PageInterfaceCompiled, PageJsonInterface, PageListJsonInterface } from '../pageInterface';
 
 export class ChibiListRepository {
   private collections: string[];
@@ -52,7 +52,7 @@ export class ChibiListRepository {
       'GET',
       `${page.root}/pages/${key}.json?version=${page.version}`,
     );
-    const res: PageListJsonInterface = JSON.parse(response.responseText);
+    const res: PageJsonInterface = JSON.parse(response.responseText);
 
     return res;
   }

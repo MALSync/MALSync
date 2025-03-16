@@ -6,7 +6,7 @@ export const test: PageInterface = {
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['https://malsync.moe'],
+    match: ['https://malsync.moe/*'],
   },
   search: 'https://malsync.moe/search?q={searchterm}',
   sync: {
