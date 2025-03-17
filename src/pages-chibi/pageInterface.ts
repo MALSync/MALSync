@@ -64,4 +64,8 @@ export type PageListJsonInterface = {
   pages: { [key: string]: PageListInterface };
 };
 
-export type PageJsonInterface = PageInterfaceCompiled;
+export type PageJsonInterface = PageInterfaceCompiled & {
+  sync: {
+    isSyncPage: ReturnType<PageInterface['sync']['isSyncPage']>;
+  };
+};

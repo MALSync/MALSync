@@ -1,6 +1,18 @@
 import { doesUrlMatchPatterns } from 'webext-patterns';
+import type { ChibiJson } from '../chibiScript/ChibiGenerator';
+import { ChibiConsumer } from '../chibiScript/ChibiConsumer';
 import { pageInterface } from '../pages/pageInterface';
 import { ChibiListRepository } from './loader/ChibiListRepository';
+
+function getConsumer(code: ChibiJson<any>) {
+  return new ChibiConsumer(code);
+}
+
+function getUrlConsumer(code: ChibiJson<any>, url: string) {
+  const consumer = getConsumer(code);
+  consumer.addVariable('url', url);
+  return consumer;
+}
 
 export const Chibi = async (): Promise<pageInterface> => {
   const repo = await new ChibiListRepository([chrome.runtime.getURL('chibi')]).init();
@@ -27,7 +39,8 @@ export const Chibi = async (): Promise<pageInterface> => {
     languages: currentPage.languages,
     type: currentPage.type,
     isSyncPage(url) {
-      return true;
+      const consumer = getUrlConsumer(currentPage.sync.isSyncPage, url);
+      return consumer.run();
     },
     sync: {
       getTitle(url) {
@@ -45,6 +58,7 @@ export const Chibi = async (): Promise<pageInterface> => {
     },
     init(page) {
       alert('Chibi');
+      page.handlePage();
     },
   };
 };
