@@ -35,6 +35,7 @@ export const Chibi = async (): Promise<pageInterface> => {
 
   return {
     name: currentPage.name,
+    database: currentPage.database || undefined,
     domain: currentPage.domain,
     languages: currentPage.languages,
     type: currentPage.type,

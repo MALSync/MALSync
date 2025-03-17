@@ -2,6 +2,7 @@ import { PageInterface } from '../../pageInterface';
 
 export const test: PageInterface = {
   name: 'Test',
+  database: 'Test',
   domain: 'https://malsync.moe',
   languages: ['English'],
   type: 'manga',
