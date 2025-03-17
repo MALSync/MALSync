@@ -19,6 +19,20 @@ export default {
   },
 
   /**
+   * Gets the current provider from context
+   * @returns Current provider as string
+   */
+  provider: (ctx: ChibiCtx, input: void): 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' => {
+    const provider = ctx.get('provider');
+
+    if (!provider) {
+      throw new Error('Provider not set');
+    }
+
+    return provider;
+  },
+
+  /**
    * Returns the input value immediately, stopping execution
    * @input any - Value to return
    * @returns The input value unchanged

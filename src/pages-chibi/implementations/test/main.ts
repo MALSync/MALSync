@@ -38,7 +38,7 @@ export const test: PageInterface = {
       return $c.string('https://malsync.moe/next').run();
     },
     uiInjection($c) {
-      return $c.string('UI').run();
+      return $c.querySelector('h1.card-title').uiAfter().run();
     },
     getMalUrl($c) {
       return $c.string('https://myanimelist.net/manga/1').run();
@@ -55,7 +55,7 @@ export const test: PageInterface = {
       return $c.string('test').run();
     },
     uiInjection($c) {
-      return $c.string('UI').run();
+      return $c.querySelector('h1.card-title').uiPrepend().run();
     },
     getMalUrl($c) {
       return $c.string('https://myanimelist.net/manga/1').run();
