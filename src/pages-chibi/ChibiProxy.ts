@@ -43,6 +43,12 @@ export const Chibi = async (): Promise<pageInterface> => {
       const consumer = getUrlConsumer(currentPage.sync.isSyncPage, url);
       return consumer.run();
     },
+    isOverviewPage: currentPage.overview
+      ? url => {
+          const consumer = getUrlConsumer(currentPage.overview!.isOverviewPage, url);
+          return consumer.run();
+        }
+      : undefined,
     sync: {
       getTitle(url) {
         const consumer = getUrlConsumer(currentPage.sync.getTitle, url);
@@ -87,6 +93,29 @@ export const Chibi = async (): Promise<pageInterface> => {
           }
         : undefined,
     },
+    overview: currentPage.overview
+      ? {
+          getTitle(url) {
+            const consumer = getUrlConsumer(currentPage.overview!.getTitle, url);
+            return consumer.run();
+          },
+          getIdentifier(url) {
+            const consumer = getUrlConsumer(currentPage.overview!.getIdentifier, url);
+            return consumer.run();
+          },
+          uiSelector(url) {
+            const consumer = getUrlConsumer(currentPage.overview!.uiInjection, url);
+            return consumer.run();
+          },
+          getMalUrl: currentPage.overview.getMalUrl
+            ? provider => {
+                const consumer = getConsumer(currentPage.overview!.getMalUrl!);
+                consumer.addVariable('provider', provider);
+                return consumer.run();
+              }
+            : undefined,
+        }
+      : undefined,
     init(page) {
       alert('Chibi');
       page.handlePage();

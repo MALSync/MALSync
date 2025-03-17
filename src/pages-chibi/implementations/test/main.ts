@@ -12,7 +12,12 @@ export const test: PageInterface = {
   search: 'https://malsync.moe/search?q={searchterm}',
   sync: {
     isSyncPage($c) {
-      return $c.url().urlPart(0).equals('https:').run();
+      return $c
+        .and(
+          $c.url().urlPart(0).equals('https:').run(),
+          $c.url().urlPart(3).equals('pwa').not().run(),
+        )
+        .run();
     },
     getTitle($c) {
       return $c.url().urlPart(2).run();
@@ -31,6 +36,23 @@ export const test: PageInterface = {
     },
     nextEpUrl($c) {
       return $c.string('https://malsync.moe/next').run();
+    },
+    uiInjection($c) {
+      return $c.string('UI').run();
+    },
+    getMalUrl($c) {
+      return $c.string('https://myanimelist.net/manga/1').run();
+    },
+  },
+  overview: {
+    isOverviewPage($c) {
+      return $c.url().urlPart(3).equals('pwa').run();
+    },
+    getTitle($c) {
+      return $c.url().urlPart(2).run();
+    },
+    getIdentifier($c) {
+      return $c.string('test').run();
     },
     uiInjection($c) {
       return $c.string('UI').run();

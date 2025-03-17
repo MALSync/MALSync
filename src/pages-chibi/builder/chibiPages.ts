@@ -22,6 +22,16 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
     page.sync.getMalUrl = page.sync.getMalUrl($c) as any;
   }
 
+  if (page.overview) {
+    page.overview.isOverviewPage = page.overview.isOverviewPage($c) as any;
+    page.overview.getTitle = page.overview.getTitle($c) as any;
+    page.overview.getIdentifier = page.overview.getIdentifier($c) as any;
+    page.overview.uiInjection = page.overview.uiInjection($c) as any;
+    if (page.overview.getMalUrl) {
+      page.overview.getMalUrl = page.overview.getMalUrl($c) as any;
+    }
+  }
+
   return page;
 }
 
