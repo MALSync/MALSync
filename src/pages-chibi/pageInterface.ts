@@ -67,6 +67,41 @@ export interface PageInterface {
      * @returns A ChibiJson wrapped number representing the episode/chapter
      */
     getEpisode: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
+
+    /**
+     * Returns the current volume number for manga.
+     * This function is optional.
+     * @returns A ChibiJson wrapped number representing the volume
+     */
+    getVolume?: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
+
+    /**
+     * Returns the URL to the next episode or chapter.
+     * Used for providing quick navigation links on the userlist.
+     * This function is optional.
+     * @returns A ChibiJson wrapped string containing the next episode URL, or undefined if not available
+     */
+    nextEpUrl?: ($c: ChibiGenerator<unknown>) => ChibiJson<string | undefined>;
+
+    /**
+     * Injects a small UI element with the current episode or chapter number.
+     * Only use this if there is no overview page.
+     * This function is optional.
+     * @param selector The CSS selector to inject the UI element into
+     */
+    uiInjection?: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
+
+    /**
+     * Returns the MyAnimeList URL for the current anime or manga.
+     * Only needs to be implemented if the page directly provides MAL information.
+     * This function is optional.
+     * @returns A ChibiJson wrapped promise or direct value containing the MAL URL, or false if not available
+     */
+    getMalUrl?: (
+      $c: ChibiGenerator<unknown>,
+    ) => ChibiJson<Promise<string | false> | string | false>;
+
+    // TODO: Add readerConfig
   };
 }
 
@@ -97,5 +132,9 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getIdentifier: ReturnType<PageInterface['sync']['getIdentifier']>;
     getOverviewUrl: ReturnType<PageInterface['sync']['getOverviewUrl']>;
     getEpisode: ReturnType<PageInterface['sync']['getEpisode']>;
+    getVolume?: ReturnType<NonNullable<PageInterface['sync']['getVolume']>>;
+    nextEpUrl?: ReturnType<NonNullable<PageInterface['sync']['nextEpUrl']>>;
+    uiInjection?: ReturnType<NonNullable<PageInterface['sync']['uiInjection']>>;
+    getMalUrl?: ReturnType<NonNullable<PageInterface['sync']['getMalUrl']>>;
   };
 };

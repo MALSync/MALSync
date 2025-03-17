@@ -17,13 +17,25 @@ export const test: PageInterface = {
       return $c.url().urlPart(2).run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(3).run();
+      return $c.string('test').run();
     },
     getOverviewUrl($c) {
       return $c.url().run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(4).number().run();
+      return $c.url().number(3).run();
+    },
+    getVolume($c) {
+      return $c.number(4).run();
+    },
+    nextEpUrl($c) {
+      return $c.string('https://malsync.moe/next').run();
+    },
+    uiInjection($c) {
+      return $c.string('UI').run();
+    },
+    getMalUrl($c) {
+      return $c.string('https://myanimelist.net/manga/1').run();
     },
   },
 };

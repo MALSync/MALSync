@@ -59,6 +59,32 @@ export const Chibi = async (): Promise<pageInterface> => {
         const consumer = getUrlConsumer(currentPage.sync.getEpisode, url);
         return consumer.run();
       },
+      getVolume: currentPage.sync.getVolume
+        ? url => {
+            const consumer = getUrlConsumer(currentPage.sync.getVolume!, url);
+            return consumer.run();
+          }
+        : undefined,
+      nextEpUrl: currentPage.sync.nextEpUrl
+        ? url => {
+            const consumer = getUrlConsumer(currentPage.sync.nextEpUrl!, url);
+            return consumer.run();
+          }
+        : undefined,
+      uiSelector: currentPage.sync.uiInjection
+        ? html => {
+            const consumer = getConsumer(currentPage.sync.uiInjection!);
+            consumer.addVariable('ui', html);
+            return consumer.run();
+          }
+        : undefined,
+      getMalUrl: currentPage.sync.getMalUrl
+        ? provider => {
+            const consumer = getConsumer(currentPage.sync.getMalUrl!);
+            consumer.addVariable('provider', provider);
+            return consumer.run();
+          }
+        : undefined,
     },
     init(page) {
       alert('Chibi');
