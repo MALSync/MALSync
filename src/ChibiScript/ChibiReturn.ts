@@ -1,5 +1,5 @@
 export class ChibiReturn {
-  private value
+  private value;
 
   constructor(value) {
     this.value = value;

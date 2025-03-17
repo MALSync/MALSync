@@ -62,7 +62,13 @@ export default {
    * @param flags - Regex flags (default: 'i' for case-insensitive)
    * @returns Extracted string from the specified group
    */
-  regex: (ctx: ChibiCtx, input: string, pattern: string, group: number = 0, flags: string = 'i') => {
+  regex: (
+    ctx: ChibiCtx,
+    input: string,
+    pattern: string,
+    group: number = 0,
+    flags: string = 'i',
+  ) => {
     const regex = new RegExp(pattern, flags);
     const match = input.match(regex);
 
