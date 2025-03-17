@@ -44,16 +44,20 @@ export const Chibi = async (): Promise<pageInterface> => {
     },
     sync: {
       getTitle(url) {
-        return 'Chibi';
+        const consumer = getUrlConsumer(currentPage.sync.getTitle, url);
+        return consumer.run();
       },
       getIdentifier(url) {
-        return 'chibi';
+        const consumer = getUrlConsumer(currentPage.sync.getIdentifier, url);
+        return consumer.run();
       },
       getOverviewUrl(url) {
-        return url;
+        const consumer = getUrlConsumer(currentPage.sync.getOverviewUrl, url);
+        return consumer.run();
       },
       getEpisode(url) {
-        return 2;
+        const consumer = getUrlConsumer(currentPage.sync.getEpisode, url);
+        return consumer.run();
       },
     },
     init(page) {

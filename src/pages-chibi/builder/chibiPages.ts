@@ -5,6 +5,10 @@ import { getVersionHashes } from './chibiHelper';
 
 function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
   page.sync.isSyncPage = page.sync.isSyncPage($c) as any;
+  page.sync.getTitle = page.sync.getTitle($c) as any;
+  page.sync.getIdentifier = page.sync.getIdentifier($c) as any;
+  page.sync.getOverviewUrl = page.sync.getOverviewUrl($c) as any;
+  page.sync.getEpisode = page.sync.getEpisode($c) as any;
   return page;
 }
 

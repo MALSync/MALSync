@@ -41,6 +41,32 @@ export interface PageInterface {
      * @returns A ChibiJson wrapped boolean indicating if this is a sync page
      */
     isSyncPage: ($c: ChibiGenerator<unknown>) => ChibiJson<boolean>;
+
+    /**
+     * Returns the title of the anime or manga.
+     * Used for searching on MyAnimeList.
+     * @returns A ChibiJson wrapped string containing the title
+     */
+    getTitle: ($c: ChibiGenerator<unknown>) => ChibiJson<string>;
+
+    /**
+     * Returns a unique identifier for the anime or manga.
+     * Must be consistent between sync and overview pages.
+     * @returns A ChibiJson wrapped string containing the identifier
+     */
+    getIdentifier: ($c: ChibiGenerator<unknown>) => ChibiJson<string>;
+
+    /**
+     * Returns a URL to the overview page.
+     * @returns A ChibiJson wrapped string containing the overview URL
+     */
+    getOverviewUrl: ($c: ChibiGenerator<unknown>) => ChibiJson<string>;
+
+    /**
+     * Returns the current episode number for anime or chapter number for manga.
+     * @returns A ChibiJson wrapped number representing the episode/chapter
+     */
+    getEpisode: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
   };
 }
 
@@ -67,5 +93,9 @@ export type PageListJsonInterface = {
 export type PageJsonInterface = PageInterfaceCompiled & {
   sync: {
     isSyncPage: ReturnType<PageInterface['sync']['isSyncPage']>;
+    getTitle: ReturnType<PageInterface['sync']['getTitle']>;
+    getIdentifier: ReturnType<PageInterface['sync']['getIdentifier']>;
+    getOverviewUrl: ReturnType<PageInterface['sync']['getOverviewUrl']>;
+    getEpisode: ReturnType<PageInterface['sync']['getEpisode']>;
   };
 };
