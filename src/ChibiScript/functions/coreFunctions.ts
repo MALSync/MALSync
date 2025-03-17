@@ -1,5 +1,6 @@
 import type { ChibiCtx } from '../ChibiCtx';
 import type { ChibiJson } from '../ChibiGenerator';
+import { reservedKeys, chibiRegistrySingleton } from '../ChibiRegistry';
 
 export default {
   /**
@@ -46,11 +47,48 @@ export default {
    * @returns The input value (for chaining)
    */
   setVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
+    if (reservedKeys.includes(key)) {
+      throw new Error(`Cannot set reserved key: ${key}`);
+    }
+
     if (value !== undefined) {
       const resolvedValue = ctx.run(value);
       ctx.set(key, resolvedValue);
     } else {
       ctx.set(key, input);
+    }
+    return input;
+  },
+
+  /**
+   * Gets a value from the global registry
+   * @input void - No input required
+   * @param key - Global variable name to retrieve
+   * @param defaultValue - Default value if variable is not found
+   * @returns Global variable value or default value
+   */
+  getGlobalVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
+    const value = ctx.globalGet(key);
+    return value !== undefined ? value : defaultValue;
+  },
+
+  /**
+   * Sets a variable in the global registry
+   * @input any - Value to set if no value parameter is provided
+   * @param key - Global variable name to store the value under
+   * @param value - Optional value to set instead of the input
+   * @returns The input value (for chaining)
+   */
+  setGlobalVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
+    if (reservedKeys.includes(key)) {
+      throw new Error(`Cannot set reserved global key: ${key}`);
+    }
+
+    if (value !== undefined) {
+      const resolvedValue = ctx.run(value);
+      ctx.globalSet(key, resolvedValue);
+    } else {
+      ctx.globalSet(key, input);
     }
     return input;
   },

@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { $c, ChibiJson } from '../../../../src/chibiScript/ChibiGenerator';
 import { ChibiConsumer } from '../../../../src/chibiScript/ChibiConsumer';
+import { chibiRegistrySingleton } from '../../../../src/chibiScript/ChibiRegistry';
 
 describe('Core Functions', () => {
   describe('url', () => {
@@ -55,6 +56,46 @@ describe('Core Functions', () => {
       const code = $c.string('hello').setVariable('myKey', $c.string('world').run()).getVariable('myKey').run();
 
       expect(generateAndExecute(code).run()).to.equal('world');
+    });
+
+    it('should throw an error when trying to set a reserved key', () => {
+      const code = $c.string('hello').setVariable('url').run();
+      const consumer = generateAndExecute(code);
+
+      expect(() => consumer.run()).to.throw('Cannot set reserved key: url');
+    });
+  });
+
+  describe('global variables', () => {
+    beforeEach(() => {
+      chibiRegistrySingleton.clear();
+    });
+
+    it('should persist global variables between executions', () => {
+      const setCode = $c.string('hello global').setGlobalVariable('persistentKey').run();
+      generateAndExecute(setCode).run();
+
+      const getCode = $c.getGlobalVariable('persistentKey', 'default').run();
+      const result = generateAndExecute(getCode).run();
+
+      expect(result).to.equal('hello global');
+    });
+
+    it('should throw an error when trying to set a reserved global key', () => {
+      const code = $c.string('hello').setGlobalVariable('url').run();
+      const consumer = generateAndExecute(code);
+
+      expect(() => consumer.run()).to.throw('Cannot set reserved global key: url');
+    });
+
+    it('Normal set should not be persistent', () => {
+      const setCode = $c.string('hello global').setVariable('persistentKey').run();
+      generateAndExecute(setCode).run();
+
+      const getCode = $c.getVariable('persistentKey', 'default').run();
+      const result = generateAndExecute(getCode).run();
+
+      expect(result).to.equal('default');
     });
   });
 });

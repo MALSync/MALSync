@@ -1,15 +1,18 @@
 import type { ChibiConsumer } from './ChibiConsumer';
 import type { ChibiJson } from './ChibiGenerator';
 import { ChibiReturn } from './ChibiReturn';
+import { ChibiRegistry, chibiRegistrySingleton } from './ChibiRegistry';
 
 export class ChibiCtx {
-  private variables: Record<string, any>;
+  private registry: ChibiRegistry;
+
+  private globalRegistry = chibiRegistrySingleton;
 
   private consumer: ChibiConsumer;
 
   constructor(consumer: ChibiConsumer) {
     this.consumer = consumer;
-    this.variables = {};
+    this.registry = new ChibiRegistry();
   }
 
   run(script: ChibiJson<any>) {
@@ -17,11 +20,19 @@ export class ChibiCtx {
   }
 
   set(name: string, value: any) {
-    this.variables[name] = value;
+    this.registry.set(name, value);
   }
 
   get(name: string) {
-    return this.variables[name];
+    return this.registry.get(name);
+  }
+
+  globalSet(name: string, value: any) {
+    this.globalRegistry.set(name, value);
+  }
+
+  globalGet(name: string) {
+    return this.globalRegistry.get(name);
   }
 
   getConsumer() {
