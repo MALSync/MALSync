@@ -1,4 +1,5 @@
 import type { ChibiCtx } from '../ChibiCtx';
+import type { ChibiJson } from '../ChibiGenerator';
 
 export default {
   /**
@@ -28,8 +29,14 @@ export default {
    * @param replacement - Replacement string or function
    * @returns String with replacements
    */
-  replace: (ctx: ChibiCtx, input: string, pattern: string, replacement: string) => {
-    return input.replace(pattern, replacement);
+  replace: (
+    ctx: ChibiCtx,
+    input: string,
+    pattern: string,
+    replacement: string | ChibiJson<string>,
+  ) => {
+    const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
+    return input.replace(pattern, replacementValue);
   },
 
   /**
@@ -39,8 +46,15 @@ export default {
    * @param replacement - Replacement string or function
    * @returns String with all replacements
    */
-  replaceAll: (ctx: ChibiCtx, input: string, pattern: string, replacement: string) => {
-    return input.replaceAll(pattern, replacement);
+  replaceAll: (
+    ctx: ChibiCtx,
+    input: string,
+    pattern: string,
+    replacement: string | ChibiJson<string>,
+  ) => {
+    const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
+    // eslint-disable-next-line es-x/no-string-prototype-replaceall
+    return input.replaceAll(pattern, replacementValue);
   },
 
   /**

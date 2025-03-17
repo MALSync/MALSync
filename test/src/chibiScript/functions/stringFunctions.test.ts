@@ -32,12 +32,38 @@ describe('String Functions', () => {
       const code = $c.string('apple').replace('banana', 'orange').run();
       expect(generateAndExecute(code).run()).to.equal('apple');
     });
+
+    it('should handle ChibiJson as replacement', () => {
+      const code = $c.string('apple apple').replace('apple', $c.string('orange').run()).run();
+      expect(generateAndExecute(code).run()).to.equal('orange apple');
+    });
+
+    it('should handle complex ChibiJson as replacement', () => {
+      const code = $c
+        .string('apple apple')
+        .replace('apple', $c.string('fruit').toUpperCase().run())
+        .run();
+      expect(generateAndExecute(code).run()).to.equal('FRUIT apple');
+    });
   });
 
   describe('replaceAll', () => {
     it('should replace all occurrences in string', () => {
       const code = $c.string('apple apple').replaceAll('apple', 'orange').run();
       expect(generateAndExecute(code).run()).to.equal('orange orange');
+    });
+
+    it('should handle ChibiJson as replacement', () => {
+      const code = $c.string('apple apple').replaceAll('apple', $c.string('orange').run()).run();
+      expect(generateAndExecute(code).run()).to.equal('orange orange');
+    });
+
+    it('should handle complex ChibiJson as replacement', () => {
+      const code = $c
+        .string('apple apple')
+        .replaceAll('apple', $c.string('fruit').toUpperCase().run())
+        .run();
+      expect(generateAndExecute(code).run()).to.equal('FRUIT FRUIT');
     });
   });
 
