@@ -1,6 +1,6 @@
-import type { ChibiCtx } from '../ChibiCtx';
-import type { ChibiJson } from '../ChibiGenerator';
-import { reservedKeys, chibiRegistrySingleton } from '../ChibiRegistry';
+import type { ChibiCtx } from '../../ChibiCtx';
+import type { ChibiJson } from '../../ChibiGenerator';
+import { reservedKeys } from '../../ChibiRegistry';
 
 export default {
   /**

@@ -1,4 +1,4 @@
-import type { ChibiCtx } from '../ChibiCtx';
+import type { ChibiCtx } from '../../ChibiCtx';
 
 export default {
   /**
