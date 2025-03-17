@@ -41,7 +41,7 @@ type TypeMismatchError<
 
 type MatchesType<InputT, TargetT> = TargetT extends void
   ? true
-  : InputT extends TargetT
+  : NonNullable<InputT> extends TargetT
     ? true
     : TargetT extends boolean
       ? InputT extends boolean
@@ -100,6 +100,7 @@ type MatchesTypeTrue6 = MatchesType<undefined, undefined>;
 type MatchesTypeTrue7 = MatchesType<boolean, void>;
 type MatchesTypeTrue8 = MatchesType<true, false>;
 type MatchesTypeTrue9 = MatchesType<string[], any[]>;
+type MatchesTypeTrue10 = MatchesType<Element | null, Element>;
 
 // Expect false
 type MatchesTypeFalse1 = MatchesType<string, number>;

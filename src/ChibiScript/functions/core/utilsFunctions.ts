@@ -45,7 +45,7 @@ export default {
    * @example
    * urlAbsolute("/path/to/page", "https://example.com") // returns "https://example.com/path/to/page"
    */
-  urlAbsolute: (ctx: ChibiCtx, input: string, domain: string) => {
+  urlAbsolute: (ctx: ChibiCtx, input: string, domain: string): string => {
     return utils.absoluteLink(input, domain);
   },
 
@@ -56,7 +56,7 @@ export default {
    * @example
    * getBaseText("<div>Parent <span>Child</span></div>") // returns "Parent "
    */
-  getBaseText: (ctx: ChibiCtx, input: Element) => {
+  getBaseText: (ctx: ChibiCtx, input: Element): string => {
     return utils.getBaseText(input);
   },
 };
