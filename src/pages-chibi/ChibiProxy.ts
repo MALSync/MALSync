@@ -117,6 +117,9 @@ export const Chibi = async (): Promise<pageInterface> => {
         }
       : undefined,
     init(page) {
+      const setupConsumer = getConsumer(currentPage.lifecycle.setup);
+      setupConsumer.run();
+
       alert('Chibi');
       page.handlePage();
     },

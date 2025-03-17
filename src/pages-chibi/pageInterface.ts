@@ -144,6 +144,15 @@ export interface PageInterface {
       $c: ChibiGenerator<unknown>,
     ) => ChibiJson<Promise<string | false> | string | false>;
   };
+
+  lifecycle: {
+    /**
+     * Initial setup function for the page integration.
+     * This function is called once when the script is loaded.
+     * Use this function to add CSS or perform other one-time actions.
+     */
+    setup: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
+  };
 }
 
 export interface PageInterfaceCompiled extends PageInterface {
@@ -186,5 +195,8 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getIdentifier: ReturnType<NonNullable<PageInterface['overview']>['getIdentifier']>;
     uiInjection: ReturnType<NonNullable<PageInterface['overview']>['uiInjection']>;
     getMalUrl?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getMalUrl']>>;
+  };
+  lifecycle: {
+    setup: ReturnType<PageInterface['lifecycle']['setup']>;
   };
 };

@@ -61,4 +61,11 @@ export const test: PageInterface = {
       return $c.string('https://myanimelist.net/manga/1').run();
     },
   },
+  lifecycle: {
+    setup($c) {
+      return $c
+        .addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString())
+        .run();
+    },
+  },
 };

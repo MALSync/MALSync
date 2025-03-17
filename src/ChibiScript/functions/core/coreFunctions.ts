@@ -107,6 +107,15 @@ export default {
     return input;
   },
 
+  // addStyle
+  /**
+   * Adds a style to the page
+   * @param css - CSS to add to the page
+   */
+  addStyle: (ctx: ChibiCtx, input: void, css: string): void => {
+    api.storage.addStyle(css);
+  },
+
   /**
    * Logs a value to the console
    * @input any - Value to log
