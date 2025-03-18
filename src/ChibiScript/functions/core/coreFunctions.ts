@@ -55,6 +55,44 @@ export default {
     trigger();
   },
 
+  this: (ctx: ChibiCtx, input: any, property: string): any => {
+    const page = ctx.get('pageObject');
+
+    let propertyName = property;
+    switch (property) {
+      case 'sync.isSyncPage':
+        propertyName = 'isSyncPage';
+        break;
+      case 'overview.isOverviewPage':
+        propertyName = 'isOverviewPage';
+        break;
+      case 'sync.uiInjection':
+        propertyName = 'sync.uiSelector';
+        break;
+      case 'overview.uiInjection':
+        propertyName = 'overview.uiSelector';
+        break;
+      default:
+        break;
+    }
+
+    const propParts = propertyName.split('.');
+
+    let value = page;
+    // eslint-disable-next-line no-restricted-syntax
+    for (const prop of propParts) {
+      if (value[prop] === undefined) {
+        throw new Error(`Property ${property} not found`);
+      }
+      value = value[prop];
+    }
+
+    if (typeof value === 'function') {
+      return value(input);
+    }
+    return value;
+  },
+
   /**
    * Gets a value from the variables in context
    * @input void - No input required

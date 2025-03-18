@@ -23,7 +23,7 @@ export const test: PageInterface = {
       return $c.url().urlPart(2).run();
     },
     getIdentifier($c) {
-      return $c.string('test').run();
+      return $c.url().this('overview.getIdentifier').run();
     },
     getOverviewUrl($c) {
       return $c.url().run();
@@ -52,7 +52,7 @@ export const test: PageInterface = {
       return $c.url().urlPart(2).run();
     },
     getIdentifier($c) {
-      return $c.string('test').run();
+      return $c.string('Overview test').run();
     },
     uiInjection($c) {
       return $c.querySelector('h1.card-title').uiPrepend().run();
