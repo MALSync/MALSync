@@ -105,8 +105,9 @@ export const Chibi = async (): Promise<pageInterface> => {
             const consumer = getUrlConsumer(currentPage.overview!.getIdentifier, url, pageD);
             return consumer.run();
           },
-          uiSelector(url) {
-            const consumer = getUrlConsumer(currentPage.overview!.uiInjection, url, pageD);
+          uiSelector(html) {
+            const consumer = getConsumer(currentPage.overview!.uiInjection, pageD);
+            consumer.addVariable('ui', html);
             return consumer.run();
           },
           getMalUrl: currentPage.overview.getMalUrl
