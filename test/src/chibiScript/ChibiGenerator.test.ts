@@ -19,5 +19,27 @@ describe('ChibiGenerator', () => {
         ['regex', 'pattern', 1]
       ]);
     });
+
+    it('should generate random key for waitUntilTrue parameter', () => {
+      const result = $c.waitUntilTrue($c.boolean(true).run()).run();
+
+      // Check that the third parameter (index 2) is a random key
+      expect(result[0][0]).to.equal('waitUntilTrue');
+      expect(result[0][2]).to.be.a('string');
+      expect(result[0][2]).to.include('waitUntilTrue');
+      expect(result[0][2]).to.match(/^waitUntilTrue[a-zA-Z0-9]+$/);
+    });
+
+    it('should generate different random keys for multiple waitUntilTrue calls', () => {
+      const result1 = $c.waitUntilTrue($c.boolean(true).run()).run();
+      const result2 = $c.waitUntilTrue($c.boolean(true).run()).run();
+
+      // Keys should be different
+      expect(result1[0][2]).to.not.equal(result2[0][2]);
+
+      // But both should follow the pattern
+      expect(result1[0][2]).to.match(/^waitUntilTrue[a-zA-Z0-9]+$/);
+      expect(result2[0][2]).to.match(/^waitUntilTrue[a-zA-Z0-9]+$/);
+    });
   });
 });

@@ -1,5 +1,9 @@
 import functionsRegistry from './functions';
 
+const randomKeys = {
+  waitUntilTrue: 1,
+};
+
 export type ChibiJson<T = void> = string[][] & { __type?: T };
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
@@ -14,6 +18,12 @@ class ChibiGenerator<T> {
         if (!value) {
           value = [] as unknown as T;
         }
+
+        if (typeof randomKeys[func.name] !== 'undefined') {
+          const randomKey = Math.random().toString(36).slice(2);
+          args[randomKeys[func.name]] = func.name + randomKey;
+        }
+
         const config = [...(value as unknown as []), [func.name, ...args]];
         return new ChibiGenerator(config);
       };
