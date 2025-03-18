@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { $c, ChibiJson } from '../../../src/chibiScript/ChibiGenerator';
 import { ChibiConsumer } from '../../../src/chibiScript/ChibiConsumer';
 import { UnknownChibiFunctionError } from '../../../src/chibiScript/ChibiErrors';
+import functionsRegistry from '../../../src/chibiScript/functions';
 
 describe('ChibiConsumer', () => {
   describe('function chaining', () => {
@@ -56,6 +57,18 @@ describe('ChibiConsumer', () => {
       expect(consumer.run()).to.equal('test');
 
       expect(() => consumer.run()).to.throw();
+    });
+  });
+});
+
+describe('ChibiConsumer Async', () => {
+  describe('async function execution', () => {
+    it('should execute async code and resolve promises', async () => {
+      const code = $c.waitUntilTrue($c.boolean(true).run()).string('test').run();
+      const consumer = new ChibiConsumer(code);
+
+      const result = await consumer.runAsync();
+      expect(result).to.equal('test');
     });
   });
 });

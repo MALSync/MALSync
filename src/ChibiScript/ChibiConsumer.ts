@@ -40,6 +40,46 @@ export class ChibiConsumer {
       const func = functionsRegistry[functionName];
       state = func(this.ctx, state, ...args);
 
+      if (state && state instanceof Promise) {
+        throw new Error('Async functions are not supported in this context');
+      }
+
+      if (state && state instanceof ChibiReturn) {
+        return state;
+      }
+    }
+
+    return state;
+  }
+
+  async runAsync() {
+    if (this.hasRun) {
+      throw new Error('Run method can only be executed once');
+    }
+    this.hasRun = true;
+    const state = await this._subroutineAsync(this.script);
+
+    if (state && state instanceof ChibiReturn) {
+      return state.getValue();
+    }
+
+    return state;
+  }
+
+  async _subroutineAsync(script: ChibiJson<any>) {
+    let state: any = null;
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [functionName, ...args] of script) {
+      if (!functionsRegistry[functionName]) {
+        throw new UnknownChibiFunctionError(functionName);
+      }
+      const func = functionsRegistry[functionName];
+      state = func(this.ctx, state, ...args);
+
+      if (state && state instanceof Promise) {
+        state = await state;
+      }
+
       if (state && state instanceof ChibiReturn) {
         return state;
       }

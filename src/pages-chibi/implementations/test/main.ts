@@ -68,7 +68,7 @@ export const test: PageInterface = {
         .run();
     },
     ready($c) {
-      return $c.trigger().run();
+      return $c.domReady().trigger().run();
     },
   },
 };

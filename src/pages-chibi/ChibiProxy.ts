@@ -125,7 +125,7 @@ export const Chibi = async (): Promise<pageInterface> => {
         alert('Chibi');
         page.handlePage();
       });
-      readyConsumer.run();
+      readyConsumer.runAsync();
     },
   };
 };
