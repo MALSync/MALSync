@@ -158,7 +158,7 @@ export const Chibi = async (): Promise<pageInterface> => {
             );
           }
         } else if (pageD.isOverviewPage && pageD.isOverviewPage(window.location.href)) {
-          logger.info('Is Sync Page');
+          logger.info('Is Overview Page');
           if (currentPage.lifecycle.overviewIsReady) {
             activeConsumer = getConsumer(currentPage.lifecycle.overviewIsReady, pageD);
             activeConsumer.addVariable('trigger', pageReady);
