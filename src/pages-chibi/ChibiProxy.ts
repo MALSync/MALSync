@@ -118,7 +118,9 @@ export const Chibi = async (): Promise<pageInterface> => {
       : undefined,
     init(page) {
       const logger = con.m('Chibi');
+
       let activeConsumer: ChibiConsumer | null = null;
+      let defaultInterval: NodeJS.Timer | null = null;
 
       const setupConsumer = getConsumer(currentPage.lifecycle.setup);
       setupConsumer.run();
@@ -130,23 +132,44 @@ export const Chibi = async (): Promise<pageInterface> => {
           activeConsumer.clearIntervals();
           activeConsumer = null;
         }
+        clearInterval(defaultInterval!);
         page.reset();
 
         const pageReady = () => {
           logger.info('Handle page');
-          alert('Page ready');
+          page.handlePage();
         };
 
-        if (this.isSyncPage(page.url)) {
+        if (this.isSyncPage(window.location.href)) {
           logger.info('Is Sync Page');
-          activeConsumer = getConsumer(currentPage.lifecycle.syncIsReady!);
-          activeConsumer.addVariable('trigger', pageReady);
-          activeConsumer.runAsync();
-        } else if (this.isOverviewPage(page.url)) {
+          if (currentPage.lifecycle.syncIsReady) {
+            activeConsumer = getConsumer(currentPage.lifecycle.syncIsReady);
+            activeConsumer.addVariable('trigger', pageReady);
+            activeConsumer.runAsync();
+          } else {
+            defaultInterval = utils.waitUntilTrue(
+              () =>
+                this.sync.getTitle(window.location.href) &&
+                this.sync.getIdentifier(window.location.href),
+              pageReady,
+              100,
+            );
+          }
+        } else if (this.isOverviewPage(window.location.href)) {
           logger.info('Is Sync Page');
-          activeConsumer = getConsumer(currentPage.lifecycle.overviewIsReady!);
-          activeConsumer.addVariable('trigger', pageReady);
-          activeConsumer.runAsync();
+          if (currentPage.lifecycle.overviewIsReady) {
+            activeConsumer = getConsumer(currentPage.lifecycle.overviewIsReady);
+            activeConsumer.addVariable('trigger', pageReady);
+            activeConsumer.runAsync();
+          } else {
+            defaultInterval = utils.waitUntilTrue(
+              () =>
+                this.overview.getTitle(window.location.href) &&
+                this.overview.getIdentifier(window.location.href),
+              pageReady,
+              100,
+            );
+          }
         } else {
           logger.info('Not a sync or overview page');
         }
