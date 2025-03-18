@@ -120,8 +120,12 @@ export const Chibi = async (): Promise<pageInterface> => {
       const setupConsumer = getConsumer(currentPage.lifecycle.setup);
       setupConsumer.run();
 
-      alert('Chibi');
-      page.handlePage();
+      const readyConsumer = getConsumer(currentPage.lifecycle.ready);
+      readyConsumer.addVariable('trigger', () => {
+        alert('Chibi');
+        page.handlePage();
+      });
+      readyConsumer.run();
     },
   };
 };

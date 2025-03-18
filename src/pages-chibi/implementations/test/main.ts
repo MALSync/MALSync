@@ -67,5 +67,8 @@ export const test: PageInterface = {
         .addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString())
         .run();
     },
+    ready($c) {
+      return $c.trigger().run();
+    },
   },
 };

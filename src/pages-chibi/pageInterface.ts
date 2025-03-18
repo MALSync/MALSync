@@ -152,6 +152,15 @@ export interface PageInterface {
      * Use this function to add CSS or perform other one-time actions.
      */
     setup: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
+
+    /**
+     * Ready function for the page integration.
+     * This function is called once when the script is loaded.
+     * Use this function to trigger the page check.
+     * The page should be loaded enough to correctly run isSyncPage and isOverviewPage.
+     * You can trigger the .trigger() multiple times in case of URL changes in SPA.
+     */
+    ready: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
   };
 }
 
@@ -198,5 +207,6 @@ export type PageJsonInterface = PageInterfaceCompiled & {
   };
   lifecycle: {
     setup: ReturnType<PageInterface['lifecycle']['setup']>;
+    ready: ReturnType<PageInterface['lifecycle']['ready']>;
   };
 };

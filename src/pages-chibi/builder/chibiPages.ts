@@ -33,6 +33,7 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
   }
 
   page.lifecycle.setup = page.lifecycle.setup($c) as any;
+  page.lifecycle.ready = page.lifecycle.ready($c) as any;
 
   return page;
 }

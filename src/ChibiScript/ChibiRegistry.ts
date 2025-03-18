@@ -1,4 +1,4 @@
-export const reservedKeys = ['url', 'ui', 'provider'];
+export const reservedKeys = ['url', 'ui', 'provider', 'trigger'];
 
 export class ChibiRegistry<T = any> {
   private store: Map<string, T> = new Map();

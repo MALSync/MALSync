@@ -42,6 +42,20 @@ export default {
   },
 
   /**
+   * Triggers lifecycle events
+   * @input void - No input required
+   */
+  trigger: (ctx: ChibiCtx, input: void): void => {
+    const trigger = ctx.get('trigger');
+
+    if (!trigger) {
+      throw new Error('Trigger not set');
+    }
+
+    trigger();
+  },
+
+  /**
    * Gets a value from the variables in context
    * @input void - No input required
    * @param key - Variable name to retrieve
