@@ -161,6 +161,20 @@ export interface PageInterface {
      * You can trigger the .trigger() multiple times in case of URL changes in SPA.
      */
     ready: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
+
+    /**
+     * Optional function that is executed after the page is ready and isSyncPage is true.
+     * By default, it waits for the title and identifier to be available.
+     * This function can only be triggered once.
+     */
+    syncIsReady?: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
+
+    /**
+     * Optional function that is executed after the page is ready and isOverviewPage is true.
+     * By default, it waits for the title and identifier to be available.
+     * This function can only be triggered once.
+     */
+    overviewIsReady?: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
   };
 }
 
@@ -208,5 +222,7 @@ export type PageJsonInterface = PageInterfaceCompiled & {
   lifecycle: {
     setup: ReturnType<PageInterface['lifecycle']['setup']>;
     ready: ReturnType<PageInterface['lifecycle']['ready']>;
+    syncIsReady?: ReturnType<NonNullable<PageInterface['lifecycle']['syncIsReady']>>;
+    overviewIsReady?: ReturnType<NonNullable<PageInterface['lifecycle']['overviewIsReady']>>;
   };
 };

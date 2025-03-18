@@ -70,5 +70,14 @@ export const test: PageInterface = {
     ready($c) {
       return $c.domReady().trigger().run();
     },
+    syncIsReady($c) {
+      return $c
+        .waitUntilTrue($c.querySelectorAll('.test-1').length().boolean().run())
+        .trigger()
+        .run();
+    },
+    overviewIsReady($c) {
+      return $c.waitUntilTrue($c.querySelector('.test-2').boolean().run()).trigger().run();
+    },
   },
 };

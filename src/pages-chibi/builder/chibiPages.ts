@@ -34,6 +34,12 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
 
   page.lifecycle.setup = page.lifecycle.setup($c) as any;
   page.lifecycle.ready = page.lifecycle.ready($c) as any;
+  if (page.lifecycle.syncIsReady) {
+    page.lifecycle.syncIsReady = page.lifecycle.syncIsReady($c) as any;
+  }
+  if (page.lifecycle.overviewIsReady) {
+    page.lifecycle.overviewIsReady = page.lifecycle.overviewIsReady($c) as any;
+  }
 
   return page;
 }

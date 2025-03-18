@@ -117,13 +117,39 @@ export const Chibi = async (): Promise<pageInterface> => {
         }
       : undefined,
     init(page) {
+      const logger = con.m('Chibi');
+      let activeConsumer: ChibiConsumer | null = null;
+
       const setupConsumer = getConsumer(currentPage.lifecycle.setup);
       setupConsumer.run();
 
       const readyConsumer = getConsumer(currentPage.lifecycle.ready);
       readyConsumer.addVariable('trigger', () => {
-        alert('Chibi');
-        page.handlePage();
+        logger.info('Ready Trigger');
+        if (activeConsumer) {
+          activeConsumer.clearIntervals();
+          activeConsumer = null;
+        }
+        page.reset();
+
+        const pageReady = () => {
+          logger.info('Handle page');
+          alert('Page ready');
+        };
+
+        if (this.isSyncPage(page.url)) {
+          logger.info('Is Sync Page');
+          activeConsumer = getConsumer(currentPage.lifecycle.syncIsReady!);
+          activeConsumer.addVariable('trigger', pageReady);
+          activeConsumer.runAsync();
+        } else if (this.isOverviewPage(page.url)) {
+          logger.info('Is Sync Page');
+          activeConsumer = getConsumer(currentPage.lifecycle.overviewIsReady!);
+          activeConsumer.addVariable('trigger', pageReady);
+          activeConsumer.runAsync();
+        } else {
+          logger.info('Not a sync or overview page');
+        }
       });
       readyConsumer.runAsync();
     },

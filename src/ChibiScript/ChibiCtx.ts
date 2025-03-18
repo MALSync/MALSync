@@ -8,6 +8,8 @@ export class ChibiCtx {
 
   private globalRegistry = chibiRegistrySingleton;
 
+  private intervalRegistry: { [key: string]: NodeJS.Timer } = {};
+
   private consumer: ChibiConsumer;
 
   constructor(consumer: ChibiConsumer) {
@@ -41,5 +43,20 @@ export class ChibiCtx {
 
   return(value: any) {
     return new ChibiReturn(value);
+  }
+
+  setInterval(key: string, interval: NodeJS.Timer) {
+    this.intervalRegistry[key] = interval;
+  }
+
+  getInterval(key: string) {
+    return this.intervalRegistry[key];
+  }
+
+  clearIntervals() {
+    Object.values(this.intervalRegistry).forEach(interval => {
+      clearInterval(interval);
+    });
+    this.intervalRegistry = {};
   }
 }

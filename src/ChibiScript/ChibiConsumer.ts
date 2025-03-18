@@ -91,4 +91,8 @@ export class ChibiConsumer {
   addVariable(name: string, value: any) {
     this.ctx.set(name, value);
   }
+
+  clearIntervals() {
+    return this.ctx.clearIntervals();
+  }
 }

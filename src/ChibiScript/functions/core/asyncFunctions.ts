@@ -1,8 +1,6 @@
 import type { ChibiJson } from 'src/chibiScript/ChibiGenerator';
 import type { ChibiCtx } from '../../ChibiCtx';
 
-const intervalRegistry: { [key: string]: NodeJS.Timer } = {};
-
 export default {
   /**
    * Wait for the DOM to be ready
@@ -29,14 +27,17 @@ export default {
     _intervalKey?,
   ): Promise<void> => {
     return new Promise(resolve => {
-      clearInterval(intervalRegistry[_intervalKey!]);
-      intervalRegistry[_intervalKey!] = setInterval(() => {
-        const conditionState = ctx.run(condition);
-        if (conditionState) {
-          clearInterval(intervalRegistry[_intervalKey!]);
-          resolve();
-        }
-      }, 100);
+      clearInterval(ctx.getInterval(_intervalKey));
+      ctx.setInterval(
+        _intervalKey,
+        setInterval(() => {
+          const conditionState = ctx.run(condition);
+          if (conditionState) {
+            clearInterval(ctx.getInterval(_intervalKey));
+            resolve();
+          }
+        }, 100),
+      );
     });
   },
 };
