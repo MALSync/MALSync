@@ -77,10 +77,10 @@ type ChainableMethods<T, R extends Record<string, (...args: any[]) => any>> = {
   [K in keyof R]: MatchesType<T, InputType<R[K]>> extends true
     ? K extends BooleanRestParamFunctions
       ? (...args: ChibiJson<boolean>[]) => ChibiGenerator<ReturnType<R[K]>>
-      : R[K] extends typeof functionsRegistry.then
+      : R[K] extends typeof functionsRegistry.ifThen
         ? <Then extends ($c: ChibiGenerator<T>) => ChibiJson<any>>(
             then: Then,
-          ) => ChibiGenerator<ReturnType<typeof functionsRegistry.then<T, ReturnType<Then>>>>
+          ) => ChibiGenerator<ReturnType<typeof functionsRegistry.ifThen<T, ReturnType<Then>>>>
         : RemoveFirstTwo<Parameters<R[K]>> extends never
           ? () => ChibiGenerator<ReturnType<R[K]>>
           : <Args extends RemoveFirstTwo<Parameters<R[K]>>>(

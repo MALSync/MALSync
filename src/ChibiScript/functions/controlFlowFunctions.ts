@@ -32,7 +32,7 @@ export default {
    * @param thenAction - Action to execute if condition is true
    * @returns Result of thenAction if condition is true, otherwise input
    */
-  then<Input, Then extends ChibiJson<any>>(
+  ifThen<Input, Then extends ChibiJson<any>>(
     ctx: ChibiCtx,
     input: Input,
     thenAction: ($c: ChibiGenerator<Input>) => Then,
