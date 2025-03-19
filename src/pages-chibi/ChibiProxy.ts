@@ -95,30 +95,59 @@ export const Chibi = async (): Promise<pageInterface> => {
           }
         : undefined,
     },
-    overview: currentPage.overview
-      ? {
-          getTitle(url) {
-            const consumer = getUrlConsumer(currentPage.overview!.getTitle, url, pageD);
-            return consumer.run();
-          },
-          getIdentifier(url) {
-            const consumer = getUrlConsumer(currentPage.overview!.getIdentifier, url, pageD);
-            return consumer.run();
-          },
-          uiSelector(html) {
-            const consumer = getConsumer(currentPage.overview!.uiInjection, pageD);
-            consumer.addVariable('ui', html);
-            return consumer.run();
-          },
-          getMalUrl: currentPage.overview.getMalUrl
-            ? provider => {
-                const consumer = getConsumer(currentPage.overview!.getMalUrl!, pageD);
-                consumer.addVariable('provider', provider);
-                return consumer.run();
-              }
-            : undefined,
-        }
-      : undefined,
+    overview:
+      currentPage.overview || currentPage.list
+        ? {
+            getTitle(url) {
+              const consumer = getUrlConsumer(currentPage.overview!.getTitle, url, pageD);
+              return consumer.run();
+            },
+            getIdentifier(url) {
+              const consumer = getUrlConsumer(currentPage.overview!.getIdentifier, url, pageD);
+              return consumer.run();
+            },
+            uiSelector(html) {
+              const consumer = getConsumer(currentPage.overview!.uiInjection, pageD);
+              consumer.addVariable('ui', html);
+              return consumer.run();
+            },
+            getMalUrl:
+              currentPage.overview && currentPage.overview.getMalUrl
+                ? provider => {
+                    const consumer = getConsumer(currentPage.overview!.getMalUrl!, pageD);
+                    consumer.addVariable('provider', provider);
+                    return consumer.run();
+                  }
+                : undefined,
+            list: currentPage.list
+              ? {
+                  offsetHandler: false,
+                  elementsSelector() {
+                    const consumer = getConsumer(currentPage.list!.elementsSelector, pageD);
+                    return j.$(consumer.run());
+                  },
+                  elementUrl: currentPage.list.elementUrl
+                    ? selector => {
+                        if (selector instanceof j.$) {
+                          selector = selector.get(0) as any;
+                        }
+
+                        const consumer = getConsumer(currentPage.list!.elementUrl!, pageD);
+                        return consumer.run(selector);
+                      }
+                    : undefined,
+                  elementEp(selector) {
+                    if (selector instanceof j.$) {
+                      selector = selector.get(0) as any;
+                    }
+
+                    const consumer = getConsumer(currentPage.list!.elementEp, pageD);
+                    return consumer.run(selector);
+                  },
+                }
+              : undefined,
+          }
+        : undefined,
     init(page) {
       const logger = con.m('Chibi');
 

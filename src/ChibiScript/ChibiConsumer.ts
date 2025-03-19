@@ -16,12 +16,12 @@ export class ChibiConsumer {
     this.ctx = new ChibiCtx(this);
   }
 
-  run() {
+  run(startState: any = null) {
     if (this.hasRun) {
       throw new Error('Run method can only be executed once');
     }
     this.hasRun = true;
-    const state = this._subroutine(this.script);
+    const state = this._subroutine(this.script, startState);
 
     if (state && state instanceof ChibiReturn) {
       return state.getValue();

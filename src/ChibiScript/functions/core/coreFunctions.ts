@@ -72,6 +72,15 @@ export default {
       case 'overview.uiInjection':
         propertyName = 'overview.uiSelector';
         break;
+      case 'list.elementsSelector':
+        propertyName = 'overview.list.elementsSelector';
+        break;
+      case 'list.elementUrl':
+        propertyName = 'overview.list.elementUrl';
+        break;
+      case 'list.elementEp':
+        propertyName = 'overview.list.elementEp';
+        break;
       default:
         break;
     }

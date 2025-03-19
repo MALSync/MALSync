@@ -32,6 +32,14 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
     }
   }
 
+  if (page.list) {
+    page.list.elementsSelector = page.list.elementsSelector($c) as any;
+    page.list.elementEp = page.list.elementEp($c as any) as any;
+    if (page.list.elementUrl) {
+      page.list.elementUrl = page.list.elementUrl($c as any) as any;
+    }
+  }
+
   page.lifecycle.setup = page.lifecycle.setup($c) as any;
   page.lifecycle.ready = page.lifecycle.ready($c) as any;
   if (page.lifecycle.syncIsReady) {

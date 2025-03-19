@@ -145,6 +145,33 @@ export interface PageInterface {
     ) => ChibiJson<Promise<string | false> | string | false>;
   };
 
+  /**
+   * Configuration for the list of episodes or chapters on the overview page.
+   * This property is optional.
+   */
+  list?: {
+    /**
+     * Selector for the list of episodes or chapters on the overview page.
+     * This function should return an array of HTML elements representing the list items.
+     * @returns A ChibiJson wrapped array of HTML elements
+     */
+    elementsSelector: ($c: ChibiGenerator<unknown>) => ChibiJson<Element[]>;
+
+    /**
+     * Function to extract the URL from a list item.
+     * @param $c The ChibiGenerator instance with the HTML element
+     * @returns A string representing the URL of the episode or chapter
+     */
+    elementUrl?: ($c: ChibiGenerator<Element>) => ChibiJson<string>;
+
+    /**
+     * Function to extract the episode or chapter number from a list item.
+     * @param $c The ChibiGenerator instance with the HTML element
+     * @returns A number representing the episode or chapter
+     */
+    elementEp: ($c: ChibiGenerator<Element>) => ChibiJson<number>;
+  };
+
   lifecycle: {
     /**
      * Initial setup function for the page integration.
@@ -218,6 +245,11 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getIdentifier: ReturnType<NonNullable<PageInterface['overview']>['getIdentifier']>;
     uiInjection: ReturnType<NonNullable<PageInterface['overview']>['uiInjection']>;
     getMalUrl?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getMalUrl']>>;
+  };
+  list?: {
+    elementsSelector: ReturnType<NonNullable<PageInterface['list']>['elementsSelector']>;
+    elementEp: ReturnType<NonNullable<PageInterface['list']>['elementEp']>;
+    elementUrl?: ReturnType<NonNullable<NonNullable<PageInterface['list']>['elementUrl']>>;
   };
   lifecycle: {
     setup: ReturnType<PageInterface['lifecycle']['setup']>;
