@@ -5,7 +5,12 @@
 @boxBackground: #00000038;
 @boxGap: 10px;
 
-@activeEp: #002966;
+@highlightStyle: 2;
+// Style 0 = unstyled
+// Style 1 = border style
+// Style 2 = background style
+// Style 3 = text color style
+@activeEp: #002e7459;
 
 .malp() when (@malpStyle = 0) {
   // Unstyled
@@ -99,10 +104,34 @@
   .malp();
 }
 
-.mal-sync-active {
+// Episode Styling
+.epHighlight() when (@highlightStyle = 0) {
+  // Unstyled
+}
+.epHighlight() when (@highlightStyle = 1) {
+  border-left: 5px solid @activeEp;
+}
+.epHighlight() when (@highlightStyle = 2) {
   background-color: @activeEp;
 }
+.epHighlight() when (@highlightStyle = 3) {
+  color: @activeEp !important;
+  * {
+    color: @activeEp !important;
+  }
+}
+.epHighlight() when (@highlightStyle = 4) {
+  font-weight: bold !important;
+  * {
+    font-weight: bold !important;
+  }
+}
 
+.mal-sync-active {
+  .epHighlight();
+}
+
+// General Styling
 #malSyncProgress {
   &.ms-loading {
     height: 4px;
