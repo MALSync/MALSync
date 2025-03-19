@@ -45,7 +45,10 @@ export default {
    * @example
    * urlAbsolute("/path/to/page", "https://example.com") // returns "https://example.com/path/to/page"
    */
-  urlAbsolute: (ctx: ChibiCtx, input: string, domain: string): string => {
+  urlAbsolute: (ctx: ChibiCtx, input: string, domain?: string): string => {
+    if (!domain) {
+      domain = `${window.location.protocol}//${window.location.host}`;
+    }
     return utils.absoluteLink(input, domain);
   },
 

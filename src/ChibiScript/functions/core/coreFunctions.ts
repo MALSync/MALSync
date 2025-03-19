@@ -37,8 +37,8 @@ export default {
    * @input any - Value to return
    * @returns The input value unchanged
    */
-  return: (ctx: ChibiCtx, input: any): any => {
-    return ctx.return(input);
+  return: (ctx: ChibiCtx, input: any): void => {
+    return ctx.return(input) as unknown as void;
   },
 
   /**

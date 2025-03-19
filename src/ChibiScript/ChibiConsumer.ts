@@ -38,7 +38,12 @@ export class ChibiConsumer {
         throw new UnknownChibiFunctionError(functionName);
       }
       const func = functionsRegistry[functionName];
-      state = func(this.ctx, state, ...args);
+      try {
+        state = func(this.ctx, state, ...args);
+      } catch (error) {
+        con.m('chibi').error(error);
+        state = null;
+      }
 
       if (state && state instanceof Promise) {
         throw new Error('Async functions are not supported in this context');
@@ -74,10 +79,15 @@ export class ChibiConsumer {
         throw new UnknownChibiFunctionError(functionName);
       }
       const func = functionsRegistry[functionName];
-      state = func(this.ctx, state, ...args);
+      try {
+        state = func(this.ctx, state, ...args);
 
-      if (state && state instanceof Promise) {
-        state = await state;
+        if (state && state instanceof Promise) {
+          state = await state;
+        }
+      } catch (error) {
+        con.m('chibi').error(error);
+        state = null;
       }
 
       if (state && state instanceof ChibiReturn) {

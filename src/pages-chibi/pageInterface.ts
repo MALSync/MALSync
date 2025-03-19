@@ -81,7 +81,7 @@ export interface PageInterface {
      * This function is optional.
      * @returns A ChibiJson wrapped string containing the next episode URL, or undefined if not available
      */
-    nextEpUrl?: ($c: ChibiGenerator<unknown>) => ChibiJson<string | undefined>;
+    nextEpUrl?: ($c: ChibiGenerator<unknown>) => ChibiJson<string | undefined | boolean>;
 
     /**
      * Injects a small UI element with the current episode or chapter number.
