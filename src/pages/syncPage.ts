@@ -772,7 +772,7 @@ export class SyncPage {
 
   fillUI() {
     j.$('.MalLogin').css('display', '');
-    j.$('#AddMalDiv, #LoginMalDiv').remove();
+    j.$('#AddMalDiv, .malp-group-mal-add, #LoginMalDiv').remove();
 
     j.$('#malRating').attr('href', this.singleObj.getDisplayUrl());
 
@@ -808,14 +808,22 @@ export class SyncPage {
       j.$('.MalLogin').css('display', 'none');
       j.$('#malRating').after(
         j.html(
-          `<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>${api.storage.lang(
+          `<span id='AddMalDiv'><a href='#' id='AddMal' class="malp-mal-add" onclick='return false;'>${api.storage.lang(
+            'syncPage_malObj_addAnime',
+            [this.singleObj.shortName],
+          )}</a></span>`,
+        ),
+      );
+      j.$('.malp-group-rating').after(
+        j.html(
+          `<span class="malp-group malp-group-mal-add" style="display: none;"><span class="add malp-group-label">_</span><a href='#' id='AddMal' class="malp-group-field malp-mal-add" onclick='return false;'>${api.storage.lang(
             'syncPage_malObj_addAnime',
             [this.singleObj.shortName],
           )}</a></span>`,
         ),
       );
       const This = this;
-      j.$('#AddMal').click(async function (event) {
+      j.$('.malp-mal-add').click(async function (event) {
         event.preventDefault();
         if (!This.page.isSyncPage(This.url)) {
           This.singleObj.setStreamingUrl(This.url);
