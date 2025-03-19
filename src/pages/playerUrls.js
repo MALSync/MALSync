@@ -517,6 +517,7 @@ module.exports = {
       '*://sandratableother.com/e/*',
       '*://robertordercharacter.com/e/*',
       '*://maxfinishseveral.com/e/*',
+      '*://alejandrocenturyoil.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
