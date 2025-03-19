@@ -1,4 +1,5 @@
 import type { ChibiGenerator, ChibiJson } from 'src/chibiScript/ChibiGenerator';
+import type { searchSyntax } from '../utils/quicklinksBuilder';
 
 /**
  * Interface defining the structure for a chibi page integration in MALSync.
@@ -22,7 +23,17 @@ export interface PageInterface {
   urls: {
     match: string[];
   };
-  /** URL template for the site's search functionality */
+  /**
+   * URL template for the site's search functionality
+   * @example
+   * 'https://example.com/search?q={searchterm}'
+   * {searchterm} => 'no%20game%20no%20life'
+   * {searchtermPlus} => 'no+game+no+life'
+   * {searchtermMinus} => 'no-game-no-life'
+   * {searchtermUnderscore} => 'no_game_no_life'
+   * {searchtermRaw} => 'no game no life'
+   * @see {@link searchSyntax} for advanced usage
+   */
   search: string;
   /**
    * Database identifier for first party implementations
