@@ -130,4 +130,14 @@ export default {
   includes: (ctx: ChibiCtx, input: string, searchString: string, position?: number) => {
     return input.includes(searchString, position);
   },
+
+  /**
+   * Concatenates two strings
+   * @input string - The first string
+   * @param value - The second string to concatenate
+   * @returns Concatenated string
+   */
+  concat: (ctx: ChibiCtx, input: string, value: string) => {
+    return input.concat(value);
+  },
 };

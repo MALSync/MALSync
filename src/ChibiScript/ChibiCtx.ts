@@ -17,8 +17,8 @@ export class ChibiCtx {
     this.registry = new ChibiRegistry();
   }
 
-  run(script: ChibiJson<any>) {
-    return this.getConsumer()._subroutine(script);
+  run(script: ChibiJson<any>, startState: any = null) {
+    return this.getConsumer()._subroutine(script, startState);
   }
 
   set(name: string, value: any) {

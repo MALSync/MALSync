@@ -19,6 +19,12 @@ class ChibiGenerator<T> {
           value = [] as unknown as T;
         }
 
+        for (let i = 0; i < args.length; i++) {
+          if (typeof args[i] === 'function') {
+            args[i] = args[i]($c);
+          }
+        }
+
         if (typeof randomKeys[func.name] !== 'undefined') {
           const randomKey = Math.random().toString(36).slice(2);
           args[randomKeys[func.name]] = func.name + randomKey;
@@ -70,17 +76,23 @@ type ChainableMethods<T, R extends Record<string, (...args: any[]) => any>> = {
   [K in keyof R]: MatchesType<T, InputType<R[K]>> extends true
     ? K extends BooleanRestParamFunctions
       ? (...args: ChibiJson<boolean>[]) => ChibiGenerator<ReturnType<R[K]>>
-      : RemoveFirstTwo<Parameters<R[K]>> extends never
-        ? () => ChibiGenerator<ReturnType<R[K]>>
-        : <Args extends RemoveFirstTwo<Parameters<R[K]>>>(
-            ...args: Args
-          ) => R[K] extends typeof functionsRegistry.if
-            ? ChibiGenerator<ReturnType<typeof functionsRegistry.if<Args>>>
-            : K extends ArrayToEntryFunctions
-              ? ChibiGenerator<ReturnType<typeof functionsRegistry.at<T extends any[] ? T : never>>>
-              : K extends passthroughFunctions
-                ? ChibiGenerator<T>
-                : ChibiGenerator<ReturnType<R[K]>>
+      : R[K] extends typeof functionsRegistry.then
+        ? <Then extends ($c: ChibiGenerator<T>) => ChibiJson<any>>(
+            then: Then,
+          ) => ChibiGenerator<ReturnType<typeof functionsRegistry.then<T, ReturnType<Then>>>>
+        : RemoveFirstTwo<Parameters<R[K]>> extends never
+          ? () => ChibiGenerator<ReturnType<R[K]>>
+          : <Args extends RemoveFirstTwo<Parameters<R[K]>>>(
+              ...args: Args
+            ) => R[K] extends typeof functionsRegistry.if
+              ? ChibiGenerator<ReturnType<typeof functionsRegistry.if<Args>>>
+              : K extends ArrayToEntryFunctions
+                ? ChibiGenerator<
+                    ReturnType<typeof functionsRegistry.at<T extends any[] ? T : never>>
+                  >
+                : K extends passthroughFunctions
+                  ? ChibiGenerator<T>
+                  : ChibiGenerator<ReturnType<R[K]>>
     : TypeMismatchError<string & K, T, InputType<R[K]>>;
 };
 

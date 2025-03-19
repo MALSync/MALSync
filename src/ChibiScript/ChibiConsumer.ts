@@ -30,8 +30,8 @@ export class ChibiConsumer {
     return state;
   }
 
-  _subroutine(script: ChibiJson<any>) {
-    let state: any = null;
+  _subroutine(script: ChibiJson<any>, startState: any = null) {
+    let state: any = startState;
     // eslint-disable-next-line no-restricted-syntax
     for (const [functionName, ...args] of script) {
       if (!functionsRegistry[functionName]) {
@@ -66,8 +66,8 @@ export class ChibiConsumer {
     return state;
   }
 
-  async _subroutineAsync(script: ChibiJson<any>) {
-    let state: any = null;
+  async _subroutineAsync(script: ChibiJson<any>, startState: any = null) {
+    let state: any = startState;
     // eslint-disable-next-line no-restricted-syntax
     for (const [functionName, ...args] of script) {
       if (!functionsRegistry[functionName]) {
