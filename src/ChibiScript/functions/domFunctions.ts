@@ -97,4 +97,12 @@ export default {
   parent: (ctx: ChibiCtx, input: Element) => {
     return input.parentElement;
   },
+
+  /**
+   * Gets the current document title
+   * @returns The current document title
+   */
+  title: (ctx: ChibiCtx, input: void) => {
+    return document.title;
+  },
 };

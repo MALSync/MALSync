@@ -1,5 +1,6 @@
 import type { ChibiJson } from 'src/chibiScript/ChibiGenerator';
 import type { ChibiCtx } from '../../ChibiCtx';
+import { changeDetect } from 'src/utils/general';
 
 export default {
   /**
@@ -39,5 +40,32 @@ export default {
         }, 100),
       );
     });
+  },
+
+  /**
+   * Detect changes in a specific target and run a callback every time a change is detected
+   * @param target - Target to monitor for changes
+   * @param callback - Callback to execute when changes are detected
+   * @param _intervalKey - Internal never provide this
+   */
+  detectChanges: (
+    ctx: ChibiCtx,
+    input: void,
+    target: ChibiJson<any>,
+    callback: ChibiJson<any>,
+    _intervalKey?,
+  ): void => {
+    clearInterval(ctx.getInterval(_intervalKey));
+    let currentState = ctx.run(target);
+    ctx.setInterval(
+      _intervalKey,
+      setInterval(() => {
+        const temp = ctx.run(target);
+        if (typeof temp !== 'undefined' && currentState !== temp) {
+          currentState = temp;
+          ctx.run(callback);
+        }
+      }, 500),
+    );
   },
 };

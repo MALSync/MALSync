@@ -41,5 +41,18 @@ describe('ChibiGenerator', () => {
       expect(result1[0][2]).to.match(/^waitUntilTrue[a-zA-Z0-9]+$/);
       expect(result2[0][2]).to.match(/^waitUntilTrue[a-zA-Z0-9]+$/);
     });
+
+    it('should generate random key for detectChanges parameter', () => {
+      const result = $c.detectChanges(
+        $c.string('target').run(),
+        $c.string('callback').run()
+      ).run();
+
+      // Check that the fourth parameter (index 3) is a random key
+      expect(result[0][0]).to.equal('detectChanges');
+      expect(result[0][3]).to.be.a('string');
+      expect(result[0][3]).to.include('detectChanges');
+      expect(result[0][3]).to.match(/^detectChanges[a-zA-Z0-9]+$/);
+    });
   });
 });

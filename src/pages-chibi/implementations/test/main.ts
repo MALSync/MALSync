@@ -68,7 +68,11 @@ export const test: PageInterface = {
         .run();
     },
     ready($c) {
-      return $c.domReady().trigger().run();
+      return $c
+        .domReady()
+        .detectChanges($c.querySelector('h1').text().run(), $c.trigger().run())
+        .trigger()
+        .run();
     },
     syncIsReady($c) {
       return $c
