@@ -83,5 +83,10 @@ export const test: PageInterface = {
     overviewIsReady($c) {
       return $c.waitUntilTrue($c.querySelector('.test-2').boolean().run()).trigger().run();
     },
+    listChange($c) {
+      return $c
+        .detectChanges($c.querySelectorAll('.test-3').length().boolean().run(), $c.trigger().run())
+        .run();
+    },
   },
 };

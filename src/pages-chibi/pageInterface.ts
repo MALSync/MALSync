@@ -202,6 +202,15 @@ export interface PageInterface {
      * This function can only be triggered once.
      */
     overviewIsReady?: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
+
+    /**
+     * This function is called once when the script is loaded.
+     * Use this function to trigger list checks.
+     * You can trigger the .trigger() multiple times.
+     * This function is only necessary for lists with paginations.
+     * If the list does not change this function is normally not needed.
+     */
+    listChange?: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
   };
 }
 
@@ -256,5 +265,6 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     ready: ReturnType<PageInterface['lifecycle']['ready']>;
     syncIsReady?: ReturnType<NonNullable<PageInterface['lifecycle']['syncIsReady']>>;
     overviewIsReady?: ReturnType<NonNullable<PageInterface['lifecycle']['overviewIsReady']>>;
+    listChange?: ReturnType<NonNullable<PageInterface['lifecycle']['listChange']>>;
   };
 };

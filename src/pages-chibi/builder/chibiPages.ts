@@ -48,6 +48,9 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
   if (page.lifecycle.overviewIsReady) {
     page.lifecycle.overviewIsReady = page.lifecycle.overviewIsReady($c) as any;
   }
+  if (page.lifecycle.listChange) {
+    page.lifecycle.listChange = page.lifecycle.listChange($c) as any;
+  }
 
   return page;
 }

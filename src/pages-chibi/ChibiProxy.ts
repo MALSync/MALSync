@@ -207,6 +207,15 @@ export const Chibi = async (): Promise<pageInterface> => {
         }
       });
       readyConsumer.runAsync();
+
+      if (currentPage.lifecycle.listChange) {
+        const listConsumer = getConsumer(currentPage.lifecycle.listChange, pageD);
+        listConsumer.addVariable('trigger', () => {
+          logger.info('List Trigger');
+          page.handleList();
+        });
+        listConsumer.runAsync();
+      }
     },
   };
 
