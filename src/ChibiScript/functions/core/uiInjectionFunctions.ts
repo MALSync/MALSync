@@ -1,3 +1,4 @@
+import { ChibiError } from '../../ChibiErrors';
 import type { ChibiCtx } from '../../ChibiCtx';
 
 export default {
@@ -7,7 +8,7 @@ export default {
    */
   uiPrepend: (ctx: ChibiCtx, input: Element): void => {
     const ui = ctx.get('ui');
-    if (typeof ui !== 'string') throw new Error('UI html not found');
+    if (typeof ui !== 'string') throw new ChibiError('UI html not found');
 
     j.$(input).prepend(j.html(ui));
   },
@@ -18,7 +19,7 @@ export default {
    */
   uiAppend: (ctx: ChibiCtx, input: Element): void => {
     const ui = ctx.get('ui');
-    if (typeof ui !== 'string') throw new Error('UI html not found');
+    if (typeof ui !== 'string') throw new ChibiError('UI html not found');
 
     j.$(input).append(j.html(ui));
   },
@@ -29,7 +30,7 @@ export default {
    */
   uiAfter: (ctx: ChibiCtx, input: Element): void => {
     const ui = ctx.get('ui');
-    if (typeof ui !== 'string') throw new Error('UI html not found');
+    if (typeof ui !== 'string') throw new ChibiError('UI html not found');
 
     j.$(input).after(j.html(ui));
   },
@@ -40,7 +41,7 @@ export default {
    */
   uiBefore: (ctx: ChibiCtx, input: Element): void => {
     const ui = ctx.get('ui');
-    if (typeof ui !== 'string') throw new Error('UI html not found');
+    if (typeof ui !== 'string') throw new ChibiError('UI html not found');
 
     j.$(input).before(j.html(ui));
   },

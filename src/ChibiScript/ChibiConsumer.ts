@@ -1,5 +1,5 @@
 import { ChibiCtx } from './ChibiCtx';
-import { UnknownChibiFunctionError } from './ChibiErrors';
+import { ChibiError, UnknownChibiFunctionError } from './ChibiErrors';
 import type { ChibiJson } from './ChibiGenerator';
 import { ChibiReturn } from './ChibiReturn';
 import functionsRegistry from './functions';
@@ -18,7 +18,7 @@ export class ChibiConsumer {
 
   run(startState: any = null) {
     if (this.hasRun) {
-      throw new Error('Run method can only be executed once');
+      throw new ChibiError('Run method can only be executed once');
     }
     this.hasRun = true;
     const state = this._subroutine(this.script, startState);
@@ -41,12 +41,15 @@ export class ChibiConsumer {
       try {
         state = func(this.ctx, state, ...args);
       } catch (error) {
+        if (error instanceof ChibiError) {
+          throw error;
+        }
         con.m('chibi').error(error);
         state = null;
       }
 
       if (state && state instanceof Promise) {
-        throw new Error('Async functions are not supported in this context');
+        throw new ChibiError('Async functions are not supported in this context');
       }
 
       if (state && state instanceof ChibiReturn) {
@@ -59,7 +62,7 @@ export class ChibiConsumer {
 
   async runAsync() {
     if (this.hasRun) {
-      throw new Error('Run method can only be executed once');
+      throw new ChibiError('Run method can only be executed once');
     }
     this.hasRun = true;
     const state = await this._subroutineAsync(this.script);
@@ -86,6 +89,9 @@ export class ChibiConsumer {
           state = await state;
         }
       } catch (error) {
+        if (error instanceof ChibiError) {
+          throw error;
+        }
         con.m('chibi').error(error);
         state = null;
       }

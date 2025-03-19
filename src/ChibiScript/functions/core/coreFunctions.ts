@@ -1,3 +1,4 @@
+import { ChibiError } from '../../ChibiErrors';
 import type { ChibiCtx } from '../../ChibiCtx';
 import type { ChibiJson } from '../../ChibiGenerator';
 import { reservedKeys } from '../../ChibiRegistry';
@@ -26,7 +27,7 @@ export default {
     const provider = ctx.get('provider');
 
     if (!provider) {
-      throw new Error('Provider not set');
+      throw new ChibiError('Provider not set');
     }
 
     return provider;
@@ -49,7 +50,7 @@ export default {
     const trigger = ctx.get('trigger');
 
     if (!trigger) {
-      throw new Error('Trigger not set');
+      throw new ChibiError('Trigger not set');
     }
 
     trigger();
@@ -123,7 +124,7 @@ export default {
    */
   setVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
     if (reservedKeys.includes(key)) {
-      throw new Error(`Cannot set reserved key: ${key}`);
+      throw new ChibiError(`Cannot set reserved key: ${key}`);
     }
 
     if (value !== undefined) {
@@ -156,7 +157,7 @@ export default {
    */
   setGlobalVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
     if (reservedKeys.includes(key)) {
-      throw new Error(`Cannot set reserved global key: ${key}`);
+      throw new ChibiError(`Cannot set reserved global key: ${key}`);
     }
 
     if (value !== undefined) {
@@ -195,6 +196,6 @@ export default {
    * @returns Never returns, always throws
    */
   error: (ctx: ChibiCtx, input: any, message: string): never => {
-    throw new Error(message);
+    throw new ChibiError(message);
   },
 };

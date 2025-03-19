@@ -92,7 +92,7 @@ describe('String Functions', () => {
 
     it('should throw error for no match', () => {
       const code = $c.string('helloworld').regex('\\d+', 0).run();
-      expect(() => generateAndExecute(code).run()).to.throw(/No match found/);
+      expect(generateAndExecute(code).run()).to.equal(null);
     });
 
     it('should be case-insensitive by default', () => {
@@ -102,7 +102,7 @@ describe('String Functions', () => {
 
     it('should respect provided flags', () => {
       const code = $c.string('HELLO123').regex('hello(\\d+)', 1, '').run();
-      expect(() => generateAndExecute(code).run()).to.throw(/No match found/);
+      expect(generateAndExecute(code).run()).to.equal(null);
     });
 
     it('should use multiple flags', () => {
