@@ -1,4 +1,5 @@
 import { PageInterfaceCompiled, PageJsonInterface, PageListJsonInterface } from '../pageInterface';
+import { greaterCurrentVersion } from '../../utils/version';
 
 export class ChibiListRepository {
   private collections: string[];
@@ -13,6 +14,11 @@ export class ChibiListRepository {
     const pages = await Promise.all(this.collections.map(c => this.retrieveCollection(c)));
     this.pages = pages.reduce((acc, cur) => {
       Object.keys(cur.pages).forEach(key => {
+        // Skip pages that require a higher version than current
+        if (cur.pages[key].minimumVersion && greaterCurrentVersion(cur.pages[key].minimumVersion)) {
+          return;
+        }
+
         const newer =
           acc[key] &&
           acc[key].version.hash !== cur.pages[key].version.hash &&

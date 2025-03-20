@@ -14,6 +14,7 @@ export default (): PageListJsonInterface => {
       key,
       name: pageObj.name,
       version: hashes[key],
+      minimumVersion: pageObj.minimumVersion || undefined,
       type: pageObj.type,
       domain: pageObj.domain,
       languages: pageObj.languages,

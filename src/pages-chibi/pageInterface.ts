@@ -36,6 +36,12 @@ export interface PageInterface {
    */
   search: string;
   /**
+   * Minimum version of the Malsync extension required for this page integration to work
+   * Only necessary if the page integration uses new features
+   * @example '0.12.0'
+   */
+  minimumVersion?: string;
+  /**
    * Database identifier for first party implementations
    * @internal This is only used for first party implementations
    */
@@ -235,7 +241,15 @@ export interface PageInterfaceCompiled extends PageInterface {
 
 export type PageListInterface = Pick<
   PageInterfaceCompiled,
-  'name' | 'type' | 'domain' | 'languages' | 'urls' | 'search' | 'database' | 'version'
+  | 'name'
+  | 'type'
+  | 'domain'
+  | 'languages'
+  | 'urls'
+  | 'search'
+  | 'database'
+  | 'version'
+  | 'minimumVersion'
 > & {
   /** The unique key of the page integration */
   key: string;
