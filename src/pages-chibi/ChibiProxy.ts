@@ -17,7 +17,10 @@ function getUrlConsumer(code: ChibiJson<any>, url: string, page: pageInterface) 
 }
 
 export const Chibi = async (): Promise<pageInterface> => {
-  const repo = await new ChibiListRepository([chrome.runtime.getURL('chibi')]).init();
+  const repo = await new ChibiListRepository([
+    chrome.runtime.getURL('chibi'),
+    'https://chibi.malsync.moe/config',
+  ]).init();
   const allPages = repo.getList();
 
   const currentUrl = window.location.href;

@@ -22,7 +22,7 @@ export class ChibiListRepository {
         const newer =
           acc[key] &&
           acc[key].version.hash !== cur.pages[key].version.hash &&
-          acc[key].version.timestamp < cur.pages[key].version.timestamp;
+          Number(acc[key].version.timestamp) < Number(cur.pages[key].version.timestamp);
 
         if (!acc[key] || newer) {
           acc[key] = cur.pages[key];
