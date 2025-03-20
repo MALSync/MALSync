@@ -8,30 +8,35 @@ export function getVersionHashes() {
       timestamp: string;
     };
   } = {};
-  Object.keys(pages).forEach(key => {
-    const pageObj = pages[key];
-    const pageString = objectToString(pageObj);
-    hashes[key] = {
-      hash: createShortHash(pageString),
-      timestamp: new Date().getTime().toString(),
-    };
-  });
+  Object.keys(pages)
+    .sort()
+    .forEach(key => {
+      const pageObj = pages[key];
+      const pageString = objectToString(pageObj);
+      hashes[key] = {
+        hash: createShortHash(pageString),
+        timestamp: new Date().getTime().toString(),
+      };
+    });
   return hashes;
 }
 
 function objectToString(obj: any): string {
   const result = {};
 
-  Object.keys(obj).forEach(key => {
-    const value = obj[key];
-    if (typeof value === 'function') {
-      result[key] = value.toString();
-    } else if (typeof value === 'object' && value !== null) {
-      result[key] = objectToString(value);
-    } else {
-      result[key] = value;
-    }
-  });
+  Object.keys(obj)
+    .sort()
+    .forEach(key => {
+      const value = obj[key];
+      if (typeof value === 'function') {
+        const fnStr = value.toString().replace(/\r\n/g, '\n').replace(/\s+/g, ' ').trim();
+        result[key] = fnStr;
+      } else if (typeof value === 'object' && value !== null) {
+        result[key] = objectToString(value);
+      } else {
+        result[key] = value;
+      }
+    });
 
   return JSON.stringify(result);
 }
