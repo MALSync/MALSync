@@ -61,7 +61,7 @@ export class ChibiListRepository {
 
     const response = await api.request.xhr(
       'GET',
-      `${page.root}/pages/${key}.json?version=${page.version}`,
+      `${page.root}/pages/${key}.json?version=${page.version.hash}`,
     );
     const res: PageJsonInterface = JSON.parse(response.responseText);
 
