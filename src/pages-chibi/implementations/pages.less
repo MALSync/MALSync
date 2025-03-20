@@ -1,0 +1,189 @@
+@malpStyle: 1;
+// Style 0 = unstyled
+// Style 1 = box style
+// Style 2 = classic style
+@boxBackground: #00000038;
+@boxGap: 10px;
+
+@highlightStyle: 2;
+// Style 0 = unstyled
+// Style 1 = border style
+// Style 2 = background style
+// Style 3 = text color style
+@activeEp: #002e7459;
+
+.malp() when (@malpStyle = 0) {
+  // Unstyled
+}
+.malp() when (@malpStyle = 1) {
+  #MalData {
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: @boxGap;
+
+    .malp-group {
+      display: flex;
+      flex-direction: column !important;
+      gap: 3px;
+
+      &.malp-group-rating {
+        display: flex !important;
+      }
+
+      & > .malp-group-field,
+      & > .malp-group-value-section {
+        flex-grow: 1;
+        background-color: @boxBackground !important;
+        border-radius: 4px;
+        padding: 4px 8px !important;
+      }
+    }
+
+    option {
+      background-color: @boxBackground !important;
+    }
+
+    .malp-group-label {
+      display: block !important;
+    }
+
+    .malp-group-label {
+      display: block !important;
+      font-size: 12px !important;
+    }
+
+    .malp-group-mal-add {
+      display: flex !important;
+      .malp-group-label {
+        visibility: hidden;
+      }
+      a {
+        color: inherit;
+      }
+    }
+    #AddMalDiv {
+      display: none !important;
+    }
+  }
+}
+// General Styling
+.malp() when (@malpStyle = 1), (@malpStyle = 2) {
+  #malStatus,
+  #malUserRating,
+  #malEpisodes,
+  #malVolumes,
+  #malEpisodes,
+  #malRating {
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    background: transparent;
+    border-color: grey;
+    text-decoration: none;
+    outline: medium none;
+    border-width: 0;
+    height: auto;
+    align-content: center;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+  }
+
+  #malEpisodes,
+  #malVolumes,
+  #malEpisodes {
+    text-align: center;
+    border-bottom-width: 1px;
+    &:focus {
+      border-color: black;
+    }
+  }
+}
+
+#malp {
+  .malp();
+}
+
+// Episode Styling
+.epHighlight() when (@highlightStyle = 0) {
+  // Unstyled
+}
+.epHighlight() when (@highlightStyle = 1) {
+  border-left: 5px solid @activeEp;
+}
+.epHighlight() when (@highlightStyle = 2) {
+  background-color: @activeEp;
+}
+.epHighlight() when (@highlightStyle = 3) {
+  color: @activeEp !important;
+  * {
+    color: @activeEp !important;
+  }
+}
+.epHighlight() when (@highlightStyle = 4) {
+  font-weight: bold !important;
+  * {
+    font-weight: bold !important;
+  }
+}
+
+.mal-sync-active {
+  .epHighlight();
+}
+
+// General Styling
+#malSyncProgress {
+  &.ms-loading {
+    height: 4px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #ddd;
+
+    &::before {
+      display: block;
+      position: absolute;
+      content: '';
+      left: -200px;
+      width: 200px;
+      height: 4px;
+      background-color: #2980b9;
+      animation: loading-mal 2s linear infinite;
+    }
+
+    @keyframes loading-mal {
+      0% {
+        left: -200px;
+        width: 30%;
+      }
+
+      50% {
+        width: 30%;
+      }
+
+      70% {
+        width: 70%;
+      }
+
+      80% {
+        left: 50%;
+      }
+
+      95% {
+        left: 120%;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
+  }
+
+  &.ms-done {
+    .ms-progress {
+      width: 100% !important;
+      background-color: #ff4081 !important;
+      transition: background-color 1s !important;
+    }
+  }
+}
