@@ -227,7 +227,10 @@ export interface PageInterface {
 
 export interface PageInterfaceCompiled extends PageInterface {
   /** The version of the page integration */
-  version: string;
+  version: {
+    hash: string;
+    timestamp: string;
+  };
 }
 
 export type PageListInterface = Pick<

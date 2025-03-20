@@ -13,7 +13,12 @@ export class ChibiListRepository {
     const pages = await Promise.all(this.collections.map(c => this.retrieveCollection(c)));
     this.pages = pages.reduce((acc, cur) => {
       Object.keys(cur.pages).forEach(key => {
-        if (!acc[key] || acc[key].version !== cur.pages[key].version) {
+        const newer =
+          acc[key] &&
+          acc[key].version.hash !== cur.pages[key].version.hash &&
+          acc[key].version.timestamp < cur.pages[key].version.timestamp;
+
+        if (!acc[key] || newer) {
           acc[key] = cur.pages[key];
         }
       });

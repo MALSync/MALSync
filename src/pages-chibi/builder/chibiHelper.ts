@@ -2,11 +2,19 @@
 import { pages } from '../pages';
 
 export function getVersionHashes() {
-  const hashes: { [key: string]: string } = {};
+  const hashes: {
+    [key: string]: {
+      hash: string;
+      timestamp: string;
+    };
+  } = {};
   Object.keys(pages).forEach(key => {
     const pageObj = pages[key];
     const pageString = objectToString(pageObj);
-    hashes[key] = createShortHash(pageString);
+    hashes[key] = {
+      hash: createShortHash(pageString),
+      timestamp: new Date().getTime().toString(),
+    };
   });
   return hashes;
 }
