@@ -137,6 +137,9 @@
     ]
   },
   "0.11.1": {
+    "Animeworld": [
+      "*://*.animeworld.ac/play/*"
+    ],
     "Miruro": [
       "*://*.miruro.to/*"
     ],
