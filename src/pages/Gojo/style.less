@@ -1,0 +1,44 @@
+@import './../pages';
+
+@textColor: rgba(255 255 255 / 95%);
+
+#malp {
+  color: rgba(255 255 255 / 50%);
+
+  #MalData {
+    justify-content: center !important;
+
+    @media (min-width: 640px) {
+      justify-content: flex-start !important;
+    }
+
+    & > span.malp-group {
+      margin: 0 5px 5px 0;
+      background: var(--lightt);
+      padding: 6px 10px;
+      border-radius: 0.25rem;
+      white-space: pre-wrap !important;
+      font-size: 12px;
+      float: left;
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+
+      &.malp-group-rating > #AddMalDiv {
+        font-size: 0 !important;
+
+        * {
+          font-size: var(--bs-body-font-size) !important;
+        }
+      }
+
+      & > * {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.mal-sync-active {
+  background-color: @activeEp !important;
+}
