@@ -661,6 +661,7 @@ module.exports = {
     match: [
       '*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*',
       '*://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*',
+      '*://www.animeworld.ac/api/episode/serverPlayerAnimeWorld?id=*',
     ],
   },
   // 9anime animenosub
