@@ -140,4 +140,13 @@ export default {
   concat: (ctx: ChibiCtx, input: string, value: string) => {
     return input.concat(value);
   },
+
+  /**
+   * Parses a string as JSON
+   * @input string - The JSON string to parse
+   * @returns Parsed JavaScript object
+   */
+  jsonParse: (ctx: ChibiCtx, input: string) => {
+    return JSON.parse(input);
+  },
 };

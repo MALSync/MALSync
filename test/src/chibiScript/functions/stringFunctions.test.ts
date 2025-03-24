@@ -143,6 +143,28 @@ describe('String Functions', () => {
       expect(generateAndExecute(code).run()).to.be.false;
     });
   });
+
+  describe('jsonParse', () => {
+    it('should parse simple JSON string', () => {
+      const code = $c.string('{"key":"value"}').jsonParse().run();
+      expect(generateAndExecute(code).run()).to.deep.equal({ key: 'value' });
+    });
+
+    it('should parse array JSON string', () => {
+      const code = $c.string('[1,2,3]').jsonParse().run();
+      expect(generateAndExecute(code).run()).to.deep.equal([1, 2, 3]);
+    });
+
+    it('should parse nested JSON objects', () => {
+      const code = $c.string('{"outer":{"inner":"value"}}').jsonParse().run();
+      expect(generateAndExecute(code).run()).to.deep.equal({ outer: { inner: 'value' } });
+    });
+
+    it('should throw error for invalid JSON', () => {
+      const code = $c.string('{invalid}').jsonParse().run();
+      expect(generateAndExecute(code).run()).to.be.null;
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {
