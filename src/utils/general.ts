@@ -155,7 +155,7 @@ export function waitUntilTrue(condition: Function, callback: Function, interval 
     }
     if (counter > 10) {
       clearInterval(intervalId);
-      const newIntervalTime = Math.min(interval * 2, 15000);
+      const newIntervalTime = Math.max(Math.min(interval * 2, 15000), 500);
       waitUntilTrue(condition, callback, newIntervalTime);
     }
   }, interval);

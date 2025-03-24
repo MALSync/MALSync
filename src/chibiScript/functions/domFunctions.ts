@@ -99,6 +99,24 @@ export default {
   },
 
   /**
+   * Gets the next sibling element of a DOM node
+   * @input Element - DOM element
+   * @returns The next sibling Element or null if no sibling exists
+   */
+  next: (ctx: ChibiCtx, input: Element) => {
+    return input.nextElementSibling;
+  },
+
+  /**
+   * Gets the previous sibling element of a DOM node
+   * @input Element - DOM element
+   * @returns The previous sibling Element or null if no sibling exists
+   */
+  prev: (ctx: ChibiCtx, input: Element) => {
+    return input.previousElementSibling;
+  },
+
+  /**
    * Gets the current document title
    * @returns The current document title
    */
