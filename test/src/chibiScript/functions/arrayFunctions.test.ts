@@ -86,6 +86,28 @@ describe('Array Functions', () => {
       expect(generateAndExecute(code).run()).to.be.false;
     });
   });
+
+  describe('get', () => {
+    it('should retrieve a property from an object by key', () => {
+      const code = $c.string('{"name":"John","age":30}').jsonParse().get('name').run();
+      expect(generateAndExecute(code).run()).to.equal('John');
+    });
+
+    it('should retrieve nested properties using chained calls', () => {
+      const code = $c.string('{"user":{"profile":{"name":"John"}}}').jsonParse().get('user').get('profile').get('name').run();
+      expect(generateAndExecute(code).run()).to.equal('John');
+    });
+
+    it('should return undefined for non-existent properties', () => {
+      const code = $c.string('{"name":"John"}').jsonParse().get('address').run();
+      expect(generateAndExecute(code).run()).to.be.undefined;
+    });
+
+    it('should handle array access', () => {
+      const code = $c.string('{"users":["John","Jane","Bob"]}').jsonParse().get('users').at(1).run();
+      expect(generateAndExecute(code).run()).to.equal('Jane');
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {
