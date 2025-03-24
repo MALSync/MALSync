@@ -182,7 +182,7 @@ export default {
    *  .concat(' world')
    *  .log(); // 'hello world'
    */
-  fcn: (ctx: ChibiCtx, input: void, functionBody: ChibiJson<any>) => {
+  fn: (ctx: ChibiCtx, input: void, functionBody: ChibiJson<any>) => {
     const result = ctx.run(functionBody);
 
     if (result && result instanceof ChibiReturn) {
