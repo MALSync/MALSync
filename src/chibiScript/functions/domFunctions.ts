@@ -1,44 +1,49 @@
 import type { ChibiCtx } from '../ChibiCtx';
+import type { ChibiJson } from '../ChibiGenerator';
 
 export default {
   /**
    * Selects an element from the DOM using a CSS selector
    * @input void - No input required
-   * @param selector - CSS selector string
+   * @param selector - CSS selector string or ChibiJson that resolves to a string
    * @returns The first matching Element or null if not found
    */
-  querySelector: (ctx: ChibiCtx, input: void, selector: string) => {
-    return document.querySelector(selector);
+  querySelector: (ctx: ChibiCtx, input: void, selector: string | ChibiJson<string>) => {
+    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
+    return document.querySelector(selectorValue);
   },
 
   /**
    * Selects multiple elements from the DOM using a CSS selector
    * @input void - No input required
-   * @param selector - CSS selector string
+   * @param selector - CSS selector string or ChibiJson that resolves to a string
    * @returns Array of all matching elements
    */
-  querySelectorAll: (ctx: ChibiCtx, input: void, selector: string) => {
-    return Array.from(document.querySelectorAll(selector));
+  querySelectorAll: (ctx: ChibiCtx, input: void, selector: string | ChibiJson<string>) => {
+    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
+    return Array.from(document.querySelectorAll(selectorValue));
   },
 
   /**
    * Finds elements within the input element using a CSS selector
    * @input Element - DOM element to search within
-   * @param selector - CSS selector string
+   * @param selector - CSS selector string or ChibiJson that resolves to a string
    * @returns The first matching Element or null if not found
    */
-  find: (ctx: ChibiCtx, input: Element, selector: string) => {
-    return input.querySelector(selector);
+  find: (ctx: ChibiCtx, input: Element, selector: string | ChibiJson<string>) => {
+    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
+    return input.querySelector(selectorValue);
   },
 
   /**
    * Finds all elements within the input element using a CSS selector
    * @input Element - DOM element to search within
-   * @param selector - CSS selector string
+   * @param selector - CSS selector string or ChibiJson that resolves to a string
    * @returns Array of all matching elements
    */
-  findAll: (ctx: ChibiCtx, input: Element, selector: string) => {
-    return Array.from(input.querySelectorAll(selector));
+  findAll: (ctx: ChibiCtx, input: Element, selector: string | ChibiJson<string>) => {
+    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
+    return Array.from(input.querySelectorAll(selectorValue));
   },
 
   /**
@@ -82,11 +87,12 @@ export default {
   /**
    * Finds the closest ancestor of an element matching a selector
    * @input Element - DOM element to start from
-   * @param selector - CSS selector to match ancestors against
+   * @param selector - CSS selector to match ancestors against or ChibiJson that resolves to a string
    * @returns The matching ancestor element or null if none found
    */
-  closest: (ctx: ChibiCtx, input: Element, selector: string) => {
-    return input.closest(selector);
+  closest: (ctx: ChibiCtx, input: Element, selector: string | ChibiJson<string>) => {
+    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
+    return input.closest(selectorValue);
   },
 
   /**
