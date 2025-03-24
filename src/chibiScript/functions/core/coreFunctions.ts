@@ -2,6 +2,7 @@ import { ChibiError } from '../../ChibiErrors';
 import type { ChibiCtx } from '../../ChibiCtx';
 import type { ChibiJson } from '../../ChibiGenerator';
 import { reservedKeys } from '../../ChibiRegistry';
+import { ChibiReturn } from '../../ChibiReturn';
 
 export default {
   /**
@@ -169,7 +170,28 @@ export default {
     return input;
   },
 
-  // addStyle
+  /**
+   * Creates a function scope.
+   * Makes it possible to catch return values similar to a function
+   * @input void - No input required
+   * @param functionBody - Function body to execute
+   * @returns The result of the function body
+   * @example
+   * $c
+   *  .function($c.string('hello').return().run())
+   *  .concat(' world')
+   *  .log(); // 'hello world'
+   */
+  fcn: (ctx: ChibiCtx, input: void, functionBody: ChibiJson<any>) => {
+    const result = ctx.run(functionBody);
+
+    if (result && result instanceof ChibiReturn) {
+      return result.getValue();
+    }
+
+    return result;
+  },
+
   /**
    * Adds a style to the page
    * @param css - CSS to add to the page

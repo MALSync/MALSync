@@ -98,6 +98,30 @@ describe('Core Functions', () => {
       expect(result).to.equal('default');
     });
   });
+
+  describe('function', () => {
+    it('should execute function body and return its result', () => {
+      const code = $c.fcn($c.string('hello').run()).run();
+      expect(generateAndExecute(code).run()).to.equal('hello');
+    });
+
+    it('should capture return values from inside the function', () => {
+      const code = $c.fcn($c.string('hello').return().string('world').run()).run();
+      expect(generateAndExecute(code).run()).to.equal('hello');
+    });
+
+    it('should allow function chaining after returned value', () => {
+      const code = $c.fcn($c.string('hello').return().run()).concat(' world').run();
+      expect(generateAndExecute(code).run()).to.equal('hello world');
+    });
+
+    it('should handle nested functions and return values', () => {
+      const code = $c.fcn(
+        $c.fcn($c.string('inner').return().run()).concat(' function').return().run()
+      ).concat(' outer').run();
+      expect(generateAndExecute(code).run()).to.equal('inner function outer');
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {
