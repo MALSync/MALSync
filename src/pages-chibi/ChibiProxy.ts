@@ -187,7 +187,6 @@ export const Chibi = async (): Promise<pageInterface> => {
                 pageD.sync.getTitle(window.location.href) &&
                 pageD.sync.getIdentifier(window.location.href),
               pageReady,
-              100,
             );
           }
         } else if (pageD.isOverviewPage && pageD.isOverviewPage(window.location.href)) {
@@ -202,7 +201,6 @@ export const Chibi = async (): Promise<pageInterface> => {
                 pageD.overview!.getTitle(window.location.href) &&
                 pageD.overview!.getIdentifier(window.location.href),
               pageReady,
-              100,
             );
           }
         } else {

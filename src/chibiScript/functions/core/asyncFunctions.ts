@@ -30,13 +30,10 @@ export default {
       clearInterval(ctx.getInterval(_intervalKey));
       ctx.setInterval(
         _intervalKey,
-        setInterval(() => {
-          const conditionState = ctx.run(condition);
-          if (conditionState) {
-            clearInterval(ctx.getInterval(_intervalKey));
-            resolve();
-          }
-        }, 100),
+        utils.waitUntilTrue(
+          () => ctx.run(condition),
+          () => resolve(),
+        ),
       );
     });
   },
