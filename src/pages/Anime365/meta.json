@@ -6,7 +6,9 @@
       "*://smotret-anime.online/catalog/*",
       "*://smotret-anime.com/catalog/*",
       "*://anime365.ru/catalog/*",
-      "*://anime-365.ru/catalog/*"
+      "*://anime-365.ru/catalog/*",
+      "*://smotret-anime.ru/catalog/*",
+      "*://smotretanime.ru/catalog/*"
     ]
   }
 }
