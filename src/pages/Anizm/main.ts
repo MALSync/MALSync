@@ -16,7 +16,9 @@ export const Anizm: pageInterface = {
     Boolean(document.querySelector('.animeDetayInnerContainer .animeDetayInfoWrapper')),
   sync: {
     getTitle: () => {
-      const overviewAnchor = document.querySelector<HTMLDivElement>('.episodeContainer .info_otherTitle');
+      const overviewAnchor = document.querySelector<HTMLDivElement>(
+        '.episodeContainer .info_otherTitle',
+      );
 
       if (!overviewAnchor) {
         throw Error("Can't find the title");
@@ -25,7 +27,9 @@ export const Anizm: pageInterface = {
       return overviewAnchor.innerText;
     },
     getOverviewUrl: () => {
-      const anchor = document.querySelector<HTMLAnchorElement>('.animeIzleBolumListesi a.animeDetayKutuLink');
+      const anchor = document.querySelector<HTMLAnchorElement>(
+        '.animeIzleBolumListesi a.animeDetayKutuLink',
+      );
 
       if (!anchor) {
         throw Error("Can't find overview anchor element");
@@ -53,7 +57,9 @@ export const Anizm: pageInterface = {
       return Number(url.replace(/.*-(\d{1,})-.*/, '$1') || undefined);
     },
     nextEpUrl: () => {
-      const nextEpisodeAnchor = document.querySelector<HTMLAnchorElement>('.anizm_alignRight a.anizm_button.default');
+      const nextEpisodeAnchor = document.querySelector<HTMLAnchorElement>(
+        '.anizm_alignRight a.anizm_button.default',
+      );
 
       if (!nextEpisodeAnchor) return undefined;
 
@@ -70,8 +76,10 @@ export const Anizm: pageInterface = {
 
       return titleElement.innerText;
     },
-    uiSelector: HTML => {
-      const statusBarContainerElement = document.querySelector<HTMLDivElement>('.infoExtraData ul.dataRows');
+    uiSelector: html => {
+      const statusBarContainerElement = document.querySelector<HTMLDivElement>(
+        '.infoExtraData ul.dataRows',
+      );
 
       if (!statusBarContainerElement) {
         throw Error("Can't find the element where the status bar will be placed");
@@ -79,8 +87,9 @@ export const Anizm: pageInterface = {
 
       const wrapper = document.createElement('li');
 
-      wrapper.innerHTML = j.html(HTML);
+      wrapper.innerHTML = j.html(html);
 
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
       statusBarContainerElement.append(wrapper);
     },
     getIdentifier: url => {
@@ -92,9 +101,12 @@ export const Anizm: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: () => j.$('.episodeListTabContent .bolumKutucugu, .animeEpisodesLongList > a'),
+      elementsSelector: () =>
+        j.$('.episodeListTabContent .bolumKutucugu, .animeEpisodesLongList > a'),
       elementUrl: $element => {
-        const episodeAnchor = (Anizm.isSyncPage('') ? $element : $element.children().first()).get(0);
+        const episodeAnchor = (Anizm.isSyncPage('') ? $element : $element.children().first()).get(
+          0,
+        );
 
         if (!(episodeAnchor instanceof HTMLAnchorElement)) {
           throw Error('Unable to locate episode anchor');
