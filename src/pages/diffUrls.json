@@ -137,6 +137,10 @@
     ]
   },
   "0.11.1": {
+    "Anime365": [
+      "*://smotret-anime.ru/catalog/*",
+      "*://smotretanime.ru/catalog/*"
+    ],
     "Animeworld": [
       "*://*.animeworld.ac/play/*"
     ],
