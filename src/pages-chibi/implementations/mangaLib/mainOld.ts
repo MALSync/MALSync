@@ -1,9 +1,6 @@
+// @ts-nocheck
 /* eslint-disable new-cap */
 /* eslint-disable global-require */
-import { pageInterface } from '../pageInterface';
-import { SyncPage } from '../syncPage';
-import { Manga, getMangaData, getChaptersData, isPageAPI, Chapters } from '../AnimeLib/api';
-
 const { asyncWaitUntilTrue: awaitReaderLoading, reset: resetAwaitReader } =
   utils.getAsyncWaitUntilTrue(() => j.$('main img').length);
 
