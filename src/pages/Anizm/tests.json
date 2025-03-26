@@ -1,0 +1,30 @@
+{
+  "title": "Anizm",
+  "url": "https://anizm.net",
+  "testCases": [
+    {
+      "url": "https://anizm.net/ore-dake-level-up-na-ken-season-2-arise-from-the-shadow",
+      "expected": {
+        "sync": false,
+        "title": "Ore dake Level Up na Ken Season 2: Arise from the Shadow",
+        "identifier": "ore-dake-level-up-na-ken-season-2-arise-from-the-shadow",
+        "uiSelector": true,
+        "epList": {
+          "6": "https://anizm.net/ore-dake-level-up-na-ken-season-2-arise-from-the-shadow-6-bolum"
+        }
+      }
+    },
+    {
+      "url": "https://anizm.net/ore-dake-level-up-na-ken-season-2-arise-from-the-shadow-7-bolum-izle",
+      "expected": {
+        "sync": true,
+        "title": "Solo Leveling Season 2: Arise from the Shadow",
+        "identifier": "ore-dake-level-up-na-ken-season-2-arise-from-the-shadow",
+        "overviewUrl": "https://anizm.net/ore-dake-level-up-na-ken-season-2-arise-from-the-shadow",
+        "nextEpUrl": "https://anizm.net/ore-dake-level-up-na-ken-season-2-arise-from-the-shadow-8-bolum",
+        "episode": 7,
+        "uiSelector": false
+      }
+    }
+  ]
+}
