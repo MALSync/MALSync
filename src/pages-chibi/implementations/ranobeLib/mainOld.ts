@@ -1,61 +1,15 @@
+// @ts-nocheck
 /* eslint-disable new-cap */
 /* eslint-disable no-param-reassign */
 /* eslint-disable global-require */
-import { SyncPage } from '../syncPage';
-import { Manga, getMangaData, getChaptersData, isPageAPI, Chapters } from '../AnimeLib/api';
-import { pageInterface } from '../pageInterface';
+import { SyncPage } from '../../../pages/syncPage';
+import { pageInterface } from '../../../pages/pageInterface';
 
 const { asyncWaitUntilTrue: awaitOverviewLoading, reset: resetAwaitOverview } =
   utils.getAsyncWaitUntilTrue(() => j.$('.tabs-item').length);
 
-let interval: number | NodeJS.Timeout;
-
-const novel: Manga = {
-  data: {
-    id: 0,
-    name: '',
-    rus_name: '',
-    eng_name: '',
-    slug_url: '',
-    cover: {
-      thumbnail: undefined,
-      default: undefined,
-    },
-  },
-  reader: {
-    chapter: 0,
-    total: 1,
-    total_subchapters: 1,
-    current_subchapter: 0,
-    current_subchapter_index: 0,
-    volume: 0,
-    next: undefined,
-  },
-};
 export const RanobeLib: pageInterface = {
-  name: 'RanobeLib',
-  domain: ['https://ranobelib.me'],
-  languages: ['Russian'],
-  type: 'manga',
-  getImage() {
-    return novel.data.cover.default || novel.data.cover.thumbnail;
-  },
-  isSyncPage(url) {
-    return utils.urlPart(url, 5) === 'read' && !isPageAPI(url);
-  },
-  isOverviewPage(url) {
-    return utils.urlPart(url, 4) === 'book' && !isPageAPI(url);
-  },
   sync: {
-    getTitle(url) {
-      return novel.data.eng_name || novel.data.name || novel.data.rus_name;
-    },
-    getIdentifier(url) {
-      return novel.data.id.toString();
-    },
-    getOverviewUrl(url) {
-      return utils.absoluteLink(`ru/book/${novel.data.slug_url}`, RanobeLib.domain);
-    },
     getEpisode(url) {
       return novel.reader.chapter;
     },
@@ -97,17 +51,7 @@ export const RanobeLib: pageInterface = {
       },
     ],
   },
-  overview: {
-    getTitle(url) {
-      return novel.data.eng_name || novel.data.name || novel.data.rus_name;
-    },
-    getIdentifier(url) {
-      return novel.data.id.toString();
-    },
-    uiSelector(selector) {
-      j.$('.tabs._border').before(j.html(selector));
-    },
-  },
+
   init(page: SyncPage) {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),

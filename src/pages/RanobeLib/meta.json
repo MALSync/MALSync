@@ -1,6 +1,0 @@
-{
-  "search": "https://ranobelib.me/ru/catalog?q={searchterm}",
-  "urls": {
-    "match": [ "*://ranobelib.me/*" ]
-  }
-}
