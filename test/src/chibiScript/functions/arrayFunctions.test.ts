@@ -86,6 +86,42 @@ describe('Array Functions', () => {
       expect(generateAndExecute(code).run()).to.be.false;
     });
   });
+
+  describe('map', () => {
+    it('should transform each element in the array', () => {
+      const code = $c
+        .array(['1', '2', '3'])
+        .map($item => $item.concat('2').run())
+        .run();
+      expect(generateAndExecute(code).run()).to.deep.equal(['12', '22', '32']);
+    });
+
+    it('should handle empty array', () => {
+      const code = $c
+        .array([])
+        .map($item => $item.concat('2').run())
+        .run();
+      expect(generateAndExecute(code).run()).to.deep.equal([]);
+    });
+  });
+
+  describe('find', () => {
+    it('should find element that satisfies condition', () => {
+      const code = $c
+        .array(['1', '2', '3', '4'])
+        .arrayFind($item => $item.number().greaterThan(2).run())
+        .run();
+      expect(generateAndExecute(code).run()).to.equal('3');
+    });
+
+    it('should return undefined when no element satisfies condition', () => {
+      const code = $c
+        .array(['1', '2', '3'])
+        .arrayFind($item => $item.number().greaterThan(5).run())
+        .run();
+      expect(generateAndExecute(code).run()).to.be.undefined;
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {

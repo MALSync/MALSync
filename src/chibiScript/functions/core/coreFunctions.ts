@@ -206,7 +206,7 @@ export default {
    * @param prefix - Optional prefix for the log
    * @returns The input value (for chaining)
    */
-  log: <T>(ctx: ChibiCtx, input: T, prefix: string = 'ChibiScript'): T => {
+  log: <Input>(ctx: ChibiCtx, input: Input, prefix: string = 'ChibiScript'): Input => {
     con.m(prefix).log(input);
     return input;
   },

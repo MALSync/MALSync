@@ -1,6 +1,6 @@
 import type { ChibiCtx } from '../ChibiCtx';
-
-type GetElementType<T extends any[]> = T extends (infer U)[] ? U : never;
+import type { ChibiGenerator, ChibiJson } from '../ChibiGenerator';
+import type * as CT from '../ChibiTypeHelper';
 
 export default {
   /**
@@ -10,7 +10,10 @@ export default {
    * @example
    * first([1, 2, 3]) // returns 1
    */
-  first: <T extends any[]>(ctx: ChibiCtx, input: T): GetElementType<T> => {
+  first: <Input>(
+    ctx: ChibiCtx,
+    input: Input,
+  ): CT.GetArrayType<Input extends any[] ? Input : never> => {
     return input[0];
   },
 
@@ -21,7 +24,10 @@ export default {
    * @example
    * last([1, 2, 3]) // returns 3
    */
-  last: <T extends any[]>(ctx: ChibiCtx, input: T): GetElementType<T> => {
+  last: <Input>(
+    ctx: ChibiCtx,
+    input: Input extends any[] ? Input : never,
+  ): CT.GetArrayType<Input extends any[] ? Input : never> => {
     return input[input.length - 1];
   },
 
@@ -33,7 +39,11 @@ export default {
    * @example
    * at([1, 2, 3], 1) // returns 2
    */
-  at: <T extends any[]>(ctx: ChibiCtx, input: T, index: number): GetElementType<T> => {
+  at: <Input>(
+    ctx: ChibiCtx,
+    input: Input,
+    index: number,
+  ): CT.GetArrayType<Input extends any[] ? Input : never> => {
     return input[index];
   },
 
@@ -57,8 +67,13 @@ export default {
    * @example
    * slice([1, 2, 3, 4, 5], 1, 3) // returns [2, 3]
    */
-  slice: <T extends any[]>(ctx: ChibiCtx, input: T, start: number, end?: number) => {
-    return input.slice(start, end) as T;
+  slice: <Input>(
+    ctx: ChibiCtx,
+    input: Input extends any[] ? Input : never,
+    start: number,
+    end?: number,
+  ): Input => {
+    return input.slice(start, end) as Input;
   },
 
   /**
@@ -68,8 +83,8 @@ export default {
    * @example
    * reverse([1, 2, 3]) // returns [3, 2, 1]
    */
-  reverse: <T extends any[]>(ctx: ChibiCtx, input: T) => {
-    return input.reverse() as T;
+  reverse: <Input>(ctx: ChibiCtx, input: Input extends any[] ? Input : never) => {
+    return input.reverse() as Input;
   },
 
   /**
@@ -80,7 +95,48 @@ export default {
    * @example
    * includes([1, 2, 3], 2) // returns true
    */
-  includes: (ctx: ChibiCtx, input: any[], searchElement: any) => {
+  arrayIncludes: (ctx: ChibiCtx, input: any[], searchElement: any) => {
     return input.includes(searchElement);
+  },
+
+  /**
+   * Maps each element in an array to a new value using a callback function
+   * @input any[] - Array to map over
+   * @param callback - Function that transforms each element
+   * @returns New array with transformed elements
+   * @example
+   * map([1, 2, 3], ($item) => $item.multiply(2)) // returns [2, 4, 6]
+   */
+  map: <Call extends ($c: ChibiGenerator<CT.GetArrayType<any>>) => ChibiJson<any>>(
+    ctx: ChibiCtx,
+    input: any[],
+    callback: Call,
+  ) => {
+    return input.map(item => {
+      return ctx.run(callback as unknown as ChibiJson<any>, item);
+    });
+  },
+
+  /**
+   * Finds the first element in an array that satisfies the condition
+   * @input any[] - Array to search in
+   * @param callback - Function that returns true for the desired element
+   * @returns First element that satisfies condition or undefined if not found
+   * @example
+   * arrayFind([1, 2, 3, 4], ($item) => $item.greaterThan(2)) // returns 3
+   */
+  arrayFind: <Input>(
+    ctx: ChibiCtx,
+    input: Input extends any[] ? Input : never,
+    condition: (
+      $c: ChibiGenerator<CT.GetArrayType<Input extends any[] ? Input : never>>,
+    ) => ChibiJson<boolean>,
+  ): CT.GetArrayType<Input extends any[] ? Input : never> | undefined => {
+    for (let i = 0; i < input.length; i++) {
+      if (ctx.run(condition as unknown as ChibiJson<any>, input[i])) {
+        return input[i];
+      }
+    }
+    return undefined;
   },
 };
