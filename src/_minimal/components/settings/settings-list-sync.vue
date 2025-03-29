@@ -16,7 +16,7 @@
         </div>
       </Card>
     </Section>
-    <Card class="list-sync">
+    <Card class="list-sync provider">
       <Section>
         <FormSwitch
           v-model="parameters.type"
@@ -241,65 +241,67 @@
     >
       <Header spacer="half">{{ lang('settings_listsync_missing') }}</Header>
       <Description :height="500">
-        <Section
-          v-for="(missing_title, index) in syncRequest.data.missingGroupBy"
-          :key="index"
-          spacer="half"
-        >
-          <Card class="missing">
-            <Header spacer="half">
-              {{ missing_title[0].title }}
-            </Header>
-            <div class="missing-item">
-              <FormButton :animation="false">
-                <div>
-                  ID:
-                  <MediaLink :href="missing_title[0].url" color="secondary">{{
-                    missing_title[0].malId
-                  }}</MediaLink>
-                </div>
-                <div>{{ lang('settings_listsync_score') }} {{ missing_title[0].score }}</div>
-                <div>
-                  {{ lang(`settings_listsync_progress_${missing_title[0].type}`) }}
-                  {{ missing_title[0].watchedEp }}
-                </div>
-                <div v-if="missing_title[0].type === 'manga'">
-                  {{ lang('settings_listsync_volume') }} {{ missing_title[0].readVol }}
-                </div>
-                <div>
-                  {{ lang('settings_listsync_status') }}
-                  {{ getStatusText(missing_title[0].type, missing_title[0].status) }}
-                </div>
-                <div>
-                  {{ lang('settings_listsync_startdate') }}
-                  {{
-                    missing_title[0].startDate
-                      ? new IntlDateTime(missing_title[0].startDate).getDateTimeText()
-                      : lang('settings_listsync_unknowndate')
-                  }}
-                </div>
-                <div>
-                  {{ lang('settings_listsync_finishdate') }}
-                  {{
-                    missing_title[0].finishDate
-                      ? new IntlDateTime(missing_title[0].finishDate).getDateTimeText()
-                      : lang('settings_listsync_unknowndate')
-                  }}
-                </div>
-                <div>
-                  {{ lang(`settings_listsync_repeatcount_${missing_title[0].type}`) }}
-                  {{ missing_title[0].rewatchCount ?? 0 }}
-                </div>
-              </FormButton>
-              <FormButton v-for="item in missing_title" :key="item.malId" :animation="false">
-                <div>{{ item.syncType }}</div>
-                <FormButton v-if="item.error" :animation="false" color="secondary" padding="mini">
-                  {{ item.error }}
+        <Grid :min-width="250">
+          <Section
+            v-for="(missing_title, index) in syncRequest.data.missingGroupBy"
+            :key="index"
+            spacer="half"
+          >
+            <Card class="missing">
+              <Header spacer="half">
+                {{ missing_title[0].title }}
+              </Header>
+              <div class="missing-item">
+                <FormButton :animation="false">
+                  <div>
+                    ID:
+                    <MediaLink :href="missing_title[0].url" color="secondary">{{
+                      missing_title[0].malId
+                    }}</MediaLink>
+                  </div>
+                  <div>{{ lang('settings_listsync_score') }} {{ missing_title[0].score }}</div>
+                  <div>
+                    {{ lang(`settings_listsync_progress_${missing_title[0].type}`) }}
+                    {{ missing_title[0].watchedEp }}
+                  </div>
+                  <div v-if="missing_title[0].type === 'manga'">
+                    {{ lang('settings_listsync_volume') }} {{ missing_title[0].readVol }}
+                  </div>
+                  <div>
+                    {{ lang('settings_listsync_status') }}
+                    {{ getStatusText(missing_title[0].type, missing_title[0].status) }}
+                  </div>
+                  <div>
+                    {{ lang('settings_listsync_startdate') }}
+                    {{
+                      missing_title[0].startDate
+                        ? new IntlDateTime(missing_title[0].startDate).getDateTimeText()
+                        : lang('settings_listsync_unknowndate')
+                    }}
+                  </div>
+                  <div>
+                    {{ lang('settings_listsync_finishdate') }}
+                    {{
+                      missing_title[0].finishDate
+                        ? new IntlDateTime(missing_title[0].finishDate).getDateTimeText()
+                        : lang('settings_listsync_unknowndate')
+                    }}
+                  </div>
+                  <div>
+                    {{ lang(`settings_listsync_repeatcount_${missing_title[0].type}`) }}
+                    {{ missing_title[0].rewatchCount ?? 0 }}
+                  </div>
                 </FormButton>
-              </FormButton>
-            </div>
-          </Card>
-        </Section>
+                <FormButton v-for="item in missing_title" :key="item.malId" :animation="false">
+                  <div>{{ item.syncType }}</div>
+                  <FormButton v-if="item.error" :animation="false" color="secondary" padding="mini">
+                    {{ item.error }}
+                  </FormButton>
+                </FormButton>
+              </div>
+            </Card>
+          </Section>
+        </Grid>
       </Description>
     </Section>
   </div>
@@ -322,6 +324,7 @@ import CodeBlock from '../code-block.vue';
 import SettingsGeneral from './settings-general.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
 import { IntlDateTime } from '../../../utils/IntlWrapper';
+import Grid from '../grid.vue';
 
 defineProps({
   title: {
@@ -492,15 +495,14 @@ updateBackgroundSyncState();
       display: flex;
     }
   }
-}
-
-.provider-section {
-  align-items: end;
-  display: flex;
-  flex-wrap: wrap;
-  grid-gap: 5px;
-  :deep(a) {
-    color: var(--cl-secondary);
+  &-section {
+    align-items: end;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 5px;
+    :deep(a) {
+      color: var(--cl-secondary);
+    }
   }
 }
 
@@ -518,10 +520,21 @@ updateBackgroundSyncState();
   }
 }
 
-.missing-item {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  width: fit-content;
+.missing {
+  width: 100%;
+  height: 100%;
+
+  > * {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+
+    .missing-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
 }
 </style>
