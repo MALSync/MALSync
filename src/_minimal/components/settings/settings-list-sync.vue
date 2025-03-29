@@ -443,8 +443,8 @@ function isExtension() {
   return api.type === 'webextension';
 }
 
-function deauth(listProvider) {
-  new listProvider()
+function deauth(ListProvider) {
+  new ListProvider()
     .deauth()
     .then(() => {
       syncRequest.execute();
