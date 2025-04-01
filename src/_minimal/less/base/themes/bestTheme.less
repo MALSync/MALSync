@@ -1,60 +1,92 @@
-@best-image: 'https://malsync.moe/images/best-full.webp';
-
 .theme-bestTheme {
-  .card {
-    background-image: url(@best-image);
-    background-attachment: fixed;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
+
+  .content {
+    overflow: hidden !important;
   }
 
+  .test,
+  #header,
+  .info,
+  .info > *,
+  .nav > *,
+  .head,
+  .head > *,
+  .form-section > *,
+  .media-link,
+  .ongoing-item,
+  hr,
+  .item,
+  .transition-wrapper,
+  .name,
+  .role,
   .button,
-  .text-from,
-  .slider,
+  .header,
+  .image,
+  .pill,
+  .progress,
+  .label,
+  .update-button,
+  .dropdown-pop-default-element,
+  .book-element,
+  .material-icons,
+  .select-icon,
+  .progress-text,
+  .header-section,
+  .stats-block,
+  .text-icon,
+  .state-dot,
+  .image-fit,
+  .search,
   .radio-slider,
-  .vue-slider-rail,
+  .card,
+  .left,
   .episode,
-  .material-icons {
-    background-image: url(@best-image);
-    background-blend-mode: multiply;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+  .load-button,
+  .progress-pill,
+  .dropdown-pop,
+  label,
+  .codeBlock,
+  .slider,
+  tr,
+  .pillN,
+  .designed,
+  .quicklink,
+  .search > * {
+    border-radius: 0 !important;
+    & {
+      transform: translate(3px, -2px) rotate(0.8deg);
+    }
 
-  #id-profile .img {
-    background-image: url(@best-image);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    img {
-      display: none;
+    &:nth-child(2n) {
+      transform: translate(-5px, 4px) rotate(-0.5deg);
+    }
+
+    &:nth-child(3n) {
+      transform: translate(7px, 3px) rotate(0.8deg);
+    }
+
+    &:nth-child(4n) {
+      transform: translate(-4px, -6px) rotate(-1.2deg);
+    }
+
+    &:nth-child(5n) {
+      transform: translate(6px, -3px) rotate(0.7deg);
+    }
+
+    &:nth-child(6n) {
+      transform: translate(-2px, 5px) rotate(-0.9deg);
+    }
+
+    &:nth-child(7n) {
+      transform: translate(4px, -5px) rotate(1.1deg);
     }
   }
 
-  .overview {
-    .image-fit {
-      background-image: url(@best-image);
-      background-color: #ababab;
-      background-blend-mode: luminosity;
-      background-attachment: fixed;
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-
-      img,
-      .lazy-image {
-        mix-blend-mode: darken;
-      }
-    }
-
-    .overviewImage {
-      .image-fit {
-        .__breakpoint-desktop__({
-          background-attachment: initial;
-        });
-      }
-    }
+  .mode-cover,
+  .bars,
+  .bar,
+  .slider::before {
+    border-radius: 0 !important;
   }
 }
