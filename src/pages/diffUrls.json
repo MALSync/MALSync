@@ -141,6 +141,9 @@
       "*://smotret-anime.ru/catalog/*",
       "*://smotretanime.ru/catalog/*"
     ],
+    "AnimeXin": [
+      "*://animexin.dev/*"
+    ],
     "Animeworld": [
       "*://*.animeworld.ac/play/*"
     ],
