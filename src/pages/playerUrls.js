@@ -519,6 +519,7 @@ module.exports = {
       '*://maxfinishseveral.com/e/*',
       '*://alejandrocenturyoil.com/e/*',
       '*://heatherwholeinvolve.com/e/*',
+      '*://nathanfromsubject.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
