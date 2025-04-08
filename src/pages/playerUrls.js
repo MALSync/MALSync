@@ -716,7 +716,7 @@ module.exports = {
   },
   // zoro
   megacloud: {
-    match: ['*://megacloud.tv/*', '*://megacloud.club/*'],
+    match: ['*://megacloud.tv/*', '*://megacloud.club/*', '*://megacloud.blog/*'],
   },
   // animeunity
   vixcloud: {
