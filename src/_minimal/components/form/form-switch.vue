@@ -6,8 +6,9 @@
         v-model="picked"
         class="input"
         type="radio"
-        name="radio-slide"
+        :name="`radio-slide-${id}`"
         :value="option.value"
+        :checked="modelValue === option.value"
       />
       <label
         class="label"
@@ -37,7 +38,7 @@ const props = defineProps({
   },
   modelValue: {
     type: String,
-    require: true,
+    required: true,
     default: '',
   },
 });
