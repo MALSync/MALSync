@@ -139,10 +139,24 @@ export function changeDetect(callback, func, immediate = false) {
 }
 
 export function waitUntilTrue(condition: Function, callback: Function, interval = 100) {
+  let counter = 0;
+
   const intervalId = setInterval(function () {
-    if (condition()) {
+    counter++;
+    let state = false;
+    try {
+      state = condition();
+    } catch (e) {
+      con.info('Error in waitUntilTrue', e);
+    }
+    if (state) {
       clearInterval(intervalId);
       callback();
+    }
+    if (counter > 10) {
+      clearInterval(intervalId);
+      const newIntervalTime = Math.max(Math.min(interval * 2, 15000), 500);
+      waitUntilTrue(condition, callback, newIntervalTime);
     }
   }, interval);
 

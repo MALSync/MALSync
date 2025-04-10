@@ -6,7 +6,7 @@ import { pageInterface } from '../pages/pageInterface';
 
 let lastFocus;
 
-declare let _Page: pageInterface;
+declare let _Page: pageInterface | (() => Promise<pageInterface>);
 
 // @ts-ignore
 if (typeof global.doubleLoad !== 'undefined' && global.doubleLoad) {
@@ -16,9 +16,14 @@ if (typeof global.doubleLoad !== 'undefined' && global.doubleLoad) {
 // @ts-ignore
 global.doubleLoad = true;
 
-function main() {
+async function main() {
   if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
-  const page = new SyncPage(window.location.href, _Page, floatClick);
+
+  let pageObject = _Page;
+  if (typeof pageObject === 'function') {
+    pageObject = await pageObject();
+  }
+  const page = new SyncPage(window.location.href, pageObject, floatClick);
   messagePageListener(page);
   page.init();
   firebaseNotification();
