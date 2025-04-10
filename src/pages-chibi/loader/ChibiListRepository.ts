@@ -1,3 +1,4 @@
+import type { domainType } from 'src/background/customDomain';
 import { PageInterfaceCompiled, PageJsonInterface, PageListJsonInterface } from '../pageInterface';
 import { greaterCurrentVersion } from '../../utils/version';
 
@@ -5,6 +6,14 @@ export class ChibiListRepository {
   private collections: string[];
 
   private pages: PageListJsonInterface['pages'] | null = null;
+
+  static getInstance() {
+    const instance = new ChibiListRepository([
+      chrome.runtime.getURL('chibi'),
+      'https://chibi.malsync.moe/config',
+    ]);
+    return instance;
+  }
 
   constructor(collections: string[]) {
     this.collections = collections;
@@ -66,5 +75,20 @@ export class ChibiListRepository {
     const res: PageJsonInterface = JSON.parse(response.responseText);
 
     return res;
+  }
+
+  public getPermissions(): domainType[] {
+    const pages = this.getList();
+    const permissions = Object.values(pages).map(page => {
+      return page.urls.match.map(url => {
+        return {
+          page: `${page.name} (chibi)`,
+          domain: url,
+          auto: true,
+          chibi: true,
+        };
+      });
+    });
+    return permissions.flat();
   }
 }
