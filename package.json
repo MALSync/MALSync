@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@ghostery/adblocker-puppeteer": "^2.5.0",
-    "@cspell/eslint-plugin": "8.17.5",
+    "@cspell/eslint-plugin": "8.18.1",
     "@eslint/eslintrc": "3.3.0",
     "@eslint/js": "9.21.0",
     "@stylistic/eslint-plugin": "3.1.0",
@@ -31,7 +31,7 @@
     "chrome-webstore-upload": "^3.1.1",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
-    "eslint": "8.57.1",
+    "eslint": "9.24.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-config-prettier": "10.0.2",

@@ -2,7 +2,7 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
+import { dateFromTimezoneToTimezone, getWeekTime } from '../../utils/time';
 import { IntlDuration, IntlRange } from '../../utils/IntlWrapper';
 
 enum mediaTypeDefinition {
@@ -279,7 +279,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       let body: any = [{ text: format }];
 
       if (data.broadcast.day_of_the_week && data.broadcast.start_time) {
-        const weekDate = getWeektime(data.broadcast.day_of_the_week, data.broadcast.start_time);
+        const weekDate = getWeekTime(data.broadcast.day_of_the_week, data.broadcast.start_time);
 
         if (weekDate) {
           const broadcastDate = dateFromTimezoneToTimezone(weekDate, 'Asia/Tokyo');

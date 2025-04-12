@@ -1,7 +1,7 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
+import { dateFromTimezoneToTimezone, getWeekTime } from '../../utils/time';
 import { IntlDuration } from '../../utils/IntlWrapper';
 
 export class MetaOverview extends MetaOverviewAbstract {
@@ -146,7 +146,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.airs && data.airs.day && data.airs.time) {
       let body: any = [{ text: `${data.airs.day} at ${data.airs.time}` }];
 
-      const weekDate = getWeektime(data.airs.day, data.airs.time);
+      const weekDate = getWeekTime(data.airs.day, data.airs.time);
       if (weekDate) {
         const broadcastDate = dateFromTimezoneToTimezone(
           weekDate,
