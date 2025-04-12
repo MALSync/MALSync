@@ -288,7 +288,7 @@ describe('Sync Handling', function() {
     });
   });
 
-  describe('retriveLists', function() {
+  describe('retrieveLists', function() {
     function getProviderListList() {
       const providerList = sync.getListProvider({
         mal: {
@@ -319,7 +319,7 @@ describe('Sync Handling', function() {
       });
 
       for (const i in providerList) {
-        providerList[i].listProvider = providerList[i].providerType;
+        providerList[i].listProvider = providerList[i].providerType as any;
       }
 
       return providerList;
@@ -340,7 +340,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('MAL');
       expect(res.slaves).to.not.include('MAL');
@@ -357,7 +357,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('ANILIST');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -372,7 +372,7 @@ describe('Sync Handling', function() {
       });
       Api.setStub(stub);
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('KITSU');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -388,7 +388,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('SIMKL');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -405,7 +405,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'manga', getListStub);
+      const res = await sync.retrieveLists(providerList, 'manga', getListStub);
 
       expect(res.master).equal('MAL');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -420,7 +420,7 @@ describe('Sync Handling', function() {
       });
       Api.setStub(stub);
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('SHIKI');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -446,7 +446,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'SIMKL', 'SHIKI']);
     });

@@ -16,9 +16,7 @@ const compat = new FlatCompat({
 });
 
 export default mergeAll(
-  /** @type {import('eslint').Linter.FlatConfig<import('eslint').Linter.RulesRecord>[]} */ (
-    jQueryUnsafeMalSync.configs?.recommended || []
-  ),
+  /** @type {import('eslint').Linter.FlatConfig[]} */ (jQueryUnsafeMalSync.configs?.recommended),
   [
     merge(
       //

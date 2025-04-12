@@ -10,7 +10,7 @@ export function dateFromTimezoneToTimezone(
   return new Date(date.getTime() - diff);
 }
 
-export function getWeektime(weekDay: string, time: string): Date | null {
+export function getWeekTime(weekDay: string, time: string): Date | null {
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const dayIndex = daysOfWeek.findIndex(
     day =>

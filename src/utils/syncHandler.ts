@@ -42,9 +42,9 @@ export function getType(url) {
   throw 'Type not found';
 }
 
-export function mapToArray(provierList, resultList, masterM = false) {
-  for (let i = 0; i < provierList.length; i++) {
-    const el = provierList[i];
+export function mapToArray(providerList, resultList, masterM = false) {
+  for (let i = 0; i < providerList.length; i++) {
+    const el = providerList[i];
     let temp = resultList[el.malId];
     if (typeof temp === 'undefined') {
       temp = {
@@ -263,8 +263,8 @@ export function syncItem(slave, pageType) {
   }
 }
 
-// retrive lists
-export async function retriveLists(
+// retrieve lists
+export async function retrieveLists(
   providerList: {
     providerType: string;
     providerSettings: any;
@@ -429,7 +429,7 @@ export const background = {
         },
       });
 
-      const listOptions: any = await retriveLists(providerList, type, getList);
+      const listOptions: any = await retrieveLists(providerList, type, getList);
 
       generateSync(
         listOptions.master,

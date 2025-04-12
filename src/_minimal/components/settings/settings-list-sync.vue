@@ -382,7 +382,7 @@ const syncRequest = createRequest(parameters, async params => {
     shiki: listProvider.shiki,
   });
 
-  const listOptions = await sync.retriveLists(providerList.value, params.value.type, sync.getList);
+  const listOptions = await sync.retrieveLists(providerList.value, params.value.type, sync.getList);
 
   const list = [] as any[];
   const missing = [] as any[];

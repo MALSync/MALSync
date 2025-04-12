@@ -21,6 +21,16 @@
         "webextension",
         "webextensions",
         "webstore",
-        "youtube"
+        "youtube",
+        "anilist",
+        "kitsu",
+        "myanimelist",
+        "malapi",
+        "simkl",
+        "shiki",
+        "shikimori",
+        "hidive",
+        "rewatch",
+        "colour"
     ]
 }
