@@ -520,6 +520,7 @@ module.exports = {
       '*://alejandrocenturyoil.com/e/*',
       '*://heatherwholeinvolve.com/e/*',
       '*://nathanfromsubject.com/e/*',
+      '*://jennifercertaindevelopment.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
