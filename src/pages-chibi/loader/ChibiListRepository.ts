@@ -1,5 +1,5 @@
 import type { domainType } from 'src/background/customDomain';
-import { PageInterfaceCompiled, PageJsonInterface, PageListJsonInterface } from '../pageInterface';
+import { PageJsonInterface, PageListJsonInterface } from '../pageInterface';
 import { greaterCurrentVersion } from '../../utils/version';
 
 export class ChibiListRepository {
@@ -90,5 +90,15 @@ export class ChibiListRepository {
       });
     });
     return permissions.flat();
+  }
+
+  public getPermissionsElements() {
+    const pages = this.getList();
+    return Object.values(pages).map(page => {
+      return {
+        name: `${page.name} (chibi)`,
+        match: page.urls.match,
+      };
+    });
   }
 }
