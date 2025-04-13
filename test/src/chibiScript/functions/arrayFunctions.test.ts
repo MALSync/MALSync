@@ -77,12 +77,12 @@ describe('Array Functions', () => {
 
   describe('includes', () => {
     it('should return true when element is in array', () => {
-      const code = $c.array(['1', '2', '3']).includes('2').run();
+      const code = $c.array(['1', '2', '3']).arrayIncludes('2').run();
       expect(generateAndExecute(code).run()).to.be.true;
     });
 
     it('should return false when element is not in array', () => {
-      const code = $c.array(['1', '2', '3']).includes('4').run();
+      const code = $c.array(['1', '2', '3']).arrayIncludes('4').run();
       expect(generateAndExecute(code).run()).to.be.false;
     });
   });

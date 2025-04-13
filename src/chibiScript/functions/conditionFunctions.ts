@@ -8,8 +8,7 @@ export default {
    * @param value - Second value to compare
    * @returns Boolean indicating if values are equal
    * @example
-   * equals("abc", "abc") // returns true
-   * equals(5, "5") // returns false
+   * $c.string("abc").equals("abc") // returns true
    */
   equals: (ctx: ChibiCtx, input: any, value: any) => {
     return input === value;
@@ -21,7 +20,7 @@ export default {
    * @param value - Value to compare against
    * @returns Boolean indicating if input is greater than value
    * @example
-   * greaterThan(10, 5) // returns true
+   * $c.number(10).greaterThan(5) // returns true
    */
   greaterThan: (ctx: ChibiCtx, input: any, value: any) => {
     return input > value;
@@ -33,7 +32,7 @@ export default {
    * @param value - Value to compare against
    * @returns Boolean indicating if input is greater than or equal to value
    * @example
-   * greaterThanOrEqual(10, 10) // returns true
+   * $c.number(10).greaterThanOrEqual(10) // returns true
    */
   greaterThanOrEqual: (ctx: ChibiCtx, input: any, value: any) => {
     return input >= value;
@@ -45,7 +44,7 @@ export default {
    * @param value - Value to compare against
    * @returns Boolean indicating if input is less than value
    * @example
-   * lessThan(5, 10) // returns true
+   * $c.number(5).lessThan(10) // returns true
    */
   lessThan: (ctx: ChibiCtx, input: any, value: any) => {
     return input < value;
@@ -57,7 +56,7 @@ export default {
    * @param value - Value to compare against
    * @returns Boolean indicating if input is less than or equal to value
    * @example
-   * lessThanOrEqual(10, 10) // returns true
+   * $c.number(10).lessThanOrEqual(10) // returns true
    */
   lessThanOrEqual: (ctx: ChibiCtx, input: any, value: any) => {
     return input <= value;
@@ -69,7 +68,7 @@ export default {
    * @param substring - Substring to search for
    * @returns Boolean indicating if input contains the substring
    * @example
-   * contains("Hello world", "world") // returns true
+   * $c.string("Hello world").contains("world") // returns true
    */
   contains: (ctx: ChibiCtx, input: string, substring: string) => {
     return input.includes(substring);
@@ -82,7 +81,7 @@ export default {
    * @param flags - Regex flags (default: 'i' for case-insensitive)
    * @returns Boolean indicating if the string matches the pattern
    * @example
-   * matches("abc123", "^[a-z]+\\d+$") // returns true
+   * $c.string("abc123").matches("^[a-z]+\\d+$") // returns true
    */
   matches: (ctx: ChibiCtx, input: string, pattern: string, flags: string = 'i') => {
     const regex = new RegExp(pattern, flags);
@@ -95,8 +94,8 @@ export default {
    * @param values - One or more boolean values to AND together
    * @returns Result of AND operation on all values
    * @example
-   * and(true, false, true) // returns false
-   * and(true, true, true) // returns true
+   * $c.and($c.boolean(true).run(), $c.boolean(false).run(), $c.boolean(true).run()) // returns false
+   * $c.and($c.boolean(true).run(), $c.boolean(true).run()) // returns true
    */
   and: (ctx: ChibiCtx, input: void, ...values: ChibiJson<boolean>[]) => {
     return values.reduce((result, val) => result && ctx.run(val), true);
@@ -108,8 +107,8 @@ export default {
    * @param values - One or more boolean values to OR together
    * @returns Result of OR operation on all values
    * @example
-   * or(false, false, true) // returns true
-   * or(false, false, false) // returns false
+   * $c.or($c.boolean(false).run(), $c.boolean(true).run()) // returns true
+   * $c.or($c.boolean(false).run(), $c.boolean(false).run()) // returns false
    */
   or: (ctx: ChibiCtx, input: void, ...values: ChibiJson<boolean>[]) => {
     return values.reduce((result, val) => result || ctx.run(val), false);
@@ -120,7 +119,7 @@ export default {
    * @input boolean - Boolean value to negate
    * @returns Negated boolean value
    * @example
-   * not(true) // returns false
+   * $c.boolean(true).not() // returns false
    */
   not: (ctx: ChibiCtx, input: boolean) => {
     return !input;
@@ -131,9 +130,9 @@ export default {
    * @input any - Value to check
    * @returns Boolean indicating if value is null or undefined
    * @example
-   * isNil(null) // returns true
-   * isNil(undefined) // returns true
-   * isNil("") // returns false
+   * $c.value(null).isNil() // returns true
+   * $c.value(undefined).isNil() // returns true
+   * $c.value("").isNil() // returns false
    */
   isNil: (ctx: ChibiCtx, input: any) => {
     return input === null || input === undefined;
@@ -144,9 +143,9 @@ export default {
    * @input any - Value to check
    * @returns Boolean indicating if value is empty
    * @example
-   * isEmpty("") // returns true
-   * isEmpty([]) // returns true
-   * isEmpty({}) // returns true
+   * $c.string("").isEmpty() // returns true
+   * $c.array([]).isEmpty() // returns true
+   * $c.object({}).isEmpty() // returns true
    */
   isEmpty: (ctx: ChibiCtx, input: any) => {
     if (input === null || input === undefined) return true;

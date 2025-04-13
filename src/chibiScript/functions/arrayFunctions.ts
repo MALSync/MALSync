@@ -8,7 +8,7 @@ export default {
    * @input any[] - Array to get element from
    * @returns First element of the array or undefined if empty
    * @example
-   * first([1, 2, 3]) // returns 1
+   * $c.array(["1", "2", "3"]).first() // returns "1"
    */
   first: <Input>(
     ctx: ChibiCtx,
@@ -22,7 +22,7 @@ export default {
    * @input any[] - Array to get element from
    * @returns Last element of the array or undefined if empty
    * @example
-   * last([1, 2, 3]) // returns 3
+   * $c.array(["1", "2", "3"]).last() // returns "3"
    */
   last: <Input>(
     ctx: ChibiCtx,
@@ -37,7 +37,7 @@ export default {
    * @param index - Index of element to get
    * @returns Element at the specified index or undefined if index is out of bounds
    * @example
-   * at([1, 2, 3], 1) // returns 2
+   * $c.array(["1", "2", "3"]).at(1) // returns "2"
    */
   at: <Input>(
     ctx: ChibiCtx,
@@ -52,7 +52,7 @@ export default {
    * @input any[] - Array to get length of
    * @returns Number of elements in the array
    * @example
-   * length([1, 2, 3]) // returns 3
+   * $c.array(["1", "2", "3"]).length() // returns 3
    */
   length: (ctx: ChibiCtx, input: any[]) => {
     return input.length;
@@ -65,7 +65,7 @@ export default {
    * @param end - Optional end index (exclusive)
    * @returns New array with extracted section
    * @example
-   * slice([1, 2, 3, 4, 5], 1, 3) // returns [2, 3]
+   * $c.array(["1", "2", "3", "4", "5"]).slice(1, 3) // returns ["2", "3"]
    */
   slice: <Input>(
     ctx: ChibiCtx,
@@ -81,7 +81,7 @@ export default {
    * @input any[] - Array to reverse
    * @returns Reversed array (same reference as input)
    * @example
-   * reverse([1, 2, 3]) // returns [3, 2, 1]
+   * $c.array(["1", "2", "3"]).reverse() // returns ["3", "2", "1"]
    */
   reverse: <Input>(ctx: ChibiCtx, input: Input extends any[] ? Input : never) => {
     return input.reverse() as Input;
@@ -93,7 +93,7 @@ export default {
    * @param searchElement - Element to search for
    * @returns Boolean indicating if the element is found
    * @example
-   * includes([1, 2, 3], 2) // returns true
+   * $c.array(["1", "2", "3"]).arrayIncludes("2") // returns true
    */
   arrayIncludes: (ctx: ChibiCtx, input: any[], searchElement: any) => {
     return input.includes(searchElement);
@@ -105,12 +105,14 @@ export default {
    * @param callback - Function that transforms each element
    * @returns New array with transformed elements
    * @example
-   * map([1, 2, 3], ($item) => $item.multiply(2)) // returns [2, 4, 6]
+   * $c.array(['1', '2', '3']).map($item => $item.concat('2').run()) // returns ["12", "22", "32"]
    */
-  map: <Call extends ($c: ChibiGenerator<CT.GetArrayType<any>>) => ChibiJson<any>>(
+  map: <Input>(
     ctx: ChibiCtx,
     input: any[],
-    callback: Call,
+    callback: (
+      $c: ChibiGenerator<CT.GetArrayType<Input extends any[] ? Input : never>>,
+    ) => ChibiJson<any>,
   ) => {
     return input.map(item => {
       return ctx.run(callback as unknown as ChibiJson<any>, item);
@@ -123,7 +125,7 @@ export default {
    * @param callback - Function that returns true for the desired element
    * @returns First element that satisfies condition or undefined if not found
    * @example
-   * arrayFind([1, 2, 3, 4], ($item) => $item.greaterThan(2)) // returns 3
+   * $c.array(['1', '2', '3', '4']).arrayFind($item => $item.number().greaterThan(2).run()) // returns "3"
    */
   arrayFind: <Input>(
     ctx: ChibiCtx,

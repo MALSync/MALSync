@@ -7,6 +7,8 @@ export default {
    * @input string - The input string to split
    * @param delimiter - The delimiter to split by
    * @returns Array of substrings
+   * @example
+   * $c.string("a,b,c").split(",") // returns ["a", "b", "c"]
    */
   split: (ctx: ChibiCtx, input: string, delimiter: string) => {
     return input.split(delimiter);
@@ -17,6 +19,8 @@ export default {
    * @input string[] - Array of strings to join
    * @param separator - The separator to join with
    * @returns Joined string
+   * @example
+   * $c.array(["a", "b", "c"]).join(",") // returns "a,b,c"
    */
   join: (ctx: ChibiCtx, input: string[], separator: string) => {
     return input.join(separator);
@@ -26,8 +30,11 @@ export default {
    * Replaces occurrences of a pattern in a string
    * @input string - The input string
    * @param pattern - String or RegExp to replace
-   * @param replacement - Replacement string or function
+   * @param replacement - Replacement string or return string of function
    * @returns String with replacements
+   * @example
+   * $c.string("Hello World").replace("World", "Chibi") // returns "Hello Chibi"
+   * $c.string("Hello World").replace("World", $c.string('Chibi').run()) // returns "Hella Chibi"
    */
   replace: (
     ctx: ChibiCtx,
@@ -45,6 +52,9 @@ export default {
    * @param pattern - String or RegExp to replace
    * @param replacement - Replacement string or function
    * @returns String with all replacements
+   * @example
+   * $c.string("Hello World").replaceAll("o", "e") // returns "Hella Werld"
+   * $c.string("Hello World").replaceAll("o", $c.string('e').run()) // returns "Hella Werld"
    */
   replaceAll: (
     ctx: ChibiCtx,
@@ -63,6 +73,8 @@ export default {
    * @param start - Start index
    * @param end - Optional end index
    * @returns Extracted substring
+   * @example
+   * $c.string("Hello World").substring(0, 5) // returns "Hello"
    */
   substring: (ctx: ChibiCtx, input: string, start: number, end?: number) => {
     return input.substring(start, end);
@@ -75,6 +87,9 @@ export default {
    * @param group - Capture group to extract (default: 0 - full match)
    * @param flags - Regex flags (default: 'i' for case-insensitive)
    * @returns Extracted string from the specified group
+   * @example
+   * $c.string("Hello123").regex("o(\\d+)", 0) // returns "o123"
+   * $c.string("Hello123").regex("o(\\d+)", 1) // returns "123"
    */
   regex: (
     ctx: ChibiCtx,
@@ -97,6 +112,8 @@ export default {
    * Converts a string to lowercase
    * @input string - The input string
    * @returns Lowercase string
+   * @example
+   * $c.string("Hello World").toLowerCase() // returns "hello world"
    */
   toLowerCase: (ctx: ChibiCtx, input: string) => {
     return input.toLowerCase();
@@ -106,6 +123,8 @@ export default {
    * Converts a string to uppercase
    * @input string - The input string
    * @returns Uppercase string
+   * @example
+   * $c.string("Hello World").toUpperCase() // returns "HELLO WORLD"
    */
   toUpperCase: (ctx: ChibiCtx, input: string) => {
     return input.toUpperCase();
@@ -115,6 +134,8 @@ export default {
    * Trims whitespace from both ends of a string
    * @input string - The input string
    * @returns Trimmed string
+   * @example
+   * $c.string("   Hello World   ").trim() // returns "Hello World"
    */
   trim: (ctx: ChibiCtx, input: string) => {
     return input.trim();
@@ -126,6 +147,8 @@ export default {
    * @param searchString - String to search for
    * @param position - Optional position to start search
    * @returns Boolean indicating if string includes the substring
+   * @example
+   * $c.string("Hello World").includes("World") // returns true
    */
   includes: (ctx: ChibiCtx, input: string, searchString: string, position?: number) => {
     return input.includes(searchString, position);
@@ -136,6 +159,8 @@ export default {
    * @input string - The first string
    * @param value - The second string to concatenate
    * @returns Concatenated string
+   * @example
+   * $c.string("Hello").concat(" World") // returns "Hello World"
    */
   concat: (ctx: ChibiCtx, input: string, value: string) => {
     return input.concat(value);
@@ -145,6 +170,8 @@ export default {
    * Parses a string as JSON
    * @input string - The JSON string to parse
    * @returns Parsed JavaScript object
+   * @example
+   * $c.string('{"key":"value"}').jsonParse() // returns { key: 'value' }
    */
   jsonParse: (ctx: ChibiCtx, input: string) => {
     return JSON.parse(input);

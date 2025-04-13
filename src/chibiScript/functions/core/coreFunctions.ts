@@ -9,6 +9,8 @@ export default {
    * Gets the current URL or URL from context
    * @input void - No input required
    * @returns Current URL as string
+   * @example
+   * $c.url() // returns https://example.com/anime/123
    */
   url: (ctx: ChibiCtx, input: void): string => {
     const url = ctx.get('url');
@@ -23,6 +25,8 @@ export default {
   /**
    * Gets the current provider from context
    * @returns Current provider as string
+   * @example
+   * $c.provider() // returns 'MAL'
    */
   provider: (ctx: ChibiCtx, input: void): 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' => {
     const provider = ctx.get('provider');
@@ -38,6 +42,8 @@ export default {
    * Returns the input value immediately, stopping execution
    * @input any - Value to return
    * @returns The input value unchanged
+   * @example
+   * $c.string('/anime/123').ifThen($c => $c.urlAbsolute().return().run()).boolean(false)
    */
   return: (ctx: ChibiCtx, input: any): void => {
     return ctx.return(input) as unknown as void;
@@ -57,6 +63,14 @@ export default {
     trigger();
   },
 
+  /**
+   * Calls a different function of the page implementation
+   * @input any - Value to pass to the function
+   * @param property - Function name to call
+   * @returns The result of the function call
+   * @example
+   * $c.url().this('overview.getIdentifier') // Calls the getTitle function with the current URL as parameter
+   */
   this: (ctx: ChibiCtx, input: any, property: string): any => {
     const page = ctx.get('pageObject');
 
@@ -110,6 +124,8 @@ export default {
    * @param key - Variable name to retrieve
    * @param defaultValue - Default value if variable is not found
    * @returns Variable value or default value
+   * @example
+   * $c.getVariable('myVar', 'default') // returns the value of myVar or 'default' if not set
    */
   getVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
     const value = ctx.get(key);
@@ -122,6 +138,9 @@ export default {
    * @param key - Variable name to store the value under
    * @param value - Optional value to set instead of the input
    * @returns The input value (for chaining)
+   * @example
+   * $c.string('hello').setVariable('myKey') // sets myVar to 'hello'
+   * $c.string('world').setVariable('myKey', $c.string('newValue').run()) // sets myVar to 'newValue'
    */
   setVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
     if (reservedKeys.includes(key)) {
@@ -143,6 +162,8 @@ export default {
    * @param key - Global variable name to retrieve
    * @param defaultValue - Default value if variable is not found
    * @returns Global variable value or default value
+   * @example
+   * $c.getGlobalVariable('myGlobalVar', 'default') // returns the value of myGlobalVar or 'default' if not set
    */
   getGlobalVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
     const value = ctx.globalGet(key);
@@ -155,6 +176,9 @@ export default {
    * @param key - Global variable name to store the value under
    * @param value - Optional value to set instead of the input
    * @returns The input value (for chaining)
+   * @example
+   * $c.string('hello').setGlobalVariable('myKey') // sets myVar to 'hello'
+   * $c.string('world').setGlobalVariable('myKey', $c.string('newValue').run()) // sets myVar to 'newValue'
    */
   setGlobalVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
     if (reservedKeys.includes(key)) {
@@ -195,6 +219,8 @@ export default {
   /**
    * Adds a style to the page
    * @param css - CSS to add to the page
+   * @example
+   * $c.addStyle('body { background-color: red; }') // Adds a red background to the page
    */
   addStyle: (ctx: ChibiCtx, input: void, css: string): void => {
     api.storage.addStyle(css);
@@ -205,6 +231,8 @@ export default {
    * @input any - Value to log
    * @param prefix - Optional prefix for the log
    * @returns The input value (for chaining)
+   * @example
+   * $c.string('hello').log() // Logs 'hello' to the console
    */
   log: <Input>(ctx: ChibiCtx, input: Input, prefix: string = 'ChibiScript'): Input => {
     con.m(prefix).log(input);

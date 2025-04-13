@@ -7,7 +7,7 @@ export default {
    * @param key - Key to access the property
    * @returns Value at the specified key or undefined if not found
    * @example
-   * get({user: {name: "John"}}, "user") // returns {name: "John"}
+   * $c.object({user: {name: "John"}}).get("user") // returns {name: "John"}
    */
   get: (ctx: ChibiCtx, input: any, key: string) => {
     if (!input || typeof input !== 'object') {
@@ -22,7 +22,7 @@ export default {
    * @input object - Object to get keys from
    * @returns Array of key strings
    * @example
-   * keys({name: "John", age: 30}) // returns ["name", "age"]
+   * $c.object({name: "John", age: 30}).keys() // returns ["name", "age"]
    */
   keys: (ctx: ChibiCtx, input: any) => {
     if (!input || typeof input !== 'object') {
@@ -37,7 +37,7 @@ export default {
    * @input object - Object to get values from
    * @returns Array of values
    * @example
-   * values({name: "John", age: 30}) // returns ["John", 30]
+   * $c.object({name: "John", age: 30}).values() // returns ["John", 30]
    */
   values: (ctx: ChibiCtx, input: any) => {
     if (!input || typeof input !== 'object') {

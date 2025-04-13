@@ -5,6 +5,8 @@ export default {
   /**
    * Wait for the DOM to be ready
    * @input void - No input required
+   * @example
+   * $c.domReady().trigger()
    */
   domReady: (ctx: ChibiCtx, input: void): Promise<void> => {
     return new Promise(resolve => {
@@ -19,6 +21,8 @@ export default {
    * @param condition - Condition to evaluate
    * @param _intervalKey - Internal never provide this
    * @returns Promise that resolves when the condition is true
+   * @example
+   * $c.waitUntilTrue($c.boolean(true).run()).trigger().run()
    */
   waitUntilTrue: (
     ctx: ChibiCtx,
@@ -43,6 +47,8 @@ export default {
    * @param target - Target to monitor for changes
    * @param callback - Callback to execute when changes are detected
    * @param _intervalKey - Internal never provide this
+   * @example
+   * $c.detectChanges($c.querySelector('h1').text().run(), $c.trigger().run())
    */
   detectChanges: (
     ctx: ChibiCtx,
