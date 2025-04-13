@@ -1,53 +1,57 @@
 <template>
-  <template v-if="!perm">loading</template>
-  <template v-else>
-    <component
-      :is="requiredOnly ? Card : 'div'"
-      v-if="!requiredOnly || !perm.hasAllPermissions()"
-      class="permissions"
-      border="secondary"
-    >
-      <Header v-if="requiredOnly" :spacer="true">
-        {{ lang('settings_custom_domains_missing_permissions_header') }}
-      </Header>
+  <div>
+    <template v-if="!perm">
+      <Card class="spinner-wrap"><Spinner /></Card>
+    </template>
+    <template v-else>
+      <component
+        :is="requiredOnly ? Card : 'div'"
+        v-if="!requiredOnly || !perm.hasAllPermissions()"
+        class="permissions"
+        border="secondary"
+      >
+        <Header v-if="requiredOnly" :spacer="true">
+          {{ lang('settings_custom_domains_missing_permissions_header') }}
+        </Header>
 
-      <Section spacer="half" direction="both">
-        <PermissionCard
-          :title="lang('settings_permissions_required')"
-          :permission="perm.getRequiredPermissions()"
-        />
-      </Section>
+        <Section spacer="half" direction="both">
+          <PermissionCard
+            :title="lang('settings_permissions_required')"
+            :permission="perm.getRequiredPermissions()"
+          />
+        </Section>
 
-      <Section spacer="half" direction="both">
-        <PermissionCard
-          :title="lang('settings_permissions_pages')"
-          :permissions="perm.getPagesPermissions()"
-        />
-      </Section>
+        <Section spacer="half" direction="both">
+          <PermissionCard
+            :title="lang('settings_permissions_pages')"
+            :permissions="perm.getPagesPermissions()"
+          />
+        </Section>
 
-      <Section spacer="half" direction="both">
-        <PermissionCard
-          :title="lang('settings_permissions_player')"
-          :permission="perm.getPlayerPermissions()"
-        />
-      </Section>
+        <Section spacer="half" direction="both">
+          <PermissionCard
+            :title="lang('settings_permissions_player')"
+            :permission="perm.getPlayerPermissions()"
+          />
+        </Section>
 
-      <SessionSupportsPermissions>
-        <FormButton
-          v-if="!perm.hasAllPermissions()"
-          color="secondary"
-          padding="large"
-          @click="perm.requestPermissions()"
-        >
-          {{ lang('Add') }}
-        </FormButton>
-        <SettingsCustomDomainsMissingPermissions
-          v-else
-          :title="lang('settings_custom_domains_button')"
-        />
-      </SessionSupportsPermissions>
-    </component>
-  </template>
+        <SessionSupportsPermissions>
+          <FormButton
+            v-if="!perm.hasAllPermissions()"
+            color="secondary"
+            padding="large"
+            @click="perm.requestPermissions()"
+          >
+            {{ lang('Add') }}
+          </FormButton>
+          <SettingsCustomDomainsMissingPermissions
+            v-else
+            :title="lang('settings_custom_domains_button')"
+          />
+        </SessionSupportsPermissions>
+      </component>
+    </template>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -59,6 +63,7 @@ import SettingsCustomDomainsMissingPermissions from './settings-custom-domains-m
 import FormButton from '../form/form-button.vue';
 import Card from '../card.vue';
 import Header from '../header.vue';
+import Spinner from '../spinner.vue';
 
 import { PermissionsHandler } from '../../../utils/permissions';
 
