@@ -60,9 +60,13 @@ export class PermissionsHandler {
       }
     });
 
-    const chibiRepo = await ChibiListRepository.getInstance().init();
-    const chibiPages = chibiRepo.getPermissionsElements();
-    pages = pages.concat(chibiPages);
+    try {
+      const chibiRepo = await ChibiListRepository.getInstance().init();
+      const chibiPages = chibiRepo.getPermissionsElements();
+      pages = pages.concat(chibiPages);
+    } catch (e) {
+      con.error('Failed to load chibi permissions', e);
+    }
 
     const activePermissions = await chrome.permissions.getAll();
 
