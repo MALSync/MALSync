@@ -29,7 +29,7 @@ export default {
   /**
    * Replaces occurrences of a pattern in a string
    * @input string - The input string
-   * @param pattern - String or RegExp to replace
+   * @param pattern - String to replace
    * @param replacement - Replacement string or return string of function
    * @returns String with replacements
    * @example
@@ -49,7 +49,7 @@ export default {
   /**
    * Replaces all occurrences of a pattern in a string
    * @input string - The input string
-   * @param pattern - String or RegExp to replace
+   * @param pattern - String to replace
    * @param replacement - Replacement string or function
    * @returns String with all replacements
    * @example
@@ -65,6 +65,29 @@ export default {
     const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
     // eslint-disable-next-line es-x/no-string-prototype-replaceall
     return input.replaceAll(pattern, replacementValue);
+  },
+
+  /**
+   * Replaces text using a regular expression pattern
+   * @input string - The input string
+   * @param pattern - Regular expression pattern
+   * @param replacement - Replacement string or function
+   * @param flags - Regex flags (default: 'i' for case-insensitive)
+   * @returns String with regex replacements
+   * @example
+   * $c.string("Hello123").replaceRegex("\\d+", "!") // returns "Hello!"
+   * $c.string("Hello123").replaceRegex("\\d+", $c.string('!').run()) // returns "Hello!"
+   */
+  replaceRegex: (
+    ctx: ChibiCtx,
+    input: string,
+    pattern: string,
+    replacement: string | ChibiJson<string>,
+    flags: string = 'gi',
+  ) => {
+    const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
+    const regex = new RegExp(pattern, flags);
+    return input.replace(regex, replacementValue);
   },
 
   /**

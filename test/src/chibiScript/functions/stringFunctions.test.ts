@@ -67,6 +67,28 @@ describe('String Functions', () => {
     });
   });
 
+  describe('replaceRegex', () => {
+    it('should replace using regex pattern', () => {
+      const code = $c.string('hello123world').replaceRegex('\\d+', '!').run();
+      expect(generateAndExecute(code).run()).to.equal('hello!world');
+    });
+
+    it('should be case-insensitive by default', () => {
+      const code = $c.string('HELLO123').replaceRegex('hello', 'hi').run();
+      expect(generateAndExecute(code).run()).to.equal('hi123');
+    });
+
+    it('should respect provided flags', () => {
+      const code = $c.string('HELLO123').replaceRegex('hello', 'hi', '').run();
+      expect(generateAndExecute(code).run()).to.equal('HELLO123');
+    });
+
+    it('should handle ChibiJson as replacement', () => {
+      const code = $c.string('hello123').replaceRegex('\\d+', $c.string('!').run()).run();
+      expect(generateAndExecute(code).run()).to.equal('hello!');
+    });
+  });
+
   describe('substring', () => {
     it('should extract substring with start and end indexes', () => {
       const code = $c.string('hello world').substring(0, 5).run();
