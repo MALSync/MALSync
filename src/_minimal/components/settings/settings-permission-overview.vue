@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="!perm">
-      <Card class="spinner-wrap"><Spinner /></Card>
+      <Card v-if="!requiredOnly" class="spinner-wrap"><Spinner /></Card>
     </template>
     <template v-else>
       <component
