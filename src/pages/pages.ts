@@ -14,7 +14,6 @@ import { KickAssAnime } from './KickAssAnime/main';
 import { Shinden } from './Shinden/main';
 import { Voiranime } from './Voiranime/main';
 import { VIZ } from './VIZ/main';
-import { MangaNato } from './MangaNato/main';
 import { AnimeZone } from './AnimeZone/main';
 import { AnimeOdcinki } from './AnimeOdcinki/main';
 import { serimanga } from './serimanga/main';
@@ -157,7 +156,6 @@ export const pages = {
   KickAssAnime,
   Shinden,
   Voiranime,
-  MangaNato,
   VIZ,
   AnimeOdcinki,
   AnimeZone,
