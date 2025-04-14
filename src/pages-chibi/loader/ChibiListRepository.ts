@@ -2,6 +2,11 @@ import type { domainType } from 'src/background/customDomain';
 import { PageJsonInterface, PageListJsonInterface } from '../pageInterface';
 import { greaterCurrentVersion } from '../../utils/version';
 
+type StorageInterface = {
+  chibiPages: PageListJsonInterface['pages'];
+  errors: Record<string, unknown>;
+};
+
 export class ChibiListRepository {
   private collections: string[];
 
@@ -20,25 +25,45 @@ export class ChibiListRepository {
   }
 
   async init() {
-    const pages = await Promise.all(this.collections.map(c => this.retrieveCollection(c)));
-    this.pages = pages.reduce((acc, cur) => {
-      Object.keys(cur.pages).forEach(key => {
+    const storageKey = `chibiPages-${api.storage.version()}`;
+    const data: StorageInterface = ((await api.storage.get(
+      storageKey,
+    )) as StorageInterface | null) || { chibiPages: {}, errors: {} };
+
+    const errors = {};
+    const collectionsData = (
+      await Promise.all(
+        this.collections.map(c =>
+          this.retrieveCollection(c).catch(e => {
+            errors[c] = e;
+            return null as unknown as PageListJsonInterface;
+          }),
+        ),
+      )
+    ).filter(c => c);
+    data.errors = errors;
+
+    collectionsData.forEach(col => {
+      Object.keys(col.pages).forEach(key => {
         // Skip pages that require a higher version than current
-        if (cur.pages[key].minimumVersion && greaterCurrentVersion(cur.pages[key].minimumVersion)) {
+        if (col.pages[key].minimumVersion && greaterCurrentVersion(col.pages[key].minimumVersion)) {
           return;
         }
 
         const newer =
-          acc[key] &&
-          acc[key].version.hash !== cur.pages[key].version.hash &&
-          Number(acc[key].version.timestamp) < Number(cur.pages[key].version.timestamp);
+          data.chibiPages[key] &&
+          data.chibiPages[key].version.hash !== col.pages[key].version.hash &&
+          Number(data.chibiPages[key].version.timestamp) < Number(col.pages[key].version.timestamp);
 
-        if (!acc[key] || newer) {
-          acc[key] = cur.pages[key];
+        if (!data.chibiPages[key] || newer) {
+          data.chibiPages[key] = col.pages[key];
         }
       });
-      return acc;
-    }, this.pages || {});
+    });
+
+    await api.storage.set(storageKey, data);
+    this.pages = data.chibiPages;
+
     return this;
   }
 
