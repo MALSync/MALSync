@@ -32,6 +32,7 @@ jobs:
     - name: install
       run: |
         npm ci
+        npm run build:chibiTypes
       env:
         PUPPETEER_SKIP_DOWNLOAD: 'true'
     - name: Lint
