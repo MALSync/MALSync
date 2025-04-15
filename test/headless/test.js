@@ -180,6 +180,19 @@ async function PreparePage(block, page, url, testPage) {
 
     page.on('request', (request) => {
       if (!request.isInterceptResolutionHandled()) {
+        if (request.url().startsWith('https://chibi.malsync.moe/config/')) {
+          const pathPart = request
+            .url()
+            .replace('https://chibi.malsync.moe/config/', '')
+            .split('?')[0];
+          const listJsonPath = path.join(__dirname, '../../dist/webextension/chibi/', pathPart);
+          const listJsonContent = fs.readFileSync(listJsonPath, 'utf8');
+          return request.respond({
+            status: 200,
+            contentType: 'application/json',
+            body: listJsonContent,
+          });
+        }
         if (request.headers()['x-malsync-test']) {
           const requestMessage = JSON.parse(request.headers()['x-malsync-test']);
           let requestName = getRequestName(requestMessage);
@@ -219,8 +232,28 @@ async function PreparePage(block, page, url, testPage) {
 
     const requestData = {};
 
-    page.on('response', async (interceptedResponse) => {
+    page.on('request', (request) => {
+      if (!request.isInterceptResolutionHandled()) {
+        if (request.url().startsWith('https://chibi.malsync.moe/config/')) {
+          const pathPart = request
+            .url()
+            .replace('https://chibi.malsync.moe/config/', '')
+            .split('?')[0];
+          const listJsonPath = path.join(__dirname, '../../dist/webextension/chibi/', pathPart);
+          const listJsonContent = fs.readFileSync(listJsonPath, 'utf8');
+          const headers = request.headers();
+          delete headers['x-malsync-test'];
+          return request.respond({
+            headers,
+            status: 200,
+            contentType: 'application/json',
+            body: listJsonContent,
+          });
+        }
+      }
+    });
 
+    page.on('response', async (interceptedResponse) => {
       if (interceptedResponse.request().headers()['x-malsync-test']) {
         const requestMessage = JSON.parse(
           interceptedResponse.request().headers()['x-malsync-test'],
@@ -355,8 +388,35 @@ async function singleCase(block, test, page, testPage, retry = 0) {
             addListener: function(callback) {
               console.log('chrome.runtime.onMessage.addListener', callback);
             }
+          },
+          sendMessage: function(message, callback) {
+            console.log('chrome.runtime.sendMessage', message, callback);
+          },
+          getURL: function(path) {
+            console.log('chrome.runtime.getURL', path);
+            return '';
+          },
+          getManifest: function() {
+            console.log('chrome.runtime.getManifest');
+            return {
+              version: '0.1',
+            };
           }
-        }
+        },
+        storage: {
+          local: {
+            get: function(keys, callback) {
+              console.log('chrome.storage.local.get', keys, callback);
+              callback({});
+            },
+            set: function(items, callback) {
+              console.log('chrome.storage.local.set', items, callback);
+              if (callback) {
+                callback();
+              }
+            }
+          }
+        },
       };
     `,
   });

@@ -3,40 +3,40 @@
   "url": "https://manganato.com/",
   "testCases": [
     {
-      "url": "https://chapmanganato.com/manga-yz975382/chapter-190",
+      "url": "https://www.natomanga.com/manga/dr-stone/chapter-190",
       "expected": {
         "sync": true,
         "title": "Dr. Stone",
-        "identifier": "manga-yz975382",
-        "overviewUrl": "https://chapmanganato.com/manga-yz975382",
-        "nextEpUrl": "https://chapmanganato.com/manga-yz975382/chapter-191",
+        "identifier": "dr-stone",
+        "overviewUrl": "https://www.natomanga.com/manga/dr-stone",
+        "nextEpUrl": "https://www.natomanga.com/manga/dr-stone/chapter-191",
         "episode": 190,
         "uiSelector": false
       }
     },
     {
-      "url": "https://chapmanganato.com/manga-zp951872",
+      "url": "https://www.mangakakalot.gg/manga/baby-steps",
       "expected": {
         "sync": false,
         "title": "Baby Steps",
-        "identifier": "manga-zp951872",
+        "identifier": "baby-steps",
         "uiSelector": true,
         "epList": {
-          "5": "https://chapmanganato.com/manga-zp951872/chapter-5",
-          "194": "https://chapmanganato.com/manga-zp951872/chapter-194"
+          "5": "https://www.mangakakalot.gg/manga/baby-steps/chapter-5",
+          "194": "https://www.mangakakalot.gg/manga/baby-steps/chapter-194"
         }
       }
     },
     {
-      "url": "https://chapmanganato.com/manga-yz975382",
+      "url": "https://www.natomanga.com/manga/dr-stone",
       "expected": {
         "sync": false,
         "title": "Dr. Stone",
-        "identifier": "manga-yz975382",
+        "identifier": "dr-stone",
         "uiSelector": true,
         "epList": {
-          "5": "https://chapmanganato.com/manga-yz975382/chapter-5",
-          "194": "https://chapmanganato.com/manga-yz975382/chapter-194"
+          "5": "https://www.natomanga.com/manga/dr-stone/chapter-5",
+          "194": "https://www.natomanga.com/manga/dr-stone/chapter-194"
         }
       }
     }

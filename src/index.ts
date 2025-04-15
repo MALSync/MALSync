@@ -87,7 +87,7 @@ api.settings.init().then(() => {
 });
 
 async function runPage() {
-  const pageObjects = await Chibi().catch((e) => {
+  const pageObjects = await Chibi().catch(e => {
     if (e instanceof NotFoundError) {
       return pages;
     }
