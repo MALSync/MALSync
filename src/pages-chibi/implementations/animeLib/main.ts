@@ -127,7 +127,7 @@ export const animeLib: PageInterface = {
     setup($c) {
       return (
         $c
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-call, global-require, @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-member-access
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call, global-require, @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
           .addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString())
           .run()
       );
