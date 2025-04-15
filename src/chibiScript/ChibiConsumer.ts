@@ -44,7 +44,7 @@ export class ChibiConsumer {
         if (error instanceof ChibiError) {
           throw error;
         }
-        con.m('chibi').error(error);
+        this.logError(error, functionName, state, args);
         state = null;
       }
 
@@ -92,7 +92,7 @@ export class ChibiConsumer {
         if (error instanceof ChibiError) {
           throw error;
         }
-        con.m('chibi').error(error);
+        this.logError(error, functionName, state, args);
         state = null;
       }
 
@@ -110,5 +110,18 @@ export class ChibiConsumer {
 
   clearIntervals() {
     return this.ctx.clearIntervals();
+  }
+
+  logError(error, functionName, input, args) {
+    console.log(
+      '%cMAL-Sync',
+      'background-color: #8f0000; color: white; padding: 2px 10px; border-radius: 3px;',
+      error.message,
+      {
+        functionName,
+        input,
+        args,
+      },
+    );
   }
 }
