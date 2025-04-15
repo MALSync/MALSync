@@ -133,6 +133,7 @@ export const Chibi = async (): Promise<pageInterface> => {
                         }
 
                         const consumer = getConsumer(currentPage.list!.elementUrl!, pageD);
+                        consumer.addVariable('element', selector);
                         return consumer.run(selector);
                       }
                     : undefined,
@@ -142,6 +143,7 @@ export const Chibi = async (): Promise<pageInterface> => {
                     }
 
                     const consumer = getConsumer(currentPage.list!.elementEp, pageD);
+                    consumer.addVariable('element', selector);
                     return consumer.run(selector);
                   },
                 }

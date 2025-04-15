@@ -122,6 +122,24 @@ describe('Array Functions', () => {
       expect(generateAndExecute(code).run()).to.be.undefined;
     });
   });
+
+  describe('filter', () => {
+    it('should filter elements that satisfy condition', () => {
+      const code = $c
+        .array(['1', '2', '3', '4'])
+        .filter($item => $item.number().greaterThan(2).run())
+        .run();
+      expect(generateAndExecute(code).run()).to.deep.equal(['3', '4']);
+    });
+
+    it('should return empty array when no elements satisfy condition', () => {
+      const code = $c
+        .array(['1', '2', '3'])
+        .filter($item => $item.number().greaterThan(5).run())
+        .run();
+      expect(generateAndExecute(code).run()).to.deep.equal([]);
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {

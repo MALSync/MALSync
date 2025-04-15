@@ -39,6 +39,22 @@ export default {
   },
 
   /**
+   * Gets the current element from context
+   * @returns Current element
+   * @example
+   * $c.element()
+   */
+  element: (ctx: ChibiCtx, input: void): Element => {
+    const element = ctx.get('element');
+
+    if (!element) {
+      throw new ChibiError('element not set');
+    }
+
+    return element;
+  },
+
+  /**
    * Returns the input value immediately, stopping execution
    * @input any - Value to return
    * @returns The input value unchanged

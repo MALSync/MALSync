@@ -141,4 +141,22 @@ export default {
     }
     return undefined;
   },
+
+  /**
+   * Filters an array to include only elements that satisfy the condition
+   * @input any[] - Array to filter
+   * @param callback - Function that returns true for elements to keep
+   * @returns New array with elements that satisfy the condition
+   * @example
+   * $c.array(['1', '2', '3', '4']).filter($item => $item.number().greaterThan(2).run()) // returns ["3", "4"]
+   */
+  filter: <Input>(
+    ctx: ChibiCtx,
+    input: Input extends any[] ? Input : never,
+    condition: (
+      $c: ChibiGenerator<CT.GetArrayType<Input extends any[] ? Input : never>>,
+    ) => ChibiJson<boolean>,
+  ): Input => {
+    return input.filter(item => ctx.run(condition as unknown as ChibiJson<any>, item)) as Input;
+  },
 };

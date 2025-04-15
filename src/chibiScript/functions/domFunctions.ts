@@ -147,6 +147,18 @@ export default {
   },
 
   /**
+   * Checks if an element matches a CSS selector
+   * @input Element - DOM element
+   * @param selector - CSS selector string
+   * @returns Boolean indicating if the element matches the selector
+   * @example
+   * $c.querySelector('h1').matches('.highlight')
+   */
+  elementMatches: (ctx: ChibiCtx, input: Element, selector: string) => {
+    return input.matches(selector);
+  },
+
+  /**
    * Gets the current document title
    * @returns The current document title
    * @example
