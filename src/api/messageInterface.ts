@@ -67,6 +67,10 @@ export interface databaseMessage {
   };
 }
 
+export interface registerEmitterMessage {
+  name: 'registerEmitter';
+}
+
 export type sendMessageI =
   | xhrI
   | iframeDone
@@ -76,6 +80,7 @@ export type sendMessageI =
   | content
   | emitter
   | notificationMessage
-  | databaseMessage;
+  | databaseMessage
+  | registerEmitterMessage;
 
 export type responseMessageI = xhrResponseI;

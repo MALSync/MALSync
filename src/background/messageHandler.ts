@@ -12,6 +12,8 @@ import {
 import { databaseRequest } from './database';
 import { sendNotification } from './notifications';
 
+const activeEmitterTabs = new Set<number>();
+
 export function initMessageHandler() {
   chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse) => {
     return messageHandler(message, sender, sendResponse, 'content');
@@ -57,6 +59,10 @@ function messageHandler(
     case 'database': {
       databaseRequest(message.options.call, message.options.param).then(res => sendResponse(res));
       return true;
+    }
+    case 'registerEmitter': {
+      if (sender.tab?.id) registerEmitterTab(sender.tab.id);
+      return undefined;
     }
     default:
       throw new Error(`Unknown action: ${message.name}`);
@@ -147,12 +153,17 @@ function minimalWindowAction(message: minimalWindow, sender, sendResponse) {
 
 function emitterAction(message: emitter, sender, sendResponse) {
   chrome.runtime.sendMessage(message);
-  chrome.tabs.query({}, tabs => {
-    tabs.forEach(tab => {
-      chrome.tabs.sendMessage(tab.id!, message);
+
+  activeEmitterTabs.forEach(tabId => {
+    chrome.tabs.sendMessage(tabId, message).catch(() => {
+      activeEmitterTabs.delete(tabId);
     });
   });
   return undefined;
+}
+
+function registerEmitterTab(tabId: number) {
+  activeEmitterTabs.add(tabId);
 }
 
 export function xhrAction(
