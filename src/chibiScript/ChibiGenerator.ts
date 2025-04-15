@@ -4,6 +4,7 @@ import { ChibiGeneratorFunctions } from './ChibiGeneratorTypes';
 const randomKeys = {
   waitUntilTrue: 1,
   detectChanges: 2,
+  detectURLChanges: 2,
 };
 
 export type ChibiJson<T = void> = string[][] & { __type?: T };

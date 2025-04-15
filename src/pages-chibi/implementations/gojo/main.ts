@@ -94,8 +94,7 @@ export const gojo: PageInterface = {
         .run();
     },
     ready($c) {
-      // TODO: Use url check
-      return $c.detectChanges($c.title().run(), $c.trigger().run()).domReady().trigger().run();
+      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
     syncIsReady($c) {
       return $c.waitUntilTrue($c.url().this('sync.getTitle').run()).trigger().run();

@@ -70,4 +70,50 @@ export default {
       }, 500),
     );
   },
+
+  /**
+   * Detect changes in the URL and run a callback every time a change is detected
+   * @param callback - Callback to execute when URL changes are detected
+   * @param options - Options to configure the detection
+   * @param _intervalKey - Internal never provide this
+   * @example
+   * $c.detectURLChanges($c.trigger().run())
+   */
+  detectURLChanges: (
+    ctx: ChibiCtx,
+    input: void,
+    callback: ChibiJson<any>,
+    options: {
+      ignoreQuery: boolean;
+      ignoreAnchor: boolean;
+    } | null = null,
+    _intervalKey?,
+  ): void => {
+    const ignoreQuery = options?.ignoreQuery ?? false;
+    const ignoreAnchor = options?.ignoreAnchor ?? true;
+
+    const normalizeUrl = (url: string) => {
+      let normalized = url;
+      if (ignoreQuery) {
+        normalized = normalized.split('?')[0];
+      }
+      if (ignoreAnchor) {
+        normalized = normalized.split('#')[0];
+      }
+      return normalized;
+    };
+
+    clearInterval(ctx.getInterval(_intervalKey));
+    let currentUrl = normalizeUrl(window.location.href);
+    ctx.setInterval(
+      _intervalKey,
+      setInterval(() => {
+        const newUrl = normalizeUrl(window.location.href);
+        if (currentUrl !== newUrl) {
+          currentUrl = newUrl;
+          ctx.run(callback);
+        }
+      }, 500),
+    );
+  },
 };
