@@ -903,12 +903,14 @@ export class SyncPage {
           ) {
             logger.log('Pagination next');
             const This = this;
-            if (this.page.overview.list.paginationNext(false)) {
-              setTimeout(function () {
-                reTry++;
-                This.handleList(true, reTry);
-              }, 500);
-            }
+            Promise.resolve(this.page.overview.list.paginationNext(false)).then(hasNext => {
+              if (hasNext) {
+                setTimeout(function () {
+                  reTry++;
+                  This.handleList(true, reTry);
+                }, 500);
+              }
+            });
           }
 
           const nextEp = epList[this.singleObj.getEpisode() + 1];
