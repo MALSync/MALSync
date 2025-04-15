@@ -1,4 +1,5 @@
 import type { ChibiGenerator, ChibiJson } from 'src/chibiScript/ChibiGenerator';
+import { mangaProgressConfig } from '../utils/mangaProgress/MangaProgress';
 import type { searchSyntax } from '../utils/quicklinksBuilder';
 
 /**
@@ -117,7 +118,11 @@ export interface PageInterface {
       $c: ChibiGenerator<unknown>,
     ) => ChibiJson<Promise<string | boolean> | string | boolean>;
 
-    // TODO: Add readerConfig
+    /**
+     * Configuration for the manga progress functionality.
+     * This property is optional.
+     */
+    readerConfig?: mangaProgressConfig[];
   };
 
   /**

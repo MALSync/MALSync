@@ -94,6 +94,7 @@ export const Chibi = async (): Promise<pageInterface> => {
             return consumer.run();
           }
         : undefined,
+      readerConfig: currentPage.sync.readerConfig ? currentPage.sync.readerConfig : undefined,
     },
     overview:
       currentPage.overview || currentPage.list
