@@ -115,7 +115,7 @@ export interface PageInterface {
      */
     getMalUrl?: (
       $c: ChibiGenerator<unknown>,
-    ) => ChibiJson<Promise<string | false> | string | false>;
+    ) => ChibiJson<Promise<string | boolean> | string | boolean>;
 
     // TODO: Add readerConfig
   };
@@ -159,7 +159,7 @@ export interface PageInterface {
      */
     getMalUrl?: (
       $c: ChibiGenerator<unknown>,
-    ) => ChibiJson<Promise<string | false> | string | false>;
+    ) => ChibiJson<Promise<string | boolean> | string | boolean>;
   };
 
   /**
