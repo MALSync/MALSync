@@ -68,24 +68,35 @@ export const mangaLib: PageInterface = {
     },
     nextEpUrl($c) {
       const btnNext = $c.querySelectorAll('header a[href]').last();
-      const next = $c
-        .if(
-          $c
-            .and(
-              btnNext.boolean().run(),
-              btnNext.getAttribute('href').boolean().run(),
-              btnNext.getComputedStyle('pointer-events').equals('none').not().run(),
-            )
-            .run(),
-          btnNext.getAttribute('href').urlAbsolute().run(),
-          $c.string('').run(),
-        )
-        .log('TEST-next');
-      return next.run();
+      const next = $c.if(
+        $c
+          .and(
+            btnNext.boolean().run(),
+            btnNext.getAttribute('href').boolean().run(),
+            btnNext.getComputedStyle('pointer-events').equals('none').not().run(),
+          )
+          .run(),
+        btnNext.getAttribute('href').urlAbsolute().run(),
+        $c.string('').run(),
+      );
+      return next.log('TEST-next').string().run();
     },
-    // readerConfig($c) {
-    //   // TODO - when it's implemented
-    // },
+    readerConfig: [
+      {
+        current: {
+          selector: 'footer',
+          mode: 'text',
+          regex: '(\\d+) / (\\d+)$',
+          group: 1,
+        },
+        total: {
+          selector: 'footer',
+          mode: 'text',
+          regex: '(\\d+) / (\\d+)$',
+          group: 2,
+        },
+      },
+    ],
   },
   overview: {
     isOverviewPage($c) {
@@ -122,7 +133,7 @@ export const mangaLib: PageInterface = {
     setup($c) {
       return (
         $c
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-call, global-require, @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-member-access
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call, global-require, @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
           .addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString())
           .run()
       );
