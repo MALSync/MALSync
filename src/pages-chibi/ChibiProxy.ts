@@ -1,4 +1,5 @@
 import { doesUrlMatchPatterns } from 'webext-patterns';
+import { NotFoundError } from '../_provider/Errors';
 import type { ChibiJson } from '../chibiScript/ChibiGenerator';
 import { ChibiConsumer } from '../chibiScript/ChibiConsumer';
 import { pageInterface } from '../pages/pageInterface';
@@ -27,7 +28,7 @@ export const Chibi = async (): Promise<pageInterface> => {
   });
 
   if (matchingPages.length === 0) {
-    throw new Error('No matching page found');
+    throw new NotFoundError('No matching page found');
   }
   if (matchingPages.length > 1) {
     con.error('Multiple matching pages found', matchingPages);

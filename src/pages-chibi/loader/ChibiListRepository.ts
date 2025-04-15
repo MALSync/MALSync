@@ -13,11 +13,13 @@ export class ChibiListRepository {
   private pages: PageListJsonInterface['pages'] | null = null;
 
   static getInstance() {
-    const instance = new ChibiListRepository([
-      chrome.runtime.getURL('chibi'),
-      'https://chibi.malsync.moe/config',
-    ]);
-    return instance;
+    let repos;
+    if ((api.type as any) === 'userscript') {
+      repos = ['https://chibi.malsync.moe/config'];
+    } else {
+      repos = [chrome.runtime.getURL('chibi'), 'https://chibi.malsync.moe/config'];
+    }
+    return new ChibiListRepository(repos);
   }
 
   constructor(collections: string[]) {
