@@ -19,6 +19,15 @@ const generateMatchExcludes = pagesUtils.generateMatchExcludes;
 const pageUrls = { ...generalUrls, ...pages };
 const { getKeys } = require('./utils/keys');
 
+let chibiUrls = [];
+try {
+  const chibiList = require('../dist/webextension/chibi/list.json');
+  chibiUrls = Object.values(chibiList.pages).map(chibi => chibi.urls.match);
+} catch (e) {
+  console.log(e);
+  throw 'Chibi list not found. Please build the extension first. `npm run build:webextension`';
+}
+
 const generateResources = () => {
   const resources = [];
   for (const key in resourcesJson) {
@@ -52,7 +61,7 @@ const metadata = {
     'GM.getValue',
     'GM.setValue',
   ],
-  match: generateMatchExcludes(pageUrls).match.concat(generateMatchExcludes(playerUrls).match),
+  match: generateMatchExcludes(pageUrls).match.concat(generateMatchExcludes(playerUrls).match).concat(chibiUrls.flat()),
   exclude: generateMatchExcludes(pageUrls).exclude,
   'require': 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js#sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=',
   resource: generateResources(),
