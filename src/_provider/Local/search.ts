@@ -1,13 +1,13 @@
 import Fuse from 'fuse.js';
 
-import { listElement } from '../listAbstract';
+import { ListElement } from '../listAbstract';
 import { UserList as LocalList } from './list';
 import { searchResult } from '../definitions';
 import { normalSearch } from '../../utils/Search';
 
 const searchFuse: {
-  anime: null | Fuse<listElement>;
-  manga: null | Fuse<listElement>;
+  anime: null | Fuse<ListElement>;
+  manga: null | Fuse<ListElement>;
 } = {
   anime: null,
   manga: null,

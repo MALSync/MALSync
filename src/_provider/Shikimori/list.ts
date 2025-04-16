@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from '../listAbstract';
+import { ListAbstract, ListElement } from '../listAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 
@@ -105,8 +105,8 @@ export class UserList extends ListAbstract {
   private async prepareData(
     data: helper.StatusRequest[],
     metadata: { [key: string]: helper.MetaRequest },
-  ): Promise<listElement[]> {
-    const newData = [] as listElement[];
+  ): Promise<ListElement[]> {
+    const newData = [] as ListElement[];
     for (const key in data) {
       const entry = data[key];
       const meta = metadata[entry.target_id];

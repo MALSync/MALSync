@@ -1,5 +1,5 @@
 import { NotAutenticatedError } from '../Errors';
-import { ListAbstract, listElement } from '../listAbstract';
+import { ListAbstract, ListElement } from '../listAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 
@@ -145,8 +145,8 @@ export class UserList extends ListAbstract {
       });
   }
 
-  private async prepareData(data, listType): Promise<listElement[]> {
-    const newData = [] as listElement[];
+  private async prepareData(data, listType): Promise<ListElement[]> {
+    const newData = [] as ListElement[];
     for (let i = 0; i < data.data.length; i++) {
       const list = data.data[i];
       const el = data.included[i];
