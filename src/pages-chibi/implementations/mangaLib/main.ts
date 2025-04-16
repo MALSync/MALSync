@@ -41,30 +41,24 @@ export const mangaLib: PageInterface = {
             )
             .run(),
         )
-        .log('TEST-title')
         .run();
     },
     getIdentifier($c) {
       const slug = $c.url().urlPart(4);
       const id = slug.string().regex('(\\d+)', 1);
-      return id.log('TEST-id').run();
+      return id.run();
     },
     getOverviewUrl($c) {
       const slug = $c.url().urlPart(4);
-      return $c
-        .string('ru/manga/_URL_SLUG_')
-        .replace('_URL_SLUG_', slug.run())
-        .urlAbsolute()
-        .log('TEST-url')
-        .run();
+      return $c.string('ru/manga/_URL_SLUG_').replace('_URL_SLUG_', slug.run()).urlAbsolute().run();
     },
     getEpisode($c) {
       const episode = $c.url().urlPart(7).substring(1).split('.').at(0).number();
-      return episode.log('TEST-episode').run();
+      return episode.run();
     },
     getVolume($c) {
       const volume = $c.url().urlPart(6).substring(1).number();
-      return volume.log('TEST-volume').run();
+      return volume.run();
     },
     nextEpUrl($c) {
       const btnNext = $c.querySelectorAll('header a[href]').last();
@@ -79,7 +73,7 @@ export const mangaLib: PageInterface = {
         btnNext.getAttribute('href').urlAbsolute().run(),
         $c.string('').run(),
       );
-      return next.log('TEST-next').string().run();
+      return next.string().run();
     },
     readerConfig: [
       {
@@ -117,13 +111,12 @@ export const mangaLib: PageInterface = {
             )
             .run(),
         )
-        .log('TEST-title')
         .run();
     },
     getIdentifier($c) {
       const slug = $c.url().urlPart(5);
       const id = slug.string().regex('(\\d+)', 1);
-      return id.log('TEST-id').run();
+      return id.run();
     },
     uiInjection($c) {
       return $c.querySelector('.tabs._border').uiBefore().run();
