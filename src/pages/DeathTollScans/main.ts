@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const DeathTollScans: pageInterface = {
+export const DeathTollScans: PageInterface = {
   name: 'DeathTollScans',
   domain: 'https://reader.deathtollscans.net',
   languages: ['English'],

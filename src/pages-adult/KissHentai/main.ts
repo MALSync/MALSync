@@ -1,6 +1,6 @@
-import { pageInterface } from '../../pages/pageInterface';
+import { PageInterface } from '../../pages/pageInterface';
 
-export const KissHentai: pageInterface = {
+export const KissHentai: PageInterface = {
   name: 'KissHentai',
   domain: 'http://kisshentai.net',
   languages: ['English'],

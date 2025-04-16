@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const LeviatanScans: pageInterface = {
+export const LeviatanScans: PageInterface = {
   name: 'LeviatanScans',
   domain: ['https://lscomic.com', 'https://en.leviatanscans.com'],
   languages: ['English'],

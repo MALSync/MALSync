@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Hdrezka: pageInterface = {
+export const Hdrezka: PageInterface = {
   name: 'Hdrezka',
   domain: 'https://hdrezka.ag',
   languages: ['Russian'],

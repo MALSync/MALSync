@@ -1,5 +1,5 @@
 import { getList } from '../_provider/listFactory';
-import type { listElement } from '../_provider/listAbstract';
+import type { ListElement } from '../_provider/listAbstract';
 import { KeepAlive } from './keepAlive';
 import {
   getProgress,
@@ -106,11 +106,11 @@ async function listUpdateWithPOST(state, type) {
     });
 }
 
-async function multiple(Array: listElement[], type, logger = con.m('release')) {
-  if (!Array) {
+async function multiple(updateCandidates: ListElement[], type: string, logger = con.m('release')) {
+  if (!updateCandidates) {
     logger.log('No MAL Id List');
   } else {
-    Array.forEach(el => {
+    updateCandidates.forEach(el => {
       let mode = el.options!.p;
       if (!mode) mode = 'default';
       logger.m(el.apiCacheKey).log(el.title, el.cacheKey, el.apiCacheKey, `Mode: ${mode}`);
@@ -128,8 +128,8 @@ async function multiple(Array: listElement[], type, logger = con.m('release')) {
     }
   }
 
-  const remoteUpdateList: listElement[] = [];
-  await asyncForEach(Array, async el => {
+  const remoteUpdateList: ListElement[] = [];
+  await asyncForEach(updateCandidates, async (el: ListElement) => {
     if (!el.apiCacheKey) return;
 
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(

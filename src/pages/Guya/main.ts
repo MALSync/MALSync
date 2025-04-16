@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 const excluded = ['imgur'];
 
-export const Guya: pageInterface = {
+export const Guya: PageInterface = {
   name: 'Guya & Cubari',
   domain: ['https://guya.moe', 'https://cubari.moe'],
   languages: ['English'],

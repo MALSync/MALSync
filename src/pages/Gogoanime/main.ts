@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Gogoanime: pageInterface = {
+export const Gogoanime: PageInterface = {
   name: 'Gogoanime',
   domain: [
     'https://gogoanime.tv',

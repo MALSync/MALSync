@@ -1,10 +1,10 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let thisData: any = null;
 
 const EPISODETEXT = '.dv-player-fullscreen .webPlayerSDKContainer .atvwebplayersdk-subtitle-text';
 
-export const PrimeVideo: pageInterface = {
+export const PrimeVideo: PageInterface = {
   name: 'Amazon Prime Video',
   domain: 'https://www.primevideo.com',
   languages: ['Many'],

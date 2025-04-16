@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const version5: pageInterface = {
+export const version5: PageInterface = {
   name: 'MangaPark',
   domain: 'https://mangapark.net',
   languages: ['English'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangaJar: pageInterface = {
+export const MangaJar: PageInterface = {
   name: 'MangaJar',
   domain: 'https://mangajar.pro',
   languages: ['English'],

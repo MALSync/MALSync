@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { ScriptProxy } from '../../utils/scriptProxy';
 import { SafeError } from '../../utils/errors';
 
@@ -122,7 +122,7 @@ async function getSeries(page) {
     });
 }
 
-export const Netflix: pageInterface = {
+export const Netflix: PageInterface = {
   name: 'Netflix',
   domain: 'https://www.netflix.com',
   languages: ['Many'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const DynastyScans: pageInterface = {
+export const DynastyScans: PageInterface = {
   name: 'DynastyScans',
   domain: 'https://dynasty-scans.com',
   languages: ['English'],

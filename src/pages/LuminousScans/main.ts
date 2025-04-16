@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 function cleanUrl(url: string) {
   if (utils.urlPart(url, 4) === 'series') {
@@ -7,7 +7,7 @@ function cleanUrl(url: string) {
   return url;
 }
 
-export const LuminousScans: pageInterface = {
+export const LuminousScans: PageInterface = {
   name: 'LuminousScans',
   domain: ['https://luminous-scans.com', 'https://luminousscans.com'],
   languages: ['English'],

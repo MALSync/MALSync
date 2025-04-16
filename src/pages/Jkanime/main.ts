@@ -1,7 +1,7 @@
 /* By kaiserdj */
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Jkanime: pageInterface = {
+export const Jkanime: PageInterface = {
   name: 'Jkanime',
   domain: 'https://jkanime.net',
   languages: ['Spanish'],

@@ -1,4 +1,4 @@
-import { storageInterface } from './storageInterface';
+import { StorageInterface } from './storageInterface';
 
 declare let GM_setValue: any;
 declare let GM_getValue: any;
@@ -9,9 +9,10 @@ declare let GM_info: any;
 declare let GM_listValues: any;
 declare let i18n: string[];
 
-export const userscriptLegacy: storageInterface = {
-  async set(key: string, value: string): Promise<void> {
+export const userscriptLegacy: StorageInterface = {
+  set(key: string, value: string): Promise<void> {
     GM_setValue(key, value);
+    return Promise.resolve();
   },
 
   async get(key: string): Promise<string | undefined> {
@@ -69,7 +70,7 @@ export const userscriptLegacy: storageInterface = {
     );
   },
 
-  injectjsResource(res, head) {
+  injectJsResource(res, head) {
     const s = document.createElement('script');
     s.text = GM_getResourceText(res);
     s.onload = function () {

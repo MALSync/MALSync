@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const SovetRomantica: pageInterface = {
+export const SovetRomantica: PageInterface = {
   name: 'SovetRomantica',
   languages: ['Russian'],
   domain: ['https://sovetromantica.com', 'https://ani.wtf'],

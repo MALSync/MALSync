@@ -1,5 +1,5 @@
 import { aniListToMal } from '../../_provider/AniList/helper';
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let jsonData = {
   title: '',
@@ -8,7 +8,7 @@ let jsonData = {
   nextEpUrl: null,
 };
 
-export const Kaguya: pageInterface = {
+export const Kaguya: PageInterface = {
   name: 'Kaguya',
   domain: 'https://kaguya.app',
   languages: ['Vietnamese', 'English'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const An1me: pageInterface = {
+export const An1me: PageInterface = {
   name: 'An1me',
   domain: 'https://an1me.to',
   languages: ['Greek'],

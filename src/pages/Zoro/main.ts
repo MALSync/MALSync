@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 type ZoroSyncData = {
   page: 'episode' | 'anime';
@@ -14,7 +14,7 @@ type ZoroSyncData = {
 
 let jsonData: ZoroSyncData;
 
-export const Zoro: pageInterface = {
+export const Zoro: PageInterface = {
   name: 'HiAnime',
   domain: 'https://hianime.to',
   languages: ['English'],

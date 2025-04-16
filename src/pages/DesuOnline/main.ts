@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const DesuOnline: pageInterface = {
+export const DesuOnline: PageInterface = {
   name: 'DesuOnline',
   domain: 'https://desu-online.pl',
   languages: ['Polish'],

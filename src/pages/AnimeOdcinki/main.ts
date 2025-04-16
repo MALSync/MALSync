@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeOdcinki: pageInterface = {
+export const AnimeOdcinki: PageInterface = {
   name: 'AnimeOdcinki',
   domain: 'https://anime-odcinki.pl',
   languages: ['Polish'],

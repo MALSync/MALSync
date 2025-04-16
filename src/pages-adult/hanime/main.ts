@@ -1,6 +1,6 @@
-import { pageInterface } from '../../pages/pageInterface';
+import { PageInterface } from '../../pages/pageInterface';
 
-export const hanime: pageInterface = {
+export const hanime: PageInterface = {
   name: 'hanime',
   domain: 'https://hanime.tv',
   languages: ['English'],

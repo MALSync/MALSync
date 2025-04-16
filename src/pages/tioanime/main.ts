@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const tioanime: pageInterface = {
+export const tioanime: PageInterface = {
   name: 'tioanime',
   domain: 'https://tioanime.com',
   languages: ['Spanish'],

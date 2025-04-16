@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const v3: pageInterface = {
+export const v3: PageInterface = {
   name: 'bato',
   domain: 'https://bato.to',
   languages: ['Many'],

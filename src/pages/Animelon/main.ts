@@ -1,9 +1,9 @@
 import { urlChangeDetect } from '../../utils/general';
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let syncPageEpTitle;
 
-export const Animelon: pageInterface = {
+export const Animelon: PageInterface = {
   name: 'Animelon',
   domain: 'https://www.animelon.com',
   languages: ['English', 'Japanese'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const FrixySubs: pageInterface = {
+export const FrixySubs: PageInterface = {
   name: 'FrixySubs',
   domain: 'https://frixysubs.pl',
   languages: ['Polish'],

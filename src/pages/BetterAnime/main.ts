@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const BetterAnime: pageInterface = {
+export const BetterAnime: PageInterface = {
   name: 'BetterAnime',
   domain: 'https://betteranime.net',
   languages: ['Portuguese'],

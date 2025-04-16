@@ -1,4 +1,5 @@
-import { pageInterface, pageState } from './pageInterface';
+import { SingleAbstract } from '../_provider/singleAbstract';
+import { PageInterface, PageState } from './pageInterface';
 import { getSingle } from '../_provider/singleFactory';
 import { hideFloatbutton, initFloatButton, showFloatbutton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
@@ -27,7 +28,7 @@ let browsingTimeout;
 let playerTimeout;
 
 export class SyncPage {
-  page: pageInterface;
+  page: PageInterface;
 
   searchObj;
 
@@ -267,7 +268,7 @@ export class SyncPage {
 
   async handlePage(curUrl = window.location.href) {
     this.resetPlayerError();
-    let state: pageState;
+    let state: PageState;
     this.curState = undefined;
     this.setSearchObj(undefined);
     this.url = curUrl;

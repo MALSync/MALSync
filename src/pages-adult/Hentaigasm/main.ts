@@ -1,6 +1,6 @@
-import { pageInterface } from '../../pages/pageInterface';
+import { PageInterface } from '../../pages/pageInterface';
 
-export const Hentaigasm: pageInterface = {
+export const Hentaigasm: PageInterface = {
   name: 'Hentaigasm',
   domain: 'http://hentaigasm.com',
   languages: ['English'],

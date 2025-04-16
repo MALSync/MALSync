@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const VIZ: pageInterface = {
+export const VIZ: PageInterface = {
   name: 'VIZ',
   domain: 'https://www.viz.com',
   languages: ['English'],

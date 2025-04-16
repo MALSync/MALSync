@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const FMTeam: pageInterface = {
+export const FMTeam: PageInterface = {
   name: 'FMTeam',
   domain: 'https://fmteam.fr',
   languages: ['French'],

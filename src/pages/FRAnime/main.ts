@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const FRAnime: pageInterface = {
+export const FRAnime: PageInterface = {
   name: 'FRAnime',
   domain: 'https://franime.fr',
   languages: ['French'],

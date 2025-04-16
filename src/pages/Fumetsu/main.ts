@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Fumetsu: pageInterface = {
+export const Fumetsu: PageInterface = {
   name: 'Fumetsu',
   domain: 'https://fumetsu.pl',
   languages: ['Polish'],

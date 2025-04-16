@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const WeebCentral: pageInterface = {
+export const WeebCentral: PageInterface = {
   name: 'WeebCentral',
   domain: 'https://weebcentral.com',
   languages: ['English'],

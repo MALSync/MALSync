@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 const TITLE_LINK_SELECTOR = 'ol.breadcrumb > li:nth-child(2) > a';
 const SELECTED_CHAPTER_SELECTOR =
@@ -21,7 +21,7 @@ function getChapter(text: string) {
   return Number(res[2]) || NaN;
 }
 
-export const NeoxScans: pageInterface = {
+export const NeoxScans: PageInterface = {
   name: 'NeoxScans',
   domain: 'https://neoxscans.com/',
   languages: ['Portuguese'],

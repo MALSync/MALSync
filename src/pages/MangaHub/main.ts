@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangaHub: pageInterface = {
+export const MangaHub: PageInterface = {
   name: 'MangaHub',
   domain: 'https://mangahub.io',
   languages: ['English'],

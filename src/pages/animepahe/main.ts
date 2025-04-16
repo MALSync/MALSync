@@ -1,7 +1,7 @@
 /* By Deterio */
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const animepahe: pageInterface = {
+export const animepahe: PageInterface = {
   name: 'animepahe',
   domain: 'https://animepahe.com',
   languages: ['English'],

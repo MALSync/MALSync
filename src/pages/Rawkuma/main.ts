@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Rawkuma: pageInterface = {
+export const Rawkuma: PageInterface = {
   name: 'Rawkuma',
   domain: 'https://rawkuma.com',
   languages: ['Japanese'],

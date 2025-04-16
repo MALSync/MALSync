@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { aniListToMal } from '../../_provider/AniList/helper';
 
 // WATCH_SYNC contents
@@ -14,7 +14,7 @@ type KitsuneWatchSyncData = {
 
 let jsonData: KitsuneWatchSyncData;
 
-export const Kitsune: pageInterface = {
+export const Kitsune: PageInterface = {
   name: 'Kitsune',
   domain: ['https://beta.kitsune.tv', 'https://kitsune.tv'],
   languages: ['English'],

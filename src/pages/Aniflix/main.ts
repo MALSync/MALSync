@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Aniflix: pageInterface = {
+export const Aniflix: PageInterface = {
   name: 'Aniflix',
   domain: 'https://aniflix.cc',
   languages: ['German'],

@@ -16,7 +16,7 @@ import { shikiOauth } from './_provider/Shikimori/oauth';
 import { Chibi } from './pages-chibi/ChibiProxy';
 import { NotFoundError } from './_provider/Errors';
 
-let page;
+let page: SyncPage;
 
 async function main() {
   if (utils.isDomainMatching(window.location.href, 'myanimelist.net')) {
@@ -97,7 +97,7 @@ async function runPage() {
   });
 
   try {
-    if (inIframe()) throw 'iframe';
+    if (inIframe()) throw new Error('iframe');
     page = new SyncPage(window.location.href, pageObjects, floatClick);
   } catch (e) {
     con.info(e);

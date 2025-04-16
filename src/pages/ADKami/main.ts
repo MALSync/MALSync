@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let jsonData;
 
-export const ADKami: pageInterface = {
+export const ADKami: PageInterface = {
   name: 'ADKami',
   domain: 'https://www.adkami.com/',
   languages: ['French'],

@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { pathToUrl, urlToSlug } from '../../utils/slugs';
 
 async function apiCall(url: string) {
@@ -23,7 +23,7 @@ const series = {
   },
 };
 
-export const Komga: pageInterface = {
+export const Komga: PageInterface = {
   name: 'Komga',
   domain: 'https://komga.org',
   languages: ['Many'],

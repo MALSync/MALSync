@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangaSee: pageInterface = {
+export const MangaSee: PageInterface = {
   name: 'MangaSee',
   domain: 'https://mangasee123.com',
   languages: ['English'],

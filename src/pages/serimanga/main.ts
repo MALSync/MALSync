@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const serimanga: pageInterface = {
+export const serimanga: PageInterface = {
   name: 'serimanga',
   domain: 'https://serimanga.com',
   languages: ['Turkish'],

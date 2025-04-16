@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let jsonData;
 
-export const ComicK: pageInterface = {
+export const ComicK: PageInterface = {
   name: 'ComicK',
   domain: 'https://comick.io',
   languages: ['Many'],

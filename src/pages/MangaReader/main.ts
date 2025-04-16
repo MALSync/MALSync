@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 type MangaReaderSyncData = {
   page: 'chapter' | 'manga';
@@ -16,7 +16,7 @@ type MangaReaderSyncData = {
 
 let jsonData: MangaReaderSyncData;
 
-export const MangaReader: pageInterface = {
+export const MangaReader: PageInterface = {
   name: 'MangaReader',
   domain: 'https://mangareader.to',
   languages: ['English', 'Japanese'],
