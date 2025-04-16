@@ -11,7 +11,6 @@ export const animeLib: PageInterface = {
     match: ['*://anilib.me/*'],
   },
   search: 'https://anilib.me/ru/catalog?q={searchterm}',
-  minimumVersion: '0.11.1',
   sync: {
     isSyncPage($c) {
       return $c
