@@ -22,7 +22,9 @@ async function main() {
   if (utils.isDomainMatching(window.location.href, 'myanimelist.net')) {
     injectDb();
     const mal = new MyAnimeListClass(window.location.href);
-    mal.init();
+    mal.init().catch(e => {
+      con.error('MAL Error', e);
+    });
     if (window.location.href.indexOf('episode') > -1) {
       await runPage();
     }

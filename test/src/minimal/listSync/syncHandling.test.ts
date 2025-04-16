@@ -67,10 +67,9 @@ describe('Sync Handling', function() {
   });
 
   describe('changeCheck', function() {
-    const mode = 'mirror';
     it('No Change', function() {
       const item = helper.getMasterSlave();
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(false);
     });
 
@@ -78,7 +77,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.slaves[0].watchedEp = 22;
       delete item.master;
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(false);
     });
 
@@ -86,7 +85,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.slaves[0].watchedEp = 22;
       const diff = { watchedEp: 15 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal({});
@@ -96,7 +95,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.watchedEp = 22;
       const diff = { watchedEp: 22 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -106,7 +105,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.score = 2;
       const diff = { score: 2 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -116,7 +115,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.watchedEp = 22;
       const diff = { watchedEp: 22 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -126,7 +125,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.status = 2;
       const diff = { status: 2 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -137,7 +136,7 @@ describe('Sync Handling', function() {
       // @ts-ignore
       item.master.startDate = '1970-01-01';
       const diff = { startDate: '1970-01-01' };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -148,7 +147,7 @@ describe('Sync Handling', function() {
       // @ts-ignore
       item.master.finishDate = '1970-01-01';
       const diff = { finishDate: '1970-01-01' };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -158,7 +157,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.rewatchCount = 2;
       const diff = { rewatchCount: 2 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -177,7 +176,7 @@ describe('Sync Handling', function() {
         status: 2,
         watchedEp: 22,
       };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff1);
       expect(item.slaves[1].diff).to.deep.equal(diff2);
@@ -186,12 +185,11 @@ describe('Sync Handling', function() {
 
   describe('missingCheck', function() {
     const typeArray = ['MAL', 'KITSU', 'ANILIST'];
-    const mode = 'mirror';
 
     it('No missing', function() {
       const item = helper.getMasterSlave();
       const miss = [];
-      sync.missingCheck(item, miss, typeArray, mode);
+      sync.missingCheck(item, miss, typeArray);
       expect(miss).to.deep.equal([]);
     });
 
@@ -206,7 +204,7 @@ describe('Sync Handling', function() {
       delete res.totalEp;
       delete res.uid;
 
-      sync.missingCheck(item, miss, typeArray, mode);
+      sync.missingCheck(item, miss, typeArray);
       expect(miss).to.deep.equal([res]);
     });
 
@@ -223,7 +221,7 @@ describe('Sync Handling', function() {
 
       delete item.master;
 
-      sync.missingCheck(item, miss, typeArray, mode);
+      sync.missingCheck(item, miss, typeArray);
       expect(miss).to.deep.equal([]);
     });
   });
