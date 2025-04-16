@@ -16,7 +16,7 @@
         </div>
       </Card>
     </Section>
-    <Card class="list-sync">
+    <Card class="list-sync provider">
       <Section>
         <FormSwitch
           v-model="parameters.type"
@@ -41,13 +41,18 @@
           <FormButton v-if="provider.providerSettings.master" :animation="false" color="secondary">
             {{ lang('settings_listsync_master') }}
           </FormButton>
-          <FormButton
-            v-else-if="provider.providerSettings.text === 'Done'"
-            :animation="false"
-            color="primary"
-          >
-            {{ lang('settings_listsync_slave') }}
-          </FormButton>
+          <div v-else-if="provider.providerSettings.text === 'Done'" class="provider-item-header">
+            <FormButton :animation="false" color="primary">
+              {{ lang('settings_listsync_slave') }}
+            </FormButton>
+            <FormButton
+              v-if="provider.providerSettings.text === 'Done' && !provider.providerSettings.master"
+              :animation="false"
+              color="secondary"
+              @click="deauth(provider.listProvider)"
+              ><b>X</b></FormButton
+            >
+          </div>
           <FormButton :animation="false" class="provider-item-content">
             <div>
               {{ provider.providerType }}
@@ -111,7 +116,8 @@
               >
                 <div>{{ sync.getType(item.master.url) }}</div>
                 <div>
-                  ID: <MediaLink :href="item.master.url">{{ item.master.uid }}</MediaLink>
+                  ID:
+                  <MediaLink :href="item.master.url">{{ item.master.uid }}</MediaLink>
                 </div>
                 <div>{{ lang('settings_listsync_score') }} {{ item.master.score }}</div>
                 <div>
@@ -154,7 +160,7 @@
               >
                 <div>{{ sync.getType(slave.url) }}</div>
                 <div>
-                  ID: <MediaLink :href="slave.url">{{ slave.uid }}</MediaLink>
+                  ID: <MediaLink :href="slave.url" color="secondary">{{ slave.uid }}</MediaLink>
                 </div>
                 <div>
                   {{ lang('settings_listsync_score') }} {{ slave.score }}
@@ -230,53 +236,72 @@
       </Description>
     </Section>
 
-    <Section v-if="!syncRequest.loading && syncRequest.data && syncRequest.data.missing.length">
+    <Section
+      v-if="!syncRequest.loading && syncRequest.data && syncRequest.data.missingGroupBy.length"
+    >
       <Header spacer="half">{{ lang('settings_listsync_missing') }}</Header>
       <Description :height="500">
-        <Section v-for="(item, index) in syncRequest.data.missing" :key="index" spacer="half">
-          <Card class="missing">
-            <Header spacer="half">
-              {{ item.title }}
-            </Header>
-            <FormButton :animation="false">
-              <div>{{ item.syncType }}</div>
-              <div>
-                ID: <MediaLink :href="item.url">{{ item.malId }}</MediaLink>
+        <Grid :min-width="250">
+          <Section
+            v-for="(missing_title, index) in syncRequest.data.missingGroupBy"
+            :key="index"
+            spacer="half"
+          >
+            <Card class="missing">
+              <Header spacer="half">
+                {{ missing_title[0].title }}
+              </Header>
+              <div class="missing-item">
+                <FormButton :animation="false">
+                  <div>
+                    ID:
+                    <MediaLink :href="missing_title[0].url" color="secondary">{{
+                      missing_title[0].malId
+                    }}</MediaLink>
+                  </div>
+                  <div>{{ lang('settings_listsync_score') }} {{ missing_title[0].score }}</div>
+                  <div>
+                    {{ lang(`settings_listsync_progress_${missing_title[0].type}`) }}
+                    {{ missing_title[0].watchedEp }}
+                  </div>
+                  <div v-if="missing_title[0].type === 'manga'">
+                    {{ lang('settings_listsync_volume') }} {{ missing_title[0].readVol }}
+                  </div>
+                  <div>
+                    {{ lang('settings_listsync_status') }}
+                    {{ getStatusText(missing_title[0].type, missing_title[0].status) }}
+                  </div>
+                  <div>
+                    {{ lang('settings_listsync_startdate') }}
+                    {{
+                      missing_title[0].startDate
+                        ? new IntlDateTime(missing_title[0].startDate).getDateTimeText()
+                        : lang('settings_listsync_unknowndate')
+                    }}
+                  </div>
+                  <div>
+                    {{ lang('settings_listsync_finishdate') }}
+                    {{
+                      missing_title[0].finishDate
+                        ? new IntlDateTime(missing_title[0].finishDate).getDateTimeText()
+                        : lang('settings_listsync_unknowndate')
+                    }}
+                  </div>
+                  <div>
+                    {{ lang(`settings_listsync_repeatcount_${missing_title[0].type}`) }}
+                    {{ missing_title[0].rewatchCount ?? 0 }}
+                  </div>
+                </FormButton>
+                <FormButton v-for="item in missing_title" :key="item.malId" :animation="false">
+                  <div>{{ item.syncType }}</div>
+                  <FormButton v-if="item.error" :animation="false" color="secondary" padding="mini">
+                    {{ item.error }}
+                  </FormButton>
+                </FormButton>
               </div>
-              <div>{{ lang('settings_listsync_score') }} {{ item.score }}</div>
-              <div>{{ lang(`settings_listsync_progress_${item.type}`) }} {{ item.watchedEp }}</div>
-              <div v-if="item.type === 'manga'">
-                {{ lang('settings_listsync_volume') }} {{ item.readVol }}
-              </div>
-              <div>
-                {{ lang('settings_listsync_status') }} {{ getStatusText(item.type, item.status) }}
-              </div>
-              <div>
-                {{ lang('settings_listsync_startdate') }}
-                {{
-                  item.startDate
-                    ? new IntlDateTime(item.startDate).getDateTimeText()
-                    : lang('settings_listsync_unknowndate')
-                }}
-              </div>
-              <div>
-                {{ lang('settings_listsync_finishdate') }}
-                {{
-                  item.finishDate
-                    ? new IntlDateTime(item.finishDate).getDateTimeText()
-                    : lang('settings_listsync_unknowndate')
-                }}
-              </div>
-              <div>
-                {{ lang(`settings_listsync_repeatcount_${item.type}`) }}
-                {{ item.rewatchCount ?? 0 }}
-              </div>
-              <FormButton v-if="item.error" :animation="false" color="secondary" padding="mini">
-                {{ item.error }}
-              </FormButton>
-            </FormButton>
-          </Card>
-        </Section>
+            </Card>
+          </Section>
+        </Grid>
       </Description>
     </Section>
   </div>
@@ -299,6 +324,7 @@ import CodeBlock from '../code-block.vue';
 import SettingsGeneral from './settings-general.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
 import { IntlDateTime } from '../../../utils/IntlWrapper';
+import Grid from '../grid.vue';
 
 defineProps({
   title: {
@@ -370,9 +396,14 @@ const syncRequest = createRequest(parameters, async params => {
     missing,
   );
 
+  // @ts-expect-error --works
+  // eslint-disable-next-line es-x/no-object-groupby
+  const missingGroupBy = Object.values(Object.groupBy(missing, ({ malId }) => malId)) as any[];
+
   return {
     list,
     missing,
+    missingGroupBy,
   };
 });
 
@@ -412,6 +443,17 @@ function isExtension() {
   return api.type === 'webextension';
 }
 
+function deauth(ListProvider) {
+  new ListProvider()
+    .deauth()
+    .then(() => {
+      syncRequest.execute();
+    })
+    .catch(() => {
+      alert('Failed');
+    });
+}
+
 const backSync = ref(false);
 async function updateBackgroundSyncState() {
   backSync.value = await sync.background.isEnabled();
@@ -448,16 +490,19 @@ updateBackgroundSyncState();
       flex-direction: column;
       gap: 5px;
     }
+    &-header {
+      gap: 3px;
+      display: flex;
+    }
   }
-}
-
-.provider-section {
-  align-items: end;
-  display: flex;
-  flex-wrap: wrap;
-  grid-gap: 5px;
-  :deep(a) {
-    color: var(--cl-secondary);
+  &-section {
+    align-items: end;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 5px;
+    :deep(a) {
+      color: var(--cl-secondary);
+    }
   }
 }
 
@@ -472,6 +517,24 @@ updateBackgroundSyncState();
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 5px;
+  }
+}
+
+.missing {
+  width: 100%;
+  height: 100%;
+
+  > * {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+
+    .missing-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
   }
 }
 </style>
