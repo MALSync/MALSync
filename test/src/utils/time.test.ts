@@ -8,13 +8,13 @@ describe('Time', function() {
     Date.now = () => dateNow;
   });
   describe('dateFromTimezoneToTimezone', function() {
-    it('+1', function() {
-      const res = timeM.dateFromTimezoneToTimezone(new Date(Date.UTC(2024, 11, 1, 14, 10)), 'UTC', 'Europe/Berlin');
-      expect(res).to.deep.equal(new Date(Date.UTC(2024, 11, 1, 15, 10)));
+    it('+3', function() {
+      const res = timeM.dateFromTimezoneToTimezone(new Date(Date.UTC(2024, 11, 1, 14, 10)), 'UTC', 'Europe/Moscow');
+      expect(res).to.deep.equal(new Date(Date.UTC(2024, 11, 1, 17, 10)));
     })
-    it('-1', function() {
-      const res = timeM.dateFromTimezoneToTimezone(new Date(Date.UTC(2024, 11, 1, 14, 10)), 'Europe/Berlin', 'UTC');
-      expect(res).to.deep.equal(new Date(Date.UTC(2024, 11, 1, 13, 10)));
+    it('-3', function() {
+      const res = timeM.dateFromTimezoneToTimezone(new Date(Date.UTC(2024, 11, 1, 14, 10)), 'Europe/Moscow', 'UTC');
+      expect(res).to.deep.equal(new Date(Date.UTC(2024, 11, 1, 11, 10)));
     })
     it('0', function() {
       const res = timeM.dateFromTimezoneToTimezone(new Date(Date.UTC(2024, 11, 1, 14, 10)), 'UTC', 'UTC');
