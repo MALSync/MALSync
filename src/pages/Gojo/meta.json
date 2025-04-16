@@ -1,0 +1,8 @@
+{
+  "search": "https://gojo.wtf/search?query={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://gojo.wtf/*"
+    ]
+  }
+}
