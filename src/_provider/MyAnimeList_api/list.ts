@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from '../listAbstract';
+import { ListAbstract, ListElement } from '../listAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 
@@ -120,8 +120,8 @@ export class UserList extends ListAbstract {
     });
   }
 
-  public async prepareData(data): Promise<listElement[]> {
-    const newData = [] as listElement[];
+  public async prepareData(data): Promise<ListElement[]> {
+    const newData = [] as ListElement[];
     const useAltTitle = api.settings.get('forceEnglishTitles');
     for (let i = 0; i < data.length; i++) {
       const el = data[i];

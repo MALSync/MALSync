@@ -1,4 +1,4 @@
-import { requestInterface } from './requestInterface';
+import { RequestInterface } from './requestInterface';
 import { xhrResponseI } from '../messageInterface';
 import { defaultImg } from '../../background/notifications';
 
@@ -11,7 +11,7 @@ declare let GM_notification: (details: {
   onclick: () => void;
 }) => void;
 
-export const requestUserscriptLegacy: requestInterface = {
+export const requestUserscriptLegacy: RequestInterface = {
   async xhr(method, url, retry = 0): Promise<any> {
     return new Promise((resolve, reject) => {
       const request = {
