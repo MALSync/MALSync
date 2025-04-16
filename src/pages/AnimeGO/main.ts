@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeGO: pageInterface = {
+export const AnimeGO: PageInterface = {
   name: 'AnimeGO',
   languages: ['Russian'],
   domain: ['https://animego.org', 'https://animego.me'],

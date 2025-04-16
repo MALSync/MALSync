@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const hachi: pageInterface = {
+export const hachi: PageInterface = {
   domain: 'https://hachi.moe',
   languages: ['English'],
   name: 'hachi',
@@ -68,7 +68,7 @@ export const hachi: pageInterface = {
           return !!j.$('h1').length;
         },
         () => {
-          page.handlePage().then(() => {});
+          page.handlePage().then(() => { });
         },
       );
     });

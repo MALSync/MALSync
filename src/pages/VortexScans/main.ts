@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const VortexScans: pageInterface = {
+export const VortexScans: PageInterface = {
   name: 'VortexScans',
   domain: 'https://vortexscans.org',
   languages: ['English'],

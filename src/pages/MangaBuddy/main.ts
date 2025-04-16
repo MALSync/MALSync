@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangaBuddy: pageInterface = {
+export const MangaBuddy: PageInterface = {
   name: 'MangaBuddy',
   domain: 'https://mangabuddy.com',
   languages: ['English'],

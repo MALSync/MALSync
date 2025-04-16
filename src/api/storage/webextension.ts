@@ -1,8 +1,8 @@
-import { storageInterface } from './storageInterface';
+import { StorageInterface } from './storageInterface';
 
 declare let i18n: string[];
 
-export const webextension: storageInterface = {
+export const webextension: StorageInterface = {
   async set(key: string, value: string): Promise<void> {
     const obj = {} as any;
     obj[key] = value;
@@ -103,7 +103,7 @@ export const webextension: storageInterface = {
     alert('injectCssResource not supported in webextension');
   },
 
-  injectjsResource(res, head) {
+  injectJsResource(res, head) {
     const s = document.createElement('script');
     s.src = chrome.runtime.getURL(`vendor/${res}`);
     s.onload = function () {

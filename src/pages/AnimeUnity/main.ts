@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeUnity: pageInterface = {
+export const AnimeUnity: PageInterface = {
   name: 'AnimeUnity',
   domain: 'https://animeunity.it',
   languages: ['Italian'],

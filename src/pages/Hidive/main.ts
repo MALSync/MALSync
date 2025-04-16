@@ -1,11 +1,11 @@
 import { ScriptProxy } from '../../utils/scriptProxy';
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let handleInterval;
 const proxy = new ScriptProxy('Hidive');
 let proxy_data: any = null;
 
-export const Hidive: pageInterface = {
+export const Hidive: PageInterface = {
   name: 'Hidive',
   domain: 'https://www.hidive.com',
   languages: [

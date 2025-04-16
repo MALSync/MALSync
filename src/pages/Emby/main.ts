@@ -1,5 +1,5 @@
 import { ScriptProxy } from '../../utils/scriptProxy';
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 // Define the variable proxy element:
 const proxy = new ScriptProxy('Emby');
@@ -268,7 +268,7 @@ async function apiCall(url, apiKey = null, base = null) {
   return api.request.xhr('GET', url);
 }
 
-export const Emby: pageInterface = {
+export const Emby: PageInterface = {
   name: 'Emby',
   domain: 'http://app.emby.media',
   languages: ['Many'],

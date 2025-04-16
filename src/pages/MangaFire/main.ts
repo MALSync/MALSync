@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 type MangaFireSyncData = {
   page: 'chapter' | 'overview' | 'volume';
@@ -17,7 +17,7 @@ type MangaFireSyncData = {
 
 let jsonData: MangaFireSyncData;
 
-export const MangaFire: pageInterface = {
+export const MangaFire: PageInterface = {
   name: 'MangaFire',
   domain: 'https://mangafire.to',
   database: 'MangaFire',

@@ -1,7 +1,7 @@
 import { mangaProgressConfig } from '../utils/mangaProgress/MangaProgress';
 import type { SyncPage } from './syncPage';
 
-export interface pageInterface {
+export interface PageInterface {
   domain: string | string[];
   languages: string[]; // (ISO language name) https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
   name: string;
@@ -45,7 +45,7 @@ export interface pageInterface {
   init: (page: SyncPage) => void; // This is the most important function. It controls when to start the check. Every time page.handlePage() is called it will check the overview/sync page.
 }
 
-export interface pageState {
+export interface PageState {
   on: 'SYNC' | 'OVERVIEW';
   title: string;
   identifier: string;

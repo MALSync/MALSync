@@ -1,5 +1,5 @@
 import { Cache } from '../utils/Cache';
-import type { listElement } from '../_provider/listAbstract';
+import type { ListElement } from '../_provider/listAbstract';
 import { xhrResponseI } from '../api/messageInterface';
 
 export interface releaseItemInterface {
@@ -18,20 +18,20 @@ export async function predictionXhrGET(type: string, apiCacheKey: number | strin
   return JSON.parse(response.responseText);
 }
 
-export async function predictionXhrPOST(type: string, malDATA: listElement[] | null) {
-  if (malDATA === null) return [];
-  if (malDATA.length <= 0) return [];
-  const malDATAID = malDATA.map(el => el.apiCacheKey);
+export async function predictionXhrPOST(type: string, malData: ListElement[] | null) {
+  if (malData === null) return [];
+  if (malData.length <= 0) return [];
+  const malDataID = malData.map(el => el.apiCacheKey);
   const returnArray: xhrResponseI[] = [];
-  for (let i = 0; i <= malDATAID.length; ) {
-    const tempArray = malDATAID.slice(i, i + 49);
-    const Request = {
+  for (let i = 0; i <= malDataID.length; ) {
+    const tempArray = malDataID.slice(i, i + 49);
+    const request = {
       url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`,
       data: JSON.stringify({ malids: tempArray }),
       headers: { 'Content-Type': 'application/json' },
     };
     await utils.wait(5000);
-    const response = await api.request.xhr('POST', Request);
+    const response = await api.request.xhr('POST', request);
     returnArray.push(JSON.parse(response.responseText));
     i += 50;
   }

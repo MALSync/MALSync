@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeWho: pageInterface = {
+export const AnimeWho: PageInterface = {
   name: 'AnimeWho',
   domain: 'https://animewho.com',
   languages: ['Turkish'],

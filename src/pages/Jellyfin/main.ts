@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import { flashm } from '../../utils/general';
 import { ScriptProxy } from '../../utils/scriptProxy';
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 // Define the variable proxy element:
 const proxy = new ScriptProxy('Jellyfin');
@@ -346,7 +346,7 @@ async function apiCall(url, needsUser = false, filterByUser = false) {
   });
 }
 
-export const Jellyfin: pageInterface = {
+export const Jellyfin: PageInterface = {
   name: 'Jellyfin',
   domain: 'https://jellyfin.org/',
   languages: ['Many'],

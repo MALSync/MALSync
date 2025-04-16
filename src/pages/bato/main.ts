@@ -1,11 +1,11 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { v3, getChapter } from './v3';
 
 function getVersion() {
   return j.$('a.position-absolute > small').length > 0 ? 2 : 3;
 }
 
-export const bato: pageInterface = {
+export const bato: PageInterface = {
   name: 'bato',
   domain: 'https://bato.to',
   languages: ['Many'],

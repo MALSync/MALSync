@@ -1,5 +1,5 @@
 import { urlPart } from '../../utils/general';
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 // const logger = con.m('Anime365', '#1b5e20');
 
@@ -12,7 +12,7 @@ function isSlug(part: string) {
   return isNumeric(slugArr[slugArr.length - 1]);
 }
 
-export const Anime365: pageInterface = {
+export const Anime365: PageInterface = {
   name: 'Anime365',
   languages: ['Russian'],
   domain: [

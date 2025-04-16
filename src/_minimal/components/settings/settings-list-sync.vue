@@ -284,6 +284,7 @@
 
 <script lang="ts" setup>
 import { computed, reactive, ref } from 'vue';
+import { ListAbstract } from '../../../_provider/listAbstract';
 import * as sync from '../../../utils/syncHandler';
 import { getStatusText } from '../../../utils/general';
 import { createRequest } from '../../utils/reactive';
@@ -307,9 +308,13 @@ defineProps({
   },
 });
 
-const mode = 'mirror';
-
-const providerList = ref(null as any);
+const providerList = ref<
+  Array<{
+    providerType: string;
+    providerSettings: { text: string; list: any; master: boolean };
+    listProvider: typeof ListAbstract;
+  }>
+>([]);
 const syncing = ref(false);
 const totalItems = ref(0);
 
@@ -364,7 +369,6 @@ const syncRequest = createRequest(parameters, async params => {
   sync.generateSync(
     listOptions.master as any,
     listOptions.slaves,
-    mode,
     listOptions.typeArray,
     list,
     missing,

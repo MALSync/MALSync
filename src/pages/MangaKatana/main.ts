@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let obfusList = false;
 
-export const MangaKatana: pageInterface = {
+export const MangaKatana: PageInterface = {
   name: 'MangaKatana',
   domain: 'http://mangakatana.com',
   languages: ['English'],

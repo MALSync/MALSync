@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const ManhuaUS: pageInterface = {
+export const ManhuaUS: PageInterface = {
   name: 'ManhuaUS',
   domain: 'https://manhuaus.com',
   languages: ['English'],

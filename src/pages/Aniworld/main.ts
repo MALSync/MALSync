@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Aniworld: pageInterface = {
+export const Aniworld: PageInterface = {
   domain: 'https://aniworld.to',
   languages: ['German'],
   name: 'Aniworld',

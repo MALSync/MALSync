@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const JapScan: pageInterface = {
+export const JapScan: PageInterface = {
   name: 'JapScan',
   domain: 'https://www.japscan.ws',
   languages: ['French'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Docchi: pageInterface = {
+export const Docchi: PageInterface = {
   name: 'Docchi',
   domain: 'https://docchi.pl',
   languages: ['Polish'],

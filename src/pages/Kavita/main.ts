@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { pathToUrl, urlToSlug } from '../../utils/slugs';
 
 async function apiCall(url: string) {
@@ -44,7 +44,7 @@ async function getChapterProgress() {
   }
 }
 
-export const Kavita: pageInterface = {
+export const Kavita: PageInterface = {
   name: 'Kavita',
   domain: 'https://demo.kavitareader.com',
   languages: ['Many'],

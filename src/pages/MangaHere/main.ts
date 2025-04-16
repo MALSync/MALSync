@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangaHere: pageInterface = getInter();
+export const MangaHere: PageInterface = getInter();
 
-export function getInter(): pageInterface {
+export function getInter(): PageInterface {
   let thisSelf;
   /* eslint-disable-next-line prefer-const */
   thisSelf = {

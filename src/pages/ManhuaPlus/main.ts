@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const ManhuaPlus: pageInterface = {
+export const ManhuaPlus: PageInterface = {
   name: 'ManhuaPlus',
   domain: 'https://manhuaplus.com',
   languages: ['English'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangaNato: pageInterface = {
+export const MangaNato: PageInterface = {
   name: 'MangaNato',
   domain: ['https://chapmanganato.com', 'https://manganato.com', 'https://readmanganato.com'],
   database: 'MangaNato',

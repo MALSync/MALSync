@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AsuraScans: pageInterface = {
+export const AsuraScans: PageInterface = {
   name: 'AsuraScans',
   domain: [
     'https://asuratoon.com',

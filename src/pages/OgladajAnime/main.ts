@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const OgladajAnime: pageInterface = {
+export const OgladajAnime: PageInterface = {
   name: 'OgladajAnime',
   domain: 'https://ogladajanime.pl',
   languages: ['Polish'],

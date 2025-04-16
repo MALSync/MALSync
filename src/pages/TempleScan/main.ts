@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const TempleScan: pageInterface = {
+export const TempleScan: PageInterface = {
   name: 'TempleScan',
   domain: 'https://templescan.net',
   languages: ['English'],

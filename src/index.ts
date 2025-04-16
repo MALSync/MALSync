@@ -14,7 +14,7 @@ import { databaseRequest, initDatabase } from './background/database';
 import { anilistOauth } from './anilist/oauth';
 import { shikiOauth } from './_provider/Shikimori/oauth';
 
-let page;
+let page: SyncPage;
 
 function main() {
   if (utils.isDomainMatching(window.location.href, 'myanimelist.net')) {
@@ -90,6 +90,7 @@ function runPage() {
   try {
     if (inIframe()) throw new Error('iframe');
     // TODO: Is it supposed to be an object with all pages?
+    // @ts-expect-error pages does not match the type that everything else is using
     page = new SyncPage(window.location.href, pages, floatClick);
   } catch (e) {
     con.info(e);

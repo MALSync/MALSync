@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const LynxScans: pageInterface = {
+export const LynxScans: PageInterface = {
   name: 'LynxScans',
   domain: 'https://lynxscans.com',
   languages: ['English'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangaSushi: pageInterface = {
+export const MangaSushi: PageInterface = {
   name: 'MangaSushi',
   domain: 'https://mangasushi.net',
   languages: ['English'],

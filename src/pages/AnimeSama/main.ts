@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeSama: pageInterface = {
+export const AnimeSama: PageInterface = {
   name: 'AnimeSama',
   domain: 'https://anime-sama.fr',
   languages: ['French'],

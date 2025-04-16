@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const LHTranslation: pageInterface = {
+export const LHTranslation: PageInterface = {
   name: 'LHTranslation',
   domain: 'https://lhtranslation.net',
   languages: ['English'],
@@ -8,8 +8,8 @@ export const LHTranslation: pageInterface = {
   isSyncPage(url) {
     return Boolean(
       utils.urlPart(url, 3) === 'manga' &&
-        utils.urlPart(url, 5) &&
-        utils.urlPart(url, 5).startsWith('chapter-'),
+      utils.urlPart(url, 5) &&
+      utils.urlPart(url, 5).startsWith('chapter-'),
     );
   },
   isOverviewPage(url) {

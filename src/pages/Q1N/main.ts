@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Q1N: pageInterface = {
+export const Q1N: PageInterface = {
   name: 'Q1N',
   domain: 'https://q1n.net',
   languages: ['Portuguese'],

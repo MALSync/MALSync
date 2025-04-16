@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Bentomanga: pageInterface = {
+export const Bentomanga: PageInterface = {
   name: 'Bentomanga',
   domain: 'https://bentomanga.com',
   languages: ['French'],

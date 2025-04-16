@@ -1,10 +1,10 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 function cleanUpTitle(title: string) {
   return title.replace(' - Partie 1', '').trim();
 }
 
-export const AnimeStreamingFR: pageInterface = {
+export const AnimeStreamingFR: PageInterface = {
   name: 'AnimeStreamingFR',
   domain: 'https://beta.animestreamingfr.fr',
   languages: ['French'],

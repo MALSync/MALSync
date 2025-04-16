@@ -1,3 +1,4 @@
+import { ListElement, ListAbstract } from '../_provider/listAbstract';
 import { Single as MalSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { Single as AniListSingle } from '../_provider/AniList/single';
 import { Single as KitsuSingle } from '../_provider/Kitsu/single';
@@ -149,6 +150,7 @@ export function missingCheck(item, missing, types) {
           url: `https://myanimelist.net/${item.master.type}/${item.master.malId}`,
           error: null,
         } as Partial<listElement>;
+        } as Partial<ListElement>;
         if (item.master.type === 'manga') {
           entry.readVol = item.master.readVol;
         }
@@ -259,8 +261,12 @@ export function syncItem(slave, pageType) {
 export async function retrieveLists(
   providerList: {
     providerType: string;
-    providerSettings: any;
-    listProvider: any;
+    providerSettings: {
+      text: string;
+      list: any;
+      master: boolean;
+    };
+    listProvider: typeof ListAbstract;
   }[],
   type,
   getListF,
@@ -308,6 +314,19 @@ export async function retrieveLists(
 }
 
 export function getListProvider(providerSettingList) {
+type ListProvider = {
+  text: string;
+  list: any;
+  master: boolean;
+};
+
+export function getListProvider(providerSettingList: {
+  mal: ListProvider;
+  anilist: ListProvider;
+  kitsu: ListProvider;
+  simkl: ListProvider;
+  shiki: ListProvider;
+}) {
   return [
     {
       providerType: 'MAL',

@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let jsonData;
 
-export const AnimeKO: pageInterface = {
+export const AnimeKO: PageInterface = {
   name: 'AnimeKO',
   domain: 'https://animeko.co',
   languages: ['French'],

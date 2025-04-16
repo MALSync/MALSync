@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const ADN: pageInterface = {
+export const ADN: PageInterface = {
   name: 'ADN',
   domain: 'https://animationdigitalnetwork.com',
   languages: ['French', 'German'],

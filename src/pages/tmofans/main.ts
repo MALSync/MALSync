@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const tmofans: pageInterface = {
+export const tmofans: PageInterface = {
   name: 'tmofans',
   domain: [
     'https://zonatmo.com',

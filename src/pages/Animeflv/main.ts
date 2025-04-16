@@ -1,7 +1,7 @@
 /* By kaiserdj */
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Animeflv: pageInterface = {
+export const Animeflv: PageInterface = {
   name: 'Animeflv',
   domain: 'https://animeflv.net',
   languages: ['Spanish'],

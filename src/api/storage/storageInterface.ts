@@ -1,4 +1,4 @@
-export interface storageInterface {
+export interface StorageInterface {
   set(key: string, value: any): Promise<void>;
 
   get(key: string): Promise<any | undefined>;
@@ -11,7 +11,7 @@ export interface storageInterface {
 
   version(): string;
 
-  lang(selector, args?: string[]): string;
+  lang(selector: string, args?: string[]): string;
 
   langDirection(): 'ltr' | 'rtl';
 
@@ -19,7 +19,7 @@ export interface storageInterface {
 
   injectCssResource(res: string, head, code?: string | null): void;
 
-  injectjsResource(res: string, head): void;
+  injectJsResource(res: string, head): void;
 
   addProxyScriptToTag(tag: HTMLScriptElement, name: string): HTMLScriptElement;
 

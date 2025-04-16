@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const ReaperScans: pageInterface = {
+export const ReaperScans: PageInterface = {
   name: 'ReaperScans',
   domain: 'https://reaperscans.com',
   languages: ['English'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const projectsuki: pageInterface = {
+export const projectsuki: PageInterface = {
   domain: 'https://projectsuki.com',
   languages: ['English'],
   name: 'projectsuki',

@@ -1,7 +1,7 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
 
-export const Animetoast: pageInterface = {
+export const Animetoast: PageInterface = {
   name: 'Animetoast',
   domain: 'https://www.animetoast.cc',
   languages: ['German'],
