@@ -21,7 +21,6 @@ export const mangaLib: PageInterface = {
     ],
   },
   search: 'https://mangalib.me/ru/catalog?q={searchterm}',
-  minimumVersion: '0.11.1',
   sync: {
     isSyncPage($c) {
       return $c.url().urlPart(5).equals('read').run();
