@@ -69,7 +69,7 @@ export const mangaLib: PageInterface = {
             btnNext.getComputedStyle('pointer-events').equals('none').not().run(),
           )
           .run(),
-        btnNext.getAttribute('href').urlAbsolute().run(),
+        btnNext.getAttribute('href').urlAbsolute().urlStrip().run(),
         $c.string('').run(),
       );
       return next.string().run();
