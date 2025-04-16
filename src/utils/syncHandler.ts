@@ -10,17 +10,9 @@ import { UserList as KitsuList } from '../_provider/Kitsu/list';
 import { UserList as SimklList } from '../_provider/Simkl/list';
 import { UserList as ShikiList } from '../_provider/Shikimori/list';
 import { getSyncMode } from '../_provider/helper';
-import { listElement } from '../_provider/listAbstract';
 import { status } from '../_provider/definitions';
 
-export function generateSync(
-  masterList: object,
-  slaveLists: object[],
-  mode,
-  typeArray,
-  list,
-  missing,
-) {
+export function generateSync(masterList: object, slaveLists: object[], typeArray, list, missing) {
   mapToArray(masterList, list, true);
 
   for (const i in slaveLists) {
@@ -28,8 +20,8 @@ export function generateSync(
   }
 
   for (const i in list) {
-    changeCheck(list[i], mode);
-    missingCheck(list[i], missing, typeArray, mode);
+    changeCheck(list[i]);
+    missingCheck(list[i], missing, typeArray);
   }
 }
 
@@ -76,7 +68,7 @@ export function shouldCheckRewatchCount(item) {
   return ['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(getType(item.url));
 }
 
-export function changeCheck(item, mode) {
+export function changeCheck(item) {
   if (item.master && item.master.uid) {
     const checkDates = shouldCheckDates(item.master);
     const checkRewatchCount = shouldCheckRewatchCount(item.master);
@@ -132,7 +124,7 @@ export function changeCheck(item, mode) {
   }
 }
 
-export function missingCheck(item, missing, types, mode) {
+export function missingCheck(item, missing, types) {
   if (item.master && item.master.uid) {
     const tempTypes: any[] = [];
     tempTypes.push(getType(item.master.url));
@@ -397,7 +389,6 @@ export const background = {
     return [];
 
     async function syncLists(type) {
-      const mode = 'mirror';
       const list = {};
       const missing = [];
 
@@ -431,14 +422,7 @@ export const background = {
 
       const listOptions: any = await retrieveLists(providerList, type, getList);
 
-      generateSync(
-        listOptions.master,
-        listOptions.slaves,
-        mode,
-        listOptions.typeArray,
-        list,
-        missing,
-      );
+      generateSync(listOptions.master, listOptions.slaves, listOptions.typeArray, list, missing);
       con.log('Start syncing', list, missing);
       await syncList(list, missing);
     }

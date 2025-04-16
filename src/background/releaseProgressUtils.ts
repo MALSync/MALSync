@@ -168,7 +168,7 @@ export function progressIsOld(releaseItem: releaseItemInterface) {
   return true;
 }
 
-export function getProgress(res, mode, type) {
+export function getProgress(res: any[], mode: string, type: string) {
   const config: {
     mainId?: string;
     fallbackPrediction?: string;
