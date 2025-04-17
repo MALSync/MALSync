@@ -17,18 +17,18 @@ export default {
    *  $c.string('world').run()
    * ).concat('world').run(); // returns 'helloworld'
    */
-  if<Args extends any[]>(
+  if<Input, Then extends ChibiJson<any>, Else extends ChibiJson<any>>(
     ctx: ChibiCtx,
     input: void,
     condition: ChibiJson<boolean>,
-    thenAction: Args[1],
-    elseAction: Args[2],
-  ): CT.UnwrapJson<Args[1]> | CT.UnwrapJson<Args[2]> {
+    thenAction: Then,
+    elseAction: Else,
+  ): CT.UnwrapJson<Then> | CT.UnwrapJson<Else> {
     const conditionState = ctx.run(condition);
     if (conditionState) {
-      return ctx.run(thenAction) as CT.UnwrapJson<Args[1]>;
+      return ctx.run(thenAction);
     }
-    return ctx.run(elseAction) as CT.UnwrapJson<Args[2]>;
+    return ctx.run(elseAction);
   },
 
   /**
