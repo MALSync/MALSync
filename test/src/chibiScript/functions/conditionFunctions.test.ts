@@ -206,6 +206,47 @@ describe('Condition Functions', () => {
       expect(generateAndExecute(code).run()).to.be.false;
     });
   });
+
+  describe('coalesce', () => {
+    it('should return first non-nil value', () => {
+      const code = $c.coalesce(
+        //@ts-ignore
+        $c.string(null).run(),
+        $c.string(undefined).run(),
+        $c.string('test').run(),
+        $c.string('ignored').run()
+      ).run();
+      expect(generateAndExecute(code).run()).to.equal('test');
+    });
+
+    it('should return undefined when all values are nil', () => {
+      const code = $c
+        .coalesce(
+          //@ts-ignore
+          $c.string(null).run(),
+          $c.string(undefined).run(),
+        )
+        .run();
+      expect(generateAndExecute(code).run()).to.be.undefined;
+    });
+
+    it('should handle empty arguments', () => {
+      const code = $c.coalesce().run();
+      expect(generateAndExecute(code).run()).to.be.undefined;
+    });
+
+    it('should return zero if it is a valid value', () => {
+      const code = $c
+        .coalesce(
+          //@ts-ignore
+          $c.string(null).run(),
+          $c.number(0).run(),
+          $c.string('test').run(),
+        )
+        .run();
+      expect(generateAndExecute(code).run()).to.equal(0);
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {

@@ -154,4 +154,23 @@ export default {
     if (typeof input === 'object') return Object.keys(input).length === 0;
     return false;
   },
+
+  /**
+   * Returns the first non-nil value from a list of values
+   * @input void - No input used
+   * @param values - List of values to check
+   * @returns First non-nil value, or undefined if all values are nil
+   * @example
+   * $c.coalesce($c.boolean(false).run(), $c.string("Hello").run()) // returns "Hello"
+   */
+  coalesce: (ctx: ChibiCtx, input: void, ...values: ChibiJson<any>[]) => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const val of values) {
+      const result = ctx.run(val);
+      if (result !== null && result !== undefined) {
+        return result;
+      }
+    }
+    return undefined;
+  },
 };
