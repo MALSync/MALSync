@@ -43,4 +43,14 @@ export default {
   array: (ctx: ChibiCtx, input: void, value: string[]) => {
     return value;
   },
+
+  /**
+   * Returns the provided object
+   * @input void
+   * @param value - object value to return
+   * @returns returns the object
+   */
+  object: (ctx: ChibiCtx, input: void, value: object) => {
+    return value;
+  },
 };
