@@ -137,12 +137,35 @@
     ]
   },
   "0.11.1": {
+    "Anime365": [
+      "*://smotret-anime.ru/catalog/*",
+      "*://smotretanime.ru/catalog/*"
+    ],
+    "AnimeXin": [
+      "*://animexin.dev/*"
+    ],
+    "Animeworld": [
+      "*://*.animeworld.ac/play/*"
+    ],
     "Miruro": [
       "*://*.miruro.to/*"
     ],
+    "Zoro": [
+      "*://hianime.bz/*",
+      "*://hianime.pe/*",
+      "*://hianimez.to/*",
+      "*://hianimez.is/*"
+    ],
     "iframe": [
+      "*://alejandrocenturyoil.com/e/*",
+      "*://heatherwholeinvolve.com/e/*",
+      "*://nathanfromsubject.com/e/*",
+      "*://jennifercertaindevelopment.com/e/*",
+      "*://richardsignfish.com/e/*",
+      "*://www.animeworld.ac/api/episode/serverPlayerAnimeWorld?id=*",
       "*://z7ihwgqj.fun/*",
       "*://megacloud.club/*",
+      "*://megacloud.blog/*",
       "*://swishsrv.com/e/*",
       "*://boosterx.stream/*"
     ]

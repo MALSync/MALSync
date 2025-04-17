@@ -517,6 +517,11 @@ module.exports = {
       '*://sandratableother.com/e/*',
       '*://robertordercharacter.com/e/*',
       '*://maxfinishseveral.com/e/*',
+      '*://alejandrocenturyoil.com/e/*',
+      '*://heatherwholeinvolve.com/e/*',
+      '*://nathanfromsubject.com/e/*',
+      '*://jennifercertaindevelopment.com/e/*',
+      '*://richardsignfish.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -660,6 +665,7 @@ module.exports = {
     match: [
       '*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*',
       '*://www.animeworld.so/api/episode/serverPlayerAnimeWorld?id=*',
+      '*://www.animeworld.ac/api/episode/serverPlayerAnimeWorld?id=*',
     ],
   },
   // 9anime animenosub
@@ -712,7 +718,7 @@ module.exports = {
   },
   // zoro
   megacloud: {
-    match: ['*://megacloud.tv/*', '*://megacloud.club/*'],
+    match: ['*://megacloud.tv/*', '*://megacloud.club/*', '*://megacloud.blog/*'],
   },
   // animeunity
   vixcloud: {
