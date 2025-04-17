@@ -32,22 +32,17 @@ export const gojo: PageInterface = {
     nextEpUrl($c) {
       return $c
         .querySelector('.Episode > div > button.order-\\[-999999\\]')
-        .ifThen($el => $el.this('list.elementUrl').return().run())
-        .boolean(false)
+        .ifNotReturn($c.boolean(false).run())
+        .this('list.elementUrl')
         .run();
     },
     getMalUrl($c) {
       return $c
         .provider()
         .equals('ANILIST')
-        .ifThen($el =>
-          $el
-            .string('https://anilist.co/anime/<identifier>')
-            .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
-            .return()
-            .run(),
-        )
-        .boolean(false)
+        .ifNotReturn($c.boolean(false).run())
+        .string('https://anilist.co/anime/<identifier>')
+        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
         .run();
     },
   },
