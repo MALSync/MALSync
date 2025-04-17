@@ -28,7 +28,7 @@ export default {
    * @example
    * $c.provider() // returns 'MAL'
    */
-  provider: (ctx: ChibiCtx, input: void): 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' => {
+  provider: (ctx: ChibiCtx, input: void): 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI' => {
     const provider = ctx.get('provider');
 
     if (!provider) {
