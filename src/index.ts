@@ -13,16 +13,18 @@ import { pwa } from './floatbutton/userscriptPwa';
 import { databaseRequest, initDatabase } from './background/database';
 import { anilistOauth } from './anilist/oauth';
 import { shikiOauth } from './_provider/Shikimori/oauth';
+import { Chibi } from './pages-chibi/ChibiProxy';
+import { NotFoundError } from './_provider/Errors';
 
 let page;
 
-function main() {
+async function main() {
   if (utils.isDomainMatching(window.location.href, 'myanimelist.net')) {
     injectDb();
     const mal = new MyAnimeListClass(window.location.href);
     mal.init();
     if (window.location.href.indexOf('episode') > -1) {
-      runPage();
+      await runPage();
     }
   } else if (utils.isDomainMatching(window.location.href, 'anilist.co')) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -55,7 +57,7 @@ function main() {
     injectDb();
     pwa();
   } else {
-    runPage();
+    await runPage();
   }
   firebaseNotification();
 
@@ -84,10 +86,17 @@ api.settings.init().then(() => {
   main();
 });
 
-function runPage() {
+async function runPage() {
+  const pageObjects = await Chibi().catch(e => {
+    if (e instanceof NotFoundError) {
+      return pages;
+    }
+    throw e;
+  });
+
   try {
     if (inIframe()) throw 'iframe';
-    page = new SyncPage(window.location.href, pages, floatClick);
+    page = new SyncPage(window.location.href, pageObjects, floatClick);
   } catch (e) {
     con.info(e);
     iframe();

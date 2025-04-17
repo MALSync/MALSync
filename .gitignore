@@ -46,6 +46,7 @@ bwd/
 dist/
 
 src/utils/quicklinks.json
+src/chibiScript/ChibiGeneratorTypes.ts
 
 # IDE
 .idea

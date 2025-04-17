@@ -2,6 +2,8 @@ import { pages as part1 } from '../src/pages/pages';
 import { pages as part2 } from '../src/pages-adult/pages';
 import { getPageConfig } from '../src/utils/test';
 import { xhrAction } from '../src/background/messageHandler';
+import { Chibi } from '../src/pages-chibi/ChibiProxy';
+import { NotFoundError } from '../src/_provider/Errors';
 
 const pages = { ...part1, ...part2 };
 
@@ -16,7 +18,12 @@ window.chrome.runtime.sendMessage = (message: any, callback: (response: any) => 
 window.MalSyncTest = async function() {
   const value: any = {};
 
-  const page = getPageConfig(window.location.href, pages);
+  const page = await Chibi().catch(e => {
+    if (e instanceof NotFoundError) {
+      return getPageConfig(window.location.href, pages);
+    }
+    throw e;
+  });
 
   console.log('page Found', page);
 

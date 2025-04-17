@@ -16,15 +16,6 @@ export interface Quicklink {
   links: Links[];
 }
 
-/*
-  {searchterm} => 'no%20game%20no%20life'
-  {searchtermPlus} => 'no+game+no+life'
-  {searchtermMinus} => 'no-game-no-life'
-  {searchtermUnderscore} => 'no_game_no_life'
-  {searchtermRaw} => 'no game no life'
-  {cacheId} => '143'
-*/
-
 export function titleSearch(url, title, id) {
   return searchSyntax(
     url
@@ -37,17 +28,26 @@ export function titleSearch(url, title, id) {
   );
 }
 
-/*
-  {searchterm(<whitespaceReplacement>)[<options>]}
-  Options:
-    noEncode -> Dont encode characters
-    noSpecial -> Remove special characters
-    specialReplace -> Replace special characters with a <whitespaceReplacement>
-    noLowercase -> Dont lowercase everything
-*/
-
 type option = 'noEncode' | 'noSpecial' | 'noLowercase' | 'specialReplace';
 
+/**
+ * @example
+ * Simple usage:
+ *  {searchterm} => 'no%20game%20no%20life'
+ *  {searchtermPlus} => 'no+game+no+life'
+ *  {searchtermMinus} => 'no-game-no-life'
+ *  {searchtermUnderscore} => 'no_game_no_life'
+ *  {searchtermRaw} => 'no game no life'
+ *  {cacheId} => '143'
+ *
+ * Advanced usage:
+ *  {searchterm(<whitespaceReplacement>)[<options>]}
+ *  Options:
+ *    noEncode -> Dont encode characters
+ *    noSpecial -> Remove special characters
+ *    specialReplace -> Replace special characters with a <whitespaceReplacement>
+ *    noLowercase -> Dont lowercase everything
+ */
 export function searchSyntax(url, title) {
   let resTitle = title.replace(/^\[l\]/i, '').trim();
   let options: option[] = [];
