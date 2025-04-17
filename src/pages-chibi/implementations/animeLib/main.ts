@@ -59,7 +59,7 @@ export const animeLib: PageInterface = {
     getTitle($c) {
       const nameRu = $c.querySelector('.page h1');
       const nameAlt = $c.querySelector('.page h2');
-      return $c.coalesce(nameRu.run(), nameAlt.run()).ifNotReturn().text().trim().run();
+      return $c.coalesce(nameAlt.run(), nameRu.run()).ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
       const slug = $c.url().urlPart(5);
