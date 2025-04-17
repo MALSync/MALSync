@@ -61,7 +61,7 @@ export const ranobeLib: PageInterface = {
         btnNext.getAttribute('href').urlAbsolute().urlStrip().run(),
         $c.string('').run(),
       );
-      return next.string().run();
+      return next.run();
     },
     readerConfig: [
       {
