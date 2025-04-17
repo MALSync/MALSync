@@ -158,7 +158,7 @@ export default {
    * $c.string('hello').setVariable('myKey') // sets myVar to 'hello'
    * $c.string('world').setVariable('myKey', $c.string('newValue').run()) // sets myVar to 'newValue'
    */
-  setVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
+  setVariable: <Input>(ctx: ChibiCtx, input: Input, key: string, value?: ChibiJson<any>): Input => {
     if (reservedKeys.includes(key)) {
       throw new ChibiError(`Cannot set reserved key: ${key}`);
     }

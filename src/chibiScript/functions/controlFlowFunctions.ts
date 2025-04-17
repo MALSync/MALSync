@@ -49,4 +49,23 @@ export default {
     }
     return input;
   },
+
+  /**
+   * If the input is falsy stop further execution and return the result of returnAction
+   * @input condition - Boolean condition to evaluate
+   * @param returnAction - Action to execute if input is falsy
+   * @example
+   * $c.querySelector('a').ifNotReturn($c.number(0).run()).text().trim().run();
+   * $c.querySelector('a').ifNotReturn().text().trim().run();
+   */
+  ifNotReturn<Input>(
+    ctx: ChibiCtx,
+    input: Input,
+    returnAction?: ChibiJson<any>,
+  ): Exclude<Input, false | 0 | '' | null | undefined> {
+    if (input) {
+      return input as any;
+    }
+    return ctx.return(returnAction ? ctx.run(returnAction) : null) as any;
+  },
 };
