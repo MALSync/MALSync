@@ -6,7 +6,7 @@
       "url": "https://ranobelib.me/ru/26690--omniscient-readers-viewpoint-novel/read/v1/c1.1",
       "expected": {
         "sync": true,
-        "title": "Omniscient Reader’s Viewpoint (Novel)",
+        "title": "Jeonjijeog dogja sijeom (Novel)",
         "identifier": "26690",
         "overviewUrl": "https://ranobelib.me/ru/book/26690--omniscient-readers-viewpoint-novel",
         "nextEpUrl": "https://ranobelib.me/ru/26690--omniscient-readers-viewpoint-novel/read/v1/c1.2",
@@ -18,7 +18,7 @@
       "url": "https://ranobelib.me/ru/book/15630--mushoku-tensei",
       "expected": {
         "sync": false,
-        "title": "Jobless Reincarnation: I Will Seriously Try If I Go to Another World (WN)",
+        "title": "Mushoku Tensei (WN)",
         "identifier": "15630",
         "overviewUrl": "https://ranobelib.me/ru/book/15630--mushoku-tensei",
         "uiSelector": true
