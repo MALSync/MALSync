@@ -55,7 +55,7 @@ export const Chibi = async (): Promise<pageInterface> => {
     sync: {
       getTitle(url) {
         const consumer = getUrlConsumer(currentPage.sync.getTitle, url, pageD);
-        return consumer.run();
+        return consumer.run() || '';
       },
       getIdentifier(url) {
         const consumer = getUrlConsumer(currentPage.sync.getIdentifier, url, pageD);
@@ -102,7 +102,7 @@ export const Chibi = async (): Promise<pageInterface> => {
         ? {
             getTitle(url) {
               const consumer = getUrlConsumer(currentPage.overview!.getTitle, url, pageD);
-              return consumer.run();
+              return consumer.run() || '';
             },
             getIdentifier(url) {
               const consumer = getUrlConsumer(currentPage.overview!.getIdentifier, url, pageD);

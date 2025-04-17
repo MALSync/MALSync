@@ -68,6 +68,53 @@ describe('Control Flow Functions', () => {
       expect(generateAndExecute(code).run()).to.equal(false);
     });
   });
+
+  describe('ifNotReturn function', () => {
+    it('should return input when input is truthy', () => {
+      const code = $c
+        .string('test')
+        .ifNotReturn($c.string('fallback').run())
+        .run();
+      expect(generateAndExecute(code).run()).to.equal('test');
+
+      const numberCode = $c
+        .number(42)
+        .ifNotReturn($c.string('fallback').run())
+        .run();
+      expect(generateAndExecute(numberCode).run()).to.equal(42);
+    });
+
+    it('should return fallback when input is falsy', () => {
+      const falseCode = $c
+        .boolean(false)
+        .ifNotReturn($c.string('fallback').run())
+        .run();
+      expect(generateAndExecute(falseCode).run()).to.equal('fallback');
+
+      const emptyStringCode = $c
+        .string('')
+        .ifNotReturn($c.string('fallback').run())
+        .run();
+      expect(generateAndExecute(emptyStringCode).run()).to.equal('fallback');
+    });
+
+    it('should support chaining after successful check', () => {
+      const code = $c
+        .string('test')
+        .ifNotReturn($c.string('fallback').run())
+        .concat('-success')
+        .run();
+      expect(generateAndExecute(code).run()).to.equal('test-success');
+    });
+
+    it('should return null by default when no fallback is provided', () => {
+      const code = $c
+        .boolean(false)
+        .ifNotReturn()
+        .run();
+      expect(generateAndExecute(code).run()).to.be.null;
+    });
+  });
 });
 
 function generateAndExecute(input: any) {

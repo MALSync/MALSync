@@ -1,5 +1,6 @@
 import type { ChibiCtx } from '../ChibiCtx';
 import type { ChibiJson } from '../ChibiGenerator';
+import type * as CT from '../ChibiTypeHelper';
 
 export default {
   /**
@@ -163,7 +164,11 @@ export default {
    * @example
    * $c.coalesce($c.boolean(false).run(), $c.string("Hello").run()) // returns "Hello"
    */
-  coalesce: (ctx: ChibiCtx, input: void, ...values: ChibiJson<any>[]) => {
+  coalesce: <Input, Values extends ChibiJson<any>[]>(
+    ctx: ChibiCtx,
+    input: void,
+    ...values: Values
+  ): CT.UnwrapJson<Values[number]> | undefined => {
     // eslint-disable-next-line no-restricted-syntax
     for (const val of values) {
       const result = ctx.run(val);
