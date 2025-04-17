@@ -18,15 +18,7 @@ export const animeLib: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c
-        .fn(
-          $c
-            .querySelector('.page h1')
-            .ifThen($d => $d.text().return().run())
-            .string('')
-            .run(),
-        )
-        .run();
+      return $c.querySelector('.page h1').text().trim().run();
     },
     getIdentifier($c) {
       const slug = $c.url().urlPart(5);
@@ -39,33 +31,22 @@ export const animeLib: PageInterface = {
     },
     getEpisode($c) {
       const btnEp = getCurrentEpisodeBtn($c);
-      return $c
-        .fn(
-          btnEp
-            .ifThen($d => $d.text().split(' ').at(0).number().return().run())
-            .number(0)
-            .run(),
-        )
-        .run();
+      return btnEp.ifNotReturn().text().split(' ').at(0).number().run();
     },
     nextEpUrl($c) {
       const btnEp = getCurrentEpisodeBtn($c);
       const slug = $c.url().urlPart(5);
-      const next = $c.fn(
-        $c
-          .and(btnEp.boolean().run(), btnEp.next().boolean().run())
-          .ifThen($d =>
-            $d
-              .string('ru/anime/_URL_SLUG_/watch?episode=_EP_ID_')
-              .replace('_EP_ID_', btnEp.next().getAttribute('data-scroll-id').string().run())
-              .replace('_URL_SLUG_', slug.run())
-              .urlAbsolute()
-              .return()
-              .run(),
-          )
-          .string('')
-          .run(),
-      );
+      const next = btnEp
+        .ifNotReturn()
+        .next()
+        .ifNotReturn()
+        .getAttribute('data-scroll-id')
+        .setVariable('nextEp')
+        .string('ru/anime/_URL_SLUG_/watch?episode=_EP_ID_')
+        .replace('_EP_ID_', $c.getVariable('nextEp').run())
+        .replace('_URL_SLUG_', slug.run())
+        .urlAbsolute();
+
       return next.run();
     },
   },
@@ -78,19 +59,7 @@ export const animeLib: PageInterface = {
     getTitle($c) {
       const nameRu = $c.querySelector('.page h1');
       const nameAlt = $c.querySelector('.page h2');
-      return $c
-        .fn(
-          nameAlt
-            .ifThen($d => $d.text().return().run())
-            .fn(
-              nameRu
-                .ifThen($d => $d.text().return().run())
-                .string('')
-                .run(),
-            )
-            .run(),
-        )
-        .run();
+      return $c.coalesce(nameRu.run(), nameAlt.run()).ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
       const slug = $c.url().urlPart(5);
@@ -101,25 +70,17 @@ export const animeLib: PageInterface = {
       return $c.querySelector('.tabs._border').uiBefore().run();
     },
     getMalUrl($c) {
-      const malID = $c.fn(
-        $c
-          .querySelectorAll('.page a.btn')
-          .last()
-          .ifThen($d => $d.getAttribute('href').regex('[a-z]?(\\d+)', 1).return().run())
-          .string('')
-          .run(),
-      );
-      return malID
-        .boolean()
-        .ifThen($d =>
-          $d
-            .string('https://myanimelist.net/anime/_ID_')
-            .replace('_ID_', malID.run())
-            .return()
-            .run(),
-        )
-        .string('')
-        .run();
+      const malID = $c
+        .querySelectorAll('.page a.btn')
+        .last()
+        .ifNotReturn()
+        .getAttribute('href')
+        .regex('[a-z]?(\\d+)', 1)
+        .setVariable('malID')
+        .string('https://myanimelist.net/anime/_ID_')
+        .replace('_ID_', $c.getVariable('malID').run());
+
+      return malID.run();
     },
   },
   lifecycle: {
