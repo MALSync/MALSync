@@ -51,7 +51,7 @@ export const mangaNato: PageInterface = {
       return $c
         .querySelector('.btn-navigation-chap .back')
         .getAttribute('href')
-        .ifNotReturn($c.boolean(false).run())
+        .ifNotReturn()
         .urlAbsolute()
         .run();
     },

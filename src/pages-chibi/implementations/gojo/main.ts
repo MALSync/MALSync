@@ -32,7 +32,7 @@ export const gojo: PageInterface = {
     nextEpUrl($c) {
       return $c
         .querySelector('.Episode > div > button.order-\\[-999999\\]')
-        .ifNotReturn($c.boolean(false).run())
+        .ifNotReturn()
         .this('list.elementUrl')
         .run();
     },
@@ -40,7 +40,7 @@ export const gojo: PageInterface = {
       return $c
         .provider()
         .equals('ANILIST')
-        .ifNotReturn($c.boolean(false).run())
+        .ifNotReturn()
         .string('https://anilist.co/anime/<identifier>')
         .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
         .run();
