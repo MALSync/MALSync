@@ -17,19 +17,7 @@ export const ranobeLib: PageInterface = {
     getTitle($c) {
       const nameAlt = $c.querySelector('a>div[data-media-up="sm"]');
       const nameRu = nameAlt.ifThen($d => $d.next().run());
-      return $c
-        .fn(
-          nameAlt
-            .ifThen($d => $d.text().return().run())
-            .fn(
-              nameRu
-                .ifThen($d => $d.text().return().run())
-                .string('')
-                .run(),
-            )
-            .run(),
-        )
-        .run();
+      return $c.coalesce(nameAlt.run(), nameRu.run()).ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
       const slug = $c.url().urlPart(4);
@@ -83,19 +71,7 @@ export const ranobeLib: PageInterface = {
     getTitle($c) {
       const nameRu = $c.querySelector('.page h1');
       const nameAlt = $c.querySelector('.page h2');
-      return $c
-        .fn(
-          nameAlt
-            .ifThen($d => $d.text().return().run())
-            .fn(
-              nameRu
-                .ifThen($d => $d.text().return().run())
-                .string('')
-                .run(),
-            )
-            .run(),
-        )
-        .run();
+      return $c.coalesce(nameAlt.run(), nameRu.run()).ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
       const slug = $c.url().urlPart(5);
