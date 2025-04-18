@@ -32,7 +32,7 @@ export function getType(url) {
   if (utils.isDomainMatching(url, 'myanimelist.net')) return 'MAL';
   if (utils.isDomainMatching(url, 'simkl.com')) return 'SIMKL';
   if (utils.isDomainMatching(url, 'shikimori.one')) return 'SHIKI';
-  throw 'Type not found';
+  throw new Error('Type not found');
 }
 
 export function mapToArray(providerList, resultList, masterM = false) {

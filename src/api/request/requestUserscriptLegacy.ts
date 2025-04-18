@@ -24,7 +24,7 @@ export const requestUserscriptLegacy: RequestInterface = {
           console.log(response);
           if (response.status === 429) {
             if (retry > 3 || utils.rateLimitExclude.test(response.finalUrl))
-              throw 'Rate limit Timeout';
+              throw new Error('Rate limit Timeout');
             con.error('RATE LIMIT');
             api.storage.set('rateLimit', true);
             setTimeout(() => {

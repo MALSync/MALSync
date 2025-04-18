@@ -64,7 +64,7 @@ export class SyncPage {
       )
     ) {
       logger.info('Sync is disabled for this page', this.page.name);
-      throw 'Stop Script';
+      throw new Error('Stop Script');
     }
 
     if (this.page.type === 'manga' && api.settings.get('readerTracking')) {

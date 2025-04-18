@@ -17,7 +17,7 @@ if (typeof global.doubleLoad !== 'undefined' && global.doubleLoad) {
 global.doubleLoad = true;
 
 async function main() {
-  if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
+  if (api.settings.get('userscriptModeButton')) throw new Error('Userscript mode');
 
   let pageObject = _Page;
   if (typeof pageObject === 'function') {
