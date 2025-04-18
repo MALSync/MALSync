@@ -1,9 +1,10 @@
+import { SyncPage } from '../pages/syncPage';
 import { Minimal } from '../_minimal/minimalClass';
 import { hideFloatbutton, showFloatbutton } from './init';
 
 let minimalObj: Minimal;
 
-declare let GM_getResourceURL: any;
+declare let GM_getResourceURL: Function;
 
 function createIframe(page) {
   const iframe = document.createElement('iframe');
@@ -53,7 +54,7 @@ function createIframe(page) {
   }
 }
 
-export function floatClick(page) {
+export function floatClick(page: SyncPage) {
   if (api.settings.get('floatButtonCorrection')) {
     con.log('Open correction');
     page.openCorrectionUi();
@@ -74,7 +75,7 @@ export function floatClick(page) {
   }
 }
 
-export function importAssets(head) {
+export function importAssets(head: JQuery<HTMLElement>) {
   api.storage.injectCssResource(
     '',
     head,

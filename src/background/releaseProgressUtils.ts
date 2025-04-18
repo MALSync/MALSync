@@ -49,7 +49,7 @@ export async function single(
     single: any;
     xhr?: object;
   },
-  type,
+  type: string,
   mode = 'default',
   logger = con.m('release'),
 ) {

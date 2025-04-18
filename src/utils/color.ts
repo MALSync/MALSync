@@ -1,4 +1,4 @@
-import * as hslConverter from 'hex-to-hsl';
+import hslConverter from 'hex-to-hsl';
 
 export type Hsl = [number, number, number];
 
@@ -49,7 +49,7 @@ export class HSL {
     max: number,
     bounce: boolean,
     overflow = false,
-  ) {
+  ): number {
     let temp = value;
     temp += percent;
     if (temp > max) {

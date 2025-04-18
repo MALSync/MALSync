@@ -185,7 +185,7 @@ export class Single extends SingleAbstract {
   }
 
   async _update() {
-    let de;
+    let de: Record<string, number>;
     if (Number.isNaN(this.ids.mal)) {
       de = { simkl: this.ids.simkl };
     } else {

@@ -122,7 +122,7 @@ async function multiple(updateCandidates: ListElement[], type: string, logger = 
     return;
   }
 
-  async function asyncForEach(array, callback) {
+  async function asyncForEach(array: Array<any>, callback) {
     for (let index = 0; index < array.length; index++) {
       await callback(array[index], index, array);
     }
@@ -177,13 +177,13 @@ async function multiple(updateCandidates: ListElement[], type: string, logger = 
     await utils.wait(500);
   }
 
-  xhrArray.forEach(async xhr => {
-    const elRef = remoteUpdateList.find(el => xhr.malid === el.apiCacheKey);
+  xhrArray.forEach(async (xhr: { malId: string; data: any[] }) => {
+    const elRef = remoteUpdateList.find(el => xhr.malId === el.apiCacheKey);
     if (!elRef) {
       return;
     }
     logger.m(elRef.malId).log(xhr.data);
-    let mode = elRef.options!.p;
+    let mode: string = elRef.options!.p;
     if (!mode) mode = 'default';
     const progressValue = getProgress(xhr.data, mode, type);
 

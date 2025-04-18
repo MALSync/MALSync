@@ -5,7 +5,7 @@ import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
 import { Single as ShikiSingle } from '../_provider/Shikimori/single';
 
-import { UserList as MalList } from '../_provider/MyAnimeList_hybrid/list';
+import { UserList as MalList, UserList } from '../_provider/MyAnimeList_hybrid/list';
 import { UserList as AnilistList } from '../_provider/AniList/list';
 import { UserList as KitsuList } from '../_provider/Kitsu/list';
 import { UserList as SimklList } from '../_provider/Simkl/list';
@@ -149,7 +149,6 @@ export function missingCheck(item, missing, types) {
           rewatchCount: item.master.rewatchCount,
           url: `https://myanimelist.net/${item.master.type}/${item.master.malId}`,
           error: null,
-        } as Partial<listElement>;
         } as Partial<ListElement>;
         if (item.master.type === 'manga') {
           entry.readVol = item.master.readVol;
@@ -261,29 +260,24 @@ export function syncItem(slave, pageType) {
 export async function retrieveLists(
   providerList: {
     providerType: string;
-    providerSettings: {
-      text: string;
-      list: any;
-      master: boolean;
-    };
+    providerSettings: ProviderSettings;
     listProvider: typeof ListAbstract;
   }[],
-  type,
-  getListF,
+  type: string,
+  getListF: (listProvider: typeof ListAbstract, type: string) => Promise<ListElement[]>,
 ) {
-  const typeArray: any = [];
+  const typeArray: string[] = [];
 
   const tempMode = getSyncMode(type);
   const masterMode = tempMode === 'MALAPI' ? 'MAL' : tempMode;
 
-  const listP: any = [];
+  const listP: Promise<void>[] = [];
 
   providerList.forEach(pi => {
     pi.providerSettings.text = api.storage.lang('Loading');
-    // @ts-ignore
     listP.push(
       getListF(pi.listProvider, type)
-        .then((list: any) => {
+        .then(list => {
           pi.providerSettings.list = list;
           pi.providerSettings.text = api.storage.lang('settings_listsync_provider_done');
           if (masterMode === pi.providerType) pi.providerSettings.master = true;
@@ -313,19 +307,18 @@ export async function retrieveLists(
   };
 }
 
-export function getListProvider(providerSettingList) {
-type ListProvider = {
+type ProviderSettings = {
   text: string;
   list: any;
   master: boolean;
 };
 
 export function getListProvider(providerSettingList: {
-  mal: ListProvider;
-  anilist: ListProvider;
-  kitsu: ListProvider;
-  simkl: ListProvider;
-  shiki: ListProvider;
+  mal: ProviderSettings;
+  anilist: ProviderSettings;
+  kitsu: ProviderSettings;
+  simkl: ProviderSettings;
+  shiki: ProviderSettings;
 }) {
   return [
     {
@@ -356,18 +349,17 @@ export function getListProvider(providerSettingList: {
   ];
 }
 
-export function getList(Prov, type) {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export async function getList(Prov, type) {
   const listProvider = new Prov(7, type);
 
-  return listProvider
-    .getCompleteList()
-    .then(list => {
-      return list;
-    })
-    .catch(e => {
-      con.m(listProvider.name).error(e);
-      throw listProvider.errorMessage(e);
-    });
+  try {
+    const list = await listProvider.getCompleteList();
+    return list;
+  } catch (e) {
+    con.m(listProvider.name).error(e);
+    throw listProvider.errorMessage(e);
+  }
 }
 
 export const background = {
@@ -407,7 +399,7 @@ export const background = {
     con.error('Background list Sync not allowed');
     return [];
 
-    async function syncLists(type) {
+    async function syncLists(type: string) {
       const list = {};
       const missing = [];
 

@@ -68,7 +68,7 @@ export const hachi: PageInterface = {
           return !!j.$('h1').length;
         },
         () => {
-          page.handlePage().then(() => { });
+          page.handlePage().then(() => {});
         },
       );
     });

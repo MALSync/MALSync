@@ -172,7 +172,7 @@ export function optionToCombined(link) {
 export async function activeLinks(
   type: 'anime' | 'manga',
   id: any,
-  searchterm: string,
+  searchTerm: string,
 ): Promise<Quicklink[]> {
   let combined = combinedLinks();
 
@@ -184,7 +184,7 @@ export async function activeLinks(
     }
   }
 
-  return simplifyObject(combined, type, searchterm, id);
+  return simplifyObject(combined, type, searchTerm, id);
 }
 
 export function removeOptionKey(options, key) {
