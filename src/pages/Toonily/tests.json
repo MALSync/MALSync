@@ -3,27 +3,27 @@
   "url": "https://toonily.com/",
   "testCases": [
     {
-      "url": "https://toonily.com/webtoon/skeleton-protect-dungeon/chapter-125/",
+      "url": "https://toonily.com/serie/skeleton-protect-dungeon/chapter-125/",
       "expected": {
         "sync": true,
         "title": "Skeleton Soldier Couldn’t Protect the Dungeon",
         "identifier": "skeleton-protect-dungeon",
-        "overviewUrl": "https://toonily.com/webtoon/skeleton-protect-dungeon/",
-        "nextEpUrl": "https://toonily.com/webtoon/skeleton-protect-dungeon/chapter-126/",
+        "overviewUrl": "https://toonily.com/serie/skeleton-protect-dungeon/",
+        "nextEpUrl": "https://toonily.com/serie/skeleton-protect-dungeon/chapter-126/",
         "episode": 125,
         "uiSelector": false
       }
     },
     {
-      "url": "https://toonily.com/webtoon/skeleton-protect-dungeon/",
+      "url": "https://toonily.com/serie/skeleton-protect-dungeon/",
       "expected": {
         "sync": false,
         "title": "Skeleton Soldier Couldn’t Protect the Dungeon",
         "identifier": "skeleton-protect-dungeon",
         "uiSelector": true,
         "epList": {
-          "120": "https://toonily.com/webtoon/skeleton-protect-dungeon/chapter-120/",
-          "125": "https://toonily.com/webtoon/skeleton-protect-dungeon/chapter-125/"
+          "120": "https://toonily.com/serie/skeleton-protect-dungeon/chapter-120/",
+          "125": "https://toonily.com/serie/skeleton-protect-dungeon/chapter-125/"
         }
       }
     }
