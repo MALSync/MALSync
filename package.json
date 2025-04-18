@@ -11,9 +11,9 @@
     "node": ">=20.0.0"
   },
   "devDependencies": {
-    "@ghostery/adblocker-puppeteer": "^2.5.0",
+    "@ghostery/adblocker-puppeteer": "^2.5.1",
     "@cspell/eslint-plugin": "8.17.5",
-    "@eslint/eslintrc": "3.3.0",
+    "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.21.0",
     "@stylistic/eslint-plugin": "3.1.0",
     "@types/chai": "^4.3.20",
@@ -117,7 +117,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@types/chrome": "0.0.308",
+    "@types/chrome": "0.0.315",
     "dexie": "^4.0.11",
     "dompurify": "^3.1.7",
     "download-file": "^0.1.5",
