@@ -34,5 +34,5 @@ export function getOverview(url, type, syncMode = '') {
     return new MalApiMeta(url);
   }
 
-  throw 'Unknown sync mode';
+  throw new Error('Unknown sync mode');
 }
