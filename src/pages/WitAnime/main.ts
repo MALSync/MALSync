@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const WitAnime: pageInterface = {
+export const WitAnime: PageInterface = {
   domain: 'https://witanime.pics',
   languages: ['Arabic'],
   name: 'WitAnime',

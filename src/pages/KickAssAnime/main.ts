@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const KickAssAnime: pageInterface = {
+export const KickAssAnime: PageInterface = {
   name: 'KickAssAnime',
   domain: ['https://kickassanime.am', 'https://kaas.am', 'https://kaa.mx'],
   languages: ['English'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangasOrigines: pageInterface = {
+export const MangasOrigines: PageInterface = {
   name: 'MangasOrigines',
   domain: 'https://mangas-origines.fr/',
   languages: ['French'],

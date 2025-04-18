@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeXin: pageInterface = {
+export const AnimeXin: PageInterface = {
   name: 'AnimeXin',
   domain: 'https://animexin.vip',
   languages: ['English', 'Spanish', 'Indonesian', 'Portuguese', 'Turkish', 'Italian'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const FlameScans: pageInterface = {
+export const FlameScans: PageInterface = {
   name: 'FlameScans',
   domain: 'https://flamecomics.xyz',
   languages: ['English'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Toonily: pageInterface = {
+export const Toonily: PageInterface = {
   name: 'Toonily',
   domain: ['https://toonily.com'],
   languages: ['English'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MonosChinos: pageInterface = {
+export const MonosChinos: PageInterface = {
   name: 'MonosChinos',
   domain: 'https://monoschinos2.com',
   languages: ['Spanish'],

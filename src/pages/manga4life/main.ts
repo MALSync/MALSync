@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const manga4life: pageInterface = {
+export const manga4life: PageInterface = {
   name: 'manga4life',
   domain: 'https://manga4life.com',
   languages: ['English'],

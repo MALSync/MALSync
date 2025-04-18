@@ -143,7 +143,7 @@ export async function getSingle(
 }
 
 export async function call(
-  url,
+  url: string,
   sData: any = {},
   asParameter = false,
   method: 'GET' | 'POST' = 'GET',

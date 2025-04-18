@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangaRead: pageInterface = {
+export const MangaRead: PageInterface = {
   name: 'MangaRead',
   domain: ['https://www.mangaread.org'],
   languages: ['English'],

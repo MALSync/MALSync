@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const TurkAnime: pageInterface = {
+export const TurkAnime: PageInterface = {
   name: 'TurkAnime',
   domain: 'https://www.turkanime.co',
   languages: ['Turkish'],

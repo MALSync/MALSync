@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const OtakuFR: pageInterface = {
+export const OtakuFR: PageInterface = {
   name: 'OtakuFR',
   domain: 'https://otakufr.cc',
   languages: ['French'],

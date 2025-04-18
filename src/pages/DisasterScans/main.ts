@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 const urlAnime = ['anime', 'comics'];
 
-export const DisasterScans: pageInterface = {
+export const DisasterScans: PageInterface = {
   name: 'DisasterScans',
   domain: 'https://disasterscans.com',
   languages: ['English'],

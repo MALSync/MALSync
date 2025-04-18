@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const VoidScans: pageInterface = {
+export const VoidScans: PageInterface = {
   name: 'VoidScans',
   domain: ['https://hivetoon.com/', 'https://void-scans.com'],
   languages: ['English'],

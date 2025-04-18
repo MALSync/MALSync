@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const ZeroScans: pageInterface = {
+export const ZeroScans: PageInterface = {
   name: 'ZeroScans',
   domain: 'https://zeroscans.com',
   languages: ['English'],

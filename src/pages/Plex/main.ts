@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { ScriptProxy } from '../../utils/scriptProxy';
 
 let item: any;
@@ -200,7 +200,7 @@ async function authenticate() {
   logger.log('Done', auth);
 }
 
-export const Plex: pageInterface = {
+export const Plex: PageInterface = {
   name: 'Plex',
   domain: 'http://app.plex.tv',
   languages: ['Many'],

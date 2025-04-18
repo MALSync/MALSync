@@ -1,9 +1,9 @@
 import { xhrResponseI, sendMessageI, notification } from '../messageInterface';
 
-export interface requestInterface {
+export interface RequestInterface {
   xhr(
     method: 'GET' | 'POST' | 'PUT' | 'DELETE',
-    url: string | { url: string; data?: any; headers?: any },
+    url: string | { url: string; data?: any; headers?: Record<string, string | undefined> },
     retry?: number,
   ): Promise<xhrResponseI>;
 

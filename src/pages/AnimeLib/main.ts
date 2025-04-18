@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
 import { Anime, Episode, Episodes, getAnimeData, getEpisodeData, getEpisodesData } from './api';
 
@@ -25,7 +25,7 @@ const anime: Anime = {
   },
 };
 
-export const AnimeLib: pageInterface = {
+export const AnimeLib: PageInterface = {
   domain: 'https://anilib.me',
   languages: ['Russian'],
   name: 'AnimeLib',

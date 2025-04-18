@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const mangadenizi: pageInterface = {
+export const mangadenizi: PageInterface = {
   name: 'mangadenizi',
   domain: ['https://www.mangadenizi.net', 'https://mangadenizi.com'],
   languages: ['Turkish'],

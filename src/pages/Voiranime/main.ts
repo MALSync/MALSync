@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Voiranime: pageInterface = {
+export const Voiranime: PageInterface = {
   name: 'Voiranime',
   domain: 'https://voiranime.com',
   languages: ['French'],

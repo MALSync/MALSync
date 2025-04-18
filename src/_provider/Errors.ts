@@ -42,7 +42,7 @@ export function parseJson(json) {
   }
 }
 
-export function errorMessage(error, authenticationUrl: string) {
+export function errorMessage(error: Error, authenticationUrl: string) {
   if (error instanceof NotAutenticatedError) {
     return api.storage.lang('Error_Authenticate', [authenticationUrl]);
   }

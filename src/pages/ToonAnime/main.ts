@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 function cleanTitle(title: string) {
   return title
@@ -8,7 +8,7 @@ function cleanTitle(title: string) {
     .trim();
 }
 
-export const ToonAnime: pageInterface = {
+export const ToonAnime: PageInterface = {
   name: 'ToonAnime',
   domain: 'https://vvww.toonanime.cc',
   languages: ['French'],

@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 const uiSelec = '.flex.justify-end.gap-2';
 
@@ -10,7 +10,7 @@ const { asyncWaitUntilTrue: awaitReader, reset: resetawaitReader } = utils.getAs
   () => j.$('.grid-areas-mediaChapter img').length,
 );
 
-export const Taiyo: pageInterface = {
+export const Taiyo: PageInterface = {
   name: 'Taiyo',
   domain: 'https://taiyo.moe',
   languages: ['Portuguese'],

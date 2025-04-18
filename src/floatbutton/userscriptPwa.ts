@@ -2,7 +2,7 @@ import { Minimal } from '../_minimal/minimalClass';
 import { importAssets } from './userscript';
 
 export function pwa() {
-  $(document).ready(async function () {
+  $(async function () {
     const head = j.$('head');
     importAssets(head);
 

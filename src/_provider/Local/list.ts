@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from '../listAbstract';
+import { ListAbstract, ListElement } from '../listAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 
@@ -22,8 +22,8 @@ export class UserList extends ListAbstract {
     return data;
   }
 
-  private async prepareData(data, listType, status): Promise<listElement[]> {
-    const newData = [] as listElement[];
+  private async prepareData(data, listType, status): Promise<ListElement[]> {
+    const newData = [] as ListElement[];
     for (const key in data) {
       if (this.getRegex(listType).test(key)) {
         const el = data[key];

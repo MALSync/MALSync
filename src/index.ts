@@ -14,13 +14,15 @@ import { databaseRequest, initDatabase } from './background/database';
 import { anilistOauth } from './anilist/oauth';
 import { shikiOauth } from './_provider/Shikimori/oauth';
 
-let page;
+let page: SyncPage;
 
 function main() {
   if (utils.isDomainMatching(window.location.href, 'myanimelist.net')) {
     injectDb();
     const mal = new MyAnimeListClass(window.location.href);
-    mal.init();
+    mal.init().catch(e => {
+      con.error('MAL Error', e);
+    });
     if (window.location.href.indexOf('episode') > -1) {
       runPage();
     }
@@ -86,7 +88,8 @@ api.settings.init().then(() => {
 
 function runPage() {
   try {
-    if (inIframe()) throw 'iframe';
+    if (inIframe()) throw new Error('iframe');
+    // TODO: Is it supposed to be an object with all pages?
     page = new SyncPage(window.location.href, pages, floatClick);
   } catch (e) {
     con.info(e);

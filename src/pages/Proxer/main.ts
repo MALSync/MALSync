@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Proxer: pageInterface = {
+export const Proxer: PageInterface = {
   name: 'Proxer',
   domain: 'https://proxer.me',
   languages: ['German', 'English'],

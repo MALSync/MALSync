@@ -1,5 +1,5 @@
 import { getList } from '../_provider/listFactory';
-import type { listElement } from '../_provider/listAbstract';
+import type { ListElement } from '../_provider/listAbstract';
 import { KeepAlive } from './keepAlive';
 import {
   getProgress,
@@ -106,11 +106,11 @@ async function listUpdateWithPOST(state, type) {
     });
 }
 
-async function multiple(Array: listElement[], type, logger = con.m('release')) {
-  if (!Array) {
+async function multiple(updateCandidates: ListElement[], type: string, logger = con.m('release')) {
+  if (!updateCandidates) {
     logger.log('No MAL Id List');
   } else {
-    Array.forEach(el => {
+    updateCandidates.forEach(el => {
       let mode = el.options!.p;
       if (!mode) mode = 'default';
       logger.m(el.apiCacheKey).log(el.title, el.cacheKey, el.apiCacheKey, `Mode: ${mode}`);
@@ -122,14 +122,14 @@ async function multiple(Array: listElement[], type, logger = con.m('release')) {
     return;
   }
 
-  async function asyncForEach(array, callback) {
+  async function asyncForEach(array: Array<any>, callback) {
     for (let index = 0; index < array.length; index++) {
       await callback(array[index], index, array);
     }
   }
 
-  const remoteUpdateList: listElement[] = [];
-  await asyncForEach(Array, async el => {
+  const remoteUpdateList: ListElement[] = [];
+  await asyncForEach(updateCandidates, async (el: ListElement) => {
     if (!el.apiCacheKey) return;
 
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(
@@ -177,13 +177,13 @@ async function multiple(Array: listElement[], type, logger = con.m('release')) {
     await utils.wait(500);
   }
 
-  xhrArray.forEach(async xhr => {
-    const elRef = remoteUpdateList.find(el => xhr.malid === el.apiCacheKey);
+  xhrArray.forEach(async (xhr: { malId: string; data: any[] }) => {
+    const elRef = remoteUpdateList.find(el => xhr.malId === el.apiCacheKey);
     if (!elRef) {
       return;
     }
     logger.m(elRef.malId).log(xhr.data);
-    let mode = elRef.options!.p;
+    let mode: string = elRef.options!.p;
     if (!mode) mode = 'default';
     const progressValue = getProgress(xhr.data, mode, type);
 

@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 const uiSelec = '[style*="synopsis"]';
 
@@ -30,7 +30,7 @@ const chapterData = {
   translatedLanguage: '',
 };
 
-export const Mangadex: pageInterface = {
+export const Mangadex: PageInterface = {
   name: 'Mangadex',
   domain: 'https://www.mangadex.org',
   database: 'Mangadex',

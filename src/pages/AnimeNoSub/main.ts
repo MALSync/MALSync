@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeNoSub: pageInterface = {
+export const AnimeNoSub: PageInterface = {
   name: 'AnimeNoSub',
   domain: 'https://animenosub.to',
   languages: ['English', 'Japanese'],

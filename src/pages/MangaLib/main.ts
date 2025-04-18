@@ -1,6 +1,6 @@
 /* eslint-disable new-cap */
 /* eslint-disable global-require */
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { SyncPage } from '../syncPage';
 import { Manga, getMangaData, getChaptersData, isPageAPI, Chapters } from '../AnimeLib/api';
 
@@ -32,7 +32,7 @@ const manga: Manga = {
     next: undefined,
   },
 };
-export const MangaLib: pageInterface = {
+export const MangaLib: PageInterface = {
   name: 'MangaLib',
   // NOTE - Add mangalib.me when domain is updated to new version
   domain: [

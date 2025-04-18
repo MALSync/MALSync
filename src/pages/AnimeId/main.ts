@@ -1,7 +1,7 @@
 /* By kaiserdj */
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeId: pageInterface = {
+export const AnimeId: PageInterface = {
   name: 'AnimeId',
   domain: 'https://www.animeid.tv',
   languages: ['Spanish'],

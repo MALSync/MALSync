@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let jsonData;
 
-export const Aninexus: pageInterface = {
+export const Aninexus: PageInterface = {
   name: 'Aninexus',
   domain: 'https://aninexus.to',
   languages: ['German'],

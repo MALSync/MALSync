@@ -3,7 +3,7 @@
 /* eslint-disable global-require */
 import { SyncPage } from '../syncPage';
 import { Manga, getMangaData, getChaptersData, isPageAPI, Chapters } from '../AnimeLib/api';
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 const { asyncWaitUntilTrue: awaitOverviewLoading, reset: resetAwaitOverview } =
   utils.getAsyncWaitUntilTrue(() => j.$('.tabs-item').length);
@@ -32,7 +32,7 @@ const novel: Manga = {
     next: undefined,
   },
 };
-export const RanobeLib: pageInterface = {
+export const RanobeLib: PageInterface = {
   name: 'RanobeLib',
   domain: ['https://ranobelib.me'],
   languages: ['Russian'],
