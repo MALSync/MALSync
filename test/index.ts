@@ -2,7 +2,7 @@ import { pages as part1 } from '../src/pages/pages';
 import { pages as part2 } from '../src/pages-adult/pages';
 import { getPageConfig } from '../src/utils/test';
 import { xhrAction } from '../src/background/messageHandler';
-import { SyncPage } from 'src/pages/syncPage';
+import { SyncPage } from '../src/pages/syncPage';
 
 const pages = { ...part1, ...part2 };
 
