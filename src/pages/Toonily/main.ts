@@ -10,7 +10,7 @@ export const Toonily: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('.breadcrumb li > a[href*="/webtoon/"]').text().trim();
+      return j.$('.breadcrumb li > a[href*="/serie/"]').text().trim();
     },
     getIdentifier(url) {
       return url.split('/')[4];
@@ -18,7 +18,7 @@ export const Toonily: pageInterface = {
     getOverviewUrl(url) {
       return (
         utils.absoluteLink(
-          j.$('.breadcrumb li > a[href*="/webtoon/"]').attr('href'),
+          j.$('.breadcrumb li > a[href*="/serie/"]').attr('href'),
           Toonily.domain,
         ) || ''
       );
@@ -71,7 +71,7 @@ export const Toonily: pageInterface = {
     );
     j.$(document).ready(function () {
       if (
-        utils.urlPart(page.url, 3) === 'webtoon' &&
+        utils.urlPart(page.url, 3) === 'serie' &&
         utils.urlPart(page.url, 4) !== undefined &&
         utils.urlPart(page.url, 4).length > 0
       ) {
