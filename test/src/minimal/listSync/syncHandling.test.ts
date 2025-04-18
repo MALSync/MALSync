@@ -28,7 +28,7 @@ const helper = {
       url: 'https://myanimelist.net/anime/19815',
     };
   },
-  getMasterSlave() {
+  getMasterSlave(): { diff: boolean; master?: any; slaves: any[] } {
     const el = {
       diff: false,
       master: helper.getItem(),
@@ -267,13 +267,14 @@ describe('Sync Handling', function() {
   });
 
   describe('getListProvider', function() {
-    const providerList = sync.getListProvider({
-      mal: 'mal',
-      anilist: 'anilist',
-      kitsu: 'kitsu',
-      simkl: 'simkl',
-      shiki: 'shiki',
-    });
+    const providerSettings = {
+      mal: { text: 'mal', list: null, master: false },
+      anilist: { text: 'anilist', list: null, master: false },
+      kitsu: { text: 'kitsu', list: null, master: false },
+      simkl: { text: 'simkl', list: null, master: false },
+      shiki: { text: 'shiki', list: null, master: false },
+    };
+    const providerList = sync.getListProvider(providerSettings);
     it('providerType', function() {
       for (const i in providerList) {
         expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'SIMKL', 'SHIKI']);
@@ -281,7 +282,7 @@ describe('Sync Handling', function() {
     });
     it('providerSettings', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl', 'shiki']);
+        expect(providerList[i].providerSettings.text).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl', 'shiki']);
       }
     });
   });

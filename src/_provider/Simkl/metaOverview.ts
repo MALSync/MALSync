@@ -56,7 +56,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private async getData() {
-    let de;
+    let de: Record<string, number>;
     if (Number.isNaN(this.malId)) {
       de = { simkl: this.simklId };
     } else {

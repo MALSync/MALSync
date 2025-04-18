@@ -1,13 +1,13 @@
 import { StorageInterface } from './storageInterface';
 
-declare let GM_setValue: any;
-declare let GM_getValue: any;
-declare let GM_deleteValue: any;
-declare let GM_addStyle: any;
-declare let GM_getResourceText: any;
+declare let GM_setValue: Function;
+declare let GM_getValue: Function;
+declare let GM_deleteValue: Function;
+declare let GM_addStyle: Function;
+declare let GM_getResourceText: Function;
 declare let GM_info: any;
-declare let GM_listValues: any;
-declare let i18n: string[];
+declare let GM_listValues: Function;
+declare let i18n: Record<string, string>;
 
 export const userscriptLegacy: StorageInterface = {
   set(key: string, value: string): Promise<void> {
@@ -15,32 +15,34 @@ export const userscriptLegacy: StorageInterface = {
     return Promise.resolve();
   },
 
-  async get(key: string): Promise<string | undefined> {
+  get(key: string): Promise<string | undefined> {
     const value = GM_getValue(key);
-    return value;
+    return Promise.resolve(value);
   },
 
-  async remove(key: string): Promise<void> {
+  remove(key: string): Promise<void> {
     GM_deleteValue(key);
+    return Promise.resolve();
   },
 
-  async list(): Promise<any[]> {
+  list(): Promise<any[]> {
     const reverseArray: any = {};
-    j.$.each(GM_listValues(), function (index, cache) {
+    j.$.each(GM_listValues(), function eachListValues(index, cache) {
       reverseArray[cache] = index;
     });
-    return reverseArray;
+    return Promise.resolve(reverseArray);
   },
 
-  async addStyle(css) {
+  addStyle(css: string): Promise<void> {
     GM_addStyle(css);
+    return Promise.resolve();
   },
 
   version() {
     return GM_info.script.version;
   },
 
-  lang(selector, args) {
+  lang(selector: string, args: string[] = []): string {
     let message = i18n[selector];
     if (typeof args !== 'undefined') {
       for (let argIndex = 0; argIndex < args.length; argIndex++) {
@@ -73,7 +75,7 @@ export const userscriptLegacy: StorageInterface = {
   injectJsResource(res, head) {
     const s = document.createElement('script');
     s.text = GM_getResourceText(res);
-    s.onload = function () {
+    s.onload = function onLoad() {
       // @ts-ignore
       this.remove();
     };
@@ -81,7 +83,8 @@ export const userscriptLegacy: StorageInterface = {
   },
 
   addProxyScriptToTag(tag, name) {
-    // @ts-ignore
+    // @ts-expect-error value is assigned by webpack
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const ps: { [key: string]: string } = proxyScripts;
     if (!ps[name]) throw new Error(`Proxy script ${name} not found`);
     tag.textContent = ps[name];
@@ -108,6 +111,7 @@ export const userscriptLegacy: StorageInterface = {
     head.get(0).appendChild(s);
   },
 
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   storageOnChanged(cb) {
     // not supported
   },

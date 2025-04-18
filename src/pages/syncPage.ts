@@ -45,9 +45,9 @@ export class SyncPage {
   public videoSyncInterval;
 
   constructor(
-    public url,
-    public pages,
-    protected floatClick: any = () => {
+    public url: string,
+    public pages, // PageInterface or Record<string, PageInterface>
+    protected floatClick: (page: SyncPage) => void = () => {
       throw 'No click handling found';
     },
   ) {
@@ -76,7 +76,7 @@ export class SyncPage {
 
   init() {
     const This = this;
-    j.$(document).ready(function () {
+    j.$(function () {
       initFloatButton(This, This.floatClick);
     });
 
@@ -100,7 +100,7 @@ export class SyncPage {
     }
   }
 
-  private getPage(url) {
+  private getPage(url: string) {
     if (this.pages.type) return this.pages;
     return getPageConfig(url, this.pages);
   }
@@ -257,7 +257,7 @@ export class SyncPage {
     $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
   }
 
-  setSearchObj(searchObj) {
+  setSearchObj(searchObj: SearchClass | undefined) {
     if (searchObj) {
       showFloatbutton();
     } else if (api.settings.get('floatButtonCorrection')) {
@@ -272,8 +272,8 @@ export class SyncPage {
     this.curState = undefined;
     this.setSearchObj(undefined);
     this.url = curUrl;
-    this.browsingtime = Date.now();
-    let tempSingle;
+    this.browsingTime = Date.now();
+    let tempSingle: SingleAbstract;
 
     this.videoSyncOffset = false;
     clearTimeout(this.videoSyncInterval);
@@ -627,7 +627,7 @@ export class SyncPage {
   // eslint-disable-next-line consistent-return
   public openCorrectionUi() {
     if (this.searchObj) {
-      return this.searchObj.openCorrection().then(rerun => {
+      this.searchObj.openCorrection().then(rerun => {
         if (rerun) {
           this.handlePage();
         }
@@ -1220,7 +1220,7 @@ export class SyncPage {
       });
   }
 
-  private browsingtime: number | undefined = Date.now();
+  private browsingTime: number | undefined = Date.now();
 
   private presence(info, sender, sendResponse) {
     try {
@@ -1231,11 +1231,11 @@ export class SyncPage {
         clearTimeout(browsingTimeout);
         browsingTimeout = setTimeout(
           () => {
-            this.browsingtime = undefined;
+            this.browsingTime = undefined;
           },
           5 * 60 * 1000,
         );
-        if (!this.browsingtime) this.browsingtime = Date.now();
+        if (!this.browsingTime) this.browsingTime = Date.now();
 
         // Cover
         let presenceShowCover = true;
@@ -1335,12 +1335,12 @@ export class SyncPage {
                 const timeleft =
                   this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
                 pres.presence.endTimestamp = Date.now() + timeleft * 1000;
-                pres.presence.startTimestamp = this.browsingtime;
+                pres.presence.startTimestamp = this.browsingTime;
                 pres.presence.smallImageKey = 'play';
                 pres.presence.smallImageText = 'Playing';
               }
             } else {
-              pres.presence.startTimestamp = this.browsingtime;
+              pres.presence.startTimestamp = this.browsingTime;
               if (this.page.type !== 'anime') {
                 pres.presence.smallImageKey = 'reading';
                 pres.presence.smallImageText = 'Reading';
@@ -1353,7 +1353,7 @@ export class SyncPage {
             } else {
               browsingTemp = this.page.type.toString();
             }
-            pres.presence.startTimestamp = this.browsingtime;
+            pres.presence.startTimestamp = this.browsingTime;
             pres.presence.state = api.storage.lang('Discord_rpc_browsing', [browsingTemp]);
           }
 

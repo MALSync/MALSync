@@ -137,7 +137,7 @@ import { Aninexus } from './Aninexus/main';
 import { AnimeKAI } from './AnimeKAI/main';
 import { Hikari } from './Hikari/main';
 
-export const pages = {
+export const pages: Record<string, import('./pageInterface').PageInterface> = {
   Crunchyroll,
   Mangadex,
   Gogoanime,

@@ -7,7 +7,7 @@ import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';
 import { MetaOverview as ShikiMeta } from './Shikimori/metaOverview';
 
-export function getOverview(url, type, syncMode = '') {
+export function getOverview(url: string, type: string | undefined, syncMode = '') {
   if (!syncMode) {
     syncMode = helper.getSyncMode(type);
   }

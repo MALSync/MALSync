@@ -2,22 +2,22 @@ import { doesUrlMatchPatterns } from 'webext-patterns';
 import { NotFoundError } from '../_provider/Errors';
 import type { ChibiJson } from '../chibiScript/ChibiGenerator';
 import { ChibiConsumer } from '../chibiScript/ChibiConsumer';
-import { pageInterface } from '../pages/pageInterface';
+import { PageInterface } from '../pages/pageInterface';
 import { ChibiListRepository } from './loader/ChibiListRepository';
 
-function getConsumer(code: ChibiJson<any>, page: pageInterface, name: string) {
+function getConsumer(code: ChibiJson<any>, page: PageInterface, name: string) {
   const cons = new ChibiConsumer(code, name);
   cons.addVariable('pageObject', page);
   return cons;
 }
 
-function getUrlConsumer(code: ChibiJson<any>, url: string, page: pageInterface, name: string) {
+function getUrlConsumer(code: ChibiJson<any>, url: string, page: PageInterface, name: string) {
   const consumer = getConsumer(code, page, name);
   consumer.addVariable('url', url);
   return consumer;
 }
 
-export const Chibi = async (): Promise<pageInterface> => {
+export const Chibi = async (): Promise<PageInterface> => {
   const repo = await ChibiListRepository.getInstance().init();
   const allPages = repo.getList();
 
@@ -36,7 +36,7 @@ export const Chibi = async (): Promise<pageInterface> => {
 
   const currentPage = await repo.getPage(matchingPages[0].key);
 
-  const pageD: pageInterface = {
+  const pageD: PageInterface = {
     name: currentPage.name,
     database: currentPage.database || undefined,
     domain: currentPage.domain,

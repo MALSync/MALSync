@@ -69,9 +69,9 @@ export const webextension: StorageInterface = {
     return chrome.runtime.getManifest().version;
   },
 
-  lang(selector, args) {
+  lang(selector: string, args?: string[]) {
     if (api.settings.get('forceEn') && typeof i18n !== 'undefined') {
-      let message = i18n[selector];
+      let message = i18n[selector] || '';
       if (typeof args !== 'undefined') {
         for (let argIndex = 0; argIndex < args.length; argIndex++) {
           message = message.replace(`$${argIndex + 1}`, args[argIndex]);
