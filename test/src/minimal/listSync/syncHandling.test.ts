@@ -324,7 +324,7 @@ describe('Sync Handling', function() {
       return providerList;
     }
 
-    let getListStub = (prov, type) => {
+    let getListStub: (_a: any, _b: any) => any = (prov, type) => {
       return new Promise((resolve, reject) => {
         resolve(prov);
       });
