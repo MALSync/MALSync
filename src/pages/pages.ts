@@ -1,5 +1,4 @@
 import { Crunchyroll } from './Crunchyroll/main';
-import { Mangadex } from './Mangadex/main';
 import { Gogoanime } from './Gogoanime/main';
 import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
@@ -142,7 +141,6 @@ import { Hikari } from './Hikari/main';
 
 export const pages = {
   Crunchyroll,
-  Mangadex,
   Gogoanime,
   TurkAnime,
   animepahe,
