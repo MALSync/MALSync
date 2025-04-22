@@ -1,7 +1,7 @@
 import { ChibiError } from '../../ChibiErrors';
 import type { ChibiCtx } from '../../ChibiCtx';
 import type { ChibiJson } from '../../ChibiGenerator';
-import { reservedKeys } from '../../ChibiRegistry';
+import { type ReservedKey, reservedKeys } from '../../ChibiRegistry';
 import { ChibiReturn } from '../../ChibiReturn';
 
 export default {
@@ -61,7 +61,7 @@ export default {
    * @example
    * $c.string('/anime/123').ifThen($c => $c.urlAbsolute().return().run()).boolean(false)
    */
-  return: (ctx: ChibiCtx, input: any): void => {
+  return: <T = any>(ctx: ChibiCtx, input: T): void => {
     return ctx.return(input) as unknown as void;
   },
 
@@ -87,10 +87,40 @@ export default {
    * @example
    * $c.url().this('overview.getIdentifier') // Calls the getTitle function with the current URL as parameter
    */
-  this: (ctx: ChibiCtx, input: any, property: string): any => {
+  this: <Property extends string>(
+    ctx: ChibiCtx,
+    input: any,
+    property: Property,
+  ): Property extends `${string}.is${string}` | `is${string}`
+    ? boolean
+    : Property extends `${string}.elementsSelector` | 'elementsSelector'
+      ? Element[]
+      : Property extends
+            | `${string}.getTitle`
+            | 'getTitle'
+            | `${string}.getIdentifier`
+            | 'getIdentifier'
+            | `${string}.getOverviewUrl`
+            | 'getOverviewUrl'
+            | `${string}.elementUrl`
+            | 'elementUrl'
+        ? string
+        : Property extends `${string}.elementsSelector` | 'elementsSelector'
+          ? Element[]
+          : Property extends
+                | `${string}.getEpisode`
+                | 'getEpisode'
+                | `${string}.getVolume`
+                | 'getVolume'
+            ? number
+            : Property extends `${string}.nextEpUrl` | 'nextEpUrl'
+              ? string | undefined | boolean
+              : Property extends `${string}.getMalUrl` | 'getMalUrl'
+                ? Promise<string | boolean> | string | boolean
+                : any => {
     const page = ctx.get('pageObject');
 
-    let propertyName = property;
+    let propertyName: string = property;
     switch (property) {
       case 'sync.isSyncPage':
         propertyName = 'isSyncPage';
@@ -143,7 +173,7 @@ export default {
    * @example
    * $c.getVariable('myVar', 'default') // returns the value of myVar or 'default' if not set
    */
-  getVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
+  getVariable: <T = any>(ctx: ChibiCtx, input: void, key: string, defaultValue?: T): T => {
     const value = ctx.get(key);
     return value !== undefined ? value : defaultValue;
   },
@@ -158,8 +188,13 @@ export default {
    * $c.string('hello').setVariable('myKey') // sets myVar to 'hello'
    * $c.string('world').setVariable('myKey', $c.string('newValue').run()) // sets myVar to 'newValue'
    */
-  setVariable: <Input>(ctx: ChibiCtx, input: Input, key: string, value?: ChibiJson<any>): Input => {
-    if (reservedKeys.includes(key)) {
+  setVariable: <Input>(
+    ctx: ChibiCtx,
+    input: Input,
+    key: Exclude<string, ReservedKey>,
+    value?: ChibiJson<any>,
+  ): Input => {
+    if (reservedKeys.includes(key as ReservedKey)) {
       throw new ChibiError(`Cannot set reserved key: ${key}`);
     }
 
@@ -181,7 +216,7 @@ export default {
    * @example
    * $c.getGlobalVariable('myGlobalVar', 'default') // returns the value of myGlobalVar or 'default' if not set
    */
-  getGlobalVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
+  getGlobalVariable: <T = any>(ctx: ChibiCtx, input: void, key: string, defaultValue?: T): T => {
     const value = ctx.globalGet(key);
     return value !== undefined ? value : defaultValue;
   },
@@ -196,8 +231,13 @@ export default {
    * $c.string('hello').setGlobalVariable('myKey') // sets myVar to 'hello'
    * $c.string('world').setGlobalVariable('myKey', $c.string('newValue').run()) // sets myVar to 'newValue'
    */
-  setGlobalVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
-    if (reservedKeys.includes(key)) {
+  setGlobalVariable: <Input>(
+    ctx: ChibiCtx,
+    input: Input,
+    key: Exclude<string, ReservedKey>,
+    value?: ChibiJson<any>,
+  ): Input => {
+    if (reservedKeys.includes(key as ReservedKey)) {
       throw new ChibiError(`Cannot set reserved global key: ${key}`);
     }
 
@@ -222,7 +262,7 @@ export default {
    *  .concat(' world')
    *  .log(); // 'hello world'
    */
-  fn: (ctx: ChibiCtx, input: void, functionBody: ChibiJson<any>) => {
+  fn: <T = any>(ctx: ChibiCtx, input: void, functionBody: ChibiJson<T>): T => {
     const result = ctx.run(functionBody);
 
     if (result && result instanceof ChibiReturn) {

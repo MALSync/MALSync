@@ -33,6 +33,7 @@ function generateChibiTypes() {
   let typeDefinitions = `/* eslint-disable prettier/prettier */\n`;
   typeDefinitions += `import functionsRegistry from './functions';\n`;
   typeDefinitions += `import type { ChibiGenerator, ChibiJson } from './ChibiGenerator';\n`;
+  typeDefinitions += `import type { ReservedKey } from './ChibiRegistry';\n`;
   typeDefinitions += `import type * as CT from './ChibiTypeHelper';\n\n`;
   typeDefinitions += `export interface ChibiGeneratorFunctions<Input> {\n`;
 

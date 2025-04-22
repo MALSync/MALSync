@@ -1,4 +1,12 @@
-export const reservedKeys = ['url', 'ui', 'provider', 'trigger', 'pageObject', 'element'];
+export type ReservedKey = 'url' | 'ui' | 'provider' | 'trigger' | 'pageObject' | 'element';
+export const reservedKeys: ReservedKey[] = [
+  'url',
+  'ui',
+  'provider',
+  'trigger',
+  'pageObject',
+  'element',
+];
 
 export class ChibiRegistry<T = any> {
   private store: Map<string, T> = new Map();

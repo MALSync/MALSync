@@ -92,7 +92,7 @@ export const gojo: PageInterface = {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
     syncIsReady($c) {
-      return $c.waitUntilTrue($c.url().this('sync.getTitle').run()).trigger().run();
+      return $c.waitUntilTrue($c.url().this('sync.getTitle').boolean().run()).trigger().run();
     },
     overviewIsReady($c) {
       return $c
