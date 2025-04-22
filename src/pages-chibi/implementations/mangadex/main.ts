@@ -253,18 +253,13 @@ export const mangadex: PageInterface = {
       return $c
         .detectChanges(
           $c
-            .string('__FIRST__|__LENGTH__')
-            .replace(
-              '__FIRST__',
-              $c
-                .if(
-                  $c.querySelector('.chapter').boolean().run(),
-                  $c.querySelector('.chapter').text().string().run(),
-                  $c.string('').run(),
-                )
-                .run(),
+            .if(
+              $c.querySelector('.chapter').boolean().run(),
+              $c.querySelector('.chapter').text().string().run(),
+              $c.string('').run(),
             )
-            .replace('__LENGTH__', $c.querySelectorAll('.chapter').length().string().run())
+            .concat('|')
+            .concat($c.querySelectorAll('.chapter').length().string().run())
             .run(),
           $c.trigger().run(),
         )
