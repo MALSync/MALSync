@@ -259,12 +259,12 @@ export const mangadex: PageInterface = {
               $c
                 .if(
                   $c.querySelector('.chapter').boolean().run(),
-                  $c.querySelectorAll('.chapter').get('length').get('length').string().run(),
+                  $c.querySelector('.chapter').text().string().run(),
                   $c.string('').run(),
                 )
                 .run(),
             )
-            .replace('__LENGTH__', $c.getVariable('chapters').get('length').run())
+            .replace('__LENGTH__', $c.querySelectorAll('.chapter').length().string().run())
             .run(),
           $c.trigger().run(),
         )
