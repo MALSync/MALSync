@@ -136,7 +136,7 @@
     "vue-dompurify-html": "^5.1.0",
     "vue-router": "^4.5.0",
     "vue-slider-component": "^4.1.0-beta.6",
-    "vue-tsc": "^2.2.4",
+    "vue-tsc": "^2.2.10",
     "vuedraggable": "^4.1.0",
     "webext-patterns": "^1.4.0"
   }
