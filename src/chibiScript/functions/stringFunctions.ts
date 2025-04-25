@@ -180,13 +180,15 @@ export default {
   /**
    * Concatenates two strings
    * @input string - The first string
-   * @param value - The second string to concatenate
+   * @param value - The second string to concatenate or function
    * @returns Concatenated string
    * @example
    * $c.string("Hello").concat(" World") // returns "Hello World"
+   * $c.string("Hello").concat($c.string(" World").run()) // returns "Hello World"
    */
-  concat: (ctx: ChibiCtx, input: string, value: string) => {
-    return input.concat(value);
+  concat: (ctx: ChibiCtx, input: string, value: string | ChibiJson<string>) => {
+    const concatValue = typeof value === 'string' ? value : ctx.run(value);
+    return input.concat(concatValue);
   },
 
   /**

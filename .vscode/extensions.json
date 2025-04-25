@@ -3,6 +3,7 @@
     "ms-vscode.vscode-typescript-next",
     "dbaeumer.vscode-eslint",
     "streetsidesoftware.code-spell-checker",
+    "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "stylelint.vscode-stylelint",
     "Vue.volar"

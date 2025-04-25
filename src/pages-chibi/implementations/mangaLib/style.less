@@ -1,0 +1,27 @@
+@import './../pages';
+
+@activeEp: inherit;
+@textColor: inherit;
+@inputBackground: inherit;
+@boxBackground: var(--background-elevated-2);
+
+#malp {
+  padding: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.malp-group-field {
+  font-weight: bold;
+}
+
+.mal-sync-active {
+  outline: solid 2px #79a3c3 !important;
+  outline-offset: -2px;
+}
+
+// Fix for current page div on the website being always above MalSync overlay
+#flashinfo-div {
+  z-index: 21 !important;
+}

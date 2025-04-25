@@ -39,19 +39,19 @@ export default {
   },
 
   /**
-   * Gets the current element from context
-   * @returns Current element
+   * Gets the current target element from context
+   * @returns Current target element
    * @example
-   * $c.element()
+   * $c.target()
    */
-  element: (ctx: ChibiCtx, input: void): Element => {
-    const element = ctx.get('element');
+  target: (ctx: ChibiCtx, input: void): Element => {
+    const target = ctx.get('element');
 
-    if (!element) {
-      throw new ChibiError('element not set');
+    if (!target) {
+      throw new ChibiError('target element not set');
     }
 
-    return element;
+    return target;
   },
 
   /**
