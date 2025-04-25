@@ -132,7 +132,6 @@ import { ScyllaScans } from './ScyllaScans/main';
 import { VortexScans } from './VortexScans/main';
 import { WeebCentral } from './WeebCentral/main';
 import { Kavita } from './Kavita/main';
-import { MangaLib } from './MangaLib/main';
 import { RanobeLib } from './RanobeLib/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
@@ -274,7 +273,6 @@ export const pages = {
   VortexScans,
   WeebCentral,
   Kavita,
-  MangaLib,
   RanobeLib,
   Rawkuma,
   Aninexus,

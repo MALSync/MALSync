@@ -6,7 +6,7 @@
       "url": "https://mangalib.me/ru/3595--kimetsu-no-yaiba/read/v1/c1",
       "expected": {
         "sync": true,
-        "title": "Blade of Demon Destruction",
+        "title": "Клинок, рассекающий демонов",
         "identifier": "3595",
         "overviewUrl": "https://mangalib.me/ru/manga/3595--kimetsu-no-yaiba",
         "nextEpUrl": "https://mangalib.me/ru/3595--kimetsu-no-yaiba/read/v1/c2",
@@ -18,7 +18,7 @@
       "url": "https://mangalib.me/ru/manga/1286--4-cut-hero",
       "expected": {
         "sync": false,
-        "title": "Cartoon hero",
+        "title": "Четыре рыцаря",
         "identifier": "1286",
         "uiSelector": true
       }
