@@ -19,6 +19,8 @@ export class PermissionsHandler {
 
   protected pages!: permissionElement[];
 
+  protected chibi!: permissionElement[];
+
   public async init() {
     const manifest = chrome.runtime.getManifest();
 
@@ -34,7 +36,7 @@ export class PermissionsHandler {
       api: [],
     };
 
-    let pages: tempPermissionElement[] = [];
+    const pages: tempPermissionElement[] = [];
 
     manifest.content_scripts!.forEach(page => {
       if (page.matches) {
@@ -60,10 +62,10 @@ export class PermissionsHandler {
       }
     });
 
+    let chibi: tempPermissionElement[] = [];
     try {
       const chibiRepo = await ChibiListRepository.getInstance().init();
-      const chibiPages = chibiRepo.getPermissionsElements();
-      pages = pages.concat(chibiPages);
+      chibi = chibiRepo.getPermissionsElements();
     } catch (e) {
       con.error('Failed to load chibi permissions', e);
     }
@@ -73,6 +75,7 @@ export class PermissionsHandler {
     this.required = await this.testPermission(required, activePermissions);
     this.player = await this.testPermission(player, activePermissions);
     this.pages = await Promise.all(pages.map(page => this.testPermission(page, activePermissions)));
+    this.chibi = await Promise.all(chibi.map(page => this.testPermission(page, activePermissions)));
 
     return this;
   }
@@ -83,6 +86,10 @@ export class PermissionsHandler {
 
   public getPagesPermissions() {
     return this.pages;
+  }
+
+  public getChibiPermissions() {
+    return this.chibi;
   }
 
   public getPlayerPermissions() {
@@ -132,6 +139,10 @@ export class PermissionsHandler {
       permissions.origins = permissions.origins.concat(this.pages.flatMap(page => page.match));
     }
 
+    if (this.chibi) {
+      permissions.origins = permissions.origins.concat(this.chibi.flatMap(page => page.match));
+    }
+
     const granted = await chrome.permissions.request(permissions);
 
     await this.init();
@@ -143,7 +154,8 @@ export class PermissionsHandler {
     return (
       this.required.permission !== 'denied' &&
       this.player.permission !== 'denied' &&
-      this.pages.every(page => page.permission !== 'denied')
+      this.pages.every(page => page.permission !== 'denied') &&
+      this.chibi.every(page => page.permission !== 'denied')
     );
   }
 
@@ -151,7 +163,10 @@ export class PermissionsHandler {
     return this.required.permission !== 'denied';
   }
 
-  public getRequiredState() {
-    return this.required.permission;
+  public hasMinimumPermissions() {
+    return (
+      this.required.permission !== 'denied' &&
+      this.chibi.every(page => page.permission !== 'denied')
+    );
   }
 }

@@ -30,6 +30,13 @@
 
         <Section spacer="half" direction="both">
           <PermissionCard
+            :title="lang('settings_permissions_pages') + ' (Chibi)'"
+            :permissions="perm.getChibiPermissions()"
+          />
+        </Section>
+
+        <Section spacer="half" direction="both">
+          <PermissionCard
             :title="lang('settings_permissions_player')"
             :permission="perm.getPlayerPermissions()"
           />
@@ -86,9 +93,9 @@ new PermissionsHandler().init().then(permTemp => {
 });
 
 watch(
-  () => perm.value?.getRequiredState(),
+  () => perm.value?.hasMinimumPermissions(),
   value => {
-    if (value === 'granted') {
+    if (value) {
       emits('required');
     }
   },
