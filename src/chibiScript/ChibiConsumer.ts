@@ -7,12 +7,15 @@ import functionsRegistry from './functions';
 export class ChibiConsumer {
   private script: ChibiJson<any>;
 
+  private name: string;
+
   private ctx: ChibiCtx;
 
   private hasRun: boolean = false;
 
-  constructor(script: ChibiJson<any>) {
+  constructor(script: ChibiJson<any>, name = 'Unknown') {
     this.script = script;
+    this.name = name;
     this.ctx = new ChibiCtx(this);
   }
 
@@ -118,6 +121,7 @@ export class ChibiConsumer {
       'background-color: #8f0000; color: white; padding: 2px 10px; border-radius: 3px;',
       error.message,
       {
+        name: this.name,
         functionName,
         input,
         args,
