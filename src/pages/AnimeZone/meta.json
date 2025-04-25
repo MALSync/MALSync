@@ -1,4 +1,5 @@
 {
+  "search": "https://www.animezone.pl/szukaj?q={searchtermPlus}",
   "urls": {
     "match": [
       "*://www.animezone.pl/odcinki/*",
