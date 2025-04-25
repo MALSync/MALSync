@@ -99,54 +99,45 @@ export const AnimeKAI: pageInterface = {
           .toArray()
           .some(el => el.style.display !== 'none');
 
-        return loaded && j.$('div.eplist').length;
+        return loaded && j.$('div.eplist').length > 0 && window.location.hash.length > 0;
       }
       if (isWatch2Gether()) {
         return (
-          AnimeKAI.sync.getTitle(window.location.href).length &&
-          AnimeKAI.sync.getEpisode(window.location.href)
+          AnimeKAI.sync.getTitle(window.location.href).length > 0 &&
+          AnimeKAI.sync.getEpisode(window.location.href) > 0
         );
       }
       return false;
     }
 
-    let waitTimer: NodeJS.Timer | undefined;
-    let watch2getherTimer: number | undefined;
-
-    function check() {
-      clearInterval(waitTimer);
-      waitTimer = undefined;
-      clearInterval(watch2getherTimer);
-      watch2getherTimer = undefined;
-      page.reset();
-      if (isWatch() || isWatch2Gether()) {
-        waitTimer = utils.waitUntilTrue(waitFn, function () {
-          con.info('Check');
-          page.handlePage();
-          if (isWatch2Gether()) {
-            clearInterval(watch2getherTimer);
-            watch2getherTimer = utils.changeDetect(
-              () => {
-                con.info('Check');
-                page.reset();
-                page.handlePage();
-              },
-              () => {
-                return (
-                  AnimeKAI.sync.getTitle(window.location.href) +
-                  AnimeKAI.sync.getEpisode(window.location.href)
-                );
-              },
-            );
-          }
-        });
-      }
+    function handlePage() {
+      con.info('Check');
+      page.handlePage();
     }
 
     j.$(document).ready(function () {
-      check();
+      let waitTimer: NodeJS.Timer | undefined;
+
+      utils.changeDetect(
+        () => {
+          clearInterval(waitTimer);
+          waitTimer = undefined;
+          page.reset();
+          if (isWatch() || isWatch2Gether()) {
+            waitTimer = utils.waitUntilTrue(waitFn, handlePage);
+          }
+        },
+        () => {
+          return AnimeKAI.isSyncPage(window.location.href)
+            ? [
+                AnimeKAI.sync.getIdentifier(window.location.href),
+                AnimeKAI.sync.getEpisode(window.location.href),
+              ].join('-')
+            : '';
+        },
+        true,
+      );
     });
-    utils.urlChangeDetect(() => check());
   },
 };
 
