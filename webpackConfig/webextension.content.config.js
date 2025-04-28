@@ -88,8 +88,30 @@ module.exports = {
         },
       },
       {
+        // loads less inline as string
         test: /\.less$/,
         exclude: /node_modules/,
+        resourceQuery: /^\?raw$/,
+        use: [
+          'to-string-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: false,
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.less$/,
+        exclude: /node_modules/,
+        resourceQuery: { not: [/^\?raw$/] },
         use: ['style-loader', 'css-loader', 'less-loader'],
       },
       {

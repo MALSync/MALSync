@@ -80,9 +80,7 @@ export const anizm: PageInterface = {
   },
   lifecycle: {
     setup($c) {
-      return $c
-        .addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString())
-        .run();
+      return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
       return $c.domReady().trigger().run();
