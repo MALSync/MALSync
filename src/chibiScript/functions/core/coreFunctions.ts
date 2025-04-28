@@ -1,7 +1,7 @@
 import { ChibiError } from '../../ChibiErrors';
 import type { ChibiCtx } from '../../ChibiCtx';
 import type { ChibiJson } from '../../ChibiGenerator';
-import { type ReservedKey, reservedKeys } from '../../ChibiRegistry';
+import { isReservedKey, type ReservedKey } from '../../ChibiRegistry';
 import { ChibiReturn } from '../../ChibiReturn';
 
 export default {
@@ -61,7 +61,7 @@ export default {
    * @example
    * $c.string('/anime/123').ifThen($c => $c.urlAbsolute().return().run()).boolean(false)
    */
-  return: <T = any>(ctx: ChibiCtx, input: T): void => {
+  return: (ctx: ChibiCtx, input: any): void => {
     return ctx.return(input) as unknown as void;
   },
 
@@ -173,7 +173,7 @@ export default {
    * @example
    * $c.getVariable('myVar', 'default') // returns the value of myVar or 'default' if not set
    */
-  getVariable: <T = any>(ctx: ChibiCtx, input: void, key: string, defaultValue?: T): T => {
+  getVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
     const value = ctx.get(key);
     return value !== undefined ? value : defaultValue;
   },
@@ -194,7 +194,7 @@ export default {
     key: Exclude<string, ReservedKey>,
     value?: ChibiJson<any>,
   ): Input => {
-    if (reservedKeys.includes(key as ReservedKey)) {
+    if (isReservedKey(key)) {
       throw new ChibiError(`Cannot set reserved key: ${key}`);
     }
 
@@ -216,7 +216,7 @@ export default {
    * @example
    * $c.getGlobalVariable('myGlobalVar', 'default') // returns the value of myGlobalVar or 'default' if not set
    */
-  getGlobalVariable: <T = any>(ctx: ChibiCtx, input: void, key: string, defaultValue?: T): T => {
+  getGlobalVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
     const value = ctx.globalGet(key);
     return value !== undefined ? value : defaultValue;
   },
@@ -237,7 +237,7 @@ export default {
     key: Exclude<string, ReservedKey>,
     value?: ChibiJson<any>,
   ): Input => {
-    if (reservedKeys.includes(key as ReservedKey)) {
+    if (isReservedKey(key)) {
       throw new ChibiError(`Cannot set reserved global key: ${key}`);
     }
 

@@ -1,12 +1,8 @@
-export type ReservedKey = 'url' | 'ui' | 'provider' | 'trigger' | 'pageObject' | 'element';
-export const reservedKeys: ReservedKey[] = [
-  'url',
-  'ui',
-  'provider',
-  'trigger',
-  'pageObject',
-  'element',
-];
+const reservedKeys = ['url', 'ui', 'provider', 'trigger', 'pageObject', 'element'] as const;
+export type ReservedKey = (typeof reservedKeys)[number];
+export function isReservedKey<T extends string>(key: T): T extends ReservedKey ? true : false {
+  return reservedKeys.includes(key as ReservedKey) as ReturnType<typeof isReservedKey<T>>;
+}
 
 export class ChibiRegistry<T = any> {
   private store: Map<string, T> = new Map();
