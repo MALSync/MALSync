@@ -1,5 +1,5 @@
 <template>
-  <div v-if="perm && supportsPermissions && !perm.hasRequiredPermissions()" class="error-section">
+  <div v-if="perm && supportsPermissions && !perm.hasMinimumPermissions()" class="error-section">
     <FormButton color="primary" padding="mini" @click="perm.requestPermissions()">
       {{ lang('Add') }}
     </FormButton>

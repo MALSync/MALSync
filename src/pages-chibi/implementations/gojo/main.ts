@@ -74,7 +74,7 @@ export const gojo: PageInterface = {
       return $c
         .string('/watch/<identifier>?ep=<ep>')
         .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
-        .replace('<ep>', $c.element().this('list.elementEp').run())
+        .replace('<ep>', $c.target().this('list.elementEp').run())
         .urlAbsolute()
         .run();
     },

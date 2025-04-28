@@ -1,0 +1,27 @@
+{
+  "title": "AnimeLib",
+  "url": "https://anilib.me",
+  "testCases": [
+    {
+      "url": "https://anilib.me/ru/anime/16133--jujutsu-kaisen-anime/watch?episode=41924",
+      "expected": {
+        "sync": true,
+        "title": "Магическая битва",
+        "identifier": "16133",
+        "overviewUrl": "https://anilib.me/ru/anime/16133--jujutsu-kaisen-anime",
+        "nextEpUrl": "https://anilib.me/ru/anime/16133--jujutsu-kaisen-anime/watch?episode=41925",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://anilib.me/ru/anime/17984--chainsaw-man-anime",
+      "expected": {
+        "sync": false,
+        "title": "Chainsaw Man",
+        "identifier": "17984",
+        "uiSelector": true
+      }
+    }
+  ]
+}

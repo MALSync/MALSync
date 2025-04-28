@@ -166,6 +166,18 @@ describe('String Functions', () => {
     });
   });
 
+  describe('concat', () => {
+    it('should concatenate two strings', () => {
+      const code = $c.string('Hello').concat(' World').run();
+      expect(generateAndExecute(code).run()).to.equal('Hello World');
+    });
+
+    it('should handle ChibiJson as second string', () => {
+      const code = $c.string('Hello').concat($c.string(' World').run()).run();
+      expect(generateAndExecute(code).run()).to.equal('Hello World');
+    });
+  });
+
   describe('jsonParse', () => {
     it('should parse simple JSON string', () => {
       const code = $c.string('{"key":"value"}').jsonParse().run();

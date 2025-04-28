@@ -35,7 +35,7 @@ export interface PageInterface {
    * {searchtermRaw} => 'no game no life'
    * @see {@link searchSyntax} for advanced usage
    */
-  search: string;
+  search?: string;
   /**
    * Minimum version of the Malsync extension required for this page integration to work
    * Only necessary if the page integration uses new features
