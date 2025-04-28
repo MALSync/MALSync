@@ -1,7 +1,7 @@
 import { ChibiError } from '../../ChibiErrors';
 import type { ChibiCtx } from '../../ChibiCtx';
 import type { ChibiJson } from '../../ChibiGenerator';
-import { reservedKeys } from '../../ChibiRegistry';
+import { isReservedKey, type ReservedKey } from '../../ChibiRegistry';
 import { ChibiReturn } from '../../ChibiReturn';
 
 export default {
@@ -87,10 +87,40 @@ export default {
    * @example
    * $c.url().this('overview.getIdentifier') // Calls the getTitle function with the current URL as parameter
    */
-  this: (ctx: ChibiCtx, input: any, property: string): any => {
+  this: <Property extends string>(
+    ctx: ChibiCtx,
+    input: any,
+    property: Property,
+  ): Property extends `${string}.is${string}` | `is${string}`
+    ? boolean
+    : Property extends `${string}.elementsSelector` | 'elementsSelector'
+      ? Element[]
+      : Property extends
+            | `${string}.getTitle`
+            | 'getTitle'
+            | `${string}.getIdentifier`
+            | 'getIdentifier'
+            | `${string}.getOverviewUrl`
+            | 'getOverviewUrl'
+            | `${string}.elementUrl`
+            | 'elementUrl'
+        ? string
+        : Property extends `${string}.elementsSelector` | 'elementsSelector'
+          ? Element[]
+          : Property extends
+                | `${string}.getEpisode`
+                | 'getEpisode'
+                | `${string}.getVolume`
+                | 'getVolume'
+            ? number
+            : Property extends `${string}.nextEpUrl` | 'nextEpUrl'
+              ? string | undefined | boolean
+              : Property extends `${string}.getMalUrl` | 'getMalUrl'
+                ? Promise<string | boolean> | string | boolean
+                : any => {
     const page = ctx.get('pageObject');
 
-    let propertyName = property;
+    let propertyName: string = property;
     switch (property) {
       case 'sync.isSyncPage':
         propertyName = 'isSyncPage';
@@ -158,8 +188,13 @@ export default {
    * $c.string('hello').setVariable('myKey') // sets myVar to 'hello'
    * $c.string('world').setVariable('myKey', $c.string('newValue').run()) // sets myVar to 'newValue'
    */
-  setVariable: <Input>(ctx: ChibiCtx, input: Input, key: string, value?: ChibiJson<any>): Input => {
-    if (reservedKeys.includes(key)) {
+  setVariable: <Input>(
+    ctx: ChibiCtx,
+    input: Input,
+    key: Exclude<string, ReservedKey>,
+    value?: ChibiJson<any>,
+  ): Input => {
+    if (isReservedKey(key)) {
       throw new ChibiError(`Cannot set reserved key: ${key}`);
     }
 
@@ -196,8 +231,13 @@ export default {
    * $c.string('hello').setGlobalVariable('myKey') // sets myVar to 'hello'
    * $c.string('world').setGlobalVariable('myKey', $c.string('newValue').run()) // sets myVar to 'newValue'
    */
-  setGlobalVariable: (ctx: ChibiCtx, input: any, key: string, value?: ChibiJson<any>): any => {
-    if (reservedKeys.includes(key)) {
+  setGlobalVariable: <Input>(
+    ctx: ChibiCtx,
+    input: Input,
+    key: Exclude<string, ReservedKey>,
+    value?: ChibiJson<any>,
+  ): Input => {
+    if (isReservedKey(key)) {
       throw new ChibiError(`Cannot set reserved global key: ${key}`);
     }
 
@@ -222,7 +262,7 @@ export default {
    *  .concat(' world')
    *  .log(); // 'hello world'
    */
-  fn: (ctx: ChibiCtx, input: void, functionBody: ChibiJson<any>) => {
+  fn: <T = any>(ctx: ChibiCtx, input: void, functionBody: ChibiJson<T>): T => {
     const result = ctx.run(functionBody);
 
     if (result && result instanceof ChibiReturn) {
