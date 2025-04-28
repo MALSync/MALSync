@@ -1,0 +1,28 @@
+{
+  "title": "RanobeLib",
+  "url": "https://ranobelib.me",
+  "testCases": [
+    {
+      "url": "https://ranobelib.me/ru/26690--omniscient-readers-viewpoint-novel/read/v1/c1.1",
+      "expected": {
+        "sync": true,
+        "title": "Jeonjijeog dogja sijeom (Novel)",
+        "identifier": "26690",
+        "overviewUrl": "https://ranobelib.me/ru/book/26690--omniscient-readers-viewpoint-novel",
+        "nextEpUrl": "https://ranobelib.me/ru/26690--omniscient-readers-viewpoint-novel/read/v1/c1.2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://ranobelib.me/ru/book/15630--mushoku-tensei",
+      "expected": {
+        "sync": false,
+        "title": "Mushoku Tensei (WN)",
+        "identifier": "15630",
+        "overviewUrl": "https://ranobelib.me/ru/book/15630--mushoku-tensei",
+        "uiSelector": true
+      }
+    }
+  ]
+}

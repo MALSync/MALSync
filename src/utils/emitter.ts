@@ -23,6 +23,10 @@ export function globalEmit(eventName: string, ...params) {
 }
 
 if (typeof api !== 'undefined' && api && api.type === 'webextension') {
+  chrome.runtime.sendMessage({
+    name: 'registerEmitter',
+  });
+
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.name && message.name === 'emitter') {
       con.m('Global').m('Event').debug(message.item.id, message.item.event, message.item.params);

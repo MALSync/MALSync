@@ -35,6 +35,7 @@ jobs:
     - name: Page Tests
       run: |
         npm ci
+        npm run build:webextension
         npm run test:headless
       env:
         CI: true

@@ -1,156 +1,172 @@
-import { Ref, ref } from 'vue';
+import { ChibiListRepository } from '../pages-chibi/loader/ChibiListRepository';
 
 export type permissionType = 'granted' | 'denied' | 'unknown';
 
-export type permissionElement = {
+type tempPermissionElement = {
   name?: string;
   match: string[];
   api?: string[];
-  permission: Ref<permissionType>;
+};
+
+export type permissionElement = tempPermissionElement & {
+  permission: permissionType;
 };
 
 export class PermissionsHandler {
-  protected permissionsObject: {
-    general: Ref<permissionType>;
-    required: permissionElement;
-    player: permissionElement;
-    pages: permissionElement[];
-  };
+  protected required!: permissionElement;
 
-  constructor() {
-    this.permissionsObject = {
-      general: ref('unknown'),
-      required: {
-        match: [],
-        api: [],
-        permission: ref('unknown'),
-      },
-      player: {
-        match: [],
-        permission: ref('unknown'),
-      },
-      pages: [],
-    };
+  protected player!: permissionElement;
 
+  protected pages!: permissionElement[];
+
+  protected chibi!: permissionElement[];
+
+  public async init() {
     const manifest = chrome.runtime.getManifest();
 
-    this.permissionsObject.required.api = manifest.host_permissions.filter(
-      el => el !== '<all_urls>',
-    );
+    const required: tempPermissionElement = {
+      name: 'required',
+      match: [],
+      api: manifest.host_permissions.filter(el => el !== '<all_urls>'),
+    };
+
+    const player: tempPermissionElement = {
+      name: 'player',
+      match: [],
+      api: [],
+    };
+
+    const pages: tempPermissionElement[] = [];
 
     manifest.content_scripts!.forEach(page => {
       if (page.matches) {
-        const obj: permissionElement = {
+        const obj: tempPermissionElement = {
           match: page.matches,
-          permission: ref('unknown'),
         };
 
         const script = page.js?.find(e => /content\/page_/.test(e) || e.includes('iframe.js'));
 
         if (!script) {
-          this.permissionsObject.required.match = this.permissionsObject.required.match.concat(
-            page.matches,
-          );
+          required.match = required.match.concat(obj.match);
           return;
         }
 
         if (script.includes('iframe.js')) {
-          this.permissionsObject.player.match = this.permissionsObject.player.match.concat(
-            page.matches,
-          );
+          player.match = player.match.concat(page.matches);
           return;
         }
 
         obj.name = script.replace(/^.*content\/page_/, '').replace('.js', '');
 
-        this.permissionsObject!.pages.push(obj);
+        pages.push(obj);
       }
     });
+
+    let chibi: tempPermissionElement[] = [];
+    try {
+      const chibiRepo = await ChibiListRepository.getInstance().init();
+      chibi = chibiRepo.getPermissionsElements();
+    } catch (e) {
+      con.error('Failed to load chibi permissions', e);
+    }
+
+    const activePermissions = await chrome.permissions.getAll();
+
+    this.required = await this.testPermission(required, activePermissions);
+    this.player = await this.testPermission(player, activePermissions);
+    this.pages = await Promise.all(pages.map(page => this.testPermission(page, activePermissions)));
+    this.chibi = await Promise.all(chibi.map(page => this.testPermission(page, activePermissions)));
+
+    return this;
   }
 
   public getRequiredPermissions() {
-    return this.permissionsObject.required;
+    return this.required;
   }
 
   public getPagesPermissions() {
-    return this.permissionsObject.pages;
+    return this.pages;
+  }
+
+  public getChibiPermissions() {
+    return this.chibi;
   }
 
   public getPlayerPermissions() {
-    return this.permissionsObject.player;
+    return this.player;
   }
 
-  public async checkPermissions() {
-    const permissions = await chrome.permissions.getAll();
-
-    const results = await Promise.all([
-      this.testPermissionElement(this.permissionsObject.required, permissions),
-      this.testPermissionElement(this.permissionsObject.player, permissions),
-      ...this.permissionsObject.pages.map(page => this.testPermissionElement(page, permissions)),
-    ]);
-
-    if (results.includes('denied')) {
-      this.permissionsObject.general.value = 'denied';
-    } else {
-      this.permissionsObject.general.value = 'granted';
-    }
-  }
-
-  protected async testPermissionElement(
-    element: permissionElement,
+  protected async testPermission(
+    element: tempPermissionElement,
     permissions: chrome.permissions.Permissions,
-  ): Promise<permissionType> {
+  ): Promise<permissionElement> {
     if (!element.match.every(permission => permissions.origins!.includes(permission))) {
       if (!(await chrome.permissions.contains({ origins: element.match }))) {
-        element.permission.value = 'denied';
-        return 'denied';
+        return {
+          ...element,
+          permission: 'denied',
+        };
       }
     }
 
     if (element.api && !(await chrome.permissions.contains({ origins: element.api }))) {
-      element.permission.value = 'denied';
-      return 'denied';
+      return {
+        ...element,
+        permission: 'denied',
+      };
     }
 
-    element.permission.value = 'granted';
-    return 'granted';
+    return {
+      ...element,
+      permission: 'granted',
+    };
   }
 
   public async requestPermissions() {
     const permissions = {
-      origins: this.permissionsObject.required.match,
+      origins: this.required!.match,
     };
 
-    if (this.permissionsObject.required.api) {
-      permissions.origins = permissions.origins.concat(this.permissionsObject.required.api);
+    if (this.required.api) {
+      permissions.origins = permissions.origins.concat(this.required.api);
     }
 
-    if (this.permissionsObject.player.match) {
-      permissions.origins = permissions.origins.concat(this.permissionsObject.player.match);
+    if (this.player.match) {
+      permissions.origins = permissions.origins.concat(this.player.match);
     }
 
-    if (this.permissionsObject.pages) {
-      permissions.origins = permissions.origins.concat(
-        this.permissionsObject.pages.flatMap(page => page.match),
-      );
+    if (this.pages) {
+      permissions.origins = permissions.origins.concat(this.pages.flatMap(page => page.match));
+    }
+
+    if (this.chibi) {
+      permissions.origins = permissions.origins.concat(this.chibi.flatMap(page => page.match));
     }
 
     const granted = await chrome.permissions.request(permissions);
 
-    await this.checkPermissions();
+    await this.init();
 
     return granted;
   }
 
   public hasAllPermissions() {
-    return this.permissionsObject.general.value !== 'denied';
+    return (
+      this.required.permission !== 'denied' &&
+      this.player.permission !== 'denied' &&
+      this.pages.every(page => page.permission !== 'denied') &&
+      this.chibi.every(page => page.permission !== 'denied')
+    );
   }
 
   public hasRequiredPermissions() {
-    return this.permissionsObject.required.permission.value !== 'denied';
+    return this.required.permission !== 'denied';
   }
 
-  public getRequiredState() {
-    return this.permissionsObject.required.permission;
+  public hasMinimumPermissions() {
+    return (
+      this.required.permission !== 'denied' &&
+      this.chibi.every(page => page.permission !== 'denied')
+    );
   }
 }

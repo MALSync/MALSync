@@ -1,8 +1,9 @@
+import { ChibiListRepository } from '../pages-chibi/loader/ChibiListRepository';
 import { isIframeUrl } from '../utils/manifest';
 
 const logger = con.m('Custom Domain');
 
-export type domainType = { domain: string; page: string; auto?: boolean };
+export type domainType = { domain: string; page: string; auto?: boolean; chibi?: boolean };
 
 export async function initCustomDomain() {
   updateListener();
@@ -27,7 +28,16 @@ async function registerScripts() {
     return;
   }
 
-  const domains: domainType[] = await api.settings.getAsync('customDomains');
+  let domains: domainType[] = await api.settings.getAsync('customDomains');
+
+  try {
+    const chibiRepo = await ChibiListRepository.getInstance().init();
+    const chibiDomains = chibiRepo.getPermissions();
+    domains = domains.concat(chibiDomains);
+  } catch (e) {
+    logger.error('Could not load chibi permissions', e);
+  }
+
   await chrome.scripting.unregisterContentScripts();
   if (domains) {
     await Promise.all(domains.map(registerScript));
@@ -53,6 +63,9 @@ async function registerScript(domainConfig: domainType) {
     if (domainConfig.page === 'iframe') {
       scriptConfig.js.push('content/iframe.js');
       scriptConfig.allFrames = true;
+    } else if (domainConfig.chibi) {
+      scriptConfig.js.push('content/chibi.js');
+      scriptConfig.js.push('content/content-script.js');
     } else {
       scriptConfig.js.push(`content/page_${domainConfig.page}.js`);
       scriptConfig.js.push('content/content-script.js');

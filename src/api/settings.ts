@@ -64,6 +64,8 @@ export const settingsObj = {
       'MangaReader',
       'ComicK',
       'WeebCentral',
+      'KickAssAnime',
+      'animepahe',
     ],
     quicklinksPosition: 'default',
 

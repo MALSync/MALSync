@@ -1,5 +1,5 @@
 <template>
-  <div v-if="supportsPermissions && !perm.hasRequiredPermissions()" class="error-section">
+  <div v-if="perm && supportsPermissions && !perm.hasMinimumPermissions()" class="error-section">
     <FormButton color="primary" padding="mini" @click="perm.requestPermissions()">
       {{ lang('Add') }}
     </FormButton>
@@ -8,6 +8,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, Ref } from 'vue';
 import FormButton from '../form/form-button.vue';
 
 import { PermissionsHandler } from '../../../utils/permissions';
@@ -16,8 +17,12 @@ import { sessionSupportsPermissions } from '../../../utils/customDomains';
 const supportsPermissions = sessionSupportsPermissions();
 const mode = $('html').attr('mode');
 
-const perm = new PermissionsHandler();
-if (supportsPermissions && mode !== 'install') perm.checkPermissions();
+const perm: Ref<null | PermissionsHandler> = ref(null);
+if (supportsPermissions && mode !== 'install') {
+  new PermissionsHandler().init().then(permTemp => {
+    perm.value = permTemp;
+  });
+}
 </script>
 
 <style lang="less" scoped>
