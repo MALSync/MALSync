@@ -11,7 +11,7 @@
     "node": ">=20.19.0"
   },
   "devDependencies": {
-    "@ghostery/adblocker-puppeteer": "^2.5.1",
+    "@ghostery/adblocker-puppeteer": "^2.5.2",
     "@cspell/eslint-plugin": "8.19.3",
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.21.0",
