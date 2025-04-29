@@ -19,7 +19,7 @@ jobs:
         format: 'json'
     - uses: actions/setup-node@v4
       with:
-        node-version: '20.x'
+        node-version: '20.19.1'
     - name: Checkout test data
       uses: actions/checkout@v4
       with:
