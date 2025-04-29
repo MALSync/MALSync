@@ -65,7 +65,6 @@ import { MangaJar } from './MangaJar/main';
 import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
 import { AnimeWho } from './AnimeWho/main';
-import { Toonily } from './Toonily/main';
 import { Fumetsu } from './Fumetsu/main';
 import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
@@ -205,7 +204,6 @@ export const pages = {
   Otakustv,
   Komga,
   AnimeWho,
-  Toonily,
   Fumetsu,
   FrixySubs,
   Guya,
