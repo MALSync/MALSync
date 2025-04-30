@@ -38,7 +38,7 @@
     "eslint-import-resolver-typescript": "3.8.3",
     "eslint-plugin-es-x": "8.5.0",
     "eslint-plugin-no-unsanitized": "4.1.2",
-    "eslint-plugin-prettier": "5.2.3",
+    "eslint-plugin-prettier": "5.2.6",
     "eslint-plugin-vue": "9.33.0",
     "eslint-plugin-vue-scoped-css": "2.9.0",
     "expose-loader": "^5.0.1",
