@@ -44,7 +44,7 @@
     "expose-loader": "^5.0.1",
     "fs-extra": "^11.3.0",
     "less": "^4.3.0",
-    "less-loader": "^12.2.0",
+    "less-loader": "^12.3.0",
     "mkdirp": "^1.0.4",
     "mocha": "^10.8.2",
     "node-dir": "^0.1.17",
