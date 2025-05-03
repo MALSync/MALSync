@@ -524,6 +524,7 @@ module.exports = {
       '*://richardsignfish.com/e/*',
       '*://sarahnewspaperbeat.com/e/*',
       '*://diananatureforeign.com/e/*',
+      '*://jonathansociallike.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
