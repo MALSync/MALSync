@@ -68,7 +68,7 @@
     "typescript-eslint": "8.26.0",
     "vue-eslint-parser": "9.4.3",
     "vue-loader": "^17.4.2",
-    "web-ext": "^8.4.0",
+    "web-ext": "^8.6.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1"
   },
