@@ -40,7 +40,8 @@ export const AniDream: pageInterface = {
     getMalUrl(provider) {
       if (jsonData.myanimelist_id)
         return `https://myanimelist.net/anime/${jsonData.myanimelist_id}`;
-      if (jsonData.anilist_id) return `https://anilist.co/anime/${jsonData.anilist_id}`;
+      if (jsonData.anilist_id && provider === 'ANILIST')
+        return `https://anilist.co/anime/${jsonData.anilist_id}`;
       return false;
     },
   },
@@ -93,7 +94,7 @@ export const AniDream: pageInterface = {
 
     utils.changeDetect(
       () => {
-        page.handleList()
+        page.handleList();
       },
       () => j.$('.ms-episodes').text(),
     );

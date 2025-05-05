@@ -285,5 +285,5 @@ export const pages = {
   Aninexus,
   AnimeKAI,
   Hikari,
-  AniDream
+  AniDream,
 };
