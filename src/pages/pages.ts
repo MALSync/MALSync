@@ -136,6 +136,7 @@ import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
 import { AnimeKAI } from './AnimeKAI/main';
 import { Hikari } from './Hikari/main';
+import { AniDream } from './AniDream/main';
 
 export const pages = {
   Crunchyroll,
@@ -276,4 +277,5 @@ export const pages = {
   Aninexus,
   AnimeKAI,
   Hikari,
+  AniDream,
 };

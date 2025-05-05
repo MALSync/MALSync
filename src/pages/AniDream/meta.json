@@ -1,0 +1,6 @@
+{
+  "search": "https://anidream.cc/archive/?title={searchtermPlus}",
+  "urls": {
+    "match": ["*://*.anidream.cc/*"]
+  }
+}
