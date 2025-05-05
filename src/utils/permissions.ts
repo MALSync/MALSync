@@ -101,7 +101,10 @@ export class PermissionsHandler {
     permissions: chrome.permissions.Permissions,
   ): Promise<permissionElement> {
     if (!element.match.every(permission => permissions.origins!.includes(permission))) {
-      if (!(await chrome.permissions.contains({ origins: element.match }))) {
+      if (
+        element.match.length &&
+        !(await chrome.permissions.contains({ origins: element.match }))
+      ) {
         return {
           ...element,
           permission: 'denied',
@@ -109,7 +112,7 @@ export class PermissionsHandler {
       }
     }
 
-    if (element.api && !(await chrome.permissions.contains({ origins: element.api }))) {
+    if (element.api?.length && !(await chrome.permissions.contains({ origins: element.api }))) {
       return {
         ...element,
         permission: 'denied',
