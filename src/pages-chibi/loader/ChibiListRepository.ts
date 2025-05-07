@@ -12,18 +12,21 @@ export class ChibiListRepository {
 
   private pages: PageListJsonInterface['pages'] | null = null;
 
-  static getInstance() {
+  private useCache: boolean;
+
+  static getInstance(useCache = false) {
     let repos;
     if ((api.type as any) === 'userscript') {
       repos = ['https://chibi.malsync.moe/config'];
     } else {
       repos = [chrome.runtime.getURL('chibi'), 'https://chibi.malsync.moe/config'];
     }
-    return new ChibiListRepository(repos);
+    return new ChibiListRepository(repos, useCache);
   }
 
-  constructor(collections: string[]) {
+  constructor(collections: string[], useCache = false) {
     this.collections = collections;
+    this.useCache = useCache;
   }
 
   async init() {
@@ -31,6 +34,11 @@ export class ChibiListRepository {
     const data: StorageInterface = ((await api.storage.get(
       storageKey,
     )) as StorageInterface | null) || { chibiPages: {}, errors: {} };
+
+    if (this.useCache && data.chibiPages && Object.keys(data.chibiPages).length > 0) {
+      this.pages = data.chibiPages;
+      return this;
+    }
 
     const errors = {};
     const collectionsData = (

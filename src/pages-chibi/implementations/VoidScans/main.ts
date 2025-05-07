@@ -8,7 +8,7 @@ export const voidScans: PageInterface = {
   urls: {
     match: ['*://hivecomic.com/*', '*://hivetoon.com/*', '*://void-scans.com/*'],
   },
-  search: 'https://hivecomic.com/?s={searchtermPlus}',
+  search: 'https://hivecomic.com/series?searchTerm={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

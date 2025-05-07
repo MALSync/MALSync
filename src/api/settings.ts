@@ -1,4 +1,6 @@
 import { reactive, ref } from 'vue';
+import { ChibiListRepository } from '../pages-chibi/loader/ChibiListRepository';
+import type { PageListJsonInterface } from '../pages-chibi/pageInterface';
 
 export const settingsObj = {
   options: reactive({
@@ -121,6 +123,8 @@ export const settingsObj = {
 
   debounceArray: {},
 
+  chibiList: {} as PageListJsonInterface['pages'],
+
   isInit: ref(false),
 
   async init() {
@@ -132,6 +136,14 @@ export const settingsObj = {
         tempSettings[key] = /(token|refresh)/i.test(key) && store ? '********' : store;
       }
     }
+
+    try {
+      const chibiRepo = await ChibiListRepository.getInstance(true).init();
+      this.chibiList = chibiRepo.getList();
+    } catch (e) {
+      con.error('Error loading chibi repo', e);
+    }
+
     con.log('Settings', tempSettings);
 
     let rateDebounce;
@@ -205,5 +217,10 @@ export const settingsObj = {
     if (typeof value === 'undefined' && typeof this.options[name] !== 'undefined')
       return this.options[name];
     return value;
+  },
+
+  getStaticChibi(): PageListJsonInterface['pages'] {
+    if (!this.isInit.value) throw 'Settings not initialized';
+    return this.chibiList;
   },
 };

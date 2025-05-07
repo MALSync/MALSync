@@ -1,6 +1,6 @@
 import type { ChibiGenerator, ChibiJson } from 'src/chibiScript/ChibiGenerator';
 import { mangaProgressConfig } from '../utils/mangaProgress/MangaProgress';
-import type { searchSyntax } from '../utils/quicklinksBuilder';
+import type { searchSyntax, QuicklinkObjectSearch } from '../utils/quicklinksBuilder';
 
 /**
  * Interface defining the structure for a chibi page integration in MALSync.
@@ -35,7 +35,7 @@ export interface PageInterface {
    * {searchtermRaw} => 'no game no life'
    * @see {@link searchSyntax} for advanced usage
    */
-  search?: string;
+  search?: string | QuicklinkObjectSearch;
   /**
    * Minimum version of the Malsync extension required for this page integration to work
    * Only necessary if the page integration uses new features
