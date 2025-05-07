@@ -157,6 +157,7 @@
       "*://hianimez.is/*"
     ],
     "iframe": [
+      "*://*.mixdrop.my/e/*",
       "*://alejandrocenturyoil.com/e/*",
       "*://heatherwholeinvolve.com/e/*",
       "*://nathanfromsubject.com/e/*",
