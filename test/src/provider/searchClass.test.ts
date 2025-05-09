@@ -274,13 +274,9 @@ describe('Full Search', function() {
 
   it('Not Found', async function() {
     this.timeout(10000);
-    const searchObj = new SearchClass(
-      'Avatar: The Legend of Korra',
-      'anime',
-      'avatar-the-legend-of-korra',
-    );
+    const searchObj = new SearchClass('Castlevania', 'anime', '17870');
     searchObj.setPage({
-      database: 'Gogoanime',
+      database: 'Zoro',
       type: 'anime',
     });
     const result = await searchObj.searchForIt();

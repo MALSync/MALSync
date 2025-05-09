@@ -65,7 +65,6 @@ import { MangaJar } from './MangaJar/main';
 import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
 import { AnimeWho } from './AnimeWho/main';
-import { Toonily } from './Toonily/main';
 import { Fumetsu } from './Fumetsu/main';
 import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
@@ -93,7 +92,6 @@ import { Animetoast } from './Animetoast/main';
 import { LuminousScans } from './LuminousScans/main';
 import { Animeworld } from './Animeworld/main';
 import { MangaBuddy } from './MangaBuddy/main';
-import { VoidScans } from './VoidScans/main';
 import { ToonAnime } from './ToonAnime/main';
 import { ADKami } from './ADKami/main';
 import { Kaguya } from './Kaguya/main';
@@ -206,7 +204,6 @@ export const pages = {
   Otakustv,
   Komga,
   AnimeWho,
-  Toonily,
   Fumetsu,
   FrixySubs,
   Guya,
@@ -234,7 +231,6 @@ export const pages = {
   LuminousScans,
   Animeworld,
   MangaBuddy,
-  VoidScans,
   ToonAnime,
   ADKami,
   Kaguya,

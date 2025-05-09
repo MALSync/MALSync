@@ -7,6 +7,7 @@ import { pageInterface } from '../pages/pageInterface';
 let lastFocus;
 
 declare let _Page: pageInterface | (() => Promise<pageInterface>);
+declare let _PageChibi: pageInterface | (() => Promise<pageInterface>) | undefined;
 
 // @ts-ignore
 if (typeof global.doubleLoad !== 'undefined' && global.doubleLoad) {
@@ -19,10 +20,11 @@ global.doubleLoad = true;
 async function main() {
   if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
 
-  let pageObject = _Page;
+  let pageObject = typeof _PageChibi !== 'undefined' ? _PageChibi : _Page;
   if (typeof pageObject === 'function') {
     pageObject = await pageObject();
   }
+
   const page = new SyncPage(window.location.href, pageObject, floatClick);
   messagePageListener(page);
   page.init();

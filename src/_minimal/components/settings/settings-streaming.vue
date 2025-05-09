@@ -130,7 +130,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import draggable from 'vuedraggable';
-import { optionToCombined, quicklinks, removeOptionKey } from '../../../utils/quicklinksBuilder';
+import { optionToCombined, getQuicklinks, removeOptionKey } from '../../../utils/quicklinksBuilder';
 import FormButton from '../form/form-button.vue';
 import TextIcon from '../text-icon.vue';
 import Card from '../card.vue';
@@ -177,7 +177,7 @@ const animeFilter = ref(true);
 const mangaFilter = ref(true);
 
 const linksWithState = computed(() => {
-  return [...quicklinks, ...model.value.filter(el => typeof el === 'object' && el)]
+  return [...getQuicklinks(), ...model.value.filter(el => typeof el === 'object' && el)]
     .filter(el => {
       if (!search.value) return true;
       return el.name.toLowerCase().includes(search.value.toLowerCase());
