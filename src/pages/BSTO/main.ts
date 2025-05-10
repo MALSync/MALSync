@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const BSTO: pageInterface = {
+export const BSTO: PageInterface = {
   domain: 'https://bs.to',
   languages: ['German'],
   name: 'bs.to',

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Furyosociety: pageInterface = {
+export const Furyosociety: PageInterface = {
   name: 'Furyosociety',
   domain: 'https://furyosociety.com/',
   languages: ['French'],

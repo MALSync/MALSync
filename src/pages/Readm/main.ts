@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Readm: pageInterface = {
+export const Readm: PageInterface = {
   name: 'Readm',
   domain: 'https://readm.today',
   languages: ['English'],

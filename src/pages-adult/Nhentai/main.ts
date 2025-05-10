@@ -1,10 +1,10 @@
-import { pageInterface } from '../../pages/pageInterface';
+import { PageInterface } from '../../pages/pageInterface';
 
 function cleanTitle(title) {
   return title.replace(/(\([^)]*\)|\[[^\]]*\])/g, '').trim();
 }
 
-export const Nhentai: pageInterface = {
+export const Nhentai: PageInterface = {
   name: 'Nhentai',
   domain: 'https://nhentai.net',
   languages: ['English', 'Chinese', 'Japanese'],

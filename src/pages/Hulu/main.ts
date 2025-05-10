@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let episode = 0;
 let season = 0;
@@ -7,7 +7,7 @@ let name: any;
 let movie = false;
 let nextEp: any;
 
-export const Hulu: pageInterface = {
+export const Hulu: PageInterface = {
   name: 'Hulu',
   domain: 'https://www.hulu.com',
   languages: ['English'],

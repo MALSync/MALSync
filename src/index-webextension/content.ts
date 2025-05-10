@@ -2,11 +2,11 @@ import { SyncPage } from '../pages/syncPage';
 import { firebaseNotification } from '../utils/firebaseNotification';
 import { shortcutListener } from '../utils/player';
 import { floatClick } from '../floatbutton/extension';
-import { pageInterface } from '../pages/pageInterface';
+import { PageInterface } from '../pages/pageInterface';
 
-let lastFocus;
+let lastFocus: number;
 
-declare let _Page: pageInterface | (() => Promise<pageInterface>);
+declare let _Page: PageInterface | (() => Promise<PageInterface>);
 
 // @ts-ignore
 if (typeof global.doubleLoad !== 'undefined' && global.doubleLoad) {
@@ -17,7 +17,7 @@ if (typeof global.doubleLoad !== 'undefined' && global.doubleLoad) {
 global.doubleLoad = true;
 
 async function main() {
-  if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
+  if (api.settings.get('userscriptModeButton')) throw new Error('Userscript mode');
 
   let pageObject = _Page;
   if (typeof pageObject === 'function') {

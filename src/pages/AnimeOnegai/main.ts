@@ -1,10 +1,10 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let id;
 let OVurl;
 let Interval;
 
-export const AnimeOnegai: pageInterface = {
+export const AnimeOnegai: PageInterface = {
   name: 'AnimeOnegai',
   domain: 'https://www.animeonegai.com',
   languages: ['Spanish'],

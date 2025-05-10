@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const BlueSolo: pageInterface = {
+export const BlueSolo: PageInterface = {
   name: 'BlueSolo',
   domain: 'https://www.bluesolo.org',
   languages: ['French'],

@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from '../listAbstract';
+import { ListAbstract, ListElement } from '../listAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 
@@ -7,12 +7,12 @@ export class UserList extends ListAbstract {
 
   public compact = false;
 
-  public seperateRewatching = true;
+  public separateRewatching = true;
 
   authenticationUrl =
     'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
-  getUserObject() {
+  async getUserObject() {
     const query = `
     query {
       Viewer {
@@ -31,19 +31,19 @@ export class UserList extends ListAbstract {
     }
     `;
 
-    return helper.apiCall(query, [], true).then(res => {
-      if (res.data.Viewer.options && res.data.Viewer.mediaListOptions) {
-        const opt = api.settings.get('anilistOptions');
-        opt.displayAdultContent = res.data.Viewer.options.displayAdultContent;
-        opt.scoreFormat = res.data.Viewer.mediaListOptions.scoreFormat;
-        api.settings.set('anilistOptions', opt);
-      }
-      return {
-        username: res.data.Viewer.name,
-        picture: res.data.Viewer.avatar.large || '',
-        href: `https://anilist.co/user/${res.data.Viewer.id}`,
-      };
-    });
+    const res = await helper.apiCall(query, [], true);
+    if (res.data.Viewer.options && res.data.Viewer.mediaListOptions) {
+      const opt = api.settings.get('anilistOptions');
+      opt.displayAdultContent = res.data.Viewer.options.displayAdultContent;
+      opt.scoreFormat = res.data.Viewer.mediaListOptions.scoreFormat;
+      con.info('UserList', 'getUserObject', 'options', opt);
+      await api.settings.set('anilistOptions', opt);
+    }
+    return {
+      username: res.data.Viewer.name,
+      picture: res.data.Viewer.avatar.large || '',
+      href: `https://anilist.co/user/${res.data.Viewer.id}`,
+    };
   }
 
   deauth() {
@@ -201,8 +201,8 @@ export class UserList extends ListAbstract {
     });
   }
 
-  private async prepareData(data, listType): Promise<listElement[]> {
-    const newData = [] as listElement[];
+  private async prepareData(data, listType): Promise<ListElement[]> {
+    const newData = [] as ListElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
       let tempData;

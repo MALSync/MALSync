@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const BilibiliComics: pageInterface = {
+export const BilibiliComics: PageInterface = {
   name: 'BilibiliComics',
   domain: 'https://manga.bilibili.com',
   languages: ['Chinese'],

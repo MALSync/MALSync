@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MyAnimeListVideo: pageInterface = {
+export const MyAnimeListVideo: PageInterface = {
   name: 'MyAnimeList',
   domain: 'https://myanimelist.net',
   languages: ['English'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const LHTranslation: pageInterface = {
+export const LHTranslation: PageInterface = {
   name: 'LHTranslation',
   domain: 'https://lhtranslation.net',
   languages: ['English'],

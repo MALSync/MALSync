@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const moeclip: pageInterface = {
+export const moeclip: PageInterface = {
   name: 'moeclip',
   domain: 'https://moeclip.com',
   languages: ['Indonesian'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const TritiniaScans: pageInterface = {
+export const TritiniaScans: PageInterface = {
   name: 'TritiniaScans',
   domain: 'https://tritinia.com',
   languages: ['English'],

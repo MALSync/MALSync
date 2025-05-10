@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const ReadManhua: pageInterface = {
+export const ReadManhua: PageInterface = {
   name: 'ReadManhua',
   domain: 'https://readmanhua.net',
   languages: ['English'],

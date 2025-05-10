@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let originalSrc;
 const changeSrc = (currentPlayer, currentTries = 0) => {
@@ -26,7 +26,7 @@ const changeSrc = (currentPlayer, currentTries = 0) => {
   $($('video')[0]).attr('src', currentPlayer === 1 ? originalSrc : (tempSrc ?? originalSrc));
 };
 
-export const AnimesOnline: pageInterface = {
+export const AnimesOnline: PageInterface = {
   name: 'Animes Online',
   domain: 'https://animesonline.in',
   languages: ['Portuguese'],

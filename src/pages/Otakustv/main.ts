@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Otakustv: pageInterface = {
+export const Otakustv: PageInterface = {
   name: 'Otakustv',
   domain: 'https://www.otakustv.com',
   languages: ['Spanish'],

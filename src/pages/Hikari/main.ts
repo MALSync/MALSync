@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 type OverviewJson = {
   page: 'anime';
@@ -21,7 +21,7 @@ type VideoJson = {
 
 let jsonData: OverviewJson | VideoJson | undefined;
 
-export const Hikari: pageInterface = {
+export const Hikari: PageInterface = {
   name: 'Hikari',
   domain: ['https://watch.hikaritv.xyz'],
   languages: ['English'],

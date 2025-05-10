@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { ScriptProxy } from '../../utils/scriptProxy';
 
 const proxy = new ScriptProxy('Crunchyroll');
@@ -71,7 +71,7 @@ const status: {
 
 let authenticated = false;
 
-export const beta: pageInterface = {
+export const beta: PageInterface = {
   name: 'BetaCrunchyroll',
   domain: 'https://www.crunchyroll.com',
   languages: [

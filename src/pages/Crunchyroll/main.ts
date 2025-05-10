@@ -1,7 +1,7 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 import { beta } from './beta';
 
-export const Crunchyroll: pageInterface = {
+export const Crunchyroll: PageInterface = {
   name: 'Crunchyroll',
   domain: 'https://www.crunchyroll.com',
   languages: [

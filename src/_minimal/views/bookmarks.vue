@@ -93,7 +93,7 @@
               :is="listTheme.component"
               v-for="item in list!"
               :key="item.uid"
-              :item="formatItem(item as listElement)"
+              :item="formatItem(item as ListElement)"
             />
           </TransitionStaggered>
         </Grid>
@@ -138,7 +138,7 @@ import { getList } from '../../_provider/listFactory';
 import Grid from '../components/grid.vue';
 import TransitionStaggered from '../components/transition-staggered.vue';
 import { bookmarkItem } from '../minimalClass';
-import { listElement } from '../../_provider/listAbstract';
+import { ListElement } from '../../_provider/listAbstract';
 import MediaStatusDropdown from '../components/media/media-status-dropdown.vue';
 import FormDropdown from '../components/form/form-dropdown.vue';
 import { bookmarkFormats } from '../utils/bookmarks';
@@ -169,7 +169,7 @@ const parameters = ref({
   state: Number(props.state),
   type: props.type as 'anime' | 'manga',
 });
-const cacheList = ref([] as listElement[]);
+const cacheList = ref([] as ListElement[]);
 
 watch(
   () => props.type,
@@ -232,7 +232,7 @@ const list = computed(() => {
   return listRequest.data && !listRequest.loading ? listRequest.data.getTemplist() : null;
 });
 
-const formatItem = (item: listElement): bookmarkItem => {
+const formatItem = (item: ListElement): bookmarkItem => {
   const resItem = item as bookmarkItem;
   if (item.options) {
     const overview = item.options.u;

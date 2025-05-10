@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeZone: pageInterface = {
+export const AnimeZone: PageInterface = {
   name: 'AnimeZone',
   domain: 'https://www.animezone.pl',
   languages: ['Polish'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const ScyllaScans: pageInterface = {
+export const ScyllaScans: PageInterface = {
   name: 'ScyllaScans',
   domain: 'https://scyllacomics.xyz',
   languages: ['English'],

@@ -1,5 +1,5 @@
 import * as helper from './helper';
-import { listElement } from './listAbstract';
+import { ListElement } from './listAbstract';
 import { UserList as MalList } from './MyAnimeList_hybrid/list';
 import { UserList as MalApiList } from './MyAnimeList_api/list';
 import { UserList as AnilistList } from './AniList/list';
@@ -9,7 +9,7 @@ import { UserList as ShikiList } from './Shikimori/list';
 import { UserList as LocalList } from './Local/list';
 
 export async function getList(...args) {
-  let tempList: listElement[] = [];
+  let tempList: ListElement[] = [];
   if (api.settings.get('localSync')) {
     const [status, listType] = args;
     const localListEl = new LocalList(status, listType);

@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let jsonData;
 
-export const AniDream: pageInterface = {
+export const AniDream: PageInterface = {
   name: 'AniDream',
   domain: 'https://anidream.cc',
   languages: ['Italian'],

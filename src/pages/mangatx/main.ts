@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const mangatx: pageInterface = {
+export const mangatx: PageInterface = {
   name: 'mangatx',
   domain: 'https://mangatx.com',
   languages: ['English'],

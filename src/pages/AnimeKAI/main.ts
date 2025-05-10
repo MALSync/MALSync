@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeKAI: pageInterface = {
+export const AnimeKAI: PageInterface = {
   name: 'AnimeKAI',
   domain: 'https://animekai.to',
   languages: ['English'],

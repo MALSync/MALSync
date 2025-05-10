@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Shinden: pageInterface = {
+export const Shinden: PageInterface = {
   name: 'Shinden',
   domain: 'https://shinden.pl',
   languages: ['Polish'],

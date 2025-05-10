@@ -1,6 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
-import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
+import { dateFromTimezoneToTimezone, getWeekTime } from '../../utils/time';
 import { IntlDateTime, IntlDuration, IntlRange } from '../../utils/IntlWrapper';
 
 export class MetaOverview extends MetaOverviewAbstract {
@@ -212,7 +212,7 @@ export class MetaOverview extends MetaOverviewAbstract {
               const dayString = match[1];
               const timeString = match[2];
 
-              const weekDate = getWeektime(dayString, timeString);
+              const weekDate = getWeekTime(dayString, timeString);
               if (weekDate) {
                 const broadcastDate = dateFromTimezoneToTimezone(weekDate, 'Asia/Tokyo');
                 return {

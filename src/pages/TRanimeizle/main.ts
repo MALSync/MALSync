@@ -1,4 +1,4 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 function GetOverviewAnchor() {
   const anchor = document.querySelector('a[href^="/anime"]') as HTMLAnchorElement;
@@ -24,7 +24,7 @@ function IsOverviewUrl(url: string) {
 // overview page url: https://www.tranimeizle.net/anime/one-punch-man-izle-hd
 // sync page url: https://www.tranimeizle.net/one-punch-man-1-bolum-izle
 
-export const TRanimeizle: pageInterface = {
+export const TRanimeizle: PageInterface = {
   name: 'TRanimeizle',
   domain: 'https://www.tranimeizle.net/',
   languages: ['Turkish'],

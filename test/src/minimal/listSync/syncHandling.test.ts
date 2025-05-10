@@ -28,7 +28,7 @@ const helper = {
       url: 'https://myanimelist.net/anime/19815',
     };
   },
-  getMasterSlave() {
+  getMasterSlave(): { diff: boolean; master?: any; slaves: any[] } {
     const el = {
       diff: false,
       master: helper.getItem(),
@@ -67,10 +67,9 @@ describe('Sync Handling', function() {
   });
 
   describe('changeCheck', function() {
-    const mode = 'mirror';
     it('No Change', function() {
       const item = helper.getMasterSlave();
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(false);
     });
 
@@ -78,7 +77,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.slaves[0].watchedEp = 22;
       delete item.master;
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(false);
     });
 
@@ -86,7 +85,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.slaves[0].watchedEp = 22;
       const diff = { watchedEp: 15 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal({});
@@ -96,7 +95,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.watchedEp = 22;
       const diff = { watchedEp: 22 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -106,7 +105,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.score = 2;
       const diff = { score: 2 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -116,7 +115,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.watchedEp = 22;
       const diff = { watchedEp: 22 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -126,7 +125,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.status = 2;
       const diff = { status: 2 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -137,7 +136,7 @@ describe('Sync Handling', function() {
       // @ts-ignore
       item.master.startDate = '1970-01-01';
       const diff = { startDate: '1970-01-01' };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -148,7 +147,7 @@ describe('Sync Handling', function() {
       // @ts-ignore
       item.master.finishDate = '1970-01-01';
       const diff = { finishDate: '1970-01-01' };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -158,7 +157,7 @@ describe('Sync Handling', function() {
       const item = helper.getMasterSlave();
       item.master.rewatchCount = 2;
       const diff = { rewatchCount: 2 };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -177,7 +176,7 @@ describe('Sync Handling', function() {
         status: 2,
         watchedEp: 22,
       };
-      sync.changeCheck(item, mode);
+      sync.changeCheck(item);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff1);
       expect(item.slaves[1].diff).to.deep.equal(diff2);
@@ -186,12 +185,11 @@ describe('Sync Handling', function() {
 
   describe('missingCheck', function() {
     const typeArray = ['MAL', 'KITSU', 'ANILIST'];
-    const mode = 'mirror';
 
     it('No missing', function() {
       const item = helper.getMasterSlave();
       const miss = [];
-      sync.missingCheck(item, miss, typeArray, mode);
+      sync.missingCheck(item, miss, typeArray);
       expect(miss).to.deep.equal([]);
     });
 
@@ -206,7 +204,7 @@ describe('Sync Handling', function() {
       delete res.totalEp;
       delete res.uid;
 
-      sync.missingCheck(item, miss, typeArray, mode);
+      sync.missingCheck(item, miss, typeArray);
       expect(miss).to.deep.equal([res]);
     });
 
@@ -223,7 +221,7 @@ describe('Sync Handling', function() {
 
       delete item.master;
 
-      sync.missingCheck(item, miss, typeArray, mode);
+      sync.missingCheck(item, miss, typeArray);
       expect(miss).to.deep.equal([]);
     });
   });
@@ -269,13 +267,14 @@ describe('Sync Handling', function() {
   });
 
   describe('getListProvider', function() {
-    const providerList = sync.getListProvider({
-      mal: 'mal',
-      anilist: 'anilist',
-      kitsu: 'kitsu',
-      simkl: 'simkl',
-      shiki: 'shiki',
-    });
+    const providerSettings = {
+      mal: { text: 'mal', list: null, master: false },
+      anilist: { text: 'anilist', list: null, master: false },
+      kitsu: { text: 'kitsu', list: null, master: false },
+      simkl: { text: 'simkl', list: null, master: false },
+      shiki: { text: 'shiki', list: null, master: false },
+    };
+    const providerList = sync.getListProvider(providerSettings);
     it('providerType', function() {
       for (const i in providerList) {
         expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'SIMKL', 'SHIKI']);
@@ -283,12 +282,12 @@ describe('Sync Handling', function() {
     });
     it('providerSettings', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl', 'shiki']);
+        expect(providerList[i].providerSettings.text).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl', 'shiki']);
       }
     });
   });
 
-  describe('retriveLists', function() {
+  describe('retrieveLists', function() {
     function getProviderListList() {
       const providerList = sync.getListProvider({
         mal: {
@@ -319,13 +318,13 @@ describe('Sync Handling', function() {
       });
 
       for (const i in providerList) {
-        providerList[i].listProvider = providerList[i].providerType;
+        providerList[i].listProvider = providerList[i].providerType as any;
       }
 
       return providerList;
     }
 
-    let getListStub = (prov, type) => {
+    let getListStub: (_a: any, _b: any) => any = (prov, type) => {
       return new Promise((resolve, reject) => {
         resolve(prov);
       });
@@ -340,7 +339,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('MAL');
       expect(res.slaves).to.not.include('MAL');
@@ -357,7 +356,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('ANILIST');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -372,7 +371,7 @@ describe('Sync Handling', function() {
       });
       Api.setStub(stub);
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('KITSU');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -388,7 +387,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('SIMKL');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -405,7 +404,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'manga', getListStub);
+      const res = await sync.retrieveLists(providerList, 'manga', getListStub);
 
       expect(res.master).equal('MAL');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -420,7 +419,7 @@ describe('Sync Handling', function() {
       });
       Api.setStub(stub);
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('SHIKI');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -446,7 +445,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(providerList, 'anime', getListStub);
+      const res = await sync.retrieveLists(providerList, 'anime', getListStub);
 
       expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'SIMKL', 'SHIKI']);
     });

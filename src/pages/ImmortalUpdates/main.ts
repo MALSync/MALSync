@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const ImmortalUpdates: pageInterface = {
+export const ImmortalUpdates: PageInterface = {
   name: 'ImmortalUpdates',
   domain: 'https://immortalupdates.com',
   languages: ['English'],

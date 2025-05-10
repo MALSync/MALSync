@@ -5,7 +5,7 @@ import { errorMessage as _errorMessage } from './Errors';
 
 Object.seal(emitter);
 
-export interface listElement {
+export interface ListElement {
   uid: number;
   malId: number;
   apiCacheKey: number | string;
@@ -67,7 +67,7 @@ export abstract class ListAbstract {
 
   protected offset = 0;
 
-  protected templist: listElement[] = [];
+  protected templist: ListElement[] = [];
 
   constructor(
     protected status: number = 1,
@@ -107,7 +107,7 @@ export abstract class ListAbstract {
     return this.firstLoaded;
   }
 
-  async getCompleteList(): Promise<listElement[]> {
+  async getCompleteList(): Promise<ListElement[]> {
     do {
       // eslint-disable-next-line no-await-in-loop
       await this.getNext();
@@ -122,7 +122,7 @@ export abstract class ListAbstract {
     return this.templist;
   }
 
-  async getNextPage(): Promise<listElement[]> {
+  async getNextPage(): Promise<ListElement[]> {
     if (this.done) return this.templist;
 
     if (
@@ -150,7 +150,7 @@ export abstract class ListAbstract {
     this.loading = false;
   }
 
-  async getCached(): Promise<listElement[]> {
+  async getCached(): Promise<ListElement[]> {
     if (await this.getCache().hasValue()) {
       const cachelist = await this.getCache().getValue();
       cachelist.forEach(item => {
@@ -235,7 +235,7 @@ export abstract class ListAbstract {
     return res;
   }
 
-  abstract getPart(): Promise<listElement[]>;
+  abstract getPart(): Promise<ListElement[]>;
 
   flashmError(error) {
     utils.flashm(this.errorMessage(error), { error: true, type: 'error' });
@@ -291,9 +291,9 @@ export abstract class ListAbstract {
       return;
     }
 
-    const normalItems: listElement[] = [];
-    let preItems: listElement[] = [];
-    let watchedItems: listElement[] = [];
+    const normalItems: ListElement[] = [];
+    let preItems: ListElement[] = [];
+    let watchedItems: ListElement[] = [];
     this.templist.forEach(item => {
       const prediction = item.fn.progress;
       if (this.listType === 'anime') {

@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 // const logger = con.m('AnimeBuff', '#dc2e44');
 
-export const AnimeBuff: pageInterface = {
+export const AnimeBuff: PageInterface = {
   name: 'AnimeBuff',
   languages: ['Russian'],
   domain: 'https://animebuff.ru',

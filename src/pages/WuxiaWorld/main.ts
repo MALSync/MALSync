@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const WuxiaWorld: pageInterface = {
+export const WuxiaWorld: PageInterface = {
   name: 'WuxiaWorld',
   domain: 'https://wuxiaworld.site',
   languages: ['English'],

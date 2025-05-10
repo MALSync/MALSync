@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Miruro: pageInterface = {
+export const Miruro: PageInterface = {
   name: 'Miruro',
   domain: ['https://www.miruro.to', 'https://www.miruro.tv', 'https://www.miruro.online'],
   languages: ['English'],

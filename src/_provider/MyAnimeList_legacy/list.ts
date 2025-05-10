@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from '../listAbstract';
+import { ListAbstract, ListElement } from '../listAbstract';
 
 export class UserList extends ListAbstract {
   name = 'MyAnimeList';
@@ -99,8 +99,8 @@ export class UserList extends ListAbstract {
     */
   }
 
-  public async prepareData(data): Promise<listElement[]> {
-    const newData = [] as listElement[];
+  public async prepareData(data): Promise<ListElement[]> {
+    const newData = [] as ListElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
       if (this.listType === 'anime') {

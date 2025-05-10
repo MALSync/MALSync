@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const MangaPlus: pageInterface = {
+export const MangaPlus: PageInterface = {
   name: 'MangaPlus',
   domain: 'https://mangaplus.shueisha.co.jp',
   languages: ['English'],

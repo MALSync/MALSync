@@ -1,26 +1,19 @@
+import { ListElement, ListAbstract } from '../_provider/listAbstract';
 import { Single as MalSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { Single as AniListSingle } from '../_provider/AniList/single';
 import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
 import { Single as ShikiSingle } from '../_provider/Shikimori/single';
 
-import { UserList as MalList } from '../_provider/MyAnimeList_hybrid/list';
+import { UserList as MalList, UserList } from '../_provider/MyAnimeList_hybrid/list';
 import { UserList as AnilistList } from '../_provider/AniList/list';
 import { UserList as KitsuList } from '../_provider/Kitsu/list';
 import { UserList as SimklList } from '../_provider/Simkl/list';
 import { UserList as ShikiList } from '../_provider/Shikimori/list';
 import { getSyncMode } from '../_provider/helper';
-import { listElement } from '../_provider/listAbstract';
 import { status } from '../_provider/definitions';
 
-export function generateSync(
-  masterList: object,
-  slaveLists: object[],
-  mode,
-  typeArray,
-  list,
-  missing,
-) {
+export function generateSync(masterList: object, slaveLists: object[], typeArray, list, missing) {
   mapToArray(masterList, list, true);
 
   for (const i in slaveLists) {
@@ -28,8 +21,8 @@ export function generateSync(
   }
 
   for (const i in list) {
-    changeCheck(list[i], mode);
-    missingCheck(list[i], missing, typeArray, mode);
+    changeCheck(list[i]);
+    missingCheck(list[i], missing, typeArray);
   }
 }
 
@@ -39,12 +32,12 @@ export function getType(url) {
   if (utils.isDomainMatching(url, 'myanimelist.net')) return 'MAL';
   if (utils.isDomainMatching(url, 'simkl.com')) return 'SIMKL';
   if (utils.isDomainMatching(url, 'shikimori.one')) return 'SHIKI';
-  throw 'Type not found';
+  throw new Error('Type not found');
 }
 
-export function mapToArray(provierList, resultList, masterM = false) {
-  for (let i = 0; i < provierList.length; i++) {
-    const el = provierList[i];
+export function mapToArray(providerList, resultList, masterM = false) {
+  for (let i = 0; i < providerList.length; i++) {
+    const el = providerList[i];
     let temp = resultList[el.malId];
     if (typeof temp === 'undefined') {
       temp = {
@@ -76,7 +69,7 @@ export function shouldCheckRewatchCount(item) {
   return ['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(getType(item.url));
 }
 
-export function changeCheck(item, mode) {
+export function changeCheck(item) {
   if (item.master && item.master.uid) {
     const checkDates = shouldCheckDates(item.master);
     const checkRewatchCount = shouldCheckRewatchCount(item.master);
@@ -132,7 +125,7 @@ export function changeCheck(item, mode) {
   }
 }
 
-export function missingCheck(item, missing, types, mode) {
+export function missingCheck(item, missing, types) {
   if (item.master && item.master.uid) {
     const tempTypes: any[] = [];
     tempTypes.push(getType(item.master.url));
@@ -156,7 +149,7 @@ export function missingCheck(item, missing, types, mode) {
           rewatchCount: item.master.rewatchCount,
           url: `https://myanimelist.net/${item.master.type}/${item.master.malId}`,
           error: null,
-        } as Partial<listElement>;
+        } as Partial<ListElement>;
         if (item.master.type === 'manga') {
           entry.readVol = item.master.readVol;
         }
@@ -263,29 +256,28 @@ export function syncItem(slave, pageType) {
   }
 }
 
-// retrive lists
-export async function retriveLists(
+// retrieve lists
+export async function retrieveLists(
   providerList: {
     providerType: string;
-    providerSettings: any;
-    listProvider: any;
+    providerSettings: ProviderSettings;
+    listProvider: typeof ListAbstract;
   }[],
-  type,
-  getListF,
+  type: string,
+  getListF: (listProvider: typeof ListAbstract, type: string) => Promise<ListElement[]>,
 ) {
-  const typeArray: any = [];
+  const typeArray: string[] = [];
 
   const tempMode = getSyncMode(type);
   const masterMode = tempMode === 'MALAPI' ? 'MAL' : tempMode;
 
-  const listP: any = [];
+  const listP: Promise<void>[] = [];
 
   providerList.forEach(pi => {
     pi.providerSettings.text = api.storage.lang('Loading');
-    // @ts-ignore
     listP.push(
       getListF(pi.listProvider, type)
-        .then((list: any) => {
+        .then(list => {
           pi.providerSettings.list = list;
           pi.providerSettings.text = api.storage.lang('settings_listsync_provider_done');
           if (masterMode === pi.providerType) pi.providerSettings.master = true;
@@ -315,7 +307,19 @@ export async function retriveLists(
   };
 }
 
-export function getListProvider(providerSettingList) {
+type ProviderSettings = {
+  text: string;
+  list: any;
+  master: boolean;
+};
+
+export function getListProvider(providerSettingList: {
+  mal: ProviderSettings;
+  anilist: ProviderSettings;
+  kitsu: ProviderSettings;
+  simkl: ProviderSettings;
+  shiki: ProviderSettings;
+}) {
   return [
     {
       providerType: 'MAL',
@@ -345,18 +349,17 @@ export function getListProvider(providerSettingList) {
   ];
 }
 
-export function getList(Prov, type) {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export async function getList(Prov, type) {
   const listProvider = new Prov(7, type);
 
-  return listProvider
-    .getCompleteList()
-    .then(list => {
-      return list;
-    })
-    .catch(e => {
-      con.m(listProvider.name).error(e);
-      throw listProvider.errorMessage(e);
-    });
+  try {
+    const list = await listProvider.getCompleteList();
+    return list;
+  } catch (e) {
+    con.m(listProvider.name).error(e);
+    throw listProvider.errorMessage(e);
+  }
 }
 
 export const background = {
@@ -396,8 +399,7 @@ export const background = {
     con.error('Background list Sync not allowed');
     return [];
 
-    async function syncLists(type) {
-      const mode = 'mirror';
+    async function syncLists(type: string) {
       const list = {};
       const missing = [];
 
@@ -429,16 +431,9 @@ export const background = {
         },
       });
 
-      const listOptions: any = await retriveLists(providerList, type, getList);
+      const listOptions: any = await retrieveLists(providerList, type, getList);
 
-      generateSync(
-        listOptions.master,
-        listOptions.slaves,
-        mode,
-        listOptions.typeArray,
-        list,
-        missing,
-      );
+      generateSync(listOptions.master, listOptions.slaves, listOptions.typeArray, list, missing);
       con.log('Start syncing', list, missing);
       await syncList(list, missing);
     }

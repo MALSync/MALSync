@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Animeworld: pageInterface = {
+export const Animeworld: PageInterface = {
   name: 'Animeworld',
   domain: 'https://www.animeworld.tv',
   languages: ['Italian'],

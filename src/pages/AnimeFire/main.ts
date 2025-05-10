@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const AnimeFire: pageInterface = {
+export const AnimeFire: PageInterface = {
   name: 'AnimeFire',
   domain: 'https://animefire.net',
   languages: ['Portuguese'],

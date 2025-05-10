@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const Suwayomi: pageInterface = {
+export const Suwayomi: PageInterface = {
   name: 'Suwayomi',
   domain: 'https://suwayomi-webui-preview.github.io/',
   languages: ['English'],

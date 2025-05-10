@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const LuciferDonghua: pageInterface = {
+export const LuciferDonghua: PageInterface = {
   name: 'Lucifer Donghua',
   domain: 'https://luciferdonghua.in',
   languages: ['English'],

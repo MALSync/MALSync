@@ -1,8 +1,8 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
 let jsonData;
 
-export const Aniyan: pageInterface = {
+export const Aniyan: PageInterface = {
   name: 'Aniyan',
   domain: 'https://aniyan.net',
   languages: ['Portuguese'],

@@ -1,6 +1,6 @@
-import { pageInterface } from '../../pages/pageInterface';
+import { PageInterface } from '../../pages/pageInterface';
 
-export const UnderHentai: pageInterface = {
+export const UnderHentai: PageInterface = {
   name: 'UnderHentai',
   domain: 'https://www.underhentai.net',
   languages: ['English'],

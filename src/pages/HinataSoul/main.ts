@@ -1,6 +1,6 @@
-import { pageInterface } from '../pageInterface';
+import { PageInterface } from '../pageInterface';
 
-export const HinataSoul: pageInterface = {
+export const HinataSoul: PageInterface = {
   name: 'HinataSoul',
   domain: 'https://hinatasoul.com',
   languages: ['Portuguese'],
