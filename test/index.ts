@@ -4,7 +4,6 @@ import { getPageConfig } from '../src/utils/test';
 import { xhrAction } from '../src/background/messageHandler';
 import { Chibi } from '../src/pages-chibi/ChibiProxy';
 import { NotFoundError } from '../src/_provider/Errors';
-import { SyncPage } from '../src/pages/syncPage';
 
 const pages = { ...part1, ...part2 };
 
@@ -39,87 +38,84 @@ window.MalSyncTest = async function() {
       });
       return;
     }
-
-    const syncPage = new SyncPage(
-      window.location.href,
-      pages
-    );
-    
-    syncPage.handlePage = async function(url?: string) {
-      if (page.isSyncPage(window.location.href)) {
-        value.sync = true;
-        value.title = page.sync.getTitle(window.location.href);
-        value.identifier = page.sync.getIdentifier(window.location.href);
-        value.episode = parseInt(
-          `${page.sync.getEpisode(window.location.href)}`,
-        );
-        if (page.sync.getVolume) {
-          value.volume = parseInt(`${page.sync.getVolume(window.location.href)}`);
-        }
-        value.overviewUrl = page.sync.getOverviewUrl(window.location.href);
-        if (typeof page.sync.nextEpUrl !== 'undefined') {
-          value.nextEpUrl = page.sync.nextEpUrl(window.location.href);
-        }
-        if (typeof page.sync.uiSelector !== 'undefined') {
-          page.sync.uiSelector(
-            '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
+    page.init({
+      url: window.location.href,
+      reset() {
+        //do nothing
+      },
+      handlePage() {
+        if (page.isSyncPage(window.location.href)) {
+          value.sync = true;
+          value.title = page.sync.getTitle(window.location.href);
+          value.identifier = page.sync.getIdentifier(window.location.href);
+          value.episode = parseInt(
+            `${page.sync.getEpisode(window.location.href)}`,
           );
-          value.uiSelector = j.$('#MAL-SYNC-TEST').text();
-        }
-      } else if (!page.isOverviewPage || page.isOverviewPage(window.location.href)) {
-        if (!page.overview) {
-          reject('Is overview page but no overview found');
+          if (page.sync.getVolume) {
+            value.volume = parseInt(`${page.sync.getVolume(window.location.href)}`);
+          }
+          value.overviewUrl = page.sync.getOverviewUrl(window.location.href);
+          if (typeof page.sync.nextEpUrl !== 'undefined') {
+            value.nextEpUrl = page.sync.nextEpUrl(window.location.href);
+          }
+          if (typeof page.sync.uiSelector !== 'undefined') {
+            page.sync.uiSelector(
+              '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
+            );
+            value.uiSelector = j.$('#MAL-SYNC-TEST').text();
+          }
+        } else if (!page.isOverviewPage || page.isOverviewPage(window.location.href)) {
+          value.sync = false;
+          value.title = page.overview.getTitle(window.location.href);
+          value.identifier = page.overview.getIdentifier(window.location.href);
+          if (typeof page.overview.uiSelector !== 'undefined') {
+            page.overview.uiSelector(
+              '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
+            );
+            value.uiSelector = j.$('#MAL-SYNC-TEST').text();
+          }
+        } else {
+          reject('Not an overview or sync page');
           return;
         }
-        value.sync = false;
-        value.title = page.overview.getTitle(window.location.href);
-        value.identifier = page.overview.getIdentifier(window.location.href);
-        if (typeof page.overview.uiSelector !== 'undefined') {
-          page.overview.uiSelector(
-            '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
-          );
-          value.uiSelector = j.$('#MAL-SYNC-TEST').text();
-        }
-      } else {
-        reject('Not an overview or sync page');
-      }
 
-      if (
-        typeof page.overview !== 'undefined' &&
-        typeof page.overview.list !== 'undefined' &&
-        typeof page.overview.list.elementUrl !== 'undefined'
-      ) {
-        const { elementEp, elementUrl } = page.overview.list;
-        const elementArray = [] as string[];
+        if (
+          typeof page.overview !== 'undefined' &&
+          typeof page.overview.list !== 'undefined' &&
+          typeof page.overview.list.elementUrl !== 'undefined'
+        ) {
+          const { elementEp, elementUrl } = page.overview.list;
+          const elementArray = [] as JQuery<HTMLElement>[];
 
-        page.overview.list.elementsSelector().each(function(index, el) {
-          try {
-            const elEp = parseInt(`${elementEp(j.$(el))}`);
-            elementArray[elEp] = elementUrl(j.$(el));
-          } catch (e) {
-            con.info(e);
+          page.overview.list.elementsSelector().each(function(index, el) {
+            try {
+              const elEp = parseInt(`${elementEp(j.$(el))}`);
+              elementArray[elEp] = elementUrl(j.$(el));
+            } catch (e) {
+              con.info(e);
+            }
+          });
+          con.log(elementArray);
+          if (elementArray.length) {
+            value.epList = elementArray;
           }
-        });
-        con.log(elementArray);
-        if (elementArray.length) {
-          value.epList = elementArray;
         }
-      }
-      console.log('result', value);
-      resolve(value);
-    }
-
-    syncPage.reset = function() {};
-
-    syncPage.cdn = function(type) {
-      resolve({
-        sync: 'cdn',
-        type: type
-      });
-    };
-    
-    page.init(syncPage);
+        console.log('result', value);
+        resolve(value);
+      },
+      cdn(type) {
+        resolve({
+          sync: 'cdn',
+          type: type
+        });
+      },
+    });
   });
+  return page.domain;
+
+  return $('.link-mal-logo')
+    .text()
+    .trim();
 };
 
 function testForCloudflare() {
