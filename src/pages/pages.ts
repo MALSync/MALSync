@@ -136,6 +136,7 @@ import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
 import { AnimeKAI } from './AnimeKAI/main';
 import { Hikari } from './Hikari/main';
+import { AniDream } from './AniDream/main';
 
 export const pages: Record<string, import('./pageInterface').PageInterface> = {
   Crunchyroll,
@@ -276,4 +277,5 @@ export const pages: Record<string, import('./pageInterface').PageInterface> = {
   Aninexus,
   AnimeKAI,
   Hikari,
+  AniDream,
 };

@@ -1,0 +1,19 @@
+{
+  "title": "AniDream",
+  "enabled": false,
+  "url": "https://anidream.cc",
+  "testCases": [
+    {
+      "url": "https://anidream.cc/watch/no-game-no-life-episodio-1",
+      "expected": {
+        "sync": true,
+        "name": "No Game No Life",
+        "id": "no-game-no-life",
+        "seriesUrl": "https://anidream.cc/series/no-game-no-life",
+        "nextEpUrl": "https://anidream.cc/watch/no-game-no-life-episodio-2",
+        "episode": "1",
+        "uiSelector": false
+      }
+    }
+  ]
+}

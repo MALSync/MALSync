@@ -157,6 +157,7 @@
       "*://hianimez.is/*"
     ],
     "iframe": [
+      "*://*.mixdrop.my/e/*",
       "*://alejandrocenturyoil.com/e/*",
       "*://heatherwholeinvolve.com/e/*",
       "*://nathanfromsubject.com/e/*",
@@ -164,6 +165,7 @@
       "*://richardsignfish.com/e/*",
       "*://sarahnewspaperbeat.com/e/*",
       "*://diananatureforeign.com/e/*",
+      "*://jonathansociallike.com/e/*",
       "*://www.animeworld.ac/api/episode/serverPlayerAnimeWorld?id=*",
       "*://z7ihwgqj.fun/*",
       "*://megacloud.club/*",
