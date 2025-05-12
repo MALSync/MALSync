@@ -1,6 +1,0 @@
-{
-  "search": "https://hivetoon.com/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://hivetoon.com/*", "*://void-scans.com/*"]
-  }
-}

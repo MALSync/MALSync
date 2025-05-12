@@ -1,7 +1,20 @@
 // eslint-disable-next-line import/no-unresolved
-export const quicklinks = require('./quicklinks.json');
+const quicklinkPages = require('./quicklinks.json') as QuicklinkObject[];
 
 type QuicklinkGroup = 'home' | 'search' | 'link';
+
+export interface QuicklinkObjectSearch {
+  anime: string | null;
+  manga: string | null;
+}
+
+interface QuicklinkObject {
+  key: string;
+  name: string;
+  domain: string;
+  database: string | null;
+  search: QuicklinkObjectSearch;
+}
 
 interface Links {
   name: string;
@@ -157,6 +170,30 @@ export async function getMalToKissApi(type, id) {
   });
 }
 
+let tempQuicklinks = null as QuicklinkObject[] | null;
+export function getQuicklinks(): QuicklinkObject[] {
+  if (tempQuicklinks) return tempQuicklinks;
+
+  const quicklinkChibi: QuicklinkObject[] = Object.values(api.settings.getStaticChibi()).map(el => {
+    return {
+      key: el.key,
+      name: el.name,
+      domain: typeof el.domain === 'string' ? el.domain : el.domain[0],
+      database: el.database || null,
+      search:
+        typeof el.search === 'object'
+          ? el.search
+          : {
+              anime: el.type === 'anime' ? el.search || null : null,
+              manga: el.type === 'manga' ? el.search || null : null,
+            },
+    };
+  });
+
+  tempQuicklinks = [...quicklinkPages, ...quicklinkChibi];
+  return tempQuicklinks;
+}
+
 export function combinedLinks() {
   const links = api.settings.get('quicklinks');
   const comb = links.map(el => optionToCombined(el)).filter(el => el);
@@ -166,7 +203,7 @@ export function combinedLinks() {
 export function optionToCombined(link) {
   if (!link) return null;
   if (link.custom) return link;
-  return quicklinks.find(el => el.name === link);
+  return getQuicklinks().find(el => el.name === link);
 }
 
 export async function activeLinks(
@@ -201,5 +238,9 @@ export function removeFromOptions(key) {
 }
 
 export function getPages() {
-  return quicklinks;
+  return quicklinkPages;
+}
+
+export function getAllPages() {
+  return getQuicklinks();
 }
