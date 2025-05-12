@@ -27,15 +27,15 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://www.primevideo.com"><img src="https://favicon.malsync.moe/?domain=https://www.primevideo.com"> Amazon Prime Video</a></td>
-    <td>Many</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-  </tr><tr>
     <td><a href="https://an1me.to"><img src="https://favicon.malsync.moe/?domain=https://an1me.to"> An1me</a></td>
     <td>Greek</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://anidream.cc"><img src="https://favicon.malsync.moe/?domain=https://anidream.cc"> AniDream</a></td>
+    <td>Italian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -103,13 +103,6 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://anilib.me"><img src="https://favicon.malsync.moe/?domain=https://anilib.me"> AnimeLib</a></td>
-    <td>Russian</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
   </tr><tr>
     <td><a href="https://www.animelon.com"><img src="https://favicon.malsync.moe/?domain=https://www.animelon.com"> Animelon</a></td>
     <td>English, Japanese</td>
@@ -398,7 +391,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://www.miruro.tv"><img src="https://favicon.malsync.moe/?domain=https://www.miruro.tv"> Miruro</a></td>
+    <td><a href="https://www.miruro.to"><img src="https://favicon.malsync.moe/?domain=https://www.miruro.to"> Miruro</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -778,20 +771,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://mangalib.org"><img src="https://favicon.malsync.moe/?domain=https://mangalib.org"> MangaLib</a></td>
-    <td>Russian</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-  </tr><tr>
-    <td><a href="https://chapmanganato.com"><img src="https://favicon.malsync.moe/?domain=https://chapmanganato.com"> MangaNato</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://mangapark.net"><img src="https://favicon.malsync.moe/?domain=https://mangapark.net"> MangaPark</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -890,13 +869,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://ranobelib.me"><img src="https://favicon.malsync.moe/?domain=https://ranobelib.me"> RanobeLib</a></td>
-    <td>Russian</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-  </tr><tr>
     <td><a href="https://rawkuma.com"><img src="https://favicon.malsync.moe/?domain=https://rawkuma.com"> Rawkuma</a></td>
     <td>Japanese</td>
     <td>:heavy_check_mark:</td>
@@ -967,13 +939,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://toonily.com"><img src="https://favicon.malsync.moe/?domain=https://toonily.com"> Toonily</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://tritinia.com"><img src="https://favicon.malsync.moe/?domain=https://tritinia.com"> TritiniaScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -982,13 +947,6 @@
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://www.viz.com"><img src="https://favicon.malsync.moe/?domain=https://www.viz.com"> VIZ</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://hivetoon.com/"><img src="https://favicon.malsync.moe/?domain=https://hivetoon.com/"> VoidScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>

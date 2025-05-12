@@ -1,46 +1,4 @@
 {
-  "0.10.2": {
-    "AsuraScans": [
-      "*://*.asuracomic.net/*"
-    ],
-    "Gogoanime": [
-      "*://*.anitaku.pe/*"
-    ],
-    "iframe": [
-      "*://*.mixdrop.ps/e/*",
-      "*://*.gogo-stream.com/*",
-      "*://*.gogo-play.net/*",
-      "*://*.gogo-play.tv/*",
-      "*://*.streamani.net/*",
-      "*://*.streamani.io/*",
-      "*://*.goload.one/*",
-      "*://*.goload.pro/*",
-      "*://*.goload.io/*",
-      "*://*.gogoplay1.com/*",
-      "*://*.gogoplay2.com/*",
-      "*://*.gogoplay4.com/*",
-      "*://*.gogoplay5.com/*",
-      "*://*.gogoplay.io/*",
-      "*://*.gogohd.net/*",
-      "*://*.gogohd.pro/*",
-      "*://*.gembedhd.com/*",
-      "*://*.playgo1.cc/*",
-      "*://*.anihdplay.com/*",
-      "*://*.playtaku.net/*",
-      "*://*.playtaku.online/*",
-      "*://*.gotaku1.com/*",
-      "*://*.goone.pro/*",
-      "*://*.embtaku.pro/*",
-      "*://*.embtaku.com/*",
-      "*://*.s3taku.com/*",
-      "*://vid1a52.site/e/*",
-      "*://vid2a41.site/e/*",
-      "*://loriwithinfamily.com/e/*",
-      "*://1azayf9w.xyz/e/*",
-      "*://81u6xl9d.xyz/e/*",
-      "*://megaf.cc/e/*"
-    ]
-  },
   "0.10.3": {
     "Anime365": [
       "*://smotret-anime.net/catalog/*"
@@ -174,5 +132,8 @@
       "*://swishsrv.com/e/*",
       "*://boosterx.stream/*"
     ]
+  },
+  "0.12.0": {
+    "iframe": []
   }
 }
