@@ -678,5 +678,45 @@
     "domain": "https://anidream.cc",
     "type": "anime",
     "name": "AniDream"
+  },
+  {
+    "domain": "https://manganato.gg",
+    "type": "manga",
+    "name": "MangaNato"
+  },
+  {
+    "domain": "https://gojo.wtf",
+    "type": "anime",
+    "name": "Gojo"
+  },
+  {
+    "domain": "https://anilib.me",
+    "type": "anime",
+    "name": "AnimeLib"
+  },
+  {
+    "domain": "https://mangalib.me",
+    "type": "manga",
+    "name": "MangaLib"
+  },
+  {
+    "domain": "https://ranobelib.me",
+    "type": "manga",
+    "name": "RanobeLib"
+  },
+  {
+    "domain": "https://anizm.net",
+    "type": "anime",
+    "name": "Anizm"
+  },
+  {
+    "domain": "https://toonily.com",
+    "type": "manga",
+    "name": "Toonily"
+  },
+  {
+    "domain": "https://hivecomic.com",
+    "type": "manga",
+    "name": "VoidScans"
   }
 ]
