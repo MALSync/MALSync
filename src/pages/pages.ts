@@ -25,7 +25,6 @@ import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
-import { PrimeVideo } from './PrimeVideo/main';
 import { MangaKatana } from './MangaKatana/main';
 import { manga4life } from './manga4life/main';
 import { bato } from './bato/main';
@@ -164,7 +163,6 @@ export const pages = {
   JapScan,
   Hulu,
   Hidive,
-  PrimeVideo,
   MangaKatana,
   manga4life,
   bato,
