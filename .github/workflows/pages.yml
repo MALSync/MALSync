@@ -3,9 +3,11 @@ on:
   push:
     paths:
       - 'src/pages/**'
+      - 'src/pages-chibi/**'
   pull_request:
     paths:
       - 'src/pages/**'
+      - 'src/pages-chibi/**'
 
 jobs:
   build:
