@@ -580,6 +580,7 @@ async function initTestsArray() {
                 cleanChanged &&
                 cleanChanged !== 'src/' &&
                 cleanChanged !== 'src/pages/' &&
+                cleanChanged !== 'src/pages-chibi/' &&
                 cleanFile.includes(cleanChanged)
               );
             }
