@@ -35,7 +35,7 @@
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-config-prettier": "10.1.5",
-    "eslint-import-resolver-typescript": "4.3.4",
+    "eslint-import-resolver-typescript": "4.3.5",
     "eslint-plugin-es-x": "8.6.2",
     "eslint-plugin-no-unsanitized": "4.1.2",
     "eslint-plugin-prettier": "5.4.0",
