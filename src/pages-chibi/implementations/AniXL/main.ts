@@ -65,7 +65,13 @@ export const AniXL: PageInterface = {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.text().regex('\\d+', 0).number().run();
+      return $c
+        .if(
+          $c.querySelector('div[data-name="episode-list"] span.text-sm').boolean().run(),
+          $c.target().parent().find('.text-sm').text().regex('\\d+', 0).number().run(),
+          $c.target().text().regex('\\d+', 0).number().run(),
+        )
+        .run();
     },
   },
   lifecycle: {
@@ -74,6 +80,17 @@ export const AniXL: PageInterface = {
     },
     ready($c) {
       return $c.domReady().trigger().run();
+    },
+    listChange($c) {
+      return $c
+        .detectChanges(
+          $c
+            .querySelector('div[data-name="episode-list"] button.btn-primary.whitespace-normal')
+            .text()
+            .run(),
+          $c.trigger().run(),
+        )
+        .run();
     },
   },
 };
