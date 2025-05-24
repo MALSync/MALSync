@@ -134,6 +134,8 @@
     ]
   },
   "0.12.0": {
-    "iframe": []
+    "iframe": [
+      "*://jilliandescribecompany.com/e/*"
+    ]
   }
 }
