@@ -2,6 +2,7 @@ import { PageInterface } from '../../pageInterface';
 
 export const AniXL: PageInterface = {
   name: 'AniXL',
+  database: 'AniXL',
   domain: ['https://anixl.to'],
   languages: ['English'],
   type: 'anime',
@@ -86,7 +87,7 @@ export const AniXL: PageInterface = {
         .detectChanges(
           $c
             .querySelector('div[data-name="episode-list"] button.btn-primary.whitespace-normal')
-            .text()
+            .ifThen($el => $el.text().run())
             .run(),
           $c.trigger().run(),
         )
