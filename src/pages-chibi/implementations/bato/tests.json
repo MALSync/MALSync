@@ -1,0 +1,141 @@
+{
+  "title": "bato",
+  "url": "https://bato.to/",
+  "testCases": [
+    {
+      "url": "https://bato.to/chapter/1403185",
+      "expected": {
+        "sync": true,
+        "title": "Solo Leveling",
+        "identifier": "72860",
+        "overviewUrl": "https://bato.to/series/72860",
+        "nextEpUrl": "https://bato.to/chapter/1405642",
+        "episode": 104,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bato.to/series/72860",
+      "expected": {
+        "sync": false,
+        "title": "Solo Leveling",
+        "identifier": "72860",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://bato.to/chapter/1284843",
+          "105": "https://bato.to/chapter/1405642"
+        }
+      }
+    },
+    {
+      "url": "https://bato.to/chapter/2063224",
+      "expected": {
+        "sync": true,
+        "title": "The Villainess Turns the Hourglass (Official) [Tapas]",
+        "identifier": "111571",
+        "overviewUrl": "https://bato.to/series/111571",
+        "nextEpUrl": "https://bato.to/chapter/2063244",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bato.to/chapter/2068568",
+      "expected": {
+        "sync": true,
+        "title": "𝘛𝘩𝘦𝘳𝘦 𝘐𝘴 𝘕𝘰 𝘗𝘦𝘳𝘧𝘦𝘤𝘵 𝘔𝘢𝘳𝘳𝘪𝘦𝘥 𝘊𝘰𝘶𝘱𝘭𝘦 [DROP]",
+        "identifier": "107830",
+        "overviewUrl": "https://bato.to/series/107830",
+        "nextEpUrl": "https://bato.to/chapter/2074115",
+        "episode": 34,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bato.to/chapter/2066393",
+      "expected": {
+        "sync": true,
+        "title": "TOKO SHINWOO [SUFA]",
+        "identifier": "110173",
+        "overviewUrl": "https://bato.to/series/110173",
+        "nextEpUrl": "https://bato.to/chapter/2067933",
+        "episode": 21,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bato.to/title/70165-please-don-t-bully-me-nagatoro",
+      "expected": {
+        "sync": false,
+        "title": "Please don't bully me, Nagatoro",
+        "identifier": "70165",
+        "uiSelector": true,
+        "epList": {
+          "13": "https://bato.to/title/70165-please-don-t-bully-me-nagatoro/1220813-ch_13",
+          "24": "https://bato.to/title/70165-please-don-t-bully-me-nagatoro/1262006-ch_24"
+        }
+      }
+    },
+    {
+      "url": "https://bato.to/title/17498-fujiyama-san-wa-shishunki",
+      "expected": {
+        "sync": false,
+        "title": "Fujiyama-san wa Shishunki",
+        "identifier": "17498",
+        "uiSelector": true,
+        "epList": {
+          "28": "https://bato.to/title/17498-fujiyama-san-wa-shishunki/334351-ch_28",
+          "64": "https://bato.to/title/17498-fujiyama-san-wa-shishunki/334207-ch_64"
+        }
+      }
+    },
+    {
+      "url": "https://bato.to/title/17498-fujiyama-san-wa-shishunki/334229-ch_59",
+      "expected": {
+        "sync": true,
+        "title": "Fujiyama-san wa Shishunki",
+        "identifier": "17498",
+        "overviewUrl": "https://bato.to/title/17498-fujiyama-san-wa-shishunki",
+        "nextEpUrl": "https://bato.to/title/17498-fujiyama-san-wa-shishunki/334225-ch_60",
+        "episode": 59,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bato.to/title/35718-marmalade-boy-little/1521471-ch_20",
+      "expected": {
+        "sync": true,
+        "title": "Marmalade Boy Little",
+        "identifier": "35718",
+        "overviewUrl": "https://bato.to/title/35718-marmalade-boy-little",
+        "nextEpUrl": "https://bato.to/title/35718-marmalade-boy-little",
+        "episode": 20,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bato.to/chapter/2758705",
+      "expected": {
+        "sync": true,
+        "title": "Quality Assurance in Another World (Official)",
+        "identifier": "96406",
+        "overviewUrl": "https://bato.to/series/96406",
+        "nextEpUrl": "https://bato.to/chapter/2759638",
+        "episode": 70,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bato.to/title/96406-quality-assurance-in-another-world-official/2758705-vol_10-ch_70",
+      "expected": {
+        "sync": true,
+        "title": "Quality Assurance in Another World (Official)",
+        "identifier": "96406",
+        "overviewUrl": "https://bato.to/title/96406-quality-assurance-in-another-world-official",
+        "nextEpUrl": "https://bato.to/title/96406-quality-assurance-in-another-world-official/2759638-vol_10-ch_71",
+        "episode": 70,
+        "uiSelector": false
+      }
+    }
+  ]
+}
