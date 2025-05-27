@@ -27,7 +27,6 @@ import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
 import { MangaKatana } from './MangaKatana/main';
 import { manga4life } from './manga4life/main';
-import { bato } from './bato/main';
 import { MangaPark } from './MangaPark/main';
 import { AnimeXin } from './AnimeXin/main';
 import { MonosChinos } from './MonosChinos/main';
@@ -165,7 +164,6 @@ export const pages = {
   Hidive,
   MangaKatana,
   manga4life,
-  bato,
   MangaPark,
   AnimeXin,
   MonosChinos,
