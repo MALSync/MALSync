@@ -9,6 +9,7 @@ import { anizm } from './implementations/anizm/main';
 import { toonily } from './implementations/toonily/main';
 import { voidScans } from './implementations/VoidScans/main';
 import { AniXL } from './implementations/AniXL/main';
+import { bato } from './implementations/bato/main';
 
 export const pages: { [key: string]: PageInterface } = {
   mangaNato,
@@ -20,4 +21,5 @@ export const pages: { [key: string]: PageInterface } = {
   toonily,
   voidScans,
   AniXL,
+  bato,
 };
