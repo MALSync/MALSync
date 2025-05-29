@@ -3,6 +3,7 @@ import { PageInterface } from '../../pageInterface';
 
 export const batoV2: PageInterface = {
   name: 'bato',
+  database: 'bato',
   domain: ['https://bato.to'],
   languages: ['Many'],
   type: 'manga',
