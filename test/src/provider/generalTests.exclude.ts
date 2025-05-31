@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { NotAutenticatedError, ServerOfflineError } from '../../../src/_provider/Errors';
+import { NotAuthenticatedError, ServerOfflineError } from '../../../src/_provider/Errors';
 
 export function generalListTests(userlist, elements, responses, options: ObjectAnyType = {}) {
   describe('Empty responses', async function() {
@@ -47,7 +47,7 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
     });
 
     it('Authentication', async function() {
-      expect(list.errorMessage(new NotAutenticatedError('No Authentication'), 'url')).to.equal('lang');
+      expect(list.errorMessage(new NotAuthenticatedError('No Authentication'), 'url')).to.equal('lang');
     });
 
     it('Server offline', async function() {
