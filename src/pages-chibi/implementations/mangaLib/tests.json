@@ -1,0 +1,27 @@
+{
+  "title": "mangalib",
+  "url": "https://mangalib.me/",
+  "testCases": [
+    {
+      "url": "https://mangalib.me/ru/3595--kimetsu-no-yaiba/read/v1/c1",
+      "expected": {
+        "sync": true,
+        "title": "Клинок, рассекающий демонов",
+        "identifier": "3595",
+        "overviewUrl": "https://mangalib.me/ru/manga/3595--kimetsu-no-yaiba",
+        "nextEpUrl": "https://mangalib.me/ru/3595--kimetsu-no-yaiba/read/v1/c2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangalib.me/ru/manga/1286--4-cut-hero",
+      "expected": {
+        "sync": false,
+        "title": "Четыре рыцаря",
+        "identifier": "1286",
+        "uiSelector": true
+      }
+    }
+  ]
+}

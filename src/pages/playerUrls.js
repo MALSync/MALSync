@@ -245,6 +245,7 @@ module.exports = {
       '*://*.mixdrop.sx/e/*',
       '*://*.mixdrop.ms/e/*',
       '*://*.mixdrop.ps/e/*',
+      '*://*.mixdrop.my/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -519,6 +520,14 @@ module.exports = {
       '*://maxfinishseveral.com/e/*',
       '*://alejandrocenturyoil.com/e/*',
       '*://heatherwholeinvolve.com/e/*',
+      '*://nathanfromsubject.com/e/*',
+      '*://jennifercertaindevelopment.com/e/*',
+      '*://richardsignfish.com/e/*',
+      '*://sarahnewspaperbeat.com/e/*',
+      '*://diananatureforeign.com/e/*',
+      '*://jonathansociallike.com/e/*',
+      '*://mariatheserepublican.com/e/*',
+      '*://jilliandescribecompany.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -715,7 +724,7 @@ module.exports = {
   },
   // zoro
   megacloud: {
-    match: ['*://megacloud.tv/*', '*://megacloud.club/*'],
+    match: ['*://megacloud.tv/*', '*://megacloud.club/*', '*://megacloud.blog/*'],
   },
   // animeunity
   vixcloud: {

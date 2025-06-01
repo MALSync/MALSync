@@ -1,0 +1,29 @@
+{
+  "title": "AniXL",
+  "url": "https://anixl.to",
+  "testCases": [
+    {
+      "url": "https://anixl.to/title/11447-mahouka-koukou-no-rettousei",
+      "expected": {
+        "sync": false,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "11447",
+        "uiSelector": true,
+        "epList": {
+          "6": "https://anixl.to/title/11447-mahouka-koukou-no-rettousei/30507-enrollment-part-vi"
+        }
+      }
+    },
+    {
+      "url": "https://anixl.to/title/11447-mahouka-koukou-no-rettousei/30513-nine-schools-competition-part-ii",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "11447",
+        "overviewUrl": "https://anixl.to/title/11447-mahouka-koukou-no-rettousei",
+        "episode": 9,
+        "uiSelector": false
+      }
+    }
+  ]
+}

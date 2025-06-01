@@ -19,9 +19,9 @@ jobs:
       with:
         ref: master
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: '20.x'
+        node-version: '22.x'
 
     - name: Build
       run: npm install
@@ -34,7 +34,7 @@ jobs:
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v7
+      uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7
       with:
         commit-message: Auto Urls
         branch: auto-urls

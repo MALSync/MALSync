@@ -29,7 +29,7 @@
 import { computed } from 'vue';
 import Card from '../card.vue';
 import SettingsGeneral from './settings-general.vue';
-import { getPages } from '../../../utils/quicklinksBuilder';
+import { getAllPages } from '../../../utils/quicklinksBuilder';
 import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
@@ -70,7 +70,7 @@ function setPageState(page, state) {
 
 const pageArray = computed(() => {
   const res = {};
-  getPages().forEach(page => {
+  getAllPages().forEach(page => {
     if (props.onlyDisabled && getPageState(page)) return;
     res[page.key] = page;
   });

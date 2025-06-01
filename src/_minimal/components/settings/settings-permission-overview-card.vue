@@ -15,7 +15,7 @@
       <template v-else>
         <div v-for="(page, index) in permissions" :key="index">
           <h3>
-            <TextIcon :icon="icon((page.permission as any).value)">{{ page.name }}</TextIcon>
+            <TextIcon :icon="icon(page.permission)">{{ page.name }}</TextIcon>
           </h3>
           <p v-for="perm in page.match" :key="perm">
             <CodeBlock>{{ perm }}</CodeBlock>
@@ -56,11 +56,11 @@ const props = defineProps({
 
 const state: ComputedRef<permissionType> = computed(() => {
   if (props.permission) {
-    return props.permission.permission.value;
+    return props.permission.permission;
   }
 
   if (props.permissions) {
-    const states = props.permissions.map(perm => perm.permission.value);
+    const states = props.permissions.map(perm => perm.permission);
     if (states.includes('unknown')) {
       return 'unknown';
     }

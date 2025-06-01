@@ -75,11 +75,6 @@
     "name": "Voiranime"
   },
   {
-    "domain": "https://chapmanganato.com",
-    "type": "manga",
-    "name": "MangaNato"
-  },
-  {
     "domain": "https://www.viz.com",
     "type": "manga",
     "name": "VIZ"
@@ -138,11 +133,6 @@
     "domain": "https://www.hidive.com",
     "type": "anime",
     "name": "Hidive"
-  },
-  {
-    "domain": "https://www.primevideo.com",
-    "type": "anime",
-    "name": "Amazon Prime Video"
   },
   {
     "domain": "http://mangakatana.com",
@@ -340,11 +330,6 @@
     "name": "AnimeWho"
   },
   {
-    "domain": "https://toonily.com",
-    "type": "manga",
-    "name": "Toonily"
-  },
-  {
     "domain": "https://fumetsu.pl",
     "type": "anime",
     "name": "Fumetsu"
@@ -478,11 +463,6 @@
     "domain": "https://mangabuddy.com",
     "type": "manga",
     "name": "MangaBuddy"
-  },
-  {
-    "domain": "https://hivetoon.com/",
-    "type": "manga",
-    "name": "VoidScans"
   },
   {
     "domain": "https://vvww.toonanime.cc",
@@ -630,7 +610,7 @@
     "name": "Animes Online"
   },
   {
-    "domain": "https://www.miruro.tv",
+    "domain": "https://www.miruro.to",
     "type": "anime",
     "name": "Miruro"
   },
@@ -670,24 +650,9 @@
     "name": "WeebCentral"
   },
   {
-    "domain": "https://anilib.me",
-    "type": "anime",
-    "name": "AnimeLib"
-  },
-  {
     "domain": "https://demo.kavitareader.com",
     "type": "manga",
     "name": "Kavita"
-  },
-  {
-    "domain": "https://mangalib.org",
-    "type": "manga",
-    "name": "MangaLib"
-  },
-  {
-    "domain": "https://ranobelib.me",
-    "type": "manga",
-    "name": "RanobeLib"
   },
   {
     "domain": "https://rawkuma.com",
@@ -708,5 +673,50 @@
     "domain": "https://watch.hikaritv.xyz",
     "type": "anime",
     "name": "Hikari"
+  },
+  {
+    "domain": "https://anidream.cc",
+    "type": "anime",
+    "name": "AniDream"
+  },
+  {
+    "domain": "https://manganato.gg",
+    "type": "manga",
+    "name": "MangaNato"
+  },
+  {
+    "domain": "https://gojo.wtf",
+    "type": "anime",
+    "name": "Gojo"
+  },
+  {
+    "domain": "https://anilib.me",
+    "type": "anime",
+    "name": "AnimeLib"
+  },
+  {
+    "domain": "https://mangalib.me",
+    "type": "manga",
+    "name": "MangaLib"
+  },
+  {
+    "domain": "https://ranobelib.me",
+    "type": "manga",
+    "name": "RanobeLib"
+  },
+  {
+    "domain": "https://anizm.net",
+    "type": "anime",
+    "name": "Anizm"
+  },
+  {
+    "domain": "https://toonily.com",
+    "type": "manga",
+    "name": "Toonily"
+  },
+  {
+    "domain": "https://hivecomic.com",
+    "type": "manga",
+    "name": "VoidScans"
   }
 ]

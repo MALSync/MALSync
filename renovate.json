@@ -1,7 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", ":disableDependencyDashboard"],
+  "extends": ["config:base", ":disableDependencyDashboard", "helpers:pinGitHubActionDigests"],
   "automergeType": "branch",
+  "ignoreDeps": ["node"],
   "packageRules": [
     {
       "matchPackagePatterns": ["eslint/*", "@types/*", "puppeteer/*", "vuejs/language-tools"],

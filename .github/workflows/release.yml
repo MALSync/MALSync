@@ -9,10 +9,10 @@ jobs:
   webextension:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: '20.x'
+        node-version: '22.x'
     - name: Build
       run: |
         npm ci
@@ -26,7 +26,7 @@ jobs:
         npm run package
     - name: Upload webextension
       id: upload-webextension-asset
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -38,10 +38,10 @@ jobs:
   webextension-firefox:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: '20.x'
+        node-version: '22.x'
     - name: Build
       run: |
         npm ci
@@ -56,7 +56,7 @@ jobs:
         npm run package
     - name: Upload webextension
       id: upload-webextension-asset
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -68,10 +68,10 @@ jobs:
   userscript:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: '20.x'
+        node-version: '22.x'
     - name: Build
       run: |
         npm ci
@@ -85,7 +85,7 @@ jobs:
         npm run package
     - name: Upload userscript
       id: upload-userscript-asset
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -95,7 +95,7 @@ jobs:
         asset_content_type: application/javascript
     - name: Upload adult userscript
       id: upload-adult-userscript-asset
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -107,10 +107,10 @@ jobs:
   chrome:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: '20.x'
+        node-version: '22.x'
     - name: Build
       run: |
         npm ci
@@ -123,7 +123,7 @@ jobs:
       run: |
         npm run package
     - name: Deploy Chrome
-      uses: trmcnvn/chrome-addon@v2
+      uses: trmcnvn/chrome-addon@7fc5a5ad3ff597dc64d6a13de7dcaa8515328be7 # v2
       with:
         extension: kekjfbackdeiabghhcdklcdoekaanoel
         zip: dist/webextension.zip
@@ -134,10 +134,10 @@ jobs:
   edge:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: '20.x'
+        node-version: '22.x'
     - name: Build
       run: |
         npm ci
@@ -150,7 +150,7 @@ jobs:
       run: |
         npm run package
     - name: Deploy Edge
-      uses: wdzeng/edge-addon@v2
+      uses: wdzeng/edge-addon@d4db1eea77297a24d799394dec87e8912e0902f9 # v2
       with:
         product-id: ${{ secrets.EDGE_PRODUCT_ID }}
         zip-path: dist/webextension.zip
@@ -160,10 +160,10 @@ jobs:
   firefox:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       with:
-        node-version: '20.x'
+        node-version: '22.x'
     - name: Build
       run: |
         npm ci
@@ -193,7 +193,7 @@ jobs:
         echo "xpi_filename=$BASENAME" >> $GITHUB_OUTPUT
 
     - name: Upload .xpi file
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:

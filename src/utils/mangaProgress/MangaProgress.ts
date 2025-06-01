@@ -1,5 +1,4 @@
 import { collectorConfig, executeCollector } from './ModeFactory';
-import { Cache } from '../Cache';
 
 export type mangaProgressConfig = {
   condition?: string | (() => boolean);
@@ -111,7 +110,6 @@ export class MangaProgress {
 
   async start() {
     clearInterval(this.interval);
-    await this.checkForUpdatedConfig().catch(e => logger.error(e));
     return new Promise<boolean>((resolve, reject) => {
       this.stopPromise = () => resolve(false);
       let resolved = false;
@@ -147,29 +145,6 @@ export class MangaProgress {
       j.$('#malSyncProgress').addClass('ms-done');
       j.$('.flash.type-update .sync').trigger('click');
       clearInterval(this.interval);
-    }
-  }
-
-  protected async checkForUpdatedConfig() {
-    const cacheObj = new Cache(`reader/${this.page}`, 24 * 60 * 60 * 1000);
-    let res;
-
-    if (await cacheObj.hasValue()) {
-      res = await cacheObj.getValue();
-    } else {
-      const url = `https://api.malsync.moe/static/reader/${this.page}`;
-      res = await api.request.xhr('GET', url).then(async response => {
-        if (response.status === 200 && response.responseText) {
-          return JSON.parse(response.responseText);
-        }
-        return null;
-      });
-      await cacheObj.setValue(res);
-    }
-
-    if (res) {
-      logger.log('Override config', res);
-      this.configs = [...alternativeReader, ...res];
     }
   }
 }

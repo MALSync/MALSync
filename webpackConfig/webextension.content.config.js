@@ -7,6 +7,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const pages = require('./utils/pages').pages();
 const { getKeys } = require('./utils/keys');
 const { getVirtualScript } = require('./utils/general');
+const ExtractJsonPlugin = require('./plugins/ExtractJsonPlugin').default;
 
 let entry = {
   'content-script': path.join(
@@ -56,6 +57,7 @@ let entry = {
   ),
   iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   popup: path.join(__dirname, '..', 'src/popup.ts'),
+  chibi: 'expose-loader?exposes=_PageChibi|Chibi!' + path.join(__dirname, '..', 'src', 'pages-chibi', 'ChibiProxy.ts'),
 }
 
 pages.forEach(page => {
@@ -86,8 +88,30 @@ module.exports = {
         },
       },
       {
+        // loads less inline as string
         test: /\.less$/,
         exclude: /node_modules/,
+        resourceQuery: /^\?raw$/,
+        use: [
+          'to-string-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: false,
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.less$/,
+        exclude: /node_modules/,
+        resourceQuery: { not: [/^\?raw$/] },
         use: ['style-loader', 'css-loader', 'less-loader'],
       },
       {
@@ -137,6 +161,17 @@ module.exports = {
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
+    }),
+    new ExtractJsonPlugin({
+      entryName: 'chibi-list',
+      typescriptFile: path.join(__dirname, '..', 'src/pages-chibi/builder/chibiList.ts'),
+      filename: 'chibi/list.json',
+    }),
+    new ExtractJsonPlugin({
+      entryName: 'chibi-pages',
+      typescriptFile: path.join(__dirname, '..', 'src/pages-chibi/builder/chibiPages.ts'),
+      filename: 'chibi/pages',
+      folderMode: true,
     }),
   ],
 };

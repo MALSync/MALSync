@@ -1,0 +1,49 @@
+{
+  "title": "Gojo",
+  "url": "https://gojo.wtf/",
+  "testCases": [
+    {
+      "url": "https://gojo.wtf/watch/19815",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life",
+        "identifier": "19815",
+        "overviewUrl": "https://gojo.wtf/anime/19815",
+        "nextEpUrl": "https://gojo.wtf/watch/19815?ep=2",
+        "episode": 0,
+        "uiSelector": false,
+        "malUrl": "https://myanimelist.net/anime/19815",
+        "epList": {
+          "2": "https://gojo.wtf/watch/19815?ep=2"
+        }
+      }
+    },
+    {
+      "url": "https://gojo.wtf/watch/19815?ep=4",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life",
+        "identifier": "19815",
+        "overviewUrl": "https://gojo.wtf/anime/19815",
+        "nextEpUrl": "https://gojo.wtf/watch/19815?ep=5",
+        "episode": 4,
+        "uiSelector": false,
+        "malUrl": "https://myanimelist.net/anime/19815",
+        "epList": {
+          "5": "https://gojo.wtf/watch/19815?ep=5"
+        }
+      }
+    },
+    {
+      "url": "https://gojo.wtf/anime/19815",
+      "expected": {
+        "sync": false,
+        "title": "No Game, No Life",
+        "identifier": "19815",
+        "episode": 1,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/19815"
+      }
+    }
+  ]
+}

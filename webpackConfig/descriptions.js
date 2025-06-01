@@ -3,7 +3,12 @@ const extra = require('fs-extra');
 const fs = require('fs');
 const pagesMain = require('./utils/pagesMain');
 
-const pages = Object.values(pagesMain.pages());
+const allPages = {
+  ...pagesMain.pages(),
+  ...pagesMain.chibi(),
+}
+
+const pages = Object.values(allPages);
 
 pages.sort(function(a, b) {
   const textA = a.name.toUpperCase();
@@ -127,7 +132,7 @@ function adultDep() {
 
 readMe();
 function readMe() {
-  const pageList = Object.values(pagesMain.pages());
+  const pageList = Object.values(pages);
 
   const animes = [];
   const mangas = [];
@@ -208,7 +213,7 @@ function readMe() {
 
 createJson();
 function createJson() {
-  const pageList = Object.values(pagesMain.pages());
+  const pageList = Object.values(allPages);
   const res = [];
   for (var page in pageList) {
     page = pageList[page];
