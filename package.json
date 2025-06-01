@@ -128,7 +128,7 @@
     "hex-to-hsl": "^1.0.2",
     "jquery": "^3.6.2",
     "node-fetch": "^3.3.2",
-    "overlayscrollbars": "^2.2.1",
+    "overlayscrollbars": "^2.11.4",
     "overlayscrollbars-vue": "^0.5.7",
     "popper-max-size-modifier": "^0.2.0",
     "semver": "^7.7.2",
