@@ -1,4 +1,3 @@
-import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
 import { Gogoanime } from './Gogoanime/main';
 import { TurkAnime } from './TurkAnime/main';
@@ -135,7 +134,6 @@ import { Hikari } from './Hikari/main';
 import { AniDream } from './AniDream/main';
 
 export const pages = {
-  Crunchyroll,
   Mangadex,
   Gogoanime,
   TurkAnime,

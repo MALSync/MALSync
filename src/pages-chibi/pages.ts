@@ -10,6 +10,7 @@ import { toonily } from './implementations/toonily/main';
 import { voidScans } from './implementations/VoidScans/main';
 import { AniXL } from './implementations/AniXL/main';
 import { bato } from './implementations/bato/main';
+import { Crunchyroll } from './implementations/Crunchyroll/main';
 
 export const pages: { [key: string]: PageInterface } = {
   mangaNato,
@@ -22,4 +23,5 @@ export const pages: { [key: string]: PageInterface } = {
   voidScans,
   AniXL,
   bato,
+  Crunchyroll,
 };
