@@ -5,12 +5,12 @@ import type { PageInterface } from '../../pageInterface';
 export const animeLib: PageInterface = {
   name: 'AnimeLib',
   type: 'anime',
-  domain: 'https://anilib.me',
+  domain: ['https://anilib.me', 'https://v1.animelib.org'],
   languages: ['Russian'],
   urls: {
-    match: ['*://anilib.me/*'],
+    match: ['*://anilib.me/*', '*://*.animelib.org/*'],
   },
-  search: 'https://anilib.me/ru/catalog?q={searchterm}',
+  search: 'https://v1.animelib.org/ru/catalog?q={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c

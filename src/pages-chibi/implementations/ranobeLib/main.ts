@@ -4,10 +4,10 @@ import type { PageInterface } from '../../pageInterface';
 export const ranobeLib: PageInterface = {
   name: 'RanobeLib',
   type: 'manga',
-  domain: 'https://ranobelib.me',
+  domain: ['https://ranobelib.me', 'https://v1.novelslib.me'],
   languages: ['Russian'],
   urls: {
-    match: ['*://ranobelib.me/*'],
+    match: ['*://ranobelib.me/*', '*://*.novelslib.me/*'],
   },
   search: 'https://ranobelib.me/ru/catalog?q={searchterm}',
   sync: {
