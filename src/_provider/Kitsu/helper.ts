@@ -1,5 +1,5 @@
 import { startFinishDate, status } from '../definitions';
-import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
+import { NotAuthenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
 const logger = con.m('kitsu', '#d65e43');
 
@@ -128,7 +128,7 @@ export function apiCall(
         switch (parseInt(error.status)) {
           case 401:
           case 403:
-            throw new NotAutenticatedError(error.detail);
+            throw new NotAuthenticatedError(error.detail);
           case 404:
             throw new NotFoundError(error.detail);
           default:
