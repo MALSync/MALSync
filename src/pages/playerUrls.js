@@ -800,4 +800,8 @@ module.exports = {
   boosterx: {
     match: ['*://boosterx.stream/*'],
   },
+  // animeav1
+  animeav1: {
+    match: ['*://player.zilla-networks.com/*'],
+  },
 };

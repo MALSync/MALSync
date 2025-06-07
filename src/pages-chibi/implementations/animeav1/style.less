@@ -1,0 +1,49 @@
+@import './../pages';
+
+@highlightStyle: 0;
+@activeEp: rgb(var(--color-main) / var(--tw-text-opacity, 1));
+
+@textColor: rgb(var(--color-text) / var(--tw-text-opacity, 1));
+@inputBackground: rgb(var(--color-body) / var(--tw-bg-opacity, 1));
+
+#malp * {
+  min-width: auto;
+
+  input {
+    min-height: 1rem;
+  }
+
+  select {
+    padding-left: 5px !important;
+  }
+
+  div.flex-wrap #malStatus,
+  div.flex-wrap #malUserRating {
+    background-color: rgb(var(--color-mute) / var(--tw-bg-opacity, 1));
+  }
+
+  #malEpisodes {
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    margin-bottom: 4px;
+  }
+
+  .malp-group-score,
+  .malp-group-status {
+    display: flex;
+    flex-flow: row;
+  }
+
+  .malp-group-label {
+    text-wrap: nowrap;
+  }
+
+  .malp-group-select {
+    min-height: 1rem;
+  }
+}
+
+.mal-sync-active {
+  border: 2px solid @activeEp;
+}
