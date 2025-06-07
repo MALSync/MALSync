@@ -135,7 +135,8 @@
   },
   "0.12.0": {
     "iframe": [
-      "*://jilliandescribecompany.com/e/*"
+      "*://jilliandescribecompany.com/e/*",
+      "*://player.zilla-networks.com/*"
     ]
   }
 }
