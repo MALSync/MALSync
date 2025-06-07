@@ -31,9 +31,6 @@ export const animeav1: PageInterface = {
       const nextEp = $c.querySelector('.ic-chevron-right').parent().getAttribute('href');
       return $c.if(nextEp.boolean().run(), nextEp.urlAbsolute().run(), $c.string('').run()).run();
     },
-    uiInjection($c) {
-      return $c.querySelector('div.container > div.items-start > div.flex-wrap').uiAfter().run();
-    },
   },
   overview: {
     isOverviewPage($c) {
@@ -42,7 +39,7 @@ export const animeav1: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('div.text-main a').text().trim().run();
+      return $c.querySelector('h1').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
@@ -56,10 +53,10 @@ export const animeav1: PageInterface = {
       return $c.querySelectorAll('article.group\\/item').run();
     },
     elementUrl($c) {
-      return $c.find('a').first().getAttribute('href').urlAbsolute().run();
+      return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.querySelector('div > div > div > span').text().trim().number().run();
+      return $c.this('list.elementUrl').this('sync.getEpisode').run();
     },
   },
   lifecycle: {
@@ -68,7 +65,7 @@ export const animeav1: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.domReady().trigger().run();
+      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
   },
 };

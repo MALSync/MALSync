@@ -1,5 +1,8 @@
 @import './../pages';
 
+@highlightStyle: 0;
+@activeEp: rgb(var(--color-main) / var(--tw-text-opacity, 1));
+
 @textColor: rgb(var(--color-text) / var(--tw-text-opacity, 1));
 @inputBackground: rgb(var(--color-body) / var(--tw-bg-opacity, 1));
 
@@ -39,4 +42,8 @@
   .malp-group-select {
     min-height: 1rem;
   }
+}
+
+.mal-sync-active {
+  border: 2px solid @activeEp;
 }
