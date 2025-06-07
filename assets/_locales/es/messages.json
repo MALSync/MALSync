@@ -1396,7 +1396,7 @@
         "description": "Info table on overview - Licensor: AT-X"
     },
     "overview_sidebar_Aired": {
-        "message": "Publicado:",
+        "message": "Emitido:",
         "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
     },
     "overview_sidebar_Authors": {
@@ -1444,7 +1444,7 @@
         "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sincronizar manga después de $mangaCompletionPercentage$% de las páginas",
+        "message": "­Sincronizar manga después de leer el $mangaCompletionPercentage$% de las páginas",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
         "placeholders": {
             "mangaCompletionPercentage": {
@@ -1576,5 +1576,89 @@
     "locale": {
         "message": "es",
         "description": "Current locale"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Actualizar capítulo al leer al porcentaje"
+    },
+    "settings_listsync_list": {
+        "message": "Lista:"
+    },
+    "settings_listsync_repeatcount_anime": {
+        "message": "Contador de Repeticiones:"
+    },
+    "settings_listsync_slave": {
+        "message": "Espejo"
+    },
+    "settings_ForceEnglishTitles": {
+        "message": "Forzar títulos al Inglés"
+    },
+    "settings_listsync_master": {
+        "message": "Principal"
+    },
+    "settings_listsync_itemcount": {
+        "message": "Elementos a sincronizar:"
+    },
+    "settings_listsync_syncinprogress": {
+        "message": "Sincronizando, espere por favor:"
+    },
+    "settings_listsync_syncbutton": {
+        "message": "Sincronizar"
+    },
+    "settings_listsync_updates": {
+        "message": "Actualizaciones"
+    },
+    "settings_listsync_missing": {
+        "message": "Faltantes"
+    },
+    "settings_listsync_score": {
+        "message": "Puntuación:"
+    },
+    "settings_listsync_progress_anime": {
+        "message": "Ep:"
+    },
+    "settings_listsync_progress_manga": {
+        "message": "Cap:"
+    },
+    "settings_listsync_volume": {
+        "message": "Vol:"
+    },
+    "settings_listsync_repeatcount_manga": {
+        "message": "Contador de Relecturas:"
+    },
+    "settings_listsync_provider_done": {
+        "message": "Hecho"
+    },
+    "overview_sidebar_Published": {
+        "message": "Publicado:"
+    },
+    "overview_sidebar_Premiered": {
+        "message": "Estreno:"
+    },
+    "overview_sidebar_Producers": {
+        "message": "Productores:"
+    },
+    "overview_sidebar_Licensors": {
+        "message": "Licenciantes:"
+    },
+    "overview_sidebar_Themes": {
+        "message": "Temáticas:"
+    },
+    "overview_sidebar_Type": {
+        "message": "Tipo:"
+    },
+    "overview_sidebar_Demographic": {
+        "message": "Demografía:"
+    },
+    "settings_listsync_status": {
+        "message": "Estado:"
+    },
+    "settings_listsync_startdate": {
+        "message": "Fecha de Inicio:"
+    },
+    "settings_listsync_finishdate": {
+        "message": "Fecha de Finalización:"
+    },
+    "settings_listsync_unknowndate": {
+        "message": "no establecido"
     }
 }
