@@ -17,7 +17,7 @@ export const anicrush: PageInterface = {
       return $c.querySelector('div.main h2').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      return $c.url().urlPart(4).ifNotReturn().split('.').last().run();
     },
     getOverviewUrl($c) {
       return $c.querySelector('div.other-items a').getAttribute('href').urlAbsolute().run();
@@ -34,7 +34,7 @@ export const anicrush: PageInterface = {
       return $c.querySelector('div.main h2').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      return $c.url().this('sync.getIdentifier').run();
     },
     uiInjection($c) {
       return $c.querySelector('div.main div.other-items').uiAfter().run();
