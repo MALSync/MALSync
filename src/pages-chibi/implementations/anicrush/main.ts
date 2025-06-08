@@ -31,7 +31,7 @@ export const anicrush: PageInterface = {
       return $c.url().urlPart(3).equals('detail').run();
     },
     getTitle($c) {
-      return $c.querySelector('div.main h2').text().trim().run();
+      return $c.this('sync.getTitle').run();
     },
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
