@@ -1,6 +1,7 @@
 import { PageInterface } from './pageInterface';
 
 import { animeav1 } from './implementations/animeav1/main';
+import { anicrush } from './implementations/anicrush/main';
 import { mangaNato } from './implementations/mangaNato/main';
 import { gojo } from './implementations/gojo/main';
 import { animeLib } from './implementations/animeLib/main';
@@ -15,6 +16,7 @@ import { Crunchyroll } from './implementations/Crunchyroll/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
+  anicrush,
   mangaNato,
   gojo,
   animeLib,
