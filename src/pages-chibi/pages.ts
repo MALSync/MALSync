@@ -13,6 +13,7 @@ import { voidScans } from './implementations/VoidScans/main';
 import { AniXL } from './implementations/AniXL/main';
 import { bato } from './implementations/bato/main';
 import { Crunchyroll } from './implementations/Crunchyroll/main';
+import { animevost } from './implementations/animevost/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -28,4 +29,5 @@ export const pages: { [key: string]: PageInterface } = {
   AniXL,
   bato,
   Crunchyroll,
+  animevost,
 };
