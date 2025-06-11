@@ -11,11 +11,7 @@ export const animevost: PageInterface = {
 
   sync: {
     isSyncPage($c) {
-      return $c
-        .url()
-        .regex('animevost\\.org\\/tip\\/[a-z0-9-]+\\/\\d+-[^\\/]+\\.html')
-        .boolean()
-        .run();
+      return $c.url().regex('tip\\/[a-z0-9-]+\\/\\d+-[^\\/]+\\.html').boolean().run();
     },
 
     getTitle($c) {
@@ -23,7 +19,7 @@ export const animevost: PageInterface = {
     },
 
     getIdentifier($c) {
-      return $c.url().regex('animevost\\.org\\/tip\\/[a-z0-9-]+\\/(\\d+)-', 1).run();
+      return $c.url().regex('tip\\/[a-z0-9-]+\\/(\\d+)-', 1).run();
     },
 
     getOverviewUrl($c) {
