@@ -2,12 +2,11 @@ import { PageInterface } from '../../pageInterface';
 
 export const animevost: PageInterface = {
   name: 'AnimeVost',
-  domain: 'https://animevost.org',
+  domain: ['https://animevost.org', 'https://v7.vost.pw'],
   languages: ['Russian'],
   type: 'anime',
-
   urls: {
-    match: ['*://animevost.org/tip/*'],
+    match: ['*://animevost.org/tip/*', '*://v7.vost.pw/tip/*'],
   },
 
   sync: {
