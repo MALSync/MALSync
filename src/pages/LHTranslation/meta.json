@@ -1,6 +1,0 @@
-{
-  "search": "https://lhtranslation.net/?s={searchtermPlus}&post_type=wp-manga",
-  "urls": {
-    "match": ["*://lhtranslation.net/manga*"]
-  }
-}

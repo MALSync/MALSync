@@ -1,7 +1,0 @@
-{
-  "search": "https://manga4life.com/search/?name={searchterm}",
-  "searchDatabase": "",
-  "urls": {
-    "match": ["*://*.manga4life.com/*"]
-  }
-}

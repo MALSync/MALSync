@@ -1,6 +1,0 @@
-{
-  "search": "https://immortalupdates.com/?s={searchtermPlus}&post_type=wp-manga",
-  "urls": {
-    "match": ["*://immortalupdates.com/manga*"]
-  }
-}

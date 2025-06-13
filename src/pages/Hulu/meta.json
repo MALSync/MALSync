@@ -1,6 +1,0 @@
-{
-  "searchDatabase": "Hulu",
-  "urls": {
-    "match": ["*://www.hulu.com/*"]
-  }
-}

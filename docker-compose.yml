@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  malsync:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_TYPE=sqlite
+      - DATABASE_URL=sqlite:///data/malsync.db
+    volumes:
+      - malsync_data:/app/data
+      - malsync_logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional PostgreSQL database
+  postgres:
+    image: postgres:15-alpine
+    profiles:
+      - postgres
+    environment:
+      - POSTGRES_DB=malsync
+      - POSTGRES_USER=malsync
+      - POSTGRES_PASSWORD=malsync_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+
+  # Optional Redis for caching/sessions
+  redis:
+    image: redis:7-alpine
+    profiles:
+      - redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  malsync_data:
+  malsync_logs:
+  postgres_data:
+  redis_data:
+
+networks:
+  default:
+    name: malsync_network

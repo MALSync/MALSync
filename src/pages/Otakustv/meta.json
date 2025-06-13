@@ -1,6 +1,0 @@
-{
-  "search": "https://www.otakustv.com/buscador.php?buscador={searchterm}",
-  "urls": {
-    "match": ["*://*.otakustv.com/anime/*"]
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "search": "https://hdrezka.ag/search/?do=search&subaction=search&q={searchterm}",
-  "urls": {
-    "match": ["*://hdrezka.ag/animation/*"]
-  }
-}

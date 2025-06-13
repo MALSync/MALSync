@@ -1,6 +1,0 @@
-{
-  "search": "https://mangareader.to/search?keyword={searchtermPlus}",
-  "urls": {
-    "match": ["*://mangareader.to/*"]
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "search": "https://manga.bilibili.com/search?keyword={searchterm( )[noLowercase]}",
-  "urls": {
-    "match": ["*://*.manga.bilibili.com/*"]
-  }
-}

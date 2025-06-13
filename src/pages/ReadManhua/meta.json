@@ -1,6 +1,0 @@
-{
-  "search": "https://readmanhua.net/?s={searchtermPlus}&post_type=wp-manga",
-  "urls": {
-    "match": ["*://readmanhua.net/manga*"]
-  }
-}

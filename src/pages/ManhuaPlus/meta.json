@@ -1,6 +1,0 @@
-{
-  "search": "https://manhuaplus.com/?s={searchtermPlus}&post_type=wp-manga",
-  "urls": {
-    "match": ["*://manhuaplus.com/manga*"]
-  }
-}

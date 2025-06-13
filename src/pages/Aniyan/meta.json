@@ -1,7 +1,0 @@
-{
-    "search": "https://aniyan.net/?s={searchtermPlus}",
-    "urls": {
-      "match": ["*://aniyan.net/*"]
-    }
-  }
-  

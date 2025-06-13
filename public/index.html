@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MALSync - List Sync Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div id="app">
+        <nav class="bg-blue-600 text-white p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <h1 class="text-2xl font-bold">MALSync</h1>
+                <div v-if="user.token" class="flex items-center space-x-4">
+                    <span>Connected Services: {{ connectedServicesCount }}</span>
+                    <button @click="logout" class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mx-auto p-6">
+            <!-- Login Section -->
+            <div v-if="!user.token" class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-4">Welcome to MALSync</h2>
+                <p class="text-gray-600 mb-6">Sync your anime and manga lists across multiple platforms</p>
+                <button @click="createSession" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                    Get Started
+                </button>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div v-if="user.token" class="space-y-6">
+                <!-- Service Connections -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">Service Connections</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                        <div v-for="service in services" :key="service.name" 
+                             class="border rounded-lg p-4 text-center"
+                             :class="service.connected ? 'border-green-500 bg-green-50' : 'border-gray-300'">
+                            <h3 class="font-semibold">{{ service.displayName }}</h3>
+                            <div class="mt-2">
+                                <span v-if="service.connected" class="text-green-600 text-sm">✓ Connected</span>
+                                <span v-else class="text-gray-500 text-sm">Not connected</span>
+                            </div>
+                            <button v-if="!service.connected" 
+                                    @click="connectService(service.name)"
+                                    class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">
+                                Connect
+                            </button>
+                            <button v-else 
+                                    @click="disconnectService(service.name)"
+                                    class="mt-2 bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700">
+                                Disconnect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sync Status -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">Sync Status</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="border rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-700">Current Status</h3>
+                            <p class="text-lg" :class="syncStatus.isRunning ? 'text-blue-600' : 'text-gray-600'">
+                                {{ syncStatus.isRunning ? 'Syncing...' : 'Idle' }}
+                            </p>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-700">Last Sync</h3>
+                            <p class="text-sm text-gray-600">
+                                {{ syncStatus.lastSync ? formatDate(syncStatus.lastSync.started_at) : 'Never' }}
+                            </p>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-700">Next Scheduled</h3>
+                            <p class="text-sm text-gray-600">
+                                {{ syncStatus.nextScheduledSync ? formatDate(syncStatus.nextScheduledSync) : 'Not scheduled' }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 flex space-x-4">
+                        <button @click="triggerManualSync" 
+                                :disabled="syncStatus.isRunning || connectedServicesCount === 0"
+                                class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            {{ syncStatus.isRunning ? 'Syncing...' : 'Manual Sync' }}
+                        </button>
+                        <button @click="showScheduleModal = true" 
+                                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                            Schedule Settings
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sync History -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">Recent Sync History</h2>
+                    <div v-if="syncHistory.length === 0" class="text-gray-500 text-center py-4">
+                        No sync history available
+                    </div>
+                    <div v-else class="space-y-2">
+                        <div v-for="sync in syncHistory.slice(0, 5)" :key="sync.id" 
+                             class="border rounded p-3 flex justify-between items-center">
+                            <div>
+                                <span class="font-semibold">{{ sync.type }}</span>
+                                <span class="text-sm text-gray-600 ml-2">{{ formatDate(sync.started_at) }}</span>
+                            </div>
+                            <div>
+                                <span class="px-2 py-1 rounded text-xs"
+                                      :class="sync.status === 'success' ? 'bg-green-100 text-green-800' : 
+                                              sync.status === 'failure' ? 'bg-red-100 text-red-800' : 
+                                              'bg-yellow-100 text-yellow-800'">
+                                    {{ sync.status }}
+                                </span>
+                                <span v-if="sync.duration" class="text-sm text-gray-600 ml-2">
+                                    {{ Math.round(sync.duration / 1000) }}s
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Sync Updates -->
+                <div v-if="realtimeSync.status" class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h3 class="font-semibold text-blue-800">Live Sync Progress</h3>
+                    <div class="mt-2">
+                        <div class="flex justify-between text-sm">
+                            <span>{{ realtimeSync.service }} - {{ realtimeSync.type }}</span>
+                            <span>{{ realtimeSync.progress }}%</span>
+                        </div>
+                        <div class="w-full bg-blue-200 rounded-full h-2 mt-1">
+                            <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" 
+                                 :style="{ width: realtimeSync.progress + '%' }"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Modal -->
+        <div v-if="showScheduleModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                <h3 class="text-lg font-bold mb-4">Sync Schedule Settings</h3>
+                <div class="space-y-4">
+                    <label class="flex items-center">
+                        <input type="checkbox" v-model="scheduleSettings.enabled" class="mr-2">
+                        Enable automatic sync
+                    </label>
+                    <div v-if="scheduleSettings.enabled">
+                        <label class="block text-sm font-medium text-gray-700">Interval (minutes)</label>
+                        <input type="number" v-model="scheduleSettings.intervalMinutes" 
+                               min="60" step="60" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2">
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-2 mt-6">
+                    <button @click="showScheduleModal = false" 
+                            class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                        Cancel
+                    </button>
+                    <button @click="saveScheduleSettings" 
+                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    user: {
+                        token: localStorage.getItem('malsync_token'),
+                        userId: localStorage.getItem('malsync_userId')
+                    },
+                    services: [
+                        { name: 'mal', displayName: 'MyAnimeList', connected: false },
+                        { name: 'anilist', displayName: 'AniList', connected: false },
+                        { name: 'kitsu', displayName: 'Kitsu', connected: false },
+                        { name: 'simkl', displayName: 'Simkl', connected: false },
+                        { name: 'shikimori', displayName: 'Shikimori', connected: false }
+                    ],
+                    syncStatus: {
+                        isRunning: false,
+                        lastSync: null,
+                        nextScheduledSync: null
+                    },
+                    syncHistory: [],
+                    realtimeSync: {},
+                    showScheduleModal: false,
+                    scheduleSettings: {
+                        enabled: false,
+                        intervalMinutes: 1440
+                    },
+                    socket: null
+                }
+            },
+            computed: {
+                connectedServicesCount() {
+                    return this.services.filter(s => s.connected).length;
+                }
+            },
+            async mounted() {
+                if (this.user.token) {
+                    await this.loadDashboard();
+                    this.setupWebSocket();
+                }
+            },
+            methods: {
+                async createSession() {
+                    try {
+                        const response = await axios.post('/api/auth/session');
+                        this.user.token = response.data.token;
+                        this.user.userId = response.data.userId;
+                        localStorage.setItem('malsync_token', this.user.token);
+                        localStorage.setItem('malsync_userId', this.user.userId);
+                        await this.loadDashboard();
+                        this.setupWebSocket();
+                    } catch (error) {
+                        alert('Failed to create session: ' + error.response?.data?.error);
+                    }
+                },
+
+                async loadDashboard() {
+                    await Promise.all([
+                        this.loadAuthStatus(),
+                        this.loadSyncStatus(),
+                        this.loadSyncHistory()
+                    ]);
+                },
+
+                async loadAuthStatus() {
+                    try {
+                        const response = await this.apiCall('/api/auth/status');
+                        const status = response.data.status;
+                        this.services.forEach(service => {
+                            service.connected = status[service.name] || false;
+                        });
+                    } catch (error) {
+                        console.error('Failed to load auth status:', error);
+                    }
+                },
+
+                async loadSyncStatus() {
+                    try {
+                        const response = await this.apiCall('/api/sync/status');
+                        this.syncStatus = response.data;
+                    } catch (error) {
+                        console.error('Failed to load sync status:', error);
+                    }
+                },
+
+                async loadSyncHistory() {
+                    try {
+                        const response = await this.apiCall('/api/sync/history');
+                        this.syncHistory = response.data.history;
+                    } catch (error) {
+                        console.error('Failed to load sync history:', error);
+                    }
+                },
+
+                async connectService(serviceName) {
+                    try {
+                        const response = await this.apiCall(`/api/auth/${serviceName}/start`);
+                        if (response.data.authUrl) {
+                            // Open OAuth URL in new window
+                            const popup = window.open(response.data.authUrl, 'oauth', 'width=600,height=700');
+                            
+                            // Listen for OAuth completion
+                            const checkClosed = setInterval(() => {
+                                if (popup.closed) {
+                                    clearInterval(checkClosed);
+                                    // Refresh auth status
+                                    this.loadAuthStatus();
+                                }
+                            }, 1000);
+                        }
+                    } catch (error) {
+                        alert('Failed to start authentication: ' + error.response?.data?.error);
+                    }
+                },
+
+                async disconnectService(serviceName) {
+                    try {
+                        await this.apiCall(`/api/auth/${serviceName}`, 'DELETE');
+                        await this.loadAuthStatus();
+                    } catch (error) {
+                        alert('Failed to disconnect service: ' + error.response?.data?.error);
+                    }
+                },
+
+                async triggerManualSync() {
+                    try {
+                        await this.apiCall('/api/sync/manual', 'POST');
+                        await this.loadSyncStatus();
+                    } catch (error) {
+                        alert('Failed to trigger sync: ' + error.response?.data?.error);
+                    }
+                },
+
+                async saveScheduleSettings() {
+                    try {
+                        await this.apiCall('/api/sync/schedule', 'PUT', this.scheduleSettings);
+                        this.showScheduleModal = false;
+                        await this.loadSyncStatus();
+                    } catch (error) {
+                        alert('Failed to save schedule: ' + error.response?.data?.error);
+                    }
+                },
+
+                setupWebSocket() {
+                    this.socket = io();
+                    this.socket.emit('join-sync-updates', this.user.userId);
+                    
+                    this.socket.on('sync-status', (status) => {
+                        this.realtimeSync = status;
+                        if (status.status === 'completed' || status.status === 'failed') {
+                            setTimeout(() => {
+                                this.realtimeSync = {};
+                                this.loadSyncStatus();
+                                this.loadSyncHistory();
+                            }, 2000);
+                        }
+                    });
+                },
+
+                async apiCall(url, method = 'GET', data = null) {
+                    const config = {
+                        method,
+                        url,
+                        headers: {
+                            'Authorization': `Bearer ${this.user.token}`
+                        }
+                    };
+                    
+                    if (data) {
+                        config.data = data;
+                    }
+                    
+                    return axios(config);
+                },
+
+                logout() {
+                    localStorage.removeItem('malsync_token');
+                    localStorage.removeItem('malsync_userId');
+                    this.user.token = null;
+                    this.user.userId = null;
+                    if (this.socket) {
+                        this.socket.disconnect();
+                    }
+                },
+
+                formatDate(dateString) {
+                    return new Date(dateString).toLocaleString();
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

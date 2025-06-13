@@ -1,6 +1,0 @@
-{
-  "search": "https://wuxiaworld.site/?s={searchtermPlus}&post_type=wp-manga",
-  "urls": {
-    "match": ["*://wuxiaworld.site/novel/*"]
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "search": "https://tioanime.com/directorio?q={searchtermPlus}",
-  "urls": {
-    "match": ["*://tioanime.com/anime/*", "*://tioanime.com/ver/*"]
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "search": "https://mangatx.com/?s={searchtermPlus}&post_type=wp-manga&post_type=wp-manga",
-  "urls": {
-    "match": ["*://mangatx.com/*"]
-  }
-}

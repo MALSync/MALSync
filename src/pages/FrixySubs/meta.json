@@ -1,6 +1,0 @@
-{
-  "search": "https://frixysubs.pl/anime-list?search={searchtermPlus}",
-  "urls": {
-    "match": ["*://frixysubs.pl/*"]
-  }
-}

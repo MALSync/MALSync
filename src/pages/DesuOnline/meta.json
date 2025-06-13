@@ -1,6 +1,0 @@
-{
-  "search": "https://desu-online.pl/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://desu-online.pl/*"]
-  }
-}

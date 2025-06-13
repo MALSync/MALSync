@@ -1,6 +1,0 @@
-{
-  "search": "https://serimanga.com/mangalar?search={searchtermPlus}",
-  "urls": {
-    "match": ["*://serimanga.com/*"]
-  }
-}

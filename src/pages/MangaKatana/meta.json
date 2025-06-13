@@ -1,6 +1,0 @@
-{
-  "search": "http://mangakatana.com/?search={searchtermPlus}&search_by=book_name",
-  "urls": {
-    "match": ["*://mangakatana.com/manga/*"]
-  }
-}

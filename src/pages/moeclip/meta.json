@@ -1,6 +1,0 @@
-{
-  "search": "https://moeclip.com/search/{searchtermPlus}",
-  "urls": {
-    "match": ["*://moeclip.com/*"]
-  }
-}

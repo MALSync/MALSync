@@ -1,6 +1,0 @@
-{
-  "search": "https://projectsuki.com/search?q={searchtermPlus}",
-  "urls": {
-    "match": ["*://projectsuki.com/*"]
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "search": "https://vvww.toonanime.cc/?story={searchtermPlus}&do=search&subaction=search",
-  "urls": {
-    "match": ["*://vvww.toonanime.cc/*"]
-  }
-}

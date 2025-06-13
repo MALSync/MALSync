@@ -1,6 +1,0 @@
-{
-  "search": "https://mangas-origines.fr/?s={searchtermPlus}&post_type=wp-manga",
-  "urls": {
-    "match": ["*://mangas-origines.fr/oeuvre*"]
-  }
-}

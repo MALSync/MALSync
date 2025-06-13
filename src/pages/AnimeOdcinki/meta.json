@@ -1,6 +1,0 @@
-{
-  "search": "https://anime-odcinki.pl/szukaj/{searchtermPlus}",
-  "urls": {
-    "match": ["*://anime-odcinki.pl/anime/*"]
-  }
-}

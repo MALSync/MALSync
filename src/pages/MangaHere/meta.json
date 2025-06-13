@@ -1,7 +1,0 @@
-{
-  "search": "http://www.mangahere.cc/search?title={searchtermPlus}",
-  "searchDatabase": "",
-  "urls": {
-    "match": ["*://*.mangahere.cc/manga/*"]
-  }
-}

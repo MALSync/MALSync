@@ -1,8 +1,0 @@
-{
-  "search":"https://www.animetoast.cc/?s={searchterm}",
-  "urls": {
-    "match": [
-      "*://*.animetoast.cc/*"
-    ]
-  }
-}

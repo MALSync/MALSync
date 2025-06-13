@@ -1,6 +1,0 @@
-{
-  "search": "http://fanfox.net/search?title={searchtermPlus}",
-  "urls": {
-    "match": ["*://*.fanfox.net/manga/*", "*://*.mangafox.la/manga/*"]
-  }
-}

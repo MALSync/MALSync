@@ -1,27 +1,28 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
     "outDir": "./dist",
-    "noImplicitAny": false,
-    "noImplicitThis": false,
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "target": "es2021",
-    "lib": ["es2021", "dom"],
-    "jsx": "preserve",
-    "allowJs": true,
-    "checkJs": true,
-    "sourceMap": true,
+    "rootDir": "./src",
     "strict": true,
-    "useUnknownInCatchVariables": false,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true
   },
-  "include": ["**/*.ts", "src/**/*.vue"],
-  "exclude": [
-    "dist",
-    "**/*.test.ts",
-    "**/*.exclude.ts",
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }

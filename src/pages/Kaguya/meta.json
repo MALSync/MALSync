@@ -1,6 +1,0 @@
-{
-  "search": "https://kaguya.app/browse?keyword={searchtermPlus}",
-  "urls": {
-    "match": ["*://kaguya.app/*"]
-  }
-}
