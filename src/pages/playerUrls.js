@@ -808,4 +808,8 @@ module.exports = {
   animeav1: {
     match: ['*://player.zilla-networks.com/*'],
   },
+  // miruro
+  megaplay: {
+    match: ['*://megaplay.buzz/*'],
+  },
 };
