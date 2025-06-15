@@ -57,7 +57,8 @@ export const Zoro: pageInterface = {
       return jsonData.anime_id;
     },
     uiSelector(selector) {
-      j.$(jsonData.selector_position!).append(j.html(selector));
+      j.$(jsonData.selector_position!).detach();
+      j.$('div.film-description').before(j.html(selector));
     },
     getMalUrl(provider) {
       return Zoro.sync.getMalUrl!(provider);
