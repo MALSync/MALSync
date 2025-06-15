@@ -137,7 +137,8 @@
     "iframe": [
       "*://animevost.org/frame5.php?play=*",
       "*://jilliandescribecompany.com/e/*",
-      "*://player.zilla-networks.com/*"
+      "*://player.zilla-networks.com/*",
+      "*://megaplay.buzz/*"
     ]
   }
 }
