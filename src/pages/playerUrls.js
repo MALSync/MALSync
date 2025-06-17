@@ -314,6 +314,10 @@ module.exports = {
   animedesu: {
     match: ['*://animedesu.pl/player/desu.php?v=*'],
   },
+  // animevost
+  animevost: {
+    match: ['*://animevost.org/frame5.php?play=*'],
+  },
   // animixplay
   animixplay: {
     match: ['*://*.plyr.link/*', '*://v.vvid.cc/*'],
@@ -803,5 +807,9 @@ module.exports = {
   // animeav1
   animeav1: {
     match: ['*://player.zilla-networks.com/*'],
+  },
+  // miruro
+  megaplay: {
+    match: ['*://megaplay.buzz/*'],
   },
 };
