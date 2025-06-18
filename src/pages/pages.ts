@@ -129,7 +129,6 @@ import { WeebCentral } from './WeebCentral/main';
 import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
-import { AnimeKAI } from './AnimeKAI/main';
 import { Hikari } from './Hikari/main';
 import { AniDream } from './AniDream/main';
 
@@ -265,7 +264,6 @@ export const pages = {
   Kavita,
   Rawkuma,
   Aninexus,
-  AnimeKAI,
   Hikari,
   AniDream,
 };
