@@ -46,4 +46,14 @@
 
 .mal-sync-active {
   border: 2px solid @activeEp;
+  border-radius: 0.5rem;
+}
+
+// Fixes overlapping background over mal-sync-active border radius
+.mal-sync-active div.relative {
+  border-radius: 0.5rem;
+}
+
+.mal-sync-active div.rnd-bse {
+  border-bottom-left-radius: 0.5rem;
 }

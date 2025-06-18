@@ -45,7 +45,7 @@ export const animeav1: PageInterface = {
       return $c.url().this('sync.getIdentifier').run();
     },
     uiInjection($c) {
-      return $c.querySelector('article div.entry').uiAfter().run();
+      return $c.querySelectorAll('article div.items-end button').last().uiAfter().run();
     },
   },
   list: {
