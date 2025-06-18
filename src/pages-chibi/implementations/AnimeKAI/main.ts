@@ -83,16 +83,19 @@ export const AnimeKAI: PageInterface = {
       return $c
         .domReady()
         .detectChanges(
-          $c
-            .querySelector('#syncData')
-            .ifNotReturn()
-            .text()
-            .replaceRegex('[^\\w\\d]*', '')
-            .trim()
-            .run(),
+          $c.querySelector('#syncData').ifNotReturn().text().trim().run(),
           $c.trigger().run(),
         )
         .trigger()
+        .run();
+    },
+    syncIsReady($c) {
+      return $c
+        .querySelector('#syncData')
+        .ifNotReturn()
+        .text()
+        .contains('\\/\\/')
+        .ifNotReturn($c.trigger().return().run())
         .run();
     },
   },
