@@ -14,6 +14,7 @@ import { AniXL } from './implementations/AniXL/main';
 import { bato } from './implementations/bato/main';
 import { Crunchyroll } from './implementations/Crunchyroll/main';
 import { animevost } from './implementations/animevost/main';
+import { AnimeKAI } from './implementations/AnimeKAI/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -30,4 +31,5 @@ export const pages: { [key: string]: PageInterface } = {
   bato,
   Crunchyroll,
   animevost,
+  AnimeKAI,
 };
