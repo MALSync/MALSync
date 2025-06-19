@@ -1,0 +1,27 @@
+{
+  "title": "Animeav1",
+  "url": "https://animeav1.com",
+  "testCases": [
+    {
+      "url": "https://animeav1.com/media/ore-wa-subete-wo-parry-suru",
+      "expected": {
+        "sync": false,
+        "title": "Ore wa Subete wo \"Parry\" suru: Gyaku Kanchigai no Sekai Saikyou wa Boukensha ni Naritai",
+        "identifier": "ore-wa-subete-wo-parry-suru",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animeav1.com/media/ore-wa-subete-wo-parry-suru/8",
+      "expected": {
+        "sync": true,
+        "title": "Ore wa Subete wo \"Parry\" suru: Gyaku Kanchigai no Sekai Saikyou wa Boukensha ni Naritai",
+        "identifier": "ore-wa-subete-wo-parry-suru",
+        "episode": 8,
+        "overviewUrl": "https://animeav1.com/media/ore-wa-subete-wo-parry-suru",
+        "nextEpUrl": "https://animeav1.com/media/ore-wa-subete-wo-parry-suru/9",
+        "uiSelector": false
+      }
+    }
+  ]
+}

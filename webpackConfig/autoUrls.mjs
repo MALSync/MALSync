@@ -130,6 +130,21 @@ async function kickassanime() {
     }
 }
 
+async function animekai() {
+    const response = await fetch('https://animekai.me/');
+    const body = await response.text();
+
+    const $ = cheerio.load(body);
+
+    const urls = $('.site-lists li > a')
+        .map((i, el) => new URL($(el).attr('href')))
+        .get();
+
+    for (const url of urls) {
+        addChibiUrls('AnimeKAI', ['*://' + url.hostname + '/*']);
+    }
+}
+
 function addpageUrls(page, urls) {
     let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
 
@@ -142,6 +157,30 @@ function addpageUrls(page, urls) {
     fs.writeFileSync(path.resolve(`./src/pages/${page}/meta.json`), JSON.stringify(file, null, 2) + "\n");
 }
 
+function addChibiUrls(page, urls) {
+    let file = fs.readFileSync(
+        path.resolve(`src/pages-chibi/implementations/${page}/main.ts`),
+        'utf8',
+    );
+
+    const matchRegex = /match:\s*\[(.*?)\]/s;
+    const matchMatch = file.match(matchRegex);
+    if (!matchMatch) {
+        throw new Error(`No match found in ${page} main.ts`);
+    }
+
+    const urlRegex = matchMatch[1].match(/'([^']+)'/g) || [];
+    const matchUrls = urlRegex.map(url => url.replace(/'/g, ''));
+
+    for (const url of urls) {
+        if (!matchUrls.includes(url)) {
+        matchUrls.push(url);
+        }
+    }
+
+    const updatedFile = file.replace(matchRegex, `match: [${matchUrls.map(url => `'${url}'`).join(', ')}]`);
+    fs.writeFileSync(path.resolve(`src/pages-chibi/implementations/${page}/main.ts`), updatedFile);
+}
 
 function addPlayerUrls(key, urls) {
     let file = fs.readFileSync(path.resolve('./src/pages/playerUrls.js'), 'utf8');
@@ -170,6 +209,7 @@ async function start() {
         zoro,
         // gogoanime,
         // kickassanime,
+        animekai
     }
 
     for(const key of Object.keys(tasks)) {

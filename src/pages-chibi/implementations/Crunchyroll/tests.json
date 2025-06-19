@@ -1,0 +1,55 @@
+{
+  "title": "Crunchyroll",
+  "url": "https://www.crunchyroll.com/",
+  "testCases": [
+    {
+      "url": "https://www.crunchyroll.com/de/watch/GK9UG2E49/the-result-of-the-battle-for-priestella",
+      "expected": {
+        "sync": true,
+        "title": "Re:ZERO -Starting Life in Another World-",
+        "identifier": "Re:ZERO -Starting Life in Another World-3",
+        "overviewUrl": "https://www.crunchyroll.com/de/series/GRGG9798R/rezero--starting-life-in-another-world-",
+        "nextEpUrl": null,
+        "episode": 66,
+        "uiSelector": false,
+        "malUrl": "https://myanimelist.net/anime/19815"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/de/watch/G14UVJGX1/ceremony",
+      "expected": {
+        "sync": true,
+        "title": "GUILTY GEAR STRIVE: DUAL RULERS",
+        "identifier": "GUILTY GEAR STRIVE: DUAL RULERS1",
+        "overviewUrl": "https://www.crunchyroll.com/de/series/GEXH3W2MZ/guilty-gear-strive-dual-rulers",
+        "nextEpUrl": "https://www.crunchyroll.com/de/watch/GJWUQ7EJW/belief-in-peace",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/de/watch/GR5VK12DR/untitled",
+      "expected": {
+        "sync": true,
+        "title": "Ai-Mai-Mi Mousou Catastrophe",
+        "identifier": "Ai-Mai-Mi Mousou Catastrophe1",
+        "overviewUrl": "https://www.crunchyroll.com/de/series/GRP8DZ7GR/ai-mai-mi-mousou-catastrophe",
+        "nextEpUrl": "https://www.crunchyroll.com/de/watch/G6GG4ZNE6/untitled",
+        "episode": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/de/watch/GYW4D2706/short-version-digest",
+      "expected": {
+        "sync": true,
+        "title": "Katana Maidens ~ Toji No Miko",
+        "identifier": "Katana Maidens ~ Toji No Miko1",
+        "episode": 12,
+        "overviewUrl": "https://www.crunchyroll.com/de/series/GY9P1KVER/katana-maidens--toji-no-miko",
+        "nextEpUrl": "https://www.crunchyroll.com/de/watch/G69VD00VY/hero-of-the-next-generation",
+        "uiSelector": false
+      }
+    }
+  ]
+}

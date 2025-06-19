@@ -1,0 +1,22 @@
+{
+  "title": "AnimeKAI",
+  "url": "https://animekai.to/",
+  "testCases": [
+    {
+      "url": "https://animekai.to/watch/no-game-no-life-5xp8#ep=4",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life",
+        "identifier": "c4Ky-a4",
+        "overviewUrl": "https://animekai.bz/watch/no-game-no-life-5xp8",
+        "nextEpUrl": "https://animekai.bz/watch/no-game-no-life-5xp8#ep=5",
+        "episode": 4,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/19815",
+        "epList": {
+          "5": "https://animekai.bz/watch/no-game-no-life-5xp8#ep=5"
+        }
+      }
+    }
+  ]
+}
