@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { apiCall } from './helper';
-import * as Types from './types';
+import type * as Types from './types';
 
 const enum GRAPHQL {
   CurrentUser = `

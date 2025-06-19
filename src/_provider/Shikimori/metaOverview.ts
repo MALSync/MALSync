@@ -1,9 +1,10 @@
+import * as helper from './helper';
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
-import * as helper from './helper';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 import { Queries } from './queries';
-import { Anime, Manga, RelationKindEnum } from './types';
+import { RelationKindEnum } from './types';
+import type { Anime, Manga } from './types';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {

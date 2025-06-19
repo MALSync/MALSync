@@ -8,6 +8,7 @@ import {
 } from '../Errors';
 import { Cache } from '../../utils/Cache';
 import { Queries } from './queries';
+import type { Token } from './types';
 
 const clientId = 'z3NJ84kK9iy5NU6SnhdCDB38rr4-jFIJ67bMIUDzdoo';
 
@@ -23,7 +24,8 @@ export async function apiCall(options: {
   parameter?: { [key: string]: string | number };
   dataObj?: { [key: string]: unknown };
   auth?: boolean;
-}) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}): Promise<any> {
   const { type } = options;
   const token = api.settings.get('shikiToken');
 
@@ -117,7 +119,9 @@ export async function apiCall(options: {
     });
 }
 
-export function authRequest(data: { code: string } | { refresh_token: string }) {
+export async function authRequest(
+  data: { code: string } | { refresh_token: string },
+): Promise<Token> {
   const dataObj = {
     client_id: clientId,
     client_secret: '6vkFaJN_wxQHmBoq23ac1z6tZKiAD7xqsXGudkkOqTg',

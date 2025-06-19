@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import { status } from '../definitions';
 
 export type UserRateStatusEnum =
@@ -9,7 +8,6 @@ export type UserRateStatusEnum =
   | 'on_hold'
   | 'dropped';
 
-// eslint-disable-next-line no-shadow
 export enum statusTranslate {
   watching = status.Watching,
   planned = status.PlanToWatch,
@@ -458,4 +456,13 @@ export enum AnimeStatusEnum {
   anons = 'Planned',
   ongoing = 'Publishing',
   released = 'Published',
+}
+
+export interface Token {
+  access_token: string | undefined;
+  token_type: 'Bearer';
+  expires_in: number;
+  refresh_token: string;
+  scope: string;
+  created_at: number;
 }

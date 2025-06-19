@@ -4,7 +4,8 @@ import { SingleAbstract } from '../singleAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
 import { Queries } from './queries';
-import { Anime, Manga, statusTranslate, UserRateStatusEnum, UserRateV2 } from './types';
+import { statusTranslate } from './types';
+import type { Anime, Manga, UserRateStatusEnum, UserRateV2 } from './types';
 
 // TODO - Rewrite this when GRAPHQL updates.
 export class Single extends SingleAbstract {

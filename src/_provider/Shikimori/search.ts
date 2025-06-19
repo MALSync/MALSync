@@ -1,7 +1,7 @@
-import { searchInterface, searchResult } from '../definitions';
 import * as helper from './helper';
+import { searchInterface } from '../definitions';
 import { Queries } from './queries';
-import { Animes, Mangas, Anime, Manga } from './types';
+import type { Animes, Mangas, Anime, Manga } from './types';
 
 export const search: searchInterface = async (
   keyword,

@@ -1,18 +1,18 @@
 /* eslint-disable no-await-in-loop */
-import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
-import {
+import { ListAbstract } from '../listAbstract';
+import { Queries } from './queries';
+import { statusTranslate } from './types';
+import type { listElement } from '../listAbstract';
+import type {
   UserRateStatusEnum,
   UserRate,
   UserRates,
-  statusTranslate,
   Anime,
   Manga,
   UserRateOrderInputType,
 } from './types';
-import { Queries } from './queries';
 
-const limit = 25; // MAX 50
 export class UserList extends ListAbstract {
   name = 'Shiki';
 
@@ -23,6 +23,10 @@ export class UserList extends ListAbstract {
       userRates: [],
     },
   };
+
+  userID: string | undefined = undefined;
+
+  limit = 25; // MAX 50
 
   public separateRewatching = true;
 
@@ -73,6 +77,7 @@ export class UserList extends ListAbstract {
     this.media.data.userRates = [];
     if (this.offset < 1) this.offset = 1;
     if (!this.username) this.username = await this.getUsername();
+    if (!this.userID) this.userID = await helper.userId();
 
     con.log(
       '[UserList][Shiki]',
@@ -87,18 +92,17 @@ export class UserList extends ListAbstract {
     }
 
     const order = this.getOrder(this.sort);
-    const userId = await helper.userId();
     this.media = await Queries.UserRates(
-      Number(userId),
+      Number(this.userID),
       this.listType === 'anime' ? 'Anime' : 'Manga',
       order,
       currentStatus,
       this.offset,
-      limit,
+      this.limit,
     );
 
     this.offset += 1;
-    if (limit > this.media.data.userRates.length) this.done = true;
+    if (this.limit > this.media.data.userRates.length) this.done = true;
 
     return this.prepareData(this.media.data.userRates);
   }
