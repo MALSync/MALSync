@@ -184,13 +184,17 @@ export function getQuicklinks(): QuicklinkObject[] {
         typeof el.search === 'object'
           ? el.search
           : {
-              anime: el.type === 'anime' ? el.search || null : null,
-              manga: el.type === 'manga' ? el.search || null : null,
-            },
+            anime: el.type === 'anime' ? el.search || null : null,
+            manga: el.type === 'manga' ? el.search || null : null,
+          },
     };
   });
 
-  tempQuicklinks = [...quicklinkPages, ...quicklinkChibi];
+  const combined = new Map<string, QuicklinkObject>();
+  quicklinkPages.forEach(p => combined.set(p.name, p));
+  quicklinkChibi.forEach(c => combined.set(c.name, c));
+
+  tempQuicklinks = Array.from(combined.values());
   return tempQuicklinks;
 }
 
