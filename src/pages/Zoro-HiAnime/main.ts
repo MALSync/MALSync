@@ -16,7 +16,14 @@ let jsonData: ZoroSyncData;
 
 export const Zoro: pageInterface = {
   name: 'HiAnime',
-  domain: 'https://hianime.to',
+  domain: [
+    'https://hianime.to',
+    'https://hianimez.to',
+    'https://hianime.nz',
+    'https://hianime.bz',
+    'https://hianime.pe',
+    'https://hianime.sx/',
+  ],
   languages: ['English'],
   type: 'anime',
   database: 'Zoro',
