@@ -1,6 +1,14 @@
-import { NotAutenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
-import { status } from '../definitions';
+/* eslint-disable import/no-cycle */
+import {
+  NotAuthenticatedError,
+  NotFoundError,
+  ServerOfflineError,
+  MissingParameterError,
+  InvalidParameterError,
+} from '../Errors';
 import { Cache } from '../../utils/Cache';
+import { Queries } from './queries';
+import type { Token } from './types';
 
 const clientId = 'z3NJ84kK9iy5NU6SnhdCDB38rr4-jFIJ67bMIUDzdoo';
 
@@ -14,60 +22,57 @@ export async function apiCall(options: {
   type: 'GET' | 'PUT' | 'DELETE' | 'POST';
   path: string;
   parameter?: { [key: string]: string | number };
-  dataObj?: { [key: string]: any };
+  dataObj?: { [key: string]: unknown };
   auth?: boolean;
-}) {
-  const type = options.type || 'GET';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}): Promise<any> {
+  const { type } = options;
   const token = api.settings.get('shikiToken');
 
   if (!token && !token.access_token && !options.auth) {
-    throw new NotAutenticatedError('No token set');
+    throw new NotAuthenticatedError('No token set');
   }
 
-  let url = apiDomain + options.path;
-  if (options.parameter && Object.keys(options.parameter).length) {
-    url += url.includes('?') ? '&' : '?';
-    const params = [] as string[];
-    for (const key in options.parameter) {
-      params.push(`${key}=${options.parameter[key]}`);
+  let url = '';
+  if (options.auth) {
+    url = 'https://shikimori.one/oauth/token';
+  } else {
+    url = `${apiDomain}${options.path}`;
+
+    if (options.parameter && Object.keys(options.parameter).length) {
+      url += url.includes('?') ? '&' : '?';
+      const params = [] as string[];
+      for (const key in options.parameter) {
+        params.push(`${key}=${options.parameter[key]}`);
+      }
+      url += params.join('&');
     }
-    url += params.join('&');
   }
-
-  const headers: any = {
-    Authorization: `Bearer ${token.access_token}`,
+  const headers = {
     'User-Agent': 'MAL-Sync',
     'Content-Type': 'application/json',
+    ...(!options.auth ? { Authorization: `Bearer ${token.access_token}` } : {}),
   };
-
-  let data = '';
-  if (options.dataObj) {
-    data = JSON.stringify(options.dataObj);
-  }
-
-  if (options.auth) {
-    delete headers.Authorization;
-    url = 'https://shikimori.one/oauth/token';
-  }
 
   return api.request
     .xhr(type, {
       url,
       headers,
-      data,
+      data: options.dataObj ? JSON.stringify(options.dataObj) : undefined,
     })
     .then(async response => {
       if ((response.status > 499 && response.status < 600) || response.status === 0) {
         throw new ServerOfflineError(`Server Offline status: ${response.status}`);
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let res: any = null;
       if (response.responseText) {
         res = JSON.parse(response.responseText);
       }
 
       if (response.status === 401) {
-        if (options.auth) throw new NotAutenticatedError(res.message ?? res.error);
+        if (options.auth) throw new NotAuthenticatedError(res.message || res.error);
         await refreshToken(token.refresh_token);
         return apiCall(options);
       }
@@ -76,14 +81,31 @@ export async function apiCall(options: {
         switch (res.error) {
           case 'forbidden':
           case 'invalid_token':
-            if (options.auth) throw new NotAutenticatedError(res.message ?? res.error);
+            if (options.auth) throw new NotAuthenticatedError(res.message || res.error);
             await refreshToken(token.refresh_token);
             return apiCall(options);
           case 'not_found':
-            throw new NotFoundError(res.message ?? res.error);
+            throw new NotFoundError(res.message || res.error);
           default:
-            throw new Error(res.message ?? res.error);
+            throw new Error(res.message || res.error);
         }
+      }
+
+      if (res && res.errors && res.errors.length) {
+        let error = '';
+        if (res.errors[0].message) {
+          for (let i = 0; i < res.errors.length; i++) {
+            error += `${res.errors[i].message}${res.errors[i].path ? ` - Path: (${res.errors[i].path})` : ''}\n`;
+          }
+        } else {
+          error = res.errors.join('\n');
+          if (error.includes('Missing parameter')) {
+            throw new MissingParameterError(error);
+          } else if (error.includes('Invalid parameter')) {
+            throw new InvalidParameterError(error);
+          }
+        }
+        throw new Error(error);
       }
 
       switch (response.status) {
@@ -97,22 +119,23 @@ export async function apiCall(options: {
     });
 }
 
-export function authRequest(data: { code: string } | { refresh_token: string }) {
-  const dataObj: any = {
+export async function authRequest(
+  data: { code: string } | { refresh_token: string },
+): Promise<Token> {
+  const dataObj = {
     client_id: clientId,
     client_secret: '6vkFaJN_wxQHmBoq23ac1z6tZKiAD7xqsXGudkkOqTg',
     redirect_uri: 'https://malsync.moe/shikimori/oauth',
+    ...('code' in data
+      ? {
+          code: data.code,
+          grant_type: 'authorization_code',
+        }
+      : {
+          refresh_token: data.refresh_token,
+          grant_type: 'refresh_token',
+        }),
   };
-
-  if ('code' in data) {
-    dataObj.code = data.code;
-    dataObj.grant_type = 'authorization_code';
-  }
-
-  if ('refresh_token' in data) {
-    dataObj.refresh_token = data.refresh_token;
-    dataObj.grant_type = 'refresh_token';
-  }
 
   return apiCall({
     type: 'POST',
@@ -123,9 +146,9 @@ export function authRequest(data: { code: string } | { refresh_token: string }) 
 }
 
 async function refreshToken(refresh_token: string) {
-  const res = await authRequest({ refresh_token }).catch(err => {
+  const res = await authRequest({ refresh_token }).catch(async err => {
     if (err.message === 'invalid_request') {
-      api.settings.set('shikiToken', '');
+      await api.settings.set('shikiToken', '');
     }
     throw err;
   });
@@ -135,21 +158,11 @@ async function refreshToken(refresh_token: string) {
   });
 }
 
-export function userRequest(): Promise<userRequestInterface> {
-  return apiCall({
-    type: 'GET',
-    path: 'users/whoami',
-  }).then(res => {
-    if (res.locale) {
-      api.settings.set('shikiOptions', {
-        locale: res.locale,
-      });
-    }
-    return res;
-  });
+export async function userRequest() {
+  return Queries.CurrentUser();
 }
 
-export async function userId() {
+export async function userId(): Promise<string> {
   const cacheObj = new Cache('shiki/userId', 4 * 60 * 60 * 1000);
 
   if (await cacheObj.hasValue()) {
@@ -157,10 +170,10 @@ export async function userId() {
   }
 
   const res = await userRequest();
-  if (res.id) {
-    cacheObj.setValue(res.id);
+  if (res.data.currentUser.id) {
+    await cacheObj.setValue(res.data.currentUser.id);
   }
-  return res.id;
+  return res.data.currentUser.id;
 }
 
 export function title(rus: string, eng: string, headline = false) {
@@ -169,73 +182,4 @@ export function title(rus: string, eng: string, headline = false) {
   if (locale === 'ru') return rus || eng;
   if (headline && eng && rus) return `${eng} / ${rus}`;
   return eng || rus;
-}
-
-export type StatusType =
-  | 'planned'
-  | 'watching'
-  | 'rewatching'
-  | 'completed'
-  | 'on_hold'
-  | 'dropped';
-
-// eslint-disable-next-line no-shadow
-export enum statusTranslate {
-  watching = status.Watching,
-  planned = status.PlanToWatch,
-  completed = status.Completed,
-  dropped = status.Dropped,
-  on_hold = status.Onhold,
-  rewatching = status.Rewatching,
-}
-
-export interface StatusRequest {
-  id?: number;
-  user_id: number;
-  target_id: number;
-  target_type: 'Anime' | 'Manga';
-  score: number;
-  status: StatusType;
-  rewatches: number;
-  episodes: number;
-  volumes: number;
-  chapters: number;
-  text: string;
-  text_html?: string;
-  created_at?: Date;
-  updated_at?: Date;
-}
-
-export interface Image {
-  original: string;
-  preview: string;
-  x96: string;
-  x48: string;
-}
-
-export interface MetaRequest {
-  id: number;
-  name: string;
-  russian: string;
-  image: Image;
-  url: string;
-  kind: string;
-  score: string;
-  status: string;
-  volumes: number;
-  chapters: number;
-  episodes: number;
-  aired_on: string;
-  released_on: string;
-}
-
-export interface userRequestInterface {
-  id: number;
-  nickname: string;
-  avatar: string;
-  image: {
-    x80: string;
-  };
-  url: string;
-  locale: string;
 }
