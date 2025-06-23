@@ -85,7 +85,6 @@ jobs:
         run: |
           mkdir -p ./pages-deploy/config
           cp -r ./dist/webextension/chibi/* ./pages-deploy/config/
-      - uses: actions/checkout@v4
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
