@@ -1,6 +1,3 @@
-/*
-  Cache-Control: public, max-age=300
-
 /config/list.json
   Cache-Control: public, max-age=3600
 
