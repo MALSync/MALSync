@@ -1,6 +1,3 @@
-/config/list.json
-  Cache-Control: public, max-age=3600
-
 /config/pages/*
   Cache-Control: public, max-age=604800
 
