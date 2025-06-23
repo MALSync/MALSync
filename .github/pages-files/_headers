@@ -3,6 +3,3 @@
 
 /config/pages/*
   Cache-Control: public, max-age=604800
-
-/config/*
-  Cache-Control: public, max-age=3600
