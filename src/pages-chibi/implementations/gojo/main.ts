@@ -6,7 +6,7 @@ export const gojo: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://animetsu.cc/*', '*://gojo.live/*'],
+    match: ['*://animetsu.to/*', '*://animetsu.cc/*', '*://gojo.live/*'],
   },
   search: 'https://animetsu.cc/search?query={searchtermPlus}',
   sync: {
