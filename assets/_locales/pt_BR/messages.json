@@ -982,7 +982,7 @@
         "description": "Show button to view the anime/manga on MAL or another provider"
     },
     "settings_presenceShowMalsync": {
-        "message": "Mostrar Mal-Sync no título da presence em vez do anime/mangá",
+        "message": "Mostrar MAL-Sync no título da presença em vez do anime/mangá",
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     },
     "updateCheck_Refresh": {
@@ -1196,7 +1196,7 @@
         "description": "Button to rechecks the login status"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sincronizar mangá após $mangaCompletionPercentage$% das páginas",
+        "message": "Sincronizar mangá após ler $mangaCompletionPercentage$% das páginas",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
         "placeholders": {
             "mangaCompletionPercentage": {
