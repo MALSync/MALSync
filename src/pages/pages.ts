@@ -125,7 +125,6 @@ import { Q1N } from './Q1N/main';
 import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
 import { VortexScans } from './VortexScans/main';
-import { WeebCentral } from './WeebCentral/main';
 import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
@@ -260,7 +259,6 @@ export const pages = {
   TempleScan,
   ScyllaScans,
   VortexScans,
-  WeebCentral,
   Kavita,
   Rawkuma,
   Aninexus,
