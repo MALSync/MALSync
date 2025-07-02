@@ -112,7 +112,7 @@ export const WeebCentral: PageInterface = {
   },
 };
 
-function getChapterText($c: ChibiGenerator<any>){
+function getChapterText($c: ChibiGenerator<any>) {
   return $c
     .querySelector('section.w-full button[hx-target="#chapter-select-body"] span')
     .text()
