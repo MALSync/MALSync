@@ -1019,7 +1019,11 @@ export class SyncPage {
 
   imageFallback(state: pageState) {
     clearInterval(this.imageFallbackInterval);
-    if (this.singleObj && typeof this.singleObj.setImage !== 'undefined' && ( this.page.getImage || this.page.sync.getImage || this.page.overview?.getImage )) {
+    if (
+      this.singleObj &&
+      typeof this.singleObj.setImage !== 'undefined' &&
+      (this.page.getImage || this.page.sync.getImage || this.page.overview?.getImage)
+    ) {
       this.imageFallbackInterval = setInterval(() => imageFallbackInternal.call(this), 30 * 1000);
       imageFallbackInternal.call(this);
     }
