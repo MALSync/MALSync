@@ -4,12 +4,31 @@ import { getPageConfig } from '../src/utils/test';
 import { xhrAction } from '../src/background/messageHandler';
 import { Chibi } from '../src/pages-chibi/ChibiProxy';
 import { NotFoundError } from '../src/_provider/Errors';
+import chibiList from '../src/pages-chibi/builder/chibiList';
+import chibiPages from '../src/pages-chibi/builder/chibiPages';
 
 const pages = { ...part1, ...part2 };
 
 // @ts-ignore
 window.chrome.runtime.sendMessage = (message: any, callback: (response: any) => void) => {
   if (message.name === 'xhr') {
+    if (message.url.startsWith('https://chibi.malsync.moe/')) {
+      let data: any = null;
+      if (message.url.endsWith('/list.json')) {
+        data = chibiList();
+      } else {
+        const chibiKey = message.url.split('/').pop().split('.json')[0];
+        const chibiList = chibiPages();
+
+        if (chibiKey && chibiList[chibiKey]) {
+          data = chibiList[chibiKey];
+        } else {
+          throw new NotFoundError('Chibi not found');
+        }
+      }
+
+      return callback({ responseText: JSON.stringify(data) });
+    }
     return xhrAction(message, 'test', callback, 'testing');
   }
 }
