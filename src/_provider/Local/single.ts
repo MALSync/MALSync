@@ -163,8 +163,9 @@ export class Single extends SingleAbstract {
   }
 
   setImage(url: string) {
+    const hasImage = Boolean(this.animeInfo.image);
     this.animeInfo.image = url;
-    if (this._onList) this.sync();
+    if (this._onList && !hasImage) this.sync();
   }
 
   _getRating() {
