@@ -158,7 +158,7 @@ export const Chibi = async (): Promise<pageInterface> => {
               consumer.addVariable('ui', html);
               return consumer.run();
             },
-            getImage: currentPage.overview!.getImage
+            getImage: currentPage.overview?.getImage
               ? () => {
                   const consumer = getConsumer(
                     currentPage.overview!.getImage!,
