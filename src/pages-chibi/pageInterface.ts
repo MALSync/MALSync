@@ -165,10 +165,9 @@ export interface PageInterface {
 
     /**
      * Returns the URL to the image of the anime or manga.
-     * This function is optional.
      * @returns A ChibiJson wrapped string containing the image URL, or undefined if not available
      */
-    getImage?: ($c: ChibiGenerator<unknown>) => ChibiJson<string | undefined>;
+    getImage: ($c: ChibiGenerator<unknown>) => ChibiJson<string | undefined>;
 
     /**
      * Returns the MyAnimeList URL for the current anime or manga.
@@ -301,7 +300,7 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getTitle: ReturnType<NonNullable<PageInterface['overview']>['getTitle']>;
     getIdentifier: ReturnType<NonNullable<PageInterface['overview']>['getIdentifier']>;
     uiInjection: ReturnType<NonNullable<PageInterface['overview']>['uiInjection']>;
-    getImage?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getImage']>>;
+    getImage: ReturnType<NonNullable<PageInterface['overview']>['getImage']>;
     getMalUrl?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getMalUrl']>>;
   };
   list?: {
