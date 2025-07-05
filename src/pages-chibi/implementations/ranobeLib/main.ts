@@ -78,6 +78,9 @@ export const ranobeLib: PageInterface = {
       const id = slug.string().regex('(\\d+)', 1);
       return id.run();
     },
+    getImage($c) {
+      return $c.querySelector('.cover img').getAttribute('src').ifNotReturn().run();
+    },
     uiInjection($c) {
       return $c.querySelector('.tabs._border').uiBefore().run();
     },

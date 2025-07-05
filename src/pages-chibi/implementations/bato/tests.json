@@ -10,6 +10,7 @@
         "identifier": "72860",
         "overviewUrl": "https://bato.to/series/72860",
         "nextEpUrl": "https://bato.to/chapter/1405642",
+        "image": "https://k08.mbhiz.org/thumb/W600/ampi/762/76208bdcffbe5bb5633bfdc8dc5f29d5f79fe8bd_720_972_808066.jpg",
         "episode": 104,
         "uiSelector": false
       }
@@ -20,6 +21,7 @@
         "sync": false,
         "title": "Solo Leveling",
         "identifier": "72860",
+        "image": "https://k08.mbhiz.org/thumb/W600/ampi/762/76208bdcffbe5bb5633bfdc8dc5f29d5f79fe8bd_720_972_808066.jpg",
         "uiSelector": true,
         "epList": {
           "5": "https://bato.to/chapter/1284843",
@@ -35,6 +37,7 @@
         "identifier": "111571",
         "overviewUrl": "https://bato.to/series/111571",
         "nextEpUrl": "https://bato.to/chapter/2063244",
+        "image": "https://n09.mbcej.org/thumb/W600/ampi/b7d/b7dc98a6bc8c8ff0b429398a84719636bc630d97_1000_1500_496601.jpeg",
         "episode": 2,
         "uiSelector": false
       }
@@ -47,6 +50,7 @@
         "identifier": "107830",
         "overviewUrl": "https://bato.to/series/107830",
         "nextEpUrl": "https://bato.to/chapter/2074115",
+        "image": "https://n14.mbimg.org/thumb/W600/ampi/e1e/e1e61710f87cd023fda44d664ab6367419899635_480_623_37201.jpeg",
         "episode": 34,
         "uiSelector": false
       }
@@ -59,6 +63,7 @@
         "identifier": "110173",
         "overviewUrl": "https://bato.to/series/110173",
         "nextEpUrl": "https://bato.to/chapter/2067933",
+        "image": null,
         "episode": 21,
         "uiSelector": false
       }
@@ -69,6 +74,7 @@
         "sync": false,
         "title": "Please don't bully me, Nagatoro",
         "identifier": "70165",
+        "image": "https://k05.mbopg.org/thumb/W600/ampi/a42/a42408efeced09771e71f0486fefdf1ea040d746_300_450_85248.png",
         "uiSelector": true,
         "epList": {
           "13": "https://bato.to/title/70165-please-don-t-bully-me-nagatoro/1220813-ch_13",
@@ -82,6 +88,7 @@
         "sync": false,
         "title": "Fujiyama-san wa Shishunki",
         "identifier": "17498",
+        "image": "https://n17.mbeaj.org/thumb/W600/ampi/98c/98ce82347bba8fdf312a38bfcef52acceeb764b2_281_400_105011.jpg",
         "uiSelector": true,
         "epList": {
           "28": "https://bato.to/title/17498-fujiyama-san-wa-shishunki/334351-ch_28",
@@ -97,6 +104,7 @@
         "identifier": "17498",
         "overviewUrl": "https://bato.to/title/17498-fujiyama-san-wa-shishunki",
         "nextEpUrl": "https://bato.to/title/17498-fujiyama-san-wa-shishunki/334225-ch_60",
+        "image": "https://n17.mbeaj.org/thumb/W600/ampi/98c/98ce82347bba8fdf312a38bfcef52acceeb764b2_281_400_105011.jpg",
         "episode": 59,
         "uiSelector": false
       }
@@ -109,6 +117,7 @@
         "identifier": "35718",
         "overviewUrl": "https://bato.to/title/35718-marmalade-boy-little",
         "nextEpUrl": "https://bato.to/title/35718-marmalade-boy-little",
+        "image": "https://n24.mbznp.org/thumb/W600/ampi/0f6/0f68b424477b78c491a7659747e08405e11a16ef_200_314_22311.jpg",
         "episode": 20,
         "uiSelector": false
       }
@@ -121,6 +130,7 @@
         "identifier": "96406",
         "overviewUrl": "https://bato.to/series/96406",
         "nextEpUrl": "https://bato.to/chapter/2759638",
+        "image": "https://n22.mbfpu.org/media/mbim/0b6/0b6c3118d03e59fca200d10d54788123e9f4842b_600_854_103024.webp",
         "episode": 70,
         "uiSelector": false
       }
@@ -133,6 +143,7 @@
         "identifier": "96406",
         "overviewUrl": "https://bato.to/title/96406-quality-assurance-in-another-world-official",
         "nextEpUrl": "https://bato.to/title/96406-quality-assurance-in-another-world-official/2759638-vol_10-ch_71",
+        "image": "https://n22.mbfpu.org/media/mbim/0b6/0b6c3118d03e59fca200d10d54788123e9f4842b_600_854_103024.webp",
         "episode": 70,
         "uiSelector": false
       }

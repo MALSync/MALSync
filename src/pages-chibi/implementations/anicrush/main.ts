@@ -19,6 +19,9 @@ export const anicrush: PageInterface = {
     getIdentifier($c) {
       return $c.url().urlPart(4).ifNotReturn().split('.').last().run();
     },
+    getImage($c) {
+      return $c.this('overview.getImage').run();
+    },
     getOverviewUrl($c) {
       return $c.querySelector('div.other-items a').getAttribute('href').urlAbsolute().run();
     },
@@ -35,6 +38,13 @@ export const anicrush: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
+    },
+    getImage($c) {
+      return $c
+        .querySelector('#detail_page img.anime-thumbnail-img')
+        .getAttribute('src')
+        .ifNotReturn()
+        .run();
     },
     uiInjection($c) {
       return $c.querySelector('div.main div.other-items').uiAfter().run();

@@ -22,6 +22,15 @@ export const animevost: PageInterface = {
       return $c.url().regex('tip\\/[a-z0-9-]+\\/(\\d+)-', 1).run();
     },
 
+    getImage($c) {
+      return $c
+        .querySelector('.shortstoryContent img.imgRadius')
+        .getAttribute('src')
+        .ifNotReturn()
+        .urlAbsolute()
+        .run();
+    },
+
     getOverviewUrl($c) {
       return $c.url().run();
     },
