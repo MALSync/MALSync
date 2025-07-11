@@ -33,6 +33,9 @@ export const animeLib: PageInterface = {
       const btnEp = getCurrentEpisodeBtn($c);
       return btnEp.ifNotReturn().text().split(' ').at(0).number().run();
     },
+    getImage($c) {
+      return $c.querySelector('._container .cover img').getAttribute('src').ifNotReturn().run();
+    },
     nextEpUrl($c) {
       const btnEp = getCurrentEpisodeBtn($c);
       const slug = $c.url().urlPart(5);
@@ -65,6 +68,9 @@ export const animeLib: PageInterface = {
       const slug = $c.url().urlPart(5);
       const id = slug.string().regex('(\\d+)', 1);
       return id.run();
+    },
+    getImage($c) {
+      return $c.querySelector('.cover img').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.tabs._border').uiBefore().run();

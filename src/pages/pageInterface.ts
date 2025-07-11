@@ -16,6 +16,7 @@ export interface pageInterface {
     getOverviewUrl: (url: string) => string; // Return a link to the Overview page.
     getEpisode: (url: string) => number; // Return the recognized episode or chapter number as integer.
     getVolume?: (url: string) => number; // (optional) Return the current volume number
+    getImage?: () => string | undefined; // Return an image for the entry for local sync
     nextEpUrl?: (url: string) => string | undefined; // (optional) return the link to the next episode. Used for links on the userlist
     uiSelector?: (selector: string) => void; // (optional) Inject a small ui with current status chapter... Only use this if there is no overview page
     getMalUrl?: (
@@ -27,6 +28,7 @@ export interface pageInterface {
     getTitle: (url: string) => string;
     getIdentifier: (url: string) => string;
     uiSelector: (selector: string) => void;
+    getImage?: () => string | undefined;
     getMalUrl?: (
       provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI',
     ) => Promise<string | false> | string | false;
