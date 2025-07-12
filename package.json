@@ -140,5 +140,10 @@
     "vue-tsc": "^2.2.10",
     "vuedraggable": "^4.1.0",
     "webext-patterns": "^1.4.0"
-  }
+  },
+  "trustedDependencies": [
+    "spawn-sync",
+    "unrs-resolver",
+    "puppeteer"
+  ]
 }
