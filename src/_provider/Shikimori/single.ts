@@ -215,13 +215,10 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
-    if (!this.userRate) {
-      return;
-    }
     if (this._onList) {
-      await Queries.UserRateUpdate(this.userRate);
+      await Queries.UserRateUpdate(this.userRate!);
     } else {
-      await Queries.UserRateAdd(this.userRate);
+      await Queries.UserRateAdd(this.userRate!);
     }
   }
 
@@ -230,9 +227,6 @@ export class Single extends SingleAbstract {
   }
 
   async _delete() {
-    if (!this.userRate) {
-      return;
-    }
-    await Queries.UserRateDelete(this.userRate.id);
+    await Queries.UserRateDelete(this.userRate!.id);
   }
 }
