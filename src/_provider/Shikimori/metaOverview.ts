@@ -2,7 +2,7 @@ import * as helper from './helper';
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
-import { Queries } from './queries';
+import { Queries, apiCall as _apiCall } from './queries';
 import { RelationKindEnum } from './types';
 import type { Anime, Manga } from './types';
 
@@ -308,5 +308,5 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
   }
 
-  protected apiCall = helper.apiCall;
+  protected apiCall = _apiCall;
 }

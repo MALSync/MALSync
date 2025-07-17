@@ -1,7 +1,6 @@
-/* eslint-disable no-await-in-loop */
 import * as helper from './helper';
 import { ListAbstract } from '../listAbstract';
-import { Queries } from './queries';
+import { Queries, authUrl } from './queries';
 import { statusTranslate } from './types';
 import type { listElement } from '../listAbstract';
 import type {
@@ -16,7 +15,7 @@ import type {
 export class UserList extends ListAbstract {
   name = 'Shiki';
 
-  authenticationUrl = helper.authUrl;
+  authenticationUrl = authUrl;
 
   media: UserRates = {
     data: {
@@ -31,10 +30,10 @@ export class UserList extends ListAbstract {
   public separateRewatching = true;
 
   async getUserObject() {
-    return helper.userRequest().then(res => ({
-      username: res.data.currentUser.nickname,
-      picture: res.data.currentUser.avatarUrl,
-      href: res.data.currentUser.url,
+    return Queries.CurrentUser().then(res => ({
+      username: res.nickname,
+      picture: res.image.x80,
+      href: res.url,
     }));
   }
 
@@ -77,7 +76,7 @@ export class UserList extends ListAbstract {
     this.media.data.userRates = [];
     if (this.offset < 1) this.offset = 1;
     if (!this.username) this.username = await this.getUsername();
-    if (!this.userID) this.userID = await helper.userId();
+    if (!this.userID) this.userID = await helper.userIDRequest();
 
     con.log(
       '[UserList][Shiki]',
@@ -124,8 +123,8 @@ export class UserList extends ListAbstract {
           this.listType === 'anime' ? (item as Anime).episodes || 0 : (item as Manga).chapters || 0,
         status: statusTranslate[data[i].status],
         score: data[i].score || 0,
-        image: item.poster!.mainUrl || '',
-        imageLarge: item.poster!.main2xUrl || '',
+        image: item.poster ? item.poster.mainUrl || '' : '',
+        imageLarge: item.poster ? item.poster.main2xUrl || '' : '',
         tags: data[i].text || '',
         updatedAt: data[i].updatedAt,
       });

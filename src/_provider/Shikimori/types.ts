@@ -20,6 +20,21 @@ export enum statusTranslate {
 export interface CurrentUser {
   data: UserData;
 }
+/**
+ * @deprecated Use only for v1 (REST) API. For GRAPHQL use {@link CurrentUser}
+ */
+export interface CurrentUserV2 {
+  id: number;
+  nickname: string;
+  avatar: string;
+  image: {
+    x80: string;
+  };
+  last_online_at: string;
+  url: string;
+  locale: string;
+}
+
 export interface Users {
   data: UsersData;
 }
@@ -49,7 +64,7 @@ export interface UserRates {
   };
 }
 /**
- * @deprecated Use only for v2 API. For GRAPHQL use {@link UserRate}
+ * @deprecated Use only for v2 (REST) API. For GRAPHQL use {@link UserRate}
  */
 export interface UserRateV2 {
   id: string;

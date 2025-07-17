@@ -1,6 +1,15 @@
-// eslint-disable-next-line import/no-cycle
-import { apiCall } from './helper';
+import {
+  NotAuthenticatedError,
+  ServerOfflineError,
+  NotFoundError,
+  MissingParameterError,
+  InvalidParameterError,
+} from '../Errors';
 import type * as Types from './types';
+
+export const clientId = 'z3NJ84kK9iy5NU6SnhdCDB38rr4-jFIJ67bMIUDzdoo';
+export const authUrl = `https://shikimori.one/oauth/authorize?client_id=${clientId}&redirect_uri=https%3A%2F%2Fmalsync.moe%2Fshikimori%2Foauth&response_type=code&scope=user_rates`;
+const apiDomain = 'https://shikimori.one/api/';
 
 const enum GRAPHQL {
   CurrentUser = `
@@ -30,6 +39,7 @@ const enum GRAPHQL {
           id 
           russian
           english 
+          name
           episodes
           malId
           url
@@ -44,6 +54,7 @@ const enum GRAPHQL {
           id 
           russian
           english 
+          name
           malId
           url
           poster
@@ -57,7 +68,7 @@ const enum GRAPHQL {
   `,
   Animes = `
     query($search: String, $limit: PositiveInt, $order: OrderEnum, $kind: AnimeKindString, $page: PositiveInt, $status: AnimeStatusString, $ids: String) {
-      animes(search: $search, limit: $limit, order: $order, kind: $kind, page: $page, status: $status, ids: $ids) {
+      animes(search: $search, limit: $limit, order: $order, kind: $kind, page: $page, status: $status, ids: $ids, censored: false) {
         id
         malId
         name
@@ -91,7 +102,7 @@ const enum GRAPHQL {
     }`,
   Anime = `
     query($ids: String!) {
-      animes(limit: 1, ids: $ids) {
+      animes(limit: 1, ids: $ids, censored: false) {
         id
         name
         url
@@ -166,7 +177,7 @@ const enum GRAPHQL {
     }`,
   Manga = `
     query($ids: String!){
-      mangas(limit: 1, ids: $ids) {
+      mangas(limit: 1, ids: $ids, censored: false) {
         id
         name
         url
@@ -239,7 +250,7 @@ const enum GRAPHQL {
     }`,
   Mangas = `
     query($search: String, $limit: PositiveInt, $order: OrderEnum, $kind: MangaKindString, $page: PositiveInt, $status: MangaStatusString, $ids: String) {
-      mangas(search: $search, limit: $limit, order: $order, kind: $kind, page: $page, status: $status, ids: $ids) {
+      mangas(search: $search, limit: $limit, order: $order, kind: $kind, page: $page, status: $status, ids: $ids, censored: false) {
         id
         malId
         name
@@ -269,21 +280,45 @@ const enum GRAPHQL {
     }`,
 }
 
+type ApiTypes = 'REST' | 'GRAPHQL';
+type ApiToType<T> = T extends 'REST' | undefined
+  ? Types.CurrentUserV2
+  : T extends 'GRAPHQL'
+    ? Types.CurrentUser
+    : never;
+
 export class Queries {
-  static CurrentUser(): Promise<Types.CurrentUser> {
-    return apiCall({
-      type: 'POST',
-      path: 'graphql',
-      dataObj: {
-        query: GRAPHQL.CurrentUser,
-      },
-    }).then((res: Types.CurrentUser) => {
-      // TODO - Waiting for GRAPHQL update
-      // if (res.locale) {
-      //   api.settings.set('shikiOptions', {
-      //     locale: res.locale,
-      //   });
-      // }
+  // NOTE - We can get user locale only from REST API for now
+  static CurrentUser<T extends ApiTypes | undefined = undefined>(
+    apiType?: T,
+  ): Promise<ApiToType<T>> {
+    let options: Parameters<typeof apiCall>[0] = {
+      type: 'GET',
+      path: 'users/whoami',
+    };
+    if (apiType === 'GRAPHQL') {
+      options = {
+        type: 'POST',
+        path: 'graphql',
+        dataObj: {
+          query: GRAPHQL.CurrentUser,
+        },
+      };
+    }
+
+    return apiCall(options).then((res: ApiToType<T>) => {
+      if ((res as Types.CurrentUserV2).locale) {
+        api.settings
+          .set('shikiOptions', {
+            locale: (res as Types.CurrentUserV2).locale,
+          })
+          .then(() => {
+            con.info('Shiki user locale updated');
+          })
+          .catch(e => {
+            con.error(e);
+          });
+      }
       return res;
     });
   }
@@ -459,4 +494,142 @@ export class Queries {
       },
     });
   }
+}
+
+export async function apiCall(options: {
+  type: 'GET' | 'PUT' | 'DELETE' | 'POST';
+  path: string;
+  parameter?: { [key: string]: string | number };
+  dataObj?: { [key: string]: unknown };
+  auth?: boolean;
+}): Promise<any> {
+  const { type } = options;
+  const token = api.settings.get('shikiToken');
+
+  if (!token && !token.access_token && !options.auth) {
+    throw new NotAuthenticatedError('No token set');
+  }
+
+  let url = '';
+  if (options.auth) {
+    url = 'https://shikimori.one/oauth/token';
+  } else {
+    url = `${apiDomain}${options.path}`;
+
+    if (options.parameter && Object.keys(options.parameter).length) {
+      url += url.includes('?') ? '&' : '?';
+      const params = [] as string[];
+      for (const key in options.parameter) {
+        params.push(`${key}=${options.parameter[key]}`);
+      }
+      url += params.join('&');
+    }
+  }
+  const headers = {
+    'User-Agent': 'MAL-Sync',
+    'Content-Type': 'application/json',
+    ...(!options.auth ? { Authorization: `Bearer ${token.access_token}` } : {}),
+  };
+
+  return api.request
+    .xhr(type, {
+      url,
+      headers,
+      data: options.dataObj ? JSON.stringify(options.dataObj) : undefined,
+    })
+    .then(async response => {
+      if ((response.status > 499 && response.status < 600) || response.status === 0) {
+        throw new ServerOfflineError(`Server Offline status: ${response.status}`);
+      }
+
+      let res: any = null;
+      if (response.responseText) {
+        res = JSON.parse(response.responseText);
+      }
+
+      if (response.status === 401) {
+        if (options.auth) throw new NotAuthenticatedError(res.message || res.error);
+        await refreshToken(token.refresh_token);
+        return apiCall(options);
+      }
+
+      if (res && res.error) {
+        switch (res.error) {
+          case 'forbidden':
+          case 'invalid_token':
+            if (options.auth) throw new NotAuthenticatedError(res.message || res.error);
+            await refreshToken(token.refresh_token);
+            return apiCall(options);
+          case 'not_found':
+            throw new NotFoundError(res.message || res.error);
+          default:
+            throw new Error(res.message || res.error);
+        }
+      }
+
+      if (res && res.errors && res.errors.length) {
+        let error = '';
+        if (res.errors[0].message) {
+          for (let i = 0; i < res.errors.length; i++) {
+            error += `${res.errors[i].message}${res.errors[i].path ? ` - Path: (${res.errors[i].path})` : ''}\n`;
+          }
+        } else {
+          error = res.errors.join('\n');
+          if (error.includes('Missing parameter')) {
+            throw new MissingParameterError(error);
+          } else if (error.includes('Invalid parameter')) {
+            throw new InvalidParameterError(error);
+          }
+        }
+        throw new Error(error);
+      }
+
+      switch (response.status) {
+        case 400:
+          throw new Error('Invalid Parameters');
+        case 403:
+        default:
+      }
+
+      return res;
+    });
+}
+
+async function refreshToken(refresh_token: string) {
+  const res = await authRequest({ refresh_token }).catch(async err => {
+    if (err.message === 'invalid_request') {
+      await api.settings.set('shikiToken', '');
+    }
+    throw err;
+  });
+  await api.settings.set('shikiToken', {
+    access_token: res.access_token,
+    refresh_token: res.refresh_token,
+  });
+}
+
+export async function authRequest(
+  data: { code: string } | { refresh_token: string },
+): Promise<Types.Token> {
+  const dataObj = {
+    client_id: clientId,
+    client_secret: '6vkFaJN_wxQHmBoq23ac1z6tZKiAD7xqsXGudkkOqTg',
+    redirect_uri: 'https://malsync.moe/shikimori/oauth',
+    ...('code' in data
+      ? {
+          code: data.code,
+          grant_type: 'authorization_code',
+        }
+      : {
+          refresh_token: data.refresh_token,
+          grant_type: 'refresh_token',
+        }),
+  };
+
+  return apiCall({
+    type: 'POST',
+    path: 'oauth/token',
+    auth: true,
+    dataObj,
+  });
 }

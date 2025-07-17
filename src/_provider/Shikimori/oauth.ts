@@ -1,4 +1,4 @@
-import { authRequest } from './helper';
+import { authRequest } from './queries';
 
 export function shikiOauth() {
   $(() => {
