@@ -1,5 +1,4 @@
 import { Mangadex } from './Mangadex/main';
-import { Gogoanime } from './Gogoanime/main';
 import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
 import { Plex } from './Plex/main';
@@ -128,12 +127,10 @@ import { VortexScans } from './VortexScans/main';
 import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
-import { Hikari } from './Hikari/main';
 import { AniDream } from './AniDream/main';
 
 export const pages = {
   Mangadex,
-  Gogoanime,
   TurkAnime,
   animepahe,
   Netflix,
@@ -262,6 +259,5 @@ export const pages = {
   Kavita,
   Rawkuma,
   Aninexus,
-  Hikari,
   AniDream,
 };

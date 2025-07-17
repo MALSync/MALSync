@@ -51,7 +51,6 @@ export const settingsObj = {
 
     quicklinks: [
       'Crunchyroll',
-      'Gogoanime',
       'Mangadex',
       'MangaNato',
       'MangaFox',
