@@ -8,14 +8,14 @@
           </FormButton>
           <FormButton
             v-visible="!orderMode"
-            title="{{ lang('Anime') }}"
+            :title="lang('Anime')"
             :color="animeFilter ? 'secondary' : 'default'"
             padding="pill"
             @click="animeFilter = !animeFilter"
           />
           <FormButton
             v-visible="!orderMode"
-            title="{{ lang('Manga') }}"
+            :title="lang('Manga')"
             :color="mangaFilter ? 'secondary' : 'default'"
             padding="pill"
             @click="mangaFilter = !mangaFilter"
