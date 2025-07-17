@@ -134,11 +134,16 @@
     ]
   },
   "0.12.0": {
+    "Zoro": [
+      "*://hianime.cx/*",
+      "*://hianime.gs/*"
+    ],
     "iframe": [
       "*://animevost.org/frame5.php?play=*",
       "*://jilliandescribecompany.com/e/*",
       "*://player.zilla-networks.com/*",
-      "*://megaplay.buzz/*"
+      "*://megaplay.buzz/*",
+      "*://loadx.ws/*"
     ]
   }
 }

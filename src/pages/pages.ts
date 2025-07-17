@@ -1,5 +1,4 @@
 import { Mangadex } from './Mangadex/main';
-import { Gogoanime } from './Gogoanime/main';
 import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
 import { Plex } from './Plex/main';
@@ -125,16 +124,13 @@ import { Q1N } from './Q1N/main';
 import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
 import { VortexScans } from './VortexScans/main';
-import { WeebCentral } from './WeebCentral/main';
 import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
-import { Hikari } from './Hikari/main';
 import { AniDream } from './AniDream/main';
 
 export const pages = {
   Mangadex,
-  Gogoanime,
   TurkAnime,
   animepahe,
   Netflix,
@@ -260,10 +256,8 @@ export const pages = {
   TempleScan,
   ScyllaScans,
   VortexScans,
-  WeebCentral,
   Kavita,
   Rawkuma,
   Aninexus,
-  Hikari,
   AniDream,
 };

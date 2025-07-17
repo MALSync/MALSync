@@ -31,9 +31,10 @@
         "url": "https://weebcentral.com/chapters/01JH1X95RSVSEXTHG3759C7H54",
         "expected": {
           "sync": true,
-          "title": "Otaku ni Yasashii Gal wa Inai!",
+          "title": "Otaku ni Yasashii Gal wa Inai!?",
           "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
           "episode": 40,
+          "nextEpUrl": "https://weebcentral.com/chapters/01JHRKYDX3ENRASRA65X334Q3Q",
           "overviewUrl": "https://weebcentral.com/series/01J76XYGSXQN8BNTPR0QXWQD2S/Otaku-ni-Yasashii-Gal-wa-Inai"
         }
       },
@@ -41,7 +42,7 @@
         "url": "https://weebcentral.com/series/01J76XYGSXQN8BNTPR0QXWQD2S/Otaku-ni-Yasashii-Gal-wa-Inai",
         "expected": {
           "sync": false,
-          "title": "Otaku ni Yasashii Gal wa Inai!",
+          "title": "Otaku ni Yasashii Gal wa Inai!?",
           "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
           "uiSelector": true,
           "epList": {
@@ -56,16 +57,17 @@
           "title": "To Your Eternity",
           "identifier": "01J76XYBYX6EGVR7ZNC8VKFJD1",
           "episode": 195,
+          "nextEpUrl": "https://weebcentral.com/chapters/01JJQSH6B0YRRH1X9Z5S8Q5AFX",
           "overviewUrl": "https://weebcentral.com/series/01J76XYBYX6EGVR7ZNC8VKFJD1/To-You-The-Immortal"
         }
       },
       {
-        "url": "https://weebcentral.com/chapters/01JGZ90VRE0DX2G37X0MT4XP4N",
+        "url": "https://weebcentral.com/chapters/01JQ5FG4WCVWSVESYGM4VWM0EQ",
         "expected": {
           "sync": true,
           "title": "Flawless",
           "identifier": "01J76XYF352T2D7MEDFZWAB654",
-          "episode": 20,
+          "episode": 31,
           "volume": 4,
           "overviewUrl": "https://weebcentral.com/series/01J76XYF352T2D7MEDFZWAB654/Flawless"
         }

@@ -812,4 +812,8 @@ module.exports = {
   megaplay: {
     match: ['*://megaplay.buzz/*'],
   },
+  // aniworld
+  loadx: {
+     match: ['*://loadx.ws/*'],
+  }
 };
