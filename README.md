@@ -317,6 +317,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://witanime.pics"><img src="https://favicon.malsync.moe/?domain=https://witanime.pics"> WitAnime</a></td>
                 <td></td>
                 <td></td>
+              </tr><tr>
+                <td><a href="https://anslayerweb.com"><img src="https://favicon.malsync.moe/?domain=https://anslayerweb.com"> AnimeSlayerWeb</a></td>
+                <td></td>
+                <td></td>
               </tr>
     </tbody>
   </table>
