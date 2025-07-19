@@ -83,6 +83,9 @@ window.MalSyncTest = async function() {
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }
+          if (typeof page.sync.getImage !== 'undefined') {
+            value.image = page.sync.getImage();
+          }
         } else if (!page.isOverviewPage || page.isOverviewPage(window.location.href)) {
           value.sync = false;
           value.title = page.overview.getTitle(window.location.href);
@@ -92,6 +95,9 @@ window.MalSyncTest = async function() {
               '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
+          }
+          if (typeof page.overview.getImage !== 'undefined') {
+            value.image = page.overview.getImage();
           }
         } else {
           reject('Not an overview or sync page');
