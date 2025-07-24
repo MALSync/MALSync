@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const KickAssAnime: pageInterface = {
   name: 'KickAssAnime',
-  domain: ['https://kickassanime.am', 'https://kaas.am', 'https://kaa.mx'],
+  domain: ['https://kickassanime.am', 'https://kaas.am', 'https://kaa.mx', 'https://kaa.to'],
   languages: ['English'],
   type: 'anime',
   database: 'KickAssAnime',
