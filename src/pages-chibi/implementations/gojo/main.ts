@@ -19,6 +19,9 @@ export const gojo: PageInterface = {
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
+    getImage($c) {
+      return $c.querySelector('.INFO img.object-cover').getAttribute('src').ifNotReturn().run();
+    },
     getOverviewUrl($c) {
       return $c
         .string('/anime/<identifier>')
@@ -55,6 +58,13 @@ export const gojo: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
+    },
+    getImage($c) {
+      return $c
+        .querySelector('.rounded-xl img.object-cover')
+        .getAttribute('src')
+        .ifNotReturn()
+        .run();
     },
     uiInjection($c) {
       return $c.querySelector('#root > main div:has(> a[href^="/watch/"])').uiAfter().run();

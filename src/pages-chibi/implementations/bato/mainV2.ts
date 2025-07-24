@@ -23,6 +23,9 @@ export const batoV2: PageInterface = {
     getIdentifier($c) {
       return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
     },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+    },
     getOverviewUrl($c) {
       return $c
         .querySelector('h3.nav-title > a')
@@ -109,6 +112,9 @@ export const batoV2: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).ifNotReturn().run();
+    },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.detail-set .attr-main').uiPrepend().run();
