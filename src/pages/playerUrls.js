@@ -799,7 +799,7 @@ module.exports = {
   },
   // animekai
   megaup: {
-    match: ['*://megaup.cc/e/*'],
+    match: ['*://megaup.cc/e/*', '*://megaup.site/e/*'],
   },
   // hikari
   boosterx: {
