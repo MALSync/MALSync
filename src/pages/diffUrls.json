@@ -139,9 +139,11 @@
       "*://hianime.gs/*"
     ],
     "iframe": [
+      "*://*.mixdrop.sn/e/*",
       "*://animevost.org/frame5.php?play=*",
       "*://vidmoly.net/*",
       "*://jilliandescribecompany.com/e/*",
+      "*://megaup.site/e/*",
       "*://player.zilla-networks.com/*",
       "*://megaplay.buzz/*",
       "*://loadx.ws/*"

@@ -246,6 +246,7 @@ module.exports = {
       '*://*.mixdrop.ms/e/*',
       '*://*.mixdrop.ps/e/*',
       '*://*.mixdrop.my/e/*',
+      '*://*.mixdrop.sn/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
