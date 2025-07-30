@@ -472,6 +472,7 @@ module.exports = {
     match: [
       '*://vidmoly.me/*',
       '*://vidmoly.to/*',
+      '*://vidmoly.net/*',
       // auto-vidmoly-replace-dont-remove
     ],
   },

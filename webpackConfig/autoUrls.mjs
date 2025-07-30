@@ -28,56 +28,6 @@ async function mixdrop() {
     addPlayerUrls('mixdrop', ['*.' + url.hostname + '/e/*']);
 }
 
-async function gogostream() {
-    const response = await fetch("https://gogoanime3.co/no-game-no-life-episode-9");
-    const body = await response.text();
-
-    const iframe = body.match(/<iframe\s+src="([^"]*)"/i);
-
-    const gogostream = new URL((iframe[1].startsWith('//') ? "https:" : '') + iframe[1]);
-
-    addPlayerUrls('gogostream', [
-        '*.' + gogostream.hostname + '/*',
-    ]);
-
-    const $ = cheerio.load(body);
-
-    const servers = [
-      {
-        name: 'gogostreamsb',
-        selector: '.streamsb',
-      },
-      {
-        name: 'gogodood',
-        selector: '.doodstream',
-      },
-      {
-        name: 'gogofembed',
-        selector: '.xstreamcdn',
-      },
-      {
-        name: 'gogostreamwish',
-        selector: '.streamwish',
-      },
-      {
-        name: 'gogofilelions',
-        selector: '.vidhide',
-      },
-    ];
-
-    for (const server of servers) {
-      const res = $(`.anime_muti_link ${server.selector} [data-video]`).attr('data-video');
-      if (!res) {
-        console.error(`[${server.name}]:`, 'no data-video');
-        continue;
-      }
-      const url = new URL(res);
-      addPlayerUrls(server.name, [
-        url.hostname + (server.name === 'gogofilelions' ? '/v/*' : '/e/*'),
-      ]);
-    }
-}
-
 // pages
 
 async function zoro() {
@@ -91,26 +41,6 @@ async function zoro() {
     for(const url of urls) {
         addpageUrls('Zoro', [
             "*://" + url.hostname + "/*"
-        ])
-    }
-}
-
-async function gogoanime() {
-    const response = await fetch("https://gogotaku.info");
-    const body = await response.text();
-
-    const $ = cheerio.load(body);
-
-    const urls = $('.note_site .site_go a').map((i,el) =>  new URL($(el).attr('href'))).get();
-
-    for(let url of urls) {
-
-        if(url.hostname.startsWith('www')) {
-            url = new URL("https://" + url.hostname.split('.').slice(1).join('.'))
-        }
-
-        addpageUrls('Gogoanime', [
-            "*://*." + url.hostname + "/*",
         ])
     }
 }
@@ -205,9 +135,7 @@ async function start() {
         voe,
         // vidmoly,
         mixdrop,
-        // gogostream,
         zoro,
-        // gogoanime,
         // kickassanime,
         animekai
     }

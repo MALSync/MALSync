@@ -140,6 +140,7 @@
     ],
     "iframe": [
       "*://animevost.org/frame5.php?play=*",
+      "*://vidmoly.net/*",
       "*://jilliandescribecompany.com/e/*",
       "*://player.zilla-networks.com/*",
       "*://megaplay.buzz/*",
