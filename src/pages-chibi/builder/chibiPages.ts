@@ -12,6 +12,9 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
   if (page.sync.getVolume) {
     page.sync.getVolume = page.sync.getVolume($c) as any;
   }
+  if (page.sync.getImage) {
+    page.sync.getImage = page.sync.getImage($c) as any;
+  }
   if (page.sync.nextEpUrl) {
     page.sync.nextEpUrl = page.sync.nextEpUrl($c) as any;
   }
@@ -27,6 +30,9 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
     page.overview.getTitle = page.overview.getTitle($c) as any;
     page.overview.getIdentifier = page.overview.getIdentifier($c) as any;
     page.overview.uiInjection = page.overview.uiInjection($c) as any;
+    if (page.overview.getImage) {
+      page.overview.getImage = page.overview.getImage($c) as any;
+    }
     if (page.overview.getMalUrl) {
       page.overview.getMalUrl = page.overview.getMalUrl($c) as any;
     }

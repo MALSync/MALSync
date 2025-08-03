@@ -254,6 +254,7 @@ export class SyncPage {
     this.setSearchObj(undefined);
     if (this.mangaProgress) this.mangaProgress.stop();
     $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+    clearInterval(this.imageFallbackInterval);
   }
 
   setSearchObj(searchObj) {
@@ -467,7 +468,7 @@ export class SyncPage {
         }
       }
 
-      await this.imageFallback();
+      this.imageFallback(state);
     }
   }
 
@@ -1014,10 +1015,36 @@ export class SyncPage {
     }
   }
 
-  async imageFallback() {
-    if (this.singleObj && typeof this.singleObj.setImage !== 'undefined' && this.page.getImage) {
-      const image = await this.page.getImage();
-      if (image) this.singleObj.setImage(image);
+  protected imageFallbackInterval: NodeJS.Timeout | undefined = undefined;
+
+  imageFallback(state: pageState) {
+    clearInterval(this.imageFallbackInterval);
+    if (
+      this.singleObj &&
+      typeof this.singleObj.setImage !== 'undefined' &&
+      (this.page.getImage || this.page.sync.getImage || this.page.overview?.getImage)
+    ) {
+      this.imageFallbackInterval = setInterval(() => imageFallbackInternal.call(this), 30 * 1000);
+      imageFallbackInternal.call(this);
+    }
+
+    async function imageFallbackInternal() {
+      let image: string | undefined;
+      if (this.page.getImage) {
+        image = await this.page.getImage();
+      }
+      if (!image && this.page.sync.getImage && state.on === 'SYNC') {
+        image = this.page.sync.getImage();
+      }
+      if (!image && this.page.overview?.getImage && state.on === 'OVERVIEW') {
+        image = this.page.overview.getImage();
+      }
+
+      if (image) {
+        con.log('Image Fallback', image);
+        clearInterval(this.imageFallbackInterval);
+        this.singleObj.setImage(image);
+      }
     }
   }
 

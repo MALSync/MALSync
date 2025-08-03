@@ -27,6 +27,9 @@ export const batoV3: PageInterface = {
     getIdentifier($c) {
       return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
     },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+    },
     getOverviewUrl($c) {
       return $c
         .querySelector('div.comic-detail > h3 > a')
@@ -66,6 +69,9 @@ export const batoV3: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).ifNotReturn().split('-').first().run();
+    },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('main > *').uiAfter().run();

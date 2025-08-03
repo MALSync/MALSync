@@ -54,6 +54,14 @@ export const AniXL: PageInterface = {
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
     },
+    getImage($c) {
+      return $c
+        .querySelector('[property="og:image"]')
+        .getAttribute('content')
+        .ifNotReturn()
+        .urlAbsolute()
+        .run();
+    },
     uiInjection($c) {
       return $c.querySelector('div[data-name="episode-list"]').uiBefore().run();
     },

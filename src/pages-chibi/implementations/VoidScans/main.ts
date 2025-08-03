@@ -2,13 +2,23 @@ import { PageInterface } from '../../pageInterface';
 
 export const voidScans: PageInterface = {
   name: 'VoidScans',
-  domain: ['https://hivecomic.com', 'https://hivetoon.com', 'https://void-scans.com'],
+  domain: [
+    'https://hivetoons.org',
+    'https://hivecomic.com',
+    'https://hivetoon.com',
+    'https://void-scans.com',
+  ],
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://hivecomic.com/*', '*://hivetoon.com/*', '*://void-scans.com/*'],
+    match: [
+      '*://hivetoons.org/*',
+      '*://hivecomic.com/*',
+      '*://hivetoon.com/*',
+      '*://void-scans.com/*',
+    ],
   },
-  search: 'https://hivecomic.com/series?searchTerm={searchtermPlus}',
+  search: 'https://hivetoons.org/series?searchTerm={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
@@ -24,6 +34,9 @@ export const voidScans: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
+    },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     getOverviewUrl($c) {
       return $c
@@ -57,6 +70,9 @@ export const voidScans: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
+    },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('h1[itemprop="name"]').uiAfter().run();
