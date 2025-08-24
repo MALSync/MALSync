@@ -19,7 +19,10 @@ export const MangaDemon: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c.string(`${MangaDemon.domain}/manga/`).concat($c.this('sync.getIdentifier').run()).run();
+      return $c
+        .string(`${MangaDemon.domain}/manga/`)
+        .concat($c.this('sync.getIdentifier').run())
+        .run();
     },
     getEpisode($c) {
       return $c.url().urlPart(6).number().run();
