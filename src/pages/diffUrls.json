@@ -136,7 +136,8 @@
   "0.12.0": {
     "Zoro": [
       "*://hianime.cx/*",
-      "*://hianime.gs/*"
+      "*://hianime.gs/*",
+      "*://hianime.do/*"
     ],
     "iframe": [
       "*://*.mixdrop.sn/e/*",
