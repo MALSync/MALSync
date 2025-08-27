@@ -53,7 +53,7 @@ export const Anizium: PageInterface = {
       return $c.querySelector('h5.main-title').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.url().urlPart(4).run();
     },
     uiInjection($c) {
       return $c.querySelector('h5.main-title').uiAfter().run();
