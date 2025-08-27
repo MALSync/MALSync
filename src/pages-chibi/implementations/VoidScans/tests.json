@@ -1,24 +1,26 @@
 {
     "title": "VoidScans",
-    "url": "https://hivecomic.com",
+    "url": "https://hivetoons.org",
     "testCases": [
       {
-        "url": "https://hivecomic.com/series/questism/chapter-101",
+        "url": "https://hivetoons.org/series/questism/chapter-101",
         "expected": {
           "sync": true,
           "title": "Questism",
           "identifier": "questism",
-          "overviewUrl": "https://hivecomic.com/series/questism",
+          "image": "https://storage.hivetoon.com/public//upload/2024/11/20/cover_1732134769816.webp",
+          "overviewUrl": "https://hivetoons.org/series/questism",
           "episode": 101,
           "uiSelector": false
         }
       },
       {
-        "url": "https://hivecomic.com/series/questism",
+        "url": "https://hivetoons.org/series/questism",
         "expected": {
           "sync": false,
           "title": "Questism",
           "identifier": "questism",
+          "image": "https://storage.hivetoon.com/public//upload/2024/11/20/cover_1732134769816.webp",
           "uiSelector": true
         }
       }

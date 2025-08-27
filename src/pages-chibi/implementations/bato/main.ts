@@ -18,6 +18,7 @@ function conditionalPageInterfaces(
     'getEpisode',
     'getVolume',
     'nextEpUrl',
+    'getImage',
   ].forEach(method => {
     final.sync[method] = conditionalMethod(
       condition,
@@ -26,7 +27,7 @@ function conditionalPageInterfaces(
     ) as any;
   });
 
-  ['isOverviewPage', 'getTitle', 'getIdentifier', 'uiInjection'].forEach(method => {
+  ['isOverviewPage', 'getTitle', 'getIdentifier', 'uiInjection', 'getImage'].forEach(method => {
     final.overview![method] = conditionalMethod(
       condition,
       interface1.overview![method],

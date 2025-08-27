@@ -44,6 +44,9 @@ export const animeav1: PageInterface = {
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
     },
+    getImage($c) {
+      return $c.querySelector('.aspect-poster').getAttribute('src').ifNotReturn().run();
+    },
     uiInjection($c) {
       return $c.querySelectorAll('article div.items-end button').last().uiAfter().run();
     },

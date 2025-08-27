@@ -95,6 +95,12 @@ export const Chibi = async (): Promise<pageInterface> => {
             return consumer.run();
           }
         : undefined,
+      getImage: currentPage.sync.getImage
+        ? () => {
+            const consumer = getConsumer(currentPage.sync.getImage!, pageD, 'sync.getImage');
+            return consumer.run();
+          }
+        : undefined,
       nextEpUrl: currentPage.sync.nextEpUrl
         ? url => {
             const consumer = getUrlConsumer(
@@ -152,6 +158,16 @@ export const Chibi = async (): Promise<pageInterface> => {
               consumer.addVariable('ui', html);
               return consumer.run();
             },
+            getImage: currentPage.overview?.getImage
+              ? () => {
+                  const consumer = getConsumer(
+                    currentPage.overview!.getImage!,
+                    pageD,
+                    'overview.getImage',
+                  );
+                  return consumer.run();
+                }
+              : undefined,
             getMalUrl:
               currentPage.overview && currentPage.overview.getMalUrl
                 ? provider => {
