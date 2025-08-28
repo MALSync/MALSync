@@ -14,22 +14,54 @@ export const Anizium: PageInterface = {
       return $c.url().contains('/watch/').run();
     },
     getTitle($c) {
+      const element = $c.querySelector('.trending-text');
+      const season = $c.url().urlParam('season');
+
+      // Generic season-aware title (inspired by Crunchyroll)
       return $c
-        .querySelector('.trending-text')
-        .text()
-        .trim()
-        .replaceRegex('\\s+S\\d+\\s+B\\d+.*', '')
-        .trim()
+        .if(
+          // Season 2+ için generic enhancement
+          $c.and(element.boolean().run(), season.number().greaterThan(1).run()).run(),
+          // "Title Season N" format
+          element
+            .text()
+            .trim()
+            .replaceRegex('\\s+S\\d+\\s+B\\d+.*', '')
+            .trim()
+            .concat(' Season ')
+            .concat(season.string().run())
+            .run(),
+          // Season 1 veya yok: normal cleaning
+          $c
+            .if(
+              element.boolean().run(),
+              element.text().trim().replaceRegex('\\s+S\\d+\\s+B\\d+.*', '').trim().run(),
+              $c.string('').run(),
+            )
+            .run(),
+        )
         .run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      // Season-aware identifier (Netflix tarzı) - her sezon ayrı MAL entry
+      const baseId = $c.url().urlPart(4);
+      const season = $c.url().urlParam('season');
+
+      return $c
+        .if(
+          // Eğer season parametresi varsa, enhanced identifier oluştur
+          $c.and(baseId.boolean().run(), season.boolean().run()).run(),
+          // Format: "392217205?s=2" - her sezon ayrı identifier
+          baseId.concat('?s=').concat(season.string().run()).run(),
+          // Fallback: sadece base ID
+          baseId.run(),
+        )
+        .run();
     },
     getOverviewUrl($c) {
-      return $c
-        .string('https://anizium.co/anime/')
-        .concat($c.this('sync.getIdentifier').run())
-        .run();
+      // Base ID'yi al (season parametresi olmadan)
+      const baseId = $c.url().urlPart(4);
+      return $c.string('https://anizium.co/anime/').concat(baseId.run()).run();
     },
     getEpisode($c) {
       return $c.url().urlParam('episode').number().run();
