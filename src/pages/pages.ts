@@ -128,6 +128,7 @@ import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
+import { Mangitto } from './Mangitto/main';
 
 export const pages = {
   Mangadex,
@@ -260,4 +261,5 @@ export const pages = {
   Rawkuma,
   Aninexus,
   AniDream,
+  Mangitto,
 };
