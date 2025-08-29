@@ -134,9 +134,13 @@
     ]
   },
   "0.12.0": {
+    "KickAssAnime": [
+      "*://*.kaa.to/*"
+    ],
     "Zoro": [
       "*://hianime.cx/*",
-      "*://hianime.gs/*"
+      "*://hianime.gs/*",
+      "*://hianime.do/*"
     ],
     "iframe": [
       "*://*.mixdrop.sn/e/*",

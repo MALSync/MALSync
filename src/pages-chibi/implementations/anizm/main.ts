@@ -61,6 +61,14 @@ export const anizm: PageInterface = {
     getIdentifier($c) {
       return $c.url().urlPart(3).run();
     },
+    getImage($c) {
+      return $c
+        .querySelector('img.infoPosterImgItem')
+        .getAttribute('src')
+        .ifNotReturn()
+        .urlAbsolute()
+        .run();
+    },
     uiInjection($c) {
       return $c.querySelector('.infoExtraData ul.dataRows').uiAppend().run();
     },

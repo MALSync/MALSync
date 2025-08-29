@@ -9,7 +9,8 @@
       "*://*.kickassanime.am/*",
       "*://*.kickassanimes.io/*",
       "*://*.kickassanime.mx/*",
-      "*://*.kaa.mx/*"
+      "*://*.kaa.mx/*",
+      "*://*.kaa.to/*"
     ]
   }
 }

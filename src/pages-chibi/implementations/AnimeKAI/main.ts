@@ -26,6 +26,9 @@ export const AnimeKAI: PageInterface = {
     getEpisode($c) {
       return getJsonData($c).get('episode').number().run();
     },
+    getImage($c) {
+      return $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run();
+    },
     uiInjection($c) {
       return $c.querySelector('#player-control').uiAfter().run();
     },
