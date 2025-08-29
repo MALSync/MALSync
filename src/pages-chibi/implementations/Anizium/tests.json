@@ -25,15 +25,6 @@
       }
     },
     {
-      "url": "https://anizium.co/anime/392217205",
-      "expected": {
-        "sync": false,
-        "title": "Dr. Stone",
-        "identifier": "392217205",
-        "uiSelector": true
-      }
-    },
-    {
       "url": "https://anizium.co/watch/111222333?episode=10",
       "expected": {
         "sync": true,

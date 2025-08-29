@@ -51,20 +51,7 @@ export const Anizium: PageInterface = {
         .run();
     },
   },
-  overview: {
-    isOverviewPage($c) {
-      return $c.url().contains('/anime/').run();
-    },
-    getTitle($c) {
-      return $c.querySelector('h5.main-title').text().trim().run();
-    },
-    getIdentifier($c) {
-      return $c.url().urlPart(4).run();
-    },
-    uiInjection($c) {
-      return $c.querySelector('h5.main-title').uiAfter().run();
-    },
-  },
+
   list: {
     elementsSelector($c) {
       return $c.querySelectorAll('.episode-block').run();
