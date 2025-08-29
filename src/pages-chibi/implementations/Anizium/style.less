@@ -6,7 +6,6 @@
   padding: 10px;
   background: rgb(0 0 0 / 10%);
   border-radius: 5px;
-  transition: all 0.3s ease;
 }
 
 .malsync-button {
@@ -26,61 +25,9 @@
   background: #0056b3;
 }
 
-.malsync-button:disabled {
-  background: #6c757d;
-  cursor: not-allowed;
-}
-
-/* Error states */
-.malsync-error {
-  background: rgb(220 53 69 / 10%);
-  border: 1px solid rgb(220 53 69 / 30%);
-  color: #721c24;
-  padding: 8px 12px;
-  border-radius: 4px;
-  margin: 5px 0;
-}
-
-/* Loading states */
-.malsync-loading {
-  background: rgb(255 193 7 / 10%);
-  border: 1px solid rgb(255 193 7 / 30%);
-  color: #856404;
-  padding: 8px 12px;
-  border-radius: 4px;
-  margin: 5px 0;
-}
-
-/* Success states */
-.malsync-success {
-  background: rgb(40 167 69 / 10%);
-  border: 1px solid rgb(40 167 69 / 30%);
-  color: #155724;
-  padding: 8px 12px;
-  border-radius: 4px;
-  margin: 5px 0;
-}
-
 /* Dark theme support for Anizium */
 [data-theme='dark'] #malsync-container,
 .dark #malsync-container {
   background: rgb(255 255 255 / 10%);
 }
 
-[data-theme='dark'] .malsync-error,
-.dark .malsync-error {
-  background: rgb(220 53 69 / 20%);
-  color: #f5c6cb;
-}
-
-[data-theme='dark'] .malsync-loading,
-.dark .malsync-loading {
-  background: rgb(255 193 7 / 20%);
-  color: #ffeaa7;
-}
-
-[data-theme='dark'] .malsync-success,
-.dark .malsync-success {
-  background: rgb(40 167 69 / 20%);
-  color: #d4edda;
-}
