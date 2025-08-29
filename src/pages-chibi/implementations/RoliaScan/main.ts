@@ -19,14 +19,23 @@ export const RoliaScan: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c
-        .string(`${RoliaScan.domain}/manga/`)
-        .concat($c.this('sync.getIdentifier').run())
-        .run();
+      return $c.string('/manga/').concat($c.this('sync.getIdentifier').run()).urlAbsolute().run();
     },
     getEpisode($c) {
       return $c.url().urlPart(5).regex('chapter[_-](\\d+)', 1).number().run();
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '.manga-child-the-content img',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.manga-child-the-content img',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     isOverviewPage($c) {
@@ -47,6 +56,9 @@ export const RoliaScan: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
+    },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('h1').uiAfter().run();

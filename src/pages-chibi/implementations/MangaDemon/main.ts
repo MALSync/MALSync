@@ -19,14 +19,23 @@ export const MangaDemon: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c
-        .string(`${MangaDemon.domain}/manga/`)
-        .concat($c.this('sync.getIdentifier').run())
-        .run();
+      return $c.string('/manga/').concat($c.this('sync.getIdentifier').run()).urlAbsolute().run();
     },
     getEpisode($c) {
       return $c.url().urlPart(6).number().run();
     },
+    readerConfig: [
+      {
+        current: {
+          selector: 'img.imgholder',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: 'img.imgholder',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     isOverviewPage($c) {
@@ -37,6 +46,9 @@ export const MangaDemon: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
+    },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('h1').uiBefore().run();

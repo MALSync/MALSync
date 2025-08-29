@@ -30,6 +30,7 @@
         "sync": false,
         "title": "hero killer",
         "identifier": "hero-killer",
+        "image": "https://roliascan.com/wp-content/uploads/2024/11/xll1.jpg",
         "uiSelector": true
       }
     }
