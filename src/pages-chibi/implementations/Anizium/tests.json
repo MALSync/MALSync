@@ -1,47 +1,68 @@
 {
   "title": "Anizium",
   "url": "https://anizium.co/",
+  "offline": true,
   "testCases": [
     {
-      "url": "https://anizium.co/watch/392217205?season=1&episode=22",
+      "url": "https://anizium.co/watch/123456789?season=1&episode=1",
       "expected": {
         "sync": true,
-        "title": "Dr. Stone",
-        "identifier": "392217205",
-        "overviewUrl": "https://anizium.co/anime/392217205",
-        "episode": 22,
+        "title": "Generic Anime Season 1",
+        "identifier": "123456789?s=1",
+        "overviewUrl": "https://anizium.co/anime/123456789",
+        "episode": 1,
         "uiSelector": false
       }
     },
     {
-      "url": "https://anizium.co/watch/123456?season=2&episode=5",
+      "url": "https://anizium.co/watch/987654321?season=2&episode=5",
       "expected": {
         "sync": true,
-        "title": "Test Anime",
-        "identifier": "123456",
-        "overviewUrl": "https://anizium.co/anime/123456",
+        "title": "Generic Anime Season 2",
+        "identifier": "987654321?s=2",
+        "overviewUrl": "https://anizium.co/anime/987654321",
         "episode": 5,
         "uiSelector": false
       }
     },
     {
-      "url": "https://anizium.co/anime/392217205",
+      "url": "https://anizium.co/anime/555666777",
       "expected": {
         "sync": false,
-        "title": "Dr. Stone",
-        "identifier": "392217205",
+        "title": "Generic Anime Overview",
+        "identifier": "555666777",
         "uiSelector": true
       }
     },
     {
-      "url": "https://anizium.co/watch/789012?season=1&episode=1",
+      "url": "https://anizium.co/watch/111222333?episode=10",
       "expected": {
         "sync": true,
-        "title": "Another Anime",
-        "identifier": "789012",
-        "overviewUrl": "https://anizium.co/anime/789012",
-        "episode": 1,
+        "title": "Generic Single Season Anime",
+        "identifier": "111222333",
+        "overviewUrl": "https://anizium.co/anime/111222333",
+        "episode": 10,
         "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.anizium.co/watch/444555666?season=3&episode=12",
+      "expected": {
+        "sync": true,
+        "title": "Generic Anime Season 3",
+        "identifier": "444555666?s=3",
+        "overviewUrl": "https://anizium.co/anime/444555666",
+        "episode": 12,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://m.anizium.co/anime/777888999",
+      "expected": {
+        "sync": false,
+        "title": "Mobile Anime Overview",
+        "identifier": "777888999",
+        "uiSelector": true
       }
     }
   ]

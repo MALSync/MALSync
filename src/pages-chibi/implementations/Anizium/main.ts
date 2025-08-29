@@ -6,65 +6,74 @@ export const Anizium: PageInterface = {
   domain: 'https://anizium.co',
   languages: ['Turkish'],
   urls: {
-    match: ['*://anizium.co/*'],
+    match: ['*://anizium.co/*', '*://www.anizium.co/*', '*://m.anizium.co/*'],
   },
   search: 'https://anizium.co/search?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
-      return $c.url().contains('/watch/').run();
-    },
-    getTitle($c) {
-      const element = $c.querySelector('.trending-text');
-      const season = $c.url().urlParam('season');
-
-      // Generic season-aware title (inspired by Crunchyroll)
       return $c
-        .if(
-          // Season 2+ için generic enhancement
-          $c.and(element.boolean().run(), season.number().greaterThan(1).run()).run(),
-          // "Title Season N" format
-          element
-            .text()
-            .trim()
-            .replaceRegex('\\s+S\\d+\\s+B\\d+.*', '')
-            .trim()
-            .concat(' Season ')
-            .concat(season.string().run())
-            .run(),
-          // Season 1 veya yok: normal cleaning
+        .and(
+          $c.url().contains('/watch/').run(),
+          // Ensure we have valid episode data
           $c
-            .if(
-              element.boolean().run(),
-              element.text().trim().replaceRegex('\\s+S\\d+\\s+B\\d+.*', '').trim().run(),
-              $c.string('').run(),
+            .or(
+              $c.url().urlParam('episode').boolean().run(),
+              $c.querySelector('.episode-info').boolean().run(),
             )
             .run(),
         )
         .run();
     },
+    getTitle($c) {
+      const element = $c.querySelector('.trending-text');
+      return $c
+        .coalesce(
+          // Primary: trending-text selector with cleaning
+          element.text().trim().replaceRegex('\\s+S\\d+\\s+B\\d+.*', '').trim().run(),
+          // Fallback 1: page title cleaning
+          $c.title().replaceRegex(' - Anizium.*', '').trim().run(),
+          // Fallback 2: meta og:title
+          $c.querySelector('meta[property="og:title"]').getAttribute('content').run(),
+          // Fallback 3: h1 title
+          $c.querySelector('h1').text().trim().run(),
+        )
+        .ifNotReturn()
+        .run();
+    },
     getIdentifier($c) {
-      // Season-aware identifier (Netflix tarzı) - her sezon ayrı MAL entry
+      // Universal season-aware identifier for all anime
       const baseId = $c.url().urlPart(4);
       const season = $c.url().urlParam('season');
 
       return $c
         .if(
-          // Eğer season parametresi varsa, enhanced identifier oluştur
+          // If season parameter exists, create enhanced identifier
           $c.and(baseId.boolean().run(), season.boolean().run()).run(),
-          // Format: "392217205?s=2" - her sezon ayrı identifier
+          // Format: "{animeId}?s={season}" - separate identifier for each season
           baseId.concat('?s=').concat(season.string().run()).run(),
-          // Fallback: sadece base ID
+          // Fallback: base ID only
           baseId.run(),
         )
         .run();
     },
     getOverviewUrl($c) {
-      // Base ID'yi al (season parametresi olmadan)
+      // Get base ID (without season parameter)
       const baseId = $c.url().urlPart(4);
       return $c.string('https://anizium.co/anime/').concat(baseId.run()).run();
     },
     getEpisode($c) {
-      return $c.url().urlParam('episode').number().run();
+      return $c
+        .coalesce(
+          // Primary: URL parameter
+          $c.url().urlParam('episode').number().run(),
+          // Fallback 1: from page elements
+          $c.querySelector('.episode-info').text().regex('(\\d+)', 1).number().run(),
+          // Fallback 2: from breadcrumb or navigation
+          $c.querySelector('.breadcrumb').text().regex('Episode\\s+(\\d+)', 1).number().run(),
+          // Default fallback
+          $c.number(1).run(),
+        )
+        .run();
     },
     nextEpUrl($c) {
       const nextButton = $c.querySelector('#next_link');
@@ -82,7 +91,19 @@ export const Anizium: PageInterface = {
       return $c.url().contains('/anime/').run();
     },
     getTitle($c) {
-      return $c.querySelector('h5.main-title').text().trim().run();
+      return $c
+        .coalesce(
+          // Primary: main-title
+          $c.querySelector('h5.main-title').text().trim().run(),
+          // Fallback 1: any h5 title
+          $c.querySelector('h5').text().trim().run(),
+          // Fallback 2: page title
+          $c.title().replaceRegex(' - Anizium.*', '').trim().run(),
+          // Fallback 3: meta og:title
+          $c.querySelector('meta[property="og:title"]').getAttribute('content').run(),
+        )
+        .ifNotReturn()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -108,7 +129,23 @@ export const Anizium: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c
+        .title()
+        .contains('404')
+        .or(
+          $c
+            .title()
+            .contains('Error')
+            .or(
+              $c.title().contains('Not Found').or($c.title().contains('Server Error').run()).run(),
+            )
+            .run(),
+        )
+        .ifThen($c => $c.string('404').log().return().run())
+        .detectURLChanges($c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
     },
   },
 };
