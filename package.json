@@ -43,7 +43,7 @@
     "eslint-plugin-vue-scoped-css": "2.11.0",
     "expose-loader": "^5.0.1",
     "fs-extra": "^11.3.0",
-    "less": "^4.4.0",
+    "less": "^4.4.1",
     "less-loader": "^12.3.0",
     "mkdirp": "^1.0.4",
     "mocha": "^11.7.1",
