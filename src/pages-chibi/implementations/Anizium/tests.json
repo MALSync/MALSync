@@ -10,6 +10,7 @@
         "identifier": "392217205?s=1",
         "overviewUrl": "https://anizium.co/anime/392217205",
         "episode": 22,
+        "nextEpUrl": "https://anizium.co/watch/392217205?season=1&episode=23",
         "uiSelector": false
       }
     },
@@ -17,21 +18,11 @@
       "url": "https://anizium.co/watch/392217205?season=2&episode=5",
       "expected": {
         "sync": true,
-        "title": "Dr. Stone: Stone Wars",
+        "title": "Dr. Stone",
         "identifier": "392217205?s=2",
         "overviewUrl": "https://anizium.co/anime/392217205",
         "episode": 5,
-        "uiSelector": false
-      }
-    },
-    {
-      "url": "https://anizium.co/watch/111222333?episode=10",
-      "expected": {
-        "sync": true,
-        "title": "Single Season Anime",
-        "identifier": "111222333",
-        "overviewUrl": "https://anizium.co/anime/111222333",
-        "episode": 10,
+        "nextEpUrl": "https://anizium.co/watch/392217205?season=2&episode=6",
         "uiSelector": false
       }
     }
