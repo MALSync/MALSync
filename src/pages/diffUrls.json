@@ -144,6 +144,7 @@
     ],
     "iframe": [
       "*://*.mixdrop.sn/e/*",
+      "*://*.mixdrop.cv/e/*",
       "*://animevost.org/frame5.php?play=*",
       "*://vidmoly.net/*",
       "*://jilliandescribecompany.com/e/*",
