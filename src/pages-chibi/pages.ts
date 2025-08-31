@@ -16,8 +16,9 @@ import { Crunchyroll } from './implementations/Crunchyroll/main';
 import { animevost } from './implementations/animevost/main';
 import { AnimeKAI } from './implementations/AnimeKAI/main';
 import { WeebCentral } from './implementations/WeebCentral/main';
+import { MangaDemon } from './implementations/MangaDemon/main';
+import { RoliaScan } from './implementations/RoliaScan/main';
 import { Mangitto } from './implementations/Mangitto/main';
-
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -36,5 +37,7 @@ export const pages: { [key: string]: PageInterface } = {
   animevost,
   AnimeKAI,
   WeebCentral,
+  MangaDemon,
+  RoliaScan,
   Mangitto,
 };

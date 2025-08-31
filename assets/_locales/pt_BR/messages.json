@@ -1649,5 +1649,8 @@
     },
     "settings_LocalSync_Help_LinkText": {
         "message": "esta janela"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Marcar capítulo como lido em (%)"
     }
 }

@@ -1,0 +1,27 @@
+{
+  "title": "MangaDemon",
+  "url": "https://demonicscans.org",
+  "testCases": [
+    {
+      "url": "https://demonicscans.org/title/I-Will-Raise-This-Family-to-Greatness/chapter/21/1",
+      "expected": {
+        "sync": true,
+        "title": "I Will Raise This Family to Greatness",
+        "identifier": "I-Will-Raise-This-Family-to-Greatness",
+        "overviewUrl": "https://demonicscans.org/manga/I-Will-Raise-This-Family-to-Greatness",
+        "episode": 21,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://demonicscans.org/manga/Absolute-Dominion",
+      "expected": {
+        "sync": false,
+        "title": "Absolute Dominion",
+        "identifier": "Absolute-Dominion",
+        "image": "https://readermc.org/images/thumbnails/Absolute Dominion.webp",
+        "uiSelector": true
+      }
+    }
+  ]
+}

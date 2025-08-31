@@ -1,0 +1,38 @@
+{
+  "title": "RoliaScan",
+  "url": "https://roliascan.com",
+  "testCases": [
+    {
+      "url": "https://roliascan.com/manga/gosu/chapter-232_-s2-145/",
+      "expected": {
+        "sync": true,
+        "title": "gosu",
+        "identifier": "gosu",
+        "overviewUrl": "https://roliascan.com/manga/gosu",
+        "episode": 232,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://roliascan.com/manga/study-group/chapter-234-5-s2-epilogue/",
+      "expected": {
+        "sync": true,
+        "title": "study group",
+        "identifier": "study-group",
+        "overviewUrl": "https://roliascan.com/manga/study-group",
+        "episode": 234,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://roliascan.com/manga/hero-killer/",
+      "expected": {
+        "sync": false,
+        "title": "hero killer",
+        "identifier": "hero-killer",
+        "image": "https://roliascan.com/wp-content/uploads/2024/11/xll1.jpg",
+        "uiSelector": true
+      }
+    }
+  ]
+}
