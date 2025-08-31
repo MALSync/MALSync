@@ -1,0 +1,30 @@
+{
+  "title": "Anizium",
+  "url": "https://anizium.co/",
+  "testCases": [
+    {
+      "url": "https://anizium.co/watch/392217205?season=1&episode=22",
+      "expected": {
+        "sync": true,
+        "title": "Dr. Stone",
+        "identifier": "392217205?s=1",
+        "overviewUrl": "https://anizium.co/anime/392217205",
+        "episode": 22,
+        "nextEpUrl": "https://anizium.co/watch/392217205?season=1&episode=23",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://anizium.co/watch/392217205?season=2&episode=5",
+      "expected": {
+        "sync": true,
+        "title": "Dr. Stone",
+        "identifier": "392217205?s=2",
+        "overviewUrl": "https://anizium.co/anime/392217205",
+        "episode": 5,
+        "nextEpUrl": "https://anizium.co/watch/392217205?season=2&episode=6",
+        "uiSelector": false
+      }
+    }
+  ]
+}

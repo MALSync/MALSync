@@ -200,6 +200,10 @@ module.exports = {
   aniboom: {
     match: ['*://aniboom.one/*'],
   },
+  // Anizium
+  anizium: {
+    match: ['*://x.anizium.co/*'],
+  },
   // Anime365
   anime365: {
     match: [
