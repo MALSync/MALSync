@@ -143,6 +143,7 @@
       "*://hianime.do/*"
     ],
     "iframe": [
+      "*://x.anizium.co/*",
       "*://*.mixdrop.sn/e/*",
       "*://*.mixdrop.cv/e/*",
       "*://animevost.org/frame5.php?play=*",
