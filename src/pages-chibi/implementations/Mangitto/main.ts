@@ -11,10 +11,7 @@ export const Mangitto: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(3).equals('manga').run(),
-          $c.url().urlPart(5).boolean().run()
-        )
+        .and($c.url().urlPart(3).equals('manga').run(), $c.url().urlPart(5).boolean().run())
         .run();
     },
     getTitle($c) {
@@ -39,7 +36,7 @@ export const Mangitto: PageInterface = {
     nextEpUrl($c) {
       return $c
         .querySelectorAll('a.bg-mangitto-buttonGray[class*="flex-row-reverse"]')
-        .filter($el => $el.text().trim().equals("Sonraki Bölüm").run())
+        .filter($el => $el.text().trim().equals('Sonraki Bölüm').run())
         .ifNotReturn()
         .first()
         .getAttribute('href')
@@ -55,6 +52,18 @@ export const Mangitto: PageInterface = {
         .string()
         .run();
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '[data-page-number]',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '[data-page-number]',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     isOverviewPage($c) {
@@ -62,13 +71,14 @@ export const Mangitto: PageInterface = {
         .and(
           $c.url().urlPart(3).equals('manga').run(),
           $c.url().urlPart(4).boolean().run(),
-          $c.url().urlPart(5).boolean().not().run()
+          $c.url().urlPart(5).boolean().not().run(),
         )
         .run();
     },
     getTitle($c) {
-      return $c.querySelectorAll('h1')
-        .filter($el => $el.text().trim().equals("Mangitto").not().run())
+      return $c
+        .querySelectorAll('h1')
+        .filter($el => $el.text().trim().equals('Mangitto').not().run())
         .ifNotReturn()
         .first()
         .text()
@@ -79,7 +89,7 @@ export const Mangitto: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     uiInjection($c) {
-      return $c.querySelector('div[flex="gap-12 items-center"]').uiAfter().run();
+      return $c.querySelector('main h1').uiAfter().run();
     },
     getImage($c) {
       return $c
@@ -114,21 +124,13 @@ export const Mangitto: PageInterface = {
     },
     syncIsReady($c) {
       return $c
-        .waitUntilTrue(
-          $c.this('sync.getTitle').boolean().run(),
-        )
+        .waitUntilTrue($c.this('sync.getTitle').boolean().run())
         .trigger()
         .detectChanges($c.url().urlStrip().run(), $c.trigger().run())
         .run();
     },
     overviewIsReady($c) {
-      return $c
-        .waitUntilTrue(
-          $c.this('overview.getTitle').boolean().run(),
-        )
-        .trigger()
-        .run();
+      return $c.waitUntilTrue($c.this('overview.getTitle').boolean().run()).trigger().run();
     },
   },
 };
-
