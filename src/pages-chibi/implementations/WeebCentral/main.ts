@@ -34,6 +34,9 @@ export const WeebCentral: PageInterface = {
     getVolume($c) {
       return getChapterText($c).regex('^s(\\d+)\\D', 1).ifNotReturn().number().run();
     },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+    },
     nextEpUrl($c) {
       const regexText = 'nextPage\\(\\) {.*?(/chapters/[^"\'\\s]+).*?is_bookmarked\\(\\)';
       return $c
@@ -81,6 +84,9 @@ export const WeebCentral: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
+    },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('section h1.md\\:block').uiAfter().run();

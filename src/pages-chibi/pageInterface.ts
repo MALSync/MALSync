@@ -94,6 +94,13 @@ export interface PageInterface {
     getVolume?: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
 
     /**
+     * Returns the URL to the image of the anime or manga.
+     * This function is optional.
+     * @returns A ChibiJson wrapped string containing the image URL, or undefined if not available
+     */
+    getImage?: ($c: ChibiGenerator<unknown>) => ChibiJson<string | undefined>;
+
+    /**
      * Returns the URL to the next episode or chapter.
      * Used for providing quick navigation links on the userlist.
      * This function is optional.
@@ -155,6 +162,12 @@ export interface PageInterface {
      * Injects a small UI element with the current episode or chapter number.
      */
     uiInjection: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
+
+    /**
+     * Returns the URL to the image of the anime or manga.
+     * @returns A ChibiJson wrapped string containing the image URL, or undefined if not available
+     */
+    getImage: ($c: ChibiGenerator<unknown>) => ChibiJson<string | undefined>;
 
     /**
      * Returns the MyAnimeList URL for the current anime or manga.
@@ -275,6 +288,7 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getOverviewUrl: ReturnType<PageInterface['sync']['getOverviewUrl']>;
     getEpisode: ReturnType<PageInterface['sync']['getEpisode']>;
     getVolume?: ReturnType<NonNullable<PageInterface['sync']['getVolume']>>;
+    getImage?: ReturnType<NonNullable<PageInterface['sync']['getImage']>>;
     nextEpUrl?: ReturnType<NonNullable<PageInterface['sync']['nextEpUrl']>>;
     uiInjection?: ReturnType<NonNullable<PageInterface['sync']['uiInjection']>>;
     getMalUrl?: ReturnType<NonNullable<PageInterface['sync']['getMalUrl']>>;
@@ -286,6 +300,7 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getTitle: ReturnType<NonNullable<PageInterface['overview']>['getTitle']>;
     getIdentifier: ReturnType<NonNullable<PageInterface['overview']>['getIdentifier']>;
     uiInjection: ReturnType<NonNullable<PageInterface['overview']>['uiInjection']>;
+    getImage: ReturnType<NonNullable<PageInterface['overview']>['getImage']>;
     getMalUrl?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getMalUrl']>>;
   };
   list?: {

@@ -11,6 +11,7 @@
           "overviewUrl": "https://weebcentral.com/series/01J76XY7P6VR0D8AQYQ9FNFTE7/Initial-D",
           "episode": 706,
           "uiSelector": false,
+          "image": "https://temp.compsci88.com/cover/fallback/01J76XY7P6VR0D8AQYQ9FNFTE7.jpg",
           "nextEpUrl": "https://weebcentral.com/chapters/01J76XZ480R0DVMBBM8BD3A71J"
         }
       },
@@ -21,6 +22,7 @@
           "title": "Initial D",
           "identifier": "01J76XY7P6VR0D8AQYQ9FNFTE7",
           "uiSelector": true,
+          "image": "https://temp.compsci88.com/cover/fallback/01J76XY7P6VR0D8AQYQ9FNFTE7.jpg",
           "epList": {
             "718": "https://weebcentral.com/chapters/01J76XZ480TGD1WH0DSD2J04H0",
             "2": "https://weebcentral.com/chapters/01J76XZ47T7GZ48GZ9XZVF4BPF"
@@ -35,6 +37,7 @@
           "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
           "episode": 40,
           "nextEpUrl": "https://weebcentral.com/chapters/01JHRKYDX3ENRASRA65X334Q3Q",
+          "image": "https://temp.compsci88.com/cover/fallback/01J76XYGSXQN8BNTPR0QXWQD2S.jpg",
           "overviewUrl": "https://weebcentral.com/series/01J76XYGSXQN8BNTPR0QXWQD2S/Otaku-ni-Yasashii-Gal-wa-Inai"
         }
       },
@@ -45,6 +48,7 @@
           "title": "Otaku ni Yasashii Gal wa Inai!?",
           "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
           "uiSelector": true,
+          "image": "https://temp.compsci88.com/cover/fallback/01J76XYGSXQN8BNTPR0QXWQD2S.jpg",
           "epList": {
             "40": "https://weebcentral.com/chapters/01JH1X95RSVSEXTHG3759C7H54"
           }
@@ -58,6 +62,7 @@
           "identifier": "01J76XYBYX6EGVR7ZNC8VKFJD1",
           "episode": 195,
           "nextEpUrl": "https://weebcentral.com/chapters/01JJQSH6B0YRRH1X9Z5S8Q5AFX",
+          "image": "https://temp.compsci88.com/cover/fallback/01J76XYBYX6EGVR7ZNC8VKFJD1.jpg",
           "overviewUrl": "https://weebcentral.com/series/01J76XYBYX6EGVR7ZNC8VKFJD1/To-You-The-Immortal"
         }
       },
@@ -69,6 +74,7 @@
           "identifier": "01J76XYF352T2D7MEDFZWAB654",
           "episode": 31,
           "volume": 4,
+          "image": "https://temp.compsci88.com/cover/fallback/01J76XYF352T2D7MEDFZWAB654.jpg",
           "overviewUrl": "https://weebcentral.com/series/01J76XYF352T2D7MEDFZWAB654/Flawless"
         }
       }

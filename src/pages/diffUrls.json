@@ -134,6 +134,9 @@
     ]
   },
   "0.12.0": {
+    "KickAssAnime": [
+      "*://*.kaa.to/*"
+    ],
     "Zoro": [
       "*://hianime.cx/*",
       "*://hianime.gs/*",
@@ -141,6 +144,7 @@
     ],
     "iframe": [
       "*://*.mixdrop.sn/e/*",
+      "*://*.mixdrop.cv/e/*",
       "*://animevost.org/frame5.php?play=*",
       "*://vidmoly.net/*",
       "*://jilliandescribecompany.com/e/*",
