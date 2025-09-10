@@ -7,7 +7,9 @@
       "*://animepahe.ru/play/*",
       "*://animepahe.ru/anime/*",
       "*://animepahe.org/play/*",
-      "*://animepahe.org/anime/*"
+      "*://animepahe.org/anime/*",
+      "*://animepahe.si/play/*",
+      "*://animepahe.si/anime/*"
     ]
   }
 }
