@@ -142,6 +142,10 @@
       "*://hianime.gs/*",
       "*://hianime.do/*"
     ],
+    "animepahe": [
+      "*://animepahe.si/play/*",
+      "*://animepahe.si/anime/*"
+    ],
     "iframe": [
       "*://x.anizium.co/*",
       "*://*.mixdrop.sn/e/*",
