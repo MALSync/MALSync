@@ -134,6 +134,9 @@
     ]
   },
   "0.12.0": {
+    "AnimeSama": [
+      "*://anime-sama.org/*"
+    ],
     "KickAssAnime": [
       "*://*.kaa.to/*"
     ],
