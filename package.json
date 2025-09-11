@@ -51,7 +51,7 @@
     "postcss-html": "^1.8.0",
     "postcss-less": "^6.0.0",
     "prettier": "^3.6.2",
-    "puppeteer": "^24.15.0",
+    "puppeteer": "^24.20.0",
     "serialize-javascript": "^6.0.2",
     "style-loader": "^3.3.4",
     "stylelint": "^15.11.0",
