@@ -140,6 +140,10 @@
     "KickAssAnime": [
       "*://*.kaa.to/*"
     ],
+    "TRanimeizle": [
+      "*://tranimeizle.io/*",
+      "*://www.tranimeizle.io/*"
+    ],
     "Zoro": [
       "*://hianime.cx/*",
       "*://hianime.gs/*",
