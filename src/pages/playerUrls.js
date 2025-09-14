@@ -805,7 +805,7 @@ module.exports = {
   },
   // animekai
   megaup: {
-    match: ['*://megaup.cc/e/*', '*://megaup.site/e/*'],
+    match: ['*://megaup.cc/e/*', '*://megaup.site/e/*', '*://megaup.live/e/*'],
   },
   // hikari
   boosterx: {
