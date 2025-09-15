@@ -15,15 +15,17 @@ async function voe() {
 }
 
 async function vidmoly() {
-  const response = await fetch("https://vidmoly.me/embed-1abcdefghi1j.html", { redirect: 'manual' })
-  const url = new URL(response.headers.get("Location"));
+  const response = await fetch('https://vidmoly.me/embed-1abcdefghi1j.html', {
+    redirect: 'manual',
+  });
+  const url = new URL(response.headers.get('Location'));
 
   addPlayerUrls('vidmoly', [url.hostname + '/*']);
 }
 
 async function mixdrop() {
-  const response = await fetch("https://mdfx9dc8n.net/e/3nl0j0lec477v9", { redirect: 'manual' })
-  const url = new URL(response.headers.get("Location"));
+  const response = await fetch('https://mdfx9dc8n.net/e/3nl0j0lec477v9', { redirect: 'manual' });
+  const url = new URL(response.headers.get('Location'));
 
   addPlayerUrls('mixdrop', ['*.' + url.hostname + '/e/*']);
 }
@@ -31,32 +33,32 @@ async function mixdrop() {
 // pages
 
 async function zoro() {
-  const response = await fetch("https://hianime.tv");
+  const response = await fetch('https://hianime.tv');
   const body = await response.text();
 
   const $ = cheerio.load(body);
 
-  const urls = $('ul.site-opt > li > a').map((i, el) => new URL($(el).attr('href'))).get();
+  const urls = $('ul.site-opt > li > a')
+    .map((i, el) => new URL($(el).attr('href')))
+    .get();
 
   for (const url of urls) {
-    addpageUrls('Zoro', [
-      "*://" + url.hostname + "/*"
-    ])
+    addpageUrls('Zoro', ['*://' + url.hostname + '/*']);
   }
 }
 
 async function kickassanime() {
-  const response = await fetch("https://watchanime.io");
+  const response = await fetch('https://watchanime.io');
   const body = await response.text();
 
   const $ = cheerio.load(body);
 
-  const urls = $('.domain-btn').map((i, el) => new URL($(el).attr('href'))).get();
+  const urls = $('.domain-btn')
+    .map((i, el) => new URL($(el).attr('href')))
+    .get();
 
   for (let url of urls) {
-    addpageUrls('KickAssAnime', [
-      "*://*." + url.hostname + "/*",
-    ])
+    addpageUrls('KickAssAnime', ['*://*.' + url.hostname + '/*']);
   }
 }
 
@@ -93,7 +95,6 @@ async function bato() {
   }
 }
 
-
 function addpageUrls(page, urls) {
   let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
 
@@ -103,7 +104,10 @@ function addpageUrls(page, urls) {
     }
   }
 
-  fs.writeFileSync(path.resolve(`./src/pages/${page}/meta.json`), JSON.stringify(file, null, 2) + "\n");
+  fs.writeFileSync(
+    path.resolve(`./src/pages/${page}/meta.json`),
+    JSON.stringify(file, null, 2) + '\n',
+  );
 }
 
 function addChibiUrls(page, urls, mainName = 'main.ts') {
@@ -127,8 +131,14 @@ function addChibiUrls(page, urls, mainName = 'main.ts') {
     }
   }
 
-  const updatedFile = file.replace(matchRegex, `match: [${matchUrls.map(url => `'${url}'`).join(', ')}]`);
-  fs.writeFileSync(path.resolve(`src/pages-chibi/implementations/${page}/${mainName}`), updatedFile);
+  const updatedFile = file.replace(
+    matchRegex,
+    `match: [${matchUrls.map(url => `'${url}'`).join(', ')}]`,
+  );
+  fs.writeFileSync(
+    path.resolve(`src/pages-chibi/implementations/${page}/${mainName}`),
+    updatedFile,
+  );
 }
 
 function addPlayerUrls(key, urls) {
@@ -136,10 +146,10 @@ function addPlayerUrls(key, urls) {
 
   const comment = `      // auto-${key}-replace-dont-remove`;
 
-  let data = "";
+  let data = '';
   for (const url of urls) {
     if (!file.includes(url)) {
-      data += `      '*://${url}',\n`
+      data += `      '*://${url}',\n`;
     }
   }
   data += comment;
@@ -158,7 +168,7 @@ async function start() {
     // kickassanime,
     animekai,
     // bato,
-  }
+  };
 
   for (const key of Object.keys(tasks)) {
     await tasks[key]().catch(e => {
