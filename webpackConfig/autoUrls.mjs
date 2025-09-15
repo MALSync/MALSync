@@ -115,7 +115,7 @@ function addChibiUrls(page, urls, mainName = 'main.ts') {
   const matchRegex = /match:\s*\[(.*?)\]/s;
   const matchMatch = file.match(matchRegex);
   if (!matchMatch) {
-    throw new Error(`No match found in ${page} main.ts`);
+    throw new Error(`No match found in ${page} ${mainName}`);
   }
 
   const urlRegex = matchMatch[1].match(/'([^']+)'/g) || [];
@@ -128,7 +128,7 @@ function addChibiUrls(page, urls, mainName = 'main.ts') {
   }
 
   const updatedFile = file.replace(matchRegex, `match: [${matchUrls.map(url => `'${url}'`).join(', ')}]`);
-  fs.writeFileSync(path.resolve(`src/pages-chibi/implementations/${page}/main.ts`), updatedFile);
+  fs.writeFileSync(path.resolve(`src/pages-chibi/implementations/${page}/${mainName}`), updatedFile);
 }
 
 function addPlayerUrls(key, urls) {
@@ -157,7 +157,7 @@ async function start() {
     zoro,
     // kickassanime,
     animekai,
-    bato,
+    // bato,
   }
 
   for (const key of Object.keys(tasks)) {
