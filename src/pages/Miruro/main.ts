@@ -8,38 +8,38 @@ export const Miruro: pageInterface = {
   isSyncPage(url) {
     return (
       utils.urlPart(url, 3) === 'watch' &&
-      utils.urlParam(url, 'id') !== null &&
-      utils.urlParam(url, 'ep') !== null
+      utils.urlPart(url, 4)!== null &&
+      utils.urlPart(url, 5)!== null
     );
   },
   isOverviewPage(url) {
-    return utils.urlPart(url, 3) === 'info' && utils.urlParam(url, 'id') !== null;
+    return utils.urlPart(url, 3) === 'info' && utils.urlPart(url, 4)!== null;
   },
   sync: {
     getTitle(url) {
       return j.$('.title a').first().text();
     },
     getIdentifier(url) {
-      return `${utils.urlParam(url, 'id')}`;
+      return `${utils.urlPart(url, 4)}`;
     },
     getOverviewUrl(url) {
-      const href = `https://${window.location.hostname}/info?id=${utils.urlParam(url, 'id')}`;
+      const href = `https://${window.location.hostname}/info/${utils.urlPart(url, 4)}`;
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Miruro.domain);
       }
       return '';
     },
     getEpisode(url) {
-      const temp = utils.urlParam(url, 'ep');
-      if (!temp) return NaN;
-      return Number(temp);
+      //url can be /watch/20/naruto/episode-1 or /watch/20/naruto#episode-1 or /watch/20/naruto?episode-1
+      const match = url.match(/episode-(\d+)/i);
+      return match ? Number(match[1]) : Number(j.$(".ep-number").text());
     },
     nextEpUrl(url) {
       const totalEpisodeNumber = `${j.$("select option[value*='-']").last().val()}`.split('-');
       const nextEpisodeNumber = Miruro.sync.getEpisode(url) + 1;
       let href;
       if (totalEpisodeNumber.length > 1 && nextEpisodeNumber <= Number(totalEpisodeNumber[1]) + 1) {
-        href = `https://${window.location.hostname}/watch?id=${utils.urlParam(url, 'id')}&ep=${nextEpisodeNumber}`;
+        href = `https://${window.location.hostname}/watch?id=${utils.urlPart(url, 4)}&ep=${nextEpisodeNumber}`;
       }
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Miruro.domain);
@@ -60,8 +60,8 @@ export const Miruro: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      if (j.$('#root h1').first().text()) {
-        return utils.getBaseText(j.$('#root h1').first()).trim();
+      if (j.$('#root h1 .skeleton-content').first().text()) {
+        return j.$('#root h1 .skeleton-content').first().text();
       }
       return '';
     },
