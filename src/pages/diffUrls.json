@@ -140,6 +140,21 @@
     "KickAssAnime": [
       "*://*.kaa.to/*"
     ],
+    "MangaPark": [
+      "*://mangapark.com/*",
+      "*://mangapark.org/*",
+      "*://mangapark.to/*",
+      "*://mangapark.io/*",
+      "*://mangapark.me/*",
+      "*://comicpark.org/*",
+      "*://comicpark.to/*",
+      "*://readpark.org/*",
+      "*://readpark.net/*",
+      "*://parkmanga.com/*",
+      "*://parkmanga.net/*",
+      "*://parkmanga.org/*",
+      "*://mpark.to/*"
+    ],
     "TRanimeizle": [
       "*://tranimeizle.io/*",
       "*://www.tranimeizle.io/*"
