@@ -1,6 +1,21 @@
 {
   "search": "https://mangapark.net/search?word={searchterm}",
   "urls": {
-    "match": ["*://mangapark.net/*"]
+    "match": [
+      "*://mangapark.net/*",
+      "*://mangapark.com/*",
+      "*://mangapark.org/*",
+      "*://mangapark.to/*",
+      "*://mangapark.io/*",
+      "*://mangapark.me/*",
+      "*://comicpark.org/*",
+      "*://comicpark.to/*",
+      "*://readpark.org/*",
+      "*://readpark.net/*",
+      "*://parkmanga.com/*",
+      "*://parkmanga.net/*",
+      "*://parkmanga.org/*",
+      "*://mpark.to/*"
+    ]
   }
 }

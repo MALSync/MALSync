@@ -98,6 +98,25 @@ async function bato() {
   }
 }
 
+async function mangapark() {
+  let response = await fetch('https://rentry.co/mangapark');
+  if (!response.ok) {
+    response = await fetch('https://rentry.org/mangapark');
+  }
+  const body = await response.text();
+
+  const $ = cheerio.load(body);
+  $('#socials').nextAll().remove().end().remove();
+
+  const urls = $('.external')
+    .map((i, el) => new URL($(el).attr('href')))
+    .get();
+
+  for (const url of urls) {
+    addpageUrls('MangaPark', ['*://' + url.hostname + '/*']);
+  }
+}
+
 function addpageUrls(page, urls) {
   let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
 
@@ -171,6 +190,7 @@ async function start() {
     // kickassanime,
     animekai,
     bato,
+    mangapark,
   };
 
   for (const key of Object.keys(tasks)) {
