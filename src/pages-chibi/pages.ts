@@ -20,6 +20,7 @@ import { MangaDemon } from './implementations/MangaDemon/main';
 import { RoliaScan } from './implementations/RoliaScan/main';
 import { Mangitto } from './implementations/Mangitto/main';
 import { Anizium } from './implementations/Anizium/main';
+import { Miruro } from './implementations/Miruro/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -42,4 +43,5 @@ export const pages: { [key: string]: PageInterface } = {
   RoliaScan,
   Mangitto,
   Anizium,
+  Miruro,
 };
