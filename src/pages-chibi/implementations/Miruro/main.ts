@@ -6,7 +6,7 @@ export const Miruro: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://*.miruro.to/*'],
+    match: ['*://*.miruro.to/*', '*://*.miruro.tv/*', '*://*.miruro.online/*'],
   },
   search: 'https://www.miruro.to/search?query={searchtermPlus}',
   sync: {
@@ -33,12 +33,6 @@ export const Miruro: PageInterface = {
     },
     getEpisode($c) {
       return $c.url().regex('/episode-(\\d+)', 1).number().run();
-    },
-    nextEpUrl($c) {
-      return $c
-        .url()
-        .replace('/(episode[-=])(d+)/i', $c.url().regex('/episode-(d+)/i', 1).run())
-        .run();
     },
     getMalUrl($c) {
       const getMalId = $c
