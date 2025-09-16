@@ -78,7 +78,10 @@ async function animekai() {
 }
 
 async function bato() {
-  const response = await fetch('https://rentry.co/batoto');
+  let response = await fetch('https://rentry.co/batoto');
+  if (!response.ok) {
+    response = await fetch('https://rentry.org/batoto');
+  }
   const body = await response.text();
 
   const $ = cheerio.load(body);
@@ -167,7 +170,7 @@ async function start() {
     zoro,
     // kickassanime,
     animekai,
-    // bato,
+    bato,
   };
 
   for (const key of Object.keys(tasks)) {
