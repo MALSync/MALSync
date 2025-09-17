@@ -45,5 +45,5 @@ export const pages: { [key: string]: PageInterface } = {
   Mangitto,
   Anizium,
   Miruro,
-  MangaPark
+  MangaPark,
 };
