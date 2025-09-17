@@ -113,7 +113,7 @@ async function mangapark() {
     .get();
 
   for (const url of urls) {
-    addpageUrls('MangaPark', ['*://' + url.hostname + '/*']);
+    addChibiUrls('MangaPark', ['*://' + url.hostname + '/*']);
   }
 }
 

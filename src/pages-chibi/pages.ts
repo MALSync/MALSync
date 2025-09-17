@@ -21,6 +21,7 @@ import { RoliaScan } from './implementations/RoliaScan/main';
 import { Mangitto } from './implementations/Mangitto/main';
 import { Anizium } from './implementations/Anizium/main';
 import { Miruro } from './implementations/Miruro/main';
+import { MangaPark } from './implementations/MangaPark/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -44,4 +45,5 @@ export const pages: { [key: string]: PageInterface } = {
   Mangitto,
   Anizium,
   Miruro,
+  MangaPark
 };
