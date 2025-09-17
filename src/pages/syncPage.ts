@@ -1361,12 +1361,12 @@ export class SyncPage {
                 // Calculate remaining time based on current video position
                 const timeleft =
                   this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
-                
+
                 // Fixed Discord Rich Presence timing issue:
                 // When users seek in videos, we need to adjust the start time accordingly
                 // to show correct remaining time
                 const videoProgress = this.curState.lastVideoTime.current;
-                pres.presence.startTimestamp = Date.now() - (videoProgress * 1000);
+                pres.presence.startTimestamp = Date.now() - videoProgress * 1000;
                 pres.presence.endTimestamp = Date.now() + timeleft * 1000;
                 pres.presence.smallImageKey = 'play';
                 pres.presence.smallImageText = 'Playing';
