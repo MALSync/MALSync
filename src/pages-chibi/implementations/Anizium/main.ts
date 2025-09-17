@@ -65,7 +65,6 @@ export const Anizium: PageInterface = {
   },
   lifecycle: {
     setup($c) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call, global-require, @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-member-access
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
