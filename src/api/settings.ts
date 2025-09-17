@@ -63,7 +63,6 @@ export const settingsObj = {
       'VIZ',
       'MangaPlus',
       'MangaReader',
-      'ComicK',
       'WeebCentral',
       'KickAssAnime',
       'animepahe',
