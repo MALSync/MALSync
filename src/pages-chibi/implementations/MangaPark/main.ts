@@ -3,7 +3,7 @@ import { PageInterface } from '../../pageInterface';
 export const MangaPark: PageInterface = {
   name: 'MangaPark',
   domain: [
-    'https://MangaPark.to',
+    'https://mangapark.to',
     'https://comicpark.org',
     'https://readpark.org',
     'https://parkmanga.com',
