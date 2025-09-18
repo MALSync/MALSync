@@ -22,6 +22,7 @@ import { Mangitto } from './implementations/Mangitto/main';
 import { Anizium } from './implementations/Anizium/main';
 import { Miruro } from './implementations/Miruro/main';
 import { MangaPark } from './implementations/MangaPark/main';
+import { Q1N } from './implementations/Q1N/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -46,4 +47,5 @@ export const pages: { [key: string]: PageInterface } = {
   Anizium,
   Miruro,
   MangaPark,
+  Q1N,
 };

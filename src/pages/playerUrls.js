@@ -781,7 +781,12 @@ module.exports = {
   },
   // Q1N
   q1n: {
-    match: ['*://rogeriobetin.com/*', '*://nvlabs-fi-cdn.q9x.in/*'],
+    match: [
+      '*://rogeriobetin.com/*',
+      '*://nvlabs-fi-cdn.q9x.in/*',
+      '*://api.anivideo.net/*',
+      '*://listeamed.net/*',
+    ],
   },
   // animesama
   oneupload: {
