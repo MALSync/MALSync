@@ -1,0 +1,32 @@
+{
+  "title": "Diziwatch",
+  "url": "https://diziwatch.tv",
+  "testCases": [
+    {
+      "url": "https://diziwatch.tv/dizi/the-rising-of-the-shield-hero",
+      "expected": {
+        "sync": false,
+        "title": "The Rising of the Shield Hero",
+        "identifier": "the-rising-of-the-shield-hero",
+        "image": "https://images.macellan.online/images/tv/poster/180/270/80/b47b8eeoqpoq8wa1162b07a5.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://diziwatch.tv/dizi/the-rising-of-the-shield-hero/sezon-1/bolum-1",
+          "2": "https://diziwatch.tv/dizi/the-rising-of-the-shield-hero/sezon-1/bolum-2"
+        }
+      }
+    },
+    {
+      "url": "https://diziwatch.tv/dizi/the-rising-of-the-shield-hero/sezon-1/bolum-1",
+      "expected": {
+        "sync": true,
+        "title": "The Rising of the Shield Hero",
+        "identifier": "the-rising-of-the-shield-hero",
+        "overviewUrl": "https://diziwatch.tv/dizi/the-rising-of-the-shield-hero",
+        "nextEpUrl": "https://diziwatch.tv/dizi/the-rising-of-the-shield-hero/sezon-1/bolum-2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    }
+  ]
+}

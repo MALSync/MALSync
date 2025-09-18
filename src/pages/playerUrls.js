@@ -828,8 +828,16 @@ module.exports = {
   anizmplayer: {
     match: ['*://*.anizmplayer.com/*'],
   },
+  // Animecix
+  tauvideo: {
+    match: ['*://tau-video.xyz/*', '*://*.tau-video.xyz/*'],
+  },
   // aniworld
   loadx: {
      match: ['*://loadx.ws/*'],
+  },
+  // Diziwatch
+  pichive: {
+    match: ['*://*.pichive.online/*'],
   }
 };

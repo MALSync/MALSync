@@ -1,10 +1,44 @@
 let inter;
 
+// iframe message listener for iframe-based players
+let iframeMessageListenerAdded = false;
+const iframePlayerStates = new Map<
+  string,
+  { current: number; duration: number; paused: boolean }
+>();
+
 const logger = con.m('Player');
+
+// Add iframe message listener
+function addIframeMessageListener() {
+  if (iframeMessageListenerAdded) return;
+  iframeMessageListenerAdded = true;
+
+  window.addEventListener('message', event => {
+    try {
+      const data = event.data;
+      if (!data || typeof data !== 'object') return;
+
+      // Handle iframe player time updates
+      if (data.type === 'MALSyncPlayerTime') {
+        // Use origin as iframe identifier
+        const iframeId = event.origin || 'unknown';
+        iframePlayerStates.set(iframeId, {
+          current: data.current || 0,
+          duration: data.duration || 0,
+          paused: data.paused || false,
+        });
+      }
+    } catch (e) {
+      logger.debug('Error processing iframe message', e);
+    }
+  });
+}
 
 export function getPlayerTime(callback) {
   clearInterval(inter);
   inter = setInterval(function () {
+    // Check for regular video elements
     const players = document.getElementsByTagName('video');
     for (let i = 0; i < players.length; i++) {
       const player: any = players[i];
@@ -21,7 +55,24 @@ export function getPlayerTime(callback) {
         logger.debug(window.location.href, item);
         callback(item, player);
         playerExtras(item, player);
-        break;
+        return; // Exit after finding a valid player
+      }
+    }
+
+    // Check for iframe-based players
+    addIframeMessageListener();
+    if (iframePlayerStates.size > 0) {
+      // Get the first iframe player state
+      const iframeId = Array.from(iframePlayerStates.keys())[0];
+      const state = iframePlayerStates.get(iframeId);
+      if (state && state.duration > 60) {
+        const item = {
+          current: state.current,
+          duration: state.duration,
+          paused: state.paused,
+        };
+        logger.debug('Iframe player time', item);
+        callback(item, null); // No direct player reference for iframe
       }
     }
   }, 1000);

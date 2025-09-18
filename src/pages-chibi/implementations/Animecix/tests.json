@@ -1,0 +1,31 @@
+{
+  "title": "Animecix",
+  "url": "https://animecix.tv",
+  "testCases": [
+    {
+      "url": "https://animecix.tv/titles/235/fullmetal-alchemist-brotherhood",
+      "expected": {
+        "sync": false,
+        "title": "Fullmetal Alchemist: Brotherhood",
+        "identifier": "fullmetal-alchemist-brotherhood",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://animecix.tv/titles/235/fullmetal-alchemist-brotherhood/season/1/episode/1"
+        }
+      }
+    },
+    {
+      "url": "https://animecix.tv/titles/235/fullmetal-alchemist-brotherhood/season/1/episode/1",
+      "expected": {
+        "sync": true,
+        "title": "Fullmetal Alchemist: Brotherhood",
+        "identifier": "fullmetal-alchemist-brotherhood?season=1",
+        "overviewUrl": "https://animecix.tv/titles/235/fullmetal-alchemist-brotherhood",
+        "episode": 1,
+        "episodeTitle": "Ilk gun",
+        "uiSelector": false
+      }
+    }
+  ]
+}
+
