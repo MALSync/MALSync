@@ -826,7 +826,7 @@ module.exports = {
   },
   // Anizm
   anizmplayer: {
-    match: ['*://anizmplayer.com/*', '*://*.anizmplayer.com/*'],
+    match: ['*://*.anizmplayer.com/*'],
   },
   // aniworld
   loadx: {
