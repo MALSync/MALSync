@@ -117,7 +117,6 @@ import { Taiyo } from './Taiyo/main';
 import { AnimesOnline } from './AnimesOnline/main';
 import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
-import { Q1N } from './Q1N/main';
 import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
 import { VortexScans } from './VortexScans/main';
@@ -246,7 +245,6 @@ export const pages = {
   AnimesOnline,
   Latanime,
   MangaRead,
-  Q1N,
   TempleScan,
   ScyllaScans,
   VortexScans,
