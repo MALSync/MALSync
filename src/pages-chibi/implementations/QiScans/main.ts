@@ -6,11 +6,11 @@ export const QiScans: PageInterface = {
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://qiscans.org/*']
+    match: ['*://qiscans.org/*'],
   },
   search: 'https://qiscans.org/series?searchTerm={searchtermPlus}',
   sync: {
-     isSyncPage($c) {
+    isSyncPage($c) {
       return $c
         .and(
           $c.url().urlPart(3).equals('series').run(),
@@ -20,7 +20,7 @@ export const QiScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().split('Chapter').at(0).trim().run();
+      return $c.title().split('Chapter').at(0).trim().replaceRegex('-$', '').trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -44,6 +44,18 @@ export const QiScans: PageInterface = {
         .ifNotReturn()
         .run();
     },
+    readerConfig: [
+      {
+        current: {
+          selector: '.container img[tabindex]',
+          mode: 'countAbove',
+        },
+        total: {
+          selector: '.container img[tabindex]',
+          mode: 'count',
+        },
+      },
+    ],
   },
   overview: {
     isOverviewPage($c) {
@@ -56,7 +68,14 @@ export const QiScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h2').text().trim().run();
+      return $c
+        .querySelector('h2')
+        .text()
+        .trim()
+        .replaceAll('\n', ' ')
+        .replaceRegex('\\s+', ' ')
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
@@ -65,7 +84,7 @@ export const QiScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('h2').uiBefore().run();
+      return $c.querySelector('h2').uiAfter().run();
     },
   },
   lifecycle: {
