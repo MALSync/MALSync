@@ -1,0 +1,33 @@
+{
+  "title": "MangaTr",
+  "url": "https://mangatr.com/",
+  "testCases": [
+    {
+      "url": "https://mangatr.com/reader/68c074206f92f",
+      "expected": {
+        "sync": true,
+        "title": "Blue Lock",
+        "identifier": "blue-lock",
+        "overviewUrl": "https://mangatr.com/series/blue-lock",
+        "episode": 317,
+        "nextEpUrl": "https://mangatr.com/reader/68c9ac84359a1",
+        "image": "https://mangatr.com/assets/series/641882302dcfd/68c074206f92f/thumbnails/68c074207abfe.png",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangatr.com/series/blue-lock",
+      "expected": {
+        "sync": false,
+        "title": "Blue Lock",
+        "identifier": "blue-lock",
+        "image": "https://mangatr.com/assets/series/641882302dcfd/Blue%20Lock%20Oku.jpg",
+        "uiSelector": true,
+        "epList": {
+          "318": "https://mangatr.com/reader/68c9ac84359a1",
+          "317": "https://mangatr.com/reader/68c074206f92f"
+        }
+      }
+    }
+  ]
+}
