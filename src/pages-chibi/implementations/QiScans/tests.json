@@ -1,0 +1,28 @@
+{
+    "title": "QiScans",
+    "url": "https://qiscans.org",
+    "testCases": [
+      {
+        "url": "https://qiscans.org/series/reincarnated-murim-lord/chapter-87",
+        "expected": {
+          "sync": true,
+          "title": "Reincarnated Murim Lord",
+          "identifier": "reincarnated-murim-lord",
+          "image": "https://storage.qiscans.com/upload/2025/08/27/f27f0240-c406-48b8-817a-975f46e90be7.webp",
+          "overviewUrl": "https://qiscans.org/series/reincarnated-murim-lord",
+          "episode": 87,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://qiscans.org/series/reincarnated-murim-lord",
+        "expected": {
+          "sync": false,
+          "title": "Reincarnated Murim Lord",
+          "identifier": "reincarnated-murim-lord",
+          "image": "https://storage.qiscans.com/upload/2025/08/27/f27f0240-c406-48b8-817a-975f46e90be7.webp",
+          "uiSelector": true
+        }
+      }
+    ]
+  }

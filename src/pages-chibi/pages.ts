@@ -23,6 +23,7 @@ import { Anizium } from './implementations/Anizium/main';
 import { Miruro } from './implementations/Miruro/main';
 import { MangaPark } from './implementations/MangaPark/main';
 import { Q1N } from './implementations/Q1N/main';
+import { QiScans } from './implementations/QiScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -48,4 +49,5 @@ export const pages: { [key: string]: PageInterface } = {
   Miruro,
   MangaPark,
   Q1N,
+  QiScans,
 };
