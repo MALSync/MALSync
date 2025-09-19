@@ -824,6 +824,10 @@ module.exports = {
   megaplay: {
     match: ['*://megaplay.buzz/*'],
   },
+  // Anizm
+  anizmplayer: {
+    match: ['*://*.anizmplayer.com/*'],
+  },
   // aniworld
   loadx: {
      match: ['*://loadx.ws/*'],
