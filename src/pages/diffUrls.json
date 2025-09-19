@@ -166,6 +166,7 @@
       "*://megaup.live/e/*",
       "*://player.zilla-networks.com/*",
       "*://megaplay.buzz/*",
+      "*://*.anizmplayer.com/*",
       "*://loadx.ws/*"
     ]
   }
