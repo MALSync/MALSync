@@ -28,7 +28,7 @@
     "@vue/eslint-config-typescript": "13.0.0",
     "archiver": "^7.0.1",
     "chai": "^5.2.1",
-    "chrome-webstore-upload": "^3.1.4",
+    "chrome-webstore-upload": "^3.2.0",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "eslint": "8.57.1",
