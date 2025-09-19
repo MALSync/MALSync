@@ -988,6 +988,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://manga-tr.com"><img src="https://favicon.malsync.moe/?domain=https://manga-tr.com"> mangaTR</a></td>
+    <td>Turkish</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://suwayomi-webui-preview.github.io/"><img src="https://favicon.malsync.moe/?domain=https://suwayomi-webui-preview.github.io/"> Suwayomi</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -1074,4 +1081,4 @@
   </tr>
     </tbody>
   </table>
-  
+

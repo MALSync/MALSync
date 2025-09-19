@@ -15,6 +15,7 @@ import { VIZ } from './VIZ/main';
 import { AnimeZone } from './AnimeZone/main';
 import { AnimeOdcinki } from './AnimeOdcinki/main';
 import { serimanga } from './serimanga/main';
+import { mangaTR } from './mangaTR/main';
 import { mangadenizi } from './mangadenizi/main';
 import { moeclip } from './moeclip/main';
 import { mangalivre } from './mangalivre/main';
@@ -143,6 +144,7 @@ export const pages = {
   AnimeOdcinki,
   AnimeZone,
   serimanga,
+  mangaTR,
   mangadenizi,
   moeclip,
   mangalivre,

@@ -565,6 +565,11 @@
     "name": "serimanga"
   },
   {
+    "domain": "https://manga-tr.com",
+    "type": "manga",
+    "name": "mangaTR"
+  },
+  {
     "domain": "https://shinden.pl",
     "type": "anime",
     "name": "Shinden"

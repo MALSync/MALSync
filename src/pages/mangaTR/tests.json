@@ -1,0 +1,27 @@
+{
+  "title": "mangaTR",
+  "url": "https://manga-tr.com/",
+  "testCases": [
+    {
+      "url": "https://manga-tr.com/id-144820-read-a-cute-girlfriend-chapter-1.html",
+      "expected": {
+        "sync": true,
+        "title": "A Cute Girlfriend",
+        "identifier": "a-cute-girlfriend",
+        "overviewUrl": "https://manga-tr.com/manga-a-cute-girlfriend.html",
+        "nextEpUrl": "https://manga-tr.com/read-a-cute-girlfriend-chapter-2.html",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manga-tr.com/manga-solo-leveling.html",
+      "expected": {
+        "sync": false,
+        "title": "SOLO LEVELING (2018)",
+        "identifier": "solo-leveling",
+        "uiSelector": true
+      }
+    }
+  ]
+}

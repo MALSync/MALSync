@@ -24,6 +24,7 @@ import { Anizium } from './implementations/Anizium/main';
 import { Miruro } from './implementations/Miruro/main';
 import { MangaPark } from './implementations/MangaPark/main';
 import { Q1N } from './implementations/Q1N/main';
+import { Sadscans } from './implementations/Sadscans/main';
 import { Diziwatch } from './implementations/Diziwatch/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -51,5 +52,6 @@ export const pages: { [key: string]: PageInterface } = {
   Miruro,
   MangaPark,
   Q1N,
+  Sadscans,
   Diziwatch,
 };

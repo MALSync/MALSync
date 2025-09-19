@@ -244,7 +244,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
               </tr><tr>
                 <td><a href="https://beta.kitsune.tv"><img src="https://favicon.malsync.moe/?domain=https://beta.kitsune.tv"> Kitsune</a></td>
                 <td><a href="https://serimanga.com"><img src="https://favicon.malsync.moe/?domain=https://serimanga.com"> serimanga</a></td>
-                <td></td>
+                <td><a href="https://manga-tr.com"><img src="https://favicon.malsync.moe/?domain=https://manga-tr.com"> mangaTR</a></td>
               </tr><tr>
                 <td><a href="https://latanime.org"><img src="https://favicon.malsync.moe/?domain=https://latanime.org"> Latanime</a></td>
                 <td><a href="https://taiyo.moe"><img src="https://favicon.malsync.moe/?domain=https://taiyo.moe"> Taiyo</a></td>
@@ -369,3 +369,4 @@ Then let me know on [Discord](https://discord.com/invite/cTH4yaw).
 How to add a new page? How to build? [Wiki](https://github.com/MALSync/MALSync/wiki/Build)
 
 You can't code, but want to help? [Donations](https://github.com/MALSync/MALSync/wiki/Donations)
+

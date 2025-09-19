@@ -1,0 +1,6 @@
+{
+  "search": "https://manga-tr.com/manga-list.html?search={searchtermPlus}",
+  "urls": {
+    "match": ["*://manga-tr.com/*", "*://www.manga-tr.com/*"]
+  }
+}
