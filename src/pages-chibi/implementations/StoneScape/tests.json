@@ -1,0 +1,27 @@
+{
+    "title": "StoneScape",
+    "url": "https://stonescape.xyz/",
+    "testCases": [
+      {
+        "url": "https://stonescape.xyz/series/plaything/ch-56/",
+        "expected": {
+          "sync": true,
+          "title": " Plaything",
+          "identifier": " plaything",
+          "overviewUrl": "https://stonescape.xyz/series/plaything/",
+          "episode": 56,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://stonescape.xyz/series/plaything/",
+        "expected": {
+          "sync": false,
+          "title": "Plaything",
+          "identifier": "plaything",
+          "image": "https://stonescape.xyz/wp-content/uploads/2024/08/750toy.png",
+          "uiSelector": true
+        }
+      }
+    ]
+  }
