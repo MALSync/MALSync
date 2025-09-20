@@ -6,8 +6,8 @@
         "url": "https://stonescape.xyz/series/plaything/ch-56/",
         "expected": {
           "sync": true,
-          "title": " Plaything",
-          "identifier": " plaything",
+          "title": "Plaything",
+          "identifier": "plaything",
           "overviewUrl": "https://stonescape.xyz/series/plaything/",
           "episode": 56,
           "uiSelector": false
@@ -19,7 +19,7 @@
           "sync": false,
           "title": "Plaything",
           "identifier": "plaything",
-          "image": "https://stonescape.xyz/wp-content/uploads/2024/08/750toy.png",
+          "image": "https://stonescape.xyz/wp-content/uploads/2024/08/plaything.png",
           "uiSelector": true
         }
       }
