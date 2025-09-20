@@ -8,7 +8,8 @@ export const StoneScape: PageInterface = {
   urls: {
     match: ['*://stonescape.xyz/*'],
   },
-  search: 'https://stonescape.xyz/?s={searchtermPlus}&post_type=wp-manga&op=&author=&artist=&release=&adult=',
+  search:
+    'https://stonescape.xyz/?s={searchtermPlus}&post_type=wp-manga&op=&author=&artist=&release=&adult=',
   sync: {
     isSyncPage($c) {
       return $c
@@ -20,7 +21,14 @@ export const StoneScape: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().split('Chapter').at(0).trim().replaceRegex(' • StoneScape', '').trim().run();
+      return $c
+        .title()
+        .split('Chapter')
+        .at(0)
+        .trim()
+        .replaceRegex(' • StoneScape', '')
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -34,9 +42,7 @@ export const StoneScape: PageInterface = {
     },
     getEpisode($c) {
       return $c
-        .coalesce(
-          $c.url().urlPart(5).regex('ch[_-](\\d+)', 1).number().run(),
-        )
+        .coalesce($c.url().urlPart(5).regex('ch[_-](\\d+)', 1).number().run())
         .ifNotReturn()
         .run();
     },
@@ -80,7 +86,7 @@ export const StoneScape: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('#manga-chapters-holder > div').uiPrepend().run();
+      return $c.querySelector('div[id="manga-chapters-holder"]').uiBefore().run();
     },
   },
   lifecycle: {
