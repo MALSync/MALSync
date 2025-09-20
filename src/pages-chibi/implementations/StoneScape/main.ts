@@ -86,7 +86,7 @@ export const StoneScape: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('div[id="manga-chapters-holder"]').uiBefore().run();
+      return $c.querySelector('.summary_image').uiAppend().run();
     },
   },
   lifecycle: {
@@ -94,13 +94,17 @@ export const StoneScape: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
+      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+    },
+    overviewIsReady($c) {
       return $c
-        .querySelector('h1')
-        .text()
-        .contains('Server error')
-        .ifThen($c => $c.string('404').log().return().run())
-        .detectURLChanges($c.trigger().run())
-        .domReady()
+        .waitUntilTrue($c.querySelector('#manga-chapters-holder').find('div').isNil().not().run())
+        .trigger()
+        .run();
+    },
+    syncIsReady($c) {
+      return $c
+        .waitUntilTrue($c.querySelector('#manga-reading-nav-head').isNil().not().run())
         .trigger()
         .run();
     },
