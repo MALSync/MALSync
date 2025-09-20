@@ -8,13 +8,13 @@
           "sync": true,
           "title": "Plaything",
           "identifier": "plaything",
-          "overviewUrl": "https://stonescape.xyz/series/plaything/",
+          "overviewUrl": "https://stonescape.xyz/series/plaything",
           "episode": 56,
           "uiSelector": false
         }
       },
       {
-        "url": "https://stonescape.xyz/series/plaything/",
+        "url": "https://stonescape.xyz/series/plaything",
         "expected": {
           "sync": false,
           "title": "Plaything",
