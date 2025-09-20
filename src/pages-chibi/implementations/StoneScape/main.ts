@@ -80,7 +80,7 @@ export const StoneScape: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('div[class="tab-summary "]').uiAfter().run();
+      return $c.querySelector('#manga-chapters-holder > div').uiPrepend().run();
     },
   },
   lifecycle: {
