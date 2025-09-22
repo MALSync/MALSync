@@ -54,6 +54,21 @@ export const StoneScape: PageInterface = {
     },
     readerConfig: [
       {
+        condition: '#single-pager',
+        current: {
+          selector: '#single-pager [selected="selected"]',
+          mode: 'text',
+          regex: '^(\\d+)/(\\d+)$',
+          group: 1,
+        },
+        total: {
+          selector: '#single-pager option',
+          mode: 'text',
+          regex: '^(\\d+)/(\\d+)$',
+          group: 2,
+        },
+      },
+      {
         current: {
           selector: '.reading-content img',
           mode: 'countAbove',
@@ -97,7 +112,7 @@ export const StoneScape: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('ul li').run();
+      return $c.querySelectorAll('.listing-chapters_wrap .wp-manga-chapter').run();
     },
     elementUrl($c) {
       return $c.find('a').getAttribute('href').urlAbsolute().run();
