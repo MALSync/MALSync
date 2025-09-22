@@ -16,23 +16,16 @@ export const Thunderscans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().split(' Chapter').at(0).trim().replaceRegex('-$', '').trim().run();
+      return $c.querySelector('.allc a').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(3).split('-chapter-').at(0).trim().run();
+      return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
     },
     getOverviewUrl($c) {
-      return $c
-        .string('/comics/<identifier>')
-        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
-        .urlAbsolute()
-        .run();
+      return $c.querySelector('.allc a').getAttribute('href').ifNotReturn().urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c
-        .coalesce($c.url().urlPart(3).split('-chapter-').at(1).number().run())
-        .ifNotReturn()
-        .run();
+      return $c.url().urlPart(3).split('-chapter-').at(1).number().ifNotReturn().run();
     },
     nextEpUrl($c) {
       return $c
@@ -43,6 +36,21 @@ export const Thunderscans: PageInterface = {
         .run();
     },
     readerConfig: [
+      {
+        condition: '#select-paged',
+        current: {
+          selector: '#select-paged option:selected',
+          mode: 'text',
+          regex: '(\\d+)/(\\d+)$',
+          group: 1,
+        },
+        total: {
+          selector: '#select-paged option:selected',
+          mode: 'text',
+          regex: '(\\d+)/(\\d+)$',
+          group: 2,
+        },
+      },
       {
         current: {
           selector: '#readerarea img',
@@ -83,7 +91,7 @@ export const Thunderscans: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('ul > li > a .chbox').run();
+      return $c.querySelectorAll('#chapterlist .chbox').run();
     },
     elementUrl($c) {
       return $c.closest('a').getAttribute('href').urlAbsolute().run();
@@ -98,12 +106,6 @@ export const Thunderscans: PageInterface = {
     },
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
-    },
-    overviewIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('h1').isNil().not().run()).trigger().run();
-    },
-    syncIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('h1').isNil().not().run()).trigger().run();
     },
   },
 };
