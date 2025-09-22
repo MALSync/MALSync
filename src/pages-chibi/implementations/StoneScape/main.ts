@@ -33,6 +33,9 @@ export const StoneScape: PageInterface = {
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+    },
     getOverviewUrl($c) {
       return $c
         .string('/series/<identifier>')
@@ -45,6 +48,9 @@ export const StoneScape: PageInterface = {
         .coalesce($c.url().urlPart(5).regex('ch[_-](\\d+)', 1).number().run())
         .ifNotReturn()
         .run();
+    },
+    nextEpUrl($c) {
+      return $c.querySelector('a.next_page').getAttribute('href').ifNotReturn().urlAbsolute().run();
     },
     readerConfig: [
       {
@@ -87,6 +93,17 @@ export const StoneScape: PageInterface = {
     },
     uiInjection($c) {
       return $c.querySelector('.summary_image').uiAppend().run();
+    },
+  },
+  list: {
+    elementsSelector($c) {
+      return $c.querySelectorAll('ul li').run();
+    },
+    elementUrl($c) {
+      return $c.find('a').getAttribute('href').urlAbsolute().run();
+    },
+    elementEp($c) {
+      return $c.this('list.elementUrl').this('sync.getEpisode').run();
     },
   },
   lifecycle: {
