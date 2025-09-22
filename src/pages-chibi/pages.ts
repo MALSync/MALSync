@@ -24,6 +24,7 @@ import { Miruro } from './implementations/Miruro/main';
 import { MangaPark } from './implementations/MangaPark/main';
 import { Q1N } from './implementations/Q1N/main';
 import { QiScans } from './implementations/QiScans/main';
+import { StoneScape } from './implementations/StoneScape/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -50,4 +51,5 @@ export const pages: { [key: string]: PageInterface } = {
   MangaPark,
   Q1N,
   QiScans,
+  StoneScape,
 };
