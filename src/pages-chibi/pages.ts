@@ -25,6 +25,7 @@ import { MangaPark } from './implementations/MangaPark/main';
 import { Q1N } from './implementations/Q1N/main';
 import { QiScans } from './implementations/QiScans/main';
 import { Thunderscans } from './implementations/Thunderscans/main';
+import { StoneScape } from './implementations/StoneScape/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -52,4 +53,5 @@ export const pages: { [key: string]: PageInterface } = {
   Q1N,
   QiScans,
   Thunderscans,
+  StoneScape,
 };
