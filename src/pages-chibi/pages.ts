@@ -26,6 +26,7 @@ import { Q1N } from './implementations/Q1N/main';
 import { QiScans } from './implementations/QiScans/main';
 import { Thunderscans } from './implementations/Thunderscans/main';
 import { StoneScape } from './implementations/StoneScape/main';
+import { ResetScans } from './implementations/ResetScans/main';
 import { Utoon } from './implementations/Utoon/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -55,5 +56,6 @@ export const pages: { [key: string]: PageInterface } = {
   QiScans,
   Thunderscans,
   StoneScape,
+  ResetScans,
   Utoon,
 };
