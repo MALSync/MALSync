@@ -27,6 +27,7 @@ import { QiScans } from './implementations/QiScans/main';
 import { Thunderscans } from './implementations/Thunderscans/main';
 import { StoneScape } from './implementations/StoneScape/main';
 import { ResetScans } from './implementations/ResetScans/main';
+import { Utoon } from './implementations/Utoon/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -56,4 +57,5 @@ export const pages: { [key: string]: PageInterface } = {
   Thunderscans,
   StoneScape,
   ResetScans,
+  Utoon,
 };
