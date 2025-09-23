@@ -1,5 +1,5 @@
 import type { ChibiCtx } from '../ChibiCtx';
-import type { ChibiJson } from '../ChibiGenerator';
+import type { ChibiParam } from '../ChibiGenerator';
 
 export default {
   /**
@@ -39,11 +39,10 @@ export default {
   replace: (
     ctx: ChibiCtx,
     input: string,
-    pattern: string,
-    replacement: string | ChibiJson<string>,
+    pattern: ChibiParam<string>,
+    replacement: ChibiParam<string>,
   ) => {
-    const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
-    return input.replace(pattern, replacementValue);
+    return input.replace(pattern, replacement);
   },
 
   /**
@@ -56,15 +55,9 @@ export default {
    * $c.string("Hello World").replaceAll("o", "e") // returns "Hella Werld"
    * $c.string("Hello World").replaceAll("o", $c.string('e').run()) // returns "Hella Werld"
    */
-  replaceAll: (
-    ctx: ChibiCtx,
-    input: string,
-    pattern: string,
-    replacement: string | ChibiJson<string>,
-  ) => {
-    const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
+  replaceAll: (ctx: ChibiCtx, input: string, pattern: string, replacement: ChibiParam<string>) => {
     // eslint-disable-next-line es-x/no-string-prototype-replaceall
-    return input.replaceAll(pattern, replacementValue);
+    return input.replaceAll(pattern, replacement);
   },
 
   /**
@@ -82,12 +75,11 @@ export default {
     ctx: ChibiCtx,
     input: string,
     pattern: string,
-    replacement: string | ChibiJson<string>,
+    replacement: ChibiParam<string>,
     flags: string = 'gi',
   ) => {
-    const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
     const regex = new RegExp(pattern, flags);
-    return input.replace(regex, replacementValue);
+    return input.replace(regex, replacement);
   },
 
   /**
@@ -186,9 +178,8 @@ export default {
    * $c.string("Hello").concat(" World") // returns "Hello World"
    * $c.string("Hello").concat($c.string(" World").run()) // returns "Hello World"
    */
-  concat: (ctx: ChibiCtx, input: string, value: string | ChibiJson<string>) => {
-    const concatValue = typeof value === 'string' ? value : ctx.run(value);
-    return input.concat(concatValue);
+  concat: (ctx: ChibiCtx, input: string, value: ChibiParam<string>) => {
+    return input.concat(value);
   },
 
   /**
