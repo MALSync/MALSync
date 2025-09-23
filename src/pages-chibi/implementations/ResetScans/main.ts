@@ -98,7 +98,7 @@ export const ResetScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('a.logo').uiAfter().run(); // uiInjection in any element create janky UI
+      return $c.querySelector('#nav-info > * > *').uiAppend().log('uiInjection').run(); // uiInjection in any element create janky UI
     },
   },
   list: {
