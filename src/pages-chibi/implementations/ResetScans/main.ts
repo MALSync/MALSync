@@ -37,15 +37,7 @@ export const ResetScans: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c
-        .url()
-        .urlPart(5)
-        .split('chapter')
-        .at(1)
-        .replaceRegex('^-', '') // Some chapters doesn't have a dash before the number
-        .number()
-        .ifNotReturn()
-        .run();
+      return $c.url().urlPart(5).regex('chapter[_-]?(\\d+)', 1).number().ifNotReturn().run();
     },
     nextEpUrl($c) {
       return $c.querySelector('.next_page').getAttribute('href').ifNotReturn().urlAbsolute().run();
@@ -98,7 +90,7 @@ export const ResetScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('#nav-info > * > *').uiAppend().log('uiInjection').run(); // uiInjection in any element create janky UI
+      return $c.querySelector('#nav-info > * > *').uiAppend().log('uiInjection').run();
     },
   },
   list: {
