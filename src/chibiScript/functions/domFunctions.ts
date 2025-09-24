@@ -80,7 +80,7 @@ export default {
    * @example
    * $c.querySelector('input').getAttribute('value')
    */
-  getAttribute: (ctx: ChibiCtx, input: Element, name: string) => {
+  getAttribute: (ctx: ChibiCtx, input: Element, name: ChibiParam<string>) => {
     return input.getAttribute(name);
   },
 
@@ -92,7 +92,7 @@ export default {
    * @example
    * $c.querySelector('h1').getComputedStyle('color')
    */
-  getComputedStyle: (ctx: ChibiCtx, input: Element, property: string) => {
+  getComputedStyle: (ctx: ChibiCtx, input: Element, property: ChibiParam<string>) => {
     return window.getComputedStyle(input).getPropertyValue(property);
   },
 
@@ -147,9 +147,9 @@ export default {
    * @param selector - CSS selector string
    * @returns Boolean indicating if the element matches the selector
    * @example
-   * $c.querySelector('h1').matches('.highlight')
+   * $c.querySelector('h1').elementMatches('.highlight')
    */
-  elementMatches: (ctx: ChibiCtx, input: Element, selector: string) => {
+  elementMatches: (ctx: ChibiCtx, input: Element, selector: ChibiParam<string>) => {
     return input.matches(selector);
   },
 

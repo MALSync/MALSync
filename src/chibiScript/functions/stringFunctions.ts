@@ -10,7 +10,7 @@ export default {
    * @example
    * $c.string("a,b,c").split(",") // returns ["a", "b", "c"]
    */
-  split: (ctx: ChibiCtx, input: string, delimiter: string) => {
+  split: (ctx: ChibiCtx, input: string, delimiter: ChibiParam<string>) => {
     return input.split(delimiter);
   },
 
@@ -22,7 +22,7 @@ export default {
    * @example
    * $c.array(["a", "b", "c"]).join(",") // returns "a,b,c"
    */
-  join: (ctx: ChibiCtx, input: string[], separator: string) => {
+  join: (ctx: ChibiCtx, input: string[], separator: ChibiParam<string>) => {
     return input.join(separator);
   },
 
@@ -55,7 +55,12 @@ export default {
    * $c.string("Hello World").replaceAll("o", "e") // returns "Hella Werld"
    * $c.string("Hello World").replaceAll("o", $c.string('e').run()) // returns "Hella Werld"
    */
-  replaceAll: (ctx: ChibiCtx, input: string, pattern: string, replacement: ChibiParam<string>) => {
+  replaceAll: (
+    ctx: ChibiCtx,
+    input: string,
+    pattern: ChibiParam<string>,
+    replacement: ChibiParam<string>,
+  ) => {
     // eslint-disable-next-line es-x/no-string-prototype-replaceall
     return input.replaceAll(pattern, replacement);
   },
@@ -74,9 +79,9 @@ export default {
   replaceRegex: (
     ctx: ChibiCtx,
     input: string,
-    pattern: string,
+    pattern: ChibiParam<string>,
     replacement: ChibiParam<string>,
-    flags: string = 'gi',
+    flags: ChibiParam<string> = 'gi',
   ) => {
     const regex = new RegExp(pattern, flags);
     return input.replace(regex, replacement);
@@ -91,7 +96,12 @@ export default {
    * @example
    * $c.string("Hello World").substring(0, 5) // returns "Hello"
    */
-  substring: (ctx: ChibiCtx, input: string, start: number, end?: number) => {
+  substring: (
+    ctx: ChibiCtx,
+    input: string,
+    start: ChibiParam<number>,
+    end?: ChibiParam<number>,
+  ) => {
     return input.substring(start, end);
   },
 
@@ -108,10 +118,10 @@ export default {
    */
   regex: (
     ctx: ChibiCtx,
-    input: string,
-    pattern: string,
-    group: number = 0,
-    flags: string = 'i',
+    input: ChibiParam<string>,
+    pattern: ChibiParam<string>,
+    group: ChibiParam<number> = 0,
+    flags: ChibiParam<string> = 'i',
   ) => {
     const regex = new RegExp(pattern, flags);
     const match = input.match(regex);
@@ -165,7 +175,12 @@ export default {
    * @example
    * $c.string("Hello World").includes("World") // returns true
    */
-  includes: (ctx: ChibiCtx, input: string, searchString: string, position?: number) => {
+  includes: (
+    ctx: ChibiCtx,
+    input: string,
+    searchString: ChibiParam<string>,
+    position?: ChibiParam<number>,
+  ) => {
     return input.includes(searchString, position);
   },
 

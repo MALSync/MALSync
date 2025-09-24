@@ -1,5 +1,5 @@
 import type { ChibiCtx } from '../ChibiCtx';
-import type { ChibiGenerator, ChibiJson } from '../ChibiGenerator';
+import type { ChibiGenerator, ChibiJson, ChibiParam } from '../ChibiGenerator';
 import type * as CT from '../ChibiTypeHelper';
 
 export default {
@@ -42,7 +42,7 @@ export default {
   at: <Input>(
     ctx: ChibiCtx,
     input: Input,
-    index: number,
+    index: ChibiParam<number>,
   ): CT.GetArrayType<Input extends any[] ? Input : never> => {
     return input[index];
   },
@@ -70,8 +70,8 @@ export default {
   slice: <Input>(
     ctx: ChibiCtx,
     input: Input extends any[] ? Input : never,
-    start: number,
-    end?: number,
+    start: ChibiParam<number>,
+    end?: ChibiParam<number>,
   ): Input => {
     return input.slice(start, end) as Input;
   },
@@ -95,7 +95,7 @@ export default {
    * @example
    * $c.array(["1", "2", "3"]).arrayIncludes("2") // returns true
    */
-  arrayIncludes: (ctx: ChibiCtx, input: any[], searchElement: any) => {
+  arrayIncludes: (ctx: ChibiCtx, input: any[], searchElement: ChibiParam<any>) => {
     return input.includes(searchElement);
   },
 
