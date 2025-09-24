@@ -47,9 +47,9 @@ export const WitchScans: PageInterface = {
         current: {
           selector: '#readerarea img',
           mode: 'attr',
-          regex: '(\\d+)$',
+          regex: '(\\d+)(?=[.-])',
           group: 1,
-          attribute: 'alt',
+          attribute: 'src',
         },
         total: {
           selector: '#select-paged option',
