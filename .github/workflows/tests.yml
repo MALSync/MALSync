@@ -54,6 +54,7 @@ jobs:
     - name: Build
       run: |
         npm run build:webextension:assets
+        npm run build:chibiTypes
         npm run build:webextension:content:build
       env:
         CI_MODE: travis

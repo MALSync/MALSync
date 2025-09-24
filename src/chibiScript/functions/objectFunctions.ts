@@ -1,4 +1,5 @@
 import type { ChibiCtx } from '../ChibiCtx';
+import type { ChibiParam } from '../ChibiGenerator';
 
 export default {
   /**
@@ -9,7 +10,7 @@ export default {
    * @example
    * $c.object({user: {name: "John"}}).get("user") // returns {name: "John"}
    */
-  get: (ctx: ChibiCtx, input: any, key: string) => {
+  get: (ctx: ChibiCtx, input: any, key: ChibiParam<string>) => {
     if (!input || typeof input !== 'object') {
       return undefined;
     }
