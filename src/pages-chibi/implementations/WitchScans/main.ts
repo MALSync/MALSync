@@ -24,9 +24,6 @@ export const WitchScans: PageInterface = {
     getIdentifier($c) {
       return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
     },
-    getImage($c) {
-      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
-    },
     getOverviewUrl($c) {
       return $c.querySelector('.allc a').getAttribute('href').ifNotReturn().urlAbsolute().run();
     },

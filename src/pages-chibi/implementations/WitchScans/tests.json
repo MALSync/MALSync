@@ -8,7 +8,6 @@
           "sync": true,
           "title": "The Newbie is Too Strong",
           "identifier": "the-newbie-is-too-strong",
-          "image": "https://i3.wp.com/witchscans.com/wp-content/uploads/2025/09/00-6.webp",
           "overviewUrl": "https://witchscans.com/manga/the-newbie-is-too-strong/",
           "episode": 144,
           "nextEpUrl": "https://witchscans.com/the-newbie-is-too-strong-chapter-145/",
@@ -22,8 +21,16 @@
           "title": "The Newbie is Too Strong",
           "identifier": "the-newbie-is-too-strong",
           "image": "https://i0.wp.com/witchscans.com/wp-content/uploads/2025/08/images-1.jpeg",
-          "uiSelector": true
+          "uiSelector": true,
+          "epList": {
+            "1": "https://witchscans.com/the-newbie-is-too-strong-chapter-1/",
+            "5": "https://witchscans.com/the-newbie-is-too-strong-chapter-5/",
+            "60": "https://witchscans.com/the-newbie-is-too-strong-chapter-60/",
+            "145": "https://witchscans.com/the-newbie-is-too-strong-chapter-145/"
+            }
+          }
         }
-      }
-    ]
-  }
+     ]
+   }
+
+
