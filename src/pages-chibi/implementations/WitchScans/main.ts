@@ -45,13 +45,10 @@ export const WitchScans: PageInterface = {
       {
         condition: '#readerarea img:only-of-type',
         current: {
-          mode: 'callback',
-          callback: () => {
-            const pageCount = j.$('#select-paged')[0] as HTMLSelectElement;
-            const currentSelectedPageText = pageCount.options[pageCount.selectedIndex].innerText;
-            const [pageNumber] = currentSelectedPageText.split('/');
-            return pageNumber;
-          },
+          selector: '#select-paged option:selected',
+          mode: 'text',
+          regex: '(\\d+)/(\\d+)$',
+          group: 1,
         },
         total: {
           selector: '#select-paged option',
