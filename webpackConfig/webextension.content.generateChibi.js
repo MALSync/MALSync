@@ -33,6 +33,8 @@ function generateChibiTypes() {
   });
 
   let typeDefinitions = `/* eslint-disable prettier/prettier */\n`;
+  typeDefinitions += `/* eslint-disable @stylistic/quotes */\n`;
+  typeDefinitions += `/* eslint-disable @stylistic/quote-props */\n\n`;
   typeDefinitions += `import functionsRegistry from './functions';\n`;
   typeDefinitions += `import type { ChibiGenerator, ChibiJson } from './ChibiGenerator';\n`;
   typeDefinitions += `import type { ReservedKey } from './ChibiRegistry';\n`;
@@ -44,7 +46,7 @@ function generateChibiTypes() {
 
   typeDefinitions += `\n}\n\n`;
 
-  typeDefinitions += `export const chibiParamIndices = JSON.parse(\`${JSON.stringify(parameterMatrix, null, 2)}\`) as Record<string, number[]>;\n`;
+  typeDefinitions += `export const chibiParamIndices = ${JSON.stringify(parameterMatrix, null, 2)} as Record<string, number[]>;\n`;
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, typeDefinitions);
