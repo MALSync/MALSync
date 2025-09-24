@@ -11,8 +11,8 @@
     "node": ">=22.12.0"
   },
   "devDependencies": {
-    "@ghostery/adblocker-puppeteer": "^2.11.3",
-    "@cspell/eslint-plugin": "9.2.0",
+    "@ghostery/adblocker-puppeteer": "^2.11.6",
+    "@cspell/eslint-plugin": "9.2.1",
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.31.0",
     "@stylistic/eslint-plugin": "3.1.0",
@@ -27,7 +27,7 @@
     "@vue/compiler-sfc": "^3.5.17",
     "@vue/eslint-config-typescript": "13.0.0",
     "archiver": "^7.0.1",
-    "chai": "^5.2.1",
+    "chai": "^5.3.3",
     "chrome-webstore-upload": "^3.1.4",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
@@ -37,8 +37,8 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.2",
     "eslint-plugin-es-x": "8.7.0",
-    "eslint-plugin-no-unsanitized": "4.1.2",
-    "eslint-plugin-prettier": "5.5.3",
+    "eslint-plugin-no-unsanitized": "4.1.4",
+    "eslint-plugin-prettier": "5.5.4",
     "eslint-plugin-vue": "9.33.0",
     "eslint-plugin-vue-scoped-css": "2.11.0",
     "expose-loader": "^5.0.1",
@@ -51,7 +51,7 @@
     "postcss-html": "^1.8.0",
     "postcss-less": "^6.0.0",
     "prettier": "^3.6.2",
-    "puppeteer": "^24.15.0",
+    "puppeteer": "^24.22.2",
     "serialize-javascript": "^6.0.2",
     "style-loader": "^3.3.4",
     "stylelint": "^15.11.0",
@@ -68,7 +68,7 @@
     "typescript-eslint": "8.26.0",
     "vue-eslint-parser": "10.2.0",
     "vue-loader": "^17.4.2",
-    "web-ext": "^8.8.0",
+    "web-ext": "^8.10.0",
     "webpack": "^5.100.2",
     "webpack-cli": "^6.0.1"
   },
@@ -119,8 +119,8 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@types/chrome": "0.0.322",
-    "dexie": "^4.0.11",
-    "dompurify": "^3.2.6",
+    "dexie": "^4.2.0",
+    "dompurify": "^3.2.7",
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.5",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
@@ -137,7 +137,7 @@
     "vue-dompurify-html": "^5.3.0",
     "vue-router": "^4.5.1",
     "vue-slider-component": "^4.1.0-beta.6",
-    "vue-tsc": "^3.0.1",
+    "vue-tsc": "^3.0.8",
     "vuedraggable": "^4.1.0",
     "webext-patterns": "^1.5.1"
   }
