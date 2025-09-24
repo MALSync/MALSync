@@ -29,6 +29,10 @@ import { StoneScape } from './implementations/StoneScape/main';
 import { ResetScans } from './implementations/ResetScans/main';
 import { Utoon } from './implementations/Utoon/main';
 import { WitchScans } from './implementations/WitchScans/main';
+import { Animecix } from './implementations/Animecix/main';
+import { Diziwatch } from './implementations/Diziwatch/main';
+import { MangaTr } from './implementations/MangaTr/main';
+import { Sadscans } from './implementations/Sadscans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -60,4 +64,8 @@ export const pages: { [key: string]: PageInterface } = {
   ResetScans,
   Utoon,
   WitchScans,
+  Animecix,
+  Diziwatch,
+  MangaTr,
+  Sadscans,
 };
