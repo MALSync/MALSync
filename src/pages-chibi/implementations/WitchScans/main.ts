@@ -43,7 +43,6 @@ export const WitchScans: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '#readerarea img:only-of-type',
         current: {
           selector: '#select-paged option:selected',
           mode: 'text',
@@ -55,16 +54,6 @@ export const WitchScans: PageInterface = {
           mode: 'text',
           regex: '(\\d+)/(\\d+)$',
           group: 2,
-        },
-      },
-      {
-        current: {
-          selector: '#readerarea img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#readerarea img',
-          mode: 'count',
         },
       },
     ],
