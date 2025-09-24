@@ -19,6 +19,7 @@ import { WeebCentral } from './implementations/WeebCentral/main';
 import { MangaDemon } from './implementations/MangaDemon/main';
 import { RoliaScan } from './implementations/RoliaScan/main';
 import { Mangitto } from './implementations/Mangitto/main';
+import { Animecix } from './implementations/Animecix/main';
 import { Anizium } from './implementations/Anizium/main';
 import { Miruro } from './implementations/Miruro/main';
 import { MangaPark } from './implementations/MangaPark/main';
@@ -50,6 +51,7 @@ export const pages: { [key: string]: PageInterface } = {
   MangaDemon,
   RoliaScan,
   Mangitto,
+  Animecix,
   Anizium,
   Miruro,
   MangaPark,
