@@ -124,6 +124,7 @@ import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
+import { FrenchAnime } from './FrenchAnime/main';
 
 export const pages = {
   Mangadex,
@@ -252,4 +253,5 @@ export const pages = {
   Rawkuma,
   Aninexus,
   AniDream,
+  FrenchAnime,
 };

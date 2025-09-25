@@ -743,5 +743,10 @@
     "domain": "https://MangaPark.to",
     "type": "manga",
     "name": "MangaPark"
+  },
+  {
+    "domain": "https://french-anime.com",
+    "type": "anime",
+    "name": "FrenchAnime"
   }
 ]
