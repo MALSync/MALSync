@@ -34,6 +34,14 @@ export const Animecix: PageInterface = {
     getEpisode($c) {
       return $c.url().regex('episode/(\\d+)', 1).number().run();
     },
+    getImage($c) {
+      return $c
+        .querySelector('meta[property="og:image"]')
+        .ifNotReturn()
+        .getAttribute('content')
+        .urlAbsolute()
+        .run();
+    },
     nextEpUrl($c) {
       return $c
         .querySelector('a[href*="/episode/"].next-episode, a[title*="Sonraki"]')
