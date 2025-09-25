@@ -30,6 +30,7 @@ import { ResetScans } from './implementations/ResetScans/main';
 import { Utoon } from './implementations/Utoon/main';
 import { WitchScans } from './implementations/WitchScans/main';
 import { Diziwatch } from './implementations/Diziwatch/main';
+import { ArvenComics } from './implementations/ArvenComics/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -62,4 +63,5 @@ export const pages: { [key: string]: PageInterface } = {
   Utoon,
   WitchScans,
   Diziwatch,
+  ArvenComics,
 };
