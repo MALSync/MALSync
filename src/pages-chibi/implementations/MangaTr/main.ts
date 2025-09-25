@@ -163,12 +163,6 @@ export const MangaTr: PageInterface = {
         .detectChanges($c.url().urlStrip().run(), $c.trigger().run())
         .run();
     },
-    syncIsReady($c) {
-      return $c.waitUntilTrue($c.this('sync.getTitle').boolean().run()).trigger().run();
-    },
-    overviewIsReady($c) {
-      return $c.waitUntilTrue($c.this('overview.getTitle').boolean().run()).trigger().run();
-    },
     listChange($c) {
       return $c
         .detectChanges(
