@@ -29,7 +29,7 @@ import { StoneScape } from './implementations/StoneScape/main';
 import { ResetScans } from './implementations/ResetScans/main';
 import { Utoon } from './implementations/Utoon/main';
 import { WitchScans } from './implementations/WitchScans/main';
-import { ArvenComics} from './implementations/ArvenComics/main';
+import { ArvenComics } from './implementations/ArvenComics/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
