@@ -488,8 +488,8 @@ export function getStatusText(type: 'anime' | 'manga', state) {
 
 // eslint-disable-next-line consistent-return
 export function notifications(url: string, title: string, message: string, iconUrl = '') {
-  const messageObj: chrome.notifications.NotificationOptions<true> = {
-    type: 'basic',
+  const messageObj = {
+    type: 'basic' as const,
     title,
     message,
     iconUrl,
