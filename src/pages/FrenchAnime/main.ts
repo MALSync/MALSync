@@ -20,9 +20,6 @@ export const FrenchAnime: pageInterface = {
   },
 
   sync: {
-    // ==========================================================
-    // MODIFIÉ : Utilisation de votre méthode plus fiable pour le titre
-    // ==========================================================
     getTitle(url: string): string {
       // On cherche le label "TITRE ORIGINAL:" et on prend l'élément .mov-desc juste après
       const originalTitle = j.$('.mov-label:contains("TITRE ORIGINAL:")').next('.mov-desc').text().trim();
@@ -55,11 +52,7 @@ export const FrenchAnime: pageInterface = {
   },
 
   overview: {
-    // ==========================================================
-    // MODIFIÉ : Utilisation de votre méthode plus fiable pour le titre
-    // ==========================================================
     getTitle(url: string): string {
-      // On utilise la même logique que pour la page sync
       return FrenchAnime.sync.getTitle(url);
     },
     
