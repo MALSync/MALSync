@@ -15,6 +15,7 @@ export const ArvenComics: PageInterface = {
       return $c
         .and(
           $c.url().urlPart(5).boolean().run(),
+          $c.url().urlPart(3).equals('comic').run(),
           $c.url().urlPart(5).matches('(?:chapter[_-]?)(\\d+)|(\\d+)').run(),
         )
         .run();
