@@ -29,7 +29,7 @@
     "archiver": "^7.0.1",
     "chai": "^5.3.3",
     "chrome-webstore-upload": "^3.1.4",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.0.0",
     "css-loader": "^7.1.2",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
