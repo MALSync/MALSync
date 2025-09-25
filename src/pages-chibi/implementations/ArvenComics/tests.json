@@ -1,0 +1,46 @@
+{
+    "title": "ArvenComics",
+    "url": "https://arvencomics.com",
+    "testCases": [
+      {
+        "url": "https://arvencomics.com/comic/demons-crest/55/",
+        "expected": {
+          "sync": true,
+          "title": "Demons’ Crest",
+          "identifier": "demons-crest",
+          "overviewUrl": "https://arvencomics.com/comic/demons-crest",
+          "episode": 55,
+          "nextEpUrl": "https://arvencomics.com/comic/demons-crest/chapter-36/",
+          "uiSelector": false
+        }
+      },
+      {
+       "url": "https://arvencomics.com/comic/demons-crest/chapter-79/",
+        "expected": {
+          "sync": true,
+          "title": "Demons’ Crest",
+          "identifier": "demons-crest",
+          "overviewUrl": "https://arvencomics.com/comic/demons-crest",
+          "episode": 79,
+          "nextEpUrl": "https://arvencomics.com/comic/demons-crest/chapter-80/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://arvencomics.com/comic/demons-crest/",
+        "expected": {
+          "sync": false,
+          "title": "Demons’ Crest",
+          "identifier": "demons-crest",
+          "image": "https://arvencomics.com/wp-content/uploads/2025/09/1-193x278.jpg",
+          "uiSelector": true,
+          "epList": {
+            "32": "https://arvencomics.com/comic/demons-crest/32/",
+            "33": "https://arvencomics.com/comic/demons-crest/33/",
+            "36": "https://arvencomics.com/comic/demons-crest/chapter-36/",
+            "80": "https://arvencomics.com/comic/demons-crest/chapter-80/"
+          }
+        }
+      }
+    ]
+  }
