@@ -1,5 +1,8 @@
 import { PageInterface } from '../../pageInterface';
 
+// Define constant for the repeated regex pattern
+const CHAPTER_REGEX = 'Bölüm\\\\s*([\\\\d.]+)';
+
 export const Sadscans: PageInterface = {
   name: 'Sadscans',
   domain: ['https://sadscans.com'],
@@ -43,10 +46,10 @@ export const Sadscans: PageInterface = {
             .querySelector('select.chap-select option[selected]')
             .ifNotReturn()
             .text()
-            .regex('Bölüm\\s*([\\d.]+)', 1)
+            .regex(CHAPTER_REGEX, 1)
             .number()
             .run(),
-          $c.title().regex('Bölüm\\s*([\\d.]+)', 1).number().run(),
+          $c.title().regex(CHAPTER_REGEX, 1).number().run(),
         )
         .ifNotReturn()
         .run();
@@ -67,7 +70,7 @@ export const Sadscans: PageInterface = {
         .ifNotReturn()
         .urlAbsolute()
         .string()
-        .replaceRegex('\\?v=.*$', '')
+        .replaceRegex('\\\\?v=.*$', '')
         .run();
     },
     readerConfig: [
@@ -108,7 +111,7 @@ export const Sadscans: PageInterface = {
         .ifNotReturn()
         .urlAbsolute()
         .string()
-        .replaceRegex('\\?v=.*$', '')
+        .replaceRegex('\\\\?v=.*$', '')
         .run();
     },
     uiInjection($c) {
@@ -120,19 +123,14 @@ export const Sadscans: PageInterface = {
       return $c.querySelectorAll('.chap-section .chap').run();
     },
     elementUrl($c) {
-      return $c
-        .querySelector('.chap-link .link a')
-        .ifNotReturn()
-        .getAttribute('href')
-        .urlAbsolute()
-        .run();
+      return $c.find('.chap-link .link a').ifNotReturn().getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
       return $c
-        .querySelector('.chap-link .link a')
+        .find('.chap-link .link a')
         .ifNotReturn()
         .text()
-        .regex('Bölüm\\s*([\\d.]+)', 1)
+        .regex(CHAPTER_REGEX, 1)
         .number()
         .ifNotReturn()
         .run();
@@ -148,12 +146,6 @@ export const Sadscans: PageInterface = {
         .trigger()
         .detectChanges($c.url().urlStrip().run(), $c.trigger().run())
         .run();
-    },
-    syncIsReady($c) {
-      return $c.waitUntilTrue($c.this('sync.getTitle').boolean().run()).trigger().run();
-    },
-    overviewIsReady($c) {
-      return $c.waitUntilTrue($c.this('overview.getTitle').boolean().run()).trigger().run();
     },
     listChange($c) {
       return $c
