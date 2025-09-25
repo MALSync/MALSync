@@ -830,7 +830,7 @@ module.exports = {
   },
   // Animecix
   tauvideo: {
-    match: ['*://tau-video.xyz/*', '*://*.tau-video.xyz/*'],
+    match: ['*://*.tau-video.xyz/*'],
   },
   // aniworld
   loadx: {
