@@ -1,6 +1,0 @@
-{
-  "search": "https://french-anime.com/recherche?search={searchtermPlus}",
-  "urls": {
-    "match": ["*://french-anime.com/*"]
-  }
-}
