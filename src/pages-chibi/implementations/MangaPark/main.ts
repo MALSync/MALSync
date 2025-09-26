@@ -27,6 +27,7 @@ export const MangaPark: PageInterface = {
       '*://parkmanga.net/*',
       '*://parkmanga.org/*',
       '*://mpark.to/*',
+      '*://mangaparkmirrors.pages.dev/*',
     ],
   },
   search: 'https://mangapark.net/search?word={searchterm}',
