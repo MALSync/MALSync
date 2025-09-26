@@ -62,7 +62,7 @@ export const FrenchAnime: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.domReady().trigger().run();
+      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
 
     syncIsReady($c) {
