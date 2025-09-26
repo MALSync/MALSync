@@ -24,7 +24,6 @@ export const FrenchAnime: PageInterface = {
     getOverviewUrl($c) {
       return $c.url().run();
     },
-
     getEpisode($c) {
       return $c.querySelector('#epselect > option:selected').getAttribute('value').regex('button_(\\d+)', 1).number().run();
     },
