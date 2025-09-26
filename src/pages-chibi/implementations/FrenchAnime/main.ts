@@ -63,7 +63,6 @@ export const FrenchAnime: PageInterface = {
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
-
     syncIsReady($c) {
       return $c.waitUntilTrue(
           $c.querySelector('#epselect').boolean().run()
