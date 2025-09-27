@@ -1,3 +1,4 @@
+import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const Animecix: PageInterface = {
@@ -10,18 +11,29 @@ export const Animecix: PageInterface = {
   },
   sync: {
     isSyncPage($c) {
-      return $c.url().regex('titles/\\d+/[^/]+/season/\\d+/episode/\\d+', 0).boolean().run();
-    },
-    getTitle($c) {
       return $c
-        .querySelector('h1.t-title a[href*="/titles/"]:not([href*="/season/"])')
-        .ifNotReturn()
-        .text()
-        .trim()
+        .and(
+          $c.url().contains('/titles/').run(),
+          $c.url().contains('/season/').run(),
+          $c.url().contains('/episode/').run(),
+        )
         .run();
     },
+    getTitle($c) {
+      return getStructuredData($c).get('name').ifNotReturn().string().trim().run();
+    },
     getIdentifier($c) {
-      return $c.url().regex('titles/\\d+/([^/]+)', 1).run();
+      return $c
+        .if(
+          $c.url().contains('/season/').run(),
+          $c
+            .string('<identifier>?season=<season>')
+            .replace('<identifier>', $c.url().urlPart(5).run())
+            .replace('<season>', $c.url().urlPart(7).run())
+            .run(),
+          $c.url().urlPart(5).run(),
+        )
+        .run();
     },
     getOverviewUrl($c) {
       return $c
@@ -32,15 +44,7 @@ export const Animecix: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c.url().regex('episode/(\\d+)', 1).number().run();
-    },
-    getImage($c) {
-      return $c
-        .querySelector('meta[property="og:image"]')
-        .ifNotReturn()
-        .getAttribute('content')
-        .urlAbsolute()
-        .run();
+      return $c.url().urlPart(9).number().run();
     },
     nextEpUrl($c) {
       return $c
@@ -50,32 +54,26 @@ export const Animecix: PageInterface = {
         .urlAbsolute()
         .run();
     },
-    uiInjection($c) {
-      return $c
-        .querySelector('.episode-details, .video-meta, .episode-info, .episode-title')
-        .ifNotReturn()
-        .uiAfter()
-        .run();
-    },
   },
   overview: {
     isOverviewPage($c) {
       return $c
         .and(
-          $c.url().regex('titles/\\d+/[^/]+$', 0).boolean().run(),
-          $c.url().regex('season/\\d+/episode/\\d+', 0).boolean().not().run(),
+          $c.url().contains('/titles/').run(),
+          $c.url().contains('/season/').not().run(),
+          $c.url().contains('/episode/').not().run(),
         )
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1.t-title').ifNotReturn().text().trim().run();
+      return getStructuredData($c).get('name').ifNotReturn().string().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().regex('titles/\\d+/([^/]+)', 1).run();
+      return $c.url().urlPart(5).run();
     },
     getImage($c) {
       return $c
-        .querySelector('.series-image img, .anime-image img')
+        .querySelector('.poster img, title-header img')
         .ifNotReturn()
         .getAttribute('src')
         .urlAbsolute()
@@ -83,7 +81,7 @@ export const Animecix: PageInterface = {
     },
     uiInjection($c) {
       return $c
-        .querySelector('.series-info, .anime-info, h1.t-title')
+        .querySelector('.t-main-container, .title-header, h1.t-title')
         .ifNotReturn()
         .uiAfter()
         .run();
@@ -91,13 +89,19 @@ export const Animecix: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('app-season-episodes a[href*="/episode/"], .episode-list a').run();
+      return $c.querySelectorAll("title-episodes a[href*='/season/'][href*='/episode/']").run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.getAttribute('href').regex('episode/(\\d+)', 1).number().run();
+      return $c
+        .closest('.episode-card-container')
+        .find('.number')
+        .text()
+        .regex('(\d+)', 1)
+        .number()
+        .run();
     },
   },
   lifecycle: {
@@ -105,7 +109,48 @@ export const Animecix: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.domReady().trigger().detectURLChanges($c.trigger().run()).run();
+      return $c
+        .domReady()
+        .waitUntilTrue($c.querySelector('h1.t-title').boolean().run())
+        .trigger()
+        .detectURLChanges($c.trigger().run())
+        .run();
+    },
+    syncIsReady($c) {
+      return $c
+        .waitUntilTrue(
+          $c
+            .and(
+              $c.url().contains('/season/').run(),
+              $c.url().contains('/episode/').run(),
+              $c.querySelector('h1.t-title').boolean().run(),
+              $c.querySelector('.episode-details, .episode-info, .video-meta, .episode-title').boolean().run(),
+            )
+            .run(),
+        )
+        .trigger()
+        .run();
+    },
+    overviewIsReady($c) {
+      return $c
+        .waitUntilTrue(
+          $c
+            .and(
+              $c.querySelector('h1.t-title').boolean().run(),
+              $c.querySelector('title-episodes').boolean().run(),
+            )
+            .run(),
+        )
+        .trigger()
+        .run();
     },
   },
 };
+
+function getStructuredData($c: ChibiGenerator<unknown>) {
+  return $c
+    .querySelector('script[type="application/ld+json"]')
+    .ifNotReturn()
+    .text()
+    .jsonParse();
+}
