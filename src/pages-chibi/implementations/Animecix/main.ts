@@ -99,7 +99,7 @@ export const Animecix: PageInterface = {
         .closest('.episode-card-container')
         .find('.number')
         .text()
-        .regex('(\d+)', 1)
+        .regex('([0-9]+)', 1)
         .number()
         .run();
     },
@@ -124,7 +124,10 @@ export const Animecix: PageInterface = {
               $c.url().contains('/season/').run(),
               $c.url().contains('/episode/').run(),
               $c.querySelector('h1.t-title').boolean().run(),
-              $c.querySelector('.episode-details, .episode-info, .video-meta, .episode-title').boolean().run(),
+              $c
+                .querySelector('.episode-details, .episode-info, .video-meta, .episode-title')
+                .boolean()
+                .run(),
             )
             .run(),
         )
@@ -148,9 +151,5 @@ export const Animecix: PageInterface = {
 };
 
 function getStructuredData($c: ChibiGenerator<unknown>) {
-  return $c
-    .querySelector('script[type="application/ld+json"]')
-    .ifNotReturn()
-    .text()
-    .jsonParse();
+  return $c.querySelector('script[type="application/ld+json"]').ifNotReturn().text().jsonParse();
 }
