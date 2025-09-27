@@ -1,5 +1,9 @@
+import { PageInterface } from '../../pageInterface';
 
 let mangaTrChapterCacheLoaded = false;
+
+const CHAPTER_LINK_SELECTOR =
+  '#results a[href*="id-"][href*="chapter-"], #malsync-mangatr-chapters a[href*="id-"][href*="chapter-"], .chapter-list a, .chapters li a, .chapter-item a';
 
 const ensureMangaTrChapters = (slug: string) => {
   if (mangaTrChapterCacheLoaded || typeof window === 'undefined') return;
@@ -14,16 +18,17 @@ const ensureMangaTrChapters = (slug: string) => {
     xhr.send();
 
     if (xhr.status >= 200 && xhr.status < 300) {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = xhr.responseText;
-      wrapper.querySelectorAll('script').forEach(script => script.remove());
-      const results = wrapper.querySelector('#results');
+      const parser = new DOMParser();
+      const parsed = parser.parseFromString(xhr.responseText, 'text/html');
+      const results = parsed.querySelector('#results');
 
       if (results && results.children.length) {
         const hidden = document.createElement('div');
         hidden.id = 'malsync-mangatr-chapters';
         hidden.style.display = 'none';
-        hidden.append(...Array.from(results.children));
+        Array.from(results.children).forEach(child => {
+          hidden.appendChild(child.cloneNode(true));
+        });
         document.body.appendChild(hidden);
         mangaTrChapterCacheLoaded = true;
       }
@@ -32,8 +37,6 @@ const ensureMangaTrChapters = (slug: string) => {
     // Ignore network errors; fallback to existing DOM
   }
 };
-
-import { PageInterface } from '../../pageInterface';
 
 export const MangaTr: PageInterface = {
   name: 'MangaTr',
@@ -50,7 +53,11 @@ export const MangaTr: PageInterface = {
       return $c
         .or(
           // Main URL structure
-          $c.url().regex('id-\\d+-read-[\\w-]+-chapter-\\d+(?:\\.\\d+)?\\.html', 0).boolean().run(),
+          $c
+            .url()
+            .regex(String.raw`id-\d+-read-[\w-]+-chapter-\d+(?:\.\d+)?\.html`, 0)
+            .boolean()
+            .run(),
           // Fallback patterns
           $c.url().regex('reader/[^/]+', 0).boolean().run(),
         )
@@ -61,7 +68,10 @@ export const MangaTr: PageInterface = {
       return $c
         .coalesce(
           // Main pattern
-          $c.url().regex('id-\\d+-read-([\\w-]+)-chapter-\\d+(?:\\.\\d+)?\\.html', 1).run(),
+          $c
+            .url()
+            .regex(String.raw`id-\d+-read-([\w-]+)-chapter-\d+(?:\.\d+)?\.html`, 1)
+            .run(),
           // Fallback for reader pattern
           $c.url().regex('reader/([^/]+)', 1).run(),
         )
@@ -79,7 +89,10 @@ export const MangaTr: PageInterface = {
             .coalesce(
               $c.this('sync.getTitle').run(),
               $c.url().regex('reader/([^/]+)', 1).run(),
-              $c.url().regex('manga-([^.]+)\.html', 1).run(),
+              $c
+                .url()
+                .regex(String.raw`manga-([^.]+)\.html`, 1)
+                .run(),
             )
             .run(),
         )
@@ -91,9 +104,17 @@ export const MangaTr: PageInterface = {
       return $c
         .coalesce(
           // Main pattern
-          $c.url().regex('chapter-(\\d+(?:\\.\\d+)?)\\.html', 1).number().run(),
+          $c
+            .url()
+            .regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1)
+            .number()
+            .run(),
           // Fallback for reader pattern
-          $c.url().regex('reader/[^/]+/(\\d+(?:\\.\\d+)?)', 1).number().run(),
+          $c
+            .url()
+            .regex(String.raw`reader/[^/]+/(\d+(?:\.\d+)?)`, 1)
+            .number()
+            .run(),
         )
         .ifNotReturn()
         .run();
@@ -133,7 +154,11 @@ export const MangaTr: PageInterface = {
   overview: {
     isOverviewPage($c) {
       // Simplified pattern for overview page detection
-      return $c.url().regex('manga-[^.]+\\.html', 0).boolean().run();
+      return $c
+        .url()
+        .regex(String.raw`manga-[^.]+\.html`, 0)
+        .boolean()
+        .run();
     },
     getTitle($c) {
       return $c
@@ -143,17 +168,20 @@ export const MangaTr: PageInterface = {
           $c.querySelector('h1.manga-title, h1.series-title, h1').ifNotReturn().text().run(),
         )
         .trim()
-        .replaceRegex('[ \t\n\r\f\v]*[-|][ \t\n\r\f\v]*MangaTR.*$', '')
-        .replaceRegex('[ \t\n\r\f\v]*Manga Oku.*$', '')
-        .replaceRegex('[ \t\n\r\f\v]*-[ \t\n\r\f\v]*Ã‡evrimiÃ§i.*$', '')
-        .replaceRegex('[ \t\n\r\f\v]*\([0-9]{4}\)[ \t\n\r\f\v]*$', '')
-        .replaceRegex('^([^ :]+)[ \t\n\r\f\v]+(Two.*)$', '$1: $2')
+        .replaceRegex(String.raw`[ \t\n\r\f\v]*[-|][ \t\n\r\f\v]*MangaTR.*$`, '')
+        .replaceRegex(String.raw`[ \t\n\r\f\v]*Manga Oku.*$`, '')
+        .replaceRegex(String.raw`[ \t\n\r\f\v]*-[ \t\n\r\f\v]*Çevrimiçi.*$`, '')
+        .replaceRegex(String.raw`[ \t\n\r\f\v]*\([0-9]{4}\)[ \t\n\r\f\v]*$`, '')
+        .replaceRegex(String.raw`^([^ :]+)[ \t\n\r\f\v]+(Two.*)$`, '$1: $2')
         .trim()
         .run();
     },
     getIdentifier($c) {
       // Extract manga name from URL
-      return $c.url().regex('manga-([^.]+)\\.html', 1).run();
+      return $c
+        .url()
+        .regex(String.raw`manga-([^.]+)\.html`, 1)
+        .run();
     },
     getImage($c) {
       return $c.string('').run();
@@ -167,24 +195,34 @@ export const MangaTr: PageInterface = {
       let slug: string | null = null;
 
       try {
-        slug = String($c.this('overview.getIdentifier').run());
-      } catch (error) {
+        const identifier = $c.this('overview.getIdentifier').run();
+        if (identifier) {
+          slug = String(identifier);
+        }
+      } catch (_error) {
+        // Ignore missing overview identifier
+      }
+
+      if (!slug) {
         try {
-          slug = String($c.this('sync.getIdentifier').run());
-        } catch (syncError) {
-      return $c
-        .querySelectorAll('#results a[href*"id-"][href*"chapter-"], #malsync-mangatr-chapters a[href*"id-"][href*"chapter-"], .chapter-list a, .chapters li a, .chapter-item a')
-        .run();
-          const fallbackUrl = String($c.url().run());
-          const directMatch = pageUrl.match(/manga-([^.]+)\.html/);
-          if (directMatch && directMatch[1]) {
-            slug = directMatch[1];
-          } else {
-            const chapterMatch = pageUrl.match(/id-\d+-read-([\w-]+)-chapter/);
-            if (chapterMatch && chapterMatch[1]) {
-              slug = chapterMatch[1];
-            }
+          const identifier = $c.this('sync.getIdentifier').run();
+          if (identifier) {
+            slug = String(identifier);
           }
+        } catch (_error) {
+          // Ignore missing sync identifier
+        }
+      }
+
+      if (!slug) {
+        const fallbackUrl = String($c.url().run());
+        const directMatch = fallbackUrl.match(/manga-([^.]+)\.html/);
+        if (directMatch && directMatch[1]) {
+          slug = directMatch[1];
+        } else {
+          const chapterMatch = fallbackUrl.match(/id-\d+-read-([\w-]+)-chapter/);
+          if (chapterMatch && chapterMatch[1]) {
+            slug = chapterMatch[1];
           }
         }
       }
@@ -192,9 +230,8 @@ export const MangaTr: PageInterface = {
       if (slug) {
         ensureMangaTrChapters(slug);
       }
-      return $c
-        .querySelectorAll('#results a[href*"id-"][href*"chapter-"], #malsync-mangatr-chapters a[href*"id-"][href*"chapter-"], .chapter-list a, .chapters li a, .chapter-item a')
-        .run();
+
+      return $c.querySelectorAll(CHAPTER_LINK_SELECTOR).run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
@@ -202,10 +239,26 @@ export const MangaTr: PageInterface = {
     elementEp($c) {
       return $c
         .coalesce(
-          $c.text().regex('Chapter\s*(\d+(?:\.\d+)?)', 1).number().run(),
-          $c.text().regex('BÃ¶lÃ¼m\s*(\d+(?:\.\d+)?)', 1).number().run(),
-          $c.text().regex('(?:^|\s)(\d+(?:\.\d+)?)$', 1).number().run(),
-          $c.getAttribute('href').regex('chapter-(\d+(?:\.\d+)?)\.html', 1).number().run(),
+          $c
+            .text()
+            .regex(String.raw`Chapter\s*(\d+(?:\.\d+)?)`, 1)
+            .number()
+            .run(),
+          $c
+            .text()
+            .regex(String.raw`Bölüm\s*(\d+(?:\.\d+)?)`, 1)
+            .number()
+            .run(),
+          $c
+            .text()
+            .regex(String.raw`(?:^|\s)(\d+(?:\.\d+)?)$`, 1)
+            .number()
+            .run(),
+          $c
+            .getAttribute('href')
+            .regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1)
+            .number()
+            .run(),
         )
         .ifNotReturn()
         .run();
