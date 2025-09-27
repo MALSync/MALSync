@@ -63,22 +63,7 @@ export const MangaTr: PageInterface = {
         .run();
     },
     getImage($c) {
-      return $c
-        .coalesce(
-          $c
-            .querySelector('[property="og:image"]')
-            .ifNotReturn()
-            .getAttribute('content')
-            .urlAbsolute()
-            .run(),
-          $c
-            .querySelector('.manga-image img, .cover img, .chapter-image img')
-            .ifNotReturn()
-            .getAttribute('src')
-            .urlAbsolute()
-            .run(),
-        )
-        .run();
+      return $c.string('').run();
     },
     readerConfig: [
       {
@@ -106,11 +91,16 @@ export const MangaTr: PageInterface = {
       return $c.url().regex('manga-[^.]+\\.html', 0).boolean().run();
     },
     getTitle($c) {
-      // Simplified title extraction
       return $c
-        .querySelector('h1.manga-title, h1.series-title, h1')
-        .ifNotReturn()
-        .text()
+        .coalesce(
+          $c.querySelector('[property="og:title"]').ifNotReturn().getAttribute('content').run(),
+          $c.title().run(),
+          $c.querySelector('h1.manga-title, h1.series-title, h1').ifNotReturn().text().run(),
+        )
+        .trim()
+        .replaceRegex('\s*[|\-]\s*MangaTR.*$', '')
+        .replaceRegex('\s*Manga Oku.*$', '')
+        .replaceRegex('\s*\(\d{4}\)\s*$', '')
         .trim()
         .run();
     },
@@ -119,14 +109,7 @@ export const MangaTr: PageInterface = {
       return $c.url().regex('manga-([^.]+)\\.html', 1).run();
     },
     getImage($c) {
-      return $c
-        .coalesce(
-          $c.querySelector('[property="og:image"]').ifNotReturn().getAttribute('content').run(),
-          $c.querySelector('.manga-image img, .cover img').ifNotReturn().getAttribute('src').run(),
-        )
-        .ifNotReturn()
-        .urlAbsolute()
-        .run();
+      return $c.string('').run();
     },
     uiInjection($c) {
       return $c.querySelector('.manga-info, .series-info, h1').uiAfter().run();
