@@ -1,7 +1,7 @@
 import { PageInterface } from '../../pageInterface';
 
 // Define constant for the repeated regex pattern
-const CHAPTER_REGEX = 'Bölüm\\\\s*([\\\\d.]+)';
+const CHAPTER_REGEX = '[Bb](?:ö|Ö)l(?:ü|Ü)m\\s*([\\d.]+)';
 
 export const Sadscans: PageInterface = {
   name: 'Sadscans',
@@ -70,7 +70,7 @@ export const Sadscans: PageInterface = {
         .ifNotReturn()
         .urlAbsolute()
         .string()
-        .replaceRegex('\\\\?v=.*$', '')
+        .replaceRegex('\\?.*$', '')
         .run();
     },
     readerConfig: [
@@ -111,7 +111,7 @@ export const Sadscans: PageInterface = {
         .ifNotReturn()
         .urlAbsolute()
         .string()
-        .replaceRegex('\\\\?v=.*$', '')
+        .replaceRegex('\\?.*$', '')
         .run();
     },
     uiInjection($c) {
@@ -157,3 +157,4 @@ export const Sadscans: PageInterface = {
     },
   },
 };
+
