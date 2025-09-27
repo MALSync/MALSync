@@ -114,7 +114,9 @@ export const Comikey: PageInterface = {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
     listChange($c) {
-      return $c.detectChanges($c.querySelector('#chapters').text().run(), $c.trigger().run()).run();
+      return $c
+        .detectChanges($c.querySelector('#chapters').ifNotReturn().text().run(), $c.trigger().run())
+        .run();
     },
     syncIsReady($c) {
       // For avoiding syncing locked chapter
