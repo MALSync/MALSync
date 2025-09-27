@@ -84,7 +84,7 @@ export const Comikey: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.sub-data .title').text().trim().run();
+      return $c.querySelector('.sub-data .title').text().split(' (').at(0).trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();

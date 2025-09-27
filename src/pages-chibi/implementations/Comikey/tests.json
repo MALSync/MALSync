@@ -68,6 +68,20 @@
             "5": "https://comikey.com/read/inept-at-home-but-super-adept-compared-to-the-rest-manga/kN26pk/chapter-5-3/"
           }
        }
+     },
+     {  
+        "url": "https://br.comikey.com/comics/kengan-omega-pt-br-manga/492/",
+        "expected": {
+          "sync": false,
+          "title": "Kengan Omega",
+          "identifier": "kengan-omega",
+          "image": "https://media.comikey.com/gazo/600/jpg/comics/WeRbe0/aafeca1bbc8d.png",
+          "uiSelector": true,
+          "epList": {
+            "5": "https://br.comikey.com/read/kengan-omega-pt-br-manga/onQOQe/capitulo-portugues-5/",
+            "10": "https://br.comikey.com/read/kengan-omega-pt-br-manga/ex3OlD/capitulo-portugues-10/"
+          }
+       }
      }
    ]
  }
