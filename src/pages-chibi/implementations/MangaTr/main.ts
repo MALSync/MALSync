@@ -271,25 +271,22 @@ export const MangaTr: PageInterface = {
       return $c
         .coalesce(
           $c
-            .target()
-            .ifNotReturn()
             .text()
-            .ifNotReturn()
-            .regex(String.raw`(?:^|\D)(\d+(?:\.\d+)?)\s*$`, 1)
+            .regex(String.raw`Chapter\s*(\d+(?:\.\d+)?)`, 1)
             .number()
             .run(),
           $c
-            .target()
-            .ifNotReturn()
-            .getAttribute('data-episode')
-            .ifNotReturn()
+            .text()
+            .regex(String.raw`Blm\s*(\d+(?:\.\d+)?)`, 1)
             .number()
             .run(),
           $c
-            .target()
-            .ifNotReturn()
+            .text()
+            .regex(String.raw`(?:^|\s)(\d+(?:\.\d+)?)$`, 1)
+            .number()
+            .run(),
+          $c
             .getAttribute('href')
-            .ifNotReturn()
             .regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1)
             .number()
             .run(),
