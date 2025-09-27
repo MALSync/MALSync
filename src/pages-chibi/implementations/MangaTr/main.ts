@@ -170,7 +170,7 @@ export const MangaTr: PageInterface = {
         .trim()
         .replaceRegex(String.raw`[ \t\n\r\f\v]*[-|][ \t\n\r\f\v]*MangaTR.*$`, '')
         .replaceRegex(String.raw`[ \t\n\r\f\v]*Manga Oku.*$`, '')
-        .replaceRegex(String.raw`[ \t\n\r\f\v]*-[ \t\n\r\f\v]*Çevrimiçi.*$`, '')
+        .replaceRegex('[ \t\n\r\f\v]*-[ \t\n\r\f\v]*(?:[\u00C7C]evrimi[\u00E7c]i\s+T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga|T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga).*$', '')
         .replaceRegex(String.raw`[ \t\n\r\f\v]*\([0-9]{4}\)[ \t\n\r\f\v]*$`, '')
         .replaceRegex(String.raw`^([^ :]+)[ \t\n\r\f\v]+(Two.*)$`, '$1: $2')
         .trim()
@@ -246,7 +246,7 @@ export const MangaTr: PageInterface = {
             .run(),
           $c
             .text()
-            .regex(String.raw`Bölüm\s*(\d+(?:\.\d+)?)`, 1)
+            .regex(String.raw`Bï¿½lï¿½m\s*(\d+(?:\.\d+)?)`, 1)
             .number()
             .run(),
           $c
