@@ -42,7 +42,6 @@ export const Comikey: PageInterface = {
         .urlPart(6)
         .regex('(?:chapter|episode|espanol|bahasa|portugues)[_-]?(\\d+)', 1)
         .number()
-        .ifNotReturn()
         .run();
     },
     nextEpUrl($c) {
