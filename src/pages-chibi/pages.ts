@@ -31,6 +31,7 @@ import { Utoon } from './implementations/Utoon/main';
 import { WitchScans } from './implementations/WitchScans/main';
 import { ArvenComics } from './implementations/ArvenComics/main';
 import { Comikey } from './implementations/Comikey/main';
+import { AuroraScans } from './implementations/AuroraScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -64,4 +65,5 @@ export const pages: { [key: string]: PageInterface } = {
   WitchScans,
   ArvenComics,
   Comikey,
+  AuroraScans,
 };
