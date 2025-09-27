@@ -29,6 +29,7 @@ import { StoneScape } from './implementations/StoneScape/main';
 import { ResetScans } from './implementations/ResetScans/main';
 import { Utoon } from './implementations/Utoon/main';
 import { WitchScans } from './implementations/WitchScans/main';
+import { Diziwatch } from './implementations/Diziwatch/main';
 import { ArvenComics } from './implementations/ArvenComics/main';
 import { Comikey } from './implementations/Comikey/main';
 import { AuroraScans } from './implementations/AuroraScans/main';
@@ -63,6 +64,7 @@ export const pages: { [key: string]: PageInterface } = {
   ResetScans,
   Utoon,
   WitchScans,
+  Diziwatch,
   ArvenComics,
   Comikey,
   AuroraScans,
