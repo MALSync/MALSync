@@ -3,7 +3,7 @@ import { PageInterface } from '../../pageInterface';
 let mangaTrChapterCacheLoaded = false;
 
 const CHAPTER_LINK_SELECTOR =
-  '#results a[href*="id-"][href*="chapter-"], #malsync-mangatr-chapters a[href*="id-"][href*="chapter-"], .chapter-list a, .chapters li a, .chapter-item a';
+  '#results a[href*="id-"][href*="chapter-"], #malsync-mangatr-chapters a[href*="id-"][href*="chapter-"], .chapter-list a, .chapters li a, .chapter-item a, .chapter-table a, .chapter-grid a';
 
 const ensureMangaTrChapters = (slug: string) => {
   if (mangaTrChapterCacheLoaded || typeof window === 'undefined') return;
@@ -15,6 +15,7 @@ const ensureMangaTrChapters = (slug: string) => {
   try {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `https://manga-tr.com/cek/fetch_pages_manga.php?manga_cek=${slug}`, false);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); // Add this line to mimic AJAX request
     xhr.send();
 
     if (xhr.status >= 200 && xhr.status < 300) {
@@ -35,6 +36,7 @@ const ensureMangaTrChapters = (slug: string) => {
     }
   } catch (error) {
     // Ignore network errors; fallback to existing DOM
+    console.error('Error fetching MangaTr chapters:', error); // Add this line to log errors
   }
 };
 
@@ -170,7 +172,10 @@ export const MangaTr: PageInterface = {
         .trim()
         .replaceRegex(String.raw`[ \t\n\r\f\v]*[-|][ \t\n\r\f\v]*MangaTR.*$`, '')
         .replaceRegex(String.raw`[ \t\n\r\f\v]*Manga Oku.*$`, '')
-        .replaceRegex('[ \t\n\r\f\v]*-[ \t\n\r\f\v]*(?:[\u00C7C]evrimi[\u00E7c]i\s+T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga|T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga).*$', '')
+        .replaceRegex(
+          String.raw`[ \t\n\r\f\v]*-(?:[\u00C7C]evrimi[\u00E7c]i\s+T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga|T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga|.*[Cc]evrimi[cç]i.*T[uü]rk[cç]e.*Manga|.*[Çç]evrimi[cç]i.*T[uü]rk[cç]e.*Manga|.*[Çç]evrimi[cç]i.*T[uü]rk[cç]e.*Manga.*).*`,
+          '',
+        )
         .replaceRegex(String.raw`[ \t\n\r\f\v]*\([0-9]{4}\)[ \t\n\r\f\v]*$`, '')
         .replaceRegex(String.raw`^([^ :]+)[ \t\n\r\f\v]+(Two.*)$`, '$1: $2')
         .trim()
@@ -231,7 +236,33 @@ export const MangaTr: PageInterface = {
         ensureMangaTrChapters(slug);
       }
 
-      return $c.querySelectorAll(CHAPTER_LINK_SELECTOR).run();
+      let nodes = $c.querySelectorAll(CHAPTER_LINK_SELECTOR).run();
+      if ((!nodes || !nodes.length) && typeof window !== 'undefined') {
+        const cache = (window as any).__MangaTrChapterCache as
+          | { href: string; html: string }[]
+          | undefined;
+        if (Array.isArray(cache) && cache.length) {
+          let hidden = document.getElementById('malsync-mangatr-chapters');
+          if (!hidden) {
+            hidden = document.createElement('div');
+            hidden.id = 'malsync-mangatr-chapters';
+            hidden.style.display = 'none';
+            cache.forEach(chapter => {
+              const anchor = document.createElement('a');
+              anchor.setAttribute('href', chapter.href);
+              anchor.textContent = chapter.html; // Using textContent for security
+              if (hidden) {
+                // Check if hidden is not null
+                hidden.appendChild(anchor);
+              }
+            });
+            (document.body || document.documentElement)?.appendChild(hidden);
+          }
+          nodes = $c.querySelectorAll(CHAPTER_LINK_SELECTOR).run();
+        }
+      }
+
+      return nodes;
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
@@ -240,22 +271,25 @@ export const MangaTr: PageInterface = {
       return $c
         .coalesce(
           $c
+            .target()
+            .ifNotReturn()
             .text()
-            .regex(String.raw`Chapter\s*(\d+(?:\.\d+)?)`, 1)
+            .ifNotReturn()
+            .regex(String.raw`(?:^|\D)(\d+(?:\.\d+)?)\s*$`, 1)
             .number()
             .run(),
           $c
-            .text()
-            .regex(String.raw`B�l�m\s*(\d+(?:\.\d+)?)`, 1)
+            .target()
+            .ifNotReturn()
+            .getAttribute('data-episode')
+            .ifNotReturn()
             .number()
             .run(),
           $c
-            .text()
-            .regex(String.raw`(?:^|\s)(\d+(?:\.\d+)?)$`, 1)
-            .number()
-            .run(),
-          $c
+            .target()
+            .ifNotReturn()
             .getAttribute('href')
+            .ifNotReturn()
             .regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1)
             .number()
             .run(),
