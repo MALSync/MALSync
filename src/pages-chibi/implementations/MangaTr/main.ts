@@ -7,6 +7,7 @@ const CHAPTER_LINK_SELECTOR =
 
 const ensureMangaTrChapters = (slug: string) => {
   if (mangaTrChapterCacheLoaded || typeof window === 'undefined') return;
+  
   if (document.querySelector('#malsync-mangatr-chapters a[href*="id-"][href*="chapter-"]')) {
     mangaTrChapterCacheLoaded = true;
     return;
@@ -15,7 +16,7 @@ const ensureMangaTrChapters = (slug: string) => {
   try {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `https://manga-tr.com/cek/fetch_pages_manga.php?manga_cek=${slug}`, false);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); // Add this line to mimic AJAX request
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.send();
 
     if (xhr.status >= 200 && xhr.status < 300) {
@@ -35,8 +36,7 @@ const ensureMangaTrChapters = (slug: string) => {
       }
     }
   } catch (error) {
-    // Ignore network errors; fallback to existing DOM
-    console.error('Error fetching MangaTr chapters:', error); // Add this line to log errors
+    console.error('Error fetching MangaTr chapters:', error);
   }
 };
 
@@ -51,78 +51,41 @@ export const MangaTr: PageInterface = {
   search: 'https://manga-tr.com/search?query={searchtermPlus}',
   sync: {
     isSyncPage($c) {
-      // Simplified pattern for sync page detection
       return $c
         .or(
-          // Main URL structure
-          $c
-            .url()
-            .regex(String.raw`id-\d+-read-[\w-]+-chapter-\d+(?:\.\d+)?\.html`, 0)
-            .boolean()
-            .run(),
-          // Fallback patterns
+          $c.url().regex(String.raw`id-\d+-read-[\w-]+-chapter-\d+(?:\.\d+)?\.html`, 0).boolean().run(),
           $c.url().regex('reader/[^/]+', 0).boolean().run(),
         )
         .run();
     },
     getTitle($c) {
-      // Simplified title extraction
       return $c
         .coalesce(
-          // Main pattern
-          $c
-            .url()
-            .regex(String.raw`id-\d+-read-([\w-]+)-chapter-\d+(?:\.\d+)?\.html`, 1)
-            .run(),
-          // Fallback for reader pattern
+          $c.url().regex(String.raw`id-\d+-read-([\w-]+)-chapter-\d+(?:\.\d+)?\.html`, 1).run(),
           $c.url().regex('reader/([^/]+)', 1).run(),
         )
         .run();
     },
     getIdentifier($c) {
-      // Use same pattern as title
       return $c.this('sync.getTitle').run();
     },
     getOverviewUrl($c) {
       return $c
         .string('https://manga-tr.com/manga-')
-        .concat(
-          $c
-            .coalesce(
-              $c.this('sync.getTitle').run(),
-              $c.url().regex('reader/([^/]+)', 1).run(),
-              $c
-                .url()
-                .regex(String.raw`manga-([^.]+)\.html`, 1)
-                .run(),
-            )
-            .run(),
-        )
+        .concat($c.this('sync.getTitle').run())
         .concat('.html')
         .run();
     },
     getEpisode($c) {
-      // Simplified chapter number extraction
       return $c
         .coalesce(
-          // Main pattern
-          $c
-            .url()
-            .regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1)
-            .number()
-            .run(),
-          // Fallback for reader pattern
-          $c
-            .url()
-            .regex(String.raw`reader/[^/]+/(\d+(?:\.\d+)?)`, 1)
-            .number()
-            .run(),
+          $c.url().regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1).number().run(),
+          $c.url().regex(String.raw`reader/[^/]+/(\d+(?:\.\d+)?)`, 1).number().run(),
         )
         .ifNotReturn()
         .run();
     },
     nextEpUrl($c) {
-      // Simplified next chapter URL detection
       return $c
         .querySelector('a.next-chapter, a.next-btn, a[title*="Next"], a[title*="Sonraki"]')
         .ifNotReturn()
@@ -155,12 +118,7 @@ export const MangaTr: PageInterface = {
   },
   overview: {
     isOverviewPage($c) {
-      // Simplified pattern for overview page detection
-      return $c
-        .url()
-        .regex(String.raw`manga-[^.]+\.html`, 0)
-        .boolean()
-        .run();
+      return $c.url().regex(String.raw`manga-[^.]+\.html`, 0).boolean().run();
     },
     getTitle($c) {
       return $c
@@ -182,11 +140,7 @@ export const MangaTr: PageInterface = {
         .run();
     },
     getIdentifier($c) {
-      // Extract manga name from URL
-      return $c
-        .url()
-        .regex(String.raw`manga-([^.]+)\.html`, 1)
-        .run();
+      return $c.url().regex(String.raw`manga-([^.]+)\.html`, 1).run();
     },
     getImage($c) {
       return $c.string('').run();
@@ -199,48 +153,32 @@ export const MangaTr: PageInterface = {
     elementsSelector($c) {
       let slug: string | null = null;
 
+      // Extract slug
       try {
-        const identifier = $c.this('overview.getIdentifier').run();
-        if (identifier) {
-          slug = String(identifier);
-        }
+        slug = String($c.this('overview.getIdentifier').run());
       } catch (_error) {
-        // Ignore missing overview identifier
-      }
-
-      if (!slug) {
         try {
-          const identifier = $c.this('sync.getIdentifier').run();
-          if (identifier) {
-            slug = String(identifier);
-          }
-        } catch (_error) {
-          // Ignore missing sync identifier
-        }
-      }
-
-      if (!slug) {
-        const fallbackUrl = String($c.url().run());
-        const directMatch = fallbackUrl.match(/manga-([^.]+)\.html/);
-        if (directMatch && directMatch[1]) {
-          slug = directMatch[1];
-        } else {
-          const chapterMatch = fallbackUrl.match(/id-\d+-read-([\w-]+)-chapter/);
-          if (chapterMatch && chapterMatch[1]) {
-            slug = chapterMatch[1];
+          slug = String($c.this('sync.getIdentifier').run());
+        } catch (_error2) {
+          const url = String($c.url().run());
+          const match = url.match(/manga-([^.]+)\.html/) || url.match(/id-\d+-read-([\w-]+)-chapter/);
+          if (match && match[1]) {
+            slug = match[1];
           }
         }
       }
 
+      // Ensure chapters are loaded
       if (slug) {
         ensureMangaTrChapters(slug);
       }
 
+      // Wait briefly for async loading
       let nodes = $c.querySelectorAll(CHAPTER_LINK_SELECTOR).run();
+      
+      // Fallback to window cache if needed
       if ((!nodes || !nodes.length) && typeof window !== 'undefined') {
-        const cache = (window as any).__MangaTrChapterCache as
-          | { href: string; html: string }[]
-          | undefined;
+        const cache = (window as any).__MangaTrChapterCache as { href: string; html: string }[] | undefined;
         if (Array.isArray(cache) && cache.length) {
           let hidden = document.getElementById('malsync-mangatr-chapters');
           if (!hidden) {
@@ -250,13 +188,10 @@ export const MangaTr: PageInterface = {
             cache.forEach(chapter => {
               const anchor = document.createElement('a');
               anchor.setAttribute('href', chapter.href);
-              anchor.textContent = chapter.html; // Using textContent for security
-              if (hidden) {
-                // Check if hidden is not null
-                hidden.appendChild(anchor);
-              }
+              anchor.textContent = chapter.html;
+              hidden!.appendChild(anchor);
             });
-            (document.body || document.documentElement)?.appendChild(hidden);
+            document.body.appendChild(hidden);
           }
           nodes = $c.querySelectorAll(CHAPTER_LINK_SELECTOR).run();
         }
@@ -270,26 +205,10 @@ export const MangaTr: PageInterface = {
     elementEp($c) {
       return $c
         .coalesce(
-          $c
-            .text()
-            .regex(String.raw`Chapter\s*(\d+(?:\.\d+)?)`, 1)
-            .number()
-            .run(),
-          $c
-            .text()
-            .regex(String.raw`Blm\s*(\d+(?:\.\d+)?)`, 1)
-            .number()
-            .run(),
-          $c
-            .text()
-            .regex(String.raw`(?:^|\s)(\d+(?:\.\d+)?)$`, 1)
-            .number()
-            .run(),
-          $c
-            .getAttribute('href')
-            .regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1)
-            .number()
-            .run(),
+          $c.text().regex(String.raw`Chapter\s*(\d+(?:\.\d+)?)`, 1).number().run(),
+          $c.text().regex(String.raw`Blm\s*(\d+(?:\.\d+)?)`, 1).number().run(),
+          $c.text().regex(String.raw`(?:^|\s)(\d+(?:\.\d+)?)$`, 1).number().run(),
+          $c.getAttribute('href').regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1).number().run(),
         )
         .ifNotReturn()
         .run();
@@ -309,7 +228,7 @@ export const MangaTr: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('#results, .chapter-list, .chapters').ifNotReturn().text().run(),
+          $c.querySelector('#results, .chapter-list, .chapters, #malsync-mangatr-chapters').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();
