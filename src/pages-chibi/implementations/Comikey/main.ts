@@ -112,19 +112,14 @@ export const Comikey: PageInterface = {
     },
     ready($c) {
       return $c
-        .waitUntilTrue($c.querySelector('.sub-data .title').isNil().not().run())
-        .detectChanges(
-          $c.querySelector('.sub-data .title').ifNotReturn().text().run(),
-          $c.trigger().run(),
-        )
+        .detectChanges($c.title().ifNotReturn().run(), $c.trigger().run())
         .domReady()
         .trigger()
         .run();
     },
     listChange($c) {
       return $c
-        .waitUntilTrue($c.querySelector('#chapters').isNil().not().run())
-        .trigger()
+        .waitUntilTrue($c.url().urlPart(3).equals('comics').run())
         .detectChanges($c.querySelector('#chapters').ifNotReturn().text().run(), $c.trigger().run())
         .run();
     },
