@@ -1,0 +1,9 @@
+{
+  "search": "https://openani.me/search?q={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://openani.me/*",
+      "*://www.openani.me/*"
+    ]
+  }
+}

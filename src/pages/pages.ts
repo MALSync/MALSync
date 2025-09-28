@@ -52,6 +52,7 @@ import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
 import { MangaSee } from './MangaSee/main';
 import { Okanime } from './Okanime/main';
+import { OpenAnime } from './OpenAnime/main';
 import { BSTO } from './BSTO/main';
 import { AsuraScans } from './AsuraScans/main';
 import { Jellyfin } from './Jellyfin/main';
@@ -180,6 +181,7 @@ export const pages = {
   tioanime,
   MangaSee,
   Okanime,
+  OpenAnime,
   BSTO,
   AsuraScans,
   Jellyfin,

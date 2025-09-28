@@ -1,0 +1,39 @@
+{
+  "title": "OpenAnime",
+  "url": "https://openani.me",
+  "testCases": [
+    {
+      "url": "https://openani.me/anime/shingeki-no-kyojin",
+      "expected": {
+        "sync": false,
+        "title": "Attack on Titan",
+        "identifier": "shingeki-no-kyojin?s=1",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://openani.me/anime/shingeki-no-kyojin/1/1",
+      "expected": {
+        "sync": true,
+        "title": "Attack on Titan",
+        "identifier": "shingeki-no-kyojin?s=1",
+        "overviewUrl": "https://openani.me/anime/shingeki-no-kyojin",
+        "nextEpUrl": "https://openani.me/anime/shingeki-no-kyojin/1/2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://openani.me/anime/shingeki-no-kyojin/2/1",
+      "expected": {
+        "sync": true,
+        "title": "Attack on Titan Season 2",
+        "identifier": "shingeki-no-kyojin?s=2",
+        "overviewUrl": "https://openani.me/anime/shingeki-no-kyojin",
+        "nextEpUrl": "https://openani.me/anime/shingeki-no-kyojin/2/2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    }
+  ]
+}
