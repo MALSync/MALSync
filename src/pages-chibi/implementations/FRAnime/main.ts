@@ -15,7 +15,8 @@ export const FRAnime: PageInterface = {
       return $c
         .and(
           $c.url().urlPart(3).equals('anime').run(),
-          $c.querySelector('div#episode').boolean().not().run(),
+          $c.url().urlParam('ep').boolean().run(),
+          $c.url().urlParam('anime_id').boolean().run(),
         )
         .run();
     },
@@ -43,13 +44,7 @@ export const FRAnime: PageInterface = {
       return getVideoJson($c).get('thumbnailUrl').ifNotReturn().run();
     },
     getOverviewUrl($c) {
-      return $c
-        .url()
-        .string()
-        .replaceRegex('([?&])(ep|epp)=[^&#]*', '')
-        .replaceRegex('?&', '?')
-        .replaceRegex('[?&]$', '')
-        .run();
+      return $c.url().replaceRegex('([?&])ep=[^&#]*', '').run();
     },
     getEpisode($c) {
       return $c.url().urlParam('ep').number().run();
@@ -60,7 +55,8 @@ export const FRAnime: PageInterface = {
       return $c
         .and(
           $c.url().urlPart(3).equals('anime').run(),
-          $c.querySelector('div#episode').boolean().run(),
+          $c.url().urlParam('ep').boolean().not().run(),
+          $c.url().urlParam('anime_id').boolean().run(),
         )
         .run();
     },
@@ -79,10 +75,10 @@ export const FRAnime: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelector('#episode').parent().parent().next().findAll('a').run();
+      return $c.querySelectorAll('.episode-card').run();
     },
     elementUrl($c) {
-      return $c.getAttribute('href').urlAbsolute().run();
+      return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
       return $c.this('list.elementUrl').this('sync.getEpisode').run();
@@ -93,7 +89,7 @@ export const FRAnime: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.domReady().trigger().detectChanges($c.url().run(), $c.trigger().run()).run();
+      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
   },
 };

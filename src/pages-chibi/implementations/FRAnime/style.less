@@ -1,29 +1,15 @@
 @import './../pages';
 
-@textColor: white;
+@boxBackground: rgb(30 34 44 / var(--tw-bg-opacity, 1));
+
+@highlightStyle: 0;
+@activeEp: rgb(235 27 49 / var(--tw-bg-opacity, 1));
 
 #malp {
-  a:hover {
-    color: #e3474b;
-  }
-
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   width: 100%;
 }
 
-#MalData > * {
-  white-space: nowrap;
-}
-
-#malp select,
-#malp input,
-#malp a,
-#malp #malTotalVol,
-#malp #malTotalCha {
-  display: inline-block !important;
-}
-
-.mal-sync-active {
-  background-color: #0095ff;
-  outline: 3px solid #0095ff;
+.mal-sync-active > .rounded-lg {
+  outline: 3px solid @activeEp;
 }
