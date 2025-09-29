@@ -832,4 +832,8 @@ module.exports = {
   loadx: {
      match: ['*://loadx.ws/*'],
   }
+  // Diziwatch
+  pichive: {
+    match: ['*://*.pichive.online/*'],
+  },
 };
