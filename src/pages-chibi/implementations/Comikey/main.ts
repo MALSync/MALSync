@@ -111,10 +111,15 @@ export const Comikey: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c
+        .detectChanges($c.title().ifNotReturn().run(), $c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
     },
     listChange($c) {
       return $c
+        .waitUntilTrue($c.url().urlPart(3).equals('comics').run())
         .detectChanges($c.querySelector('#chapters').ifNotReturn().text().run(), $c.trigger().run())
         .run();
     },
