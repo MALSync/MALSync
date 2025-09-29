@@ -53,15 +53,7 @@ export const ComicTop: PageInterface = {
       return $c
         .if(
           $c.url().urlParam('ct').boolean().run(),
-          $c
-            .url()
-            .urlParam('ct')
-            .log()
-            .ifNotReturn()
-            .regex('chapter-(\\d+)', 1)
-            .at(0)
-            .number()
-            .run(),
+          $c.url().urlParam('ct').ifNotReturn().regex('chapter-(\\d+)', 1).number().run(),
           $c.title().regex('chapter (\\d+)', 1).number().run(),
         )
         .run();
