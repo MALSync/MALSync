@@ -63,8 +63,8 @@ export default {
       _intervalKey,
       setInterval(() => {
         const temp = ctx.run(target);
-        if (typeof temp !== 'undefined' && currentState !== temp) {
-          currentState = temp;
+        if (typeof temp !== 'undefined' && currentState !== JSON.stringify(temp)) {
+          currentState = JSON.stringify(temp);
           ctx.run(callback);
         }
       }, 500),
