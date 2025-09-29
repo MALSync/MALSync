@@ -26,8 +26,13 @@ export const FrenchAnime: PageInterface = {
         .run();
     },
     getIdentifier($c) {
-      // Get the unique post ID from HTML (DataLife Engine article ID, not anime name)
-      return $c.querySelector('input[name="post_id"]').getAttribute('value').ifNotReturn().run();
+      // Get the unique post ID with null safety
+      return $c
+        .querySelector('input[name="post_id"]')
+        .ifNotReturn($c.string('no-id').run())
+        .getAttribute('value')
+        .ifNotReturn($c.string('no-value').run())
+        .run();
     },
     getOverviewUrl($c) {
       // Section from URL (variable: exclue, animes-vf, etc.)
@@ -37,10 +42,12 @@ export const FrenchAnime: PageInterface = {
       return $c.string(`https://french-anime.com/${section}/${postId}.html`).run();
     },
     getEpisode($c) {
-      // Try to find the visible button and extract episode number
+      // Try to find the visible button and extract episode number with default 0
       return $c
         .querySelector('div.button_box[style*="display: block"]')
+        .ifNotReturn($c.number(0).run())
         .getAttribute('id')
+        .ifNotReturn($c.string('button_0').run())
         .regex('button_(\\d+)', 1)
         .number()
         .run();
@@ -58,7 +65,15 @@ export const FrenchAnime: PageInterface = {
         .ifThen($c => $c.string('404').log().return().run())
         .domReady()
         .trigger()
-        .detectChanges($c.querySelector('div.button_box[style*="display: block"]').getAttribute('id').run(), $c.trigger().run())
+        .detectChanges(
+          $c.querySelector('div.button_box[style*="display: block"]')
+            .ifNotReturn($c.string('no-change').run())
+            .getAttribute('id')
+            .ifNotReturn($c.string('button_0').run())
+            .regex('button_(\\d+)', 1)
+            .run(),
+          $c.trigger().run()
+        )
         .run();
     },
   }
