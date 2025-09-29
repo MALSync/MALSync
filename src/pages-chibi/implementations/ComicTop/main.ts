@@ -140,13 +140,7 @@ export const ComicTop: PageInterface = {
       return $c.find('.epsleft a').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c
-        .this('list.elementUrl')
-        .urlParam('ct')
-        .ifNotReturn()
-        .regex('chapter[-_]?.*?(\\d+)', 1)
-        .number()
-        .run();
+      return $c.this('list.elementUrl').this('sync.getEpisode').run();
     },
   },
   lifecycle: {
