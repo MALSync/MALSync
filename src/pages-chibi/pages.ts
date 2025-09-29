@@ -36,8 +36,8 @@ import { AuroraScans } from './implementations/AuroraScans/main';
 import { ComicTop } from './implementations/ComicTop/main';
 import { Atsumaru } from './implementations/Atsumaru/main';
 import { Madarascans } from './implementations/Madarascans/main';
-import { FrenchAnime } from './implementations/FrenchAnime/main';
 import { FRAnime } from './implementations/FRAnime/main';
+import { FrenchAnime } from './implementations/FrenchAnime/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -76,6 +76,6 @@ export const pages: { [key: string]: PageInterface } = {
   ComicTop,
   Atsumaru,
   Madarascans,
-  FrenchAnime,
   FRAnime,
+  FrenchAnime,
 };
