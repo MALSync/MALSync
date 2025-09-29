@@ -1,0 +1,70 @@
+{
+    "title": "ComicTop",
+    "url": "https://comic-top.com/",
+    "testCases": [
+      {
+        "url": "https://comic-top.com/viewer/?cid=149934&ct=elden-ring-the-road-to-the-erdtree-chapter-chapter-69-be-wary-of-secrets-part-1&t=1759109848",
+        "expected": {
+          "sync": true,
+          "title": "ELDEN RING　The Road to the Erdtree",
+          "identifier": "elden-ring-the-road-to-the-erdtree",
+          "overviewUrl": "https://comic-top.com/manga/elden-ring-the-road-to-the-erdtree",
+          "episode": 69,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://comic-top.com/elden-ring-the-road-to-the-erdtree-chapter-chapter-69-be-wary-of-secrets-part-1/",
+        "expected": {
+          "sync": false,
+          "title": "ELDEN RING　The Road to the Erdtree",
+          "identifier": "elden-ring-the-road-to-the-erdtree",
+		      "overviewUrl": "https://comic-top.com/manga/elden-ring-the-road-to-the-erdtree",
+          "episode": 69,
+          "nextEpUrl": "https://comic-top.com/elden-ring-the-road-to-the-erdtree-chapter-chapter-69-be-wary-of-secrets-part-2/",
+          "uiSelector": false
+        }
+      },
+      {
+       "url": "https://comic-top.com/viewer/?cid=154351&ct=aruiha-watashi-no-mei-tantei-chapter-1-1&t=1759109626",
+        "expected": {
+          "sync": false,
+          "title": "或いは、私の名探偵",
+          "identifier": "aruiha-watashi-no-mei-tantei",
+		      "overviewUrl": "https://comic-top.com/manga/aruiha-watashi-no-mei-tantei",
+          "episode": 1,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://comic-top.com/manga/elden-ring-the-road-to-the-erdtree/",
+        "expected": {
+          "sync": false,
+          "title": "ELDEN RING　The Road to the Erdtree",
+          "identifier": "elden-ring-the-road-to-the-erdtree",
+          "image": "https://comic-top.com/wp-content/uploads/2022/10/kdcw_mf09203324020000_68.jpg",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-top.com/viewer/?cid=47004&ct=didn-t-you-chapter-chapter-1-you-thought-this-d-be-serious&t=1759109848",
+            "68": "https://comic-top.com/viewer/?cid=137110&ct=elden-ring-the-road-to-the-erdtree-chapter-chapter-68-sacrifice-ahead&t=1759109848",
+            "70": "https://comic-top.com/viewer/?cid=153377&ct=elden-ring-the-road-to-the-erdtree-chapter-chapter-70-visions-of-truth&t=1759109848"
+          }
+        }
+      },
+      {
+        "url": "https://comic-top.com/manga/aruiha-watashi-no-mei-tantei/",
+        "expected": {
+          "sync": false,
+          "title": "或いは、私の名探偵",
+          "identifier": "aruiha-watashi-no-mei-tantei",
+          "image": "https://comic-top.com/wp-content/uploads/2025/09/kc_007014_s.jpg",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-top.com/viewer/?cid=154351&ct=aruiha-watashi-no-mei-tantei-chapter-1-1&t=1759109626",
+            "2": "https://comic-top.com/viewer/?cid=154352&ct=aruiha-watashi-no-mei-tantei-chapter-1-2&t=1759109626",
+            "3": "https://comic-top.com/viewer/?cid=154353&ct=aruiha-watashi-no-mei-tantei-chapter-1-3&t=1759109626"
+          }
+        }
+      }
+    ]
+  }
