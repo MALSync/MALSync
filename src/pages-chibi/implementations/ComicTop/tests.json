@@ -37,6 +37,17 @@
       }
     },
     {
+      "url": "https://comic-top.com/viewer/?cid=86797&ct=nokuta-n-tatanta-nta-n-tatan-puchi-manga-chapter-case-4&t=1759118367",
+      "expected": {
+        "sync": true,
+        "title": "『のくたーんたたんたんたんたたん』プチ漫画",
+        "identifier": "nokuta-n-tatanta-nta-n-tatan-puchi-manga",
+        "overviewUrl": "https://comic-top.com/manga/nokuta-n-tatanta-nta-n-tatan-puchi-manga",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
       "url": "https://comic-top.com/manga/elden-ring-the-road-to-the-erdtree/",
       "expected": {
         "sync": false,

@@ -27,8 +27,8 @@ export const ComicTop: PageInterface = {
     getTitle($c) {
       return $c
         .coalesce(
-          $c.title().regex('^(.*?)\\s+chapter', 1).trim().run(),
-          $c.querySelector('.manga-title font').text().trim().run(),
+          $c.querySelector('.manga-info font').text().trim().run(),
+          $c.querySelector('.epx a').text().trim().run(),
         )
         .run();
     },
@@ -53,8 +53,8 @@ export const ComicTop: PageInterface = {
       return $c
         .if(
           $c.url().urlParam('ct').boolean().run(),
-          $c.url().urlParam('ct').ifNotReturn().regex('chapter-(\\d+)', 1).number().run(),
-          $c.title().regex('chapter (\\d+)', 1).number().run(),
+          $c.url().urlParam('ct').ifNotReturn().regex('chapter[-_]?.*?(\\d+)', 1).number().run(),
+          $c.url().urlPart(3).regex('chapter[-_]?.*?(\\d+)', 1).number().run(),
         )
         .run();
     },
@@ -144,7 +144,7 @@ export const ComicTop: PageInterface = {
         .this('list.elementUrl')
         .urlParam('ct')
         .ifNotReturn()
-        .regex('chapter[-_]?(\\d+)', 1)
+        .regex('chapter[-_]?.*?(\\d+)', 1)
         .number()
         .run();
     },
