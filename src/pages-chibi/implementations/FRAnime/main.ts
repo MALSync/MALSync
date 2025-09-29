@@ -79,13 +79,7 @@ export const FRAnime: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c
-        .querySelector('#episode')
-        .parent()
-        .parent()
-        .next()
-        .findAll('a')
-        .run();
+      return $c.querySelector('#episode').parent().parent().next().findAll('a').run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
