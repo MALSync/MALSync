@@ -67,5 +67,5 @@ export const pages: { [key: string]: PageInterface } = {
   ArvenComics,
   Comikey,
   AuroraScans,
-  Madarascans
+  Madarascans,
 };
