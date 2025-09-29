@@ -21,7 +21,11 @@
           "title": "Warrior Cariel",
           "identifier": "warrior-cariel",
           "image": "https://madarascans.com/wp-content/uploads/2025/08/2025-08-06-06-54-56-1754506496957.jpg",
-          "uiSelector": true
+          "uiSelector": true,
+          "epList": {
+            "4" : "https://madarascans.com/warrior-cariel-chapter-4/",
+            "12": "https://madarascans.com/warrior-cariel-chapter-12/"
+         }
         }
       }
     ]
