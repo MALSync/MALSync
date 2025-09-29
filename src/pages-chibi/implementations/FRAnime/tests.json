@@ -1,0 +1,37 @@
+{
+  "title": "FRAnime",
+  "url": "https://franime.fr",
+  "testCases": [
+    {
+      "url": "https://franime.fr/anime/spy-x-family?s=2&ep=13&lang=vo&anime_id=45398",
+      "expected": {
+        "sync": true,
+        "title": "SPY x FAMILY Season 2",
+        "identifier": "spy-x-family-season-2",
+        "overviewUrl": "https://franime.fr/anime/spy-x-family?s=2&lang=vo&anime_id=45398",
+        "episode": 13,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://franime.fr/anime/bocchi-the-rock?s=1&ep=12&lang=vo&anime_id=44196",
+      "expected": {
+        "sync": true,
+        "title": "Bocchi the Rock!",
+        "identifier": "bocchi-the-rock",
+        "overviewUrl": "https://franime.fr/anime/bocchi-the-rock?s=1&lang=vo&anime_id=44196",
+        "episode": 12,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://franime.fr/anime/bocchi-the-rock?s=1&lang=vo&anime_id=44196",
+      "expected": {
+        "sync": false,
+        "title": "Bocchi the Rock!",
+        "identifier": "bocchi-the-rock",
+        "uiSelector": true
+      }
+    }
+  ]
+}
