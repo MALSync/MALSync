@@ -108,7 +108,7 @@ export const Atsumaru: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('.flex-col > .relative.flex').ifNotReturn().text().run(),
+          $c.querySelector('.flex-col.gap-6').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();
