@@ -12,25 +12,39 @@ export const FrenchAnime: PageInterface = {
     isSyncPage($c) {
       return $c
         .and(
-          $c.url().urlPart(4).regex('\\d+').boolean().run(),
-          $c.querySelector('h1[itemprop="name"]').boolean().run()
+          $c.url().urlPart(3).boolean().run(),
+          $c.url().urlPart(4).regex('\\d+').boolean().run()
         )
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1[itemprop="name"]').text().trim().run();
+      // Return base title without episode (normal operation)
+      return $c
+        .querySelector('h1[itemprop="name"]')
+        .text()
+        .trim()
+        .run();
     },
     getIdentifier($c) {
+      // Get the unique post ID from HTML (DataLife Engine article ID, not anime name)
       return $c.querySelector('input[name="post_id"]').getAttribute('value').ifNotReturn().run();
     },
     getOverviewUrl($c) {
+      // Section from URL (variable: exclue, animes-vf, etc.)
       const section = $c.url().urlPart(3).run();
+      // ID from HTML (reliable unique identifier)
       const postId = $c.querySelector('input[name="post_id"]').getAttribute('value').ifNotReturn().run();
       return $c.string(`https://french-anime.com/${section}/${postId}.html`).run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).regex('episode[_-](\\d+)', 1).number().run();
-    }
+      // Try to find the visible button and extract episode number
+      return $c
+        .querySelector('div.button_box[style*="display: block"]')
+        .getAttribute('id')
+        .regex('button_(\\d+)', 1)
+        .number()
+        .run();
+    },
   },  
   lifecycle: {
     setup($c) {
@@ -38,17 +52,13 @@ export const FrenchAnime: PageInterface = {
     },
     ready($c) {
       return $c
+        .querySelector('pre')
+        .text()
+        .contains('404 Page')
+        .ifThen($c => $c.string('404').log().return().run())
         .domReady()
-        .waitUntilTrue(
-          $c.querySelector('h1[itemprop="name"]').boolean().run()
-        )
-        .ifThen($c => $c
-          .title()
-          .contains('Error 404')
-          .ifThen($c => $c.string('404').log().return().run())
-          .trigger()
-          .run()
-        )
+        .trigger()
+        .detectChanges($c.querySelector('div.button_box[style*="display: block"]').getAttribute('id').run(), $c.trigger().run())
         .run();
     },
   }

@@ -30,6 +30,8 @@ import { ResetScans } from './implementations/ResetScans/main';
 import { Utoon } from './implementations/Utoon/main';
 import { WitchScans } from './implementations/WitchScans/main';
 import { ArvenComics } from './implementations/ArvenComics/main';
+import { Comikey } from './implementations/Comikey/main';
+import { AuroraScans } from './implementations/AuroraScans/main';
 import { FrenchAnime } from './implementations/FrenchAnime/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -63,5 +65,7 @@ export const pages: { [key: string]: PageInterface } = {
   Utoon,
   WitchScans,
   ArvenComics,
+  Comikey,
+  AuroraScans,
   FrenchAnime,
 };
