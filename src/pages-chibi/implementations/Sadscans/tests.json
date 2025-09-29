@@ -1,0 +1,33 @@
+{
+  "title": "Sadscans",
+  "url": "https://sadscans.com/",
+  "testCases": [
+    {
+      "url": "https://sadscans.com/reader/68c074206f92f",
+      "expected": {
+        "sync": true,
+        "title": "Blue Lock",
+        "identifier": "blue-lock",
+        "overviewUrl": "https://sadscans.com/series/blue-lock",
+        "episode": 317,
+        "nextEpUrl": "https://sadscans.com/reader/68c9ac84359a1",
+        "image": "https://sadscans.com/assets/series/641882302dcfd/68c074206f92f/thumbnails/68c074207abfe.png",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://sadscans.com/series/blue-lock",
+      "expected": {
+        "sync": false,
+        "title": "Blue Lock",
+        "identifier": "blue-lock",
+        "image": "https://sadscans.com/assets/series/641882302dcfd/Blue Lock Oku.jpg",
+        "uiSelector": true,
+        "epList": {
+          "318": "https://sadscans.com/reader/68c9ac84359a1",
+          "317": "https://sadscans.com/reader/68c074206f92f"
+        }
+      }
+    }
+  ]
+}
