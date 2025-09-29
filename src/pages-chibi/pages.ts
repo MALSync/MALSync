@@ -33,6 +33,7 @@ import { Sadscans } from './implementations/Sadscans/main';
 import { ArvenComics } from './implementations/ArvenComics/main';
 import { Comikey } from './implementations/Comikey/main';
 import { AuroraScans } from './implementations/AuroraScans/main';
+import { Atsumaru } from './implementations/Atsumaru/main';
 import { Madarascans } from './implementations/Madarascans/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -69,5 +70,6 @@ export const pages: { [key: string]: PageInterface } = {
   ArvenComics,
   Comikey,
   AuroraScans,
+  Atsumaru,
   Madarascans,
 };
