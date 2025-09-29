@@ -34,6 +34,7 @@ import { ArvenComics } from './implementations/ArvenComics/main';
 import { Comikey } from './implementations/Comikey/main';
 import { AuroraScans } from './implementations/AuroraScans/main';
 import { ComicTop } from './implementations/ComicTop/main';
+import { Atsumaru } from './implementations/Atsumaru/main';
 import { Madarascans } from './implementations/Madarascans/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -71,5 +72,6 @@ export const pages: { [key: string]: PageInterface } = {
   Comikey,
   AuroraScans,
   ComicTop,
+  Atsumaru,
   Madarascans,
 };
