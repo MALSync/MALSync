@@ -93,7 +93,6 @@ import { SovetRomantica } from './SovetRomantica/main';
 import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 import { Docchi } from './Docchi/main';
-import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 import { AnimeNoSub } from './AnimeNoSub/main';
@@ -220,7 +219,6 @@ export const pages = {
   ADN,
   Aniyan,
   Docchi,
-  FRAnime,
   FMTeam,
   Animelon,
   AnimeNoSub,

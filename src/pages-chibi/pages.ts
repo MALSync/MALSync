@@ -37,6 +37,7 @@ import { ComicTop } from './implementations/ComicTop/main';
 import { Atsumaru } from './implementations/Atsumaru/main';
 import { Madarascans } from './implementations/Madarascans/main';
 import { AsuraScans } from './implementations/AsuraScans/main';
+import { FRAnime } from './implementations/FRAnime/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -76,4 +77,5 @@ export const pages: { [key: string]: PageInterface } = {
   Atsumaru,
   Madarascans,
   AsuraScans,
+  FRAnime,
 };
