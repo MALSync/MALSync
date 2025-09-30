@@ -53,7 +53,6 @@ import { tioanime } from './tioanime/main';
 import { MangaSee } from './MangaSee/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
-import { AsuraScans } from './AsuraScans/main';
 import { Jellyfin } from './Jellyfin/main';
 import { An1me } from './An1me/main';
 import { MangaJar } from './MangaJar/main';
@@ -94,7 +93,6 @@ import { SovetRomantica } from './SovetRomantica/main';
 import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 import { Docchi } from './Docchi/main';
-import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 import { AnimeNoSub } from './AnimeNoSub/main';
@@ -181,7 +179,6 @@ export const pages = {
   MangaSee,
   Okanime,
   BSTO,
-  AsuraScans,
   Jellyfin,
   An1me,
   MangaJar,
@@ -222,7 +219,6 @@ export const pages = {
   ADN,
   Aniyan,
   Docchi,
-  FRAnime,
   FMTeam,
   Animelon,
   AnimeNoSub,
