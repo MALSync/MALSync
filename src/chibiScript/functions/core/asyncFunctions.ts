@@ -58,13 +58,13 @@ export default {
     _intervalKey?,
   ): void => {
     clearInterval(ctx.getInterval(_intervalKey));
-    let currentState = ctx.run(target);
+    let currentState = JSON.stringify(ctx.run(target));
     ctx.setInterval(
       _intervalKey,
       setInterval(() => {
-        const temp = ctx.run(target);
-        if (typeof temp !== 'undefined' && currentState !== JSON.stringify(temp)) {
-          currentState = JSON.stringify(temp);
+        const temp = JSON.stringify(ctx.run(target));
+        if (typeof temp !== 'undefined' && currentState !== temp) {
+          currentState = temp;
           ctx.run(callback);
         }
       }, 500),
