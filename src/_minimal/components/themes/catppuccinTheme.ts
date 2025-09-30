@@ -78,13 +78,13 @@ export const mocha: Theme = {
   colors: {
     backdrop: '#11111B', // sidebar colouring - crust
     background: '#181825', // main background - base
-    foreground: '#1E1E2E', // searchbar and buttons? - mantle
+    foreground: '#1E1E2E', // searchbar and buttons - mantle
     primary: '#CBA6F7', // accent + not caught up with chapters - mauve
     'primary-dark': '#a6e3a1', // rating - green
     'border-hover': '#cdd6f4', // button border on hover - text
     secondary: '#ed8796', // not caught up with chapters - red
     'dark-background': '#45475a', // days ago/days to next episode - surface 1
-    text: '#cdd6f4', // text possibly? - text
+    text: '#cdd6f4', // text - text
     'light-text': '#bac2de', // greyed out text - subtext 1
     'secondary-text': '#89b4fa', // links - blue
     'state-1': '#a6e3a1', // watching - green
