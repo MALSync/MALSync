@@ -53,7 +53,6 @@ import { tioanime } from './tioanime/main';
 import { MangaSee } from './MangaSee/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
-import { AsuraScans } from './AsuraScans/main';
 import { Jellyfin } from './Jellyfin/main';
 import { An1me } from './An1me/main';
 import { MangaJar } from './MangaJar/main';
@@ -180,7 +179,6 @@ export const pages = {
   MangaSee,
   Okanime,
   BSTO,
-  AsuraScans,
   Jellyfin,
   An1me,
   MangaJar,
