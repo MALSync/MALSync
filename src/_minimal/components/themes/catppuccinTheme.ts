@@ -12,7 +12,7 @@ export const latte: Theme = {
     'border-hover': '#4c4f69',
     secondary: '#d20f39',
     'dark-background': '#bcc0cc',
-    'text': '#4c4f69',
+    text: '#4c4f69',
     'light-text': '#5c5f77',
     'secondary-text': '#1e66f5',
     'state-1': '#40a02b',
@@ -36,7 +36,7 @@ export const frappe: Theme = {
     'border-hover': '#c6d0f5',
     secondary: '#e78284',
     'dark-background': '#51576d',
-    'text': '#c6d0f5',
+    text: '#c6d0f5',
     'light-text': '#b5bfe2',
     'secondary-text': '#8caaee',
     'state-1': '#a6d189',
@@ -60,7 +60,7 @@ export const macchiato: Theme = {
     'border-hover': '#cad3f5',
     secondary: '#ed8796',
     'dark-background': '#494d64',
-    'text': '#cad3f5',
+    text: '#cad3f5',
     'light-text': '#b8c0e0',
     'secondary-text': '#8aadf4',
     'state-1': '#a6da95',
@@ -69,7 +69,7 @@ export const macchiato: Theme = {
     'state-4': '#ed8796',
     'state-6': '#c6a0f6',
     'state-23': '#91d7e3',
-  }
+  },
 };
 
 export const mocha: Theme = {
@@ -84,7 +84,7 @@ export const mocha: Theme = {
     'border-hover': '#cdd6f4', // button border on hover - text
     secondary: '#ed8796', // not caught up with chapters - red
     'dark-background': '#45475a', // days ago/days to next episode - surface 1
-    'text': '#cdd6f4', // text possibly? - text
+    text: '#cdd6f4', // text possibly? - text
     'light-text': '#bac2de', // greyed out text - subtext 1
     'secondary-text': '#89b4fa', // links - blue
     'state-1': '#a6e3a1', // watching - green
@@ -95,4 +95,3 @@ export const mocha: Theme = {
     'state-23': '#89dceb', // rewatching - sky
   },
 };
-
