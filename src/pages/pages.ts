@@ -117,7 +117,6 @@ import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
-import { VortexScans } from './VortexScans/main';
 import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
@@ -243,7 +242,6 @@ export const pages = {
   MangaRead,
   TempleScan,
   ScyllaScans,
-  VortexScans,
   Kavita,
   Rawkuma,
   Aninexus,
