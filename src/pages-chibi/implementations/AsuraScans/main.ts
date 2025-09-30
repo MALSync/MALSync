@@ -28,7 +28,7 @@ export const AsuraScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.text-sm a span').text().split(' (').at(0).trim().run();
+      return $c.querySelector('.text-sm a span').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).replaceRegex('-[^-]+$', '').trim().run();
