@@ -7,7 +7,7 @@ const CHAPTER_LINK_SELECTOR =
 
 const ensureMangaTrChapters = (slug: string) => {
   if (mangaTrChapterCacheLoaded || typeof window === 'undefined') return;
-  
+
   if (document.querySelector('#malsync-mangatr-chapters a[href*="id-"][href*="chapter-"]')) {
     mangaTrChapterCacheLoaded = true;
     return;
@@ -53,7 +53,11 @@ export const MangaTr: PageInterface = {
     isSyncPage($c) {
       return $c
         .or(
-          $c.url().regex(String.raw`id-\d+-read-[\w-]+-chapter-\d+(?:\.\d+)?\.html`, 0).boolean().run(),
+          $c
+            .url()
+            .regex(String.raw`id-\d+-read-[\w-]+-chapter-\d+(?:\.\d+)?\.html`, 0)
+            .boolean()
+            .run(),
           $c.url().regex('reader/[^/]+', 0).boolean().run(),
         )
         .run();
@@ -61,7 +65,10 @@ export const MangaTr: PageInterface = {
     getTitle($c) {
       return $c
         .coalesce(
-          $c.url().regex(String.raw`id-\d+-read-([\w-]+)-chapter-\d+(?:\.\d+)?\.html`, 1).run(),
+          $c
+            .url()
+            .regex(String.raw`id-\d+-read-([\w-]+)-chapter-\d+(?:\.\d+)?\.html`, 1)
+            .run(),
           $c.url().regex('reader/([^/]+)', 1).run(),
         )
         .run();
@@ -79,8 +86,16 @@ export const MangaTr: PageInterface = {
     getEpisode($c) {
       return $c
         .coalesce(
-          $c.url().regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1).number().run(),
-          $c.url().regex(String.raw`reader/[^/]+/(\d+(?:\.\d+)?)`, 1).number().run(),
+          $c
+            .url()
+            .regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1)
+            .number()
+            .run(),
+          $c
+            .url()
+            .regex(String.raw`reader/[^/]+/(\d+(?:\.\d+)?)`, 1)
+            .number()
+            .run(),
         )
         .ifNotReturn()
         .run();
@@ -118,20 +133,28 @@ export const MangaTr: PageInterface = {
   },
   overview: {
     isOverviewPage($c) {
-      return $c.url().regex(String.raw`manga-[^.]+\.html`, 0).boolean().run();
+      return $c
+        .url()
+        .regex(String.raw`manga-[^.]+\.html`, 0)
+        .boolean()
+        .run();
     },
     getTitle($c) {
-      return $c
+      // Get the title as a ChibiJson object
+      const titleObj = $c
         .coalesce(
           $c.querySelector('[property="og:title"]').ifNotReturn().getAttribute('content').run(),
           $c.title().run(),
           $c.querySelector('h1.manga-title, h1.series-title, h1').ifNotReturn().text().run(),
         )
-        .trim()
+        .trim();
+
+      // Process the title with regex replacements
+      return titleObj
         .replaceRegex(String.raw`[ \t\n\r\f\v]*[-|][ \t\n\r\f\v]*MangaTR.*$`, '')
         .replaceRegex(String.raw`[ \t\n\r\f\v]*Manga Oku.*$`, '')
         .replaceRegex(
-          String.raw`[ \t\n\r\f\v]*-(?:[\u00C7C]evrimi[\u00E7c]i\s+T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga|T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga|.*[Cc]evrimi[cç]i.*T[uü]rk[cç]e.*Manga|.*[Çç]evrimi[cç]i.*T[uü]rk[cç]e.*Manga|.*[Çç]evrimi[cç]i.*T[uü]rk[cç]e.*Manga.*).*`,
+          String.raw`[ \t\n\r\f\v]*-(?:[\u00C7C]evrimi[\u00E7c]i\s+T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga|T(?:\u00FC|u)rk(?:\u00E7|c)e\s+Manga|.*[Cc]evrimi[cç]i.*T[uü]rk[cç]e.*Manga|.*[Çç]evrimi[cç]i.*T[uü]rk[cç]e.*Manga|.*[Çç]evrimi[cç]i.*T[uü]rk[cç]e.*Manga.*|.*Ã‡evrimiÃ§i.*TÃ¼rkÃ§e.*Manga).*`,
           '',
         )
         .replaceRegex(String.raw`[ \t\n\r\f\v]*\([0-9]{4}\)[ \t\n\r\f\v]*$`, '')
@@ -140,7 +163,10 @@ export const MangaTr: PageInterface = {
         .run();
     },
     getIdentifier($c) {
-      return $c.url().regex(String.raw`manga-([^.]+)\.html`, 1).run();
+      return $c
+        .url()
+        .regex(String.raw`manga-([^.]+)\.html`, 1)
+        .run();
     },
     getImage($c) {
       return $c.string('').run();
@@ -151,67 +177,20 @@ export const MangaTr: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      let slug: string | null = null;
+      // For chapter loading, we'll rely on existing DOM elements
+      // since we can't use XMLHttpRequest in ChibiScript
 
-      // Extract slug
-      try {
-        slug = String($c.this('overview.getIdentifier').run());
-      } catch (_error) {
-        try {
-          slug = String($c.this('sync.getIdentifier').run());
-        } catch (_error2) {
-          const url = String($c.url().run());
-          const match = url.match(/manga-([^.]+)\.html/) || url.match(/id-\d+-read-([\w-]+)-chapter/);
-          if (match && match[1]) {
-            slug = match[1];
-          }
-        }
-      }
-
-      // Ensure chapters are loaded
-      if (slug) {
-        ensureMangaTrChapters(slug);
-      }
-
-      // Wait briefly for async loading
-      let nodes = $c.querySelectorAll(CHAPTER_LINK_SELECTOR).run();
-      
-      // Fallback to window cache if needed
-      if ((!nodes || !nodes.length) && typeof window !== 'undefined') {
-        const cache = (window as any).__MangaTrChapterCache as { href: string; html: string }[] | undefined;
-        if (Array.isArray(cache) && cache.length) {
-          let hidden = document.getElementById('malsync-mangatr-chapters');
-          if (!hidden) {
-            hidden = document.createElement('div');
-            hidden.id = 'malsync-mangatr-chapters';
-            hidden.style.display = 'none';
-            cache.forEach(chapter => {
-              const anchor = document.createElement('a');
-              anchor.setAttribute('href', chapter.href);
-              anchor.textContent = chapter.html;
-              hidden!.appendChild(anchor);
-            });
-            document.body.appendChild(hidden);
-          }
-          nodes = $c.querySelectorAll(CHAPTER_LINK_SELECTOR).run();
-        }
-      }
-
-      return nodes;
+      return $c
+        .querySelectorAll(
+          'a[href*="id-"][href*="chapter-"], .chapter-list a, .chapters li a, .chapter-item a, .chapter-table a, .chapter-grid a',
+        )
+        .run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c
-        .coalesce(
-          $c.text().regex(String.raw`Chapter\s*(\d+(?:\.\d+)?)`, 1).number().run(),
-          $c.text().regex(String.raw`Blm\s*(\d+(?:\.\d+)?)`, 1).number().run(),
-          $c.text().regex(String.raw`(?:^|\s)(\d+(?:\.\d+)?)$`, 1).number().run(),
-          $c.getAttribute('href').regex(String.raw`chapter-(\d+(?:\.\d+)?)\.html`, 1).number().run(),
-        )
-        .ifNotReturn()
-        .run();
+      return $c.target().this('list.elementUrl').this('sync.getEpisode').run();
     },
   },
   lifecycle: {
@@ -228,7 +207,11 @@ export const MangaTr: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('#results, .chapter-list, .chapters, #malsync-mangatr-chapters').ifNotReturn().text().run(),
+          $c
+            .querySelector('#results, .chapter-list, .chapters, #malsync-mangatr-chapters')
+            .ifNotReturn()
+            .text()
+            .run(),
           $c.trigger().run(),
         )
         .run();
