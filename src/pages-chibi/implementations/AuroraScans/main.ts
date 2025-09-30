@@ -75,12 +75,45 @@ export const AuroraScans: PageInterface = {
       return $c.querySelector('h1[itemprop="name"]').uiAfter().run();
     },
   },
+  list: {
+    elementsSelector($c) {
+      return $c.querySelectorAll('.space-y-2 > div').run();
+    },
+    elementUrl($c) {
+      return $c
+        .find('img[alt]')
+        .getAttribute('alt')
+        .trim()
+        .replaceRegex(
+          '^(.*?)(?=\\d+)',
+          $c
+            .string('/series/')
+            .concat($c.this('sync.getIdentifier').concat('/chapter-').run())
+            .run(),
+        )
+        .urlAbsolute()
+        .run();
+    },
+    elementEp($c) {
+      return $c.this('list.elementUrl').this('sync.getEpisode').run();
+    },
+  },
   lifecycle: {
     setup($c) {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+    },
+    listChange($c) {
+      return $c
+        .waitUntilTrue($c.querySelector('.space-y-2').boolean().run())
+        .trigger()
+        .detectChanges(
+          $c.querySelector('.space-y-2').ifNotReturn().text().run(),
+          $c.trigger().run(),
+        )
+        .run();
     },
   },
 };
