@@ -75,6 +75,29 @@ export const VortexScans: PageInterface = {
       return $c.querySelector('h1[itemprop="name"]').uiAfter().run();
     },
   },
+  list: {
+    elementsSelector($c) {
+      return $c.querySelectorAll('.space-y-2 .rounded-lg').run();
+    },
+    elementUrl($c) {
+      return $c
+        .find('img[alt]')
+        .getAttribute('alt')
+        .trim()
+        .replaceRegex(
+          '^(.*?)(?=\\d+)',
+          $c
+            .string('/series/')
+            .concat($c.this('sync.getIdentifier').concat('/chapter-').run())
+            .run(),
+        )
+        .urlAbsolute()
+        .run();
+    },
+    elementEp($c) {
+      return $c.this('list.elementUrl').this('sync.getEpisode').run();
+    },
+  },
   lifecycle: {
     setup($c) {
       return $c.addStyle(require('./style.less?raw').toString()).run();

@@ -21,7 +21,11 @@
         "title": "The Great Heavenly Demon Sovereign",
         "identifier": "the-great-heavenly-demon-sovereign",
         "image": "https://storage.vexmanga.com/public/upload/2025/09/14/bed28d68-7a97-482b-81b1-9e1b635938c5.webp",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "1": "https://vortexscans.org/series/the-great-heavenly-demon-sovereign/chapter-1",
+          "20": "https://vortexscans.org/series/the-great-heavenly-demon-sovereign/chapter-20"
+        }
       }
     },
     {
