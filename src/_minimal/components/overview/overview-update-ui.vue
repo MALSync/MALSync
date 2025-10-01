@@ -375,16 +375,16 @@ const episodeLang = utils.episode;
       &.add {
         width: 100%;
         background-color: var(--cl-primary);
-        color: white;
+        color: var(--cl-primary-contrast);
         border: 2px solid var(--cl-primary);
         &:hover {
-          border-color: white;
+          border-color: var(--cl-primary-contrast);
         }
       }
 
       &:hover {
         background-color: var(--cl-primary);
-        color: white;
+        color: var(--cl-primary-contrast);
       }
     }
   }

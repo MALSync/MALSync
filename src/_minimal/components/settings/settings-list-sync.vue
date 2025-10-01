@@ -514,6 +514,7 @@ updateBackgroundSyncState();
 
   .highlight {
     background-color: var(--cl-primary);
+    color: var(--cl-primary-contrast);
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 5px;
