@@ -84,13 +84,7 @@ export const VortexScans: PageInterface = {
         .find('img[alt]')
         .getAttribute('alt')
         .trim()
-        .replaceRegex(
-          '^(.*?)(?=\\d+)',
-          $c
-            .string('/series/')
-            .concat($c.this('sync.getIdentifier').concat('/chapter-').run())
-            .run(),
-        )
+        .replaceRegex('^(.*?)(?=\\d+)', $c.this('sync.getOverviewUrl').concat('/chapter-').run())
         .urlAbsolute()
         .run();
     },
