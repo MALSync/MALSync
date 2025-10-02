@@ -179,14 +179,14 @@ export default {
   ): Input => {
     if (ctx.isAsync()) {
       return (async () => {
-        const results = [];
+        const results: Input[] = [];
         for (let i = 0; i < input.length; i++) {
           if (await ctx.runAsync(condition as unknown as ChibiJson<any>, input[i])) {
             results.push(input[i]);
           }
         }
         return results;
-      })() as any;
+      })() as unknown as Input;
     }
 
     return input.filter(item => ctx.run(condition as unknown as ChibiJson<any>, item)) as Input;
