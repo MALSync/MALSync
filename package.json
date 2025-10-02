@@ -51,7 +51,7 @@
     "postcss-html": "^1.8.0",
     "postcss-less": "^6.0.0",
     "prettier": "^3.6.2",
-    "puppeteer": "^24.22.3",
+    "puppeteer": "^24.23.0",
     "serialize-javascript": "^6.0.2",
     "style-loader": "^3.3.4",
     "stylelint": "^15.11.0",
@@ -118,7 +118,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@types/chrome": "0.1.14",
+    "@types/chrome": "0.1.17",
     "dexie": "^4.2.0",
     "dompurify": "^3.2.7",
     "download-file": "^0.1.5",

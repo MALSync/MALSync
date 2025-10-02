@@ -21,7 +21,12 @@
           "title": "I’m the Only One with Outstanding Cheats After My Class Got Transported to Another World?!",
           "identifier": "i'm-the-only-one-with-outstanding-cheats-after-my-class-got-transported-to-another-world!",
           "image": "https://storage.aurorascans.com/public/upload/2025/02/12/ac3aedd1-0102-47d4-9123-283d3c8cbcb2.webp",
-          "uiSelector": true
+          "uiSelector": true,
+          "eplist": {
+            "1": "https://aurorascans.com/series/i'm-the-only-one-with-outstanding-cheats-after-my-class-got-transported-to-another-world!/chapter-1",
+            "20": "https://aurorascans.com/series/i'm-the-only-one-with-outstanding-cheats-after-my-class-got-transported-to-another-world!/chapter-20",
+            "22": "https://aurorascans.com/series/i'm-the-only-one-with-outstanding-cheats-after-my-class-got-transported-to-another-world!/chapter-22"
+          }
         }
       }
     ]

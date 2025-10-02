@@ -1,27 +1,22 @@
 import { PageInterface } from '../../pageInterface';
 
-export const VortexScans: PageInterface = {
-  name: 'VortexScans',
-  domain: 'https://vortexscans.org',
+export const FlameScans: PageInterface = {
+  name: 'FlameScans',
+  domain: 'https://flamecomics.xyz',
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://vortexscans.org/*'],
+    match: ['*://flamecomics.com/*', '*://flamecomics.me/*', '*://flamecomics.xyz/*'],
   },
-  search:
-    'https://vortexscans.org/series?genre=&seriesType=&seriesStatus=&searchTerm={searchtermRaw}',
+  search: 'https://flamecomics.xyz/browse?search={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(3).equals('series').run(),
-          $c.url().urlPart(5).boolean().run(),
-          $c.url().urlPart(5).matches('chapter[_-]?(\\d+)').run(),
-        )
+        .and($c.url().urlPart(3).equals('series').run(), $c.url().urlPart(5).boolean().run())
         .run();
     },
     getTitle($c) {
-      return $c.title().split(' Chapter').at(0).trim().run();
+      return $c.querySelector('[class*="TopChapterNavbar_series_title"]').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -30,23 +25,25 @@ export const VortexScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     getOverviewUrl($c) {
-      return $c
-        .string('/series/<identifier>')
-        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
-        .urlAbsolute()
-        .run();
+      return $c.querySelector('.mantine-Grid-inner a').getAttribute('href').urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).regex('(\\d+)$', 1).number().ifNotReturn().run();
+      return $c
+        .querySelector('[class*="TopChapterNavbar_chapter_title"]')
+        .text()
+        .regex('Chapter[ _-]?(\\d+)', 1)
+        .number()
+        .ifNotReturn()
+        .run();
     },
     readerConfig: [
       {
         current: {
-          selector: '.font-semibold img',
+          selector: '.mantine-Stack-root img[width]',
           mode: 'countAbove',
         },
         total: {
-          selector: '.font-semibold img',
+          selector: '.mantine-Stack-root img[width]',
           mode: 'count',
         },
       },
@@ -56,14 +53,14 @@ export const VortexScans: PageInterface = {
     isOverviewPage($c) {
       return $c
         .and(
-          $c.url().urlPart(4).boolean().run(),
           $c.url().urlPart(3).equals('series').run(),
+          $c.url().urlPart(4).boolean().run(),
           $c.url().urlPart(5).boolean().not().run(),
         )
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1[itemprop="name"]').text().trim().run();
+      return $c.querySelector('h1.mantine-Title-root').text().trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
@@ -72,24 +69,24 @@ export const VortexScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('h1[itemprop="name"]').uiAfter().run();
+      return $c.querySelector('h1.mantine-Title-root').next().uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.space-y-2 .rounded-lg').run();
+      return $c.querySelectorAll('[class*="ChapterCard_chapterWrapper"]').run();
     },
     elementUrl($c) {
-      return $c
-        .find('img[alt]')
-        .getAttribute('alt')
-        .trim()
-        .replaceRegex('^(.*?)(?=\\d+)', $c.this('sync.getOverviewUrl').concat('/chapter-').run())
-        .urlAbsolute()
-        .run();
+      return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.this('list.elementUrl').this('sync.getEpisode').run();
+      return $c
+        .find('.mantine-Text-root')
+        .text()
+        .trim()
+        .regex('Chapter[ _-]?(\\d+)', 1)
+        .number()
+        .run();
     },
   },
   lifecycle: {
