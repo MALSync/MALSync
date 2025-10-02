@@ -7,7 +7,13 @@ export const AnimeKAI: PageInterface = {
   domain: 'https://animekai.bz',
   languages: ['English'],
   urls: {
-    match: ['*://animekai.to/*', '*://animekai.bz/*', '*://animekai.cc/*', '*://animekai.ac/*'],
+    match: [
+      '*://animekai.to/*',
+      '*://animekai.bz/*',
+      '*://animekai.cc/*',
+      '*://animekai.ac/*',
+      '*://anikai.to/*',
+    ],
   },
   search: 'https://animekai.bz/browser?keyword={searchtermPlus}',
   sync: {

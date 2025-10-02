@@ -53,7 +53,6 @@ import { tioanime } from './tioanime/main';
 import { MangaSee } from './MangaSee/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
-import { AsuraScans } from './AsuraScans/main';
 import { Jellyfin } from './Jellyfin/main';
 import { An1me } from './An1me/main';
 import { MangaJar } from './MangaJar/main';
@@ -68,7 +67,6 @@ import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
-import { FlameScans } from './FlameScans/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
 import { Kitsune } from './Kitsune/main';
@@ -94,7 +92,6 @@ import { SovetRomantica } from './SovetRomantica/main';
 import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 import { Docchi } from './Docchi/main';
-import { FRAnime } from './FRAnime/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 import { AnimeNoSub } from './AnimeNoSub/main';
@@ -119,7 +116,6 @@ import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { TempleScan } from './TempleScan/main';
 import { ScyllaScans } from './ScyllaScans/main';
-import { VortexScans } from './VortexScans/main';
 import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
@@ -181,7 +177,6 @@ export const pages = {
   MangaSee,
   Okanime,
   BSTO,
-  AsuraScans,
   Jellyfin,
   An1me,
   MangaJar,
@@ -196,7 +191,6 @@ export const pages = {
   MangaSushi,
   TritiniaScans,
   ReadManhua,
-  FlameScans,
   ImmortalUpdates,
   Zoro,
   Kitsune,
@@ -222,7 +216,6 @@ export const pages = {
   ADN,
   Aniyan,
   Docchi,
-  FRAnime,
   FMTeam,
   Animelon,
   AnimeNoSub,
@@ -247,7 +240,6 @@ export const pages = {
   MangaRead,
   TempleScan,
   ScyllaScans,
-  VortexScans,
   Kavita,
   Rawkuma,
   Aninexus,

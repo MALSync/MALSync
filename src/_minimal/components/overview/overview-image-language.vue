@@ -83,7 +83,7 @@ const options = computed(() => {
   .border-radius-small();
 
   background-color: var(--cl-primary);
-  color: white;
+  color: var(--cl-primary-contrast);
   font-size: @small-text;
   padding: 2px 5px;
 }

@@ -6,8 +6,8 @@
       "url": "https://www.crunchyroll.com/de/watch/GK9UG2E49/the-result-of-the-battle-for-priestella",
       "expected": {
         "sync": true,
-        "title": "Re:ZERO -Starting Life in Another World-",
-        "identifier": "Re:ZERO -Starting Life in Another World-3",
+        "title": "Re:ZERO -Starting Life in Another World- Season 3",
+        "identifier": "Re:ZERO -Starting Life in Another World-Re:ZERO -Starting Life in Another World-3",
         "overviewUrl": "https://www.crunchyroll.com/de/series/GRGG9798R/rezero--starting-life-in-another-world-",
         "nextEpUrl": null,
         "episode": 66,
@@ -20,7 +20,7 @@
       "expected": {
         "sync": true,
         "title": "GUILTY GEAR STRIVE: DUAL RULERS",
-        "identifier": "GUILTY GEAR STRIVE: DUAL RULERS1",
+        "identifier": "GUILTY GEAR STRIVE: DUAL RULERSGUILTY GEAR STRIVE: DUAL RULERS1",
         "overviewUrl": "https://www.crunchyroll.com/de/series/GEXH3W2MZ/guilty-gear-strive-dual-rulers",
         "nextEpUrl": "https://www.crunchyroll.com/de/watch/GJWUQ7EJW/belief-in-peace",
         "episode": 1,
@@ -32,7 +32,7 @@
       "expected": {
         "sync": true,
         "title": "Ai-Mai-Mi Mousou Catastrophe",
-        "identifier": "Ai-Mai-Mi Mousou Catastrophe1",
+        "identifier": "Ai-Mai-Mi Mousou CatastropheAi-Mai-Mi Mousou Catastrophe1",
         "overviewUrl": "https://www.crunchyroll.com/de/series/GRP8DZ7GR/ai-mai-mi-mousou-catastrophe",
         "nextEpUrl": "https://www.crunchyroll.com/de/watch/G6GG4ZNE6/untitled",
         "episode": 3,
@@ -44,11 +44,33 @@
       "expected": {
         "sync": true,
         "title": "Katana Maidens ~ Toji No Miko",
-        "identifier": "Katana Maidens ~ Toji No Miko1",
+        "identifier": "Katana Maidens ~ Toji No MikoKatana Maidens ~ Toji No Miko1",
         "episode": 12,
         "overviewUrl": "https://www.crunchyroll.com/de/series/GY9P1KVER/katana-maidens--toji-no-miko",
         "nextEpUrl": "https://www.crunchyroll.com/de/watch/G69VD00VY/hero-of-the-next-generation",
         "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GE00362337JAJP/yano-kun",
+      "expected": {
+        "sync": true,
+        "title": "Yano-kun's Ordinary Days",
+        "identifier": "Yano-kun's Ordinary DaysSeason 11",
+        "episode": 1,
+        "overviewUrl": "https://www.crunchyroll.com/series/GT00362335/yano-kuns-ordinary-days",
+        "nextEpUrl": null
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GE00361957JAJP/a-wild-last-boss-appears",
+      "expected": {
+        "sync": true,
+        "title": "A Wild Last Boss Appeared!",
+        "identifier": "A Wild Last Boss Appeared!Season 11",
+        "episode": 1,
+        "overviewUrl": "https://www.crunchyroll.com/series/GT00361955/a-wild-last-boss-appeared",
+        "nextEpUrl": null
       }
     }
   ]

@@ -29,6 +29,17 @@ import { StoneScape } from './implementations/StoneScape/main';
 import { ResetScans } from './implementations/ResetScans/main';
 import { Utoon } from './implementations/Utoon/main';
 import { WitchScans } from './implementations/WitchScans/main';
+import { Sadscans } from './implementations/Sadscans/main';
+import { ArvenComics } from './implementations/ArvenComics/main';
+import { Comikey } from './implementations/Comikey/main';
+import { AuroraScans } from './implementations/AuroraScans/main';
+import { ComicTop } from './implementations/ComicTop/main';
+import { Atsumaru } from './implementations/Atsumaru/main';
+import { Madarascans } from './implementations/Madarascans/main';
+import { AsuraScans } from './implementations/AsuraScans/main';
+import { FRAnime } from './implementations/FRAnime/main';
+import { VortexScans } from './implementations/VortexScans/main';
+import { FlameScans } from './implementations/FlameScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -60,4 +71,15 @@ export const pages: { [key: string]: PageInterface } = {
   ResetScans,
   Utoon,
   WitchScans,
+  Sadscans,
+  ArvenComics,
+  Comikey,
+  AuroraScans,
+  ComicTop,
+  Atsumaru,
+  Madarascans,
+  AsuraScans,
+  FRAnime,
+  VortexScans,
+  FlameScans,
 };
