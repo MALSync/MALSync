@@ -70,6 +70,14 @@ function extractFunction(sourceFile) {
           const functionName = prop.name.text;
           const chibiParamIndices = [];
 
+          const functionCode = prop.getText();
+          if (functionCode.includes('ctx.run(') && !functionCode.includes('ctx.runAsync(')) {
+            throw new Error(`Function ${functionName} contains ctx.run() but not ctx.runAsync()`);
+          }
+          if (functionCode.includes('ctx.runAsync(') && !functionCode.includes('ctx.run(')) {
+            throw new Error(`Function ${functionName} contains ctx.runAsync() but not ctx.run()`);
+          }
+
           const args = prop.parameters || prop.initializer?.parameters || [];
           const argsString = args.map((param, index) => {
             const paramName = param.name.text || (param.dotDotDotToken ? '...args' : 'param');
