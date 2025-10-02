@@ -24,6 +24,9 @@ export class ChibiCtx {
   }
 
   async runAsync(script: ChibiJson<any>, startState: any = null) {
+    if (!this.isAsync()) {
+      throw new Error('Can not run async functions in sync context');
+    }
     return this.getConsumer()._subroutineAsync(script, startState);
   }
 
