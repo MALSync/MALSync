@@ -11,7 +11,7 @@ export const latte: Theme = {
     'primary-dark': '#40a02b',
     'border-hover': '#4c4f69',
     secondary: '#d20f39',
-    'dark-background': '#bcc0cc',
+    'dark-background': '#5c5f77', // subtext 1, white text stands out more against it
     text: '#4c4f69',
     'light-text': '#5c5f77',
     'secondary-text': '#1e66f5',
@@ -90,7 +90,7 @@ export const mocha: Theme = {
     text: '#cdd6f4', // text - text
     'light-text': '#bac2de', // greyed out text - subtext 1
     'secondary-text': '#89b4fa', // links - blue
-    'primary-contrast': '#1e1e2e', // text of coloured elements - base
+    'primary-contrast': '#1e1e2e', // text of coloured elements (primary and secondary) - base
     'state-1': '#a6e3a1', // watching - green
     'state-2': '#89b4fa', // completed - blue
     'state-3': '#fab387', // on-hold - peach
