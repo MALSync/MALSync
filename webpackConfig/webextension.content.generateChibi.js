@@ -5,6 +5,8 @@ const glob = require('glob');
 
 const outputPath = path.resolve(__dirname, '../src/chibiScript/ChibiGeneratorTypes.ts');
 
+const parameterMatrix = {};
+
 function generateChibiTypes() {
   console.log('Generating ChibiScript type definitions...');
 
@@ -31,15 +33,20 @@ function generateChibiTypes() {
   });
 
   let typeDefinitions = `/* eslint-disable prettier/prettier */\n`;
+  typeDefinitions += `/* eslint-disable @stylistic/quotes */\n`;
+  typeDefinitions += `/* eslint-disable @stylistic/quote-props */\n\n`;
   typeDefinitions += `import functionsRegistry from './functions';\n`;
   typeDefinitions += `import type { ChibiGenerator, ChibiJson } from './ChibiGenerator';\n`;
   typeDefinitions += `import type { ReservedKey } from './ChibiRegistry';\n`;
   typeDefinitions += `import type * as CT from './ChibiTypeHelper';\n\n`;
+  typeDefinitions += `type ChibiParam<T> = T | ChibiJson<T>;\n\n`;
   typeDefinitions += `export interface ChibiGeneratorFunctions<Input> {\n`;
 
   typeDefinitions += allFunctionParts.join('\n');
 
-  typeDefinitions += `\n}\n`;
+  typeDefinitions += `\n}\n\n`;
+
+  typeDefinitions += `export const chibiParamIndices = ${JSON.stringify(parameterMatrix, null, 2)} as Record<string, number[]>;\n`;
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, typeDefinitions);
@@ -61,15 +68,23 @@ function extractFunction(sourceFile) {
         if (prop.name) {
           const part = [];
           const functionName = prop.name.text;
+          const chibiParamIndices = [];
 
           const args = prop.parameters || prop.initializer?.parameters || [];
-          const argsString = args.map(param => {
+          const argsString = args.map((param, index) => {
             const paramName = param.name.text || (param.dotDotDotToken ? '...args' : 'param');
             const optional = param.questionToken || param.initializer ? '?' : '';
             const type = param.type?.getText() || 'any';
             const dotDotDot = param.dotDotDotToken ? '...' : '';
+            if (type.startsWith('ChibiParam<')) {
+              chibiParamIndices.push(index);
+            }
             return `${dotDotDot}${paramName}${optional}: ${type}`;
           });
+
+          if (chibiParamIndices.length) {
+            parameterMatrix[functionName] = chibiParamIndices;
+          }
 
           const jsDocs = prop.jsDoc ? prop.jsDoc.map(doc => `  ${doc.getText()}`) : [];
 

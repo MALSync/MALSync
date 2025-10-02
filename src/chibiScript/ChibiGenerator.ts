@@ -8,6 +8,7 @@ const randomKeys = {
 };
 
 export type ChibiJson<T = void> = string[][] & { __type?: T };
+export type ChibiParam<T> = T;
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 class ChibiGenerator<Input> {
