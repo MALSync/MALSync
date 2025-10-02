@@ -203,6 +203,18 @@ export default {
       throw new ChibiError(`Cannot set reserved key: ${key}`);
     }
 
+    if (ctx.isAsync()) {
+      return (async () => {
+        if (value !== undefined) {
+          const resolvedValue = await ctx.runAsync(value);
+          ctx.set(key, resolvedValue);
+        } else {
+          ctx.set(key, input);
+        }
+        return input;
+      })() as unknown as Input;
+    }
+
     if (value !== undefined) {
       const resolvedValue = ctx.run(value);
       ctx.set(key, resolvedValue);
@@ -251,6 +263,18 @@ export default {
       throw new ChibiError(`Cannot set reserved global key: ${key}`);
     }
 
+    if (ctx.isAsync()) {
+      return (async () => {
+        if (value !== undefined) {
+          const resolvedValue = await ctx.runAsync(value);
+          ctx.globalSet(key, resolvedValue);
+        } else {
+          ctx.globalSet(key, input);
+        }
+        return input;
+      })() as unknown as Input;
+    }
+
     if (value !== undefined) {
       const resolvedValue = ctx.run(value);
       ctx.globalSet(key, resolvedValue);
@@ -273,6 +297,18 @@ export default {
    *  .log(); // 'hello world'
    */
   fn: <T = any>(ctx: ChibiCtx, input: void, functionBody: ChibiJson<T>): T => {
+    if (ctx.isAsync()) {
+      return (async () => {
+        const result = await ctx.runAsync(functionBody);
+
+        if (result && result instanceof ChibiReturn) {
+          return result.getValue();
+        }
+
+        return result;
+      })() as unknown as T;
+    }
+
     const result = ctx.run(functionBody);
 
     if (result && result instanceof ChibiReturn) {

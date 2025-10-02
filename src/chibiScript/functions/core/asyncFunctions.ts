@@ -35,7 +35,7 @@ export default {
       ctx.setInterval(
         _intervalKey,
         utils.waitUntilTrue(
-          () => ctx.run(condition),
+          () => ctx.runAsync(condition),
           () => resolve(),
         ),
       );
@@ -58,14 +58,14 @@ export default {
     _intervalKey?,
   ): void => {
     clearInterval(ctx.getInterval(_intervalKey));
-    let currentState = JSON.stringify(ctx.run(target));
+    let currentState = JSON.stringify(ctx.runAsync(target));
     ctx.setInterval(
       _intervalKey,
       setInterval(() => {
-        const temp = JSON.stringify(ctx.run(target));
+        const temp = JSON.stringify(ctx.runAsync(target));
         if (typeof temp !== 'undefined' && currentState !== temp) {
           currentState = temp;
-          ctx.run(callback);
+          ctx.runAsync(callback);
         }
       }, 500),
     );
@@ -111,7 +111,7 @@ export default {
         const newUrl = normalizeUrl(window.location.href);
         if (currentUrl !== newUrl) {
           currentUrl = newUrl;
-          ctx.run(callback);
+          ctx.runAsync(callback);
         }
       }, 500),
     );

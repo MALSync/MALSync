@@ -114,6 +114,15 @@ export default {
       $c: ChibiGenerator<CT.GetArrayType<Input extends any[] ? Input : never>>,
     ) => ChibiJson<any>,
   ) => {
+    if (ctx.isAsync()) {
+      return (async () => {
+        for (let i = 0; i < input.length; i++) {
+          input[i] = await ctx.runAsync(callback as unknown as ChibiJson<any>, input[i]);
+        }
+        return input;
+      })() as any;
+    }
+
     return input.map(item => {
       return ctx.run(callback as unknown as ChibiJson<any>, item);
     });
@@ -134,6 +143,17 @@ export default {
       $c: ChibiGenerator<CT.GetArrayType<Input extends any[] ? Input : never>>,
     ) => ChibiJson<boolean>,
   ): CT.GetArrayType<Input extends any[] ? Input : never> | undefined => {
+    if (ctx.isAsync()) {
+      return (async () => {
+        for (let i = 0; i < input.length; i++) {
+          if (await ctx.runAsync(condition as unknown as ChibiJson<any>, input[i])) {
+            return input[i];
+          }
+        }
+        return undefined;
+      })() as any;
+    }
+
     for (let i = 0; i < input.length; i++) {
       if (ctx.run(condition as unknown as ChibiJson<any>, input[i])) {
         return input[i];
@@ -157,6 +177,18 @@ export default {
       $c: ChibiGenerator<CT.GetArrayType<Input extends any[] ? Input : never>>,
     ) => ChibiJson<boolean>,
   ): Input => {
+    if (ctx.isAsync()) {
+      return (async () => {
+        const results: Input[] = [];
+        for (let i = 0; i < input.length; i++) {
+          if (await ctx.runAsync(condition as unknown as ChibiJson<any>, input[i])) {
+            results.push(input[i]);
+          }
+        }
+        return results;
+      })() as unknown as Input;
+    }
+
     return input.filter(item => ctx.run(condition as unknown as ChibiJson<any>, item)) as Input;
   },
 };
