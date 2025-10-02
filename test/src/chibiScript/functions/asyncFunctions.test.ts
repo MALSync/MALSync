@@ -27,26 +27,128 @@ describe('Async Functions', () => {
       expect(result).to.equal('completed');
     }).timeout(1000);
 
-    it('should work with nested function calls', async () => {
-      const code = $c
-        .if(
-          $c.boolean(true).run(),
-          $c.waitUntilTrue($c.getVariable('ready', false).run()).string('completed').run(),
-          $c.string('not executed').run()
-        )
-        .run();
+    describe('nested function calls', () => {
+      it('if', async () => {
+        const code = $c
+          .if(
+            $c.boolean(true).run(),
+            $c.waitUntilTrue($c.getVariable('ready', false).run()).string('completed').run(),
+            $c.string('not executed').run(),
+          )
+          .run();
 
-      const consumer = generateAndExecute(code);
-      consumer.addVariable('ready', false);
-      const resultPromise = consumer.runAsync();
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
 
-      setTimeout(() => {
-        consumer.addVariable('ready', true);
-      }, 50);
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
 
-      const result = await resultPromise;
-      expect(result).to.equal('completed');
-    }).timeout(1000);
+        const result = await resultPromise;
+        expect(result).to.equal('completed');
+      }).timeout(1000);
+
+      it('ifThen', async () => {
+        const code = $c
+          .boolean(true)
+          .ifThen($c =>
+            $c.waitUntilTrue($c.getVariable('ready', false).run()).string('completed').run(),
+          )
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('completed');
+      }).timeout(1000);
+
+      it('ifNotReturn', async () => {
+        const code = $c
+          .boolean(false)
+          .ifNotReturn($c.waitUntilTrue($c.getVariable('ready', false).run()).string('completed').run())
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('completed');
+      }).timeout(1000);
+
+      it('map', async () => {
+        const code = $c
+          .array(['1', '2', '3'])
+          .map($item =>
+            $item.waitUntilTrue($c.getVariable('ready', false).run()).string('complete').run(),
+          )
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).deep.equal(['complete', 'complete', 'complete']);
+      }).timeout(1000);
+
+      it('arrayFind', async () => {
+        const code = $c
+          .array(['1', '2', '3'])
+          .arrayFind($item =>
+            $item.waitUntilTrue($c.getVariable('ready', false).run()).boolean(true).run(),
+          )
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('1');
+      }).timeout(1000);
+
+      it('filter', async () => {
+        const code = $c
+          .array(['1', '2', '3'])
+          .filter($item =>
+            $item.waitUntilTrue($c.getVariable('ready', false).run()).boolean(true).run(),
+          )
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).deep.equal(['1', '2', '3']);
+      }).timeout(1000);
+    });
+
+
 
     it('should handle multiple waitUntilTrue in sequence', async () => {
       const code = $c.waitUntilTrue($c.getVariable('step1', false).run())
