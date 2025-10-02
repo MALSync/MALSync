@@ -27,7 +27,37 @@ describe('Async Functions', () => {
       expect(result).to.equal('completed');
     }).timeout(1000);
 
+    it('should throw error if called in sync context', () => {
+      const code = $c.waitUntilTrue($c.boolean(true).run()).string('completed').run();
+      const consumer = generateAndExecute(code);
+
+      expect(() => consumer.run()).to.throw('Async functions are not supported in this context');
+    });
+
     describe('nested function calls', () => {
+      it('waitUntilTrue', async () => {
+        const code = $c
+          .waitUntilTrue(
+            $c.waitUntilTrue($c.getVariable('ready', false).run())
+            .boolean(true)
+            .run()
+          )
+          .string('completed')
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('completed');
+      }).timeout(1000);
+
+
       it('if', async () => {
         const code = $c
           .if(
@@ -147,8 +177,6 @@ describe('Async Functions', () => {
         expect(result).deep.equal(['1', '2', '3']);
       }).timeout(1000);
     });
-
-
 
     it('should handle multiple waitUntilTrue in sequence', async () => {
       const code = $c.waitUntilTrue($c.getVariable('step1', false).run())
