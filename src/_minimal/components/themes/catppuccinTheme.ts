@@ -16,6 +16,7 @@ export const latte: Theme = {
     'light-text': '#5c5f77',
     'secondary-text': '#1e66f5',
     'primary-contrast': '#eff1f5',
+    'primary-dark-contrast': '#eff1f5',
     'state-1': '#40a02b',
     'state-2': '#1e66f5',
     'state-3': '#fe640b',
@@ -41,6 +42,7 @@ export const frappe: Theme = {
     'light-text': '#b5bfe2',
     'secondary-text': '#8caaee',
     'primary-contrast': '#303446',
+    'primary-dark-contrast': '#303446',
     'state-1': '#a6d189',
     'state-2': '#8caaee',
     'state-3': '#ef9f76',
@@ -66,6 +68,7 @@ export const macchiato: Theme = {
     'light-text': '#b8c0e0',
     'secondary-text': '#8aadf4',
     'primary-contrast': '#24273a',
+    'primary-dark-contrast': '#24273a',
     'state-1': '#a6da95',
     'state-2': '#8aadf4',
     'state-3': '#f5a97f',
@@ -90,7 +93,8 @@ export const mocha: Theme = {
     text: '#cdd6f4', // text - text
     'light-text': '#bac2de', // greyed out text - subtext 1
     'secondary-text': '#89b4fa', // links - blue
-    'primary-contrast': '#1e1e2e', // text of coloured elements (primary and secondary) - base
+    'primary-contrast': '#1e1e2e', // text of primary and secondary - base
+    'primary-dark-contrast': '#1e1e2e', // text of primary-dark - base
     'state-1': '#a6e3a1', // watching - green
     'state-2': '#89b4fa', // completed - blue
     'state-3': '#fab387', // on-hold - peach
