@@ -236,6 +236,68 @@ describe('Async Functions', () => {
         const result = await resultPromise;
         expect(result).to.equal('Hello world');
       }).timeout(1000);
+
+      it('and', async () => {
+        const code = $c
+          .and(
+            $c.waitUntilTrue($c.getVariable('ready', false).run()).boolean(true).run(),
+            $c.boolean(true).run(),
+          )
+          .ifThen($c => $c.string('Hello world').return().run())
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('Hello world');
+      }).timeout(1000);
+
+      it('or', async () => {
+        const code = $c
+          .or(
+            $c.waitUntilTrue($c.getVariable('ready', false).run()).boolean(true).run(),
+            $c.boolean(false).run(),
+          )
+          .ifThen($c => $c.string('Hello world').return().run())
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('Hello world');
+      }).timeout(1000);
+
+      it('coalesce', async () => {
+        const code = $c
+          .coalesce(
+            $c.fn($c.waitUntilTrue($c.getVariable('ready', false).run()).boolean(false).ifNotReturn().run()).run(),
+            $c.waitUntilTrue($c.getVariable('ready', false).run()).string('completed').run(),
+          )
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('completed');
+      }).timeout(1000);
     });
 
     it('should handle multiple waitUntilTrue in sequence', async () => {
