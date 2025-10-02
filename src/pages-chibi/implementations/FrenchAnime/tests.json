@@ -1,0 +1,30 @@
+{
+  "title": "FrenchAnime",
+  "url": "https://french-anime.com",
+  "testCases": [
+    {
+      "url": "https://french-anime.com/exclue/1768-gachiakuta.html",
+      "expected": {
+        "sync": true,
+        "title": "Gachiakuta",
+        "identifier": "1768",
+        "overviewUrl": "https://french-anime.com/exclue/1768-gachiakuta.html",
+        "image": "https://french-anime.com/images/french-anime-389c-ff0c-f5d9-4bb2.jpg",
+        "episode": 1,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://french-anime.com/exclue/1805-demon-slayer-kimetsu-no-yaiba-la-forteresse-infinie-film-1.html",
+      "expected": {
+        "sync": true,
+        "title": "Demon Slayer: Kimetsu no Yaiba La Forteresse Infinie Film 1",
+        "identifier": "1805",
+        "image": "https://french-anime.com/images/french-anime-7617-e0d8-e53a-4551.jpg",
+        "overviewUrl": "https://french-anime.com/exclue/1805-demon-slayer-kimetsu-no-yaiba-la-forteresse-infinie-film-1.html",
+        "episode": 1,
+        "uiSelector": true
+      }
+    }
+  ]
+}
