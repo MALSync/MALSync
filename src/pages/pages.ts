@@ -67,7 +67,6 @@ import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
-import { FlameScans } from './FlameScans/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
 import { Kitsune } from './Kitsune/main';
@@ -192,7 +191,6 @@ export const pages = {
   MangaSushi,
   TritiniaScans,
   ReadManhua,
-  FlameScans,
   ImmortalUpdates,
   Zoro,
   Kitsune,
