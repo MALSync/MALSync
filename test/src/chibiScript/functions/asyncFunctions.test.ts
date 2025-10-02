@@ -37,11 +37,7 @@ describe('Async Functions', () => {
     describe('nested function calls', () => {
       it('waitUntilTrue', async () => {
         const code = $c
-          .waitUntilTrue(
-            $c.waitUntilTrue($c.getVariable('ready', false).run())
-            .boolean(true)
-            .run()
-          )
+          .waitUntilTrue($c.waitUntilTrue($c.getVariable('ready', false).run()).boolean(true).run())
           .string('completed')
           .run();
 
@@ -56,7 +52,6 @@ describe('Async Functions', () => {
         const result = await resultPromise;
         expect(result).to.equal('completed');
       }).timeout(1000);
-
 
       it('if', async () => {
         const code = $c
@@ -102,7 +97,9 @@ describe('Async Functions', () => {
       it('ifNotReturn', async () => {
         const code = $c
           .boolean(false)
-          .ifNotReturn($c.waitUntilTrue($c.getVariable('ready', false).run()).string('completed').run())
+          .ifNotReturn(
+            $c.waitUntilTrue($c.getVariable('ready', false).run()).string('completed').run(),
+          )
           .run();
 
         const consumer = generateAndExecute(code);
@@ -175,6 +172,69 @@ describe('Async Functions', () => {
 
         const result = await resultPromise;
         expect(result).deep.equal(['1', '2', '3']);
+      }).timeout(1000);
+
+      it('setVariable', async () => {
+        const code = $c
+          .setVariable(
+            'result',
+            $c.waitUntilTrue($c.getVariable('ready', false).run()).string('complete').run(),
+          )
+          .getVariable('result', 'not set')
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('complete');
+      }).timeout(1000);
+
+      it('setGlobalVariable', async () => {
+        const code = $c
+          .setGlobalVariable(
+            'result',
+            $c.waitUntilTrue($c.getVariable('ready', false).run()).string('complete').run(),
+          )
+          .getGlobalVariable('result', 'not set')
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('complete');
+      }).timeout(1000);
+
+      it('fn', async () => {
+        const code = $c
+          .fn(
+            $c.waitUntilTrue($c.getVariable('ready', false).run()).string('Hello').return().run(),
+          )
+          .string()
+          .concat(' world')
+          .run();
+
+        const consumer = generateAndExecute(code);
+        consumer.addVariable('ready', false);
+        const resultPromise = consumer.runAsync();
+
+        setTimeout(() => {
+          consumer.addVariable('ready', true);
+        }, 50);
+
+        const result = await resultPromise;
+        expect(result).to.equal('Hello world');
       }).timeout(1000);
     });
 
