@@ -12,6 +12,8 @@ export class ChibiCtx {
 
   private consumer: ChibiConsumer;
 
+  private async: boolean = false;
+
   constructor(consumer: ChibiConsumer) {
     this.consumer = consumer;
     this.registry = new ChibiRegistry();
@@ -19,6 +21,18 @@ export class ChibiCtx {
 
   run(script: ChibiJson<any>, startState: any = null) {
     return this.getConsumer()._subroutine(script, startState);
+  }
+
+  async runAsync(script: ChibiJson<any>, startState: any = null) {
+    return this.getConsumer()._subroutineAsync(script, startState);
+  }
+
+  setAsyncContext(isAsync: boolean) {
+    this.async = isAsync;
+  }
+
+  isAsync() {
+    return this.async;
   }
 
   set(name: string, value: any) {

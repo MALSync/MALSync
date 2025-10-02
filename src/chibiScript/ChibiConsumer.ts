@@ -35,6 +35,7 @@ export class ChibiConsumer {
   }
 
   _subroutine(script: ChibiJson<any>, startState: any = null) {
+    this.ctx.setAsyncContext(false);
     let state: any = startState;
     // eslint-disable-next-line no-restricted-syntax
     for (const [functionName, ...args] of script) {
@@ -86,6 +87,7 @@ export class ChibiConsumer {
   }
 
   async _subroutineAsync(script: ChibiJson<any>, startState: any = null) {
+    this.ctx.setAsyncContext(true);
     let state: any = startState;
     // eslint-disable-next-line no-restricted-syntax
     for (const [functionName, ...args] of script) {
