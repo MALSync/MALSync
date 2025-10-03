@@ -1,6 +1,6 @@
 import { ChibiError } from '../../ChibiErrors';
 import type { ChibiCtx } from '../../ChibiCtx';
-import type { ChibiJson } from '../../ChibiGenerator';
+import type { ChibiJson, ChibiParam } from '../../ChibiGenerator';
 import { isReservedKey, type ReservedKey } from '../../ChibiRegistry';
 import { ChibiReturn } from '../../ChibiReturn';
 
@@ -173,7 +173,12 @@ export default {
    * @example
    * $c.getVariable('myVar', 'default') // returns the value of myVar or 'default' if not set
    */
-  getVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
+  getVariable: (
+    ctx: ChibiCtx,
+    input: void,
+    key: ChibiParam<string>,
+    defaultValue?: ChibiParam<any>,
+  ): any => {
     const value = ctx.get(key);
     return value !== undefined ? value : defaultValue;
   },
@@ -191,7 +196,7 @@ export default {
   setVariable: <Input>(
     ctx: ChibiCtx,
     input: Input,
-    key: Exclude<string, ReservedKey>,
+    key: ChibiParam<Exclude<string, ReservedKey>>,
     value?: ChibiJson<any>,
   ): Input => {
     if (isReservedKey(key)) {
@@ -216,7 +221,12 @@ export default {
    * @example
    * $c.getGlobalVariable('myGlobalVar', 'default') // returns the value of myGlobalVar or 'default' if not set
    */
-  getGlobalVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
+  getGlobalVariable: (
+    ctx: ChibiCtx,
+    input: void,
+    key: ChibiParam<string>,
+    defaultValue?: ChibiParam<any>,
+  ): any => {
     const value = ctx.globalGet(key);
     return value !== undefined ? value : defaultValue;
   },
@@ -234,7 +244,7 @@ export default {
   setGlobalVariable: <Input>(
     ctx: ChibiCtx,
     input: Input,
-    key: Exclude<string, ReservedKey>,
+    key: ChibiParam<Exclude<string, ReservedKey>>,
     value?: ChibiJson<any>,
   ): Input => {
     if (isReservedKey(key)) {
@@ -290,7 +300,7 @@ export default {
    * @example
    * $c.string('hello').log() // Logs 'hello' to the console
    */
-  log: <Input>(ctx: ChibiCtx, input: Input, prefix: string = 'ChibiScript'): Input => {
+  log: <Input>(ctx: ChibiCtx, input: Input, prefix: ChibiParam<string> = 'ChibiScript'): Input => {
     con.m(prefix).log(input);
     return input;
   },
@@ -301,7 +311,7 @@ export default {
    * @param message - Error message to throw
    * @returns Never returns, always throws
    */
-  error: (ctx: ChibiCtx, input: any, message: string): never => {
+  error: (ctx: ChibiCtx, input: any, message: ChibiParam<string>): never => {
     throw new ChibiError(message);
   },
 };
