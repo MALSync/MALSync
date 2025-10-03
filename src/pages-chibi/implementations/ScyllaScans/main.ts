@@ -44,7 +44,6 @@ export const ScyllaScans: PageInterface = {
           mode: 'attr',
           attribute: 'data-id',
           regex: '(\\d+)',
-          group: 1,
         },
         total: {
           selector: '#chapter-container img:last-of-type',
