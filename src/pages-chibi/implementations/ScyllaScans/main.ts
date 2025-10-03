@@ -75,7 +75,7 @@ export const ScyllaScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h2').text().trim().run();
+      return $c.querySelector('h2').text().split('[').at(0).trim().run();
     },
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
