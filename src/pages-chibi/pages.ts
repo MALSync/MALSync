@@ -40,6 +40,7 @@ import { AsuraScans } from './implementations/AsuraScans/main';
 import { FRAnime } from './implementations/FRAnime/main';
 import { VortexScans } from './implementations/VortexScans/main';
 import { FlameScans } from './implementations/FlameScans/main';
+import { ScyllaScans } from './implementations/ScyllaScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -82,4 +83,5 @@ export const pages: { [key: string]: PageInterface } = {
   FRAnime,
   VortexScans,
   FlameScans,
+  ScyllaScans,
 };
