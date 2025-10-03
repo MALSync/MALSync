@@ -1,45 +1,5 @@
 import { PageInterface } from '../../pageInterface';
 
-let mangaTrChapterCacheLoaded = false;
-
-const CHAPTER_LINK_SELECTOR =
-  '#results a[href*="id-"][href*="chapter-"], #malsync-mangatr-chapters a[href*="id-"][href*="chapter-"], .chapter-list a, .chapters li a, .chapter-item a, .chapter-table a, .chapter-grid a';
-
-const ensureMangaTrChapters = (slug: string) => {
-  if (mangaTrChapterCacheLoaded || typeof window === 'undefined') return;
-
-  if (document.querySelector('#malsync-mangatr-chapters a[href*="id-"][href*="chapter-"]')) {
-    mangaTrChapterCacheLoaded = true;
-    return;
-  }
-
-  try {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://manga-tr.com/cek/fetch_pages_manga.php?manga_cek=${slug}`, false);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.send();
-
-    if (xhr.status >= 200 && xhr.status < 300) {
-      const parser = new DOMParser();
-      const parsed = parser.parseFromString(xhr.responseText, 'text/html');
-      const results = parsed.querySelector('#results');
-
-      if (results && results.children.length) {
-        const hidden = document.createElement('div');
-        hidden.id = 'malsync-mangatr-chapters';
-        hidden.style.display = 'none';
-        Array.from(results.children).forEach(child => {
-          hidden.appendChild(child.cloneNode(true));
-        });
-        document.body.appendChild(hidden);
-        mangaTrChapterCacheLoaded = true;
-      }
-    }
-  } catch (error) {
-    console.error('Error fetching MangaTr chapters:', error);
-  }
-};
-
 export const MangaTr: PageInterface = {
   name: 'MangaTr',
   domain: ['https://manga-tr.com'],
@@ -207,11 +167,7 @@ export const MangaTr: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c
-            .querySelector('#results, .chapter-list, .chapters, #malsync-mangatr-chapters')
-            .ifNotReturn()
-            .text()
-            .run(),
+          $c.querySelector('#results, .chapter-list, .chapters').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();
