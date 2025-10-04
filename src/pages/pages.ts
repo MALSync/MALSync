@@ -65,7 +65,6 @@ import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
 import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
-import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
@@ -189,7 +188,6 @@ export const pages = {
   MangaHub,
   Bentomanga,
   MangaSushi,
-  TritiniaScans,
   ReadManhua,
   ImmortalUpdates,
   Zoro,
