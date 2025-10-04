@@ -45,7 +45,6 @@ import { WuxiaWorld } from './WuxiaWorld/main';
 import { LeviatanScans } from './LeviatanScans/main';
 import { ReaperScans } from './ReaperScans/main';
 import { LynxScans } from './LynxScans/main';
-import { ZeroScans } from './ZeroScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
@@ -169,7 +168,6 @@ export const pages = {
   LeviatanScans,
   ReaperScans,
   LynxScans,
-  ZeroScans,
   DeathTollScans,
   ManhuaPlus,
   Readm,
