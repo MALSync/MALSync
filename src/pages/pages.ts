@@ -115,7 +115,6 @@ import { AnimesOnline } from './AnimesOnline/main';
 import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { TempleScan } from './TempleScan/main';
-import { ScyllaScans } from './ScyllaScans/main';
 import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
@@ -239,7 +238,6 @@ export const pages = {
   Latanime,
   MangaRead,
   TempleScan,
-  ScyllaScans,
   Kavita,
   Rawkuma,
   Aninexus,
