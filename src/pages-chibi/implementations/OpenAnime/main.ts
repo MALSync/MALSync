@@ -6,7 +6,7 @@ export const OpenAnime: PageInterface = {
   domain: 'https://openani.me',
   languages: ['Turkish'],
   urls: {
-    match: ['*://openani.me/*', '*://www.openani.me/*'],
+    match: ['*://*.openani.me/*'],
   },
   search: 'https://openani.me/search?q={searchtermPlus}',
   sync: {
@@ -20,22 +20,16 @@ export const OpenAnime: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').text().trim().run();
+      return $c.title().split(' | ').first().replaceRegex('\x20S\\d+.*$', '').trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c.string('https://openani.me/anime/').concat($c.url().urlPart(4).run()).run();
+      return $c.url().replaceRegex('(\\/\\d+\\/\\d+)(\\/)?$', '').run();
     },
     getEpisode($c) {
       return $c.url().urlPart(6).number().run();
-    },
-    nextEpUrl($c) {
-      return $c.boolean(false).run();
-    },
-    getMalUrl($c) {
-      return $c.boolean(false).run();
     },
   },
   overview: {
@@ -45,16 +39,16 @@ export const OpenAnime: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').text().trim().run();
+      return $c.title().split(' | ').first().replaceRegex('\x20S\\d+.*$', '').trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c.string('').run();
+      return $c.coalesce().run();
     },
     uiInjection($c) {
-      return $c.string('').run();
+      return $c.coalesce().run();
     },
   },
   lifecycle: {
