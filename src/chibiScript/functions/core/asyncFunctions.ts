@@ -65,7 +65,7 @@ export default {
    * @example
    * $c.detectChanges($c.querySelector('h1').text().run(), $c.trigger().run())
    */
-  detectChanges: (
+  detectChanges: async (
     ctx: ChibiCtx,
     input: void,
     target: ChibiJson<any>,
@@ -73,11 +73,11 @@ export default {
     _intervalKey?,
   ): void => {
     clearInterval(ctx.getInterval(_intervalKey));
-    let currentState = JSON.stringify(ctx.runAsync(target));
+    let currentState = JSON.stringify(await ctx.runAsync(target));
     ctx.setInterval(
       _intervalKey,
-      setInterval(() => {
-        const temp = JSON.stringify(ctx.runAsync(target));
+      setInterval(async () => {
+        const temp = JSON.stringify(await ctx.runAsync(target));
         if (typeof temp !== 'undefined' && currentState !== temp) {
           currentState = temp;
           ctx.runAsync(callback);
