@@ -73,6 +73,28 @@ export default {
   },
 
   /**
+   * Gets the value of an input, textarea or select element. Equals to .value in JS
+   * @input Element - DOM element
+   * @returns Value of the input or textarea, or null if not applicable
+   * @example
+   * $c.querySelector('select').elementValue().run()
+   */
+  elementValue: (ctx: ChibiCtx, input: Element) => {
+    return (input as HTMLInputElement).value;
+  },
+
+  /**
+   * Gets the text of the selected dropdown element
+   * @input Element - DOM element
+   * @returns text of the option, or null if not applicable
+   * @example
+   * $c.querySelector('select').selectedText().run()
+   */
+  selectedText: (ctx: ChibiCtx, input: Element) => {
+    return (input as HTMLSelectElement).selectedOptions[0]?.text || null;
+  },
+
+  /**
    * Gets the value of an attribute on an element
    * @input Element - DOM element
    * @param name - Name of the attribute
