@@ -98,7 +98,7 @@ export const AsmodeusScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.md\\:w-full .justify-center').uiAfter().run();
+      return $c.querySelector('.-mb-2').uiBefore().run();
     },
   },
   list: {
