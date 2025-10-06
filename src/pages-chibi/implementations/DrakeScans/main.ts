@@ -69,7 +69,7 @@ export const DrakeScans: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+      return $c.querySelector('.thumb .wp-post-image').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.entry-content').uiAfter().run();
