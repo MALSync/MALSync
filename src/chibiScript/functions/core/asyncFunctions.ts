@@ -71,7 +71,7 @@ export default {
     target: ChibiJson<any>,
     callback: ChibiJson<any>,
     _intervalKey?,
-  ): void => {
+  ): Promise<void> => {
     clearInterval(ctx.getInterval(_intervalKey));
     let currentState = JSON.stringify(await ctx.runAsync(target));
     ctx.setInterval(
