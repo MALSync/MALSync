@@ -131,4 +131,25 @@ export default {
       }, 500),
     );
   },
+
+  /**
+   * Function to debounce rapid calls to a function
+   * @param func - Function to debounce
+   * @param ms - Time in milliseconds to wait
+   * @returns A debounced version of the input function
+   * @example
+   * $c.detectURLChanges($c.debounce(1000).trigger().run())
+   */
+  debounce: <Input>(ctx: ChibiCtx, input: Input, ms: ChibiParam<number>, _intervalKey?): Input => {
+    return new Promise(resolve => {
+      clearInterval(ctx.getInterval(_intervalKey));
+      ctx.setInterval(
+        _intervalKey,
+        setInterval(() => {
+          clearInterval(ctx.getInterval(_intervalKey));
+          resolve(input);
+        }, ms),
+      );
+    }) as unknown as Input;
+  },
 };
