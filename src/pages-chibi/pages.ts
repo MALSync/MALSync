@@ -41,6 +41,9 @@ import { FRAnime } from './implementations/FRAnime/main';
 import { VortexScans } from './implementations/VortexScans/main';
 import { FlameScans } from './implementations/FlameScans/main';
 import { GenzToon } from './implementations/GenzToon/main';
+import { MangaTaro } from './implementations/MangaTaro/main';
+import { ScyllaScans } from './implementations/ScyllaScans/main';
+import { TritiniaScans } from './implementations/TritiniaScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -84,4 +87,7 @@ export const pages: { [key: string]: PageInterface } = {
   VortexScans,
   FlameScans,
   GenzToon,
+  MangaTaro,
+  ScyllaScans,
+  TritiniaScans,
 };

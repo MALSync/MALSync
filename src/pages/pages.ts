@@ -65,7 +65,6 @@ import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
 import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
-import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
@@ -115,7 +114,6 @@ import { AnimesOnline } from './AnimesOnline/main';
 import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { TempleScan } from './TempleScan/main';
-import { ScyllaScans } from './ScyllaScans/main';
 import { Kavita } from './Kavita/main';
 import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
@@ -189,7 +187,6 @@ export const pages = {
   MangaHub,
   Bentomanga,
   MangaSushi,
-  TritiniaScans,
   ReadManhua,
   ImmortalUpdates,
   Zoro,
@@ -239,7 +236,6 @@ export const pages = {
   Latanime,
   MangaRead,
   TempleScan,
-  ScyllaScans,
   Kavita,
   Rawkuma,
   Aninexus,
