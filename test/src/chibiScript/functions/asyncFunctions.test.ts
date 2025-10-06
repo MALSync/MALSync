@@ -324,6 +324,18 @@ describe('Async Functions', () => {
       expect(result).to.equal('both conditions met');
     }).timeout(1000);
   });
+
+  it('wait function', async () => {
+    const start = Date.now();
+    const code = $c.string('done').wait(200).run();
+    const consumer = generateAndExecute(code);
+
+    const result = await consumer.runAsync();
+    const duration = Date.now() - start;
+
+    expect(result).to.equal('done');
+    expect(duration).to.be.at.least(200);
+  }).timeout(1000);
 });
 
 function generateAndExecute(input: ChibiJson<any>) {

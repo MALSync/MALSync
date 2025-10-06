@@ -1,4 +1,4 @@
-import type { ChibiJson } from 'src/chibiScript/ChibiGenerator';
+import type { ChibiJson, ChibiParam } from 'src/chibiScript/ChibiGenerator';
 import type { ChibiCtx } from '../../ChibiCtx';
 
 export default {
@@ -40,6 +40,21 @@ export default {
         ),
       );
     });
+  },
+
+  /**
+   * Function to wait for a specific amount of time
+   * @param ms - Time in milliseconds to wait
+   * @returns Passes through the input
+   * @example
+   * $c.wait(1000).trigger().run() // Waits for 1 second
+   */
+  wait: <Input>(ctx: ChibiCtx, input: Input, ms: ChibiParam<number>): Input => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(input);
+      }, ms);
+    }) as unknown as Input;
   },
 
   /**
