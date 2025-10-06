@@ -275,11 +275,6 @@
     "name": "bs.to"
   },
   {
-    "domain": "https://asuratoon.com",
-    "type": "manga",
-    "name": "AsuraScans"
-  },
-  {
     "domain": "https://jellyfin.org/",
     "type": "anime",
     "name": "Jellyfin"
@@ -340,19 +335,9 @@
     "name": "MangaSushi"
   },
   {
-    "domain": "https://tritinia.com",
-    "type": "manga",
-    "name": "TritiniaScans"
-  },
-  {
     "domain": "https://readmanhua.net",
     "type": "manga",
     "name": "ReadManhua"
-  },
-  {
-    "domain": "https://flamecomics.xyz",
-    "type": "manga",
-    "name": "FlameScans"
   },
   {
     "domain": "https://immortalupdates.com",
@@ -480,11 +465,6 @@
     "name": "Docchi"
   },
   {
-    "domain": "https://franime.fr",
-    "type": "anime",
-    "name": "FRAnime"
-  },
-  {
     "domain": "https://fmteam.fr",
     "type": "manga",
     "name": "FMTeam"
@@ -595,24 +575,9 @@
     "name": "MangaRead"
   },
   {
-    "domain": "https://q1n.net",
-    "type": "anime",
-    "name": "Q1N"
-  },
-  {
     "domain": "https://templescan.net",
     "type": "manga",
     "name": "TempleScan"
-  },
-  {
-    "domain": "https://scyllacomics.xyz",
-    "type": "manga",
-    "name": "ScyllaScans"
-  },
-  {
-    "domain": "https://vortexscans.org",
-    "type": "manga",
-    "name": "VortexScans"
   },
   {
     "domain": "https://demo.kavitareader.com",
@@ -740,8 +705,118 @@
     "name": "Miruro"
   },
   {
-    "domain": "https://MangaPark.to",
+    "domain": "https://mangapark.to",
     "type": "manga",
     "name": "MangaPark"
+  },
+  {
+    "domain": "https://q1n.net",
+    "type": "anime",
+    "name": "Q1N"
+  },
+  {
+    "domain": "https://qiscans.org",
+    "type": "manga",
+    "name": "QiScans"
+  },
+  {
+    "domain": "https://en-thunderscans.com",
+    "type": "manga",
+    "name": "Thunderscans"
+  },
+  {
+    "domain": "https://stonescape.xyz",
+    "type": "manga",
+    "name": "StoneScape"
+  },
+  {
+    "domain": "https://reset-scans.org",
+    "type": "manga",
+    "name": "ResetScans"
+  },
+  {
+    "domain": "https://utoon.net",
+    "type": "manga",
+    "name": "Utoon"
+  },
+  {
+    "domain": "https://witchscans.com",
+    "type": "manga",
+    "name": "WitchScans"
+  },
+  {
+    "domain": "https://sadscans.com",
+    "type": "manga",
+    "name": "Sadscans"
+  },
+  {
+    "domain": "https://arvencomics.com",
+    "type": "manga",
+    "name": "ArvenComics"
+  },
+  {
+    "domain": "https://comikey.com/",
+    "type": "manga",
+    "name": "Comikey"
+  },
+  {
+    "domain": "https://aurorascans.com",
+    "type": "manga",
+    "name": "AuroraScans"
+  },
+  {
+    "domain": "https://comic-top.com/",
+    "type": "manga",
+    "name": "ComicTop"
+  },
+  {
+    "domain": "https://atsu.moe/",
+    "type": "manga",
+    "name": "Atsumaru"
+  },
+  {
+    "domain": "https://en-thunderscans.com",
+    "type": "manga",
+    "name": "Madarascans"
+  },
+  {
+    "domain": "https://asuracomic.net/",
+    "type": "manga",
+    "name": "AsuraScans"
+  },
+  {
+    "domain": "https://franime.fr",
+    "type": "anime",
+    "name": "FRAnime"
+  },
+  {
+    "domain": "https://vortexscans.org",
+    "type": "manga",
+    "name": "VortexScans"
+  },
+  {
+    "domain": "https://flamecomics.xyz",
+    "type": "manga",
+    "name": "FlameScans"
+  },
+  {
+    "domain": "https://genzupdates.com/",
+    "type": "manga",
+    "name": "GenzToon"
+  },
+  {
+    "domain": "https://mangataro.org",
+    "type": "manga",
+    "name": "MangaTaro"
+  },
+  {
+    "domain": "https://scyllacomics.xyz",
+    "type": "manga",
+    "name": "ScyllaScans"
+  },
+  {
+    "domain": "https://tritinia.org",
+    "type": "manga",
+    "name": "TritiniaScans"
   }
 ]

@@ -1,0 +1,33 @@
+{
+    "title": "MangaTaro",
+    "url": "https://mangataro.org/",
+    "testCases": [
+      {
+        "url": "https://mangataro.org/read/a-modern-man-who-transmigrated-into-the-murim-world/ch143-454457",
+        "expected": {
+          "sync": true,
+          "title": "A Modern Man Who Transmigrated Into the Murim World",
+          "identifier": "a-modern-man-who-transmigrated-into-the-murim-world",
+          "image": "https://mangataro.org/content/media/281309l.webp",
+          "overviewUrl": "https://mangataro.org/manga/a-modern-man-who-transmigrated-into-the-murim-world",
+          "episode": 143,
+          "nextEpUrl": "https://mangataro.org/read/a-modern-man-who-transmigrated-into-the-murim-world/ch144-462660",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://mangataro.org/manga/the-sichuan-tang-clans-entomologist",
+        "expected": {
+          "sync": false,
+          "title": "The Sichuan Tang Clan’s Entomologist",
+          "identifier": "the-sichuan-tang-clans-entomologist",
+          "image": "https://mangataro.org/content/media/314719l.webp",
+          "uiSelector": true,
+          "epList": {
+            "54" : "https://mangataro.org/read/the-sichuan-tang-clans-entomologist/ch54-487438",
+            "1": "https://mangataro.org/read/the-sichuan-tang-clans-entomologist/ch1-268530"
+          }
+       }
+     }
+   ]
+ }
