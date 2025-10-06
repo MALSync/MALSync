@@ -40,6 +40,7 @@ import { AsuraScans } from './implementations/AsuraScans/main';
 import { FRAnime } from './implementations/FRAnime/main';
 import { VortexScans } from './implementations/VortexScans/main';
 import { FlameScans } from './implementations/FlameScans/main';
+import { ScyllaScans } from './implementations/ScyllaScans/main';
 import { TritiniaScans } from './implementations/TritiniaScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -83,5 +84,6 @@ export const pages: { [key: string]: PageInterface } = {
   FRAnime,
   VortexScans,
   FlameScans,
+  ScyllaScans,
   TritiniaScans,
 };
