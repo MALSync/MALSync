@@ -41,6 +41,7 @@ import { FRAnime } from './implementations/FRAnime/main';
 import { VortexScans } from './implementations/VortexScans/main';
 import { FlameScans } from './implementations/FlameScans/main';
 import { DrakeScans } from './implementations/DrakeScans/main';
+import { AsmodeusScans } from './implementations/AsmodeusScans/main';
 import { GenzToon } from './implementations/GenzToon/main';
 import { MangaTaro } from './implementations/MangaTaro/main';
 import { ScyllaScans } from './implementations/ScyllaScans/main';
@@ -88,6 +89,7 @@ export const pages: { [key: string]: PageInterface } = {
   VortexScans,
   FlameScans,
   DrakeScans,
+  AsmodeusScans,
   GenzToon,
   MangaTaro,
   ScyllaScans,
