@@ -1,0 +1,33 @@
+{
+    "title": "PhiliaScans",
+    "url": "https://philiascans.org",
+    "testCases": [
+      {
+        "url": "https://philiascans.org/series/sanctuary-of-the-unloved-noble-lady/chapter-8/",
+        "expected": {
+          "sync": true,
+          "title": "Sanctuary of the Unloved Noble Lady",
+          "identifier": "sanctuary-of-the-unloved-noble-lady",
+          "overviewUrl": "https://philiascans.org/series/sanctuary-of-the-unloved-noble-lady/",
+          "image": "https://philiascans.org/wp-content/uploads/2025/08/image_2025-08-25_161228991-719x1024.png",
+          "episode": 8,
+          "nextEpUrl": "https://philiascans.org/series/sanctuary-of-the-unloved-noble-lady/chapter-9/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://philiascans.org/series/sanctuary-of-the-unloved-noble-lady/",
+        "expected": {
+          "sync": false,
+          "title": "Sanctuary of the Unloved Noble Lady",
+          "identifier": "sanctuary-of-the-unloved-noble-lady",
+          "image": "https://philiascans.org/wp-content/uploads/2025/08/image_2025-08-25_161228991-719x1024.png",
+          "uiSelector": true,
+          "epList": {
+            "8" : "https://philiascans.org/series/sanctuary-of-the-unloved-noble-lady/chapter-8/",
+            "25" : "https://philiascans.org/series/sanctuary-of-the-unloved-noble-lady/#"
+          }
+        }
+      }
+    ]
+  }
