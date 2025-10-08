@@ -137,7 +137,7 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://anime-odcinki.pl"><img src="https://favicon.malsync.moe/?domain=https://anime-odcinki.pl"> AnimeOdcinki</a></td>
     <td>Polish</td>
@@ -596,6 +596,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://asmotoon.com"><img src="https://favicon.malsync.moe/?domain=https://asmotoon.com"> AsmodeusScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://asuracomic.net/"><img src="https://favicon.malsync.moe/?domain=https://asuracomic.net/"> AsuraScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -672,6 +679,13 @@
     <td>:x:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://drakecomic.org"><img src="https://favicon.malsync.moe/?domain=https://drakecomic.org"> DrakeScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://dynasty-scans.com"><img src="https://favicon.malsync.moe/?domain=https://dynasty-scans.com"> DynastyScans</a></td>
     <td>English</td>
@@ -1002,12 +1016,12 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://rawkuma.com"><img src="https://favicon.malsync.moe/?domain=https://rawkuma.com"> Rawkuma</a></td>
+    <td><a href="https://rawkuma.net"><img src="https://favicon.malsync.moe/?domain=https://rawkuma.net"> Rawkuma</a></td>
     <td>Japanese</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://readm.today"><img src="https://favicon.malsync.moe/?domain=https://readm.today"> Readm</a></td>
     <td>English</td>
@@ -1170,12 +1184,12 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://zeroscans.com"><img src="https://favicon.malsync.moe/?domain=https://zeroscans.com"> ZeroScans</a></td>
+    <td><a href="https://zscans.com/"><img src="https://favicon.malsync.moe/?domain=https://zscans.com/"> ZeroScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
   </tr>
     </tbody>
   </table>
