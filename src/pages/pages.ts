@@ -92,7 +92,6 @@ import { Aniyan } from './Aniyan/main';
 import { Docchi } from './Docchi/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
-import { AnimeNoSub } from './AnimeNoSub/main';
 import { AnimeSama } from './AnimeSama/main';
 import { MangaFire } from './MangaFire/main';
 import { projectsuki } from './projectsuki/main';
@@ -114,7 +113,6 @@ import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { TempleScan } from './TempleScan/main';
 import { Kavita } from './Kavita/main';
-import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
 
@@ -213,7 +211,6 @@ export const pages = {
   Docchi,
   FMTeam,
   Animelon,
-  AnimeNoSub,
   AnimeSama,
   MangaFire,
   projectsuki,
@@ -235,7 +232,6 @@ export const pages = {
   MangaRead,
   TempleScan,
   Kavita,
-  Rawkuma,
   Aninexus,
   AniDream,
 };
