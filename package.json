@@ -86,7 +86,7 @@
     "build:webextension:background": "webpack --mode=production --config webpackConfig/webextension.background.config.js",
     "build:webextension:assets": "node webpackConfig/webextension.assets.js",
     "build:chibiTypes": "node webpackConfig/webextension.content.generateChibi.js",
-    "build:descriptions": "node webpackConfig/descriptions.js && npm run build:missingPermissions",
+    "build:descriptions": "node webpackConfig/descriptions.js",
     "build:missingPermissions": "node webpackConfig/missingPermissions.js",
     "build:autoUrls": "node webpackConfig/autoUrls.mjs && npm run build:missingPermissions",
     "package": "npm run package:webextension",
