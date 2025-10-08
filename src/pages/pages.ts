@@ -42,7 +42,6 @@ import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { DesuOnline } from './DesuOnline/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
-import { LeviatanScans } from './LeviatanScans/main';
 import { ReaperScans } from './ReaperScans/main';
 import { LynxScans } from './LynxScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
@@ -67,7 +66,6 @@ import { MangaSushi } from './MangaSushi/main';
 import { ReadManhua } from './ReadManhua/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
-import { Kitsune } from './Kitsune/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
 import { BlueSolo } from './BlueSolo/main';
@@ -79,7 +77,6 @@ import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
 import { Animetoast } from './Animetoast/main';
-import { LuminousScans } from './LuminousScans/main';
 import { Animeworld } from './Animeworld/main';
 import { MangaBuddy } from './MangaBuddy/main';
 import { ToonAnime } from './ToonAnime/main';
@@ -161,7 +158,6 @@ export const pages = {
   MangaFox,
   DesuOnline,
   WuxiaWorld,
-  LeviatanScans,
   ReaperScans,
   LynxScans,
   DeathTollScans,
@@ -186,7 +182,6 @@ export const pages = {
   ReadManhua,
   ImmortalUpdates,
   Zoro,
-  Kitsune,
   LHTranslation,
   MangasOrigines,
   BlueSolo,
@@ -198,7 +193,6 @@ export const pages = {
   MangaReader,
   AnimeOnsen,
   Animetoast,
-  LuminousScans,
   Animeworld,
   MangaBuddy,
   ToonAnime,
