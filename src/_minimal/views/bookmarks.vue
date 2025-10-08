@@ -25,9 +25,9 @@
         <div class="material-icons m-pill" :title="lang('updateCheck_Refresh')">refresh</div>
       </FormButton>
       <FormButton
-        v-if="parameters.state === 6"
+        v-if="parameters.state === 6 || parameters.state === 3"
         padding="pill"
-        @click="openRandom(6, parameters.type)"
+        @click="openRandom(parameters.state, parameters.type)"
       >
         <div class="material-icons m-pill" title="random">shuffle</div>
       </FormButton>
