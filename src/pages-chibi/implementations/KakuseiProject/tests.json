@@ -8,9 +8,10 @@
           "sync": true,
           "title": "Yamada-kun to Lv999 no Koi wo Suru",
           "identifier": "yamada-kun-to-lv999-no-koi-wo-suru",
-          "overviewUrl": "https://kakuseiproject.com/manga/yamada-kun-to-lv999-no-koi-wo-suru/",
+          "overviewUrl": "https://kakuseiproject.com/manga/yamada-kun-to-lv999-no-koi-wo-suru",
           "episode": 51,
-          "uiSelector": false
+          "uiSelector": false,
+          "image": "https://kakuseiproject.com/wp-content/uploads/2024/03/capa-yamada.jpg"
         }
       },
       {
