@@ -101,5 +101,5 @@ export const pages: { [key: string]: PageInterface } = {
   TritiniaScans,
   AnimeNoSub,
   Rawkuma,
-  KakuseiProject
+  KakuseiProject,
 };
