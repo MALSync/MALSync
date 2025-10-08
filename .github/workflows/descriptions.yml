@@ -18,7 +18,11 @@ jobs:
         node-version: '22.x'
 
     - name: Build
-      run: npm install
+      run: |
+        npm ci
+        npm run build:chibiTypes
+      env:
+        PUPPETEER_SKIP_DOWNLOAD: 'true'
 
     - name: Run
       run: npm run build:descriptions
