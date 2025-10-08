@@ -114,7 +114,6 @@ import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { TempleScan } from './TempleScan/main';
 import { Kavita } from './Kavita/main';
-import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
 
@@ -235,7 +234,6 @@ export const pages = {
   MangaRead,
   TempleScan,
   Kavita,
-  Rawkuma,
   Aninexus,
   AniDream,
 };

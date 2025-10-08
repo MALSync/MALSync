@@ -47,6 +47,7 @@ import { GenzToon } from './implementations/GenzToon/main';
 import { MangaTaro } from './implementations/MangaTaro/main';
 import { ScyllaScans } from './implementations/ScyllaScans/main';
 import { TritiniaScans } from './implementations/TritiniaScans/main';
+import { Rawkuma } from './implementations/Rawkuma/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -96,4 +97,5 @@ export const pages: { [key: string]: PageInterface } = {
   MangaTaro,
   ScyllaScans,
   TritiniaScans,
+  Rawkuma,
 };
