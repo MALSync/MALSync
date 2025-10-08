@@ -105,7 +105,7 @@ export const AsuraScans: PageInterface = {
     },
     syncIsReady($c) {
       return $c
-        .waitUntilTrue($c.querySelector('.py-8 .w-full img').boolean().run())
+        .waitUntilTrue($c.querySelector('.text-card-foreground').isNil().run())
         .trigger()
         .run();
     },
