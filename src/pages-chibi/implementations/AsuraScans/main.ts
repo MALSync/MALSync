@@ -103,5 +103,11 @@ export const AsuraScans: PageInterface = {
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
+    syncIsReady($c) {
+      return $c
+        .waitUntilTrue($c.querySelector('.py-8 .w-full img').boolean().run())
+        .trigger()
+        .run();
+    },
   },
 };
