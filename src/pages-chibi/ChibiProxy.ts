@@ -243,6 +243,23 @@ export const Chibi = async (): Promise<pageInterface> => {
         page.reset();
 
         const pageReady = () => {
+          if (currentPage.computedType) {
+            logger.m('Type').info('Computing type...');
+            const typeConsumer = getConsumer(currentPage.computedType, pageD, 'computedType');
+            const computedType = typeConsumer.run();
+            if (computedType) {
+              logger.m('Type').info('Computed type:', computedType);
+              let type = computedType;
+              let isNovel = false;
+              if (type === 'novel') {
+                type = 'manga';
+                isNovel = true;
+              }
+              pageD.type = type;
+              page.novel = isNovel;
+            }
+          }
+
           logger.info('Handle page');
           page.handlePage();
         };

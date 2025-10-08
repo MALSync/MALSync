@@ -8,6 +8,9 @@ export const Novelfire: PageInterface = {
   urls: {
     match: ['*://novelfire.net/*'],
   },
+  computedType: $c => {
+    return $c.string('novel').run();
+  },
   sync: {
     isSyncPage($c) {
       return $c.url().urlPart(5).matches('chapter[_-]').run();
