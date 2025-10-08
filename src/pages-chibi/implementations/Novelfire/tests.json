@@ -1,0 +1,45 @@
+{
+  "title": "Novelfire",
+  "url": "https://novelfire.net",
+  "testCases": [
+    {
+      "url": "https://novelfire.net/book/mushoku-tensei/chapters",
+      "expected": {
+        "sync": false,
+        "title": "Mushoku Tensei",
+        "identifier": "mushoku-tensei",
+        "image": "https://novelfire.net/server-1/mushoku-tensei.jpg",
+        "uiSelector": true,
+        "epList": {
+          "7": "https://novelfire.net/book/mushoku-tensei/chapter-7"
+        }
+      }
+    },
+    {
+      "url": "https://novelfire.net/book/mushoku-tensei/chapter-19",
+      "expected": {
+        "sync": true,
+        "title": "Mushoku Tensei",
+        "identifier": "mushoku-tensei",
+        "overviewUrl": "https://novelfire.net/book/mushoku-tensei",
+        "episode": 19,
+        "volume": 2,
+        "nextEpUrl": "https://novelfire.net/book/mushoku-tensei/chapter-20",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://novelfire.net/book/reich-marshal-of-the-belkan-reich/chapter-411",
+      "expected": {
+        "sync": true,
+        "title": "Reich Marshal of the Belkan Reich",
+        "identifier": "reich-marshal-of-the-belkan-reich",
+        "overviewUrl": "https://novelfire.net/book/reich-marshal-of-the-belkan-reich",
+        "episode": 411,
+        "volume": 4,
+        "nextEpUrl": "",
+        "uiSelector": false
+      }
+    }
+  ]
+}
