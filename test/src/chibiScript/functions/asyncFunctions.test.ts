@@ -324,6 +324,68 @@ describe('Async Functions', () => {
       expect(result).to.equal('both conditions met');
     }).timeout(1000);
   });
+
+  it('wait function', async () => {
+    const start = Date.now();
+    const code = $c.string('done').wait(200).run();
+    const consumer = generateAndExecute(code);
+
+    const result = await consumer.runAsync();
+    const duration = Date.now() - start;
+
+    expect(result).to.equal('done');
+    expect(duration).to.be.at.least(200);
+  }).timeout(1000);
+
+  it('detectChanges function', async () => {
+    const code = $c
+      .trigger()
+      .detectChanges($c.getVariable('bar', 'base').run(), $c.trigger().run())
+      .run();
+
+    const consumer = generateAndExecute(code);
+
+    let callCount = 0;
+    consumer.addVariable('trigger', () => {
+      callCount++;
+    });
+
+    consumer.runAsync();
+
+    consumer.addVariable('bar', 'first');
+    await new Promise(res => setTimeout(res, 50));
+    consumer.addVariable('bar', 'second');
+    await new Promise(res => setTimeout(res, 1500));
+
+    expect(callCount).to.equal(2);
+    consumer.clearIntervals();
+  }).timeout(5000);
+
+  it('debounce function', async () => {
+    const code = $c
+      .trigger()
+      .detectChanges($c.getVariable('bar', 'base').run(), $c.debounce(1500).trigger().run())
+      .run();
+
+    const consumer = generateAndExecute(code);
+
+    let callCount = 0;
+    consumer.addVariable('trigger', () => {
+      callCount++;
+    });
+
+    consumer.runAsync();
+
+    consumer.addVariable('bar', 'first');
+    await new Promise(res => setTimeout(res, 50));
+    consumer.addVariable('bar', 'second');
+    await new Promise(res => setTimeout(res, 1500));
+    consumer.addVariable('bar', 'third');
+    await new Promise(res => setTimeout(res, 1500));
+
+    expect(callCount).to.equal(2);
+    consumer.clearIntervals();
+  }).timeout(5000);
 });
 
 function generateAndExecute(input: ChibiJson<any>) {
