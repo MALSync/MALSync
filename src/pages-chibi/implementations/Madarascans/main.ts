@@ -2,7 +2,7 @@ import { PageInterface } from '../../pageInterface';
 
 export const Madarascans: PageInterface = {
   name: 'Madarascans',
-  domain: 'https://en-thunderscans.com',
+  domain: 'https://madarascans.com',
   languages: ['English'],
   type: 'manga',
   urls: {

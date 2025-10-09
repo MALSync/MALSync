@@ -161,6 +161,8 @@
       "*://animevost.org/frame5.php?play=*",
       "*://vidmoly.net/*",
       "*://jilliandescribecompany.com/e/*",
+      "*://pqham.com/*",
+      "*://nova.upn.one/*",
       "*://api.anivideo.net/*",
       "*://listeamed.net/*",
       "*://megaup.site/e/*",
@@ -168,7 +170,11 @@
       "*://player.zilla-networks.com/*",
       "*://megaplay.buzz/*",
       "*://*.anizmplayer.com/*",
-      "*://loadx.ws/*"
+      "*://loadx.ws/*",
+      "*://odysee.com/*",
+      "*://emturbovid.com/*",
+      "*://*.upns.live/*",
+      "*://*.p2pstream.vip/*"
     ]
   }
 }

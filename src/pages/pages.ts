@@ -42,7 +42,6 @@ import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { DesuOnline } from './DesuOnline/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
-import { LeviatanScans } from './LeviatanScans/main';
 import { ReaperScans } from './ReaperScans/main';
 import { LynxScans } from './LynxScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
@@ -67,7 +66,6 @@ import { MangaSushi } from './MangaSushi/main';
 import { ReadManhua } from './ReadManhua/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
-import { Kitsune } from './Kitsune/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
 import { BlueSolo } from './BlueSolo/main';
@@ -79,7 +77,6 @@ import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
 import { Animetoast } from './Animetoast/main';
-import { LuminousScans } from './LuminousScans/main';
 import { Animeworld } from './Animeworld/main';
 import { MangaBuddy } from './MangaBuddy/main';
 import { ToonAnime } from './ToonAnime/main';
@@ -92,7 +89,6 @@ import { Aniyan } from './Aniyan/main';
 import { Docchi } from './Docchi/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
-import { AnimeNoSub } from './AnimeNoSub/main';
 import { AnimeSama } from './AnimeSama/main';
 import { MangaFire } from './MangaFire/main';
 import { projectsuki } from './projectsuki/main';
@@ -114,7 +110,6 @@ import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { TempleScan } from './TempleScan/main';
 import { Kavita } from './Kavita/main';
-import { Rawkuma } from './Rawkuma/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
 
@@ -163,7 +158,6 @@ export const pages = {
   MangaFox,
   DesuOnline,
   WuxiaWorld,
-  LeviatanScans,
   ReaperScans,
   LynxScans,
   DeathTollScans,
@@ -188,7 +182,6 @@ export const pages = {
   ReadManhua,
   ImmortalUpdates,
   Zoro,
-  Kitsune,
   LHTranslation,
   MangasOrigines,
   BlueSolo,
@@ -200,7 +193,6 @@ export const pages = {
   MangaReader,
   AnimeOnsen,
   Animetoast,
-  LuminousScans,
   Animeworld,
   MangaBuddy,
   ToonAnime,
@@ -213,7 +205,6 @@ export const pages = {
   Docchi,
   FMTeam,
   Animelon,
-  AnimeNoSub,
   AnimeSama,
   MangaFire,
   projectsuki,
@@ -235,7 +226,6 @@ export const pages = {
   MangaRead,
   TempleScan,
   Kavita,
-  Rawkuma,
   Aninexus,
   AniDream,
 };

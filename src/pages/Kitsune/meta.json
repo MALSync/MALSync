@@ -1,6 +1,0 @@
-{
-  "search": "https://kitsune.tv/shows?q={searchterm}",
-  "urls": {
-    "match": ["*://kitsune.tv/*", "*://beta.kitsune.tv/*"]
-  }
-}

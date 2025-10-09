@@ -48,6 +48,11 @@ import { MangaTaro } from './implementations/MangaTaro/main';
 import { ScyllaScans } from './implementations/ScyllaScans/main';
 import { TritiniaScans } from './implementations/TritiniaScans/main';
 import { PhiliaScans } from './implementations/PhiliaScans/main';
+import { Jestful } from './implementations/Jestful/main';
+import { AnimeNoSub } from './implementations/AnimeNoSub/main';
+import { Rawkuma } from './implementations/Rawkuma/main';
+import { KakuseiProject } from './implementations/KakuseiProject/main';
+import { AnimeKhor } from './implementations/AnimeKhor/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -98,4 +103,9 @@ export const pages: { [key: string]: PageInterface } = {
   ScyllaScans,
   TritiniaScans,
   PhiliaScans,
+  Jestful,
+  AnimeNoSub,
+  Rawkuma,
+  KakuseiProject,
+  AnimeKhor,
 };
