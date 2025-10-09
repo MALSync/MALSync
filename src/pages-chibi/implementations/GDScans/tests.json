@@ -1,0 +1,34 @@
+{
+  "title": "GalaxyDegenScans",
+  "url": "https://gdscans.com/",
+  "testCases": [
+    {
+      "url": "https://gdscans.com/manga/katainaka-no-ossan-kensei-ni-naru-tada-no-inaka-no-kenjutsu-shihan-datta-no-ni-taiseishita-deshi-tachi-ga-ore-wo-hottekurenai-ken/volume-8/chapter-34-1/",
+      "expected": {
+        "sync": true,
+        "title": "Katainaka no Ossan",
+        "identifier": "katainaka-no-ossan-kensei-ni-naru-tada-no-inaka-no-kenjutsu-shihan-datta-no-ni-taiseishita-deshi-tachi-ga-ore-wo-hottekurenai-ken",
+        "image": "https://gdscans.com/wp-content/uploads/2023/03/cover_vol-1-copia-2.jpeg",
+        "overviewUrl": "https://gdscans.com/manga/katainaka-no-ossan-kensei-ni-naru-tada-no-inaka-no-kenjutsu-shihan-datta-no-ni-taiseishita-deshi-tachi-ga-ore-wo-hottekurenai-ken/",
+        "nextEpUrl": "https://gdscans.com/manga/katainaka-no-ossan-kensei-ni-naru-tada-no-inaka-no-kenjutsu-shihan-datta-no-ni-taiseishita-deshi-tachi-ga-ore-wo-hottekurenai-ken/volume-8/chapter-34-2/",
+        "episode": 34,
+        "volume": 8,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://gdscans.com/manga/katainaka-no-ossan-kensei-ni-naru-tada-no-inaka-no-kenjutsu-shihan-datta-no-ni-taiseishita-deshi-tachi-ga-ore-wo-hottekurenai-ken/",
+      "expected": {
+        "sync": false,
+        "title": "Katainaka no Ossan",
+        "identifier": "katainaka-no-ossan-kensei-ni-naru-tada-no-inaka-no-kenjutsu-shihan-datta-no-ni-taiseishita-deshi-tachi-ga-ore-wo-hottekurenai-ken",
+        "image": "https://gdscans.com/wp-content/uploads/2023/03/cover_vol-1-copia-2.jpeg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://gdscans.com/manga/katainaka-no-ossan-kensei-ni-naru-tada-no-inaka-no-kenjutsu-shihan-datta-no-ni-taiseishita-deshi-tachi-ga-ore-wo-hottekurenai-ken/volume-1/chapter-1/",
+          "34": "https://gdscans.com/manga/katainaka-no-ossan-kensei-ni-naru-tada-no-inaka-no-kenjutsu-shihan-datta-no-ni-taiseishita-deshi-tachi-ga-ore-wo-hottekurenai-ken/volume-8/chapter-34-1/"
+        }
+      }
+    }
+  ]
+}
