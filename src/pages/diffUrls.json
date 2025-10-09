@@ -170,7 +170,11 @@
       "*://player.zilla-networks.com/*",
       "*://megaplay.buzz/*",
       "*://*.anizmplayer.com/*",
-      "*://loadx.ws/*"
+      "*://loadx.ws/*",
+      "*://odysee.com/*",
+      "*://emturbovid.com/*",
+      "*://*.upns.live/*",
+      "*://*.p2pstream.vip/*"
     ]
   }
 }

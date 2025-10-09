@@ -8,6 +8,7 @@ export const Rawkuma: PageInterface = {
   urls: {
     match: ['*://rawkuma.com/*', '*://rawkuma.net/*'],
   },
+  search: 'https://rawkuma.net/library/?search_term={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
