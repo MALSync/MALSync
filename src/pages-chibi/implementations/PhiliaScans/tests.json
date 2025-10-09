@@ -28,6 +28,47 @@
             "25" : "https://philiascans.org/series/sanctuary-of-the-unloved-noble-lady/#"
           }
         }
+      },
+      {
+        "url": "https://philiascans.org/series/darkened-hero-hidden-boss-hunt/chapter-7-1/",
+        "expected": {
+          "sync": true,
+          "title": "Darkened Hero: Hidden Boss Hunt",
+          "identifier": "darkened-hero-hidden-boss-hunt",
+          "overviewUrl": "https://philiascans.org/series/darkened-hero-hidden-boss-hunt/",
+          "image": "https://philiascans.org/wp-content/uploads/2025/01/DM_20250127121242_001-723x1024.jpg",
+          "episode": 7,
+          "nextEpUrl": "https://philiascans.org/series/darkened-hero-hidden-boss-hunt/chapter-7-2/",
+          "uiSelector": false
+        }
+      },
+            {
+        "url": "https://philiascans.org/series/traveling-through-the-world-of-cultivation-but-being-able-to-connect-to-the-internet/32/",
+        "expected": {
+          "sync": true,
+          "title": "Traveling Through the World of Cultivation, But Being Able to Connect to the Internet",
+          "identifier": "traveling-through-the-world-of-cultivation-but-being-able-to-connect-to-the-internet",
+          "overviewUrl": "https://philiascans.org/series/traveling-through-the-world-of-cultivation-but-being-able-to-connect-to-the-internet/",
+          "image": "https://philiascans.org/wp-content/uploads/2025/01/DM_20250127181903_001-768x1024.png",
+          "episode": 32,
+          "nextEpUrl": "https://philiascans.org/series/traveling-through-the-world-of-cultivation-but-being-able-to-connect-to-the-internet/33/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://philiascans.org/series/traveling-through-the-world-of-cultivation-but-being-able-to-connect-to-the-internet/",
+        "expected": {
+          "sync": false,
+          "title": "Traveling Through the World of Cultivation, But Being Able to Connect to the Internet",
+          "identifier": "traveling-through-the-world-of-cultivation-but-being-able-to-connect-to-the-internet",
+          "image": "https://philiascans.org/wp-content/uploads/2025/01/DM_20250127181903_001-768x1024.png",
+          "uiSelector": true,
+          "epList": {
+            "1" : "https://philiascans.org/series/traveling-through-the-world-of-cultivation-but-being-able-to-connect-to-the-internet/01/",
+            "32" : "https://philiascans.org/series/traveling-through-the-world-of-cultivation-but-being-able-to-connect-to-the-internet/32/",
+            "33" : "https://philiascans.org/series/traveling-through-the-world-of-cultivation-but-being-able-to-connect-to-the-internet/33/"
+          }
+        }
       }
     ]
   }

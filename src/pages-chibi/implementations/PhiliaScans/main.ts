@@ -14,7 +14,7 @@ export const PhiliaScans: PageInterface = {
         .and(
           $c.url().urlPart(5).boolean().run(),
           $c.url().urlPart(3).equals('series').run(),
-          $c.url().urlPart(5).matches('chapter').run(),
+          $c.url().urlPart(5).matches('(\\d+)').run(),
         )
         .run();
     },
@@ -41,7 +41,7 @@ export const PhiliaScans: PageInterface = {
     nextEpUrl($c) {
       return $c
         .querySelector('.fa-chevron-right')
-        .find('a')
+        .closest('a')
         .getAttribute('href')
         .ifNotReturn()
         .urlAbsolute()
@@ -63,7 +63,11 @@ export const PhiliaScans: PageInterface = {
   overview: {
     isOverviewPage($c) {
       return $c
-        .and($c.url().urlPart(4).boolean().run(), $c.url().urlPart(3).equals('series').run())
+        .and(
+          $c.url().urlPart(4).boolean().run(),
+          $c.url().urlPart(3).equals('series').run(),
+          $c.url().urlPart(5).boolean().not().run(),
+        )
         .run();
     },
     getTitle($c) {
@@ -90,7 +94,7 @@ export const PhiliaScans: PageInterface = {
       return $c
         .closest('.item[data-chapter]')
         .getAttribute('data-chapter')
-        .regex('chapter[ _-]?(\\d+)', 1)
+        .regex('(\\d+)', 1)
         .number()
         .run(); // include locked chapter
     },
