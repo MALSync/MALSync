@@ -113,7 +113,7 @@ export const GDScans: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c.domReady().trigger().run();
     },
     overviewIsReady($c) {
       return $c.waitUntilTrue($c.querySelector('.version-chap').boolean().run()).trigger().run();
