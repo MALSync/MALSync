@@ -184,7 +184,7 @@ async function start() {
   const tasks = {
     voe,
     // vidmoly,
-    mixdrop,
+    // mixdrop,
     zoro,
     // kickassanime,
     animekai,

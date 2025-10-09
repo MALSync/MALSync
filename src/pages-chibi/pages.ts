@@ -40,6 +40,7 @@ import { AsuraScans } from './implementations/AsuraScans/main';
 import { FRAnime } from './implementations/FRAnime/main';
 import { VortexScans } from './implementations/VortexScans/main';
 import { FlameScans } from './implementations/FlameScans/main';
+import { ZeroScans } from './implementations/ZeroScans/main';
 import { DrakeScans } from './implementations/DrakeScans/main';
 import { AsmodeusScans } from './implementations/AsmodeusScans/main';
 import { GenzToon } from './implementations/GenzToon/main';
@@ -47,6 +48,10 @@ import { MangaTaro } from './implementations/MangaTaro/main';
 import { ScyllaScans } from './implementations/ScyllaScans/main';
 import { TritiniaScans } from './implementations/TritiniaScans/main';
 import { Jestful } from './implementations/Jestful/main';
+import { AnimeNoSub } from './implementations/AnimeNoSub/main';
+import { Rawkuma } from './implementations/Rawkuma/main';
+import { KakuseiProject } from './implementations/KakuseiProject/main';
+import { AnimeKhor } from './implementations/AnimeKhor/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -89,6 +94,7 @@ export const pages: { [key: string]: PageInterface } = {
   FRAnime,
   VortexScans,
   FlameScans,
+  ZeroScans,
   DrakeScans,
   AsmodeusScans,
   GenzToon,
@@ -96,4 +102,8 @@ export const pages: { [key: string]: PageInterface } = {
   ScyllaScans,
   TritiniaScans,
   Jestful,
+  AnimeNoSub,
+  Rawkuma,
+  KakuseiProject,
+  AnimeKhor,
 };
