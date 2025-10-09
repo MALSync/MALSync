@@ -833,5 +833,21 @@ module.exports = {
   // aniworld
   loadx: {
      match: ['*://loadx.ws/*'],
+  },
+  // AnimeKhor
+  odysee : {
+    match: ['*://odysee.com/*'],
+  },
+  // AnimeKhor
+  emturbovid : {
+    match: ['*://emturbovid.com/*'],
+  },
+  // AnimeKhor
+  upns: {
+     match: ['*://*.upns.live/*'],
+  },
+  // AnimeKhor
+  p2pstream: {
+    match: ['*://*.p2pstream.vip/*'],
   }
 };
