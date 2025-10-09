@@ -19,7 +19,13 @@ export const PhiliaScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.manga-title').text().trim().run();
+      return $c
+        .querySelector('.manga-title')
+        .text()
+        .replaceAll('\n', ' ')
+        .replaceRegex('\\s+', ' ')
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
@@ -71,7 +77,13 @@ export const PhiliaScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.serie-title').text().trim().run();
+      return $c
+        .querySelector('.serie-title')
+        .text()
+        .replaceAll('\n', ' ')
+        .replaceRegex('\\s+', ' ')
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
