@@ -2,7 +2,7 @@ import { PageInterface } from '../../pageInterface';
 
 export const AnimeKhor: PageInterface = {
   name: 'AnimeKhor',
-  domain: 'https://animekhor.org/',
+  domain: 'https://animekhor.org',
   languages: ['English'],
   type: 'anime',
   urls: {
