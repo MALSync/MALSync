@@ -47,6 +47,7 @@ import { GenzToon } from './implementations/GenzToon/main';
 import { MangaTaro } from './implementations/MangaTaro/main';
 import { ScyllaScans } from './implementations/ScyllaScans/main';
 import { TritiniaScans } from './implementations/TritiniaScans/main';
+import { PhiliaScans } from './implementations/PhiliaScans/main';
 import { GDScans } from './implementations/GDScans/main';
 import { Jestful } from './implementations/Jestful/main';
 import { AnimeNoSub } from './implementations/AnimeNoSub/main';
@@ -102,6 +103,7 @@ export const pages: { [key: string]: PageInterface } = {
   MangaTaro,
   ScyllaScans,
   TritiniaScans,
+  PhiliaScans,
   GDScans,
   Jestful,
   AnimeNoSub,
