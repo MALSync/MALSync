@@ -58,6 +58,10 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
     page.lifecycle.listChange = page.lifecycle.listChange($c) as any;
   }
 
+  if (page.computedType) {
+    page.computedType = page.computedType($c) as any;
+  }
+
   return page;
 }
 
