@@ -25,17 +25,16 @@ export const Novelfire: PageInterface = {
       return $c.url().split('/').slice(0, 5).join('/').run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).regex('chapter[_-](\\d+)', 1).number().run();
+      return getEpisode(
+        $c
+          .setVariable('chapterUrlPart', $c.url().urlPart(5).run())
+          .setVariable('chapterName', $c.querySelector('.chapter-title').text().run()),
+      ).run();
     },
     getVolume($c) {
-      return $c
-        .querySelector('.chapter-title')
-        .ifNotReturn()
-        .text()
-        .regex('Vol(ume)? (\\d+)', 2)
-        .ifNotReturn()
-        .number()
-        .run();
+      return getVolume(
+        $c.setVariable('chapterName', $c.querySelector('.chapter-title').text().run()),
+      ).run();
     },
     nextEpUrl($c) {
       return $c
@@ -90,7 +89,11 @@ export const Novelfire: PageInterface = {
       return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.this('list.elementUrl').this('sync.getEpisode').run();
+      return getEpisode(
+        $c
+          .setVariable('chapterUrlPart', $c.this('list.elementUrl').urlPart(5).run())
+          .setVariable('chapterName', $c.target().find('.chapter-title').text().run()),
+      ).run();
     },
   },
   lifecycle: {
@@ -102,3 +105,65 @@ export const Novelfire: PageInterface = {
     },
   },
 };
+
+const multiRegex = ['vol(?:ume)? (\\d+) (\\d+)', '(\\d+)[-_](\\d+)'];
+
+function getEpisode($c) {
+  return $c.coalesce(
+    // Volume 2 5
+    $c
+      .getVariable('chapterName')
+      .log()
+      .regex(multiRegex[0], 2)
+      .ifThen($c => $c.number().run())
+      .run(),
+    // Chapter 80
+    $c
+      .getVariable('chapterName')
+      .log()
+      .regex('chap(?:ter)? (\\d+)', 1)
+      .ifThen($c => $c.number().run())
+      .run(),
+    // 2-35
+    $c
+      .getVariable('chapterName')
+      .log()
+      .regex(multiRegex[1], 2)
+      .ifThen($c => $c.number().run())
+      .run(),
+    // 35
+    $c
+      .getVariable('chapterName')
+      .log()
+      .regex('^(\\d+)', 1)
+      .ifThen($c => $c.number().run())
+      .run(),
+    $c.getVariable('chapterUrlPart').regex('chapter[_-](\\d+)', 1).number().run(),
+  );
+}
+
+function getVolume($c) {
+  return $c.coalesce(
+    // Volume 2 5
+    $c
+      .getVariable('chapterName')
+      .log()
+      .regex(multiRegex[0], 1)
+      .ifThen($c => $c.number().run())
+      .run(),
+    // Vol 5
+    $c
+      .getVariable('chapterName')
+      .log()
+      .regex('(?:vol(?:ume)?|book) (\\d+)', 1)
+      .ifThen($c => $c.number().run())
+      .run(),
+    // 2-35
+    $c
+      .getVariable('chapterName')
+      .log()
+      .regex(multiRegex[1], 1)
+      .ifThen($c => $c.number().run())
+      .run(),
+  );
+}
