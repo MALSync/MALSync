@@ -343,23 +343,24 @@ const sort = computed({
   },
 });
 
-const randomListCache = { anime: [], manga: [] };
+const randomListCache = {};
 async function openRandom(status, type) {
-  if (!randomListCache[type].length) {
+  const cacheKey = `${status}-${type}`;
+  if (typeof randomListCache[cacheKey] === 'undefined' || !randomListCache[cacheKey].length) {
     utils.flashm('Loading');
     const listProvider = await getList(status, type);
     await listProvider
       .getCompleteList()
       .then(async res => {
-        randomListCache[type] = res;
+        randomListCache[cacheKey] = res;
       })
       .catch(e => {
         con.error(e);
       });
   }
-  if (randomListCache[type].length > 1) {
+  if (typeof randomListCache[cacheKey] !== 'undefined' && randomListCache[cacheKey].length > 1) {
     const currentUrl =
-      randomListCache[type][Math.floor(Math.random() * randomListCache[type].length)].url;
+      randomListCache[cacheKey][Math.floor(Math.random() * randomListCache[cacheKey].length)].url;
     const slugObj = urlToSlug(currentUrl);
     router.push({ name: 'Overview', params: slugObj.path });
   } else {
