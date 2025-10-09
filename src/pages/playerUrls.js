@@ -712,6 +712,7 @@ module.exports = {
       '*://gorro-chfzoaas.fun/e/*',
       '*://gorro-chfzoaas.fun/lol/*',
       '*://z7ihwgqj.fun/*',
+      '*://pqham.com/*',
     ],
   },
   // toonanime
@@ -728,7 +729,7 @@ module.exports = {
   },
   // animenosub
   animenosub: {
-    match: ['*://animenosub.upn.one/#*'],
+    match: ['*://animenosub.upn.one/#*', '*://nova.upn.one/*'],
   },
   // voiranime
   streamhide: {
