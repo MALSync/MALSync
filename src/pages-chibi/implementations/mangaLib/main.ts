@@ -77,6 +77,11 @@ export const mangaLib: PageInterface = {
           group: 2,
         },
       },
+      // TODO - Replace when PR#3296 is merged
+      // {
+      //   current: $c => $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 1).run(),
+      //   total: $c => $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 2).run(),
+      // },
     ],
   },
   overview: {
