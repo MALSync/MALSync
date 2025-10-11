@@ -174,6 +174,14 @@ export class Single extends SingleAbstract {
     return `https://simkl.in/posters/${this.animeInfo.show.poster}_ca.jpg`;
   }
 
+  public override getEpisodeRuntimeSeconds(): number | null {
+    const runtime = this.animeInfo?.show?.runtime;
+    if (typeof runtime === 'number' && Number.isFinite(runtime) && runtime > 0) {
+      return runtime * 60;
+    }
+    return null;
+  }
+
   async _getRating() {
     try {
       const el = await this.call('https://api.simkl.com/ratings', { simkl: this.ids.simkl }, true);

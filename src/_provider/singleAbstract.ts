@@ -626,6 +626,15 @@ export abstract class SingleAbstract {
     return null;
   }
 
+  /**
+   * Average runtime of one episode in seconds, if the provider exposes it.
+   * Allows consumers (e.g. Discord Rich Presence) to fall back to metadata
+   * when the detected video element reports inaccurate durations.
+   */
+  public getEpisodeRuntimeSeconds(): number | null {
+    return null;
+  }
+
   public increaseRewatchCount(): void {
     //  do nothing
   }

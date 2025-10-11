@@ -215,6 +215,14 @@ export class Single extends SingleAbstract {
     return this.animeInfo.main_picture?.medium ?? '';
   }
 
+  public override getEpisodeRuntimeSeconds(): number | null {
+    const duration = this.animeInfo?.average_episode_duration;
+    if (typeof duration === 'number' && Number.isFinite(duration) && duration > 0) {
+      return duration;
+    }
+    return null;
+  }
+
   _getRating() {
     return Promise.resolve(this.animeInfo.mean);
   }
@@ -227,6 +235,7 @@ export class Single extends SingleAbstract {
         'my_list_status{tags,is_rewatching,is_rereading,num_times_rewatched,num_times_reread,start_date,finish_date}',
         'num_episodes',
         'mean',
+        'average_episode_duration',
         // Manga
         'num_chapters',
         'num_volumes',

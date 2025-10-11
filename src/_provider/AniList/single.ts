@@ -146,6 +146,14 @@ export class Single extends SingleAbstract {
     return helper.imgCheck(this.animeInfo.coverImage.large);
   }
 
+  public override getEpisodeRuntimeSeconds(): number | null {
+    const duration = this.animeInfo?.duration;
+    if (typeof duration === 'number' && Number.isFinite(duration) && duration > 0) {
+      return duration * 60;
+    }
+    return null;
+  }
+
   _getRating() {
     return Promise.resolve(this.animeInfo.averageScore);
   }
@@ -165,6 +173,7 @@ export class Single extends SingleAbstract {
         idMal
         siteUrl
         episodes
+        duration
         chapters
         volumes
         averageScore

@@ -272,7 +272,7 @@ export class SyncPage {
     this.curState = undefined;
     this.setSearchObj(undefined);
     this.url = curUrl;
-    this.browsingtime = Date.now();
+    this.browsingtime = Math.floor(Date.now() / 1000);
     let tempSingle;
 
     this.videoSyncOffset = false;
@@ -1246,7 +1246,7 @@ export class SyncPage {
       });
   }
 
-  private browsingtime: number | undefined = Date.now();
+  private browsingtime: number | undefined = Math.floor(Date.now() / 1000);
 
   private presence(info, sender, sendResponse) {
     try {
@@ -1261,7 +1261,7 @@ export class SyncPage {
           },
           5 * 60 * 1000,
         );
-        if (!this.browsingtime) this.browsingtime = Date.now();
+        if (!this.browsingtime) this.browsingtime = Math.floor(Date.now() / 1000);
 
         // Cover
         let presenceShowCover = true;
@@ -1354,25 +1354,66 @@ export class SyncPage {
             pres.presence.state = stateParts.join(' | ');
 
             if (typeof this.curState.lastVideoTime !== 'undefined') {
-              if (this.curState.lastVideoTime.paused) {
+              const videoInfo = this.curState.lastVideoTime;
+              const currentRaw =
+                typeof videoInfo.current === 'number' && Number.isFinite(videoInfo.current)
+                  ? videoInfo.current
+                  : 0;
+              const detectedDuration =
+                typeof videoInfo.duration === 'number' && Number.isFinite(videoInfo.duration)
+                  ? videoInfo.duration
+                  : null;
+              const metadataDuration =
+                typeof this.singleObj?.getEpisodeRuntimeSeconds === 'function'
+                  ? this.singleObj.getEpisodeRuntimeSeconds()
+                  : null;
+
+              let effectiveDuration = detectedDuration;
+              if (metadataDuration && metadataDuration > 0) {
+                if (!effectiveDuration || effectiveDuration <= 0) {
+                  effectiveDuration = metadataDuration;
+                } else {
+                  const maxDuration = Math.max(effectiveDuration, metadataDuration);
+                  const delta = Math.abs(effectiveDuration - metadataDuration);
+                  if (maxDuration === 0 || delta / maxDuration > 0.1) {
+                    effectiveDuration = metadataDuration;
+                  }
+                }
+              }
+
+              let duration = effectiveDuration && effectiveDuration > 0 ? effectiveDuration : null;
+              if (
+                duration !== null &&
+                currentRaw > duration &&
+                detectedDuration !== null &&
+                detectedDuration > currentRaw
+              ) {
+                duration = detectedDuration;
+              }
+              const current = duration !== null ? Math.min(currentRaw, duration) : currentRaw;
+              const nowSeconds = Math.floor(Date.now() / 1000);
+
+              pres.presence.startTimestamp = nowSeconds - Math.floor(Math.max(current, 0));
+
+              if (videoInfo.paused) {
+                delete pres.presence.endTimestamp;
                 pres.presence.smallImageKey = 'pause';
                 pres.presence.smallImageText = 'Paused';
               } else {
-                // Calculate remaining time based on current video position
-                const timeleft =
-                  this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
-
-                // Fixed Discord Rich Presence timing issue:
-                // When users seek in videos, we need to adjust the start time accordingly
-                // to show correct remaining time
-                const videoProgress = this.curState.lastVideoTime.current;
-                pres.presence.startTimestamp = Date.now() - videoProgress * 1000;
-                pres.presence.endTimestamp = Date.now() + timeleft * 1000;
+                if (duration !== null) {
+                  const timeleft = Math.max(duration - current, 0);
+                  pres.presence.endTimestamp =
+                    timeleft > 0 ? nowSeconds + Math.ceil(timeleft) : nowSeconds + 1;
+                } else {
+                  delete pres.presence.endTimestamp;
+                }
                 pres.presence.smallImageKey = 'play';
                 pres.presence.smallImageText = 'Playing';
               }
             } else {
-              pres.presence.startTimestamp = this.browsingtime;
+              const browsingStart = this.browsingtime ?? Math.floor(Date.now() / 1000);
+              pres.presence.startTimestamp = browsingStart;
+              delete pres.presence.endTimestamp;
               if (this.page.type !== 'anime') {
                 pres.presence.smallImageKey = 'reading';
                 pres.presence.smallImageText = 'Reading';
@@ -1385,7 +1426,9 @@ export class SyncPage {
             } else {
               browsingTemp = this.page.type.toString();
             }
-            pres.presence.startTimestamp = this.browsingtime;
+            const browsingStart = this.browsingtime ?? Math.floor(Date.now() / 1000);
+            pres.presence.startTimestamp = browsingStart;
+            delete pres.presence.endTimestamp;
             pres.presence.state = api.storage.lang('Discord_rpc_browsing', [browsingTemp]);
           }
 
