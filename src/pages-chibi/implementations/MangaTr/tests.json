@@ -1,0 +1,32 @@
+{
+  "title": "MangaTr",
+  "url": "https://manga-tr.com/",
+  "testCases": [
+    {
+      "url": "https://manga-tr.com/id-156646-read-boruto-two-blue-vortex-chapter-1.html",
+      "expected": {
+        "sync": true,
+        "title": "boruto-two-blue-vortex",
+        "identifier": "boruto-two-blue-vortex",
+        "overviewUrl": "https://manga-tr.com/manga-boruto-two-blue-vortex.html",
+        "episode": 1,
+        "nextEpUrl": "",
+        "image": "",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manga-tr.com/manga-boruto-two-blue-vortex.html",
+      "expected": {
+        "sync": false,
+        "title": "Boruto: Two Blue Vortex",
+        "identifier": "boruto-two-blue-vortex",
+        "image": "",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://manga-tr.com/id-156646-read-boruto-two-blue-vortex-chapter-1.html"
+        }
+      }
+    }
+  ]
+}

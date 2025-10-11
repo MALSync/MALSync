@@ -29,6 +29,7 @@ import { StoneScape } from './implementations/StoneScape/main';
 import { ResetScans } from './implementations/ResetScans/main';
 import { Utoon } from './implementations/Utoon/main';
 import { WitchScans } from './implementations/WitchScans/main';
+import { MangaTr } from './implementations/MangaTr/main';
 import { Sadscans } from './implementations/Sadscans/main';
 import { ArvenComics } from './implementations/ArvenComics/main';
 import { Comikey } from './implementations/Comikey/main';
@@ -85,6 +86,7 @@ export const pages: { [key: string]: PageInterface } = {
   ResetScans,
   Utoon,
   WitchScans,
+  MangaTr,
   Sadscans,
   ArvenComics,
   Comikey,
