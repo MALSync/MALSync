@@ -1,4 +1,4 @@
-import { NotAutenticatedError } from '../Errors';
+import { NotAuthenticatedError } from '../Errors';
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
@@ -38,7 +38,7 @@ export class UserList extends ListAbstract {
     return helper.apiCall('GET', 'https://kitsu.app/api/edge/users?filter[self]=true').then(res => {
       con.log(res);
       if (typeof res.data[0] === 'undefined') {
-        throw new NotAutenticatedError('Not Authenticated');
+        throw new NotAuthenticatedError('Not Authenticated');
       }
       return res.data[0];
     });
