@@ -22,7 +22,7 @@ export const Armageddon: PageInterface = {
       return $c
         .querySelector('[property="og:title"]')
         .getAttribute('content')
-        .regex('^(?:\\[.*?\\]\\s*)?(.*?)(?:\\s*Chapter \\d+(?:\\.\\d+)?)?$', 1)
+        .regex('^(?:\\[.*?\\]\\s*)?(.*?)(?:\\s*Ch(?:apter)? \\d+(?:\\.\\d+)?)?$', 1)
         .run();
     },
     getIdentifier($c) {
