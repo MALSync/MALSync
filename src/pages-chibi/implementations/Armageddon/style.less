@@ -4,12 +4,16 @@
 @boxBackground: var(--box-background);
 @highlightStyle: 1;
 
-:root:has(meta[name="theme-color"][content="#ea3364"]) {
-  --theme-color: #ea3364;
-}
+:root {
+  --theme-color: #002e7459;
 
-:root:has(meta[name="theme-color"][content="#366ad3"]) {
-  --theme-color: #366ad3;
+  &:has(meta[name="theme-color"][content="#ea3364"]) {
+    --theme-color: #ea3364;
+  }
+
+  &:has(meta[name="theme-color"][content="#3367d6"]) {
+    --theme-color: #3367d6;
+  }
 }
 
 #malp {
