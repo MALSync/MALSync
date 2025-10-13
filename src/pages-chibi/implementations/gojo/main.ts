@@ -2,11 +2,11 @@ import { PageInterface } from '../../pageInterface';
 
 export const gojo: PageInterface = {
   name: 'Gojo',
-  domain: ['https://animetsu.cc', 'https://gojo.live'],
+  domain: ['https://animetsu.bz', 'https://gojo.live'],
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://animetsu.to/*', '*://animetsu.cc/*', '*://gojo.live/*'],
+    match: ['*://animetsu.to/*', '*://animetsu.cc/*', '*://animetsu.bz/*', '*://gojo.live/*'],
   },
   search: 'https://animetsu.cc/search?query={searchtermPlus}',
   sync: {
