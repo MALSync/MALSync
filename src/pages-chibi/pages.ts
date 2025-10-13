@@ -48,8 +48,13 @@ import { MangaTaro } from './implementations/MangaTaro/main';
 import { ScyllaScans } from './implementations/ScyllaScans/main';
 import { TritiniaScans } from './implementations/TritiniaScans/main';
 import { Novelfire } from './implementations/Novelfire/main';
+import { PhiliaScans } from './implementations/PhiliaScans/main';
+import { GDScans } from './implementations/GDScans/main';
+import { Jestful } from './implementations/Jestful/main';
 import { AnimeNoSub } from './implementations/AnimeNoSub/main';
 import { Rawkuma } from './implementations/Rawkuma/main';
+import { KakuseiProject } from './implementations/KakuseiProject/main';
+import { AnimeKhor } from './implementations/AnimeKhor/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -100,6 +105,11 @@ export const pages: { [key: string]: PageInterface } = {
   ScyllaScans,
   TritiniaScans,
   Novelfire,
+  PhiliaScans,
+  GDScans,
+  Jestful,
   AnimeNoSub,
   Rawkuma,
+  KakuseiProject,
+  AnimeKhor,
 };
