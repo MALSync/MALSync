@@ -43,9 +43,9 @@ export const Armageddon: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.ch-next-btn:not(.disabled)')
+        .querySelector('#chapter option:not([disabled]):has(+ :checked)')
         .ifNotReturn()
-        .getAttribute('href')
+        .getAttribute('value')
         .ifNotReturn()
         .urlAbsolute()
         .run();
