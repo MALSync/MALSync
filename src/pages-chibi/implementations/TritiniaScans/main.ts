@@ -111,7 +111,11 @@ export const TritiniaScans: PageInterface = {
     },
     ready($c) {
       return $c
-        .detectChanges($c.url().urlPart(5).ifNotReturn().run(), $c.trigger().run()) // Fix when next chapter doesn't update when in page mode
+        .if(
+          $c.url().urlPart(5).boolean().run(),
+          $c.detectChanges($c.url().urlPart(5).run(), $c.trigger().run()).run(),
+          $c.detectURLChanges($c.trigger().run()).run(),
+        )
         .domReady()
         .trigger()
         .run();
