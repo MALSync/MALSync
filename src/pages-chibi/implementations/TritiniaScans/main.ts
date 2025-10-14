@@ -110,7 +110,18 @@ export const TritiniaScans: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c
+        .detectChanges($c.url().urlPart(5).ifNotReturn().run(), $c.trigger().run()) // Fix when next chapter doesn't update when in page mode
+        .domReady()
+        .trigger()
+        .run();
+    },
+    syncIsReady($c) {
+      // When clicking for prev/next chapter in page mode, it loading too slow causing the chapter sync to MAL without reading it yet
+      return $c
+        .waitUntilTrue($c.querySelector('.read-container .fa-spinner').isNil().run())
+        .trigger()
+        .run();
     },
     overviewIsReady($c) {
       return $c.waitUntilTrue($c.querySelector('.version-chap').boolean().run()).trigger().run();

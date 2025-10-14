@@ -56,6 +56,9 @@ import { Rawkuma } from './implementations/Rawkuma/main';
 import { KakuseiProject } from './implementations/KakuseiProject/main';
 import { AnimeKhor } from './implementations/AnimeKhor/main';
 import { TCBScans } from './implementations/TCBScans/main';
+import { Mangapill } from './implementations/Mangapill/main';
+import { Armageddon } from './implementations/Armageddon/main';
+import { Silentquill } from './implementations/Silentquill/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -114,4 +117,7 @@ export const pages: { [key: string]: PageInterface } = {
   KakuseiProject,
   AnimeKhor,
   TCBScans,
+  Mangapill,
+  Armageddon,
+  Silentquill,
 };
