@@ -58,6 +58,12 @@ export const TCBScans: PageInterface = {
           mode: 'count',
         },
       },
+      /*
+      {
+        current: $c => $c.querySelectorAll('.fixed-ratio img'').countAbove().run(),
+        total: $c => $c.querySelectorAll('.fixed-ratio img'"]').count().run(),
+      },
+      */
     ],
   },
   overview: {
