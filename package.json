@@ -120,7 +120,7 @@
     "@popperjs/core": "^2.11.8",
     "@types/chrome": "0.1.24",
     "dexie": "^4.2.0",
-    "dompurify": "^3.2.7",
+    "dompurify": "^3.3.0",
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.5",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
