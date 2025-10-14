@@ -1,0 +1,20 @@
+{
+  "title": "Armageddon",
+  "url": "https://armageddontl.com/",
+  "testCases": [
+    {
+      "url": "https://armageddontl.com/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me/",
+      "expected": {
+        "sync": false,
+        "title": "The Young Lady Has Been Acting Weird Ever Since Someone Confessed to Me",
+        "identifier": "the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me",
+        "uiSelector": true,
+        "image": "https://armageddontl.com/wp-content/uploads/2025/06/c_0001.webp",
+        "epList": {
+          "1": "https://armageddontl.com/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me-chapter-1-1/",
+          "6": "https://armageddontl.com/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me-ch-6/"
+        }
+      }
+    }
+  ]
+}
