@@ -120,7 +120,7 @@ export const Utoon: PageInterface = {
         .if(
           $c.url().urlPart(5).boolean().run(),
           $c.detectChanges($c.url().urlPart(5).run(), $c.trigger().run()).run(),
-          $c.detectURLChanges($c.trigger().run()).run(),
+          $c.run(),
         )
         .domReady()
         .trigger()
