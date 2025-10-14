@@ -47,6 +47,7 @@ import { GenzToon } from './implementations/GenzToon/main';
 import { MangaTaro } from './implementations/MangaTaro/main';
 import { ScyllaScans } from './implementations/ScyllaScans/main';
 import { TritiniaScans } from './implementations/TritiniaScans/main';
+import { Novelfire } from './implementations/Novelfire/main';
 import { PhiliaScans } from './implementations/PhiliaScans/main';
 import { GDScans } from './implementations/GDScans/main';
 import { Jestful } from './implementations/Jestful/main';
@@ -55,6 +56,8 @@ import { Rawkuma } from './implementations/Rawkuma/main';
 import { KakuseiProject } from './implementations/KakuseiProject/main';
 import { AnimeKhor } from './implementations/AnimeKhor/main';
 import { Mangapill } from './implementations/Mangapill/main';
+import { Armageddon } from './implementations/Armageddon/main';
+import { Silentquill } from './implementations/Silentquill/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -104,6 +107,7 @@ export const pages: { [key: string]: PageInterface } = {
   MangaTaro,
   ScyllaScans,
   TritiniaScans,
+  Novelfire,
   PhiliaScans,
   GDScans,
   Jestful,
@@ -112,4 +116,6 @@ export const pages: { [key: string]: PageInterface } = {
   KakuseiProject,
   AnimeKhor,
   Mangapill,
+  Armageddon,
+  Silentquill,
 };
