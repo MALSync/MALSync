@@ -55,6 +55,7 @@ import { AnimeNoSub } from './implementations/AnimeNoSub/main';
 import { Rawkuma } from './implementations/Rawkuma/main';
 import { KakuseiProject } from './implementations/KakuseiProject/main';
 import { AnimeKhor } from './implementations/AnimeKhor/main';
+import { TCBScans } from './implementations/TCBScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -112,4 +113,5 @@ export const pages: { [key: string]: PageInterface } = {
   Rawkuma,
   KakuseiProject,
   AnimeKhor,
+  TCBScans,
 };
