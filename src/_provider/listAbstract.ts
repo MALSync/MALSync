@@ -320,9 +320,13 @@ export abstract class ListAbstract {
         normalItems.push(item);
       }
     });
-
-    preItems = orderItems(preItems, true);
-    watchedItems = orderItems(watchedItems, false);
+    if (this.listType === 'anime') {
+      preItems = orderItems(preItems, true);
+      watchedItems = orderItems(watchedItems, false);
+    } else {
+      preItems = orderItems(preItems, false);
+      watchedItems = orderItems(watchedItems, false);
+    }
 
     this.templist = preItems.concat(watchedItems, normalItems);
 
