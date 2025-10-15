@@ -297,7 +297,7 @@ export abstract class ListAbstract {
     this.templist.forEach(item => {
       const prediction = item.fn.progress;
       if (this.listType === 'anime') {
-        if (prediction && prediction.isAiring() && prediction.getPredictionTimestamp()) {
+        if (prediction && prediction.isAiring() && prediction.getCurrentEpisode()) {
           if (item.watchedEp < prediction.getCurrentEpisode()) {
             preItems.push(item);
           } else {
@@ -321,12 +321,48 @@ export abstract class ListAbstract {
       }
     });
 
-    preItems = preItems.sort(sortItems).reverse();
-    watchedItems = watchedItems.sort(sortItems);
+    preItems = orderItems(preItems, true);
+    watchedItems = orderItems(watchedItems, false);
 
     this.templist = preItems.concat(watchedItems, normalItems);
 
-    function sortItems(a, b) {
+    function orderItems(items, reverse = false) {
+      const itemsWithPrediction: listElement[] = [];
+      const itemsWithLastTimestamp: listElement[] = [];
+      const itemsWithoutTimestamp: listElement[] = [];
+
+      items.forEach(item => {
+        if (item.fn.progress && item.fn.progress.getPredictionTimestamp()) {
+          itemsWithPrediction.push(item);
+        } else if (item.fn.progress && item.fn.progress.getLastTimestamp()) {
+          itemsWithLastTimestamp.push(item);
+        } else {
+          itemsWithoutTimestamp.push(item);
+        }
+      });
+
+      itemsWithPrediction.sort(sortItemsByPrediction);
+      itemsWithLastTimestamp.sort(sortItemsByLastTimestamp);
+
+      if (reverse) {
+        itemsWithPrediction.reverse();
+        itemsWithLastTimestamp.reverse();
+      }
+
+      return [...itemsWithPrediction, ...itemsWithLastTimestamp, ...itemsWithoutTimestamp];
+    }
+
+    function sortItemsByLastTimestamp(a, b) {
+      const valA = a.fn.progress.getLastTimestamp();
+      const valB = b.fn.progress.getLastTimestamp();
+
+      if (!valA) return 1;
+      if (!valB) return -1;
+
+      return valB - valA;
+    }
+
+    function sortItemsByPrediction(a, b) {
       let valA = a.fn.progress.getPredictionTimestamp();
       let valB = b.fn.progress.getPredictionTimestamp();
 
