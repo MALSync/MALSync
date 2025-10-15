@@ -128,7 +128,7 @@ export abstract class ListAbstract {
     if (
       this.modes.frontend &&
       this.status === 1 &&
-      (this.sort === 'default' || this.sort === 'unread')
+      ['default', 'unread', 'latest_release'].includes(this.sort)
     ) {
       this.modes.sortAiring = true;
       return this.getCompleteList();
@@ -218,6 +218,12 @@ export abstract class ListAbstract {
       });
     }
 
+    res.push({
+      icon: 'fiber_new',
+      title: api.storage.lang('list_sorting_latest_release'),
+      value: 'latest_release',
+    });
+
     const options = this._getSortingOptions();
     options.forEach(el => {
       if (!simple) {
@@ -291,6 +297,11 @@ export abstract class ListAbstract {
       return;
     }
 
+    if (this.sort === 'latest_release') {
+      this.templist = this.templist.sort(sortItemsByLastTimestamp);
+      return;
+    }
+
     const normalItems: listElement[] = [];
     let preItems: listElement[] = [];
     let watchedItems: listElement[] = [];
@@ -360,8 +371,8 @@ export abstract class ListAbstract {
       const valA = a.fn.progress.getLastTimestamp();
       const valB = b.fn.progress.getLastTimestamp();
 
-      if (!valA) return 1;
-      if (!valB) return -1;
+      if (!valA || !a.fn.progress.isAiring()) return 1;
+      if (!valB || !b.fn.progress.isAiring()) return -1;
 
       return valB - valA;
     }

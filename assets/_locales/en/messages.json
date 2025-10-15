@@ -787,6 +787,10 @@
         "message": "Unread",
         "description": "Dropdown option to sort list by unread"
     },
+    "list_sorting_latest_release": {
+        "message": "Latest release",
+        "description": "Dropdown option to sort list by latest released episodes/chapters"
+    },
     "list_sorting_alpha": {
         "message": "Alphabetic",
         "description": "Dropdown option to sort list alphabetic"
