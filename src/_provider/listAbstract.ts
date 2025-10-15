@@ -382,11 +382,11 @@ export abstract class ListAbstract {
       let valA = 10000;
       let valB = 10000;
 
-      if (a.fn.progress && a.fn.progress.getCurrentEpisode()) {
+      if (a.fn.progress && a.fn.progress.isAiring() && a.fn.progress.getCurrentEpisode()) {
         const tempA = a.fn.progress.getCurrentEpisode() - a.watchedEp;
         if (tempA > 0) valA = tempA;
       }
-      if (b.fn.progress && b.fn.progress.getCurrentEpisode()) {
+      if (b.fn.progress && b.fn.progress.isAiring() && b.fn.progress.getCurrentEpisode()) {
         const tempB = b.fn.progress.getCurrentEpisode() - b.watchedEp;
         if (tempB > 0) valB = tempB;
       }
