@@ -10,6 +10,13 @@ export interface PageInterface {
   name: string;
   /** The type of media this page handles */
   type: 'anime' | 'manga';
+
+  /**
+   * (Optional) Function to compute the type dynamically. In cases a page contains multiple types of content.
+   * Evaluated during page trigger
+   */
+  computedType?: ($c: ChibiGenerator<unknown>) => ChibiJson<'anime' | 'manga' | 'novel' | string>;
+
   /** The domain(s) of the website */
   domain: string | string[];
   /**
@@ -290,6 +297,7 @@ export type PageListJsonInterface = {
 };
 
 export type PageJsonInterface = PageInterfaceCompiled & {
+  computedType: ReturnType<NonNullable<PageInterface['computedType']>>;
   sync: {
     isSyncPage: ReturnType<PageInterface['sync']['isSyncPage']>;
     getTitle: ReturnType<PageInterface['sync']['getTitle']>;

@@ -1,0 +1,35 @@
+@import './../pages';
+
+@activeEp: var(--theme-color) !important;
+@boxBackground: var(--box-background);
+@highlightStyle: 1;
+
+:root {
+  --theme-color: #002e7459;
+
+  &:has(meta[name='theme-color'][content='#ea3364']) {
+    --theme-color: #ea3364;
+  }
+
+  &:has(meta[name='theme-color'][content='#3367d6']) {
+    --theme-color: #3367d6;
+  }
+}
+
+#malp {
+  --box-background: #343434;
+
+  color: #ffffff;
+
+  .lightmode & {
+    --box-background: #f0f2f5;
+
+    color: #333333;
+  }
+
+  @media only screen and (max-width: 650px) {
+    #MalData {
+      justify-content: center !important;
+    }
+  }
+}

@@ -116,7 +116,22 @@ export const Utoon: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c
+        .if(
+          $c.url().urlPart(5).boolean().run(),
+          $c.detectChanges($c.url().urlPart(5).run(), $c.trigger().run()).run(),
+          $c.run(),
+        )
+        .domReady()
+        .trigger()
+        .run();
+    },
+    syncIsReady($c) {
+      // When clicking for prev/next chapter in page mode, it loading too slow causing the chapter sync to MAL without reading it yet
+      return $c
+        .waitUntilTrue($c.querySelector('.read-container .fa-spinner').isNil().run())
+        .trigger()
+        .run();
     },
   },
 };

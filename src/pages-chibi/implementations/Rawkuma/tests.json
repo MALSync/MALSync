@@ -1,0 +1,28 @@
+{
+  "title": "Rawkuma",
+  "url": "https://rawkuma.com/",
+  "testCases": [
+    {
+      "url": "https://rawkuma.net/manga/a-rank-party-o-ridatsu-shita-ore-wa-moto-oshiego-tachi-to-meikyuu-shinbu-o-mezasu/chapter-8.97545/",
+      "expected": {
+        "sync": true,
+        "title": "A-Rank Party o Ridatsu Shita Ore wa, Moto Oshiego-tachi to Meikyuu Shinbu o Mezasu.",
+        "identifier": "a-rank-party-o-ridatsu-shita-ore-wa-moto-oshiego-tachi-to-meikyuu-shinbu-o-mezasu",
+        "overviewUrl": "https://rawkuma.net/manga/a-rank-party-o-ridatsu-shita-ore-wa-moto-oshiego-tachi-to-meikyuu-shinbu-o-mezasu",
+        "nextEpUrl": "https://rawkuma.net/manga/a-rank-party-o-ridatsu-shita-ore-wa-moto-oshiego-tachi-to-meikyuu-shinbu-o-mezasu/chapter-9.97551/",
+        "episode": 8,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://rawkuma.net/manga/a-rank-party-o-ridatsu-shita-ore-wa-moto-oshiego-tachi-to-meikyuu-shinbu-o-mezasu/",
+      "expected": {
+        "sync": false,
+        "title": "A-Rank Party o Ridatsu Shita Ore wa, Moto Oshiego-tachi to Meikyuu Shinbu o Mezasu.",
+        "identifier": "a-rank-party-o-ridatsu-shita-ore-wa-moto-oshiego-tachi-to-meikyuu-shinbu-o-mezasu",
+        "image": "https://rawkuma.net/wp-content/uploads/2025/09/i498514.jpg",
+        "uiSelector": true
+      }
+    }
+  ]
+}
