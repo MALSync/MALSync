@@ -95,6 +95,7 @@ export const settingsObj = {
 
     customDomains: [],
 
+    anilistExternalSources: false,
     anilistUpdateUi: true,
 
     anilistToken: '',
