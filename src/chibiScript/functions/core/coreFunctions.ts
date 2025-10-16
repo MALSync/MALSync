@@ -171,16 +171,16 @@ export default {
    * @param defaultValue - Default value if variable is not found
    * @returns Variable value or default value
    * @example
-   * $c.getVariable('myVar', 'default') // returns the value of myVar or 'default' if not set
+   * $c.getVariable<string>('myVar', 'default') // returns the value of myVar or 'default' if not set
    */
-  getVariable: (
+  getVariable: <Input = void, Output = any>(
     ctx: ChibiCtx,
-    input: void,
+    input: Input,
     key: ChibiParam<string>,
-    defaultValue?: ChibiParam<any>,
-  ): any => {
+    defaultValue?: ChibiParam<Output>,
+  ): Output => {
     const value = ctx.get(key);
-    return value !== undefined ? value : defaultValue;
+    return value !== undefined ? value : (defaultValue as Output);
   },
 
   /**
@@ -231,16 +231,16 @@ export default {
    * @param defaultValue - Default value if variable is not found
    * @returns Global variable value or default value
    * @example
-   * $c.getGlobalVariable('myGlobalVar', 'default') // returns the value of myGlobalVar or 'default' if not set
+   * $c.getGlobalVariable<string>('myGlobalVar', 'default') // returns the value of myGlobalVar or 'default' if not set
    */
-  getGlobalVariable: (
+  getGlobalVariable: <Input = void, Output = any>(
     ctx: ChibiCtx,
-    input: void,
+    input: Input,
     key: ChibiParam<string>,
-    defaultValue?: ChibiParam<any>,
-  ): any => {
+    defaultValue?: ChibiParam<Output>,
+  ): Output => {
     const value = ctx.globalGet(key);
-    return value !== undefined ? value : defaultValue;
+    return value !== undefined ? value : (defaultValue as Output);
   },
 
   /**
