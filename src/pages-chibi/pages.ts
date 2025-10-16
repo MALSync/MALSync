@@ -59,6 +59,7 @@ import { TCBScans } from './implementations/TCBScans/main';
 import { Mangapill } from './implementations/Mangapill/main';
 import { Armageddon } from './implementations/Armageddon/main';
 import { Silentquill } from './implementations/Silentquill/main';
+import { MangaPlus } from './implementations/MangaPlus/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -120,4 +121,5 @@ export const pages: { [key: string]: PageInterface } = {
   Mangapill,
   Armageddon,
   Silentquill,
+  MangaPlus,
 };
