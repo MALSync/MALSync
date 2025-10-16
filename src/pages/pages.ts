@@ -19,7 +19,6 @@ import { mangadenizi } from './mangadenizi/main';
 import { moeclip } from './moeclip/main';
 import { mangalivre } from './mangalivre/main';
 import { tmofans } from './tmofans/main';
-import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
@@ -135,7 +134,6 @@ export const pages = {
   moeclip,
   mangalivre,
   tmofans,
-  MangaPlus,
   JapScan,
   Hulu,
   Hidive,
