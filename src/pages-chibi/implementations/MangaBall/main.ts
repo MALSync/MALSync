@@ -50,12 +50,12 @@ export const MangaBall: PageInterface = {
     readerConfig: [
       {
         current: {
-          mode: 'countAbove',
-          selector: '#mangaPages .manga-image',
+          mode: 'text',
+          selector: '#currentPageNum',
         },
         total: {
-          mode: 'count',
-          selector: '#mangaPages .manga-image',
+          mode: 'text',
+          selector: '#totalPages',
         },
       },
     ],
@@ -82,7 +82,7 @@ export const MangaBall: PageInterface = {
       return $c.querySelectorAll('.chapter-block').run();
     },
     elementUrl($c) {
-      // I tried to make elementUrl to default to english, and fallback to first query if there is no english
+      // I tried to make elementUrl to default to english, and fallback to any language if there is no english
       return $c
         .find('.chapter-translation [class="badge"][style*="background:#00247d"]')
         .ifNotReturn(
