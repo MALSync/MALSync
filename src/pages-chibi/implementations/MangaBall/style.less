@@ -1,8 +1,9 @@
 @import './../pages';
-@activeEp: inherit;
 @boxBackground: #0000006e;
 
-body[class^='theme-'] .bg-dark.mal-sync-active {
-  background-color: #ff67401a !important;
-  border: 1px solid #ff67404d !important;
+@highlightStyle: 0;
+@activeEp: var(--accent);
+
+.mal-sync-active .chapter-translation {
+  border-left: 5px solid @activeEp;
 }
