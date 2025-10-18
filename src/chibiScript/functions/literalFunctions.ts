@@ -66,17 +66,15 @@ export default {
   },
 
   /**
-   * Converts input to half-width character
-   * @input any
-   * @param value - Optional static string value to return instead of converting input
-   * @returns A string representation of the input or the static value
+   * Converts full-width ASCII characters or number to its half-width character
+   * @input string
+   * @returns Its half-width characters or number
    * @example
    * $c.string('Ｈｅｌｌｏ Ｗｏｒｌｄ ３').convertCh().run(); // returns Hello World 3
    */
-  convertCh: (ctx: ChibiCtx, input: any, value?: string) => {
-    if (value !== undefined) return value;
-    return String(input)
+  convertCh: (ctx: ChibiCtx, input: string) => {
+    return input
       .replace(/[\uFF01-\uFF5E]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
-      .replace(/\u3000/g, ' '); // This is for full width space. Writing it in example gave eslint warning
+      .replace(/\u3000/g, ' '); // Putting half-width space in example gave eslint error
   },
 };
