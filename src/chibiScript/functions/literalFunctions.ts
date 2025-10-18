@@ -64,18 +64,4 @@ export default {
   type: <Input, Output>(ctx: ChibiCtx, input: Input): Output => {
     return input as unknown as Output;
   },
-  /* eslint-disable no-irregular-whitespace */
-  /**
-   * Converts full-width ASCII characters or number to its half-width character
-   * @input string
-   * @returns Its half-width characters or number
-   * @example
-   * $c.string('Ｈｅｌｌｏ　Ｗｏｒｌｄ　３').convertCh().run(); // returns Hello World 3
-   */
-  /* eslint-enable no-irregular-whitespace */
-  convertCh: (ctx: ChibiCtx, input: string) => {
-    return input
-      .replace(/[\uFF01-\uFF5E]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
-      .replace(/\u3000/g, ' '); // Putting half-width space in example gave eslint error
-  },
 };
