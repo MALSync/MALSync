@@ -12,8 +12,7 @@ export class callback extends ModeAbstract<arguments> {
     const textString = args.callback();
 
     const n = Number(textString);
-    if (Number.isNaN(n) || n === 0)
-      throw new Error(`No number found in text '${textString}' (${n})`);
+    if (Number.isNaN(n)) throw new Error(`No number found in text '${textString}' (${n})`);
 
     return n;
   }
