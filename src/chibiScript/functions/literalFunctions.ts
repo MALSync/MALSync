@@ -73,7 +73,7 @@ export default {
    * @example
    * $c.string('Ｈｅｌｌｏ Ｗｏｒｌｄ ３').convertCh().run(); // returns Hello World 3
    */
-  convertCh: (ctx: ChibiCtx, input: any, value: string) => {
+  convertCh: (ctx: ChibiCtx, input: any, value?: string) => {
     if (value !== undefined) return value;
     return String(input)
       .replace(/[\uFF01-\uFF5E]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
