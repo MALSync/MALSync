@@ -60,6 +60,7 @@ import { Mangapill } from './implementations/Mangapill/main';
 import { Armageddon } from './implementations/Armageddon/main';
 import { Silentquill } from './implementations/Silentquill/main';
 import { MangaPlus } from './implementations/MangaPlus/main';
+import { Kagane } from './implementations/Kagane/main';
 import { MangaBall } from './implementations/MangaBall/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -123,5 +124,6 @@ export const pages: { [key: string]: PageInterface } = {
   Armageddon,
   Silentquill,
   MangaPlus,
+  Kagane,
   MangaBall,
 };
