@@ -53,4 +53,19 @@ export default {
   object: (ctx: ChibiCtx, input: void, value: object) => {
     return value;
   },
+
+  /**
+   * Converts input to half-width character
+   * @input any
+   * @param value - Optional static string value to return instead of converting input
+   * @returns A string representation of the input or the static value
+   * @example
+   * $c.string('Ｈｅｌｌｏ Ｗｏｒｌｄ ３').convertCh().run(); // returns Hello World 3
+   */
+  convertCh: (ctx: ChibiCtx, input: any, value: string) => {
+    if (value !== undefined) return value;
+    return String(input)
+      .replace(/[\uFF01-\uFF5E]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
+      .replace(/\u3000/g, ' '); // This is for full width space. Writing it in example gave eslint warning
+  },
 };
