@@ -8,6 +8,7 @@ export const PhiliaScans: PageInterface = {
   urls: {
     match: ['*://philiascans.org/*'],
   },
+  search: 'https://philiascans.org/?post_type=wp-manga&s={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
