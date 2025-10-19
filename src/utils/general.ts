@@ -23,10 +23,11 @@ export function urlParam(url, name) {
 }
 
 export function getBaseText(element) {
-  let text = element.text();
+  let text = '';
   element.children().each(function () {
-    // @ts-ignore
-    text = text.replace(j.$(this).text(), '');
+    if (this.nodeType === Node.TEXT_NODE) {
+      text += this.textContent;
+    }
   });
   return text;
 }
