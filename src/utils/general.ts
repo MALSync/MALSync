@@ -1,3 +1,5 @@
+import { TextNode } from '@vue/compiler-core';
+
 declare let browser: any;
 
 export function urlPart(url: string, part: number) {
@@ -22,11 +24,11 @@ export function urlParam(url, name) {
   return decodeURI(results[1]) || 0;
 }
 
-export function getBaseText(element) {
+export function getBaseText(element: JQuery<Element>) {
   let text = '';
-  element.children().each(function () {
-    if (this.nodeType === Node.TEXT_NODE) {
-      text += this.textContent;
+  element.prop('childNodes').forEach((child: Node) => {
+    if (child.nodeType === Node.TEXT_NODE) {
+      text += child.textContent;
     }
   });
   return text;
