@@ -137,7 +137,7 @@ export const animepahe: PageInterface = {
         .trigger()
         .run();
     },
-    syncIsReady($c) {
+    overviewIsReady($c) {
       return $c
         .waitUntilTrue($c.this('list.elementsSelector').length().boolean().run())
         .trigger()
