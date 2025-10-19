@@ -1,5 +1,3 @@
-import { TextNode } from '@vue/compiler-core';
-
 declare let browser: any;
 
 export function urlPart(url: string, part: number) {
