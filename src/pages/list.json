@@ -105,11 +105,6 @@
     "name": "tmofans"
   },
   {
-    "domain": "https://mangaplus.shueisha.co.jp",
-    "type": "manga",
-    "name": "MangaPlus"
-  },
-  {
     "domain": "https://www.japscan.ws",
     "type": "manga",
     "name": "JapScan"
@@ -585,7 +580,7 @@
     "name": "MangaNato"
   },
   {
-    "domain": "https://animetsu.cc",
+    "domain": "https://animetsu.bz",
     "type": "anime",
     "name": "Gojo"
   },
@@ -805,6 +800,11 @@
     "name": "TritiniaScans"
   },
   {
+    "domain": "https://novelfire.net",
+    "type": "manga",
+    "name": "Novelfire"
+  },
+  {
     "domain": "https://philiascans.org/",
     "type": "manga",
     "name": "PhiliaScans"
@@ -838,5 +838,35 @@
     "domain": "https://animekhor.org",
     "type": "anime",
     "name": "AnimeKhor"
+  },
+  {
+    "domain": "https://tcbonepiecechapters.com",
+    "type": "manga",
+    "name": "TCBScans"
+  },
+  {
+    "domain": "https://mangapill.com",
+    "type": "manga",
+    "name": "Mangapill"
+  },
+  {
+    "domain": "https://armageddontl.com",
+    "type": "manga",
+    "name": "Armageddon"
+  },
+  {
+    "domain": "https://www.silentquill.net",
+    "type": "manga",
+    "name": "Silentquill"
+  },
+  {
+    "domain": "https://mangaplus.shueisha.co.jp",
+    "type": "manga",
+    "name": "MangaPlus"
+  },
+  {
+    "domain": "https://mangaball.net",
+    "type": "manga",
+    "name": "MangaBall"
   }
 ]
