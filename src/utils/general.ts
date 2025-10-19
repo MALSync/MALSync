@@ -23,13 +23,12 @@ export function urlParam(url, name) {
 }
 
 export function getBaseText(element: JQuery<Element>) {
-  let text = '';
-  element.prop('childNodes').forEach((child: Node) => {
-    if (child.nodeType === Node.TEXT_NODE) {
-      text += child.textContent;
-    }
-  });
-  return text;
+  return element
+    .contents()
+    .filter(function () {
+      return this.nodeType === Node.TEXT_NODE;
+    })
+    .text();
 }
 
 export function favicon(domain) {
