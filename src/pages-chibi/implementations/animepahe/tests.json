@@ -1,0 +1,27 @@
+{
+  "title": "Animepahe",
+  "url": "https://animepahe.si",
+  "testCases": [
+    {
+      "url": "https://animepahe.si/a/176",
+      "expected": {
+        "sync": false,
+        "title": "No Game No Life",
+        "identifier": "176",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animepahe.si/play/c41840d1-7921-ec75-e5d1-925a6217664d/94286a1cc945442dff04380a4d1d0e18d77e3fcbf16bda1316ba35c5de685652",
+      "expected": {
+        "sync": true,
+        "title": "No Game No Life",
+        "identifier": "176",
+        "episode": 4,
+        "overviewUrl": "https://animepahe.si/a/176",
+        "nextEpUrl": "https://animepahe.si/play/c41840d1-7921-ec75-e5d1-925a6217664d/d8487a31215176523299456514834abdc8f2869f43d4c8576a05030adf4481d9",
+        "uiSelector": true
+      }
+    }
+  ]
+}
