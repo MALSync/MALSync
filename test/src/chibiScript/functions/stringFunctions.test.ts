@@ -199,6 +199,18 @@ describe('String Functions', () => {
       expect(generateAndExecute(code).run()).to.be.null;
     });
   });
+
+  describe('convertCh', () => {
+    it('should converts full-width ASCII characters or number to its half-width character', () => {
+      const code = $c.string('Ｈelｌｏ　Ｗoｒlｄ　３').trim().run();
+      expect(generateAndExecute(code).run()).to.equal('Hello World 3');
+    });
+
+    it('should only converts full-width ASCII characters or number to its half-width character', () => {
+      const code = $c.string('こんにちは　ワールド　３ｓ').trim().run();
+      expect(generateAndExecute(code).run()).to.equal('こんにちは ワールド 3s');
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {
