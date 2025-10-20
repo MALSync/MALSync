@@ -29,7 +29,7 @@ export const Kagane: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .querySelector('a[href^="/series/"]')
+        .querySelector('a[href^="/series/"]:not([href*="/reader/"])')
         .getAttribute('href')
         .ifNotReturn()
         .urlAbsolute()
