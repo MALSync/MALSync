@@ -22,11 +22,12 @@ export function urlParam(url, name) {
   return decodeURI(results[1]) || 0;
 }
 
-export function getBaseText(element) {
-  let text = element.text();
-  element.children().each(function () {
-    // @ts-ignore
-    text = text.replace(j.$(this).text(), '');
+export function getBaseText(element: JQuery<Element>) {
+  let text = '';
+  element.prop('childNodes').forEach((child: Node) => {
+    if (child.nodeType === Node.TEXT_NODE) {
+      text += child.textContent;
+    }
   });
   return text;
 }

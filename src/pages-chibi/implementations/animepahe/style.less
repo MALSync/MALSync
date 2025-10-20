@@ -2,6 +2,7 @@
 
 section.main .content-wrapper .theatre .theatre-info {
   margin-bottom: 1rem;
+  height: unset !important;
 }
 
 #flashinfo-div {
@@ -14,6 +15,7 @@ section.main .content-wrapper .theatre .theatre-info {
 #AddMal {
   color: #999 !important;
 }
+
 #malStatus,
 #malUserRating,
 #malEpisodes {
@@ -24,6 +26,7 @@ section.main .content-wrapper .theatre .theatre-info {
     color: #d5015b !important;
   }
 }
+
 #malRating {
   color: #d5015b !important;
 }
@@ -32,14 +35,19 @@ section.main .content-wrapper .theatre .theatre-info {
   background-color: #002966ba;
 }
 
-.anime-content #malp {
-  /* same as .tab-content */
-  margin-left: 235px;
-}
+#malp {
+  .anime-content & {
+    /* same as .tab-content */
+    margin-left: 235px;
 
-@media (max-width: 767px) {
-  .anime-content #malp {
-    margin-left: 0;
-    padding: 0 15px;
+    @media (max-width: 767px) {
+      margin-left: 0;
+      margin-bottom: 0;
+      padding: 0 15px;
+    }
+  }
+
+  .theatre-info & {
+    margin-bottom: 0;
   }
 }
