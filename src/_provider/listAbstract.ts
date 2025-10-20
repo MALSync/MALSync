@@ -128,7 +128,7 @@ export abstract class ListAbstract {
     if (
       this.modes.frontend &&
       this.status === 1 &&
-      (this.sort === 'default' || this.sort === 'unread')
+      ['default', 'unread', 'latest_release'].includes(this.sort)
     ) {
       this.modes.sortAiring = true;
       return this.getCompleteList();
@@ -218,6 +218,12 @@ export abstract class ListAbstract {
       });
     }
 
+    res.push({
+      icon: 'fiber_new',
+      title: api.storage.lang('list_sorting_latest_release'),
+      value: 'latest_release',
+    });
+
     const options = this._getSortingOptions();
     options.forEach(el => {
       if (!simple) {
@@ -291,13 +297,18 @@ export abstract class ListAbstract {
       return;
     }
 
+    if (this.sort === 'latest_release') {
+      this.templist = this.templist.sort(sortItemsByLastTimestamp);
+      return;
+    }
+
     const normalItems: listElement[] = [];
     let preItems: listElement[] = [];
     let watchedItems: listElement[] = [];
     this.templist.forEach(item => {
       const prediction = item.fn.progress;
       if (this.listType === 'anime') {
-        if (prediction && prediction.isAiring() && prediction.getPredictionTimestamp()) {
+        if (prediction && prediction.isAiring() && prediction.getCurrentEpisode()) {
           if (item.watchedEp < prediction.getCurrentEpisode()) {
             preItems.push(item);
           } else {
@@ -320,13 +331,53 @@ export abstract class ListAbstract {
         normalItems.push(item);
       }
     });
-
-    preItems = preItems.sort(sortItems).reverse();
-    watchedItems = watchedItems.sort(sortItems);
+    if (this.listType === 'anime') {
+      preItems = orderItems(preItems, true);
+      watchedItems = orderItems(watchedItems, false);
+    } else {
+      preItems = orderItems(preItems, false);
+      watchedItems = orderItems(watchedItems, false);
+    }
 
     this.templist = preItems.concat(watchedItems, normalItems);
 
-    function sortItems(a, b) {
+    function orderItems(items, reverse = false) {
+      const itemsWithPrediction: listElement[] = [];
+      const itemsWithLastTimestamp: listElement[] = [];
+      const itemsWithoutTimestamp: listElement[] = [];
+
+      items.forEach(item => {
+        if (item.fn.progress && item.fn.progress.getPredictionTimestamp()) {
+          itemsWithPrediction.push(item);
+        } else if (item.fn.progress && item.fn.progress.getLastTimestamp()) {
+          itemsWithLastTimestamp.push(item);
+        } else {
+          itemsWithoutTimestamp.push(item);
+        }
+      });
+
+      itemsWithPrediction.sort(sortItemsByPrediction);
+      itemsWithLastTimestamp.sort(sortItemsByLastTimestamp);
+
+      if (reverse) {
+        itemsWithPrediction.reverse();
+        itemsWithLastTimestamp.reverse();
+      }
+
+      return [...itemsWithPrediction, ...itemsWithLastTimestamp, ...itemsWithoutTimestamp];
+    }
+
+    function sortItemsByLastTimestamp(a, b) {
+      const valA = a.fn.progress.getLastTimestamp();
+      const valB = b.fn.progress.getLastTimestamp();
+
+      if (!valA || !a.fn.progress.isAiring()) return 1;
+      if (!valB || !b.fn.progress.isAiring()) return -1;
+
+      return valB - valA;
+    }
+
+    function sortItemsByPrediction(a, b) {
       let valA = a.fn.progress.getPredictionTimestamp();
       let valB = b.fn.progress.getPredictionTimestamp();
 
@@ -342,11 +393,11 @@ export abstract class ListAbstract {
       let valA = 10000;
       let valB = 10000;
 
-      if (a.fn.progress && a.fn.progress.getCurrentEpisode()) {
+      if (a.fn.progress && a.fn.progress.isAiring() && a.fn.progress.getCurrentEpisode()) {
         const tempA = a.fn.progress.getCurrentEpisode() - a.watchedEp;
         if (tempA > 0) valA = tempA;
       }
-      if (b.fn.progress && b.fn.progress.getCurrentEpisode()) {
+      if (b.fn.progress && b.fn.progress.isAiring() && b.fn.progress.getCurrentEpisode()) {
         const tempB = b.fn.progress.getCurrentEpisode() - b.watchedEp;
         if (tempB > 0) valB = tempB;
       }
