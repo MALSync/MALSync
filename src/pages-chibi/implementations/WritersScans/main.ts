@@ -8,7 +8,7 @@ export const WritersScans: PageInterface = {
   urls: {
     match: ['*://writerscans.com/*'],
   },
-  search: 'https://asmotoon.com/series?q={searchtermPlus}',
+  search: 'https://writerscans.com/series?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
