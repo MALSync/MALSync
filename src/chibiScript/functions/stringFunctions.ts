@@ -213,9 +213,9 @@ export default {
    * @input string
    * @returns Its half-width characters or number
    * @example
-   * $c.string('Ｈelｌｏ Ｗoｒlｄ ３').convertCh().run(); // returns Hello World 3
+   * $c.string('Ｈelｌｏ Ｗoｒlｄ ３').toHalfWidth().run(); // returns Hello World 3
    */
-  convertCh: (ctx: ChibiCtx, input: string) => {
+  toHalfWidth: (ctx: ChibiCtx, input: string) => {
     return input
       .replace(/[\uFF01-\uFF5E]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
       .replace(/\u3000/g, ' ');
