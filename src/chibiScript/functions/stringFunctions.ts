@@ -218,6 +218,6 @@ export default {
   convertCh: (ctx: ChibiCtx, input: string) => {
     return input
       .replace(/[\uFF01-\uFF5E]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
-      .replace(/\u3000/g, ' '); // Putting half-width space in example gave eslint error
+      .replace(/\u3000/g, ' ');
   },
 };
