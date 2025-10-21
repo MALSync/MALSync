@@ -16,7 +16,7 @@
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.38.0",
     "@stylistic/eslint-plugin": "3.1.0",
-    "@types/chai": "^5.2.2",
+    "@types/chai": "^5.2.3",
     "@types/eslint": "9.6.1",
     "@types/eslint__eslintrc": "2.1.2",
     "@types/eslint__js": "8.42.3",
