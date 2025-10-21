@@ -62,7 +62,7 @@ import { Silentquill } from './implementations/Silentquill/main';
 import { MangaPlus } from './implementations/MangaPlus/main';
 import { Kagane } from './implementations/Kagane/main';
 import { MangaBall } from './implementations/MangaBall/main';
-import { DankeFürsLesen } from './implementations/DankeFürsLesen/main';
+import { DankefürsLesen } from './implementations/DankeFürsLesen/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -127,5 +127,5 @@ export const pages: { [key: string]: PageInterface } = {
   MangaPlus,
   Kagane,
   MangaBall,
-  DankeFürsLesen,
+  DankefürsLesen,
 };
