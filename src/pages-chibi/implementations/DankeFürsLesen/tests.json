@@ -1,0 +1,42 @@
+{
+    "title": "DankefürsLesen",
+    "url": "https://danke.moe/",
+    "testCases": [
+      {
+        "url": "https://danke.moe/read/manga/heterogenia-linguistico/19-5/1/",
+        "expected": {
+          "sync": true,
+          "title": "Heterogenia Linguistico: An Introduction to Interspecies Linguistics",
+          "identifier": "heterogenia-linguistico",
+          "overviewUrl": "https://danke.moe/read/manga/heterogenia-linguistico/",
+          "episode": 19,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://danke.moe/read/manga/heterogenia-linguistico/10/1/",
+        "expected": {
+          "sync": true,
+          "title": "Heterogenia Linguistico: An Introduction to Interspecies Linguistics",
+          "identifier": "heterogenia-linguistico",
+		      "overviewUrl": "https://danke.moe/read/manga/heterogenia-linguistico/",
+          "episode": 10,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://danke.moe/read/manga/heterogenia-linguistico/",
+        "expected": {
+          "sync": false,
+          "title": "Heterogenia Linguistico: An Introduction to Interspecies Linguistics",
+          "identifier": "heterogenia-linguistico",
+          "image": "http://danke.moe/media/manga/heterogenia-linguistico/volume_covers/6/99160.jpg",
+          "uiSelector": true,
+          "epList": {
+            "10": "https://danke.moe/read/manga/heterogenia-linguistico/10/1/",
+            "49": "https://danke.moe/read/manga/heterogenia-linguistico/49/1/"
+          }
+       }
+     }
+   ]
+ }
