@@ -114,7 +114,7 @@ const Teleport = teleport_ as {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--cl-primary-contrast);
   }
 
   .image-icon {

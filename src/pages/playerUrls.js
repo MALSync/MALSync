@@ -252,6 +252,7 @@ module.exports = {
       '*://*.mixdrop.my/e/*',
       '*://*.mixdrop.sn/e/*',
       '*://*.mixdrop.cv/e/*',
+      '*://*.md3b0j6hj.com/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -711,6 +712,7 @@ module.exports = {
       '*://gorro-chfzoaas.fun/e/*',
       '*://gorro-chfzoaas.fun/lol/*',
       '*://z7ihwgqj.fun/*',
+      '*://pqham.com/*',
     ],
   },
   // toonanime
@@ -727,7 +729,7 @@ module.exports = {
   },
   // animenosub
   animenosub: {
-    match: ['*://animenosub.upn.one/#*'],
+    match: ['*://animenosub.upn.one/#*', '*://nova.upn.one/*'],
   },
   // voiranime
   streamhide: {
@@ -831,5 +833,21 @@ module.exports = {
   // aniworld
   loadx: {
      match: ['*://loadx.ws/*'],
+  },
+  // AnimeKhor
+  odysee : {
+    match: ['*://odysee.com/*'],
+  },
+  // AnimeKhor
+  emturbovid : {
+    match: ['*://emturbovid.com/*'],
+  },
+  // AnimeKhor
+  upns: {
+     match: ['*://*.upns.live/*'],
+  },
+  // AnimeKhor
+  p2pstream: {
+    match: ['*://*.p2pstream.vip/*'],
   }
 };

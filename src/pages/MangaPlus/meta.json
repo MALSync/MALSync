@@ -1,7 +1,0 @@
-{
-  "search": "https://mangaplus.shueisha.co.jp/search_result?keyword={searchterm}",
-  "searchDatabase": "MangaPlus",
-  "urls": {
-    "match": ["*://mangaplus.shueisha.co.jp/*"]
-  }
-}

@@ -87,7 +87,7 @@ const id = Math.floor(Math.random() * 10000);
     .border-pill();
 
     background-color: var(--cl-primary);
-    color: white;
+    color: var(--cl-primary-contrast);
   }
 
   &:focus-visible {

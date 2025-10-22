@@ -99,18 +99,17 @@ async function bato() {
 }
 
 async function mangapark() {
-  let response = await fetch('https://rentry.co/mangapark');
-  if (!response.ok) {
-    response = await fetch('https://rentry.org/mangapark');
-  }
+  const response = await fetch('https://mangaparkmirrors.pages.dev');
   const body = await response.text();
 
-  const $ = cheerio.load(body);
-  $('#socials').nextAll().remove().end().remove();
+  const jsonMatch = body.match(/const domains = (\[.*?\]);/s);
+  if (!jsonMatch) {
+    throw new Error('No domains found');
+  }
 
-  const urls = $('.external')
-    .map((i, el) => new URL($(el).attr('href')))
-    .get();
+  const urls = [...jsonMatch[1].matchAll(/"https?:\/\/(.*?)"/g)].map(match => {
+    return new URL(match[0].replace(/"/g, ''));
+  });
 
   for (const url of urls) {
     addChibiUrls('MangaPark', ['*://' + url.hostname + '/*']);
@@ -185,7 +184,7 @@ async function start() {
   const tasks = {
     voe,
     // vidmoly,
-    mixdrop,
+    // mixdrop,
     zoro,
     // kickassanime,
     animekai,

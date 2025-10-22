@@ -15,13 +15,13 @@
       }
     },
     {
-      "url": "https://ranobelib.me/ru/book/15630--mushoku-tensei",
+      "url": "https://ranobelib.me/ru/book/20818--lord-of-the-mysteries",
       "expected": {
         "sync": false,
-        "title": "Mushoku Tensei (WN)",
-        "identifier": "15630",
-        "overviewUrl": "https://ranobelib.me/ru/book/15630--mushoku-tensei",
-        "image": "https://cover.imglib.info/uploads/cover/mushoku-tensei/cover/50679882-4259-459e-a283-c41eb63a3d5c.jpg",
+        "title": "Guǐmì zhī Zhǔ",
+        "identifier": "20818",
+        "overviewUrl": "https://ranobelib.me/ru/book/20818--lord-of-the-mysteries",
+        "image": "https://cover.imglib.info/uploads/cover/lord-of-the-mysteries/cover/31da2fab-fd44-45e4-9ed3-cc23de102599.jpg",
         "uiSelector": true
       }
     }

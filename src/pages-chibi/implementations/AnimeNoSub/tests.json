@@ -1,0 +1,31 @@
+{
+  "title": "AnimeNoSub",
+  "url": "https://animenosub.to/",
+  "testCases": [
+    {
+      "url": "https://animenosub.to/anime/the-100-girlfriends-who-really-really-really-really-really-love-you-season-2/",
+      "expected": {
+        "sync": false,
+        "title": "The 100 Girlfriends Who Really, Really, Really, Really, Really Love You Season 2",
+        "identifier": "the-100-girlfriends-who-really-really-really-really-really-love-you-season-2",
+        "image": "https://animenosub.to/wp-content/uploads/2024/12/The-100-Girlfriends-Who-Really-Really-Really-Really-Really-Love-You-Season-2.webp",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://animenosub.to/the-100-girlfriends-who-really-really-really-really-really-love-you-season-2-episode-03/"
+        }
+      }
+    },
+    {
+      "url": "https://animenosub.to/the-100-girlfriends-who-really-really-really-really-really-love-you-season-2-episode-03/",
+      "expected": {
+        "sync": true,
+        "title": "The 100 Girlfriends Who Really, Really, Really, Really, Really Love You Season 2",
+        "identifier": "the-100-girlfriends-who-really-really-really-really-really-love-you-season-2",
+        "overviewUrl": "https://animenosub.to/anime/the-100-girlfriends-who-really-really-really-really-really-love-you-season-2/",
+        "episode": 3,
+        "nextEpUrl": "https://animenosub.to/the-100-girlfriends-who-really-really-really-really-really-love-you-season-2-episode-04/",
+        "uiSelector": false
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import type { ChibiGenerator } from 'src/chibiScript/ChibiGenerator';
+import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const WeebCentral: PageInterface = {
