@@ -11,12 +11,7 @@ export const FrenchAnime: PageInterface = {
   search: 'https://french-anime.com/index.php?do=search&subaction=search&story={searchterm}',
   sync: {
     isSyncPage($c) {
-      return $c
-        .url()
-        .urlPart(4)
-        .regex('^\\d+')
-        .boolean()
-        .run();
+      return $c.url().urlPart(4).regex('^\\d+').boolean().run();
     },
     getTitle($c) {
       return $c.querySelector('h1[itemprop="name"]').text().trim().run();
