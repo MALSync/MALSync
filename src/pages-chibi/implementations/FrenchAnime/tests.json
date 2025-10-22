@@ -3,26 +3,26 @@
   "url": "https://french-anime.com",
   "testCases": [
     {
-      "url": "https://french-anime.com/exclue/1768-gachiakuta.html",
+      "url": "https://french-anime.com/animes-vostfr/1243-jjjujutsu-kaisenn.html",
       "expected": {
         "sync": true,
-        "title": "Gachiakuta",
-        "identifier": "1768",
-        "overviewUrl": "https://french-anime.com/exclue/1768-gachiakuta.html",
-        "image": "https://french-anime.com/images/french-anime-389c-ff0c-f5d9-4bb2.jpg",
-        "episode": 1,
+        "title": "Jujutsu Kaisen",
+        "identifier": "1243",
+        "overviewUrl": "https://french-anime.com/animes-vostfr/1243-jjjujutsu-kaisenn.html",
+        "image": "https://french-anime.com/images/1600898717_jujutsu-kaisen-vostfr.jpg",
+        "episode": 23,
         "uiSelector": true
       }
     },
     {
-      "url": "https://french-anime.com/exclue/1805-demon-slayer-kimetsu-no-yaiba-la-forteresse-infinie-film-1.html",
+      "url": "https://french-anime.com/animes-vf/1273-jidou-hanbaiki-ni-umarekawatta-ore-wa-meikyuu-wo-samayou.html",
       "expected": {
         "sync": true,
-        "title": "Demon Slayer: Kimetsu no Yaiba La Forteresse Infinie Film 1",
-        "identifier": "1805",
-        "image": "https://french-anime.com/images/french-anime-7617-e0d8-e53a-4551.jpg",
-        "overviewUrl": "https://french-anime.com/exclue/1805-demon-slayer-kimetsu-no-yaiba-la-forteresse-infinie-film-1.html",
-        "episode": 1,
+        "title": "Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou",
+        "identifier": "1273",
+        "image": "https://french-anime.com/images/french-anime-a00a-8fb4-d6eb-432e.jpg",
+        "overviewUrl": "https://french-anime.com/animes-vf/1273-jidou-hanbaiki-ni-umarekawatta-ore-wa-meikyuu-wo-samayou.html",
+        "episode": 12,
         "uiSelector": true
       }
     }
