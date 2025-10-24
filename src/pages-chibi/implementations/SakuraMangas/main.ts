@@ -1,0 +1,99 @@
+import type { PageInterface } from '../../pageInterface';
+
+export const SakuraMangas: PageInterface = {
+  name: 'SakuraMangas',
+  domain: 'https://sakuramangas.org',
+  languages: ['Portuguese'],
+  type: 'manga',
+  urls: {
+    match: ['*://sakuramangas.org/obras/*', '*://*.sakuramangas.org/obras/*'],
+  },
+  sync: {
+    isSyncPage($c) {
+      return $c.url().urlPart(5).boolean().run();
+    },
+    getTitle($c) {
+      return $c.querySelector('#id-titulo').text().trim().run();
+    },
+    getIdentifier($c) {
+      return $c.url().urlPart(4).run();
+    },
+    getOverviewUrl($c) {
+      return $c
+        .string('https://sakuramangas.org/obras/')
+        .concat($c.this('sync.getIdentifier').run())
+        .concat('/')
+        .run();
+    },
+    getEpisode($c) {
+      return $c.url().urlPart(5).number().run();
+    },
+    getImage($c) {
+      return $c
+        .querySelector('meta[property="og:image"]')
+        .getAttribute('content')
+        .ifNotReturn()
+        .run();
+    },
+  },
+  overview: {
+    isOverviewPage($c) {
+      return $c.url().urlPart(5).boolean().not().run();
+    },
+    getTitle($c) {
+      return $c.querySelector('h1.h1-titulo').text().trim().run();
+    },
+    getIdentifier($c) {
+      return $c.this('sync.getIdentifier').run();
+    },
+    uiInjection($c) {
+      return $c.querySelector('.col-xxl-10').uiAfter().run();
+    },
+    getImage($c) {
+      return $c.this('sync.getImage').run();
+    },
+  },
+  list: {
+    elementsSelector($c) {
+      return $c.querySelectorAll('div.capitulo-lista .capitulo-item').run();
+    },
+    elementEp($c) {
+      return $c.this('list.elementUrl').urlPart(5).number().run();
+    },
+    elementUrl($c) {
+      return $c.find('a').getAttribute('href').urlAbsolute('https://sakuramangas.org').run();
+    },
+  },
+  lifecycle: {
+    setup($c) {
+      return $c.addStyle(require('./style.less?raw').toString()).run();
+    },
+    ready($c) {
+      return $c
+        .title()
+        .contains('404')
+        .ifThen($c => $c.string('404').log().return().run())
+        .detectURLChanges($c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
+    },
+    overviewIsReady($c) {
+      return $c
+        .waitUntilTrue($c.querySelector('div.capitulo-lista .capitulo-item').boolean().run())
+        .trigger()
+        .run();
+    },
+    listChange($c) {
+      return $c
+        .detectChanges(
+          $c
+            .querySelector('#ver-mais')
+            .ifThen($el => $el.text().run())
+            .run(),
+          $c.trigger().run(),
+        )
+        .run();
+    },
+  },
+};

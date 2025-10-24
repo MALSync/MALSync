@@ -65,6 +65,7 @@ import { MangaBall } from './implementations/MangaBall/main';
 import { KappaBeast } from './implementations/KappaBeast/main';
 import { DankefürsLesen } from './implementations/DankeFürsLesen/main';
 import { RokariComics } from './implementations/RokariComics/main';
+import { SakuraMangas } from './implementations/SakuraMangas/main';
 import { WritersScans } from './implementations/WritersScans/main';
 import { VioletScans } from './implementations/VioletScans/main';
 
@@ -99,6 +100,7 @@ export const pages: { [key: string]: PageInterface } = {
   Utoon,
   WitchScans,
   Sadscans,
+  SakuraMangas,
   ArvenComics,
   Comikey,
   AuroraScans,
