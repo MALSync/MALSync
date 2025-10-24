@@ -1,0 +1,13 @@
+@import './../pages';
+
+// Estilo para capítulos lidos - barra lateral rosa
+.capitulo-item:has(.mal-sync-active) {
+  border-left: 4px solid #e91e63 !important;
+  background-color: rgba(233, 30, 99, 0.08) !important;
+  padding-left: 8px !important;
+
+  .num-capitulo a {
+    color: #e91e63 !important;
+    opacity: 0.85;
+  }
+}

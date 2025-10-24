@@ -62,6 +62,7 @@ import { Silentquill } from './implementations/Silentquill/main';
 import { MangaPlus } from './implementations/MangaPlus/main';
 import { Kagane } from './implementations/Kagane/main';
 import { MangaBall } from './implementations/MangaBall/main';
+import { SakuraMangas } from './implementations/SakuraMangas/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -94,6 +95,7 @@ export const pages: { [key: string]: PageInterface } = {
   Utoon,
   WitchScans,
   Sadscans,
+  SakuraMangas,
   ArvenComics,
   Comikey,
   AuroraScans,
