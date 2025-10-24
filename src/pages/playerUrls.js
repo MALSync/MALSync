@@ -812,7 +812,12 @@ module.exports = {
   },
   // animekai
   megaup: {
-    match: ['*://megaup.cc/e/*', '*://megaup.site/e/*', '*://megaup.live/e/*'],
+    match: [
+      '*://megaup.cc/e/*',
+      '*://megaup.site/e/*',
+      '*://megaup.live/e/*',
+      '*://4spromax.site/e/*',
+    ],
   },
   // hikari
   boosterx: {
@@ -832,22 +837,22 @@ module.exports = {
   },
   // aniworld
   loadx: {
-     match: ['*://loadx.ws/*'],
+    match: ['*://loadx.ws/*'],
   },
   // AnimeKhor
-  odysee : {
+  odysee: {
     match: ['*://odysee.com/*'],
   },
   // AnimeKhor
-  emturbovid : {
+  emturbovid: {
     match: ['*://emturbovid.com/*'],
   },
   // AnimeKhor
   upns: {
-     match: ['*://*.upns.live/*'],
+    match: ['*://*.upns.live/*'],
   },
   // AnimeKhor
   p2pstream: {
     match: ['*://*.p2pstream.vip/*'],
-  }
+  },
 };
