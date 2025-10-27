@@ -6,11 +6,16 @@ export const SakuraMangas: PageInterface = {
   languages: ['Portuguese'],
   type: 'manga',
   urls: {
-    match: ['*://sakuramangas.org/obras/*', '*://*.sakuramangas.org/obras/*'],
+    match: ['*://*.sakuramangas.org/*'],
   },
   sync: {
     isSyncPage($c) {
-      return $c.url().urlPart(5).boolean().run();
+      return $c
+        .and(
+          $c.url().urlPart(3).equals('obras').run(),
+          $c.url().urlPart(5).boolean().run(),
+        )
+        .run();
     },
     getTitle($c) {
       return $c.querySelector('#id-titulo').text().trim().run();
@@ -20,9 +25,10 @@ export const SakuraMangas: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .string('https://sakuramangas.org/obras/')
+        .string('/obras/')
         .concat($c.this('sync.getIdentifier').run())
         .concat('/')
+        .urlAbsolute()
         .run();
     },
     getEpisode($c) {
@@ -38,7 +44,12 @@ export const SakuraMangas: PageInterface = {
   },
   overview: {
     isOverviewPage($c) {
-      return $c.url().urlPart(5).boolean().not().run();
+      return $c
+        .and(
+          $c.url().urlPart(3).equals('obras').run(),
+          $c.url().urlPart(5).boolean().not().run(),
+        )
+        .run();
     },
     getTitle($c) {
       return $c.querySelector('h1.h1-titulo').text().trim().run();
@@ -61,7 +72,7 @@ export const SakuraMangas: PageInterface = {
       return $c.this('list.elementUrl').urlPart(5).number().run();
     },
     elementUrl($c) {
-      return $c.find('a').getAttribute('href').urlAbsolute('https://sakuramangas.org').run();
+      return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
   },
   lifecycle: {
@@ -75,12 +86,6 @@ export const SakuraMangas: PageInterface = {
         .ifThen($c => $c.string('404').log().return().run())
         .detectURLChanges($c.trigger().run())
         .domReady()
-        .trigger()
-        .run();
-    },
-    overviewIsReady($c) {
-      return $c
-        .waitUntilTrue($c.querySelector('div.capitulo-lista .capitulo-item').boolean().run())
         .trigger()
         .run();
     },
