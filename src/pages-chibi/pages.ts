@@ -62,6 +62,7 @@ import { Silentquill } from './implementations/Silentquill/main';
 import { MangaPlus } from './implementations/MangaPlus/main';
 import { Kagane } from './implementations/Kagane/main';
 import { MangaBall } from './implementations/MangaBall/main';
+import { DankefürsLesen } from './implementations/DankeFürsLesen/main';
 import { RokariComics } from './implementations/RokariComics/main';
 import { WritersScans } from './implementations/WritersScans/main';
 import { VioletScans } from './implementations/VioletScans/main';
@@ -129,6 +130,7 @@ export const pages: { [key: string]: PageInterface } = {
   MangaPlus,
   Kagane,
   MangaBall,
+  DankefürsLesen,
   RokariComics,
   WritersScans,
   VioletScans,
