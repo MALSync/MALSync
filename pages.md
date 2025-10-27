@@ -104,7 +104,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://animekai.bz"><img src="https://favicon.malsync.moe/?domain=https://animekai.bz"> AnimeKAI</a></td>
+    <td><a href="https://animekai.to"><img src="https://favicon.malsync.moe/?domain=https://animekai.to"> AnimeKAI</a></td>
     <td>English</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
@@ -673,6 +673,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://danke.moe/"><img src="https://favicon.malsync.moe/?domain=https://danke.moe/"> DankefürsLesen</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://reader.deathtollscans.net"><img src="https://favicon.malsync.moe/?domain=https://reader.deathtollscans.net"> DeathTollScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -771,10 +778,24 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://kagane.org"><img src="https://favicon.malsync.moe/?domain=https://kagane.org"> Kagane</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://kakuseiproject.com"><img src="https://favicon.malsync.moe/?domain=https://kakuseiproject.com"> KakuseiProject</a></td>
     <td>Portuguese</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://kappabeast.com"><img src="https://favicon.malsync.moe/?domain=https://kappabeast.com"> KappaBeast</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
@@ -1093,6 +1114,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://rokaricomics.com"><img src="https://favicon.malsync.moe/?domain=https://rokaricomics.com"> RokariComics</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://roliascan.com"><img src="https://favicon.malsync.moe/?domain=https://roliascan.com"> RoliaScan</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -1198,6 +1226,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://violetscans.org"><img src="https://favicon.malsync.moe/?domain=https://violetscans.org"> VioletScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://www.viz.com"><img src="https://favicon.malsync.moe/?domain=https://www.viz.com"> VIZ</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -1227,6 +1262,13 @@
     <td>:x:</td>
   </tr><tr>
     <td><a href="https://witchscans.com"><img src="https://favicon.malsync.moe/?domain=https://witchscans.com"> WitchScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://writerscans.com"><img src="https://favicon.malsync.moe/?domain=https://writerscans.com"> WritersScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
