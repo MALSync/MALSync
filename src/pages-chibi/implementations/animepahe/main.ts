@@ -6,6 +6,7 @@ export const animepahe: PageInterface = {
   languages: ['English'],
   type: 'anime',
   database: 'animepahe',
+  minimumVersion: '0.12.1',
   urls: {
     match: [
       '*://animepahe.com/play/*',
