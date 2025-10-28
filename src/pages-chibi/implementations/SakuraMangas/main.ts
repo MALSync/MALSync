@@ -11,10 +11,7 @@ export const SakuraMangas: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(3).equals('obras').run(),
-          $c.url().urlPart(5).boolean().run(),
-        )
+        .and($c.url().urlPart(3).equals('obras').run(), $c.url().urlPart(5).boolean().run())
         .run();
     },
     getTitle($c) {
@@ -35,20 +32,13 @@ export const SakuraMangas: PageInterface = {
       return $c.url().urlPart(5).number().run();
     },
     getImage($c) {
-      return $c
-        .querySelector('meta[property="og:image"]')
-        .getAttribute('content')
-        .ifNotReturn()
-        .run();
+      return $c.querySelector('.img-capa img.capa').getAttribute('src').urlAbsolute().run();
     },
   },
   overview: {
     isOverviewPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(3).equals('obras').run(),
-          $c.url().urlPart(5).boolean().not().run(),
-        )
+        .and($c.url().urlPart(3).equals('obras').run(), $c.url().urlPart(5).boolean().not().run())
         .run();
     },
     getTitle($c) {
@@ -61,7 +51,7 @@ export const SakuraMangas: PageInterface = {
       return $c.querySelector('.col-xxl-10').uiAfter().run();
     },
     getImage($c) {
-      return $c.this('sync.getImage').run();
+      return $c.querySelector('.img-capa img.capa').getAttribute('src').urlAbsolute().run();
     },
   },
   list: {

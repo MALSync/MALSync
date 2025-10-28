@@ -11,7 +11,7 @@
         "overviewUrl": "https://sakuramangas.org/obras/yomi-no-tsugai/",
         "episode": 40,
         "uiSelector": false,
-        "image": "https://sakuramangas.org/storage/obras/capas/yomi-no-tsugai.webp"
+        "image": "https://sakuramangas.org/obras/yomi-no-tsugai/thumb_256.jpg"
       }
     },
     {
@@ -20,7 +20,7 @@
         "sync": false,
         "title": "Yomi no Tsugai",
         "identifier": "yomi-no-tsugai",
-        "image": "https://sakuramangas.org/storage/obras/capas/yomi-no-tsugai.webp",
+        "image": "https://sakuramangas.org/obras/yomi-no-tsugai/thumb_256.jpg",
         "uiSelector": true,
         "epList": {
           "40": "https://sakuramangas.org/obras/yomi-no-tsugai/40/",
