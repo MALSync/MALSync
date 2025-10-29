@@ -130,13 +130,13 @@ export const StoneScape: PageInterface = {
     },
     overviewIsReady($c) {
       return $c
-        .waitUntilTrue($c.querySelector('#manga-chapters-holder').find('div').isNil().not().run())
+        .waitUntilTrue($c.querySelector('.thisqueryneverexist').find('div').isNil().not().run())
         .trigger()
         .run();
     },
     syncIsReady($c) {
       return $c
-        .waitUntilTrue($c.querySelector('#manga-reading-nav-head').isNil().not().run())
+        .waitUntilTrue($c.querySelector('.thisqueryneverexist').isNil().not().run())
         .trigger()
         .run();
     },
