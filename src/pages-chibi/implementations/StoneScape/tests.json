@@ -16,16 +16,16 @@
         }
       },
       {
-        "url": "https://stonescape.xyz/series/plaything",
+        "url": "https://stonescape.xyz/series/player/",
         "expected": {
           "sync": false,
-          "title": "Plaything",
-          "identifier": "plaything",
-          "image": "https://stonescape.xyz/wp-content/uploads/2024/08/plaything.png",
+          "title": "Player",
+          "identifier": "player",
+          "image": "https://stonescape.xyz/wp-content/uploads/2025/03/player300.png",
           "uiSelector": true,
           "epList": {
-            "61": "https://stonescape.xyz/series/plaything/ch-61/",
-            "1": "https://stonescape.xyz/series/plaything/ch-1/"
+            "245": "https://stonescape.xyz/series/player/ch-245/",
+            "244": "https://stonescape.xyz/series/player/ch-244/"
           }
         }
       }
