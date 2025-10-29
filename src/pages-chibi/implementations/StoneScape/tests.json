@@ -22,7 +22,11 @@
           "title": "Plaything",
           "identifier": "plaything",
           "image": "https://stonescape.xyz/wp-content/uploads/2024/08/plaything.png",
-          "uiSelector": true
+          "uiSelector": true,
+          "epList": {
+            "61": "https://stonescape.xyz/series/plaything/ch-61/",
+            "1": "https://stonescape.xyz/series/plaything/ch-1/"
+          }
         }
       }
     ]
