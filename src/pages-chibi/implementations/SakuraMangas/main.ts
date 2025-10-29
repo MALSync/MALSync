@@ -72,7 +72,7 @@ export const SakuraMangas: PageInterface = {
       return $c.this('list.elementUrl').urlPart(5).number().run();
     },
     elementUrl($c) {
-      return $c.find('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
+      return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
   },
   lifecycle: {
