@@ -3,6 +3,8 @@
 // Style 1 = box style
 // Style 2 = classic style
 @boxBackground: #00000038;
+@boxFontColor: inherit;
+@boxLabelFontColor: inherit;
 @boxGap: 10px;
 
 @highlightStyle: 2;
@@ -34,6 +36,7 @@
       & > .malp-group-value-section {
         flex-grow: 1;
         background-color: @boxBackground !important;
+        color: @boxFontColor !important;
         border-radius: 4px;
         padding: 4px 8px !important;
       }
@@ -45,10 +48,7 @@
 
     .malp-group-label {
       display: block !important;
-    }
-
-    .malp-group-label {
-      display: block !important;
+      color: @boxLabelFontColor !important;
       font-size: 12px !important;
     }
 
@@ -58,7 +58,7 @@
         visibility: hidden;
       }
       a {
-        color: inherit;
+        color: @boxFontColor !important;
       }
     }
     #AddMalDiv {

@@ -117,7 +117,9 @@ export const Chibi = async (): Promise<pageInterface> => {
         ? html => {
             const consumer = getConsumer(currentPage.sync.uiInjection!, pageD, 'sync.uiInjection');
             consumer.addVariable('ui', html);
-            return consumer.run();
+            const value = consumer.run();
+            consumer.emitEvent('overview.uiSelector');
+            return value;
           }
         : undefined,
       getMalUrl: currentPage.sync.getMalUrl
@@ -159,7 +161,9 @@ export const Chibi = async (): Promise<pageInterface> => {
                 'overview.uiInjection',
               );
               consumer.addVariable('ui', html);
-              return consumer.run();
+              const value = consumer.run();
+              consumer.emitEvent('overview.uiSelector');
+              return value;
             },
             getImage: currentPage.overview?.getImage
               ? () => {

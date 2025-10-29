@@ -119,6 +119,27 @@ export default {
   },
 
   /**
+   * Sets a CSS style property on an element
+   * @input Element - DOM element
+   * @param property - CSS property name
+   * @param value - Value to set for the property
+   * @param important - Whether to set the property as !important (default: false)
+   * @returns The modified Element
+   * @example
+   * $c.querySelector('h1').setStyle('color', 'red', true)
+   */
+  setStyle: (
+    ctx: ChibiCtx,
+    input: Element,
+    property: ChibiParam<string>,
+    value: ChibiParam<string>,
+    important: ChibiParam<boolean> = false,
+  ) => {
+    (input as HTMLElement).style.setProperty(property, value, important ? 'important' : '');
+    return input;
+  },
+
+  /**
    * Finds the closest ancestor of an element matching a selector
    * @input Element - DOM element to start from
    * @param selector - CSS selector to match ancestors against or ChibiJson that resolves to a string

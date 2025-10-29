@@ -3,6 +3,9 @@ import type { ChibiCtx } from '../../ChibiCtx';
 import type { ChibiJson, ChibiParam } from '../../ChibiGenerator';
 import { isReservedKey, type ReservedKey } from '../../ChibiRegistry';
 import { ChibiReturn } from '../../ChibiReturn';
+import domFunctions from '../domFunctions';
+import asyncFunctions from './asyncFunctions';
+import { localStore } from '../../../utils/localStore';
 
 export default {
   /**
@@ -349,5 +352,60 @@ export default {
    */
   error: (ctx: ChibiCtx, input: any, message: ChibiParam<string>): never => {
     throw new ChibiError(message);
+  },
+
+  /**
+   * Adds a CSS variable to the document root and updates it based on a callback.
+   * Should be used inside of the setup lifecycle
+   * @param name - Name of the CSS variable (e.g., --my-variable)
+   * @param callback - Callback that returns the value of the CSS variable
+   * @param defaultValue - Default value for the CSS variable
+   * @example
+   * $c.addCssVariable(
+   *   '--malsync-card-bg',
+   *   $c.querySelector('.card').getComputedStyle('background-color').run(),
+   *   'blue'
+   * )
+   */
+  addCssVariable(
+    ctx: ChibiCtx,
+    input: void,
+    name: string,
+    callback: ChibiJson<string>,
+    defaultValue: string = '',
+  ) {
+    const storageKey = `mal-sync-css-var${name}`;
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    asyncFunctions.domReady(ctx, undefined).then(() => {
+      const savedValue = localStore.getItem(storageKey);
+      if (savedValue || defaultValue) {
+        styleSet(savedValue || defaultValue);
+      }
+
+      ctx.event.on('overview.uiSelector', runCallback);
+      ctx.event.on('sync.uiSelector', runCallback);
+    });
+
+    function styleSet(value: string) {
+      domFunctions.setStyle(ctx, document.documentElement, name, value, true);
+    }
+    async function runCallback() {
+      let result;
+      if (ctx.isAsync()) {
+        result = await ctx.runAsync(callback);
+      } else {
+        result = ctx.run(callback);
+      }
+
+      if (result && result instanceof ChibiReturn) {
+        result = result.getValue();
+      }
+
+      if (result && result !== localStore.getItem(storageKey)) {
+        styleSet(result);
+        localStore.setItem(storageKey, result);
+      }
+    }
   },
 };
