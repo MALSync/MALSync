@@ -138,25 +138,23 @@ export function changeDetect(callback, func, immediate = false) {
   return Number(intervalId);
 }
 
-export function waitUntilTrue(condition: Function, callback: Function, interval = 100) {
-  let counter = 0;
-
-  const intervalId = setInterval(function () {
-    counter++;
+export function waitUntilTrue(condition: Function, callback: Function, interval = 200) {
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  const intervalId = setInterval(async function () {
     let state = false;
     try {
-      state = condition();
+      const conditionState = condition() as boolean | Promise<boolean>;
+      if (conditionState && conditionState instanceof Promise) {
+        state = await conditionState;
+      } else {
+        state = conditionState;
+      }
     } catch (e) {
       con.info('Error in waitUntilTrue', e);
     }
     if (state) {
       clearInterval(intervalId);
       callback();
-    }
-    if (counter > 10) {
-      clearInterval(intervalId);
-      const newIntervalTime = Math.max(Math.min(interval * 2, 15000), 500);
-      waitUntilTrue(condition, callback, newIntervalTime);
     }
   }, interval);
 
