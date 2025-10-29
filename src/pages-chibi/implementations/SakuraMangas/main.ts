@@ -32,7 +32,12 @@ export const SakuraMangas: PageInterface = {
       return $c.url().urlPart(5).number().run();
     },
     getImage($c) {
-      return $c.querySelector('.img-capa img.capa').getAttribute('src').urlAbsolute().run();
+      return $c
+        .string('/obras/')
+        .concat($c.this('sync.getIdentifier').run())
+        .concat('/thumb_256.jpg')
+        .urlAbsolute()
+        .run();
     },
   },
   overview: {
@@ -51,18 +56,23 @@ export const SakuraMangas: PageInterface = {
       return $c.querySelector('.col-xxl-10').uiAfter().run();
     },
     getImage($c) {
-      return $c.querySelector('.img-capa img.capa').getAttribute('src').urlAbsolute().run();
+      return $c
+        .string('/obras/')
+        .concat($c.this('sync.getIdentifier').run())
+        .concat('/thumb_256.jpg')
+        .urlAbsolute()
+        .run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('div.capitulo-lista .capitulo-item').run();
+      return $c.querySelectorAll('.chapter-item').run();
     },
     elementEp($c) {
       return $c.this('list.elementUrl').urlPart(5).number().run();
     },
     elementUrl($c) {
-      return $c.find('a').getAttribute('href').urlAbsolute().run();
+      return $c.find('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
     },
   },
   lifecycle: {
@@ -81,13 +91,7 @@ export const SakuraMangas: PageInterface = {
     },
     listChange($c) {
       return $c
-        .detectChanges(
-          $c
-            .querySelector('#ver-mais')
-            .ifThen($el => $el.text().run())
-            .run(),
-          $c.trigger().run(),
-        )
+        .detectChanges($c.querySelectorAll('.chapter-item').length().run(), $c.trigger().run())
         .run();
     },
   },
