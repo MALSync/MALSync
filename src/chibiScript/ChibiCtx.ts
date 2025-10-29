@@ -2,6 +2,7 @@ import type { ChibiConsumer } from './ChibiConsumer';
 import type { ChibiJson } from './ChibiGenerator';
 import { ChibiReturn } from './ChibiReturn';
 import { ChibiRegistry, chibiRegistrySingleton } from './ChibiRegistry';
+import { chibiEventEmitterSingleton } from './ChibiEventEmitter';
 
 export class ChibiCtx {
   private registry: ChibiRegistry;
@@ -13,6 +14,8 @@ export class ChibiCtx {
   private consumer: ChibiConsumer;
 
   private async: boolean = false;
+
+  public event = chibiEventEmitterSingleton;
 
   constructor(consumer: ChibiConsumer) {
     this.consumer = consumer;

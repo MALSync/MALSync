@@ -4,6 +4,7 @@ import type { ChibiJson } from './ChibiGenerator';
 import { ChibiReturn } from './ChibiReturn';
 import functionsRegistry from './functions';
 import { chibiParamIndices } from './ChibiGeneratorTypes';
+import type { ChibiEvents } from './ChibiEventEmitter';
 
 export class ChibiConsumer {
   private script: ChibiJson<any>;
@@ -130,6 +131,10 @@ export class ChibiConsumer {
 
   clearIntervals() {
     return this.ctx.clearIntervals();
+  }
+
+  emitEvent(eventName: ChibiEvents, data?: any) {
+    this.ctx.event.emit(eventName, data);
   }
 
   protected isChibiJson(index: number, functionName: string, argument: any) {
