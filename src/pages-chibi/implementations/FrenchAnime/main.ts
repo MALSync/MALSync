@@ -47,9 +47,6 @@ export const FrenchAnime: PageInterface = {
     elementsSelector($c) {
       return $c.querySelectorAll('#epselect option').run();
     },
-    elementUrl($c) {
-      return $c.url().run();
-    },
     elementEp($c) {
       return $c.text().regex('Episode\\s+(\\d+)', 1).number().run();
     },
