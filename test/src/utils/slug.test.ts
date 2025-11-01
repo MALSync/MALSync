@@ -107,6 +107,28 @@ const testCases = [
     },
     expectedUrl: 'local://MangaNato/manga/manga-jz987034',
   },
+  {
+    input: 'local://MangaNato/manga/no:game:no:life',
+    expect: {
+      path: {
+        type: 'manga',
+        slug: 'l:MangaNato::no%3Agame%3Ano%3Alife',
+      },
+      url: '',
+    },
+    expectedUrl: 'local://MangaNato/manga/no:game:no:life',
+  },
+  {
+    input: 'local://MangaNato/manga/no::game::no::life',
+    expect: {
+      path: {
+        type: 'manga',
+        slug: 'l:MangaNato::no%3A%3Agame%3A%3Ano%3A%3Alife',
+      },
+      url: '',
+    },
+    expectedUrl: 'local://MangaNato/manga/no::game::no::life',
+  },
 ];
 
 describe('Slugs', function() {
