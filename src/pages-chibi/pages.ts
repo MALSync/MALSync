@@ -31,6 +31,7 @@ import { Utoon } from './implementations/Utoon/main';
 import { WitchScans } from './implementations/WitchScans/main';
 import { Sadscans } from './implementations/Sadscans/main';
 import { ArvenComics } from './implementations/ArvenComics/main';
+import { FrenchAnime } from './implementations/FrenchAnime/main';
 import { Comikey } from './implementations/Comikey/main';
 import { AuroraScans } from './implementations/AuroraScans/main';
 import { ComicTop } from './implementations/ComicTop/main';
@@ -101,6 +102,7 @@ export const pages: { [key: string]: PageInterface } = {
   WitchScans,
   Sadscans,
   ArvenComics,
+  FrenchAnime,
   Comikey,
   AuroraScans,
   ComicTop,
