@@ -7,54 +7,51 @@
   text-align: left;
 }
 
-section.main .content-wrapper .theatre .theatre-info {
-  margin-bottom: 1rem;
-  height: unset !important;
+#malp #MalData {
+  justify-content: center !important;
+  .malp-group-label {
+    font-size: 18px !important;
+  }
 }
 
-#flashinfo-div {
-  z-index: 99999 !important;
-}
-
-#malp,
-#malTotal,
-#AddMalDiv,
-#AddMal {
-  color: #999 !important;
+#AddMal:hover {
+  color: #dd0021 !important;
 }
 
 #malStatus,
 #malUserRating,
-#malEpisodes {
-  background: transparent !important;
-  color: #d5015b !important;
-  option {
-    background: black !important;
-    color: #d5015b !important;
-  }
-}
-
+#malEpisodes,
+#malTotal,
 #malRating {
-  color: #d5015b !important;
-}
-
-.mal-sync-active .episode-label-wrap {
-  background-color: #002966ba;
+  background: transparent;
+  color: #dd0021 !important;
+  option {
+    color: #bdbdbd !important;
+    font-size: 18px;
+  }
 }
 
 #malp {
-  .anime-content & {
-    /* same as .tab-content */
-    margin-left: 235px;
-
-    @media (max-width: 767px) {
-      margin-left: 0;
-      margin-bottom: 0;
-      padding: 0 15px;
+  #malStatus,
+  #malUserRating {
+    option {
+      background-color: black !important;
+      color: #bdbdbd !important;
     }
   }
+}
 
-  .theatre-info & {
-    margin-bottom: 0;
+.malp-group-value-section {
+  display: flex;
+  #malEpisodes,
+  #malTotal {
+    width: 100% !important;
+  }
+}
+
+.mal-sync-active {
+  background-color: #dd0021;
+  .watch2 {
+    color: #dd0021;
   }
 }
