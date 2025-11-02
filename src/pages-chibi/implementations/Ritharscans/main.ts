@@ -69,7 +69,7 @@ export const Ritharscans: PageInterface = {
         .getGlobalVariable('data')
         .get('name')
         .string()
-        .regex('^(.*)(?: \\[.+?\\])* - Ritharscans \\| \\w+$', 1)
+        .regex('^(.*?)(?: \\[.+?\\])* - Ritharscans \\| \\w+$', 1)
         .run();
     },
     getIdentifier($c) {
