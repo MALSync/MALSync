@@ -79,7 +79,7 @@ export const Ritharscans: PageInterface = {
       return $c.getGlobalVariable('data').get('image').get('url').run();
     },
     uiInjection($c) {
-      return $c.querySelector('div:has(>[title="Status"])').uiAfter().run();
+      return $c.querySelector('div:has(> [title="Status"])').uiAfter().run();
     },
   },
   list: {
