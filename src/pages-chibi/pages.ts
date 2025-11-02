@@ -68,6 +68,7 @@ import { RokariComics } from './implementations/RokariComics/main';
 import { WritersScans } from './implementations/WritersScans/main';
 import { VioletScans } from './implementations/VioletScans/main';
 import { animepahe } from './implementations/animepahe/main';
+import { AnimeHeaven } from './implementations/AnimeHeaven/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -138,4 +139,5 @@ export const pages: { [key: string]: PageInterface } = {
   WritersScans,
   VioletScans,
   animepahe,
+  AnimeHeaven,
 };
