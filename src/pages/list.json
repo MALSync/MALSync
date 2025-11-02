@@ -10,11 +10,6 @@
     "name": "TurkAnime"
   },
   {
-    "domain": "https://animepahe.com",
-    "type": "anime",
-    "name": "animepahe"
-  },
-  {
     "domain": "https://www.netflix.com",
     "type": "anime",
     "name": "Netflix"
@@ -898,5 +893,10 @@
     "domain": "https://violetscans.org",
     "type": "manga",
     "name": "VioletScans"
+  },
+  {
+    "domain": "https://animepahe.com",
+    "type": "anime",
+    "name": "animepahe"
   }
 ]

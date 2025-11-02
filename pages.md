@@ -171,8 +171,8 @@
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
-    <td>:x:</td>
     <td>:heavy_check_mark:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://animesonline.in"><img src="https://favicon.malsync.moe/?domain=https://animesonline.in"> Animes Online</a></td>
     <td>Portuguese</td>
