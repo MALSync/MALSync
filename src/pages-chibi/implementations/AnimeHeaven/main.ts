@@ -24,7 +24,7 @@ export const AnimeHeaven: PageInterface = {
     },
     getEpisode($c) {
       return $c.querySelector('.linetitle3.c').text().split('Episode ').at(1).number().run();
-    }
+    },
   },
   overview: {
     isOverviewPage($c) {
@@ -41,7 +41,7 @@ export const AnimeHeaven: PageInterface = {
     },
     getImage($c) {
       return $c.querySelector('.posterimg').getAttribute('src').ifNotReturn(undefined).run();
-    }
+    },
   },
   list: {
     elementsSelector($c) {
@@ -56,10 +56,7 @@ export const AnimeHeaven: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run())
-        .domReady()
-        .trigger()
-        .run();
+      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
   },
 };
