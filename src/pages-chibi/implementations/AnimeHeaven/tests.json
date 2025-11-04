@@ -1,0 +1,27 @@
+{
+  "title": "AnimeHeaven",
+  "url": "https://animeheaven.me",
+  "testCases": [
+    {
+      "url": "https://animeheaven.me/anime.php?yd29r",
+      "expected": {
+        "sync": false,
+        "title": "The Irregular at Magic High School Season 3",
+        "identifier": "yd29r",
+        "image": "https://animeheaven.me/image.php?5li0x",
+        "uiSelector": true
+      }
+    },
+    {
+        "url": "https://animeheaven.me/gate.php",
+        "expected": {
+            "sync": true,
+            "title": "The Irregular at Magic High School Season 3",
+            "identifier": "yd29r",
+            "episode": 13,
+            "overviewUrl": "https://animeheaven.me/anime.php?yd29r",
+            "uiSelector": false
+        }
+    }
+  ]
+}
