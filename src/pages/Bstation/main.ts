@@ -31,6 +31,15 @@ function selectText(selectors: string[]): string {
 const proxy = new ScriptProxy('Bstation');
 
 let proxyData: BstationMeta | null = null;
+function isAnimeTagged(): boolean {
+  try {
+    if (j.$('.bstar-meta-tag.bstar-meta-tag--anime').length) return true;
+    if (j.$('[data-e2e="media-tag"] .bstar-meta-tag--anime').length) return true;
+  } catch (e) {
+    // If DOM isn't ready yet, waitUntilTrue below will retry.
+  }
+  return false;
+}
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Bstation: pageInterface = {
@@ -124,6 +133,7 @@ export const Bstation: pageInterface = {
               });
             return (
               !!getSeriesId(window.location.href) &&
+              isAnimeTagged() &&
               (!!(proxyData && (proxyData.title || proxyData.episode)) ||
                 !!selectText([
                   '[data-e2e="media-title"]',
@@ -149,14 +159,15 @@ export const Bstation: pageInterface = {
                 proxyData = null;
               });
             return (
-              !!(proxyData && proxyData.title) ||
-              !!selectText([
-                '[data-e2e="media-title"]',
-                '.media-title',
-                '.media__title',
-                '.ogv-title',
-                '.title-h1',
-              ])
+              isAnimeTagged() &&
+              (!!(proxyData && proxyData.title) ||
+                !!selectText([
+                  '[data-e2e="media-title"]',
+                  '.media-title',
+                  '.media__title',
+                  '.ogv-title',
+                  '.title-h1',
+                ]))
             );
           },
           () => page.handlePage(),

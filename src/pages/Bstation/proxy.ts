@@ -20,7 +20,7 @@ export function script() {
     const state = w.__initialState || w.__INITIAL_STATE__ || w.__INITIAL_STATE;
 
     const deepWalk = (obj: any, fn: (k: string, v: any, p: any) => void) => {
-      const stack = [{ k: 'root', v: obj, p: undefined }];
+      const stack: Array<{ k: string; v: any; p: any }> = [{ k: 'root', v: obj, p: undefined }];
       const seen = new WeakSet();
       while (stack.length) {
         const { k, v, p } = stack.pop()!;
