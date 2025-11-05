@@ -215,22 +215,22 @@ describe('String Functions', () => {
   describe('JPtoNumeral', () => {
     it('should converts Japanese ten numeral to standard Arabic numeral', () => {
       const code = $c.string('九十八').JPtoNumeral().run();
-      expect(generateAndExecute(code).run()).to.equal('98');
+      expect(generateAndExecute(code).run()).to.equal(98);
     });
 
     it('should converts Japanese hundred numeral to standard Arabic numeral', () => {
       const code = $c.string('二百三').JPtoNumeral().run();
-      expect(generateAndExecute(code).run()).to.equal('203');
+      expect(generateAndExecute(code).run()).to.equal(203);
     });
 
     it('should converts Japanese thousand to standard Arabic numeral', () => {
       const code = $c.string('二千八百七十一').JPtoNumeral().run();
-      expect(generateAndExecute(code).run()).to.equal('2871');
+      expect(generateAndExecute(code).run()).to.equal(2871);
     });
 
     it('should converts Japanese ten thousand numeral to standard Arabic numeral', () => {
       const code = $c.string('一万二千三百四十五').JPtoNumeral().run();
-      expect(generateAndExecute(code).run()).to.equal('12345');
+      expect(generateAndExecute(code).run()).to.equal(12345);
     });
   });
 });
