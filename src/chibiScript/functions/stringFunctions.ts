@@ -220,4 +220,27 @@ export default {
       .replace(/[\uFF01-\uFF5E]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
       .replace(/\u3000/g, ' ');
   },
+
+  /**
+   * Converts Japanese numerals to Arabic numerals
+   * @input string
+   * @returns Its half-width characters or number
+   * @example
+   * $c.string('九十八').JPtoNumeral().run(); // returns 98
+   */
+  JPtoNumeral: (ctx: ChibiCtx, input: string) => {
+    const map = { 零: 0, 〇: 0, 一: 1, 二: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 };
+    const units = { 十: 10, 百: 100, 千: 1000, 万: 10000 };
+    let section = 0;
+    let num = 0;
+    input.split('').forEach(ch => {
+      if (map[ch] !== undefined) {
+        num = map[ch];
+      } else if (units[ch] !== undefined) {
+        section += (num || 1) * units[ch];
+        num = 0;
+      }
+    });
+    return section + num;
+  },
 };
