@@ -42,9 +42,7 @@ export const Ritharscans: PageInterface = {
       return $c
         .querySelector('div[x-init="initReader"]')
         .getAttribute('x-data')
-        .regex('^\\w+(.+)$', 1, 'i')
-        .jsonParse()
-        .get('nextUrl')
+        .regex("(?<=nextUrl:\\s*').*?(?=')")
         .run();
     },
     readerConfig: [
