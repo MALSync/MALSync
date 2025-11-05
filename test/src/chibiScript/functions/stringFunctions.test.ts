@@ -231,6 +231,10 @@ describe('String Functions', () => {
     it('should converts Japanese ten thousand numeral to standard Arabic numeral', () => {
       const code = $c.string('一万二千三百四十五').JPtoNumeral().run();
       expect(generateAndExecute(code).run()).to.equal(12345);
+
+    it('should throw error for no match', () => {
+      const code = $c.string('第五十四話').JPtoNumeral().run();
+      expect(generateAndExecute(code).run()).to.equal(null);
     });
   });
 });

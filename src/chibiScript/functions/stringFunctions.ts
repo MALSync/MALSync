@@ -229,6 +229,9 @@ export default {
    * $c.string('九十八').JPtoNumeral().run(); // returns 98
    */
   JPtoNumeral: (ctx: ChibiCtx, input: string) => {
+    if (!/^[零〇一二三四五六七八九十百千万億兆]+$/.test(input)) {
+      throw new Error(`No valid Japanese numeral equal in input '${input}'`);
+    }
     const map = { 零: 0, 〇: 0, 一: 1, 二: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 };
     const units = { 十: 10, 百: 100, 千: 1000, 万: 10000 };
     let section = 0;
