@@ -43,6 +43,7 @@ export const Ritharscans: PageInterface = {
         .querySelector('div[x-init="initReader"]')
         .getAttribute('x-data')
         .regex("(?<=nextUrl:\\s*').*?(?=')")
+        .urlAbsolute()
         .run();
     },
     readerConfig: [
