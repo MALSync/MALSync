@@ -74,6 +74,7 @@ import { BetterAnime } from './BetterAnime/main';
 import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
+import { Bstation } from './Bstation/main';
 import { Animetoast } from './Animetoast/main';
 import { Animeworld } from './Animeworld/main';
 import { MangaBuddy } from './MangaBuddy/main';
@@ -224,4 +225,5 @@ export const pages = {
   Kavita,
   Aninexus,
   AniDream,
+  Bstation,
 };
