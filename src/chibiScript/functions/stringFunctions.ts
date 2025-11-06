@@ -224,7 +224,7 @@ export default {
   /**
    * Converts Japanese numerals to Arabic numerals
    * @input string
-   * @returns Its half-width characters or number
+   * @returns Its standard numerals
    * @example
    * $c.string('九十八').JPtoNumeral().run(); // returns 98
    */
