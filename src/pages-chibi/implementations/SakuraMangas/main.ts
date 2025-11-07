@@ -10,6 +10,7 @@ export const SakuraMangas: PageInterface = {
   },
   sync: {
     isSyncPage($c) {
+      // Reading page follows pattern: /obras/{slug}/{number}/
       return $c
         .and($c.url().urlPart(3).equals('obras').run(), $c.url().urlPart(5).boolean().run())
         .run();
@@ -18,9 +19,11 @@ export const SakuraMangas: PageInterface = {
       return $c.querySelector('#id-titulo').text().trim().run();
     },
     getIdentifier($c) {
+      // Manga slug from URL (part 4)
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
+      // Build overview URL: /obras/{identifier}/
       return $c
         .string('/obras/')
         .concat($c.this('sync.getIdentifier').run())
@@ -29,9 +32,11 @@ export const SakuraMangas: PageInterface = {
         .run();
     },
     getEpisode($c) {
+      // Chapter number is in URL part 5
       return $c.url().urlPart(5).number().run();
     },
     getImage($c) {
+      // Construct image URL from identifier
       return $c
         .string('/obras/')
         .concat($c.this('sync.getIdentifier').run())
@@ -42,6 +47,7 @@ export const SakuraMangas: PageInterface = {
   },
   overview: {
     isOverviewPage($c) {
+      // Overview page has 'obras' but no chapter number (urlPart 5 is empty)
       return $c
         .and($c.url().urlPart(3).equals('obras').run(), $c.url().urlPart(5).boolean().not().run())
         .run();
@@ -53,6 +59,7 @@ export const SakuraMangas: PageInterface = {
       return $c.this('sync.getIdentifier').run();
     },
     uiInjection($c) {
+      // Inject UI after the first col-xxl-10 element
       return $c.querySelector('.col-xxl-10').uiAfter().run();
     },
     getImage($c) {
@@ -66,12 +73,15 @@ export const SakuraMangas: PageInterface = {
   },
   list: {
     elementsSelector($c) {
+      // Selector for chapter list items
       return $c.querySelectorAll('.chapter-item').run();
     },
     elementEp($c) {
+      // Extract chapter number from URL
       return $c.this('list.elementUrl').urlPart(5).number().run();
     },
     elementUrl($c) {
+      // Get full chapter URL
       return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
   },
