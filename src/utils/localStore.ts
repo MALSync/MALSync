@@ -23,6 +23,7 @@ if (checkLocalStorageIsAvailable()) {
 export const localStore = store;
 
 function checkLocalStorageIsAvailable() {
+  if (typeof localStorage === 'undefined') return false;
   try {
     localStorage.getItem('x');
     return true;

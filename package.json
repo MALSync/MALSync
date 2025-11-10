@@ -105,7 +105,7 @@
     "test": "npm run test:ts && npm run test:headless",
     "test:headless": "webpack --config webpackConfig/test.config.js && node test/headless/test.js",
     "test:ts": "ts-mocha -p tsconfig.node.json test/src/**/*.test.ts --require test/_env_injection.ts",
-    "test:ts:ci": "cross-env NO_API=true ts-mocha -p tsconfig.node.json 'test/src/**/*.test.ts' --require test/_env_injection.ts",
+    "test:ts:ci": "cross-env NO_API=true ts-mocha -p tsconfig.node.json 'test/src/**/*.test.ts' --require test/_env_injection.ts --exit",
     "lint:script": "eslint .",
     "lint:script:ci": "npm run lint:script -- --quiet",
     "lint:script:fix": "npm run lint:script:ci -- --fix",
