@@ -20,14 +20,12 @@ export const Bstation: PageInterface = {
             .ifNotReturn()
             .text()
             .trim()
-            .log('bstation.sync.title.bstar-meta__title')
             .run(),
           $c
             .querySelector('.bstar-meta__ogv-title')
             .ifNotReturn()
             .text()
             .trim()
-            .log('bstation.sync.title.bstar-meta__ogv-title')
             .run(),
           $c
             .querySelector('meta[property="og:title"]')
@@ -37,7 +35,6 @@ export const Bstation: PageInterface = {
             .run(),
           $c.title().trim().run(),
         )
-        .log('bstation.sync.title.result')
         .run();
     },
     getIdentifier($c) {
@@ -92,14 +89,12 @@ export const Bstation: PageInterface = {
             .ifNotReturn()
             .text()
             .trim()
-            .log('bstation.overview.title.bstar-meta__title')
             .run(),
           $c
             .querySelector('.bstar-meta__ogv-title')
             .ifNotReturn()
             .text()
             .trim()
-            .log('bstation.overview.title.bstar-meta__ogv-title')
             .run(),
           $c
             .querySelector('meta[property="og:title"]')
@@ -109,7 +104,6 @@ export const Bstation: PageInterface = {
             .run(),
           $c.title().trim().run(),
         )
-        .log('bstation.overview.title.result')
         .run();
     },
     getIdentifier($c) {
