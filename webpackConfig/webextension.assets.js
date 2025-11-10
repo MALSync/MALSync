@@ -140,6 +140,7 @@ const generateManifest = () => {
     },
     sidebar_action: {
       default_panel: 'window.html',
+      open_at_install: false,
       default_icon: {
         '16': 'icons/icon16.png',
         '32': 'icons/icon32.png',
