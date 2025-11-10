@@ -69,7 +69,7 @@ export const SetsuScans: PageInterface = {
       return $c.querySelector('#manga-title').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c.querySelector('.summary_image img').getAttribute('src').ifNotReturn().run();
