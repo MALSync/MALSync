@@ -22,13 +22,13 @@ export function urlParam(url, name) {
   return decodeURI(results[1]) || 0;
 }
 
-export function getBaseText(element) {
-  let text = element.text();
-  element.children().each(function () {
-    // @ts-ignore
-    text = text.replace(j.$(this).text(), '');
-  });
-  return text;
+export function getBaseText(element: JQuery<Element>) {
+  return element
+    .contents()
+    .filter(function () {
+      return this.nodeType === Node.TEXT_NODE;
+    })
+    .text();
 }
 
 export function favicon(domain) {

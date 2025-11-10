@@ -3,7 +3,6 @@ import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
 import { Plex } from './Plex/main';
 import { Netflix } from './Netflix/main';
-import { animepahe } from './animepahe/main';
 import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Proxer } from './Proxer/main';
@@ -19,7 +18,6 @@ import { mangadenizi } from './mangadenizi/main';
 import { moeclip } from './moeclip/main';
 import { mangalivre } from './mangalivre/main';
 import { tmofans } from './tmofans/main';
-import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
@@ -62,7 +60,6 @@ import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
 import { Bentomanga } from './Bentomanga/main';
-import { MangaSushi } from './MangaSushi/main';
 import { ReadManhua } from './ReadManhua/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
@@ -116,7 +113,6 @@ import { AniDream } from './AniDream/main';
 export const pages = {
   Mangadex,
   TurkAnime,
-  animepahe,
   Netflix,
   Animeflv,
   Jkanime,
@@ -135,7 +131,6 @@ export const pages = {
   moeclip,
   mangalivre,
   tmofans,
-  MangaPlus,
   JapScan,
   Hulu,
   Hidive,
@@ -178,7 +173,6 @@ export const pages = {
   Guya,
   MangaHub,
   Bentomanga,
-  MangaSushi,
   ReadManhua,
   ImmortalUpdates,
   Zoro,

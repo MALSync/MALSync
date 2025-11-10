@@ -46,7 +46,17 @@ export const MangaPark: PageInterface = {
       return $c.querySelector('h3 > a[href*="/title/"]').getAttribute('href').urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).regex('(chapter|ch)(-|.)(\\d+)', 3).number().ifNotReturn().run();
+      const chapter = $c
+        .url()
+        .urlPart(5)
+        .regex('(chapter|ch)(-|.)(\\d+)', 3)
+        .number()
+        .ifNotReturn()
+        .run();
+
+      const st = $c.url().urlPart(5).regex('-(\\d+)(st|nd|rd|th)', 1).number().ifNotReturn().run();
+
+      return $c.coalesce($c.fn(chapter).run(), $c.fn(st).run()).run();
     },
     getVolume($c) {
       return $c.url().urlPart(5).regex('(volume|vol)(-|.)(\\d+)', 3).number().ifNotReturn().run();

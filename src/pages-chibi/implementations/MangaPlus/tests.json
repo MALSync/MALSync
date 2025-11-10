@@ -18,29 +18,30 @@
       "expected": {
         "sync": false,
         "title": "My Hero Academia",
+        "image": "https://jumpg-assets.tokyo-cdn.com/secure/title/100017/title_thumbnail_portrait_list/313258.jpg?hash=P7TmF3H1NkNw4jEYyjn87w&expires=2145884400",
         "identifier": "100017",
         "uiSelector": true
       }
     },
     {
-      "url": "https://mangaplus.shueisha.co.jp/viewer/1018878",
+      "url": "https://mangaplus.shueisha.co.jp/viewer/1026314",
       "expected": {
         "sync": true,
         "title": "Choujin X",
         "identifier": "100160",
         "overviewUrl": "https://mangaplus.shueisha.co.jp/titles/100160",
-        "episode": 41,
+        "episode": 67,
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangaplus.shueisha.co.jp/viewer/1018961",
+      "url": "https://mangaplus.shueisha.co.jp/viewer/1017092",
       "expected": {
         "sync": true,
         "title": "My Girlfriend Gives Me Goosebumps!",
         "identifier": "100249",
         "overviewUrl": "https://mangaplus.shueisha.co.jp/titles/100249",
-        "episode": 21,
+        "episode": 6,
         "uiSelector": false
       }
     },
@@ -51,7 +52,7 @@
         "title": "Hokkaido Gals Are Super Adorable!",
         "identifier": "100116",
         "overviewUrl": "https://mangaplus.shueisha.co.jp/titles/100116",
-        "episode": 0,
+        "episode": null,
         "uiSelector": false
       }
     }

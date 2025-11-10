@@ -24,6 +24,19 @@
         "image": "https://xfs-s110.xfspp.com/thumb/W600/amim/fb5/6044eb5870dce079301145bf_223_350_46755.jpg",
         "uiSelector": true
       }
+    },
+    {
+      "url": "https://mangapark.net/title/415057-en-ichi-the-witch/8968314-3rd-hunt",
+      "expected": {
+        "sync": true,
+        "title": "Ichi the Witch",
+        "identifier": "415057-en-ichi-the-witch",
+        "overviewUrl": "https://mangapark.net/title/415057-en-ichi-the-witch",
+        "nextEpUrl": "https://mangapark.net/title/415057-en-ichi-the-witch/8989688-4th-hunt",
+        "episode": 3,
+        "image": "https://mangapark.net/thumb/W600/mpim/3db/3db44b23984e5fa91a83adc384d1b314c4ef75d6_1543_2425_452644.webp",
+        "uiSelector": false
+      }
     }
   ]
 }

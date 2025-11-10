@@ -5,22 +5,31 @@
 #material {
   all: initial;
   color: white;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  min-height: 0;
 
   * {
     box-sizing: border-box;
   }
 
   .scroll {
+    flex: 1 1 auto; /* let scroll area grow/shrink inside the panel */
+    min-height: 0; /* allow flex child to shrink below content intrinsic size */
     overflow-y: auto;
-    max-height: 80vh;
+    overscroll-behavior: contain;
     scrollbar-width: none;
   }
 
   .close {
     display: block;
-    margin-top: 15px;
+    line-height: 36px;
     text-align: center;
+    position: sticky; /* keep visible at bottom when content scrolls */
     cursor: pointer;
+    bottom: 0;
+    background: #323232;
   }
 
   //Typography

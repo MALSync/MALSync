@@ -399,7 +399,7 @@ async function singleCase(block, test, page, testPage, retry = 0) {
           getManifest: function() {
             console.log('chrome.runtime.getManifest');
             return {
-              version: '0.1',
+              version: '10.1.1',
             };
           }
         },

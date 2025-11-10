@@ -311,7 +311,7 @@ export class KitsuClass {
       .first()
       .append(
         j.html(
-          '<div class="malsync-rel-link" style="display: inline-block; margin: 0 5px; vertical-align: bottom;"></div>',
+          '<div class="malsync-rel-link" style="display: inline-block; margin: 0 5px; vertical-align: bottom; user-select: none;"></div>',
         ),
       );
 
