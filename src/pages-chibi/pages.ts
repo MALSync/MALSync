@@ -72,6 +72,7 @@ import { VioletScans } from './implementations/VioletScans/main';
 import { animepahe } from './implementations/animepahe/main';
 import { AnimeHeaven } from './implementations/AnimeHeaven/main';
 import { Ritharscans } from './implementations/Ritharscans/main';
+import { FalconScans } from './implementations/FalconScans/main';
 import { MangaSushi } from './implementations/MangaSushi/main';
 import { Comix } from './implementations/Comix/main';
 
@@ -148,6 +149,7 @@ export const pages: { [key: string]: PageInterface } = {
   animepahe,
   AnimeHeaven,
   Ritharscans,
+  FalconScans,
   MangaSushi,
   Comix,
 };
