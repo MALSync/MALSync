@@ -15,11 +15,20 @@ export const Bstation: PageInterface = {
     getTitle($c) {
       return $c
         .coalesce(
-          $c.querySelector('[data-e2e="media-title"]').ifNotReturn().text().trim().run(),
-          $c.querySelector('.media-title').ifNotReturn().text().trim().run(),
-          $c.querySelector('.media__title').ifNotReturn().text().trim().run(),
-          $c.querySelector('.ogv-title').ifNotReturn().text().trim().run(),
-          $c.querySelector('.title-h1').ifNotReturn().text().trim().run(),
+          $c
+            .querySelector('.bstar-meta__title')
+            .ifNotReturn()
+            .text()
+            .trim()
+            .log('bstation.sync.title.bstar-meta__title')
+            .run(),
+          $c
+            .querySelector('.bstar-meta__ogv-title')
+            .ifNotReturn()
+            .text()
+            .trim()
+            .log('bstation.sync.title.bstar-meta__ogv-title')
+            .run(),
           $c
             .querySelector('meta[property="og:title"]')
             .ifNotReturn()
@@ -28,6 +37,7 @@ export const Bstation: PageInterface = {
             .run(),
           $c.title().trim().run(),
         )
+        .log('bstation.sync.title.result')
         .run();
     },
     getIdentifier($c) {
@@ -44,21 +54,14 @@ export const Bstation: PageInterface = {
       return $c
         .coalesce(
           $c
-            .querySelector('[data-e2e="episode-item"].active [data-e2e="episode-index"]')
+            .querySelector('.ep-item.ep-item--active')
             .ifNotReturn()
             .text()
             .regex('\\d+', 0)
             .number()
             .run(),
           $c
-            .querySelector('.ep-section .list .item.active .index')
-            .ifNotReturn()
-            .text()
-            .regex('\\d+', 0)
-            .number()
-            .run(),
-          $c
-            .querySelector('.episode-list .active .index')
+            .querySelector('.ep-list .ep-item.ep-item--active')
             .ifNotReturn()
             .text()
             .regex('\\d+', 0)
@@ -84,11 +87,20 @@ export const Bstation: PageInterface = {
     getTitle($c) {
       return $c
         .coalesce(
-          $c.querySelector('[data-e2e="media-title"]').ifNotReturn().text().trim().run(),
-          $c.querySelector('.media-title').ifNotReturn().text().trim().run(),
-          $c.querySelector('.media__title').ifNotReturn().text().trim().run(),
-          $c.querySelector('.ogv-title').ifNotReturn().text().trim().run(),
-          $c.querySelector('.title-h1').ifNotReturn().text().trim().run(),
+          $c
+            .querySelector('.bstar-meta__title')
+            .ifNotReturn()
+            .text()
+            .trim()
+            .log('bstation.overview.title.bstar-meta__title')
+            .run(),
+          $c
+            .querySelector('.bstar-meta__ogv-title')
+            .ifNotReturn()
+            .text()
+            .trim()
+            .log('bstation.overview.title.bstar-meta__ogv-title')
+            .run(),
           $c
             .querySelector('meta[property="og:title"]')
             .ifNotReturn()
@@ -97,6 +109,7 @@ export const Bstation: PageInterface = {
             .run(),
           $c.title().trim().run(),
         )
+        .log('bstation.overview.title.result')
         .run();
     },
     getIdentifier($c) {
