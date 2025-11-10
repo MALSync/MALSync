@@ -60,18 +60,23 @@ import { TCBScans } from './implementations/TCBScans/main';
 import { Mangapill } from './implementations/Mangapill/main';
 import { Armageddon } from './implementations/Armageddon/main';
 import { Silentquill } from './implementations/Silentquill/main';
+import { ComicDays } from './implementations/ComicDays/main';
 import { MangaPlus } from './implementations/MangaPlus/main';
 import { Kagane } from './implementations/Kagane/main';
 import { MangaBall } from './implementations/MangaBall/main';
 import { KappaBeast } from './implementations/KappaBeast/main';
 import { DankefürsLesen } from './implementations/DankeFürsLesen/main';
 import { RokariComics } from './implementations/RokariComics/main';
+import { SakuraMangas } from './implementations/SakuraMangas/main';
 import { WritersScans } from './implementations/WritersScans/main';
 import { VioletScans } from './implementations/VioletScans/main';
 import { animepahe } from './implementations/animepahe/main';
 import { AnimeHeaven } from './implementations/AnimeHeaven/main';
 import { Ritharscans } from './implementations/Ritharscans/main';
 import { Bstation } from './implementations/Bstation/main';
+import { FalconScans } from './implementations/FalconScans/main';
+import { MangaSushi } from './implementations/MangaSushi/main';
+import { Comix } from './implementations/Comix/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -104,6 +109,7 @@ export const pages: { [key: string]: PageInterface } = {
   Utoon,
   WitchScans,
   Sadscans,
+  SakuraMangas,
   ArvenComics,
   FrenchAnime,
   Comikey,
@@ -134,6 +140,7 @@ export const pages: { [key: string]: PageInterface } = {
   Mangapill,
   Armageddon,
   Silentquill,
+  ComicDays,
   MangaPlus,
   Kagane,
   MangaBall,
@@ -146,4 +153,7 @@ export const pages: { [key: string]: PageInterface } = {
   AnimeHeaven,
   Ritharscans,
   Bstation,
+  FalconScans,
+  MangaSushi,
+  Comix,
 };

@@ -147,6 +147,19 @@
         "episode": 70,
         "uiSelector": false
       }
+    },
+    {
+      "url": "https://bato.to/title/141922-nano-machine-official/2539577-ch_130",
+      "expected": {
+        "sync": true,
+        "title": "Nano Machine [Official]",
+        "identifier": "141922",
+        "overviewUrl": "https://bato.to/title/141922-nano-machine-official",
+        "nextEpUrl": "https://bato.to/title/141922-nano-machine-official/2539576-ch_131",
+        "image": "https://n06.mbeaj.org/thumb/W600/ampi/812/8126cf27beae794fa48b4c01e64f6aa216bad95d_240_254_16908.jpeg",
+        "episode": 130,
+        "uiSelector": false
+      }
     }
   ]
 }
