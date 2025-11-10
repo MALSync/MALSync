@@ -74,6 +74,7 @@ import { AnimeHeaven } from './implementations/AnimeHeaven/main';
 import { Ritharscans } from './implementations/Ritharscans/main';
 import { MangaSushi } from './implementations/MangaSushi/main';
 import { Comix } from './implementations/Comix/main';
+import { SetsuScans } from './implementations/SetsuScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -150,4 +151,5 @@ export const pages: { [key: string]: PageInterface } = {
   Ritharscans,
   MangaSushi,
   Comix,
+  SetsuScans,
 };
