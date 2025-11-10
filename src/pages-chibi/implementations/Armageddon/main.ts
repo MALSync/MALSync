@@ -74,10 +74,10 @@ export const Armageddon: PageInterface = {
       return $c.querySelector('#content.manga-info').boolean().run();
     },
     getTitle($c) {
-      return $c.url().this('sync.getTitle').run();
+      return $c.this('sync.getTitle').run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
