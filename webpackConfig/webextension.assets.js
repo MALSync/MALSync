@@ -139,7 +139,7 @@ const generateManifest = () => {
       },
     },
     sidebar_action: {
-      default_panel: "window.html",
+      default_panel: 'window.html',
       default_icon: {
         '16': 'icons/icon16.png',
         '32': 'icons/icon32.png',
