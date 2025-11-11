@@ -1,16 +1,4 @@
 {
-  "0.10.3": {
-    "Anime365": [
-      "*://smotret-anime.net/catalog/*"
-    ],
-    "LuminousScans": [
-      "*://luminous-scans.com/*"
-    ],
-    "iframe": [
-      "*://www.lycoris.cafe/*",
-      "*://smotret-anime.net/translations/embed/*"
-    ]
-  },
   "0.10.4": {
     "Anime365": [
       "*://smotret-anime.org/catalog/*",
@@ -179,5 +167,8 @@
       "*://*.upns.live/*",
       "*://*.p2pstream.vip/*"
     ]
+  },
+  "0.12.1": {
+    "iframe": []
   }
 }
