@@ -1027,6 +1027,10 @@
         "message": "Allows to quickly update your episode count, rating and status on AniList without having to open the popover.",
         "description": "Tooltip for the Update UI option"
     },
+    "settings_anilist_external_sources": {
+        "message": "Show External Sources",
+        "description": "Option to show links to external sources on anilist"
+    },
     "settings_miniMAL_floatButtonStealth": {
         "message": "Stealth UI mode",
         "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
