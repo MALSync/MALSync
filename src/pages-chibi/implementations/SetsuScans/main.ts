@@ -99,8 +99,5 @@ export const SetsuScans: PageInterface = {
     overviewIsReady($c) {
       return $c.waitUntilTrue($c.querySelector('.version-chap').boolean().run()).trigger().run();
     },
-    syncIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('c-pre-loading-logo').isNil().run()).trigger().run();
-    },
   },
 };
