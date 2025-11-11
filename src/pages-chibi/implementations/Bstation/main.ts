@@ -1,7 +1,44 @@
 import { PageInterface } from '../../pageInterface';
 
-export const Bstation: PageInterface = {
-  name: 'Bstation',
+type BStationContext = Parameters<PageInterface['sync']['getTitle']>[0];
+
+const resolveBStationTitle = ($c: BStationContext) =>
+  $c
+    .coalesce(
+      $c.querySelector('.bstar-meta__title').ifNotReturn().text().trim().run(),
+      $c.querySelector('.bstar-meta__ogv-title').ifNotReturn().text().trim().run(),
+      $c
+        .querySelector('meta[property="og:title"]')
+        .ifNotReturn()
+        .getAttribute('content')
+        .trim()
+        .run(),
+      $c.title().trim().run(),
+    )
+    .run();
+
+const resolveBStationIdentifier = ($c: BStationContext) => $c.url().urlPart(5).run();
+
+const resolveBStationImage = ($c: BStationContext) =>
+  $c.querySelector('meta[property="og:image"]').getAttribute('content').ifNotReturn().run();
+
+const hasBStationAnimeTag = ($c: BStationContext) =>
+  $c
+    .or(
+      $c.querySelector('.bstar-meta-tag.bstar-meta-tag--anime').boolean().run(),
+      $c.querySelector('[data-e2e="media-tag"] .bstar-meta-tag--anime').boolean().run(),
+      $c
+        .querySelector('[data-e2e="media-tag"] [data-e2e="tag-name"]')
+        .ifNotReturn()
+        .text()
+        .toLowerCase()
+        .includes('anime')
+        .run(),
+    )
+    .run();
+
+export const bStation: PageInterface = {
+  name: 'BStation',
   type: 'anime',
   domain: 'https://www.bilibili.tv',
   languages: ['Indonesian', 'English', 'Thai', 'Vietnamese', 'Malay', 'Arabic'],
@@ -13,32 +50,10 @@ export const Bstation: PageInterface = {
       return $c.url().urlPart(4).equals('play').run();
     },
     getTitle($c) {
-      return $c
-        .coalesce(
-          $c
-            .querySelector('.bstar-meta__title')
-            .ifNotReturn()
-            .text()
-            .trim()
-            .run(),
-          $c
-            .querySelector('.bstar-meta__ogv-title')
-            .ifNotReturn()
-            .text()
-            .trim()
-            .run(),
-          $c
-            .querySelector('meta[property="og:title"]')
-            .ifNotReturn()
-            .getAttribute('content')
-            .trim()
-            .run(),
-          $c.title().trim().run(),
-        )
-        .run();
+      return resolveBStationTitle($c);
     },
     getIdentifier($c) {
-      return $c.url().urlPart(5).run();
+      return resolveBStationIdentifier($c);
     },
     getOverviewUrl($c) {
       return $c
@@ -70,11 +85,7 @@ export const Bstation: PageInterface = {
         .run();
     },
     getImage($c) {
-      return $c
-        .querySelector('meta[property="og:image"]')
-        .getAttribute('content')
-        .ifNotReturn()
-        .run();
+      return resolveBStationImage($c);
     },
   },
   overview: {
@@ -82,32 +93,10 @@ export const Bstation: PageInterface = {
       return $c.url().urlPart(4).equals('media').run();
     },
     getTitle($c) {
-      return $c
-        .coalesce(
-          $c
-            .querySelector('.bstar-meta__title')
-            .ifNotReturn()
-            .text()
-            .trim()
-            .run(),
-          $c
-            .querySelector('.bstar-meta__ogv-title')
-            .ifNotReturn()
-            .text()
-            .trim()
-            .run(),
-          $c
-            .querySelector('meta[property="og:title"]')
-            .ifNotReturn()
-            .getAttribute('content')
-            .trim()
-            .run(),
-          $c.title().trim().run(),
-        )
-        .run();
+      return resolveBStationTitle($c);
     },
     getIdentifier($c) {
-      return $c.url().urlPart(5).run();
+      return resolveBStationIdentifier($c);
     },
     uiInjection($c) {
       return $c
@@ -119,11 +108,7 @@ export const Bstation: PageInterface = {
         .run();
     },
     getImage($c) {
-      return $c
-        .querySelector('meta[property="og:image"]')
-        .getAttribute('content')
-        .ifNotReturn()
-        .run();
+      return resolveBStationImage($c);
     },
   },
   lifecycle: {
@@ -136,26 +121,7 @@ export const Bstation: PageInterface = {
     syncIsReady($c) {
       return $c
         .waitUntilTrue(
-          $c
-            .and(
-              // Have an identifier
-              $c.this('sync.getIdentifier').boolean().run(),
-              // Confirm content is anime via tag indicators
-              $c
-                .or(
-                  $c.querySelector('.bstar-meta-tag.bstar-meta-tag--anime').boolean().run(),
-                  $c.querySelector('[data-e2e="media-tag"] .bstar-meta-tag--anime').boolean().run(),
-                  $c
-                    .querySelector('[data-e2e="media-tag"] [data-e2e="tag-name"]')
-                    .ifNotReturn()
-                    .text()
-                    .toLowerCase()
-                    .includes('anime')
-                    .run(),
-                )
-                .run(),
-            )
-            .run(),
+          $c.and($c.this('sync.getIdentifier').boolean().run(), hasBStationAnimeTag($c)).run(),
         )
         .trigger()
         .run();
@@ -163,24 +129,7 @@ export const Bstation: PageInterface = {
     overviewIsReady($c) {
       return $c
         .waitUntilTrue(
-          $c
-            .and(
-              $c.this('overview.getIdentifier').boolean().run(),
-              $c
-                .or(
-                  $c.querySelector('.bstar-meta-tag.bstar-meta-tag--anime').boolean().run(),
-                  $c.querySelector('[data-e2e="media-tag"] .bstar-meta-tag--anime').boolean().run(),
-                  $c
-                    .querySelector('[data-e2e="media-tag"] [data-e2e="tag-name"]')
-                    .ifNotReturn()
-                    .text()
-                    .toLowerCase()
-                    .includes('anime')
-                    .run(),
-                )
-                .run(),
-            )
-            .run(),
+          $c.and($c.this('overview.getIdentifier').boolean().run(), hasBStationAnimeTag($c)).run(),
         )
         .trigger()
         .run();
