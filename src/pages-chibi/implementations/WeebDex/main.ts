@@ -134,7 +134,7 @@ export const WeebDex: PageInterface = {
     },
     ready($c) {
       return $c
-        .detectChanges($c.url().urlPart(3).run(), $c.trigger().run())
+        .detectChanges($c.url().urlPart(4).run(), $c.trigger().run())
         .domReady()
         .trigger()
         .run();
