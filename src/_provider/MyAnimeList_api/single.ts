@@ -1,5 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
-import { NotAutenticatedError, UrlNotSupportedError } from '../Errors';
+import { NotAuthenticatedError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 import { malToAnilist } from '../AniList/helper';
@@ -233,7 +233,7 @@ export class Single extends SingleAbstract {
       ],
     })
       .catch(e => {
-        if (e instanceof NotAutenticatedError) {
+        if (e instanceof NotAuthenticatedError) {
           this._authenticated = false;
         }
         throw e;
