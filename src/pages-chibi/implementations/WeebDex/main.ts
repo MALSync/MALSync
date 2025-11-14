@@ -42,18 +42,20 @@ export const WeebDex: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: 'button.flex-auto:not(.truncate)',
-          mode: 'text',
-          regex: '(\\d+)\\s*/\\s*(\\d+)',
-          group: 1,
-        },
-        total: {
-          selector: 'button.flex-auto:not(.truncate)',
-          mode: 'text',
-          regex: '(\\d+)\\s*/\\s*(\\d+)',
-          group: 2,
-        },
+        current: $c =>
+          $c
+            .querySelector('button.flex-auto:not(.truncate)')
+            .text()
+            .regex('(\\d+)\\s*/\\s*(\\d+)', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('button.flex-auto:not(.truncate)')
+            .text()
+            .regex('(\\d+)\\s*/\\s*(\\d+)', 2)
+            .number()
+            .run(),
       },
     ],
   },
