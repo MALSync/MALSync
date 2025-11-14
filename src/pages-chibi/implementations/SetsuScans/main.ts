@@ -44,14 +44,8 @@ export const SetsuScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.reading-content img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.reading-content img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.reading-content img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.reading-content img').length().run(),
       },
     ],
   },
@@ -66,7 +60,7 @@ export const SetsuScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('#manga-title').text().trim().run();
+      return $c.querySelector('h1').getBaseText().trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
