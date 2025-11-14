@@ -199,6 +199,45 @@ describe('String Functions', () => {
       expect(generateAndExecute(code).run()).to.be.null;
     });
   });
+
+  describe('toHalfWidth', () => {
+    it('should converts full-width ASCII characters or number to its half-width character', () => {
+      const code = $c.string('Ｈelｌｏ　Ｗoｒlｄ　３').toHalfWidth().run();
+      expect(generateAndExecute(code).run()).to.equal('Hello World 3');
+    });
+
+    it('should only converts full-width ASCII characters or number to its half-width character', () => {
+      const code = $c.string('こんにちは　ワールド　３ｓ').toHalfWidth().run();
+      expect(generateAndExecute(code).run()).to.equal('こんにちは ワールド 3s');
+    });
+  });
+
+  describe('JPtoNumeral', () => {
+    it('should converts Japanese ten numeral to standard Arabic numeral', () => {
+      const code = $c.string('九十八').JPtoNumeral().run();
+      expect(generateAndExecute(code).run()).to.equal(98);
+    });
+
+    it('should converts Japanese hundred numeral to standard Arabic numeral', () => {
+      const code = $c.string('二百三').JPtoNumeral().run();
+      expect(generateAndExecute(code).run()).to.equal(203);
+    });
+
+    it('should converts Japanese thousand to standard Arabic numeral', () => {
+      const code = $c.string('二千八百七十一').JPtoNumeral().run();
+      expect(generateAndExecute(code).run()).to.equal(2871);
+    });
+
+    it('should converts Japanese ten thousand numeral to standard Arabic numeral', () => {
+      const code = $c.string('一万二千三百四十五').JPtoNumeral().run();
+      expect(generateAndExecute(code).run()).to.equal(12345);
+    });
+
+    it('should throw error for no match', () => {
+      const code = $c.string('第五十四話').JPtoNumeral().run();
+      expect(generateAndExecute(code).run()).to.equal(null);
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {

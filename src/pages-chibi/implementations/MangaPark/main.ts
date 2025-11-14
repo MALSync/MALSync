@@ -104,6 +104,23 @@ export const MangaPark: PageInterface = {
           group: 1,
         },
       },
+      /*
+      {
+        condition: $c => $c.querySelector('[href^="?page="].btn-outline').boolean().run(),
+        current: $c => $c.querySelector('[href^="?page="].btn-outline').text().number().run(),
+        total: $c => $c.querySelector('[href^="?page="]:last-of-type').text().number().run(),
+      },
+      {
+        current: $c => $c.querySelectorAll('[data-name="image-item"] img').countAbove().run(),
+        total: $c =>
+          $c
+            .querySelector('[data-name="image-item"]:first-child [data-name="image-show"]')
+            .getAttribute('style')
+            .regex('(\\d+)<\\/text>', 1)
+            .number()
+            .run(),
+      },
+      */
     ],
   },
   overview: {

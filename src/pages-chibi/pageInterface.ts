@@ -136,7 +136,7 @@ export interface PageInterface {
      * Configuration for the manga progress functionality.
      * This property is optional.
      */
-    readerConfig?: mangaProgressConfig[];
+    readerConfig?: (ChibiMangaProgressConfig | mangaProgressConfig)[];
   };
 
   /**
@@ -255,6 +255,15 @@ export interface PageInterface {
     listChange?: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
   };
 }
+
+export type ChibiMangaProgressConfig = {
+  /** A condition to check if this config should be applied */
+  condition?: ($c: ChibiGenerator<unknown>) => ChibiJson<boolean>;
+  /** The current page number */
+  current: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
+  /** The total number of pages */
+  total: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
+};
 
 export interface PageInterfaceCompiled extends PageInterface {
   /** The version of the page integration */
