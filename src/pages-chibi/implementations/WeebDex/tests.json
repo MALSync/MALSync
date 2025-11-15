@@ -1,0 +1,44 @@
+{
+    "title": "WeebDex",
+    "url": "https://weebdex.org/",
+    "testCases": [
+      {
+        "url": "https://weebdex.org/chapter/sn9k7x2jey",
+        "expected": {
+          "sync": true,
+          "title": "Chainsaw Man",
+          "identifier": "chainsaw-man",
+          "overviewUrl": "https://weebdex.org/title/12lqiy9zu1/chainsaw-man",
+          "episode": 172,
+          "volume": 19,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://weebdex.org/chapter/8wcw95xod8",
+        "expected": {
+          "sync": true,
+          "title": "Kage no Jitsuryokusha ni Naritakute! Master of Garden ~Shichikage Retsuden~",
+          "identifier": "kage-no-jitsuryokusha-ni-naritakute-master-of-garden-shichikage-retsuden",
+		      "overviewUrl": "https://weebdex.org/title/g2tpg8wyar/kage-no-jitsuryokusha-ni-naritakute-master-of-garden-shichikage-retsuden",
+          "episode": 10,
+          "volume": 2,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://weebdex.org/title/12lqiy9zu1/chainsaw-man",
+        "expected": {
+          "sync": false,
+          "title": "Chainsaw Man",
+          "identifier": "chainsaw-man",
+          "image": "https://srv.notdelta.xyz/covers/12lqiy9zu1/yccburgk6h.256.webp",
+          "uiSelector": true,
+          "epList": {
+            "34": "https://weebdex.org/chapter/u335g84whz",
+            "219": "https://weebdex.org/chapter/kc0mrsblwu"
+          }
+       }
+     }
+   ]
+ }
