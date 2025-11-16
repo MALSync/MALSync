@@ -858,4 +858,16 @@ module.exports = {
   p2pstream: {
     match: ['*://*.p2pstream.vip/*'],
   },
+
+    // Anoboye
+  anoboye: {
+    match: [
+      '*://player.anoboye.com/watch/dailyplayer.php*',
+      '*://player.anoboye.com/watch/darkplayer.php*',
+      '*://player.anoboye.com/watch/exartplayer.php*',
+      '*://player.anoboye.com/watch/artplayer.php*',
+      '*://player.anoboye.com/watch/player.php*',
+      '*://player.anoboye.com/watch/*',
+    ],
+  },
 };

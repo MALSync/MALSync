@@ -55,6 +55,7 @@ import { Jestful } from './implementations/Jestful/main';
 import { AnimeNoSub } from './implementations/AnimeNoSub/main';
 import { Rawkuma } from './implementations/Rawkuma/main';
 import { KakuseiProject } from './implementations/KakuseiProject/main';
+import { Anoboye } from './implementations/Anoboye/main';
 import { AnimeKhor } from './implementations/AnimeKhor/main';
 import { TCBScans } from './implementations/TCBScans/main';
 import { Mangapill } from './implementations/Mangapill/main';
@@ -134,6 +135,7 @@ export const pages: { [key: string]: PageInterface } = {
   AnimeNoSub,
   Rawkuma,
   KakuseiProject,
+  Anoboye,
   AnimeKhor,
   TCBScans,
   Mangapill,
