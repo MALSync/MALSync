@@ -1195,8 +1195,8 @@ export class SyncPage {
         const el = j.$(this);
         let numberlength = el.val()!.toString().length;
         if (numberlength < 1) numberlength = 1;
-        const numberWidth = numberlength * 7.7 + 3;
-        el.css('width', `${numberWidth}px`);
+        const numberWidth = numberlength;
+        el.css('width', `${numberWidth}ch`);
       })
       .trigger('input');
   }
