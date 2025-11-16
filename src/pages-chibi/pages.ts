@@ -76,6 +76,7 @@ import { Ritharscans } from './implementations/Ritharscans/main';
 import { FalconScans } from './implementations/FalconScans/main';
 import { MangaSushi } from './implementations/MangaSushi/main';
 import { Comix } from './implementations/Comix/main';
+import { DynastyScans } from './implementations/DynastyScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -154,4 +155,5 @@ export const pages: { [key: string]: PageInterface } = {
   FalconScans,
   MangaSushi,
   Comix,
+  DynastyScans,
 };
