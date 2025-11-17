@@ -71,6 +71,7 @@ export const bStation: PageInterface = {
   urls: {
     match: ['*://www.bilibili.tv/*'],
   },
+  search: 'https://www.bilibili.tv/en/search-result?q={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c
