@@ -6,7 +6,7 @@
         "url": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/chapter-34-2/",
         "expected": {
           "sync": true,
-          "title": "The Demon King’s Daughter is Too Kind!!",
+          "title": "The Demon King's Daughter is Too Kind!!",
           "identifier": "the-demon-kings-daughter-is-too-kind",
           "image": "https://setsuscans.com/wp-content/uploads/2023/05/67b2d875-6210-48fc-a97f-73f33e6f4400-1200x630.jpg",
           "overviewUrl": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/",
@@ -16,14 +16,14 @@
         }
       },
       {
-        "url": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/chapter-43/",
+        "url": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/chapter-45/",
         "expected": {
           "sync": true,
-          "title": "The Demon King’s Daughter is Too Kind!!",
+          "title": "The Demon King's Daughter is Too Kind!!",
           "identifier": "the-demon-kings-daughter-is-too-kind",
           "image": "https://setsuscans.com/wp-content/uploads/2023/05/67b2d875-6210-48fc-a97f-73f33e6f4400-1200x630.jpg",
 		      "overviewUrl": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/",
-          "episode": 43,
+          "episode": 45,
           "nextEpUrl": null,
           "uiSelector": false
         }
