@@ -83,13 +83,13 @@ export const Anoboye: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.episode-content').run();
+      return $c.querySelectorAll('.eplister a').run();
     },
     elementUrl($c) {
-      return $c.find('.episode-link').getAttribute('href').urlAbsolute().run();
+      return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('.episode-relative').text().number().run();
+      return $c.this('list.elementUrl').this('sync.getEpisode').run();
     },
   },
   lifecycle: {
