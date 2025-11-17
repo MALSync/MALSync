@@ -113,7 +113,7 @@ export const bStation: PageInterface = {
   },
   lifecycle: {
     setup($c) {
-      return $c.return().run();
+      return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
