@@ -5,19 +5,45 @@ type BStationContext = Parameters<PageInterface['sync']['getTitle']>[0];
 const resolveBStationTitle = ($c: BStationContext) =>
   $c
     .coalesce(
-      $c.querySelector('.bstar-meta__title').ifNotReturn().text().trim().run(),
-      $c.querySelector('.bstar-meta__ogv-title').ifNotReturn().text().trim().run(),
+      $c.fn($c.querySelector('.bstar-meta__title').ifNotReturn().text().trim().run()).run(),
+      $c.fn($c.querySelector('.bstar-meta__ogv-title').ifNotReturn().text().trim().run()).run(),
       $c
-        .querySelector('meta[property="og:title"]')
-        .ifNotReturn()
-        .getAttribute('content')
-        .trim()
+        .fn(
+          $c
+            .querySelector('meta[property="og:title"]')
+            .ifNotReturn()
+            .getAttribute('content')
+            .trim()
+            .run(),
+        )
         .run(),
       $c.title().trim().run(),
     )
     .run();
 
-const resolveBStationIdentifier = ($c: BStationContext) => $c.url().urlPart(5).run();
+const resolveBStationIdentifier = ($c: BStationContext) =>
+  $c
+    .if(
+      $c.url().urlPart(4).equals('play').run(),
+      $c.url().urlPart(5).run(),
+      $c
+        .if(
+          $c.url().urlPart(3).equals('play').run(),
+          $c.url().urlPart(4).run(),
+          $c
+            .if(
+              $c.url().urlPart(4).equals('media').run(),
+              $c.url().urlPart(5).run(),
+              $c.url().urlPart(4).run(),
+            )
+            .run(),
+        )
+        .run(),
+    )
+    .run();
+
+const hasBStationLanguageSegment = ($c: BStationContext) =>
+  $c.or($c.url().urlPart(4).equals('play').run(), $c.url().urlPart(4).equals('media').run()).run();
 
 const resolveBStationImage = ($c: BStationContext) =>
   $c.querySelector('meta[property="og:image"]').getAttribute('content').ifNotReturn().run();
@@ -47,7 +73,14 @@ export const bStation: PageInterface = {
   },
   sync: {
     isSyncPage($c) {
-      return $c.url().urlPart(4).equals('play').run();
+      return $c
+        .and(
+          $c
+            .or($c.url().urlPart(4).equals('play').run(), $c.url().urlPart(3).equals('play').run())
+            .run(),
+          hasBStationAnimeTag($c),
+        )
+        .run();
     },
     getTitle($c) {
       return resolveBStationTitle($c);
@@ -57,30 +90,28 @@ export const bStation: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .string('https://www.bilibili.tv/<lang>/media/<id>')
-        .replace('<lang>', $c.url().urlPart(3).run())
-        .replace('<id>', $c.this('sync.getIdentifier').run())
+        .if(
+          hasBStationLanguageSegment($c),
+          $c
+            .string('/<lang>/media/<id>')
+            .replace('<lang>', $c.url().urlPart(3).run())
+            .replace('<id>', $c.this('sync.getIdentifier').run())
+            .urlAbsolute()
+            .run(),
+          $c
+            .string('/media/<id>')
+            .replace('<id>', $c.this('sync.getIdentifier').run())
+            .urlAbsolute()
+            .run(),
+        )
         .run();
     },
     getEpisode($c) {
       return $c
-        .coalesce(
-          $c
-            .querySelector('.ep-item.ep-item--active')
-            .ifNotReturn()
-            .text()
-            .regex('\\d+', 0)
-            .number()
-            .run(),
-          $c
-            .querySelector('.ep-list .ep-item.ep-item--active')
-            .ifNotReturn()
-            .text()
-            .regex('\\d+', 0)
-            .number()
-            .run(),
-          $c.string('0').run(),
-        )
+        .querySelector('.ep-item.ep-item--active')
+        .ifNotReturn()
+        .text()
+        .regex('\\d+', 0)
         .number()
         .run();
     },
@@ -90,7 +121,17 @@ export const bStation: PageInterface = {
   },
   overview: {
     isOverviewPage($c) {
-      return $c.url().urlPart(4).equals('media').run();
+      return $c
+        .and(
+          $c
+            .or(
+              $c.url().urlPart(4).equals('media').run(),
+              $c.url().urlPart(3).equals('media').run(),
+            )
+            .run(),
+          hasBStationAnimeTag($c),
+        )
+        .run();
     },
     getTitle($c) {
       return resolveBStationTitle($c);
@@ -117,22 +158,6 @@ export const bStation: PageInterface = {
     },
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
-    },
-    syncIsReady($c) {
-      return $c
-        .waitUntilTrue(
-          $c.and($c.this('sync.getIdentifier').boolean().run(), hasBStationAnimeTag($c)).run(),
-        )
-        .trigger()
-        .run();
-    },
-    overviewIsReady($c) {
-      return $c
-        .waitUntilTrue(
-          $c.and($c.this('overview.getIdentifier').boolean().run(), hasBStationAnimeTag($c)).run(),
-        )
-        .trigger()
-        .run();
     },
   },
 };
