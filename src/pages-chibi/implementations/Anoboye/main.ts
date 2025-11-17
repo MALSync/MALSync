@@ -20,14 +20,10 @@ export const Anoboye: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('.anime-title a')
-        .text()
-        .trim()
-        .run();
+      return $c.querySelector('.anime-title a').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
+      return $c.this('sync.getOverviewUrl').this('overview.getIdentifier').run();
     },
     getOverviewUrl($c) {
       return $c
@@ -38,12 +34,7 @@ export const Anoboye: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c
-        .url()
-        .urlPart(3)
-        .regex('-episode-(\\d+)', 1)
-        .number()
-        .run();
+      return $c.url().urlPart(3).regex('-episode-(\\d+)', 1).number().run();
     },
     nextEpUrl($c) {
       return $c
@@ -71,11 +62,7 @@ export const Anoboye: PageInterface = {
       return $c.url().urlPart(3).trim().run();
     },
     getImage($c) {
-      return $c
-        .querySelector('.thumbook .thumb img')
-        .getAttribute('src')
-        .ifNotReturn()
-        .run();
+      return $c.querySelector('.thumbook .thumb img').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.entry-title').uiAfter().run();
