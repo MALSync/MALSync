@@ -82,10 +82,8 @@ export const WeebDex: PageInterface = {
     },
     getMalUrl($c) {
       const getMal = $c
-        .provider()
-        .equals('MAL')
-        .ifNotReturn()
         .querySelector('a[href*="myanimelist"]')
+        .ifNotReturn()
         .getAttribute('href')
         .run();
 
@@ -111,7 +109,7 @@ export const WeebDex: PageInterface = {
         .run();
 
       return $c
-        .coalesce($c.fn(getMal).run(), $c.fn(getAnilist).run(), $c.fn(getKitsu).run())
+        .coalesce($c.fn(getKitsu).run(), $c.fn(getAnilist).run(), $c.fn(getMal).run())
         .ifNotReturn()
         .run();
     },
@@ -121,7 +119,7 @@ export const WeebDex: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('a[href^="/chapter/"]').run();
+      return $c.querySelectorAll('.group > a[href^="/chapter/"]').run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
