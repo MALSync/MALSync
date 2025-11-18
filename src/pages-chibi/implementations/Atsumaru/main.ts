@@ -39,12 +39,11 @@ export const Atsumaru: PageInterface = {
       },
       {
         condition: $c => $c.querySelector('.z-1').boolean().run(),
-        // I don't know if it better than before. I use filter to avoid in case it read chapter value instead
+        // I use arrayFind in case it read chapter number instead
         current: $c =>
           $c
             .querySelectorAll('.size-full option:checked')
-            .filter($item => $item.getAttribute('value').matches('^\\d+$').run())
-            .at(0)
+            .arrayFind($item => $item.text().includes('Page').run())
             .text()
             .regex('Page (\\d+)', 1)
             .number()
