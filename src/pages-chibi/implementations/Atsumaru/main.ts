@@ -85,10 +85,8 @@ export const Atsumaru: PageInterface = {
     },
     getMalUrl($c) {
       const getMal = $c
-        .provider()
-        .equals('MAL')
-        .ifNotReturn()
         .querySelector('.aspect-square[title="MyAnimeList"]')
+        .ifNotReturn()
         .getAttribute('href')
         .run();
 
@@ -100,7 +98,7 @@ export const Atsumaru: PageInterface = {
         .getAttribute('href')
         .run();
 
-      return $c.coalesce($c.fn(getMal).run(), $c.fn(getAnilist).run()).ifNotReturn().run();
+      return $c.coalesce($c.fn(getAnilist).run(), $c.fn(getMal).run()).ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.md\\:block').uiAfter().run();
