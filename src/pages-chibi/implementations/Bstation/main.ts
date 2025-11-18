@@ -7,6 +7,8 @@ const resolveBStationTitle = ($c: BStationContext) =>
     .coalesce(
       $c.fn($c.querySelector('.bstar-meta__title').ifNotReturn().text().trim().run()).run(),
       $c.fn($c.querySelector('.bstar-meta__ogv-title').ifNotReturn().text().trim().run()).run(),
+      $c.fn($c.querySelector('.detail-header__title').ifNotReturn().text().trim().run()).run(),
+      $c.fn($c.querySelector('[data-e2e="media-title"]').ifNotReturn().text().trim().run()).run(),
       $c
         .fn(
           $c
@@ -17,8 +19,8 @@ const resolveBStationTitle = ($c: BStationContext) =>
             .run(),
         )
         .run(),
-      $c.title().trim().run(),
     )
+    .trim()
     .run();
 
 const resolveBStationIdentifier = ($c: BStationContext) =>
@@ -42,11 +44,67 @@ const resolveBStationIdentifier = ($c: BStationContext) =>
     )
     .run();
 
-const hasBStationLanguageSegment = ($c: BStationContext) =>
-  $c.or($c.url().urlPart(4).equals('play').run(), $c.url().urlPart(4).equals('media').run()).run();
-
 const resolveBStationImage = ($c: BStationContext) =>
   $c.querySelector('meta[property="og:image"]').getAttribute('content').ifNotReturn().run();
+
+const resolveBStationInitialStateScript = ($c: BStationContext) =>
+  $c
+    .querySelectorAll('script')
+    .arrayFind($script => $script.text().includes('window.__initialState').run());
+
+const hasBStationDataTagFlag = ($c: BStationContext) =>
+  $c
+    .coalesce(
+      $c
+        .fn(
+          $c
+            .querySelector('[data-e2e="media-tag"] [data-e2e="tag-name"]')
+            .ifNotReturn()
+            .text()
+            .toLowerCase()
+            .includes('anime')
+            .run(),
+        )
+        .run(),
+      $c.boolean(false).run(),
+    )
+    .run();
+
+const hasBStationInitialStateAnimeFlag = ($c: BStationContext) =>
+  $c
+    .coalesce(
+      $c
+        .fn(
+          resolveBStationInitialStateScript($c)
+            .ifNotReturn()
+            .text()
+            .ifNotReturn()
+            .matches('season_type\\s*[:=]\\s*"Anime"', 'i')
+            .run(),
+        )
+        .run(),
+      $c.boolean(false).run(),
+    )
+    .run();
+
+const hasBStationKeywordAnimeFlag = ($c: BStationContext) =>
+  $c
+    .coalesce(
+      $c
+        .fn(
+          $c
+            .querySelector('meta[name="keywords"]')
+            .ifNotReturn()
+            .getAttribute('content')
+            .ifNotReturn()
+            .toLowerCase()
+            .includes('anime')
+            .run(),
+        )
+        .run(),
+      $c.boolean(false).run(),
+    )
+    .run();
 
 const hasBStationAnimeTag = ($c: BStationContext) =>
   $c
@@ -60,6 +118,10 @@ const hasBStationAnimeTag = ($c: BStationContext) =>
         .toLowerCase()
         .includes('anime')
         .run(),
+      $c.querySelector('.anime-tag').boolean().run(),
+      hasBStationDataTagFlag($c),
+      hasBStationInitialStateAnimeFlag($c),
+      hasBStationKeywordAnimeFlag($c),
     )
     .run();
 
@@ -71,7 +133,7 @@ export const bStation: PageInterface = {
   urls: {
     match: ['*://www.bilibili.tv/*'],
   },
-  search: 'https://www.bilibili.tv/en/search-result?q={searchterm}',
+  search: 'https://www.bilibili.tv/search-result?q={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c
@@ -91,20 +153,9 @@ export const bStation: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .if(
-          hasBStationLanguageSegment($c),
-          $c
-            .string('/<lang>/media/<id>')
-            .replace('<lang>', $c.url().urlPart(3).run())
-            .replace('<id>', $c.this('sync.getIdentifier').run())
-            .urlAbsolute()
-            .run(),
-          $c
-            .string('/media/<id>')
-            .replace('<id>', $c.this('sync.getIdentifier').run())
-            .urlAbsolute()
-            .run(),
-        )
+        .string('/media/<id>')
+        .replace('<id>', $c.this('sync.getIdentifier').run())
+        .urlAbsolute()
         .run();
     },
     getEpisode($c) {
@@ -123,15 +174,7 @@ export const bStation: PageInterface = {
   overview: {
     isOverviewPage($c) {
       return $c
-        .and(
-          $c
-            .or(
-              $c.url().urlPart(4).equals('media').run(),
-              $c.url().urlPart(3).equals('media').run(),
-            )
-            .run(),
-          hasBStationAnimeTag($c),
-        )
+        .or($c.url().urlPart(4).equals('media').run(), $c.url().urlPart(3).equals('media').run())
         .run();
     },
     getTitle($c) {
