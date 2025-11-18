@@ -43,7 +43,7 @@ export const Atsumaru: PageInterface = {
         current: $c =>
           $c
             .querySelectorAll('.size-full option:checked')
-            .filter($item => $item.getAttribute('value').matches('\\d+').run())
+            .filter($item => $item.getAttribute('value').matches('^\\d+$').run())
             .at(0)
             .text()
             .regex('Page (\\d+)', 1)
