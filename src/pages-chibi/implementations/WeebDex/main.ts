@@ -12,7 +12,7 @@ export const WeebDex: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and($c.url().urlPart(3).equals('chapter').run(), $c.url().urlPart(5).boolean().run())
+        .and($c.url().urlPart(3).equals('chapter').run(), $c.url().urlPart(4).boolean().run())
         .run();
     },
     getTitle($c) {
