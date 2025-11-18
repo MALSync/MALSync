@@ -73,10 +73,12 @@ import { VioletScans } from './implementations/VioletScans/main';
 import { animepahe } from './implementations/animepahe/main';
 import { AnimeHeaven } from './implementations/AnimeHeaven/main';
 import { Ritharscans } from './implementations/Ritharscans/main';
+import { bStation } from './implementations/Bstation/main';
 import { FalconScans } from './implementations/FalconScans/main';
 import { MangaSushi } from './implementations/MangaSushi/main';
 import { Comix } from './implementations/Comix/main';
 import { LagoonScans } from './implementations/LagoonScans/main';
+import { SetsuScans } from './implementations/SetsuScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -152,8 +154,10 @@ export const pages: { [key: string]: PageInterface } = {
   animepahe,
   AnimeHeaven,
   Ritharscans,
+  BStation: bStation,
   FalconScans,
   MangaSushi,
   Comix,
   LagoonScans,
+  SetsuScans,
 };
