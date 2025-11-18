@@ -33,29 +33,23 @@ export const Atsumaru: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '.wrapper img',
-        current: {
-          selector: '.wrapper img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.wrapper img',
-          mode: 'count',
-        },
+        condition: $c => $c.querySelector('.wrapper img').boolean().run(),
+        current: $c => $c.querySelectorAll('.wrapper img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        condition: '.z-1',
-        current: {
-          selector: '.size-full style',
-          mode: 'text',
-          regex:
-            '#atsu-page-group-(\\d+){visibility:visible}#atsu-page-group-(\\d+){visibility:visible}',
-          group: 2,
-        },
-        total: {
-          selector: '.z-1 img',
-          mode: 'count',
-        },
+        condition: $c => $c.querySelector('.z-1').boolean().run(),
+        // I don't know if it better than before. I use filter to avoid in case it read chapter value instead
+        current: $c =>
+          $c
+            .querySelectorAll('.size-full option:checked')
+            .filter($item => $item.getAttribute('value').matches('\\d+').run())
+            .at(0)
+            .text()
+            .regex('Page (\\d+)', 1)
+            .number()
+            .run(),
+        total: $c => $c.querySelectorAll('.z-1 img').length().run(),
       },
     ],
   },
