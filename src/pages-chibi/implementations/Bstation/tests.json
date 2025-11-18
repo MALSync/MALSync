@@ -1,0 +1,29 @@
+{
+  "title": "BStation",
+  "url": "https://www.bilibili.tv/",
+  "testCases": [
+    {
+      "url": "https://www.bilibili.tv/en/play/2246246/22414346",
+      "expected": {
+        "sync": true,
+        "title": "Backstabbed in a Backwater Dungeon: My Trusted Companions Tried to Kill Me, but Thanks to the Gift of an Unlimited Gacha I Got LVL 9999 Friends and Am Out for Revenge on My Former Party Members and the World",
+        "identifier": "2246246",
+        "overviewUrl": "https://www.bilibili.tv/media/2246246",
+        "episode": 1,
+        "nextEpUrl": null,
+        "image": "https://p.bstarstatic.com/ogv/0ddd0735b94756cd883373340b721f97a100d0ed.png?x-oss-process=image%2Fresize%2Cw_600%2Fcrop%2Cmid%2Cw_600%2Ch_315%2Fformat%2Cwebp%2Fquality%2CQ_90%2Fwatermark%2Cimage_bWFuYWdlbWVudC9hYWVkYjRmMjgyN2Q0ZWUxNDlkYzMyZDg0MTE3ZWFmMC5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yMA%2Cshadow_70%2Cg_ne%2Cx_22%2Cy_16%2Fwatermark%2Cimage_bWFuYWdlbWVudC8yM2FkMzc5ODYxNjZhMGQwY2Y5NjAwZDI1NWE4OWNmNC5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yMA%2Cg_center",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.bilibili.tv/en/media/2246246",
+      "expected": {
+        "sync": false,
+        "title": "Backstabbed in a Backwater Dungeon: My Trusted Companions Tried to Kill Me, but Thanks to the Gift of an Unlimited Gacha I Got LVL 9999 Friends and Am Out for Revenge on My Former Party Members and the World",
+        "identifier": "2246246",
+        "image": "https://p.bstarstatic.com/fe-lib/images/web/share-cover.png@1200w_630h_1e_1c_1f.webp",
+        "uiSelector": true
+      }
+    }
+  ]
+}

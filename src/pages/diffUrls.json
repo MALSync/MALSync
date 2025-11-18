@@ -1,60 +1,4 @@
 {
-  "0.10.4": {
-    "Anime365": [
-      "*://smotret-anime.org/catalog/*",
-      "*://smotret-anime.online/catalog/*",
-      "*://smotret-anime.com/catalog/*"
-    ],
-    "AnimeGO": [
-      "*://animego.me/anime/*"
-    ],
-    "AnimeUnity": [
-      "*://*.animeunity.so/anime/*"
-    ],
-    "AnimeXin": [
-      "*://animexin.top/*"
-    ],
-    "FlameScans": [
-      "*://flamecomics.me/*",
-      "*://flamecomics.xyz/*"
-    ],
-    "Gogoanime": [
-      "*://*.gogoanime3.cc/*",
-      "*://*.anitaku.bz/*"
-    ],
-    "tmofans": [
-      "*://zonatmo.com/*"
-    ],
-    "Voiranime": [
-      "*://*.voiranime.com/*"
-    ],
-    "Zoro": [
-      "*://hianime.nz/*",
-      "*://hianime.mn/*",
-      "*://hianime.sx/*"
-    ],
-    "iframe": [
-      "*://*.jwplayerhls.com/*",
-      "*://*.videzz.net/*",
-      "*://geo.dailymotion.com/*",
-      "*://smotret-anime.org/translations/embed/*",
-      "*://smotret-anime.online/translations/embed/*",
-      "*://smotret-anime.com/translations/embed/*",
-      "*://*.s3embtaku.pro/*",
-      "*://dood.li/e/*",
-      "*://bethshouldercan.com/e/*",
-      "*://sandratableother.com/e/*",
-      "*://robertordercharacter.com/e/*",
-      "*://omegadthree.com/*",
-      "*://hlswish.com/e/*",
-      "*://rogeriobetin.com/*",
-      "*://nvlabs-fi-cdn.q9x.in/*",
-      "*://oneupload.to/*",
-      "*://player.vimeo.com/*",
-      "*://fle-rvd0i9o8-moo.com/*",
-      "*://dhtpre.com/*"
-    ]
-  },
   "0.11.0": {
     "KickAssAnime": [
       "*://*.kaa.mx/*"
@@ -170,5 +114,10 @@
   },
   "0.12.1": {
     "iframe": []
+  },
+  "0.12.2": {
+    "iframe": [
+      "*://christopheruntilpoint.com/e/*"
+    ]
   }
 }

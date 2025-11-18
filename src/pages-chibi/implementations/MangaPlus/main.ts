@@ -83,8 +83,8 @@ export const MangaPlus: PageInterface = {
     },
     uiInjection($c) {
       return $c
-        .querySelector('h6[class*="TitleDetailHeader-module_overviewTitle"]')
-        .uiBefore()
+        .querySelector('[class*="TitleDetailHeader-module_overviewTitleWrapper"]')
+        .uiAfter()
         .run();
     },
   },

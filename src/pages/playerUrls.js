@@ -542,6 +542,7 @@ module.exports = {
       '*://jilliandescribecompany.com/e/*',
       '*://lukesitturn.com/e/*',
       '*://mikaylaarealike.com/e/*',
+      '*://christopheruntilpoint.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
