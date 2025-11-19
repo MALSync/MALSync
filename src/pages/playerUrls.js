@@ -860,14 +860,7 @@ module.exports = {
   },
 
     // Anoboye
-  anoboye: {
-    match: [
-      '*://player.anoboye.com/watch/dailyplayer.php*',
-      '*://player.anoboye.com/watch/darkplayer.php*',
-      '*://player.anoboye.com/watch/exartplayer.php*',
-      '*://player.anoboye.com/watch/artplayer.php*',
-      '*://player.anoboye.com/watch/player.php*',
-      '*://player.anoboye.com/watch/*',
-    ],
-  },
+ anoboye: {
+  match: ['*://player.anoboye.com/watch/*'],
+},
 };
