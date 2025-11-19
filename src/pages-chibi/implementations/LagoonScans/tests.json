@@ -1,0 +1,33 @@
+{
+  "title": "LagoonScans",
+  "url": "https://lagoonscans.com",
+  "testCases": [
+    {
+      "url": "https://lagoonscans.com/absolute-sword-sense-chapter-156/",
+      "expected": {
+        "sync": true,
+        "title": "Absolute Sword Sense",
+        "identifier": "absolute-sword-sense",
+        "overviewUrl": "https://lagoonscans.com/manga/absolute-sword-sense/",
+        "nextEpUrl": "https://lagoonscans.com/absolute-sword-sense-chapter-157/",
+        "episode": 156,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://lagoonscans.com/manga/absolute-sword-sense/",
+      "expected": {
+        "sync": false,
+        "title": "Absolute Sword Sense",
+        "identifier": "absolute-sword-sense",
+        "image": "https://i2.wp.com/lagoonscans.com/wp-content/uploads/2025/10/pR6R0O-m.jpg",
+        "uiSelector": true,
+        "epList": {
+          "155": "https://lagoonscans.com/absolute-sword-sense-chapter-155/",
+          "156": "https://lagoonscans.com/absolute-sword-sense-chapter-156/",
+          "157": "https://lagoonscans.com/absolute-sword-sense-chapter-157/"
+        }
+      }
+    }
+  ]
+}
