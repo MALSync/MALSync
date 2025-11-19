@@ -125,7 +125,7 @@ const hasBStationAnimeTag = ($c: BStationContext) =>
     )
     .run();
 
-export const bStation: PageInterface = {
+export const BStation: PageInterface = {
   name: 'BStation',
   type: 'anime',
   domain: 'https://www.bilibili.tv',
