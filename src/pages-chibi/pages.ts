@@ -77,6 +77,7 @@ import { bStation } from './implementations/Bstation/main';
 import { FalconScans } from './implementations/FalconScans/main';
 import { MangaSushi } from './implementations/MangaSushi/main';
 import { Comix } from './implementations/Comix/main';
+import { WeebDex } from './implementations/WeebDex/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -157,5 +158,6 @@ export const pages: { [key: string]: PageInterface } = {
   FalconScans,
   MangaSushi,
   Comix,
+  WeebDex,
   SetsuScans,
 };
