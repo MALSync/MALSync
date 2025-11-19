@@ -1,0 +1,18 @@
+@import './../pages';
+
+@boxBackground: #1a1a1a;
+// Border style doesn't work
+@highlightStyle: 0;
+@activeEp: #339310;
+
+#malp {
+  #MalData .malp-group-field:hover {
+    color: @activeEp !important;
+    option {
+      color: #b8b8b8 !important;
+    }
+  }
+}
+.mal-sync-active {
+  box-shadow: inset 4px 0 0 0 @activeEp;
+}
