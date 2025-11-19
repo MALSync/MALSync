@@ -78,6 +78,7 @@ import { FalconScans } from './implementations/FalconScans/main';
 import { MangaSushi } from './implementations/MangaSushi/main';
 import { Comix } from './implementations/Comix/main';
 import { LagoonScans } from './implementations/LagoonScans/main';
+import { WeebDex } from './implementations/WeebDex/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -159,5 +160,6 @@ export const pages: { [key: string]: PageInterface } = {
   MangaSushi,
   Comix,
   LagoonScans,
+  WeebDex,
   SetsuScans,
 };
