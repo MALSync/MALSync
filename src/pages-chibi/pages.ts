@@ -77,6 +77,7 @@ import { bStation } from './implementations/Bstation/main';
 import { FalconScans } from './implementations/FalconScans/main';
 import { MangaSushi } from './implementations/MangaSushi/main';
 import { Comix } from './implementations/Comix/main';
+import { DynastyScans } from './implementations/DynastyScans/main';
 import { LagoonScans } from './implementations/LagoonScans/main';
 import { WeebDex } from './implementations/WeebDex/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
@@ -159,6 +160,7 @@ export const pages: { [key: string]: PageInterface } = {
   FalconScans,
   MangaSushi,
   Comix,
+  DynastyScans,
   LagoonScans,
   WeebDex,
   SetsuScans,

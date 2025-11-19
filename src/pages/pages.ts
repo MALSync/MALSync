@@ -67,7 +67,6 @@ import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
 import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
-import { DynastyScans } from './DynastyScans/main';
 import { Aniworld } from './Aniworld/main';
 import { BetterAnime } from './BetterAnime/main';
 import { BilibiliComics } from './BilibiliComics/main';
@@ -180,7 +179,6 @@ export const pages = {
   MangasOrigines,
   BlueSolo,
   DisasterScans,
-  DynastyScans,
   Aniworld,
   BetterAnime,
   BilibiliComics,

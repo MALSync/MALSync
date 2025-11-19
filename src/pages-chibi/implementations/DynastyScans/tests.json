@@ -20,11 +20,25 @@
         "sync": false,
         "title": "Come Rain or Shine",
         "identifier": "come_rain_or_shine",
+        "image": "https://dynasty-scans.com/system/tag_contents_covers/000/013/331/medium/t.jpg?1577592746",
         "uiSelector": true,
         "epList": {
-          "7": "https://dynasty-scans.com/chapters/come_rain_or_shine_ch7_1",
-          "15": "https://dynasty-scans.com/chapters/come_rain_or_shine_ch15"
+          "7": "https://dynasty-scans.com/chapters/come_rain_or_shine_ch7_2",
+          "15": "https://dynasty-scans.com/chapters/come_rain_or_shine_ch15_5"
         }
+      }
+    },
+    {
+      "url": "https://dynasty-scans.com/chapters/girlfriend_limited_to_7_days_ch10_1",
+      "expected": {
+        "sync": true,
+        "title": "Girlfriend Limited to 7 Days",
+        "identifier": "girlfriend_limited_to_7_days",
+        "overviewUrl": "https://dynasty-scans.com/series/girlfriend_limited_to_7_days",
+        "episode": 10,
+        "volume": 2,
+        "nextEpUrl": "https://dynasty-scans.com/chapters/girlfriend_limited_to_7_days_ch11",
+        "uiSelector": false
       }
     }
   ]
