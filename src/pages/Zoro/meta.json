@@ -2,6 +2,7 @@
   "search": "https://hianime.to/search?keyword={searchtermPlus}",
   "urls": {
     "match": [
+      "*://aniwatchtv.to/*",
       "*://aniwatch.to/*",
       "*://aniwatch.nz/*",
       "*://aniwatch.se/*",
