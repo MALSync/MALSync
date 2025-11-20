@@ -15,8 +15,6 @@ concurrency:
 
 jobs:
   deploy-cf:
-    # TODO: Remove after all stores are online
-    if: false
     runs-on: ubuntu-latest
     name: cloudflare-pages
     steps:
