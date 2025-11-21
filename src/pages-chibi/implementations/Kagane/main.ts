@@ -90,7 +90,7 @@ export const Kagane: PageInterface = {
       return $c.querySelectorAll('.divide-y > div').run();
     },
     elementEp($c) {
-      return $c.find('h3').text().regex(ChRegex, 1).number().run();
+      return $c.find('.w-10 span').text().number().run();
     },
   },
   lifecycle: {
