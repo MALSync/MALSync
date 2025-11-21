@@ -40,12 +40,8 @@ export const ComicWalker: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c
-        .querySelector('[class*="EpisodeTitleArea_title_"]')
-        .text()
-        .regex('(?:第|#|_|Chapter\\s?)(\\d+)', 1)
-        .number()
-        .run();
+      const episodeTitle = $c.querySelector('[class*="EpisodeTitleArea_title_"]').text().run();
+      return grpRegex($c.setVariable('Ep', episodeTitle)).run();
     },
     nextEpUrl($c) {
       const CurrentEp = $c.querySelector('[class*="EpisodeThumbnail_isReading"]').parent().run();
@@ -84,12 +80,9 @@ export const ComicWalker: PageInterface = {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c
-        .find('[class*="EpisodeThumbnail_title_"]')
-        .text()
-        .regex('(?:第|#|_|Chapter\\s?)(\\d+)', 1)
-        .number()
-        .run();
+      return grpRegex(
+        $c.setVariable('Ep', $c.target().find('[class*="EpisodeThumbnail_title_"]').text().run()),
+      ).run();
     },
   },
   lifecycle: {
@@ -122,4 +115,23 @@ function pageFind($c) {
     .querySelectorAll('button[class*="_button"]')
     .arrayFind($page => $page.text().matches('\\d+\\s?/\\s?\\d+').run())
     .text();
+}
+function grpRegex($c) {
+  return $c.coalesce(
+    $c
+      .getVariable('Ep')
+      .regex('(?:第|#|_|e.|Chapter\\s?)(\\d+)', 1)
+      .ifThen($c => $c.number().run())
+      .run(),
+    $c
+      .getVariable('Ep')
+      .regex('(\\d+)品', 1)
+      .ifThen($c => $c.number().run())
+      .run(),
+    $c
+      .getVariable('Ep')
+      .regex('[零〇一二三四五六七八九十百千万億兆]+')
+      .ifThen($c => $c.JPtoNumeral().run())
+      .run(),
+  );
 }
