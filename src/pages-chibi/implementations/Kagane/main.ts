@@ -36,6 +36,8 @@ export const Kagane: PageInterface = {
         .run();
     },
     getEpisode($c) {
+      const ChRegex =
+        '(?:Ch\\.|Chapter|Ep\\.|Episode)[^\\d]*(\\d+)(?!.*(?:Ch\\.|Chapter|Ep\\.|Episode)[^\\d]*\\d+)';
       return $c
         .querySelector('[property="og:description"]')
         .getAttribute('content')
@@ -110,6 +112,3 @@ export const Kagane: PageInterface = {
     },
   },
 };
-
-const ChRegex =
-  '(?:Ch\\.|Chapter|Ep\\.|Episode)[^\\d]*(\\d+)(?!.*(?:Ch\\.|Chapter|Ep\\.|Episode)[^\\d]*\\d+)';
