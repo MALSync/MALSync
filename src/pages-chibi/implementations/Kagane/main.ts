@@ -36,8 +36,6 @@ export const Kagane: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      const ChRegex =
-        '(?:Ch\\.|Chapter|Ep\\.|Episode)[^\\d]*(\\d+)(?!.*(?:Ch\\.|Chapter|Ep\\.|Episode)[^\\d]*\\d+)';
       return $c
         .querySelector('[property="og:description"]')
         .getAttribute('content')
@@ -92,7 +90,7 @@ export const Kagane: PageInterface = {
       return $c.querySelectorAll('.divide-y > div').run();
     },
     elementEp($c) {
-      return $c.find('.w-10 span').text().number().run();
+      return $c.find('h3').text().regex(ChRegex, 1).number().run();
     },
   },
   lifecycle: {
@@ -112,3 +110,5 @@ export const Kagane: PageInterface = {
     },
   },
 };
+const ChRegex =
+  '(?:Ch\\.|Chapter|Ep\\.|Episode|Round)[^\\d]*(\\d+)(?!.*(?:Ch\\.|Chapter|Ep\\.|Episode|Round)[^\\d]*\\d+)';
