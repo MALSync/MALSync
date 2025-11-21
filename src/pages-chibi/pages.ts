@@ -78,6 +78,7 @@ import { FalconScans } from './implementations/FalconScans/main';
 import { MangaSushi } from './implementations/MangaSushi/main';
 import { Comix } from './implementations/Comix/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
+import { ComicWalker } from './implementations/ComicWalker/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -158,4 +159,5 @@ export const pages: { [key: string]: PageInterface } = {
   MangaSushi,
   Comix,
   SetsuScans,
+  ComicWalker,
 };

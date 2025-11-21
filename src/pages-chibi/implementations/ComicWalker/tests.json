@@ -1,0 +1,58 @@
+{
+    "title": "ComicWalker",
+    "url": "https://comic-walker.com/",
+    "testCases": [
+      {
+        "url": "https://comic-walker.com/detail/KC_001519_S/episodes/KC_0015190000800011_E?episodeType=first",
+        "expected": {
+          "sync": true,
+          "title": "青春鉄道（株）",
+          "identifier": "KC_001519_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/001519/resized/001519_001_01_0001.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_001519_S",
+          "episode": 3,
+          "nextEpUrl": null,
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-walker.com/detail/KC_001519_S/episodes/KC_0015190000600011_E?co=true&episodeType=first",
+            "2": "https://comic-walker.com/detail/KC_001519_S/episodes/KC_0015190000700011_E?co=true&episodeType=first",
+            "17": "https://comic-walker.com/detail/KC_001519_S/episodes/KC_0015190002200011_E?co=true&episodeType=first"
+          }
+        }
+      },
+      {
+        "url": "https://comic-walker.com/detail/KC_007216_S/episodes/KC_0072160000200011_E?episodeType=latest",
+        "expected": {
+          "sync": true,
+          "title": "女はいつまで女ですか？　莉子の結論【タテスク】",
+          "identifier": "KC_007216_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/007216/resized/007216_001_01_0001.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_007216_S",
+          "episode": 2,
+          "nextEpUrl": "https://comic-walker.com/detail/KC_007216_S/episodes/KC_0072160000300011_E?co=true&episodeType=latest",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-walker.com/detail/KC_007216_S/episodes/KC_0072160000100011_E?co=true&episodeType=latest",
+            "3": "https://comic-walker.com/detail/KC_007216_S/episodes/KC_0072160000300011_E?co=true&episodeType=latest"
+          }
+       }
+     },
+     {
+        "url": "https://comic-walker.com/detail/KC_007032_S?episodeType=first",
+        "expected": {
+          "sync": true,
+          "title": "銀河特急 ミルキー☆サブウェイ",
+          "identifier": "KC_007032_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/007032/resized/007032_001_01_0001.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_007032_S",
+          "episode": 1,
+          "nextEpUrl": "https://comic-walker.com/detail/KC_007032_S/episodes/KC_0070320000300011_E?co=true&episodeType=first",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-walker.com/detail/KC_007032_S/episodes/KC_0070320000200011_E?co=true&episodeType=first",
+            "4": "https://comic-walker.com/detail/KC_007032_S/episodes/KC_0070320000500011_E?co=true&episodeType=first"
+          }
+       }
+     }
+   ]
+ }
