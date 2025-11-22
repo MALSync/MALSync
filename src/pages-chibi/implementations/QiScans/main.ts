@@ -87,7 +87,7 @@ export const QiScans: PageInterface = {
       return $c.closest('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('h3').text().log().regex('Chapter (\\d+)', 1).number().run();
+      return $c.find('h3').text().regex('Chapter (\\d+)', 1).number().run();
     },
   },
   lifecycle: {
