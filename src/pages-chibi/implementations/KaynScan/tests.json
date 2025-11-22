@@ -1,0 +1,36 @@
+{
+    "title": "KaynScans",
+    "url": "https://kaynscan.com",
+    "testCases": [
+      {
+        "url": "https://kaynscan.com/chapter/640d715df1f-642828cb77a/",
+        "expected": {
+          "sync": true,
+          "title": "I Was Mistaken As a Monstrous Genius Actor",
+          "identifier": "640d715df1f",
+          "overviewUrl": "https://kaynscan.com/series/640d715df1f/",
+          "episode": 76,
+          "nextEpUrl": "https://kaynscan.com/chapter/640d715df1f-6432a46ab94/",
+          "uiSelector": false,
+          "epList": {
+            "77" : "https://kaynscan.com/chapter/640d715df1f-6432a46ab94/",
+            "76" : "https://kaynscan.com/chapter/640d715df1f-642828cb77a/"
+          }
+        }
+      },
+      {
+        "url": "https://kaynscan.com/series/640d715df1f/",
+        "expected": {
+          "sync": false,
+          "title": "I Was Mistaken As a Monstrous Genius Actor",
+          "identifier": "640d715df1f",
+          "image": "https://wsrv.nl/?url=cdn.meowing.org/uploads/J-9Kr9A9gWj",
+          "uiSelector": true,
+          "epList": {
+            "77" : "https://kaynscan.com/chapter/640d715df1f-6432a46ab94/",
+            "76" : "https://kaynscan.com/chapter/640d715df1f-642828cb77a/"
+          }
+        }
+      }
+    ]
+  }
