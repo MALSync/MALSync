@@ -15,17 +15,17 @@
         }
       },
       {
-        "url": "https://qiscans.org/series/reincarnated-murim-lord",
+        "url": "https://qiscans.org/series/war-of-the-corpses",
         "expected": {
           "sync": false,
-          "title": "Reincarnated Murim Lord",
-          "identifier": "reincarnated-murim-lord",
-          "image": "https://storage.qiscans.com/upload/2025/08/27/f27f0240-c406-48b8-817a-975f46e90be7.webp",
+          "title": "War Of The Corpses",
+          "identifier": "war-of-the-corpses",
+          "image": "https://cdn.qiscans.org/public/upload/2025/03/28/47eb7e58-a370-4b45-89ce-e89546d445db.webp",
           "uiSelector": true,
           "epList": {
-            "87": "https://qiscans.org/series/reincarnated-murim-lord/chapter-87",
-            "86": "https://qiscans.org/series/reincarnated-murim-lord/chapter-86",
-            "85": "https://qiscans.org/series/reincarnated-murim-lord/chapter-85"
+            "37": "https://qiscans.org/series/war-of-the-corpses/chapter-37",
+            "38": "https://qiscans.org/series/war-of-the-corpses/chapter-38",
+            "39": "https://qiscans.org/series/war-of-the-corpses/chapter-39"
           }
         }
       }
