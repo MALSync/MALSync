@@ -14,7 +14,6 @@ export const QiScans: PageInterface = {
       return $c
         .and(
           $c.url().urlPart(3).equals('series').run(),
-          $c.url().urlPart(5).boolean().run(),
           $c.url().urlPart(5).matches('chapter[_-]').run(),
         )
         .run();
@@ -30,30 +29,30 @@ export const QiScans: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .string('/series/<identifier>')
-        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
+        .querySelector('a[href^="/series/"]:not([href*="/chapter"])')
+        .getAttribute('href')
+        .ifNotReturn()
         .urlAbsolute()
         .run();
     },
     getEpisode($c) {
       return $c
         .coalesce(
-          $c.title().regex('chapter (\\d+)', 1).number().run(),
-          $c.url().urlPart(5).regex('chapter[_-](\\d+)', 1).number().run(),
+          $c
+            .title()
+            .regex('chapter (\\d+)', 1)
+            .ifThen($c => $c.number().run())
+            .run(),
+          $c.url().urlPart(5).regex('chapter[_-](\\d+)', 1).run(),
         )
         .ifNotReturn()
+        .number()
         .run();
     },
     readerConfig: [
       {
-        current: {
-          selector: '.container img[tabindex]',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.container img[tabindex]',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.container img[tabindex]').countAbove().run(),
+        total: $c => $c.querySelectorAll('.container img[tabindex]').length().run(),
       },
     ],
   },
@@ -68,23 +67,27 @@ export const QiScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('h2')
-        .text()
-        .trim()
-        .replaceAll('\n', ' ')
-        .replaceRegex('\\s+', ' ')
-        .trim()
-        .run();
+      return $c.title().split('- Qi Scans').at(0).trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('h2').uiAfter().run();
+      return $c.querySelector('.sticky > .space-y-2').uiAppend().run();
+    },
+  },
+  list: {
+    elementsSelector($c) {
+      return $c.querySelectorAll('.grid .p-4').run();
+    },
+    elementUrl($c) {
+      return $c.closest('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
+    },
+    elementEp($c) {
+      return $c.find('h3').text().log().regex('Chapter (\\d+)', 1).number().run();
     },
   },
   lifecycle: {
@@ -92,14 +95,14 @@ export const QiScans: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
+      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+    },
+    listChange($c) {
       return $c
-        .querySelector('h2')
-        .text()
-        .contains('Server error')
-        .ifThen($c => $c.string('404').log().return().run())
-        .detectURLChanges($c.trigger().run())
-        .domReady()
-        .trigger()
+        .detectChanges(
+          $c.querySelector('.space-y-2 .grid').ifNotReturn().text().run(),
+          $c.trigger().run(),
+        )
         .run();
     },
   },

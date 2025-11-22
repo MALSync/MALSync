@@ -1,3 +1,19 @@
 @import './../pages';
 
 @boxBackground: hsl(var(--secondary));
+@highlightStyle: 1;
+@activeEp: hsl(var(--primary));
+
+#malp {
+  #MalData {
+    .malp-group-field:hover,
+    .malp-group-value-section:hover {
+      background-color: hsl(var(--secondary) / 80%) !important;
+      transition-duration: 0.2s;
+      option {
+        background-color: hsl(var(--secondary) / 80%) !important;
+        font-family: sans-serif;
+      }
+    }
+  }
+}
