@@ -1,0 +1,25 @@
+@import './../pages';
+
+@boxBackground: rgb(255 255 255 / 0.1);
+@highlightStyle: 0;
+
+#malp {
+  margin-bottom: 0.5rem;
+  #MalData {
+    .malp-group-field:hover:not(.malp-group-input),
+    .malp-group-field:focus:not(.malp-group-input),
+    .malp-group-value-section:focus-within,
+    .malp-group-value-section:hover {
+      background-color: rgb(255 255 255 / 20%) !important;
+      transition-duration: 150ms;
+      option {
+        color: #000000 !important;
+        font-family: sans-serif;
+      }
+    }
+  }
+}
+
+.epHighlight {
+  box-shadow: inset 0 0 0 2px #ffffff42;
+}
