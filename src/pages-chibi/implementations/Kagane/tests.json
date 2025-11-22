@@ -3,7 +3,7 @@
     "url": "https://kagane.org",
     "testCases": [
       {
-        "url": "https://kagane.org/series/38AG1CMUAOCWEWEUWSCEK3OS65/reader/3HAP1RMUAUCAEWIUCSCEZ3XSP5",
+        "url": "https://kagane.org/series/38AG1CMUAOCWEWEUWSCEK3OS65/reader/33AOX7LVZPG3801YXRDD5PWS15",
         "expected": {
           "sync": true,
           "title": "A Couple of Cuckoos",
