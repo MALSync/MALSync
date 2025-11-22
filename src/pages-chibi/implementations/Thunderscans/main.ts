@@ -11,9 +11,7 @@ export const Thunderscans: PageInterface = {
   search: 'https://en-thunderscans.com/?s={searchtermPlus}',
   sync: {
     isSyncPage($c) {
-      return $c
-        .and($c.url().urlPart(3).boolean().run(), $c.url().urlPart(3).matches('chapter[_-]').run())
-        .run();
+      return $c.url().urlPart(3).matches('chapter[_-]').run();
     },
     getTitle($c) {
       return $c.querySelector('.allc a').text().trim().run();
@@ -59,10 +57,10 @@ export const Thunderscans: PageInterface = {
       return $c.querySelector('h1').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).trim().run();
+      return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c.querySelector('.thumb > img').getAttribute('src').log().ifNotReturn().run();
+      return $c.querySelector('.thumb > img').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('h1').uiAfter().run();
@@ -73,7 +71,7 @@ export const Thunderscans: PageInterface = {
       return $c.querySelectorAll('#chapterlist .chbox').run();
     },
     elementUrl($c) {
-      return $c.closest('a').getAttribute('href').urlAbsolute().run();
+      return $c.closest('a').getAttribute('href').ifNotReturn().urlAbsolute().run();
     },
     elementEp($c) {
       return $c.find('.chapternum').text().regex('chapter\\s*(\\d+)', 1).number().run();
