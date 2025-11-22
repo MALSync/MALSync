@@ -34,6 +34,9 @@ module.exports = {
   malsyncAnilist: {
     match: ['*://malsync.moe/anilist/oauth*'],
   },
+  malsyncMangabaka: {
+    match: ['*://malsync.moe/mangabaka/oauth*'],
+  },
   malsyncShiki: {
     match: ['*://malsync.moe/shikimori/oauth*'],
   },

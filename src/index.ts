@@ -15,6 +15,7 @@ import { anilistOauth } from './anilist/oauth';
 import { shikiOauth } from './_provider/Shikimori/oauth';
 import { Chibi } from './pages-chibi/ChibiProxy';
 import { NotFoundError } from './_provider/Errors';
+import { mangabakaOauth } from './mangabaka/oauth';
 
 let page;
 
@@ -45,6 +46,11 @@ async function main() {
     window.location.pathname.startsWith('/anilist/oauth')
   ) {
     anilistOauth();
+  } else if (
+    window.location.hostname === 'malsync.moe' &&
+    window.location.pathname.startsWith('/mangabaka/oauth')
+  ) {
+    mangabakaOauth();
   } else if (
     window.location.hostname === 'malsync.moe' &&
     window.location.pathname.startsWith('/shikimori/oauth')

@@ -40,6 +40,11 @@ let entry = {
     '..',
     'src/index-webextension/oauth.ts',
   ),
+  'oauth-mangabaka-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/mangabakaOauth.ts',
+  ),
   'oauth-anilist-script': path.join(
     __dirname,
     '..',
