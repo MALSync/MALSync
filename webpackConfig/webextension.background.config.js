@@ -10,11 +10,12 @@ plugins = [
     resource.request = resource.request.replace(/-general/, `-${appTarget}`);
   }),
   new webpack.ProvidePlugin({
-    con: path.resolve(__dirname, './../src/utils/consoleBG'),
+    con: path.resolve(__dirname, './../src/utils/console'),
     utils: path.resolve(__dirname, './../src/utils/general'),
     api: path.resolve(__dirname, './../src/api/webextension'),
   }),
   new webpack.DefinePlugin({
+    BACKGROUND: true,
     __VUE_OPTIONS_API__: true,
     __VUE_PROD_DEVTOOLS__: false,
     __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
