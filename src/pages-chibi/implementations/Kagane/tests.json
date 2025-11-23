@@ -69,6 +69,18 @@
           "image": "https://api.kagane.org/api/v1/series/38AG1CMUAOCWEWEUWSCEK3OS65/thumbnail",
           "uiSelector": true
         }
-      }
+      },
+      {
+        "url": "https://kagane.org/series/33ACZGSV5G20FX84O7DKORKS15/reader/3IAFZ4SV5K20FX84S7DK2RNSQ55",
+        "expected": {
+          "sync": true,
+          "title": "Fight Class 3",
+          "identifier": "33ACZGSV5G20FX84O7DKORKS15",
+          "overviewUrl": "https://kagane.org/series/33ACZGSV5G20FX84O7DKORKS15",
+          "episode": 102,
+          "Volume": null,
+          "uiSelector": false
+       }
+    }
     ]
   }
