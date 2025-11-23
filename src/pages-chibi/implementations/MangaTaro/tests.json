@@ -22,12 +22,8 @@
           "title": "The Sichuan Tang Clan’s Entomologist",
           "identifier": "the-sichuan-tang-clans-entomologist",
           "image": "https://mangataro.org/content/media/314719l.webp",
-          "uiSelector": true,
-          "epList": {
-            "54" : "https://mangataro.org/read/the-sichuan-tang-clans-entomologist/ch54-487438",
-            "1": "https://mangataro.org/read/the-sichuan-tang-clans-entomologist/ch1-268530"
-          }
-       }
-     }
+          "uiSelector": true
+        }
+      }
    ]
  }
