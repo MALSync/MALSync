@@ -1,4 +1,3 @@
-import { $c } from 'src/chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const MangaTaro: PageInterface = {
