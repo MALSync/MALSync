@@ -1,3 +1,4 @@
+import { $c } from 'src/chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const MangaTaro: PageInterface = {
@@ -12,11 +13,7 @@ export const MangaTaro: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(3).equals('read').run(),
-          $c.url().urlPart(5).boolean().run(),
-          $c.url().urlPart(5).matches('ch[_-]?').run(),
-        )
+        .and($c.url().urlPart(3).equals('read').run(), $c.url().urlPart(5).matches('ch[_-]?').run())
         .run();
     },
     getTitle($c) {
@@ -44,29 +41,20 @@ export const MangaTaro: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '.comic-image-container[style*="display: none"]',
-        current: {
-          selector: '#currentPage',
-          mode: 'text',
-          regex: '(\\d+)',
-          group: 1,
-        },
-        total: {
-          selector: '#totalPages',
-          mode: 'text',
-          regex: '(\\d+)',
-          group: 1,
-        },
-      },
-      {
-        current: {
-          selector: '.pb-2 img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.pb-2 img',
-          mode: 'count',
-        },
+        current: $c =>
+          $c
+            .querySelector('.fixed[style*="display: block"] [id*="currentPage"]')
+            .text()
+            .regex('\\d+')
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('.fixed[style*="display: block"] [id*="totalPages"]')
+            .text()
+            .regex('\\d+')
+            .number()
+            .run(),
       },
     ],
   },
@@ -81,10 +69,10 @@ export const MangaTaro: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.text-2xl').text().trim().run();
+      return $c.querySelector('h1').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
@@ -110,6 +98,14 @@ export const MangaTaro: PageInterface = {
     },
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+    },
+    listChange($c) {
+      return $c
+        .detectChanges(
+          $c.querySelector('.chapter-list').ifNotReturn().text().run(),
+          $c.trigger().run(),
+        )
+        .run();
     },
   },
 };
