@@ -81,6 +81,7 @@ import { DynastyScans } from './implementations/DynastyScans/main';
 import { LagoonScans } from './implementations/LagoonScans/main';
 import { WeebDex } from './implementations/WeebDex/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
+import { Mgeko } from './implementations/Mgeko/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -164,4 +165,5 @@ export const pages: { [key: string]: PageInterface } = {
   LagoonScans,
   WeebDex,
   SetsuScans,
+  Mgeko,
 };
