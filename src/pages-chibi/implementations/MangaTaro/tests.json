@@ -16,12 +16,12 @@
         }
       },
       {
-        "url": "https://mangataro.org/manga/the-sichuan-tang-clans-entomologist",
+        "url": "https://mangataro.org/manga/wild-west-murim",
         "expected": {
           "sync": false,
-          "title": "The Sichuan Tang Clan’s Entomologist",
-          "identifier": "the-sichuan-tang-clans-entomologist",
-          "image": "https://mangataro.org/content/media/314719l.webp",
+          "title": "Wild West Murim",
+          "identifier": "wild-west-murim",
+          "image": "https://mangataro.org/content/media/291043l.webp",
           "uiSelector": true
         }
       }
