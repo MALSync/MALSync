@@ -859,4 +859,9 @@ module.exports = {
   p2pstream: {
     match: ['*://*.p2pstream.vip/*'],
   },
+
+    // Anoboye
+ anoboye: {
+  match: ['*://player.anoboye.com/watch/*'],
+},
 };
