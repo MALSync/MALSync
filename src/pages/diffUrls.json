@@ -118,7 +118,8 @@
   "0.12.2": {
     "iframe": [
       "*://christopheruntilpoint.com/e/*",
-      "*://walterprettytheir.com/e/*"
+      "*://walterprettytheir.com/e/*",
+      "*://player.anoboye.com/watch/*"
     ]
   }
 }
