@@ -1,0 +1,32 @@
+{
+  "title": "RezoScans",
+  "url": "https://rezoscan.org",
+  "testCases": [
+    {
+      "url": "https://rezoscan.org/series/the-player-of-a-fallen-noble-family/chapter-18",
+      "expected": {
+        "sync": true,
+        "title": "The Player Of A Fallen Noble Family",
+        "identifier": "the-player-of-a-fallen-noble-family",
+        "image": "https://storage.rezoscan.org/upload/2025/11/24/1b1dce62-f4b8-451c-8046-92638d0c0c5b.webp",
+        "overviewUrl": "https://rezoscan.org/series/the-player-of-a-fallen-noble-family",
+        "episode": 18,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://rezoscan.org/series/the-player-of-a-fallen-noble-family",
+      "expected": {
+        "sync": false,
+        "title": "The Player Of A Fallen Noble Family",
+        "identifier": "the-player-of-a-fallen-noble-family",
+        "image": "https://storage.rezoscan.org/upload/2025/11/24/1b1dce62-f4b8-451c-8046-92638d0c0c5b.webp",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://rezoscan.org/series/the-player-of-a-fallen-noble-family/chapter-1",
+          "20": "https://rezoscan.org/series/the-player-of-a-fallen-noble-family/chapter-20"
+        }
+      }
+    }
+  ]
+}
