@@ -16,7 +16,13 @@ export const Mgeko: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1 a').text().trim().run();
+      return $c
+        .querySelector('h1 a')
+        .text()
+        .replaceAll('\n', ' ')
+        .replaceRegex('\\s+', ' ')
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.this('sync.getOverviewUrl').this('overview.getIdentifier').run();
