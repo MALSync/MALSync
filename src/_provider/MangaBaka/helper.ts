@@ -2,7 +2,7 @@ import { NotAutenticatedError, parseJson, ServerOfflineError } from '../Errors';
 import type { BakaSorting, BakaState } from './types';
 import { status } from '../definitions';
 
-export const apiDomain = 'https://api.mangabaka.dev/';
+export const apiDomain = 'https://api.mangabaka.dev';
 
 export const authenticationUrl = 'https://malsync.moe/mangabaka/oauth';
 
@@ -15,12 +15,21 @@ export const urls = {
   series(id: number | string) {
     return `${apiDomain}/v1/series/${id}`;
   },
+  seriesByAniId(id: number | string) {
+    return `${apiDomain}/v1/source/anilist/${id}`;
+  },
+  seriesByMalId(id: number | string) {
+    return `${apiDomain}/v1/source/my-anime-list/${id}`;
+  },
   library(state: BakaState | null = null, sortBy: BakaSorting = 'default', page = 1, limit = 100) {
     const data: any = { sort_by: sortBy, page, limit };
     if (state) {
       data.state = state;
     }
     return `${apiDomain}/v1/my/library?${new URLSearchParams(Object.entries(data))}`;
+  },
+  libraryEntry(id: number | string) {
+    return `${apiDomain}/v1/my/library/${id}`;
   },
 };
 
