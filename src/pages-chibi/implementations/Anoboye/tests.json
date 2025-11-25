@@ -1,0 +1,33 @@
+{
+  "title": "Anoboye",
+  "url": "https://anoboye.com",
+  "testCases": [
+    {
+      "url": "https://anoboye.com/martial-master-episode-598-english-sub-indonesia/",
+      "expected": {
+        "sync": true,
+        "title": "Martial Master",
+        "identifier": "martial-master",
+        "overviewUrl": "https://anoboye.com/martial-master/",
+        "episode": 598,
+        "nextEpUrl": "https://anoboye.com/martial-master-episode-599-english-sub-indonesia/",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://anoboye.com/martial-master/",
+      "expected": {
+        "sync": false,
+        "title": "Martial Master",
+        "identifier": "martial-master",
+        "image": "https://i3.wp.com/anoboye.com/wp-content/uploads/2025/02/1739883397-9186-107609.jpg?resize=247,350",
+        "uiSelector": true,
+        "epList": {
+          "597": "https://anoboye.com/martial-master-episode-597-english-sub-indonesia/",
+          "598": "https://anoboye.com/martial-master-episode-598-english-sub-indonesia/",
+          "599": "https://anoboye.com/martial-master-episode-599-english-sub-indonesia/"
+        }
+      }
+    }
+  ]
+}

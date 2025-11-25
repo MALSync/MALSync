@@ -55,6 +55,7 @@ import { Jestful } from './implementations/Jestful/main';
 import { AnimeNoSub } from './implementations/AnimeNoSub/main';
 import { Rawkuma } from './implementations/Rawkuma/main';
 import { KakuseiProject } from './implementations/KakuseiProject/main';
+import { Anoboye } from './implementations/Anoboye/main';
 import { AnimeKhor } from './implementations/AnimeKhor/main';
 import { TCBScans } from './implementations/TCBScans/main';
 import { Mangapill } from './implementations/Mangapill/main';
@@ -82,6 +83,7 @@ import { LagoonScans } from './implementations/LagoonScans/main';
 import { WeebDex } from './implementations/WeebDex/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
 import { KaynScan } from './implementations/KaynScan/main';
+import { ComicWalker } from './implementations/ComicWalker/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -140,6 +142,7 @@ export const pages: { [key: string]: PageInterface } = {
   AnimeNoSub,
   Rawkuma,
   KakuseiProject,
+  Anoboye,
   AnimeKhor,
   TCBScans,
   Mangapill,
@@ -166,4 +169,5 @@ export const pages: { [key: string]: PageInterface } = {
   WeebDex,
   SetsuScans,
   KaynScan,
+  ComicWalker,
 };
