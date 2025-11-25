@@ -7,11 +7,19 @@ export type BakaState =
   | 'rereading';
 
 export type BakaSorting =
+  | 'default'
   | 'created_at_asc'
   | 'created_at_desc'
-  | 'default'
   | 'my_rating_asc'
-  | 'my_rating_desc';
+  | 'my_rating_desc'
+  | 'series_rating_asc'
+  | 'series_rating_desc'
+  | 'series_title_asc'
+  | 'series_title_desc'
+  | 'updated_at_asc'
+  | 'updated_at_desc'
+  | 'available_chapters_asc'
+  | 'available_chapters_desc';
 
 export interface BakaPagination {
   count: number;

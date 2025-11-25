@@ -1,7 +1,7 @@
 import { ListAbstract, listElement } from '../listAbstract';
-import * as definitions from '../definitions';
+import { status } from '../definitions';
 import { bakaStateToState, call, stateToBakaState, urls, authenticationUrl } from './helper';
-import type { BakaLibraryEntry, LibraryResponse } from './types';
+import type { BakaLibraryEntry, BakaSorting, LibraryResponse } from './types';
 
 export class UserList extends ListAbstract {
   name = 'MangaBaka';
@@ -30,39 +30,41 @@ export class UserList extends ListAbstract {
         icon: 'sort_by_alpha',
         title: api.storage.lang('list_sorting_alpha'),
         value: 'alpha',
+        asc: true,
       },
       {
         icon: 'history',
         title: api.storage.lang('list_sorting_history'),
         value: 'updated',
+        asc: true,
       },
       {
         icon: 'score',
         title: api.storage.lang('list_sorting_score'),
         value: 'score',
-      },
-      {
-        icon: 'calendar_month',
-        title: api.storage.lang('list_sorting_airing_date'),
-        value: 'airing_date',
+        asc: true,
       },
     ];
   }
 
-  getOrder(sort) {
+  getOrder(sort): BakaSorting {
     switch (sort) {
+      case 'alpha_asc':
+        return 'series_title_asc';
       case 'alpha':
-        return `${this.listType}_title`;
+        return 'series_title_desc';
+      case 'updated_asc':
+        return 'updated_at_asc';
       case 'updated':
-        return 'list_updated_at';
+        return 'updated_at_desc';
+      case 'score_asc':
+        return 'my_rating_asc';
       case 'score':
-        return 'list_score';
-      case 'airing_date':
-        return `${this.listType}_start_date`;
+        return 'my_rating_desc';
       default:
-        if (this.status === definitions.status.Watching) return this.getOrder('updated');
-        if (this.status === definitions.status.PlanToWatch) return this.getOrder('updated');
-        return this.getOrder('alpha');
+        if (this.status === status.Watching) return this.getOrder('updated');
+        if (this.status === status.PlanToWatch) return this.getOrder('updated');
+        return 'default';
     }
   }
 
@@ -79,10 +81,13 @@ export class UserList extends ListAbstract {
       this.limit = 24;
     }
 
-    // TODO: Sorting
-
     const json = (await call(
-      urls.library(stateToBakaState(this.status), 'default', this.offset, this.limit),
+      urls.library(
+        stateToBakaState(this.status),
+        this.getOrder(this.sort),
+        this.offset,
+        this.limit,
+      ),
     )) as LibraryResponse;
 
     console.log(json);
