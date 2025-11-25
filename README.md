@@ -345,6 +345,122 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://witanime.pics"><img src="https://favicon.malsync.moe/?domain=https://witanime.pics"> WitAnime</a></td>
                 <td><a href="https://reaperscans.com"><img src="https://favicon.malsync.moe/?domain=https://reaperscans.com"> ReaperScans</a></td>
                 <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://reset-scans.org"><img src="https://favicon.malsync.moe/?domain=https://reset-scans.org"> ResetScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://ritharscans.com"><img src="https://favicon.malsync.moe/?domain=https://ritharscans.com"> Ritharscans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://rokaricomics.com"><img src="https://favicon.malsync.moe/?domain=https://rokaricomics.com"> RokariComics</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://roliascan.com"><img src="https://favicon.malsync.moe/?domain=https://roliascan.com"> RoliaScan</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://sadscans.com"><img src="https://favicon.malsync.moe/?domain=https://sadscans.com"> Sadscans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://sakuramangas.org"><img src="https://favicon.malsync.moe/?domain=https://sakuramangas.org"> SakuraMangas</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://scyllacomics.xyz"><img src="https://favicon.malsync.moe/?domain=https://scyllacomics.xyz"> ScyllaScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://serimanga.com"><img src="https://favicon.malsync.moe/?domain=https://serimanga.com"> serimanga</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://setsuscans.com"><img src="https://favicon.malsync.moe/?domain=https://setsuscans.com"> SetsuScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://www.silentquill.net"><img src="https://favicon.malsync.moe/?domain=https://www.silentquill.net"> Silentquill</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://stonescape.xyz"><img src="https://favicon.malsync.moe/?domain=https://stonescape.xyz"> StoneScape</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://taiyo.moe"><img src="https://favicon.malsync.moe/?domain=https://taiyo.moe"> Taiyo</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://tcbonepiecechapters.com"><img src="https://favicon.malsync.moe/?domain=https://tcbonepiecechapters.com"> TCBScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://templescan.net"><img src="https://favicon.malsync.moe/?domain=https://templescan.net"> TempleScan</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://en-thunderscans.com"><img src="https://favicon.malsync.moe/?domain=https://en-thunderscans.com"> Thunderscans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://zonatmo.com"><img src="https://favicon.malsync.moe/?domain=https://zonatmo.com"> tmofans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://toonily.com"><img src="https://favicon.malsync.moe/?domain=https://toonily.com"> Toonily</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://tritinia.org"><img src="https://favicon.malsync.moe/?domain=https://tritinia.org"> TritiniaScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://utoon.net"><img src="https://favicon.malsync.moe/?domain=https://utoon.net"> Utoon</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://violetscans.org"><img src="https://favicon.malsync.moe/?domain=https://violetscans.org"> VioletScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://www.viz.com"><img src="https://favicon.malsync.moe/?domain=https://www.viz.com"> VIZ</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://hivetoons.org"><img src="https://favicon.malsync.moe/?domain=https://hivetoons.org"> VoidScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://vortexscans.org"><img src="https://favicon.malsync.moe/?domain=https://vortexscans.org"> VortexScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://weebcentral.com"><img src="https://favicon.malsync.moe/?domain=https://weebcentral.com"> WeebCentral</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://weebdex.org/"><img src="https://favicon.malsync.moe/?domain=https://weebdex.org/"> WeebDex</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://witchscans.com"><img src="https://favicon.malsync.moe/?domain=https://witchscans.com"> WitchScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://writerscans.com"><img src="https://favicon.malsync.moe/?domain=https://writerscans.com"> WritersScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://wuxiaworld.site"><img src="https://favicon.malsync.moe/?domain=https://wuxiaworld.site"> WuxiaWorld</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://zscans.com/"><img src="https://favicon.malsync.moe/?domain=https://zscans.com/"> ZeroScans</a></td>
+                <td></td>
               </tr>
     </tbody>
   </table>
