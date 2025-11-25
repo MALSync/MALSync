@@ -82,6 +82,7 @@ import { DynastyScans } from './implementations/DynastyScans/main';
 import { LagoonScans } from './implementations/LagoonScans/main';
 import { WeebDex } from './implementations/WeebDex/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
+import { LuaScans } from './implementations/LuaScans/main';
 import { KaynScan } from './implementations/KaynScan/main';
 import { ComicWalker } from './implementations/ComicWalker/main';
 
@@ -168,6 +169,7 @@ export const pages: { [key: string]: PageInterface } = {
   LagoonScans,
   WeebDex,
   SetsuScans,
+  LuaScans,
   KaynScan,
   ComicWalker,
 };
