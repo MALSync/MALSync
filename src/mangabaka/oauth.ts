@@ -42,6 +42,7 @@ function generateRandomString(length: number): string {
   return text;
 }
 
+// TODO: Validate the ID Token
 async function getRefreshToken() {
   const code = utils.urlParam(window.location.href, 'code');
   const state = utils.urlParam(window.location.href, 'state');
