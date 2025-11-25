@@ -49,6 +49,7 @@ export abstract class SingleAbstract {
       slug: '',
     },
     simkl: NaN,
+    baka: NaN,
   };
 
   protected options: {
@@ -887,6 +888,7 @@ export abstract class SingleAbstract {
     if (this.ids.ani && allowed.includes('ANILIST')) return `anilist:${this.ids.ani}`;
     if (this.ids.kitsu.id && allowed.includes('KITSU')) return `kitsu:${this.ids.kitsu.id}`;
     if (this.ids.simkl && allowed.includes('SIMKL')) return `simkl:${this.ids.simkl}`;
+    if (this.ids.baka && allowed.includes('MANGABAKA')) return `mangabaka:${this.ids.baka}`;
     return this.ids.mal;
   }
 

@@ -1,4 +1,4 @@
-export type SyncTypes = 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI' | 'MALAPI';
+export type SyncTypes = 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI' | 'MALAPI' | 'MANGABAKA';
 
 export function getSyncMode(type = '') {
   const mode = api.settings.get('syncMode');
