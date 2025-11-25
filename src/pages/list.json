@@ -345,11 +345,6 @@
     "name": "DisasterScans"
   },
   {
-    "domain": "https://dynasty-scans.com",
-    "type": "manga",
-    "name": "DynastyScans"
-  },
-  {
     "domain": "https://aniworld.to",
     "type": "anime",
     "name": "Aniworld"
@@ -835,6 +830,11 @@
     "name": "KakuseiProject"
   },
   {
+    "domain": "https://anoboye.com",
+    "type": "anime",
+    "name": "Anoboye"
+  },
+  {
     "domain": "https://animekhor.org",
     "type": "anime",
     "name": "AnimeKhor"
@@ -920,6 +920,11 @@
     "name": "Ritharscans"
   },
   {
+    "domain": "https://www.bilibili.tv",
+    "type": "anime",
+    "name": "BStation"
+  },
+  {
     "domain": "https://falconscans.com/",
     "type": "manga",
     "name": "FalconScans"
@@ -933,5 +938,45 @@
     "domain": "https://comix.to",
     "type": "manga",
     "name": "Comix"
+  },
+  {
+    "domain": "https://dynasty-scans.com",
+    "type": "manga",
+    "name": "DynastyScans"
+  },
+  {
+    "domain": "https://lagoonscans.com/",
+    "type": "manga",
+    "name": "LagoonScan"
+  },
+  {
+    "domain": "https://weebdex.org/",
+    "type": "manga",
+    "name": "WeebDex"
+  },
+  {
+    "domain": "https://setsuscans.com",
+    "type": "manga",
+    "name": "SetsuScans"
+  },
+  {
+    "domain": "https://www.mgeko.cc",
+    "type": "manga",
+    "name": "Mgeko"
+  },
+  {
+    "domain": "https://luacomic.org",
+    "type": "manga",
+    "name": "LuaScans"
+  },
+  {
+    "domain": "https://kaynscan.com",
+    "type": "manga",
+    "name": "KaynScan"
+  },
+  {
+    "domain": "https://comic-walker.com/",
+    "type": "manga",
+    "name": "ComicWalker"
   }
 ]
