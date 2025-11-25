@@ -543,6 +543,7 @@ module.exports = {
       '*://lukesitturn.com/e/*',
       '*://mikaylaarealike.com/e/*',
       '*://christopheruntilpoint.com/e/*',
+      '*://walterprettytheir.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -858,4 +859,9 @@ module.exports = {
   p2pstream: {
     match: ['*://*.p2pstream.vip/*'],
   },
+
+    // Anoboye
+ anoboye: {
+  match: ['*://player.anoboye.com/watch/*'],
+},
 };

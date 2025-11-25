@@ -52,7 +52,7 @@
     "postcss-less": "^6.0.0",
     "prettier": "^3.6.2",
     "puppeteer": "^24.31.0",
-    "serialize-javascript": "^6.0.2",
+    "serialize-javascript": "^7.0.0",
     "style-loader": "^3.3.4",
     "stylelint": "^15.11.0",
     "stylelint-config-recommended-vue": "^1.6.1",
@@ -65,10 +65,10 @@
     "ts-mocha": "^11.1.0",
     "ts-node": "^10.9.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "^8.47.0",
+    "typescript-eslint": "^8.48.0",
     "vue-eslint-parser": "10.2.0",
     "vue-loader": "^17.4.2",
-    "web-ext": "^9.1.0",
+    "web-ext": "^9.2.0",
     "webpack": "^5.103.0",
     "webpack-cli": "^6.0.1"
   },
@@ -137,7 +137,7 @@
     "vue-dompurify-html": "^5.3.0",
     "vue-router": "^4.6.3",
     "vue-slider-component": "^4.1.0-beta.6",
-    "vue-tsc": "^3.1.4",
+    "vue-tsc": "^3.1.5",
     "vuedraggable": "^4.1.0",
     "webext-patterns": "^1.5.1"
   }
