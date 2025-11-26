@@ -84,6 +84,7 @@ import { WeebDex } from './implementations/WeebDex/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
 import { KaynScan } from './implementations/KaynScan/main';
 import { ComicWalker } from './implementations/ComicWalker/main';
+import { SanaScans } from './implementations/SanaScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -170,4 +171,5 @@ export const pages: { [key: string]: PageInterface } = {
   SetsuScans,
   KaynScan,
   ComicWalker,
+  SanaScans,
 };
