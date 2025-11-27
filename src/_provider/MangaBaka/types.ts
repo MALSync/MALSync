@@ -200,6 +200,10 @@ export interface BakaSeries {
   };
 }
 
+export interface RelatedSeries {
+  [key: string]: BakaSeries[];
+}
+
 export interface LibraryResponse {
   status: number;
   pagination: BakaPagination;

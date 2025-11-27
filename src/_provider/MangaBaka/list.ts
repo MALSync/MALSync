@@ -77,7 +77,7 @@ export class UserList extends ListAbstract {
 
     this.limit = 100;
     if (this.offset < 1) this.offset = 1;
-    if (this.modes.frontend) {
+    if (this.modes.frontend && !this.modes.sortAiring) {
       this.limit = 24;
     }
 

@@ -17,7 +17,13 @@
               <template v-else>{{ link.date }}</template>
             </div>
             <template v-else-if="!('type' in link)">
-              <MediaLink v-if="link.url" dir="auto" color="secondary" :href="link.url">
+              <MediaLink
+                v-if="link.url"
+                dir="auto"
+                color="secondary"
+                :force-link="true"
+                :href="link.url"
+              >
                 {{ link.text }}
               </MediaLink>
               <span v-else dir="auto">

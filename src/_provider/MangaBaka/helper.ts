@@ -1,5 +1,5 @@
 import { NotAutenticatedError, parseJson, ServerOfflineError } from '../Errors';
-import type { BakaSorting, BakaState } from './types';
+import type { BakaSeries, BakaSorting, BakaState } from './types';
 import { status } from '../definitions';
 
 export const apiDomain = 'https://api.mangabaka.dev';
@@ -20,6 +20,9 @@ export const urls = {
   },
   seriesByMalId(id: number | string) {
     return `${apiDomain}/v1/source/my-anime-list/${id}`;
+  },
+  seriesRelated(id: number | string) {
+    return `${apiDomain}/v1/series/${id}/related`;
   },
   library(state: BakaState | null = null, sortBy: BakaSorting = 'default', page = 1, limit = 100) {
     const data: any = { sort_by: sortBy, page, limit };
@@ -136,4 +139,18 @@ export function stateToBakaState(input: status): BakaState | null {
     default:
       throw new Error(`Unhandled Status: ${input}`);
   }
+}
+
+export function getAlternativeTitles(series: BakaSeries): string[] {
+  const titles: string[] = [];
+  if (series.title) {
+    titles.push(series.title);
+  }
+  if (series.romanized_title) {
+    titles.push(series.romanized_title);
+  }
+  if (series.native_title) {
+    titles.push(series.native_title);
+  }
+  return titles;
 }

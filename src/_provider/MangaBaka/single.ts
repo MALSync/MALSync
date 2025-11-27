@@ -168,9 +168,9 @@ export class Single extends SingleAbstract {
   async _update() {
     // TODO: not on list handling
 
-
     this._authenticated = true;
 
+    // TODO: Implement series caching. Fill cache on list fetch and related fetch?
     let seriesEntry: BakaSeries;
     if (this.ids.baka) {
       seriesEntry = (await call(urls.series(this.ids.baka))).data as BakaSeries;
@@ -198,15 +198,31 @@ export class Single extends SingleAbstract {
 
     this.displayUrl = `https://mangabaka.dev/${seriesEntry.id}`;
 
-    const json = (await call(urls.libraryEntry(seriesEntry.id))).data as BakaLibraryEntry;
+    let json = (await call(urls.libraryEntry(seriesEntry.id))).data as BakaLibraryEntry;
 
     this.logger.log('[SINGLE]', 'Data', json);
 
     this._onList = true;
     if (!json) {
       this._onList = false;
-      // TODO:
-      throw new Error('Not implemented yet');
+
+      json = {
+        finish_date: undefined,
+        id: 128425,
+        is_private: false,
+        note: undefined,
+        number_of_rereads: undefined,
+        priority: 20,
+        progress_chapter: undefined,
+        progress_volume: undefined,
+        rating: undefined,
+        read_link: undefined,
+        series_id: seriesEntry.id,
+        start_date: undefined,
+        state: 'plan_to_read',
+        user_id: undefined!,
+        Series: seriesEntry,
+      };
     }
 
     json.Series = seriesEntry;
