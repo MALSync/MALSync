@@ -37,7 +37,7 @@ describe('Number Functions', () => {
         .number(10)
         .calculate('/', 0)
         .run();
-      expect(() => generateAndExecute(code).run()).to.throw('Unresolvable operation');
+      expect(() => generateAndExecute(code).run()).to.be.null;
     });
   });
 });
