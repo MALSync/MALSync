@@ -86,6 +86,7 @@ import { Mgeko } from './implementations/Mgeko/main';
 import { LuaScans } from './implementations/LuaScans/main';
 import { KaynScan } from './implementations/KaynScan/main';
 import { ComicWalker } from './implementations/ComicWalker/main';
+import { MangaLivreTV } from './implementations/MangaLivreTV/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -174,4 +175,5 @@ export const pages: { [key: string]: PageInterface } = {
   LuaScans,
   KaynScan,
   ComicWalker,
+  MangaLivreTV,
 };
