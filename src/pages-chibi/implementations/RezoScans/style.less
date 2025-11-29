@@ -1,0 +1,25 @@
+@import './../pages';
+
+@boxBackground: hsla(0, 0%, 55%, 0.05);
+@activeEp: hsla(271, 69%, 47%, 0.075);
+
+#malp {
+  margin-top: 20px;
+  #MalData {
+    .malp-group {
+      .malp-group-field:not(.malp-group-input):hover,
+      .malp-group-value-section:focus-within,
+      .malp-group-value-section:hover {
+        background-color: #8c8c8c14 !important;
+        transition-duration: 0.25s;
+        option {
+          font-family: sans-serif;
+          background-color: #000000d2 !important;
+        }
+      }
+    }
+  }
+}
+.mal-sync-active:hover {
+  background-color: #7b25cb1c !important;
+}
