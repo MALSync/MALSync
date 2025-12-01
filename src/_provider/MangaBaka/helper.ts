@@ -1,4 +1,4 @@
-import { NotAutenticatedError, parseJson, ServerOfflineError } from '../Errors';
+import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 import type { BakaSeries, BakaSorting, BakaState } from './types';
 import { status } from '../definitions';
 
@@ -85,8 +85,14 @@ export function errorHandling(res, code) {
     switch (res.status) {
       case 401:
         throw new NotAutenticatedError('user_token_failed');
+      case 404:
+        throw new NotFoundError(res.message || 'Not Found');
       default:
-        throw new Error(res.message ? res.message : `Unknown Error, status code: ${res.status}`);
+        throw new Error(
+          res.message
+            ? `${res.message} (${res.status})`
+            : `Unknown Error, status code: ${res.status}`,
+        );
     }
   }
 
