@@ -81,22 +81,24 @@ export function errorHandling(res, code) {
     throw new ServerOfflineError(`Server Offline status: ${code}`);
   }
 
-  // TODO: Placeholder handling
+  if (res && (res.status < 200 || res.status >= 300)) {
+    switch (res.status) {
+      case 401:
+        throw new NotAutenticatedError('user_token_failed');
+      default:
+        throw new Error(res.message ? res.message : `Unknown Error, status code: ${res.status}`);
+    }
+  }
+
+  // Userinfo call
   if (res && typeof res.error !== 'undefined') {
-    logger.m('api').error('[SINGLE]', 'Error', res.error);
-    const { error } = res;
-    if (error.code) {
-      switch (error.code) {
-        default:
-          throw new Error(error.error);
-      }
-    } else {
-      switch (error) {
-        case 'user_token_failed':
-          throw new NotAutenticatedError('user_token_failed');
-        default:
-          throw error;
-      }
+    switch (res.error) {
+      case 'invalid_token':
+        throw new NotAutenticatedError('user_token_failed');
+      default:
+        throw new Error(
+          res.error_description ? `${res.error_description} (${res.error})` : res.error,
+        );
     }
   }
 }
