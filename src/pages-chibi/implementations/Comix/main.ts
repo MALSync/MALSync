@@ -9,7 +9,7 @@ export const Comix: PageInterface = {
   urls: {
     match: ['*://comix.to/*'],
   },
-  search: 'https://comix.to/browser?keyword={searchtermPlus}',
+  search: 'https://comix.to/browser?keyword={searchtermPlus}&order=relevance%3Adesc',
   sync: {
     isSyncPage($c) {
       return getJsonData($c).get('page').equals('chapter').run();
