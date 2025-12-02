@@ -148,6 +148,28 @@ export class Single extends SingleAbstract {
     this.libraryEntry.note = tags;
   }
 
+  public getStreamingUrl(): string | undefined {
+    if (this.libraryEntry.read_link) {
+      return this.libraryEntry.read_link;
+    }
+
+    return super.getStreamingUrl();
+  }
+
+  public setStreamingUrl(streamingUrl: string): SingleAbstract {
+    if (streamingUrl) {
+      let isValid;
+      try {
+        isValid = !!new URL(streamingUrl);
+      } catch (e) {
+        isValid = false;
+      }
+      if (isValid) this.libraryEntry.read_link = streamingUrl;
+    }
+
+    return super.setStreamingUrl(streamingUrl);
+  }
+
   _getTitle() {
     return this.libraryEntry.Series.title;
   }

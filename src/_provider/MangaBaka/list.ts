@@ -106,33 +106,37 @@ export class UserList extends ListAbstract {
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
       // TODO: Title handling
-      newData.push(
-        await this.fn({
-          uid: el.series_id,
-          malId: el.Series.source.my_anime_list.id || null,
-          apiCacheKey:
-            el.Series.source.my_anime_list.id ||
-            el.Series.source.anilist.id ||
-            `mangabaka:${el.series_id}`,
-          cacheKey: el.Series.source.my_anime_list.id || `mangabaka:${el.series_id}`,
-          type: this.listType,
-          title: el.Series.title,
-          url: `https://mangabaka.dev/${el.series_id}`,
-          score: el.rating,
-          watchedEp: el.progress_chapter,
-          readVol: el.progress_volume,
-          totalEp: Number(el.Series.total_chapters) || 0, // TODO: Should this not be finished chapters?
-          totalVol: Number(el.Series.final_volume) || 0,
-          status: bakaStateToState(el.state!),
-          startDate: el.start_date,
-          finishDate: el.finish_date,
-          rewatchCount: el.number_of_rereads || 0,
-          image: el.Series.cover.x150.x2 || '',
-          imageLarge: el.Series.cover.x350.x2 || '',
-          tags: el.note || '',
-          airingState: '', // TODO:
-        }),
-      );
+      const item = await this.fn({
+        uid: el.series_id,
+        malId: el.Series.source.my_anime_list.id || null,
+        apiCacheKey:
+          el.Series.source.my_anime_list.id ||
+          el.Series.source.anilist.id ||
+          `mangabaka:${el.series_id}`,
+        cacheKey: el.Series.source.my_anime_list.id || `mangabaka:${el.series_id}`,
+        type: this.listType,
+        title: el.Series.title,
+        url: `https://mangabaka.dev/${el.series_id}`,
+        score: el.rating,
+        watchedEp: el.progress_chapter,
+        readVol: el.progress_volume,
+        totalEp: Number(el.Series.total_chapters) || 0, // TODO: Should this not be finished chapters?
+        totalVol: Number(el.Series.final_volume) || 0,
+        status: bakaStateToState(el.state!),
+        startDate: el.start_date,
+        finishDate: el.finish_date,
+        rewatchCount: el.number_of_rereads || 0,
+        image: el.Series.cover.x150.x2 || '',
+        imageLarge: el.Series.cover.x350.x2 || '',
+        tags: el.note || '',
+        airingState: '', // TODO:
+      });
+
+      if (el.read_link) {
+        item.options.u = el.read_link;
+      }
+
+      newData.push(item);
     }
 
     return newData;
