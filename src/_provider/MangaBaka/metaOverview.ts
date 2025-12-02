@@ -91,7 +91,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.rating) {
       this.meta.statistics.push({
         title: api.storage.lang('overview_sidebar_Score'),
-        body: String(data.rating),
+        body: String(data.rating.toFixed(0)),
       });
     }
 
@@ -250,7 +250,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (src.anilist && src.anilist.id) {
         let title = 'AniList';
         if (src.anilist.rating) {
-          title += ` (${src.anilist.rating})`;
+          title += ` (${(src.anilist.rating * 10).toFixed(0)})`;
         }
         sources.push({
           text: title,
@@ -260,7 +260,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (src.anime_planet && src.anime_planet.id) {
         let title = 'Anime-Planet';
         if (src.anime_planet.rating) {
-          title += ` (${src.anime_planet.rating})`;
+          title += ` (${(src.anime_planet.rating * 20).toFixed(0)})`;
         }
         sources.push({
           text: title,
@@ -270,7 +270,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (src.my_anime_list && src.my_anime_list.id) {
         let title = 'MyAnimeList';
         if (src.my_anime_list.rating) {
-          title += ` (${src.my_anime_list.rating})`;
+          title += ` (${(src.my_anime_list.rating * 10).toFixed(0)})`;
         }
         sources.push({
           text: title,
@@ -280,7 +280,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (src.kitsu && src.kitsu.id) {
         let title = 'Kitsu';
         if (src.kitsu.rating) {
-          title += ` (${src.kitsu.rating})`;
+          title += ` (${(src.kitsu.rating * 10).toFixed(0)})`;
         }
         sources.push({
           text: title,
@@ -290,7 +290,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (src.manga_updates && src.manga_updates.id) {
         let title = 'MangaUpdates';
         if (src.manga_updates.rating) {
-          title += ` (${src.manga_updates.rating})`;
+          title += ` (${(src.manga_updates.rating * 10).toFixed(0)})`;
         }
         sources.push({
           text: title,
@@ -300,7 +300,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (src.shikimori && src.shikimori.id) {
         let title = 'Shikimori';
         if (src.shikimori.rating) {
-          title += ` (${src.shikimori.rating})`;
+          title += ` (${(src.shikimori.rating * 10).toFixed(0)})`;
         }
         sources.push({
           text: title,
@@ -310,7 +310,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (src.anime_news_network && src.anime_news_network.id) {
         let title = 'Anime News Network';
         if (src.anime_news_network.rating) {
-          title += ` (${src.anime_news_network.rating})`;
+          title += ` (${(src.anime_news_network.rating * 10).toFixed(0)})`;
         }
         sources.push({
           text: title,
