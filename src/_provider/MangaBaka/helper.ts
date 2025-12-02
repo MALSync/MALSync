@@ -1,6 +1,6 @@
 import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 import type { BakaSeries, BakaSorting, BakaState } from './types';
-import { status } from '../definitions';
+import { startFinishDate, status } from '../definitions';
 
 export const apiDomain = 'https://api.mangabaka.dev';
 
@@ -156,4 +156,20 @@ export function getAlternativeTitles(series: BakaSeries): string[] {
     titles.push(series.native_title);
   }
   return titles;
+}
+
+export function timestampToDate(timestamp: string | null): startFinishDate {
+  if (typeof timestamp !== 'string') {
+    return null;
+  }
+
+  return timestamp.substring(0, 10);
+}
+
+export function dateToTimestamp(date: startFinishDate): string | null {
+  if (typeof date !== 'string') {
+    return null;
+  }
+
+  return `${date}T00:00:00.000Z`;
 }
