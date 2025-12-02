@@ -5,8 +5,10 @@ import {
   authenticationUrl,
   bakaStateToState,
   call,
+  dateToTimestamp,
   logger,
   stateToBakaState,
+  timestampToDate,
   urls,
 } from './helper';
 import { BakaLibraryEntry, BakaLibraryEntryUpdate, BakaSeries } from './types';
@@ -67,24 +69,30 @@ export class Single extends SingleAbstract {
     this.libraryEntry.state = stateToBakaState(status)!;
   }
 
-  _getStartDate() {//TODO:
-    return '';
-    //return helper.parseFuzzyDate(this.animeInfo.mediaListEntry.startedAt);
+  _getStartDate() {
+    if (!this.libraryEntry.start_date) return null;
+    return timestampToDate(this.libraryEntry.start_date);
   }
 
-  _setStartDate(startDate) {//TODO:
-    return '';
-    //this.animeInfo.mediaListEntry.startedAt = helper.getFuzzyDate(startDate);
+  _setStartDate(startDate) {
+    if (!startDate) {
+      this.libraryEntry.start_date = undefined;
+      return;
+    }
+    this.libraryEntry.start_date = dateToTimestamp(startDate)!;
   }
 
-  _getFinishDate() {//TODO:
-    return '';
-    //return helper.parseFuzzyDate(this.animeInfo.mediaListEntry.completedAt);
+  _getFinishDate() {
+    if (!this.libraryEntry.finish_date) return null;
+    return timestampToDate(this.libraryEntry.finish_date);
   }
 
-  _setFinishDate(finishDate) {//TODO:
-    return '';
-    //this.animeInfo.mediaListEntry.completedAt = helper.getFuzzyDate(finishDate);
+  _setFinishDate(finishDate) {
+    if (!finishDate) {
+      this.libraryEntry.finish_date = undefined;
+      return;
+    }
+    this.libraryEntry.finish_date = dateToTimestamp(finishDate)!;
   }
 
   _getRewatchCount() {
@@ -130,15 +138,14 @@ export class Single extends SingleAbstract {
     this.libraryEntry.progress_volume = parseInt(`${volume}`);
   }
 
-  _getTags() {//TODO:
-    return '';
-    //let tags = this.animeInfo.mediaListEntry.notes;
-    //if (tags === null || tags === 'null') tags = '';
-    //return tags;
+  _getTags() {
+    let tags = this.libraryEntry.note;
+    if (!tags || tags === 'null') tags = '';
+    return tags;
   }
 
-  _setTags(tags) {//TODO:
-    // this.animeInfo.mediaListEntry.notes = tags;
+  _setTags(tags) {
+    this.libraryEntry.note = tags;
   }
 
   _getTitle() {

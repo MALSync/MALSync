@@ -129,7 +129,7 @@ export class UserList extends ListAbstract {
           rewatchCount: el.number_of_rereads || 0,
           image: el.Series.cover.x150.x2 || '',
           imageLarge: el.Series.cover.x350.x2 || '',
-          tags: '', // TODO:
+          tags: el.note || '',
           airingState: '', // TODO:
         }),
       );
