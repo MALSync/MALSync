@@ -47,6 +47,21 @@ export interface BakaLibraryEntry {
   Series: BakaSeries;
 }
 
+export type BakaLibraryEntryUpdate = Pick<
+  BakaLibraryEntry,
+  | 'note'
+  | 'read_link'
+  | 'rating'
+  | 'state'
+  // | 'priority'
+  // | 'is_private'
+  | 'number_of_rereads'
+  | 'progress_chapter'
+  | 'progress_volume'
+  | 'start_date'
+  | 'finish_date'
+>;
+
 export interface BakaImageSize {
   x1: string | null;
   x2: string | null;
