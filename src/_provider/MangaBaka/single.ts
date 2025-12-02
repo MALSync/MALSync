@@ -9,7 +9,7 @@ import {
   stateToBakaState,
   urls,
 } from './helper';
-import { BakaLibraryEntry, BakaSeries } from './types';
+import { BakaLibraryEntry, BakaLibraryEntryUpdate, BakaSeries } from './types';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -166,8 +166,6 @@ export class Single extends SingleAbstract {
   }
 
   async _update() {
-    // TODO: not on list handling
-
     this._authenticated = true;
 
     // TODO: Implement series caching. Fill cache on list fetch and related fetch?
@@ -246,7 +244,24 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
-    throw new Error('Not implemented yet');
+    const entryToSend: BakaLibraryEntryUpdate = {
+      progress_chapter: this.libraryEntry.progress_chapter,
+      progress_volume: this.libraryEntry.progress_volume,
+      rating: this.libraryEntry.rating,
+      state: this.libraryEntry.state,
+      start_date: this.libraryEntry.start_date,
+      finish_date: this.libraryEntry.finish_date,
+      note: this.libraryEntry.note,
+      number_of_rereads: this.libraryEntry.number_of_rereads,
+      read_link: this.libraryEntry.read_link,
+    };
+
+    let method: 'PATCH' | 'POST' = 'PATCH';
+    if (!this._onList) {
+      method = 'POST';
+    }
+
+    return call(urls.libraryEntry(this.ids.baka), entryToSend, method);
   }
 
   public getScoreMode() {
@@ -254,7 +269,6 @@ export class Single extends SingleAbstract {
   }
 
   _delete() {
-    throw new Error('Not implemented yet');
-    return Promise.resolve();
+    return call(urls.libraryEntry(this.ids.baka), {}, 'DELETE');
   }
 }
