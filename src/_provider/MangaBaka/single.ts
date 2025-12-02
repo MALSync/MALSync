@@ -191,7 +191,10 @@ export class Single extends SingleAbstract {
   }
 
   _getRating() {
-    return Promise.resolve(String(this.libraryEntry.Series.rating));
+    if (!this.libraryEntry.Series.rating) {
+      return Promise.resolve('');
+    }
+    return Promise.resolve(String(this.libraryEntry.Series.rating.toFixed(0)));
   }
 
   async _update() {
