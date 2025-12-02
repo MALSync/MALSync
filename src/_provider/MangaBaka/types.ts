@@ -170,45 +170,43 @@ export interface BakaSeries {
     anilist: {
       id: number | null;
       rating: number | null;
+      rating_normalized: number | null;
       [k: string]: unknown;
     };
     anime_planet?: {
       id: string | null;
       rating: number | null;
+      rating_normalized: number | null;
       [k: string]: unknown;
     };
     anime_news_network: {
       id: number | null;
       rating: number | null;
+      rating_normalized: number | null;
       [k: string]: unknown;
     };
     kitsu: {
       id: number | null;
       rating: number | null;
+      rating_normalized: number | null;
       [k: string]: unknown;
     };
     manga_updates: {
       id: string | null;
       rating: number | null;
+      rating_normalized: number | null;
       [k: string]: unknown;
     };
-    mangadex?: {
-      id: {
-        [k: string]: unknown;
-      };
-      rating: {
-        [k: string]: unknown;
-      };
-      [k: string]: unknown;
-    } | null;
     my_anime_list: {
       id: number | null;
       rating: number | null;
+      rating_normalized: number | null;
       [k: string]: unknown;
     };
     shikimori?: {
       id: number | null;
       rating: number | null;
+      rating_normalized: number | null;
       [k: string]: unknown;
     };
     [k: string]: unknown;
