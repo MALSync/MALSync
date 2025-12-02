@@ -39,14 +39,9 @@ export const urls = {
 export async function call(
   url,
   sData: any = {},
-  asParameter = false,
-  method: 'GET' | 'POST' = 'GET',
+  method: 'GET' | 'POST' | 'DELETE' | 'PATCH' = 'GET',
   login = true,
 ) {
-  if (asParameter) {
-    url += `?${new URLSearchParams(Object.entries(sData))}`;
-    sData = undefined;
-  }
   logger.m('api').log(method, url, sData);
 
   const headers: any = {
@@ -67,7 +62,7 @@ export async function call(
     .xhr(method, {
       url,
       headers,
-      data: sData,
+      data: JSON.stringify(sData),
     })
     .then(async response => {
       const res = parseJson(response.responseText);
