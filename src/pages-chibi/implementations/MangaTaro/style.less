@@ -1,22 +1,39 @@
 @import './../pages';
 
-@activeEp: #f973161a;
-@boxBackground: #27272acc;
+@activeEp: hsl(var(--twc-orange-400) / var(--twc-orange-400-opacity, 1)) !important;
+@highlightStyle: 1;
+@boxBackground: hsl(var(--twc-neutral-800) / 0.8);
+
 #malp {
   margin-top: 10px;
   padding-top: 10px;
   .malp-group-label {
     color: #e4e4e7;
   }
-  #malRating {
-    color: hsl(var(--twc-orange-400) / var(--twc-orange-400-opacity, var(--tw-text-opacity)));
+  #MalData .malp-group {
+    #malRating {
+      color: @activeEp;
+      background-color: hsl(var(--twc-orange-500) / 10%) !important;
+    }
+    #malRating:hover {
+      background-color: hsl(var(--twc-orange-500) / 30%) !important;
+      transition-duration: 0.3s;
+    }
+    .malp-group-field:hover,
+    .malp-group-value-section:hover,
+    .malp-group-value-section:focus-within {
+      transition-duration: 0.3s;
+      background-color: hsl(
+        var(--twc-neutral-700) / var(--twc-neutral-700-opacity, var(--tw-bg-opacity))
+      ) !important;
+      option {
+        background-color: hsl(
+          var(--twc-neutral-700) / var(--twc-neutral-700-opacity, var(--tw-bg-opacity))
+        ) !important;
+      }
+    }
   }
-  .malp-group-value,
-  #malStatus,
-  #malUserRating,
-  #malEpisodes,
-  #malVolumes,
-  #malEpisodes {
-    color: #d4d4d8;
-  }
+}
+.mal-sync-active:hover.hover\:bg-neutral-700\/30:hover {
+  background-color: hsl(var(--twc-orange-500) / 10%);
 }
