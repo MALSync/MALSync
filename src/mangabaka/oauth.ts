@@ -25,7 +25,7 @@ function generateUrl() {
 
   const scopes = ['library.read', 'library.write', 'openid', 'profile'];
   sessionStorage.setItem(state, challenge);
-  const url = `https://mangabaka.dev/auth/oauth2/authorize?response_type=code&client_id=${clientId}&scope=${scopes.join('+')}&redirect_uri=${redirectUri}&state=${state}&code_challenge=${challenge}&code_challenge_method=plain`;
+  const url = `https://mangabaka.org/auth/oauth2/authorize?response_type=code&client_id=${clientId}&scope=${scopes.join('+')}&redirect_uri=${redirectUri}&state=${state}&code_challenge=${challenge}&code_challenge_method=plain`;
   $('.card-text.succ').prepend(
     j.html(`<a class="btn btn-outline-light" href="${url}">Start Authentication</a>`),
   );
@@ -52,7 +52,7 @@ async function getRefreshToken() {
   if (!challenge) throw 'No challenge found';
   return api.request
     .xhr('POST', {
-      url: 'https://mangabaka.dev/auth/oauth2/token',
+      url: 'https://mangabaka.org/auth/oauth2/token',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

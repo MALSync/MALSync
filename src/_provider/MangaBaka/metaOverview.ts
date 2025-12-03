@@ -8,7 +8,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
     this.logger = this.logger.m('MangaBaka');
-    if (url.match(/mangabaka\.dev\/\d*(\/|$)/i)) {
+    if (url.match(/mangabaka\.(dev|org)\/\d*(\/|$)/i)) {
       this.type = 'manga';
       this.malId = NaN;
       this.bakaId = Number(utils.urlPart(url, 3));
@@ -218,7 +218,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       data.genres_v2.forEach(i => {
         gen.push({
           text: i.name,
-          url: `https://mangabaka.dev/search?genre=${i.name}`,
+          url: `https://mangabaka.org/search?genre=${i.name}`,
         });
       });
       this.meta.info.push({
@@ -350,7 +350,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             }
 
             links[relationType].links.push({
-              url: `https://mangabaka.dev/${series.id}`,
+              url: `https://mangabaka.org/${series.id}`,
               title,
               type: 'manga',
               id: series.id,

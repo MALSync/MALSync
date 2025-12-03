@@ -10,7 +10,7 @@ export const logger = con.m('MangaBaka', '#ff66aa');
 
 export const urls = {
   userInfo() {
-    return 'https://mangabaka.dev/auth/oauth2/userinfo';
+    return 'https://mangabaka.org/auth/oauth2/userinfo';
   },
   series(id: number | string) {
     return `${apiDomain}/v1/series/${id}`;
