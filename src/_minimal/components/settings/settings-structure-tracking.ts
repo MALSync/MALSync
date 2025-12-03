@@ -45,7 +45,7 @@ export function allProviders() {
   if (secondaryMode) {
     secondaryOptions = options.filter(el => el[secondaryMode]);
   }
-  console.log({ secondaryMode, secondaryOptions });
+
   return {
     primary: options,
     secondary: secondaryOptions,
