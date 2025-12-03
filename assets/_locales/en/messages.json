@@ -853,6 +853,10 @@
             }
         }
     },
+    "settings_splitTracking": {
+        "message": "Split Tracking",
+        "description": "Option to use different providers for anime and manga tracking"
+    },
     "settings_LocalSync": {
         "message": "Local storage fallback",
         "description": "Option to activate the local storage fallback sync"

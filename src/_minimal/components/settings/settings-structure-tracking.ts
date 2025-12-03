@@ -6,22 +6,83 @@ import SettingsDisabledWebsites from './settings-disabled-websites.vue';
 import SettingsGroup from './settings-group.vue';
 import SettingsHr from './settings-hr.vue';
 import { localStore } from '../../../utils/localStore';
+import type { SyncTypes } from '../../../_provider/helper';
 
-export function providerOptions(mode: 'default' | 'secondary' | 'short' = 'default') {
-  const options = [
-    { title: 'MyAnimeList', value: 'MAL' },
-    { title: 'AniList', value: 'ANILIST' },
-    { title: 'Kitsu', value: 'KITSU' },
-    { title: 'Simkl', value: 'SIMKL' },
-    { title: 'Shikimori', value: 'SHIKI' },
-    { title: 'MyAnimeList (API) [WORSE]', value: 'MALAPI' },
+type ProviderOption = {
+  title: string;
+  value: SyncTypes;
+  anime: boolean;
+  manga: boolean;
+  short: boolean;
+};
+
+export function allProviders() {
+  const options: ProviderOption[] = [
+    { title: 'MyAnimeList', value: 'MAL', anime: true, manga: true, short: true },
+    { title: 'AniList', value: 'ANILIST', anime: true, manga: true, short: true },
+    { title: 'Kitsu', value: 'KITSU', anime: true, manga: true, short: true },
+    { title: 'MangaBaka', value: 'MANGABAKA', anime: false, manga: true, short: true },
+    { title: 'Simkl', value: 'SIMKL', anime: true, manga: false, short: true },
+    { title: 'Shikimori', value: 'SHIKI', anime: true, manga: true, short: true },
+    { title: 'MyAnimeList (API) [WORSE]', value: 'MALAPI', anime: true, manga: true, short: false },
   ];
-  const modeTypes = {
-    default: ['MAL', 'ANILIST', 'KITSU', 'SIMKL', 'SHIKI', 'MALAPI'],
-    secondary: ['MAL', 'ANILIST', 'KITSU'],
-    short: ['MAL', 'ANILIST', 'KITSU', 'SIMKL', 'SHIKI'],
+
+  const currentMode = api.settings.get('syncMode') as SyncTypes;
+  const currentOption = options.find(o => o.value === currentMode)!;
+  const splitTracking = api.settings.get('splitTracking');
+
+  let secondaryMode: null | 'anime' | 'manga' = null;
+
+  if (!currentOption.manga) {
+    secondaryMode = 'manga';
+  } else if (!currentOption.anime) {
+    secondaryMode = 'anime';
+  } else if (splitTracking) {
+    secondaryMode = 'manga';
+  }
+
+  let secondaryOptions: ProviderOption[] = [];
+  if (secondaryMode) {
+    secondaryOptions = options.filter(el => el[secondaryMode]);
+  }
+  console.log({ secondaryMode, secondaryOptions });
+  return {
+    primary: options,
+    secondary: secondaryOptions,
+    secondaryMode,
   };
-  return options.filter(o => modeTypes[mode].includes(o.value));
+}
+
+export function providerSecondaryMode() {
+  const providers = allProviders();
+  return providers.secondaryMode;
+}
+
+export function providerOptions(mode: 'primary' | 'secondary' = 'primary', short = false) {
+  const providers = allProviders();
+
+  let optionsList = mode === 'primary' ? providers.primary : providers.secondary;
+
+  if (short) {
+    optionsList = optionsList.filter(o => o.short);
+  }
+
+  return optionsList.map(o => ({
+    title: o.title,
+    value: o.value,
+  }));
+}
+
+export function providerTitle(mode: 'primary' | 'secondary' = 'primary') {
+  const secondaryMode = providerSecondaryMode();
+  if (mode === 'primary' && !secondaryMode) {
+    return api.storage.lang('settings_Mode');
+  }
+  let type = secondaryMode;
+  if (mode === 'primary') {
+    type = secondaryMode === 'anime' ? 'manga' : 'anime';
+  }
+  return `${api.storage.lang('settings_Mode')} (${api.storage.lang(type === 'anime' ? 'Anime' : 'Manga')})`;
 }
 
 export const trackingSimple: ConfObj[] = [
@@ -33,7 +94,7 @@ export const trackingSimple: ConfObj[] = [
   {
     key: 'login',
     title: () => api.storage.lang('kitsuClass_authentication_Login'),
-    condition: () => api.settings.get('syncMode') === 'SIMKL',
+    condition: () => Boolean(providerSecondaryMode()),
     props: {
       option: 'syncModeSimkl',
     },
@@ -41,31 +102,40 @@ export const trackingSimple: ConfObj[] = [
   },
   {
     key: 'syncMode',
-    title: () => api.storage.lang('settings_Mode'),
+    title: () => providerTitle('primary'),
     change: () => {
       utils.clearCache();
       if (api.type === 'webextension') localStore.clear();
     },
-    props: {
+    props: () => ({
       component: 'dropdown',
       option: 'syncMode',
       props: {
-        options: providerOptions('default'),
+        options: providerOptions('primary'),
       },
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'syncModeSimkl',
-    title: () => `${api.storage.lang('Manga')} ${api.storage.lang('settings_Mode')}`,
-    condition: () => api.settings.get('syncMode') === 'SIMKL',
+    title: () => providerTitle('secondary'),
+    condition: () => Boolean(providerSecondaryMode()),
     change: () => utils.clearCache(),
-    props: {
+    props: () => ({
       component: 'dropdown',
       option: 'syncModeSimkl',
       props: {
         options: providerOptions('secondary'),
       },
+    }),
+    component: SettingsGeneral,
+  },
+  {
+    key: 'splitTracking',
+    title: () => api.storage.lang('settings_splitTracking'),
+    props: {
+      component: 'checkbox',
+      option: 'splitTracking',
     },
     component: SettingsGeneral,
   },
