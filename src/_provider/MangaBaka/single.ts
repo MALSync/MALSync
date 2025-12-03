@@ -29,7 +29,7 @@ export class Single extends SingleAbstract {
   authenticationUrl = authenticationUrl;
 
   protected handleUrl(url) {
-    if (url.match(/mangabaka\.dev\/\d*(\/|$)/i)) {
+    if (url.match(/mangabaka\.(dev|org)\/\d*(\/|$)/i)) {
       this.type = 'manga';
       this.ids.baka = Number(utils.urlPart(url, 3));
       return;
@@ -226,7 +226,7 @@ export class Single extends SingleAbstract {
       }
     }
 
-    this.displayUrl = `https://mangabaka.dev/${seriesEntry.id}`;
+    this.displayUrl = `https://mangabaka.org/${seriesEntry.id}`;
 
     let json: BakaLibraryEntry | null;
     try {
