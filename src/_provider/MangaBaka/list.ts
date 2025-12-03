@@ -13,8 +13,8 @@ export class UserList extends ListAbstract {
     console.log(json);
     return {
       username: json.name,
-      picture: 'https://mangabaka.dev/images/logo.png',
-      href: `https://mangabaka.dev/u/${json.preferred_username}`,
+      picture: 'https://mangabaka.org/images/logo.png',
+      href: `https://mangabaka.org/u/${json.preferred_username}`,
     };
   }
 
@@ -116,7 +116,7 @@ export class UserList extends ListAbstract {
         cacheKey: el.Series.source.my_anime_list.id || `mangabaka:${el.series_id}`,
         type: this.listType,
         title: el.Series.title,
-        url: `https://mangabaka.dev/${el.series_id}`,
+        url: `https://mangabaka.org/${el.series_id}`,
         score: el.rating,
         watchedEp: el.progress_chapter,
         readVol: el.progress_volume,
