@@ -26,7 +26,7 @@ const comp = {
     option: 'syncMode',
     labelSection: false,
     props: {
-      options: providerOptions('short'),
+      options: providerOptions('primary', true),
       ignoreSelect: true,
     },
   },
