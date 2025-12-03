@@ -1,3 +1,4 @@
+import { urlToSlug } from '../utils/slugs';
 import * as helper from './helper';
 import { Cache } from '../utils/Cache';
 
@@ -13,7 +14,13 @@ export function getSingle(url: string) {
   if (/^local:\/\//i.test(url)) {
     return new LocalSingle(url);
   }
-  const syncMode = helper.getSyncMode(url);
+
+  const slug = urlToSlug(url);
+  if (!slug.path) {
+    throw new Error(`URL not supported: ${url}`);
+  }
+
+  const syncMode = helper.getSyncMode(slug.path.type);
   if (syncMode === 'MAL') {
     return new MalSingle(url);
   }
