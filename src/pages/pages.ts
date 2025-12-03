@@ -16,7 +16,6 @@ import { AnimeOdcinki } from './AnimeOdcinki/main';
 import { serimanga } from './serimanga/main';
 import { mangadenizi } from './mangadenizi/main';
 import { moeclip } from './moeclip/main';
-import { mangalivre } from './mangalivre/main';
 import { tmofans } from './tmofans/main';
 import { JapScan } from './JapScan/main';
 import { Hulu } from './Hulu/main';
@@ -128,7 +127,6 @@ export const pages = {
   serimanga,
   mangadenizi,
   moeclip,
-  mangalivre,
   tmofans,
   JapScan,
   Hulu,
