@@ -1,3 +1,4 @@
+import { parse as mdParse } from 'marked';
 import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
@@ -76,7 +77,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private description(data: BakaSeries) {
-    if (data.description) this.meta.description = data.description;
+    if (data.description) this.meta.description = mdParse(data.description) as string;
   }
 
   private image(data: BakaSeries) {

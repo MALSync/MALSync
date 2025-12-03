@@ -78,7 +78,7 @@
             v-dompurify-html="cleanDescription"
             class="description-html"
             dir="auto"
-            :class="{ preLine: !cleanDescription.includes('<br') }"
+            :class="{ preLine: !cleanDescription.match(/<(br|p)/) }"
           />
         </Description>
       </Section>
