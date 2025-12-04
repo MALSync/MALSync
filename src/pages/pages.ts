@@ -30,7 +30,6 @@ import { OtakuFR } from './OtakuFR/main';
 import { mangatx } from './mangatx/main';
 import { manhuafast } from './manhuafast/main';
 import { TRanimeizle } from './TRanimeizle/main';
-import { AnimeStreamingFR } from './AnimeStreamingFR/main';
 import { Furyosociety } from './Furyosociety/main';
 import { AnimeId } from './AnimeId/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
@@ -141,7 +140,6 @@ export const pages = {
   mangatx,
   manhuafast,
   TRanimeizle,
-  AnimeStreamingFR,
   Furyosociety,
   AnimeId,
   MyAnimeListVideo,
