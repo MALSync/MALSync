@@ -182,7 +182,7 @@ export class Single extends SingleAbstract {
     return Number(this.libraryEntry.Series.final_volume) || 0;
   }
 
-  _getDisplayUrl() {//TODO: Check
+  _getDisplayUrl() {
     return this.displayUrl !== '' && this.displayUrl !== null ? this.displayUrl : this.url;
   }
 
