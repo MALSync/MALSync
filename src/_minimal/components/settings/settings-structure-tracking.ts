@@ -1,6 +1,5 @@
 import {
   getProviderOption,
-  halfProviders,
   providerOptions,
   providerSecondaryMode,
   providerTitle,
