@@ -53,7 +53,7 @@ export function getProviderOption(value: SyncTypes) {
 
 export function allProviders() {
   const currentMode = api.settings.get('syncMode') as SyncTypes;
-  const currentOption = providers.find(o => o.value === currentMode)!;
+  const currentOption = Object.values(providers).find(o => o.value === currentMode)!;
   const splitTracking = api.settings.get('splitTracking');
 
   let secondaryMode: null | 'anime' | 'manga' = null;
@@ -68,11 +68,11 @@ export function allProviders() {
 
   let secondaryOptions: ProviderOption[] = [];
   if (secondaryMode) {
-    secondaryOptions = providers.filter(el => el[secondaryMode]);
+    secondaryOptions = Object.values(providers).filter(el => el[secondaryMode]);
   }
 
   return {
-    primary: providers,
+    primary: Object.values(providers),
     secondary: secondaryOptions,
     secondaryMode,
   };
