@@ -1,6 +1,0 @@
-{
-  "search": "https://beta.animestreamingfr.fr/catalogue/search?query={searchtermPlus}",
-  "urls": {
-    "match": ["*://*.animestreamingfr.fr/*"]
-  }
-}
