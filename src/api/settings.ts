@@ -114,6 +114,9 @@ export const settingsObj = {
     malToken: '',
     malRefresh: '',
 
+    mangabakaToken: '',
+    mangabakaIdToken: '',
+
     shikiToken: '',
     shikiOptions: {
       locale: 'ru',
