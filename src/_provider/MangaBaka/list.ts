@@ -105,7 +105,7 @@ export class UserList extends ListAbstract {
     const newData = [] as listElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
-      // TODO: Title handling
+
       const item = await this.fn({
         uid: el.series_id,
         malId: el.Series.source.my_anime_list.id || null,
@@ -120,7 +120,7 @@ export class UserList extends ListAbstract {
         score: el.rating,
         watchedEp: el.progress_chapter,
         readVol: el.progress_volume,
-        totalEp: Number(el.Series.total_chapters) || 0, // TODO: Should this not be finished chapters?
+        totalEp: Number(el.Series.total_chapters) || 0,
         totalVol: Number(el.Series.final_volume) || 0,
         status: bakaStateToState(el.state!),
         startDate: el.start_date,
@@ -129,7 +129,7 @@ export class UserList extends ListAbstract {
         image: el.Series.cover.x150.x2 || '',
         imageLarge: el.Series.cover.x350.x2 || '',
         tags: el.note || '',
-        airingState: '', // TODO:
+        airingState: el.Series.status || '',
       });
 
       if (el.read_link) {
