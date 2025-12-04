@@ -222,3 +222,9 @@ export interface LibraryResponse {
   pagination: BakaPagination;
   data: BakaLibraryEntry[];
 }
+
+export interface SearchResponse {
+  status: number;
+  pagination: BakaPagination;
+  data: BakaSeries[];
+}
