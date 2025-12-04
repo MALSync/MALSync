@@ -4,6 +4,7 @@ import { MetaOverview as MalMeta } from './MyAnimeList_hybrid/metaOverview';
 import { MetaOverview as MalApiMeta } from './MyAnimeList_api/metaOverview';
 import { MetaOverview as AniMeta } from './AniList/metaOverview';
 import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
+import { MetaOverview as MangaBakaMeta } from './MangaBaka/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';
 import { MetaOverview as ShikiMeta } from './Shikimori/metaOverview';
 
@@ -20,6 +21,9 @@ export function getOverview(url, type, syncMode = '') {
   }
   if (syncMode === 'KITSU') {
     return new KitsuMeta(url);
+  }
+  if (syncMode === 'MANGABAKA') {
+    return new MangaBakaMeta(url);
   }
   if (syncMode === 'SIMKL') {
     return new SimklMeta(url);

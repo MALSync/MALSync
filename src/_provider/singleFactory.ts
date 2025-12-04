@@ -4,8 +4,9 @@ import { Cache } from '../utils/Cache';
 
 import { Single as MalSingle } from './MyAnimeList_hybrid/single';
 import { Single as MalApiSingle } from './MyAnimeList_api/single';
-import { Single as SnilistSingle } from './AniList/single';
-import { Single as SitsuSingle } from './Kitsu/single';
+import { Single as AnilistSingle } from './AniList/single';
+import { Single as KitsuSingle } from './Kitsu/single';
+import { Single as MangaBakaSingle } from './MangaBaka/single';
 import { Single as SimklSingle } from './Simkl/single';
 import { Single as ShikiSingle } from './Shikimori/single';
 import { Single as LocalSingle } from './Local/single';
@@ -28,10 +29,13 @@ export function getSingle(url: string) {
     return new MalApiSingle(url);
   }
   if (syncMode === 'ANILIST') {
-    return new SnilistSingle(url);
+    return new AnilistSingle(url);
   }
   if (syncMode === 'KITSU') {
-    return new SitsuSingle(url);
+    return new KitsuSingle(url);
+  }
+  if (syncMode === 'MANGABAKA') {
+    return new MangaBakaSingle(url);
   }
   if (syncMode === 'SIMKL') {
     return new SimklSingle(url);
