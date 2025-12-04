@@ -15,6 +15,10 @@ export const urls = {
   series(id: number | string) {
     return `${apiDomain}/v1/series/${id}`;
   },
+  search(keyword: string, page = 1, limit = 50) {
+    const data: any = { q: keyword, page, limit };
+    return `${apiDomain}/v1/series/search?${new URLSearchParams(Object.entries(data))}`;
+  },
   seriesByAniId(id: number | string) {
     return `${apiDomain}/v1/source/anilist/${id}`;
   },
