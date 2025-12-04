@@ -1,13 +1,26 @@
 export type SyncTypes = 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI' | 'MALAPI' | 'MANGABAKA';
 
 export function getSyncMode(type = '') {
-  const mode = api.settings.get('syncMode');
-  //
-  if (mode === 'SIMKL' && type === 'manga') {
-    return api.settings.get('syncModeSimkl');
+  const primaryMode = api.settings.get('syncMode') as SyncTypes;
+  const secondaryMode = api.settings.get('syncModeSimkl') as SyncTypes;
+  const primaryProvider = getProviderOption(primaryMode);
+
+  if (type === 'anime' && !primaryProvider.anime) {
+    return secondaryMode;
   }
-  //
-  return mode;
+  if (type === 'manga' && !primaryProvider.manga) {
+    return secondaryMode;
+  }
+  if (
+    type === 'manga' &&
+    primaryProvider.manga &&
+    primaryProvider.anime &&
+    api.settings.get('splitTracking')
+  ) {
+    return secondaryMode;
+  }
+
+  return primaryMode;
 }
 
 type ProviderOption = {
@@ -18,20 +31,24 @@ type ProviderOption = {
   short: boolean;
 };
 
-const providers: ProviderOption[] = [
-  { title: 'MyAnimeList', value: 'MAL', anime: true, manga: true, short: true },
-  { title: 'AniList', value: 'ANILIST', anime: true, manga: true, short: true },
-  { title: 'Kitsu', value: 'KITSU', anime: true, manga: true, short: true },
-  { title: 'MangaBaka', value: 'MANGABAKA', anime: false, manga: true, short: true },
-  { title: 'Simkl', value: 'SIMKL', anime: true, manga: false, short: true },
-  { title: 'Shikimori', value: 'SHIKI', anime: true, manga: true, short: true },
-  { title: 'MyAnimeList (API) [WORSE]', value: 'MALAPI', anime: true, manga: true, short: false },
-];
+const providers: { [key in SyncTypes]: ProviderOption } = {
+  MAL: { title: 'MyAnimeList', value: 'MAL', anime: true, manga: true, short: true },
+  ANILIST: { title: 'AniList', value: 'ANILIST', anime: true, manga: true, short: true },
+  KITSU: { title: 'Kitsu', value: 'KITSU', anime: true, manga: true, short: true },
+  MANGABAKA: { title: 'MangaBaka', value: 'MANGABAKA', anime: false, manga: true, short: true },
+  SIMKL: { title: 'Simkl', value: 'SIMKL', anime: true, manga: false, short: true },
+  SHIKI: { title: 'Shikimori', value: 'SHIKI', anime: true, manga: true, short: true },
+  MALAPI: {
+    title: 'MyAnimeList (API) [WORSE]',
+    value: 'MALAPI',
+    anime: true,
+    manga: true,
+    short: false,
+  },
+};
 
-export function halfProviders() {
-  return providers
-    .filter(el => (el.anime && !el.manga) || (!el.anime && el.manga))
-    .map(o => o.value);
+export function getProviderOption(value: SyncTypes) {
+  return providers[value];
 }
 
 export function allProviders() {

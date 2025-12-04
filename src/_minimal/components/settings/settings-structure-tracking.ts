@@ -1,4 +1,10 @@
-import { halfProviders, providerOptions, providerSecondaryMode, providerTitle } from '../../../_provider/helper';
+import {
+  getProviderOption,
+  halfProviders,
+  providerOptions,
+  providerSecondaryMode,
+  providerTitle,
+} from '../../../_provider/helper';
 import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
 import SettingsLogin from './settings-login.vue';
@@ -56,7 +62,9 @@ export const trackingSimple: ConfObj[] = [
   {
     key: 'splitTracking',
     title: () => api.storage.lang('settings_splitTracking'),
-    condition: () => !halfProviders().includes(api.settings.get('syncMode')),
+    condition: () =>
+      getProviderOption(api.settings.get('syncMode')).anime &&
+      getProviderOption(api.settings.get('syncMode')).manga,
     props: {
       component: 'checkbox',
       option: 'splitTracking',
