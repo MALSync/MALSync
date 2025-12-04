@@ -1,3 +1,4 @@
+import { halfProviders, providerOptions, providerSecondaryMode, providerTitle } from '../../../_provider/helper';
 import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
 import SettingsLogin from './settings-login.vue';
@@ -6,84 +7,6 @@ import SettingsDisabledWebsites from './settings-disabled-websites.vue';
 import SettingsGroup from './settings-group.vue';
 import SettingsHr from './settings-hr.vue';
 import { localStore } from '../../../utils/localStore';
-import type { SyncTypes } from '../../../_provider/helper';
-
-type ProviderOption = {
-  title: string;
-  value: SyncTypes;
-  anime: boolean;
-  manga: boolean;
-  short: boolean;
-};
-
-export function allProviders() {
-  const options: ProviderOption[] = [
-    { title: 'MyAnimeList', value: 'MAL', anime: true, manga: true, short: true },
-    { title: 'AniList', value: 'ANILIST', anime: true, manga: true, short: true },
-    { title: 'Kitsu', value: 'KITSU', anime: true, manga: true, short: true },
-    { title: 'MangaBaka', value: 'MANGABAKA', anime: false, manga: true, short: true },
-    { title: 'Simkl', value: 'SIMKL', anime: true, manga: false, short: true },
-    { title: 'Shikimori', value: 'SHIKI', anime: true, manga: true, short: true },
-    { title: 'MyAnimeList (API) [WORSE]', value: 'MALAPI', anime: true, manga: true, short: false },
-  ];
-
-  const currentMode = api.settings.get('syncMode') as SyncTypes;
-  const currentOption = options.find(o => o.value === currentMode)!;
-  const splitTracking = api.settings.get('splitTracking');
-
-  let secondaryMode: null | 'anime' | 'manga' = null;
-
-  if (!currentOption.manga) {
-    secondaryMode = 'manga';
-  } else if (!currentOption.anime) {
-    secondaryMode = 'anime';
-  } else if (splitTracking) {
-    secondaryMode = 'manga';
-  }
-
-  let secondaryOptions: ProviderOption[] = [];
-  if (secondaryMode) {
-    secondaryOptions = options.filter(el => el[secondaryMode]);
-  }
-
-  return {
-    primary: options,
-    secondary: secondaryOptions,
-    secondaryMode,
-  };
-}
-
-export function providerSecondaryMode() {
-  const providers = allProviders();
-  return providers.secondaryMode;
-}
-
-export function providerOptions(mode: 'primary' | 'secondary' = 'primary', short = false) {
-  const providers = allProviders();
-
-  let optionsList = mode === 'primary' ? providers.primary : providers.secondary;
-
-  if (short) {
-    optionsList = optionsList.filter(o => o.short);
-  }
-
-  return optionsList.map(o => ({
-    title: o.title,
-    value: o.value,
-  }));
-}
-
-export function providerTitle(mode: 'primary' | 'secondary' = 'primary') {
-  const secondaryMode = providerSecondaryMode();
-  if (mode === 'primary' && !secondaryMode) {
-    return api.storage.lang('settings_Mode');
-  }
-  let type = secondaryMode;
-  if (mode === 'primary') {
-    type = secondaryMode === 'anime' ? 'manga' : 'anime';
-  }
-  return `${api.storage.lang('settings_Mode')} (${api.storage.lang(type === 'anime' ? 'Anime' : 'Manga')})`;
-}
 
 export const trackingSimple: ConfObj[] = [
   {
@@ -133,6 +56,7 @@ export const trackingSimple: ConfObj[] = [
   {
     key: 'splitTracking',
     title: () => api.storage.lang('settings_splitTracking'),
+    condition: () => !halfProviders().includes(api.settings.get('syncMode')),
     props: {
       component: 'checkbox',
       option: 'splitTracking',
