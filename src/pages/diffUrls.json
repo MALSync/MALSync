@@ -116,9 +116,23 @@
     "iframe": []
   },
   "0.12.2": {
+    "Anime365": [
+      "*://smotret-anime.org/*",
+      "*://smotret-anime.online/*",
+      "*://smotret-anime.com/*",
+      "*://anime365.ru/*",
+      "*://anime-365.ru/*",
+      "*://smotret-anime.ru/*",
+      "*://smotretanime.ru/*",
+      "*://smotret-anime.app/*"
+    ],
     "iframe": [
+      "*://smotret-anime.ru/translations/embed/*",
+      "*://smotretanime.ru/translations/embed/*",
+      "*://smotret-anime.app/translations/embed/*",
       "*://christopheruntilpoint.com/e/*",
       "*://walterprettytheir.com/e/*",
+      "*://megaup22.online/e/*",
       "*://player.anoboye.com/watch/*"
     ]
   }
