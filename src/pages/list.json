@@ -90,11 +90,6 @@
     "name": "moeclip"
   },
   {
-    "domain": "https://mangalivre.net",
-    "type": "manga",
-    "name": "Mangá Livre"
-  },
-  {
     "domain": "https://zonatmo.com",
     "type": "manga",
     "name": "tmofans"
@@ -163,11 +158,6 @@
     "domain": "https://www.tranimeizle.net/",
     "type": "anime",
     "name": "TRanimeizle"
-  },
-  {
-    "domain": "https://beta.animestreamingfr.fr",
-    "type": "anime",
-    "name": "AnimeStreamingFR"
   },
   {
     "domain": "https://furyosociety.com/",
@@ -978,5 +968,20 @@
     "domain": "https://comic-walker.com/",
     "type": "manga",
     "name": "ComicWalker"
+  },
+  {
+    "domain": "https://mangalivre.tv",
+    "type": "manga",
+    "name": "MangaLivreTV"
+  },
+  {
+    "domain": "https://sanascan.com",
+    "type": "manga",
+    "name": "SanaScans"
+  },
+  {
+    "domain": "https://rezoscan.org",
+    "type": "manga",
+    "name": "RezoScans"
   }
 ]
