@@ -126,6 +126,9 @@
       "*://smotretanime.ru/*",
       "*://smotret-anime.app/*"
     ],
+    "AnimeSama": [
+      "*://anime-sama.eu/*"
+    ],
     "iframe": [
       "*://smotret-anime.ru/translations/embed/*",
       "*://smotretanime.ru/translations/embed/*",
