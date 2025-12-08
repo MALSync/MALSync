@@ -349,7 +349,11 @@ export class SearchClass {
 
     let pageUrl = res.malUrl;
 
-    if (!pageUrl && res.aniUrl && getSyncMode(this.getNormalizedType()) === 'ANILIST') {
+    if (
+      !pageUrl &&
+      res.aniUrl &&
+      ['ANILIST', 'MANGABAKA'].includes(getSyncMode(this.getNormalizedType()))
+    ) {
       pageUrl = res.aniUrl;
     }
 
