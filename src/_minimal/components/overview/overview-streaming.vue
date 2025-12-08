@@ -71,7 +71,7 @@ const placeholder = computed(() => {
 });
 
 const parameters = computed(() => {
-  if (props.cacheKey) {
+  if (props.cacheKey || props.title) {
     return {
       type: props.type,
       cacheKey: props.cacheKey,
