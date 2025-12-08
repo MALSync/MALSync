@@ -94,6 +94,7 @@
     <template v-if="breakpoint === 'desktop' || (!totalLoading && !singleRequest.loading)">
       <HR />
       <Section class="stream-section">
+        <Header :spacer="true" class="head">{{ lang('overview_Streaming') }}</Header>
         <OverviewStreaming
           :type="props.type as 'anime'"
           :cache-key="

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header :spacer="true" class="head">{{ lang('overview_Streaming') }}</Header>
     <div v-if="streamRequest.loading || !streamRequest.data" class="grid">
       <FormButton v-for="b in placeholder" :key="b.name" class="placeholder-link btn">
         <TextIcon icon="sync">{{ b.name }}</TextIcon>
