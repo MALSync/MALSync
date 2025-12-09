@@ -185,6 +185,7 @@ const options = (el: Quicklink) => {
 }
 
 .btn {
+  display: flex !important;
   min-height: 34px;
   .__breakpoint-popup__({
     min-height: 32px;
