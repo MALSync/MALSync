@@ -162,6 +162,21 @@ export function getAlternativeTitles(series: BakaSeries): string[] {
   return titles;
 }
 
+export function getImageUrl(series: BakaSeries, size: 'small' | 'large'): string {
+  let url;
+  if (size === 'small') {
+    url = series.cover?.x150?.x2;
+  } else {
+    url = series.cover?.x350?.x2;
+  }
+
+  if (url) {
+    return `${url}.avif`;
+  }
+
+  return '';
+}
+
 export function timestampToDate(timestamp: string | null): startFinishDate {
   if (typeof timestamp !== 'string') {
     return null;
