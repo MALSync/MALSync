@@ -12,9 +12,11 @@ export class UserList extends ListAbstract {
     const json = (await call(urls.userInfo())) as { name: string; preferred_username: string };
     console.log(json);
     return {
-      username: json.name,
+      username: json.name || this.name,
       picture: 'https://mangabaka.org/images/logo.png',
-      href: `https://mangabaka.org/u/${json.preferred_username}`,
+      href: json.preferred_username
+        ? `https://mangabaka.org/u/${json.preferred_username}`
+        : 'https://mangabaka.org',
     };
   }
 
