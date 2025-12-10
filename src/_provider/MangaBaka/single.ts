@@ -6,6 +6,7 @@ import {
   bakaStateToState,
   call,
   dateToTimestamp,
+  getImageUrl,
   logger,
   stateToBakaState,
   timestampToDate,
@@ -187,7 +188,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return this.libraryEntry.Series.cover.x350.x2 || '';
+    return getImageUrl(this.libraryEntry.Series, 'large');
   }
 
   _getRating() {
