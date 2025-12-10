@@ -4,7 +4,7 @@ let lastFocus;
 
 function main() {
   if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
-  const mangabaka = new MangaBakaClass(window.location.href);
+  const mangabaka = new MangaBakaClass();
   messageMangaBakaListener(mangabaka);
 
   const linkEl = document.createElement('link');

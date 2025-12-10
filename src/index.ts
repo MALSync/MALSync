@@ -36,7 +36,7 @@ async function main() {
     const kitsu = new KitsuClass(window.location.href);
   } else if (utils.isDomainMatching(window.location.href, 'mangabaka.org')) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const mangabaka = new MangaBakaClass(window.location.href);
+    const mangabaka = new MangaBakaClass();
   } else if (utils.isDomainMatching(window.location.href, 'simkl.com')) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const simkl = new SimklClass(window.location.href);
