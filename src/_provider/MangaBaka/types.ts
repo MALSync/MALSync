@@ -228,3 +228,13 @@ export interface SearchResponse {
   pagination: BakaPagination;
   data: BakaSeries[];
 }
+
+export type ElementReadyEvent = Event & {
+  detail: {
+    element_id: string;
+    name: 'after-links';
+    series: BakaSeries;
+    list_config: any;
+    user: any;
+  };
+};
