@@ -1,4 +1,4 @@
-import type { ElementReadyEvent } from '../_provider/MangaBaka/types';
+import type { BakaSeries, ElementReadyEvent } from '../_provider/MangaBaka/types';
 import { getAlternativeTitles } from '../_provider/MangaBaka/helper';
 import { createApp } from '../utils/Vue';
 import quickLinksUi from './quickLinksUi.vue';
@@ -17,7 +17,9 @@ document.addEventListener('mb:element:ready', v => {
 export class MangaBakaClass {
   protected readonly primaryCardClass = '[data-browser-extension-injection="primary-card"]';
 
-  constructor(public url: string) {
+  protected series: BakaSeries | null = null;
+
+  constructor() {
     $(document).ready(() => {
       elementEventListener = (e: ElementReadyEvent) => this.elementEvent(e);
       elementEventBuffer.forEach(event => {
@@ -27,13 +29,14 @@ export class MangaBakaClass {
     });
   }
 
+  getUrl() {
+    return this.series?.id ? `https://mangabaka.org/${this.series?.id}` : '';
+  }
+
   getMalUrl() {
-    return (
-      j
-        .$(`${this.primaryCardClass} [data-umami-event-source="my-anime-list"]`)
-        .first()
-        ?.attr('href') || ''
-    );
+    return this.series?.source.my_anime_list.id
+      ? `https://myanimelist.net/manga/${this.series.source.my_anime_list.id}`
+      : '';
   }
 
   getImage() {
@@ -41,7 +44,7 @@ export class MangaBakaClass {
   }
 
   getTitle() {
-    return j.$('h1.text-primary').text() || '';
+    return this.series?.title || '';
   }
 
   elementEvent(event: ElementReadyEvent) {
@@ -50,6 +53,7 @@ export class MangaBakaClass {
       if (!cacheKey && event.detail.series.source.anilist.id) {
         cacheKey = `anilist:${event.detail.series.source.anilist.id}`;
       }
+      this.series = event.detail.series;
       this.injectQuickLinks(
         j.$(`#${event.detail.element_id}`),
         event.detail.series.title,
