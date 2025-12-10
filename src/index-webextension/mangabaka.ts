@@ -31,12 +31,12 @@ function messageMangaBakaListener(mangabaka: MangaBakaClass) {
   chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     if (msg.action === 'TabMalUrl') {
       if (Date.now() - lastFocus < 3 * 1000) {
-        con.info('miniMAL');
-        let url = mangabaka.url;
+        let url = mangabaka.getUrl();
 
         if (api.settings.get('syncMode') !== 'MANGABAKA' && mangabaka.getMalUrl()) {
           url = mangabaka.getMalUrl();
         }
+        con.info('miniMAL', url);
 
         sendResponse({
           url,
