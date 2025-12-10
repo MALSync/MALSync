@@ -25,6 +25,9 @@ module.exports = {
   kitsu: {
     match: ['*://kitsu.app/*'],
   },
+  mangabaka: {
+    match: ['*://mangabaka.org/*'],
+  },
   simkl: {
     match: ['*://simkl.com/*'],
   },

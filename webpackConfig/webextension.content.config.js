@@ -30,6 +30,11 @@ let entry = {
     '..',
     'src/index-webextension/kitsu.ts',
   ),
+  'mangabaka-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/mangabaka.ts',
+  ),
   'simkl-script': path.join(
     __dirname,
     '..',
