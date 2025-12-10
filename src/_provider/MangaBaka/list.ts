@@ -1,6 +1,6 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import { status } from '../definitions';
-import { bakaStateToState, call, stateToBakaState, urls, authenticationUrl } from './helper';
+import { bakaStateToState, call, stateToBakaState, urls, authenticationUrl, getImageUrl } from './helper';
 import type { BakaLibraryEntry, BakaSorting, LibraryResponse } from './types';
 
 export class UserList extends ListAbstract {
@@ -128,8 +128,8 @@ export class UserList extends ListAbstract {
         startDate: el.start_date,
         finishDate: el.finish_date,
         rewatchCount: el.number_of_rereads || 0,
-        image: el.Series.cover.x150.x2 || '',
-        imageLarge: el.Series.cover.x350.x2 || '',
+        image: getImageUrl(el.Series, 'small'),
+        imageLarge: getImageUrl(el.Series, 'large'),
         tags: el.note || '',
         airingState: el.Series.status || '',
       });

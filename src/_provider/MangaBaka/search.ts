@@ -1,5 +1,5 @@
 import { searchInterface } from '../definitions';
-import { call, getAlternativeTitles, urls } from './helper';
+import { call, getAlternativeTitles, getImageUrl, urls } from './helper';
 import type { SearchResponse } from './types';
 
 export const search: searchInterface = async function (
@@ -23,8 +23,8 @@ export const search: searchInterface = async function (
             : null,
         );
       },
-      image: item.cover.x150.x2 || '',
-      imageLarge: item.cover.x350.x2 || '',
+      image: getImageUrl(item, 'small'),
+      imageLarge: getImageUrl(item, 'large'),
       media_type: item.type
         ? (item.type.charAt(0) + item.type.slice(1).toLowerCase()).replace('_', ' ')
         : '',

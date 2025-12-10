@@ -3,7 +3,7 @@ import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbs
 import { UrlNotSupportedError } from '../Errors';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 import { BakaSeries, RelatedSeries } from './types';
-import { call, getAlternativeTitles, urls } from './helper';
+import { call, getAlternativeTitles, getImageUrl, urls } from './helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -81,7 +81,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private image(data: BakaSeries) {
-    if (data.cover.x350.x2) this.meta.image = data.cover.x350.x2;
+    this.meta.image = getImageUrl(data, 'large');
   }
 
   private alternativeTitle(data: BakaSeries) {
