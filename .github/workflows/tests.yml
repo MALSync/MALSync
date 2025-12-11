@@ -21,6 +21,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: test-placeholder
         SIMKL_API_SECRET: test-placeholder
+        MANGABAKA_API_ID: test-placeholder
+        MANGABAKA_API_SECRET: test-placeholder
   lint:
     runs-on: ubuntu-latest
     steps:

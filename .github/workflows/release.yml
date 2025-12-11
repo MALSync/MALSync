@@ -21,6 +21,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -51,6 +53,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -80,6 +84,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -109,6 +115,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -136,6 +144,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -163,6 +173,8 @@ jobs:
         APP_TARGET: firefox
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package

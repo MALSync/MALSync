@@ -250,7 +250,8 @@ export function syncItem(slave, pageType) {
         if (typeof slave.diff.watchedEp !== 'undefined')
           singleClass.setEpisode(slave.diff.watchedEp);
         if (typeof slave.diff.readVol !== 'undefined') singleClass.setVolume(slave.diff.readVol);
-        if (typeof slave.diff.status !== 'undefined') singleClass.setStatus(normalizeStatus(slave.diff.status));
+        if (typeof slave.diff.status !== 'undefined')
+          singleClass.setStatus(normalizeStatus(slave.diff.status));
         // 'null' is valid for start/finish date
         if (slave.diff.startDate !== undefined) singleClass.setStartDate(slave.diff.startDate);
         if (slave.diff.finishDate !== undefined) singleClass.setFinishDate(slave.diff.finishDate);
