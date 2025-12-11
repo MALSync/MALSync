@@ -79,7 +79,7 @@ export class Single extends SingleAbstract {
 
   _setStartDate(startDate) {
     if (!startDate) {
-      this.libraryEntry.start_date = undefined;
+      this.libraryEntry.start_date = null;
       return;
     }
     this.libraryEntry.start_date = dateToTimestamp(startDate)!;
@@ -92,7 +92,7 @@ export class Single extends SingleAbstract {
 
   _setFinishDate(finishDate) {
     if (!finishDate) {
-      this.libraryEntry.finish_date = undefined;
+      this.libraryEntry.finish_date = null;
       return;
     }
     this.libraryEntry.finish_date = dateToTimestamp(finishDate)!;
@@ -274,6 +274,9 @@ export class Single extends SingleAbstract {
 
     json.Series = seriesEntry;
     this.libraryEntry = json;
+
+    if (!this.libraryEntry.start_date) this.libraryEntry.start_date = undefined;
+    if (!this.libraryEntry.finish_date) this.libraryEntry.finish_date = undefined;
 
     if (!this._authenticated) throw new NotAutenticatedError('Not Authenticated');
   }

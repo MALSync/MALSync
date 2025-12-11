@@ -40,8 +40,8 @@ export interface BakaLibraryEntry {
   number_of_rereads?: number;
   progress_chapter?: number;
   progress_volume?: number;
-  start_date?: string;
-  finish_date?: string;
+  start_date?: string | null;
+  finish_date?: string | null;
   id: number;
   series_id: number;
   user_id: string;
