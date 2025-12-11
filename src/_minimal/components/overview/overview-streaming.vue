@@ -38,7 +38,6 @@
 
 <script lang="ts" setup>
 import { computed, PropType } from 'vue';
-import Header from '../header.vue';
 import FormButton from '../form/form-button.vue';
 import TextIcon from '../text-icon.vue';
 import FormDropdown from '../form/form-dropdown.vue';
