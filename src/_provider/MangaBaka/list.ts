@@ -7,6 +7,7 @@ import {
   urls,
   authenticationUrl,
   getImageUrl,
+  timestampToDate,
 } from './helper';
 import type { BakaLibraryEntry, BakaSorting, LibraryResponse } from './types';
 
@@ -130,14 +131,14 @@ export class UserList extends ListAbstract {
         type: this.listType,
         title: el.Series.title,
         url: `https://mangabaka.org/${el.series_id}`,
-        score: el.rating,
+        score: el.rating ? Math.round(el.rating / 10) : 0,
         watchedEp: el.progress_chapter,
         readVol: el.progress_volume,
         totalEp: Number(el.Series.total_chapters) || 0,
         totalVol: Number(el.Series.final_volume) || 0,
         status: bakaStateToState(el.state!),
-        startDate: el.start_date,
-        finishDate: el.finish_date,
+        startDate: el.start_date ? timestampToDate(el.start_date) : null,
+        finishDate: el.finish_date ? timestampToDate(el.finish_date) : null,
         rewatchCount: el.number_of_rereads || 0,
         image: getImageUrl(el.Series, 'small'),
         imageLarge: getImageUrl(el.Series, 'large'),
