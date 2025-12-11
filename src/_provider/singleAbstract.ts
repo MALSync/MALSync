@@ -39,6 +39,8 @@ export abstract class SingleAbstract {
 
   protected rewatchingSupport = true;
 
+  protected consideringSupport = false;
+
   protected datesSupport = true;
 
   protected ids = {
@@ -71,6 +73,10 @@ export abstract class SingleAbstract {
 
   public supportsRewatching() {
     return this.rewatchingSupport;
+  }
+
+  public supportsConsidering() {
+    return this.consideringSupport;
   }
 
   public supportsDates() {
@@ -869,6 +875,12 @@ export abstract class SingleAbstract {
       statusEs.push({
         value: definitions.status.Rewatching.toString(),
         label: api.storage.lang(`UI_Status_Rewatching_${this.getType()}`),
+      });
+    }
+    if (this.supportsConsidering()) {
+      statusEs.push({
+        value: definitions.status.Considering.toString(),
+        label: api.storage.lang('UI_Status_Considering'),
       });
     }
 

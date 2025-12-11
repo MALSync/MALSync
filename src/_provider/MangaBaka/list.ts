@@ -1,12 +1,23 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import { status } from '../definitions';
-import { bakaStateToState, call, stateToBakaState, urls, authenticationUrl, getImageUrl } from './helper';
+import {
+  bakaStateToState,
+  call,
+  stateToBakaState,
+  urls,
+  authenticationUrl,
+  getImageUrl,
+} from './helper';
 import type { BakaLibraryEntry, BakaSorting, LibraryResponse } from './types';
 
 export class UserList extends ListAbstract {
   name = 'MangaBaka';
 
   authenticationUrl = authenticationUrl;
+
+  seperateRewatching = true;
+
+  consideringSupport = true;
 
   async getUserObject() {
     const json = (await call(urls.userInfo())) as { name: string; preferred_username: string };

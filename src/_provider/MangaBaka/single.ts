@@ -15,6 +15,8 @@ import {
 import { BakaLibraryEntry, BakaLibraryEntryUpdate, BakaSeries } from './types';
 
 export class Single extends SingleAbstract {
+  consideringSupport = true;
+
   constructor(protected url: string) {
     super(url);
     this.logger = logger;

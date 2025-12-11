@@ -122,6 +122,8 @@ export function bakaStateToState(input: BakaState): status {
       return status.PlanToWatch;
     case 'rereading':
       return status.Rewatching;
+    case 'considering':
+      return status.Considering;
     default:
       throw new Error(`Unhandled Baka State: ${input}`);
   }
@@ -141,6 +143,8 @@ export function stateToBakaState(input: status): BakaState | null {
       return 'plan_to_read';
     case status.Rewatching:
       return 'rereading';
+    case status.Considering:
+      return 'considering';
     case status.All:
       return null;
     default:

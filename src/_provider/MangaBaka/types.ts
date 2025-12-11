@@ -4,7 +4,8 @@ export type BakaState =
   | 'paused'
   | 'plan_to_read'
   | 'reading'
-  | 'rereading';
+  | 'rereading'
+  | 'considering';
 
 export type BakaSorting =
   | 'default'

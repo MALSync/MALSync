@@ -55,6 +55,8 @@ export abstract class ListAbstract {
 
   public seperateRewatching = false;
 
+  public consideringSupport = false;
+
   // Modes
   modes = {
     frontend: false,

@@ -68,5 +68,9 @@ defineProps({
   &.state-23 {
     background: var(--cl-state-23);
   }
+
+  &.state-24 {
+    background: var(--cl-state-24);
+  }
 }
 </style>
