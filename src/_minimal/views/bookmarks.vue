@@ -352,11 +352,11 @@ const sort = computed({
 });
 
 const randomListCache = {};
-async function openRandom(status, type) {
-  const cacheKey = `${status}-${type}`;
+async function openRandom(st, type) {
+  const cacheKey = `${st}-${type}`;
   if (typeof randomListCache[cacheKey] === 'undefined' || !randomListCache[cacheKey].length) {
     utils.flashm('Loading');
-    const listProvider = await getList(status, type);
+    const listProvider = await getList(st, type);
     await listProvider
       .getCompleteList()
       .then(async res => {
