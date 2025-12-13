@@ -90,7 +90,7 @@ export class UserList extends ListAbstract {
     }
 
     this.limit = 100;
-   this.offset = Math.max(1, this.offset)
+    this.offset = Math.max(1, this.offset);
     if (this.modes.frontend && !this.modes.sortAiring) {
       this.limit = 24;
     }
