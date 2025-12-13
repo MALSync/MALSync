@@ -20,13 +20,11 @@ export class MangaBakaClass {
   protected series: BakaSeries | null = null;
 
   constructor() {
-    $(document).ready(() => {
-      elementEventListener = (e: ElementReadyEvent) => this.elementEvent(e);
-      elementEventBuffer.forEach(event => {
-        this.elementEvent(event);
-      });
-      elementEventBuffer = [];
+    elementEventListener = (e: ElementReadyEvent) => this.elementEvent(e);
+    elementEventBuffer.forEach(event => {
+      this.elementEvent(event);
     });
+    elementEventBuffer = [];
   }
 
   getUrl() {
