@@ -374,7 +374,14 @@ export const background = {
   async isEnabled() {
     return api.storage.get('backgroundListSync').then(async function (state) {
       con.info('background list sync state', state);
-      if (state && state.mode === (await api.settings.getAsync('syncMode'))) return true;
+      if (
+        state &&
+        state.mode === (await api.settings.getAsync('syncMode')) &&
+        state.syncModeSimkl === (await api.settings.getAsync('syncModeSimkl')) &&
+        state.splitTracking === (await api.settings.getAsync('splitTracking'))
+      ) {
+        return true;
+      }
       background.disable();
       return false;
     });
@@ -382,6 +389,8 @@ export const background = {
   async enable() {
     return api.storage.set('backgroundListSync', {
       mode: await api.settings.getAsync('syncMode'),
+      syncModeSimkl: await api.settings.getAsync('syncModeSimkl'),
+      splitTracking: await api.settings.getAsync('splitTracking'),
     });
   },
   disable() {
