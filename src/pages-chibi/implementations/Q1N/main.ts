@@ -1,14 +1,14 @@
 import { PageInterface } from '../../pageInterface';
 
 export const Q1N: PageInterface = {
-  name: 'Q1N',
-  domain: ['https://q1n.net'],
+  name: 'Topanimes',
+  domain: ['https://topanimes.net'],
   languages: ['Portuguese'],
   type: 'anime',
   urls: {
     match: ['*://q1n.net/*'],
   },
-  search: 'https://q1n.net/?s={searchtermPlus}',
+  search: 'https://topanimes.net/?s={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
