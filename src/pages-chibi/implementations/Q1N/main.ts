@@ -6,7 +6,7 @@ export const Q1N: PageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   urls: {
-    match: ['*://q1n.net/*'],
+    match: ['*://topanimes.net/*'],
   },
   search: 'https://topanimes.net/?s={searchtermPlus}',
   sync: {
