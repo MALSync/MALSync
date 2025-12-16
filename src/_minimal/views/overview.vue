@@ -323,6 +323,7 @@ const totalLoading = computed(() => {
     .header-title {
       position: relative;
       width: 100%;
+      cursor: text;
 
       .header-synonyms {
         display: none;
