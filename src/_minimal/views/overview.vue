@@ -11,7 +11,11 @@
     </Section>
     <div class="header-section">
       <Section spacer="half">
-        <MediaLink :force-link="true" :href="singleRequest.data?.getDisplayUrl() || ''">
+        <MediaLink
+          :force-link="true"
+          :href="singleRequest.data?.getDisplayUrl() || ''"
+          draggable="false"
+        >
           <Header
             :loading="metaRequest.loading"
             class="header-block"
