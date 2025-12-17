@@ -288,7 +288,7 @@ export abstract class SingleAbstract {
     return this.progress;
   }
 
-  public getProgressFormated() {
+  public getProgressFormatted() {
     const op: {
       label: string;
       key: string;
@@ -325,11 +325,11 @@ export abstract class SingleAbstract {
   }
 
   public getProgressOptions() {
-    return this.getProgressFormated().filter(el => el.state !== 'complete');
+    return this.getProgressFormatted().filter(el => el.state !== 'complete');
   }
 
   public getProgressCompleted() {
-    return this.getProgressFormated().filter(el => el.state === 'complete');
+    return this.getProgressFormatted().filter(el => el.state === 'complete');
   }
 
   private updateProgress = false;
