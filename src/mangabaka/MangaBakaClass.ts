@@ -8,7 +8,7 @@ import { getAlternativeTitles } from '../_provider/MangaBaka/helper';
 import { createApp } from '../utils/Vue';
 import quickLinksUi from './quickLinksUi.vue';
 import { Single } from '../_provider/MangaBaka/single';
-import { Progress } from '../utils/progress';
+import { ProgressRelease } from '../utils/progressRelease';
 
 let elementEventBuffer: BakaDocumentEvents[] = [];
 let elementEventListener: ((v: BakaDocumentEvents) => void) | null = null;
@@ -133,7 +133,7 @@ export class MangaBakaClass {
   ) {
     const isOverview = element.closest(this.primaryCardClass).length > 0;
 
-    let progress: Progress | null = null;
+    let progress: ProgressRelease | null = null;
     if (isOverview) {
       const single = new Single(`https://mangabaka.org/${series.id}`);
       single.forceSeries = series;
@@ -142,17 +142,17 @@ export class MangaBakaClass {
 
       await single.initProgress();
 
-      progress = single.getProgress() as Progress;
+      progress = single.getProgress();
 
       this.single = single;
       this.bufferedProgressListInjects();
     } else {
-      progress = await new Progress(cacheKey as string, 'manga').init();
+      progress = await new ProgressRelease(cacheKey as string, 'manga').init();
     }
 
-    if (progress && progress.isAiring() && progress.getCurrentEpisode()) {
+    if (progress?.isAiring() && progress.progress()?.getCurrentEpisode()) {
       const progressColor =
-        !libraryEntry || progress.getCurrentEpisode() > libraryEntry.progress_chapter!
+        !libraryEntry || progress.progress()!.getCurrentEpisode()! > libraryEntry.progress_chapter!
           ? '--primary'
           : '--success';
 
@@ -163,16 +163,16 @@ export class MangaBakaClass {
         padding: 0 2px;
       `;
 
-      if (progress.getCurrentEpisode() === Number(series.total_chapters)) {
+      if (progress.progress()!.getCurrentEpisode() === Number(series.total_chapters)) {
         element.attr('style', styling);
-        element.attr('title', progress.getAutoText());
+        element.attr('title', progress.progress()!.getAutoText());
       } else {
         styling += 'margin-right: 4px;';
         const progressElement = document.createElement('span');
         progressElement.classList.add('mal-sync-ep-pre');
-        progressElement.title = progress.getAutoText();
+        progressElement.title = progress.progress()!.getAutoText();
         progressElement.style = styling;
-        progressElement.innerText = String(progress.getCurrentEpisode());
+        progressElement.innerText = String(progress.progress()!.getCurrentEpisode());
 
         element.find('.mal-sync-ep-pre').remove();
         // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
