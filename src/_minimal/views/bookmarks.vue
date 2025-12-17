@@ -259,9 +259,9 @@ const formatItem = (item: listElement): bookmarkItem => {
       resItem.streamIcon = utils.favicon(resItem.streamUrl.split('/')[2]);
     }
   }
-  if (item.fn.progress && item.fn.progress.isAiring()) {
-    resItem.progressText = item.fn.progress.getAuto();
-    resItem.progressEp = item.fn.progress.getCurrentEpisode();
+  if (item.fn.progress?.isAiring() && item.fn.progress.progress()) {
+    resItem.progressText = item.fn.progress.progress()!.getAutoText();
+    resItem.progressEp = item.fn.progress.progress()!.getCurrentEpisode() || undefined;
     resItem.progress = item.fn.progress;
   }
   return resItem;
