@@ -113,7 +113,12 @@ export class Progress {
 
   getPredictionText(): string {
     const timestamp = Number(this.getPredictionTimestamp());
-    return timestampToPredictionText(timestamp, this.type);
+    if (Number.isNaN(timestamp)) return '';
+    const dt = new IntlDateTime(Number(timestamp));
+    const time = dt.getRelativeNowText('Progress', { style: 'long' });
+    if (!dt.isValidDate()) return '';
+    if (dt.isNow()) return api.storage.lang('bookmarksItem_now');
+    return api.storage.lang(`prediction_Episode_${this.type}`, [time]);
   }
 
   getLastTimestamp(): number {
@@ -132,7 +137,12 @@ export class Progress {
 
   getLastText(): string {
     const timestamp = Number(this.getLastTimestamp());
-    return timestampToLastText(timestamp, this.type);
+    if (Number.isNaN(timestamp)) return '';
+    const dt = new IntlDateTime(Number(timestamp));
+    const time = dt.getRelativeNowText('Progress', { style: 'long' });
+    if (!dt.isValidDate()) return '';
+    if (dt.isNow()) return api.storage.lang('bookmarksItem_now');
+    return api.storage.lang(`prediction_Last_${this.type}`, [time]);
   }
 
   getAuto(): string {
@@ -144,7 +154,11 @@ export class Progress {
   }
 
   getAutoText(): string {
-    return timestampsToAutoText(this.getPredictionTimestamp(), this.getLastTimestamp(), this.type);
+    const preT = this.getPredictionText();
+    if (preT) return preT;
+    const lastT = this.getLastText();
+    if (lastT) return lastT;
+    return '';
   }
 
   getColor(): string {
@@ -178,42 +192,4 @@ export class Progress {
     }
     return res;
   }
-}
-
-export function timestampToPredictionText(timestamp: number, type: 'anime' | 'manga'): string {
-  if (Number.isNaN(timestamp)) return '';
-  const dt = new IntlDateTime(Number(timestamp));
-  const time = dt.getRelativeNowText('Progress', { style: 'long' });
-  if (!dt.isValidDate()) return '';
-  if (dt.isNow()) return api.storage.lang('bookmarksItem_now');
-  return api.storage.lang(`prediction_Episode_${type}`, [time]);
-}
-
-export function timestampToLastText(timestamp: number, type: 'anime' | 'manga'): string {
-  if (Number.isNaN(timestamp)) return '';
-  const dt = new IntlDateTime(Number(timestamp));
-  const time = dt.getRelativeNowText('Progress', { style: 'long' });
-  if (!dt.isValidDate()) return '';
-  if (dt.isNow()) return api.storage.lang('bookmarksItem_now');
-  return api.storage.lang(`prediction_Last_${type}`, [time]);
-}
-
-export function timestampsToAutoText(
-  predictionTimestamp: number,
-  lastTimestamp: number,
-  type: 'anime' | 'manga',
-): string {
-  const preT = timestampToPredictionText(Number(predictionTimestamp), type);
-  if (preT) return preT;
-  const lastT = timestampToLastText(Number(lastTimestamp), type);
-  if (lastT) return lastT;
-  return '';
-}
-
-export function singleProgressFormattedToAutoText(item: any, type: 'anime' | 'manga'): string {
-  return timestampsToAutoText(
-    item.predicition?.timestamp ? Number(item.predicition.timestamp) : NaN,
-    item.lastEp?.timestamp ? Number(item.lastEp.timestamp) : NaN,
-    type,
-  );
 }

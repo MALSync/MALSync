@@ -78,7 +78,6 @@
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import { singleProgressFormattedToAutoText } from '../../../utils/progress';
 import { Overview } from '../../../_provider/metaOverviewAbstract';
 import { SingleAbstract } from '../../../_provider/singleAbstract';
 import Header from '../header.vue';
@@ -86,7 +85,7 @@ import MediaLink from '../media-link.vue';
 import TextIcon from '../text-icon.vue';
 import { IntlDateTime } from '../../../utils/IntlWrapper';
 
-const props = defineProps({
+defineProps({
   info: {
     type: Array as PropType<Overview['info']>,
     default: () => [],
@@ -98,7 +97,19 @@ const props = defineProps({
 });
 
 function getTitle(item) {
-  return singleProgressFormattedToAutoText(item, props.single ? props.single.getType()! : 'anime');
+  if (item.lastEp && item.lastEp.timestamp) {
+    return new IntlDateTime(Number(item.lastEp.timestamp)).getRelativeNowFriendlyText('Progress', {
+      style: 'long',
+    });
+  }
+  if (item.predicition && item.predicition.timestamp) {
+    return api.storage.lang('prediction_next', [
+      new IntlDateTime(Number(item.predicition.timestamp)).getRelativeNowFriendlyText('Progress', {
+        style: 'long',
+      }),
+    ]);
+  }
+  return '';
 }
 
 function getTimezoneDate(
