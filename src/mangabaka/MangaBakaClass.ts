@@ -1,17 +1,23 @@
-import type { BakaSeries, ElementReadyEvent } from '../_provider/MangaBaka/types';
+import { IntlDateTime } from '../utils/IntlWrapper';
+import type {
+  BakaDocumentEvents,
+  BakaLibraryEntry,
+  BakaSeries,
+} from '../_provider/MangaBaka/types';
 import { getAlternativeTitles } from '../_provider/MangaBaka/helper';
 import { createApp } from '../utils/Vue';
 import quickLinksUi from './quickLinksUi.vue';
+import { Single } from '../_provider/MangaBaka/single';
+import { Progress } from '../utils/progress';
 
-let elementEventBuffer: ElementReadyEvent[] = [];
-let elementEventListener: ((v: ElementReadyEvent) => void) | null = null;
+let elementEventBuffer: BakaDocumentEvents[] = [];
+let elementEventListener: ((v: BakaDocumentEvents) => void) | null = null;
 document.addEventListener('mb:element:ready', v => {
-  con.info('mb:element:ready', v);
   if (!elementEventListener) {
-    elementEventBuffer.push(v as ElementReadyEvent);
+    elementEventBuffer.push(v as BakaDocumentEvents);
     return;
   }
-  elementEventListener(v as ElementReadyEvent);
+  elementEventListener(v as BakaDocumentEvents);
 });
 
 export class MangaBakaClass {
@@ -19,8 +25,10 @@ export class MangaBakaClass {
 
   protected series: BakaSeries | null = null;
 
+  protected single: Single | null = null;
+
   constructor() {
-    elementEventListener = (e: ElementReadyEvent) => this.elementEvent(e);
+    elementEventListener = (e: BakaDocumentEvents) => this.elementEvent(e);
     elementEventBuffer.forEach(event => {
       this.elementEvent(event);
     });
@@ -45,19 +53,31 @@ export class MangaBakaClass {
     return this.series?.title || '';
   }
 
-  elementEvent(event: ElementReadyEvent) {
-    if (event.detail.name === 'after-links') {
+  elementEvent(event: BakaDocumentEvents) {
+    if (['after-links', 'meta-chapter-count'].includes(event.detail.name)) {
       let cacheKey: string | number | null = event.detail.series.source.my_anime_list.id;
       if (!cacheKey && event.detail.series.source.anilist.id) {
         cacheKey = `anilist:${event.detail.series.source.anilist.id}`;
       }
-      this.series = event.detail.series;
-      this.injectQuickLinks(
-        j.$(`#${event.detail.element_id}`),
-        event.detail.series.title,
-        getAlternativeTitles(event.detail.series) || [],
-        cacheKey,
-      );
+
+      if (event.detail.name === 'after-links') {
+        this.series = event.detail.series;
+        this.injectQuickLinks(
+          j.$(`#${event.detail.element_id}`),
+          event.detail.series.title,
+          getAlternativeTitles(event.detail.series) || [],
+          cacheKey,
+        );
+      } else if (event.detail.name === 'meta-chapter-count') {
+        this.injectProgress(
+          j.$(`#${event.detail.element_id}`),
+          event.detail.series,
+          event.detail.library_series,
+          cacheKey,
+        ) as any;
+      }
+    } else if (event.detail.name === 'after-tags') {
+      this.progressListEvent(j.$(`#${event.detail.element_id}`), event.detail.series);
     }
   }
 
@@ -103,5 +123,160 @@ export class MangaBakaClass {
       props: ['to', 'href'],
       template: '<a :href="href || to" rel="noopener"><slot /></a>',
     });
+  }
+
+  async injectProgress(
+    element: JQuery<HTMLElement>,
+    series: BakaSeries,
+    libraryEntry: BakaLibraryEntry | null = null,
+    cacheKey?: string | number | null,
+  ) {
+    const isOverview = element.closest(this.primaryCardClass).length > 0;
+
+    let progress: Progress | null = null;
+    if (isOverview) {
+      const single = new Single(`https://mangabaka.org/${series.id}`);
+      single.forceSeries = series;
+      single.forceLibraryEntry = libraryEntry;
+      await single.update();
+
+      await single.initProgress();
+
+      progress = single.getProgress() as Progress;
+
+      this.single = single;
+      this.bufferedProgressListInjects();
+    } else {
+      progress = await new Progress(cacheKey as string, 'manga').init();
+    }
+
+    if (progress && progress.isAiring() && progress.getCurrentEpisode()) {
+      const progressColor =
+        !libraryEntry || progress.getCurrentEpisode() > libraryEntry.progress_chapter!
+          ? '--primary'
+          : '--success';
+
+      let styling = `
+        background-color: var(${progressColor});
+        color: var(--primary-foreground);
+        border-radius: 3px;
+        padding: 0 2px;
+      `;
+
+      if (progress.getCurrentEpisode() === Number(series.total_chapters)) {
+        element.attr('style', styling);
+        element.attr('title', progress.getAutoText());
+      } else {
+        styling += 'margin-right: 4px;';
+        const progressElement = document.createElement('span');
+        progressElement.classList.add('mal-sync-ep-pre');
+        progressElement.title = progress.getAutoText();
+        progressElement.style = styling;
+        progressElement.innerText = String(progress.getCurrentEpisode());
+
+        element.find('.mal-sync-ep-pre').remove();
+        // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+        element.prepend(progressElement);
+      }
+    }
+  }
+
+  bufferedProgressListInjects: () => void = () => {};
+
+  progressListEvent(element: JQuery<HTMLElement>, series: BakaSeries) {
+    this.bufferedProgressListInjects = () => {
+      this.injectProgressList(element, series);
+    };
+    this.injectProgressList(element, series);
+  }
+
+  injectProgressList(element: JQuery<HTMLElement>, series: BakaSeries) {
+    con.log('injectProgressList', element, series);
+
+    if (!this.single) return;
+    if (this.single.getIds().baka !== series.id) return;
+
+    const progressItems = this.single.getProgressFormatted();
+
+    if (progressItems.length) {
+      const main = document.createElement('div');
+      main.id = 'malsync-progress-list';
+
+      const progress = document.createElement('div');
+
+      const progressTitle = document.createElement('h2');
+      progressTitle.classList = 'text-xl font-semibold';
+      progressTitle.innerText = api.storage.lang('list_sorting_latest_release');
+      progress.appendChild(progressTitle);
+
+      const progressList = document.createElement('div');
+      progressList.classList = 'flex flex-col gap-2 pt-2';
+
+      const badgeStyling =
+        j.$('[data-slot="badge"][class*="bg-secondary"]').first().attr('class') || '';
+
+      progressItems.forEach(item => {
+        if (!item.episode) return;
+
+        const itemElement = document.createElement('div');
+        itemElement.classList = 'flex gap-2';
+
+        const itemTitle = document.createElement('span');
+        itemTitle.innerText = item.label;
+        itemTitle.classList = 'ms-progress-title';
+        itemElement.appendChild(itemTitle);
+
+        const episodeString =
+          item.state === 'complete'
+            ? api.storage.lang('prediction_complete')
+            : `Ch ${item.episode}`;
+        const episodeElement = document.createElement('span');
+        episodeElement.innerText = ` ${episodeString}`;
+        episodeElement.classList = `ms-progress-episode ${badgeStyling}`;
+        episodeElement.title = this.getProgressTitle(item);
+        itemElement.appendChild(episodeElement);
+
+        if (item.dropped) {
+          const droppedElement = document.createElement('span');
+          droppedElement.innerText = 'warning';
+          droppedElement.classList = 'material-icons';
+          droppedElement.title = api.storage.lang('UI_Status_Dropped');
+          itemElement.appendChild(droppedElement);
+        }
+
+        progressList.appendChild(itemElement);
+      });
+
+      progress.appendChild(progressList);
+
+      main.appendChild(progress);
+
+      element.addClass('malsync-injected').removeClass('hidden');
+      element.find('#malsync-progress-list').remove();
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+      element.append(main);
+    }
+  }
+
+  getProgressTitle(item) {
+    if (item.lastEp && item.lastEp.timestamp) {
+      return new IntlDateTime(Number(item.lastEp.timestamp)).getRelativeNowFriendlyText(
+        'Progress',
+        {
+          style: 'long',
+        },
+      );
+    }
+    if (item.predicition && item.predicition.timestamp) {
+      return api.storage.lang('prediction_next', [
+        new IntlDateTime(Number(item.predicition.timestamp)).getRelativeNowFriendlyText(
+          'Progress',
+          {
+            style: 'long',
+          },
+        ),
+      ]);
+    }
+    return '';
   }
 }

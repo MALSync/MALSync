@@ -230,12 +230,25 @@ export interface SearchResponse {
   data: BakaSeries[];
 }
 
-export type ElementReadyEvent = Event & {
+export type AfterLinksEvent = Event & {
   detail: {
     element_id: string;
-    name: 'after-links';
+    name: 'after-links' | 'after-tags';
     series: BakaSeries;
     list_config: any;
     user: any;
   };
 };
+
+export type RatingsEvent = Event & {
+  detail: {
+    element_id: string;
+    name: 'ratings' | 'meta-chapter-count';
+    series: BakaSeries;
+    library_series: BakaLibraryEntry;
+    list_config: any;
+    user: any;
+  };
+};
+
+export type BakaDocumentEvents = AfterLinksEvent | RatingsEvent;

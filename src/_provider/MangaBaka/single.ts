@@ -200,12 +200,18 @@ export class Single extends SingleAbstract {
     return Promise.resolve(String(this.libraryEntry.Series.rating.toFixed(0)));
   }
 
+  public forceSeries: BakaSeries | null = null;
+
+  public forceLibraryEntry: BakaLibraryEntry | null = null;
+
   async _update() {
     this._authenticated = true;
 
     // TODO: Implement series caching. Fill cache on list fetch and related fetch?
     let seriesEntry: BakaSeries;
-    if (this.ids.baka) {
+    if (this.forceSeries) {
+      seriesEntry = this.forceSeries;
+    } else if (this.ids.baka) {
       seriesEntry = (await call(urls.series(this.ids.baka))).data as BakaSeries;
     } else if (this.ids.ani) {
       seriesEntry = (await call(urls.seriesByAniId(this.ids.ani))).data.series[0] as BakaSeries;
@@ -231,19 +237,24 @@ export class Single extends SingleAbstract {
 
     this.displayUrl = `https://mangabaka.org/${seriesEntry.id}`;
 
-    let json: BakaLibraryEntry | null;
-    try {
-      json = (await call(urls.libraryEntry(seriesEntry.id))).data as BakaLibraryEntry;
-    } catch (e) {
-      if (e instanceof NotAutenticatedError) {
-        this._authenticated = false;
-        this.logger.m('Api').info(e.message);
-        json = null;
-      } else if (e instanceof NotFoundError) {
-        this.logger.m('Api').info(e.message);
-        json = null;
-      } else {
-        throw e;
+    let json: BakaLibraryEntry | null = null;
+
+    if (this.forceLibraryEntry || this.forceSeries) {
+      json = this.forceLibraryEntry;
+    } else {
+      try {
+        json = (await call(urls.libraryEntry(seriesEntry.id))).data as BakaLibraryEntry;
+      } catch (e) {
+        if (e instanceof NotAutenticatedError) {
+          this._authenticated = false;
+          this.logger.m('Api').info(e.message);
+          json = null;
+        } else if (e instanceof NotFoundError) {
+          this.logger.m('Api').info(e.message);
+          json = null;
+        } else {
+          throw e;
+        }
       }
     }
 
