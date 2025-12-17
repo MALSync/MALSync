@@ -147,7 +147,7 @@ export class UserList extends ListAbstract {
       });
 
       if (el.read_link) {
-        item.options.u = el.read_link;
+        item.options!.u = el.read_link;
       }
 
       newData.push(item);

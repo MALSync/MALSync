@@ -2,15 +2,54 @@ import { Cache } from '../utils/Cache';
 import type { listElement } from '../_provider/listAbstract';
 import { xhrResponseI } from '../api/messageInterface';
 
+export type ProgressLanguageType = 'sub' | 'dub';
+
+export type ProgressState = 'complete' | 'ongoing' | 'discontinued' | 'upcoming';
+
+export interface ProgressItem {
+  id: string;
+  source: string;
+  group?: string;
+  /** ISO-639-1 */
+  lang: string;
+  total?: number;
+  state?: ProgressState;
+  stateInfo?: string;
+  type: ProgressLanguageType;
+  lastEp?: {
+    total: number;
+    timestamp?: number;
+  };
+  predicition?: {
+    timestamp: number;
+    probability: 'low' | 'medium' | 'high';
+  };
+  releaseInterval?: {
+    mean: number;
+    sd: number;
+    n: number;
+    pi: number;
+  };
+  dayOfTheWeek?: {
+    mean: number;
+    sd: number;
+    n: number;
+    ci: number;
+  };
+}
+
 export interface releaseItemInterface {
   timestamp: number;
-  value: any;
+  value: ProgressItem | null;
   finished: boolean;
   mode: string;
 }
 
-export async function predictionXhrGET(type: string, apiCacheKey: number | string | null) {
-  if (!apiCacheKey) return {};
+export async function predictionXhrGET(
+  type: string,
+  apiCacheKey: number | string | null,
+): Promise<ProgressItem[]> {
+  if (!apiCacheKey) return [];
   const response = await api.request.xhr(
     'GET',
     `https://api.malsync.moe/nc/mal/${type}/${apiCacheKey}/pr`,
