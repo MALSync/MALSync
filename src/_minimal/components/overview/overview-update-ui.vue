@@ -40,8 +40,8 @@
                   <MediaProgressPill
                     v-if="progress"
                     :watched-ep="Number(episode)"
-                    :episode="progress.getCurrentEpisode()"
-                    :text="progress.getPredictionText()"
+                    :episode="progress.progress()!.getCurrentEpisode()!"
+                    :text="progress.progress()!.getPredictionText()"
                   />
                 </div>
               </template>
@@ -286,7 +286,12 @@ const progress = computed(() => {
   if (!props.single) return false;
   const progressEl = props.single.getProgress();
   if (!progressEl) return false;
-  if (!progressEl.isAiring() || !progressEl.getCurrentEpisode()) return false;
+  if (
+    !progressEl.isAiring() ||
+    !progressEl.progress() ||
+    !progressEl.progress()!.getCurrentEpisode()
+  )
+    return false;
   return progressEl;
 });
 

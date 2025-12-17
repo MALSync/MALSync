@@ -1,7 +1,7 @@
 import * as definitions from './definitions';
 
-import { Progress } from '../utils/progress';
-import { predictionXhrGET } from '../background/releaseProgressUtils';
+import { ProgressRelease } from '../utils/progressRelease';
+import { predictionXhrGET, ProgressItem } from '../background/releaseProgressUtils';
 
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
@@ -259,13 +259,13 @@ export abstract class SingleAbstract {
     this.options = null;
   }
 
-  protected progress: false | Progress = false;
+  protected progress?: ProgressRelease;
 
-  protected progressXhr;
+  protected progressXhr?: ProgressItem[];
 
   public async initProgress() {
     const xhr = await predictionXhrGET(this.getType()!, this.getApiCacheKey());
-    return new Progress(this.getCacheKey(), this.getType()!)
+    return new ProgressRelease(this.getCacheKey(), this.getType()!)
       .init({
         uid: this.getCacheKey(),
         apiCacheKey: this.getApiCacheKey(),
@@ -284,7 +284,7 @@ export abstract class SingleAbstract {
   }
 
   public getProgress() {
-    if (!this.progress) return false;
+    if (!this.progress) return null;
     return this.progress;
   }
 
