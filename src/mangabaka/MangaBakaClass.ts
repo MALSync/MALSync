@@ -1,4 +1,3 @@
-import { IntlDateTime } from '../utils/IntlWrapper';
 import type {
   BakaDocumentEvents,
   BakaLibraryEntry,
@@ -8,7 +7,7 @@ import { getAlternativeTitles } from '../_provider/MangaBaka/helper';
 import { createApp } from '../utils/Vue';
 import quickLinksUi from './quickLinksUi.vue';
 import { Single } from '../_provider/MangaBaka/single';
-import { Progress } from '../utils/progress';
+import { Progress, singleProgressFormattedToAutoText } from '../utils/progress';
 
 let elementEventBuffer: BakaDocumentEvents[] = [];
 let elementEventListener: ((v: BakaDocumentEvents) => void) | null = null;
@@ -233,7 +232,7 @@ export class MangaBakaClass {
         const episodeElement = document.createElement('span');
         episodeElement.innerText = ` ${episodeString}`;
         episodeElement.classList = `ms-progress-episode ${badgeStyling}`;
-        episodeElement.title = this.getProgressTitle(item);
+        episodeElement.title = singleProgressFormattedToAutoText(item, 'manga');
         itemElement.appendChild(episodeElement);
 
         if (item.dropped) {
@@ -256,27 +255,5 @@ export class MangaBakaClass {
       // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
       element.append(main);
     }
-  }
-
-  getProgressTitle(item) {
-    if (item.lastEp && item.lastEp.timestamp) {
-      return new IntlDateTime(Number(item.lastEp.timestamp)).getRelativeNowFriendlyText(
-        'Progress',
-        {
-          style: 'long',
-        },
-      );
-    }
-    if (item.predicition && item.predicition.timestamp) {
-      return api.storage.lang('prediction_next', [
-        new IntlDateTime(Number(item.predicition.timestamp)).getRelativeNowFriendlyText(
-          'Progress',
-          {
-            style: 'long',
-          },
-        ),
-      ]);
-    }
-    return '';
   }
 }
