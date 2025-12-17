@@ -317,7 +317,7 @@ export abstract class SingleAbstract {
           dropped: el.state === 'dropped' || el.state === 'discontinued',
           episode: el.lastEp && el.lastEp.total ? el.lastEp.total : 0,
           lastEp: el.lastEp,
-          predicition: el.prediction,
+          predicition: el.predicition,
         });
       });
     }
