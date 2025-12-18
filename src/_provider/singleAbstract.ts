@@ -9,6 +9,7 @@ import { returnYYYYMMDD } from '../utils/general';
 import { errorMessage as _errorMessage } from './Errors';
 import { point10 } from './ScoreMode/point10';
 import { SyncTypes } from './helper';
+import { Progress } from '../utils/progress';
 
 Object.seal(emitter);
 
@@ -289,47 +290,16 @@ export abstract class SingleAbstract {
   }
 
   public getProgressFormatted() {
-    const op: {
-      label: string;
-      key: string;
-      state: 'complete' | 'ongoing' | 'dropped' | 'discontinued';
-      type: 'dub' | 'sub';
-      dropped: boolean;
-      episode: number;
-      lastEp?: {
-        total: number;
-        timestamp?: number;
-      };
-      predicition?: {
-        timestamp: number;
-        probability: 'low' | 'medium' | 'high';
-      };
-    }[] = [];
-    const languageNames = new Intl.DisplayNames('en', { type: 'language' });
-    con.log(this.progressXhr);
-    if (this.progressXhr && Object.keys(this.progressXhr).length) {
-      this.progressXhr.forEach(el => {
-        op.push({
-          type: el.type,
-          key: el.id,
-          state: el.state,
-          label: languageNames.of(el.lang.replace(/^jp$/, 'ja')) || el.lang,
-          dropped: el.state === 'dropped' || el.state === 'discontinued',
-          episode: el.lastEp && el.lastEp.total ? el.lastEp.total : 0,
-          lastEp: el.lastEp,
-          predicition: el.prediction,
-        });
-      });
-    }
-    return op;
+    if (!this.progressXhr || !this.progressXhr.length) return [];
+    return this.progressXhr.map(el => new Progress(el, this.getType()!));
   }
 
   public getProgressOptions() {
-    return this.getProgressFormatted().filter(el => el.state !== 'complete');
+    return this.getProgressFormatted().filter(el => el.getState() !== 'complete');
   }
 
   public getProgressCompleted() {
-    return this.getProgressFormatted().filter(el => el.state === 'complete');
+    return this.getProgressFormatted().filter(el => el.getState() === 'complete');
   }
 
   private updateProgress = false;

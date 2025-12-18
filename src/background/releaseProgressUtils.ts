@@ -4,7 +4,7 @@ import { xhrResponseI } from '../api/messageInterface';
 
 export type ProgressLanguageType = 'sub' | 'dub';
 
-export type ProgressState = 'complete' | 'ongoing' | 'discontinued' | 'upcoming';
+export type ProgressState = 'complete' | 'ongoing' | 'discontinued' | 'upcoming' | 'dropped';
 
 export interface ProgressItem {
   id: string;

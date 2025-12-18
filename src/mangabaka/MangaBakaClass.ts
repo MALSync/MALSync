@@ -216,27 +216,27 @@ export class MangaBakaClass {
         j.$('[data-slot="badge"][class*="bg-secondary"]').first().attr('class') || '';
 
       progressItems.forEach(item => {
-        if (!item.episode) return;
+        if (!item.getCurrentEpisode()) return;
 
         const itemElement = document.createElement('div');
         itemElement.classList = 'flex gap-2';
 
         const itemTitle = document.createElement('span');
-        itemTitle.innerText = item.label;
+        itemTitle.innerText = item.getLanguageLabel();
         itemTitle.classList = 'ms-progress-title';
         itemElement.appendChild(itemTitle);
 
         const episodeString =
-          item.state === 'complete'
+          item.getState() === 'complete'
             ? api.storage.lang('prediction_complete')
-            : `Ch ${item.episode}`;
+            : `${api.storage.lang('settings_listsync_progress_manga').replace(':', '')} ${item.getCurrentEpisode()}`;
         const episodeElement = document.createElement('span');
         episodeElement.innerText = ` ${episodeString}`;
         episodeElement.classList = `ms-progress-episode ${badgeStyling}`;
-        episodeElement.title = this.getProgressTitle(item);
+        episodeElement.title = item.getAutoText();
         itemElement.appendChild(episodeElement);
 
-        if (item.dropped) {
+        if (item.isDropped()) {
           const droppedElement = document.createElement('span');
           droppedElement.innerText = 'warning';
           droppedElement.classList = 'material-icons';
@@ -256,27 +256,5 @@ export class MangaBakaClass {
       // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
       element.append(main);
     }
-  }
-
-  getProgressTitle(item) {
-    if (item.lastEp && item.lastEp.timestamp) {
-      return new IntlDateTime(Number(item.lastEp.timestamp)).getRelativeNowFriendlyText(
-        'Progress',
-        {
-          style: 'long',
-        },
-      );
-    }
-    if (item.predicition && item.predicition.timestamp) {
-      return api.storage.lang('prediction_next', [
-        new IntlDateTime(Number(item.predicition.timestamp)).getRelativeNowFriendlyText(
-          'Progress',
-          {
-            style: 'long',
-          },
-        ),
-      ]);
-    }
-    return '';
   }
 }
