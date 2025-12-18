@@ -93,12 +93,18 @@ export class Progress {
     return '';
   }
 
-  getAutoText() {
-    const preT = this.getPredictionText();
-    if (preT) return preT;
-    const lastT = this.getLastText();
-    if (lastT) return lastT;
-    return '';
+  getAutoText(sourceInfo = false) {
+    const textParts = [] as string[];
+    if (this.getPredictionText()) {
+      textParts.push(this.getPredictionText());
+    } else if (this.getLastText()) {
+      textParts.push(this.getLastText());
+    }
+    if (sourceInfo) {
+      const sourceInfoText = this.getSourceInfo();
+      if (sourceInfoText) textParts.push(sourceInfoText);
+    }
+    return textParts.join(' ');
   }
 
   getLang() {
@@ -128,5 +134,21 @@ export class Progress {
   getId() {
     if (!this.progressItem) return null;
     return this.progressItem.id;
+  }
+
+  getSource() {
+    if (!this.progressItem) return null;
+    return this.progressItem.source;
+  }
+
+  getGroup() {
+    if (!this.progressItem) return null;
+    return this.progressItem.group;
+  }
+
+  getSourceInfo() {
+    if (this.getGroup()) return `(${this.getGroup()})`;
+    if (this.getSource()) return `(${this.getSource()})`;
+    return '';
   }
 }
