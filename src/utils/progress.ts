@@ -100,4 +100,33 @@ export class Progress {
     if (lastT) return lastT;
     return '';
   }
+
+  getLang() {
+    return this.progressItem?.lang;
+  }
+
+  getLangType() {
+    return this.progressItem?.type;
+  }
+
+  getLanguageLabel() {
+    const lang = this.getLang();
+    if (!lang) return '';
+    const languageService = new Intl.DisplayNames('en', { type: 'language' });
+    return languageService.of(lang.replace(/^jp$/, 'ja')) || lang;
+  }
+
+  getState() {
+    if (!this.progressItem) return null;
+    return this.progressItem.state;
+  }
+
+  isDropped() {
+    return this.getState() === 'dropped' || this.getState() === 'discontinued';
+  }
+
+  getId() {
+    if (!this.progressItem) return null;
+    return this.progressItem.id;
+  }
 }
