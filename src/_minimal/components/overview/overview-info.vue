@@ -58,7 +58,9 @@
             v-for="link in single.getProgressOptions()"
             :key="link.getId()!"
             class="ongoing-item"
-            :title="link.getAutoText()"
+            :title="link.getAutoText(true)"
+            :data-source="link.getSource()"
+            :data-group="link.getGroup()"
           >
             <span v-if="single.getType() !== 'manga'" class="material-icons">
               {{ link.getLangType() === 'sub' ? 'subtitles' : 'record_voice_over' }}
