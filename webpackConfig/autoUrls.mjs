@@ -81,6 +81,9 @@ async function bato() {
   let response = await fetch('https://rentry.co/batoto');
   if (!response.ok) {
     response = await fetch('https://rentry.org/batoto');
+    if (!response.ok) {
+      response = await fetch('https://batotomirrors.pages.dev');
+    }
   }
   const body = await response.text();
 
@@ -88,7 +91,8 @@ async function bato() {
   //remove links that are still in development (removes everything after .warning class and itself)
   $('.warning').nextAll().remove().end().remove();
 
-  const urls = $('.external') // all links have "external" class
+  const linkSelector = response.url.includes('batotomirrors') ? '.domain-link' : '.external';
+  const urls = $(linkSelector) // use .external in case rentry still works
     .map((i, el) => new URL($(el).attr('href')))
     .get();
 
