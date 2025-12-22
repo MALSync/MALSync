@@ -1,0 +1,44 @@
+{
+    "title": "RageScans",
+    "url": "https://ragescans.com",
+    "testCases": [
+      {
+        "url": "https://ragescans.com/the-crown-prince-that-sells-medicine-chapter-74/",
+        "expected": {
+          "sync": true,
+          "title": "The Crown Prince That Sells Medicine",
+          "identifier": "the-crown-prince-that-sells-medicine",
+          "overviewUrl": "https://ragescans.com/manga/the-crown-prince-that-sells-medicine/",
+          "episode": 74,
+          "nextEpUrl": "https://ragescans.com/the-crown-prince-that-sells-medicine-chapter-75/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://ragescans.com/the-crown-prince-that-sells-medicine-chapter-81/",
+        "expected": {
+          "sync": true,
+          "title": "The Crown Prince That Sells Medicine",
+          "identifier": "the-crown-prince-that-sells-medicine",
+          "overviewUrl": "https://ragescans.com/manga/the-crown-prince-that-sells-medicine/",
+          "episode": 81,
+          "nextEpUrl": null,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://ragescans.com/manga/the-crown-prince-that-sells-medicine/",
+        "expected": {
+          "sync": false,
+          "title": "The Crown Prince That Sells Medicine",
+          "identifier": "the-crown-prince-that-sells-medicine",
+          "image": "https://ragescans.com/wp-content/uploads/2025/09/upscalemedia-transformed-1.webp",
+          "uiSelector": true,
+          "epList": {
+            "32": "https://ragescans.com/the-crown-prince-that-sells-medicine-chapter-32/",
+            "1": "https://ragescans.com/the-crown-prince-that-sells-medicine-chapter-1/"
+          }
+        }
+      }
+    ]
+  }
