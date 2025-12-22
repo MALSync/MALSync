@@ -78,19 +78,18 @@ async function animekai() {
 }
 
 async function bato() {
-  let response = await fetch('https://rentry.co/batoto');
-  if (!response.ok) {
-    response = await fetch('https://rentry.org/batoto');
-  }
+  const response = await fetch('https://batotomirrors.pages.dev');
   const body = await response.text();
-
   const $ = cheerio.load(body);
-  //remove links that are still in development (removes everything after .warning class and itself)
-  $('.warning').nextAll().remove().end().remove();
 
-  const urls = $('.external') // all links have "external" class
-    .map((i, el) => new URL($(el).attr('href')))
-    .get();
+  // Bato url gave JS to list their bato endpoint when fetch() it.
+  const urlJS = $('script')
+    .map((i, el) => $(el).html())
+    .get()
+    .find(text => text.includes('const domains'));
+
+  const ExtractUrl = [...urlJS.matchAll(/url:\s*"(.*?)"/g)];
+  const urls = ExtractUrl.map(m => new URL(m[1]));
 
   for (const url of urls) {
     addChibiUrls('bato', ['*://' + url.hostname + '/*'], 'mainV2.ts');
