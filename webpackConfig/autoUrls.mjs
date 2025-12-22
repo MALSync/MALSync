@@ -91,7 +91,7 @@ async function bato() {
   //remove links that are still in development (removes everything after .warning class and itself)
   $('.warning').nextAll().remove().end().remove();
 
-  const linkSelector = response.url.includes('batotomirrors') ? '.domain-link' : '.external';
+  const linkSelector = response.url.includes('pages') ? '.domain-link' : '.external';
   const urls = $(linkSelector) // use .external in case rentry still works
     .map((i, el) => new URL($(el).attr('href')))
     .get();
