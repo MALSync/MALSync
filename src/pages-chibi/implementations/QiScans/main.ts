@@ -104,7 +104,15 @@ export const QiScans: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c
+        .querySelector('h1')
+        .text()
+        .contains('Web server is returning an unknown')
+        .ifThen($c => $c.string('404').log().return().run())
+        .detectURLChanges($c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
     },
     listChange($c) {
       return $c
