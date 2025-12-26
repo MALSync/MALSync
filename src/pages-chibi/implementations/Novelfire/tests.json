@@ -1,0 +1,107 @@
+{
+  "title": "Novelfire",
+  "url": "https://novelfire.net",
+  "testCases": [
+    {
+      "url": "https://novelfire.net/book/mushoku-tensei/chapters",
+      "expected": {
+        "sync": false,
+        "title": "Mushoku Tensei",
+        "identifier": "mushoku-tensei",
+        "image": "https://novelfire.net/server-1/mushoku-tensei.jpg",
+        "uiSelector": true,
+        "epList": {
+          "7": "https://novelfire.net/book/mushoku-tensei/chapter-99"
+        }
+      }
+    },
+    {
+      "url": "https://novelfire.net/book/mushoku-tensei/chapter-19",
+      "expected": {
+        "sync": true,
+        "title": "Mushoku Tensei",
+        "identifier": "mushoku-tensei",
+        "overviewUrl": "https://novelfire.net/book/mushoku-tensei",
+        "episode": 5,
+        "volume": 2,
+        "nextEpUrl": "https://novelfire.net/book/mushoku-tensei/chapter-20",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://novelfire.net/book/reich-marshal-of-the-belkan-reich/chapter-411",
+      "expected": {
+        "sync": true,
+        "title": "Reich Marshal of the Belkan Reich",
+        "identifier": "reich-marshal-of-the-belkan-reich",
+        "overviewUrl": "https://novelfire.net/book/reich-marshal-of-the-belkan-reich",
+        "episode": 80,
+        "volume": 4,
+        "nextEpUrl": "",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://novelfire.net/book/saintess-summons-skeletons/chapter-19",
+      "expected": {
+        "sync": true,
+        "title": "Saintess Summons Skeletons",
+        "identifier": "saintess-summons-skeletons",
+        "overviewUrl": "https://novelfire.net/book/saintess-summons-skeletons",
+        "episode": 19,
+        "nextEpUrl": "https://novelfire.net/book/saintess-summons-skeletons/chapter-20",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://novelfire.net/book/path-of-dragons-a-litrpg-apocalypse-book-two-stubbing-august-15/chapter-43",
+      "expected": {
+        "sync": true,
+        "title": "Path of Dragons - A LitRPG Apocalypse (BOOK TWO STUBBING AUGUST 15)",
+        "identifier": "path-of-dragons-a-litrpg-apocalypse-book-two-stubbing-august-15",
+        "overviewUrl": "https://novelfire.net/book/path-of-dragons-a-litrpg-apocalypse-book-two-stubbing-august-15",
+        "episode": 35,
+        "volume": 2,
+        "nextEpUrl": "https://novelfire.net/book/path-of-dragons-a-litrpg-apocalypse-book-two-stubbing-august-15/chapter-44",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://novelfire.net/book/i-only-care-about-making-money-and-not-love-im-the-best-professional-simp/chapter-32",
+      "expected": {
+        "sync": true,
+        "title": "I Only Care About Making Money And Not Love. I'm The Best Professional Simp!",
+        "identifier": "i-only-care-about-making-money-and-not-love-im-the-best-professional-simp",
+        "overviewUrl": "https://novelfire.net/book/i-only-care-about-making-money-and-not-love-im-the-best-professional-simp",
+        "episode": 32,
+        "nextEpUrl": "https://novelfire.net/book/i-only-care-about-making-money-and-not-love-im-the-best-professional-simp/chapter-33",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://novelfire.net/book/getting-warhammered-wh-40k-fanfic/chapter-33",
+      "expected": {
+        "sync": true,
+        "title": "Getting Warhammered [WH 40k Fanfic]",
+        "identifier": "getting-warhammered-wh-40k-fanfic",
+        "overviewUrl": "https://novelfire.net/book/getting-warhammered-wh-40k-fanfic",
+        "episode": 31,
+        "nextEpUrl": "https://novelfire.net/book/getting-warhammered-wh-40k-fanfic/chapter-34",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://novelfire.net/book/millennium-witch/chapter-87",
+      "expected": {
+        "sync": true,
+        "title": "Millennium Witch",
+        "identifier": "millennium-witch",
+        "overviewUrl": "https://novelfire.net/book/millennium-witch",
+        "episode": 87,
+        "volume": 2,
+        "nextEpUrl": "https://novelfire.net/book/millennium-witch/chapter-88",
+        "uiSelector": false
+      }
+    }
+  ]
+}

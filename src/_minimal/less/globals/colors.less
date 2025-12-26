@@ -4,7 +4,9 @@
   text: #333333;
   light-text: #828282;
   primary: #4c8ff2;
+  primary-contrast: white;
   primary-dark: #0052f7;
+  primary-dark-contrast: white;
   secondary: #eb5757;
   secondary-text: #de0c0c;
   dark-background: #313131;
@@ -15,6 +17,10 @@
   foreground: rgb(255 255 255 / var(--cl-opacity));
   foreground-solid: rgb(255 255 255);
   foreground-active: var(--cl-backdrop);
+  bar-progess: var(--cl-state-2);
+  bar-prediction: var(--cl-state-4);
+  bar-volume: var(--cl-state-23);
+  bar-score: var(--cl-state-6);
   opacity: 1;
   loading: 1;
 }
@@ -42,5 +48,5 @@
   4: #eb5757;
   6: #bb6bd9;
   23: #3492b1;
-  7: conic-gradient(var(--state-1), var(--state-2), var(--state-3), var(--state-4), var(--state-6), var(--state-1));
+  7: conic-gradient(var(--cl-state-1), var(--cl-state-2), var(--cl-state-3), var(--cl-state-4), var(--cl-state-6), var(--cl-state-1));
 }

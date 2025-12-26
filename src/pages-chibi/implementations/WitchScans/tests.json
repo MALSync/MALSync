@@ -1,0 +1,36 @@
+{
+    "title": "WitchScans",
+    "url": "https://witchscans.com",
+    "testCases": [
+      {
+        "url": "https://witchscans.com/the-newbie-is-too-strong-chapter-144/",
+        "expected": {
+          "sync": true,
+          "title": "The Newbie is Too Strong",
+          "identifier": "the-newbie-is-too-strong",
+          "overviewUrl": "https://witchscans.com/manga/the-newbie-is-too-strong/",
+          "episode": 144,
+          "nextEpUrl": "https://witchscans.com/the-newbie-is-too-strong-chapter-145/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://witchscans.com/manga/the-newbie-is-too-strong/",
+        "expected": {
+          "sync": false,
+          "title": "The Newbie is Too Strong",
+          "identifier": "the-newbie-is-too-strong",
+          "image": "https://i0.wp.com/witchscans.com/wp-content/uploads/2025/08/images-1.jpeg",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://witchscans.com/the-newbie-is-too-strong-chapter-1/",
+            "5": "https://witchscans.com/the-newbie-is-too-strong-chapter-5/",
+            "60": "https://witchscans.com/the-newbie-is-too-strong-chapter-60/",
+            "145": "https://witchscans.com/the-newbie-is-too-strong-chapter-145/"
+            }
+          }
+        }
+     ]
+   }
+
+

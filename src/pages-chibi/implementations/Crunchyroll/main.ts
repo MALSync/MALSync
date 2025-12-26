@@ -26,19 +26,26 @@ export const Crunchyroll: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return getJsonData($c)
-        .get('partOfSeason')
-        .get('name')
+      const seasonSuffix = $c
+        .if(
+          getSeasonNumber($c).number().greaterThan(1).run(),
+          $c.string(' Season ').concat(getSeasonNumber($c).string().run()).run(),
+          $c.string('').run(),
+        )
+        .run();
+
+      return getSeriesName($c)
         .ifNotReturn()
         .string()
         .replaceRegex('\\([^\\)]+\\)', '')
         .trim()
+        .concat(seasonSuffix)
         .run();
     },
     getIdentifier($c) {
-      return $c
-        .this('sync.getTitle')
-        .concat(getJsonData($c).get('partOfSeason').get('seasonNumber').run())
+      return getSeriesName($c)
+        .concat(getSeasonName($c).run())
+        .concat(getSeasonNumber($c).run())
         .run();
     },
     getOverviewUrl($c) {
@@ -65,6 +72,18 @@ export const Crunchyroll: PageInterface = {
     },
   },
 };
+
+function getSeasonNumber($c: ChibiGenerator<unknown>) {
+  return getJsonData($c).get('partOfSeason').get('seasonNumber');
+}
+
+function getSeasonName($c: ChibiGenerator<unknown>) {
+  return getJsonData($c).get('partOfSeason').get('name').string();
+}
+
+function getSeriesName($c: ChibiGenerator<unknown>) {
+  return getJsonData($c).get('partOfSeries').get('name').string();
+}
 
 function getJsonData($c: ChibiGenerator<unknown>) {
   return $c

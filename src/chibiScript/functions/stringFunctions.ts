@@ -1,5 +1,5 @@
 import type { ChibiCtx } from '../ChibiCtx';
-import type { ChibiJson } from '../ChibiGenerator';
+import type { ChibiParam } from '../ChibiGenerator';
 
 export default {
   /**
@@ -10,7 +10,7 @@ export default {
    * @example
    * $c.string("a,b,c").split(",") // returns ["a", "b", "c"]
    */
-  split: (ctx: ChibiCtx, input: string, delimiter: string) => {
+  split: (ctx: ChibiCtx, input: string, delimiter: ChibiParam<string>) => {
     return input.split(delimiter);
   },
 
@@ -22,7 +22,7 @@ export default {
    * @example
    * $c.array(["a", "b", "c"]).join(",") // returns "a,b,c"
    */
-  join: (ctx: ChibiCtx, input: string[], separator: string) => {
+  join: (ctx: ChibiCtx, input: string[], separator: ChibiParam<string>) => {
     return input.join(separator);
   },
 
@@ -39,11 +39,10 @@ export default {
   replace: (
     ctx: ChibiCtx,
     input: string,
-    pattern: string,
-    replacement: string | ChibiJson<string>,
+    pattern: ChibiParam<string>,
+    replacement: ChibiParam<string>,
   ) => {
-    const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
-    return input.replace(pattern, replacementValue);
+    return input.replace(pattern, replacement);
   },
 
   /**
@@ -59,12 +58,11 @@ export default {
   replaceAll: (
     ctx: ChibiCtx,
     input: string,
-    pattern: string,
-    replacement: string | ChibiJson<string>,
+    pattern: ChibiParam<string>,
+    replacement: ChibiParam<string>,
   ) => {
-    const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
     // eslint-disable-next-line es-x/no-string-prototype-replaceall
-    return input.replaceAll(pattern, replacementValue);
+    return input.replaceAll(pattern, replacement);
   },
 
   /**
@@ -81,13 +79,12 @@ export default {
   replaceRegex: (
     ctx: ChibiCtx,
     input: string,
-    pattern: string,
-    replacement: string | ChibiJson<string>,
-    flags: string = 'gi',
+    pattern: ChibiParam<string>,
+    replacement: ChibiParam<string>,
+    flags: ChibiParam<string> = 'gi',
   ) => {
-    const replacementValue = typeof replacement === 'string' ? replacement : ctx.run(replacement);
     const regex = new RegExp(pattern, flags);
-    return input.replace(regex, replacementValue);
+    return input.replace(regex, replacement);
   },
 
   /**
@@ -99,7 +96,12 @@ export default {
    * @example
    * $c.string("Hello World").substring(0, 5) // returns "Hello"
    */
-  substring: (ctx: ChibiCtx, input: string, start: number, end?: number) => {
+  substring: (
+    ctx: ChibiCtx,
+    input: string,
+    start: ChibiParam<number>,
+    end?: ChibiParam<number>,
+  ) => {
     return input.substring(start, end);
   },
 
@@ -116,10 +118,10 @@ export default {
    */
   regex: (
     ctx: ChibiCtx,
-    input: string,
-    pattern: string,
-    group: number = 0,
-    flags: string = 'i',
+    input: ChibiParam<string>,
+    pattern: ChibiParam<string>,
+    group: ChibiParam<number> = 0,
+    flags: ChibiParam<string> = 'i',
   ) => {
     const regex = new RegExp(pattern, flags);
     const match = input.match(regex);
@@ -173,7 +175,12 @@ export default {
    * @example
    * $c.string("Hello World").includes("World") // returns true
    */
-  includes: (ctx: ChibiCtx, input: string, searchString: string, position?: number) => {
+  includes: (
+    ctx: ChibiCtx,
+    input: string,
+    searchString: ChibiParam<string>,
+    position?: ChibiParam<number>,
+  ) => {
     return input.includes(searchString, position);
   },
 
@@ -186,9 +193,8 @@ export default {
    * $c.string("Hello").concat(" World") // returns "Hello World"
    * $c.string("Hello").concat($c.string(" World").run()) // returns "Hello World"
    */
-  concat: (ctx: ChibiCtx, input: string, value: string | ChibiJson<string>) => {
-    const concatValue = typeof value === 'string' ? value : ctx.run(value);
-    return input.concat(concatValue);
+  concat: (ctx: ChibiCtx, input: string, value: ChibiParam<string>) => {
+    return input.concat(value);
   },
 
   /**
@@ -200,5 +206,44 @@ export default {
    */
   jsonParse: (ctx: ChibiCtx, input: string) => {
     return JSON.parse(input);
+  },
+
+  /**
+   * Converts full-width ASCII characters or number to its half-width character
+   * @input string
+   * @returns Its half-width characters or number
+   * @example
+   * $c.string('Ｈelｌｏ Ｗoｒlｄ ３').toHalfWidth().run(); // returns Hello World 3
+   */
+  toHalfWidth: (ctx: ChibiCtx, input: string) => {
+    return input
+      .replace(/[\uFF01-\uFF5E]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
+      .replace(/\u3000/g, ' ');
+  },
+
+  /**
+   * Converts Japanese numerals to Arabic numerals
+   * @input string
+   * @returns Its standard numerals
+   * @example
+   * $c.string('九十八').JPtoNumeral().run(); // returns 98
+   */
+  JPtoNumeral: (ctx: ChibiCtx, input: string) => {
+    if (!/^[零〇一二三四五六七八九十百千万億兆]+$/.test(input)) {
+      throw new Error(`No valid Japanese numeral equal in input '${input}'`);
+    }
+    const map = { 零: 0, 〇: 0, 一: 1, 二: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 };
+    const units = { 十: 10, 百: 100, 千: 1000, 万: 10000 };
+    let section = 0;
+    let num = 0;
+    input.split('').forEach(ch => {
+      if (map[ch] !== undefined) {
+        num = map[ch];
+      } else if (units[ch] !== undefined) {
+        section += (num || 1) * units[ch];
+        num = 0;
+      }
+    });
+    return section + num;
   },
 };

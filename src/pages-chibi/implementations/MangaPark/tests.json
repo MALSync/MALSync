@@ -1,0 +1,42 @@
+{
+  "title": "MangaPark",
+  "url": "https://mangapark.net/",
+  "testCases": [
+    {
+      "url": "https://mangapark.net/title/75271-en-mission-yozakura-family/2765436-ch-136",
+      "expected": {
+        "sync": true,
+        "title": "Mission: Yozakura Family",
+        "identifier": "75271-en-mission-yozakura-family",
+        "overviewUrl": "https://mangapark.net/title/75271-en-mission-yozakura-family",
+        "nextEpUrl": "https://mangapark.net/title/75271-en-mission-yozakura-family/2766927-ch-137",
+        "episode": 136,
+        "image": "https://xfs-s110.xfspp.com/thumb/W600/amim/fb5/6044eb5870dce079301145bf_223_350_46755.jpg",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangapark.net/title/75271-en-mission-yozakura-family",
+      "expected": {
+        "sync": false,
+        "title": "Mission: Yozakura Family",
+        "identifier": "75271-en-mission-yozakura-family",
+        "image": "https://xfs-s110.xfspp.com/thumb/W600/amim/fb5/6044eb5870dce079301145bf_223_350_46755.jpg",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://mangapark.net/title/415057-en-ichi-the-witch/8968314-3rd-hunt",
+      "expected": {
+        "sync": true,
+        "title": "Ichi the Witch",
+        "identifier": "415057-en-ichi-the-witch",
+        "overviewUrl": "https://mangapark.net/title/415057-en-ichi-the-witch",
+        "nextEpUrl": "https://mangapark.net/title/415057-en-ichi-the-witch/8989688-4th-hunt",
+        "episode": 3,
+        "image": "https://mangapark.net/thumb/W600/mpim/3db/3db44b23984e5fa91a83adc384d1b314c4ef75d6_1543_2425_452644.webp",
+        "uiSelector": false
+      }
+    }
+  ]
+}

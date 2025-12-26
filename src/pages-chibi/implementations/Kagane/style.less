@@ -1,0 +1,22 @@
+@import './../pages';
+@highlightStyle: 0;
+@boxBackground: var(--card);
+
+#malp {
+  padding-bottom: 16px;
+  #MalData {
+    .malp-group-field:hover,
+    .malp-group-field:focus,
+    .malp-group-value-section:focus-within,
+    .malp-group-value-section:hover {
+      background-color: var(--muted) !important;
+      option {
+        background-color: var(--muted) !important;
+        font-family: sans-serif;
+      }
+    }
+  }
+}
+.mal-sync-active {
+  border-left: 4px solid var(--primary);
+}

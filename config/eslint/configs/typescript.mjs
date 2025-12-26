@@ -15,14 +15,26 @@ const airbnb = merge(compat.extends('airbnb-base', 'airbnb-typescript/base'));
 
 delete airbnb.languageOptions?.parserOptions?.ecmaFeatures?.globalReturn;
 
+const seen = new Set();
+const tsconfigs = [...ts.configs.recommended, ...ts.configs.recommendedTypeChecked].filter(
+  config => {
+    if (config.name && seen.has(config.name)) {
+      return false;
+    }
+    if (config.name) {
+      seen.add(config.name);
+    }
+    return true;
+  },
+);
+
 export default mergeAll(
   /** @type {import('eslint').Linter.FlatConfig[]} */ (
     jQueryUnsafeMalSync.configs?.recommended,
     ts.config(
       js.configs.recommended,
       airbnb,
-      ...ts.configs.recommended,
-      ...ts.configs.recommendedTypeChecked,
+      tsconfigs,
       merge(
         preConfig(),
         eslintPluginPrettierRecommended,

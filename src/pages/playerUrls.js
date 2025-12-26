@@ -208,10 +208,13 @@ module.exports = {
   anime365: {
     match: [
       '*://smotret-anime.org/translations/embed/*',
-      '*://smotret-anime.online/translations/embed/*',
-      '*://smotret-anime.com/translations/embed/*',
       '*://anime365.ru/translations/embed/*',
       '*://anime-365.ru/translations/embed/*',
+      '*://smotret-anime.online/translations/embed/*',
+      '*://smotret-anime.com/translations/embed/*',
+      '*://smotret-anime.ru/translations/embed/*',
+      '*://smotretanime.ru/translations/embed/*',
+      '*://smotret-anime.app/translations/embed/*',
     ],
   },
   // Neko-sama
@@ -252,6 +255,7 @@ module.exports = {
       '*://*.mixdrop.my/e/*',
       '*://*.mixdrop.sn/e/*',
       '*://*.mixdrop.cv/e/*',
+      '*://*.md3b0j6hj.com/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -539,6 +543,10 @@ module.exports = {
       '*://jonathansociallike.com/e/*',
       '*://mariatheserepublican.com/e/*',
       '*://jilliandescribecompany.com/e/*',
+      '*://lukesitturn.com/e/*',
+      '*://mikaylaarealike.com/e/*',
+      '*://christopheruntilpoint.com/e/*',
+      '*://walterprettytheir.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -711,6 +719,7 @@ module.exports = {
       '*://gorro-chfzoaas.fun/e/*',
       '*://gorro-chfzoaas.fun/lol/*',
       '*://z7ihwgqj.fun/*',
+      '*://pqham.com/*',
     ],
   },
   // toonanime
@@ -727,7 +736,7 @@ module.exports = {
   },
   // animenosub
   animenosub: {
-    match: ['*://animenosub.upn.one/#*'],
+    match: ['*://animenosub.upn.one/#*', '*://nova.upn.one/*'],
   },
   // voiranime
   streamhide: {
@@ -781,7 +790,12 @@ module.exports = {
   },
   // Q1N
   q1n: {
-    match: ['*://rogeriobetin.com/*', '*://nvlabs-fi-cdn.q9x.in/*'],
+    match: [
+      '*://rogeriobetin.com/*',
+      '*://nvlabs-fi-cdn.q9x.in/*',
+      '*://api.anivideo.net/*',
+      '*://listeamed.net/*',
+    ],
   },
   // animesama
   oneupload: {
@@ -805,7 +819,13 @@ module.exports = {
   },
   // animekai
   megaup: {
-    match: ['*://megaup.cc/e/*', '*://megaup.site/e/*', '*://megaup.live/e/*'],
+    match: [
+      '*://megaup.cc/e/*',
+      '*://megaup.site/e/*',
+      '*://megaup.live/e/*',
+      '*://4spromax.site/e/*',
+      '*://megaup22.online/e/*',
+    ],
   },
   // hikari
   boosterx: {
@@ -819,8 +839,33 @@ module.exports = {
   megaplay: {
     match: ['*://megaplay.buzz/*'],
   },
+  // Anizm
+  anizmplayer: {
+    match: ['*://*.anizmplayer.com/*'],
+  },
   // aniworld
   loadx: {
-     match: ['*://loadx.ws/*'],
-  }
+    match: ['*://loadx.ws/*'],
+  },
+  // AnimeKhor
+  odysee: {
+    match: ['*://odysee.com/*'],
+  },
+  // AnimeKhor
+  emturbovid: {
+    match: ['*://emturbovid.com/*'],
+  },
+  // AnimeKhor
+  upns: {
+    match: ['*://*.upns.live/*'],
+  },
+  // AnimeKhor
+  p2pstream: {
+    match: ['*://*.p2pstream.vip/*'],
+  },
+
+    // Anoboye
+ anoboye: {
+  match: ['*://player.anoboye.com/watch/*'],
+},
 };

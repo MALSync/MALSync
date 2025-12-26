@@ -180,10 +180,11 @@ function readMe() {
     </thead>
     <tbody>
       `;
-  for (var page in animes) {
+  for (var page in animes.length >= mangas.length ? animes : mangas) {
     anime = animes[page];
     manga = mangas[page];
     media = medias[page];
+    if (typeof anime === 'undefined') anime = '';
     if (typeof manga === 'undefined') manga = '';
     if (typeof media === 'undefined') media = '';
 
