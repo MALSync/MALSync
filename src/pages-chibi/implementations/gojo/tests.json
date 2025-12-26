@@ -1,43 +1,43 @@
 {
   "title": "Gojo",
-  "url": "https://animetsu.to/",
+  "url": "https://animetsu.net/",
   "testCases": [
     {
-      "url": "https://animetsu.to/watch/19815",
+      "url": "https://animetsu.net/watch/19815",
       "expected": {
         "sync": true,
         "title": "No Game, No Life",
         "identifier": "19815",
-        "overviewUrl": "https://animetsu.to/anime/19815",
-        "nextEpUrl": "https://animetsu.to/watch/19815?ep=2",
+        "overviewUrl": "https://animetsu.net/anime/19815",
+        "nextEpUrl": "https://animetsu.net/watch/19815?ep=2",
         "episode": 0,
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b19815-sEOQ9yQaPKlk.jpg",
         "uiSelector": false,
         "malUrl": "https://myanimelist.net/anime/19815",
         "epList": {
-          "2": "https://animetsu.to/watch/19815?ep=2"
+          "2": "https://animetsu.net/watch/19815?ep=2"
         }
       }
     },
     {
-      "url": "https://animetsu.to/watch/19815?ep=4",
+      "url": "https://animetsu.net/watch/19815?ep=4",
       "expected": {
         "sync": true,
         "title": "No Game, No Life",
         "identifier": "19815",
-        "overviewUrl": "https://animetsu.to/anime/19815",
-        "nextEpUrl": "https://animetsu.to/watch/19815?ep=5",
+        "overviewUrl": "https://animetsu.net/anime/19815",
+        "nextEpUrl": "https://animetsu.net/watch/19815?ep=5",
         "episode": 4,
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b19815-sEOQ9yQaPKlk.jpg",
         "uiSelector": false,
         "malUrl": "https://myanimelist.net/anime/19815",
         "epList": {
-          "5": "https://animetsu.to/watch/19815?ep=5"
+          "5": "https://animetsu.net/watch/19815?ep=5"
         }
       }
     },
     {
-      "url": "https://animetsu.to/anime/19815",
+      "url": "https://animetsu.net/anime/19815",
       "expected": {
         "sync": false,
         "title": "No Game, No Life",
