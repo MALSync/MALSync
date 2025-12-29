@@ -26,7 +26,7 @@ export const WeebDex: PageInterface = {
     },
     getEpisode($c) {
       return $c
-        .querySelector('button.truncate')
+        .querySelector('#chapter-selector span')
         .text()
         .regex('Ch\\.?\\s*?(\\d+)', 1)
         .number()
@@ -34,7 +34,7 @@ export const WeebDex: PageInterface = {
     },
     getVolume($c) {
       return $c
-        .querySelector('button.truncate')
+        .querySelector('#chapter-selector span')
         .text()
         .regex('Vol\\.?\\s*?(\\d+)', 1)
         .number()
@@ -44,14 +44,14 @@ export const WeebDex: PageInterface = {
       {
         current: $c =>
           $c
-            .querySelector('button.flex-auto:not(.truncate)')
+            .querySelector('#page-selector span')
             .text()
             .regex('(\\d+)\\s*/\\s*(\\d+)', 1)
             .number()
             .run(),
         total: $c =>
           $c
-            .querySelector('button.flex-auto:not(.truncate)')
+            .querySelector('#page-selector span')
             .text()
             .regex('(\\d+)\\s*/\\s*(\\d+)', 2)
             .number()
@@ -72,12 +72,11 @@ export const WeebDex: PageInterface = {
       return $c.url().urlPart(5).run();
     },
     getImage($c) {
-      // property og image give first manga image you read if you didn't reload the website both in overview/chapter page
       return $c
-        .querySelector('.object-center')
-        .getAttribute('src')
-        .urlAbsolute()
+        .querySelector('.transition[href]')
+        .getAttribute('href')
         .ifNotReturn()
+        .urlAbsolute()
         .run();
     },
     getMalUrl($c) {

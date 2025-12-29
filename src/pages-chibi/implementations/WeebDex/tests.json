@@ -3,19 +3,19 @@
     "url": "https://weebdex.org/",
     "testCases": [
       {
-        "url": "https://weebdex.org/chapter/sn9k7x2jey",
+        "url": "https://weebdex.org/chapter/6fyv8ata85",
         "expected": {
           "sync": true,
           "title": "Chainsaw Man",
           "identifier": "chainsaw-man",
           "overviewUrl": "https://weebdex.org/title/12lqiy9zu1/chainsaw-man",
-          "episode": 172,
-          "volume": 19,
+          "episode": 96,
+          "volume": 11,
           "uiSelector": false
         }
       },
       {
-        "url": "https://weebdex.org/chapter/8wcw95xod8",
+        "url": "https://weebdex.org/chapter/bqvm32tt4q",
         "expected": {
           "sync": true,
           "title": "Kage no Jitsuryokusha ni Naritakute! Master of Garden ~Shichikage Retsuden~",
@@ -27,16 +27,16 @@
         }
       },
       {
-        "url": "https://weebdex.org/title/12lqiy9zu1/chainsaw-man",
+        "url": "https://weebdex.org/title/3o0icxno26/ani-datta-mono",
         "expected": {
           "sync": false,
-          "title": "Chainsaw Man",
-          "identifier": "chainsaw-man",
-          "image": "https://srv.notdelta.xyz/covers/12lqiy9zu1/yccburgk6h.256.webp",
+          "title": "Ani Datta Mono",
+          "identifier": "ani-datta-mono",
+          "image": "https://srv.notdelta.xyz/covers/3o0icxno26/4uy9pui0ff.jpg",
           "uiSelector": true,
           "epList": {
-            "34": "https://weebdex.org/chapter/u335g84whz",
-            "219": "https://weebdex.org/chapter/kc0mrsblwu"
+            "100": "https://weebdex.org/chapter/1ke4s31w0c",
+            "99": "https://weebdex.org/chapter/bq9rhweypk"
           }
        }
      }
