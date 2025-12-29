@@ -72,12 +72,11 @@ export const WeebDex: PageInterface = {
       return $c.url().urlPart(5).run();
     },
     getImage($c) {
-      // property og image give first manga image you read if you didn't reload the website both in overview/chapter page
       return $c
-        .querySelector('.object-center')
-        .getAttribute('src')
-        .urlAbsolute()
+        .querySelector('.transition[href]')
+        .getAttribute('href')
         .ifNotReturn()
+        .urlAbsolute()
         .run();
     },
     getMalUrl($c) {
