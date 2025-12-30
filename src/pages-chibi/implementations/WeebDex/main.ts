@@ -16,19 +16,30 @@ export const WeebDex: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('a[href^="/title/"]').text().trim().run();
+      return $c
+        .coalesce(
+          $c.querySelector('a[href^="/title/"]').text().trim().run(),
+          $c.title().replaceRegex('\n', '').regex('Chapter \\d+ - (.+?) WeebDex', 1).trim().run(),
+        )
+        .run();
     },
     getIdentifier($c) {
       return $c.this('sync.getOverviewUrl').this('overview.getIdentifier').run();
     },
     getOverviewUrl($c) {
-      return $c.querySelector('a[href^="/title/"]').getAttribute('href').urlAbsolute().run();
+      return $c
+        .querySelector('a[href^="/title/"]')
+        .ifNotReturn()
+        .getAttribute('href')
+        .urlAbsolute()
+        .run();
     },
     getEpisode($c) {
       return $c
-        .querySelector('#chapter-selector span')
-        .text()
-        .regex('Ch\\.?\\s*?(\\d+)', 1)
+        .coalesce(
+          $c.querySelector('#chapter-selector span').text().regex('Ch\\.?\\s*?(\\d+)', 1).run(),
+          $c.title().regex('Chapter (\\d+)', 1).run(),
+        )
         .number()
         .run();
     },
@@ -42,20 +53,17 @@ export const WeebDex: PageInterface = {
     },
     readerConfig: [
       {
+        condition: $c => $c.querySelector('#indicator').boolean().run(),
         current: $c =>
-          $c
-            .querySelector('#page-selector span')
-            .text()
-            .regex('(\\d+)\\s*/\\s*(\\d+)', 1)
-            .number()
-            .run(),
+          $c.querySelector('#indicator .transition').text().regex('(\\d+)\\s*/', 1).number().run(),
         total: $c =>
-          $c
-            .querySelector('#page-selector span')
-            .text()
-            .regex('(\\d+)\\s*/\\s*(\\d+)', 2)
-            .number()
-            .run(),
+          $c.querySelector('#indicator .transition').text().regex('/\\s*(\\d+)', 1).number().run(),
+      },
+      {
+        current: $c =>
+          $c.querySelector('#page-selector span').text().regex('(\\d+)\\s*/', 1).number().run(),
+        total: $c =>
+          $c.querySelector('#page-selector span').text().regex('/\\s*(\\d+)', 1).number().run(),
       },
     ],
   },
@@ -69,7 +77,14 @@ export const WeebDex: PageInterface = {
       return $c.querySelector('.text-xl\\/10').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(5).run();
+      // At least the identifier doesn't use page numbers when in mobile. I cannot think of a consistent way.
+      return $c
+        .querySelector('#panel')
+        .isNil()
+        .ifThen($c => $c.url().urlPart(4).return().run())
+        .url()
+        .urlPart(5)
+        .run();
     },
     getImage($c) {
       return $c
