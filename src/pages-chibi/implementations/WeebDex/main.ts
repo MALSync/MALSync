@@ -79,8 +79,8 @@ export const WeebDex: PageInterface = {
     getIdentifier($c) {
       // At least the identifier doesn't use page numbers when in mobile. I cannot think of a consistent way.
       return $c
-        .querySelector('#panel')
-        .isNil()
+        .querySelector('#indicator')
+        .boolean()
         .ifThen($c => $c.url().urlPart(4).return().run())
         .url()
         .urlPart(5)
