@@ -11,29 +11,22 @@ export const AniGo: PageInterface = {
   search: 'https://anigo.to/browser?keyword={searchtermPlus}',
   sync: {
     isSyncPage($c) {
-      return $c
-        .and($c.url().urlPart(3).equals('watch').run(), $c.url().urlPart(4).boolean().run())
-        .run();
+      return getJsonData($c).get('page').equals('episode').run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('h1')
-        .getAttribute('data-jp')
-        .ifNotReturn($c.querySelector('h1').text().trim().run())
-        .trim()
-        .run();
+      return getJsonData($c).get('name').run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).replaceRegex('-[^-]+$', '').trim().run();
+      return getJsonData($c).get('anime_id').run();
     },
     getOverviewUrl($c) {
-      return $c.url().replaceRegex('#[^-]+$', '').run();
-    },
-    getImage($c) {
-      return $c.querySelector('.posterbox img').getAttribute('src').urlAbsolute().run();
+      return getJsonData($c).get('series_url').ifNotReturn().string().urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.url().regex('#ep=(\\d+)', 1).number().run();
+      return getJsonData($c).get('episode').number().run();
+    },
+    getImage($c) {
+      return $c.querySelector('.poster img').getAttribute('src').ifNotReturn().urlAbsolute().run();
     },
     nextEpUrl($c) {
       return $c
@@ -46,18 +39,23 @@ export const AniGo: PageInterface = {
         .run();
     },
     getMalUrl($c) {
-      const getMal = $c
-        .querySelector('.posterbox [href*="myanimelist"]')
+      const getMal = getJsonData($c)
+        .get('mal_id')
+        .number()
         .ifNotReturn()
-        .getAttribute('href')
+        .string('https://myanimelist.net/anime/<identifier>')
+        .replace('<identifier>', getJsonData($c).get('mal_id').run())
         .run();
 
       const getAnilist = $c
         .provider()
         .equals('ANILIST')
         .ifNotReturn()
-        .querySelector('.posterbox [href*="anilist"]')
-        .getAttribute('href')
+        .get('al_id')
+        .number()
+        .ifNotReturn()
+        .string('https://anilist.co/anime/<identifier>')
+        .replace('<identifier>', getJsonData($c).get('al_id').run())
         .run();
 
       return $c.coalesce($c.fn(getAnilist).run(), $c.fn(getMal).run()).ifNotReturn().run();
@@ -82,12 +80,18 @@ export const AniGo: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      // It doesn't detect when use .detectURLChange for some reason
-      return $c.detectChanges($c.url().run(), $c.trigger().run()).domReady().trigger().run();
-    },
-    syncIsReady($c) {
-      // It better to wait it until the link redirect to last episode you have watched.
-      return $c.waitUntilTrue($c.url().contains('#ep').run()).trigger().run();
+      return $c
+        .domReady()
+        .detectChanges(
+          $c.querySelector('#syncData').ifNotReturn().text().trim().run(),
+          $c.trigger().run(),
+        )
+        .trigger()
+        .run();
     },
   },
 };
+
+function getJsonData($c) {
+  return $c.querySelector('#syncData').ifNotReturn().text().jsonParse();
+}
