@@ -2,13 +2,13 @@ import { PageInterface } from '../../pageInterface';
 
 export const gojo: PageInterface = {
   name: 'Gojo',
-  domain: ['https://animetsu.bz', 'https://gojo.live'],
+  domain: ['https://animetsu.net'],
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://animetsu.to/*', '*://animetsu.cc/*', '*://animetsu.bz/*', '*://gojo.live/*'],
+    match: ['*://animetsu.cc/*', '*://animetsu.bz/*', '*://animetsu.net/*'],
   },
-  search: 'https://animetsu.bz/search?query={searchtermPlus}',
+  search: 'https://animetsu.net/search?query={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c.url().urlPart(3).equals('watch').run();

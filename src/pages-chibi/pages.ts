@@ -90,6 +90,7 @@ import { MangaLivreTV } from './implementations/MangaLivreTV/main';
 import { SanaScans } from './implementations/SanaScans/main';
 import { RezoScans } from './implementations/RezoScans/main';
 import { RageScans } from './implementations/RageScans/main';
+import { AniGo } from './implementations/AniGo/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -182,4 +183,5 @@ export const pages: { [key: string]: PageInterface } = {
   SanaScans,
   RezoScans,
   RageScans,
+  AniGo,
 };
