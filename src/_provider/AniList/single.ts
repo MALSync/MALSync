@@ -1,6 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
-import { NotAutenticatedError, UrlNotSupportedError } from '../Errors';
+import { NotAuthenticatedError, UrlNotSupportedError } from '../Errors';
 import { point100 } from '../ScoreMode/point100';
 import { point10 } from '../ScoreMode/point10';
 import { smiley3 } from '../ScoreMode/smiley3';
@@ -205,7 +205,7 @@ export class Single extends SingleAbstract {
 
     return this.apiCall(query, variables)
       .catch(e => {
-        if (e instanceof NotAutenticatedError) {
+        if (e instanceof NotAuthenticatedError) {
           this._authenticated = false;
           return this.apiCall(query, variables, false);
         }
@@ -245,7 +245,7 @@ export class Single extends SingleAbstract {
           };
         }
 
-        if (!this._authenticated) throw new NotAutenticatedError('Not Authenticated');
+        if (!this._authenticated) throw new NotAuthenticatedError('Not Authenticated');
       });
   }
 
