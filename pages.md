@@ -55,6 +55,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://anigo.to"><img src="https://favicon.malsync.moe/?domain=https://anigo.to"> AniGo</a></td>
+    <td>English</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://smotret-anime.org"><img src="https://favicon.malsync.moe/?domain=https://smotret-anime.org"> Anime365</a></td>
     <td>Russian</td>
     <td>:heavy_check_mark:</td>
@@ -90,7 +97,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://animego.org"><img src="https://favicon.malsync.moe/?domain=https://animego.org"> AnimeGO</a></td>
+    <td><a href="https://animego.me"><img src="https://favicon.malsync.moe/?domain=https://animego.me"> AnimeGO</a></td>
     <td>Russian</td>
     <td>:x:</td>
     <td>:x:</td>
@@ -188,7 +195,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://anime-sama.fr"><img src="https://favicon.malsync.moe/?domain=https://anime-sama.fr"> AnimeSama</a></td>
+    <td><a href="https://anime-sama.eu"><img src="https://favicon.malsync.moe/?domain=https://anime-sama.eu"> AnimeSama</a></td>
     <td>French</td>
     <td>:x:</td>
     <td>:x:</td>
@@ -370,7 +377,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://animetsu.bz"><img src="https://favicon.malsync.moe/?domain=https://animetsu.bz"> Gojo</a></td>
+    <td><a href="https://animetsu.net"><img src="https://favicon.malsync.moe/?domain=https://animetsu.net"> Gojo</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -531,13 +538,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://q1n.net"><img src="https://favicon.malsync.moe/?domain=https://q1n.net"> Q1N</a></td>
-    <td>Portuguese</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-  </tr><tr>
     <td><a href="https://shinden.pl"><img src="https://favicon.malsync.moe/?domain=https://shinden.pl"> Shinden</a></td>
     <td>Polish</td>
     <td>:heavy_check_mark:</td>
@@ -565,6 +565,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://topanimes.net"><img src="https://favicon.malsync.moe/?domain=https://topanimes.net"> Topanimes</a></td>
+    <td>Portuguese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://www.tranimeizle.net/"><img src="https://favicon.malsync.moe/?domain=https://www.tranimeizle.net/"> TRanimeizle</a></td>
     <td>Turkish</td>
@@ -1145,7 +1152,14 @@
     <td><a href="https://qiscans.org"><img src="https://favicon.malsync.moe/?domain=https://qiscans.org"> QiScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
     <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://ragescans.com"><img src="https://favicon.malsync.moe/?domain=https://ragescans.com"> RageScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
