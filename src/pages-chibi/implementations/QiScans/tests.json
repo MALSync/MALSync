@@ -8,7 +8,7 @@
         "sync": true,
         "title": "Reincarnated Murim Lord",
         "identifier": "reincarnated-murim-lord",
-        "image": "https://storage.qiscans.com/upload/2025/08/27/f27f0240-c406-48b8-817a-975f46e90be7.webp",
+        "image": null,
         "overviewUrl": "https://qiscans.org/series/reincarnated-murim-lord",
         "episode": 88,
         "nextEpUrl": "https://qiscans.org/series/reincarnated-murim-lord/chapter-89",
@@ -35,7 +35,7 @@
         "sync": false,
         "title": "Nano Machine",
         "identifier": "nano-machine",
-        "image": "https://storage.qiscans.com/upload/series/4190634673-nano-machine/wp-featured-7780/featured.png",
+        "image": "https://storage.qiscans.org/upload/series/4190634673-nano-machine/wp-featured-7780/featured.png",
         "uiSelector": true,
         "epList": {
           "290": "https://qiscans.org/series/4190634673-nano-machine/chapter-290",
@@ -50,7 +50,7 @@
         "sync": true,
         "title": "Nano Machine",
         "identifier": "nano-machine",
-        "image": "https://storage.qiscans.com/upload/series/4190634673-nano-machine/wp-featured-7780/featured.png",
+        "image": null,
         "overviewUrl": "https://qiscans.org/series/4190634673-nano-machine",
         "episode": 290,
         "nextEpUrl": "https://qiscans.org/series/4190634673-nano-machine/chapter-291",
@@ -58,14 +58,14 @@
       }
     },
     {
-      "url": "https://qiscans.org/series/4190634673-nano-machine/chapter-292",
+      "url": "https://qiscans.org/series/4190634673-nano-machine/chapter-293",
       "expected": {
         "sync": true,
         "title": "Nano Machine",
         "identifier": "nano-machine",
-        "image": "https://storage.qiscans.com/upload/series/4190634673-nano-machine/wp-featured-7780/featured.png",
+        "image": null,
         "overviewUrl": "https://qiscans.org/series/4190634673-nano-machine",
-        "episode": 292,
+        "episode": 293,
         "nextEpUrl": null,
         "uiSelector": false
       }
