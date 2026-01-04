@@ -19,42 +19,45 @@ export const WeebDex: PageInterface = {
       return $c
         .coalesce(
           $c.querySelector('a[href^="/title/"]').text().trim().run(),
-          $c.title().replaceRegex('\n', '').regex('Chapter \\d+ - (.+?) WeebDex', 1).trim().run(),
+          $c
+            .title()
+            .replaceRegex('\n', '')
+            .regex('Page \\d+:\\s*.*?-\\s*(.+?)\\s*WeebDex', 1) // a bit long to avoid preload matches
+            .trim()
+            .run(),
         )
         .run();
     },
     getIdentifier($c) {
-      return $c.this('sync.getOverviewUrl').this('overview.getIdentifier').run();
+      return $c
+        .querySelector('#indicator')
+        .isNil()
+        .ifThen($c => $c.this('sync.getOverviewUrl').this('overview.getIdentifier').return().run())
+        .this('sync.getTitle')
+        .toLowerCase()
+        .replaceRegex('[×/~]', '') // edge case
+        .replaceRegex('\\W', ' ')
+        .trim()
+        .replaceRegex('\\s+', '-')
+        .run();
     },
     getOverviewUrl($c) {
-      return $c
-        .coalesce(
-          $c.querySelector('a[href^="/title/"]').run(),
-          $c.querySelector('[property="og:url"]').run(),
-        )
-        .getAttribute('href')
-        .urlAbsolute()
-        .run();
+      return $c.querySelector('a[href^="/title/"]').getAttribute('href').urlAbsolute().run();
     },
     getEpisode($c) {
       return $c
         .coalesce(
           $c.querySelector('#chapter-selector span').text().regex('Ch\\.?\\s*?(\\d+)', 1).run(),
-          $c.title().regex('Chapter (\\d+)', 1).run(),
+          $c.title().regex('Chapter (\\d+)', 1).ifNotReturn().run(),
         )
         .number()
         .run();
     },
     getVolume($c) {
       return $c
-        .coalesce(
-          $c.querySelector('#chapter-selector span').text().regex('\\bVol\\.?\\s*?(\\d+)', 1).run(),
-          $c
-            .querySelector('[property="og:title"]')
-            .getAttribute('content')
-            .regex('\\bVol\\.\\s*?(\\d+)', 1)
-            .run(),
-        )
+        .querySelector('#chapter-selector span')
+        .text()
+        .regex('\\bVol\\.?\\s*?(\\d+)', 1)
         .number()
         .run();
     },
@@ -84,7 +87,7 @@ export const WeebDex: PageInterface = {
       return $c.querySelector('.text-xl\\/10').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      return $c.url().urlPart(5).run();
     },
     getImage($c) {
       return $c
