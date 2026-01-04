@@ -18,7 +18,7 @@ export const WeebDex: PageInterface = {
     getTitle($c) {
       return $c
         .coalesce(
-          $c.querySelector('a[href^="/title/"]').text().trim().run(),
+          $c.querySelector('a[href*="/title/"]').text().trim().run(),
           $c
             .title()
             .replaceRegex('\n', '')
@@ -42,7 +42,12 @@ export const WeebDex: PageInterface = {
         .run();
     },
     getOverviewUrl($c) {
-      return $c.querySelector('a[href^="/title/"]').getAttribute('href').urlAbsolute().run();
+      return $c
+        .querySelector('a[href*="/title/"]')
+        .ifNotReturn()
+        .getAttribute('href')
+        .urlAbsolute()
+        .run();
     },
     getEpisode($c) {
       return $c
@@ -56,6 +61,7 @@ export const WeebDex: PageInterface = {
     getVolume($c) {
       return $c
         .querySelector('#chapter-selector span')
+        .ifNotReturn()
         .text()
         .regex('\\bVol\\.?\\s*?(\\d+)', 1)
         .number()
@@ -163,6 +169,10 @@ export const WeebDex: PageInterface = {
           $c.trigger().run(),
         )
         .run();
+    },
+    syncIsReady($c) {
+      // Reduce errors spam from waiting title
+      return $c.waitUntilTrue($c.querySelector('#reader').boolean().run()).trigger().run();
     },
   },
 };
