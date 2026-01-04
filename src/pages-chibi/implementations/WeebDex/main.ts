@@ -28,8 +28,10 @@ export const WeebDex: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .querySelector('a[href^="/title/"]')
-        .ifNotReturn()
+        .coalesce(
+          $c.querySelector('a[href^="/title/"]').run(),
+          $c.querySelector('[property="og:url"]').run(),
+        )
         .getAttribute('href')
         .urlAbsolute()
         .run();
@@ -45,9 +47,14 @@ export const WeebDex: PageInterface = {
     },
     getVolume($c) {
       return $c
-        .querySelector('#chapter-selector span')
-        .text()
-        .regex('Vol\\.?\\s*?(\\d+)', 1)
+        .coalesce(
+          $c.querySelector('#chapter-selector span').text().regex('\\bVol\\.?\\s*?(\\d+)', 1).run(),
+          $c
+            .querySelector('[property="og:title"]')
+            .getAttribute('content')
+            .regex('\\bVol\\.\\s*?(\\d+)', 1)
+            .run(),
+        )
         .number()
         .run();
     },
@@ -77,14 +84,7 @@ export const WeebDex: PageInterface = {
       return $c.querySelector('.text-xl\\/10').text().trim().run();
     },
     getIdentifier($c) {
-      // At least the identifier doesn't use page numbers when in mobile. I cannot think of a consistent way.
-      return $c
-        .querySelector('#indicator')
-        .boolean()
-        .ifThen($c => $c.url().urlPart(4).return().run())
-        .url()
-        .urlPart(5)
-        .run();
+      return $c.url().urlPart(4).run();
     },
     getImage($c) {
       return $c

@@ -7,7 +7,7 @@
         "expected": {
           "sync": true,
           "title": "Chainsaw Man",
-          "identifier": "chainsaw-man",
+          "identifier": "12lqiy9zu1",
           "overviewUrl": "https://weebdex.org/title/12lqiy9zu1/chainsaw-man",
           "episode": 96,
           "volume": 11,
@@ -19,7 +19,7 @@
         "expected": {
           "sync": true,
           "title": "Kage no Jitsuryokusha ni Naritakute! Master of Garden ~Shichikage Retsuden~",
-          "identifier": "kage-no-jitsuryokusha-ni-naritakute-master-of-garden-shichikage-retsuden",
+          "identifier": "g2tpg8wyar",
 		      "overviewUrl": "https://weebdex.org/title/g2tpg8wyar/kage-no-jitsuryokusha-ni-naritakute-master-of-garden-shichikage-retsuden",
           "episode": 10,
           "volume": 2,
@@ -31,7 +31,7 @@
         "expected": {
           "sync": false,
           "title": "Ani Datta Mono",
-          "identifier": "ani-datta-mono",
+          "identifier": "3o0icxno26",
           "image": "https://srv.notdelta.xyz/covers/3o0icxno26/4uy9pui0ff.jpg",
           "uiSelector": true,
           "epList": {
