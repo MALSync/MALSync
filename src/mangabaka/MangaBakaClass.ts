@@ -147,6 +147,7 @@ export class MangaBakaClass {
       this.single = single;
       this.bufferedProgressListInjects();
     } else {
+      if (!libraryEntry) return;
       progress = await new ProgressRelease(cacheKey as string, 'manga').init();
     }
 
