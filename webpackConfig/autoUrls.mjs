@@ -184,7 +184,7 @@ async function start() {
     voe,
     // vidmoly,
     // mixdrop,
-    zoro,
+    // zoro,
     // kickassanime,
     animekai,
     bato,
