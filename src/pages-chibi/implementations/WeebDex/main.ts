@@ -30,12 +30,13 @@ export const WeebDex: PageInterface = {
     },
     getIdentifier($c) {
       return $c
-        .querySelector('#indicator')
-        .isNil()
+        .querySelector('a[href*="/title/"]')
+        .boolean()
         .ifThen($c => $c.this('sync.getOverviewUrl').this('overview.getIdentifier').return().run())
         .this('sync.getTitle')
         .toLowerCase()
         .replaceRegex('[×/~]', '') // edge case
+        .replaceAll('&', 'and')
         .replaceRegex('\\W', ' ')
         .trim()
         .replaceRegex('\\s+', '-')
