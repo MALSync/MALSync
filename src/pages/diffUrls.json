@@ -127,6 +127,9 @@
       "*://smotret-anime.app/*"
     ],
     "AnimeSama": [
+      "*://anime-sama.tv/*",
+      "*://anime-sama.si/*",
+      "*://anime-sama.to/*",
       "*://anime-sama.eu/*"
     ],
     "iframe": [
