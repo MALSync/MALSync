@@ -54,5 +54,32 @@ describe('ChibiGenerator', () => {
       expect(result[0][3]).to.include('detectChanges');
       expect(result[0][3]).to.match(/^detectChanges[a-zA-Z0-9]+$/);
     });
+
+    describe('Utility functions', () => {
+      it('String parameter', () => {
+        const result = $c.string('Line1\nLine2\rLine3').replaceLinebreaks(', ').run();
+
+        expect(result).to.deep.equal([
+          ['string', 'Line1\nLine2\rLine3'],
+          ['replaceAll', '(\n|\r)', ', ']
+        ]);
+      });
+      it('ChibiJson parameter', () => {
+        const result = $c
+          .string('Line1\nLine2\rLine3')
+          .replaceLinebreaks($c.string(', ').run())
+          .run();
+
+        expect(result).to.deep.equal([
+          ['string', 'Line1\nLine2\rLine3'],
+          ['replaceAll', '(\n|\r)', [
+            [
+              "string",
+              ", "
+            ]
+          ]],
+        ]);
+      });
+    });
   });
 });
