@@ -41,7 +41,7 @@ class ChibiGenerator<Input> {
       };
     });
 
-    Object.values(utilitiesRegistry).forEach(util => {
+    Object.values(utilitiesRegistry).forEach((util: any) => {
       this[util.name] = (...args) => util(this as any, ...args);
     });
   }
