@@ -35,8 +35,9 @@ export const WeebDex: PageInterface = {
         .ifThen($c => $c.this('sync.getOverviewUrl').this('overview.getIdentifier').return().run())
         .this('sync.getTitle')
         .toLowerCase()
-        .replaceRegex('[×/~]', '') // edge case
         .replaceAll('&', 'and')
+        .replaceAll('%', 'percent') // edge case
+        .replaceRegex('[^\\w\\s-]', '')
         .replaceRegex('\\W', ' ')
         .trim()
         .replaceRegex('\\s+', '-')
@@ -54,8 +55,9 @@ export const WeebDex: PageInterface = {
       return $c
         .coalesce(
           $c.querySelector('#chapter-selector span').text().regex('Ch\\.?\\s*?(\\d+)', 1).run(),
-          $c.title().regex('Chapter (\\d+)', 1).ifNotReturn().run(),
+          $c.title().regex('Chapter (\\d+)', 1).run(),
         )
+        .ifNotReturn($c.number(1).run())
         .number()
         .run();
     },
