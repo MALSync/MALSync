@@ -200,14 +200,14 @@ describe('String Functions', () => {
     });
   });
 
-  describe('toHalfWidth', () => {
+  describe('normalize', () => {
     it('should converts full-width ASCII characters or number to its half-width character', () => {
-      const code = $c.string('Ｈelｌｏ　Ｗoｒlｄ　３').toHalfWidth().run();
+      const code = $c.string('Ｈelｌｏ　Ｗoｒlｄ　３').normalize().run();
       expect(generateAndExecute(code).run()).to.equal('Hello World 3');
     });
 
     it('should only converts full-width ASCII characters or number to its half-width character', () => {
-      const code = $c.string('こんにちは　ワールド　３ｓ').toHalfWidth().run();
+      const code = $c.string('こんにちは　ワールド　３ｓ').normalize().run();
       expect(generateAndExecute(code).run()).to.equal('こんにちは ワールド 3s');
     });
   });

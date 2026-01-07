@@ -209,16 +209,15 @@ export default {
   },
 
   /**
-   * Converts full-width ASCII characters or number to its half-width character
+   * Converts full-width characters to half-width character
    * @input string
+   * @form 'NFC' | 'NFD' | 'NFKC' | 'NFKD' - Normalization form (default: 'NFKC')
    * @returns Its half-width characters or number
    * @example
-   * $c.string('Ｈelｌｏ Ｗoｒlｄ ３').toHalfWidth().run(); // returns Hello World 3
+   * $c.string('Ｈelｌｏ Ｗoｒlｄ ３').normalize().run(); // returns Hello World 3
    */
-  toHalfWidth: (ctx: ChibiCtx, input: string) => {
-    return input
-      .replace(/[\uFF01-\uFF5E]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
-      .replace(/\u3000/g, ' ');
+  normalize: (ctx: ChibiCtx, input: string, form: 'NFC' | 'NFD' | 'NFKC' | 'NFKD' = 'NFKC') => {
+    return input.normalize(form);
   },
 
   /**
