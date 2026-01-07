@@ -127,6 +127,9 @@
       "*://smotret-anime.app/*"
     ],
     "AnimeSama": [
+      "*://anime-sama.tv/*",
+      "*://anime-sama.si/*",
+      "*://anime-sama.to/*",
       "*://anime-sama.eu/*"
     ],
     "iframe": [
@@ -135,6 +138,7 @@
       "*://smotret-anime.app/translations/embed/*",
       "*://christopheruntilpoint.com/e/*",
       "*://walterprettytheir.com/e/*",
+      "*://crystaltreatmenteast.com/e/*",
       "*://megaup22.online/e/*",
       "*://player.anoboye.com/watch/*"
     ]

@@ -425,7 +425,7 @@
     "name": "Animelon"
   },
   {
-    "domain": "https://anime-sama.fr",
+    "domain": "https://anime-sama.eu",
     "type": "anime",
     "name": "AnimeSama"
   },
@@ -455,7 +455,7 @@
     "name": "AnimeKO"
   },
   {
-    "domain": "https://animego.org",
+    "domain": "https://animego.me",
     "type": "anime",
     "name": "AnimeGO"
   },
@@ -555,7 +555,7 @@
     "name": "MangaNato"
   },
   {
-    "domain": "https://animetsu.bz",
+    "domain": "https://animetsu.net",
     "type": "anime",
     "name": "Gojo"
   },
@@ -650,9 +650,9 @@
     "name": "MangaPark"
   },
   {
-    "domain": "https://q1n.net",
+    "domain": "https://topanimes.net",
     "type": "anime",
-    "name": "Q1N"
+    "name": "Topanimes"
   },
   {
     "domain": "https://qiscans.org",
@@ -983,5 +983,15 @@
     "domain": "https://rezoscan.org",
     "type": "manga",
     "name": "RezoScans"
+  },
+  {
+    "domain": "https://ragescans.com",
+    "type": "manga",
+    "name": "RageScans"
+  },
+  {
+    "domain": "https://anigo.to",
+    "type": "anime",
+    "name": "AniGo"
   }
 ]
