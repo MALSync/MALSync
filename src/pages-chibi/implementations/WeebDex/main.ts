@@ -1,9 +1,10 @@
+import { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const WeebDex: PageInterface = {
   name: 'WeebDex',
   domain: 'https://weebdex.org/',
-  languages: ['English'],
+  languages: ['Many'],
   type: 'manga',
   urls: {
     match: ['*://weebdex.org/*'],
@@ -16,58 +17,68 @@ export const WeebDex: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c
-        .coalesce(
-          $c.querySelector('a[href*="/title/"]').text().trim().run(),
-          $c
-            .title()
-            .replaceRegex('\n', '')
-            .regex('Page \\d+:\\s*.*?-\\s*(.+?)\\s*WeebDex', 1) // a bit long to avoid preload matches
-            .trim()
-            .run(),
-        )
-        .run();
+      return getJsonData($c).get('manga_title').run();
     },
     getIdentifier($c) {
-      return $c
-        .querySelector('a[href*="/title/"]')
-        .boolean()
-        .ifThen($c => $c.this('sync.getOverviewUrl').this('overview.getIdentifier').return().run())
-        .this('sync.getTitle')
-        .toLowerCase()
-        .replaceAll('&', 'and')
-        .replaceAll('%', 'percent') // edge case
-        .replaceRegex('[^\\w\\s-]', '')
-        .replaceRegex('\\W', ' ')
-        .trim()
-        .replaceRegex('\\s+', '-')
-        .run();
+      return getJsonData($c).get('manga_id').run();
     },
     getOverviewUrl($c) {
       return $c
-        .querySelector('a[href*="/title/"]')
-        .ifNotReturn()
-        .getAttribute('href')
+        .string('/title/<identifier>')
+        .replace('<identifier>', $c.this('sync.getIdentifier').run())
         .urlAbsolute()
         .run();
     },
     getEpisode($c) {
-      return $c
-        .coalesce(
-          $c.querySelector('#chapter-selector span').text().regex('Ch\\.?\\s*?(\\d+)', 1).run(),
-          $c.title().regex('Chapter (\\d+)', 1).run(),
-        )
-        .ifNotReturn($c.number(1).run())
-        .number()
-        .run();
+      return getJsonData($c).get('chapter').number().run();
     },
     getVolume($c) {
-      return $c
-        .querySelector('#chapter-selector span')
+      return getJsonData($c).get('volume').number().run();
+    },
+    getMalUrl($c) {
+      const getMal = $c
+        .getVariable('malId')
         .ifNotReturn()
-        .text()
-        .regex('\\bVol\\.?\\s*?(\\d+)', 1)
-        .number()
+        .string('https://myanimelist.net/manga/<identifier>')
+        .replace('<identifier>', $c.getVariable('malId').run())
+        .run();
+
+      const getAnilist = $c
+        .provider()
+        .equals('ANILIST')
+        .ifNotReturn()
+        .getVariable('anilistId')
+        .ifNotReturn()
+        .string('https://anilist.co/manga/<identifier>')
+        .replace('<identifier>', $c.getVariable('anilistId').run())
+        .run();
+
+      const getKitsu = $c
+        .provider()
+        .equals('KITSU')
+        .ifNotReturn()
+        .getVariable('kitsuId')
+        .ifNotReturn()
+        .string('https://kitsu.app/manga/<identifier>')
+        .replace('<identifier>', $c.getVariable('kitsuId').run())
+        .run();
+
+      return $c
+        .setVariable(
+          'malId',
+          getJsonData($c).get('links').ifNotReturn().get('mal').ifNotReturn().run(),
+        )
+        .setVariable(
+          'anilistId',
+          getJsonData($c).get('links').ifNotReturn().get('al').ifNotReturn().run(),
+        )
+        .setVariable(
+          'kitsuId',
+          getJsonData($c).get('links').ifNotReturn().get('kt').ifNotReturn().run(),
+        )
+        .coalesce($c.fn(getKitsu).run(), $c.fn(getAnilist).run(), $c.fn(getMal).run())
+        .ifNotReturn()
+        .log()
         .run();
     },
     readerConfig: [
@@ -96,7 +107,7 @@ export const WeebDex: PageInterface = {
       return $c.querySelector('.text-xl\\/10').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(5).run();
+      return $c.url().urlPart(4).run();
     },
     getImage($c) {
       return $c
@@ -160,8 +171,11 @@ export const WeebDex: PageInterface = {
     },
     ready($c) {
       return $c
-        .detectChanges($c.url().urlPart(4).run(), $c.trigger().run())
         .domReady()
+        .detectChanges(
+          $c.querySelector('#chapter-data').ifNotReturn().text().trim().run(),
+          $c.trigger().run(),
+        )
         .trigger()
         .run();
     },
@@ -174,8 +188,17 @@ export const WeebDex: PageInterface = {
         .run();
     },
     syncIsReady($c) {
-      // Reduce errors spam from waiting title
-      return $c.waitUntilTrue($c.querySelector('#reader').boolean().run()).trigger().run();
+      return $c
+        .querySelector('#chapter-data')
+        .ifNotReturn()
+        .text()
+        .contains('\\/\\/')
+        .ifNotReturn($c.trigger().return().run())
+        .run();
     },
   },
 };
+
+function getJsonData($c: ChibiGenerator<unknown>) {
+  return $c.querySelector('#chapter-data').ifNotReturn().text().jsonParse();
+}
