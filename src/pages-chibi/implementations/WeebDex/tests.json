@@ -3,35 +3,35 @@
   "url": "https://weebdex.org/",
   "testCases": [
     {
-      "url": "https://weebdex.org/chapter/6fyv8ata85",
+      "url": "https://weebdex.org/chapter/vv6t2ksmfd",
       "expected": {
         "sync": true,
         "title": "Chainsaw Man",
-        "identifier": "chainsaw-man",
-        "overviewUrl": "https://weebdex.org/title/12lqiy9zu1/chainsaw-man",
-        "episode": 96,
-        "volume": 11,
+        "identifier": "12lqiy9zu1",
+        "overviewUrl": "https://weebdex.org/title/12lqiy9zu1",
+        "episode": 221,
+        "volume": null,
         "uiSelector": false
       }
     },
     {
-      "url": "https://weebdex.org/chapter/bqvm32tt4q",
+      "url": "https://weebdex.org/chapter/s8pcnwu3vt",
       "expected": {
         "sync": true,
         "title": "Kage no Jitsuryokusha ni Naritakute! Master of Garden ~Shichikage Retsuden~",
         "identifier": "kage-no-jitsuryokusha-ni-naritakute-master-of-garden-shichikage-retsuden",
-        "overviewUrl": "https://weebdex.org/title/g2tpg8wyar/kage-no-jitsuryokusha-ni-naritakute-master-of-garden-shichikage-retsuden",
-        "episode": 10,
+        "overviewUrl": "https://weebdex.org/title/g2tpg8wyar",
+        "episode": 9,
         "volume": 2,
         "uiSelector": false
       }
     },
     {
-      "url": "https://weebdex.org/title/3o0icxno26/ani-datta-mono",
+      "url": "https://weebdex.org/title/3o0icxno26",
       "expected": {
         "sync": false,
         "title": "Ani Datta Mono",
-        "identifier": "ani-datta-mono",
+        "identifier": "3o0icxno26",
         "image": "https://srv.notdelta.xyz/covers/3o0icxno26/4uy9pui0ff.jpg",
         "uiSelector": true,
         "epList": {
@@ -41,14 +41,14 @@
       }
     },
     {
-      "url": "https://weebdex.org/chapter/wm5ry2yi4x",
+      "url": "https://weebdex.org/chapter/b8v6wawdex",
       "expected": {
         "sync": true,
-        "title": "KISS×DEATH",
-        "identifier": "kissdeath",
-        "overviewUrl": "https://weebdex.org/title/i5tvgdfez4/kissdeath",
-        "episode": 77,
-        "volume": 7,
+        "title": "Ruri Dragon (Oneshot)",
+        "identifier": "x2jainvedn",
+        "overviewUrl": "https://weebdex.org/title/x2jainvedn",
+        "episode": 1,
+        "volume": null,
         "uiSelector": false
       }
     }

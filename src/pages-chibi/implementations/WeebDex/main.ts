@@ -30,7 +30,7 @@ export const WeebDex: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return getJsonData($c).get('chapter').number().run();
+      return getJsonData($c).get('chapter').ifNotReturn($c.number(1).run()).number().run();
     },
     getVolume($c) {
       return getJsonData($c).get('volume').number().run();
@@ -171,11 +171,8 @@ export const WeebDex: PageInterface = {
     },
     ready($c) {
       return $c
+        .detectChanges($c.url().urlPart(4).run(), $c.trigger().run())
         .domReady()
-        .detectChanges(
-          $c.querySelector('#chapter-data').ifNotReturn().text().trim().run(),
-          $c.trigger().run(),
-        )
         .trigger()
         .run();
     },
@@ -188,13 +185,8 @@ export const WeebDex: PageInterface = {
         .run();
     },
     syncIsReady($c) {
-      return $c
-        .querySelector('#chapter-data')
-        .ifNotReturn()
-        .text()
-        .contains('\\/\\/')
-        .ifNotReturn($c.trigger().return().run())
-        .run();
+      // Reduce errors from waiting title
+      return $c.waitUntilTrue($c.querySelector('#chapter-data').boolean().run()).trigger().run();
     },
   },
 };
