@@ -36,49 +36,12 @@ export const WeebDex: PageInterface = {
       return getJsonData($c).get('volume').number().run();
     },
     getMalUrl($c) {
-      const getMal = $c
-        .getVariable('malId')
-        .ifNotReturn()
-        .string('https://myanimelist.net/manga/<identifier>')
-        .replace('<identifier>', $c.getVariable('malId').run())
-        .run();
-
-      const getAnilist = $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .getVariable('anilistId')
-        .ifNotReturn()
-        .string('https://anilist.co/manga/<identifier>')
-        .replace('<identifier>', $c.getVariable('anilistId').run())
-        .run();
-
-      const getKitsu = $c
-        .provider()
-        .equals('KITSU')
-        .ifNotReturn()
-        .getVariable('kitsuId')
-        .ifNotReturn()
-        .string('https://kitsu.app/manga/<identifier>')
-        .replace('<identifier>', $c.getVariable('kitsuId').run())
-        .run();
-
       return $c
-        .setVariable(
-          'malId',
-          getJsonData($c).get('links').ifNotReturn().get('mal').ifNotReturn().run(),
-        )
-        .setVariable(
-          'anilistId',
-          getJsonData($c).get('links').ifNotReturn().get('al').ifNotReturn().run(),
-        )
-        .setVariable(
-          'kitsuId',
-          getJsonData($c).get('links').ifNotReturn().get('kt').ifNotReturn().run(),
-        )
-        .coalesce($c.fn(getKitsu).run(), $c.fn(getAnilist).run(), $c.fn(getMal).run())
-        .ifNotReturn()
-        .log()
+        .providerUrlUtility({
+          malId: getJsonData($c).get('links').get('mal').number().ifNotReturn().run(),
+          anilistId: getJsonData($c).get('links').get('al').number().ifNotReturn().run(),
+          kitsuId: getJsonData($c).get('links').get('kt').number().ifNotReturn().run(),
+        })
         .run();
     },
     readerConfig: [
@@ -118,36 +81,26 @@ export const WeebDex: PageInterface = {
         .run();
     },
     getMalUrl($c) {
-      const getMal = $c
-        .querySelector('a[href*="myanimelist"]')
-        .ifNotReturn()
-        .getAttribute('href')
-        .run();
-
-      const getAnilist = $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .querySelector('a[href*="anilist"]')
-        .getAttribute('href')
-        .run();
-
-      const getKitsu = $c
-        .querySelector('a[href^="https://kitsu"]')
-        .ifNotReturn()
-        .provider()
-        .equals('KITSU')
-        .ifNotReturn()
-        .string('https://kitsu.app/manga/<identifier>')
-        .replace(
-          '<identifier>',
-          $c.querySelector('a[href^="https://kitsu"]').getAttribute('href').urlPart(6).run(),
-        )
-        .run();
-
       return $c
-        .coalesce($c.fn(getKitsu).run(), $c.fn(getAnilist).run(), $c.fn(getMal).run())
-        .ifNotReturn()
+        .providerUrlUtility({
+          malUrl: $c
+            .querySelector('a[href*="myanimelist"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .run(),
+          anilistUrl: $c
+            .querySelector('a[href*="anilist"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .run(),
+          // Weebdex uses old kitsu domain
+          kitsuId: $c
+            .querySelector('a[href*="kitsu"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlPart(4)
+            .run(),
+        })
         .run();
     },
     uiInjection($c) {
@@ -183,10 +136,6 @@ export const WeebDex: PageInterface = {
           $c.trigger().run(),
         )
         .run();
-    },
-    syncIsReady($c) {
-      // Reduce errors from waiting title
-      return $c.waitUntilTrue($c.querySelector('#chapter-data').boolean().run()).trigger().run();
     },
   },
 };
