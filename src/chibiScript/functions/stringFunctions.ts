@@ -211,7 +211,7 @@ export default {
   /**
    * Converts full-width characters to half-width character
    * @input string
-   * @form 'NFC' | 'NFD' | 'NFKC' | 'NFKD' - Normalization form (default: 'NFKD')
+   * @form 'NFC' | 'NFD' | 'NFKC' | 'NFKD' - Normalization form (default: 'NFKC')
    * @returns Its half-width characters or number
    * @example
    * $c.string('Ｈelｌｏ Ｗoｒlｄ ３').normalize().run(); // returns Hello World 3
