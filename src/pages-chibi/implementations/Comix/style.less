@@ -1,9 +1,9 @@
 @import './../pages';
 
-@boxBackground: var(--bs-body-bg-l1) !important;
+@boxBackground: var(--bs-body-bg-l1);
 @activeEp: var(--bs-primary) !important;
 @highlightStyle: 1;
-@hoverBox: rgba(var(--bs-body-bg-s-rgb), 0.07);
+@hoverBox: rgba(var(--bs-body-bg-s-rgb), 0.07) !important;
 
 #malp {
   margin-bottom: 2rem;
@@ -15,7 +15,7 @@
       .malp-group-field:not(.malp-group-input):hover,
       .malp-group-value-section:hover,
       .malp-group-value-section:focus-within {
-        background-color: @hoverBox !important;
+        background-color: @hoverBox;
       }
       #AddMal {
         background-color: var(--bs-body-color) !important;
@@ -29,7 +29,7 @@
         font-weight: 600;
       }
       #malRating:hover {
-        color: @activeEp !important;
+        color: @activeEp;
       }
       option {
         font-family: sans-serif;
