@@ -1,9 +1,9 @@
-import generalUtilities from './stringUtilities';
+import stringUtilities from './stringUtilities';
 import conditionUtilities from './conditionUtilities';
 import internalUtilities from './internalUtilities';
 
 export default {
-  ...generalUtilities,
+  ...stringUtilities,
   ...conditionUtilities,
   ...internalUtilities,
 };
