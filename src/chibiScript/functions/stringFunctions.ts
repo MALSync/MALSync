@@ -216,7 +216,7 @@ export default {
    * @example
    * $c.string('Ｈelｌｏ Ｗoｒlｄ ３').normalize().run(); // returns Hello World 3
    */
-  normalize: (ctx: ChibiCtx, input: string, form: 'NFC' | 'NFD' | 'NFKC' | 'NFKD' = 'NFKD') => {
+  normalize: (ctx: ChibiCtx, input: string, form: 'NFC' | 'NFD' | 'NFKC' | 'NFKD' = 'NFKC') => {
     return input.normalize(form);
   },
 
