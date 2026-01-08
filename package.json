@@ -65,7 +65,7 @@
     "ts-mocha": "^11.1.0",
     "ts-node": "^10.9.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "^8.51.0",
+    "typescript-eslint": "^8.52.0",
     "vue-eslint-parser": "10.2.0",
     "vue-loader": "^17.4.2",
     "web-ext": "^9.2.0",
