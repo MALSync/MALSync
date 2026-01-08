@@ -57,9 +57,9 @@ class ChibiGenerator<Input> {
 }
 
 // eslint-disable-next-line no-redeclare
-interface ChibiGenerator<Input>
-  extends ChibiGeneratorFunctions<Input>,
-    ChibiGeneratorUtilities<Input> {}
+interface ChibiGenerator<Input> extends ChibiGeneratorFunctions<Input> {}
+// eslint-disable-next-line no-redeclare
+interface ChibiGenerator<Input> extends ChibiGeneratorUtilities<Input> {}
 
 export type { ChibiGenerator };
 

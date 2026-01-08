@@ -27,7 +27,7 @@ export default {
         provider: 'KITSU',
         urlKey: 'kitsuUrl',
         idKey: 'kitsuId',
-        urlTemplate: 'https://kitsu.io/manga/<identifier>',
+        urlTemplate: 'https://kitsu.app/manga/<identifier>',
       },
       {
         provider: 'MAL',

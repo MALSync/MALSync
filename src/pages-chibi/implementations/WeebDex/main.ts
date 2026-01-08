@@ -1,9 +1,10 @@
+import { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const WeebDex: PageInterface = {
   name: 'WeebDex',
   domain: 'https://weebdex.org/',
-  languages: ['English'],
+  languages: ['Many'],
   type: 'manga',
   urls: {
     match: ['*://weebdex.org/*'],
@@ -16,46 +17,46 @@ export const WeebDex: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('a[href^="/title/"]').text().trim().run();
+      return getJsonData($c).get('manga_title').run();
     },
     getIdentifier($c) {
-      return $c.this('sync.getOverviewUrl').this('overview.getIdentifier').run();
+      return getJsonData($c).get('manga_id').run();
     },
     getOverviewUrl($c) {
-      return $c.querySelector('a[href^="/title/"]').getAttribute('href').urlAbsolute().run();
-    },
-    getEpisode($c) {
       return $c
-        .querySelector('#chapter-selector span')
-        .text()
-        .regex('Ch\\.?\\s*?(\\d+)', 1)
-        .number()
+        .string('/title/<identifier>')
+        .replace('<identifier>', $c.this('sync.getIdentifier').run())
+        .urlAbsolute()
         .run();
     },
+    getEpisode($c) {
+      return getJsonData($c).get('chapter').ifNotReturn($c.number(1).run()).number().run();
+    },
     getVolume($c) {
+      return getJsonData($c).get('volume').number().run();
+    },
+    getMalUrl($c) {
       return $c
-        .querySelector('#chapter-selector span')
-        .text()
-        .regex('Vol\\.?\\s*?(\\d+)', 1)
-        .number()
+        .providerUrlUtility({
+          malId: getJsonData($c).get('links').get('mal').number().ifNotReturn().run(),
+          anilistId: getJsonData($c).get('links').get('al').number().ifNotReturn().run(),
+          kitsuId: getJsonData($c).get('links').get('kt').number().ifNotReturn().run(),
+        })
         .run();
     },
     readerConfig: [
       {
+        condition: $c => $c.querySelector('#indicator').boolean().run(),
         current: $c =>
-          $c
-            .querySelector('#page-selector span')
-            .text()
-            .regex('(\\d+)\\s*/\\s*(\\d+)', 1)
-            .number()
-            .run(),
+          $c.querySelector('#indicator .transition').text().regex('(\\d+)\\s*/', 1).number().run(),
         total: $c =>
-          $c
-            .querySelector('#page-selector span')
-            .text()
-            .regex('(\\d+)\\s*/\\s*(\\d+)', 2)
-            .number()
-            .run(),
+          $c.querySelector('#indicator .transition').text().regex('/\\s*(\\d+)', 1).number().run(),
+      },
+      {
+        current: $c =>
+          $c.querySelector('#page-selector span').text().regex('(\\d+)\\s*/', 1).number().run(),
+        total: $c =>
+          $c.querySelector('#page-selector span').text().regex('/\\s*(\\d+)', 1).number().run(),
       },
     ],
   },
@@ -69,7 +70,7 @@ export const WeebDex: PageInterface = {
       return $c.querySelector('.text-xl\\/10').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(5).run();
+      return $c.url().urlPart(4).run();
     },
     getImage($c) {
       return $c
@@ -80,36 +81,26 @@ export const WeebDex: PageInterface = {
         .run();
     },
     getMalUrl($c) {
-      const getMal = $c
-        .querySelector('a[href*="myanimelist"]')
-        .ifNotReturn()
-        .getAttribute('href')
-        .run();
-
-      const getAnilist = $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .querySelector('a[href*="anilist"]')
-        .getAttribute('href')
-        .run();
-
-      const getKitsu = $c
-        .querySelector('a[href^="https://kitsu"]')
-        .ifNotReturn()
-        .provider()
-        .equals('KITSU')
-        .ifNotReturn()
-        .string('https://kitsu.app/manga/<identifier>')
-        .replace(
-          '<identifier>',
-          $c.querySelector('a[href^="https://kitsu"]').getAttribute('href').urlPart(6).run(),
-        )
-        .run();
-
       return $c
-        .coalesce($c.fn(getKitsu).run(), $c.fn(getAnilist).run(), $c.fn(getMal).run())
-        .ifNotReturn()
+        .providerUrlUtility({
+          malUrl: $c
+            .querySelector('a[href*="myanimelist"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .run(),
+          anilistUrl: $c
+            .querySelector('a[href*="anilist"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .run(),
+          // Weebdex uses old kitsu domain
+          kitsuId: $c
+            .querySelector('a[href*="kitsu"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlPart(4)
+            .run(),
+        })
         .run();
     },
     uiInjection($c) {
@@ -148,3 +139,7 @@ export const WeebDex: PageInterface = {
     },
   },
 };
+
+function getJsonData($c: ChibiGenerator<unknown>) {
+  return $c.querySelector('#chapter-data').ifNotReturn().text().jsonParse();
+}
