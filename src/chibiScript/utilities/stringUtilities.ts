@@ -1,4 +1,4 @@
-import type { ChibiGenerator, ChibiJson, ChibiParam } from '../ChibiGenerator';
+import type { ChibiGenerator, ChibiParam } from '../ChibiGenerator';
 
 export default {
   /**
