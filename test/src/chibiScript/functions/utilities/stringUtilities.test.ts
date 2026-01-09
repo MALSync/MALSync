@@ -5,11 +5,11 @@ import { ChibiConsumer } from '../../../../../src/chibiScript/ChibiConsumer';
 describe('String Utilities Functions', () => {
   describe('slugify function', () => {
     it('slugify a string', () => {
-      const code = $c.string('1 World/s New').slugify().run();
+      const code = $c.string('1 World/s\n-\n\n New').slugify().run();
       expect(generateAndExecute(code).run()).to.equal('1-worlds-new');
     });
-    it('slugify a string with additional replacement rules', () => {
-      const code = $c.string('100% World-&-☢').slugify('%:percent', '☢:radiation', '&:and').run();
+    it('slugify a string with additional replacement rules including use of chibi parameter', () => {
+      const code = $c.string('100%\nWorld\n&-\n☢').slugify({'%': 'percent', '☢': $c.string('radiation').run(), '&': 'and'}).run();
       expect(generateAndExecute(code).run()).to.equal('100percent-world-and-radiation');
     });
   });
