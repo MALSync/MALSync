@@ -8,8 +8,26 @@ describe('String Utilities Functions', () => {
       const code = $c.string('1 World/s\n-\n\n New').slugify().run();
       expect(generateAndExecute(code).run()).to.equal('1-worlds-new');
     });
-    it('slugify a string with additional replacement rules including use of chibi parameter', () => {
-      const code = $c.string('100%\nWorld\n&-\n☢').slugify({'%': 'percent', '☢': $c.string('radiation').run(), '&': 'and'}).run();
+    it('slugify a string with replacement rules through array and chibi', () => {
+      const code = $c
+        .string('100%\nWorld\n&-\n☢')
+        .slugify([
+          ['%', 'percent'],
+          [$c.string('☢').run(), $c.string('radiation').run()],
+          ['&', 'and'],
+        ])
+        .run();
+      expect(generateAndExecute(code).run()).to.equal('100percent-world-and-radiation');
+    });
+    it('slugify a string with replacement rules through object and chibi', () => {
+      const code = $c
+        .string('100%\nWorld\n&-\n☢')
+        .slugify({
+          '%': 'percent',
+          '☢': $c.string('radiation').run(),
+          '&': 'and',
+        })
+        .run();
       expect(generateAndExecute(code).run()).to.equal('100percent-world-and-radiation');
     });
   });

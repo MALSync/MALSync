@@ -15,13 +15,17 @@ export default {
    * @param replacement Additional replacement rules in the format {'target': 'replacement'}.
    * @example
    * $c.string('1 World/s New').slugify().run() // return 1-worlds-strong
-   * $c.string('100% World-&-☢').slugify({'%': 'percent', '☢': $c.string('radiation').run(), '&': 'and'}).run() // return 100percent-world-and-radiation
+   * $c.string('100% World-&-☢').slugify([['%', 'percent'], ['☢', $c.string('radiation').run()], ['&', 'and']]).run() // return 100percent-world-and-radiation
    */
-  slugify: ($c: ChibiGenerator<string>, replacement?: Record<string, ChibiParam<string>>) => {
-    const expr = Object.entries(replacement ?? {}).reduce(
-      (acc, [from, to]) => acc.replaceAll(from, to),
-      $c.toLowerCase(),
-    );
+  slugify: (
+    $c: ChibiGenerator<string>,
+    replacements?: Record<string, ChibiParam<string>> | [ChibiParam<string>, ChibiParam<string>][],
+  ) => {
+    const entries: [string, ChibiParam<string>][] = Array.isArray(replacements)
+      ? (replacements as [ChibiParam<string>, ChibiParam<string>][])
+      : Object.entries(replacements ?? {});
+
+    const expr = entries.reduce((acc, [from, to]) => acc.replaceAll(from, to), $c.toLowerCase());
 
     return expr
       .replaceRegex('[^\\w\\s-]', '')
