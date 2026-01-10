@@ -12,10 +12,11 @@ export default {
 
   /**
    * Slugify a string (Converts string to lowercase, removes special characters, and replaces spaces with hyphens)
-   * @param replacement Additional replacement rules in the format {'target': 'replacement'}.
+   * @param replacement Additional replacement rules in the format {'target': 'replacement'} or [['target', 'replacement']].
    * @example
-   * $c.string('1 World/s New').slugify().run() // return 1-worlds-strong
-   * $c.string('100% World-&-☢').slugify([['%', 'percent'], ['☢', $c.string('radiation').run()], ['&', 'and']]).run() // return 100percent-world-and-radiation
+   * $c.string('1 World/s New').slugify().run() // return 1-worlds-new
+   * $c.string('100%-&').slugify([['%', 'percent'], [$c.string('&').run(), $c.string('and').run()]]).run() // return 100percent-and
+   * $c.string('100%-&').slugify({'%': 'percent', '&': $c.string('and').run()}).run() // return 100percent-and
    */
   slugify: (
     $c: ChibiGenerator<string>,
