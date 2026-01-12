@@ -607,6 +607,10 @@ export abstract class SingleAbstract {
     //  do nothing
   }
 
+  public finishedAiring(): boolean {
+    return true;
+  }
+
   getStateEl() {
     return {
       onList: this.isOnList(),
@@ -718,7 +722,7 @@ export abstract class SingleAbstract {
       return false;
     }
 
-    if (episode && episode === this.getTotalEpisodes()) {
+    if (episode && episode === this.getTotalEpisodes() && this.finishedAiring()) {
       this.askCompleted = true;
       return true;
     }

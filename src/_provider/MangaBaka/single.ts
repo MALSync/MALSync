@@ -200,6 +200,10 @@ export class Single extends SingleAbstract {
     return Promise.resolve(String(this.libraryEntry.Series.rating.toFixed(0)));
   }
 
+  finishedAiring() {
+    return ['cancelled', 'completed'].includes(this.libraryEntry.Series.status);
+  }
+
   public forceSeries: BakaSeries | null = null;
 
   public forceLibraryEntry: BakaLibraryEntry | null = null;
