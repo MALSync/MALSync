@@ -26,7 +26,7 @@ export abstract class SingleAbstract {
 
   protected syncMethod: definitions.syncMethod = 'normal';
 
-  protected persistanceState;
+  protected persistenceState?: ReturnType<SingleAbstract['getStateEl']>;
 
   protected undoState;
 
@@ -402,7 +402,7 @@ export abstract class SingleAbstract {
         throw e;
       })
       .then(() => {
-        this.persistanceState = this.getStateEl();
+        this.persistenceState = this.getStateEl();
 
         return utils.getEntrySettings(this.type, this.getCacheKey(), this._getTags());
       })
@@ -428,7 +428,7 @@ export abstract class SingleAbstract {
         throw e;
       })
       .then(() => {
-        this.undoState = this.persistanceState;
+        this.undoState = this.persistenceState;
         if (this.updateProgress) this.initProgress();
         this._onList = true;
         this.emitUpdate();
@@ -482,16 +482,23 @@ export abstract class SingleAbstract {
 
     if (data && data.state) {
       this.setStateEl(data.state);
-      this.persistanceState = this.getStateEl();
+      this.persistenceState = this.getStateEl();
       emitter.emit('syncPage_fillUi');
     }
   }
 
   public isDirty(): boolean {
     return (
-      JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl()) ||
+      JSON.stringify(this.persistenceState) !== JSON.stringify(this.getStateEl()) ||
       this.updateProgress
     );
+  }
+
+  public isValueDirty(key: keyof ReturnType<SingleAbstract['getStateEl']>): boolean {
+    if (this.persistenceState) {
+      return this.persistenceState[key] !== this.getStateEl()[key];
+    }
+    return false;
   }
 
   public undo(): Promise<void> {
@@ -622,6 +629,7 @@ export abstract class SingleAbstract {
       rewatchCount: this.getRewatchCount(),
       score: this.getScore(),
       absoluteScore: this.getAbsoluteScore(),
+      tags: this._getTags(),
     };
   }
 

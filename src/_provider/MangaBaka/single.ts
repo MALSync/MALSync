@@ -300,14 +300,23 @@ export class Single extends SingleAbstract {
     const entryToSend: BakaLibraryEntryUpdate = {
       progress_chapter: this.libraryEntry.progress_chapter,
       progress_volume: this.libraryEntry.progress_volume,
-      rating: this.libraryEntry.rating,
-      state: this.libraryEntry.state,
       start_date: this.libraryEntry.start_date,
       finish_date: this.libraryEntry.finish_date,
-      note: this.libraryEntry.note,
       number_of_rereads: this.libraryEntry.number_of_rereads,
       read_link: this.libraryEntry.read_link,
     };
+
+    if (this.isValueDirty('score')) {
+      entryToSend.rating = this.libraryEntry.rating;
+    }
+
+    if (this.isValueDirty('status')) {
+      entryToSend.state = this.libraryEntry.state;
+    }
+
+    if (this.isValueDirty('tags')) {
+      entryToSend.note = this.libraryEntry.note;
+    }
 
     let method: 'PATCH' | 'POST' = 'PATCH';
     if (!this._onList) {
