@@ -268,13 +268,13 @@ async function start() {
   const args = process.argv.slice(2);
   const tasks = {
     voe,
-    // vidmoly,
-    // mixdrop,
-    // zoro,
-    // kickassanime,
+    vidmoly,
+    mixdrop,
+    zoro,
+    kickassanime,
     animekai,
-    // bato,
-    // mangapark,
+    bato,
+    mangapark,
   };
 
   if (args.includes('--list')) {
