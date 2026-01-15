@@ -270,7 +270,7 @@ async function start() {
   }
 
   for (const key of Object.keys(tasksToRun)) {
-    await tasksToRunkey
+    await tasksToRun[key]()
       .then(() => succeededTasks.push(key))
       .catch(e => {
         console.error(`\n[${key}]:`, e);
