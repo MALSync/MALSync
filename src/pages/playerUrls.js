@@ -878,6 +878,6 @@ module.exports = {
     match: ['*://*.playerp2p.live/*', '*://*.rpmvip.com/*'],
   },
   sHide: {
-    match: ['*://callistanise.com/*', '*://habetar.com/*', '*://yuguaab.com/*', ]
+    match: ['*://callistanise.com/*', '*://habetar.com/*', '*://yuguaab.com/*'],
   },
 };
