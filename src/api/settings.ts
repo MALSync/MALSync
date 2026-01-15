@@ -14,7 +14,7 @@ export const settingsObj = {
     rpc: true,
     presenceLargeImage: 'cover',
     presenceShowButtons: true,
-    presenceShowMalsync: false,
+    presenceActivityName: 'title',
     userscriptModeButton: false,
     syncMode: 'MAL',
     syncModeSimkl: 'MAL',
@@ -63,7 +63,6 @@ export const settingsObj = {
       'VIZ',
       'MangaPlus',
       'MangaReader',
-      'ComicK',
       'WeebCentral',
       'KickAssAnime',
       'animepahe',
@@ -96,6 +95,7 @@ export const settingsObj = {
 
     customDomains: [],
 
+    anilistExternalSources: false,
     anilistUpdateUi: true,
 
     anilistToken: '',

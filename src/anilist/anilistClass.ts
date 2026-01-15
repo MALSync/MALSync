@@ -128,6 +128,10 @@ export class AnilistClass {
   }
 
   malToKiss() {
+    if (!api.settings.get('anilistExternalSources')) {
+      con.log('Quicklinks disabled by settings');
+      return;
+    }
     $(document).ready(() => {
       con.log('malToKiss');
       $('.mal_links').remove();
@@ -195,6 +199,11 @@ export class AnilistClass {
     this.initVue(malObj);
     this.pageRelation(malObj);
 
+    if (!api.settings.get('anilistExternalSources')) {
+      con.log('Streaming UI disabled by settings');
+      return;
+    }
+
     const streamUrl = malObj.getStreamingUrl();
     if (streamUrl) {
       $(document).ready(async function () {
@@ -245,10 +254,19 @@ export class AnilistClass {
   }
 
   async pageRelation(malObj) {
+    if (!api.settings.get('anilistExternalSources')) {
+      con.log('Page Relation disabled by settings');
+      return;
+    }
+
     await malObj.fillRelations();
 
     $('.malsync-rel-link').remove();
-    $('h1').first().append(j.html('<div class="malsync-rel-link" style="float: right;"></div>'));
+    $('h1')
+      .first()
+      .append(
+        j.html('<div class="malsync-rel-link" style="float: right; user-select: none;"></div>'),
+      );
 
     malObj.getPageRelations().forEach(page => {
       $('.malsync-rel-link').append(
@@ -326,6 +344,11 @@ export class AnilistClass {
             const element = tempEl.first().parent();
 
             element.parent().addClass('malSyncDone2');
+
+            if (!api.settings.get('anilistExternalSources')) {
+              con.log('Page Relation disabled by settings');
+              en.options = { r: null, c: null, u: null };
+            }
 
             if (en.options && en.options.u) {
               con.log(en.options.u);

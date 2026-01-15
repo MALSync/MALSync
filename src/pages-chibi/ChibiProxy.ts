@@ -1,4 +1,5 @@
 import { doesUrlMatchPatterns } from 'webext-patterns';
+import type { mangaProgressConfig } from 'src/utils/mangaProgress/MangaProgress';
 import { NotFoundError } from '../_provider/Errors';
 import type { ChibiJson } from '../chibiScript/ChibiGenerator';
 import { ChibiConsumer } from '../chibiScript/ChibiConsumer';
@@ -116,7 +117,9 @@ export const Chibi = async (): Promise<pageInterface> => {
         ? html => {
             const consumer = getConsumer(currentPage.sync.uiInjection!, pageD, 'sync.uiInjection');
             consumer.addVariable('ui', html);
-            return consumer.run();
+            const value = consumer.run();
+            consumer.emitEvent('overview.uiSelector');
+            return value;
           }
         : undefined,
       getMalUrl: currentPage.sync.getMalUrl
@@ -126,7 +129,9 @@ export const Chibi = async (): Promise<pageInterface> => {
             return consumer.run();
           }
         : undefined,
-      readerConfig: currentPage.sync.readerConfig ? currentPage.sync.readerConfig : undefined,
+      readerConfig: currentPage.sync.readerConfig
+        ? (currentPage.sync.readerConfig as any)
+        : undefined,
     },
     overview:
       currentPage.overview || currentPage.list
@@ -156,7 +161,9 @@ export const Chibi = async (): Promise<pageInterface> => {
                 'overview.uiInjection',
               );
               consumer.addVariable('ui', html);
-              return consumer.run();
+              const value = consumer.run();
+              consumer.emitEvent('overview.uiSelector');
+              return value;
             },
             getImage: currentPage.overview?.getImage
               ? () => {
@@ -243,6 +250,23 @@ export const Chibi = async (): Promise<pageInterface> => {
         page.reset();
 
         const pageReady = () => {
+          if (currentPage.computedType) {
+            logger.m('Type').info('Computing type...');
+            const typeConsumer = getConsumer(currentPage.computedType, pageD, 'computedType');
+            const computedType = typeConsumer.run();
+            if (computedType) {
+              logger.m('Type').info('Computed type:', computedType);
+              let type = computedType;
+              let isNovel = false;
+              if (type === 'novel') {
+                type = 'manga';
+                isNovel = true;
+              }
+              pageD.type = type;
+              page.novel = isNovel;
+            }
+          }
+
           logger.info('Handle page');
           page.handlePage();
         };
@@ -296,5 +320,54 @@ export const Chibi = async (): Promise<pageInterface> => {
     },
   };
 
+  if (pageD.sync.readerConfig) {
+    pageD.sync.readerConfig = handleReaderConfig(
+      currentPage.sync.readerConfig as any,
+      pageD,
+      'sync.readerConfig',
+    );
+  }
+
   return pageD;
 };
+
+function handleReaderConfig(
+  config: (
+    | mangaProgressConfig
+    | { current?: ChibiJson<any>; total: ChibiJson<any>; condition: ChibiJson<any> }
+  )[],
+  page,
+  name: string,
+): mangaProgressConfig[] {
+  const temp: mangaProgressConfig[] = [];
+
+  config.forEach((config, index) => {
+    if (Array.isArray(config.current)) {
+      const tempConfig: mangaProgressConfig = {
+        current: {
+          mode: 'callback',
+          callback: () =>
+            getConsumer(config.current as ChibiJson<any>, page, `${name}[${index}].current`).run(),
+        },
+        total: {
+          mode: 'callback',
+          callback: () =>
+            getConsumer(config.total as ChibiJson<any>, page, `${name}[${index}].total`).run(),
+        },
+      };
+      if (config.condition) {
+        tempConfig.condition = () =>
+          getConsumer(
+            config.condition as ChibiJson<any>,
+            page,
+            `${name}[${index}].condition`,
+          ).run();
+      }
+      temp.push(tempConfig);
+    } else {
+      temp.push(config as mangaProgressConfig);
+    }
+  });
+
+  return temp;
+}

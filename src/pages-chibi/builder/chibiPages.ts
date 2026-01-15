@@ -1,3 +1,4 @@
+import type { mangaProgressConfig } from 'src/utils/mangaProgress/MangaProgress';
 import { $c } from '../../chibiScript/ChibiGenerator';
 import { PageInterfaceCompiled } from '../pageInterface';
 import { pages } from '../pages';
@@ -23,6 +24,27 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
   }
   if (page.sync.getMalUrl) {
     page.sync.getMalUrl = page.sync.getMalUrl($c) as any;
+  }
+
+  if (page.sync.readerConfig) {
+    const temp: mangaProgressConfig[] = [];
+
+    page.sync.readerConfig.forEach(config => {
+      if (typeof config.current === 'function') {
+        const tempConfig: mangaProgressConfig = {
+          current: (config.current as any)($c),
+          total: (config.total as any)($c),
+        };
+        if (config.condition) {
+          tempConfig.condition = (config.condition as any)($c);
+        }
+        temp.push(tempConfig);
+      } else {
+        temp.push(config as mangaProgressConfig);
+      }
+    });
+
+    page.sync.readerConfig = temp;
   }
 
   if (page.overview) {
@@ -56,6 +78,10 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
   }
   if (page.lifecycle.listChange) {
     page.lifecycle.listChange = page.lifecycle.listChange($c) as any;
+  }
+
+  if (page.computedType) {
+    page.computedType = page.computedType($c) as any;
   }
 
   return page;

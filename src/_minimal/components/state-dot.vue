@@ -42,31 +42,31 @@ defineProps({
   }
 
   &.state-1 {
-    background: var(--state-1);
+    background: var(--cl-state-1);
   }
 
   &.state-2 {
-    background: var(--state-2);
+    background: var(--cl-state-2);
   }
 
   &.state-3 {
-    background: var(--state-3);
+    background: var(--cl-state-3);
   }
 
   &.state-4 {
-    background: var(--state-4);
+    background: var(--cl-state-4);
   }
 
   &.state-6 {
-    background: var(--state-6);
+    background: var(--cl-state-6);
   }
 
   &.state-7 {
-    background: var(--state-7);
+    background: var(--cl-state-7);
   }
 
   &.state-23 {
-    background: var(--state-23);
+    background: var(--cl-state-23);
   }
 }
 </style>

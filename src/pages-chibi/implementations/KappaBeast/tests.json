@@ -1,0 +1,57 @@
+{
+    "title": "KappaBeast",
+    "url": "https://kappabeast.com",
+    "testCases": [
+      {
+        "url": "https://kappabeast.com/local-bullies-63-2/",
+        "expected": {
+          "sync": true,
+          "title": "Jimoto no Ijimekko-tachi ni Shikaeshi Shiyou to Shitara, Betsu no Tatakai ga Hajimatta",
+          "identifier": "when-trying-to-get-back-at-the-hometown-bullies-another-battle-began",
+          "overviewUrl": "https://kappabeast.com/manga/when-trying-to-get-back-at-the-hometown-bullies-another-battle-began/",
+          "episode": 63,
+          "nextEpUrl": "https://kappabeast.com/local-bullies-64-1/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://kappabeast.com/the-demon-queen-ch-19-2/",
+          "expected": {
+          "sync": true,
+          "title": "The Demon Queen Can’t Defeat The Hero",
+          "identifier": "the-demon-queen-cant-defeat-the-hero",
+          "overviewUrl": "https://kappabeast.com/manga/the-demon-queen-cant-defeat-the-hero/",
+          "episode": 19,
+          "nextEpUrl": "https://kappabeast.com/demon-queen-ch-20/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://kappabeast.com/manga/the-demon-queen-cant-defeat-the-hero/",
+        "expected": {
+          "sync": false,
+          "title": "The Demon Queen Can’t Defeat The Hero",
+          "identifier": "the-demon-queen-cant-defeat-the-hero",
+          "image": "https://i3.wp.com/kappabeast.com/wp-content/uploads/2024/10/demon-queen.jpg",
+          "uiSelector": true,
+          "epList": {
+            "19": "https://kappabeast.com/demon-queen-ch-19-1/",
+            "1": "https://kappabeast.com/demon-queen-ch-1/"
+          }
+        }
+      },
+      {
+        "url": "https://kappabeast.com/manga/teisou-gyakuten-sekai-de-yuiitsu-no-otoko-kishi-no-ore-onna-kishi-gakuen-ni-nyuugaku-shitara-nazeka-eiyou-atsukai-sareta-zetsurin-skill-de-harem-musou/",
+        "expected": {
+          "sync": false,
+          "title": "Teisou Gyakuten Sekai De Yuiitsu No Otoko Kishi No Ore, Onna Kishi Gakuen Ni Nyuugaku Shitara Nazeka Eiyou Atsukai Sareta ~Zetsurin Skill De Harem Musou~",
+          "identifier": "teisou-gyakuten-sekai-de-yuiitsu-no-otoko-kishi-no-ore-onna-kishi-gakuen-ni-nyuugaku-shitara-nazeka-eiyou-atsukai-sareta-zetsurin-skill-de-harem-musou",
+          "image": "https://i3.wp.com/kappabeast.com/wp-content/uploads/2025/10/teisou-v1.jpg",
+          "uiSelector": true,
+          "epList": {
+            "2": "https://kappabeast.com/teisou-gyakuten-sekai-2-1/"
+          }
+        }
+      }
+    ]
+  }

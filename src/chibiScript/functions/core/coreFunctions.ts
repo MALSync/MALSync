@@ -1,8 +1,11 @@
 import { ChibiError } from '../../ChibiErrors';
 import type { ChibiCtx } from '../../ChibiCtx';
-import type { ChibiJson } from '../../ChibiGenerator';
+import type { ChibiJson, ChibiParam } from '../../ChibiGenerator';
 import { isReservedKey, type ReservedKey } from '../../ChibiRegistry';
 import { ChibiReturn } from '../../ChibiReturn';
+import domFunctions from '../domFunctions';
+import asyncFunctions from './asyncFunctions';
+import { localStore } from '../../../utils/localStore';
 
 export default {
   /**
@@ -171,11 +174,16 @@ export default {
    * @param defaultValue - Default value if variable is not found
    * @returns Variable value or default value
    * @example
-   * $c.getVariable('myVar', 'default') // returns the value of myVar or 'default' if not set
+   * $c.getVariable<string>('myVar', 'default') // returns the value of myVar or 'default' if not set
    */
-  getVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
+  getVariable: <Input = void, Output = any>(
+    ctx: ChibiCtx,
+    input: Input,
+    key: ChibiParam<string>,
+    defaultValue?: ChibiParam<Output>,
+  ): Output => {
     const value = ctx.get(key);
-    return value !== undefined ? value : defaultValue;
+    return value !== undefined ? value : (defaultValue as Output);
   },
 
   /**
@@ -191,11 +199,23 @@ export default {
   setVariable: <Input>(
     ctx: ChibiCtx,
     input: Input,
-    key: Exclude<string, ReservedKey>,
+    key: ChibiParam<Exclude<string, ReservedKey>>,
     value?: ChibiJson<any>,
   ): Input => {
     if (isReservedKey(key)) {
       throw new ChibiError(`Cannot set reserved key: ${key}`);
+    }
+
+    if (ctx.isAsync()) {
+      return (async () => {
+        if (value !== undefined) {
+          const resolvedValue = await ctx.runAsync(value);
+          ctx.set(key, resolvedValue);
+        } else {
+          ctx.set(key, input);
+        }
+        return input;
+      })() as unknown as Input;
     }
 
     if (value !== undefined) {
@@ -214,11 +234,16 @@ export default {
    * @param defaultValue - Default value if variable is not found
    * @returns Global variable value or default value
    * @example
-   * $c.getGlobalVariable('myGlobalVar', 'default') // returns the value of myGlobalVar or 'default' if not set
+   * $c.getGlobalVariable<string>('myGlobalVar', 'default') // returns the value of myGlobalVar or 'default' if not set
    */
-  getGlobalVariable: (ctx: ChibiCtx, input: void, key: string, defaultValue?: any): any => {
+  getGlobalVariable: <Input = void, Output = any>(
+    ctx: ChibiCtx,
+    input: Input,
+    key: ChibiParam<string>,
+    defaultValue?: ChibiParam<Output>,
+  ): Output => {
     const value = ctx.globalGet(key);
-    return value !== undefined ? value : defaultValue;
+    return value !== undefined ? value : (defaultValue as Output);
   },
 
   /**
@@ -234,11 +259,23 @@ export default {
   setGlobalVariable: <Input>(
     ctx: ChibiCtx,
     input: Input,
-    key: Exclude<string, ReservedKey>,
+    key: ChibiParam<Exclude<string, ReservedKey>>,
     value?: ChibiJson<any>,
   ): Input => {
     if (isReservedKey(key)) {
       throw new ChibiError(`Cannot set reserved global key: ${key}`);
+    }
+
+    if (ctx.isAsync()) {
+      return (async () => {
+        if (value !== undefined) {
+          const resolvedValue = await ctx.runAsync(value);
+          ctx.globalSet(key, resolvedValue);
+        } else {
+          ctx.globalSet(key, input);
+        }
+        return input;
+      })() as unknown as Input;
     }
 
     if (value !== undefined) {
@@ -263,6 +300,18 @@ export default {
    *  .log(); // 'hello world'
    */
   fn: <T = any>(ctx: ChibiCtx, input: void, functionBody: ChibiJson<T>): T => {
+    if (ctx.isAsync()) {
+      return (async () => {
+        const result = await ctx.runAsync(functionBody);
+
+        if (result && result instanceof ChibiReturn) {
+          return result.getValue();
+        }
+
+        return result;
+      })() as unknown as T;
+    }
+
     const result = ctx.run(functionBody);
 
     if (result && result instanceof ChibiReturn) {
@@ -290,7 +339,7 @@ export default {
    * @example
    * $c.string('hello').log() // Logs 'hello' to the console
    */
-  log: <Input>(ctx: ChibiCtx, input: Input, prefix: string = 'ChibiScript'): Input => {
+  log: <Input>(ctx: ChibiCtx, input: Input, prefix: ChibiParam<string> = 'ChibiScript'): Input => {
     con.m(prefix).log(input);
     return input;
   },
@@ -301,7 +350,62 @@ export default {
    * @param message - Error message to throw
    * @returns Never returns, always throws
    */
-  error: (ctx: ChibiCtx, input: any, message: string): never => {
+  error: (ctx: ChibiCtx, input: any, message: ChibiParam<string>): never => {
     throw new ChibiError(message);
+  },
+
+  /**
+   * Adds a CSS variable to the document root and updates it based on a callback.
+   * Should be used inside of the setup lifecycle
+   * @param name - Name of the CSS variable (e.g., --my-variable)
+   * @param callback - Callback that returns the value of the CSS variable
+   * @param defaultValue - Default value for the CSS variable
+   * @example
+   * $c.addCssVariable(
+   *   '--malsync-card-bg',
+   *   $c.querySelector('.card').getComputedStyle('background-color').run(),
+   *   'blue'
+   * )
+   */
+  addCssVariable(
+    ctx: ChibiCtx,
+    input: void,
+    name: string,
+    callback: ChibiJson<string>,
+    defaultValue: string = '',
+  ) {
+    const storageKey = `mal-sync-css-var${name}`;
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    asyncFunctions.domReady(ctx, undefined).then(() => {
+      const savedValue = localStore.getItem(storageKey);
+      if (savedValue || defaultValue) {
+        styleSet(savedValue || defaultValue);
+      }
+
+      ctx.event.on('overview.uiSelector', runCallback);
+      ctx.event.on('sync.uiSelector', runCallback);
+    });
+
+    function styleSet(value: string) {
+      domFunctions.setStyle(ctx, document.documentElement, name, value, true);
+    }
+    async function runCallback() {
+      let result;
+      if (ctx.isAsync()) {
+        result = await ctx.runAsync(callback);
+      } else {
+        result = ctx.run(callback);
+      }
+
+      if (result && result instanceof ChibiReturn) {
+        result = result.getValue();
+      }
+
+      if (result && result !== localStore.getItem(storageKey)) {
+        styleSet(result);
+        localStore.setItem(storageKey, result);
+      }
+    }
   },
 };

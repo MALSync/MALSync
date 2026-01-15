@@ -1,0 +1,125 @@
+{
+  "title": "ComicDays",
+  "url": "https://comic-days.com/",
+  "testCases": [
+    {
+      "url": "https://comic-days.com/episode/2551460909687428157",
+      "expected": {
+        "sync": true,
+        "title": "死んだ木村を上演",
+        "identifier": "2551460909660834592",
+        "overviewUrl": "https://comic-days.com/episode/2551460909687428157",
+        "episode": 1,
+        "nextEpUrl": "https://comic-days.com/episode/2551460909687428165",
+        "image": "https://cdn-img.comic-days.com/public/series-thumbnail/2551460909660834592-cf01c09fd150105159d66731ce757295?1760493525",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://comic-days.com/episode/2551460909687428157",
+          "2": "https://comic-days.com/episode/2551460909687428165"
+        }
+      }
+    },
+    {
+      "url": "https://comic-days.com/episode/13933686331610290511",
+      "expected": {
+        "sync": true,
+        "title": "修羅の門",
+        "identifier": "13933686331610217963",
+        "overviewUrl": "https://comic-days.com/episode/13933686331610290511",
+        "episode": 7,
+        "nextEpUrl": "https://comic-days.com/episode/13933686331610291520",
+        "image": "https://cdn-img.comic-days.com/public/series-thumbnail/13933686331610217963-8f6101897fce822b40d535c0b15a9af0?1641808591",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://comic-days.com/episode/13933686331610281692",
+          "7": "https://comic-days.com/episode/13933686331610290511"
+        }
+      }
+    },
+    {
+      "url": "https://comic-days.com/episode/2550912965401934234",
+      "expected": {
+        "sync": true,
+        "title": "あくまでクジャクの話です。",
+        "identifier": "14079602755433297556",
+        "overviewUrl": "https://comic-days.com/episode/2550912965401934234",
+        "episode": 42,
+        "nextEpUrl": "https://comic-days.com/episode/2550912965401934249",
+        "image": "https://cdn-img.comic-days.com/public/series-thumbnail/14079602755433297556-3cc6cd943f661cac2694cc7639fb0775?1701220844",
+        "uiSelector": true,
+        "epList": {
+          "41": "https://comic-days.com/episode/2550912965401934220",
+          "42": "https://comic-days.com/episode/2550912965401934234"
+        }
+      }
+    },
+    {
+      "url": "https://comic-days.com/episode/2550912965546774291",
+      "expected": {
+        "sync": true,
+        "title": "亡き者のクロニクル",
+        "identifier": "2550912965546759871",
+        "overviewUrl": "https://comic-days.com/episode/2550912965546774291",
+        "episode": 18,
+        "nextEpUrl": "https://comic-days.com/episode/2550912965546774294",
+        "image": "https://cdn-img.comic-days.com/public/series-thumbnail/2550912965546759871-0e64197f0f06821dba1d634a2dc91069?1745556412",
+        "uiSelector": true,
+        "epList": {
+          "18": "https://comic-days.com/episode/2550912965546774291",
+          "19": "https://comic-days.com/episode/2550912965546774294"
+        }
+      }
+    },
+    {
+      "url": "https://comic-days.com/episode/2550912966060237893",
+      "expected": {
+        "sync": true,
+        "title": "THE BAND",
+        "identifier": "2550912964861922017",
+        "overviewUrl": "https://comic-days.com/episode/2550912966060237893",
+        "episode": 9,
+        "nextEpUrl": "https://comic-days.com/episode/2550912966060237903",
+        "image": "https://cdn-img.comic-days.com/public/series-thumbnail/2550912964861922017-e5cf341fde48f3832b6608943f34cbf2?1731388779",
+        "uiSelector": true,
+        "epList": {
+          "12": "https://comic-days.com/episode/2551460909780738688",
+          "9": "https://comic-days.com/episode/2550912966060237893"
+        }
+      }
+    },
+    {
+      "url": "https://comic-days.com/episode/2550912966060237903",
+      "expected": {
+        "sync": true,
+        "title": "THE BAND",
+        "identifier": "2550912964861922017",
+        "overviewUrl": "https://comic-days.com/episode/2550912966060237903",
+        "episode": 9,
+        "nextEpUrl": "https://comic-days.com/episode/2551460909538123869",
+        "image": "https://cdn-img.comic-days.com/public/series-thumbnail/2550912964861922017-e5cf341fde48f3832b6608943f34cbf2?1731388779",
+        "uiSelector": true,
+        "epList": {
+          "12": "https://comic-days.com/episode/2551460909780738688",
+          "9": "https://comic-days.com/episode/2550912966060237893"
+        }
+      }
+    },
+    {
+      "url": "https://comic-days.com/episode/2550912965979476730",
+      "expected": {
+        "sync": true,
+        "title": "ベオグラードメトロの子供たち",
+        "identifier": "2550912965979473645",
+        "overviewUrl": "https://comic-days.com/episode/2550912965979476730",
+        "episode": 4,
+        "nextEpUrl": "https://comic-days.com/episode/2550912965979476733",
+        "image": "https://cdn-img.comic-days.com/public/series-thumbnail/2550912965979473645-77e8979432e0d21cb8ebf6cf84f4efa4?1753663976",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://comic-days.com/episode/2550912965979476733",
+          "4": "https://comic-days.com/episode/2550912965979476730"
+        }
+      }
+    }
+  ]
+}

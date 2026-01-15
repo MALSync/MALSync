@@ -1,0 +1,32 @@
+{
+  "title": "MangaLivreTV",
+  "url": "https://mangalivre.tv",
+  "testCases": [
+    {
+      "url": "https://mangalivre.tv/manga/genius-blacksmiths-game/capitulo-01/",
+      "expected": {
+        "sync": true,
+        "title": "Genius Blacksmith's Game",
+        "identifier": "genius-blacksmiths-game",
+        "overviewUrl": "https://mangalivre.tv/manga/genius-blacksmiths-game",
+        "episode": 1,
+        "uiSelector": false,
+        "image": "https://mangalivre.tv/wp-content/uploads/2025/10/11122a7e336dc03fefec5e31dd664ce7.jpg"
+      }
+    },
+    {
+      "url": "https://mangalivre.tv/manga/genius-blacksmiths-game/",
+      "expected": {
+        "sync": false,
+        "title": "Genius Blacksmith’s Game",
+        "identifier": "genius-blacksmiths-game",
+        "image": "https://mangalivre.tv/wp-content/uploads/2025/10/11122a7e336dc03fefec5e31dd664ce7.jpg",
+        "uiSelector": true,
+        "epList": {
+          "10": "https://mangalivre.tv/manga/genius-blacksmiths-game/capitulo-10/",
+          "1": "https://mangalivre.tv/manga/genius-blacksmiths-game/capitulo-01/"
+        }
+      }
+    }
+  ]
+}

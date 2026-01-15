@@ -4,12 +4,21 @@ import { PageInterface } from '../../pageInterface';
 export const AnimeKAI: PageInterface = {
   name: 'AnimeKAI',
   type: 'anime',
-  domain: 'https://animekai.bz',
+  domain: 'https://animekai.to',
   languages: ['English'],
   urls: {
-    match: ['*://animekai.to/*', '*://animekai.bz/*', '*://animekai.cc/*', '*://animekai.ac/*'],
+    match: [
+      '*://animekai.to/*',
+      '*://animekai.cc/*',
+      '*://animekai.ac/*',
+      '*://anikai.to/*',
+      '*://animekai.im/*',
+      '*://animekai.la/*',
+      '*://animekai.nl/*',
+      '*://animekai.vc/*',
+    ],
   },
-  search: 'https://animekai.bz/browser?keyword={searchtermPlus}',
+  search: 'https://animekai.to/browser?keyword={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return getJsonData($c).get('page').equals('episode').run();

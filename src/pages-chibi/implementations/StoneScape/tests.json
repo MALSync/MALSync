@@ -1,0 +1,29 @@
+{
+    "title": "StoneScape",
+    "url": "https://stonescape.xyz/",
+    "testCases": [
+      {
+        "url": "https://stonescape.xyz/series/plaything/ch-55/",
+        "expected": {
+          "sync": true,
+          "title": "Plaything",
+          "identifier": "plaything",
+          "image": "https://stonescape.xyz/wp-content/uploads/2024/08/plaything.png",
+          "overviewUrl": "https://stonescape.xyz/series/plaything",
+          "episode": 55,
+          "nextEpUrl": "https://stonescape.xyz/series/plaything/ch-56/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://stonescape.xyz/series/plaything",
+        "expected": {
+          "sync": false,
+          "title": "Plaything",
+          "identifier": "plaything",
+          "image": "https://stonescape.xyz/wp-content/uploads/2024/08/plaything.png",
+          "uiSelector": true
+        }
+      }
+    ]
+  }

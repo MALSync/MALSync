@@ -69,7 +69,7 @@ export function urlToSlug(url: string): slugObject {
   if (localMatch) {
     obj.path = {
       type: localMatch[2] as 'anime' | 'manga',
-      slug: `l:${localMatch[1]}::${localMatch[3]}`,
+      slug: `l:${localMatch[1]}::${encodeURIComponent(localMatch[3])}`,
     };
     obj.url = '';
     return obj;
@@ -97,7 +97,7 @@ export function pathToUrl(path: Path): string {
   if (path.slug.startsWith('l:')) {
     const match = path.slug.match(/^l:([^:]+)::([^:]+)$/);
     if (match) {
-      return `local://${match[1]}/${path.type}/${match[2]}`;
+      return `local://${match[1]}/${path.type}/${decodeURIComponent(match[2])}`;
     }
   }
 

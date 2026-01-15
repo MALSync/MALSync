@@ -85,13 +85,13 @@ function icon(perm: permissionType) {
 <style lang="less" scoped>
 .state- {
   &granted {
-    border: 2px solid var(--state-1) !important;
+    border: 2px solid var(--cl-state-1) !important;
   }
   &denied {
-    border: 2px solid var(--state-4) !important;
+    border: 2px solid var(--cl-state-4) !important;
   }
   &unknown {
-    border: 2px solid var(--state-3) !important;
+    border: 2px solid var(--cl-state-3) !important;
   }
 }
 </style>

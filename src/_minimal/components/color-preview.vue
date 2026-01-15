@@ -18,7 +18,7 @@
         v-for="stateColor in stateColors"
         :key="stateColor"
         class="top-color"
-        :style="`background-color: var(--state-${stateColor})`"
+        :style="`background-color: var(--cl-state-${stateColor})`"
       >
         <div
           v-for="subColors in stateCases"
