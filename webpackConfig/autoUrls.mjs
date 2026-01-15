@@ -187,7 +187,7 @@ async function start() {
     // zoro,
     // kickassanime,
     animekai,
-    bato,
+    // bato,
     // mangapark,
   };
 
