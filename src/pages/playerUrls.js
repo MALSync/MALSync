@@ -548,6 +548,7 @@ module.exports = {
       '*://christopheruntilpoint.com/e/*',
       '*://walterprettytheir.com/e/*',
       '*://crystaltreatmenteast.com/e/*',
+      '*://lauradaydo.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
