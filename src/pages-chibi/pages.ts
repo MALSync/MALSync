@@ -91,6 +91,7 @@ import { SanaScans } from './implementations/SanaScans/main';
 import { RezoScans } from './implementations/RezoScans/main';
 import { RageScans } from './implementations/RageScans/main';
 import { AniGo } from './implementations/AniGo/main';
+import { Kuudere } from './implementations/Kuudere/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -184,4 +185,5 @@ export const pages: { [key: string]: PageInterface } = {
   RezoScans,
   RageScans,
   AniGo,
+  Kuudere,
 };
