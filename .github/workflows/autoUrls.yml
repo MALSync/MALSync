@@ -37,6 +37,8 @@ jobs:
       - run: npm ci
       - name: Run ${{ matrix.task }}
         run: node webpackConfig/autoUrls.mjs ${{ matrix.task }}
+      - name: Lint Fix
+        run: npm run lint:fix
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
