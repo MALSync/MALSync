@@ -63,7 +63,7 @@ async function kickassanime() {
 }
 
 async function animekai() {
-  const response = await fetch('https://animekai.me/');
+  const response = await fetch('https://animekai.ws/');
   const body = await response.text();
 
   const $ = cheerio.load(body);
@@ -188,7 +188,7 @@ async function start() {
     // kickassanime,
     animekai,
     bato,
-    mangapark,
+    // mangapark,
   };
 
   for (const key of Object.keys(tasks)) {
