@@ -62,6 +62,19 @@ export const ranobeLib: PageInterface = {
           selector: '[data-paragraph-index], .text-content p, .text-content img',
         },
       },
+      // TODO - Replace when PR#3296 is merged
+      // {
+      //   current: $c =>
+      //     $c
+      //       .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
+      //       .countAbove()
+      //       .run(),
+      //   total: $c =>
+      //     $c
+      //       .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
+      //       .length()
+      //       .run(),
+      // },
     ],
   },
   overview: {

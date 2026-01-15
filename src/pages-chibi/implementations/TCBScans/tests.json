@@ -1,0 +1,56 @@
+{
+    "title": "TCBScans",
+    "url": "https://tcbonepiecechapters.com",
+    "testCases": [
+      {
+        "url": "https://tcbonepiecechapters.com/chapters/7808/jujutsu-kaisen-chapter-271",
+        "expected": {
+          "sync": true,
+          "title": "Jujutsu Kaisen",
+          "identifier": "jujutsu-kaisen",
+          "overviewUrl": "https://tcbonepiecechapters.com/mangas/4/jujutsu-kaisen",
+          "episode": 271,
+          "nextEpUrl": null,
+          "uiSelector": false
+        }
+      },
+      {
+      "url": "https://tcbonepiecechapters.com/chapters/7895/one-piece-chapter-1161",
+        "expected": {
+          "sync": true,
+          "title": "One Piece",
+          "identifier": "one-piece",
+          "overviewUrl": "https://tcbonepiecechapters.com/mangas/5/one-piece",
+          "episode": 1161,
+          "nextEpUrl": "https://tcbonepiecechapters.com/chapters/7899/one-piece-chapter-1162",
+          "uiSelector": false
+        }
+      },
+      {
+      "url": "https://tcbonepiecechapters.com/chapters/4314/hunter-x-hunter-chapter-1-review-1687770201",
+        "expected": {
+          "sync": true,
+          "title": "Hunter X Hunter",
+          "identifier": "hunter-x-hunter",
+          "overviewUrl": "https://tcbonepiecechapters.com/mangas/15/hunter-x-hunter",
+          "episode": 1,
+          "nextEpUrl": "https://tcbonepiecechapters.com/chapters/4315/hunter-x-hunter-chapter-2-review-1687770201",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://tcbonepiecechapters.com/mangas/15/hunter-x-hunter",
+        "expected": {
+          "sync": false,
+          "title": "Hunter X Hunter",
+          "identifier": "hunter-x-hunter",
+          "image": "https://cdn.onepiecechapters.com/file/CDN-M-A-N/hxh209-.png",
+          "uiSelector": true,
+          "epList": {
+            "3": "https://tcbonepiecechapters.com/chapters/4316/hunter-x-hunter-chapter-3-review-1687770201",
+            "410": "https://tcbonepiecechapters.com/chapters/7836/hunter-x-hunter-chapter-410"
+          }
+        }
+      }
+    ]
+  }

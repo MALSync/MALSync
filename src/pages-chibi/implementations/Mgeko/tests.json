@@ -1,0 +1,33 @@
+{
+  "title": "Mgeko",
+  "url": "https://www.mgeko.cc/",
+  "testCases": [
+    {
+      "url": "https://www.mgeko.cc/reader/en/starting-with-13-hidden-traits-chapter-3-eng-li/",
+      "expected": {
+        "sync": true,
+        "title": "Starting With 13 Hidden Traits",
+        "identifier": "starting-with-13-hidden-traits",
+        "overviewUrl": "https://mgeko.cc/manga/starting-with-13-hidden-traits/",
+        "image": "https://www.mgeko.cc/media/manga_covers/01KAGTJAAAM6G865AWVBNSRHAB-optimized.webp",
+        "episode": 3,
+        "nextEpUrl": "https://www.mgeko.cc/reader/en/starting-with-13-hidden-traits-chapter-4-eng-li/",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.mgeko.cc/manga/starting-with-13-hidden-traits/",
+      "expected": {
+        "sync": false,
+        "title": "Starting With 13 Hidden Traits",
+        "identifier": "starting-with-13-hidden-traits",
+        "image": "https://www.mgeko.cc/media/manga_covers/01KAGTJAAAM6G865AWVBNSRHAB-optimized.webp",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://www.mgeko.cc/reader/en/starting-with-13-hidden-traits-chapter-3-eng-li/",
+          "6": "https://www.mgeko.cc/reader/en/starting-with-13-hidden-traits-chapter-6-eng-li/"
+        }
+      }
+    }
+  ]
+}

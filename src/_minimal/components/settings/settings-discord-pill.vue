@@ -33,7 +33,7 @@ const discordRequest = createRequest(
 
   margin-inline-start: @spacer-half;
   background-color: var(--cl-primary);
-  color: white;
+  color: var(--cl-primary-contrast);
   padding: 5px 10px;
   white-space: nowrap;
   margin-top: -5px;

@@ -1,0 +1,32 @@
+{
+  "title": "AniGo",
+  "url": "https://anigo.to",
+  "testCases": [
+    {
+      "url": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4#ep=4",
+      "expected": {
+        "sync": true,
+        "title": "Campfire Cooking in Another World with My Absurd Skill",
+        "overviewUrl": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4",
+        "identifier": "dIey8Q",
+        "image": "https://static.anigo.to/20/i/3/49/676649edc0c99.jpg",
+        "episode": 4,
+        "nextEpUrl": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4#ep=5",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4#ep=1",
+      "expected": {
+        "sync": true,
+        "title": "Campfire Cooking in Another World with My Absurd Skill",
+        "overviewUrl": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4",
+        "identifier": "dIey8Q",
+        "image": "https://static.anigo.to/20/i/3/49/676649edc0c99.jpg",
+        "episode": 1,
+        "nextEpUrl": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4#ep=2",
+        "uiSelector": true
+      }
+    }
+  ]
+}

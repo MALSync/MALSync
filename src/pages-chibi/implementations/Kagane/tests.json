@@ -1,0 +1,86 @@
+{
+    "title": "Kagane",
+    "url": "https://kagane.org",
+    "testCases": [
+      {
+        "url": "https://kagane.org/series/38AG1CMUAOCWEWEUWSCEK3OS65/reader/37AXZ7IVWAPD91LHIODA5RFS55",
+        "expected": {
+          "sync": true,
+          "title": "A Couple of Cuckoos",
+          "identifier": "38AG1CMUAOCWEWEUWSCEK3OS65",
+          "overviewUrl": "https://kagane.org/series/38AG1CMUAOCWEWEUWSCEK3OS65",
+          "episode": 222,
+          "Volume": 25,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://kagane.org/series/3YZ1SB8C2Y7DEWL9G4K0JK9RG5/reader/3HAC9SOIN1UXASFM9FQGA1KSP5",
+        "expected": {
+          "sync": true,
+          "title": "Reincarnated as an Eight-Year-Old Apostle of the Gods",
+          "identifier": "3YZ1SB8C2Y7DEWL9G4K0JK9RG5",
+          "overviewUrl": "https://kagane.org/series/3YZ1SB8C2Y7DEWL9G4K0JK9RG5",
+          "episode": 52,
+          "Volume": null,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://kagane.org/series/3UZRTLKC47ZLOGTR56KCTLZRC5/reader/3XAJ0W6FIEAAQIISMAN8E2RSF5",
+        "expected": {
+          "sync": true,
+          "title": "The Ugly Duckling's Secret Pouch",
+          "identifier": "3UZRTLKC47ZLOGTR56KCTLZRC5",
+          "overviewUrl": "https://kagane.org/series/3UZRTLKC47ZLOGTR56KCTLZRC5",
+          "episode": 74,
+          "Volume": null,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://kagane.org/series/36AY635VN1FSZRAX9FD718GS45/reader/3GAY635VN1FSZRAX9FD718GSO5",
+        "expected": {
+          "sync": true,
+          "title": "The Unlikely Union with A Comatose Billionaire",
+          "identifier": "36AY635VN1FSZRAX9FD718GS45",
+          "overviewUrl": "https://kagane.org/series/36AY635VN1FSZRAX9FD718GS45",
+          "episode": 2,
+          "Volume": null,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://kagane.org/series/36AY635VN1FSZRAX9FD718GS45",
+        "expected": {
+          "sync": false,
+          "title": "The Unlikely Union with A Comatose Billionaire",
+          "identifier": "36AY635VN1FSZRAX9FD718GS45",
+          "image": "https://api.kagane.org/api/v1/series/36AY635VN1FSZRAX9FD718GS45/thumbnail",
+          "uiSelector": true
+        }
+      },
+      {
+        "url": "https://kagane.org/series/38AG1CMUAOCWEWEUWSCEK3OS65",
+        "expected": {
+          "sync": false,
+          "title": "A Couple of Cuckoos",
+          "identifier": "38AG1CMUAOCWEWEUWSCEK3OS65",
+          "image": "https://api.kagane.org/api/v1/series/38AG1CMUAOCWEWEUWSCEK3OS65/thumbnail",
+          "uiSelector": true
+        }
+      },
+      {
+        "url": "https://kagane.org/series/33ACZGSV5G20FX84O7DKORKS15/reader/3IAFZ4SV5K20FX84S7DK2RNSQ5",
+        "expected": {
+          "sync": true,
+          "title": "Fight Class 3",
+          "identifier": "33ACZGSV5G20FX84O7DKORKS15",
+          "overviewUrl": "https://kagane.org/series/33ACZGSV5G20FX84O7DKORKS15",
+          "episode": 102,
+          "Volume": null,
+          "uiSelector": false
+       }
+    }
+    ]
+  }

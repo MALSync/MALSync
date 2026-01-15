@@ -116,7 +116,7 @@ defineProps({
   &.primary {
     background-color: var(--cl-primary);
     border-color: var(--cl-primary);
-    color: white;
+    color: var(--cl-primary-contrast);
   }
 
   &.secondary {
@@ -153,7 +153,7 @@ defineProps({
     background-color: var(--cl-primary);
     border-radius: 50%;
     padding: 2px;
-    color: white;
+    color: var(--cl-primary-contrast);
     border: 2px solid var(--cl-primary);
   }
 }

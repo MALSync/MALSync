@@ -1,72 +1,4 @@
 {
-  "0.10.3": {
-    "Anime365": [
-      "*://smotret-anime.net/catalog/*"
-    ],
-    "LuminousScans": [
-      "*://luminous-scans.com/*"
-    ],
-    "iframe": [
-      "*://www.lycoris.cafe/*",
-      "*://smotret-anime.net/translations/embed/*"
-    ]
-  },
-  "0.10.4": {
-    "Anime365": [
-      "*://smotret-anime.org/catalog/*",
-      "*://smotret-anime.online/catalog/*",
-      "*://smotret-anime.com/catalog/*"
-    ],
-    "AnimeGO": [
-      "*://animego.me/anime/*"
-    ],
-    "AnimeUnity": [
-      "*://*.animeunity.so/anime/*"
-    ],
-    "AnimeXin": [
-      "*://animexin.top/*"
-    ],
-    "FlameScans": [
-      "*://flamecomics.me/*",
-      "*://flamecomics.xyz/*"
-    ],
-    "Gogoanime": [
-      "*://*.gogoanime3.cc/*",
-      "*://*.anitaku.bz/*"
-    ],
-    "tmofans": [
-      "*://zonatmo.com/*"
-    ],
-    "Voiranime": [
-      "*://*.voiranime.com/*"
-    ],
-    "Zoro": [
-      "*://hianime.nz/*",
-      "*://hianime.mn/*",
-      "*://hianime.sx/*"
-    ],
-    "iframe": [
-      "*://*.jwplayerhls.com/*",
-      "*://*.videzz.net/*",
-      "*://geo.dailymotion.com/*",
-      "*://smotret-anime.org/translations/embed/*",
-      "*://smotret-anime.online/translations/embed/*",
-      "*://smotret-anime.com/translations/embed/*",
-      "*://*.s3embtaku.pro/*",
-      "*://dood.li/e/*",
-      "*://bethshouldercan.com/e/*",
-      "*://sandratableother.com/e/*",
-      "*://robertordercharacter.com/e/*",
-      "*://omegadthree.com/*",
-      "*://hlswish.com/e/*",
-      "*://rogeriobetin.com/*",
-      "*://nvlabs-fi-cdn.q9x.in/*",
-      "*://oneupload.to/*",
-      "*://player.vimeo.com/*",
-      "*://fle-rvd0i9o8-moo.com/*",
-      "*://dhtpre.com/*"
-    ]
-  },
   "0.11.0": {
     "KickAssAnime": [
       "*://*.kaa.mx/*"
@@ -157,14 +89,59 @@
       "*://x.anizium.co/*",
       "*://*.mixdrop.sn/e/*",
       "*://*.mixdrop.cv/e/*",
+      "*://*.md3b0j6hj.com/e/*",
       "*://animevost.org/frame5.php?play=*",
       "*://vidmoly.net/*",
       "*://jilliandescribecompany.com/e/*",
+      "*://lukesitturn.com/e/*",
+      "*://mikaylaarealike.com/e/*",
+      "*://pqham.com/*",
+      "*://nova.upn.one/*",
+      "*://api.anivideo.net/*",
+      "*://listeamed.net/*",
       "*://megaup.site/e/*",
       "*://megaup.live/e/*",
+      "*://4spromax.site/e/*",
       "*://player.zilla-networks.com/*",
       "*://megaplay.buzz/*",
-      "*://loadx.ws/*"
+      "*://*.anizmplayer.com/*",
+      "*://loadx.ws/*",
+      "*://odysee.com/*",
+      "*://emturbovid.com/*",
+      "*://*.upns.live/*",
+      "*://*.p2pstream.vip/*"
+    ]
+  },
+  "0.12.1": {
+    "iframe": []
+  },
+  "0.12.2": {
+    "Anime365": [
+      "*://smotret-anime.org/*",
+      "*://smotret-anime.online/*",
+      "*://smotret-anime.com/*",
+      "*://anime365.ru/*",
+      "*://anime-365.ru/*",
+      "*://smotret-anime.ru/*",
+      "*://smotretanime.ru/*",
+      "*://smotret-anime.app/*"
+    ],
+    "AnimeSama": [
+      "*://anime-sama.tv/*",
+      "*://anime-sama.si/*",
+      "*://anime-sama.to/*",
+      "*://anime-sama.eu/*"
+    ],
+    "iframe": [
+      "*://smotret-anime.ru/translations/embed/*",
+      "*://smotretanime.ru/translations/embed/*",
+      "*://smotret-anime.app/translations/embed/*",
+      "*://christopheruntilpoint.com/e/*",
+      "*://walterprettytheir.com/e/*",
+      "*://crystaltreatmenteast.com/e/*",
+      "*://lauradaydo.com/e/*",
+      "*://megaup22.online/e/*",
+      "*://player.anoboye.com/watch/*"
     ]
   }
 }

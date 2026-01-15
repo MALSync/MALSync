@@ -1,0 +1,42 @@
+{
+    "title": "Atsumaru",
+    "url": "https://atsu.moe/",
+    "testCases": [
+      {
+        "url": "https://atsu.moe/read/OaKBx/nHic9eRA",
+        "expected": {
+          "sync": true,
+          "title": "Revenge of the Baskerville Bloodhound",
+          "identifier": "OaKBx",
+          "overviewUrl": "https://atsu.moe/manga/OaKBx",
+          "episode": 131,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://atsu.moe/read/nh6Ii/j40uuwUC",
+        "expected": {
+          "sync": true,
+          "title": "One-Punch Man",
+          "identifier": "nh6Ii",
+		      "overviewUrl": "https://atsu.moe/manga/nh6Ii",
+          "episode": 8,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://atsu.moe/manga/nh6Ii",
+        "expected": {
+          "sync": false,
+          "title": "One-Punch Man",
+          "identifier": "nh6Ii",
+          "image": "https://atsu.moe/static/posters/01J76XY7KT7J224EBK6J816Y1Q.jpg",
+          "uiSelector": true,
+          "epList": {
+            "10": "https://atsu.moe/read/nh6Ii/gOh3CFZ4",
+            "4": "https://atsu.moe/read/nh6Ii/xiKYaAIj"
+          }
+       }
+     }
+   ]
+ }

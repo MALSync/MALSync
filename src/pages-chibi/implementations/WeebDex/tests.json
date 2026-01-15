@@ -1,0 +1,56 @@
+{
+  "title": "WeebDex",
+  "url": "https://weebdex.org/",
+  "testCases": [
+    {
+      "url": "https://weebdex.org/chapter/vv6t2ksmfd",
+      "expected": {
+        "sync": true,
+        "title": "Chainsaw Man",
+        "identifier": "12lqiy9zu1",
+        "overviewUrl": "https://weebdex.org/title/12lqiy9zu1",
+        "episode": 221,
+        "volume": null,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://weebdex.org/chapter/s8pcnwu3vt",
+      "expected": {
+        "sync": true,
+        "title": "Kage no Jitsuryokusha ni Naritakute! Master of Garden ~Shichikage Retsuden~",
+        "identifier": "g2tpg8wyar",
+        "overviewUrl": "https://weebdex.org/title/g2tpg8wyar",
+        "episode": 9,
+        "volume": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://weebdex.org/title/3o0icxno26",
+      "expected": {
+        "sync": false,
+        "title": "Ani Datta Mono",
+        "identifier": "3o0icxno26",
+        "image": "https://srv.notdelta.xyz/covers/3o0icxno26/4uy9pui0ff.jpg",
+        "uiSelector": true,
+        "epList": {
+          "100": "https://weebdex.org/chapter/1ke4s31w0c",
+          "99": "https://weebdex.org/chapter/bq9rhweypk"
+        }
+      }
+    },
+    {
+      "url": "https://weebdex.org/chapter/b8v6wawdex",
+      "expected": {
+        "sync": true,
+        "title": "Ruri Dragon (Oneshot)",
+        "identifier": "x2jainvedn",
+        "overviewUrl": "https://weebdex.org/title/x2jainvedn",
+        "episode": 1,
+        "volume": null,
+        "uiSelector": false
+      }
+    }
+  ]
+}

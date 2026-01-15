@@ -1,4 +1,4 @@
-import type { ChibiJson } from 'src/chibiScript/ChibiGenerator';
+import type { ChibiJson, ChibiParam } from 'src/chibiScript/ChibiGenerator';
 import type { ChibiCtx } from '../../ChibiCtx';
 
 export default {
@@ -35,11 +35,26 @@ export default {
       ctx.setInterval(
         _intervalKey,
         utils.waitUntilTrue(
-          () => ctx.run(condition),
+          () => ctx.runAsync(condition),
           () => resolve(),
         ),
       );
     });
+  },
+
+  /**
+   * Function to wait for a specific amount of time
+   * @param ms - Time in milliseconds to wait
+   * @returns Passes through the input
+   * @example
+   * $c.wait(1000).trigger().run() // Waits for 1 second
+   */
+  wait: <Input>(ctx: ChibiCtx, input: Input, ms: ChibiParam<number>): Input => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(input);
+      }, ms);
+    }) as unknown as Input;
   },
 
   /**
@@ -50,22 +65,22 @@ export default {
    * @example
    * $c.detectChanges($c.querySelector('h1').text().run(), $c.trigger().run())
    */
-  detectChanges: (
+  detectChanges: async (
     ctx: ChibiCtx,
     input: void,
     target: ChibiJson<any>,
     callback: ChibiJson<any>,
     _intervalKey?,
-  ): void => {
+  ): Promise<void> => {
     clearInterval(ctx.getInterval(_intervalKey));
-    let currentState = ctx.run(target);
+    let currentState = JSON.stringify(await ctx.runAsync(target));
     ctx.setInterval(
       _intervalKey,
-      setInterval(() => {
-        const temp = ctx.run(target);
+      setInterval(async () => {
+        const temp = JSON.stringify(await ctx.runAsync(target));
         if (typeof temp !== 'undefined' && currentState !== temp) {
           currentState = temp;
-          ctx.run(callback);
+          ctx.runAsync(callback);
         }
       }, 500),
     );
@@ -111,9 +126,30 @@ export default {
         const newUrl = normalizeUrl(window.location.href);
         if (currentUrl !== newUrl) {
           currentUrl = newUrl;
-          ctx.run(callback);
+          ctx.runAsync(callback);
         }
       }, 500),
     );
+  },
+
+  /**
+   * Function to debounce rapid calls to a function
+   * @param func - Function to debounce
+   * @param ms - Time in milliseconds to wait
+   * @returns A debounced version of the input function
+   * @example
+   * $c.detectURLChanges($c.debounce(1000).trigger().run())
+   */
+  debounce: <Input>(ctx: ChibiCtx, input: Input, ms: ChibiParam<number>, _intervalKey?): Input => {
+    return new Promise(resolve => {
+      clearInterval(ctx.getInterval(_intervalKey));
+      ctx.setInterval(
+        _intervalKey,
+        setInterval(() => {
+          clearInterval(ctx.getInterval(_intervalKey));
+          resolve(input);
+        }, ms),
+      );
+    }) as unknown as Input;
   },
 };

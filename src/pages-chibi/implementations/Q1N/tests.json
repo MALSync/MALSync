@@ -1,0 +1,57 @@
+{
+  "title": "Q1N",
+  "url": "https://q1n.net/",
+  "testCases": [
+    {
+      "url": "https://q1n.net/animes/one-piece/",
+      "expected": {
+        "sync": false,
+        "title": "One Piece",
+        "identifier": "one-piece",
+        "image": "https://image.tmdb.org/t/p/w780/a6ptrTUH1c5OdWanjyYtAkOuYD0.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://q1n.net/episodio/one-piece-episodio-1/",
+          "10": "https://q1n.net/episodio/one-piece-episodio-10/",
+          "17": "https://q1n.net/episodio/one-piece-episodio-17/"
+        }
+      }
+    },
+    {
+      "url": "https://q1n.net/episodio/one-piece-episodio-1/",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "one-piece",
+        "episode": 1,
+        "overviewUrl": "https://q1n.net/animes/one-piece/",
+        "nextEpUrl": "https://q1n.net/episodio/one-piece-episodio-2/"
+      }
+    },
+    {
+      "url": "https://q1n.net/animes/tsuyokute-new-saga/",
+      "expected": {
+        "sync": false,
+        "title": "Tsuyokute New Saga",
+        "identifier": "tsuyokute-new-saga",
+        "image": "https://image.tmdb.org/t/p/w780/u9p6IIYllP8gwZB2URx08jIYdvZ.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://q1n.net/episodio/tsuyokute-new-saga-episodio-1/",
+          "10": "https://q1n.net/episodio/tsuyokute-new-saga-episodio-10/"
+        }
+      }
+    },
+    {
+      "url": "https://q1n.net/filmes/spy-x-family-code-white/",
+      "expected": {
+        "sync": true,
+        "title": "SPY x FAMILY CODE: White",
+        "identifier": "spy-x-family-code-white",
+        "episode": null,
+        "overviewUrl": "https://q1n.net/filmes/spy-x-family-code-white/",
+        "nextEpUrl": ""
+      }
+    }
+  ]
+}

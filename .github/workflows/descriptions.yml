@@ -1,0 +1,42 @@
+name: "descriptions"
+
+on:
+  schedule:
+    - cron: '0 10 * * 0'
+  workflow_dispatch:
+jobs:
+  main:
+    name: main
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+      with:
+        ref: master
+        persist-credentials: false
+
+    - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+      with:
+        node-version: '22.x'
+
+    - name: Build
+      run: |
+        npm ci
+        npm run build:chibiTypes
+      env:
+        PUPPETEER_SKIP_DOWNLOAD: 'true'
+
+    - name: Run
+      run: npm run build:descriptions
+      env:
+        CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+      with:
+        commit-message: Update descriptions
+        branch: auto-descriptions
+        delete-branch: true
+        title: 'Update descriptions'
+        body: 'Automatically updated Description'

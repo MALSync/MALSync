@@ -1456,5 +1456,32 @@
     "locale": {
         "message": "id",
         "description": "Current locale"
+    },
+    "next": {
+        "message": "Selanjutnya"
+    },
+    "back": {
+        "message": "Kembali"
+    },
+    "start": {
+        "message": "Mulai"
+    },
+    "overview_synonyms": {
+        "message": "Sinonim"
+    },
+    "list_sorting_airing_date": {
+        "message": "Tanggal penayangan"
+    },
+    "overview_sidebar_Published": {
+        "message": "Diterbitkan:"
+    },
+    "overview_sidebar_Premiered": {
+        "message": "Tayang perdana:"
+    },
+    "overview_sidebar_Producers": {
+        "message": "Produser:"
+    },
+    "overview_sidebar_Themes": {
+        "message": "Tema:"
     }
 }

@@ -787,6 +787,10 @@
         "message": "Unread",
         "description": "Dropdown option to sort list by unread"
     },
+    "list_sorting_latest_release": {
+        "message": "Latest release",
+        "description": "Dropdown option to sort list by latest released episodes/chapters"
+    },
     "list_sorting_alpha": {
         "message": "Alphabetic",
         "description": "Dropdown option to sort list alphabetic"
@@ -1022,6 +1026,10 @@
     "settings_anilist_update_ui_tooltip": {
         "message": "Allows to quickly update your episode count, rating and status on AniList without having to open the popover.",
         "description": "Tooltip for the Update UI option"
+    },
+    "settings_anilist_external_sources": {
+        "message": "Show External Sources",
+        "description": "Option to show links to external sources on anilist"
     },
     "settings_miniMAL_floatButtonStealth": {
         "message": "Stealth UI mode",
@@ -1476,6 +1484,26 @@
     "settings_presenceShowMalsync": {
         "message": "Show MAL-Sync in the title of the presence instead of anime/manga",
         "description": "Show MAL-Sync in the title of the presence instead of anime/manga"
+    },
+    "settings_presence_activityName": {
+        "message": "Name of the activity",
+        "description": "Option to set the name of the activity shown in discord"
+    },
+    "settings_presence_activityName_title": {
+        "message": "Series Title",
+        "description": "Dropdown option to show the series title in the activity name on discord"
+    },
+    "settings_presence_activityName_website": {
+        "message": "Current website",
+        "description": "Dropdown option to show the current website in the activity name on discord"
+    },
+    "settings_presence_activityName_type": {
+        "message": "Anime/Manga",
+        "description": "Dropdown option to show the anime/manga title in the activity name on discord"
+    },
+    "settings_presence_activityName_malsync": {
+        "message": "MALSync",
+        "description": "Dropdown option to show MALSync in the activity name on discord"
     },
     "updateCheck_Refresh": {
         "message": "Refresh",

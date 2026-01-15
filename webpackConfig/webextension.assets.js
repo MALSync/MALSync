@@ -131,7 +131,22 @@ const generateManifest = () => {
     },
     action: {
       default_popup: 'popup.html',
-      default_icon: 'icons/icon16.png',
+      default_icon: {
+        '16': 'icons/icon16.png',
+        '32': 'icons/icon32.png',
+        '48': 'icons/icon48.png',
+        '128': 'icons/icon128.png',
+      },
+    },
+    sidebar_action: {
+      default_panel: 'window.html',
+      open_at_install: false,
+      default_icon: {
+        '16': 'icons/icon16.png',
+        '32': 'icons/icon32.png',
+        '48': 'icons/icon48.png',
+        '128': 'icons/icon128.png',
+      },
     },
     options_ui: {
       page: 'settings.html',
