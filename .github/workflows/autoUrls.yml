@@ -37,6 +37,8 @@ jobs:
       - run: npm ci
       - name: Run ${{ matrix.task }}
         run: node webpackConfig/autoUrls.mjs ${{ matrix.task }}
+      - name: Build Chibi Types
+        run: npm run build:chibiTypes
       - name: Lint Fix
         run: npm run lint:fix
       - name: Create Pull Request
