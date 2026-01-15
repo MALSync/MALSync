@@ -238,8 +238,7 @@ function logFoundUrls(key, urls, type = URL_TYPES.CHIBI) {
 }
 
 async function start() {
-  const failedTasks = [];
-  const succeededTasks = [];
+  const args = process.argv.slice(2);
   const tasks = {
     voe,
     // vidmoly,
@@ -251,39 +250,27 @@ async function start() {
     // mangapark,
   };
 
-  for (const key of Object.keys(tasks)) {
-    await tasks[key]()
-      .then(() => succeededTasks.push(key))
-      .catch(e => {
-        console.error(`\n[${key}]:`, e);
-        failedTasks.push(key);
-      });
+  if (args.includes('--list')) {
+    console.log(JSON.stringify(Object.keys(tasks)));
+    return;
   }
 
-  if (succeededTasks.length) {
-    console.log('\n\n\x1b[32mTasks succeeded:\x1b[0m', succeededTasks.join(', '));
-  }
-  if (failedTasks.length) {
-    console.log('\x1b[31mTasks failed:\x1b[0m', failedTasks.join(', '));
-  }
-
-  console.log('\nAutoUrls — Done.');
-}
-
-async function start() {
+  const specificTask = args[0];
   const failedTasks = [];
   const succeededTasks = [];
-  const tasks = {
-    voe,
-    // vidmoly,
-    mixdrop,
-    // zoro, (hianime.tv not active anymore, no alternative to get domains list)
-    // kickassanime,
-    animekai,
-  };
 
-  for (const key of Object.keys(tasks)) {
-    await tasks[key]()
+  let tasksToRun = tasks;
+  if (specificTask) {
+    if (tasks[specificTask]) {
+      tasksToRun = { [specificTask]: tasks[specificTask] };
+    } else {
+      console.error(`Task "${specificTask}" not found.`);
+      process.exit(1);
+    }
+  }
+
+  for (const key of Object.keys(tasksToRun)) {
+    await tasksToRunkey
       .then(() => succeededTasks.push(key))
       .catch(e => {
         console.error(`\n[${key}]:`, e);
@@ -296,6 +283,7 @@ async function start() {
   }
   if (failedTasks.length) {
     console.log('\x1b[31mTasks failed:\x1b[0m', failedTasks.join(', '));
+    process.exit(1);
   }
 
   console.log('\nAutoUrls — Done.');

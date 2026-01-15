@@ -1,47 +1,48 @@
-name: "autoUrls"
+name: Auto URLs
 
 on:
-  schedule:
-    - cron: '0 5 * * *'
   workflow_dispatch:
-  push:
-    branches:
-      - master
-    paths:
-      - '**/meta.json'
-      - '**/playerUrls.js'
+  schedule:
+    - cron: '0 */6 * * *'
+
 jobs:
-  main:
-    name: main
+  prepare-matrix:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-    - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
-      with:
-        ref: master
-        persist-credentials: false
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm ci
+      - id: set-matrix
+        run: |
+          TASKS=$(node webpackConfig/autoUrls.mjs --list)
+          echo "matrix=$TASKS" >> $GITHUB_OUTPUT
 
-    - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
-      with:
-        node-version: '22.x'
-
-    - name: Build
-      run: npm install
-
-    - name: Run
-      run: npm run build:autoUrls
-      env:
-        CI_MODE: travis
-        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
-        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
-
-    - name: Lint Fix
-      run: npm run build:chibiTypes && npm run lint:fix
-
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
-      with:
-        commit-message: Auto Urls
-        branch: auto-urls
-        delete-branch: true
-        title: 'Auto Urls'
-        body: 'Automatically added Urls'
+  update-urls:
+    needs: prepare-matrix
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        task: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm ci
+      - name: Run ${{ matrix.task }}
+        run: node webpackConfig/autoUrls.mjs ${{ matrix.task }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'Auto Urls: ${{ matrix.task }}'
+          branch: 'auto-urls-${{ matrix.task }}'
+          delete-branch: true
+          title: 'Auto Urls: ${{ matrix.task }}'
+          body: 'Automatically added Urls for ${{ matrix.task }}'
+          labels: 'auto-urls'
