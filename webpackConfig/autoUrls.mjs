@@ -130,16 +130,25 @@ function addpageUrls(page, urls) {
 
   let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
 
+  let addedCount = 0;
   for (const url of urls) {
     if (!file.urls.match.includes(url)) {
       file.urls.match.push(url);
+      addedCount++;
+    } else {
+      console.log(`[${page}] URL already exists: ${url}`);
     }
   }
 
-  fs.writeFileSync(
-    path.resolve(`./src/pages/${page}/meta.json`),
-    JSON.stringify(file, null, 2) + '\n',
-  );
+  if (addedCount > 0) {
+    fs.writeFileSync(
+      path.resolve(`./src/pages/${page}/meta.json`),
+      JSON.stringify(file, null, 2) + '\n',
+    );
+    console.log(`[${page}] Added ${addedCount} new URLs.`);
+  } else {
+    console.log(`[${page}] No new URLs added.`);
+  }
 }
 
 function addChibiUrls(page, urls, mainName = 'main.ts') {
@@ -159,20 +168,29 @@ function addChibiUrls(page, urls, mainName = 'main.ts') {
   const urlRegex = matchMatch[1].match(/'([^']+)'/g) || [];
   const matchUrls = urlRegex.map(url => url.replace(/'/g, ''));
 
+  let addedCount = 0;
   for (const url of urls) {
     if (!matchUrls.includes(url)) {
       matchUrls.push(url);
+      addedCount++;
+    } else {
+      console.log(`[${page}] URL already exists: ${url}`);
     }
   }
 
-  const updatedFile = file.replace(
-    matchRegex,
-    `match: [${matchUrls.map(url => `'${url}'`).join(', ')}]`,
-  );
-  fs.writeFileSync(
-    path.resolve(`src/pages-chibi/implementations/${page}/${mainName}`),
-    updatedFile,
-  );
+  if (addedCount > 0) {
+    const updatedFile = file.replace(
+      matchRegex,
+      `match: [${matchUrls.map(url => `'${url}'`).join(', ')}]`,
+    );
+    fs.writeFileSync(
+      path.resolve(`src/pages-chibi/implementations/${page}/${mainName}`),
+      updatedFile,
+    );
+    console.log(`[${page}] Added ${addedCount} new URLs.`);
+  } else {
+    console.log(`[${page}] No new URLs added.`);
+  }
 }
 
 function addPlayerUrls(key, urls) {
@@ -183,15 +201,24 @@ function addPlayerUrls(key, urls) {
   const comment = `      // auto-${key}-replace-dont-remove`;
 
   let data = '';
+  let addedCount = 0;
   for (const url of urls) {
     if (!file.includes(url)) {
       data += `      '*://${url}',\n`;
+      addedCount++;
+    } else {
+      console.log(`[${key}] URL already exists: ${url}`);
     }
   }
-  data += comment;
-  file = file.replace(comment, data);
 
-  fs.writeFileSync(path.resolve('./src/pages/playerUrls.js'), file);
+  if (addedCount > 0) {
+    data += comment;
+    file = file.replace(comment, data);
+    fs.writeFileSync(path.resolve('./src/pages/playerUrls.js'), file);
+    console.log(`[${key}] Added ${addedCount} new URLs.`);
+  } else {
+    console.log(`[${key}] No new URLs added.`);
+  }
 }
 
 const URL_TYPES = {
