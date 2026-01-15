@@ -187,7 +187,7 @@ async function start() {
     voe,
     // vidmoly,
     mixdrop,
-    zoro,
+    //zoro, (hianime.tv not active anymore, no alternative to get domains list)
     // kickassanime,
     animekai
   }
