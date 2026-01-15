@@ -15,15 +15,17 @@ async function voe() {
 }
 
 async function vidmoly() {
-    const response = await fetch("https://vidmoly.me/embed-1abcdefghi1j.html", {redirect: 'manual'})
-    const url = new URL(response.headers.get("Location"));
+  const response = await fetch('https://vidmoly.me/embed-1abcdefghi1j.html', {
+    redirect: 'manual',
+  });
+  const url = new URL(response.headers.get('Location'));
 
   addPlayerUrls('vidmoly', [url.hostname + '/*']);
 }
 
 async function mixdrop() {
-    const response = await fetch("https://mdfx9dc8n.net/e/3nl0j0lec477v9", {redirect: 'manual'})
-    const url = new URL(response.headers.get("Location"));
+  const response = await fetch('https://mdfx9dc8n.net/e/3nl0j0lec477v9', { redirect: 'manual' });
+  const url = new URL(response.headers.get('Location'));
 
   addPlayerUrls('mixdrop', ['*.' + url.hostname + '/e/*']);
 }
@@ -31,37 +33,41 @@ async function mixdrop() {
 // pages
 
 async function zoro() {
-    const response = await fetch("https://hianime.tv");
+  const response = await fetch('https://hianime.tv');
   const body = await response.text();
 
   const $ = cheerio.load(body);
 
-    const urls = $('ul.site-opt > li > a').map((i,el) =>  new URL($(el).attr('href'))).get();
+  const urls = $('ul.site-opt > li > a')
+    .map((i, el) => new URL($(el).attr('href')))
+    .get();
 
   let formattedUrls = [];
-  for(const url of urls) {
-    formattedUrls.push("*://" + url.hostname + "/*");
+  for (const url of urls) {
+    formattedUrls.push('*://' + url.hostname + '/*');
   }
   addpageUrls('Zoro', formattedUrls);
 }
 
 async function kickassanime() {
-    const response = await fetch("https://watchanime.io");
+  const response = await fetch('https://watchanime.io');
   const body = await response.text();
 
   const $ = cheerio.load(body);
 
-    const urls = $('.domain-btn').map((i,el) =>  new URL($(el).attr('href'))).get();
+  const urls = $('.domain-btn')
+    .map((i, el) => new URL($(el).attr('href')))
+    .get();
 
-    let formattedUrls = [];
-    for(let url of urls) {
-      formattedUrls.push("*://*." + url.hostname + "/*");
-    }
-    addpageUrls('KickAssAnime', formattedUrls);
+  let formattedUrls = [];
+  for (let url of urls) {
+    formattedUrls.push('*://*.' + url.hostname + '/*');
+  }
+  addpageUrls('KickAssAnime', formattedUrls);
 }
 
 async function animekai() {
-    const response = await fetch('https://animekai.ws/');
+  const response = await fetch('https://animekai.ws/');
   const body = await response.text();
 
   const $ = cheerio.load(body);
@@ -83,12 +89,15 @@ function addpageUrls(page, urls) {
   let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
 
   for (const url of urls) {
-        if(!file.urls.match.includes(url)) {
+    if (!file.urls.match.includes(url)) {
       file.urls.match.push(url);
     }
   }
 
-    fs.writeFileSync(path.resolve(`./src/pages/${page}/meta.json`), JSON.stringify(file, null, 2) + "\n");
+  fs.writeFileSync(
+    path.resolve(`./src/pages/${page}/meta.json`),
+    JSON.stringify(file, null, 2) + '\n',
+  );
 }
 
 function addChibiUrls(page, urls) {
@@ -114,7 +123,10 @@ function addChibiUrls(page, urls) {
     }
   }
 
-  const updatedFile = file.replace(matchRegex, `match: [${matchUrls.map(url => `'${url}'`).join(', ')}]`);
+  const updatedFile = file.replace(
+    matchRegex,
+    `match: [${matchUrls.map(url => `'${url}'`).join(', ')}]`,
+  );
   fs.writeFileSync(path.resolve(`src/pages-chibi/implementations/${page}/main.ts`), updatedFile);
 }
 
@@ -125,11 +137,11 @@ function addPlayerUrls(key, urls) {
 
   const comment = `      // auto-${key}-replace-dont-remove`;
 
-  let data = "";
+  let data = '';
   for (const url of urls) {
-        if(!file.includes(url)) {
-            data += `      '*://${url}',\n`
-        }
+    if (!file.includes(url)) {
+      data += `      '*://${url}',\n`;
+    }
   }
   data += comment;
   file = file.replace(comment, data);
@@ -187,18 +199,18 @@ async function start() {
     voe,
     // vidmoly,
     mixdrop,
-    //zoro, (hianime.tv not active anymore, no alternative to get domains list)
+    // zoro, (hianime.tv not active anymore, no alternative to get domains list)
     // kickassanime,
-    animekai
-  }
+    animekai,
+  };
 
-  for(const key of Object.keys(tasks)) {
-        await tasks[key]()
-          .then(() => succeededTasks.push(key))
-          .catch(e => {
-            console.error(`\n[${key}]:`, e);
-            failedTasks.push(key);
-          });
+  for (const key of Object.keys(tasks)) {
+    await tasks[key]()
+      .then(() => succeededTasks.push(key))
+      .catch(e => {
+        console.error(`\n[${key}]:`, e);
+        failedTasks.push(key);
+      });
   }
 
   if (succeededTasks.length) {
