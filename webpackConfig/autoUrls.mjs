@@ -270,4 +270,35 @@ async function start() {
   console.log('\nAutoUrls — Done.');
 }
 
+async function start() {
+  const failedTasks = [];
+  const succeededTasks = [];
+  const tasks = {
+    voe,
+    // vidmoly,
+    mixdrop,
+    // zoro, (hianime.tv not active anymore, no alternative to get domains list)
+    // kickassanime,
+    animekai,
+  };
+
+  for (const key of Object.keys(tasks)) {
+    await tasks[key]()
+      .then(() => succeededTasks.push(key))
+      .catch(e => {
+        console.error(`\n[${key}]:`, e);
+        failedTasks.push(key);
+      });
+  }
+
+  if (succeededTasks.length) {
+    console.log('\n\n\x1b[32mTasks succeeded:\x1b[0m', succeededTasks.join(', '));
+  }
+  if (failedTasks.length) {
+    console.log('\x1b[31mTasks failed:\x1b[0m', failedTasks.join(', '));
+  }
+
+  console.log('\nAutoUrls — Done.');
+}
+
 start();
