@@ -11,7 +11,7 @@
     "node": ">=22.12.0"
   },
   "devDependencies": {
-    "@ghostery/adblocker-puppeteer": "^2.13.2",
+    "@ghostery/adblocker-puppeteer": "^2.13.4",
     "@cspell/eslint-plugin": "9.4.0",
     "@eslint/eslintrc": "3.3.3",
     "@eslint/js": "9.39.2",
@@ -51,7 +51,7 @@
     "postcss-html": "^1.8.0",
     "postcss-less": "^6.0.0",
     "prettier": "^3.7.4",
-    "puppeteer": "^24.34.0",
+    "puppeteer": "^24.35.0",
     "serialize-javascript": "^7.0.2",
     "style-loader": "^3.3.4",
     "stylelint": "^15.11.0",
@@ -118,7 +118,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@types/chrome": "0.1.32",
+    "@types/chrome": "0.1.33",
     "dexie": "^4.2.0",
     "dompurify": "^3.3.1",
     "download-file": "^0.1.5",
