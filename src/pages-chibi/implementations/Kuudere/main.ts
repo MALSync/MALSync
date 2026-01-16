@@ -90,7 +90,7 @@ export const Kuudere: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('[data-episodes-container]').text().run(),
+          $c.querySelector('[data-episodes-container]').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();
