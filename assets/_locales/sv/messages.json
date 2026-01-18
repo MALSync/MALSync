@@ -798,5 +798,44 @@
     "locale": {
         "message": "sv",
         "description": "Current locale"
+    },
+    "Add": {
+        "message": "Lägg till"
+    },
+    "Ok": {
+        "message": "Ok"
+    },
+    "Cancel": {
+        "message": "Avbryt"
+    },
+    "updated": {
+        "message": "Uppdaterad"
+    },
+    "removed": {
+        "message": "Borttaget"
+    },
+    "Synchronize": {
+        "message": "Synkronisera"
+    },
+    "Load": {
+        "message": "Ladda"
+    },
+    "UI_Status_All": {
+        "message": "Alla"
+    },
+    "next": {
+        "message": "Nästa"
+    },
+    "back": {
+        "message": "Tillbaka"
+    },
+    "start": {
+        "message": "Starta"
+    },
+    "Anime": {
+        "message": "Anime"
+    },
+    "Manga": {
+        "message": "Manga"
     }
 }
