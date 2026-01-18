@@ -177,6 +177,7 @@ async function PreparePage(block, page, url, testPage) {
     log(block, 'Cached', 2);
 
     await page.setRequestInterception(true);
+    await page.setBypassServiceWorker(true);
 
     page.on('request', (request) => {
       if (!request.isInterceptResolutionHandled()) {

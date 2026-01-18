@@ -7,7 +7,7 @@ export default {
    * @returns string with linebreaks replaced
    */
   replaceLinebreaks: ($c: ChibiGenerator<string>, replacement: ChibiParam<string> = ' ') => {
-    return $c.replaceAll('(\n|\r)', replacement);
+    return $c.replaceRegex('(\n|\r)', replacement).replaceRegex(' +', ' ').trim();
   },
 
   /**
