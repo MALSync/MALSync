@@ -1,9 +1,32 @@
-name: Auto URLs
+name: "autoUrls"
 
 on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/meta.json'
+      - '**/playerUrls.js'
   workflow_dispatch:
+    inputs:
+      task:
+        description: 'Specific task to run'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          # Update the list below once a new task is added in 'webpackConfig/autoUrls.mjs'
+          - voe
+          - vidmoly
+          - mixdrop
+          - zoro
+          - kickassanime
+          - animekai
+          - bato
+          - mangapark
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 5 * * *'
 
 jobs:
   prepare-matrix:
@@ -11,15 +34,39 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          ref: master
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: 22
+        # Runs all necessary commands before launching each separate url scripts
       - run: npm ci
+        name: Install Dependencies
+        env:
+          CI_MODE: travis
+          SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+          SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
       - id: set-matrix
+        name: Set Matrix
+        # Check if runs one or all tasks
         run: |
-          TASKS=$(node webpackConfig/autoUrls.mjs --list)
-          echo "matrix=$TASKS" >> $GITHUB_OUTPUT
+          if [[ "${{ github.event.inputs.task }}" != "" && "${{ github.event.inputs.task }}" != "all" ]]; then
+            echo "matrix=[\"${{ github.event.inputs.task }}\"]" >> $GITHUB_OUTPUT
+          else
+            TASKS=$(node webpackConfig/autoUrls.mjs --list)
+            echo "matrix=$TASKS" >> $GITHUB_OUTPUT
+          fi
+      - name: Upload Workspace
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: workspace
+          path: |
+            .
+            !./.git
+          retention-days: 1
+
 
   update-urls:
     needs: prepare-matrix
@@ -30,19 +77,25 @@ jobs:
       matrix:
         task: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          ref: master
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: 22
-      - run: npm ci
+      - name: Download Workspace
+        uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+        with:
+          name: workspace
       - name: Run ${{ matrix.task }}
         run: node webpackConfig/autoUrls.mjs ${{ matrix.task }}
-      - name: Build Chibi Types
-        run: npm run build:chibiTypes
+      - name: Build missing permissions
+        run: npm run build:missingPermissions
       - name: Lint Fix
-        run: npm run lint:fix
+        run: npm run build:chibiTypes && npm run lint:fix
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
         with:
           commit-message: 'Auto Urls: ${{ matrix.task }}'
           branch: 'auto-urls-${{ matrix.task }}'
