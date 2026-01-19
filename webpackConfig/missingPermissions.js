@@ -7,16 +7,21 @@ const mkdirp = require('mkdirp');
 
 main();
 async function main() {
-  console.log('Downloading');
-  mkdirp.sync(path.join(__dirname, '../dist/lastExtension'));
-  await ex(
-    'curl -fsSL https://github.com/MALSync/MALSync/releases/latest/download/webextension.zip -o dist/lastExtension.zip',
-  );
-  console.log('Extracting');
-  try {
-    await ex(`tar -xf dist/lastExtension.zip --directory dist/lastExtension`);
-  } catch (error) {
-    await ex(`unzip -o dist/lastExtension.zip -d dist/lastExtension`);
+  const lastExtensionPath = path.join(__dirname, '../dist/lastExtension/manifest.json');
+  if (!fs.existsSync(lastExtensionPath)) {
+    console.log('Downloading');
+    mkdirp.sync(path.join(__dirname, '../dist/lastExtension'));
+    await ex(
+      'curl -fsSL https://github.com/MALSync/MALSync/releases/latest/download/webextension.zip -o dist/lastExtension.zip',
+    );
+    console.log('Extracting');
+    try {
+      await ex(`tar -xf dist/lastExtension.zip --directory dist/lastExtension`);
+    } catch (error) {
+      await ex(`unzip -o dist/lastExtension.zip -d dist/lastExtension`);
+    }
+  } else {
+    console.log('Skipping download, manifest found.');
   }
 
   const manifest = require('../dist/lastExtension/manifest.json');
