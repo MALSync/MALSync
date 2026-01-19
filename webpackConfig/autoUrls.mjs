@@ -46,7 +46,7 @@ async function zoro() {
   for (const url of urls) {
     formattedUrls.push('*://' + url.hostname + '/*');
   }
-  addpageUrls('Zoro', formattedUrls);
+  addPageUrls('Zoro', formattedUrls);
 }
 
 async function kickassanime() {
@@ -63,7 +63,7 @@ async function kickassanime() {
   for (let url of urls) {
     formattedUrls.push('*://*.' + url.hostname + '/*');
   }
-  addpageUrls('KickAssAnime', formattedUrls);
+  addPageUrls('KickAssAnime', formattedUrls);
 }
 
 async function animekai() {
@@ -125,7 +125,7 @@ async function mangapark() {
   addChibiUrls('MangaPark', formattedUrls);
 }
 
-function addpageUrls(page, urls) {
+function addPageUrls(page, urls) {
   logFoundUrls(page, urls, URL_TYPES.PAGE);
 
   let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
@@ -267,6 +267,7 @@ function logFoundUrls(key, urls, type = URL_TYPES.CHIBI) {
 async function start() {
   const args = process.argv.slice(2);
   const tasks = {
+    // Update available options in '.github/workflows/autoUrls.yml' once a new task is added here.
     voe,
     vidmoly,
     mixdrop,
@@ -277,6 +278,7 @@ async function start() {
     mangapark,
   };
 
+  // Lists all jobs to launch in parallel used in autoUrls.yml
   if (args.includes('--list')) {
     console.log(JSON.stringify(Object.keys(tasks)));
     return;
@@ -292,7 +294,7 @@ async function start() {
       tasksToRun = { [specificTask]: tasks[specificTask] };
     } else {
       console.error(`Task "${specificTask}" not found.`);
-      process.exit(1);
+      process.exitCode = 1;
     }
   }
 
@@ -302,6 +304,9 @@ async function start() {
       .catch(e => {
         console.error(`\n[${key}]:`, e);
         failedTasks.push(key);
+        if (process.env.GITHUB_ACTIONS) {
+          console.log(`::error title=Task ${key} Failed::${e.message || e}`);
+        }
       });
   }
 
@@ -310,7 +315,7 @@ async function start() {
   }
   if (failedTasks.length) {
     console.log('\x1b[31mTasks failed:\x1b[0m', failedTasks.join(', '));
-    process.exit(1);
+    process.exitCode = 1;
   }
 
   console.log('\nAutoUrls — Done.');
