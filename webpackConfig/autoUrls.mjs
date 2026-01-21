@@ -267,7 +267,6 @@ function logFoundUrls(key, urls, type = URL_TYPES.CHIBI) {
 async function start() {
   const args = process.argv.slice(2);
   const tasks = {
-    // Update available options in '.github/workflows/autoUrls.yml' once a new task is added here.
     voe,
     vidmoly,
     mixdrop,
@@ -311,10 +310,19 @@ async function start() {
   }
 
   if (succeededTasks.length) {
-    console.log('\n\n\x1b[32mTasks succeeded:\x1b[0m', succeededTasks.join(', '));
+    if(args) {
+      console.log('\n\x1b[32mTask succeeded:\x1b[0m', succeededTasks.join(', '));
+    } else {
+      console.log('\n\n\x1b[32mTasks succeeded:\x1b[0m', succeededTasks.join(', '));
+    }
+    
   }
   if (failedTasks.length) {
-    console.log('\x1b[31mTasks failed:\x1b[0m', failedTasks.join(', '));
+    if(args) {
+      console.log('\n\x1b[31mTask failed:\x1b[0m', failedTasks.join(', '));
+    } else {
+      console.log('\x1b[31mTasks failed:\x1b[0m', failedTasks.join(', '));    
+    }
     process.exitCode = 1;
   }
 
