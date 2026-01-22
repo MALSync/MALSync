@@ -38,15 +38,6 @@ jobs:
           TASKS=$(node webpackConfig/autoUrls.mjs --list)
           echo "matrix=$TASKS" >> $GITHUB_OUTPUT
 
-      - name: Upload Workspace
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
-        with:
-          name: workspace
-          path: |
-            .
-            !./.git
-          retention-days: 1
-
   update-urls:
     needs: prepare-matrix
     runs-on: ubuntu-latest
@@ -66,10 +57,8 @@ jobs:
         with:
           node-version: '22.x'
 
-      - name: Download Workspace
-        uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
-        with:
-          name: workspace
+      - name: Build
+        run: npm install
 
       - name: Run ${{ matrix.task }}
         env:
