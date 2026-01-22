@@ -319,7 +319,7 @@ async function start() {
         console.error(`\n[${key}]:`, e);
         failedTasks.push(key);
         if (process.env.GITHUB_ACTIONS) {
-          console.log(`::error title=Task ${key} Failed::${e.message || e}`);
+          console.log(`::error title=Task [${key}] Failed::${e.message || e}`);
         }
       });
   }
