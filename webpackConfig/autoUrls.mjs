@@ -131,13 +131,18 @@ function addPageUrls(page, urls) {
   let file = JSON.parse(fs.readFileSync(path.resolve(`./src/pages/${page}/meta.json`), 'utf8'));
 
   let addedCount = 0;
+  const existingUrls = [];
   for (const url of urls) {
     if (!file.urls.match.includes(url)) {
       file.urls.match.push(url);
       addedCount++;
     } else {
-      console.log(`[${page}] URL already exists: ${url}`);
+      existingUrls.push(url);
     }
+  }
+
+  if (existingUrls.length > 0) {
+    console.log(`[${page}] URLs already exist:\n ${existingUrls.join(',\n ')}`);
   }
 
   if (addedCount > 0) {
@@ -169,13 +174,18 @@ function addChibiUrls(page, urls, mainName = 'main.ts') {
   const matchUrls = urlRegex.map(url => url.replace(/'/g, ''));
 
   let addedCount = 0;
+  const existingUrls = [];
   for (const url of urls) {
     if (!matchUrls.includes(url)) {
       matchUrls.push(url);
       addedCount++;
     } else {
-      console.log(`[${page}] URL already exists: ${url}`);
+      existingUrls.push(url);
     }
+  }
+
+  if (existingUrls.length > 0) {
+    console.log(`[${page}] URLs already exist:\n ${existingUrls.join(',\n ')}`);
   }
 
   if (addedCount > 0) {
@@ -202,13 +212,18 @@ function addPlayerUrls(key, urls) {
 
   let data = '';
   let addedCount = 0;
+  const existingUrls = [];
   for (const url of urls) {
     if (!file.includes(url)) {
       data += `      '*://${url}',\n`;
       addedCount++;
     } else {
-      console.log(`[${key}] URL already exists: ${url}`);
+      existingUrls.push(url);
     }
+  }
+
+  if (existingUrls.length > 0) {
+    console.log(`[${key}] URLs already exist:\n ${existingUrls.join(',\n ')}`);
   }
 
   if (addedCount > 0) {
@@ -304,26 +319,27 @@ async function start() {
         console.error(`\n[${key}]:`, e);
         failedTasks.push(key);
         if (process.env.GITHUB_ACTIONS) {
-          console.log(`::error title=Task ${key} Failed::${e.message || e}`);
+          console.log(`::error title=Task [${key}] Failed::${e.message || e}`);
         }
       });
   }
 
   if (succeededTasks.length) {
-    if(args) {
+    if (args) {
       console.log('\n\x1b[32mTask succeeded:\x1b[0m', succeededTasks.join(', '));
     } else {
       console.log('\n\n\x1b[32mTasks succeeded:\x1b[0m', succeededTasks.join(', '));
     }
-    
   }
   if (failedTasks.length) {
-    if(args) {
+    if (args) {
       console.log('\n\x1b[31mTask failed:\x1b[0m', failedTasks.join(', '));
     } else {
-      console.log('\x1b[31mTasks failed:\x1b[0m', failedTasks.join(', '));    
+      console.log('\x1b[31mTasks failed:\x1b[0m', failedTasks.join(', '));
     }
-    process.exitCode = 1;
+    if (!process.env.GITHUB_ACTIONS) {
+      process.exitCode = 1;
+    }
   }
 
   console.log('\nAutoUrls — Done.');
