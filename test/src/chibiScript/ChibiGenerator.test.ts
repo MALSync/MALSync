@@ -61,7 +61,9 @@ describe('ChibiGenerator', () => {
 
         expect(result).to.deep.equal([
           ['string', 'Line1\nLine2\rLine3'],
-          ['replaceAll', '(\n|\r)', ', ']
+          ['replaceRegex', '(\n|\r)', ', '],
+          ['replaceRegex', ' +', ' '],
+          ['trim'],
         ]);
       });
       it('ChibiJson parameter', () => {
@@ -72,12 +74,20 @@ describe('ChibiGenerator', () => {
 
         expect(result).to.deep.equal([
           ['string', 'Line1\nLine2\rLine3'],
-          ['replaceAll', '(\n|\r)', [
+          ['replaceRegex', '(\n|\r)', [
             [
               "string",
               ", "
             ]
           ]],
+          [
+            "replaceRegex",
+            " +",
+            " "
+          ],
+          [
+            "trim"
+          ]
         ]);
       });
     });

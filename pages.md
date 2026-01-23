@@ -447,6 +447,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://Kuudere.to"><img src="https://favicon.malsync.moe/?domain=https://Kuudere.to"> Kuudere</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://latanime.org"><img src="https://favicon.malsync.moe/?domain=https://latanime.org"> Latanime</a></td>
     <td>Spanish</td>
     <td>:heavy_check_mark:</td>
