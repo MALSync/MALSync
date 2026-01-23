@@ -4,6 +4,7 @@ import { UrlNotSupportedError } from '../Errors';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 import { BakaSeries, RelatedSeries } from './types';
 import { call, getAlternativeTitles, getImageUrl, urls } from './helper';
+import { cacheSeriesList, getSeries } from './seriesService';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -56,20 +57,15 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private async getData() {
-    let seriesEntry: BakaSeries;
-    if (this.bakaId) {
-      seriesEntry = (await call(urls.series(this.bakaId))).data as BakaSeries;
-    } else if (this.malId) {
-      seriesEntry = (await call(urls.seriesByMalId(this.malId))).data.series[0] as BakaSeries;
-    } else {
-      throw new Error('No valid ID found');
-    }
-
-    return seriesEntry;
+    return (await getSeries({ baka: this.bakaId, mal: this.malId }))!;
   }
 
   private async relatedData(bakaId: number) {
-    return (await call(urls.seriesRelated(bakaId))).data as RelatedSeries;
+    const relatedSeries = (await call(urls.seriesRelated(bakaId))).data as RelatedSeries;
+
+    await cacheSeriesList(Object.values(relatedSeries).reduce((acc, val) => acc.concat(val), []));
+
+    return relatedSeries;
   }
 
   private title(data: BakaSeries) {
