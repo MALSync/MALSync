@@ -15,18 +15,20 @@ export const StoneScape: PageInterface = {
       return $c
         .and(
           $c.url().urlPart(3).equals('series').run(),
-          $c.url().urlPart(5).boolean().run(),
           $c.url().urlPart(5).matches('ch[_-]').run(),
         )
         .run();
     },
     getTitle($c) {
+      const filter = $f =>
+        $f.getAttribute('href').contains($c.this('sync.getIdentifier').run()).run();
       return $c
-        .title()
-        .split('Chapter')
-        .at(0)
-        .trim()
+        .coalesce(
+          $c.querySelectorAll('.breadcrumb a').arrayFind(filter).text().run(),
+          $c.title().split('Chapter').at(0).run(),
+        )
         .replaceRegex(' • StoneScape', '')
+        .replaceLinebreaks()
         .trim()
         .run();
     },
@@ -39,7 +41,7 @@ export const StoneScape: PageInterface = {
     getOverviewUrl($c) {
       return $c
         .string('/series/<identifier>')
-        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
+        .replace('<identifier>', $c.this('sync.getIdentifier').run())
         .urlAbsolute()
         .run();
     },
@@ -54,29 +56,15 @@ export const StoneScape: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '#single-pager',
-        current: {
-          selector: '#single-pager [selected="selected"]',
-          mode: 'text',
-          regex: '^(\\d+)/(\\d+)$',
-          group: 1,
-        },
-        total: {
-          selector: '#single-pager option',
-          mode: 'text',
-          regex: '^(\\d+)/(\\d+)$',
-          group: 2,
-        },
+        condition: $c => $c.querySelector('#single-pager').boolean().run(),
+        current: $c =>
+          $c.querySelector('#single-pager [selected]').text().regex('(\\d+)/', 1).number().run(),
+        total: $c =>
+          $c.querySelector('#single-pager option').text().regex('/(\\d+)', 1).number().run(),
       },
       {
-        current: {
-          selector: '.reading-content img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.reading-content img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.reading-content img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.reading-content img').length().run(),
       },
     ],
   },
@@ -91,23 +79,16 @@ export const StoneScape: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('h1')
-        .text()
-        .trim()
-        .replaceAll('\n', ' ')
-        .replaceRegex('\\s+', ' ')
-        .trim()
-        .run();
+      return $c.querySelector('h1').text().replaceLinebreaks().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.summary_image').uiAppend().run();
+      return $c.querySelector('.page-content-listing').uiBefore().run();
     },
   },
   list: {
