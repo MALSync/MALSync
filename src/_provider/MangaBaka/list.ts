@@ -10,6 +10,7 @@ import {
   timestampToDate,
 } from './helper';
 import type { BakaLibraryEntry, BakaSorting, LibraryResponse } from './types';
+import { cacheSeriesList } from './seriesService';
 
 export class UserList extends ListAbstract {
   name = 'MangaBaka';
@@ -115,7 +116,15 @@ export class UserList extends ListAbstract {
     return this.prepareData(json.data);
   }
 
+  protected async cacheList(data: BakaLibraryEntry[]) {
+    const series = data.map(el => el.Series);
+    await cacheSeriesList(series);
+  }
+
   public async prepareData(data: BakaLibraryEntry[]): Promise<listElement[]> {
+    if (this.modes.frontend) {
+      this.cacheList(data); // Fire and forget
+    }
     const newData = [] as listElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];

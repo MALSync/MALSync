@@ -13,6 +13,7 @@ import {
   urls,
 } from './helper';
 import { BakaLibraryEntry, BakaLibraryEntryUpdate, BakaSeries } from './types';
+import { getSeries } from './seriesService';
 
 export class Single extends SingleAbstract {
   consideringSupport = true;
@@ -211,18 +212,15 @@ export class Single extends SingleAbstract {
   async _update() {
     this._authenticated = true;
 
-    // TODO: Implement series caching. Fill cache on list fetch and related fetch?
-    let seriesEntry: BakaSeries;
+    let seriesEntry: BakaSeries | null;
     if (this.forceSeries) {
       seriesEntry = this.forceSeries;
-    } else if (this.ids.baka) {
-      seriesEntry = (await call(urls.series(this.ids.baka))).data as BakaSeries;
-    } else if (this.ids.ani) {
-      seriesEntry = (await call(urls.seriesByAniId(this.ids.ani))).data.series[0] as BakaSeries;
-    } else if (this.ids.mal) {
-      seriesEntry = (await call(urls.seriesByMalId(this.ids.mal))).data.series[0] as BakaSeries;
     } else {
-      throw new Error('No valid ID found');
+      seriesEntry = await getSeries(this.ids);
+    }
+
+    if (!seriesEntry) {
+      throw new NotFoundError('Series not found');
     }
 
     this.ids.baka = seriesEntry.id;
