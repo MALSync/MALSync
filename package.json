@@ -126,7 +126,7 @@
     "fork-ts-checker-webpack-plugin": "^9.1.0",
     "fuse.js": "^7.1.0",
     "hex-to-hsl": "^1.0.2",
-    "jquery": "^3.6.2",
+    "jquery": "^4.0.0",
     "node-fetch": "^3.3.2",
     "overlayscrollbars": "^2.2.1",
     "overlayscrollbars-vue": "^0.5.7",
