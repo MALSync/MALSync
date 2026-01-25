@@ -1,4 +1,4 @@
-import { pageInterface, pageState } from './pageInterface';
+import { pageInterface, pageState } from '../pages/pageInterface';
 import { getSingle } from '../_provider/singleFactory';
 import { hideFloatbutton, initFloatButton, showFloatbutton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';

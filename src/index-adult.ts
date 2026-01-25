@@ -1,4 +1,4 @@
-import { SyncPage } from './pages/syncPage';
+import { SyncPage } from './pages-sync/syncPage';
 import { AnilistClass } from './anilist/anilistClass';
 import { KitsuClass } from './kitsu/kitsuClass';
 import { SimklClass } from './simkl/simklClass';

@@ -1,4 +1,4 @@
-import { SyncPage } from '../pages/syncPage';
+import { SyncPage } from '../pages-sync/syncPage';
 import { firebaseNotification } from '../utils/firebaseNotification';
 import { shortcutListener } from '../utils/player';
 import { floatClick } from '../floatbutton/extension';
