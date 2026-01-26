@@ -484,6 +484,7 @@ module.exports = {
       '*://vidmoly.me/*',
       '*://vidmoly.to/*',
       '*://vidmoly.net/*',
+      '*://vidmoly.biz/*',
       // auto-vidmoly-replace-dont-remove
     ],
   },
