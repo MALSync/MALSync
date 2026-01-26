@@ -114,7 +114,7 @@ async function runPage() {
 }
 
 function iframe() {
-  const player = PlayerSingleton.getInstance();
+  const player = PlayerSingleton.getInstance().startTracking();
   player.addListener('iframe', item => {
     api.storage.set('iframePlayer', item);
   });

@@ -61,7 +61,7 @@ api.settings.init().then(() => {
 });
 
 function iframe() {
-  const playerInstance = PlayerSingleton.getInstance();
+  const playerInstance = PlayerSingleton.getInstance().startTracking();
   playerInstance.addListener('iframe', item => {
     api.storage.set('iframePlayer', item);
   });

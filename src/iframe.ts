@@ -2,7 +2,7 @@ import { fullscreenNotification, PlayerSingleton, shortcutListener } from './uti
 
 let tempPlayer: any;
 
-const playerInstance = PlayerSingleton.getInstance();
+const playerInstance = PlayerSingleton.getInstance().startTracking();
 playerInstance.addListener('iframe', (item, player) => {
   chrome.runtime.sendMessage({ name: 'videoTime', item });
   tempPlayer = player;

@@ -320,7 +320,7 @@ export class SyncPage {
         state.volume = this.page.sync.getVolume(this.url);
       }
       if (this.page.type === 'anime') {
-        const playerInstance = PlayerSingleton.getInstance();
+        const playerInstance = PlayerSingleton.getInstance().startTracking();
         playerInstance.addListener('syncPage', (item, player) => {
           this.autoNextEp(item);
           this.handleVideoResume(item, time => {

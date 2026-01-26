@@ -29,6 +29,10 @@ export class PlayerSingleton {
   }
 
   private constructor() {
+    // Singleton
+  }
+
+  public startTracking() {
     setInterval(() => {
       const players = document.getElementsByTagName('video');
       for (let i = 0; i < players.length; i++) {
@@ -52,6 +56,8 @@ export class PlayerSingleton {
       }
       this.currentPlayer = null;
     }, 1000);
+
+    return this;
   }
 
   protected proxySetTime: ((time: number) => void) | null = null;
