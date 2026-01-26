@@ -10,9 +10,11 @@ export class PlayerSingleton {
   // eslint-disable-next-line es-x/no-class-static-fields
   private static instance: PlayerSingleton = new PlayerSingleton();
 
-  private listeners: { [key: string]: (time: PlayerTime, player: HTMLVideoElement) => void } = {};
+  protected currentPlayer: HTMLVideoElement | null = null;
 
-  addListener(key: string, callback: (time: PlayerTime, player: HTMLVideoElement) => void) {
+  private listeners: { [key: string]: (time: PlayerTime, player?: HTMLVideoElement) => void } = {};
+
+  addListener(key: string, callback: (time: PlayerTime, player?: HTMLVideoElement) => void) {
     this.listeners[key] = callback;
   }
 
@@ -20,7 +22,7 @@ export class PlayerSingleton {
     delete this.listeners[key];
   }
 
-  notifyListeners(time: PlayerTime, player: HTMLVideoElement) {
+  notifyListeners(time: PlayerTime, player?: HTMLVideoElement) {
     Object.values(this.listeners).forEach(callback => {
       callback(time, player);
     });
@@ -30,7 +32,7 @@ export class PlayerSingleton {
     setInterval(() => {
       const players = document.getElementsByTagName('video');
       for (let i = 0; i < players.length; i++) {
-        const player: any = players[i];
+        const player: HTMLVideoElement = players[i];
         const { duration } = player;
         const current = player.currentTime;
         const { paused } = player;
@@ -42,17 +44,49 @@ export class PlayerSingleton {
             paused,
           };
           logger.debug(window.location.href, item);
+          this.currentPlayer = player;
           this.notifyListeners(item, player);
-          break;
+          playerExtras(item, player);
+          return;
         }
       }
+      this.currentPlayer = null;
     }, 1000);
+  }
+
+  protected proxySetTime: ((time: number) => void) | null = null;
+
+  protected proxySetTimeTimeout: NodeJS.Timeout | null = null;
+
+  /** Used by iframe Proxy */
+  public setIframeProgress(time: PlayerTime, setTime?: (time: number) => void) {
+    if (typeof setTime !== 'undefined') {
+      this.proxySetTime = setTime;
+      clearTimeout(this.proxySetTimeTimeout!);
+      this.proxySetTimeTimeout = setTimeout(() => {
+        this.proxySetTime = null;
+      }, 15000);
+    }
+    this.notifyListeners(time);
+  }
+
+  public canSetTime() {
+    return this.proxySetTime || this.currentPlayer;
+  }
+
+  public async setTime(time: number) {
+    if (!time || time < 0) return;
+    if (this.proxySetTime) {
+      this.proxySetTime(time);
+    } else if (this.currentPlayer) {
+      await this.currentPlayer.play();
+      this.currentPlayer.currentTime = time;
+    }
   }
 
   static getInstance() {
     if (!PlayerSingleton.instance) {
       PlayerSingleton.instance = new PlayerSingleton();
-      PlayerSingleton.instance.addListener('playerExtras', playerExtras);
     }
     return PlayerSingleton.instance;
   }
