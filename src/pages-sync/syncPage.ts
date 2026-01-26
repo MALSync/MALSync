@@ -2,7 +2,7 @@ import { pageInterface, pageState } from '../pages/pageInterface';
 import { getSingle } from '../_provider/singleFactory';
 import { hideFloatbutton, initFloatButton, showFloatbutton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
-import { fullscreenNotification, getPlayerTime } from '../utils/player';
+import { fullscreenNotification, PlayerSingleton } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
@@ -323,7 +323,8 @@ export class SyncPage {
         state.volume = this.page.sync.getVolume(this.url);
       }
       if (this.page.type === 'anime') {
-        getPlayerTime((item, player) => {
+        const playerInstance = PlayerSingleton.getInstance();
+        playerInstance.addListener('syncPage', (item, player) => {
           this.tempPlayer = player;
           this.setVideoTime(item, time => {
             if (typeof player === 'undefined') {

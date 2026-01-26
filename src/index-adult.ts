@@ -2,7 +2,7 @@ import { SyncPage } from './pages-sync/syncPage';
 import { AnilistClass } from './anilist/anilistClass';
 import { KitsuClass } from './kitsu/kitsuClass';
 import { SimklClass } from './simkl/simklClass';
-import { getPlayerTime } from './utils/player';
+import { PlayerSingleton } from './utils/player';
 import { pages } from './pages-adult/pages';
 import { oauth } from './utils/oauth';
 import { floatClick } from './floatbutton/userscript';
@@ -63,7 +63,8 @@ api.settings.init().then(() => {
 });
 
 function iframe() {
-  getPlayerTime(function (item) {
+  const playerInstance = PlayerSingleton.getInstance();
+  playerInstance.addListener('iframe', item => {
     api.storage.set('iframePlayer', item);
   });
 }

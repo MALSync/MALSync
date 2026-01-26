@@ -4,7 +4,7 @@ import { AnilistClass } from './anilist/anilistClass';
 import { KitsuClass } from './kitsu/kitsuClass';
 import { SimklClass } from './simkl/simklClass';
 import { firebaseNotification } from './utils/firebaseNotification';
-import { getPlayerTime, shortcutListener } from './utils/player';
+import { PlayerSingleton, shortcutListener } from './utils/player';
 import { pages } from './pages/pages';
 import { oauth } from './utils/oauth';
 import { floatClick } from './floatbutton/userscript';
@@ -116,7 +116,8 @@ async function runPage() {
 }
 
 function iframe() {
-  getPlayerTime(function (item) {
+  const player = PlayerSingleton.getInstance();
+  player.addListener('iframe', item => {
     api.storage.set('iframePlayer', item);
   });
 }
