@@ -586,7 +586,7 @@ export function flashm(
         </div>\
       </div>`;
 
-  let flashmEl;
+  let flashmEl: JQuery<HTMLElement>;
 
   if (
     typeof options !== 'undefined' &&

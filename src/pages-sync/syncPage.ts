@@ -12,6 +12,8 @@ import { hasMissingPermissions } from '../utils/customDomains';
 import { localStore } from '../utils/localStore';
 import { MangaProgress } from '../utils/mangaProgress/MangaProgress';
 import { getPageConfig } from '../utils/test';
+import { getTrackingMode, TrackingModeType } from './trackingMode';
+import { TrackingModeInterface } from './trackingMode/TrackingModeInterface';
 
 declare let browser: any;
 
@@ -34,6 +36,8 @@ export class SyncPage {
   singleObj;
 
   mangaProgress: MangaProgress | undefined;
+
+  trackingModeInstance: TrackingModeInterface | undefined;
 
   public novel = false;
 
@@ -249,6 +253,10 @@ export class SyncPage {
     this.UILoaded = false;
     this.curState = undefined;
     this.setSearchObj(undefined);
+    if (this.trackingModeInstance) {
+      this.trackingModeInstance.stop();
+      this.trackingModeInstance = undefined;
+    }
     if (this.mangaProgress) this.mangaProgress.stop();
     $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
     clearInterval(this.imageFallbackInterval);
@@ -471,128 +479,78 @@ export class SyncPage {
   }
 
   protected async startSyncHandling(state, malUrl) {
-    let mangaProgressMode = false;
-    if (this.mangaProgress) {
-      try {
-        mangaProgressMode = await this.mangaProgress.start();
-        if (!mangaProgressMode) return;
-      } catch (e) {
-        logger.error(e);
+    // TODO: MangaProgress
+    // TODO: ProgressBar
+    // TODO: Progress saving
+    // TODO: Resume handling
+    // TODO: Player not found error
+
+    const tracking = new (getTrackingMode(
+      api.settings.get(`autoTrackingMode${this.page.type}`) as TrackingModeType,
+    ))();
+    this.trackingModeInstance = tracking;
+
+    tracking.start();
+
+    const syncButtonTranslation = {
+      key: `syncPage_flashm_sync_${this.page.type}`,
+      value: String(state.episode),
+    };
+
+    if (this.page.type === 'manga' && !state.episode && state.volume) {
+      syncButtonTranslation.key = 'syncPage_flashm_sync_manga_volume';
+      syncButtonTranslation.value = String(state.volume);
+    }
+
+    const messageArray: HTMLElement[] = [];
+
+    const syncButton = document.createElement('button');
+    syncButton.className = 'sync';
+    syncButton.style = `
+      margin-bottom: 8px;
+      background-color: transparent;
+      border: none;
+      color: rgb(255,64,129);
+      margin-top: 10px;
+      cursor: pointer;
+    `;
+    syncButton.innerText = api.storage.lang(syncButtonTranslation.key, [
+      providerTemplates(malUrl).shortName,
+      syncButtonTranslation.value,
+    ]);
+    messageArray.push(syncButton);
+
+    if ('note' in tracking) {
+      const note = tracking.note();
+      if (note) {
+        const noteDiv = document.createElement('div');
+        noteDiv.style = 'margin-top: 5px; font-size: 0.9em; color: #ccc;';
+        noteDiv.innerText = note;
+        messageArray.push(noteDiv);
       }
     }
 
-    if (!mangaProgressMode && api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
-      setTimeout(
-        () => {
-          this.sync(state);
-        },
-        api.settings.get('delay') * 1000,
-      );
-    } else {
-      const translationMsg = {
-        key: `syncPage_flashm_sync_${this.page.type}`,
-        value: String(state.episode),
-      };
+    const message = messageArray.map(el => el.outerHTML).join('');
 
-      if (this.page.type === 'manga' && !state.episode && state.volume) {
-        translationMsg.key = 'syncPage_flashm_sync_manga_volume';
-        translationMsg.value = String(state.volume);
-      }
+    const flashEl = utils.flashm(message, tracking.flashOptions());
 
-      let message = `<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">${api.storage.lang(
-        translationMsg.key,
-        [providerTemplates(malUrl).shortName, translationMsg.value],
-      )}</button>`;
-      let options = {
-        hoverInfo: true,
-        error: true,
-        type: 'update',
-        minimized: false,
-      };
+    const clickPromise = new Promise<void>(resolve => {
+      flashEl.find('.sync').on('click', () => resolve());
+    });
 
-      if (
-        api.settings.get(`autoTrackingMode${this.page.type}`) === 'video' &&
-        this.page.type === 'anime'
-      ) {
-        message = `
-          <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
-            <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
-          </div>
-          <div class="player-error" style="display: none; position: absolute; left: 0; right: 0; padding: 5px; bottom: 100%; color: rgb(255,64,129); background-color: #323232;">
-            <span class="player-error-default">${api.storage.lang(
-              'syncPage_flash_player_error',
-            )}</span>
-            <span class="player-error-missing-permissions" style="display: none; padding-top: 10px">
-              ${api.storage.lang('settings_custom_domains_missing_permissions_header')}
-            </span>
-            <div style="display: flex; justify-content: space-evenly">
-              <a class="player-error-missing-permissions" href="https://malsync.moe/pwa/#/settings/customDomains" style="display: none; margin: 10px; border-bottom: 2px solid #e13f7b;">
-                ${api.storage.lang('Add')}
-              </a>
-              <a href="https://discord.com/invite/cTH4yaw" style="display: block; margin: 10px">Help</a>
-            </div>
+    await Promise.race([clickPromise, tracking.waitForTrackingAction()]);
 
-          </div>
-        ${message}`;
-        options = {
-          hoverInfo: true,
-          error: false,
-          type: 'update',
-          minimized: true,
-        };
-      }
+    tracking.stop();
 
-      if (mangaProgressMode) {
-        message = `
-          <div id="malSyncProgress" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
-            <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
-          </div>
-        ${message}`;
-        options = {
-          hoverInfo: true,
-          error: false,
-          type: 'update',
-          minimized: true,
-        };
-      }
+    flashEl.remove();
 
-      utils
-        .flashm(message, options)
-        .find('.sync')
-        .on('click', () => {
-          j.$('.flashinfo').remove();
-          this.sync(state);
-          this.resetPlayerError();
-        });
-
-      // Show error if no player gets detected for 5 minutes
-      if (this.singleObj.getType() === 'anime') {
-        playerTimeout = setTimeout(
-          async () => {
-            j.$('#flashinfo-div').addClass('player-error');
-
-            if (await hasMissingPermissions()) {
-              j.$('#flashinfo-div').addClass('player-error-missing-permissions');
-            }
-
-            const iframes = $('iframe')
-              .toArray()
-              .map(el => utils.absoluteLink($(el).attr('src'), window.location.origin))
-              .filter(el => el)
-              .filter(el => !isIframeUrl(el));
-
-            con.log('No Player found', iframes);
-          },
-          5 * 60 * 1000,
-        );
-      }
-
-      // Debugging
-      logger.log('overviewUrl', this.page.sync.getOverviewUrl(this.url));
-      if (typeof this.page.sync.nextEpUrl !== 'undefined') {
-        logger.log('nextEp', this.page.sync.nextEpUrl(this.url));
-      }
+    // Debugging
+    logger.log('overviewUrl', this.page.sync.getOverviewUrl(this.url));
+    if (typeof this.page.sync.nextEpUrl !== 'undefined') {
+      logger.log('nextEp', this.page.sync.nextEpUrl(this.url));
     }
+
+    return this.sync(state);
   }
 
   protected async sync(state) {
