@@ -129,6 +129,7 @@ export class SyncPage {
     });
   }
 
+  // TODO: Remove
   public setVideoTime(item, timeCb) {
     this.resetPlayerError();
     const syncDuration = api.settings.get('videoDuration');
@@ -144,8 +145,6 @@ export class SyncPage {
         con.log('videoSyncOffset', progress);
       }
     }
-    this.handleVideoResume(item, timeCb);
-    this.autoNextEp(item);
   }
 
   autoNextEpRun = false;
@@ -245,8 +244,6 @@ export class SyncPage {
 
   curState: any = undefined;
 
-  tempPlayer: any = undefined;
-
   reset() {
     this.url = window.location.href;
     this.UILoaded = false;
@@ -325,8 +322,8 @@ export class SyncPage {
       if (this.page.type === 'anime') {
         const playerInstance = PlayerSingleton.getInstance();
         playerInstance.addListener('syncPage', (item, player) => {
-          this.tempPlayer = player;
-          this.setVideoTime(item, time => {
+          this.autoNextEp(item);
+          this.handleVideoResume(item, time => {
             if (typeof player === 'undefined') {
               logger.error('No player Found');
               return;
