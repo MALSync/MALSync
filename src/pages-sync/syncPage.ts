@@ -551,7 +551,6 @@ export class SyncPage {
 
     if ('addErrorListener' in tracking) {
       tracking.addErrorListener(errorEl => {
-        console.log('Error Element', errorEl); //TODO: Remove
         const errorContainer = flashEl.find('#malSyncError');
         if (!errorEl) {
           // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
