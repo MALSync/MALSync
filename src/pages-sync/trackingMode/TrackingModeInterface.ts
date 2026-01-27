@@ -1,4 +1,5 @@
 import type { flashm } from '../../utils/general';
+import type { SyncPage } from '../syncPage';
 
 export type ProgressElement = {
   progress: number;
@@ -9,7 +10,7 @@ export interface TrackingModeInterface {
   /** Waits for a tracking action to occur */
   waitForTrackingAction(): Promise<void>;
 
-  start(): void;
+  start(page: SyncPage): void | Promise<void>;
 
   stop(): void;
 

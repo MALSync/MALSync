@@ -10,7 +10,6 @@ import { isIframeUrl } from '../utils/manifest';
 import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
 import { hasMissingPermissions } from '../utils/customDomains';
 import { localStore } from '../utils/localStore';
-import { MangaProgress } from '../utils/mangaProgress/MangaProgress';
 import { getPageConfig } from '../utils/test';
 import { getTrackingMode, TrackingModeType } from './trackingMode';
 import { TrackingModeInterface } from './trackingMode/TrackingModeInterface';
@@ -34,8 +33,6 @@ export class SyncPage {
   searchObj;
 
   singleObj;
-
-  mangaProgress: MangaProgress | undefined;
 
   trackingModeInstance: TrackingModeInterface | undefined;
 
@@ -68,10 +65,6 @@ export class SyncPage {
     ) {
       logger.info('Sync is disabled for this page', this.page.name);
       throw 'Stop Script';
-    }
-
-    if (this.page.type === 'manga' && api.settings.get('readerTracking')) {
-      this.mangaProgress = new MangaProgress(this.page.sync.readerConfig || [], this.page.name);
     }
 
     emitter.on('syncPage_fillUi', () => this.fillUI());
@@ -257,7 +250,6 @@ export class SyncPage {
       this.trackingModeInstance.stop();
       this.trackingModeInstance = undefined;
     }
-    if (this.mangaProgress) this.mangaProgress.stop();
     $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
     clearInterval(this.imageFallbackInterval);
   }
@@ -479,18 +471,28 @@ export class SyncPage {
   }
 
   protected async startSyncHandling(state, malUrl) {
-    // TODO: MangaProgress
-    // TODO: ProgressBar
     // TODO: Progress saving
     // TODO: Resume handling
     // TODO: Player not found error
 
-    const tracking = new (getTrackingMode(
-      api.settings.get(`autoTrackingMode${this.page.type}`) as TrackingModeType,
-    ))();
-    this.trackingModeInstance = tracking;
+    let tracking: InstanceType<ReturnType<typeof getTrackingMode>> | null = null;
+    if (this.page.type === 'manga' && api.settings.get('readerTracking')) {
+      try {
+        tracking = new (getTrackingMode('manga' as TrackingModeType))();
+        await tracking.start(this);
+      } catch (e) {
+        logger.error(e);
+        tracking = null;
+      }
+    }
+    if (!tracking) {
+      tracking = new (getTrackingMode(
+        api.settings.get(`autoTrackingMode${this.page.type}`) as TrackingModeType,
+      ))();
+      await tracking.start(this);
+    }
 
-    tracking.start();
+    this.trackingModeInstance = tracking;
 
     const syncButtonTranslation = {
       key: `syncPage_flashm_sync_${this.page.type}`,
