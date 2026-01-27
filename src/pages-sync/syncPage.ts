@@ -504,6 +504,31 @@ export class SyncPage {
 
     const messageArray: HTMLElement[] = [];
 
+    if ('addListener' in tracking) {
+      const progressDiv = document.createElement('div');
+      progressDiv.id = 'malSyncProgress';
+      progressDiv.className = 'ms-loading';
+      progressDiv.style.cssText = `
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+      `;
+
+      const progressInnerDiv = document.createElement('div');
+      progressInnerDiv.className = 'ms-progress';
+      progressInnerDiv.style.cssText = `
+        background-color: #2980b9;
+        width: 0%;
+        height: 100%;
+        transition: width 1s;
+      `;
+      progressDiv.appendChild(progressInnerDiv);
+      messageArray.push(progressDiv);
+    }
+
     const syncButton = document.createElement('button');
     syncButton.className = 'sync';
     syncButton.style = `
@@ -533,6 +558,21 @@ export class SyncPage {
     const message = messageArray.map(el => el.outerHTML).join('');
 
     const flashEl = utils.flashm(message, tracking.flashOptions());
+
+    if ('addListener' in tracking) {
+      tracking.addListener(progress => {
+        let finalPercent = Number(progress.progress);
+        if (progress.progressTrigger && Number(progress.progressTrigger)) {
+          finalPercent = Math.min(finalPercent / Number(progress.progressTrigger), 1);
+        }
+        if (finalPercent === 1) {
+          j.$('#malSyncProgress').addClass('ms-done');
+        } else {
+          flashEl.find('.ms-progress').css('width', `${finalPercent * 100}%`);
+          flashEl.find('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
+        }
+      });
+    }
 
     const clickPromise = new Promise<void>(resolve => {
       flashEl.find('.sync').on('click', () => resolve());

@@ -1,5 +1,5 @@
 import { PlayerSingleton } from '../../utils/player';
-import { TrackingModeInterface } from './TrackingModeInterface';
+import { ProgressElement, TrackingModeInterface } from './TrackingModeInterface';
 
 export class VideoStrategy implements TrackingModeInterface {
   trackingResolve: (() => void) | null = null;
@@ -11,15 +11,27 @@ export class VideoStrategy implements TrackingModeInterface {
     });
   }
 
+  listener: ((progress: ProgressElement) => void) | null = null;
+
+  addListener(callback: (progress: ProgressElement) => void): void {
+    this.listener = callback;
+  }
+
   start() {
-    const syncDuration = api.settings.get('videoDuration') as number;
+    const syncDuration = Number(api.settings.get('videoDuration')) / 100;
     PlayerSingleton.getInstance()
       .startTracking()
       .addListener('VideoStrategy', item => {
-        const progressInPercent = (item.current / item.duration) * 100;
-        if (this.trackingResolve && !item.paused && progressInPercent >= syncDuration) {
+        const progress = item.current / item.duration;
+        if (this.trackingResolve && !item.paused && progress >= syncDuration) {
           this.trackingResolve();
           this.trackingResolve = null;
+        }
+        if (this.listener) {
+          this.listener({
+            progress,
+            progressTrigger: syncDuration,
+          });
         }
         // TODO: Error after 5 minutes
       });
