@@ -700,7 +700,7 @@ function initflashm() {
                  #flashinfo-div.hover .flashinfo{
                     opacity: 1;
                  }
-                 .flashinfo:hover{
+                 .flashinfo:hover, .flashinfo.open{
                     max-height:5000px !important;
                     z-index: 2147483647;
                     opacity: 1;
@@ -709,7 +709,7 @@ function initflashm() {
                  .flashinfo .synopsis{
                     transition: max-height 2s, max-width 2s ease 2s;
                  }
-                 .flashinfo:hover .synopsis{
+                 .flashinfo:hover .synopsis, .flashinfo.open .synopsis{
                     max-height:9999px !important;
                     max-width: 500px !important;
                     transition: max-height 2s;
@@ -720,22 +720,6 @@ function initflashm() {
                  }
                  #flashinfo-div:hover, #flashinfo-div.hover{
                   z-index: 2147483647;
-                 }
-                 #flashinfo-div.player-error {
-                   z-index: 2147483647;
-                 }
-                 #flashinfo-div.player-error .type-update{
-                  overflow: visible !important;
-                  opacity: 1 !important;
-                 }
-                 #flashinfo-div.player-error .player-error{
-                  display: block !important
-                 }
-                 #flashinfo-div.player-error-missing-permissions .player-error-missing-permissions{
-                  display: block !important
-                 }
-                 #flashinfo-div.player-error-missing-permissions .player-error-default{
-                  display: none !important
                  }
 
                  #flash-div-top, #flash-div-bottom, #flashinfo-div{

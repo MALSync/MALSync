@@ -25,8 +25,6 @@ const logger = con.m('Sync', '#348fff');
 
 let browsingTimeout;
 
-let playerTimeout;
-
 export class SyncPage {
   page: pageInterface;
 
@@ -39,10 +37,6 @@ export class SyncPage {
   public novel = false;
 
   public strongVolumes = false;
-
-  public videoSyncOffset = true;
-
-  public videoSyncInterval;
 
   constructor(
     public url,
@@ -124,24 +118,6 @@ export class SyncPage {
       error: true,
       type: 'EpError',
     });
-  }
-
-  // TODO: Remove
-  public setVideoTime(item, timeCb) {
-    this.resetPlayerError();
-    const syncDuration = api.settings.get('videoDuration');
-    const progress = (item.current / (item.duration * (syncDuration / 100))) * 100;
-    if (j.$('#malSyncProgress').length) {
-      if (progress < 100) {
-        j.$('.ms-progress').css('width', `${progress}%`);
-        j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
-      } else if (this.videoSyncOffset) {
-        j.$('#malSyncProgress').addClass('ms-done');
-        j.$('.flash.type-update .sync').click();
-      } else {
-        con.log('videoSyncOffset', progress);
-      }
-    }
   }
 
   autoNextEpRun = false;
@@ -264,19 +240,12 @@ export class SyncPage {
   }
 
   async handlePage(curUrl = window.location.href) {
-    this.resetPlayerError();
     let state: pageState;
     this.curState = undefined;
     this.setSearchObj(undefined);
     this.url = curUrl;
     this.browsingtime = Date.now();
     let tempSingle;
-
-    this.videoSyncOffset = false;
-    clearTimeout(this.videoSyncInterval);
-    this.videoSyncInterval = setTimeout(() => {
-      this.videoSyncOffset = true;
-    }, 10000);
 
     if (this.page.isSyncPage(this.url)) {
       this.loadUI();
@@ -473,7 +442,7 @@ export class SyncPage {
   protected async startSyncHandling(state, malUrl) {
     // TODO: Progress saving
     // TODO: Resume handling
-    // TODO: Player not found error
+    // TODO: Fix discord presence
 
     let tracking: InstanceType<ReturnType<typeof getTrackingMode>> | null = null;
     if (this.page.type === 'manga' && api.settings.get('readerTracking')) {
@@ -557,6 +526,10 @@ export class SyncPage {
       }
     }
 
+    const errorDiv = document.createElement('div');
+    errorDiv.id = 'malSyncError';
+    messageArray.push(errorDiv);
+
     const message = messageArray.map(el => el.outerHTML).join('');
 
     const flashEl = utils.flashm(message, tracking.flashOptions());
@@ -572,6 +545,21 @@ export class SyncPage {
         } else {
           flashEl.find('.ms-progress').css('width', `${finalPercent * 100}%`);
           flashEl.find('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
+        }
+      });
+    }
+
+    if ('addErrorListener' in tracking) {
+      tracking.addErrorListener(errorEl => {
+        console.log('Error Element', errorEl); //TODO: Remove
+        const errorContainer = flashEl.find('#malSyncError');
+        if (!errorEl) {
+          // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+          errorContainer.html('');
+          flashEl.removeClass('open');
+        } else {
+          errorContainer.html(j.html(errorEl.outerHTML));
+          flashEl.addClass('open');
         }
       });
     }
@@ -605,15 +593,6 @@ export class SyncPage {
       }
     }
     this.syncHandling(true);
-  }
-
-  public resetPlayerError() {
-    if (playerTimeout) {
-      clearTimeout(playerTimeout);
-      playerTimeout = undefined;
-      j.$('#flashinfo-div').removeClass('player-error');
-      j.$('#flashinfo-div').removeClass('player-error-missing-permissions');
-    }
   }
 
   public generateLocalUrl(page, state) {

@@ -19,4 +19,6 @@ export interface TrackingModeInterface {
   note?(): string | null;
 
   addListener?(callback: (progress: ProgressElement) => void): void;
+
+  addErrorListener?(callback: (error: HTMLElement | null) => void): void;
 }
