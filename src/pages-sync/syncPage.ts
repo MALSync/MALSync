@@ -12,7 +12,7 @@ import { hasMissingPermissions } from '../utils/customDomains';
 import { localStore } from '../utils/localStore';
 import { getPageConfig } from '../utils/test';
 import { getTrackingMode, TrackingModeType } from './trackingMode';
-import { TrackingModeInterface } from './trackingMode/TrackingModeInterface';
+import type { ProgressElement, TrackingModeInterface } from './trackingMode/TrackingModeInterface';
 
 declare let browser: any;
 
@@ -440,10 +440,10 @@ export class SyncPage {
   }
 
   protected async startSyncHandling(state, malUrl) {
-    // TODO: Progress saving
     // TODO: Resume handling
     // TODO: Fix discord presence
 
+    const progressStorageKey = `progress/${this.curState.identifier}/${this.curState.episode}/v1`;
     let tracking: InstanceType<ReturnType<typeof getTrackingMode>> | null = null;
     if (this.page.type === 'manga' && api.settings.get('readerTracking')) {
       try {
@@ -488,6 +488,20 @@ export class SyncPage {
         height: 4px;
       `;
 
+      const resumeInnerDiv = document.createElement('div');
+      resumeInnerDiv.className = 'ms-progress-resume';
+      resumeInnerDiv.style.cssText = `
+        border-top: 4px dashed #2980b9;
+        width: 0%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      `;
+      progressDiv.appendChild(resumeInnerDiv);
+
       const progressInnerDiv = document.createElement('div');
       progressInnerDiv.className = 'ms-progress';
       progressInnerDiv.style.cssText = `
@@ -495,8 +509,14 @@ export class SyncPage {
         width: 0%;
         height: 100%;
         transition: width 1s;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
       `;
       progressDiv.appendChild(progressInnerDiv);
+
       messageArray.push(progressDiv);
     }
 
@@ -535,16 +555,57 @@ export class SyncPage {
     const flashEl = utils.flashm(message, tracking.flashOptions());
 
     if ('addListener' in tracking) {
+      let saveDebounce = true;
+
+      const localItem = localStore.getItem(progressStorageKey);
+      const lastProgress: ProgressElement | null = localItem
+        ? (JSON.parse(localItem) as ProgressElement)
+        : null;
+
+      let saveBlocked = Boolean(lastProgress);
+
       tracking.addListener(progress => {
         let finalPercent = Number(progress.progress);
         if (progress.progressTrigger && Number(progress.progressTrigger)) {
           finalPercent = Math.min(finalPercent / Number(progress.progressTrigger), 1);
         }
+
+        // Progress Bar
         if (finalPercent === 1) {
           j.$('#malSyncProgress').addClass('ms-done');
         } else {
           flashEl.find('.ms-progress').css('width', `${finalPercent * 100}%`);
           flashEl.find('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
+
+          if (lastProgress) {
+            let lastProgressFinalPercent = Number(lastProgress.progress);
+            if (progress.progressTrigger && Number(progress.progressTrigger)) {
+              lastProgressFinalPercent = Math.min(
+                lastProgressFinalPercent / Number(progress.progressTrigger),
+                1,
+              );
+            }
+            flashEl.find('.ms-progress-resume').css('width', `${lastProgressFinalPercent * 100}%`);
+            if (progress.progress < lastProgress.progress) {
+              flashEl.find('.ms-progress').addClass('ms-resume');
+            } else {
+              flashEl.find('.ms-progress').removeClass('ms-resume');
+            }
+          }
+        }
+
+        // Save progress
+        if (saveBlocked && lastProgress && progress.progress >= lastProgress.progress) {
+          saveBlocked = false;
+        }
+
+        if (!saveBlocked && saveDebounce) {
+          logger.debug('Set Resume', progress);
+          localStore.setItem(progressStorageKey, JSON.stringify(progress));
+          saveDebounce = false;
+          setTimeout(() => {
+            saveDebounce = true;
+          }, 10000);
         }
       });
     }
@@ -572,6 +633,8 @@ export class SyncPage {
     tracking.stop();
 
     flashEl.remove();
+
+    localStore.removeItem(progressStorageKey);
 
     // Debugging
     logger.log('overviewUrl', this.page.sync.getOverviewUrl(this.url));

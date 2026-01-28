@@ -1,4 +1,4 @@
-import { isIframeUrl } from 'src/utils/manifest';
+import { isIframeUrl } from '../../utils/manifest';
 import { hasMissingPermissions } from '../../utils/customDomains';
 import { PlayerSingleton } from '../../utils/player';
 import { ProgressElement, TrackingModeInterface } from './TrackingModeInterface';
