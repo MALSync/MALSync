@@ -129,92 +129,6 @@ export class SyncPage {
     }
   }
 
-  private handleVideoResume(item, timeCb) {
-    if (
-      typeof this.curState === 'undefined' ||
-      typeof this.curState.identifier === 'undefined' ||
-      typeof this.curState.episode === 'undefined'
-    )
-      return;
-    const This = this;
-    const localSelector = `${this.curState.identifier}/${this.curState.episode}`;
-
-    this.curState.lastVideoTime = item;
-
-    // @ts-ignore
-    if (typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked) {
-      if (this.curState.videoChecked > 1 && item.current > 10) {
-        logger.debug('Set Resume', item.current);
-        localStore.setItem(localSelector, item.current);
-        this.curState.videoChecked = true;
-        setTimeout(() => {
-          if (this.curState) this.curState.videoChecked = 2;
-        }, 10000);
-      }
-    } else {
-      const localItem = localStore.getItem(localSelector);
-      logger.info('Resume', localItem);
-      if (
-        localItem !== null &&
-        parseInt(localItem) - 30 > item.current &&
-        parseInt(localItem) > 30
-      ) {
-        if (!j.$('#MALSyncResume').length) j.$('#MALSyncResume').parent().parent().remove();
-        const resumeTime = Math.round(parseInt(localItem));
-        let resumeTimeString = '';
-
-        if (api.settings.get('autoresume')) {
-          // Dont autoresume if near the end of the video
-          if (item.duration - resumeTime > item.duration * 0.1) {
-            timeCb(resumeTime);
-            This.curState.videoChecked = 2;
-            return;
-          }
-        }
-        let delta = resumeTime;
-        const minutes = Math.floor(delta / 60);
-        delta -= minutes * 60;
-        let sec = `${delta}`;
-        while (sec.length < 2) sec = `0${sec}`;
-        resumeTimeString = `${minutes}:${sec}`;
-
-        const resumeMsg = utils.flashm(
-          `<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">${api.storage.lang(
-            'syncPage_flashm_resumeMsg',
-            [resumeTimeString],
-          )}</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>`,
-          {
-            permanent: true,
-            error: false,
-            type: 'resume',
-            minimized: false,
-            position: 'top',
-          },
-        );
-
-        resumeMsg.find('.sync').on('click', function () {
-          timeCb(resumeTime);
-          This.curState.videoChecked = 2;
-          // @ts-ignore
-          j.$(this).parent().parent().remove();
-        });
-
-        resumeMsg.find('.resumeClose').on('click', function () {
-          This.curState.videoChecked = 2;
-          // @ts-ignore
-          j.$(this).parent().parent().remove();
-        });
-      } else {
-        setTimeout(() => {
-          this.curState.videoChecked = 2;
-        }, 15000);
-      }
-
-      // @ts-ignore
-      this.curState.videoChecked = true;
-    }
-  }
-
   curState: any = undefined;
 
   reset() {
@@ -290,18 +204,8 @@ export class SyncPage {
       }
       if (this.page.type === 'anime') {
         const playerInstance = PlayerSingleton.getInstance().startTracking();
-        playerInstance.addListener('syncPage', (item, player) => {
+        playerInstance.addListener('syncPage', item => {
           this.autoNextEp(item);
-          this.handleVideoResume(item, time => {
-            if (typeof player === 'undefined') {
-              logger.error('No player Found');
-              return;
-            }
-            if (typeof time !== 'undefined') {
-              player.play();
-              player.currentTime = time;
-            }
-          });
         });
       }
       logger.m('Sync', 'green').log(state);
@@ -440,7 +344,6 @@ export class SyncPage {
   }
 
   protected async startSyncHandling(state, malUrl) {
-    // TODO: Resume handling
     // TODO: Fix discord presence
 
     const progressStorageKey = `progress/${this.curState.identifier}/${this.curState.episode}/v1`;
@@ -561,6 +464,7 @@ export class SyncPage {
       const lastProgress: ProgressElement | null = localItem
         ? (JSON.parse(localItem) as ProgressElement)
         : null;
+      let resumed = !lastProgress;
 
       let saveBlocked = Boolean(lastProgress);
 
@@ -597,6 +501,82 @@ export class SyncPage {
         // Save progress
         if (saveBlocked && lastProgress && progress.progress >= lastProgress.progress) {
           saveBlocked = false;
+          if (!resumed && j.$('#MALSyncResume').length) {
+            resumed = true;
+            j.$('#MALSyncResume').parentsUntil('.flash').remove();
+          }
+        }
+
+        if (
+          'resumeTo' in tracking &&
+          'getResumeText' in tracking &&
+          'canResume' in tracking &&
+          !resumed &&
+          lastProgress &&
+          tracking.canResume(lastProgress)
+        ) {
+          if (j.$('#MALSyncResume').length) {
+            return;
+          }
+
+          if (api.settings.get('autoresume')) {
+            tracking.resumeTo(lastProgress);
+            resumed = true;
+            return;
+          }
+
+          const resumeTimeString = tracking.getResumeText(lastProgress) || '';
+
+          const resumeMessageDiv = document.createElement('div');
+          const resumeButton = document.createElement('button');
+          resumeButton.id = 'MALSyncResume';
+          resumeButton.className = 'sync';
+          resumeButton.style.cssText = `
+            display: block;
+            margin-bottom: 2px;
+            background-color: transparent;
+            border: none;
+            color: rgb(255,64,129);
+            cursor: pointer;
+          `;
+          resumeButton.innerText = api.storage.lang('syncPage_flashm_resumeMsg', [
+            resumeTimeString,
+          ]);
+          resumeMessageDiv.appendChild(resumeButton);
+
+          const closeButton = document.createElement('button');
+          closeButton.className = 'resumeClose';
+          closeButton.style.cssText = `
+            display: block;
+            background-color: transparent;
+            border: none;
+            color: white;
+            margin-top: 10px;
+            cursor: pointer;
+            justify-self: center;
+          `;
+          closeButton.innerText = api.storage.lang('close');
+          resumeMessageDiv.appendChild(closeButton);
+
+          const resumeMsg = utils.flashm(resumeMessageDiv.innerHTML, {
+            permanent: true,
+            error: false,
+            type: 'resume',
+            minimized: false,
+            position: 'top',
+          });
+
+          resumeMsg.find('.sync').on('click', () => {
+            tracking.resumeTo(lastProgress);
+            resumed = true;
+            resumeMsg.remove();
+          });
+
+          resumeMsg.find('.resumeClose').on('click', function () {
+            resumed = true;
+            resumeMsg.remove();
+          });
+          return;
         }
 
         if (!saveBlocked && saveDebounce) {

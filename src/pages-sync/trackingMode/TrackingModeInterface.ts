@@ -3,6 +3,8 @@ import type { SyncPage } from '../syncPage';
 
 export type ProgressElement = {
   progress: number;
+  current: number;
+  total: number;
   progressTrigger?: number;
 };
 
@@ -21,4 +23,10 @@ export interface TrackingModeInterface {
   addListener?(callback: (progress: ProgressElement) => void): void;
 
   addErrorListener?(callback: (error: HTMLElement | null) => void): void;
+
+  getResumeText?(state: ProgressElement): string | null;
+
+  canResume?(state: ProgressElement): boolean;
+
+  resumeTo?(state: ProgressElement): void | Promise<void>;
 }

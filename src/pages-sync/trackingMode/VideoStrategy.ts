@@ -116,6 +116,8 @@ export class VideoStrategy implements TrackingModeInterface {
           this.listener({
             progress,
             progressTrigger: syncDuration,
+            current: item.current,
+            total: item.duration,
           });
         }
         if (!playerFound) {
@@ -126,6 +128,23 @@ export class VideoStrategy implements TrackingModeInterface {
           }
         }
       });
+  }
+
+  getResumeText(state: ProgressElement) {
+    if (!state.current) return null;
+    const minutes = Math.floor(state.current / 60);
+    const sec = Math.floor(state.current - minutes * 60);
+    return `${minutes}:${String(sec).padStart(2, '0')}`;
+  }
+
+  canResume(state: ProgressElement) {
+    if (!state.current && state.current < 45) return false;
+    return PlayerSingleton.getInstance().canSetTime();
+  }
+
+  resumeTo(state: ProgressElement) {
+    if (!state.current) return Promise.resolve();
+    return PlayerSingleton.getInstance().setTime(state.current);
   }
 
   stop() {

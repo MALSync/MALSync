@@ -49,6 +49,8 @@ export class MangaStrategy implements TrackingModeInterface {
           this.listener({
             progress,
             progressTrigger: syncDuration,
+            current: mangaStatus.current,
+            total: mangaStatus.total,
           });
         }
       }, 1000);

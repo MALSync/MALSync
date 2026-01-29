@@ -77,7 +77,7 @@ export class PlayerSingleton {
   }
 
   public canSetTime() {
-    return this.proxySetTime || this.currentPlayer;
+    return Boolean(this.proxySetTime) || Boolean(this.currentPlayer);
   }
 
   public async setTime(time: number) {
