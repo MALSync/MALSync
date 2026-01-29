@@ -57,11 +57,10 @@ export default {
    * @example
    * $c.string('{"user":{"profile":{"name":"John"}}}').jsonParse().search('name').run() // returns "John"
    */
-  search(ctx: ChibiCtx, input: any, key: string, type?: 'dfs' | 'bfs'): any {
-    const mode = type || 'dfs';
+  search(ctx: ChibiCtx, input: any, key: string, type: 'dfs' | 'bfs' = 'dfs'): any {
     const execute = (data: any, queue: any[] = []): any => {
       // DFS Search
-      if (mode === 'dfs') {
+      if (type === 'dfs') {
         if (!data || typeof data !== 'object') return undefined;
         if (Object.prototype.hasOwnProperty.call(data, key)) return data[key];
 
