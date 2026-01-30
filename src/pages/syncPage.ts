@@ -12,6 +12,7 @@ import { hasMissingPermissions } from '../utils/customDomains';
 import { localStore } from '../utils/localStore';
 import { MangaProgress } from '../utils/mangaProgress/MangaProgress';
 import { getPageConfig } from '../utils/test';
+import { status } from '../_provider/definitions';
 
 declare let browser: any;
 
@@ -667,23 +668,26 @@ export class SyncPage {
         if (diffState.onList && diffState.status) {
           let statusString = '';
           switch (parseInt(diffState.status)) {
-            case 1:
+            case status.Watching:
               statusString = api.storage.lang(`UI_Status_watching_${this.page.type}`);
               break;
-            case 2:
+            case status.Completed:
               statusString = api.storage.lang('UI_Status_Completed');
               break;
-            case 3:
+            case status.Onhold:
               statusString = api.storage.lang('UI_Status_OnHold');
               break;
-            case 4:
+            case status.Dropped:
               statusString = api.storage.lang('UI_Status_Dropped');
               break;
-            case 6:
+            case status.PlanToWatch:
               statusString = api.storage.lang(`UI_Status_planTo_${this.page.type}`);
               break;
-            case 23:
+            case status.Rewatching:
               statusString = api.storage.lang(`UI_Status_Rewatching_${this.page.type}`);
+              break;
+            case status.Considering:
+              statusString = api.storage.lang('UI_Status_Considering');
               break;
             default:
           }
