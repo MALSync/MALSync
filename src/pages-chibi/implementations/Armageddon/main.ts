@@ -99,7 +99,14 @@ export const Armageddon: PageInterface = {
   },
   lifecycle: {
     setup($c) {
-      return $c.addStyle(require('./style.less?raw').toString()).run();
+      return $c
+        .addCssVariable(
+          '--theme-color',
+          $c.querySelector('meta[name="theme-color"]').getAttribute('content').string().run(),
+          '#002e7459',
+        )
+        .addStyle(require('./style.less?raw').toString())
+        .run();
     },
     ready($c) {
       return $c.domReady().detectURLChanges($c.trigger().run()).trigger().run();
