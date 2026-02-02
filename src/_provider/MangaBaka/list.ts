@@ -36,7 +36,7 @@ export class UserList extends ListAbstract {
   deauth() {
     return api.settings
       .set('mangabakaToken', '')
-      .then(() => api.settings.set('mangabakaIdToken', ''));
+      .then(() => api.settings.set('mangabakaRefresh', ''));
   }
 
   _getSortingOptions() {
