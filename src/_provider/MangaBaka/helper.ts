@@ -1,4 +1,10 @@
-import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
+import {
+  NotAutenticatedError,
+  NotFoundError,
+  parseJson,
+  ServerOfflineError,
+  TokenExpiredError,
+} from '../Errors';
 import type { BakaSeries, BakaSorting, BakaState } from './types';
 import { startFinishDate, status } from '../definitions';
 
@@ -72,6 +78,47 @@ export async function call(
       const res = parseJson(response.responseText);
       errorHandling(res, response.status);
       return res;
+    })
+    .catch(async err => {
+      if (err instanceof TokenExpiredError) {
+        if (await refreshToken()) {
+          return call(url, sData, method, login);
+        }
+        throw new NotAutenticatedError('user_token_failed');
+      }
+      throw err;
+    });
+}
+
+async function refreshToken() {
+  const l = logger.m('Refresh');
+  l.log('Refresh Access Token');
+  const rToken = api.settings.get('mangabakaRefresh');
+  if (!rToken) return false;
+  return api.request
+    .xhr('POST', {
+      url: 'https://mangabaka.org/auth/oauth2/token',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data: `client_id=${__MAL_SYNC_KEYS__.mangabaka.id}&client_secret=${__MAL_SYNC_KEYS__.mangabaka.secret}&grant_type=refresh_token&refresh_token=${rToken}`,
+    })
+    .then(res => {
+      return parseJson(res.responseText);
+    })
+    .then(json => {
+      if (json && json.refresh_token && json.access_token) {
+        api.settings.set('mangabakaToken', json.access_token);
+        api.settings.set('mangabakaRefresh', json.refresh_token);
+        return true;
+      }
+      if (json && json.error) {
+        l.error(json.error, '|', json.message);
+        api.settings.set('mangabakaRefresh', '');
+        return false;
+      }
+      l.error('Something went wrong');
+      return false;
     });
 }
 
@@ -83,7 +130,7 @@ export function errorHandling(res, code) {
   if (res && (res.status < 200 || res.status >= 300)) {
     switch (res.status) {
       case 401:
-        throw new NotAutenticatedError('user_token_failed');
+        throw new TokenExpiredError('user_token_failed');
       case 404:
         throw new NotFoundError(res.message || 'Not Found');
       default:
@@ -99,7 +146,9 @@ export function errorHandling(res, code) {
   if (res && typeof res.error !== 'undefined') {
     switch (res.error) {
       case 'invalid_token':
-        throw new NotAutenticatedError('user_token_failed');
+      case 'invalid_request':
+      case 'expired_token':
+        throw new TokenExpiredError(res.error_description || 'Token Expired');
       default:
         throw new Error(
           res.error_description ? `${res.error_description} (${res.error})` : res.error,

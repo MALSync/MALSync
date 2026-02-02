@@ -118,7 +118,7 @@ export const settingsObj = {
     malRefresh: '',
 
     mangabakaToken: '',
-    mangabakaIdToken: '',
+    mangabakaRefresh: '',
 
     shikiToken: '',
     shikiOptions: {
