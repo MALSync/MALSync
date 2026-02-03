@@ -11,6 +11,13 @@ import { localStore } from '../utils/localStore';
 import { getPageConfig } from '../utils/test';
 import { getTrackingMode, TrackingModeType } from './trackingMode';
 import type { ProgressElement, TrackingModeInterface } from './trackingMode/TrackingModeInterface';
+import {
+  resumeMessageElement,
+  trackingBarElement,
+  trackingErrorElement,
+  trackingNoteElement,
+  trackingSyncButtonElement,
+} from './messageElements';
 
 declare let browser: any;
 
@@ -342,8 +349,6 @@ export class SyncPage {
   }
 
   protected async startSyncHandling(state, malUrl) {
-    // TODO: Fix discord presence
-
     const progressStorageKey = `progress/${this.curState.identifier}/${this.curState.episode}/v1`;
     let tracking: InstanceType<ReturnType<typeof getTrackingMode>> | null = null;
     if (this.page.type === 'manga' && api.settings.get('readerTracking')) {
@@ -377,79 +382,26 @@ export class SyncPage {
     const messageArray: HTMLElement[] = [];
 
     if ('addListener' in tracking) {
-      const progressDiv = document.createElement('div');
-      progressDiv.id = 'malSyncProgress';
-      progressDiv.className = 'ms-loading';
-      progressDiv.style.cssText = `
-        background-color: transparent;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-      `;
-
-      const resumeInnerDiv = document.createElement('div');
-      resumeInnerDiv.className = 'ms-progress-resume';
-      resumeInnerDiv.style.cssText = `
-        border-top: 4px dashed #2980b9;
-        width: 0%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-      `;
-      progressDiv.appendChild(resumeInnerDiv);
-
-      const progressInnerDiv = document.createElement('div');
-      progressInnerDiv.className = 'ms-progress';
-      progressInnerDiv.style.cssText = `
-        background-color: #2980b9;
-        width: 0%;
-        height: 100%;
-        transition: width 1s;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-      `;
-      progressDiv.appendChild(progressInnerDiv);
-
-      messageArray.push(progressDiv);
+      messageArray.push(trackingBarElement());
     }
 
-    const syncButton = document.createElement('button');
-    syncButton.className = 'sync';
-    syncButton.style = `
-      margin-bottom: 8px;
-      background-color: transparent;
-      border: none;
-      color: rgb(255,64,129);
-      margin-top: 10px;
-      cursor: pointer;
-    `;
-    syncButton.innerText = api.storage.lang(syncButtonTranslation.key, [
-      providerTemplates(malUrl).shortName,
-      syncButtonTranslation.value,
-    ]);
-    messageArray.push(syncButton);
+    messageArray.push(
+      trackingSyncButtonElement(
+        api.storage.lang(syncButtonTranslation.key, [
+          providerTemplates(malUrl).shortName,
+          syncButtonTranslation.value,
+        ]),
+      ),
+    );
 
     if ('note' in tracking) {
       const note = tracking.note();
       if (note) {
-        const noteDiv = document.createElement('div');
-        noteDiv.style = 'margin-top: 5px; font-size: 0.9em; color: #ccc;';
-        noteDiv.innerText = note;
-        messageArray.push(noteDiv);
+        messageArray.push(trackingNoteElement(note));
       }
     }
 
-    const errorDiv = document.createElement('div');
-    errorDiv.id = 'malSyncError';
-    messageArray.push(errorDiv);
+    messageArray.push(trackingErrorElement());
 
     const message = messageArray.map(el => el.outerHTML).join('');
 
@@ -524,37 +476,9 @@ export class SyncPage {
           }
 
           const resumeTimeString = tracking.getResumeText(lastProgress) || '';
-
-          const resumeMessageDiv = document.createElement('div');
-          const resumeButton = document.createElement('button');
-          resumeButton.id = 'MALSyncResume';
-          resumeButton.className = 'sync';
-          resumeButton.style.cssText = `
-            display: block;
-            margin-bottom: 2px;
-            background-color: transparent;
-            border: none;
-            color: rgb(255,64,129);
-            cursor: pointer;
-          `;
-          resumeButton.innerText = api.storage.lang('syncPage_flashm_resumeMsg', [
-            resumeTimeString,
-          ]);
-          resumeMessageDiv.appendChild(resumeButton);
-
-          const closeButton = document.createElement('button');
-          closeButton.className = 'resumeClose';
-          closeButton.style.cssText = `
-            display: block;
-            background-color: transparent;
-            border: none;
-            color: white;
-            margin-top: 10px;
-            cursor: pointer;
-            justify-self: center;
-          `;
-          closeButton.innerText = api.storage.lang('close');
-          resumeMessageDiv.appendChild(closeButton);
+          const resumeMessageDiv = resumeMessageElement(
+            api.storage.lang('syncPage_flashm_resumeMsg', [resumeTimeString]),
+          );
 
           const resumeMsg = utils.flashm(resumeMessageDiv.innerHTML, {
             permanent: true,
@@ -1377,7 +1301,11 @@ export class SyncPage {
 
             pres.presence.state = stateParts.join(' | ');
 
-            if (this.trackingModeInstance && 'getDiscordState' in this.trackingModeInstance && this.trackingModeInstance.getDiscordState!()) {
+            if (
+              this.trackingModeInstance &&
+              'getDiscordState' in this.trackingModeInstance &&
+              this.trackingModeInstance.getDiscordState!()
+            ) {
               const discordState = this.trackingModeInstance.getDiscordState!()!;
 
               if (discordState.paused) {
@@ -1385,8 +1313,7 @@ export class SyncPage {
                 pres.presence.smallImageText = 'Paused';
                 pres.presence.startTimestamp = this.browsingtime;
               } else {
-                const timeleft =
-                  discordState.duration - discordState.current;
+                const timeleft = discordState.duration - discordState.current;
 
                 const videoProgress = discordState.current;
                 pres.presence.startTimestamp = Date.now() - videoProgress * 1000;
