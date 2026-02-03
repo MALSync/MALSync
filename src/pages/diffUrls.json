@@ -133,6 +133,11 @@
       "*://anime-sama.to/*",
       "*://anime-sama.eu/*"
     ],
+    "KickAssAnime": [
+      "*://*.kaa.si/*",
+      "*://*.kickass-anime.ro/*",
+      "*://*.kickassanime.cx/*"
+    ],
     "iframe": [
       "*://smotret-anime.ru/translations/embed/*",
       "*://smotretanime.ru/translations/embed/*",
