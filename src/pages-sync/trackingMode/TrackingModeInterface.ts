@@ -29,4 +29,6 @@ export interface TrackingModeInterface {
   canResume?(state: ProgressElement): boolean;
 
   resumeTo?(state: ProgressElement): void | Promise<void>;
+
+  getDiscordState?(): { duration: number; current: number; paused: boolean } | null;
 }

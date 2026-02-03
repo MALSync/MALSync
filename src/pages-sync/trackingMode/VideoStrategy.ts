@@ -31,6 +31,8 @@ export class VideoStrategy implements TrackingModeInterface {
     const syncDuration = Number(api.settings.get('videoDuration')) / 100;
     let playerFound = false;
 
+    let discordTimeout;
+
     this.playerFoundTimeout = setTimeout(
       async () => {
         if (this.errorListener) {
@@ -127,6 +129,11 @@ export class VideoStrategy implements TrackingModeInterface {
             this.errorListener(null);
           }
         }
+        this.discordState = { duration: item.duration, current: item.current, paused: item.paused };
+        clearTimeout(discordTimeout);
+        discordTimeout = setTimeout(() => {
+          this.discordState = null;
+        }, 15 * 1000);
       });
   }
 
@@ -145,6 +152,12 @@ export class VideoStrategy implements TrackingModeInterface {
   resumeTo(state: ProgressElement) {
     if (!state.current) return Promise.resolve();
     return PlayerSingleton.getInstance().setTime(state.current);
+  }
+
+  protected discordState: { duration: number; current: number; paused: boolean } | null = null;
+
+  getDiscordState() {
+    return this.discordState;
   }
 
   stop() {

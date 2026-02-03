@@ -1377,19 +1377,18 @@ export class SyncPage {
 
             pres.presence.state = stateParts.join(' | ');
 
-            if (typeof this.curState.lastVideoTime !== 'undefined') {
-              if (this.curState.lastVideoTime.paused) {
+            if (this.trackingModeInstance && 'getDiscordState' in this.trackingModeInstance && this.trackingModeInstance.getDiscordState!()) {
+              const discordState = this.trackingModeInstance.getDiscordState!()!;
+
+              if (discordState.paused) {
                 pres.presence.smallImageKey = 'pause';
                 pres.presence.smallImageText = 'Paused';
+                pres.presence.startTimestamp = this.browsingtime;
               } else {
-                // Calculate remaining time based on current video position
                 const timeleft =
-                  this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
+                  discordState.duration - discordState.current;
 
-                // Fixed Discord Rich Presence timing issue:
-                // When users seek in videos, we need to adjust the start time accordingly
-                // to show correct remaining time
-                const videoProgress = this.curState.lastVideoTime.current;
+                const videoProgress = discordState.current;
                 pres.presence.startTimestamp = Date.now() - videoProgress * 1000;
                 pres.presence.endTimestamp = Date.now() + timeleft * 1000;
                 pres.presence.smallImageKey = 'play';
