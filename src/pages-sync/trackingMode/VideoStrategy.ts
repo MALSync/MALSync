@@ -92,7 +92,7 @@ export class VideoStrategy implements TrackingModeInterface {
   }
 
   canResume(state: ProgressElement) {
-    if (!state.current && state.current < 45) return false;
+    if (!state.current || state.current < 45) return false;
     return PlayerSingleton.getInstance().canSetTime();
   }
 
