@@ -173,5 +173,16 @@ module.exports = {
       filename: 'chibi/pages',
       folderMode: true,
     }),
+    new ExtractJsonPlugin({
+      entryName: 'chibi-adult-list',
+      typescriptFile: path.join(__dirname, '..', 'src/pages-adult/builder/chibiList.ts'),
+      filename: '../adult/chibi/list.json',
+    }),
+    new ExtractJsonPlugin({
+      entryName: 'chibi-adult-pages',
+      typescriptFile: path.join(__dirname, '..', 'src/pages-adult/builder/chibiPages.ts'),
+      filename: '../adult/chibi/pages',
+      folderMode: true,
+    }),
   ],
 };
