@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import { status, fuzzyDate, startFinishDate } from '../definitions';
 import {
-  NotAutenticatedError,
+  NotAuthenticatedError,
   NotFoundError,
   parseJson,
   ServerOfflineError,
@@ -141,7 +141,7 @@ export function getCacheKey(id, kitsuId) {
 
 export async function apiCall(query, variables, requiresAuthentication = true) {
   if (requiresAuthentication && !api.settings.get('anilistToken')) {
-    throw new NotAutenticatedError('No token found');
+    throw new NotAuthenticatedError('No token found');
   }
 
   const headers: any = {
@@ -176,7 +176,7 @@ export async function apiCall(query, variables, requiresAuthentication = true) {
               }
               if (error.message === 'validation') throw new Error('Wrong request format');
               if (error.message.includes('invalid')) throw new Error('Wrong request format');
-              throw new NotAutenticatedError(error.message);
+              throw new NotAuthenticatedError(error.message);
             case 404:
               throw new NotFoundError(error.message);
             default:
