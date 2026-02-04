@@ -3,12 +3,14 @@ import { Single as AniListSingle } from '../_provider/AniList/single';
 import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
 import { Single as ShikiSingle } from '../_provider/Shikimori/single';
+import { Single as BakaSingle } from '../_provider/MangaBaka/single';
 
 import { UserList as MalList } from '../_provider/MyAnimeList_hybrid/list';
 import { UserList as AnilistList } from '../_provider/AniList/list';
 import { UserList as KitsuList } from '../_provider/Kitsu/list';
 import { UserList as SimklList } from '../_provider/Simkl/list';
 import { UserList as ShikiList } from '../_provider/Shikimori/list';
+import { UserList as BakaList } from '../_provider/MangaBaka/list';
 import { getSyncMode } from '../_provider/helper';
 import { listElement } from '../_provider/listAbstract';
 import { status } from '../_provider/definitions';
@@ -39,6 +41,7 @@ export function getType(url) {
   if (utils.isDomainMatching(url, 'myanimelist.net')) return 'MAL';
   if (utils.isDomainMatching(url, 'simkl.com')) return 'SIMKL';
   if (utils.isDomainMatching(url, 'shikimori.one')) return 'SHIKI';
+  if (utils.isDomainMatching(url, 'mangabaka.org')) return 'MANGABAKA';
   throw 'Type not found';
 }
 
@@ -69,11 +72,11 @@ export function mapToArray(provierList, resultList, masterM = false) {
 }
 
 export function shouldCheckDates(item) {
-  return ['MAL', 'ANILIST', 'KITSU'].includes(getType(item.url));
+  return ['MAL', 'ANILIST', 'KITSU', 'MANGABAKA'].includes(getType(item.url));
 }
 
 export function shouldCheckRewatchCount(item) {
-  return ['MAL', 'ANILIST', 'KITSU', 'SHIKI'].includes(getType(item.url));
+  return ['MAL', 'ANILIST', 'KITSU', 'SHIKI', 'MANGABAKA'].includes(getType(item.url));
 }
 
 export function changeCheck(item, mode) {
@@ -108,9 +111,9 @@ export function changeCheck(item, mode) {
           slave.diff.readVol = item.master.readVol;
         }
       }
-      if (slave.status !== item.master.status) {
+      if (normalizeStatus(slave.status) !== normalizeStatus(item.master.status)) {
         item.diff = true;
-        slave.diff.status = item.master.status;
+        slave.diff.status = normalizeStatus(item.master.status);
       }
       if (checkDates && shouldCheckDates(slave)) {
         if (slave.startDate !== item.master.startDate) {
@@ -208,7 +211,7 @@ export async function syncMissing(item) {
   item.diff = {
     score: item.score,
     watchedEp: item.watchedEp,
-    status: item.status,
+    status: normalizeStatus(item.status),
     startDate: item.startDate,
     finishDate: item.finishDate,
     rewatchCount: item.rewatchCount,
@@ -233,6 +236,8 @@ export function syncItem(slave, pageType) {
       singleClass = new SimklSingle(slave.url);
     } else if (pageType === 'SHIKI') {
       singleClass = new ShikiSingle(slave.url);
+    } else if (pageType === 'MANGABAKA') {
+      singleClass = new BakaSingle(slave.url);
     } else {
       throw 'No sync type';
     }
@@ -245,7 +250,8 @@ export function syncItem(slave, pageType) {
         if (typeof slave.diff.watchedEp !== 'undefined')
           singleClass.setEpisode(slave.diff.watchedEp);
         if (typeof slave.diff.readVol !== 'undefined') singleClass.setVolume(slave.diff.readVol);
-        if (typeof slave.diff.status !== 'undefined') singleClass.setStatus(slave.diff.status);
+        if (typeof slave.diff.status !== 'undefined')
+          singleClass.setStatus(normalizeStatus(slave.diff.status));
         // 'null' is valid for start/finish date
         if (slave.diff.startDate !== undefined) singleClass.setStartDate(slave.diff.startDate);
         if (slave.diff.finishDate !== undefined) singleClass.setFinishDate(slave.diff.finishDate);
@@ -333,6 +339,11 @@ export function getListProvider(providerSettingList) {
       listProvider: KitsuList,
     },
     {
+      providerType: 'MANGABAKA',
+      providerSettings: providerSettingList.mangabaka,
+      listProvider: BakaList,
+    },
+    {
       providerType: 'SIMKL',
       providerSettings: providerSettingList.simkl,
       listProvider: SimklList,
@@ -363,7 +374,14 @@ export const background = {
   async isEnabled() {
     return api.storage.get('backgroundListSync').then(async function (state) {
       con.info('background list sync state', state);
-      if (state && state.mode === (await api.settings.getAsync('syncMode'))) return true;
+      if (
+        state &&
+        state.mode === (await api.settings.getAsync('syncMode')) &&
+        state.syncModeSimkl === (await api.settings.getAsync('syncModeSimkl')) &&
+        state.splitTracking === (await api.settings.getAsync('splitTracking'))
+      ) {
+        return true;
+      }
       background.disable();
       return false;
     });
@@ -371,6 +389,8 @@ export const background = {
   async enable() {
     return api.storage.set('backgroundListSync', {
       mode: await api.settings.getAsync('syncMode'),
+      syncModeSimkl: await api.settings.getAsync('syncModeSimkl'),
+      splitTracking: await api.settings.getAsync('splitTracking'),
     });
   },
   disable() {
@@ -417,6 +437,11 @@ export const background = {
           list: null,
           master: false,
         },
+        mangabaka: {
+          text: 'Init',
+          list: null,
+          master: false,
+        },
         simkl: {
           text: 'Init',
           list: null,
@@ -444,6 +469,11 @@ export const background = {
     }
   },
 };
+
+function normalizeStatus(st: status): status {
+  if (st === status.Considering) return status.PlanToWatch;
+  return st;
+}
 
 function setBadgeText(text: string) {
   // @ts-ignore
