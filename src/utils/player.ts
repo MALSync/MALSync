@@ -208,7 +208,7 @@ export function shortcutListener(callback) {
         if (checkShortcut(option)) {
           if (
             e.target instanceof Node &&
-            (/textarea|input|select/i.test(e.target.nodeName) || (e.target instanceof Element && e.target.shadowRoot))
+            (/textarea|input|select/i.test(e.target.nodeName) || (e.target instanceof Element && (e.target.shadowRoot || e.target.isContentEditable)))
           ) {
             con.info('Input field. Shortcut suppressed.');
           } else {
