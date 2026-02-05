@@ -30,7 +30,7 @@
       <Card v-if="repoRequest.loading"><Spinner /></Card>
     </template>
     <template v-else>
-      <Section v-for="repo in repoRequest.data" :key="repo.url" spacer="half">
+      <Section v-for="repo in repoRequest.data!.repoData" :key="repo.url" spacer="half">
         <Card class="repo-item">
           <div class="repo-item-header">
             <div class="repo-url">{{ repo.url }}</div>
@@ -45,7 +45,18 @@
             {{ repo.error.message || String(repo.error) }}
           </div>
           <div v-else class="repo-pages">
-            <span v-for="page in repo.pages" :key="page.name" class="repo-page">
+            <span
+              v-for="page in repo.pages"
+              :key="page.name"
+              class="repo-page"
+              :class="
+                Object.values(repoRequest.data!.activePages).find(
+                  el => el.name === page.name && el.root === repo.url,
+                )
+                  ? 'active'
+                  : ''
+              "
+            >
               {{ page.name }}
             </span>
           </div>
@@ -120,7 +131,10 @@ const removeRepo = (index: number) => {
 const repoRequest = createRequest(model, async param => {
   const chibiRepo = ChibiListRepository.getInstance(false);
   await chibiRepo.init();
-  return chibiRepo.getData();
+  return {
+    repoData: chibiRepo.getData(),
+    activePages: chibiRepo.getList(),
+  };
 });
 </script>
 
@@ -215,5 +229,10 @@ const repoRequest = createRequest(model, async param => {
   padding: 3px 8px;
   font-size: @tiny-text;
   font-family: monospace;
+
+  &.active {
+    background: var(--cl-primary);
+    color: var(--cl-primary-contrast);
+  }
 }
 </style>
