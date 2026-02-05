@@ -16,13 +16,7 @@ export const Kagane: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('[property="og:title"]')
-        .getAttribute('content')
-        .split('- Chapter')
-        .at(0)
-        .trim()
-        .run();
+      return $c.querySelector('title').text().split('- Chapter').at(0).trim().run();
     },
     getIdentifier($c) {
       return $c.this('overview.getIdentifier').run();
@@ -36,16 +30,11 @@ export const Kagane: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c
-        .querySelector('[property="og:description"]')
-        .getAttribute('content')
-        .regex(ChRegex, 1)
-        .number()
-        .run();
+      return $c.querySelector('title').text().regex(ChRegex, 1).number().run();
     },
     getVolume($c) {
       return $c
-        .querySelector('[property="og:description"]')
+        .querySelector('meta[name="description"]')
         .getAttribute('content')
         .regex('Volume\\s+(\\d+)', 1)
         .number()
@@ -73,13 +62,16 @@ export const Kagane: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').text().trim().run();
+      return $c.querySelector('h1').text().replaceLinebreaks().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+      return $c
+        .string('https://api.kagane.org/api/v1/series/<identifier>/thumbnail')
+        .replace('<identifier>', $c.this('overview.getIdentifier').run())
+        .run();
     },
     uiInjection($c) {
       return $c.querySelector('.container > .space-y-3').uiBefore().run();

@@ -425,7 +425,7 @@
     "name": "Animelon"
   },
   {
-    "domain": "https://anime-sama.eu",
+    "domain": "https://anime-sama.tv",
     "type": "anime",
     "name": "AnimeSama"
   },
@@ -993,5 +993,10 @@
     "domain": "https://anigo.to",
     "type": "anime",
     "name": "AniGo"
+  },
+  {
+    "domain": "https://Kuudere.to",
+    "type": "anime",
+    "name": "Kuudere"
   }
 ]

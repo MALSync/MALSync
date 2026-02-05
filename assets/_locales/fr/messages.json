@@ -1660,5 +1660,26 @@
     },
     "settings_Mangasync_readerTracking_percentage": {
         "message": "Proportion de pages lues avant mise à jour du numéro de chapitre"
+    },
+    "settings_presence_activityName": {
+        "message": "Nom de l’activité"
+    },
+    "settings_presence_activityName_type": {
+        "message": "Anime/Manga"
+    },
+    "settings_presence_activityName_title": {
+        "message": "Titre de la série"
+    },
+    "settings_presence_activityName_website": {
+        "message": "Site web utilisé"
+    },
+    "list_sorting_latest_release": {
+        "message": "Dernière sortie"
+    },
+    "settings_anilist_external_sources": {
+        "message": "Afficher les sources externes"
+    },
+    "settings_presence_activityName_malsync": {
+        "message": "MALSync"
     }
 }
