@@ -102,6 +102,7 @@ jobs:
           name: site-data-${{ matrix.task }}
           path: scraped_data/
           retention-days: 1
+          if-no-files-found: ignore
 
   # ------------------------------------------------------------------
   # JOB 3: AGGREGATE PERMISSIONS
