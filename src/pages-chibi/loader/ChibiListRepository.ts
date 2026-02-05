@@ -23,7 +23,11 @@ export class ChibiListRepository {
     if ((api.type as any) === 'userscript') {
       repos = ['https://chibi.malsync.moe/config'];
     } else {
-      repos = [chrome.runtime.getURL('chibi'), 'https://chibi.malsync.moe/config'];
+      repos = [
+        chrome.runtime.getURL('chibi'),
+        'https://chibi.malsync.moe/config',
+        ...((api.settings.get('chibiRepos') as string[]) || []),
+      ];
     }
     return new ChibiListRepository(repos, useCache);
   }
