@@ -48,9 +48,12 @@ jobs:
           TASKS=$(node webpackConfig/autoUrls.mjs --list)
           echo "matrix=$TASKS" >> $GITHUB_OUTPUT
 
+<<<<<<< HEAD
   # ------------------------------------------------------------------
   # JOB 2: UPDATE SITES
   # ------------------------------------------------------------------
+=======
+>>>>>>> a874b11349a5e0359553147fa35019bc3f42e8de
   update-urls:
     needs: prepare-matrix
     runs-on: ubuntu-latest

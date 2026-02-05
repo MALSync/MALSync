@@ -92,6 +92,7 @@
       "*://*.md3b0j6hj.com/e/*",
       "*://animevost.org/frame5.php?play=*",
       "*://vidmoly.net/*",
+      "*://vidmoly.biz/*",
       "*://jilliandescribecompany.com/e/*",
       "*://lukesitturn.com/e/*",
       "*://mikaylaarealike.com/e/*",
@@ -132,16 +133,31 @@
       "*://anime-sama.to/*",
       "*://anime-sama.eu/*"
     ],
+    "KickAssAnime": [
+      "*://*.kaa.si/*",
+      "*://*.kickass-anime.ro/*",
+      "*://*.kickassanime.cx/*"
+    ],
     "iframe": [
       "*://smotret-anime.ru/translations/embed/*",
       "*://smotretanime.ru/translations/embed/*",
       "*://smotret-anime.app/translations/embed/*",
+      "*://*.m1xdrop.net/e/*",
+      "*://vidmoly.biz/*",
       "*://christopheruntilpoint.com/e/*",
       "*://walterprettytheir.com/e/*",
       "*://crystaltreatmenteast.com/e/*",
+      "*://myvidplay.com/e/*",
       "*://lauradaydo.com/e/*",
+      "*://guxhag.com/*",
       "*://megaup22.online/e/*",
-      "*://player.anoboye.com/watch/*"
+      "*://player.anoboye.com/watch/*",
+      "*://zencloudz.cc/*",
+      "*://*.playerp2p.live/*",
+      "*://*.rpmvip.com/*",
+      "*://callistanise.com/*",
+      "*://habetar.com/*",
+      "*://yuguaab.com/*"
     ]
   }
 }

@@ -256,6 +256,7 @@ module.exports = {
       '*://*.mixdrop.sn/e/*',
       '*://*.mixdrop.cv/e/*',
       '*://*.md3b0j6hj.com/e/*',
+      '*://*.m1xdrop.net/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -483,6 +484,7 @@ module.exports = {
       '*://vidmoly.me/*',
       '*://vidmoly.to/*',
       '*://vidmoly.net/*',
+      '*://vidmoly.biz/*',
       // auto-vidmoly-replace-dont-remove
     ],
   },
@@ -548,6 +550,7 @@ module.exports = {
       '*://christopheruntilpoint.com/e/*',
       '*://walterprettytheir.com/e/*',
       '*://crystaltreatmenteast.com/e/*',
+      '*://myvidplay.com/e/*',
       '*://lauradaydo.com/e/*',
       // auto-voe-replace-dont-remove
     ],
@@ -776,6 +779,7 @@ module.exports = {
       '*://awish.pro/e/*',
       '*://hlswish.com/e/*',
       '*://swishsrv.com/e/*',
+      '*://guxhag.com/*',
       // auto-gogostreamwish-replace-dont-remove
     ],
   },
@@ -865,9 +869,18 @@ module.exports = {
   p2pstream: {
     match: ['*://*.p2pstream.vip/*'],
   },
-
-    // Anoboye
- anoboye: {
-  match: ['*://player.anoboye.com/watch/*'],
-},
+  // Anoboye
+  anoboye: {
+    match: ['*://player.anoboye.com/watch/*'],
+  },
+  // kuudere
+  zencloud: {
+    match: ['*://zencloudz.cc/*'],
+  },
+  kumi: {
+    match: ['*://*.playerp2p.live/*', '*://*.rpmvip.com/*'],
+  },
+  sHide: {
+    match: ['*://callistanise.com/*', '*://habetar.com/*', '*://yuguaab.com/*'],
+  },
 };

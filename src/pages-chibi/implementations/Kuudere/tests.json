@@ -1,0 +1,32 @@
+{
+  "title": "Kuudere",
+  "url": "https://kuudere.to",
+  "testCases": [
+    {
+      "url": "https://kuudere.to/watch/67de784d002be11b2264/2",
+      "expected": {
+        "sync": true,
+        "title": "Gachiakuta",
+        "identifier": "67de784d002be11b2264",
+        "overviewUrl": "https://kuudere.to/anime/67de784d002be11b2264",
+        "episode": 2,
+        "nextEpUrl": "https://kuudere.to/watch/67de784d002be11b2264/3",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://kuudere.to/watch/67de784d002be11b2264/2",
+          "6": "https://kuudere.to/watch/67de784d002be11b2264/6"
+        }
+      }
+    },
+    {
+      "url": "https://kuudere.to/anime/69445a31001965e7dcd4",
+      "expected": {
+        "sync": false,
+        "title": "Noble Reincarnation: Born Blessed, So I'll Obtain Ultimate Power",
+        "identifier": "69445a31001965e7dcd4",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185993-BecPUaWfZJgR.png",
+        "uiSelector": true
+      }
+    }
+  ]
+}
