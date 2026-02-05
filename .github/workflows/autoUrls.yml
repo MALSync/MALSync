@@ -84,10 +84,10 @@ jobs:
       - name: Stage Site Changes
         run: |
           mkdir -p scraped_data
-          git diff --name-only src/pages/ | xargs -I {} cp --parents {} scraped_data/ 2>/dev/null || true
+          git diff --name-only src/ | xargs -I {} cp --parents {} scraped_data/ 2>/dev/null || true
           touch scraped_data/.keep
 
-      - name: Create Pull Request (Site)
+      - name: Create Pull Request
         uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
         with:
           commit-message: 'Auto Urls: ${{ matrix.task }}'
@@ -96,7 +96,9 @@ jobs:
           title: 'Auto Urls: ${{ matrix.task }}'
           body: 'Automatically added Urls for ${{ matrix.task }}'
           labels: 'auto-urls'
-          add-paths: src
+          add-paths: |
+            src/pages-chibi
+            src/pages/**/*.ts
 
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
@@ -154,3 +156,6 @@ jobs:
           title: 'Auto Urls: Update Permissions'
           body: 'Aggregated permissions build from all auto-url jobs.'
           labels: 'auto-urls'
+          add-paths: |
+            src/**/*.json
+            src/**/*.js
