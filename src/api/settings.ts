@@ -95,6 +95,8 @@ export const settingsObj = {
 
     customDomains: [],
 
+    chibiRepos: [],
+
     anilistExternalSources: false,
     anilistUpdateUi: true,
 

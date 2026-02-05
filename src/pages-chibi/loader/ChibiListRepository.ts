@@ -4,13 +4,17 @@ import { greaterCurrentVersion } from '../../utils/version';
 
 type StorageInterface = {
   chibiPages: PageListJsonInterface['pages'];
-  errors: Record<string, unknown>;
+  repoUrls: string[];
 };
 
 export class ChibiListRepository {
   private collections: string[];
 
   private pages: PageListJsonInterface['pages'] | null = null;
+
+  private data:
+    | ({ url: string; pages: PageListJsonInterface['pages'] } | { error: Error; url: string })[]
+    | null = null;
 
   private useCache: boolean;
 
@@ -30,30 +34,44 @@ export class ChibiListRepository {
   }
 
   async init() {
-    const storageKey = `chibiPages-${api.storage.version()}`;
-    const data: StorageInterface = ((await api.storage.get(
-      storageKey,
-    )) as StorageInterface | null) || { chibiPages: {}, errors: {} };
+    const storageKey = `chibiPages/${api.storage.version()}`;
+    const data: StorageInterface = this.useCache
+      ? ((await api.storage.get(storageKey)) as StorageInterface | null) || {
+          chibiPages: {},
+          repoUrls: this.collections,
+        }
+      : { chibiPages: {}, repoUrls: this.collections };
 
-    if (this.useCache && data.chibiPages && Object.keys(data.chibiPages).length > 0) {
+    if (
+      this.useCache &&
+      data.chibiPages &&
+      Object.keys(data.chibiPages).length > 0 &&
+      JSON.stringify(data.repoUrls) === JSON.stringify(this.collections)
+    ) {
       this.pages = data.chibiPages;
       return this;
     }
 
-    const errors = {};
-    const collectionsData = (
+    const collectionsData: ((PageListJsonInterface | { error: Error }) & { url: string })[] =
       await Promise.all(
         this.collections.map(c =>
-          this.retrieveCollection(c).catch(e => {
-            errors[c] = e;
-            return null as unknown as PageListJsonInterface;
-          }),
+          this.retrieveCollection(c)
+            .catch(e => {
+              return {
+                error: e,
+              };
+            })
+            .then(res => {
+              return {
+                ...res,
+                url: c,
+              };
+            }),
         ),
-      )
-    ).filter(c => c);
-    data.errors = errors;
+      );
 
     collectionsData.forEach(col => {
+      if ('error' in col) return;
       Object.keys(col.pages).forEach(key => {
         // Skip pages that require a higher version than current
         if (col.pages[key].minimumVersion && greaterCurrentVersion(col.pages[key].minimumVersion)) {
@@ -73,6 +91,7 @@ export class ChibiListRepository {
 
     await api.storage.set(storageKey, data);
     this.pages = data.chibiPages;
+    this.data = collectionsData;
 
     return this;
   }
@@ -85,6 +104,16 @@ export class ChibiListRepository {
       res.pages[key].root = root;
     });
     return res;
+  }
+
+  public getData() {
+    if (this.useCache) {
+      throw new Error('Data is not available when using cache');
+    }
+    if (!this.data) {
+      throw new Error('Data not loaded');
+    }
+    return this.data;
   }
 
   public getList() {
