@@ -1,44 +1,38 @@
-import { pageInterface } from '../pageInterface';
+import { ConfigurablePage } from '../ConfigurablePage';
 
-export const AnimeUnity: pageInterface = {
+export const AnimeUnity = new ConfigurablePage({
   name: 'AnimeUnity',
-  domain: 'https://animeunity.it',
+  domainKey: 'animeUnity',
   languages: ['Italian'],
   type: 'anime',
-  isSyncPage(url) {
-    if (url.split('/')[4] !== undefined && url.split('/')[4].length) {
-      return true;
-    }
-    return false;
+
+  isSyncPage: {
+    type: 'custom',
+    matchFn: url => {
+      const parts = url.split('/');
+      return parts[4] !== undefined && parts[4].length > 0;
+    },
   },
+  // Overview was not implemented in original
+  isOverviewPage: { type: 'custom', matchFn: () => false },
+
   sync: {
-    getTitle(url) {
-      return j.$('div.general > h1.title').text().replace('(ITA)', '').trim();
-    },
-    getIdentifier(url) {
-      return utils.urlPart(url, 4);
-    },
-    getOverviewUrl(url) {
-      return `${AnimeUnity.domain}/anime/${AnimeUnity.sync.getIdentifier(url)}`;
-    },
-    getEpisode(url) {
-      const episode = Number(
-        j.$('div.episode-wrapper > div.episode.episode-item.active').text().trim(),
-      );
-      if (episode) return episode;
-      return 1;
-    },
-    uiSelector(selector) {
-      j.$('div.general > h1.title').after(j.html(selector));
+    // Original: .text().replace('(ITA)', '').trim()
+    // We use regex capture to exclude (ITA)
+    getTitle: { selector: 'div.general > h1.title', match: /(.*)\s*\(ITA\)/ },
+    getIdentifier: url => utils.urlPart(url, 4),
+    getOverviewUrl: url => `https://animeunity.it/anime/${utils.urlPart(url, 4)}`,
+    getEpisode: { selector: 'div.episode-wrapper > div.episode.episode-item.active' },
+    nextEpUrl: { selector: '' }, // Not implemented in original
+  },
+
+  overview: {
+    getTitle: { selector: '' },
+    getIdentifier: () => '',
+    list: {
+      elementsSelector: '',
+      elementUrl: { selector: '' },
+      elementEp: { selector: '' },
     },
   },
-  init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
-    utils.fullUrlChangeDetect(function () {
-      page.reset();
-      page.handlePage();
-    });
-  },
-};
+});

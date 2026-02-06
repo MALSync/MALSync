@@ -7,6 +7,8 @@ import SettingsGroup from './settings-group.vue';
 import SettingsHr from './settings-hr.vue';
 import { localStore } from '../../../utils/localStore';
 
+// cspell:ignore ANILIST Shikimori SHIKI MALAPI Modeanime Animesync Modemanga Mangasync
+
 export function providerOptions(mode: 'default' | 'secondary' | 'short' = 'default') {
   const options = [
     { title: 'MyAnimeList', value: 'MAL' },
@@ -43,7 +45,9 @@ export const trackingSimple: ConfObj[] = [
     key: 'syncMode',
     title: () => api.storage.lang('settings_Mode'),
     change: () => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       utils.clearCache();
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       if (api.type === 'webextension') localStore.clear();
     },
     props: {
@@ -57,9 +61,12 @@ export const trackingSimple: ConfObj[] = [
   },
   {
     key: 'syncModeSimkl',
-    title: () => `${api.storage.lang('Manga')} ${api.storage.lang('settings_Mode')}`,
+    title: () => `${api.storage.lang('Manga') as string} ${api.storage.lang('settings_Mode') as string}`,
     condition: () => api.settings.get('syncMode') === 'SIMKL',
-    change: () => utils.clearCache(),
+    change: () => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      utils.clearCache();
+    },
     props: {
       component: 'dropdown',
       option: 'syncModeSimkl',
@@ -74,16 +81,25 @@ export const trackingSimple: ConfObj[] = [
 export const tracking: ConfObj[] = [
   ...trackingSimple,
   {
+    key: 'autoPlayerTracking',
+    title: () => api.storage.lang('settings_Video_UniversalAutoTrack') as string,
+    props: {
+      component: 'checkbox',
+      option: 'autoPlayerTracking',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'autoTrackingModeanime',
-    title: () => api.storage.lang('settings_Animesync'),
+    title: () => api.storage.lang('settings_Animesync') as string,
     props: () => ({
       component: 'dropdown',
       option: 'autoTrackingModeanime',
       props: {
         options: [
-          { title: api.storage.lang('settings_Animesync_Video'), value: 'video' },
-          { title: api.storage.lang('settings_Animesync_Instant'), value: 'instant' },
-          { title: api.storage.lang('settings_Animesync_Manual'), value: 'manual' },
+          { title: api.storage.lang('settings_Animesync_Video') as string, value: 'video' },
+          { title: api.storage.lang('settings_Animesync_Instant') as string, value: 'instant' },
+          { title: api.storage.lang('settings_Animesync_Manual') as string, value: 'manual' },
         ],
       },
     }),
@@ -91,14 +107,14 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'autoTrackingModemanga',
-    title: () => api.storage.lang('settings_Mangasync'),
+    title: () => api.storage.lang('settings_Mangasync') as string,
     props: () => ({
       component: 'dropdown',
       option: 'autoTrackingModemanga',
       props: {
         options: [
-          { title: api.storage.lang('settings_Animesync_Instant'), value: 'instant' },
-          { title: api.storage.lang('settings_Animesync_Manual'), value: 'manual' },
+          { title: api.storage.lang('settings_Animesync_Instant') as string, value: 'instant' },
+          { title: api.storage.lang('settings_Animesync_Manual') as string, value: 'manual' },
         ],
       },
     }),
@@ -106,7 +122,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'askBefore',
-    title: () => api.storage.lang('settings_AskBefore'),
+    title: () => api.storage.lang('settings_AskBefore') as string,
     props: {
       component: 'checkbox',
       option: 'askBefore',
@@ -115,7 +131,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'forceEnglishTitles',
-    title: () => api.storage.lang('settings_ForceEnglishTitles'),
+    title: () => api.storage.lang('settings_ForceEnglishTitles') as string,
     condition: () =>
       api.settings.get('syncMode') === 'MAL' || api.settings.get('syncMode') === 'MALAPI',
     props: {
@@ -123,7 +139,9 @@ export const tracking: ConfObj[] = [
       option: 'forceEnglishTitles',
     },
     change: () => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       utils.clearCache();
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       if (api.type === 'webextension') localStore.clear();
     },
     component: SettingsGeneral,
@@ -138,7 +156,7 @@ export const tracking: ConfObj[] = [
     title: () =>
       api.storage.lang('settings_Mangasync_readerTracking', [
         api.settings.get('mangaCompletionPercentage'),
-      ]),
+      ]) as string,
     props: {
       component: 'checkbox',
       option: 'readerTracking',
@@ -147,7 +165,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'mangaCompletionPercentage',
-    title: () => api.storage.lang('settings_Mangasync_readerTracking_percentage'),
+    title: () => api.storage.lang('settings_Mangasync_readerTracking_percentage') as string,
     condition: () => api.settings.get('readerTracking'),
     props: {
       component: 'input',
@@ -162,7 +180,7 @@ export const tracking: ConfObj[] = [
   {
     key: 'videoDuration',
     title: () =>
-      api.storage.lang('settings_AutoTracking_Video', [api.settings.get('videoDuration')]),
+      api.storage.lang('settings_AutoTracking_Video', [api.settings.get('videoDuration')]) as string,
     condition: () => api.settings.get('autoTrackingModeanime') === 'video',
     props: {
       component: 'input',
@@ -176,7 +194,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'delay',
-    title: () => api.storage.lang('settings_AutoTracking_Instant', [api.settings.get('delay')]),
+    title: () => api.storage.lang('settings_AutoTracking_Instant', [api.settings.get('delay')]) as string,
     condition: () =>
       api.settings.get('autoTrackingModeanime') === 'instant' ||
       api.settings.get('autoTrackingModemanga') === 'instant',
@@ -191,7 +209,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'syncShort',
-    title: () => api.storage.lang('settings_Shortcuts_Sync'),
+    title: () => api.storage.lang('settings_Shortcuts_Sync') as string,
     props: {
       component: 'shortcut',
       option: 'syncShort',
@@ -205,7 +223,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'correctionShort',
-    title: () => api.storage.lang('settings_Shortcuts_Correction'),
+    title: () => api.storage.lang('settings_Shortcuts_Correction') as string,
     props: {
       component: 'shortcut',
       option: 'correctionShort',
@@ -214,7 +232,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'floatButtonCorrection',
-    title: () => api.storage.lang('settings_miniMAL_floatButtonCorrection'),
+    title: () => api.storage.lang('settings_miniMAL_floatButtonCorrection') as string,
     props: {
       component: 'checkbox',
       option: 'floatButtonCorrection',
@@ -228,17 +246,17 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'malTags',
-    title: () => api.storage.lang('settings_malTags'),
+    title: () => api.storage.lang('settings_malTags') as string,
     props: () => ({
       component: 'checkbox',
-      tooltip: api.storage.lang('settings_malTags_Text'),
+      tooltip: api.storage.lang('settings_malTags_Text') as string,
       option: 'malTags',
     }),
     component: SettingsGeneral,
   },
   {
     key: 'localSync',
-    title: () => api.storage.lang('settings_LocalSync'),
+    title: () => api.storage.lang('settings_LocalSync') as string,
     props: {
       component: 'checkbox',
       option: 'localSync',
@@ -248,19 +266,19 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'localSyncExport',
-    title: () => api.storage.lang('settings_LocalSync_Label'),
+    title: () => api.storage.lang('settings_LocalSync_Label') as string,
     condition: () => api.settings.get('localSync'),
     component: SettingsLocalSyncExport,
   },
   {
     key: 'allSitesUi',
-    title: () => api.storage.lang('settings_tracking'),
+    title: () => api.storage.lang('settings_tracking') as string,
     props: () => ({
       type: 'button',
       icon: '-',
       props: {
         color: 'primary',
-        title: api.storage.lang('settings_website_button'),
+        title: api.storage.lang('settings_website_button') as string,
       },
     }),
     component: SettingsGroup,

@@ -1,16 +1,17 @@
 import { sendMessageI, responseMessageI } from '../messageInterface';
 import { requestInterface } from './requestInterface';
+import { NetworkError, SafeError } from '../../utils/errors';
 
 export const requestApi: requestInterface = {
   async xhr(method, url) {
     if (typeof requestApi.sendMessage !== 'undefined') {
       return requestApi.sendMessage({ name: 'xhr', method, url }).then(xhr => {
-        if (xhr.status === 429) throw 'Rate limit Timeout';
-        if (xhr.status === 0) throw xhr.responseText;
+        if (xhr.status === 429) throw new NetworkError('Rate limit Timeout', 429);
+        if (xhr.status === 0) throw new NetworkError(xhr.responseText, xhr.status);
         return xhr;
       });
     }
-    throw 'Could not send xhr';
+    throw new SafeError('Could not send xhr');
   },
 
   async sendMessage(message: sendMessageI): Promise<any> {

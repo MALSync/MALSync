@@ -1,1664 +1,1671 @@
 {
-    "Search": {
-        "message": "Sitede Ara",
-        "description": "Search"
-    },
-    "Show": {
-        "message": "Göster",
-        "description": "Show"
-    },
-    "Help": {
-        "message": "Yardım",
-        "description": "Help"
-    },
-    "Update": {
-        "message": "Güncelle",
-        "description": "Update"
-    },
-    "Reset": {
-        "message": "Sıfırla",
-        "description": "Reset"
-    },
-    "Remove": {
-        "message": "Kaldır",
-        "description": "Button for removing entry from MAL..."
-    },
-    "Loading": {
-        "message": "Yükleniyor",
-        "description": "Loading"
-    },
-    "Select": {
-        "message": "Seç",
-        "description": "Select"
-    },
-    "Yes": {
-        "message": "Evet",
-        "description": "Yes"
-    },
-    "No": {
-        "message": "Hayır",
-        "description": "No"
-    },
-    "NothingFound": {
-        "message": "Hiçbir Şey Bulunamadı",
-        "description": "Nothing Found"
-    },
-    "Not_Found": {
-        "message": "Bulunamadı!",
-        "description": "Anime/Manga Not Found"
-    },
-    "NoEntries": {
-        "message": "Girdi yok",
-        "description": "No Entries"
-    },
-    "fullscreen": {
-        "message": "Tam Ekran",
-        "description": "fullscreen"
-    },
-    "close": {
-        "message": "Kapat",
-        "description": "close"
-    },
-    "All": {
-        "message": "Hepsi",
-        "description": "All"
-    },
-    "Package_Description": {
-        "message": "MyAnimeList/AniList/Kitsu/Simkl/Shikimori'yi çeşitli sitelere entegre eder ve otomatik bölüm takibi yapar.",
-        "description": "Description MALSync"
-    },
-    "UI_Status": {
-        "message": "Durum:",
-        "description": "Status"
-    },
-    "UI_Status_watching_anime": {
-        "message": "İzleniyor",
-        "description": "Watching"
-    },
-    "UI_Status_watching_manga": {
-        "message": "Okunuyor",
-        "description": "Reading"
-    },
-    "UI_Status_Completed": {
-        "message": "Tamamlandı",
-        "description": "Completed"
-    },
-    "UI_Status_OnHold": {
-        "message": "Beklemede",
-        "description": "On-Hold"
-    },
-    "UI_Status_Dropped": {
-        "message": "Bırakıldı",
-        "description": "Dropped"
-    },
-    "UI_Status_planTo_anime": {
-        "message": "İzlenmesi Planlanıyor",
-        "description": "Plan to Watch"
-    },
-    "UI_Status_planTo_manga": {
-        "message": "Okunması Planlanıyor",
-        "description": "Plan to Read"
-    },
-    "UI_Status_Rewatching_anime": {
-        "message": "Yeniden İzleniyor",
-        "description": "Status to rewatch anime"
-    },
-    "UI_Status_Rewatching_manga": {
-        "message": "Yeniden Okunuyor",
-        "description": "Status to reread manga"
-    },
-    "UI_Episode": {
-        "message": "Bölüm:",
-        "description": "Episode"
-    },
-    "UI_Volume": {
-        "message": "Cilt:",
-        "description": "Volume"
-    },
-    "UI_Chapter": {
-        "message": "Bölüm:",
-        "description": "Chapter"
-    },
-    "UI_Score": {
-        "message": "Puanın:",
-        "description": "Score"
-    },
-    "UI_Score_Not_Rated": {
-        "message": "Puanlanmamış",
-        "description": "Text if nothing is selected in the rating dropdown"
-    },
-    "UI_Score_Masterpiece": {
-        "message": "(10) Şaheser",
-        "description": "Masterpiece - Score"
-    },
-    "UI_Score_Great": {
-        "message": "(9) Müthiş",
-        "description": "Great - Score"
-    },
-    "UI_Score_VeryGood": {
-        "message": "(8) Çok iyi",
-        "description": "Very Good - Score"
-    },
-    "UI_Score_Good": {
-        "message": "(7) İyi",
-        "description": "Good - Score"
-    },
-    "UI_Score_Fine": {
-        "message": "(6) Fena değil",
-        "description": "Fine - Score"
-    },
-    "UI_Score_Average": {
-        "message": "(5) Ortalama",
-        "description": "Average - Score"
-    },
-    "UI_Score_Bad": {
-        "message": "(4) Kötü",
-        "description": "Bad - Score"
-    },
-    "UI_Score_VeryBad": {
-        "message": "(3) Çok kötü",
-        "description": "Very Bad - Score"
-    },
-    "UI_Score_Horrible": {
-        "message": "(2) Berbat",
-        "description": "Horrible - Score"
-    },
-    "UI_Score_Appalling": {
-        "message": "(1) Dehşet verici",
-        "description": "Appalling - Score"
-    },
-    "syncPage_flashm_resumeMsg": {
-        "message": "$time$'dan Devam et",
-        "description": "Video resume message",
-        "placeholders": {
-            "time": {
-                "content": "$1",
-                "example": "13:37"
-            }
-        }
-    },
-    "syncPage_flashm_sync_anime": {
-        "message": "$page$'i $epNr$ . Bölüme güncelle",
-        "description": "Update MAL to episode 3",
-        "placeholders": {
-            "page": {
-                "content": "$1",
-                "example": "MAL"
-            },
-            "epNr": {
-                "content": "$2",
-                "example": "3"
-            }
-        }
-    },
-    "syncPage_flashm_sync_manga": {
-        "message": "$epNr$ Bölüme güncelle $page$",
-        "description": "Update MAL to chapter 3",
-        "placeholders": {
-            "page": {
-                "content": "$1",
-                "example": "MAL"
-            },
-            "epNr": {
-                "content": "$2",
-                "example": "3"
-            }
-        }
-    },
-    "syncPage_flashm_sync_undefined_undo": {
-        "message": "Geri al",
-        "description": "Undo button on 'synced' message"
-    },
-    "syncPage_flashm_sync_undefined_wrong": {
-        "message": "Yanlış mı?",
-        "description": "Wrong/correction button on 'synced' message"
-    },
-    "syncPage_flashm_failded": {
-        "message": "Güncelleme başarısız",
-        "description": "When update to MAL failes"
-    },
-    "syncPage_flashConfirm_complete": {
-        "message": "Tamamlandı olarak ayarlansın mı?",
-        "description": "Question when last episode is synced"
-    },
-    "syncPage_flashConfirm_start_anime": {
-        "message": "İzlemeye başladın mı?",
-        "description": "Start watching anime message"
-    },
-    "syncPage_flashConfirm_rewatch_finish_anime": {
-        "message": "Yeniden İzlemen Bitti mi?",
-        "description": "Finish rewatching anime message"
-    },
-    "syncPage_flashConfirm_rewatch_finish_manga": {
-        "message": "Yeniden Okuman Bitti mi?",
-        "description": "Finish rereading manga message"
-    },
-    "syncPage_flashConfirm_start_manga": {
-        "message": "Okumaya başladın mı?",
-        "description": "Start reading manga message"
-    },
-    "syncPage_flashConfirm_rewatch_start_anime": {
-        "message": "Yeniden mi İzliyorsun?",
-        "description": "Start rewatching anime message"
-    },
-    "syncPage_flashConfirm_rewatch_start_manga": {
-        "message": "Yeniden mi Okuyorsun?",
-        "description": "Start rereading manga message"
-    },
-    "syncPage_flashConfirm_Anime_Correct": {
-        "message": "\"$anime$\" Doğru mu?",
-        "description": "Is anime correct",
-        "placeholders": {
-            "anime": {
-                "content": "$1",
-                "example": "No Game No Life"
-            }
-        }
-    },
-    "syncPage_malObj_addAnime": {
-        "message": "$page$ Ekle",
-        "description": "add anime",
-        "placeholders": {
-            "page": {
-                "content": "$1",
-                "example": "AniList"
-            }
-        }
-    },
-    "syncPage_malObj_nextEp_anime": {
-        "message": "Bölüm $episode$",
-        "description": "Next episode message on streaming overview pages",
-        "placeholders": {
-            "episode": {
-                "content": "$1",
-                "example": "5"
-            }
-        }
-    },
-    "syncPage_malObj_nextEp_manga": {
-        "message": "Bölüm $chapter$",
-        "description": "Next chapter message on streaming overview pages",
-        "placeholders": {
-            "chapter": {
-                "content": "$1",
-                "example": "6"
-            }
-        }
-    },
-    "syncPage_flashConfirm_offsetHandler_1": {
-        "message": "Olası bölüm kayması $calcOffset$ bulundu. Doğru mu ?",
-        "description": "offsetHandler Episode",
-        "placeholders": {
-            "calcOffset": {
-                "content": "$1",
-                "example": "6"
-            }
-        }
-    },
-    "anilistClass_authentication": {
-        "message": "Token kaydedildi sayfayı kapatabilirsin",
-        "description": "The token has been obtained and saved"
-    },
-    "kitsuClass_authentication_text": {
-        "message": "Kitsu ile giriş yapabilmek için e-mail ve şifren gerekli. </br> Bilgileriniz hiçbir yerde saklanmıyor.</br>Direkt olarak Kitsu'ya yollanıyor. Sadece erişim tokeni kaydediliyor.</br>",
-        "description": "Authentication text in Kitsu"
-    },
-    "kitsuClass_authentication_Password": {
-        "message": "Şifre",
-        "description": "Password"
-    },
-    "kitsuClass_authentication_Login": {
-        "message": "Giriş",
-        "description": "Login"
-    },
-    "kitsuClass_authentication_Success": {
-        "message": "Token kaydedildi, sayfayı kapatabilirsin.",
-        "description": "Authentication success"
-    },
-    "kitsuClass_authentication_Wrong": {
-        "message": "Kullanıcı Bilgileri yanlış",
-        "description": "Credentials wrong"
-    },
-    "bookmarksItem_Years": {
-        "message": "yıllar",
-        "description": "Years"
-    },
-    "bookmarksItem_Year": {
-        "message": "yıl",
-        "description": "Year"
-    },
-    "bookmarksItem_Days": {
-        "message": "gün",
-        "description": "Days"
-    },
-    "bookmarksItem_Day": {
-        "message": "gün",
-        "description": "Day"
-    },
-    "bookmarksItem_Hours": {
-        "message": "saat",
-        "description": "Hours"
-    },
-    "bookmarksItem_Hour": {
-        "message": "saat",
-        "description": "Hour"
-    },
-    "bookmarksItem_mins": {
-        "message": "dakika",
-        "description": "mins"
-    },
-    "bookmarksItem_min": {
-        "message": "dakika",
-        "description": "min"
-    },
-    "bookmarksItem_secs": {
-        "message": "saniye",
-        "description": "seconds"
-    },
-    "bookmarksItem_sec": {
-        "message": "saniye",
-        "description": "second"
-    },
-    "bookmarksItem_now": {
-        "message": "Şimdi",
-        "description": "Now"
-    },
-    "bookmarksItem_ago": {
-        "message": "$time$ önce",
-        "description": "Text for time in the past",
-        "placeholders": {
-            "time": {
-                "content": "$1",
-                "example": "2 days 1 hour"
-            }
-        }
-    },
-    "prediction_Episode_anime": {
-        "message": "Tahmini yeni bölüm $time$'da",
-        "description": "Text for next episode estimation",
-        "placeholders": {
-            "time": {
-                "content": "$1",
-                "example": "2 days 1 hour"
-            }
-        }
-    },
-    "prediction_Airing": {
-        "message": "$time$'da yayınlanacak",
-        "description": "Text for airing estimation",
-        "placeholders": {
-            "time": {
-                "content": "$1",
-                "example": "2 days 1 hour"
-            }
-        }
-    },
-    "correction_Offset": {
-        "message": "Bölüm Kayması",
-        "description": "Episode Offset"
-    },
-    "correction_Offset_text": {
-        "message": "Bölüm kayması değerini girin, Eğer bir animenin 12 bölümü var ise, ama 1-12 yerine 0-11 numaralarını kullanıyorsa, bölüm kayma değerine \"+1\" yazın.",
-        "description": "Episode Offset - Text"
-    },
-    "correction_WrongUrl": {
-        "message": "URL'yi sadece MAL'da yanlış sayfayı açıyorsa değiştir.",
-        "description": "URL is Wrong"
-    },
-    "correction_Search": {
-        "message": "Aramayı Düzelt",
-        "description": "Correction Search"
-    },
-    "correction_Search_text": {
-        "message": "Bu alan, yukarıda gösterilen \"MyAnimeList URL'sini\" düzeltmeniz gerektiğinde bir anime bulmak içindir.<br>Bir arama yapmak için, sadece bir anime adını yazmaya başlayın ve sonuçları içeren bir liste siz yazdıkça otomatik olarak görünecektir.",
-        "description": "Search text"
-    },
-    "correction_NoMal": {
-        "message": "Anime/Manga $page$'da bulunamıyorsa",
-        "description": "Anime/Manga not found in MAL",
-        "placeholders": {
-            "page": {
-                "content": "$1",
-                "example": "MAL"
-            }
-        }
-    },
-    "correction_NoEntry": {
-        "message": "$page$'da böyle bir girdi yok",
-        "description": "No entry on MyAnimeList",
-        "placeholders": {
-            "page": {
-                "content": "$1",
-                "example": "MAL"
-            }
-        }
-    },
-    "correction_NewOffset": {
-        "message": "Yeni kayma değeri ($offset$) ayarla.",
-        "description": "New Offset",
-        "placeholders": {
-            "offset": {
-                "content": "$1",
-                "example": "6"
-            }
-        }
-    },
-    "correction_OffsetReset": {
-        "message": "Kayma değerini sıfırla",
-        "description": "Offset reset"
-    },
-    "correction_NewUrl": {
-        "message": "Yeni url ayarla '$malUrl$'.",
-        "description": "New URL",
-        "placeholders": {
-            "malUrl": {
-                "content": "$1",
-                "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
-            }
-        }
-    },
-    "correction_NewUrlReset": {
-        "message": "MAL URL'sini sıfırla",
-        "description": "URL reset"
-    },
-    "correction_DBRequest": {
-        "message": "Veritabanı düzeltme talebi gönderin?",
-        "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
-    },
-    "overview_Continue_anime": {
-        "message": "İzlemeye devam et",
-        "description": "Continue watching"
-    },
-    "overview_Continue_manga": {
-        "message": "Okumaya devam et",
-        "description": "Continue reading"
-    },
-    "overview_Next_Episode_anime": {
-        "message": "Sonraki Bölüm",
-        "description": "Next Episode"
-    },
-    "overview_Next_Episode_manga": {
-        "message": "Sonraki Bölüm",
-        "description": "Next Chapter"
-    },
-    "overview_Resume_Episode_anime": {
-        "message": "Bölüme Devam Et",
-        "description": "Resume Episode"
-    },
-    "overview_Resume_Episode_manga": {
-        "message": "Bölüme Devam Et",
-        "description": "Resume Chapter"
-    },
-    "overview_EditDetails": {
-        "message": "Detayları Düzenle",
-        "description": "Edit Details"
-    },
-    "overview_Characters": {
-        "message": "Karakterler",
-        "description": "Characters"
-    },
-    "overview_OpeningTheme": {
-        "message": "Açılış Teması:",
-        "description": "Opening Theme"
-    },
-    "overview_EndingTheme": {
-        "message": "Kapanış Teması:",
-        "description": "Ending Theme"
-    },
-    "search_Type": {
-        "message": "Tür:",
-        "description": "Type"
-    },
-    "search_Score": {
-        "message": "Puan:",
-        "description": "Score"
-    },
-    "search_Year": {
-        "message": "Yıl:",
-        "description": "Year"
-    },
-    "settings_General": {
-        "message": "Genel",
-        "description": "General"
-    },
-    "settings_Mode": {
-        "message": "Mod",
-        "description": "Mode"
-    },
-    "settings_Authenticate": {
-        "message": "Doğrulama",
-        "description": "Authenticate"
-    },
-    "settings_LocalSync": {
-        "message": "Dosyaları yerel olarak da yedekle",
-        "description": "Option to activate the local storage fallback sync"
-    },
-    "settings_LocalSync_Import": {
-        "message": "İçeri aktar",
-        "description": "Button to import local storage fallback data"
-    },
-    "settings_LocalSync_Export": {
-        "message": "Dışarı aktar",
-        "description": "Button to Export Local storage fallback data"
-    },
-    "settings_Animesync": {
-        "message": "Anime senkronizasyonu",
-        "description": "Anime sync"
-    },
-    "settings_Animesync_Video": {
-        "message": "Video",
-        "description": "Video"
-    },
-    "settings_Animesync_Instant": {
-        "message": "Anlık",
-        "description": "Instant"
-    },
-    "settings_Animesync_Manual": {
-        "message": "Manuel",
-        "description": "Manual"
-    },
-    "settings_Mangasync": {
-        "message": "Manga senkronizasyon yedeklemesi",
-        "description": "Manga sync"
-    },
-    "settings_AutoTracking_Video": {
-        "message": "Videonun $videoDuration$%'ine gelindiğinde bölümü güncelle",
-        "description": "Update Episode of video progress",
-        "placeholders": {
-            "videoDuration": {
-                "content": "$1",
-                "example": "85"
-            }
-        }
-    },
-    "settings_AutoTracking_Instant": {
-        "message": "Anlık otomatik takibi $delay$ saniye geciktir",
-        "description": "Delay instant autotracking",
-        "placeholders": {
-            "delay": {
-                "content": "$1",
-                "example": "15"
-            }
-        }
-    },
-    "settings_StreamingSite": {
-        "message": "Kısayollar",
-        "description": "Streaming Site Links"
-    },
-    "settings_StreamingSite_text": {
-        "message": "Devre dışı bırakılırsa, yayın sitesi artık MyAnimeList/AniList/Kitsu/Simkl'de bir animenin kenar çubuğunda görünmeyecektir.",
-        "description": "Streaming Site Links - Text"
-    },
-    "settings_Thumbnails": {
-        "message": "Kapak resmi",
-        "description": "Thumbnails"
-    },
-    "settings_Thumbnails_text": {
-        "message": "Bu ayar MAL'da ki kapak resimlerinin boyutunu tekrar ayarlar. Karakterlerin, Kişilerin, Önerilerin vb.",
-        "description": "Thumbnails - Text"
-    },
-    "settings_Thumbnails_Large": {
-        "message": "Büyük",
-        "description": "Thumbnails Large"
-    },
-    "settings_Thumbnails_Medium": {
-        "message": "Orta",
-        "description": "Thumbnails Medium"
-    },
-    "settings_Thumbnails_Small": {
-        "message": "Küçük",
-        "description": "Thumbnails Small"
-    },
-    "settings_Thumbnails_Default": {
-        "message": "MAL Varsayılanı",
-        "description": "Thumbnails MAL Default"
-    },
-    "settings_FriendScore": {
-        "message": "Detay sayfasında arkadaşlarının puanları",
-        "description": "Friend scores on detail page"
-    },
-    "settings_epPredictions": {
-        "message": "Bölüm numarasını tahmin et",
-        "description": "Estimate episode number"
-    },
-    "settings_malTags": {
-        "message": "Etiketleri/Notları Kullan",
-        "description": "Use Tags/Notes"
-    },
-    "settings_malTags_Text": {
-        "message": "Aktif edilirse: Kullandığın yayın sitesini listende ki tags/Notes kısmına kalıcı şekilde kaydeder. Tag kısmına kaydedilen dizi çirkin, bu yüzden tag kısmını kullanmıyorsanız, bu seçeneği aktif etmeniz tavsiye edilir.",
-        "description": "Use Tags/Notes - Text"
-    },
-    "settings_malContinue": {
-        "message": "İzlemeye devam et linkleri",
-        "description": "Continue watching links"
-    },
-    "settings_malResume": {
-        "message": "İzlemeyi sürdür linkleri",
-        "description": "Resume watching links"
-    },
-    "settings_usedPage": {
-        "message": "Son kullanılan sayfa linkleri",
-        "description": "Last used page links"
-    },
-    "settings_miniMAL_floatButtonStealth": {
-        "message": "Gizli arayüz modu",
-        "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
-    },
-    "settings_miniMAL_minimizeBigPopup": {
-        "message": "Büyük Pop-up'ları küçült",
-        "description": "Shows an 'action required' popup hidding big popups"
-    },
-    "settings_miniMAL_floatButtonCorrection": {
-        "message": "Kayan butonu düzeltme arayüzüne ata",
-        "description": "Remap floating button to the correction UI"
-    },
-    "settings_miniMAL_floatButtonHide": {
-        "message": "kayan miniMAL butonunu gizle",
-        "description": "Hide miniMAL floating menu button"
-    },
-    "settings_miniMAL_autoCloseMinimal": {
-        "message": "Etrafa tıklamak miniMAL'ı kapatır",
-        "description": "Clicking outside closes miniMAL"
-    },
-    "settings_miniMAL_Display": {
-        "message": "Göster",
-        "description": "Display to the"
-    },
-    "settings_miniMAL_window": {
-        "message": "Ayrı bir pencerede aç",
-        "description": "Open miniMAL in separate window checkbox"
-    },
-    "settings_miniMAL_Display_Left": {
-        "message": "Sol",
-        "description": "miniMAL Display Left"
-    },
-    "settings_miniMAL_Display_Right": {
-        "message": "Sağ",
-        "description": "miniMAL Display Right"
-    },
-    "settings_miniMAL_Height": {
-        "message": "Yükseklik (px / %)",
-        "description": "miniMAL Height"
-    },
-    "settings_miniMAL_Width": {
-        "message": "Genişlik (px / %)",
-        "description": "miniMAL Width"
-    },
-    "settings_Shortcuts": {
-        "message": "Kısayollar",
-        "description": "Shortcuts"
-    },
-    "settings_miniMAL_Open": {
-        "message": "miniMAL'ı aç",
-        "description": "miniMAL Open"
-    },
-    "settings_miniMAL_NotSet": {
-        "message": "Ayarlanmamış",
-        "description": "miniMAL Not Set"
-    },
-    "settings_Video_Player": {
-        "message": "Video oynatıcısı",
-        "description": "Video settings header"
-    },
-    "settings_Video_Fullscreen": {
-        "message": "Otomatik Tam ekran",
-        "description": "Auto fullscreen toggle"
-    },
-    "settings_Video_Resume": {
-        "message": "Otomatik Devam Ettirme",
-        "description": "Auto resume video where you left off toggle"
-    },
-    "settings_autoNextEp": {
-        "message": "Bir sonraki bölümü otomatik oynat",
-        "description": "Autoplays the next episode after the video ends"
-    },
-    "settings_Shortcuts_Correction": {
-        "message": "Anime Bağlantıları/İlişkileri düzeltme pop-up'ını aç",
-        "description": "Text for the correction ui shortcut"
-    },
-    "settings_Shortcuts_Sync": {
-        "message": "Bölümü okunmuş olarak ayarlamak için kısayol tuşu",
-        "description": "Text for the sync ui shortcut"
-    },
-    "settings_Shortcuts_Next_Episode": {
-        "message": "Yeni bölümü aç kısayolu",
-        "description": "Description for the next episode shortcut option"
-    },
-    "settings_Shortcuts_Skip_Forward": {
-        "message": "Açılışları atlar",
-        "description": "Description for the the opening skip shortcut"
-    },
-    "settings_Shortcuts_Skip_Backward": {
-        "message": "Açılışların başından başlar",
-        "description": "Description for the the opening skip shortcut"
-    },
-    "settings_Shortcuts_Click": {
-        "message": "Kısayol girmek için tıkla",
-        "description": "Shown if no shortcut is set for an option"
-    },
-    "settings_introSkip": {
-        "message": "Açılış atlama süresini ayarla ($Seconds$ saniye)",
-        "description": "Skips video seconds",
-        "placeholders": {
-            "Seconds": {
-                "content": "$1",
-                "example": "30"
-            }
-        }
-    },
-    "settings_UpdateCheck": {
-        "message": "Güncellemeleri Kontrol et",
-        "description": "Update Check"
-    },
-    "settings_UpdateCheck_Text": {
-        "message": "Arka planda yeni bölümleri kontrol eder.",
-        "description": "Update Check - Text"
-    },
-    "settings_Interval": {
-        "message": "Süre",
-        "description": "Interval"
-    },
-    "settings_Interval_Off": {
-        "message": "Kapalı",
-        "description": "Interval - Off"
-    },
-    "settings_Notifications": {
-        "message": "Bildirimler",
-        "description": "Notifications"
-    },
-    "settings_Debugging": {
-        "message": "Hata Ayıklama",
-        "description": "Debugging"
-    },
-    "settings_ETC": {
-        "message": "Ve benzeri",
-        "description": "ETC"
-    },
-    "settings_Userscriptmode": {
-        "message": "Userscript modu",
-        "description": "Userscript mode"
-    },
-    "settings_Userscriptmode_Text": {
-        "message": "Script içeriğini devre dışı bırakır. Bu da aynı zamanda userscript ve eklentiyi kullanmanı sağlar.",
-        "description": "Userscript mode - Text"
-    },
-    "settings_highlightAllEp": {
-        "message": "Tüm Bölümleri işaretle",
-        "description": "Highlight all Episodes/Chapters"
-    },
-    "settings_highlightAllEp_Text": {
-        "message": "Bu seçenek Bazı Anime/Manga sitelerinde bulabileceğiniz listelerde, izlediğiniz bölümleri işaretler",
-        "description": "Highlight all Episodes/Chapters - Text"
-    },
-    "settings_ClearCache": {
-        "message": "Önbelleği Temizle",
-        "description": "Clear Cache"
-    },
-    "settings_shortcut_tooltip": {
-        "message": "Sadece tek bir tuşa kısayol atamak tavsiye edilmiyor",
-        "description": "Shows this message if the users has only a single key set as shortcut"
-    },
-    "updateCheck_Refresh": {
-        "message": "Yenile",
-        "description": "Refresh"
-    },
-    "updateCheck_StartCheck": {
-        "message": "Kontrole Başla",
-        "description": "Start Check"
-    },
-    "updateCheck_NotificationCheck": {
-        "message": "Bildirim Kontrolü",
-        "description": "Notification Check"
-    },
-    "updateCheck_Episode": {
-        "message": "Bölüm",
-        "description": "Episode"
-    },
-    "updateCheck_Message": {
-        "message": "Mesaj",
-        "description": "Message"
-    },
-    "updateCheck_NotificationHistory": {
-        "message": "Bildirim Geçmişi",
-        "description": "Notification History"
-    },
-    "minimalApp_Overview": {
-        "message": "Genel Bakış",
-        "description": "Overview"
-    },
-    "minimalApp_Reviews": {
-        "message": "İncelemeler",
-        "description": "Reviews"
-    },
-    "minimalApp_Recommendations": {
-        "message": "Öneriler",
-        "description": "Recommendations"
-    },
-    "minimalApp_Settings": {
-        "message": "Ayarlar",
-        "description": "Settings"
-    },
-    "minimalClass_Popup": {
-        "message": "Lütfen bu websitesi için pop-uplara izin verin",
-        "description": "Please allow pop-ups for this website"
-    },
-    "minimalClass_versionMsg_Text_1": {
-        "message": "MAL-Sync'i indirdiğiniz için teşekkürler",
-        "description": "Update version - Text 1"
-    },
-    "installPage_Mode": {
-        "message": "Hangi anime veritabanını kullanmak istediğinizi seçin",
-        "description": "Header for the MAL-sync provider dropdown"
-    },
-    "installPage_Howto": {
-        "message": "MAL-Sync'in nasıl çalıştığını anlayın",
-        "description": "Header for how to use section"
-    },
-    "installPage_Howto_Description": {
-        "message": "Veritabanı ile senkronizasyon yalnızca $Link1$destekli sayfalardan$LinkEnd1$ herhangi birinde bir bölüm veya kısım açtığınızda gerçekleşir - endişelenmeyin, favori web sitenizi kesinlikle listeye aldık!",
-        "description": "How to use description text",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
-                "example": "<a>"
-            },
-            "LinkEnd1": {
-                "content": "</a>",
-                "example": "</a>"
-            },
-            "Link2": {
-                "content": "<a class=\"open-settings\" href=\"#\">",
-                "example": "<a>"
-            },
-            "LinkEnd2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
-    "installPage_Wrong": {
-        "message": "Yanlış olduğunu düşündüğünüz bir anime veya manga nasıl düzeltebilirsiniz",
-        "description": "Header of the wrong section on the install page"
-    },
-    "installPage_Wrong_Description": {
-        "message": "Kolaylıkla anime ilişkilerini alttaki GIF'te gösterildiği gibi değiştirebilirsiniz. Bir bölüm kaymasını da bu sayfadan ayarlayabilirsiniz.",
-        "description": "Description of the wrong section on the install page"
-    },
-    "Emby_Authenticate": {
-        "message": "MAL-Sync çalışması için bir Emby API anahtarına ihtiyaç duyar. Daha fazla bilgi için $Link1$şuraya tıklayın$Link2$",
-        "description": "Emby Authentication",
-        "placeholders": {
-            "Link1": {
-                "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
-    "Error_Authenticate": {
-        "message": "Lütfen $Link1$şuradan$Link2$doğrulamayı halledin",
-        "description": "Update version - Text 3",
-        "placeholders": {
-            "Link1": {
-                "content": "<a target=\"_blank\" href=\"$1\">",
-                "example": "<a>"
-            },
-            "Link2": {
-                "content": "</a>",
-                "example": "</a>"
-            }
-        }
-    },
-    "Discord_rpc_browsing": {
-        "message": "$Page$'de Geziniyor",
-        "description": "Discord rich Presence text if on overview page",
-        "placeholders": {
-            "Page": {
-                "content": "$1",
-                "example": "Mangadex"
-            }
-        }
-    },
-    "nextEpShort_no_support": {
-        "message": "Bu sayfa bir sonraki bölmü açma özelliğini desteklemiyor",
-        "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
-    },
-    "nextEpShort_no_nextEp": {
-        "message": "Bir sonraki bölüm bulunamadı",
-        "description": "Error message if no next episode could be found after pressing the next episode shortcut"
-    },
-    "Add": {
-        "message": "Ekle",
-        "description": "Button to add an anime/manga to user list"
-    },
-    "Ok": {
-        "message": "Tamam",
-        "description": "Ok"
-    },
-    "Cancel": {
-        "message": "İptal et",
-        "description": "Cancel"
-    },
-    "updated": {
-        "message": "Güncellendi",
-        "description": "Flash message that shows up after updating an anime/manga entry"
-    },
-    "removed": {
-        "message": "Kaldırıldı",
-        "description": "Flash message that shows up after removing an anime/manga entry from user list"
-    },
-    "settings_Mangasync_readerTracking": {
-        "message": "Sayfaların %$mangaCompletionPercentage$'si okunduktan sonra mangayı güncelle",
-        "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
-        "placeholders": {
-            "mangaCompletionPercentage": {
-                "content": "$1",
-                "example": "90"
-            }
-        }
-    },
-    "settings_read_more": {
-        "message": "Daha fazla",
-        "description": "Button to show more of the description"
-    },
-    "settings_read_less": {
-        "message": "Daha az",
-        "description": "Button to show less the description"
-    },
-    "settings_presenceShowButtons": {
-        "message": "anime/manga'yı MAL veya başka bir sağlayıcı da açmak için buton göster",
-        "description": "Show button to view the anime/manga on MAL or another provider"
-    },
-    "settings_presenceShowMalsync": {
-        "message": "Oynuyor etkinliğinde başlık kısmında anime/manga'nın başlığı yerine MAL-Sync'i göster",
-        "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
-    },
-    "Synchronize": {
-        "message": "Senkronize et",
-        "description": "Button to Synchronize state with mal..."
-    },
-    "Load": {
-        "message": "Yükle",
-        "description": "Button to load content"
-    },
-    "Anime": {
-        "message": "Anime",
-        "description": "General translation of anime for places like drop downs"
-    },
-    "Manga": {
-        "message": "Manga",
-        "description": "General translation of manga for places like drop downs"
-    },
-    "UI_Status_All": {
-        "message": "Tümü",
-        "description": "Dropdown text to show all anime on the users list"
-    },
-    "UI_Rules": {
-        "message": "Kurallar",
-        "description": "Rules text for the correction UI"
-    },
-    "syncPage_flashm_sync_manga_volume": {
-        "message": "$page$'i $epNr$ . Cilde güncelle",
-        "description": "Update MAL to volume 3",
-        "placeholders": {
-            "page": {
-                "content": "$1",
-                "example": "MAL"
-            },
-            "epNr": {
-                "content": "$2",
-                "example": "3"
-            }
-        }
-    },
-    "syncPage_flash_player_error": {
-        "message": "Video oynatıcısı algılanamadı. Lütfen şuradan manuel olarak ayarlayınız.",
-        "description": "Message if the video player could not be recognized"
-    },
-    "prediction_Last_anime": {
-        "message": "Son bölüm $time$ önce yayınlandı",
-        "description": "Text for last episode release time",
-        "placeholders": {
-            "time": {
-                "content": "$1",
-                "example": "2 days 1 hour"
-            }
-        }
-    },
-    "prediction_Episode_manga": {
-        "message": "Tahmini yeni bölüm $time$'da",
-        "description": "Text for next chapter estimation",
-        "placeholders": {
-            "time": {
-                "content": "$1",
-                "example": "2 days 1 hour"
-            }
-        }
-    },
-    "prediction_Last_manga": {
-        "message": "Son bölüm $time$ önce yayınlandı",
-        "description": "Text for last chapter release time",
-        "placeholders": {
-            "time": {
-                "content": "$1",
-                "example": "2 days 1 hour"
-            }
-        }
-    },
-    "prediction_next": {
-        "message": "Yeni Bölüm $time$ 'da",
-        "description": "Short Form Text for next episode/episode estimation",
-        "placeholders": {
-            "time": {
-                "content": "$1",
-                "example": "2 days 1 hour"
-            }
-        }
-    },
-    "prediction_incomplete": {
-        "message": "Bırakılmış",
-        "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
-    },
-    "prediction_ongoing": {
-        "message": "Devam Ediyor",
-        "description": "Header for the ongoing section in the translation/airing progress section"
-    },
-    "prediction_complete": {
-        "message": "Tamamlanmış",
-        "description": "Header for the complete translation/airing section"
-    },
-    "overview_Information": {
-        "message": "Bilgi",
-        "description": "Header of the information section of the popup anime overview"
-    },
-    "overview_Related": {
-        "message": "Bağlantılı oldukları",
-        "description": "Header of the anime/manga relations section of the popup anime overview"
-    },
-    "overview_Streaming": {
-        "message": "Burada bulunur",
-        "description": "Header of the streaming link section of the popup anime overview"
-    },
-    "settings_profile_no_login": {
-        "message": "Girilmedi",
-        "description": "Text if not logged in"
-    },
-    "settings_profile_logout": {
-        "message": "Çıkış",
-        "description": "Button to logout"
-    },
-    "settings_profile_check": {
-        "message": "Kontrol et",
-        "description": "Button to rechecks the login status"
-    },
-    "settings_profile_logged_via": {
-        "message": "$provider$ ile girildi",
-        "description": "Info about which provider is used to login",
-        "placeholders": {
-            "provider": {
-                "content": "$1",
-                "example": "MyAnimeList"
-            }
-        }
-    },
-    "settings_StreamingSite_custom": {
-        "message": "Özel arama linkleri",
-        "description": "Header of the section where you can add your own custom search links"
-    },
-    "settings_StreamingSite_custom_url_anime": {
-        "message": "Anime arama URL'si",
-        "description": "Form field title to enter the search url for anime"
-    },
-    "settings_StreamingSite_custom_url_manga": {
-        "message": "Manga arama URL'si",
-        "description": "Form field title to enter the search url for manga"
-    },
-    "settings_anilist_update_ui": {
-        "message": "Arayüzü Güncelle",
-        "description": "UI in the aniList sidebar to update episodes progress and the score"
-    },
-    "settings_miniMAL_popup": {
-        "message": "Eklenti popup'ı",
-        "description": "Header of the settings section for the extension popup"
-    },
-    "settings_miniMAL_theme": {
-        "message": "Tema",
-        "description": "Label for the theme switch dropdown (light/dark theme)"
-    },
-    "settings_miniMAL_Display_Center": {
-        "message": "Orta",
-        "description": "miniMAL Display Center"
-    },
-    "settings_miniMAL_pwa": {
-        "message": "PWA websitesi",
-        "description": "Link to the PWA version of the extension popup"
-    },
-    "settings_donate": {
-        "message": "Bağış",
-        "description": "Link to donation page"
-    },
-    "settings_discord_join": {
-        "message": "Discord sunucumuza katılın",
-        "description": "Link to join discord"
-    },
-    "settings_help": {
-        "message": "Yardıma mı ihtiyacın var?",
-        "description": "Button that links to support"
-    },
-    "settings_miscellaneous": {
-        "message": "Çeşitli Ayarlar",
-        "description": "Header of the section of settings without specific theme"
-    },
-    "settings_listsync": {
-        "message": "Listeyi senkronize et",
-        "description": "Header of the section of List Sync settings"
-    },
-    "settings_listsync_background": {
-        "message": "Arkaplanda günlük olarak senkronize et",
-        "description": "Option to sync list once a day in the background"
-    },
-    "settings_progress": {
-        "message": "İlerleme tahmini",
-        "description": "Header of the section of progress estimation settings"
-    },
-    "settings_onsite": {
-        "message": "Site içi",
-        "description": "Header of the section to change onsite website appearance and features"
-    },
-    "settings_theming": {
-        "message": "Temalar",
-        "description": "Header of the theming section"
-    },
-    "settings_theming_sidebars": {
-        "message": "Yan çubuklar",
-        "description": "Option to disable the sidebars in the extension popup"
-    },
-    "settings_theming_color": {
-        "message": "Tema Rengi",
-        "description": "Option to select a custom theme color for the extension popup"
-    },
-    "settings_theming_background_image": {
-        "message": "Arkaplan Resmi",
-        "description": "Option to select a custom background image for the extension popup"
-    },
-    "settings_theming_background_opacity": {
-        "message": "Arkaplan Opaklığı",
-        "description": "Option to set the transparency of the UI in front of the background image"
-    },
-    "settings_loadPTWForProgress": {
-        "message": "İlerleme kontrolü için PTW/PTR'yi yükle",
-        "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
-    },
-    "settings_Interval_Default_Anime": {
-        "message": "Varsayılan Anime",
-        "description": "Dropdown label for selecting the global progress anime source"
-    },
-    "settings_Interval_Default_Manga": {
-        "message": "Varsayılan Manga",
-        "description": "Dropdown label for selecting the global progress manga source"
-    },
-    "settings_tracking": {
-        "message": "Takip Ayarları",
-        "description": "tracking settings header"
-    },
-    "settings_tracking_disabled": {
-        "message": "Takip etme devre dışı bırakıldı",
-        "description": "Header for section with websites with disabled tracking"
-    },
-    "settings_presence_largeimage_cover": {
-        "message": "Kapak Resmi",
-        "description": "Dropdown option to show the cover from mal on discord"
-    },
-    "settings_presence_largeimage_website": {
-        "message": "Website İkonu",
-        "description": "Dropdown option to show the server icon on discord"
-    },
-    "settings_presence_largeimage_malsync": {
-        "message": "MAL-Sync İkonu",
-        "description": "Dropdown option to show the malsync icon on discord"
-    },
-    "settings_enabled": {
-        "message": "Etkinleştirildi",
-        "description": "Checkbox if feature is enabled"
-    },
-    "settings_ProgressCheck": {
-        "message": "İlerleme kontrolü",
-        "description": "Header for the progress section in the settings"
-    },
-    "settings_presence_largeimage": {
-        "message": "RPC Resmi",
-        "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
-    },
-    "settings_progress_dropdown": {
-        "message": "Tahmin Kaynağı:",
-        "description": "Text over the dropdown to select the Episode estimation/prediction source"
-    },
-    "settings_progress_disabled": {
-        "message": "Devre dışı bırakıldı",
-        "description": "Dropdown option to disable the estimation for an anime/manga"
-    },
-    "settings_progress_default": {
-        "message": "Varsayılan",
-        "description": "Dropdown option to use the default in the estimation for an anime/manga"
-    },
-    "settings_website_button": {
-        "message": "Websiteler",
-        "description": "Button that leads to the config page where individual pages can be disabled"
-    },
-    "settings_custom_domains_button": {
-        "message": "Özel domainler / alan adları",
-        "description": "Button that leads to the custom domain configuration page"
-    },
-    "settings_custom_domains_missing_permissions_header": {
-        "message": "Eksik izinler algılandı",
-        "description": "Section header for asking to allow missing domain permissions"
-    },
-    "settings_custom_domains_missing_permissions_long": {
-        "message": "Bazı sayfa izinleri henüz verilmemiş",
-        "description": "Asking to allow missing domain permissions"
-    },
-    "settings_custom_domains_disclaimer": {
-        "message": "Bu özellik, alan adı değişikliklerini ve kendi kendine barındırılan kaynakları işlemek için mevcut sitelere özel alan adları eklemeye izin verir, ancak yeni siteler ekleyemez.",
-        "description": "Text on the custom domain configuration page"
-    },
-    "settings_custom_domains_wrong": {
-        "message": "Ayarlar yanlış!",
-        "description": "Error text if the configuration is not correct"
-    },
-    "settings_clean_tags_button": {
-        "message": "Tagleri Temizle",
-        "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
-    },
-    "settings_more_info": {
-        "message": "Daha fazla bilgi",
-        "description": "Link button which links to more informations"
-    },
-    "filler_recap_confirm": {
-        "message": "Bu bölüm MyAnimeList'te recap olarak işaretlendi, geçmek istiyor musun?",
-        "description": "Question if the user wants to skip the recap"
-    },
-    "settings_custom_domains_position": {
-        "message": "Pozisyon",
-        "description": "Position of the quicklinks"
-    },
-    "settings_custom_position_below": {
-        "message": "Alttaki Bilgiler",
-        "description": "Position of the quicklinks below the information section"
-    },
-    "discord_rpc_view_anime": {
-        "message": "Anime'yi İncele",
-        "description": "Discord view anime button"
-    },
-    "discord_rpc_view_manga": {
-        "message": "Manga'yı İncele",
-        "description": "Discord view manga button"
-    },
-    "settings_filler": {
-        "message": "Filler/recap bölümleri var mı diye kontrol et",
-        "description": "Option to enable filler checking"
-    },
-    "settings_filler_text": {
-        "message": "BU, bölümün MyAnimeList'de filler/recap olarak işaretlenip işaretlenmediğine bakacak",
-        "description": "filler tooltip"
-    },
-    "filler_filler_confirm": {
-        "message": "Bu bölüm MyAnimeList'te filler olarak işaretlendi, geçmek istiyor musun?",
-        "description": "Question if the user wants to skip the filler"
-    },
-    "list_sorting_history": {
-        "message": "En son güncellenenler",
-        "description": "Dropdown option to sort list by last updated"
-    },
-    "settings_theming_theme_system": {
-        "message": "Sistem",
-        "description": "Dropdown option to set the theme to the system (dark/light) theme"
-    },
-    "settings_theming_theme_light": {
-        "message": "Beyaz",
-        "description": "Dropdown option to set the theme to the light theme"
-    },
-    "settings_theming_theme_dark": {
-        "message": "Siyah",
-        "description": "Dropdown option to set the theme to the dark theme"
-    },
-    "settings_theming_theme_custom": {
-        "message": "Özel",
-        "description": "Dropdown option to set the theme to custom witch shows a color picker"
-    },
-    "list_sorting_unread": {
-        "message": "Okunmadı",
-        "description": "Dropdown option to sort list by unread"
-    },
-    "list_sorting_alpha": {
-        "message": "Alfabetik",
-        "description": "Dropdown option to sort list alphabetic"
-    },
-    "list_sorting_score": {
-        "message": "Skor",
-        "description": "Dropdown option to sort list by score"
-    },
-    "overview_sidebar_Score": {
-        "message": "Puan:",
-        "description": "Info table on overview - Score: 7.65"
-    },
-    "overview_sidebar_Mal_Score": {
-        "message": "MAL Puanı:",
-        "description": "Info table on overview - MAL Score: 7.65"
-    },
-    "overview_sidebar_Ranked": {
-        "message": "Sıralama:",
-        "description": "Info table on overview - Ranked: #317"
-    },
-    "overview_sidebar_Status": {
-        "message": "Durum:",
-        "description": "Info table on overview - Status: Finished"
-    },
-    "overview_sidebar_Members": {
-        "message": "Üyeler:",
-        "description": "Info table on overview - Members: 1337"
-    },
-    "overview_sidebar_Start_Date": {
-        "message": "Başlama Tarihi:",
-        "description": "Info table on overview - Start Date: 10.10.2010"
-    },
-    "overview_sidebar_End_Date": {
-        "message": "Bitiş Tarihi:",
-        "description": "Info table on overview - End Date: 10.10.2010"
-    },
-    "overview_sidebar_Source": {
-        "message": "Kaynak:",
-        "description": "Info table on overview - Source: Light Novel"
-    },
-    "overview_sidebar_Volumes": {
-        "message": "Ciltler:",
-        "description": "Info table on overview - Volumes: 12"
-    },
-    "overview_synonyms": {
-        "message": "Alternatifler",
-        "description": "Text of a button that shows the alternative names for an entry"
-    },
-    "overview_sidebar_Episodes": {
-        "message": "Bölümler:",
-        "description": "Info table on overview - Episodes: 12"
-    },
-    "overview_sidebar_Chapters": {
-        "message": "Cilt:",
-        "description": "Info table on overview - Chapters: 12"
-    },
-    "overview_sidebar_Season": {
-        "message": "Sezon:",
-        "description": "Info table on overview - Season: Spring 2014"
-    },
-    "overview_sidebar_Votes": {
-        "message": "Oylar:",
-        "description": "Info table on overview - Votes: 1423"
-    },
-    "overview_sidebar_Licensor": {
-        "message": "Lisans sahibi:",
-        "description": "Info table on overview - Licensor: AT-X"
-    },
-    "overview_sidebar_Aired": {
-        "message": "Şu Tarihte Yayınlandı:",
-        "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
-    },
-    "overview_sidebar_Authors": {
-        "message": "Yazarlar:",
-        "description": "Info table on overview - Authors: Kamiya, Yuu"
-    },
-    "overview_sidebar_external_links": {
-        "message": "Harici Bağlantılar:",
-        "description": "Info table on overview - External Links: Official Site, Hulu"
-    },
-    "settings_anilist_update_ui_tooltip": {
-        "message": "Açılır pencereyi açmak zorunda kalmadan AniList'teki bölüm sayınızı, derecelendirmenizi ve durumunuzu hızlı bir şekilde güncellemenizi sağlar.",
-        "description": "Tooltip for the Update UI option"
-    },
-    "settings_miniMAL_floatButtonStealth_tooltip": {
-        "message": "İlerleme göstergesini (ekranınızın altında) varsayılan olarak şeffaf hale getirir ve kendini daha hızlı gizlemesini sağlar",
-        "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
-    },
-    "settings_miniMAL_minimizeBigPopup_tooltip": {
-        "message": "MAL-Sync'te ekranın çoğunu kaplayan büyük bilgi kutularını bir tıklamayla en aza indirir.",
-        "description": "Shows an 'action required' popup hidding big popups"
-    },
-    "settings_Notifications_Sticky": {
-        "message": "Kalıcı Bildirimler",
-        "description": "Requires interaction to dismiss; ignores system notification timeout"
-    },
-    "overview_sidebar_Genres": {
-        "message": "Tür:",
-        "description": "Info table on overview - Genres: Action"
-    },
-    "overview_sidebar_Format": {
-        "message": "Tür:",
-        "description": "Info table on overview - Format: Movie"
-    },
-    "overview_sidebar_Rating": {
-        "message": "Derecelendirme:",
-        "description": "Info table on overview - Rating: PG-13"
-    },
-    "overview_sidebar_Broadcast": {
-        "message": "Yayınlanma Tarihi:",
-        "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
-    },
-    "overview_sidebar_Studios": {
-        "message": "Stüdyo:",
-        "description": "Info table on overview - Studios: Madhouse"
-    },
-    "settings_StreamingSite_custom_url_name": {
-        "message": "İsim",
-        "description": "Placeholder text the field that sets the custom url name"
-    },
-    "overview_sidebar_Popularity": {
-        "message": "Popülarite:",
-        "description": "Info table on overview - Popularity: #15"
-    },
-    "overview_sidebar_Favorites": {
-        "message": "Favoriler:",
-        "description": "Info table on overview - Favorites: 15423"
-    },
-    "settings_custom_domains_permissions_not_supported": {
-        "message": "Tarayıcı veya geçerli pencere uzantıya izin vermiyor , lütfen https://malsync.moe/pwa url'si ile tekrar deneyin veya uzantı açılır penceresini kullanın.",
-        "description": "Text that is shown when the browser does not support adding new permissions"
-    },
-    "overview_sidebar_Duration": {
-        "message": "Süre:",
-        "description": "Info table on overview - Duration: 23 min"
-    },
-    "installPage_Login_Successful": {
-        "message": "Harika, $Username$! Artık kimliğiniz doğrulandı ve gitmeye hazırsınız.",
-        "description": "Text after the user successfully authenticated",
-        "placeholders": {
-            "Username": {
-                "content": "$1",
-                "example": "lolamtisch"
-            }
-        }
-    },
-    "installPage_Howto_Notes": {
-        "message": "Senkronizasyon daha sonra ayarlardan yapılandırılabilir - istediğiniz şekilde özelleştirmekten çekinmeyin!",
-        "description": "The synchronization settings can be changed later"
-    },
-    "installPage_Description_paragraph1": {
-        "message": "Hızlı bağlantılar, temel olarak, seçtiğiniz video/okuma sitesini açan düğmelerdir - herhangi bir anime/manga için her genel bakış sayfasında bulunurlar.",
-        "description": "paragraph one of the description"
-    },
-    "overview_sidebar_Total_Playtime": {
-        "message": "Toplam Oynatılma Sayısı:",
-        "description": "Info table on overview - Total Playtime: 276 mins"
-    },
-    "overview_sidebar_Serialization": {
-        "message": "Seri:",
-        "description": "Info table on overview - Serialization: Big Comic Original"
-    },
-    "installPage_Start_Description": {
-        "message": "Başlamak için basit bir görüşme yapalım - bir dakikadan az sürer!",
-        "description": "Start description text"
-    },
-    "installPage_Howto_Anime_Description": {
-        "message": "Senkronizasyon, videonun %85'i izlenince yapılır.",
-        "description": "When the sync is executed for anime"
-    },
-    "installPage_Howto_Manga_Description": {
-        "message": "Senkronizasyon sayfa yüklendiğinde gerçekleşir ve birkaç sayfa için bölümün %80'i okununca gerçekleşir.",
-        "description": "When the sync is executed for manga"
-    },
-    "installPage_Links": {
-        "message": "Tercih edilen hızlı bağlantıları seçin - favori siteleriniz tek tık uzağınızda",
-        "description": "Header for the quicklinks section during the install"
-    },
-    "installPage_Description_paragraph2": {
-        "message": "Örneğin, Crunchyroll'da anime izlemeyi seviyorsanız, Crunchyroll'un hızlı bağlantısı her anime sayfasında görünecektir. Bu, favori sitelerinize tek bir tıklamayla erişmenin kolay bir yoludur!",
-        "description": "paragraph two of the description"
-    },
-    "list_sorting_airing_date": {
-        "message": "Yayın tarihi",
-        "description": "Dropdown option to sort list by airing date"
-    },
-    "next": {
-        "message": "Sonraki",
-        "description": "Next button"
-    },
-    "back": {
-        "message": "Geri",
-        "description": "Back button"
-    },
-    "start": {
-        "message": "Başlat",
-        "description": "Start button"
-    },
-    "Error_Blocked": {
-        "message": "IP'niz $Page$'de yasaklandı, IP'nizi değiştirin veya yasağın kalkmasını bekleyin. Geçici bir aksaklık olması da bunun bir nedeni olabilir.",
-        "description": "Error message when the user is blocked on a website",
-        "placeholders": {
-            "Page": {
-                "content": "$1",
-                "example": "MyAnimeList"
-            }
-        }
-    },
-    "settings_AskBefore": {
-        "message": "Bölümün başında 'tamamlandı' onay kutusunu göster",
-        "description": "Option to not show the 'completed' message during the episode"
-    },
-    "settings_LocalSync_Label": {
-        "message": "Yerel Senkronizasyon Dışa Aktar",
-        "description": "Label where the import/export buttons are to backup the local saved anime/manga"
-    },
-    "settings_LocalSync_Help_Before": {
-        "message": "Sorun yaşarsanız lütfen tekrar deneyin",
-        "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
-    },
-    "settings_LocalSync_Help_LinkText": {
-        "message": "bu pencere",
-        "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
-    },
-    "settings_permissions_overview": {
-        "message": "İzinler",
-        "description": "Button that leads to where permissions to sites can be managed"
-    },
-    "settings_permissions_required": {
-        "message": "Gerekli",
-        "description": "Header text for the list of required permissions"
-    },
-    "settings_permissions_pages": {
-        "message": "Sayfalar",
-        "description": "Header text for the list of page permissions"
-    },
-    "settings_permissions_player": {
-        "message": "Video Oynatıcı",
-        "description": "Header text for the list of video player permissions"
-    },
-    "locale": {
-        "message": "tr",
-        "description": "Current locale"
-    },
-    "overview_sidebar_Published": {
-        "message": "Yayınlandı:"
-    },
-    "settings_ForceEnglishTitles": {
-        "message": "Başlıkları İngilziceye zorla"
-    },
-    "settings_listsync_syncinprogress": {
-        "message": "Senkronize ediliyor lütfen bekleyin:"
-    },
-    "settings_listsync_syncbutton": {
-        "message": "Senkronize et"
-    },
-    "settings_listsync_score": {
-        "message": "Puan:"
-    },
-    "settings_listsync_status": {
-        "message": "Durum:"
-    },
-    "settings_listsync_startdate": {
-        "message": "Başlanma Tarihi:"
-    },
-    "settings_listsync_finishdate": {
-        "message": "Bitirme Tarihi:"
-    },
-    "settings_listsync_repeatcount_anime": {
-        "message": "Yeniden İzleme Sayısı:"
-    },
-    "settings_listsync_itemcount": {
-        "message": "Senkronize edilecek öğeler:"
-    },
-    "settings_listsync_updates": {
-        "message": "Güncellenecekler"
-    },
-    "settings_listsync_progress_anime": {
-        "message": "B:"
-    },
-    "settings_listsync_unknowndate": {
-        "message": "ayarlanmadı"
-    },
-    "settings_listsync_repeatcount_manga": {
-        "message": "Yeniden Okuma Sayısı:"
-    },
-    "settings_listsync_provider_done": {
-        "message": "Tamamlandı"
-    },
-    "settings_listsync_list": {
-        "message": "Liste:"
-    },
-    "settings_listsync_missing": {
-        "message": "Eksik"
-    },
-    "overview_sidebar_Producers": {
-        "message": "Yapımcılar:"
-    },
-    "overview_sidebar_Themes": {
-        "message": "Temalar:"
-    },
-    "overview_sidebar_Type": {
-        "message": "Tür:"
-    },
-    "overview_sidebar_Licensors": {
-        "message": "Lisansör:"
-    },
-    "settings_listsync_master": {
-        "message": "Ana Site"
-    },
-    "settings_listsync_slave": {
-        "message": "Kopya"
-    },
-    "settings_Mangasync_readerTracking_percentage": {
-        "message": "Bölümü belirtilen yüzdeye göre okundu olarak güncelle"
-    },
-    "settings_listsync_progress_manga": {
-        "message": "B:"
-    },
-    "settings_listsync_volume": {
-        "message": "Cilt:"
-    },
-    "overview_sidebar_Premiered": {
-        "message": "Prömiyer:"
-    },
-    "overview_sidebar_Demographic": {
-        "message": "Tür:"
+  "Search": {
+    "message": "Sitede Ara",
+    "description": "Search"
+  },
+  "Show": {
+    "message": "Göster",
+    "description": "Show"
+  },
+  "Help": {
+    "message": "Yardım",
+    "description": "Help"
+  },
+  "Update": {
+    "message": "Güncelle",
+    "description": "Update"
+  },
+  "Reset": {
+    "message": "Sıfırla",
+    "description": "Reset"
+  },
+  "Remove": {
+    "message": "Kaldır",
+    "description": "Button for removing entry from MAL..."
+  },
+  "Loading": {
+    "message": "Yükleniyor",
+    "description": "Loading"
+  },
+  "Select": {
+    "message": "Seç",
+    "description": "Select"
+  },
+  "Yes": {
+    "message": "Evet",
+    "description": "Yes"
+  },
+  "No": {
+    "message": "Hayır",
+    "description": "No"
+  },
+  "NothingFound": {
+    "message": "Hiçbir Şey Bulunamadı",
+    "description": "Nothing Found"
+  },
+  "Not_Found": {
+    "message": "Bulunamadı!",
+    "description": "Anime/Manga Not Found"
+  },
+  "NoEntries": {
+    "message": "Girdi yok",
+    "description": "No Entries"
+  },
+  "fullscreen": {
+    "message": "Tam Ekran",
+    "description": "fullscreen"
+  },
+  "close": {
+    "message": "Kapat",
+    "description": "close"
+  },
+  "All": {
+    "message": "Hepsi",
+    "description": "All"
+  },
+  "Package_Description": {
+    "message": "MyAnimeList/AniList/Kitsu/Simkl/Shikimori'yi çeşitli sitelere entegre eder ve otomatik bölüm takibi yapar.",
+    "description": "Description MALSync"
+  },
+  "UI_Status": {
+    "message": "Durum:",
+    "description": "Status"
+  },
+  "UI_Status_watching_anime": {
+    "message": "İzleniyor",
+    "description": "Watching"
+  },
+  "UI_Status_watching_manga": {
+    "message": "Okunuyor",
+    "description": "Reading"
+  },
+  "UI_Status_Completed": {
+    "message": "Tamamlandı",
+    "description": "Completed"
+  },
+  "UI_Status_OnHold": {
+    "message": "Beklemede",
+    "description": "On-Hold"
+  },
+  "UI_Status_Dropped": {
+    "message": "Bırakıldı",
+    "description": "Dropped"
+  },
+  "UI_Status_planTo_anime": {
+    "message": "İzlenmesi Planlanıyor",
+    "description": "Plan to Watch"
+  },
+  "UI_Status_planTo_manga": {
+    "message": "Okunması Planlanıyor",
+    "description": "Plan to Read"
+  },
+  "UI_Status_Rewatching_anime": {
+    "message": "Yeniden İzleniyor",
+    "description": "Status to rewatch anime"
+  },
+  "UI_Status_Rewatching_manga": {
+    "message": "Yeniden Okunuyor",
+    "description": "Status to reread manga"
+  },
+  "UI_Episode": {
+    "message": "Bölüm:",
+    "description": "Episode"
+  },
+  "UI_Volume": {
+    "message": "Cilt:",
+    "description": "Volume"
+  },
+  "UI_Chapter": {
+    "message": "Bölüm:",
+    "description": "Chapter"
+  },
+  "UI_Score": {
+    "message": "Puanın:",
+    "description": "Score"
+  },
+  "UI_Score_Not_Rated": {
+    "message": "Puanlanmamış",
+    "description": "Text if nothing is selected in the rating dropdown"
+  },
+  "UI_Score_Masterpiece": {
+    "message": "(10) Şaheser",
+    "description": "Masterpiece - Score"
+  },
+  "UI_Score_Great": {
+    "message": "(9) Müthiş",
+    "description": "Great - Score"
+  },
+  "UI_Score_VeryGood": {
+    "message": "(8) Çok iyi",
+    "description": "Very Good - Score"
+  },
+  "UI_Score_Good": {
+    "message": "(7) İyi",
+    "description": "Good - Score"
+  },
+  "UI_Score_Fine": {
+    "message": "(6) Fena değil",
+    "description": "Fine - Score"
+  },
+  "UI_Score_Average": {
+    "message": "(5) Ortalama",
+    "description": "Average - Score"
+  },
+  "UI_Score_Bad": {
+    "message": "(4) Kötü",
+    "description": "Bad - Score"
+  },
+  "UI_Score_VeryBad": {
+    "message": "(3) Çok kötü",
+    "description": "Very Bad - Score"
+  },
+  "UI_Score_Horrible": {
+    "message": "(2) Berbat",
+    "description": "Horrible - Score"
+  },
+  "UI_Score_Appalling": {
+    "message": "(1) Dehşet verici",
+    "description": "Appalling - Score"
+  },
+  "syncPage_flashm_resumeMsg": {
+    "message": "$time$'dan Devam et",
+    "description": "Video resume message",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "13:37"
+      }
     }
+  },
+  "syncPage_flashm_sync_anime": {
+    "message": "$page$'i $epNr$ . Bölüme güncelle",
+    "description": "Update MAL to episode 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_manga": {
+    "message": "$epNr$ Bölüme güncelle $page$",
+    "description": "Update MAL to chapter 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_undefined_undo": {
+    "message": "Geri al",
+    "description": "Undo button on 'synced' message"
+  },
+  "syncPage_flashm_sync_undefined_wrong": {
+    "message": "Yanlış mı?",
+    "description": "Wrong/correction button on 'synced' message"
+  },
+  "syncPage_flashm_failded": {
+    "message": "Güncelleme başarısız",
+    "description": "When update to MAL failes"
+  },
+  "syncPage_flashConfirm_complete": {
+    "message": "Tamamlandı olarak ayarlansın mı?",
+    "description": "Question when last episode is synced"
+  },
+  "syncPage_flashConfirm_start_anime": {
+    "message": "İzlemeye başladın mı?",
+    "description": "Start watching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_anime": {
+    "message": "Yeniden İzlemen Bitti mi?",
+    "description": "Finish rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_manga": {
+    "message": "Yeniden Okuman Bitti mi?",
+    "description": "Finish rereading manga message"
+  },
+  "syncPage_flashConfirm_start_manga": {
+    "message": "Okumaya başladın mı?",
+    "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_rewatch_start_anime": {
+    "message": "Yeniden mi İzliyorsun?",
+    "description": "Start rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_start_manga": {
+    "message": "Yeniden mi Okuyorsun?",
+    "description": "Start rereading manga message"
+  },
+  "syncPage_flashConfirm_Anime_Correct": {
+    "message": "\"$anime$\" Doğru mu?",
+    "description": "Is anime correct",
+    "placeholders": {
+      "anime": {
+        "content": "$1",
+        "example": "No Game No Life"
+      }
+    }
+  },
+  "syncPage_malObj_addAnime": {
+    "message": "$page$ Ekle",
+    "description": "add anime",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "AniList"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_anime": {
+    "message": "Bölüm $episode$",
+    "description": "Next episode message on streaming overview pages",
+    "placeholders": {
+      "episode": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_manga": {
+    "message": "Bölüm $chapter$",
+    "description": "Next chapter message on streaming overview pages",
+    "placeholders": {
+      "chapter": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "syncPage_flashConfirm_offsetHandler_1": {
+    "message": "Olası bölüm kayması $calcOffset$ bulundu. Doğru mu ?",
+    "description": "offsetHandler Episode",
+    "placeholders": {
+      "calcOffset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "anilistClass_authentication": {
+    "message": "Token kaydedildi sayfayı kapatabilirsin",
+    "description": "The token has been obtained and saved"
+  },
+  "kitsuClass_authentication_text": {
+    "message": "Kitsu ile giriş yapabilmek için e-mail ve şifren gerekli. </br> Bilgileriniz hiçbir yerde saklanmıyor.</br>Direkt olarak Kitsu'ya yollanıyor. Sadece erişim tokeni kaydediliyor.</br>",
+    "description": "Authentication text in Kitsu"
+  },
+  "kitsuClass_authentication_Password": {
+    "message": "Şifre",
+    "description": "Password"
+  },
+  "kitsuClass_authentication_Login": {
+    "message": "Giriş",
+    "description": "Login"
+  },
+  "kitsuClass_authentication_Success": {
+    "message": "Token kaydedildi, sayfayı kapatabilirsin.",
+    "description": "Authentication success"
+  },
+  "kitsuClass_authentication_Wrong": {
+    "message": "Kullanıcı Bilgileri yanlış",
+    "description": "Credentials wrong"
+  },
+  "bookmarksItem_Years": {
+    "message": "yıllar",
+    "description": "Years"
+  },
+  "bookmarksItem_Year": {
+    "message": "yıl",
+    "description": "Year"
+  },
+  "bookmarksItem_Days": {
+    "message": "gün",
+    "description": "Days"
+  },
+  "bookmarksItem_Day": {
+    "message": "gün",
+    "description": "Day"
+  },
+  "bookmarksItem_Hours": {
+    "message": "saat",
+    "description": "Hours"
+  },
+  "bookmarksItem_Hour": {
+    "message": "saat",
+    "description": "Hour"
+  },
+  "bookmarksItem_mins": {
+    "message": "dakika",
+    "description": "mins"
+  },
+  "bookmarksItem_min": {
+    "message": "dakika",
+    "description": "min"
+  },
+  "bookmarksItem_secs": {
+    "message": "saniye",
+    "description": "seconds"
+  },
+  "bookmarksItem_sec": {
+    "message": "saniye",
+    "description": "second"
+  },
+  "bookmarksItem_now": {
+    "message": "Şimdi",
+    "description": "Now"
+  },
+  "bookmarksItem_ago": {
+    "message": "$time$ önce",
+    "description": "Text for time in the past",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Episode_anime": {
+    "message": "Tahmini yeni bölüm $time$'da",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Airing": {
+    "message": "$time$'da yayınlanacak",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "correction_Offset": {
+    "message": "Bölüm Kayması",
+    "description": "Episode Offset"
+  },
+  "correction_Offset_text": {
+    "message": "Bölüm kayması değerini girin, Eğer bir animenin 12 bölümü var ise, ama 1-12 yerine 0-11 numaralarını kullanıyorsa, bölüm kayma değerine \"+1\" yazın.",
+    "description": "Episode Offset - Text"
+  },
+  "correction_WrongUrl": {
+    "message": "URL'yi sadece MAL'da yanlış sayfayı açıyorsa değiştir.",
+    "description": "URL is Wrong"
+  },
+  "correction_Search": {
+    "message": "Aramayı Düzelt",
+    "description": "Correction Search"
+  },
+  "correction_Search_text": {
+    "message": "Bu alan, yukarıda gösterilen \"MyAnimeList URL'sini\" düzeltmeniz gerektiğinde bir anime bulmak içindir.<br>Bir arama yapmak için, sadece bir anime adını yazmaya başlayın ve sonuçları içeren bir liste siz yazdıkça otomatik olarak görünecektir.",
+    "description": "Search text"
+  },
+  "correction_NoMal": {
+    "message": "Anime/Manga $page$'da bulunamıyorsa",
+    "description": "Anime/Manga not found in MAL",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      }
+    }
+  },
+  "correction_NoEntry": {
+    "message": "$page$'da böyle bir girdi yok",
+    "description": "No entry on MyAnimeList",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      }
+    }
+  },
+  "correction_NewOffset": {
+    "message": "Yeni kayma değeri ($offset$) ayarla.",
+    "description": "New Offset",
+    "placeholders": {
+      "offset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "correction_OffsetReset": {
+    "message": "Kayma değerini sıfırla",
+    "description": "Offset reset"
+  },
+  "correction_NewUrl": {
+    "message": "Yeni url ayarla '$malUrl$'.",
+    "description": "New URL",
+    "placeholders": {
+      "malUrl": {
+        "content": "$1",
+        "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+      }
+    }
+  },
+  "correction_NewUrlReset": {
+    "message": "MAL URL'sini sıfırla",
+    "description": "URL reset"
+  },
+  "correction_DBRequest": {
+    "message": "Veritabanı düzeltme talebi gönderin?",
+    "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
+  },
+  "overview_Continue_anime": {
+    "message": "İzlemeye devam et",
+    "description": "Continue watching"
+  },
+  "overview_Continue_manga": {
+    "message": "Okumaya devam et",
+    "description": "Continue reading"
+  },
+  "overview_Next_Episode_anime": {
+    "message": "Sonraki Bölüm",
+    "description": "Next Episode"
+  },
+  "overview_Next_Episode_manga": {
+    "message": "Sonraki Bölüm",
+    "description": "Next Chapter"
+  },
+  "overview_Resume_Episode_anime": {
+    "message": "Bölüme Devam Et",
+    "description": "Resume Episode"
+  },
+  "overview_Resume_Episode_manga": {
+    "message": "Bölüme Devam Et",
+    "description": "Resume Chapter"
+  },
+  "overview_EditDetails": {
+    "message": "Detayları Düzenle",
+    "description": "Edit Details"
+  },
+  "overview_Characters": {
+    "message": "Karakterler",
+    "description": "Characters"
+  },
+  "overview_OpeningTheme": {
+    "message": "Açılış Teması:",
+    "description": "Opening Theme"
+  },
+  "overview_EndingTheme": {
+    "message": "Kapanış Teması:",
+    "description": "Ending Theme"
+  },
+  "search_Type": {
+    "message": "Tür:",
+    "description": "Type"
+  },
+  "search_Score": {
+    "message": "Puan:",
+    "description": "Score"
+  },
+  "search_Year": {
+    "message": "Yıl:",
+    "description": "Year"
+  },
+  "settings_General": {
+    "message": "Genel",
+    "description": "General"
+  },
+  "settings_Mode": {
+    "message": "Mod",
+    "description": "Mode"
+  },
+  "settings_Authenticate": {
+    "message": "Doğrulama",
+    "description": "Authenticate"
+  },
+  "settings_LocalSync": {
+    "message": "Dosyaları yerel olarak da yedekle",
+    "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "İçeri aktar",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Dışarı aktar",
+    "description": "Button to Export Local storage fallback data"
+  },
+  "settings_Animesync": {
+    "message": "Anime senkronizasyonu",
+    "description": "Anime sync"
+  },
+  "settings_Animesync_Video": {
+    "message": "Video",
+    "description": "Video"
+  },
+  "settings_Animesync_Instant": {
+    "message": "Anlık",
+    "description": "Instant"
+  },
+  "settings_Animesync_Manual": {
+    "message": "Manuel",
+    "description": "Manual"
+  },
+  "settings_Mangasync": {
+    "message": "Manga senkronizasyon yedeklemesi",
+    "description": "Manga sync"
+  },
+  "settings_AutoTracking_Video": {
+    "message": "Videonun $videoDuration$%'ine gelindiğinde bölümü güncelle",
+    "description": "Update Episode of video progress",
+    "placeholders": {
+      "videoDuration": {
+        "content": "$1",
+        "example": "85"
+      }
+    }
+  },
+  "settings_AutoTracking_Instant": {
+    "message": "Anlık otomatik takibi $delay$ saniye geciktir",
+    "description": "Delay instant autotracking",
+    "placeholders": {
+      "delay": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "settings_StreamingSite": {
+    "message": "Kısayollar",
+    "description": "Streaming Site Links"
+  },
+  "settings_StreamingSite_text": {
+    "message": "Devre dışı bırakılırsa, yayın sitesi artık MyAnimeList/AniList/Kitsu/Simkl'de bir animenin kenar çubuğunda görünmeyecektir.",
+    "description": "Streaming Site Links - Text"
+  },
+  "settings_Thumbnails": {
+    "message": "Kapak resmi",
+    "description": "Thumbnails"
+  },
+  "settings_Thumbnails_text": {
+    "message": "Bu ayar MAL'da ki kapak resimlerinin boyutunu tekrar ayarlar. Karakterlerin, Kişilerin, Önerilerin vb.",
+    "description": "Thumbnails - Text"
+  },
+  "settings_Thumbnails_Large": {
+    "message": "Büyük",
+    "description": "Thumbnails Large"
+  },
+  "settings_Thumbnails_Medium": {
+    "message": "Orta",
+    "description": "Thumbnails Medium"
+  },
+  "settings_Thumbnails_Small": {
+    "message": "Küçük",
+    "description": "Thumbnails Small"
+  },
+  "settings_Thumbnails_Default": {
+    "message": "MAL Varsayılanı",
+    "description": "Thumbnails MAL Default"
+  },
+  "settings_FriendScore": {
+    "message": "Detay sayfasında arkadaşlarının puanları",
+    "description": "Friend scores on detail page"
+  },
+  "settings_epPredictions": {
+    "message": "Bölüm numarasını tahmin et",
+    "description": "Estimate episode number"
+  },
+  "settings_malTags": {
+    "message": "Etiketleri/Notları Kullan",
+    "description": "Use Tags/Notes"
+  },
+  "settings_malTags_Text": {
+    "message": "Aktif edilirse: Kullandığın yayın sitesini listende ki tags/Notes kısmına kalıcı şekilde kaydeder. Tag kısmına kaydedilen dizi çirkin, bu yüzden tag kısmını kullanmıyorsanız, bu seçeneği aktif etmeniz tavsiye edilir.",
+    "description": "Use Tags/Notes - Text"
+  },
+  "settings_malContinue": {
+    "message": "İzlemeye devam et linkleri",
+    "description": "Continue watching links"
+  },
+  "settings_malResume": {
+    "message": "İzlemeyi sürdür linkleri",
+    "description": "Resume watching links"
+  },
+  "settings_usedPage": {
+    "message": "Son kullanılan sayfa linkleri",
+    "description": "Last used page links"
+  },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "Gizli arayüz modu",
+    "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+  },
+  "settings_miniMAL_minimizeBigPopup": {
+    "message": "Büyük Pop-up'ları küçült",
+    "description": "Shows an 'action required' popup hidding big popups"
+  },
+  "settings_miniMAL_floatButtonCorrection": {
+    "message": "Kayan butonu düzeltme arayüzüne ata",
+    "description": "Remap floating button to the correction UI"
+  },
+  "settings_miniMAL_floatButtonHide": {
+    "message": "kayan miniMAL butonunu gizle",
+    "description": "Hide miniMAL floating menu button"
+  },
+  "settings_miniMAL_autoCloseMinimal": {
+    "message": "Etrafa tıklamak miniMAL'ı kapatır",
+    "description": "Clicking outside closes miniMAL"
+  },
+  "settings_miniMAL_Display": {
+    "message": "Göster",
+    "description": "Display to the"
+  },
+  "settings_miniMAL_window": {
+    "message": "Ayrı bir pencerede aç",
+    "description": "Open miniMAL in separate window checkbox"
+  },
+  "settings_miniMAL_Display_Left": {
+    "message": "Sol",
+    "description": "miniMAL Display Left"
+  },
+  "settings_miniMAL_Display_Right": {
+    "message": "Sağ",
+    "description": "miniMAL Display Right"
+  },
+  "settings_miniMAL_Height": {
+    "message": "Yükseklik (px / %)",
+    "description": "miniMAL Height"
+  },
+  "settings_miniMAL_Width": {
+    "message": "Genişlik (px / %)",
+    "description": "miniMAL Width"
+  },
+  "settings_Shortcuts": {
+    "message": "Kısayollar",
+    "description": "Shortcuts"
+  },
+  "settings_miniMAL_Open": {
+    "message": "miniMAL'ı aç",
+    "description": "miniMAL Open"
+  },
+  "settings_miniMAL_NotSet": {
+    "message": "Ayarlanmamış",
+    "description": "miniMAL Not Set"
+  },
+  "settings_Video_Player": {
+    "message": "Video oynatıcısı",
+    "description": "Video settings header"
+  },
+  "settings_Video_Fullscreen": {
+    "message": "Otomatik Tam ekran",
+    "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Otomatik Devam Ettirme",
+    "description": "Auto resume video where you left off toggle"
+  },
+  "settings_autoNextEp": {
+    "message": "Bir sonraki bölümü otomatik oynat",
+    "description": "Autoplays the next episode after the video ends"
+  },
+  "settings_Shortcuts_Correction": {
+    "message": "Anime Bağlantıları/İlişkileri düzeltme pop-up'ını aç",
+    "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Sync": {
+    "message": "Bölümü okunmuş olarak ayarlamak için kısayol tuşu",
+    "description": "Text for the sync ui shortcut"
+  },
+  "settings_Shortcuts_Next_Episode": {
+    "message": "Yeni bölümü aç kısayolu",
+    "description": "Description for the next episode shortcut option"
+  },
+  "settings_Shortcuts_Skip_Forward": {
+    "message": "Açılışları atlar",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Skip_Backward": {
+    "message": "Açılışların başından başlar",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Click": {
+    "message": "Kısayol girmek için tıkla",
+    "description": "Shown if no shortcut is set for an option"
+  },
+  "settings_introSkip": {
+    "message": "Açılış atlama süresini ayarla ($Seconds$ saniye)",
+    "description": "Skips video seconds",
+    "placeholders": {
+      "Seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "settings_UpdateCheck": {
+    "message": "Güncellemeleri Kontrol et",
+    "description": "Update Check"
+  },
+  "settings_UpdateCheck_Text": {
+    "message": "Arka planda yeni bölümleri kontrol eder.",
+    "description": "Update Check - Text"
+  },
+  "settings_Interval": {
+    "message": "Süre",
+    "description": "Interval"
+  },
+  "settings_Interval_Off": {
+    "message": "Kapalı",
+    "description": "Interval - Off"
+  },
+  "settings_Notifications": {
+    "message": "Bildirimler",
+    "description": "Notifications"
+  },
+  "settings_Debugging": {
+    "message": "Hata Ayıklama",
+    "description": "Debugging"
+  },
+  "settings_ETC": {
+    "message": "Ve benzeri",
+    "description": "ETC"
+  },
+  "settings_Userscriptmode": {
+    "message": "Userscript modu",
+    "description": "Userscript mode"
+  },
+  "settings_Userscriptmode_Text": {
+    "message": "Script içeriğini devre dışı bırakır. Bu da aynı zamanda userscript ve eklentiyi kullanmanı sağlar.",
+    "description": "Userscript mode - Text"
+  },
+  "settings_highlightAllEp": {
+    "message": "Tüm Bölümleri işaretle",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "Bu seçenek Bazı Anime/Manga sitelerinde bulabileceğiniz listelerde, izlediğiniz bölümleri işaretler",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
+  "settings_ClearCache": {
+    "message": "Önbelleği Temizle",
+    "description": "Clear Cache"
+  },
+  "settings_shortcut_tooltip": {
+    "message": "Sadece tek bir tuşa kısayol atamak tavsiye edilmiyor",
+    "description": "Shows this message if the users has only a single key set as shortcut"
+  },
+  "updateCheck_Refresh": {
+    "message": "Yenile",
+    "description": "Refresh"
+  },
+  "updateCheck_StartCheck": {
+    "message": "Kontrole Başla",
+    "description": "Start Check"
+  },
+  "updateCheck_NotificationCheck": {
+    "message": "Bildirim Kontrolü",
+    "description": "Notification Check"
+  },
+  "updateCheck_Episode": {
+    "message": "Bölüm",
+    "description": "Episode"
+  },
+  "updateCheck_Message": {
+    "message": "Mesaj",
+    "description": "Message"
+  },
+  "updateCheck_NotificationHistory": {
+    "message": "Bildirim Geçmişi",
+    "description": "Notification History"
+  },
+  "minimalApp_Overview": {
+    "message": "Genel Bakış",
+    "description": "Overview"
+  },
+  "minimalApp_Reviews": {
+    "message": "İncelemeler",
+    "description": "Reviews"
+  },
+  "minimalApp_Recommendations": {
+    "message": "Öneriler",
+    "description": "Recommendations"
+  },
+  "minimalApp_Settings": {
+    "message": "Ayarlar",
+    "description": "Settings"
+  },
+  "minimalClass_Popup": {
+    "message": "Lütfen bu websitesi için pop-uplara izin verin",
+    "description": "Please allow pop-ups for this website"
+  },
+  "minimalClass_versionMsg_Text_1": {
+    "message": "MAL-Sync'i indirdiğiniz için teşekkürler",
+    "description": "Update version - Text 1"
+  },
+  "installPage_Mode": {
+    "message": "Hangi anime veritabanını kullanmak istediğinizi seçin",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "MAL-Sync'in nasıl çalıştığını anlayın",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Veritabanı ile senkronizasyon yalnızca $Link1$destekli sayfalardan$LinkEnd1$ herhangi birinde bir bölüm veya kısım açtığınızda gerçekleşir - endişelenmeyin, favori web sitenizi kesinlikle listeye aldık!",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "Yanlış olduğunu düşündüğünüz bir anime veya manga nasıl düzeltebilirsiniz",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Kolaylıkla anime ilişkilerini alttaki GIF'te gösterildiği gibi değiştirebilirsiniz. Bir bölüm kaymasını da bu sayfadan ayarlayabilirsiniz.",
+    "description": "Description of the wrong section on the install page"
+  },
+  "Emby_Authenticate": {
+    "message": "MAL-Sync çalışması için bir Emby API anahtarına ihtiyaç duyar. Daha fazla bilgi için $Link1$şuraya tıklayın$Link2$",
+    "description": "Emby Authentication",
+    "placeholders": {
+      "Link1": {
+        "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Error_Authenticate": {
+    "message": "Lütfen $Link1$şuradan$Link2$doğrulamayı halledin",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"$1\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Discord_rpc_browsing": {
+    "message": "$Page$'de Geziniyor",
+    "description": "Discord rich Presence text if on overview page",
+    "placeholders": {
+      "Page": {
+        "content": "$1",
+        "example": "Mangadex"
+      }
+    }
+  },
+  "nextEpShort_no_support": {
+    "message": "Bu sayfa bir sonraki bölmü açma özelliğini desteklemiyor",
+    "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+  },
+  "nextEpShort_no_nextEp": {
+    "message": "Bir sonraki bölüm bulunamadı",
+    "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+  },
+  "Add": {
+    "message": "Ekle",
+    "description": "Button to add an anime/manga to user list"
+  },
+  "Ok": {
+    "message": "Tamam",
+    "description": "Ok"
+  },
+  "Cancel": {
+    "message": "İptal et",
+    "description": "Cancel"
+  },
+  "updated": {
+    "message": "Güncellendi",
+    "description": "Flash message that shows up after updating an anime/manga entry"
+  },
+  "removed": {
+    "message": "Kaldırıldı",
+    "description": "Flash message that shows up after removing an anime/manga entry from user list"
+  },
+  "settings_Mangasync_readerTracking": {
+    "message": "Sayfaların %$mangaCompletionPercentage$'si okunduktan sonra mangayı güncelle",
+    "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
+    "placeholders": {
+      "mangaCompletionPercentage": {
+        "content": "$1",
+        "example": "90"
+      }
+    }
+  },
+  "settings_read_more": {
+    "message": "Daha fazla",
+    "description": "Button to show more of the description"
+  },
+  "settings_read_less": {
+    "message": "Daha az",
+    "description": "Button to show less the description"
+  },
+  "settings_presenceShowButtons": {
+    "message": "anime/manga'yı MAL veya başka bir sağlayıcı da açmak için buton göster",
+    "description": "Show button to view the anime/manga on MAL or another provider"
+  },
+  "settings_presenceShowMalsync": {
+    "message": "Oynuyor etkinliğinde başlık kısmında anime/manga'nın başlığı yerine MAL-Sync'i göster",
+    "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
+  },
+  "Synchronize": {
+    "message": "Senkronize et",
+    "description": "Button to Synchronize state with mal..."
+  },
+  "Load": {
+    "message": "Yükle",
+    "description": "Button to load content"
+  },
+  "Anime": {
+    "message": "Anime",
+    "description": "General translation of anime for places like drop downs"
+  },
+  "Manga": {
+    "message": "Manga",
+    "description": "General translation of manga for places like drop downs"
+  },
+  "UI_Status_All": {
+    "message": "Tümü",
+    "description": "Dropdown text to show all anime on the users list"
+  },
+  "UI_Rules": {
+    "message": "Kurallar",
+    "description": "Rules text for the correction UI"
+  },
+  "syncPage_flashm_sync_manga_volume": {
+    "message": "$page$'i $epNr$ . Cilde güncelle",
+    "description": "Update MAL to volume 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flash_player_error": {
+    "message": "Video oynatıcısı algılanamadı. Lütfen şuradan manuel olarak ayarlayınız.",
+    "description": "Message if the video player could not be recognized"
+  },
+  "prediction_Last_anime": {
+    "message": "Son bölüm $time$ önce yayınlandı",
+    "description": "Text for last episode release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Episode_manga": {
+    "message": "Tahmini yeni bölüm $time$'da",
+    "description": "Text for next chapter estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Last_manga": {
+    "message": "Son bölüm $time$ önce yayınlandı",
+    "description": "Text for last chapter release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_next": {
+    "message": "Yeni Bölüm $time$ 'da",
+    "description": "Short Form Text for next episode/episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_incomplete": {
+    "message": "Bırakılmış",
+    "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
+  },
+  "prediction_ongoing": {
+    "message": "Devam Ediyor",
+    "description": "Header for the ongoing section in the translation/airing progress section"
+  },
+  "prediction_complete": {
+    "message": "Tamamlanmış",
+    "description": "Header for the complete translation/airing section"
+  },
+  "overview_Information": {
+    "message": "Bilgi",
+    "description": "Header of the information section of the popup anime overview"
+  },
+  "overview_Related": {
+    "message": "Bağlantılı oldukları",
+    "description": "Header of the anime/manga relations section of the popup anime overview"
+  },
+  "overview_Streaming": {
+    "message": "Burada bulunur",
+    "description": "Header of the streaming link section of the popup anime overview"
+  },
+  "settings_profile_no_login": {
+    "message": "Girilmedi",
+    "description": "Text if not logged in"
+  },
+  "settings_profile_logout": {
+    "message": "Çıkış",
+    "description": "Button to logout"
+  },
+  "settings_profile_check": {
+    "message": "Kontrol et",
+    "description": "Button to rechecks the login status"
+  },
+  "settings_profile_logged_via": {
+    "message": "$provider$ ile girildi",
+    "description": "Info about which provider is used to login",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "MyAnimeList"
+      }
+    }
+  },
+  "settings_StreamingSite_custom": {
+    "message": "Özel arama linkleri",
+    "description": "Header of the section where you can add your own custom search links"
+  },
+  "settings_StreamingSite_custom_url_anime": {
+    "message": "Anime arama URL'si",
+    "description": "Form field title to enter the search url for anime"
+  },
+  "settings_StreamingSite_custom_url_manga": {
+    "message": "Manga arama URL'si",
+    "description": "Form field title to enter the search url for manga"
+  },
+  "settings_anilist_update_ui": {
+    "message": "Arayüzü Güncelle",
+    "description": "UI in the aniList sidebar to update episodes progress and the score"
+  },
+  "settings_miniMAL_popup": {
+    "message": "Eklenti popup'ı",
+    "description": "Header of the settings section for the extension popup"
+  },
+  "settings_miniMAL_theme": {
+    "message": "Tema",
+    "description": "Label for the theme switch dropdown (light/dark theme)"
+  },
+  "settings_miniMAL_Display_Center": {
+    "message": "Orta",
+    "description": "miniMAL Display Center"
+  },
+  "settings_miniMAL_pwa": {
+    "message": "PWA websitesi",
+    "description": "Link to the PWA version of the extension popup"
+  },
+  "settings_donate": {
+    "message": "Bağış",
+    "description": "Link to donation page"
+  },
+  "settings_discord_join": {
+    "message": "Discord sunucumuza katılın",
+    "description": "Link to join discord"
+  },
+  "settings_help": {
+    "message": "Yardıma mı ihtiyacın var?",
+    "description": "Button that links to support"
+  },
+  "settings_miscellaneous": {
+    "message": "Çeşitli Ayarlar",
+    "description": "Header of the section of settings without specific theme"
+  },
+  "settings_listsync": {
+    "message": "Listeyi senkronize et",
+    "description": "Header of the section of List Sync settings"
+  },
+  "settings_listsync_background": {
+    "message": "Arkaplanda günlük olarak senkronize et",
+    "description": "Option to sync list once a day in the background"
+  },
+  "settings_progress": {
+    "message": "İlerleme tahmini",
+    "description": "Header of the section of progress estimation settings"
+  },
+  "settings_onsite": {
+    "message": "Site içi",
+    "description": "Header of the section to change onsite website appearance and features"
+  },
+  "settings_theming": {
+    "message": "Temalar",
+    "description": "Header of the theming section"
+  },
+  "settings_theming_sidebars": {
+    "message": "Yan çubuklar",
+    "description": "Option to disable the sidebars in the extension popup"
+  },
+  "settings_theming_color": {
+    "message": "Tema Rengi",
+    "description": "Option to select a custom theme color for the extension popup"
+  },
+  "settings_theming_background_image": {
+    "message": "Arkaplan Resmi",
+    "description": "Option to select a custom background image for the extension popup"
+  },
+  "settings_theming_background_opacity": {
+    "message": "Arkaplan Opaklığı",
+    "description": "Option to set the transparency of the UI in front of the background image"
+  },
+  "settings_loadPTWForProgress": {
+    "message": "İlerleme kontrolü için PTW/PTR'yi yükle",
+    "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
+  },
+  "settings_Interval_Default_Anime": {
+    "message": "Varsayılan Anime",
+    "description": "Dropdown label for selecting the global progress anime source"
+  },
+  "settings_Interval_Default_Manga": {
+    "message": "Varsayılan Manga",
+    "description": "Dropdown label for selecting the global progress manga source"
+  },
+  "settings_tracking": {
+    "message": "Takip Ayarları",
+    "description": "tracking settings header"
+  },
+  "settings_tracking_disabled": {
+    "message": "Takip etme devre dışı bırakıldı",
+    "description": "Header for section with websites with disabled tracking"
+  },
+  "settings_presence_largeimage_cover": {
+    "message": "Kapak Resmi",
+    "description": "Dropdown option to show the cover from mal on discord"
+  },
+  "settings_presence_largeimage_website": {
+    "message": "Website İkonu",
+    "description": "Dropdown option to show the server icon on discord"
+  },
+  "settings_presence_largeimage_malsync": {
+    "message": "MAL-Sync İkonu",
+    "description": "Dropdown option to show the malsync icon on discord"
+  },
+  "settings_enabled": {
+    "message": "Etkinleştirildi",
+    "description": "Checkbox if feature is enabled"
+  },
+  "settings_ProgressCheck": {
+    "message": "İlerleme kontrolü",
+    "description": "Header for the progress section in the settings"
+  },
+  "settings_presence_largeimage": {
+    "message": "RPC Resmi",
+    "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+  },
+  "settings_progress_dropdown": {
+    "message": "Tahmin Kaynağı:",
+    "description": "Text over the dropdown to select the Episode estimation/prediction source"
+  },
+  "settings_progress_disabled": {
+    "message": "Devre dışı bırakıldı",
+    "description": "Dropdown option to disable the estimation for an anime/manga"
+  },
+  "settings_progress_default": {
+    "message": "Varsayılan",
+    "description": "Dropdown option to use the default in the estimation for an anime/manga"
+  },
+  "settings_website_button": {
+    "message": "Websiteler",
+    "description": "Button that leads to the config page where individual pages can be disabled"
+  },
+  "settings_custom_domains_button": {
+    "message": "Özel domainler / alan adları",
+    "description": "Button that leads to the custom domain configuration page"
+  },
+  "settings_custom_domains_missing_permissions_header": {
+    "message": "Eksik izinler algılandı",
+    "description": "Section header for asking to allow missing domain permissions"
+  },
+  "settings_custom_domains_missing_permissions_long": {
+    "message": "Bazı sayfa izinleri henüz verilmemiş",
+    "description": "Asking to allow missing domain permissions"
+  },
+  "settings_custom_domains_disclaimer": {
+    "message": "Bu özellik, alan adı değişikliklerini ve kendi kendine barındırılan kaynakları işlemek için mevcut sitelere özel alan adları eklemeye izin verir, ancak yeni siteler ekleyemez.",
+    "description": "Text on the custom domain configuration page"
+  },
+  "settings_custom_domains_wrong": {
+    "message": "Ayarlar yanlış!",
+    "description": "Error text if the configuration is not correct"
+  },
+  "settings_clean_tags_button": {
+    "message": "Tagleri Temizle",
+    "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
+  },
+  "settings_more_info": {
+    "message": "Daha fazla bilgi",
+    "description": "Link button which links to more informations"
+  },
+  "filler_recap_confirm": {
+    "message": "Bu bölüm MyAnimeList'te recap olarak işaretlendi, geçmek istiyor musun?",
+    "description": "Question if the user wants to skip the recap"
+  },
+  "settings_custom_domains_position": {
+    "message": "Pozisyon",
+    "description": "Position of the quicklinks"
+  },
+  "settings_custom_position_below": {
+    "message": "Alttaki Bilgiler",
+    "description": "Position of the quicklinks below the information section"
+  },
+  "discord_rpc_view_anime": {
+    "message": "Anime'yi İncele",
+    "description": "Discord view anime button"
+  },
+  "discord_rpc_view_manga": {
+    "message": "Manga'yı İncele",
+    "description": "Discord view manga button"
+  },
+  "settings_filler": {
+    "message": "Filler/recap bölümleri var mı diye kontrol et",
+    "description": "Option to enable filler checking"
+  },
+  "settings_filler_text": {
+    "message": "BU, bölümün MyAnimeList'de filler/recap olarak işaretlenip işaretlenmediğine bakacak",
+    "description": "filler tooltip"
+  },
+  "filler_filler_confirm": {
+    "message": "Bu bölüm MyAnimeList'te filler olarak işaretlendi, geçmek istiyor musun?",
+    "description": "Question if the user wants to skip the filler"
+  },
+  "list_sorting_history": {
+    "message": "En son güncellenenler",
+    "description": "Dropdown option to sort list by last updated"
+  },
+  "settings_theming_theme_system": {
+    "message": "Sistem",
+    "description": "Dropdown option to set the theme to the system (dark/light) theme"
+  },
+  "settings_theming_theme_light": {
+    "message": "Beyaz",
+    "description": "Dropdown option to set the theme to the light theme"
+  },
+  "settings_theming_theme_dark": {
+    "message": "Siyah",
+    "description": "Dropdown option to set the theme to the dark theme"
+  },
+  "settings_theming_theme_custom": {
+    "message": "Özel",
+    "description": "Dropdown option to set the theme to custom witch shows a color picker"
+  },
+  "list_sorting_unread": {
+    "message": "Okunmadı",
+    "description": "Dropdown option to sort list by unread"
+  },
+  "list_sorting_alpha": {
+    "message": "Alfabetik",
+    "description": "Dropdown option to sort list alphabetic"
+  },
+  "list_sorting_score": {
+    "message": "Skor",
+    "description": "Dropdown option to sort list by score"
+  },
+  "overview_sidebar_Score": {
+    "message": "Puan:",
+    "description": "Info table on overview - Score: 7.65"
+  },
+  "overview_sidebar_Mal_Score": {
+    "message": "MAL Puanı:",
+    "description": "Info table on overview - MAL Score: 7.65"
+  },
+  "overview_sidebar_Ranked": {
+    "message": "Sıralama:",
+    "description": "Info table on overview - Ranked: #317"
+  },
+  "overview_sidebar_Status": {
+    "message": "Durum:",
+    "description": "Info table on overview - Status: Finished"
+  },
+  "overview_sidebar_Members": {
+    "message": "Üyeler:",
+    "description": "Info table on overview - Members: 1337"
+  },
+  "overview_sidebar_Start_Date": {
+    "message": "Başlama Tarihi:",
+    "description": "Info table on overview - Start Date: 10.10.2010"
+  },
+  "overview_sidebar_End_Date": {
+    "message": "Bitiş Tarihi:",
+    "description": "Info table on overview - End Date: 10.10.2010"
+  },
+  "overview_sidebar_Source": {
+    "message": "Kaynak:",
+    "description": "Info table on overview - Source: Light Novel"
+  },
+  "overview_sidebar_Volumes": {
+    "message": "Ciltler:",
+    "description": "Info table on overview - Volumes: 12"
+  },
+  "overview_synonyms": {
+    "message": "Alternatifler",
+    "description": "Text of a button that shows the alternative names for an entry"
+  },
+  "overview_sidebar_Episodes": {
+    "message": "Bölümler:",
+    "description": "Info table on overview - Episodes: 12"
+  },
+  "overview_sidebar_Chapters": {
+    "message": "Cilt:",
+    "description": "Info table on overview - Chapters: 12"
+  },
+  "overview_sidebar_Season": {
+    "message": "Sezon:",
+    "description": "Info table on overview - Season: Spring 2014"
+  },
+  "overview_sidebar_Votes": {
+    "message": "Oylar:",
+    "description": "Info table on overview - Votes: 1423"
+  },
+  "overview_sidebar_Licensor": {
+    "message": "Lisans sahibi:",
+    "description": "Info table on overview - Licensor: AT-X"
+  },
+  "overview_sidebar_Aired": {
+    "message": "Şu Tarihte Yayınlandı:",
+    "description": "Info table on overview - Aired: 2014-04-09 to 2014-06-25"
+  },
+  "overview_sidebar_Authors": {
+    "message": "Yazarlar:",
+    "description": "Info table on overview - Authors: Kamiya, Yuu"
+  },
+  "overview_sidebar_external_links": {
+    "message": "Harici Bağlantılar:",
+    "description": "Info table on overview - External Links: Official Site, Hulu"
+  },
+  "settings_anilist_update_ui_tooltip": {
+    "message": "Açılır pencereyi açmak zorunda kalmadan AniList'teki bölüm sayınızı, derecelendirmenizi ve durumunuzu hızlı bir şekilde güncellemenizi sağlar.",
+    "description": "Tooltip for the Update UI option"
+  },
+  "settings_miniMAL_floatButtonStealth_tooltip": {
+    "message": "İlerleme göstergesini (ekranınızın altında) varsayılan olarak şeffaf hale getirir ve kendini daha hızlı gizlemesini sağlar",
+    "description": "Stealth UI mode tooltip. Lowers the visibility of some malSync UI elements"
+  },
+  "settings_miniMAL_minimizeBigPopup_tooltip": {
+    "message": "MAL-Sync'te ekranın çoğunu kaplayan büyük bilgi kutularını bir tıklamayla en aza indirir.",
+    "description": "Shows an 'action required' popup hidding big popups"
+  },
+  "settings_Notifications_Sticky": {
+    "message": "Kalıcı Bildirimler",
+    "description": "Requires interaction to dismiss; ignores system notification timeout"
+  },
+  "overview_sidebar_Genres": {
+    "message": "Tür:",
+    "description": "Info table on overview - Genres: Action"
+  },
+  "overview_sidebar_Format": {
+    "message": "Tür:",
+    "description": "Info table on overview - Format: Movie"
+  },
+  "overview_sidebar_Rating": {
+    "message": "Derecelendirme:",
+    "description": "Info table on overview - Rating: PG-13"
+  },
+  "overview_sidebar_Broadcast": {
+    "message": "Yayınlanma Tarihi:",
+    "description": "Info table on overview - Broadcast: Wednesday at 21:30 (JST)"
+  },
+  "overview_sidebar_Studios": {
+    "message": "Stüdyo:",
+    "description": "Info table on overview - Studios: Madhouse"
+  },
+  "settings_StreamingSite_custom_url_name": {
+    "message": "İsim",
+    "description": "Placeholder text the field that sets the custom url name"
+  },
+  "overview_sidebar_Popularity": {
+    "message": "Popülarite:",
+    "description": "Info table on overview - Popularity: #15"
+  },
+  "overview_sidebar_Favorites": {
+    "message": "Favoriler:",
+    "description": "Info table on overview - Favorites: 15423"
+  },
+  "settings_custom_domains_permissions_not_supported": {
+    "message": "Tarayıcı veya geçerli pencere uzantıya izin vermiyor , lütfen https://malsync.moe/pwa url'si ile tekrar deneyin veya uzantı açılır penceresini kullanın.",
+    "description": "Text that is shown when the browser does not support adding new permissions"
+  },
+  "overview_sidebar_Duration": {
+    "message": "Süre:",
+    "description": "Info table on overview - Duration: 23 min"
+  },
+  "installPage_Login_Successful": {
+    "message": "Harika, $Username$! Artık kimliğiniz doğrulandı ve gitmeye hazırsınız.",
+    "description": "Text after the user successfully authenticated",
+    "placeholders": {
+      "Username": {
+        "content": "$1",
+        "example": "lolamtisch"
+      }
+    }
+  },
+  "installPage_Howto_Notes": {
+    "message": "Senkronizasyon daha sonra ayarlardan yapılandırılabilir - istediğiniz şekilde özelleştirmekten çekinmeyin!",
+    "description": "The synchronization settings can be changed later"
+  },
+  "installPage_Description_paragraph1": {
+    "message": "Hızlı bağlantılar, temel olarak, seçtiğiniz video/okuma sitesini açan düğmelerdir - herhangi bir anime/manga için her genel bakış sayfasında bulunurlar.",
+    "description": "paragraph one of the description"
+  },
+  "overview_sidebar_Total_Playtime": {
+    "message": "Toplam Oynatılma Sayısı:",
+    "description": "Info table on overview - Total Playtime: 276 mins"
+  },
+  "overview_sidebar_Serialization": {
+    "message": "Seri:",
+    "description": "Info table on overview - Serialization: Big Comic Original"
+  },
+  "installPage_Start_Description": {
+    "message": "Başlamak için basit bir görüşme yapalım - bir dakikadan az sürer!",
+    "description": "Start description text"
+  },
+  "installPage_Howto_Anime_Description": {
+    "message": "Senkronizasyon, videonun %85'i izlenince yapılır.",
+    "description": "When the sync is executed for anime"
+  },
+  "installPage_Howto_Manga_Description": {
+    "message": "Senkronizasyon sayfa yüklendiğinde gerçekleşir ve birkaç sayfa için bölümün %80'i okununca gerçekleşir.",
+    "description": "When the sync is executed for manga"
+  },
+  "installPage_Links": {
+    "message": "Tercih edilen hızlı bağlantıları seçin - favori siteleriniz tek tık uzağınızda",
+    "description": "Header for the quicklinks section during the install"
+  },
+  "installPage_Description_paragraph2": {
+    "message": "Örneğin, Crunchyroll'da anime izlemeyi seviyorsanız, Crunchyroll'un hızlı bağlantısı her anime sayfasında görünecektir. Bu, favori sitelerinize tek bir tıklamayla erişmenin kolay bir yoludur!",
+    "description": "paragraph two of the description"
+  },
+  "list_sorting_airing_date": {
+    "message": "Yayın tarihi",
+    "description": "Dropdown option to sort list by airing date"
+  },
+  "next": {
+    "message": "Sonraki",
+    "description": "Next button"
+  },
+  "back": {
+    "message": "Geri",
+    "description": "Back button"
+  },
+  "start": {
+    "message": "Başlat",
+    "description": "Start button"
+  },
+  "Error_Blocked": {
+    "message": "IP'niz $Page$'de yasaklandı, IP'nizi değiştirin veya yasağın kalkmasını bekleyin. Geçici bir aksaklık olması da bunun bir nedeni olabilir.",
+    "description": "Error message when the user is blocked on a website",
+    "placeholders": {
+      "Page": {
+        "content": "$1",
+        "example": "MyAnimeList"
+      }
+    }
+  },
+
+  "settings_LocalSync_Label": {
+    "message": "Yerel Senkronizasyon Dışa Aktar",
+    "description": "Label where the import/export buttons are to backup the local saved anime/manga"
+  },
+  "settings_LocalSync_Help_Before": {
+    "message": "Sorun yaşarsanız lütfen tekrar deneyin",
+    "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
+  },
+  "settings_LocalSync_Help_LinkText": {
+    "message": "bu pencere",
+    "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
+  },
+  "settings_permissions_overview": {
+    "message": "İzinler",
+    "description": "Button that leads to where permissions to sites can be managed"
+  },
+  "settings_permissions_required": {
+    "message": "Gerekli",
+    "description": "Header text for the list of required permissions"
+  },
+  "settings_permissions_pages": {
+    "message": "Sayfalar",
+    "description": "Header text for the list of page permissions"
+  },
+  "settings_permissions_player": {
+    "message": "Video Oynatıcı",
+    "description": "Header text for the list of video player permissions"
+  },
+  "locale": {
+    "message": "tr",
+    "description": "Current locale"
+  },
+  "overview_sidebar_Published": {
+    "message": "Yayınlandı:"
+  },
+
+  "settings_listsync_syncinprogress": {
+    "message": "Senkronize ediliyor lütfen bekleyin:"
+  },
+  "settings_listsync_syncbutton": {
+    "message": "Senkronize et"
+  },
+  "settings_listsync_score": {
+    "message": "Puan:"
+  },
+  "settings_listsync_status": {
+    "message": "Durum:"
+  },
+  "settings_listsync_startdate": {
+    "message": "Başlanma Tarihi:"
+  },
+  "settings_listsync_finishdate": {
+    "message": "Bitirme Tarihi:"
+  },
+  "settings_listsync_repeatcount_anime": {
+    "message": "Yeniden İzleme Sayısı:"
+  },
+  "settings_listsync_itemcount": {
+    "message": "Senkronize edilecek öğeler:"
+  },
+  "settings_listsync_updates": {
+    "message": "Güncellenecekler"
+  },
+  "settings_listsync_progress_anime": {
+    "message": "B:"
+  },
+  "settings_listsync_unknowndate": {
+    "message": "ayarlanmadı"
+  },
+  "settings_listsync_repeatcount_manga": {
+    "message": "Yeniden Okuma Sayısı:"
+  },
+  "settings_listsync_provider_done": {
+    "message": "Tamamlandı"
+  },
+  "settings_listsync_list": {
+    "message": "Liste:"
+  },
+  "settings_listsync_missing": {
+    "message": "Eksik"
+  },
+  "overview_sidebar_Producers": {
+    "message": "Yapımcılar:"
+  },
+  "overview_sidebar_Themes": {
+    "message": "Temalar:"
+  },
+  "overview_sidebar_Type": {
+    "message": "Tür:"
+  },
+  "overview_sidebar_Licensors": {
+    "message": "Lisansör:"
+  },
+  "settings_listsync_master": {
+    "message": "Ana Site"
+  },
+  "settings_listsync_slave": {
+    "message": "Kopya"
+  },
+  "settings_Mangasync_readerTracking_percentage": {
+    "message": "Bölümü belirtilen yüzdeye göre okundu olarak güncelle"
+  },
+  "settings_listsync_progress_manga": {
+    "message": "B:"
+  },
+  "settings_listsync_volume": {
+    "message": "Cilt:"
+  },
+  "overview_sidebar_Premiered": {
+    "message": "Prömiyer:"
+  },
+  "overview_sidebar_Demographic": {
+    "message": "Tür:"
+  },
+  "settings_Video_UniversalAutoTrack": {
+    "message": "Otomatik Video Takibi (Evrensel)",
+    "description": "Universal Video Tracking"
+  },
+  "settings_ForceEnglishTitles": {
+    "message": "Başlıkları İngilizceye Zorla",
+    "description": "Force English Titles"
+  },
+  "settings_AskBefore": {
+    "message": "Bölümün başında 'tamamlandı' onay kutusunu göster",
+    "description": "Show completed checkbox at start"
+  }
 }

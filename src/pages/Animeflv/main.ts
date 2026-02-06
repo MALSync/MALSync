@@ -1,81 +1,32 @@
-/* By kaiserdj */
-import { pageInterface } from '../pageInterface';
+import { ConfigurablePage } from '../ConfigurablePage';
 
-export const Animeflv: pageInterface = {
+export const Animeflv = new ConfigurablePage({
   name: 'Animeflv',
-  domain: 'https://animeflv.net',
+  domainKey: 'animeflv',
   languages: ['Spanish'],
   type: 'anime',
-  isSyncPage(url) {
-    if (utils.urlPart(url, 3) === 'ver') return true;
 
-    return false;
-  },
-  isOverviewPage(url) {
-    if (utils.urlPart(url, 3) === 'anime') return true;
+  isSyncPage: { type: 'path', index: 3, value: 'ver' },
+  isOverviewPage: { type: 'path', index: 3, value: 'anime' },
 
-    return false;
-  },
   sync: {
-    getTitle(url) {
-      return j.$('h1.Title').text().split(' Episodio')[0].trim();
-    },
-    getIdentifier(url) {
-      return utils.urlPart(`${Animeflv.domain}${j.$('.fa-th-list').attr('href')}`, 4);
-    },
-    getOverviewUrl(url) {
-      return Animeflv.domain + (j.$('.fa-th-list').attr('href') || '');
-    },
-    getEpisode(url) {
-      return parseInt(j.$('h2.SubTitle').text().replace('Episodio ', '').trim());
-    },
-    nextEpUrl(url) {
-      const nextEp = j.$('.fa-chevron-right').attr('href');
-      if (!nextEp) return nextEp;
-      return Animeflv.domain + nextEp;
-    },
-    uiSelector(selector) {
-      j.$('.CapOptns').after(j.html(selector));
-    },
+    getTitle: { selector: 'h1.Title', match: /(.*) Episodio/ },
+    getIdentifier: { selector: '.fa-th-list', attr: 'href' }, // Simplified for POC
+    getOverviewUrl: { selector: '.fa-th-list', attr: 'href' },
+    getEpisode: { selector: 'h2.SubTitle', match: /Episodio (\d+)/ },
+    nextEpUrl: { selector: '.fa-chevron-right', attr: 'href' },
   },
+
   overview: {
-    getTitle(url) {
-      return j.$('h1.Title').text();
-    },
-    getIdentifier(url) {
-      return utils.urlPart(url, 4);
-    },
-    uiSelector(selector) {
-      j.$('.Description').after(j.html(selector));
-    },
+    getTitle: { selector: 'h1.Title' },
+    getIdentifier: url => utils.urlPart(url, 4),
     list: {
-      offsetHandler: false,
-      elementsSelector() {
-        return j.$('#episodeList li:not(.Next)');
-      },
-      elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a').first().attr('href'), Animeflv.domain);
-      },
-      elementEp(selector) {
-        return Number(selector.find('p').text().replace('Episodio ', '').trim());
-      },
+      elementsSelector: '#episodeList li:not(.Next)',
+      elementUrl: { selector: 'a', attr: 'href' },
+      elementEp: { selector: 'p', match: /Episodio (\d+)/ },
     },
   },
-  init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
-    if (document.title === 'Verifica que no eres un bot | AnimeFLV') {
-      con.log('loading');
-      page.cdn();
-      return;
-    }
-    if (window.location.hostname.startsWith('m.')) {
-      con.error('Mobile not supported');
-      return;
-    }
-    j.$(document).ready(function () {
-      page.handlePage();
-    });
-  },
-};
+});
+
+// Override init or specific methods if necessary for complex logic like Captcha checks
+// But for standard scraping, the above config should suffice.

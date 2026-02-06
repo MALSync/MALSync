@@ -1,53 +1,33 @@
-let inter;
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// cspell:ignore autofull vstr vplayer mgvideo vilos Akira plyr flashm
 
-const logger = con.m('Player');
+const logger: any = con.m('Player');
 
-export function getPlayerTime(callback) {
-  clearInterval(inter);
-  inter = setInterval(function () {
-    const players = document.getElementsByTagName('video');
-    for (let i = 0; i < players.length; i++) {
-      const player: any = players[i];
-      const { duration } = player;
-      const current = player.currentTime;
-      const { paused } = player;
-
-      if (duration && duration > 60) {
-        const item = {
-          current,
-          duration,
-          paused,
-        };
-        logger.debug(window.location.href, item);
-        callback(item, player);
-        playerExtras(item, player);
-        break;
-      }
-    }
-  }, 1000);
-}
-
+let inter: number | null = null;
 let videoIdentifier = '';
 
-function playerExtras(item, player) {
-  const tempVideoIdentifier = player.currentSrc;
-  if (item.current > 1 && videoIdentifier !== tempVideoIdentifier) {
-    videoIdentifier = tempVideoIdentifier;
-    logger.log('New player detected', player.currentSrc);
-
-    setFullscreen(player);
-  }
-}
-
-async function setFullscreen(player) {
-  if (!(await api.settings.getAsync('autofull'))) return;
+const exitHandler = (player: HTMLVideoElement) => {
   if (
-    window.fullScreen ||
+    (document as any).webkitIsFullScreen ||
+    (document as any).mozFullScreen ||
+    (document as any).msFullscreenElement !== null
+  ) {
+    player.removeAttribute('controls');
+  }
+};
+
+async function setFullscreen(player: HTMLVideoElement) {
+  if (!(await (api as any).settings.getAsync('autofull'))) return;
+  if (
+    (window as any).fullScreen ||
     (window.innerWidth === window.screen.width && window.innerHeight === window.screen.height)
   ) {
-    con.info('Browser already in fullscreen');
+    (con as any).info('Browser already in fullscreen');
   } else {
-    let playerEl = player;
+    let playerEl: HTMLElement = player;
 
     const ids = ['player', 'vstr', 'vplayer', 'mgvideo', 'myVideo', 'b-video-wrapper', 'vilos'];
 
@@ -55,7 +35,7 @@ async function setFullscreen(player) {
 
     let found = false;
 
-    for (const i in ids) {
+    for (let i = 0; i < ids.length; i++) {
       const playerTemp = document.getElementById(ids[i]);
       if (playerTemp !== null) {
         found = true;
@@ -64,12 +44,14 @@ async function setFullscreen(player) {
       }
     }
 
-    for (const i in classes) {
-      const classTemp = document.getElementsByClassName(classes[i]).item(0);
-      if (classTemp !== null) {
-        found = true;
-        playerEl = classTemp;
-        break;
+    if (!found) {
+      for (let i = 0; i < classes.length; i++) {
+        const classTemp = document.getElementsByClassName(classes[i]).item(0);
+        if (classTemp !== null) {
+          found = true;
+          playerEl = classTemp as HTMLElement;
+          break;
+        }
       }
     }
 
@@ -89,52 +71,78 @@ async function setFullscreen(player) {
 
     if (!found && !player.getAttribute('controls')) {
       if (document.addEventListener) {
-        document.addEventListener('fullscreenchange', exitHandler, false);
-        document.addEventListener('mozfullscreenchange', exitHandler, false);
-        document.addEventListener('MSFullscreenChange', exitHandler, false);
-        document.addEventListener('webkitfullscreenchange', exitHandler, false);
-      }
-
-      function exitHandler() {
-        if (
-          document.webkitIsFullScreen ||
-          document.mozFullScreen ||
-          document.msFullscreenElement !== null
-        ) {
-          player.removeAttribute('controls', 'controls');
-        }
+        document.addEventListener('fullscreenchange', () => exitHandler(player), false);
+        document.addEventListener('mozfullscreenchange', () => exitHandler(player), false);
+        document.addEventListener('MSFullscreenChange', () => exitHandler(player), false);
+        document.addEventListener('webkitfullscreenchange', () => exitHandler(player), false);
       }
 
       player.setAttribute('controls', 'controls');
     }
 
     if (playerEl.requestFullscreen) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       playerEl.requestFullscreen();
-    } else if (playerEl.msRequestFullscreen) {
-      playerEl.msRequestFullscreen();
-    } else if (playerEl.mozRequestFullScreen) {
-      playerEl.mozRequestFullScreen();
-    } else if (playerEl.webkitRequestFullscreen) {
-      playerEl.webkitRequestFullscreen();
+    } else if ((playerEl as any).msRequestFullscreen) {
+      (playerEl as any).msRequestFullscreen();
+    } else if ((playerEl as any).mozRequestFullScreen) {
+      (playerEl as any).mozRequestFullScreen();
+    } else if ((playerEl as any).webkitRequestFullscreen) {
+      (playerEl as any).webkitRequestFullscreen();
     }
   }
 }
 
-export function fullscreenNotification(text: string) {
-  if (api.settings.get('floatButtonStealth')) return;
-  const fullscreenElement =
-    document.fullscreenElement ||
-    // @ts-ignore
-    document.mozFullScreenElement ||
-    // @ts-ignore
-    document.webkitFullscreenElement ||
-    document.msFullscreenElement;
+const playerExtras = (item: { current: number }, player: HTMLVideoElement) => {
+  const tempVideoIdentifier = player.currentSrc;
+  if (item.current > 1 && videoIdentifier !== tempVideoIdentifier) {
+    videoIdentifier = tempVideoIdentifier;
+    logger.log('New player detected', player.currentSrc);
 
-  if (fullscreenElement) {
-    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
-    const flashmEl = j
-      .$(
-        j.html(`
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    setFullscreen(player);
+  }
+};
+
+export function getPlayerTime(callback: (item: any, player: HTMLVideoElement) => void) {
+  if (inter) clearInterval(inter);
+  inter = window.setInterval(() => {
+    if (!(api as any).settings.get('autoPlayerTracking')) return;
+    const players = document.getElementsByTagName('video');
+    for (let i = 0; i < players.length; i++) {
+      const player = players[i];
+      const { duration } = player;
+      const current = player.currentTime;
+      const { paused } = player;
+
+      if (duration && duration > 60) {
+        const item = {
+          current,
+          duration,
+          paused,
+        };
+        logger.debug(window.location.href, item);
+        callback(item, player);
+        playerExtras(item, player);
+        break;
+      }
+    }
+  }, 1000);
+}
+
+export function fullscreenNotification(text: string) {
+  if (!(api as any).settings.get('floatButtonStealth')) {
+    const fullscreenElement =
+      document.fullscreenElement ||
+      // @ts-expect-error - vendor specific property
+      document.mozFullScreenElement ||
+      // @ts-expect-error - vendor specific property
+      document.webkitFullscreenElement ||
+      (document as any).msFullscreenElement;
+
+    if (fullscreenElement) {
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+      const flashmHtml = (j as any).html(`
         <div style="
           all: initial;
           position: absolute;
@@ -157,16 +165,19 @@ export function fullscreenNotification(text: string) {
             text-align: center;
           ">${text}</div>
         </div>
-        `),
-      )
-      .appendTo(j.$(fullscreenElement));
+        `);
+      const flashmEl: any = (j as any).$(flashmHtml);
 
-    flashmEl
-      .slideDown(400)
-      .delay(2000)
-      .slideUp(400, () => {
-        flashmEl.remove();
-      });
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+      (j as any).$(fullscreenElement).append(flashmEl);
+
+      flashmEl
+        .slideDown(400)
+        .delay(2000)
+        .slideUp(400, () => {
+          flashmEl.remove();
+        });
+    }
   }
 }
 
@@ -226,7 +237,7 @@ export function shortcutListener(callback) {
 
     window.addEventListener(
       'focus',
-      function() {
+      function () {
         keyMap = {};
       },
       false,
@@ -236,7 +247,7 @@ export function shortcutListener(callback) {
       const keys = api.settings.get(option);
       if (!keys.length) return false;
       let shortcutTrue = true;
-      keys.forEach(function(sKey) {
+      keys.forEach(function (sKey) {
         if (!keyMap[sKey]) {
           shortcutTrue = false;
         }
@@ -246,3 +257,4 @@ export function shortcutListener(callback) {
     }
   }
 }
+

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-argument, @typescript-eslint/naming-convention */
+// cspell:ignore hostpermission, registred
 import { ChibiListRepository } from '../pages-chibi/loader/ChibiListRepository';
 import { isIframeUrl } from '../utils/manifest';
 
@@ -5,47 +7,7 @@ const logger = con.m('Custom Domain');
 
 export type domainType = { domain: string; page: string; auto?: boolean; chibi?: boolean };
 
-export async function initCustomDomain() {
-  updateListener();
-  await registerScripts();
-  logger.log('Initialed');
-}
-
-function updateListener() {
-  chrome.permissions.onAdded.addListener(registerScripts);
-  chrome.permissions.onRemoved.addListener(registerScripts);
-  api.storage.storageOnChanged((changes, namespace) => {
-    if (namespace === 'sync' && changes['settings/customDomains']) {
-      logger.log('settings/customDomains changed');
-      registerScripts();
-    }
-  });
-}
-
-async function registerScripts() {
-  if (typeof chrome.scripting === 'undefined') {
-    con.error('Custom Domain is not possible');
-    return;
-  }
-
-  let domains: domainType[] = await api.settings.getAsync('customDomains');
-
-  try {
-    const chibiRepo = await ChibiListRepository.getInstance().init();
-    const chibiDomains = chibiRepo.getPermissions();
-    domains = domains.concat(chibiDomains);
-  } catch (e) {
-    logger.error('Could not load chibi permissions', e);
-  }
-
-  await chrome.scripting.unregisterContentScripts();
-  if (domains) {
-    await Promise.all(domains.map(registerScript));
-  }
-
-  const scripts = await chrome.scripting.getRegisteredContentScripts();
-  logger.log(scripts);
-}
+let isRegistering = false;
 
 async function registerScript(domainConfig: domainType) {
   if (domainConfig.page === 'hostpermission') return;
@@ -77,7 +39,80 @@ async function registerScript(domainConfig: domainType) {
     return;
   }
 
-  logger.m('registred').m(domainConfig.page).log(fixDomain);
+  logger.m('registered').m(domainConfig.page).log(fixDomain);
+}
+
+async function registerScripts() {
+  if (typeof chrome.scripting === 'undefined') {
+    con.error('Custom Domain is not possible');
+    return;
+  }
+
+  if (isRegistering) {
+    logger.log('Already registering, skipping');
+    return;
+  }
+  isRegistering = true;
+
+  try {
+    let domains: domainType[] = await api.settings.getAsync('customDomains');
+
+    try {
+      const chibiRepo = await ChibiListRepository.getInstance().init();
+      const chibiDomains = chibiRepo.getPermissions();
+      domains = domains.concat(chibiDomains);
+    } catch (e) {
+      logger.error('Could not load chibi permissions', e);
+    }
+
+    // Deduplicate domains by their pattern (id)
+    const uniqueDomains: domainType[] = [];
+    const seenDomains = new Set<string>();
+    for (let i = 0; i < domains.length; i++) {
+      const d = domains[i];
+      if (!seenDomains.has(d.domain)) {
+        uniqueDomains.push(d);
+        seenDomains.add(d.domain);
+      }
+    }
+
+    await chrome.scripting.unregisterContentScripts();
+    if (uniqueDomains.length > 0) {
+      // Register one by one or in batches to avoid internal race conditions if any
+      await Promise.all(uniqueDomains.map(registerScript));
+    }
+
+    const scripts = await chrome.scripting.getRegisteredContentScripts();
+    logger.log(scripts);
+  } finally {
+    isRegistering = false;
+  }
+}
+
+function updateListener() {
+  chrome.permissions.onAdded.addListener(registerScripts);
+  chrome.permissions.onRemoved.addListener(registerScripts);
+  api.storage.storageOnChanged((changes, namespace) => {
+    if (namespace === 'sync' && changes['settings/customDomains']) {
+      logger.log('settings/customDomains changed');
+      registerScripts().catch(e => logger.error(e));
+    }
+    return undefined;
+  });
+}
+
+export async function initCustomDomain() {
+  updateListener();
+  await registerScripts();
+  logger.log('Initialed');
+}
+
+function getComparableDomains(domainOrigin) {
+  const scriptDomain = domainOrigin.match(/^.+:\/\/?(.+)/);
+  if (scriptDomain && scriptDomain.length > 1) {
+    return scriptDomain[1].replace('*.', '').replace(/(\/|\/?\*)$/, '');
+  }
+  return '';
 }
 
 export async function cleanupCustomDomains() {
@@ -97,7 +132,7 @@ export async function cleanupCustomDomains() {
   const customDomains = await api.settings.getAsync('customDomains');
 
   if (customDomains) {
-    api.settings.set(
+    await api.settings.set(
       'customDomains',
       customDomains.filter(customDomain => {
         const domain = getComparableDomains(customDomain.domain);
@@ -106,12 +141,4 @@ export async function cleanupCustomDomains() {
       }),
     );
   }
-}
-
-function getComparableDomains(domainOrigin) {
-  const scriptDomain = domainOrigin.match(/^.+:\/\/?(.+)/);
-  if (scriptDomain && scriptDomain.length > 1) {
-    return scriptDomain[1].replace('*.', '').replace(/(\/|\/?\*)$/, '');
-  }
-  return '';
 }

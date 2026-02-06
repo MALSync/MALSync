@@ -10,6 +10,15 @@ import { getRulesCacheKey } from '../singleFactory';
 import { RulesClass } from './rulesClass';
 
 import { getSyncMode } from '../helper';
+import { pageInterface } from '../../pages/pageInterface';
+import { SyncPage } from '../../pages/syncPage';
+
+interface Logger {
+  log: (...args: unknown[]) => void;
+  info: (...args: unknown[]) => void;
+  error: (...args: unknown[]) => void;
+  m: (name: string, color?: string) => Logger;
+}
 
 interface SearchResult {
   id?: number;
@@ -23,32 +32,36 @@ interface SearchResult {
   };
 }
 
+/* eslint-disable es-x/no-class-instance-fields */
 export class SearchClass {
-  private sanitizedTitle;
+  private sanitizedTitle: string;
 
-  private page;
+  private page: pageInterface | undefined;
 
-  private syncPage;
+  private syncPage: SyncPage | undefined;
 
-  private localUrl = '';
+  private localUrl: string;
 
-  protected state: SearchResult | false = false;
+  protected state: SearchResult | false;
 
-  protected logger;
+  protected logger: Logger;
 
-  changed = false;
+  changed: boolean;
 
   constructor(
     protected title: string,
     protected type: 'anime' | 'manga' | 'novel',
     protected identifier: string,
   ) {
+    this.localUrl = '';
+    this.state = false;
+    this.changed = false;
     this.identifier += '';
     this.sanitizedTitle = this.sanitizeTitle(this.title);
-    this.logger = con.m('search', 'red');
+    this.logger = con.m('search', 'red') as unknown as Logger;
   }
 
-  setPage(page) {
+  setPage(page: pageInterface) {
     this.page = page;
   }
 
@@ -56,7 +69,7 @@ export class SearchClass {
     this.localUrl = url;
   }
 
-  setSyncPage(syncPage) {
+  setSyncPage(syncPage: SyncPage) {
     this.syncPage = syncPage;
   }
 
@@ -71,7 +84,7 @@ export class SearchClass {
     return null;
   }
 
-  setUrl(url, id = 0) {
+  setUrl(url: string, id = 0) {
     if (this.state) {
       if (this.state.url !== url) this.changed = true;
       this.state.provider = 'user';
@@ -96,7 +109,7 @@ export class SearchClass {
       };
     }
 
-    this.setCache(this.state);
+    this.setCache(this.state).catch(e => this.logger.error(e));
   }
 
   getOffset(): number {
@@ -110,8 +123,8 @@ export class SearchClass {
     if (this.state) {
       if (this.state.offset !== offset) this.changed = true;
       this.state.offset = offset;
+      this.setCache(this.state).catch(e => this.logger.error(e));
     }
-    this.setCache(this.state);
   }
 
   async getCachedOffset(): Promise<number> {
@@ -136,7 +149,7 @@ export class SearchClass {
     return 'manga';
   }
 
-  public sanitizeTitle(title) {
+  public sanitizeTitle(title: string): string {
     let resTitle = title.replace(
       / *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\)|\(novel\)|\(wn\)|\(ln\))/i,
       '',
@@ -176,37 +189,39 @@ export class SearchClass {
     return this.state;
   }
 
-  protected async getCache() {
-    return api.storage.get(`${this.page.name}/${this.identifier}/Search`).then(state => {
-      if (state) state.cache = true;
-      return state;
-    });
+  protected async getCache(): Promise<SearchResult | false> {
+    if (!this.page) return false;
+    return api.storage
+      .get(`${this.page.name}/${this.identifier}/Search`)
+      .then((state: SearchResult | false) => {
+        if (state) state.cache = true;
+        return state;
+      });
   }
 
-  protected setCache(cache) {
-    cache = JSON.parse(JSON.stringify(cache));
+  protected setCache(cache: SearchResult | false) {
+    if (!this.page) return Promise.resolve();
+    const cleanCache = JSON.parse(JSON.stringify(cache)) as SearchResult | false;
     setTimeout(() => {
-      this.databaseRequest();
+      this.databaseRequest().catch(e => this.logger.error(e));
     }, 200);
-    return api.storage.set(`${this.page.name}/${this.identifier}/Search`, cache);
+    return api.storage.set(`${this.page.name}/${this.identifier}/Search`, cleanCache);
   }
 
-  static similarity(externalTitle, title, titleArray: string[] = []) {
-    let simi = compareTwoStrings(title.toLowerCase(), externalTitle.toLowerCase());
+  static similarity(externalTitle: string, title: string, titleArray: (string | undefined)[] = []) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    let simValue = compareTwoStrings(title.toLowerCase(), externalTitle.toLowerCase()) as number;
     titleArray.forEach(el => {
       if (el) {
-        const tempSimi = compareTwoStrings(title.toLowerCase(), el.toLowerCase());
-        if (tempSimi > simi) simi = tempSimi;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+        const tempSim = compareTwoStrings(title.toLowerCase(), el.toLowerCase()) as number;
+        if (tempSim > simValue) simValue = tempSim;
       }
     });
-    let found = false;
-    if (simi > 0.6) {
-      found = true;
-    }
 
     return {
-      same: found,
-      value: simi,
+      same: simValue > 0.8,
+      value: simValue,
     };
   }
 
@@ -231,7 +246,7 @@ export class SearchClass {
     let result: SearchResult | false = false;
 
     try {
-      result = searchCompare(result, await this.malSync());
+      result = this.searchCompare(result, await this.malSync());
     } catch (e) {
       if (this.page && this.page.database)
         this.logger.error('MALSync api error or not supported', e);
@@ -239,17 +254,17 @@ export class SearchClass {
 
     if ((result && result.provider !== 'firebase') || !result) {
       try {
-        result = searchCompare(result, await this.malSearch());
+        result = this.searchCompare(result, await this.malSearch());
       } catch (e) {
-        this.logger.m(e);
+        this.logger.error(e);
       }
     }
 
     if ((result && result.provider !== 'firebase') || !result) {
       try {
-        result = searchCompare(result, await this.pageSearch(), 0.5);
+        result = this.searchCompare(result, await this.pageSearch(), 0.5);
       } catch (e) {
-        this.logger.m(e);
+        this.logger.error(e);
       }
     }
 
@@ -266,20 +281,24 @@ export class SearchClass {
           result = temp;
         }
       } catch (e) {
-        this.logger.m(e);
+        this.logger.error(e);
       }
     }
 
     return result;
+  }
 
-    function searchCompare(curVal, newVal, threshold = 0) {
-      if (curVal !== false && newVal !== false && newVal.similarity.value > threshold) {
-        if (curVal.similarity.value >= newVal.similarity.value) return curVal;
-        return newVal;
-      }
-      if (curVal !== false) return curVal;
+  protected searchCompare(
+    curVal: SearchResult | false,
+    newVal: SearchResult | false,
+    threshold = 0,
+  ) {
+    if (curVal !== false && newVal !== false && newVal.similarity.value > threshold) {
+      if (curVal.similarity.value >= newVal.similarity.value) return curVal;
       return newVal;
     }
+    if (curVal !== false) return curVal;
+    return newVal;
   }
 
   public async firebase(): Promise<SearchResult | false> {
@@ -287,9 +306,9 @@ export class SearchClass {
 
     const logger = this.logger.m('Firebase');
 
-    const url = `https://kissanimelist.firebaseio.com/Data2/${
-      this.page.database
-    }/${encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase()}/Mal.json`;
+    const url = `https://kissanimelist.firebaseio.com/Data2/${this.page.database}/${encodeURIComponent(
+      this.identifierToDbKey(this.identifier),
+    ).toLowerCase()}/Mal.json`;
     logger.log(url);
     const response = await api.request.xhr('GET', url);
 
@@ -300,17 +319,19 @@ export class SearchClass {
       response.responseText.includes('error')
     )
       return false;
-    let matches;
+    let matches: { [key: string]: string } | undefined;
     try {
-      matches = JSON.parse(response.responseText);
-    } catch (e) {
+      matches = JSON.parse(response.responseText) as { [key: string]: string };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (e: any) {
+      if (e) logger.error(e);
       logger.info('Parse failed');
       return false;
     }
 
     if (!matches || Object.keys(matches).length === 0) return false;
 
-    const id = Object.keys(matches)[0];
+    const [id] = Object.keys(matches);
 
     let returnUrl = '';
 
@@ -330,9 +351,9 @@ export class SearchClass {
   public async malSync(): Promise<SearchResult | false> {
     const logger = this.logger.m('API');
 
-    if (!this.page) return false;
+    if (!this.page || !this.page.database) return false;
     const dbPl = this.page.database;
-    if (!dbPl) return false;
+
     const url = `https://api.malsync.moe/page/${dbPl}/${encodeURIComponent(
       this.identifierToDbKey(this.identifier),
     ).toLowerCase()}`;
@@ -341,17 +362,29 @@ export class SearchClass {
     const response = await api.request.xhr('GET', url);
     logger.log('Response', response);
 
-    if (response.status !== 400 && response.status !== 200) throw new Error('malsync offline');
+    if (response.status !== 400 && response.status !== 200) {
+      throw new Error('malsync offline');
+    }
 
-    if (response.status === 400 && response.responseText?.includes('error')) return false;
+    if (response.status === 400 && response.responseText && response.responseText.includes('error'))
+      return false;
 
-    const res = JSON.parse(response.responseText);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const res: {
+      malUrl?: string;
+      aniUrl?: string;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      [key: string]: any;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } = JSON.parse(response.responseText);
 
     let pageUrl = res.malUrl;
 
     if (!pageUrl && res.aniUrl && getSyncMode(this.getNormalizedType()) === 'ANILIST') {
       pageUrl = res.aniUrl;
     }
+
+    if (!pageUrl) return false;
 
     return {
       url: pageUrl,
@@ -373,27 +406,34 @@ export class SearchClass {
 
     logger.log(url);
 
-    function handleResult(response, i, This: SearchClass): SearchResult {
-      const link = getLink(response, i);
+    const handleResult = (
+      response: { responseText: string },
+      i: number,
+      context: SearchClass,
+    ): SearchResult => {
+      const link = this.getLink(response, i);
       let id = 0;
       let sim = { same: false, value: 0 };
-      if (link !== false) {
+      if (link !== false && link !== undefined) {
         try {
-          if (This.type === 'manga' || This.type === 'novel') {
-            const typeCheck = response.responseText
-              .split(`href="${link}" id="si`)[1]
-              .split('</tr>')[0];
+          if (context.type === 'manga' || context.type === 'novel') {
+            const split1 = response.responseText.split(`href="${link}" id="si`);
+            if (split1.length < 2) return handleResult(response, i + 1, context);
+            const [typeCheck] = split1[1].split('</tr>');
             const linkIsNovel = typeCheck.indexOf('Novel') !== -1;
 
-            if ((This.type === 'manga' && linkIsNovel) || (This.type === 'novel' && !linkIsNovel)) {
+            if (
+              (context.type === 'manga' && linkIsNovel) ||
+              (context.type === 'novel' && !linkIsNovel)
+            ) {
               logger.log(`${linkIsNovel ? 'Novel Found' : 'Novel Not found'} check next entry`);
-              return handleResult(response, i + 1, This);
+              return handleResult(response, i + 1, context);
             }
           }
 
-          const malTitle = getTitle(response, link);
-          sim = SearchClass.similarity(malTitle, This.sanitizedTitle);
-          id = parseInt(link.split('/')[4]);
+          const malTitle = this.getTitle(response, link);
+          sim = SearchClass.similarity(malTitle, context.sanitizedTitle);
+          id = parseInt(link.split('/')[4] || '0');
         } catch (e) {
           logger.error(e);
         }
@@ -401,52 +441,67 @@ export class SearchClass {
 
       return {
         id,
-        url: link,
+        url: link || '',
         offset: 0,
         provider: 'mal',
         similarity: sim,
       };
-    }
-
-    function getLink(response, i) {
-      try {
-        return response.responseText.split('<a class="hoverinfo_trigger" href="')[i].split('"')[0];
-      } catch (e) {
-        logger.error(e);
-        try {
-          return response.responseText
-            .split('class="picSurround')
-            [i].split('<a')[1]
-            .split('href="')[1]
-            .split('"')[0];
-        } catch (e2) {
-          logger.error(e2);
-          return false;
-        }
-      }
-    }
-
-    function getTitle(response, link) {
-      try {
-        const id = link.split('/')[4];
-        return response.responseText.split(`rel="#sinfo${id}"><strong>`)[1].split('<')[0];
-      } catch (e) {
-        logger.error(e);
-        return '';
-      }
-    }
+    };
 
     const response = await api.request.xhr('GET', url);
 
-    if (!response || response.responseText?.includes('  error ')) return false;
-    if (!response || response.responseText?.includes('No titles that matched')) return false;
+    if (!response || (response.responseText && response.responseText.includes('  error ')))
+      return false;
+    if (
+      !response ||
+      (response.responseText && response.responseText.includes('No titles that matched'))
+    )
+      return false;
 
-    return handleResult(response, 1, this);
+    return handleResult(response as { responseText: string }, 1, this);
+  }
+
+  protected getLink(response: { responseText: string }, i: number): string | false {
+    try {
+      const parts = response.responseText.split('<a class="hoverinfo_trigger" href="');
+      if (parts.length <= i) return false;
+      const [link] = parts[i].split('"');
+      return link;
+    } catch (e) {
+      this.logger.error(e);
+      try {
+        const parts = response.responseText.split('class="picSurround');
+        if (parts.length <= i) return false;
+        const [, linkPart] = parts[i].split('<a');
+        if (!linkPart) return false;
+        const [, hrefPart] = linkPart.split('href="');
+        if (!hrefPart) return false;
+        const [finalLink] = hrefPart.split('"');
+        return finalLink;
+      } catch (e2) {
+        this.logger.error(e2);
+        return false;
+      }
+    }
+  }
+
+  protected getTitle(response: { responseText: string }, link: string): string {
+    try {
+      const [, , , , id] = link.split('/');
+      if (!id) return '';
+      const parts = response.responseText.split(`rel="#sinfo${id}"><strong>`);
+      if (parts.length < 2) return '';
+      const [title] = parts[1].split('<');
+      return title;
+    } catch (e) {
+      this.logger.error(e);
+      return '';
+    }
   }
 
   public async pageSearch(): Promise<SearchResult | false> {
     const searchResult = await pageSearch(this.sanitizedTitle, this.getNormalizedType());
-    let best: any = null;
+    let best: { index: number; similarity: { same: boolean; value: number } } | null = null;
     for (let i = 0; i < searchResult.length && i < 5; i++) {
       const el = searchResult[i];
       const sim = SearchClass.similarity(el.name, this.sanitizedTitle, el.altNames);
@@ -488,32 +543,34 @@ export class SearchClass {
       if (this.state.provider === 'firebase') return;
       if (this.state.provider === 'local') return;
 
-      let kissurl;
-      if (!kissurl) {
-        if (this.page.isSyncPage(this.syncPage.url)) {
-          kissurl = this.page.sync.getOverviewUrl(this.syncPage.url);
-          if (this.page.database === 'Crunchyroll') {
-            kissurl = `${this.syncPage.url}`;
-          }
-        } else {
-          if (this.page.database === 'Crunchyroll') {
-            logger.log('CR block');
-            return;
-          }
-          kissurl = this.syncPage.url;
+      let syncUrl = '';
+      if (this.page.isSyncPage(this.syncPage.url as string)) {
+        syncUrl = this.page.sync.getOverviewUrl(this.syncPage.url as string);
+        if (this.page.database === 'Crunchyroll') {
+          syncUrl = `${this.syncPage.url}`;
         }
+      } else {
+        if (this.page.database === 'Crunchyroll') {
+          logger.log('CR block');
+          return;
+        }
+        syncUrl = this.syncPage.url as string;
       }
+
+      if (!syncUrl) return;
+
       const param: {
         pageUrl: string;
         malUrl: string;
         correction: boolean;
         page: string;
       } = {
-        pageUrl: kissurl,
+        pageUrl: syncUrl,
         malUrl: this.state.url,
         correction: false,
         page: this.page.database,
       };
+
       if (this.state.provider === 'user') {
         if (
           !(await utils.flashConfirm(
@@ -533,29 +590,42 @@ export class SearchClass {
         .xhr('POST', {
           url,
           data: JSON.stringify(param),
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           headers: { 'Content-Type': 'application/json' },
         })
         .then(response => {
           try {
-            const res = JSON.parse(response.responseText);
-            if (res.error) throw res;
+            const res = JSON.parse(response.responseText) as { error?: unknown };
+            if (res.error) {
+              // eslint-disable-next-line
+              throw res;
+            }
             logger.log('Send to database:', res);
           } catch (e) {
             logger.error('Send to database:', e);
           }
+        })
+        .catch(e => {
+          logger.error('Send to database xhr error:', e);
         });
     }
   }
 
   public async onsiteSearch(): Promise<false | SearchResult> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (this.page && this.syncPage && this.syncPage.curState && this.syncPage.curState.on) {
       let result: false | string = false;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (this.syncPage.curState.on === 'OVERVIEW') {
         if (this.page.overview && this.page.overview.getMalUrl) {
-          result = await this.page.overview.getMalUrl(api.settings.get('syncMode'));
+          result = await this.page.overview.getMalUrl(
+            api.settings.get('syncMode') as 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI',
+          );
         }
       } else if (this.page.sync && this.page.sync.getMalUrl) {
-        result = await this.page.sync.getMalUrl(api.settings.get('syncMode'));
+        result = await this.page.sync.getMalUrl(
+          api.settings.get('syncMode') as 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI',
+        );
       }
       if (result) {
         this.logger.m('Onsite').log('[SEARCH]', 'Overwrite by onsite url', result);
@@ -577,27 +647,31 @@ export class SearchClass {
     /* Implemented in vueSearchClass */
   }
 
-  protected identifierToDbKey(title) {
-    if (this.page.database === 'Crunchyroll') {
-      return encodeURIComponent(title.toLowerCase().split('#')[0]).replace(/\./g, '%2E');
+  protected identifierToDbKey(title: string) {
+    if (!title) return '';
+    const db = this.page ? this.page.database : undefined;
+    const [cleanTitle] = title.toLowerCase().split('#');
+    if (db === 'Crunchyroll') {
+      return encodeURIComponent(cleanTitle).replace(/\./g, '%2E');
     }
-    if (this.page.database === 'MangaFire') {
-      return encodeURIComponent(title.toLowerCase().split('#')[0]);
+    if (db === 'MangaFire') {
+      return encodeURIComponent(cleanTitle);
     }
-    return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
+    return cleanTitle.replace(/\./g, '%2E');
   }
 
   // Rules
   rules: RulesClass | undefined;
 
   async initRules() {
-    const logger = con.m('Rules');
+    const logger = con.m('Rules') as unknown as Logger;
     const url = this.getUrl();
     logger.log('Url', url);
     if (url) {
       const cacheKeyObj = await getRulesCacheKey(url);
       logger.log('Cachekey', cacheKeyObj);
       this.rules = await new RulesClass(cacheKeyObj.rulesCacheKey, this.getNormalizedType()).init();
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return cacheKeyObj.singleObj;
     }
     return undefined;

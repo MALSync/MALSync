@@ -729,11 +729,7 @@
     "type": "manga",
     "name": "Madarascans"
   },
-  {
-    "domain": "https://asuracomic.net/",
-    "type": "manga",
-    "name": "AsuraScans"
-  },
+
   {
     "domain": "https://franime.fr",
     "type": "anime",

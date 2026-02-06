@@ -2,6 +2,8 @@ import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
 import SettingsHr from './settings-hr.vue';
 
+// cspell:ignore autofull autoresume
+
 export const video: ConfObj[] = [
   {
     key: 'autofull',
@@ -32,6 +34,16 @@ export const video: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+  {
+    key: 'autoPlayerTracking',
+    title: () => api.storage.lang('settings_Video_UniversalAutoTrack'),
+    props: {
+      component: 'checkbox',
+      option: 'autoPlayerTracking',
+    },
+    component: SettingsGeneral,
+  },
+
   {
     key: 'nextEpShort',
     title: () => api.storage.lang('settings_Shortcuts_Next_Episode'),

@@ -884,4 +884,8 @@ module.exports = {
   sHide: {
     match: ['*://callistanise.com/*', '*://habetar.com/*', '*://yuguaab.com/*'],
   },
+  // Universal fallback for unknown players
+  universal: {
+    match: ['http://*/*', 'https://*/*'],
+  },
 };

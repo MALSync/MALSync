@@ -2,11 +2,41 @@ import { pageInterface } from '../pageInterface';
 import { ScriptProxy } from '../../utils/scriptProxy';
 import { SafeError } from '../../utils/errors';
 
-let seasonData: any;
-let episodeData: any;
-let nextEpisodeData: any;
-let titleName: any;
-let titleId: any;
+interface NetflixEpisodeData {
+  id: number;
+  seq: number;
+}
+
+interface NetflixSeasonData {
+  seq: number;
+  episodes: NetflixEpisodeData[];
+}
+
+interface NetflixMetadata {
+  models: {
+    services: {
+      data: {
+        memberapi: {
+          hostname: string;
+          path: string[];
+        };
+      };
+    };
+  };
+  video: {
+    id: number;
+    title: string;
+    type: string;
+    seasons: NetflixSeasonData[];
+    currentEpisode: number;
+  };
+}
+
+let seasonData: NetflixSeasonData | { seq: number };
+let episodeData: NetflixEpisodeData | { seq: number };
+let nextEpisodeData: NetflixEpisodeData | undefined;
+let titleName: string;
+let titleId: number;
 
 const genres = [
   2797624,
@@ -43,8 +73,8 @@ const genres = [
 // Define the variable proxy element:
 const proxy = new ScriptProxy('Netflix');
 
-async function extractMetadata() {
-  const meta: any = await proxy.getData();
+async function extractMetadata(): Promise<NetflixMetadata> {
+  const meta = (await proxy.getData()) as NetflixMetadata;
 
   if (!(meta instanceof Object)) {
     throw new Error('Invalid metadata');
@@ -62,7 +92,7 @@ async function getSeries(page) {
       `https://${meta.models.services.data.memberapi.hostname}${meta.models.services.data.memberapi.path[0]}/metadata?movieid=${videoId}`,
     )
     .then(response => {
-      const data = JSON.parse(response.responseText);
+      const data = JSON.parse(response.responseText) as { video: NetflixMetadata['video'] };
 
       if (!data || !data.video) {
         throw new SafeError('no data found');
@@ -77,7 +107,9 @@ async function getSeries(page) {
         let anime = false;
         const genresRaw = response2.responseText.match(/"genres":\s*\[.*?\]/i);
         if (genresRaw && genresRaw.length) {
-          const genresParsed = JSON.parse(`{${genresRaw[0].replace(/\\/gm, '\\\\')}}`);
+          const genresParsed = JSON.parse(`{${genresRaw[0].replace(/\\/gm, '\\\\')}}`) as {
+            genres: { id: number }[];
+          };
           // eslint-disable-next-line no-restricted-syntax
           for (const genre of genresParsed.genres) {
             if (genres.includes(genre.id)) {
@@ -91,21 +123,26 @@ async function getSeries(page) {
           return;
         }
         if (data.video.type !== 'movie' && data.video.seasons) {
-          seasonData = data.video.seasons.find(season => {
-            episodeData = season.episodes.find(episode => {
+          const sData = data.video.seasons.find(season => {
+            const eData = season.episodes.find(episode => {
               return episode.id === data.video.currentEpisode;
             });
-            return episodeData;
+            if (eData) {
+              episodeData = eData;
+              return true;
+            }
+            return false;
           });
-          try {
-            nextEpisodeData =
-              seasonData.episodes[
-                seasonData.episodes.findIndex(episode => {
-                  return episode.id === episodeData.id;
-                }) + 1
-              ];
-          } catch (e) {
-            nextEpisodeData = undefined;
+
+          if (sData) {
+            seasonData = sData;
+            try {
+              const episodes = (seasonData as NetflixSeasonData).episodes;
+              const currentId = (episodeData as NetflixEpisodeData).id;
+              nextEpisodeData = episodes[episodes.findIndex(episode => episode.id === currentId) + 1];
+            } catch (e) {
+              nextEpisodeData = undefined;
+            }
           }
         } else {
           seasonData = {
@@ -173,6 +210,7 @@ export const Netflix: pageInterface = {
       if (utils.urlPart(window.location.href, 3) === 'watch') {
         utils.waitUntilTrue(
           function () {
+            // @ts-ignore
             return j.$('[data-videoid]').length;
           },
           function () {

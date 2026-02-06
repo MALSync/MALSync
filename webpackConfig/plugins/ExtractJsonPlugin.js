@@ -1,9 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import { createRequire } from 'module';
-import webpack from 'webpack';
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
 
-export class ExtractJsonPlugin {
+class ExtractJsonPlugin {
   constructor(options) {
     this.options = {
       entryName: '',
@@ -24,7 +23,7 @@ export class ExtractJsonPlugin {
         'expose-loader?exposes=_extractJson!' + typescriptFile,
         {
           name: entryName,
-          filename: '../temp/[name].js'
+          filename: '../temp/[name].js',
         },
       );
       entry.apply(compiler);
@@ -39,7 +38,9 @@ export class ExtractJsonPlugin {
 
       const outputFiles = entrypoint.getFiles();
       if (!outputFiles.length) {
-        const error = new Error(`ExtractJsonPlugin: No output files found for entry '${entryName}'`);
+        const error = new Error(
+          `ExtractJsonPlugin: No output files found for entry '${entryName}'`,
+        );
         return callback(error);
       }
 
@@ -48,13 +49,12 @@ export class ExtractJsonPlugin {
 
       setTimeout(() => {
         try {
-          const require = createRequire(import.meta.url);
-
           if (require.cache[outputPath]) {
             delete require.cache[outputPath];
           }
           delete globalThis._extractJson;
           global.jQuery = {};
+          // eslint-disable-next-line
           const module = require(outputPath);
           const jsonData = globalThis._extractJson.default();
 
@@ -75,7 +75,7 @@ export class ExtractJsonPlugin {
               const fileSize = stats.size;
               let fileSizeDisplay = `${fileSize} bytes`;
               console.log(
-                `asset \x1b[32m${filename}/${key}.json\x1b[0m ${fileSizeDisplay} \x1b[33m[extracted]\x1b[0m`
+                `asset \x1b[32m${filename}/${key}.json\x1b[0m ${fileSizeDisplay} \x1b[33m[extracted]\x1b[0m`,
               );
             }
           } else {
@@ -106,4 +106,4 @@ export class ExtractJsonPlugin {
   }
 }
 
-export default ExtractJsonPlugin;
+exports.default = ExtractJsonPlugin;

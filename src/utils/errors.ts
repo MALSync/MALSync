@@ -32,3 +32,13 @@ export class CustomDomainError extends Error {
     this.name = 'CustomDomainError';
   }
 }
+
+export class NetworkError extends Error {
+  public status;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = 'NetworkError';
+    this.status = status;
+  }
+}

@@ -1,6 +1,8 @@
+import { SITE_DOMAINS } from '../../config/siteDomains';
 import { pageInterface } from '../pageInterface';
+import type { SyncPage } from '../syncPage';
 
-function GetOverviewAnchor() {
+function getOverviewAnchor() {
   const anchor = document.querySelector('a[href^="/anime"]') as HTMLAnchorElement;
 
   if (!anchor) {
@@ -10,13 +12,13 @@ function GetOverviewAnchor() {
   return anchor;
 }
 
-function RemoveTurkishPhrases(title: string) {
+function removeTurkishPhrases(title: string) {
   // "izle" or "İzle" is the translation of the word "watch" or "Watch"
   // Regexp can be test it out in here https://regex101.com/r/gULQnv/1
   return title.replace(/(?: |-)[İi]zle.*/i, '');
 }
 
-function IsOverviewUrl(url: string) {
+function isOverviewUrl(url: string) {
   return /\/anime\//.test(url);
 }
 
@@ -24,9 +26,10 @@ function IsOverviewUrl(url: string) {
 // overview page url: https://www.tranimeizle.net/anime/one-punch-man-izle-hd
 // sync page url: https://www.tranimeizle.net/one-punch-man-1-bolum-izle
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const TRanimeizle: pageInterface = {
   name: 'TRanimeizle',
-  domain: 'https://www.tranimeizle.net/',
+  domain: `${SITE_DOMAINS.trAnimeizle.main}/`,
   languages: ['Turkish'],
   type: 'anime',
   isSyncPage(_url: string) {
@@ -34,22 +37,22 @@ export const TRanimeizle: pageInterface = {
     const [, path] = url.pathname.split('/');
 
     // "bolum" is the translation of the word "episode"
-    return path?.toLowerCase().includes('-bolum-');
+    return !!(path && path.toLowerCase().includes('-bolum-'));
   },
   sync: {
     getTitle: () => {
-      const overviewAnchor = GetOverviewAnchor();
+      const overviewAnchor = getOverviewAnchor();
 
-      return RemoveTurkishPhrases(overviewAnchor.innerText);
+      return removeTurkishPhrases(overviewAnchor.innerText);
     },
     getOverviewUrl: () => {
-      const overviewAnchor = GetOverviewAnchor();
+      const overviewAnchor = getOverviewAnchor();
 
       return overviewAnchor.href;
     },
     getIdentifier: () => {
       const overviewUrl = TRanimeizle.sync.getOverviewUrl('');
-      const identifier = TRanimeizle.overview?.getIdentifier(overviewUrl);
+      const identifier = TRanimeizle.overview && TRanimeizle.overview.getIdentifier(overviewUrl);
 
       if (!identifier) {
         throw Error("Can't find identifier");
@@ -61,10 +64,8 @@ export const TRanimeizle: pageInterface = {
       if (!url) return NaN;
 
       // plunderer-18-bolum-izle -> "18" is the episode number
-      // ghost-22-1-bolum-izle -> "1" is the episode number
-      // regexp will return the episode number in group 1
-      // Regexp can be test it out in here https://regex101.com/r/VrbOgK/1
-      return Number(url.replace(/.*-(\d{1,})-.*/, '$1') || undefined);
+      const match = url.match(/.*-(\d{1,})-.*/);
+      return Number(match ? match[1] : undefined);
     },
     nextEpUrl: () => {
       const nextEpisodeAnchor = document.querySelector(
@@ -89,22 +90,16 @@ export const TRanimeizle: pageInterface = {
         throw Error("Can't find title element");
       }
 
-      return RemoveTurkishPhrases(titleElement.innerText);
+      return removeTurkishPhrases(titleElement.innerText);
     },
-    uiSelector: HTML => {
+    uiSelector: html => {
       const statusBarContainerElement = document.querySelector('div.animeDetail') as HTMLDivElement;
 
       if (!statusBarContainerElement) {
         throw Error("Can't find the element where the status bar will be placed");
       }
 
-      const wrapper = document.createElement('div');
-
-      // No need satisfy the rule on this line because wrapper will have escaped HTML content
-      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
-      statusBarContainerElement.prepend(wrapper);
-
-      wrapper.insertAdjacentHTML('beforebegin', j.html(HTML));
+      j.$(statusBarContainerElement).prepend(j.html(html));
     },
     getIdentifier: (url: string) => {
       const identifier = utils.urlPart(url, 4);
@@ -117,14 +112,13 @@ export const TRanimeizle: pageInterface = {
       offsetHandler: false,
       elementsSelector: () => j.$('.animeDetail-playlist > .animeDetail-items > ol > li'),
       elementUrl: ($element: JQuery<HTMLElement>) => {
-        // episodeSlug: plunderer-1-bolum-izle
-        const episodeSlug: string = $element.data('slug');
+        const href = $element.children().first().attr('href');
 
-        if (!episodeSlug) {
-          throw Error('Unable to get slug from element');
+        if (!href) {
+          throw Error('Unable to get href from element');
         }
 
-        return `${TRanimeizle.domain}/${episodeSlug}`;
+        return utils.absoluteLink(href, TRanimeizle.domain as string) as string;
       },
       elementEp: (episodeElement: JQuery<HTMLElement>) => {
         const slug = episodeElement.children().first().attr('href');
@@ -133,10 +127,9 @@ export const TRanimeizle: pageInterface = {
           throw Error('Unable to get slug');
         }
 
-        // https://regex101.com/r/KlUgJd/1
         const matches = slug.match(/.*?-(\d{1,})-bolum-izle/) || [];
 
-        if (!matches) {
+        if (matches.length === 0) {
           throw Error('Unable to find episode number');
         }
 
@@ -144,15 +137,18 @@ export const TRanimeizle: pageInterface = {
       },
     },
   },
-  init(page) {
-    // eslint-disable-next-line import/no-unresolved, global-require
+  init(page: SyncPage) {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+      // eslint-disable-next-line
+      (require('!to-string-loader!css-loader!less-loader!./style.less') as any).toString(),
     );
 
     j.$(() => {
-      if (!TRanimeizle.isSyncPage(page.url) && !IsOverviewUrl(page.url)) return;
+      const url = page.url as string;
+      if (!TRanimeizle.isSyncPage(url) && !isOverviewUrl(url)) return;
 
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       page.handlePage();
     });
   },

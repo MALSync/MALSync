@@ -10,68 +10,38 @@ const { getVirtualScript } = require('./utils/general');
 const ExtractJsonPlugin = require('./plugins/ExtractJsonPlugin').default;
 
 let entry = {
-  'content-script': path.join(
-    __dirname,
-    '..',
-    'src/index-webextension/content.ts',
-  ),
-  'mal-script': path.join(
-    __dirname,
-    '..',
-    'src/index-webextension/myanimelist.ts',
-  ),
-  'anilist-script': path.join(
-    __dirname,
-    '..',
-    'src/index-webextension/anilist.ts',
-  ),
-  'kitsu-script': path.join(
-    __dirname,
-    '..',
-    'src/index-webextension/kitsu.ts',
-  ),
-  'simkl-script': path.join(
-    __dirname,
-    '..',
-    'src/index-webextension/simkl.ts',
-  ),
-  'oauth-script': path.join(
-    __dirname,
-    '..',
-    'src/index-webextension/oauth.ts',
-  ),
-  'oauth-anilist-script': path.join(
-    __dirname,
-    '..',
-    'src/index-webextension/anilistOauth.ts',
-  ),
-  'oauth-shiki-script': path.join(
-    __dirname,
-    '..',
-    'src/index-webextension/shikiOauth.ts',
-  ),
-  'pwa-script': path.join(
-    __dirname,
-    '..',
-    'src/index-webextension/pwa.ts',
-  ),
+  'content-script': path.join(__dirname, '..', 'src/index-webextension/content.ts'),
+  'mal-script': path.join(__dirname, '..', 'src/index-webextension/myanimelist.ts'),
+  'anilist-script': path.join(__dirname, '..', 'src/index-webextension/anilist.ts'),
+  'kitsu-script': path.join(__dirname, '..', 'src/index-webextension/kitsu.ts'),
+  'simkl-script': path.join(__dirname, '..', 'src/index-webextension/simkl.ts'),
+  'oauth-script': path.join(__dirname, '..', 'src/index-webextension/oauth.ts'),
+  'oauth-anilist-script': path.join(__dirname, '..', 'src/index-webextension/anilistOauth.ts'),
+  'oauth-shiki-script': path.join(__dirname, '..', 'src/index-webextension/shikiOauth.ts'),
+  'pwa-script': path.join(__dirname, '..', 'src/index-webextension/pwa.ts'),
   iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   popup: path.join(__dirname, '..', 'src/popup.ts'),
-  chibi: 'expose-loader?exposes=_PageChibi|Chibi!' + path.join(__dirname, '..', 'src', 'pages-chibi', 'ChibiProxy.ts'),
-}
+  chibi:
+    'expose-loader?exposes=_PageChibi|Chibi!' +
+    path.join(__dirname, '..', 'src', 'pages-chibi', 'ChibiProxy.ts'),
+};
 
 pages.forEach(page => {
   pageRoot = path.join(__dirname, '..', 'src/pages/', page);
-  entry['page_' + page] = 'expose-loader?exposes=_Page|' + page + '!' + path.join(pageRoot, 'main.ts');
+  entry['page_' + page] =
+    'expose-loader?exposes=_Page|' + page + '!' + path.join(pageRoot, 'main.ts');
   if (fs.existsSync(path.join(pageRoot, 'proxy.ts'))) {
-    entry['proxy/proxy_' + page] = getVirtualScript('proxy_' + page, `
+    entry['proxy/proxy_' + page] = getVirtualScript(
+      'proxy_' + page,
+      `
       import { script } from './src/pages/${page}/proxy.ts';
       import { ScriptProxyWrapper } from './src/utils/scriptProxyWrapper.ts';
 
       ScriptProxyWrapper(script);
-    `);
+    `,
+    );
   }
-})
+});
 
 console.log(entry);
 
@@ -84,6 +54,7 @@ module.exports = {
         loader: 'ts-loader',
         exclude: /node_modules/,
         options: {
+          transpileOnly: true,
           appendTsSuffixTo: [/\.vue$/],
         },
       },
@@ -139,7 +110,7 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist', 'webextension'),
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({
+    /* new ForkTsCheckerWebpackPlugin({
       typescript: {
         configFile: path.resolve(__dirname, '../tsconfig.json'),
         extensions: {
@@ -149,7 +120,7 @@ module.exports = {
           },
         },
       },
-    }),
+    }), */
     new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),

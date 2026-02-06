@@ -6,7 +6,7 @@ const packageJson = require('../package.json');
 const { getKeys } = require('./utils/keys');
 
 plugins = [
-  new webpack.NormalModuleReplacementPlugin(/(.*)-general/, function(resource) {
+  new webpack.NormalModuleReplacementPlugin(/(.*)-general/, function (resource) {
     resource.request = resource.request.replace(/-general/, `-${appTarget}`);
   }),
   new webpack.ProvidePlugin({
@@ -19,7 +19,7 @@ plugins = [
     __VUE_PROD_DEVTOOLS__: false,
     __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
   }),
-]
+];
 
 module.exports = {
   entry: {
@@ -29,8 +29,11 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        loader: 'ts-loader',
         exclude: /node_modules/,
+        options: {
+          transpileOnly: true,
+        },
       },
     ],
   },

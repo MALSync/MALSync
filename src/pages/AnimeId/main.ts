@@ -1,69 +1,32 @@
-/* By kaiserdj */
-import { pageInterface } from '../pageInterface';
+import { ConfigurablePage } from '../ConfigurablePage';
 
-export const AnimeId: pageInterface = {
+export const AnimeId = new ConfigurablePage({
   name: 'AnimeId',
-  domain: 'https://www.animeid.tv',
+  domainKey: 'animeId',
   languages: ['Spanish'],
   type: 'anime',
-  isSyncPage(url) {
-    if (utils.urlPart(url, 3) === 'v') return true;
 
-    return false;
-  },
-  isOverviewPage(url) {
-    if (j.$('section#capitulos')[0]) return true;
+  isSyncPage: { type: 'path', index: 3, value: 'v' },
+  isOverviewPage: { type: 'custom', matchFn: () => j.$('section#capitulos').length > 0 },
 
-    return false;
-  },
   sync: {
-    getTitle(url) {
-      return j.$('#infoanime h1 a')[0].innerText;
+    getTitle: { selector: '#infoanime h1 a' },
+    getIdentifier: () => {
+      const href = j.$('#infoanime h1 a').attr('href');
+      return href ? href.split('/').pop() || '' : '';
     },
-    getIdentifier(url) {
-      return j.$('#infoanime h1 a')[0].getAttribute('href')?.split('/').pop() || '';
-    },
-    getOverviewUrl(url) {
-      return `${AnimeId.domain}${$('#infoanime h1 a')[0].getAttribute('href')}`;
-    },
-    getEpisode(url) {
-      return Number.parseInt(j.$('#infoanime strong')[0].innerText.replace('Capítulo ', '').trim());
-    },
-    nextEpUrl(url) {
-      const epi = `${AnimeId.domain}${j.$('.buttons li a')[2].getAttribute('href')}`;
-      return epi;
-    },
+    getOverviewUrl: { selector: '#infoanime h1 a', attr: 'href' },
+    getEpisode: { selector: '#infoanime strong', match: /Capítulo (\d+)/ },
+    nextEpUrl: { selector: '.buttons li a:eq(2)', attr: 'href' },
   },
+
   overview: {
-    getTitle(url) {
-      return j.$('article hgroup h1').text();
-    },
-    getIdentifier(url) {
-      return utils.urlPart(url, 3);
-    },
-    uiSelector(selector) {
-      j.$('article').after(j.html(selector));
-    },
+    getTitle: { selector: 'article hgroup h1' },
+    getIdentifier: url => utils.urlPart(url, 3),
     list: {
-      offsetHandler: false,
-      elementsSelector() {
-        return j.$('section#capitulos li a');
-      },
-      elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), AnimeId.domain);
-      },
-      elementEp(selector) {
-        return Number(selector.find('strong').text().replace('Capítulo ', ''));
-      },
+      elementsSelector: 'section#capitulos li a',
+      elementUrl: { selector: '', attr: 'href' }, // Selector empty means self
+      elementEp: { selector: 'strong', match: /Capítulo (\d+)/ },
     },
   },
-  init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
-    con.log('loading');
-    j.$(document).ready(function () {
-      page.handlePage();
-    });
-  },
-};
+});

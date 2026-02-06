@@ -1,10 +1,11 @@
 import * as Sync from '../utils/syncHandler';
 import { KeepAlive } from './keepAlive';
+import { CONSTANTS } from '../config/constants';
 
 export function listSyncInit() {
   chrome.alarms.get('listSync', async function (a) {
     const listSyncLast = await api.storage.get('listSyncLast');
-    const syncInterval = 23 * 60;
+    const syncInterval = CONSTANTS.SYNC.INTERVAL_MINUTES;
 
     if (typeof a !== 'undefined' && Date.now() - listSyncLast < syncInterval * 60 * 1000) {
       con.log('listSync already set and on time', listSyncLast, a);

@@ -93,12 +93,17 @@ pages.forEach(el => {
     return;
   }
   content_scripts.push({
-    matches: generateMatchExcludes({urls: cUrls }).match,
-    exclude_globs: generateMatchExcludes({urls: cUrls}).exclude,
-    js: ['vendor/jquery.min.js', 'i18n.js', 'content/page_'+el+'.js', 'content/content-script.js'],
+    matches: generateMatchExcludes({ urls: cUrls }).match,
+    exclude_globs: generateMatchExcludes({ urls: cUrls }).exclude,
+    js: [
+      'vendor/jquery.min.js',
+      'i18n.js',
+      'content/page_' + el + '.js',
+      'content/content-script.js',
+    ],
     run_at: 'document_start',
   });
-})
+});
 
 content_scripts.push({
   matches: generateMatchExcludes(playerUrls).match,
@@ -120,34 +125,40 @@ const generateManifest = () => {
         id: '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}',
       },
     },
-    background: appTarget === 'firefox' ?
-      {
-        scripts: ['background.js'],
-      } : {
-        service_worker: 'background.js',
-      },
+    background:
+      appTarget === 'firefox'
+        ? {
+            scripts: ['background.js'],
+          }
+        : {
+            service_worker: 'background.js',
+          },
     content_security_policy: {
       extension_pages: "script-src 'self'; object-src 'self';",
     },
     action: {
       default_popup: 'popup.html',
       default_icon: {
-        '16': 'icons/icon16.png',
-        '32': 'icons/icon32.png',
-        '48': 'icons/icon48.png',
-        '128': 'icons/icon128.png',
+        16: 'icons/icon16.png',
+        32: 'icons/icon32.png',
+        48: 'icons/icon48.png',
+        128: 'icons/icon128.png',
       },
     },
-    sidebar_action: {
-      default_panel: 'window.html',
-      open_at_install: false,
-      default_icon: {
-        '16': 'icons/icon16.png',
-        '32': 'icons/icon32.png',
-        '48': 'icons/icon48.png',
-        '128': 'icons/icon128.png',
-      },
-    },
+    ...(appTarget === 'firefox'
+      ? {
+          sidebar_action: {
+            default_panel: 'window.html',
+            open_at_install: false,
+            default_icon: {
+              16: 'icons/icon16.png',
+              32: 'icons/icon32.png',
+              48: 'icons/icon48.png',
+              128: 'icons/icon128.png',
+            },
+          },
+        }
+      : {}),
     options_ui: {
       page: 'settings.html',
       browser_style: false,
@@ -163,50 +174,42 @@ const generateManifest = () => {
     },
     content_scripts: content_scripts,
     icons: {
-      '16': 'icons/icon16.png',
-      '32': 'icons/icon32.png',
-      '48': 'icons/icon48.png',
-      '128': 'icons/icon128.png',
+      16: 'icons/icon16.png',
+      32: 'icons/icon32.png',
+      48: 'icons/icon48.png',
+      128: 'icons/icon128.png',
     },
     web_accessible_resources: [
       {
-        "resources": ['vendor/*', 'assets/*', 'icons/*', 'content/proxy/*', 'window.html'],
-        "matches": ["*://*/*"],
-      }
+        resources: ['vendor/*', 'assets/*', 'icons/*', 'content/proxy/*', 'window.html'],
+        matches: ['*://*/*'],
+      },
     ],
     declarative_net_request: {
       rule_resources: [
         {
-          "id": "ruleset",
-          "enabled": true,
-          "path": "declarative_net.json"
-        }
-      ]
+          id: 'ruleset',
+          enabled: true,
+          path: 'declarative_net.json',
+        },
+      ],
     },
-    permissions: [
-      'storage',
-      'alarms',
-      'notifications',
-      'declarativeNetRequestWithHostAccess',
-    ],
-    "optional_permissions": [
-      "scripting",
-    ],
+    permissions: ['storage', 'alarms', 'notifications', 'declarativeNetRequestWithHostAccess'],
+    optional_permissions: ['scripting'],
     host_permissions: httpPermissionsJson,
-    "optional_host_permissions": [
-      "*://*/*",
-    ],
+    optional_host_permissions: ['*://*/*'],
   };
+
+  if (appTarget !== 'firefox') {
+    delete mani.sidebar_action;
+  }
 
   if (mode === 'travis' && appTarget !== 'firefox') {
     delete mani.browser_specific_settings;
   } else if (mode === 'dev') {
     delete mani.browser_specific_settings;
     mani.name = `${mani.name} (DEV)`;
-    mani.version = new Date()
-      .toISOString()
-      .replace(/T.*/, '')
-      .replace(/-/g, '.');
+    mani.version = new Date().toISOString().replace(/T.*/, '').replace(/-/g, '.');
   }
 
   return JSON.stringify(mani, null, 2);
@@ -319,7 +322,7 @@ mkdirp(path.join(__dirname, '../dist/webextension')).then(err => {
       filename: key,
     };
 
-    download(url, options, function(err) {
+    download(url, options, function (err) {
       if (err) {
         console.error(err);
         process.exit(1);

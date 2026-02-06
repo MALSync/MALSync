@@ -1,131 +1,132 @@
+import { SITE_DOMAINS } from '../../config/siteDomains';
+/* cspell:ignore videobaslik */
 import { pageInterface } from '../pageInterface';
+import type { SyncPage } from '../syncPage';
 
+function removeTurkishPhrases(title: string) {
+  return title.replace(/(?: |-)[İi]zle.*/i, '');
+}
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const TurkAnime: pageInterface = {
   name: 'TurkAnime',
-  domain: 'https://www.turkanime.co',
+  domain: `${SITE_DOMAINS.turkAnime.main}/`,
   languages: ['Turkish'],
   type: 'anime',
-  isSyncPage(url) {
-    return url.split('/')[3] === 'video';
+  isSyncPage(url: string) {
+    return /\/video\//.test(url);
   },
   sync: {
-    getTitle() {
-      return j.$('.breadcrumb a').first().text().trim();
+    getTitle: () => {
+      const titleElement = document.querySelector('.videobaslik h1') as HTMLHeadElement;
+
+      if (!titleElement) {
+        throw Error("Can't find title element");
+      }
+
+      const title = titleElement.innerText;
+
+      return removeTurkishPhrases(title);
     },
-    getIdentifier(url) {
-      return TurkAnime.overview!.getIdentifier(TurkAnime.sync.getOverviewUrl(url));
+    getOverviewUrl: () => {
+      const overviewAnchor = document.querySelector(
+        '.videobaslik .btn-group a:first-child',
+      ) as HTMLAnchorElement;
+
+      if (!overviewAnchor) {
+        throw Error("Can't find overview anchor element");
+      }
+
+      return overviewAnchor.href;
     },
-    getOverviewUrl() {
-      return utils.absoluteLink(j.$('.breadcrumb a').first().attr('href'), TurkAnime.domain);
+    getIdentifier: () => {
+      const overviewUrl = TurkAnime.sync.getOverviewUrl('');
+      const identifier = TurkAnime.overview && TurkAnime.overview.getIdentifier(overviewUrl);
+
+      if (!identifier) {
+        throw Error("Can't find identifier");
+      }
+
+      return identifier;
     },
-    getEpisode(episodeURL: string) {
-      // Some translations:
-      // "bolum" = "episode"
-      // "bolum-final" = "final/last episode"
+    getEpisode: (url: string) => {
+      if (!url) return NaN;
 
-      // Valid inputs:
-      // https://www.turkanime.co/video/kinsou-no-vermeil-gakeppuchi-majutsushi-wa-saikyou-no-yakusai-to-mahou-sekai-wo-tsukisusumu-6
-      // https://www.turkanime.net/video/shingeki-no-kyojin-24-bolum
-      // https://www.turkanime.net/video/shingeki-no-kyojin-25-bolum-final
+      const path = url.split('/').pop();
+      if (!path) return NaN;
 
-      // Invalid inputs
-      // https://www.turkanime.net/video/shingeki-no-kyojin-ova-3-bolum
-      // https://www.turkanime.net/video/shingeki-no-kyojin-ova-5-bolum-part-2-pismanlik-yok
-
-      /**
-       * expected output:
-       * ```
-       * 'shingeki-no-kyojin'
-       * ```
-       */
-      const animeNameSlug = TurkAnime.overview!.getIdentifier(
-        TurkAnime.isSyncPage(window.location.href)
-          ? TurkAnime.sync.getOverviewUrl('')
-          : window.location.href,
-      );
-
-      /**
-       * expected output:
-       * ```
-       * 'shingeki-no-kyojin-23'
-       * 'shingeki-no-kyojin-24-bolum'
-       * 'shingeki-no-kyojin-25-bolum-final'
-       * 'black-clover-tv-132-bolum'
-       * 'black-clover-tv-170-bolum-final'
-       * ```
-       */
-      const animeNameWithEpisodeSlug = TurkAnime.overview!.getIdentifier(episodeURL);
-
-      /**
-       * valid output:
-       * ```
-       * '23' | '24-bolum' | '25-bolum-final'
-       * ```
-       *
-       * invalid output:
-       * ```
-       * '1-' | '2-ova' | 'ova-3-bolum' | '5-bolum-part-2-pismanlik-yok'
-       * ```
-       */
-      const episodeSlug = animeNameWithEpisodeSlug.replace(
-        new RegExp(`${animeNameSlug}.*?-(?=\\d)`),
-        '',
-      );
-
-      const episodeNumberMatches = episodeSlug.match(
-        // https://regex101.com/r/DFmqGL/1
-        /^\d+(?=$|-bolum(?:-final)?)/im,
-      );
-
-      if (!episodeNumberMatches || !episodeNumberMatches.length) return NaN;
-
-      return Number(episodeNumberMatches[0]);
+      const match = path.match(/.*-(\d+)-.*/);
+      return Number(match ? match[1] : undefined);
     },
-    nextEpUrl() {
-      const href = j.$("div.panel-footer a[href^='video']:nth-child(2)").attr('href');
+    nextEpUrl: () => {
+      const nextEpisodeAnchor = document.querySelector(
+        '.videobaslik .btn-group a:last-child',
+      ) as HTMLAnchorElement;
 
-      if (href) return utils.absoluteLink(href, TurkAnime.domain);
+      if (!nextEpisodeAnchor) {
+        throw Error("Can't find next episode anchor element");
+      }
 
-      return '';
+      if (!nextEpisodeAnchor.href.includes('video')) return undefined;
+
+      return nextEpisodeAnchor.href;
     },
   },
   overview: {
-    getTitle() {
-      return j.$('#detayPaylas .panel-title').first().text().trim();
+    getTitle: () => {
+      const titleElement = document.querySelector('.videobaslik h1') as HTMLHeadElement;
+
+      if (!titleElement) {
+        throw Error("Can't find title element");
+      }
+
+      return removeTurkishPhrases(titleElement.innerText);
     },
-    getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+    uiSelector: html => {
+      const statusBarContainerElement = document.querySelector('.animeDetail') as HTMLDivElement;
+
+      if (!statusBarContainerElement) {
+        throw Error("Can't find the element where the status bar will be placed");
+      }
+
+      j.$(statusBarContainerElement).prepend(j.html(html));
     },
-    uiSelector(selector) {
-      j.$('#detayPaylas .panel-body').first().prepend(j.html(selector));
+    getIdentifier: (url: string) => {
+      const identifier = utils.urlPart(url, 4);
+
+      if (!identifier) return '';
+
+      return identifier;
     },
     list: {
       offsetHandler: false,
-      elementsSelector() {
-        return j.$('.list.menum > li');
+      elementsSelector: () => j.$('.list.menum li a'),
+      elementUrl: ($element: JQuery<HTMLElement>) => {
+        return $element.attr('href') || '';
       },
-      elementUrl(selector) {
-        const anchorHref = selector.find('a').last().attr('href');
+      elementEp: (episodeElement: JQuery<HTMLElement>) => {
+        const text = episodeElement.text();
+        const matches = text.match(/(\d+)\. Bölüm/) || [];
 
-        if (!anchorHref) return '';
+        if (matches.length === 0) {
+          throw Error('Unable to find episode number');
+        }
 
-        return utils.absoluteLink(anchorHref.replace(/^\/\//, 'https://'), TurkAnime.domain);
-      },
-      elementEp(selector) {
-        const episodeURL = TurkAnime.overview!.list!.elementUrl!(selector);
-
-        return TurkAnime.sync.getEpisode(episodeURL);
+        return Number(matches[1]);
       },
     },
   },
-  init(page) {
+  init(page: SyncPage) {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+      // eslint-disable-next-line
+      (require('!to-string-loader!css-loader!less-loader!./style.less') as any).toString(),
     );
 
     j.$(() => {
       utils.waitUntilTrue(
         () => document.querySelector('.list.menum'),
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         () => page.handlePage(),
       );
     });

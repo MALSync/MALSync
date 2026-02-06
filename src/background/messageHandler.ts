@@ -11,6 +11,7 @@ import {
 } from '../api/messageInterface';
 import { databaseRequest } from './database';
 import { sendNotification } from './notifications';
+import { CONSTANTS } from '../config/constants';
 
 const activeEmitterTabs = new Set<number>();
 
@@ -205,17 +206,9 @@ export function xhrAction(
       if (response.status === 429) {
         let limits: { timeout: number; tries: number; cutoff: number };
         if (environment === 'content') {
-          limits = {
-            timeout: 30000,
-            tries: 4,
-            cutoff: 180000,
-          };
+          limits = CONSTANTS.API.RATE_LIMIT.CONTENT;
         } else {
-          limits = {
-            timeout: 300000,
-            tries: 4,
-            cutoff: 30 * 60 * 1000,
-          };
+          limits = CONSTANTS.API.RATE_LIMIT.BACKGROUND;
         }
 
         if (

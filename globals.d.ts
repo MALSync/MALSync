@@ -8,6 +8,33 @@ type UtilsType = typeof _utils;
 type WebExtensionType = typeof webextension;
 
 declare global {
+  const chrome: any;
+  const $: any;
+  const require: any;
+
+  interface JQuery<TElement = HTMLElement> extends Iterable<TElement> {
+    [index: number]: TElement;
+    length: number;
+    find(selector: string): JQuery;
+    attr(name: string): string | undefined;
+    text(): string;
+    text(text: string): this;
+    html(html: string): this;
+    append(...content: any[]): this;
+    prepend(...content: any[]): this;
+    after(...content: any[]): this;
+    data(key: string): any;
+    children(selector?: string): JQuery;
+    first(): JQuery;
+    last(): JQuery;
+    [Symbol.iterator](): Iterator<TElement>;
+  }
+
+  interface JQueryStatic {
+    (selector: string | Element | JQuery): JQuery;
+    (callback: () => void): JQuery;
+  }
+
   let con: ConsoleType;
   let utils: UtilsType;
   let j: {

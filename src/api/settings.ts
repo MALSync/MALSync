@@ -21,6 +21,7 @@ export const settingsObj = {
     localSync: true,
     delay: 0,
     videoDuration: 85,
+    autoPlayerTracking: true,
     malTags: false,
     malContinue: true,
     malResume: true,

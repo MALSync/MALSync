@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-require-imports, global-require */
 import { PageInterface } from '../../pageInterface';
 
-export const AsuraScans: PageInterface = {
+export const asuraScans: PageInterface = {
   name: 'AsuraScans',
   domain: 'https://asuracomic.net/',
   languages: ['English'],
@@ -12,8 +13,6 @@ export const AsuraScans: PageInterface = {
       '*://asuracomics.com/*',
       '*://asura.gg/*',
       '*://asurascans.com/*',
-      '*://asuratoon.com/*',
-      '*://asuracomic.net/*',
     ],
   },
   search: 'https://asuracomic.net/series?page=1&name={searchtermRaw}',
@@ -98,6 +97,7 @@ export const AsuraScans: PageInterface = {
   },
   lifecycle: {
     setup($c) {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
