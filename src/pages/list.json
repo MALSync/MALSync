@@ -840,14 +840,9 @@
     "name": "Mangapill"
   },
   {
-    "domain": "https://armageddontl.com",
-    "type": "manga",
-    "name": "Armageddon"
-  },
-  {
     "domain": "https://www.silentquill.net",
     "type": "manga",
-    "name": "Silentquill"
+    "name": "Armageddon"
   },
   {
     "domain": "https://comic-days.com",

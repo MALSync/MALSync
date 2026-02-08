@@ -23,7 +23,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
     <tbody>
       <tr>
                 <td><a href="https://www.adkami.com/"><img src="https://favicon.malsync.moe/?domain=https://www.adkami.com/"> ADKami</a></td>
-                <td><a href="https://armageddontl.com"><img src="https://favicon.malsync.moe/?domain=https://armageddontl.com"> Armageddon</a></td>
+                <td><a href="https://www.silentquill.net"><img src="https://favicon.malsync.moe/?domain=https://www.silentquill.net"> Armageddon</a></td>
                 <td><a href="http://app.emby.media"><img src="https://favicon.malsync.moe/?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex#emby">[Wiki]</a></td>
               </tr><tr>
                 <td><a href="https://animationdigitalnetwork.com"><img src="https://favicon.malsync.moe/?domain=https://animationdigitalnetwork.com"> ADN</a></td>
@@ -392,10 +392,6 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
               </tr><tr>
                 <td></td>
                 <td><a href="https://setsuscans.com"><img src="https://favicon.malsync.moe/?domain=https://setsuscans.com"> SetsuScans</a></td>
-                <td></td>
-              </tr><tr>
-                <td></td>
-                <td><a href="https://www.silentquill.net"><img src="https://favicon.malsync.moe/?domain=https://www.silentquill.net"> Silentquill</a></td>
                 <td></td>
               </tr><tr>
                 <td></td>
