@@ -35,7 +35,7 @@ export class MangaStrategy implements TrackingModeInterface {
 
       this.interval = setInterval(() => {
         const mangaStatus = mangaProgress.execute();
-        if (!mangaStatus || !mangaStatus.current || !mangaStatus.total) {
+        if (!mangaStatus || !mangaStatus.total) {
           return;
         }
         mangaFound = true;
