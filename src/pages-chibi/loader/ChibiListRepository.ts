@@ -21,7 +21,7 @@ export class ChibiListRepository {
   static getInstance(useCache = false) {
     let repos;
     if ((api.type as any) === 'userscript') {
-      repos = ['https://chibi.malsync.moe/config'];
+      repos = ['https://chibi.malsync.moe/config', 'https://chibi.malsync.moe/adult'];
     } else {
       repos = [
         chrome.runtime.getURL('chibi'),
