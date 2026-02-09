@@ -97,6 +97,7 @@
     "dev:webextension:content": "npm run build:chibiTypes && npm run build:webextension:content:build && webpack --watch --progress --config webpackConfig/webextension.content.config.js",
     "dev:webextension:background": "webpack --watch --progress --config webpackConfig/webextension.background.config.js",
     "content": "npm run dev:webextension:content",
+    "content:adult": "cross-env ADULT_DEV=true npm run content",
     "background": "npm run dev:webextension:background",
     "assets": "npm run build:webextension:assets",
     "assets:firefox": "cross-env APP_TARGET=firefox npm run assets",
