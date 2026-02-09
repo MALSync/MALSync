@@ -1,6 +1,24 @@
 <template>
   <div>
-    <Section spacer="half" direction="both">
+    <Modal v-model="showConfirmModal">
+      <Card class="confirm-modal">
+        <h3>Are you sure you want to add this repository?</h3>
+        <p class="confirm-url">{{ pendingRepoUrl }}</p>
+        <div class="confirm-actions">
+          <FormButton color="primary" @click="confirmAddRepo()">{{ lang('Add') }}</FormButton>
+          <FormButton
+            color="secondary"
+            @click="
+              showConfirmModal = false;
+              pendingRepoUrl = '';
+            "
+          >
+            {{ lang('Cancel') }}
+          </FormButton>
+        </div>
+      </Card>
+    </Modal>
+    <Section v-if="!pendingRepoUrl" spacer="half" direction="both">
       <Card>
         <Section v-if="repos.length" class="grid" spacer="half">
           <template v-for="(repo, index) in repos" :key="index">
@@ -67,13 +85,14 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Card from '../card.vue';
 import FormText from '../form/form-text.vue';
 import FormButton from '../form/form-button.vue';
 import Section from '../section.vue';
 import { createRequest } from '../../utils/reactive';
 import Spinner from '../spinner.vue';
+import Modal from '../modal.vue';
 import { ChibiListRepository } from '../../../pages-chibi/loader/ChibiListRepository';
 
 defineProps({
@@ -136,6 +155,28 @@ const repoRequest = createRequest(model, async param => {
     activePages: chibiRepo.getList(),
   };
 });
+
+const showConfirmModal = ref(false);
+const pendingRepoUrl = ref('');
+
+onMounted(() => {
+  const hashParts = window.location.hash.split('?');
+  if (hashParts.length > 1) {
+    const params = new URLSearchParams(hashParts[1]);
+    const repoUrl = params.get('repoUrl');
+
+    if (repoUrl && validChibiRepo(repoUrl)) {
+      pendingRepoUrl.value = repoUrl;
+      showConfirmModal.value = true;
+    }
+  }
+});
+
+const confirmAddRepo = () => {
+  showConfirmModal.value = false;
+  repos.value.push(pendingRepoUrl.value);
+  saveRepos();
+};
 </script>
 
 <style lang="less" scoped>
@@ -233,6 +274,28 @@ const repoRequest = createRequest(model, async param => {
   &.active {
     background: var(--cl-primary);
     color: var(--cl-primary-contrast);
+  }
+}
+
+.confirm-modal {
+  h3 {
+    margin-bottom: @spacer-half;
+    margin-top: 0;
+  }
+  .confirm-url {
+    .border-radius-small();
+
+    background: var(--cl-foreground);
+    padding: @spacer-half;
+    font-family: monospace;
+    font-size: @small-text;
+    word-break: break-all;
+  }
+  .confirm-actions {
+    display: flex;
+    gap: @spacer-half;
+    justify-content: flex-start;
+    margin-top: @spacer;
   }
 }
 </style>
