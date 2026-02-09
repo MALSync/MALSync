@@ -89,6 +89,43 @@ function createTable() {
   }
 }
 
+adultDep();
+function adultDep() {
+  const hpages = pagesMain.adult();
+  let html = `
+  <table>
+    <tbody>
+      `;
+  for (let page in hpages) {
+    page = hpages[page];
+
+    if (typeof page.domain === 'object') page.domain = page.domain[0];
+
+    html += `<tr>
+              <td><a href="${page.domain}"><img src="https://favicon.malsync.moe/?domain=${page.domain}"> ${page.name}</a></td>
+            </tr>`;
+  }
+  html += `
+    </tbody>
+  </table>
+  `;
+
+  const descFile = path.join(__dirname, '../src/pages-adult/README.md');
+  fs.readFile(descFile, 'utf8', function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    const result = data.replace(
+      /<!--pages-->((.|\n|\r)*)<!--\/pages-->/g,
+      `<!--pages-->${html}<!--/pages-->`,
+    );
+
+    fs.writeFile(descFile, result, 'utf8', function (err) {
+      if (err) return console.log(err);
+    });
+  });
+}
+
 readMe();
 function readMe() {
   const pageList = Object.values(pages);
