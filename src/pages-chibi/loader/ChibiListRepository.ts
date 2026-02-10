@@ -28,7 +28,6 @@ export class ChibiListRepository {
         'https://chibi.malsync.moe/config',
         ...(((await api.settings.getAsync('chibiRepos')) as string[]) || []),
       ];
-      console.log('Chibi Repos', repos);
     }
     return new ChibiListRepository(repos, useCache);
   }
