@@ -106,7 +106,6 @@ import { TempleScan } from './TempleScan/main';
 import { Kavita } from './Kavita/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
-import { fireanime } from './fireanime/main';
 
 export const pages = {
   Mangadex,
@@ -217,5 +216,4 @@ export const pages = {
   Kavita,
   Aninexus,
   AniDream,
-  fireanime,
 };

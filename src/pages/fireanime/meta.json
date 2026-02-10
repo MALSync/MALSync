@@ -1,6 +1,0 @@
-{
-  "search": "https://fireani.me/search?q={searchterm}",
-  "urls": {
-    "match": ["*://fireani.me/*"]
-  }
-}
