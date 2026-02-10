@@ -8,6 +8,7 @@ export const HentaiOcean: PageInterface = {
   type: 'anime',
   urls: {
     match: ['*://hentaiocean.com/*'],
+    player: { hentaiOcean: ['*://w2.hentaiocean.com/*'] },
   },
   sync: {
     isSyncPage($c) {

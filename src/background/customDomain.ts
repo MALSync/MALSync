@@ -3,7 +3,13 @@ import { isIframeUrl } from '../utils/manifest';
 
 const logger = con.m('Custom Domain');
 
-export type domainType = { domain: string; page: string; auto?: boolean; chibi?: boolean };
+export type domainType = {
+  domain: string;
+  page: string;
+  auto?: boolean;
+  chibi?: boolean;
+  player?: boolean;
+};
 
 export async function initCustomDomain() {
   updateListener();
@@ -60,7 +66,7 @@ async function registerScript(domainConfig: domainType) {
       runAt: 'document_start' as const,
     };
 
-    if (domainConfig.page === 'iframe') {
+    if (domainConfig.page === 'iframe' || domainConfig.player) {
       scriptConfig.js.push('content/iframe.js');
       scriptConfig.allFrames = true;
     } else if (domainConfig.chibi) {

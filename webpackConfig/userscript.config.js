@@ -24,7 +24,12 @@ try {
   const chibiList = require('../dist/webextension/chibi/list.json');
   const chibiAdultList = require('../dist/adult/chibi/list.json');
   const chibiPages = [...Object.values(chibiList.pages), ...Object.values(chibiAdultList.pages)];
-  chibiUrls = chibiPages.map(chibi => chibi.urls.match);
+  chibiUrls = chibiPages.map(chibi => {
+    return [
+      ...chibi.urls.match,
+      ...(chibi.urls.player ? Object.values(chibi.urls.player).flat() : []),
+    ];
+  });
 } catch (e) {
   console.log(e);
   throw 'Chibi list not found. Please build the extension first. `npm run build:webextension`';

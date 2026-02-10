@@ -149,7 +149,7 @@ export class ChibiListRepository {
   public getPermissions(): domainType[] {
     const pages = this.getList();
     const permissions = Object.values(pages).map(page => {
-      return page.urls.match.map(url => {
+      const pagePermissions: domainType[] = page.urls.match.map(url => {
         return {
           page: `${page.name} (chibi)`,
           domain: url,
@@ -157,6 +157,19 @@ export class ChibiListRepository {
           chibi: true,
         };
       });
+
+      for (const player in page.urls.player) {
+        page.urls.player[player].forEach(url => {
+          pagePermissions.push({
+            page: `${page.name}[${player}] (chibi)`,
+            domain: url,
+            auto: true,
+            player: true,
+          });
+        });
+      }
+
+      return pagePermissions;
     });
     return permissions.flat();
   }
@@ -166,7 +179,10 @@ export class ChibiListRepository {
     return Object.values(pages).map(page => {
       return {
         name: `${page.name} (chibi)`,
-        match: page.urls.match,
+        match: [
+          ...page.urls.match,
+          ...(page.urls.player ? Object.values(page.urls.player).flat() : []),
+        ],
       };
     });
   }
