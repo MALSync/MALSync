@@ -189,7 +189,7 @@ export const settingsObj = {
   },
 
   get(name: string) {
-    if (!this.isInit.value && name !== 'chibiRepos') throw 'Settings not initialized';
+    if (!this.isInit.value) throw 'Settings not initialized';
     return this.options[name];
   },
 
