@@ -147,8 +147,8 @@ const removeRepo = (index: number) => {
   repos.value.splice(index, 1);
 };
 
-const repoRequest = createRequest(model, async param => {
-  const chibiRepo = ChibiListRepository.getInstance(false);
+const repoRequest = createRequest(model, async () => {
+  const chibiRepo = await ChibiListRepository.getInstance(false);
   await chibiRepo.init();
   return {
     repoData: chibiRepo.getData(),

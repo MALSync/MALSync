@@ -18,7 +18,7 @@ export class ChibiListRepository {
 
   private useCache: boolean;
 
-  static getInstance(useCache = false) {
+  static async getInstance(useCache = false) {
     let repos;
     if ((api.type as any) === 'userscript') {
       repos = ['https://chibi.malsync.moe/config', 'https://chibi.malsync.moe/adult'];
@@ -26,8 +26,9 @@ export class ChibiListRepository {
       repos = [
         chrome.runtime.getURL('chibi'),
         'https://chibi.malsync.moe/config',
-        ...((api.settings.get('chibiRepos') as string[]) || []),
+        ...(((await api.settings.getAsync('chibiRepos')) as string[]) || []),
       ];
+      console.log('Chibi Repos', repos);
     }
     return new ChibiListRepository(repos, useCache);
   }

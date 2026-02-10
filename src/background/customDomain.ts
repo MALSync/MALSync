@@ -31,7 +31,7 @@ async function registerScripts() {
   let domains: domainType[] = await api.settings.getAsync('customDomains');
 
   try {
-    const chibiRepo = await ChibiListRepository.getInstance().init();
+    const chibiRepo = await (await ChibiListRepository.getInstance()).init();
     const chibiDomains = chibiRepo.getPermissions();
     domains = domains.concat(chibiDomains);
   } catch (e) {
