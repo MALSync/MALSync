@@ -18,7 +18,8 @@ export const FireAnime: PageInterface = {
       return getJsonData($c).get('title').run();
     },
     getIdentifier($c) {
-      return getJsonData($c).get('slug').run();
+      // To handle every season separately
+      return getJsonData($c).get('title').run();
     },
     getOverviewUrl($c) {
       return getJsonData($c).get('url').ifNotReturn().string().urlAbsolute().run();
@@ -33,15 +34,10 @@ export const FireAnime: PageInterface = {
       return $c.querySelector('#malsync-anchor').uiAppend().run();
     },
     getMalUrl($c) {
-      return getJsonData($c)
-        .get('anilist_id')
-        .number()
-        .ifNotReturn()
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .string('https://anilist.co/anime/<identifier>')
-        .replace('<identifier>', getJsonData($c).get('anilist_id').run())
+      return $c
+        .providerUrlUtility({
+          anilistId: getJsonData($c).get('anilist_id').run(),
+        })
         .run();
     },
   },
@@ -53,7 +49,7 @@ export const FireAnime: PageInterface = {
       return getJsonData($c).get('title').run();
     },
     getIdentifier($c) {
-      return getJsonData($c).get('slug').run();
+      return getJsonData($c).get('title').run();
     },
     uiInjection($c) {
       return $c.querySelector('#malsync-anchor').uiAppend().run();
@@ -62,15 +58,10 @@ export const FireAnime: PageInterface = {
       return getJsonData($c).get('image_url').ifNotReturn().run();
     },
     getMalUrl($c) {
-      return getJsonData($c)
-        .get('anilist_id')
-        .number()
-        .ifNotReturn()
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .string('https://anilist.co/anime/<identifier>')
-        .replace('<identifier>', getJsonData($c).get('anilist_id').run())
+      return $c
+        .providerUrlUtility({
+          anilistId: getJsonData($c).get('anilist_id').run(),
+        })
         .run();
     },
   },
@@ -79,19 +70,13 @@ export const FireAnime: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c
-        .domReady()
-        .wait(3000)
-        .detectChanges($c.url().run(), $c.trigger().run())
-        .detectChanges(getJsonData($c).run(), $c.trigger().run())
-        .trigger()
-        .run();
+      return $c.domReady().detectChanges(getJsonData($c).run(), $c.trigger().run()).trigger().run();
     },
     syncIsReady($c) {
-      return $c.querySelector('#playerObject').ifNotReturn($c.boolean(false).run()).run();
+      return $c.waitUntilTrue($c.querySelector('#playerObject').boolean().run()).trigger().run();
     },
     overviewIsReady($c) {
-      return $c.querySelector('#malsync-anchor').ifNotReturn($c.boolean(false).run()).run();
+      return $c.waitUntilTrue($c.querySelector('#malsync-anchor').boolean().run()).trigger().run();
     },
   },
 };
