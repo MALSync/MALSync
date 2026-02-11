@@ -81,18 +81,17 @@ export const FireAnime: PageInterface = {
     ready($c) {
       return $c
         .domReady()
-        .detectChanges(
-          $c.querySelector('#malsync').ifNotReturn().text().trim().run(),
-          $c.trigger().run(),
-        )
+        .wait(3000)
+        .detectChanges($c.url().run(), $c.trigger().run())
+        .detectChanges(getJsonData($c).run(), $c.trigger().run())
         .trigger()
         .run();
     },
     syncIsReady($c) {
-      return $c.querySelector('#playerObject iframe, #playerObject media-player').run();
+      return $c.querySelector('#playerObject').ifNotReturn($c.boolean(false).run()).run();
     },
     overviewIsReady($c) {
-      return $c.querySelector('#malsync-anchor, h1').run();
+      return $c.querySelector('#malsync-anchor').ifNotReturn($c.boolean(false).run()).run();
     },
   },
 };
