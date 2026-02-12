@@ -10,7 +10,10 @@
       "*://*.kickassanimes.io/*",
       "*://*.kickassanime.mx/*",
       "*://*.kaa.mx/*",
-      "*://*.kaa.to/*"
+      "*://*.kaa.to/*",
+      "*://*.kaa.si/*",
+      "*://*.kickass-anime.ro/*",
+      "*://*.kickassanime.cx/*"
     ]
   }
 }

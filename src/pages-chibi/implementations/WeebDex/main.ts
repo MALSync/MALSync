@@ -46,36 +46,25 @@ export const WeebDex: PageInterface = {
     },
     readerConfig: [
       {
-        condition: $c => $c.querySelector('#indicator').boolean().run(),
-        current: $c =>
-          $c.querySelector('#indicator .transition').text().regex('(\\d+)\\s*/', 1).number().run(),
-        total: $c =>
-          $c.querySelector('#indicator .transition').text().regex('/\\s*(\\d+)', 1).number().run(),
-      },
-      {
-        current: $c =>
-          $c.querySelector('#page-selector span').text().regex('(\\d+)\\s*/', 1).number().run(),
-        total: $c =>
-          $c.querySelector('#page-selector span').text().regex('/\\s*(\\d+)', 1).number().run(),
+        current: $c => getChapterProgressText($c).regex('(\\d+)\\s*/', 1).number().run(),
+        total: $c => getChapterProgressText($c).regex('/\\s*(\\d+)', 1).number().run(),
       },
     ],
   },
   overview: {
     isOverviewPage($c) {
-      return $c
-        .and($c.url().urlPart(3).equals('title').run(), $c.url().urlPart(5).boolean().run())
-        .run();
+      return $c.url().urlPart(3).equals('title').run();
     },
     getTitle($c) {
-      return $c.querySelector('.text-xl\\/10').text().trim().run();
+      return $c.querySelector('h1.font-bold').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
       return $c
-        .querySelector('.transition[href]')
-        .getAttribute('href')
+        .querySelector('.space-y-5 img[src*="/covers/"]')
+        .getAttribute('src')
         .ifNotReturn()
         .urlAbsolute()
         .run();
@@ -104,18 +93,18 @@ export const WeebDex: PageInterface = {
         .run();
     },
     uiInjection($c) {
-      return $c.querySelector('.titles').uiBefore().run();
+      return $c.querySelector('[data-slot="breadcrumb"]').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.group > a[href^="/chapter/"]').run();
+      return $c.querySelectorAll('[data-slot="collapsible"]  a[href^="/chapter/"]').run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.text().regex('Ch\\.?\\s*?(\\d+)', 1).number().run();
+      return $c.getAttribute('title').regex('Ch\\.?\\s*?(\\d+)', 1).number().run();
     },
   },
   lifecycle: {
@@ -130,16 +119,20 @@ export const WeebDex: PageInterface = {
         .run();
     },
     listChange($c) {
-      return $c
-        .detectChanges(
-          $c.querySelector('.main.mobile').ifNotReturn().text().run(),
-          $c.trigger().run(),
-        )
-        .run();
+      return $c.detectChanges($c.this('list.elementsSelector').run(), $c.trigger().run()).run();
     },
   },
 };
 
 function getJsonData($c: ChibiGenerator<unknown>) {
   return $c.querySelector('#chapter-data').ifNotReturn().text().jsonParse();
+}
+
+function getChapterProgressText($c: ChibiGenerator<unknown>) {
+  return $c
+    .querySelectorAll('[data-slot="select-trigger"] > span')
+    .arrayFind($item => $item.text().trim().matches('\\d+ ?\\/ ?\\d+').run())
+    .ifNotReturn()
+    .text()
+    .trim();
 }

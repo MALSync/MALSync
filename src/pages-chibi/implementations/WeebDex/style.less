@@ -1,32 +1,21 @@
 @import './../pages';
 
+@boxBackground: color-mix(in oklab, var(--input) 30%, transparent);
+@boxBorderRadius: calc(var(--radius) - 2px);
+@boxHighlightBackground: @activeEp;
+@boxHighlightFontColor: var(--primary-foreground);
+@boxGap: calc(var(--spacing) * 1);
+
 @highlightStyle: 1;
-@boxBackground: #2d2d2d;
-@activeEp: #285078;
+@activeEp: var(--primary);
 
 #malp {
-  font-size: 1.6rem;
   margin-bottom: 10px;
-  #MalData {
-    option {
-      background-color: #373737 !important;
-    }
-    .malp-group {
-      .malp-group-field:hover,
-      .malp-group-value-section:hover,
-      .malp-group-value-section:focus-within {
-        background-color: #373737 !important;
-      }
-      #AddMal {
-        background-color: @activeEp !important;
-      }
-      #AddMal:hover {
-        background-color: #2d5a87 !important;
-      }
-    }
+  #MalData #AddMal:hover {
+    background-color: color-mix(in oklab, var(--primary) 90%, transparent) !important;
   }
 }
 
 .mal-sync-active:hover {
-  border-left: 5px solid var(--tw-ring-color);
+  border-color: color-mix(in oklab, var(--primary) 70%, transparent) !important;
 }

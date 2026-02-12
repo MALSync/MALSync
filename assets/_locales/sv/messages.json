@@ -837,5 +837,8 @@
     },
     "Manga": {
         "message": "Manga"
+    },
+    "UI_Rules": {
+        "message": "Regler"
     }
 }

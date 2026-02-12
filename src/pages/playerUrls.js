@@ -257,6 +257,7 @@ module.exports = {
       '*://*.mixdrop.cv/e/*',
       '*://*.md3b0j6hj.com/e/*',
       '*://*.m1xdrop.net/e/*',
+      '*://*.m1xdrop.com/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -484,6 +485,7 @@ module.exports = {
       '*://vidmoly.me/*',
       '*://vidmoly.to/*',
       '*://vidmoly.net/*',
+      '*://vidmoly.biz/*',
       // auto-vidmoly-replace-dont-remove
     ],
   },

@@ -15,6 +15,7 @@ import { bato } from './implementations/bato/main';
 import { Crunchyroll } from './implementations/Crunchyroll/main';
 import { animevost } from './implementations/animevost/main';
 import { AnimeKAI } from './implementations/AnimeKAI/main';
+import { FireAnime } from './implementations/FireAnime/main';
 import { WeebCentral } from './implementations/WeebCentral/main';
 import { MangaDemon } from './implementations/MangaDemon/main';
 import { RoliaScan } from './implementations/RoliaScan/main';
@@ -59,7 +60,6 @@ import { Anoboye } from './implementations/Anoboye/main';
 import { AnimeKhor } from './implementations/AnimeKhor/main';
 import { TCBScans } from './implementations/TCBScans/main';
 import { Mangapill } from './implementations/Mangapill/main';
-import { Armageddon } from './implementations/Armageddon/main';
 import { Silentquill } from './implementations/Silentquill/main';
 import { ComicDays } from './implementations/ComicDays/main';
 import { MangaPlus } from './implementations/MangaPlus/main';
@@ -110,6 +110,7 @@ export const pages: { [key: string]: PageInterface } = {
   Crunchyroll,
   animevost,
   AnimeKAI,
+  FireAnime,
   WeebCentral,
   MangaDemon,
   RoliaScan,
@@ -155,7 +156,6 @@ export const pages: { [key: string]: PageInterface } = {
   AnimeKhor,
   TCBScans,
   Mangapill,
-  Armageddon,
   Silentquill,
   ComicDays,
   MangaPlus,
