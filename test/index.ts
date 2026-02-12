@@ -1,13 +1,10 @@
-import { pages as part1 } from '../src/pages/pages';
-import { pages as part2 } from '../src/pages-adult/pages';
+import { pages } from '../src/pages/pages';
 import { getPageConfig } from '../src/utils/test';
 import { xhrAction } from '../src/background/messageHandler';
 import { Chibi } from '../src/pages-chibi/ChibiProxy';
 import { NotFoundError } from '../src/_provider/Errors';
 import chibiList from '../src/pages-chibi/builder/chibiList';
 import chibiPages from '../src/pages-chibi/builder/chibiPages';
-
-const pages = { ...part1, ...part2 };
 
 // @ts-ignore
 window.chrome.runtime.sendMessage = (message: any, callback: (response: any) => void) => {

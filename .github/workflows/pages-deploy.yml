@@ -38,7 +38,9 @@ jobs:
       - name: Create organized directory structure
         run: |
           mkdir -p ./pages-deploy/config
+          mkdir -p ./pages-deploy/adult
           cp -r ./dist/webextension/chibi/* ./pages-deploy/config/
+          cp -r ./dist/adult/chibi/* ./pages-deploy/adult/
           cp .github/pages-files/_headers ./pages-deploy/
       - name: Deploy
         uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3

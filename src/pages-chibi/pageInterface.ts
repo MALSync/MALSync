@@ -30,6 +30,10 @@ export interface PageInterface {
    */
   urls: {
     match: string[];
+    /**
+     * Optional URL patterns used to identify video player iframes
+     */
+    player?: { [key: string]: string[] };
   };
   /**
    * URL template for the site's search functionality

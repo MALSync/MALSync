@@ -64,7 +64,7 @@ export class PermissionsHandler {
 
     let chibi: tempPermissionElement[] = [];
     try {
-      const chibiRepo = await ChibiListRepository.getInstance().init();
+      const chibiRepo = await (await ChibiListRepository.getInstance()).init();
       chibi = chibiRepo.getPermissionsElements();
     } catch (e) {
       con.error('Failed to load chibi permissions', e);
