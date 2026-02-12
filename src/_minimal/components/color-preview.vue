@@ -32,6 +32,8 @@
 </template>
 
 <script lang="ts" setup>
+import { status } from '../../_provider/definitions';
+
 const cases = [
   {
     name: 'background',
@@ -68,7 +70,16 @@ const cases = [
 ];
 
 const stateCases = ['background', 'foreground', 'foreground-solid'];
-const stateColors = [0, 1, 2, 3, 4, 6, 23];
+const stateColors = [
+  status.NoState,
+  status.Watching,
+  status.Completed,
+  status.Onhold,
+  status.Dropped,
+  status.PlanToWatch,
+  status.Rewatching,
+  status.Considering,
+];
 </script>
 
 <style lang="less" scoped>

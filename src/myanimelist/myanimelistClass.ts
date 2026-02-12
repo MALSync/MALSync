@@ -1,9 +1,11 @@
+import type { listElement } from '../_provider/listAbstract';
 import { Single as ApiSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 
 import { UserList as ApiList } from '../_provider/MyAnimeList_hybrid/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import { waitForPageToBeVisible } from '../utils/general';
+import type { ProgressRelease } from '../utils/progressRelease';
 
 export class MyAnimeListClass {
   page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null =
@@ -194,15 +196,17 @@ export class MyAnimeListClass {
     }
   }
 
-  setEpPrediction(progress) {
-    if (progress && progress.isAiring() && progress.getCurrentEpisode()) {
+  setEpPrediction(progress: ProgressRelease | null) {
+    if (progress?.isAiring() && progress.progress()?.getCurrentEpisode()) {
       $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
       $('#addtolist')
         .prev()
-        .before(j.html(`<div class="mal-sync-pre-remove">${progress.getAutoText()}</div>`));
+        .before(
+          j.html(`<div class="mal-sync-pre-remove">${progress.progress()!.getAutoText()}</div>`),
+        );
       $('[id="curEps"], [id="totalChaps"]').before(
         j.html(
-          `<span class="mal-sync-ep-pre" title="${progress.getAutoText()}">[<span style="border-bottom: 1px dotted ${progress.getColor()};">${progress.getCurrentEpisode()}</span>]</span> `,
+          `<span class="mal-sync-ep-pre" title="${progress.progress()!.getAutoText()}">[<span style="border-bottom: 1px dotted ${progress.getColor()};">${progress.progress()!.getCurrentEpisode()}</span>]</span> `,
         ),
       );
     }
@@ -448,19 +452,19 @@ export class MyAnimeListClass {
 
     book.bookReady(function (data) {
       This.bookmarksHDimages();
-      $.each(data, async function (index, el) {
+      $.each(data, async function (index, el: listElement) {
         const malUrl = el.url.replace('https://myanimelist.net', '');
         const { type } = el;
 
-        streamUI(type, malUrl, el.tags, parseInt(el.watchedEp), el.cacheKey);
+        streamUI(type, malUrl, el.tags, parseInt(el.watchedEp as any), el.cacheKey);
 
         await el.fn.initProgress();
 
-        if (el.fn.progress && el.fn.progress.isAiring() && el.fn.progress.getCurrentEpisode()) {
+        if (el.fn.progress?.isAiring() && el.fn.progress.progress()?.getCurrentEpisode()) {
           const element = book.getElement(malUrl);
           book.predictionPos(
             element,
-            `<span class="mal-sync-ep-pre" title="${el.fn.progress.getAutoText()}">[<span style="border-bottom: 1px dotted ${el.fn.progress.getColor()};">${el.fn.progress.getCurrentEpisode()}</span>]</span>`,
+            `<span class="mal-sync-ep-pre" title="${el.fn.progress.progress()!.getAutoText()}">[<span style="border-bottom: 1px dotted ${el.fn.progress.getColor()};">${el.fn.progress.progress()!.getCurrentEpisode()}</span>]</span>`,
           );
         }
       });
