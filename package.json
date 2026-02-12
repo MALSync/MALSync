@@ -58,7 +58,7 @@
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-prettier": "^4.1.0",
-    "terser-webpack-plugin": "^5.3.11",
+    "terser-webpack-plugin": "^5.3.16",
     "to-string-loader": "github:gajus/to-string-loader",
     "ts-deepmerge": "7.0.2",
     "ts-loader": "^9.5.4",
