@@ -1,6 +1,6 @@
-import { SyncPage } from '../pages/syncPage';
+import { SyncPage } from '../pages-sync/syncPage';
 import { firebaseNotification } from '../utils/firebaseNotification';
-import { shortcutListener } from '../utils/player';
+import { PlayerSingleton, shortcutListener } from '../utils/player';
 import { floatClick } from '../floatbutton/extension';
 import { pageInterface } from '../pages/pageInterface';
 
@@ -58,7 +58,7 @@ function messagePageListener(page) {
       }
     }
     if (msg.action === 'videoTime') {
-      page.setVideoTime(msg.item, function (time) {
+      PlayerSingleton.getInstance().setIframeProgress(msg.item, time => {
         chrome.runtime.sendMessage({
           name: 'videoTimeSet',
           time,

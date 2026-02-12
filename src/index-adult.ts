@@ -1,8 +1,8 @@
-import { SyncPage } from './pages/syncPage';
+import { SyncPage } from './pages-sync/syncPage';
 import { AnilistClass } from './anilist/anilistClass';
 import { KitsuClass } from './kitsu/kitsuClass';
 import { SimklClass } from './simkl/simklClass';
-import { getPlayerTime } from './utils/player';
+import { PlayerSingleton } from './utils/player';
 import { pages } from './pages-adult/pages';
 import { oauth } from './utils/oauth';
 import { floatClick } from './floatbutton/userscript';
@@ -45,9 +45,7 @@ function main() {
     setInterval(async function () {
       const item = await api.storage.get('iframePlayer');
       if (typeof item !== 'undefined' && item !== 'null') {
-        page.setVideoTime(item, function (time) {
-          /* do nothing */
-        });
+        PlayerSingleton.getInstance().setIframeProgress(item);
         api.storage.set('iframePlayer', 'null');
       }
     }, 2000);
@@ -63,7 +61,8 @@ api.settings.init().then(() => {
 });
 
 function iframe() {
-  getPlayerTime(function (item) {
+  const playerInstance = PlayerSingleton.getInstance().startTracking();
+  playerInstance.addListener('iframe', item => {
     api.storage.set('iframePlayer', item);
   });
 }
