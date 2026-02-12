@@ -4,7 +4,12 @@
 // Style 2 = classic style
 @boxBackground: #00000038;
 @boxFontColor: inherit;
+@boxBorderRadius: 4px;
+@boxHighlightBackground: #9b96db38;
+@boxHighlightFontColor: inherit;
 @boxLabelFontColor: inherit;
+@boxOptionsBackground: if(@boxBackground = #00000038, #272626, @boxBackground);
+@boxOptionsFontColor: if(@boxBackground = #00000038, #eaeffd, @boxFontColor);
 @boxGap: 10px;
 
 @highlightStyle: 2;
@@ -37,13 +42,14 @@
         flex-grow: 1;
         background-color: @boxBackground !important;
         color: @boxFontColor !important;
-        border-radius: 4px;
+        border-radius: @boxBorderRadius;
         padding: 4px 8px !important;
       }
     }
 
     option {
-      background-color: @boxBackground !important;
+      background-color: @boxOptionsBackground !important;
+      color: @boxOptionsFontColor !important;
     }
 
     .malp-group-label {
@@ -59,6 +65,10 @@
       }
       a {
         color: @boxFontColor !important;
+      }
+      .malp-mal-add {
+        background-color: @boxHighlightBackground !important;
+        color: @boxHighlightFontColor !important;
       }
     }
     #AddMalDiv {
