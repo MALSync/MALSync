@@ -624,7 +624,7 @@
     </thead>
     <tbody>
       <tr>
-    <td><a href="https://armageddontl.com"><img src="https://favicon.malsync.moe/?domain=https://armageddontl.com"> Armageddon</a></td>
+    <td><a href="https://www.silentquill.net"><img src="https://favicon.malsync.moe/?domain=https://www.silentquill.net"> Armageddon</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -1276,13 +1276,6 @@
     <td>:x:</td>
   </tr><tr>
     <td><a href="https://setsuscans.com"><img src="https://favicon.malsync.moe/?domain=https://setsuscans.com"> SetsuScans</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-  </tr><tr>
-    <td><a href="https://www.silentquill.net"><img src="https://favicon.malsync.moe/?domain=https://www.silentquill.net"> Silentquill</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
