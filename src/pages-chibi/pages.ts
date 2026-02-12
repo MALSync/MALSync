@@ -15,6 +15,7 @@ import { bato } from './implementations/bato/main';
 import { Crunchyroll } from './implementations/Crunchyroll/main';
 import { animevost } from './implementations/animevost/main';
 import { AnimeKAI } from './implementations/AnimeKAI/main';
+import { FireAnime } from './implementations/FireAnime/main';
 import { WeebCentral } from './implementations/WeebCentral/main';
 import { MangaDemon } from './implementations/MangaDemon/main';
 import { RoliaScan } from './implementations/RoliaScan/main';
@@ -108,6 +109,7 @@ export const pages: { [key: string]: PageInterface } = {
   Crunchyroll,
   animevost,
   AnimeKAI,
+  FireAnime,
   WeebCentral,
   MangaDemon,
   RoliaScan,
