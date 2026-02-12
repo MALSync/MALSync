@@ -2,7 +2,7 @@
   <div>
     <Modal v-model="showConfirmModal">
       <Card class="confirm-modal">
-        <h3>Are you sure you want to add this repository?</h3>
+        <h3>{{ lang('settings_chibi_repos_modal_add') }}</h3>
         <p class="confirm-url">{{ pendingRepoUrl }}</p>
         <div class="confirm-actions">
           <FormButton color="primary" @click="confirmAddRepo()">{{ lang('Add') }}</FormButton>
