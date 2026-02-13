@@ -1,7 +1,43 @@
 @import './../pages';
 
-@boxBackground: rgba(54, 53, 58, 1);
+@boxBackground: #252525;
 @highlightStyle: 0;
-.epHighlight {
-  box-shadow: inset 0 0 0 2px #ffffff42;
+@boxHighlightBackground: #ad0000;
+@borderColor: #3e3f3a !important;
+@boxFontColor: #ddd;
+
+.hover-effect() {
+  color: #c8b7ff !important;
+  background-color: @borderColor;
+  transition: all 0.5s ease-in-out;
+}
+
+#malp {
+  padding-left: 15px;
+  #MalData {
+    .malp-group-field:not(.malp-group-input),
+    .malp-group-value-section {
+      border: 1px solid @borderColor;
+    }
+    .malp-mal-add:hover {
+      background-color: #870000 !important;
+      transition: all 0.5s ease-in-out;
+    }
+    .malp-group-field:hover:not(.malp-mal-add),
+    .malp-group-value-section:focus-within,
+    .malp-group-value-section:hover {
+      .hover-effect();
+      .malp-group-input {
+        .hover-effect();
+      }
+    }
+  }
+}
+
+input {
+  border-radius: 0 !important;
+}
+
+.mal-sync-active {
+  box-shadow: inset 0 0 5px 2px #3a055b !important;
 }
