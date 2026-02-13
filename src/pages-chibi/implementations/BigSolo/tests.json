@@ -1,0 +1,81 @@
+{
+  "title": "BigSolo",
+  "url": "https://bigsolo.org/",
+  "testCases": [
+    {
+      "url": "https://bigsolo.org/kaoru-hana-wa-rin-to-saku/158",
+      "expected": {
+        "sync": true,
+        "title": "薫る花は凛と咲く",
+        "identifier": "kaoru-hana-wa-rin-to-saku",
+        "overviewUrl": "https://bigsolo.org/kaoru-hana-wa-rin-to-saku",
+        "nextEpUrl": "https://bigsolo.org/kaoru-hana-wa-rin-to-saku/159",
+        "episode": 158,
+        "volume": 21,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bigsolo.org/le-chant-de-la-meduse",
+      "expected": {
+        "sync": false,
+        "title": "海月のうた",
+        "identifier": "le-chant-de-la-meduse",
+        "image": "https://cdn.imgchest.com/files/ffcff507f252.png",
+        "uiSelector": true,
+        "epList": {
+          "0": "https://bigsolo.org/le-chant-de-la-meduse/0"
+        }
+      }
+    },
+    {
+      "url": "https://bigsolo.org/magical-girl-dandelion/1/46",
+      "expected": {
+        "sync": true,
+        "title": "魔法少女ダンデライオン",
+        "identifier": "magical-girl-dandelion",
+        "overviewUrl": "https://bigsolo.org/magical-girl-dandelion",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bigsolo.org/futari-bus/11",
+      "expected": {
+        "sync": true,
+        "title": "ふたりバス",
+        "identifier": "futari-bus",
+        "overviewUrl": "https://bigsolo.org/futari-bus",
+        "nextEpUrl": "https://bigsolo.org/futari-bus/12",
+        "episode": 11,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bigsolo.org/noname",
+      "expected": {
+        "sync": false,
+        "title": "NO＼NAME",
+        "identifier": "noname",
+        "image": "https://cdn.imgchest.com/files/269b2198c635.jpeg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://bigsolo.org/noname/1",
+          "2": "https://bigsolo.org/noname/2",
+          "3": "https://bigsolo.org/noname/3",
+          "4": "https://bigsolo.org/noname/4",
+          "5": "https://bigsolo.org/noname/5",
+          "6": "https://bigsolo.org/noname/6",
+          "7": "https://bigsolo.org/noname/7",
+          "8": "https://bigsolo.org/noname/8",
+          "9": "https://bigsolo.org/noname/9",
+          "10": "https://bigsolo.org/noname/10",
+          "11": "https://bigsolo.org/noname/11",
+          "12": "https://bigsolo.org/noname/12",
+          "13": "https://bigsolo.org/noname/13",
+          "14": "https://bigsolo.org/noname/14"
+        }
+      }
+    }
+  ]
+}
