@@ -9,7 +9,7 @@ export const allManga: PageInterface = {
   urls: {
     match: ['*://allmanga.to/*', '*://youtu-chan.com/*'],
   },
-  search: 'https://allmanga.to/search-manga?cty=ALL&query={searchtermRaw}',
+  search: 'https://allmanga.to/search-anime?cty=ALL&query={searchtermRaw}',
   computedType: $c => {
     return $c.querySelector('.breadcrumb-item a[href]').text().trim().toLowerCase().run();
   },
