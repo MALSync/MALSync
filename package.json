@@ -54,7 +54,7 @@
     "puppeteer": "^24.37.2",
     "serialize-javascript": "^7.0.2",
     "style-loader": "^3.3.4",
-    "stylelint": "^15.11.0",
+    "stylelint": "^17.3.0",
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-prettier": "^4.1.0",
