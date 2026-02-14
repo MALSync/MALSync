@@ -168,6 +168,16 @@ export class ChibiListRepository {
         });
       }
 
+      if (page.features?.requestProxy) {
+        page.urls.match.forEach(url => {
+          pagePermissions.push({
+            page: `${page.name} (chibi request proxy)`,
+            domain: url,
+            proxy: 'content/proxy/proxy_request.js',
+          });
+        });
+      }
+
       return pagePermissions;
     });
     return permissions.flat();

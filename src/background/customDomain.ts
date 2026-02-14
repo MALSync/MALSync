@@ -7,6 +7,7 @@ export type domainType = {
   domain: string;
   page: string;
   auto?: boolean;
+  proxy?: string;
   chibi?: boolean;
   player?: boolean;
 };
@@ -64,6 +65,7 @@ async function registerScript(domainConfig: domainType) {
       matches: [fixDomain],
       allFrames: false,
       runAt: 'document_start' as const,
+      world: undefined as 'MAIN' | 'ISOLATED' | undefined,
     };
 
     if (domainConfig.page === 'iframe' || domainConfig.player) {
@@ -72,6 +74,10 @@ async function registerScript(domainConfig: domainType) {
     } else if (domainConfig.chibi) {
       scriptConfig.js.push('content/chibi.js');
       scriptConfig.js.push('content/content-script.js');
+    } else if (domainConfig.proxy) {
+      scriptConfig.id = `${scriptConfig.id}-${domainConfig.page}`;
+      scriptConfig.js = [domainConfig.proxy];
+      scriptConfig.world = 'MAIN';
     } else {
       scriptConfig.js.push(`content/page_${domainConfig.page}.js`);
       scriptConfig.js.push('content/content-script.js');
