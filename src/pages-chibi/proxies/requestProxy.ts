@@ -4,6 +4,8 @@ export type ForwardedRequest = {
   data: unknown;
 };
 
+const logger = con.m('Request');
+
 function resolveFetchUrl(input: RequestInfo | URL): string {
   if (typeof input === 'string') return input;
   if (input instanceof URL) return input.toString();
@@ -17,8 +19,31 @@ function allowedContentType(contentType: string | null): boolean {
   return lower.includes('application/json') || lower.includes('+json');
 }
 
+let remoteActive = false;
+let requestQueue: ForwardedRequest[] = [];
+
 function forwardRequest(request: ForwardedRequest): void {
-  console.log('Forwarding Request', request);
+  window.dispatchEvent(
+    new CustomEvent('malsync-xhr', {
+      detail: request,
+    }),
+  );
+  if (!remoteActive) {
+    requestQueue.push(request);
+  }
+}
+
+function listenForRemote() {
+  window.addEventListener(
+    'malsync-xhr-start',
+    () => {
+      logger.log('Remote connected');
+      remoteActive = true;
+      requestQueue.forEach(req => forwardRequest(req));
+      requestQueue = [];
+    },
+    false,
+  );
 }
 
 function proxyFetch() {
@@ -117,8 +142,10 @@ function proxyXHR() {
 }
 
 export function init(): void {
+  logger.log('Initializing');
   proxyFetch();
   proxyXHR();
+  listenForRemote();
 }
 
 init();
