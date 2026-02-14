@@ -1657,5 +1657,8 @@
     },
     "settings_listsync_list": {
         "message": "Liste:"
+    },
+    "list_sorting_latest_release": {
+        "message": "Letztes Release"
     }
 }
