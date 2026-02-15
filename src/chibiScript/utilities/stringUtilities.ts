@@ -36,12 +36,12 @@ export default {
   },
 
   /**
-   * Repeat group of regex until it found 1
+   * Repeat group of regex until it matched. If using with coalesce, must wrap in fn() or just use coalesceFn() to make it work correctly.
    * @param pattern The regex pattern string
-   * @example $c.regexAuto('(\\w+)(\\d+)') // Automatically handles group 1 and group 2
+   * @example $c.string('Hello 123').regexAuto('(MAL)|(\\d+)') // return 123
    */
-  regexAuto: ($c: ChibiGenerator<string>, pattern: string) => {
-    const match = new RegExp(`${pattern}|`).exec('');
+  regexAutoGroup: ($c: ChibiGenerator<string>, pattern: ChibiParam<string>) => {
+    const match = new RegExp(`(?:${pattern})|`).exec('');
     const groupCount = match ? match.length - 1 : 0;
     const branches = Array.from({ length: groupCount }, (_, i) => {
       const groupIndex = i + 1;
@@ -50,13 +50,15 @@ export default {
         .getVariable('multiRegex')
         .string()
         .regex(pattern, groupIndex)
-        .ifThen($c => $c.string().return().run())
+        .ifThen($c => $c.string().run())
         .run();
     });
-
-    // If no groups found, you might want to return the original generator or a default
     if (branches.length === 0) return $c;
 
-    return $c.setVariable('multiRegex').coalesce(...branches);
+    return $c
+      .setVariable('multiRegex')
+      .coalesce(...branches)
+      .ifNotReturn()
+      .string();
   },
 };

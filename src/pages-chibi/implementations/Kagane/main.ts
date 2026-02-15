@@ -30,7 +30,24 @@ export const Kagane: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c.querySelector('title').text().regex(ChRegex, 1).number().run();
+      return $c.querySelector('title').text().regexAutoGroup(ChRegex).number().run();
+
+      /* Fix that only work on next release because of calculate function needed
+      return $c
+        .coalesceFn(
+          $c
+
+            .querySelector('a[title*="Previous:"]')
+            .getAttribute('title')
+            .regexAutoGroup(ChRegex)
+            .number()
+            .calculate('+', 1)
+            .run(),
+          $c.querySelector('title').text().regexAutoGroup(ChRegex).run(),
+        )
+        .number()
+        .run();
+      */
     },
     /* Cannot find any DOM that reliably provide volume anymore.
     getVolume($c) {
@@ -93,16 +110,9 @@ export const Kagane: PageInterface = {
       return $c
         .coalesce($c.target().find('h4').run(), $c.target().find('p').run())
         .text()
-        .regexAuto(ChRegex)
+        .regexAutoGroup(ChRegex)
         .number()
-        .run();
-    },
-    elementUrl($c) {
-      return $c
-        .closest('a[href*="/series"]')
-        .ifNotReturn($c.url().run())
-        .getAttribute('href')
-        .urlAbsolute()
+        .log()
         .run();
     },
   },
