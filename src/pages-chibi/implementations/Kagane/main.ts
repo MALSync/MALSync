@@ -32,6 +32,7 @@ export const Kagane: PageInterface = {
     getEpisode($c) {
       return $c.querySelector('title').text().regex(ChRegex, 1).number().run();
     },
+    /* Cannot find any DOM that reliably provide volume anymore.
     getVolume($c) {
       return $c
         .querySelector('meta[name="description"]')
@@ -40,18 +41,13 @@ export const Kagane: PageInterface = {
         .number()
         .run();
     },
+    */
     readerConfig: [
       {
-        current: {
-          selector: '.relative[aria-valuenow]',
-          mode: 'attr',
-          attribute: 'aria-valuenow',
-        },
-        total: {
-          selector: '.relative[aria-valuenow]',
-          mode: 'attr',
-          attribute: 'aria-valuemax',
-        },
+        current: $c =>
+          $c.querySelector('.relative[aria-valuenow]').getAttribute('aria-valuenow').number().run(),
+        total: $c =>
+          $c.querySelector('.relative[aria-valuenow]').getAttribute('aria-valuemax').number().run(),
       },
     ],
   },
@@ -62,7 +58,7 @@ export const Kagane: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').text().replaceLinebreaks().run();
+      return $c.querySelector('h1').ifNotReturn().text().replaceLinebreaks().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -74,15 +70,40 @@ export const Kagane: PageInterface = {
         .run();
     },
     uiInjection($c) {
-      return $c.querySelector('.container > .space-y-3').uiBefore().run();
+      return $c
+        .querySelector('a[class*=text-primary] h1')
+        .closest('.items-baseline')
+        .parent()
+        .uiAfter()
+        .run();
     },
   },
   list: {
+    // Is it okay to make it list in chapter page too?
     elementsSelector($c) {
-      return $c.querySelectorAll('.divide-y > div').run();
+      return $c
+        .coalesce(
+          $c.fn($c.querySelector('.space-y-3').ifNotReturn().findAll('.grid > div').run()).run(),
+          $c.querySelectorAll('.space-y-0\\.5 a > div').run(),
+        )
+        .ifNotReturn()
+        .run();
     },
     elementEp($c) {
-      return $c.find('h3').text().regex(ChRegex, 1).number().run();
+      return $c
+        .coalesce($c.target().find('h4').run(), $c.target().find('p').run())
+        .text()
+        .regexAuto(ChRegex)
+        .number()
+        .run();
+    },
+    elementUrl($c) {
+      return $c
+        .closest('a[href*="/series"]')
+        .ifNotReturn($c.url().run())
+        .getAttribute('href')
+        .urlAbsolute()
+        .run();
     },
   },
   lifecycle: {
@@ -97,10 +118,19 @@ export const Kagane: PageInterface = {
     },
     listChange($c) {
       return $c
-        .detectChanges($c.querySelector('.divide-y').ifNotReturn().text().run(), $c.trigger().run())
+        .detectChanges(
+          $c
+            .coalesce(
+              $c.querySelector('.space-y-3').run(),
+              $c.querySelector('.space-y-0\\.5').run(),
+            )
+            .ifNotReturn()
+            .text()
+            .run(),
+          $c.trigger().run(),
+        )
         .run();
     },
   },
 };
-const ChRegex =
-  '(?:Ch\\.|Chapter|Ep\\.|Episode|Round)[^\\d]*(\\d+)(?!.*(?:Ch\\.|Chapter|Ep\\.|Episode|Round)[^\\d]*\\d+)';
+const ChRegex = '(?:Ch\\.|Chapter|Ep\\.|Episode|Round)\\s*(\\d+)|(\\d+)\\.';
