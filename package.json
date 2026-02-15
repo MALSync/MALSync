@@ -66,7 +66,7 @@
     "ts-node": "^10.9.2",
     "typescript": "5.9.3",
     "typescript-eslint": "^8.55.0",
-    "vue-eslint-parser": "10.2.0",
+    "vue-eslint-parser": "10.4.0",
     "vue-loader": "^17.4.2",
     "web-ext": "^9.3.0",
     "webpack": "^5.105.2",
