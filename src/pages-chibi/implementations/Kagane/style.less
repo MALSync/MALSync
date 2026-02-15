@@ -1,22 +1,31 @@
 @import './../pages';
-@highlightStyle: 0;
+
+@highlightStyle: 1;
 @boxBackground: var(--card);
+@activeEp: var(--primary);
+@boxHighlightBackground: var(--primary);
+@boxHighlightFontColor: var(--primary-foreground);
+@boxOptionsBackground: var(--muted);
 
 #malp {
-  padding-bottom: 16px;
+  font-size: var(--text-sm);
   #MalData {
-    .malp-group-field:hover,
-    .malp-group-field:focus,
+    .malp-group-field:not(.malp-group-input),
+    .malp-group-value-section {
+      border: 1px solid var(--border);
+    }
+    .malp-group-field:hover:not(.malp-mal-add),
     .malp-group-value-section:focus-within,
     .malp-group-value-section:hover {
       background-color: var(--muted) !important;
-      option {
-        background-color: var(--muted) !important;
-        font-family: sans-serif;
-      }
+      transition-duration: var(--tw-duration, var(--default-transition-duration));
+    }
+    .malp-mal-add:hover {
+      background-color: color-mix(in oklab, var(--primary) 90%, transparent) !important;
+      transition-duration: var(--tw-duration, var(--default-transition-duration));
+    }
+    option {
+      font-family: sans-serif;
     }
   }
-}
-.mal-sync-active {
-  border-left: 4px solid var(--primary);
 }
