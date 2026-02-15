@@ -51,22 +51,22 @@
         }
       },
       {
-        "url": "https://kagane.org/series/36AY635VN1FSZRAX9FD718GS45",
+        "url": "https://kagane.org/series/019c2b35-2670-7445-9f75-a95ccc2151d6",
         "expected": {
           "sync": false,
           "title": "The Unlikely Union with A Comatose Billionaire",
-          "identifier": "36AY635VN1FSZRAX9FD718GS45",
-          "image": "https://api.kagane.org/api/v1/series/36AY635VN1FSZRAX9FD718GS45/thumbnail",
+          "identifier": "019c2b35-2670-7445-9f75-a95ccc2151d6",
+          "image": "https://yuzuki.kagane.org/api/v2/image/019c2b35-2664-7291-ab29-8625fa3b1aec",
           "uiSelector": true
         }
       },
       {
-        "url": "https://kagane.org/series/38AG1CMUAOCWEWEUWSCEK3OS65",
+        "url": "https://kagane.org/series/019c2064-df2f-7720-8cdd-0e10c5497ea1",
         "expected": {
           "sync": false,
-          "title": "A Couple of Cuckoos",
-          "identifier": "38AG1CMUAOCWEWEUWSCEK3OS65",
-          "image": "https://api.kagane.org/api/v1/series/38AG1CMUAOCWEWEUWSCEK3OS65/thumbnail",
+          "title": "I Shall Master this Family",
+          "identifier": "019c2064-df2f-7720-8cdd-0e10c5497ea1",
+          "image": "https://yuzuki.kagane.org/api/v2/image/019c2064-defd-77f8-8517-8f8b2a9abc9a",
           "uiSelector": true
         }
       },

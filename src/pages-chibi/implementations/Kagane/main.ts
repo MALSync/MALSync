@@ -85,6 +85,7 @@ export const Kagane: PageInterface = {
         .querySelector('.relative img[alt=""]')
         .getAttribute('src')
         .ifNotReturn()
+        .replaceAll('/compressed', '')
         .urlAbsolute()
         .run();
     },
