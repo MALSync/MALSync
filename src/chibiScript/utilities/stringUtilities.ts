@@ -47,7 +47,7 @@ export default {
       const groupIndex = i + 1;
 
       return $c
-        .getVariable('multiRegex')
+        .getVariable('regexAutoGroup')
         .string()
         .regex(pattern, groupIndex)
         .ifThen($c => $c.string().run())
@@ -56,7 +56,7 @@ export default {
     if (branches.length === 0) return $c;
 
     return $c
-      .setVariable('multiRegex')
+      .setVariable('regexAutoGroup')
       .coalesce(...branches)
       .ifNotReturn()
       .string();
