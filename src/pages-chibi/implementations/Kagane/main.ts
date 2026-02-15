@@ -82,8 +82,10 @@ export const Kagane: PageInterface = {
     },
     getImage($c) {
       return $c
-        .string('https://api.kagane.org/api/v1/series/<identifier>/thumbnail')
-        .replace('<identifier>', $c.this('overview.getIdentifier').run())
+        .querySelector('.relative img[alt=""]')
+        .getAttribute('src')
+        .ifNotReturn()
+        .urlAbsolute()
         .run();
     },
     uiInjection($c) {
