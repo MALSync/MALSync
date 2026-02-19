@@ -1,5 +1,6 @@
 import { doesUrlMatchPatterns } from 'webext-patterns';
 import type { mangaProgressConfig } from 'src/utils/mangaProgress/MangaProgress';
+import type { domainType } from 'src/background/customDomain';
 import { NotFoundError } from '../_provider/Errors';
 import type { ChibiJson } from '../chibiScript/ChibiGenerator';
 import { ChibiConsumer } from '../chibiScript/ChibiConsumer';
@@ -27,6 +28,19 @@ export const Chibi = async (): Promise<pageInterface> => {
     if (!el.urls.match || !el.urls.match.length) return false;
     return doesUrlMatchPatterns(currentUrl, ...el.urls.match);
   });
+
+  if (matchingPages.length === 0) {
+    const customDomains: domainType[] = await api.settings.getAsync('customDomains');
+    const matchingDomain = customDomains.find(
+      domain => domain.page && domain.domain && doesUrlMatchPatterns(currentUrl, domain.domain),
+    );
+    if (matchingDomain) {
+      const page = allPages[matchingDomain.page];
+      if (page) {
+        matchingPages.push(page);
+      }
+    }
+  }
 
   if (matchingPages.length === 0) {
     throw new NotFoundError('No matching page found');

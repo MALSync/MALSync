@@ -14,6 +14,7 @@ export const Plex: PageInterface = {
   },
   features: {
     requestProxy: true,
+    customDomains: true,
   },
   search: 'https://app.plex.tv/desktop/#!/search?pivot=top&query={searchtermPlus}',
   sync: {

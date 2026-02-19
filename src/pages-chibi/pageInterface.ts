@@ -41,6 +41,8 @@ export interface PageInterface {
   features?: {
     /** Proxy website requests */
     requestProxy?: boolean;
+    /** Add the possibility to add custom domains to this implementation */
+    customDomains?: boolean;
   };
   /**
    * URL template for the site's search functionality

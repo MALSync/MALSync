@@ -39,7 +39,13 @@ async function registerScripts() {
 
   try {
     const chibiRepo = await (await ChibiListRepository.getInstance()).init();
-    const chibiDomains = chibiRepo.getPermissions();
+    const chibiDomains = await chibiRepo.getPermissions();
+
+    // Filter out custom domains that exist in chibi
+    domains = domains.filter(domain => {
+      return domain.player || !chibiRepo.getList()[domain.page]?.features?.customDomains;
+    });
+
     domains = domains.concat(chibiDomains);
   } catch (e) {
     logger.error('Could not load chibi permissions', e);
