@@ -47,16 +47,20 @@ export const BigSolo: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '#live-page-counter',
-          mode: 'text',
-          regex: '\\d+',
-        },
-        total: {
-          selector: '#live-page-counter',
-          mode: 'text',
-          regex: '\\d+$',
-        },
+        current: $c =>
+          $c
+            .querySelector('#live-page-counter')
+            .text()
+            .regex('(\\d+) ?/ ?(\\d+)$', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('#live-page-counter')
+            .text()
+            .regex('(\\d+) ?/ ?(\\d+)$', 2)
+            .number()
+            .run(),
       },
     ],
   },
