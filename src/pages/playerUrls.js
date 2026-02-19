@@ -553,6 +553,7 @@ module.exports = {
       '*://crystaltreatmenteast.com/e/*',
       '*://myvidplay.com/e/*',
       '*://lauradaydo.com/e/*',
+      '*://lancewhosedifficult.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
