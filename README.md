@@ -482,7 +482,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 [![Firefox](https://img.shields.io/amo/users/mal-sync.svg?style=flat-square&label=Firefox&logo=firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/mal-sync)
 [![Userscript](https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white)](https://github.com/MALSync/MALSync/releases/latest/download/malsync.user.js)
 
-#### **Complementary Adult Userscript**
+#### **Complementary Adult Repository**
 
 [Here](src/pages-adult/README.md)
 

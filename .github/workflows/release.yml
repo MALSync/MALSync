@@ -93,16 +93,6 @@ jobs:
         asset_path: ./dist/malsync.user.js
         asset_name: malsync.user.js
         asset_content_type: application/javascript
-    - name: Upload adult userscript
-      id: upload-adult-userscript-asset
-      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./dist/malsync-adult.user.js
-        asset_name: malsync-adult.user.js
-        asset_content_type: application/javascript
 
   chrome:
     runs-on: ubuntu-latest
