@@ -15,6 +15,7 @@ import { bato } from './implementations/bato/main';
 import { Crunchyroll } from './implementations/Crunchyroll/main';
 import { animevost } from './implementations/animevost/main';
 import { AnimeKAI } from './implementations/AnimeKAI/main';
+import { FireAnime } from './implementations/FireAnime/main';
 import { WeebCentral } from './implementations/WeebCentral/main';
 import { MangaDemon } from './implementations/MangaDemon/main';
 import { RoliaScan } from './implementations/RoliaScan/main';
@@ -91,6 +92,7 @@ import { RezoScans } from './implementations/RezoScans/main';
 import { RageScans } from './implementations/RageScans/main';
 import { AniGo } from './implementations/AniGo/main';
 import { Kuudere } from './implementations/Kuudere/main';
+import { BigSolo } from './implementations/BigSolo/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -108,6 +110,7 @@ export const pages: { [key: string]: PageInterface } = {
   Crunchyroll,
   animevost,
   AnimeKAI,
+  FireAnime,
   WeebCentral,
   MangaDemon,
   RoliaScan,
@@ -184,4 +187,5 @@ export const pages: { [key: string]: PageInterface } = {
   RageScans,
   AniGo,
   Kuudere,
+  BigSolo,
 };

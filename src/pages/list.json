@@ -40,11 +40,6 @@
     "name": "Plex"
   },
   {
-    "domain": "https://aniflix.cc",
-    "type": "anime",
-    "name": "Aniflix"
-  },
-  {
     "domain": "https://kickassanime.am",
     "type": "anime",
     "name": "KickAssAnime"
@@ -615,6 +610,11 @@
     "name": "AnimeKAI"
   },
   {
+    "domain": "https://fireani.me",
+    "type": "anime",
+    "name": "FireAnime"
+  },
+  {
     "domain": "https://weebcentral.com",
     "type": "manga",
     "name": "WeebCentral"
@@ -840,14 +840,9 @@
     "name": "Mangapill"
   },
   {
-    "domain": "https://armageddontl.com",
-    "type": "manga",
-    "name": "Armageddon"
-  },
-  {
     "domain": "https://www.silentquill.net",
     "type": "manga",
-    "name": "Silentquill"
+    "name": "Armageddon"
   },
   {
     "domain": "https://comic-days.com",
