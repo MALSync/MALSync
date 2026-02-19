@@ -1,5 +1,6 @@
 import { pageInterface } from '../pageInterface';
 import { ScriptProxy } from '../../utils/scriptProxy';
+import { PlayerSingleton } from '../../utils/player';
 
 let item: any;
 
@@ -284,21 +285,16 @@ export const Plex: pageInterface = {
             con.m('Player').log('no seekbar');
             return;
           }
-          const total = seekbar.attr('aria-valuemax');
-          const cur = seekbar.attr('aria-valuenow');
+          const total = Number(seekbar.attr('aria-valuemax'));
+          const cur = Number(seekbar.attr('aria-valuenow'));
           const playing = Boolean($('[data-qa-id="pauseButton"]').length);
           con.m('Player').debug(cur, total, !playing);
           if (total && cur) {
-            page.setVideoTime(
-              {
-                current: cur,
-                duration: total,
-                paused: !playing,
-              },
-              () => {
-                con.log('Not supported during chromecast');
-              },
-            );
+            PlayerSingleton.getInstance().setIframeProgress({
+              current: cur,
+              duration: total,
+              paused: !playing,
+            });
           }
         }
       }
