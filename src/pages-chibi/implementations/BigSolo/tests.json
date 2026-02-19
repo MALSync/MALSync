@@ -29,13 +29,13 @@
       }
     },
     {
-      "url": "https://bigsolo.org/magical-girl-dandelion/1/46",
+      "url": "https://bigsolo.org/magical-girl-dandelion/2/7",
       "expected": {
         "sync": true,
         "title": "魔法少女ダンデライオン",
         "identifier": "magical-girl-dandelion",
         "overviewUrl": "https://bigsolo.org/magical-girl-dandelion",
-        "episode": 1,
+        "episode": 2,
         "uiSelector": false
       }
     },
@@ -46,7 +46,7 @@
         "title": "ふたりバス",
         "identifier": "futari-bus",
         "overviewUrl": "https://bigsolo.org/futari-bus",
-        "nextEpUrl": "https://bigsolo.org/futari-bus/12",
+        "nextEpUrl": "https://bigsolo.org/futari-bus/11.5",
         "episode": 11,
         "uiSelector": false
       }
