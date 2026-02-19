@@ -91,6 +91,25 @@ export const Plex: PageInterface = {
       return $c.querySelector('[data-testid="metadata-children"]').uiBefore().run();
     },
   },
+  list: {
+    elementsSelector($c) {
+      return $c
+        .querySelectorAll(
+          '[class*="PrePlayDescendantList-listContainer"] [class*="ListRow-row"] [class*="MetadataDetailsRow-summaryContainer"], [class*="PrePlayDescendantList-listContainer"] [data-testid="cellItem"]',
+        )
+        .run();
+    },
+    elementEp($c) {
+      return $c
+        .find(
+          '[class*="MetadataDetailsRow-subtitle"] [title], [class*="MetadataPosterCardTitle"] a',
+        )
+        .text()
+        .regex('\\d$')
+        .number()
+        .run();
+    },
+  },
   lifecycle: {
     setup($c) {
       return $c.addStyle(require('./style.less?raw').toString()).run();
@@ -98,19 +117,23 @@ export const Plex: PageInterface = {
     ready($c) {
       return $c
         .requestProxy($c =>
-          checkRequest(
-            $c
-              .setVariable('request')
-              .get('url') /* .log('url') */
-              .setVariable('requestUrl'),
-          ).run(),
+          checkRequest($c.setVariable('request').get('url').setVariable('requestUrl')).run(),
         )
         .run();
     },
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('.main.mobile').ifNotReturn().text().run(),
+          (
+            $c
+              .querySelectorAll(
+                '[class*="PrePlayDescendantList-listContainer"] [class*="ListRow-row"] [class*="MetadataDetailsRow-summaryContainer"] [title], [class*="PrePlayDescendantList-listContainer"] [data-testid="cellItem"] [title]',
+              )
+              .ifNotReturn()
+              .map(selector => selector.text().run()) as ChibiGenerator<string[]>
+          )
+            .join(',')
+            .run(),
           $c.trigger().run(),
         )
         .run();
