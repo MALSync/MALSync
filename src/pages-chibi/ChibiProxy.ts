@@ -51,6 +51,15 @@ export const Chibi = async (): Promise<pageInterface> => {
 
   const currentPage = await repo.getPage(matchingPages[0].key);
 
+  if (
+    (api.type as 'userscript' | 'webextension') === 'userscript' &&
+    currentPage.features?.requestProxy
+  ) {
+    const scriptElement = document.createElement('script');
+    api.storage.addProxyScriptToTag(scriptElement, 'proxy_request');
+    document.documentElement.appendChild(scriptElement);
+  }
+
   const pageD: pageInterface = {
     name: currentPage.name,
     database: currentPage.database || undefined,
