@@ -16,7 +16,12 @@ export const Kagane: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('meta[name="series-title"]').getAttribute('content').trim().run();
+      return $c
+        .querySelector('[name="series-title"]')
+        .ifNotReturn()
+        .getAttribute('content')
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -24,22 +29,31 @@ export const Kagane: PageInterface = {
     getOverviewUrl($c) {
       return $c.url().replaceRegex('/reader.*', '').urlAbsolute().run();
     },
+    getImage($c) {
+      return $c
+        .querySelector('[property="og:image"]')
+        .getAttribute('content')
+        .ifNotReturn()
+        .replaceRegex('/compressed.*', '')
+        .urlAbsolute()
+        .run();
+    },
     getEpisode($c) {
       return $c
         .coalesce(
           $c
-            .querySelector('meta[name="chapter-title"]')
+            .querySelector('[name="chapter-title"]')
             .getAttribute('content')
             .regexAutoGroup(ChRegex)
             .run(),
-          $c.querySelector('meta[name="chapter-number"]').getAttribute('content').run(),
+          $c.querySelector('[name="chapter-number"]').getAttribute('content').run(),
         )
         .number()
         .run();
     },
     getVolume($c) {
       return $c
-        .querySelector('meta[name="volume-number"]')
+        .querySelector('[name="volume-number"]')
         .getAttribute('content')
         .ifNotReturn()
         .number()
@@ -61,19 +75,18 @@ export const Kagane: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').ifNotReturn().text().replaceLinebreaks().run();
+      return $c
+        .querySelector('[property="og:title"]')
+        .getAttribute('content')
+        .ifNotReturn()
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
-      return $c
-        .querySelector('.relative img[alt=""]')
-        .getAttribute('src')
-        .ifNotReturn()
-        .replaceRegex('/compressed.*', '')
-        .urlAbsolute()
-        .run();
+      return $c.this('sync.getImage').run();
     },
     uiInjection($c) {
       return $c
@@ -108,6 +121,9 @@ export const Kagane: PageInterface = {
     },
     syncIsReady($c) {
       return $c.waitUntilTrue($c.querySelector('.reader-page').boolean().run()).trigger().run();
+    },
+    overviewIsReady($c) {
+      return $c.waitUntilTrue($c.querySelector('h1').boolean().run()).trigger().run();
     },
     listChange($c) {
       return $c
