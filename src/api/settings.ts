@@ -95,6 +95,8 @@ export const settingsObj = {
 
     customDomains: [],
 
+    chibiRepos: [],
+
     anilistExternalSources: false,
     anilistUpdateUi: true,
 
@@ -137,7 +139,7 @@ export const settingsObj = {
     }
 
     try {
-      const chibiRepo = await ChibiListRepository.getInstance(true).init();
+      const chibiRepo = await (await ChibiListRepository.getInstance(true)).init();
       this.chibiList = chibiRepo.getList();
     } catch (e) {
       con.error('Error loading chibi repo', e);

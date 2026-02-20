@@ -1461,6 +1461,10 @@
         "message": "Configuration is not correct!",
         "description": "Error text if the configuration is not correct"
     },
+    "settings_chibi_repos_modal_add": {
+        "message": "Are you sure you want to add this repository?",
+        "description": "Confirmation text for adding a chibi repository"
+    },
     "settings_clean_tags_button": {
         "message": "Clean Tags",
         "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
