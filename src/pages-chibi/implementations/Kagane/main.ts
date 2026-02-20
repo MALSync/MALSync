@@ -16,42 +16,55 @@ export const Kagane: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('title').text().split('- Chapter').at(0).trim().run();
+      return $c
+        .querySelector('[name="series-title"]')
+        .ifNotReturn()
+        .getAttribute('content')
+        .trim()
+        .run();
     },
     getIdentifier($c) {
-      return $c.this('overview.getIdentifier').run();
+      return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
+      return $c.url().replaceRegex('/reader.*', '').urlAbsolute().run();
+    },
+    getImage($c) {
       return $c
-        .querySelector('a[href^="/series/"]:not([href*="/reader/"])')
-        .getAttribute('href')
+        .querySelector('[property="og:image"]')
+        .getAttribute('content')
         .ifNotReturn()
+        .replaceRegex('/compressed.*', '')
         .urlAbsolute()
         .run();
     },
     getEpisode($c) {
-      return $c.querySelector('title').text().regex(ChRegex, 1).number().run();
+      return $c
+        .coalesce(
+          $c
+            .querySelector('[name="chapter-title"]')
+            .getAttribute('content')
+            .regexAutoGroup(ChRegex)
+            .run(),
+          $c.querySelector('[name="chapter-number"]').getAttribute('content').run(),
+        )
+        .number()
+        .run();
     },
     getVolume($c) {
       return $c
-        .querySelector('meta[name="description"]')
+        .querySelector('[name="volume-number"]')
         .getAttribute('content')
-        .regex('Volume\\s+(\\d+)', 1)
+        .ifNotReturn()
         .number()
         .run();
     },
     readerConfig: [
       {
-        current: {
-          selector: '.relative[aria-valuenow]',
-          mode: 'attr',
-          attribute: 'aria-valuenow',
-        },
-        total: {
-          selector: '.relative[aria-valuenow]',
-          mode: 'attr',
-          attribute: 'aria-valuemax',
-        },
+        current: $c =>
+          $c.querySelector('.relative[aria-valuenow]').getAttribute('aria-valuenow').number().run(),
+        total: $c =>
+          $c.querySelector('.relative[aria-valuenow]').getAttribute('aria-valuemax').number().run(),
       },
     ],
   },
@@ -62,27 +75,41 @@ export const Kagane: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').text().replaceLinebreaks().run();
-    },
-    getIdentifier($c) {
-      return $c.url().urlPart(4).run();
-    },
-    getImage($c) {
       return $c
-        .string('https://api.kagane.org/api/v1/series/<identifier>/thumbnail')
-        .replace('<identifier>', $c.this('overview.getIdentifier').run())
+        .querySelector('[property="og:title"]')
+        .getAttribute('content')
+        .ifNotReturn()
+        .trim()
         .run();
     },
+    getIdentifier($c) {
+      return $c.this('sync.getIdentifier').run();
+    },
+    getImage($c) {
+      return $c.this('sync.getImage').run();
+    },
     uiInjection($c) {
-      return $c.querySelector('.container > .space-y-3').uiBefore().run();
+      return $c
+        .querySelector('a[class*=text-primary] h1')
+        .closest('.items-baseline')
+        .parent()
+        .uiAfter()
+        .run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.divide-y > div').run();
+      return $c.querySelector('.space-y-3').ifNotReturn().findAll('.grid > div').run();
     },
     elementEp($c) {
-      return $c.find('h3').text().regex(ChRegex, 1).number().run();
+      return $c
+        .coalesce(
+          // have to put each regexAutoGroup because sometime h4 doesn't provide chapter number for fallback reason.
+          $c.target().find('h4').text().regexAutoGroup(ChRegex).run(),
+          $c.target().find('.font-bold').text().regexAutoGroup(ChRegex).run(),
+        )
+        .number()
+        .run();
     },
   },
   lifecycle: {
@@ -95,12 +122,17 @@ export const Kagane: PageInterface = {
     syncIsReady($c) {
       return $c.waitUntilTrue($c.querySelector('.reader-page').boolean().run()).trigger().run();
     },
+    overviewIsReady($c) {
+      return $c.waitUntilTrue($c.querySelector('h1').boolean().run()).trigger().run();
+    },
     listChange($c) {
       return $c
-        .detectChanges($c.querySelector('.divide-y').ifNotReturn().text().run(), $c.trigger().run())
+        .detectChanges(
+          $c.querySelector('.space-y-3').ifNotReturn().text().run(),
+          $c.trigger().run(),
+        )
         .run();
     },
   },
 };
-const ChRegex =
-  '(?:Ch\\.|Chapter|Ep\\.|Episode|Round)[^\\d]*(\\d+)(?!.*(?:Ch\\.|Chapter|Ep\\.|Episode|Round)[^\\d]*\\d+)';
+const ChRegex = '(?:Ch\\.|Chapter|Ep\\.|Episode|Round)\\s*(\\d+)|(\\d+)\\.';
