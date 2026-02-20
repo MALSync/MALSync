@@ -16,49 +16,35 @@ export const Kagane: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('title').text().split('- Chapter').at(0).trim().run();
+      return $c.querySelector('meta[name="series-title"]').getAttribute('content').trim().run();
     },
     getIdentifier($c) {
-      return $c.this('overview.getIdentifier').run();
+      return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c
-        .querySelector('a[href^="/series/"]:not([href*="/reader/"])')
-        .getAttribute('href')
-        .ifNotReturn()
-        .urlAbsolute()
-        .run();
+      return $c.url().replaceRegex('/reader.*', '').urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.querySelector('title').text().regexAutoGroup(ChRegex).number().run();
-
-      /* Fix that only work on next release because of calculate function needed
       return $c
-        .coalesceFn(
+        .coalesce(
           $c
-
-            .querySelector('a[title*="Previous:"]')
-            .getAttribute('title')
+            .querySelector('meta[name="chapter-title"]')
+            .getAttribute('content')
             .regexAutoGroup(ChRegex)
-            .number()
-            .calculate('+', 1)
             .run(),
-          $c.querySelector('title').text().regexAutoGroup(ChRegex).run(),
+          $c.querySelector('meta[name="chapter-number"]').getAttribute('content').run(),
         )
         .number()
         .run();
-      */
     },
-    /* Cannot find any DOM that reliably provide volume anymore.
     getVolume($c) {
       return $c
-        .querySelector('meta[name="description"]')
+        .querySelector('meta[name="volume-number"]')
         .getAttribute('content')
-        .regex('Volume\\s+(\\d+)', 1)
+        .ifNotReturn()
         .number()
         .run();
     },
-    */
     readerConfig: [
       {
         current: $c =>
@@ -78,14 +64,14 @@ export const Kagane: PageInterface = {
       return $c.querySelector('h1').ifNotReturn().text().replaceLinebreaks().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c
         .querySelector('.relative img[alt=""]')
         .getAttribute('src')
         .ifNotReturn()
-        .replaceAll('/compressed', '')
+        .replaceRegex('/compressed.*', '')
         .urlAbsolute()
         .run();
     },
@@ -111,11 +97,13 @@ export const Kagane: PageInterface = {
     },
     elementEp($c) {
       return $c
-        .coalesce($c.target().find('h4').run(), $c.target().find('p').run())
-        .text()
+        .coalesce(
+          $c.target().find('h4').text().regexAutoGroup(ChRegex).run(),
+          $c.target().find('.font-bold').text().run(),
+          $c.target().find('p').text().run(),
+        )
         .regexAutoGroup(ChRegex)
         .number()
-        .log()
         .run();
     },
   },

@@ -36,29 +36,30 @@ export default {
   },
 
   /**
-   * Repeat group of regex until it matched. If using with coalesce, must wrap in fn() or just use coalesceFn() to make it work correctly.
+   * Iterates group of regex until it matched.
    * @param pattern The regex pattern string
    * @example $c.string('Hello 123').regexAuto('(MAL)|(\\d+)') // return 123
    */
   regexAutoGroup: ($c: ChibiGenerator<string>, pattern: ChibiParam<string>) => {
+    // Has to use different variable name for some reason each time it use to avoid conflict
+    const uniqueKey = `regAuto_${Math.random().toString(36).slice(2, 9)}`;
+    const Var = $c.setVariable(uniqueKey);
+
     const match = new RegExp(`(?:${pattern})|`).exec('');
     const groupCount = match ? match.length - 1 : 0;
+
+    if (groupCount === 0) return $c;
     const branches = Array.from({ length: groupCount }, (_, i) => {
       const groupIndex = i + 1;
 
       return $c
-        .getVariable('regexAutoGroup')
+        .getVariable(uniqueKey)
         .string()
         .regex(pattern, groupIndex)
-        .ifThen($c => $c.string().run())
+        .ifThen($sub => $sub.string().run())
         .run();
     });
-    if (branches.length === 0) return $c;
 
-    return $c
-      .setVariable('regexAutoGroup')
-      .coalesce(...branches)
-      .ifNotReturn()
-      .string();
+    return Var.coalesce(...branches);
   },
 };
