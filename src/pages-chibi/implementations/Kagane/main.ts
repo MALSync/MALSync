@@ -85,24 +85,16 @@ export const Kagane: PageInterface = {
     },
   },
   list: {
-    // Is it okay to make it list in chapter page too?
     elementsSelector($c) {
-      return $c
-        .coalesce(
-          $c.fn($c.querySelector('.space-y-3').ifNotReturn().findAll('.grid > div').run()).run(),
-          $c.querySelectorAll('.space-y-0\\.5 a > div').run(),
-        )
-        .ifNotReturn()
-        .run();
+      return $c.querySelector('.space-y-3').ifNotReturn().findAll('.grid > div').run();
     },
     elementEp($c) {
       return $c
         .coalesce(
+          // have to put each regexAutoGroup because sometime h4 doesn't provide chapter number for fallback reason.
           $c.target().find('h4').text().regexAutoGroup(ChRegex).run(),
-          $c.target().find('.font-bold').text().run(),
-          $c.target().find('p').text().run(),
+          $c.target().find('.font-bold').text().regexAutoGroup(ChRegex).run(),
         )
-        .regexAutoGroup(ChRegex)
         .number()
         .run();
     },
@@ -120,14 +112,7 @@ export const Kagane: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c
-            .coalesce(
-              $c.querySelector('.space-y-3').run(),
-              $c.querySelector('.space-y-0\\.5').run(),
-            )
-            .ifNotReturn()
-            .text()
-            .run(),
+          $c.querySelector('.space-y-3').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();

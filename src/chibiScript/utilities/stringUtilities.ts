@@ -41,9 +41,9 @@ export default {
    * @example $c.string('Hello 123').regexAuto('(MAL)|(\\d+)') // return 123
    */
   regexAutoGroup: ($c: ChibiGenerator<string>, pattern: ChibiParam<string>) => {
-    // Has to use different variable name for some reason each time it use to avoid conflict
-    const uniqueKey = `regAuto_${Math.random().toString(36).slice(2, 9)}`;
-    const Var = $c.setVariable(uniqueKey);
+    // Has to use different variable name for some reason when using it inside AND outside of coalesce
+    const uniqueVar = `regAuto_${Math.random().toString(36).slice(2, 9)}`;
+    const Var = $c.setVariable(uniqueVar);
 
     const match = new RegExp(`(?:${pattern})|`).exec('');
     const groupCount = match ? match.length - 1 : 0;
@@ -53,10 +53,10 @@ export default {
       const groupIndex = i + 1;
 
       return $c
-        .getVariable(uniqueKey)
+        .getVariable(uniqueVar)
         .string()
         .regex(pattern, groupIndex)
-        .ifThen($sub => $sub.string().run())
+        .ifThen($c => $c.string().run())
         .run();
     });
 
