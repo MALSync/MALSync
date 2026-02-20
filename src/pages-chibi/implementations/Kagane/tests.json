@@ -1,86 +1,96 @@
 {
-    "title": "Kagane",
-    "url": "https://kagane.org",
-    "testCases": [
-      {
-        "url": "https://kagane.org/series/38AG1CMUAOCWEWEUWSCEK3OS65/reader/37AXZ7IVWAPD91LHIODA5RFS55",
-        "expected": {
-          "sync": true,
-          "title": "A Couple of Cuckoos",
-          "identifier": "38AG1CMUAOCWEWEUWSCEK3OS65",
-          "overviewUrl": "https://kagane.org/series/38AG1CMUAOCWEWEUWSCEK3OS65",
-          "episode": 222,
-          "Volume": 25,
-          "uiSelector": false
-        }
-      },
-      {
-        "url": "https://kagane.org/series/3YZ1SB8C2Y7DEWL9G4K0JK9RG5/reader/3HAC9SOIN1UXASFM9FQGA1KSP5",
-        "expected": {
-          "sync": true,
-          "title": "Reincarnated as an Eight-Year-Old Apostle of the Gods",
-          "identifier": "3YZ1SB8C2Y7DEWL9G4K0JK9RG5",
-          "overviewUrl": "https://kagane.org/series/3YZ1SB8C2Y7DEWL9G4K0JK9RG5",
-          "episode": 52,
-          "Volume": null,
-          "uiSelector": false
-        }
-      },
-      {
-        "url": "https://kagane.org/series/3UZRTLKC47ZLOGTR56KCTLZRC5/reader/3XAJ0W6FIEAAQIISMAN8E2RSF5",
-        "expected": {
-          "sync": true,
-          "title": "The Ugly Duckling's Secret Pouch",
-          "identifier": "3UZRTLKC47ZLOGTR56KCTLZRC5",
-          "overviewUrl": "https://kagane.org/series/3UZRTLKC47ZLOGTR56KCTLZRC5",
-          "episode": 74,
-          "Volume": null,
-          "uiSelector": false
-        }
-      },
-      {
-        "url": "https://kagane.org/series/36AY635VN1FSZRAX9FD718GS45/reader/3GAY635VN1FSZRAX9FD718GSO5",
-        "expected": {
-          "sync": true,
-          "title": "The Unlikely Union with A Comatose Billionaire",
-          "identifier": "36AY635VN1FSZRAX9FD718GS45",
-          "overviewUrl": "https://kagane.org/series/36AY635VN1FSZRAX9FD718GS45",
-          "episode": 2,
-          "Volume": null,
-          "uiSelector": false
-        }
-      },
-      {
-        "url": "https://kagane.org/series/019c2b35-2670-7445-9f75-a95ccc2151d6",
-        "expected": {
-          "sync": false,
-          "title": "The Unlikely Union with A Comatose Billionaire",
-          "identifier": "019c2b35-2670-7445-9f75-a95ccc2151d6",
-          "image": "https://yuzuki.kagane.org/api/v2/image/019c2b35-2664-7291-ab29-8625fa3b1aec",
-          "uiSelector": true
-        }
-      },
-      {
-        "url": "https://kagane.org/series/019c2064-df2f-7720-8cdd-0e10c5497ea1",
-        "expected": {
-          "sync": false,
-          "title": "I Shall Master this Family",
-          "identifier": "019c2064-df2f-7720-8cdd-0e10c5497ea1",
-          "image": "https://yuzuki.kagane.org/api/v2/image/019c2064-defd-77f8-8517-8f8b2a9abc9a",
-          "uiSelector": true
-        }
-      },
-      {
-        "url": "https://kagane.org/series/33ACZGSV5G20FX84O7DKORKS15/reader/3IAFZ4SV5K20FX84S7DK2RNSQ5",
-        "expected": {
-          "sync": true,
-          "title": "Fight Class 3",
-          "identifier": "33ACZGSV5G20FX84O7DKORKS15",
-          "overviewUrl": "https://kagane.org/series/33ACZGSV5G20FX84O7DKORKS15",
-          "episode": 102,
-          "Volume": null,
-          "uiSelector": false
-       }
+  "title": "Kagane",
+  "url": "https://kagane.org",
+  "testCases": [
+    {
+      "url": "https://kagane.org/series/019c3a01-3106-7c50-b441-987e27995a11/reader/019c3a11-5c43-776b-9a2f-f61033c51cbb",
+      "expected": {
+        "sync": true,
+        "title": "A Couple of Cuckoos",
+        "identifier": "019c3a01-3106-7c50-b441-987e27995a11",
+        "overviewUrl": "https://kagane.org/series/019c3a01-3106-7c50-b441-987e27995a11",
+        "episode": 222,
+        "Volume": 25,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kagane.org/series/019c27d4-328a-7f6e-804a-b1750555ce1b/reader/019c27ff-5dd6-7f21-8a71-22d0e92a9b7b",
+      "expected": {
+        "sync": true,
+        "title": "Reincarnated as an Eight-Year-Old Apostle of the Gods",
+        "identifier": "019c27d4-328a-7f6e-804a-b1750555ce1b",
+        "overviewUrl": "https://kagane.org/series/019c27d4-328a-7f6e-804a-b1750555ce1b",
+        "episode": 52,
+        "Volume": null,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kagane.org/series/019c2555-c6e3-7f79-9d33-c4b3e1c2ffe1/reader/019c2974-49d0-70d3-b1f3-6d2f3dac468d",
+      "expected": {
+        "sync": true,
+        "title": "The Ugly Duckling's Secret Pouch",
+        "identifier": "019c2555-c6e3-7f79-9d33-c4b3e1c2ffe1",
+        "overviewUrl": "https://kagane.org/series/019c2555-c6e3-7f79-9d33-c4b3e1c2ffe1",
+        "episode": 74,
+        "Volume": null,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kagane.org/series/019c2064-df2f-7720-8cdd-0e10c5497ea1/reader/019c584f-5bb9-708a-975e-caf501ea996d",
+      "expected": {
+        "sync": true,
+        "title": "I Shall Master this Family",
+        "identifier": "019c2064-df2f-7720-8cdd-0e10c5497ea1",
+        "episode": 198,
+        "Volume": null,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kagane.org/series/019c2064-df2f-7720-8cdd-0e10c5497ea1",
+      "expected": {
+        "sync": false,
+        "title": "I Shall Master this Family",
+        "identifier": "019c2064-df2f-7720-8cdd-0e10c5497ea1",
+        "image": "https://yuzuki.kagane.org/api/v2/image/019c2064-defd-77f8-8517-8f8b2a9abc9a",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://kagane.org/series/019c2b31-0e34-7aa6-a504-edc7e756142a/reader/019c2e31-e862-70d0-9c89-83a4a7bb867f",
+      "expected": {
+        "sync": true,
+        "title": "Viral Hit",
+        "identifier": "019c2b31-0e34-7aa6-a504-edc7e756142a",
+        "overviewUrl": "https://kagane.org/series/019c2b31-0e34-7aa6-a504-edc7e756142a",
+        "episode": 125,
+        "Volume": null,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kagane.org/series/019c6ce8-cf53-7851-a50f-76f7c459c96e/reader/019c6cef-21c5-79dc-9939-0901aca6ade8",
+      "expected": {
+        "sync": true,
+        "title": "Ichi the Witch",
+        "identifier": "019c6ce8-cf53-7851-a50f-76f7c459c96e",
+        "episode": 7,
+        "Volume": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kagane.org/series/019c6ce8-cf53-7851-a50f-76f7c459c96e#ichi-the-witch",
+      "expected": {
+        "sync": false,
+        "title": "Ichi the Witch",
+        "identifier": "019c6ce8-cf53-7851-a50f-76f7c459c96e",
+        "image": "https://yuzuki.kagane.org/api/v2/image/019c6ce8-ce57-7d6b-9c74-379fce90f79c",
+        "uiSelector": true
+      }
     }
-    ]
-  }
+  ]
+}
