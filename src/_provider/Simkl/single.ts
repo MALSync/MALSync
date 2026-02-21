@@ -1,7 +1,7 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
-import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
+import { NotAuthenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -196,7 +196,7 @@ export class Single extends SingleAbstract {
 
     return this.getSingle(de)
       .catch(e => {
-        if (e instanceof NotAutenticatedError) {
+        if (e instanceof NotAuthenticatedError) {
           this._authenticated = false;
           return '';
         }
@@ -261,7 +261,7 @@ export class Single extends SingleAbstract {
         }
         this.minWatchedEp = this.curWatchedEp + 1;
 
-        if (!this._authenticated) throw new NotAutenticatedError('Not Authenticated');
+        if (!this._authenticated) throw new NotAuthenticatedError('Not Authenticated');
       });
   }
 
