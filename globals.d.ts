@@ -20,6 +20,10 @@ declare global {
       id: string;
       secret: string;
     };
+    mangabaka: {
+      id: string;
+      secret: string;
+    };
   };
 
   interface Window {

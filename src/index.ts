@@ -15,6 +15,8 @@ import { anilistOauth } from './anilist/oauth';
 import { shikiOauth } from './_provider/Shikimori/oauth';
 import { Chibi } from './pages-chibi/ChibiProxy';
 import { NotFoundError } from './_provider/Errors';
+import { mangabakaOauth } from './mangabaka/oauth';
+import { MangaBakaClass } from './mangabaka/MangaBakaClass';
 
 let page;
 
@@ -32,6 +34,9 @@ async function main() {
   } else if (utils.isDomainMatching(window.location.href, 'kitsu.app')) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const kitsu = new KitsuClass(window.location.href);
+  } else if (utils.isDomainMatching(window.location.href, 'mangabaka.org')) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    const mangabaka = new MangaBakaClass();
   } else if (utils.isDomainMatching(window.location.href, 'simkl.com')) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const simkl = new SimklClass(window.location.href);
@@ -45,6 +50,11 @@ async function main() {
     window.location.pathname.startsWith('/anilist/oauth')
   ) {
     anilistOauth();
+  } else if (
+    window.location.hostname === 'malsync.moe' &&
+    window.location.pathname.startsWith('/mangabaka/oauth')
+  ) {
+    mangabakaOauth();
   } else if (
     window.location.hostname === 'malsync.moe' &&
     window.location.pathname.startsWith('/shikimori/oauth')
