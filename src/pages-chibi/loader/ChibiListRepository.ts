@@ -145,10 +145,18 @@ export class ChibiListRepository {
     return res;
   }
 
-  public getPermissions(): domainType[] {
+  public async getPermissions(): Promise<domainType[]> {
     const pages = this.getList();
+    const customDomains: domainType[] = await api.settings.getAsync('customDomains');
     const permissions = Object.values(pages).map(page => {
-      const pagePermissions: domainType[] = page.urls.match.map(url => {
+      const matching = page.urls.match;
+
+      if (page.features?.customDomains) {
+        const customDomainMatches = customDomains.filter(domain => domain.page === page.name);
+        matching.push(...customDomainMatches.map(domain => domain.domain));
+      }
+
+      const pagePermissions: domainType[] = matching.map(url => {
         return {
           page: `${page.name} (chibi)`,
           domain: url,
@@ -164,6 +172,16 @@ export class ChibiListRepository {
             domain: url,
             auto: true,
             player: true,
+          });
+        });
+      }
+
+      if (page.features?.requestProxy) {
+        matching.forEach(url => {
+          pagePermissions.push({
+            page: `${page.name} (chibi request proxy)`,
+            domain: url,
+            proxy: 'content/proxy/proxy_request.js',
           });
         });
       }

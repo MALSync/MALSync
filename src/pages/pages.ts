@@ -1,7 +1,6 @@
 import { Mangadex } from './Mangadex/main';
 import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
-import { Plex } from './Plex/main';
 import { Netflix } from './Netflix/main';
 import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
@@ -114,7 +113,6 @@ export const pages = {
   Jkanime,
   Proxer,
   Emby,
-  Plex,
   KickAssAnime,
   Shinden,
   Voiranime,

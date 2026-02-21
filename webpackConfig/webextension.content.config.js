@@ -55,6 +55,7 @@ let entry = {
     '..',
     'src/index-webextension/pwa.ts',
   ),
+  'proxy/proxy_request': path.join(__dirname, '..', 'src/pages-chibi/proxies/requestProxy.ts'),
   iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   popup: path.join(__dirname, '..', 'src/popup.ts'),
   chibi: 'expose-loader?exposes=_PageChibi|Chibi!' + path.join(__dirname, '..', 'src', 'pages-chibi', 'ChibiProxy.ts'),
