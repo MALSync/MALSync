@@ -993,5 +993,10 @@
     "domain": "https://Kuudere.to",
     "type": "anime",
     "name": "Kuudere"
+  },
+  {
+    "domain": "https://bigsolo.org",
+    "type": "manga",
+    "name": "BigSolo"
   }
 ]
