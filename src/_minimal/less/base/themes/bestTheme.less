@@ -26,9 +26,9 @@
     height: 100%;
     background: radial-gradient(
       ellipse at center,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) 60%,
-      rgba(0, 0, 0, 0.15) 100%
+      rgb(0 0 0 / 0%) 0%,
+      rgb(0 0 0 / 0%) 60%,
+      rgb(0 0 0 / 15%) 100%
     );
     pointer-events: none;
     z-index: 9998;
@@ -43,8 +43,8 @@
     height: 100%;
     background: repeating-linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.03),
-      rgba(0, 0, 0, 0.03) 1px,
+      rgb(0 0 0 / 3%),
+      rgb(0 0 0 / 3%) 1px,
       transparent 1px,
       transparent 2px
     );
@@ -148,8 +148,8 @@
     border-color: #ffffff #808080 #808080 #ffffff !important;
     background: linear-gradient(135deg, #f5f5f5, #e8e8e8) !important;
     box-shadow:
-      inset 1px 1px 0 rgba(255, 255, 255, 0.8),
-      inset -1px -1px 0 rgba(0, 0, 0, 0.2) !important;
+      inset 1px 1px 0 rgb(255 255 255 / 80%),
+      inset -1px -1px 0 rgb(0 0 0 / 20%) !important;
     margin: 0 !important;
     padding: 2px !important;
   }
@@ -160,8 +160,8 @@
     border-color: #ffffff #808080 #808080 #ffffff !important;
     background: linear-gradient(135deg, #f5f5f5, #e8e8e8) !important;
     box-shadow:
-      inset 1px 1px 0 rgba(255, 255, 255, 0.8),
-      inset -1px -1px 0 rgba(0, 0, 0, 0.2) !important;
+      inset 1px 1px 0 rgb(255 255 255 / 80%),
+      inset -1px -1px 0 rgb(0 0 0 / 20%) !important;
 
     & > img {
       visibility: hidden;
@@ -182,7 +182,7 @@
     border-color: #808080 #ffffff #ffffff #808080 !important;
     background: #ffffff !important;
     color: #000000 !important;
-    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1) !important;
+    box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%) !important;
     padding: 3px !important;
 
     &:focus {
@@ -219,7 +219,7 @@
     background: linear-gradient(90deg, #c0c0c0, #dfdfdf) !important;
     border: 2px solid !important;
     border-color: #ffffff #808080 #808080 #ffffff !important;
-    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5) !important;
+    box-shadow: inset 1px 1px 0 rgb(255 255 255 / 50%) !important;
     padding: 4px !important;
   }
 
@@ -232,7 +232,7 @@
     border-color: #dfdfdf #808080 #808080 #dfdfdf !important;
     background: #f0f0f0 !important;
     cursor: pointer !important;
-    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5) !important;
+    box-shadow: inset 1px 1px 0 rgb(255 255 255 / 50%) !important;
 
     &:checked {
       background: #e8e8e8 !important;
@@ -287,7 +287,7 @@
     border: 1px solid #a0a0a0 !important;
     padding: 2px 6px !important;
     border-radius: 2px !important;
-    box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 1px 1px 0 rgb(255 255 255 / 50%) !important;
     font-weight: normal !important;
   }
 
