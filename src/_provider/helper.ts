@@ -1,6 +1,6 @@
 export type SyncTypes = 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI' | 'MALAPI' | 'MANGABAKA';
 
-export function getSyncMode(type = '') {
+export function getSyncMode(type = '' as 'anime' | 'manga' | '') {
   const primaryMode = api.settings.get('syncMode') as SyncTypes;
   const secondaryMode = api.settings.get('syncModeSimkl') as SyncTypes;
   const primaryProvider = getProviderOption(primaryMode);

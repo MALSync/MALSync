@@ -389,7 +389,7 @@ export class SyncPage {
     messageArray.push(
       trackingSyncButtonElement(
         api.storage.lang(syncButtonTranslation.key, [
-          providerTemplates(malUrl).shortName,
+          providerTemplates(this.page.type, malUrl).shortName,
           syncButtonTranslation.value,
         ]),
       ),
