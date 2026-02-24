@@ -210,7 +210,7 @@ export class MangaBakaClass {
       progress.appendChild(progressTitle);
 
       const progressList = document.createElement('div');
-      progressList.classList = 'flex flex-col gap-2 pt-2';
+      progressList.classList = 'flex flex-wrap gap-3 pt-2';
 
       const badgeStyling =
         j.$('[data-slot="badge"][class*="bg-secondary"]').first().attr('class') || '';
@@ -219,7 +219,7 @@ export class MangaBakaClass {
         if (!item.getCurrentEpisode()) return;
 
         const itemElement = document.createElement('div');
-        itemElement.classList = 'flex gap-2';
+        itemElement.classList = 'flex gap-1';
 
         const itemTitle = document.createElement('span');
         itemTitle.innerText = item.getLanguageLabel();
