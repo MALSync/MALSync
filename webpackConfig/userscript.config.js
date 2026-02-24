@@ -100,7 +100,9 @@ const generateMetadataBlock = metadata => {
   return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())};\n`;
 };
 
-const proxyScripts = [];
+const proxyScripts = [
+  `export const proxy_request = require('./dist/webextension/content/proxy/proxy_request.js?raw');`,
+];
 pagesUtils.pages().forEach(page => {
   pageRoot = path.join(__dirname, '..', 'src/pages/', page);
   const scriptPath = `dist/webextension/content/proxy/proxy_${page}.js`;

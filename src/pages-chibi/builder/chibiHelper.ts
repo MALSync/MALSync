@@ -73,6 +73,7 @@ export function chibiList(pages: { [key: string]: PageInterface }): PageListJson
       urls: pageObj.urls,
       search: pageObj.search,
       database: pageObj.database,
+      features: pageObj.features,
     };
   });
 

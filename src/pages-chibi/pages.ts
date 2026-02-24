@@ -93,6 +93,7 @@ import { RageScans } from './implementations/RageScans/main';
 import { AniGo } from './implementations/AniGo/main';
 import { Kuudere } from './implementations/Kuudere/main';
 import { BigSolo } from './implementations/BigSolo/main';
+import { Plex } from './implementations/Plex/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -188,4 +189,5 @@ export const pages: { [key: string]: PageInterface } = {
   AniGo,
   Kuudere,
   BigSolo,
+  Plex,
 };

@@ -36,6 +36,15 @@ export interface PageInterface {
     player?: { [key: string]: string[] };
   };
   /**
+   * Additional features for the page integration
+   */
+  features?: {
+    /** Proxy website requests */
+    requestProxy?: boolean;
+    /** Add the possibility to add custom domains to this implementation */
+    customDomains?: boolean;
+  };
+  /**
    * URL template for the site's search functionality
    * @example
    * 'https://example.com/search?q={searchterm}'
@@ -288,6 +297,7 @@ export type PageListInterface = Pick<
   | 'database'
   | 'version'
   | 'minimumVersion'
+  | 'features'
 > & {
   /** The unique key of the page integration */
   key: string;
