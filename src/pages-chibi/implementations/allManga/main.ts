@@ -16,7 +16,7 @@ export const allManga: PageInterface = {
   // Url link is mess and cannot be use in as reference
   sync: {
     isSyncPage($c) {
-      return getUrl($c).urlPart(5).matches('-\\d+-').run();
+      return $c.querySelectorAll('.breadcrumb-item').length().equals(3).run();
     },
     getTitle($c) {
       return $c
@@ -45,7 +45,12 @@ export const allManga: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return getUrl($c).urlPart(5).regex('-(\\d+)-', 1).number().run();
+      return $c
+        .querySelector('.breadcrumb-item:last-child span')
+        .text()
+        .regex('(?:chapter|episode)\\s*(\\d+)', 1)
+        .number()
+        .run();
     },
     readerConfig: [
       {
@@ -56,15 +61,13 @@ export const allManga: PageInterface = {
   },
   overview: {
     isOverviewPage($c) {
-      return $c
-        .and(getUrl($c).urlPart(5).boolean().not().run(), getUrl($c).urlPart(4).boolean().run())
-        .run();
+      return $c.querySelectorAll('.breadcrumb-item').length().equals(2).run();
     },
     getTitle($c) {
       return $c.querySelector('.breadcrumb-item span').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.this('sync.getIdentifier').run();
+      return $c.querySelector('#linkInput').getAttribute('value').urlPart(4).run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
@@ -86,27 +89,17 @@ export const allManga: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c
-        .detectChanges(getUrl($c).ifNotReturn().run(), $c.trigger().run())
-        .domReady()
-        .trigger()
-        .run();
+      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
     syncIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('.container').boolean().run()).trigger().run();
+      return $c.waitUntilTrue($c.querySelector('.breadcrumb-item').boolean().run()).trigger().run();
     },
   },
 };
 
 function getUrl($c: ChibiGenerator<unknown>) {
   return $c
-    .querySelector('[type="application/ld+json"]')
-    .ifNotReturn()
-    .text()
-    .jsonParse()
-    .get('@graph')
-    .get('0')
-    .get('url')
-    .string()
-    .trim();
+    .querySelectorAll('.breadcrumb-item .btn-hv-link')
+    .arrayFind($item => $item.getAttribute('href').urlPart(4).boolean().run())
+    .getAttribute('href');
 }
