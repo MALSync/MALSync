@@ -38,9 +38,9 @@ describe('String Utilities Functions', () => {
       expect(generateAndExecute(code).run()).to.equal('123');
     });
 
-    it('should give null if nothing matches', () => {
+    it('should give undefined if nothing matches', () => {
       const code = $c.string('HELLO123').regexAutoGroup('(mal)|(sync)|(\\.)').run();
-      expect(generateAndExecute(code).run()).to.be.null;
+      expect(generateAndExecute(code).run()).to.be.undefined;
     });
 
     it('should handle ChibiJson', () => {
