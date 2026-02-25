@@ -15,7 +15,7 @@
   --cl-foreground-active: var(--cl-backdrop) !important;
 
   background: linear-gradient(135deg, #c0c0c0, #dfdfdf);
-  filter: sepia(0) contrast(0.75) saturate(2) brightness(1.1) hue-rotate(10deg) blur(0.4px);
+  filter: sepia(0) contrast(0.75) saturate(2) brightness(1.1) hue-rotate(10deg);
 
   &::after {
     content: '';
@@ -32,6 +32,10 @@
     );
     pointer-events: none;
     z-index: 9998;
+  }
+
+  img {
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="chromatic-aberration" x="-50%" y="-50%" width="200%" height="200%"><feComponentTransfer in="SourceGraphic" result="banded"><feFuncR type="discrete" tableValues="0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1"/><feFuncG type="discrete" tableValues="0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1"/><feFuncB type="discrete" tableValues="0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1"/></feComponentTransfer><feOffset in="banded" dx="2" dy="0" result="red-offset"/><feOffset in="banded" dx="-2" dy="0" result="blue-offset"/><feColorMatrix in="red-offset" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="red-channel"/><feColorMatrix in="banded" type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="green-channel"/><feColorMatrix in="blue-offset" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="blue-channel"/><feBlend in="red-channel" in2="green-channel" mode="screen" result="rg"/><feBlend in="rg" in2="blue-channel" mode="screen"/></filter></defs></svg>#chromatic-aberration');
   }
 
   &::before {
