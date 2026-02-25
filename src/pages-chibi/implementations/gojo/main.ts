@@ -6,9 +6,9 @@ export const gojo: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://animetsu.cc/*', '*://animetsu.bz/*', '*://animetsu.net/*'],
+    match: ['*://animetsu.cc/*', '*://animetsu.bz/*', '*://animetsu.net/*', '*://animetsu.live/*'],
   },
-  search: 'https://animetsu.net/search?query={searchtermPlus}',
+  search: 'https://animetsu.live/search?query={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c.url().urlPart(3).equals('watch').run();
