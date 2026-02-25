@@ -1,35 +1,106 @@
-let inter;
-
 const logger = con.m('Player');
 
-export function getPlayerTime(callback) {
-  clearInterval(inter);
-  inter = setInterval(function () {
-    const players = document.getElementsByTagName('video');
-    for (let i = 0; i < players.length; i++) {
-      const player: any = players[i];
-      const { duration } = player;
-      const current = player.currentTime;
-      const { paused } = player;
+export type PlayerTime = {
+  current: number;
+  duration: number;
+  paused: boolean;
+};
 
-      if (duration && duration > 60) {
-        const item = {
-          current,
-          duration,
-          paused,
-        };
-        logger.debug(window.location.href, item);
-        callback(item, player);
-        playerExtras(item, player);
-        break;
+export class PlayerSingleton {
+  // eslint-disable-next-line es-x/no-class-static-fields
+  private static instance: PlayerSingleton = new PlayerSingleton();
+
+  protected currentPlayer: HTMLVideoElement | null = null;
+
+  private listeners: { [key: string]: (time: PlayerTime, player?: HTMLVideoElement) => void } = {};
+
+  addListener(key: string, callback: (time: PlayerTime, player?: HTMLVideoElement) => void) {
+    this.listeners[key] = callback;
+  }
+
+  removeListener(key: string) {
+    delete this.listeners[key];
+  }
+
+  notifyListeners(time: PlayerTime, player?: HTMLVideoElement) {
+    Object.values(this.listeners).forEach(callback => {
+      callback(time, player);
+    });
+  }
+
+  private constructor() {
+    // Singleton
+  }
+
+  public startTracking() {
+    setInterval(() => {
+      const players = document.getElementsByTagName('video');
+      for (let i = 0; i < players.length; i++) {
+        const player: HTMLVideoElement = players[i];
+        const { duration } = player;
+        const current = player.currentTime;
+        const { paused } = player;
+
+        if (duration && duration > 60) {
+          const item = {
+            current,
+            duration,
+            paused,
+          };
+          logger.debug(window.location.href, item);
+          this.currentPlayer = player;
+          this.notifyListeners(item, player);
+          playerExtras(item, player);
+          return;
+        }
       }
+      this.currentPlayer = null;
+    }, 1000);
+
+    return this;
+  }
+
+  protected proxySetTime: ((time: number) => void) | null = null;
+
+  protected proxySetTimeTimeout: NodeJS.Timeout | null = null;
+
+  /** Used by iframe Proxy */
+  public setIframeProgress(time: PlayerTime, setTime?: (time: number) => void) {
+    if (typeof setTime !== 'undefined') {
+      this.proxySetTime = setTime;
+      clearTimeout(this.proxySetTimeTimeout!);
+      this.proxySetTimeTimeout = setTimeout(() => {
+        this.proxySetTime = null;
+      }, 15000);
     }
-  }, 1000);
+    this.notifyListeners(time);
+  }
+
+  public canSetTime() {
+    return Boolean(this.proxySetTime) || Boolean(this.currentPlayer);
+  }
+
+  public async setTime(time: number) {
+    if (!time || time < 0) return;
+    if (this.proxySetTime) {
+      this.proxySetTime(time);
+    } else if (this.currentPlayer) {
+      await this.currentPlayer.play();
+      this.currentPlayer.currentTime = time;
+    }
+  }
+
+  static getInstance() {
+    if (!PlayerSingleton.instance) {
+      PlayerSingleton.instance = new PlayerSingleton();
+    }
+    return PlayerSingleton.instance;
+  }
 }
 
 let videoIdentifier = '';
 
-function playerExtras(item, player) {
+function playerExtras(item: PlayerTime, player: HTMLVideoElement) {
   const tempVideoIdentifier = player.currentSrc;
   if (item.current > 1 && videoIdentifier !== tempVideoIdentifier) {
     videoIdentifier = tempVideoIdentifier;

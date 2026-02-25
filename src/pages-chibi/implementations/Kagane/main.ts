@@ -8,7 +8,7 @@ export const Kagane: PageInterface = {
   urls: {
     match: ['*://kagane.org/*'],
   },
-  search: 'https://kagane.org/search?name={searchtermPlus}',
+  search: 'https://kagane.org/search?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

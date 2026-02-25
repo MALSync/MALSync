@@ -1,5 +1,5 @@
 import { mangaProgressConfig } from '../utils/mangaProgress/MangaProgress';
-import type { SyncPage } from './syncPage';
+import type { SyncPage } from '../pages-sync/syncPage';
 
 export interface pageInterface {
   domain: string | string[];
