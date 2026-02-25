@@ -1652,5 +1652,29 @@
     },
     "settings_Mangasync_readerTracking_percentage": {
         "message": "Сделать главу прочитанной после процента страниц"
+    },
+    "settings_presence_activityName_malsync": {
+        "message": "MALSync"
+    },
+    "settings_presence_activityName": {
+        "message": "Название активности"
+    },
+    "settings_presence_activityName_title": {
+        "message": "Название произведения"
+    },
+    "settings_presence_activityName_website": {
+        "message": "Текущий сайт"
+    },
+    "settings_presence_activityName_type": {
+        "message": "Аниме/Манга"
+    },
+    "list_sorting_latest_release": {
+        "message": "По дате выхода"
+    },
+    "settings_anilist_external_sources": {
+        "message": "Показывать внешние источники"
+    },
+    "settings_chibi_repos_modal_add": {
+        "message": "Вы уверены что хотите добавить этот репозиторий?"
     }
 }
