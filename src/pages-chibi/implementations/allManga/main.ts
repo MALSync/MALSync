@@ -89,10 +89,14 @@ export const allManga: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
-    },
-    syncIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('.breadcrumb-item').boolean().run()).trigger().run();
+      return $c
+        .detectChanges(
+          $c.querySelector('.breadcrumb-item:last-child span').ifNotReturn().text().run(),
+          $c.trigger().run(),
+        )
+        .domReady()
+        .trigger()
+        .run();
     },
   },
 };
