@@ -31,6 +31,23 @@ describe('String Utilities Functions', () => {
       expect(generateAndExecute(code).run()).to.equal('100percent-world-and-radiation');
     });
   });
+
+  describe('regexAutoGroup', () => {
+    it('should repeat regex pattern group until it matches', () => {
+      const code = $c.string('hello123world').regexAutoGroup('(mal)|(sync)|(\\d+)').run();
+      expect(generateAndExecute(code).run()).to.equal('123');
+    });
+
+    it('should give undefined if nothing matches', () => {
+      const code = $c.string('HELLO123').regexAutoGroup('(mal)|(sync)|(\\.)').run();
+      expect(generateAndExecute(code).run()).to.be.undefined;
+    });
+
+    it('should handle ChibiJson', () => {
+      const code = $c.string('hello123mal').regexAutoGroup($c.string('(sync)|(\\d+)|(mal)').run()).run();
+      expect(generateAndExecute(code).run()).to.equal('123');
+    });
+  });
 });
 
 function generateAndExecute(input: ChibiJson<any>) {

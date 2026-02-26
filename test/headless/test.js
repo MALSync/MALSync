@@ -409,12 +409,28 @@ async function singleCase(block, test, page, testPage, retry = 0) {
             get: function(keys, callback) {
               console.log('chrome.storage.local.get', keys, callback);
               callback({});
+              return promise.resolve({});
             },
             set: function(items, callback) {
               console.log('chrome.storage.local.set', items, callback);
               if (callback) {
                 callback();
               }
+              return promise.resolve({});
+            }
+          },
+          sync: {
+            get: function(keys, callback) {
+              console.log('chrome.storage.sync.get', keys, callback);
+              callback({});
+              return promise.resolve({});
+            },
+            set: function(items, callback) {
+              console.log('chrome.storage.sync.set', items, callback);
+              if (callback) {
+                callback();
+              }
+              return promise.resolve({});
             }
           }
         },

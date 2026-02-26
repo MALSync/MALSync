@@ -34,4 +34,32 @@ export default {
       .replaceRegex('\\s+', '-')
       .replaceRegex('-{2,}', '-');
   },
+
+  /**
+   * Iterates group of regex until it matched.
+   * @param pattern The regex pattern string
+   * @example $c.string('Hello 123').regexAuto('(MAL)|(\\d+)') // return 123
+   */
+  regexAutoGroup: ($c: ChibiGenerator<string>, pattern: ChibiParam<string>) => {
+    // Has to use different variable name for some reason when using it inside AND outside of coalesce
+    const uniqueVar = `regAuto_${Math.random().toString(36).slice(2, 9)}`;
+    const Var = $c.setVariable(uniqueVar);
+
+    const match = new RegExp(`(?:${pattern})|`).exec('');
+    const groupCount = match ? match.length - 1 : 0;
+
+    if (groupCount === 0) return $c;
+    const branches = Array.from({ length: groupCount }, (_, i) => {
+      const groupIndex = i + 1;
+
+      return $c
+        .getVariable(uniqueVar)
+        .string()
+        .regex(pattern, groupIndex)
+        .ifThen($c => $c.string().run())
+        .run();
+    });
+
+    return Var.coalesce(...branches);
+  },
 };
