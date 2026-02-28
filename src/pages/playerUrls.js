@@ -887,6 +887,6 @@ module.exports = {
     match: ['*://callistanise.com/*', '*://habetar.com/*', '*://yuguaab.com/*'],
   },
   allManga: {
-    match: ['*://*.fast4speed.rsvp/*', '*://*.sharepoint.com/*'],
+    match: ['*://allanime.day/*', '*://allanime.uns.bio/*'],
   },
 };
