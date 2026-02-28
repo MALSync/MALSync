@@ -16,7 +16,7 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.box-content a[href^="/manga/"]').text().trim().run();
+      return $c.querySelector('.box-content a[href^="/manga/"]').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -29,7 +29,13 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c.title().regex('(\\d+)', 1).number().run();
+      return $c
+        .querySelectorAll('select option:checked')
+        .arrayFind($text => $text.text().includes('Chapter').run())
+        .text()
+        .regex('Chapter\\s*(\\d+)', 1)
+        .number()
+        .run();
     },
     readerConfig: [
       {
@@ -63,7 +69,7 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().run();
+      return $c.title().trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
@@ -77,21 +83,29 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getMalUrl($c) {
-      const getMal = $c
-        .querySelector('.aspect-square[title="MyAnimeList"]')
-        .ifNotReturn()
-        .getAttribute('href')
+      return $c
+        .providerUrlUtility({
+          malUrl: $c
+            .querySelector('a.btn[title="MyAnimeList"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlAbsolute()
+            .run(),
+          anilistUrl: $c
+            .querySelector('a.btn[title="AniList"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlAbsolute()
+            .run(),
+          kitsuId: $c
+            .querySelector('a.btn[title="Kitsu"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            // site using outdated .io domain
+            .urlPart(4)
+            .run(),
+        })
         .run();
-
-      const getAnilist = $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .querySelector('.aspect-square[title="AniList"]')
-        .getAttribute('href')
-        .run();
-
-      return $c.coalesce($c.fn(getAnilist).run(), $c.fn(getMal).run()).ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.md\\:block').uiAfter().run();
@@ -105,7 +119,7 @@ export const Atsumaru: PageInterface = {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('span').text().regex('(\\d+)', 1).number().run();
+      return $c.find('.truncate').text().regex('Chapter\\s*(\\d+)', 1).number().run();
     },
   },
   lifecycle: {

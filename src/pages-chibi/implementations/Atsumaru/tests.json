@@ -1,42 +1,67 @@
 {
-    "title": "Atsumaru",
-    "url": "https://atsu.moe/",
-    "testCases": [
-      {
-        "url": "https://atsu.moe/read/OaKBx/nHic9eRA",
-        "expected": {
-          "sync": true,
-          "title": "Revenge of the Baskerville Bloodhound",
-          "identifier": "OaKBx",
-          "overviewUrl": "https://atsu.moe/manga/OaKBx",
-          "episode": 131,
-          "uiSelector": false
+  "title": "Atsumaru",
+  "url": "https://atsu.moe/",
+  "testCases": [
+    {
+      "url": "https://atsu.moe/read/OaKBx/nHic9eRA",
+      "expected": {
+        "sync": true,
+        "title": "Revenge of the Baskerville Bloodhound",
+        "identifier": "OaKBx",
+        "overviewUrl": "https://atsu.moe/manga/OaKBx",
+        "episode": 131,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/3xHoW/472v49",
+      "expected": {
+        "sync": true,
+        "title": "The Knight Only Lives Today",
+        "identifier": "3xHoW",
+        "overviewUrl": "https://atsu.moe/manga/3xHoW",
+        "episode": 8,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/3xHoW",
+      "expected": {
+        "sync": false,
+        "title": "The Knight Only Lives Today",
+        "identifier": "3xHoW",
+        "image": "https://atsu.moe/static/posters/x1BERFcIuUolgTbf-large.webp",
+        "uiSelector": true,
+        "epList": {
+          "95": "https://atsu.moe/read/3xHoW/imn_RA",
+          "92": "https://atsu.moe/read/3xHoW/sm9n8t"
         }
-      },
-      {
-        "url": "https://atsu.moe/read/nh6Ii/j40uuwUC",
-        "expected": {
-          "sync": true,
-          "title": "One-Punch Man",
-          "identifier": "nh6Ii",
-		      "overviewUrl": "https://atsu.moe/manga/nh6Ii",
-          "episode": 8,
-          "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/QFGPm/YoxU9YZh",
+      "expected": {
+        "sync": true,
+        "title": "An Adventurer’s Daily Grind at Age 29",
+        "identifier": "QFGPm",
+        "overviewUrl": "https://atsu.moe/manga/QFGPm",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/QFGPm",
+      "expected": {
+        "sync": false,
+        "title": "An Adventurer’s Daily Grind at Age 29",
+        "identifier": "QFGPm",
+        "image": "https://atsu.moe/static/posters/Hck4Ei0yjYfxe8Wk-large.webp",
+        "uiSelector": true,
+        "epList": {
+          "4": "https://atsu.moe/read/QFGPm/YoxU9YZh",
+          "66": "https://atsu.moe/read/QFGPm/oySPdMfU"
         }
-      },
-      {
-        "url": "https://atsu.moe/manga/nh6Ii",
-        "expected": {
-          "sync": false,
-          "title": "One-Punch Man",
-          "identifier": "nh6Ii",
-          "image": "https://atsu.moe/static/posters/01J76XY7KT7J224EBK6J816Y1Q.jpg",
-          "uiSelector": true,
-          "epList": {
-            "10": "https://atsu.moe/read/nh6Ii/gOh3CFZ4",
-            "4": "https://atsu.moe/read/nh6Ii/xiKYaAIj"
-          }
-       }
-     }
-   ]
- }
+      }
+    }
+  ]
+}
