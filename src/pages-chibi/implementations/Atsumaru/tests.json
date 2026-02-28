@@ -14,27 +14,27 @@
       }
     },
     {
-      "url": "https://atsu.moe/read/nh6Ii/j40uuwUC",
+      "url": "https://atsu.moe/read/3xHoW/472v49",
       "expected": {
         "sync": true,
-        "title": "One-Punch Man",
-        "identifier": "nh6Ii",
-        "overviewUrl": "https://atsu.moe/manga/nh6Ii",
+        "title": "The Knight Only Lives Today",
+        "identifier": "3xHoW",
+        "overviewUrl": "https://atsu.moe/manga/3xHoW",
         "episode": 8,
         "uiSelector": false
       }
     },
     {
-      "url": "https://atsu.moe/manga/nh6Ii",
+      "url": "https://atsu.moe/manga/3xHoW",
       "expected": {
         "sync": false,
-        "title": "One-Punch Man",
-        "identifier": "nh6Ii",
-        "image": "https://atsu.moe/static/posters/01J76XY7KT7J224EBK6J816Y1Q.jpg",
+        "title": "The Knight Only Lives Today",
+        "identifier": "3xHoW",
+        "image": "https://atsu.moe/static/posters/x1BERFcIuUolgTbf-large.webp",
         "uiSelector": true,
         "epList": {
-          "10": "https://atsu.moe/read/nh6Ii/gOh3CFZ4",
-          "4": "https://atsu.moe/read/nh6Ii/xiKYaAIj"
+          "95": "https://atsu.moe/read/3xHoW/imn_RA",
+          "92": "https://atsu.moe/read/3xHoW/sm9n8t"
         }
       }
     },
