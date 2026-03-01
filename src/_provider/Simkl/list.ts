@@ -1,4 +1,4 @@
-import { NotAutenticatedError } from '../Errors';
+import { NotAuthenticatedError } from '../Errors';
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
@@ -18,7 +18,7 @@ export class UserList extends ListAbstract {
         };
       }
 
-      throw new NotAutenticatedError('Not Authenticated');
+      throw new NotAuthenticatedError('Not Authenticated');
     });
   }
 

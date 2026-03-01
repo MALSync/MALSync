@@ -203,10 +203,9 @@ export abstract class SingleAbstract {
   abstract _setEpisode(episode: number): void;
 
   public setEpisode(episode: number): SingleAbstract {
-    episode = parseInt(`${episode}`);
-    if (this.getTotalEpisodes() && episode > this.getTotalEpisodes())
-      episode = this.getTotalEpisodes();
-    this._setEpisode(episode);
+    let ep = parseInt(`${episode}`);
+    if (this.getTotalEpisodes() && ep > this.getTotalEpisodes()) ep = this.getTotalEpisodes();
+    this._setEpisode(ep);
     return this;
   }
 

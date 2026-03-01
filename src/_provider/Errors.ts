@@ -1,8 +1,8 @@
 /* eslint-disable max-classes-per-file */
-export class NotAutenticatedError extends Error {
+export class NotAuthenticatedError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'NotAutenticatedError';
+    this.name = 'NotAuthenticatedError';
   }
 }
 
@@ -34,6 +34,20 @@ export class UnexpectedResponseError extends Error {
   }
 }
 
+export class MissingParameterError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'MissingParameterError';
+  }
+}
+
+export class InvalidParameterError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidParameterError';
+  }
+}
+
 export function parseJson(json) {
   try {
     return JSON.parse(json);
@@ -43,7 +57,7 @@ export function parseJson(json) {
 }
 
 export function errorMessage(error, authenticationUrl: string) {
-  if (error instanceof NotAutenticatedError) {
+  if (error instanceof NotAuthenticatedError) {
     return api.storage.lang('Error_Authenticate', [authenticationUrl]);
   }
   if (error instanceof ServerOfflineError) {
