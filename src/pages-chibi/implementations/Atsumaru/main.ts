@@ -31,9 +31,9 @@ export const Atsumaru: PageInterface = {
     getEpisode($c) {
       return $c
         .querySelectorAll('select option:checked')
-        .arrayFind($text => $text.text().includes('Chapter').run())
+        .arrayFind($text => $text.text().includes('Page').not().run())
         .text()
-        .regex('Chapter\\s*(\\d+)', 1)
+        .regex('\\d+')
         .number()
         .run();
     },
@@ -119,7 +119,7 @@ export const Atsumaru: PageInterface = {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('.truncate').text().regex('Chapter\\s*(\\d+)', 1).number().run();
+      return $c.find('.truncate').text().regex('\\d+').number().run();
     },
   },
   lifecycle: {
