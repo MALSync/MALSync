@@ -17,7 +17,13 @@
               <template v-else>{{ link.date }}</template>
             </div>
             <template v-else-if="!('type' in link)">
-              <MediaLink v-if="link.url" dir="auto" color="secondary" :href="link.url">
+              <MediaLink
+                v-if="link.url"
+                dir="auto"
+                color="secondary"
+                :force-link="true"
+                :href="link.url"
+              >
                 {{ link.text }}
               </MediaLink>
               <span v-else dir="auto">
@@ -36,11 +42,11 @@
             <TextIcon
               v-if="single.getType() !== 'manga'"
               spacer="small"
-              :icon="link.type === 'sub' ? 'subtitles' : 'record_voice_over'"
+              :icon="link.getLangType() === 'sub' ? 'subtitles' : 'record_voice_over'"
             >
-              {{ link.label }}
+              {{ link.getLanguageLabel() }}
             </TextIcon>
-            <span v-else>{{ link.label }}</span>
+            <span v-else>{{ link.getLanguageLabel() }}</span>
             <span v-if="Number(index) + 1 < single.getProgressCompleted().length">, </span>
           </template>
         </div>
@@ -50,19 +56,21 @@
         <div class="content ongoing">
           <div
             v-for="link in single.getProgressOptions()"
-            :key="link.key"
+            :key="link.getId()!"
             class="ongoing-item"
-            :title="getTitle(link)"
+            :title="link.getAutoText(true)"
+            :data-source="link.getSource()"
+            :data-group="link.getGroup()"
           >
             <span v-if="single.getType() !== 'manga'" class="material-icons">
-              {{ link.type === 'sub' ? 'subtitles' : 'record_voice_over' }}
+              {{ link.getLangType() === 'sub' ? 'subtitles' : 'record_voice_over' }}
             </span>
-            <span>{{ link.label }}</span>
+            <span>{{ link.getLanguageLabel() }}</span>
             <span class="episode">
-              {{ single.getType() === 'manga' ? 'CH' : 'EP' }}
-              {{ link.episode }}
+              {{ lang(`settings_listsync_progress_${single.getType()}`).replace(':', '') }}
+              {{ link.getCurrentEpisode() }}
             </span>
-            <span v-if="link.dropped" class="material-icons" title="Dropped">warning</span>
+            <span v-if="link.isDropped()" class="material-icons" title="Dropped">warning</span>
           </div>
         </div>
       </div>
@@ -89,22 +97,6 @@ defineProps({
     default: null,
   },
 });
-
-function getTitle(item) {
-  if (item.lastEp && item.lastEp.timestamp) {
-    return new IntlDateTime(Number(item.lastEp.timestamp)).getRelativeNowFriendlyText('Progress', {
-      style: 'long',
-    });
-  }
-  if (item.predicition && item.predicition.timestamp) {
-    return api.storage.lang('prediction_next', [
-      new IntlDateTime(Number(item.predicition.timestamp)).getRelativeNowFriendlyText('Progress', {
-        style: 'long',
-      }),
-    ]);
-  }
-  return '';
-}
 
 function getTimezoneDate(
   dateElement: Date | string,

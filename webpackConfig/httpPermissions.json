@@ -16,6 +16,8 @@
   "https://chibi.malsync.moe/",
   "https://api.myanimelist.net/",
   "https://api.mangadex.org/",
+  "https://api.mangabaka.dev/",
+  "https://*.mangabaka.org/",
   "https://shikimori.one/",
   "https://*.plex.direct/"
 ]

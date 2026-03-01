@@ -25,9 +25,9 @@
         <div class="image"></div>
         <div class="right">
           <span class="title">{{
-            lang('correction_NoEntry', [providerTemplates('').shortName])
+            lang('correction_NoEntry', [providerTemplates(type).shortName])
           }}</span>
-          <p>{{ lang('correction_NoMal', [providerTemplates('').shortName]) }}</p>
+          <p>{{ lang('correction_NoMal', [providerTemplates(type).shortName]) }}</p>
         </div>
       </a>
       <a

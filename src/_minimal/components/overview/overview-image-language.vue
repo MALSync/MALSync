@@ -17,16 +17,29 @@
         </FormButton>
       </template>
       <template #option="slotProps">
-        <div v-if="slotProps.option.meta" class="entry" :title="slotProps.option.meta.key">
+        <div
+          v-if="getProgressFromOption(slotProps.option)"
+          class="entry"
+          :title="getProgressFromOption(slotProps.option).getAutoText()!"
+        >
           <span v-if="single.getType() !== 'manga'" class="material-icons">
-            {{ slotProps.option.meta.type === 'sub' ? 'subtitles' : 'record_voice_over' }}
+            {{
+              getProgressFromOption(slotProps.option).getLangType() === 'sub'
+                ? 'subtitles'
+                : 'record_voice_over'
+            }}
           </span>
           <span class="episode">
-            {{ single.getType() === 'manga' ? 'CH' : 'EP' }}
-            {{ slotProps.option.meta.episode }}
+            {{ lang(`settings_listsync_progress_${single.getType()}`).replace(':', '') }}
+            {{ getProgressFromOption(slotProps.option).getCurrentEpisode() }}
           </span>
-          <span>{{ slotProps.option.meta.label }}</span>
-          <span v-if="slotProps.option.meta.dropped" class="material-icons" title="Dropped"
+          <span :title="getProgressFromOption(slotProps.option).getId()!">{{
+            getProgressFromOption(slotProps.option).getLanguageLabel()
+          }}</span>
+          <span
+            v-if="getProgressFromOption(slotProps.option).isDropped()"
+            class="material-icons"
+            title="Dropped"
             >warning</span
           >
         </div>
@@ -41,6 +54,7 @@ import { computed, PropType } from 'vue';
 import { SingleAbstract } from '../../../_provider/singleAbstract';
 import FormDropdown from '../form/form-dropdown.vue';
 import FormButton from '../form/form-button.vue';
+import type { Progress } from '../../../utils/progress';
 
 const props = defineProps({
   single: {
@@ -65,8 +79,8 @@ const options = computed(() => {
   const optionsArray = [
     { title: api.storage.lang('settings_progress_default'), value: '' },
     ...props.single.getProgressOptions().map(option => ({
-      title: option.label,
-      value: option.key,
+      title: option.getLanguageLabel(),
+      value: option.getId()!,
       meta: option,
     })),
     { title: api.storage.lang('settings_progress_disabled'), value: 'off' },
@@ -74,6 +88,10 @@ const options = computed(() => {
 
   return optionsArray;
 });
+
+function getProgressFromOption(option): Progress {
+  return option.meta;
+}
 </script>
 
 <style lang="less" scoped>

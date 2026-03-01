@@ -34,6 +34,8 @@ jobs:
           CI_MODE: travis
           SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
           SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+          MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+          MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
         run: |
           TASKS=$(node webpackConfig/autoUrls.mjs --list)
           echo "matrix=$TASKS" >> $GITHUB_OUTPUT
@@ -65,6 +67,8 @@ jobs:
           CI_MODE: travis
           SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
           SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+          MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+          MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
         run: node webpackConfig/autoUrls.mjs ${{ matrix.task }}
 
       - name: Build missing permissions

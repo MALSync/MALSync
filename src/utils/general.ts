@@ -479,6 +479,8 @@ export function getStatusText(type: 'anime' | 'manga', state) {
       return api.storage.lang('UI_Status_All');
     case 23:
       return api.storage.lang(`UI_Status_Rewatching_${type}`);
+    case 24:
+      return api.storage.lang('UI_Status_Considering');
     default:
       return '';
   }

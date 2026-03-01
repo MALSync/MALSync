@@ -159,6 +159,10 @@
         "message": "Rereading",
         "description": "Status to reread manga"
     },
+    "UI_Status_Considering": {
+        "message": "Considering",
+        "description": "Status to consider an anime/manga"
+    },
     "UI_Episode": {
         "message": "Episode:",
         "description": "Episode"
@@ -852,6 +856,10 @@
                 "example": "MyAnimeList"
             }
         }
+    },
+    "settings_splitTracking": {
+        "message": "Split Tracking",
+        "description": "Option to use different providers for anime and manga tracking"
     },
     "settings_LocalSync": {
         "message": "Local storage fallback",

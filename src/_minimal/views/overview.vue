@@ -78,7 +78,7 @@
             v-dompurify-html="cleanDescription"
             class="description-html"
             dir="auto"
-            :class="{ preLine: !cleanDescription.includes('<br') }"
+            :class="{ preLine: !cleanDescription.match(/<(br|p)/) }"
           />
         </Description>
       </Section>
@@ -94,9 +94,12 @@
     <template v-if="breakpoint === 'desktop' || (!totalLoading && !singleRequest.loading)">
       <HR />
       <Section class="stream-section">
+        <Header :spacer="true" class="head">{{ lang('overview_Streaming') }}</Header>
         <OverviewStreaming
           :type="props.type as 'anime'"
-          :cache-key="singleRequest.data && !totalLoading ? singleRequest.data!.getCacheKey() : ''"
+          :cache-key="
+            singleRequest.data && !totalLoading ? singleRequest.data!.getApiCacheKey() : ''
+          "
           :title="singleRequest.data ? singleRequest.data!.getTitle() : ''"
           :alternative-title="metaRequest.data?.alternativeTitle"
         />

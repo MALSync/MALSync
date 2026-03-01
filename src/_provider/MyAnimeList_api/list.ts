@@ -70,7 +70,7 @@ export class UserList extends ListAbstract {
 
   async getPart() {
     this.limit = 100;
-    if (this.modes.frontend) {
+    if (this.modes.frontend && !this.modes.sortAiring) {
       this.limit = 24;
     }
 
