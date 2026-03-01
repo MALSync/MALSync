@@ -495,6 +495,9 @@ export abstract class SingleAbstract {
   }
 
   public isValueDirty(key: keyof ReturnType<SingleAbstract['getStateEl']>): boolean {
+    if (!this._onList) {
+      return true;
+    }
     if (this.persistenceState) {
       return this.persistenceState[key] !== this.getStateEl()[key];
     }
