@@ -27,6 +27,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://allmanga.to"><img src="https://favicon.malsync.moe/?domain=https://allmanga.to"> allManga</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://an1me.to"><img src="https://favicon.malsync.moe/?domain=https://an1me.to"> An1me</a></td>
     <td>Greek</td>
     <td>:heavy_check_mark:</td>
@@ -531,7 +538,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="http://app.plex.tv"><img src="https://favicon.malsync.moe/?domain=http://app.plex.tv"> Plex</a></td>
+    <td><a href="http://app.plex.tv/"><img src="https://favicon.malsync.moe/?domain=http://app.plex.tv/"> Plex</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
