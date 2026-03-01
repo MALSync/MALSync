@@ -1,31 +1,30 @@
-const fs = require('fs');
-const path = require('path');
-const ts = require('typescript');
-const glob = require('glob');
+import { globSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
+import { resolve, join, relative, dirname } from 'path';
+import { createSourceFile, ScriptTarget, forEachChild, isExportAssignment, isObjectLiteralExpression } from 'typescript';
 
-const outputPath = path.resolve(__dirname, '../src/chibiScript/ChibiGeneratorTypes.ts');
+const outputPath = resolve(import.meta.dirname, '../src/chibiScript/ChibiGeneratorTypes.ts');
 
 const parameterMatrix = {};
 
 function generateChibiTypes() {
   console.log('Generating ChibiScript type definitions...');
 
-  const functionsDir = path.resolve(__dirname, '../src/chibiScript/functions');
-  const functionFilePaths = glob.sync(path.join(functionsDir, '**/*Functions.ts'));
-  const functionModules = functionFilePaths.map(filePath =>
-    path.relative(functionsDir, filePath).replace(/\\/g, '/'),
-  );
+  const functionsDir = resolve(import.meta.dirname, '../src/chibiScript/functions');
+  const filesNodeGlobSync = globSync(join(functionsDir, '**/*Functions.ts'), { nodir: true });
+  const functionModules = filesNodeGlobSync.map(filePath =>
+    relative(functionsDir, filePath).replace(/\\/g, '/'),
+  ).sort();  
 
   const allFunctionParts = [];
 
   functionModules.forEach(moduleFile => {
-    const modulePath = path.join(functionsDir, moduleFile);
-    const moduleSource = fs.readFileSync(modulePath, 'utf8');
+    const modulePath = join(functionsDir, moduleFile);
+    const moduleSource = readFileSync(modulePath, 'utf8');
 
-    const sourceFile = ts.createSourceFile(
+    const sourceFile = createSourceFile(
       moduleFile,
       moduleSource,
-      ts.ScriptTarget.ESNext,
+      ScriptTarget.ESNext,
       true
     );
 
@@ -72,8 +71,8 @@ function generateChibiTypes() {
 
   typeDefinitions += `export const chibiParamIndices = ${JSON.stringify(parameterMatrix, null, 2)} as Record<string, number[]>;\n`;
 
-  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, typeDefinitions);
+  mkdirSync(dirname(outputPath), { recursive: true });
+  writeFileSync(outputPath, typeDefinitions);
 
   console.log(`Generated ChibiScript type definitions with functions at ${outputPath}`);
 }
@@ -81,11 +80,11 @@ function generateChibiTypes() {
 function extractFunction(sourceFile) {
   const functionParts = [];
 
-  ts.forEachChild(sourceFile, node => {
+  forEachChild(sourceFile, node => {
     if (
-      ts.isExportAssignment(node) &&
+      isExportAssignment(node) &&
       node.expression &&
-      ts.isObjectLiteralExpression(node.expression)
+      isObjectLiteralExpression(node.expression)
     ) {
       const objectLiteral = node.expression;
       objectLiteral.properties.forEach(prop => {
