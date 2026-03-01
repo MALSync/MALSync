@@ -62,6 +62,31 @@
           "66": "https://atsu.moe/read/QFGPm/oySPdMfU"
         }
       }
+    },
+    {
+      "url": "https://atsu.moe/read/v8Kbg/NiW7j",
+      "expected": {
+        "sync": true,
+        "title": "Sakamoto Days",
+        "identifier": "v8Kbg",
+        "overviewUrl": "https://atsu.moe/manga/v8Kbg",
+        "episode": 247,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/v8Kbg",
+      "expected": {
+        "sync": false,
+        "title": "Sakamoto Days",
+        "identifier": "v8Kbg",
+        "image": "https://atsu.moe/static/posters/L86QVtl90AthPz6V-large.webp",
+        "uiSelector": true,
+        "epList": {
+          "249": "https://atsu.moe/read/v8Kbg/Wzgml",
+          "248": "https://atsu.moe/read/v8Kbg/AhA8b"
+        }
+      }
     }
   ]
 }
