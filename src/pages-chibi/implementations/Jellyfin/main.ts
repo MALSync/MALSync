@@ -38,7 +38,7 @@ type SyncMeta = EpisodeMetadata | MovieMetadata;
 
 export const Jellyfin: PageInterface = {
   name: 'Jellyfin',
-  domain: 'https://jellyfin.org/',
+  domain: 'https://jellyfin.org',
   languages: ['Many'],
   type: 'anime',
   minimumVersion: '0.12.3',
