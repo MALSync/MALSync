@@ -38,7 +38,7 @@
       <div v-if="single && single.getProgressCompleted().length" class="item">
         <div class="type">{{ lang('prediction_complete') }}:</div>
         <div class="content">
-          <template v-for="(link, index) in single.getProgressCompleted()" :key="link.key">
+          <template v-for="(link, index) in single.getProgressCompleted()" :key="index">
             <TextIcon
               v-if="single.getType() !== 'manga'"
               spacer="small"
