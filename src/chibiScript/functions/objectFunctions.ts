@@ -14,11 +14,7 @@ export default {
     ctx: ChibiCtx,
     input: Input,
     key: ChibiParam<Key>,
-  ): 0 extends 1 & Input
-    ? any
-    : Input extends Record<PropertyKey, unknown>
-      ? Input[Key]
-      : any => {
+  ): 0 extends 1 & Input ? any : Input extends Record<PropertyKey, unknown> ? Input[Key] : any => {
     if (!input || typeof input !== 'object') {
       return undefined as any;
     }

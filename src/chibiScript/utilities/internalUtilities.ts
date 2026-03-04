@@ -2,6 +2,25 @@ import type { ChibiGenerator, ChibiJson } from '../ChibiGenerator';
 
 export default {
   /**
+   * Executes a function with the current generator context
+   * @input any - Current context
+   * @param fn - Function to execute that takes the generator and returns a new generator
+   * @returns Result of the function execution
+   * @example
+   * function meta($c: ChibiGenerator<unknown>) {
+   *    return $c.getGlobalVariable('metadataGlobal');
+   * }
+   *
+   * $c.exec(meta).get('Type').run()
+   */
+  exec: <Input, Output>(
+    $c: ChibiGenerator<Input>,
+    fn: (c: ChibiGenerator<Input>) => ChibiGenerator<Output>,
+  ): ChibiGenerator<Output> => {
+    return fn($c);
+  },
+
+  /**
    * Utility to generate provider URLs based on provided IDs or URLs
    */
   providerUrlUtility: (
