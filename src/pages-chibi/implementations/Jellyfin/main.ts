@@ -36,6 +36,10 @@ type OverviewMeta = SeasonMetadata;
 
 type SyncMeta = EpisodeMetadata | MovieMetadata;
 
+function meta<P>($c: ChibiGenerator<unknown>) {
+  return $c.getGlobalVariable<P>('metadataGlobal');
+}
+
 export const Jellyfin: PageInterface = {
   name: 'Jellyfin',
   domain: 'https://jellyfin.org',
@@ -56,21 +60,36 @@ export const Jellyfin: PageInterface = {
           $c.querySelector('video').boolean().run(),
           $c
             .or(
-              meta<SyncMeta>($c).get('Type').equals('Episode').run(),
-              meta<SyncMeta>($c).get('Type').equals('Movie').run(),
+              $c
+                .exec(meta<SyncMeta>)
+                .get('Type')
+                .equals('Episode')
+                .run(),
+              $c
+                .exec(meta<SyncMeta>)
+                .get('Type')
+                .equals('Movie')
+                .run(),
             )
             .run(),
         )
         .run();
     },
     getTitle($c) {
-      const title = meta<EpisodeMetadata>($c).get('SeriesName');
-      const seasonIndex = meta<EpisodeMetadata>($c).get('ParentIndexNumber');
+      const title = $c.exec(meta<EpisodeMetadata>).get('SeriesName');
+      const seasonIndex = $c.exec(meta<EpisodeMetadata>).get('ParentIndexNumber');
 
-      return meta<SyncMeta>($c)
+      return $c
+        .exec(meta<SyncMeta>)
         .get('Type')
         .equals('Movie')
-        .ifThen($c => meta<MovieMetadata>($c).get('Name').return().run())
+        .ifThen($c =>
+          $c
+            .exec(meta<MovieMetadata>)
+            .get('Name')
+            .return()
+            .run(),
+        )
         .if(
           seasonIndex.number().greaterThan(1).run(),
           title.concat(' ').concat('Season ').concat(seasonIndex.string().run()).run(),
@@ -81,9 +100,18 @@ export const Jellyfin: PageInterface = {
     getIdentifier($c) {
       return $c
         .coalesceFn(
-          meta<EpisodeMetadata>($c).get('SeasonId').run(),
-          meta<EpisodeMetadata>($c).get('SeriesId').run(),
-          meta<SyncMeta>($c).get('Id').run(),
+          $c
+            .exec(meta<EpisodeMetadata>)
+            .get('SeasonId')
+            .run(),
+          $c
+            .exec(meta<EpisodeMetadata>)
+            .get('SeriesId')
+            .run(),
+          $c
+            .exec(meta<SyncMeta>)
+            .get('Id')
+            .run(),
         )
         .run();
     },
@@ -97,23 +125,27 @@ export const Jellyfin: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return meta<EpisodeMetadata>(
-        meta<SyncMeta>($c)
-          .get('Type')
-          .equals('Movie')
-          .ifThen($c => $c.number(1).return().run()),
-      )
+      return $c
+        .exec(meta<SyncMeta>)
+        .get('Type')
+        .equals('Movie')
+        .ifThen($any => $any.number(1).return().run())
+        .exec(meta<EpisodeMetadata>)
         .get('IndexNumber')
         .run();
     },
   },
   overview: {
     isOverviewPage($c) {
-      return meta<OverviewMeta>($c).get('Type').equals('Season').run();
+      return $c
+        .exec(meta<OverviewMeta>)
+        .get('Type')
+        .equals('Season')
+        .run();
     },
     getTitle($c) {
-      const title = meta<OverviewMeta>($c).get('SeriesName');
-      const seasonIndex = meta<OverviewMeta>($c).get('IndexNumber');
+      const title = $c.exec(meta<OverviewMeta>).get('SeriesName');
+      const seasonIndex = $c.exec(meta<OverviewMeta>).get('IndexNumber');
 
       return $c
         .if(
@@ -127,7 +159,10 @@ export const Jellyfin: PageInterface = {
       return $c.string('').run();
     },
     getIdentifier($c) {
-      return meta<OverviewMeta>($c).get('Id').run();
+      return $c
+        .exec(meta<OverviewMeta>)
+        .get('Id')
+        .run();
     },
     uiInjection($c) {
       return $c.querySelector('.page:not(.hide) .detailSectionContent').uiPrepend().run();
@@ -148,7 +183,7 @@ export const Jellyfin: PageInterface = {
     ready($c) {
       return $c
         .requestProxy($c =>
-          checkRequest($c.setVariable('request').get('url').setVariable('requestUrl')).run(),
+          $c.setVariable('request').get('url').setVariable('requestUrl').exec(checkRequest).run(),
         )
         .run();
     },
@@ -159,7 +194,7 @@ function checkRequest($c: ChibiGenerator<unknown>) {
   return $c
     .getVariable<string>('requestUrl')
     .matches('/Items/[^/]+(\\?|$)')
-    .ifThen($c => checkMetadataRequest($c));
+    .ifThen($c => $c.exec(checkMetadataRequest).run());
 }
 
 function checkMetadataRequest($c: ChibiGenerator<unknown>) {
@@ -171,16 +206,15 @@ function checkMetadataRequest($c: ChibiGenerator<unknown>) {
     .log($c.getVariable('metadata').get('Type').run())
     .get('Type')
     .equals('Season')
-    .ifThen($c => handleSeason($c).return().run())
+    .ifThen($c => $c.exec(handleSeason).return().run())
     .getVariable('metadata')
     .get('Type')
     .equals('Episode')
-    .ifThen($c => handleEpisode($c).return().run())
+    .ifThen($c => $c.exec(handleEpisode).return().run())
     .getVariable('metadata')
     .get('Type')
     .equals('Movie')
-    .ifThen($c => handleMovie($c).return().run())
-    .run();
+    .ifThen($c => $c.exec(handleMovie).return().run());
 }
 
 function isAnime($c: ChibiGenerator<unknown>) {
@@ -190,9 +224,7 @@ function isAnime($c: ChibiGenerator<unknown>) {
       $c
         .getVariable<Metadata>('metadata')
         .get('GenreItems')
-        .arrayFind(genre =>
-          (genre.get('Name') as ChibiGenerator<string>).toLowerCase().equals('anime').run(),
-        )
+        .arrayFind(genre => genre.get('Name').toLowerCase().equals('anime').run())
         .boolean()
         .run(),
       $c
@@ -221,8 +253,4 @@ function handleMovie($c: ChibiGenerator<unknown>) {
   return isAnime($c).ifThen($c =>
     $c.getVariable('metadata').setGlobalVariable('metadataGlobal').trigger().run(),
   );
-}
-
-function meta<P>($c: ChibiGenerator<unknown>) {
-  return $c.getGlobalVariable<P>('metadataGlobal');
 }
