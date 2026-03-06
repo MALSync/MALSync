@@ -17,6 +17,8 @@
 // Style 1 = border style
 // Style 2 = background style
 // Style 3 = text color style
+// Style 4 = bold text style
+// Style 5 = img border style
 @activeEp: #002e7459;
 
 .malp() when (@malpStyle = 0) {
@@ -134,6 +136,11 @@
   font-weight: bold !important;
   * {
     font-weight: bold !important;
+  }
+}
+.epHighlight() when (@highlightStyle = 5) {
+  img {
+    border: 2px solid @activeEp;
   }
 }
 
