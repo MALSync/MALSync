@@ -1456,5 +1456,17 @@
     "locale": {
         "message": "ms",
         "description": "Current locale"
+    },
+    "next": {
+        "message": "Seterusnya"
+    },
+    "back": {
+        "message": "Kembali"
+    },
+    "start": {
+        "message": "Mula"
+    },
+    "overview_synonyms": {
+        "message": "Sinonim"
     }
 }
