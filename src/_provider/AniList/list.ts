@@ -112,11 +112,9 @@ export class UserList extends ListAbstract {
 
     let query = `
     query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus, $sort: [MediaListSort] ) {
-      Page (page: $page, perPage: 100) {
-        pageInfo {
-          hasNextPage
-        }
-        mediaList (status: $status, type: $type, userName: $userName, sort: $sort) {
+      MediaListCollection(status: $status, type: $type, userName: $userName, sort: $sort, chunk: $page, perChunk: 500, forceSingleCompletedList: true ) {
+        hasNextChunk
+        lists { entries {
           status
           startedAt {
             year
@@ -150,7 +148,7 @@ export class UserList extends ListAbstract {
             title {
               userPreferred
             }
-          }
+          }}
         }
       }
     }
@@ -159,17 +157,15 @@ export class UserList extends ListAbstract {
     if (this.compact) {
       query = `
       query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus, $sort: [MediaListSort]) {
-        Page (page: $page, perPage: 100) {
-          pageInfo {
-            hasNextPage
-          }
-          mediaList (status: $status, type: $type, userName: $userName, sort: $sort) {
+        MediaListCollection(status: $status, type: $type, userName: $userName, sort: $sort, chunk: $page, perChunk: 500, forceSingleCompletedList: true) {
+          hasNextChunk
+          lists { entries {
             progress
             media {
               id
               idMal
             }
-          }
+          }}
         }
       }
       `;
@@ -191,9 +187,9 @@ export class UserList extends ListAbstract {
 
     return helper.apiCall(query, variables, true).then(res => {
       con.log('res', res);
-      const data = res.data.Page.mediaList;
+      const data = res.data.MediaListCollection.lists.flatMap(list => list.entries);
       this.offset += 1;
-      if (!res.data.Page.pageInfo.hasNextPage) {
+      if (!res.data.MediaListCollection.hasNextChunk) {
         this.done = true;
       }
 
