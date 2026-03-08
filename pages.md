@@ -387,7 +387,7 @@
     <td><a href="https://animetsu.net"><img src="https://favicon.malsync.moe/?domain=https://animetsu.net"> Gojo</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
