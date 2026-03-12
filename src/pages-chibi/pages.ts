@@ -95,6 +95,7 @@ import { Kuudere } from './implementations/Kuudere/main';
 import { BigSolo } from './implementations/BigSolo/main';
 import { Plex } from './implementations/Plex/main';
 import { allManga } from './implementations/allManga/main';
+import { GaiaFlix } from './implementations/GaiaFlix/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -192,4 +193,5 @@ export const pages: { [key: string]: PageInterface } = {
   BigSolo,
   Plex,
   allManga,
+  GaiaFlix,
 };
