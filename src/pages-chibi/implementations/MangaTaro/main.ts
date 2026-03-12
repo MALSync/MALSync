@@ -77,7 +77,7 @@ export const MangaTaro: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.flex-1 .gap-1\\.5').uiAfter().run();
+      return $c.querySelector('h1.text-2xl').parent().uiAppend().run();
     },
   },
   list: {
