@@ -85,7 +85,7 @@ export const QiScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.sticky > .space-y-2').uiAppend().run();
+      return $c.querySelector('[role="tablist"]').uiBefore().run();
     },
   },
   list: {
@@ -96,7 +96,7 @@ export const QiScans: PageInterface = {
       return $c.closest('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('h3').text().regex('Chapter (\\d+)', 1).number().run();
+      return $c.find('h3').ifNotReturn().text().regex('Chapter (\\d+)', 1).number().run();
     },
   },
   lifecycle: {
