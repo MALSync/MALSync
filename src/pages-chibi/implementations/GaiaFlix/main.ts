@@ -105,12 +105,7 @@ export const GaiaFlix: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c
-        .detectURLChanges($c.trigger().run())
-        .detectChanges(getSeason($c).ifNotReturn().run(), $c.trigger().run())
-        .domReady()
-        .trigger()
-        .run();
+      return $c.detectChanges(getSeason($c).ifNotReturn().run(), $c.trigger().run()).run();
     },
   },
 };

@@ -1,7 +1,22 @@
 @import './../pages';
 
+@boxBackground: var(--background);
 @highlightStyle: 1;
+@activeEp: var(--theme);
+@boxHighlightBackground: var(--theme);
+@boxHighlightFontColor: var(--background);
 
 #malp {
   margin-bottom: calc(var(--spacing) * 4);
+  #MalData {
+    .malp-group {
+      .malp-group-field:not(.malp-group-input),
+      .malp-group-value-section {
+        border: 1px solid @activeEp;
+      }
+      #AddMal:hover {
+        background-color: color-mix(in oklab, var(--theme) 90%, transparent) !important;
+      }
+    }
+  }
 }
