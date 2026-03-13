@@ -36,13 +36,20 @@ export const GaiaFlix: PageInterface = {
         .run();
     },
     getOverviewUrl($c) {
-      return $c.string('/detail/').concat($c.this('sync.getIdentifier').run()).urlAbsolute().run();
+      return $c
+        .string('/detail/')
+        .concat($c.this('sync.getIdentifier').run())
+        .replaceRegex('-.*', '')
+        .urlAbsolute()
+        .run();
     },
     getEpisode($c) {
       return $c.url().urlParam('e').number().run();
     },
     nextEpUrl($c) {
       return $c
+        .querySelector('.w-max button')
+        .ifNotReturn()
         .url()
         .replaceRegex(
           'ep=\\d+',
@@ -74,15 +81,7 @@ export const GaiaFlix: PageInterface = {
         .run();
     },
     getIdentifier($c) {
-      return (
-        $c
-          .url()
-          .urlPart(4)
-          // I took full "season-1" because some anime doesn't use number as season like attack on titan.
-          .concat($c.string('-').concat(getSeason($c).ifNotReturn().run()).run())
-          .slugify()
-          .run()
-      );
+      return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c.querySelector('.object-cover').getAttribute('src').ifNotReturn().run();

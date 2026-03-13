@@ -22,7 +22,7 @@
       "url": "https://gaiaflix.live/detail/1429",
       "expected": {
         "sync": false,
-        "title": "Attack on Titan",
+        "title": "Attack on Titan Season 1",
         "identifier": "1429-season-1",
         "image": "https://image.tmdb.org/t/p/original/rqbCbjB19amtOtFQbb3K2lgm2zv.jpg",
         "uiSelector": true,
