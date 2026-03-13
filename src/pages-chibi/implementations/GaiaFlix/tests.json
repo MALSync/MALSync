@@ -22,8 +22,8 @@
         "image": "https://image.tmdb.org/t/p/original/rqbCbjB19amtOtFQbb3K2lgm2zv.jpg",
         "uiSelector": true,
         "epList": {
-          "2": "https://gaiaflix.live/watch/1429?type=tv&s=1&e=2&title=Attack%20on%20Titan",
-          "6": "https://gaiaflix.live/watch/1429?type=tv&s=1&e=6&title=Attack%20on%20Titan"
+          "2": "https://gaiaflix.live/watch-anime/hi-attack-on-titan-112?e=2&title=Attack on Titan&showId=1429&type=tv",
+          "6": "https://gaiaflix.live/watch-anime/hi-attack-on-titan-112?e=6&title=Attack on Titan&showId=1429&type=tv"
         }
       }
     },
