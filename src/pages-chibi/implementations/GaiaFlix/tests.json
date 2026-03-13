@@ -33,22 +33,22 @@
       }
     },
     {
-      "url": "https://gaiaflix.live/watch-anime/hi-cosmic-princess-kaguya-20173?ep=164369?e=1&title=Cosmic%20Princess%20Kaguya!&showId=1176639&type=movie",
+      "url": "https://gaiaflix.live/watch-anime/hi-cosmic-princess-kaguya-20173?ep=164369?e=1&title=Cosmic%20Princess%20Kaguya!&showId=1575337&type=movie",
       "expected": {
         "sync": true,
         "title": "Cosmic Princess Kaguya!",
-        "identifier": "1176639",
-        "overviewUrl": "https://gaiaflix.live/detail/1176639",
+        "identifier": "1575337",
+        "overviewUrl": "https://gaiaflix.live/detail/1575337",
         "episode": 1,
         "uiSelector": true
       }
     },
     {
-      "url": "https://gaiaflix.live/detail/1176639",
+      "url": "https://gaiaflix.live/detail/1575337?type=movie",
       "expected": {
         "sync": false,
         "title": "Cosmic Princess Kaguya!",
-        "identifier": "1176639",
+        "identifier": "1575337",
         "image": "https://image.tmdb.org/t/p/original/1jdPUUSy37Wzw3xuc8otI86X2gv.jpg",
         "uiSelector": true
       }
