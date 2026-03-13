@@ -1,3 +1,4 @@
+import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const GaiaFlix: PageInterface = {
@@ -15,11 +16,23 @@ export const GaiaFlix: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.url().urlParam('title').ifNotReturn().trim().run();
+      return $c
+        .url()
+        .urlParam('title')
+        .ifNotReturn()
+        .concat($c.string(' ').run())
+        .concat(getSeason($c).ifNotReturn().run())
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c
-        .coalesce($c.url().urlParam('showId').ifNotReturn().run(), $c.url().urlPart(4).run())
+        .coalesce(
+          $c.fn($c.url().urlParam('showId').ifNotReturn().run()).run(),
+          $c.url().urlPart(4).run(),
+        )
+        .concat($c.string('-').concat(getSeason($c).ifNotReturn().run()).run())
+        .slugify()
         .run();
     },
     getOverviewUrl($c) {
@@ -31,8 +44,13 @@ export const GaiaFlix: PageInterface = {
     nextEpUrl($c) {
       return $c
         .url()
-        .replaceRegex('ep=\\d+', `ep=${$c.this('sync.getEpisode').calculate('+', 1).run()}`)
-        .log()
+        .replaceRegex(
+          'ep=\\d+',
+          $c
+            .string('ep=')
+            .concat($c.this('sync.getEpisode').calculate('+', 1).string().run())
+            .run(),
+        )
         .run();
     },
     uiInjection($c) {
@@ -46,16 +64,31 @@ export const GaiaFlix: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').ifNotReturn().text().trim().run();
+      return $c
+        .querySelector('h1')
+        .ifNotReturn()
+        .text()
+        .concat($c.string(' ').run())
+        .concat(getSeason($c).run())
+        .trim()
+        .run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      return (
+        $c
+          .url()
+          .urlPart(4)
+          // I took full "season-1" because some anime doesn't use number as season like attack on titan.
+          .concat($c.string('-').concat(getSeason($c).ifNotReturn().run()).run())
+          .slugify()
+          .run()
+      );
     },
     getImage($c) {
       return $c.querySelector('.object-cover').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('h1').parent().uiAfter().run();
+      return $c.querySelector('h1').uiBefore().run();
     },
   },
   list: {
@@ -74,12 +107,29 @@ export const GaiaFlix: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
-    },
-    listChange($c) {
       return $c
-        .detectChanges($c.querySelector('.mt-10 a').ifNotReturn().text().run(), $c.trigger().run())
+        .detectURLChanges($c.trigger().run())
+        .detectChanges(getSeason($c).ifNotReturn().run(), $c.trigger().run())
+        .domReady()
+        .trigger()
         .run();
     },
   },
 };
+
+function getSeason($c: ChibiGenerator<unknown>) {
+  return $c.coalesce(
+    $c
+      .fn(
+        $c
+          .querySelectorAll('.w-max button')
+          .arrayFind($item => $item.elementMatches('.bg-background').not().run())
+          .ifNotReturn()
+          .text()
+          .run(),
+      )
+      .run(),
+    // fallback reason because it broke concat when it null
+    $c.string(' ').run(),
+  );
+}

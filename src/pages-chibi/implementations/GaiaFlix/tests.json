@@ -1,30 +1,55 @@
 {
-  "title": "Kuudere",
-  "url": "https://kuudere.to",
+  "title": "GaiaFlix",
+  "url": "https://gaiaflix.live",
   "testCases": [
     {
-      "url": "https://kuudere.to/watch/67de784d002be11b2264/2",
+      "url": "https://gaiaflix.live/watch/1429?type=tv&s=3&e=2&title=Attack%20on%20Titan",
       "expected": {
         "sync": true,
-        "title": "Gachiakuta",
-        "identifier": "67de784d002be11b2264",
-        "overviewUrl": "https://kuudere.to/anime/67de784d002be11b2264",
+        "title": "Attack on Titan Season 3",
+        "identifier": "1429-season-3",
+        "overviewUrl": "https://gaiaflix.live/detail/1429",
         "episode": 2,
-        "nextEpUrl": "https://kuudere.to/watch/67de784d002be11b2264/3",
+        "nextEpUrl": "https://gaiaflix.live/watch/1429?type=tv&s=3&e=3&title=Attack%20on%20Titan",
         "uiSelector": true,
         "epList": {
-          "2": "https://kuudere.to/watch/67de784d002be11b2264/2",
-          "6": "https://kuudere.to/watch/67de784d002be11b2264/6"
+          "2": "https://gaiaflix.live/watch/1429?type=tv&s=3&e=2&title=Attack%20on%20Titan",
+          "6": "https://gaiaflix.live/watch/1429?type=tv&s=3&e=6&title=Attack%20on%20Titan"
         }
       }
     },
     {
-      "url": "https://kuudere.to/anime/69445a31001965e7dcd4",
+      "url": "https://gaiaflix.live/detail/1429",
       "expected": {
         "sync": false,
-        "title": "Noble Reincarnation: Born Blessed, So I'll Obtain Ultimate Power",
-        "identifier": "69445a31001965e7dcd4",
-        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx185993-BecPUaWfZJgR.png",
+        "title": "Attack on Titan",
+        "identifier": "1429-season-1",
+        "image": "https://image.tmdb.org/t/p/original/rqbCbjB19amtOtFQbb3K2lgm2zv.jpg",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://gaiaflix.live/watch/1429?type=tv&s=1&e=2&title=Attack%20on%20Titan",
+          "6": "https://gaiaflix.live/watch/1429?type=tv&s=1&e=6&title=Attack%20on%20Titan"
+        }
+      }
+    },
+    {
+      "url": "https://gaiaflix.live/watch-anime/hi-cosmic-princess-kaguya-20173?ep=164369?e=1&title=Cosmic%20Princess%20Kaguya!&showId=1176639&type=movie",
+      "expected": {
+        "sync": true,
+        "title": "Cosmic Princess Kaguya!",
+        "identifier": "1176639",
+        "overviewUrl": "https://gaiaflix.live/detail/1176639",
+        "episode": 1,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://gaiaflix.live/detail/1176639",
+      "expected": {
+        "sync": false,
+        "title": "Cosmic Princess Kaguya!",
+        "identifier": "1176639",
+        "image": "https://image.tmdb.org/t/p/original/1jdPUUSy37Wzw3xuc8otI86X2gv.jpg",
         "uiSelector": true
       }
     }
