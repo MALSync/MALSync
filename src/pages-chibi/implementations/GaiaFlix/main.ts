@@ -46,6 +46,7 @@ export const GaiaFlix: PageInterface = {
     getEpisode($c) {
       return $c.url().urlParam('e').number().run();
     },
+    /* Won't work on some anime
     nextEpUrl($c) {
       return $c
         .querySelector('.w-max button')
@@ -57,6 +58,7 @@ export const GaiaFlix: PageInterface = {
         )
         .run();
     },
+    */
     uiInjection($c) {
       return $c.querySelector('h3').uiBefore().run();
     },

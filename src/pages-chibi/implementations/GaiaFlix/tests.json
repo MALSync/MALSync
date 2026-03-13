@@ -10,12 +10,7 @@
         "identifier": "1429-season-3",
         "overviewUrl": "https://gaiaflix.live/detail/1429",
         "episode": 2,
-        "nextEpUrl": "https://gaiaflix.live/watch/1429?type=tv&s=3&e=3&title=Attack%20on%20Titan",
-        "uiSelector": true,
-        "epList": {
-          "2": "https://gaiaflix.live/watch/1429?type=tv&s=3&e=2&title=Attack%20on%20Titan",
-          "6": "https://gaiaflix.live/watch/1429?type=tv&s=3&e=6&title=Attack%20on%20Titan"
-        }
+        "uiSelector": true
       }
     },
     {
