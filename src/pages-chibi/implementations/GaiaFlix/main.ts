@@ -52,11 +52,8 @@ export const GaiaFlix: PageInterface = {
         .ifNotReturn()
         .url()
         .replaceRegex(
-          'ep=\\d+',
-          $c
-            .string('ep=')
-            .concat($c.this('sync.getEpisode').calculate('+', 1).string().run())
-            .run(),
+          'e=\\d+',
+          $c.string('e=').concat($c.this('sync.getEpisode').calculate('+', 1).string().run()).run(),
         )
         .run();
     },
