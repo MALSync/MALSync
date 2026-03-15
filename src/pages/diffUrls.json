@@ -139,6 +139,8 @@
     ]
   },
   "0.12.3": {
-    "iframe": []
+    "iframe": [
+      "*://dianaavoidthey.com/e/*"
+    ]
   }
 }
