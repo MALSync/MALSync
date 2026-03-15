@@ -555,6 +555,7 @@ module.exports = {
       '*://myvidplay.com/e/*',
       '*://lauradaydo.com/e/*',
       '*://lancewhosedifficult.com/e/*',
+      '*://dianaavoidthey.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
