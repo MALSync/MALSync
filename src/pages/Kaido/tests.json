@@ -1,0 +1,27 @@
+{
+  "title": "Kaido",
+  "url": "https://kaido.to/",
+  "testCases": [
+    {
+      "url": "https://kaido.to/naruto-677",
+      "expected": {
+        "sync": false,
+        "title": "Naruto",
+        "identifier": "677",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://kaido.to/watch/naruto-677?ep=12352",
+      "expected": {
+        "sync": true,
+        "title": "Naruto",
+        "identifier": "677",
+        "overviewUrl": "https://kaido.to/naruto-677",
+        "nextEpUrl": "https://kaido.to/watch/naruto-677?ep=12353",
+        "episode": 1,
+        "uiSelector": false
+      }
+    }
+  ]
+}
