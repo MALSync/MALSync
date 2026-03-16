@@ -29,10 +29,11 @@ export default {
     const expr = entries.reduce((acc, [from, to]) => acc.replaceAll(from, to), $c.toLowerCase());
 
     return expr
-      .replaceRegex('[^\\w\\s-]', '')
+      .replaceRegex('[^a-z0-9\\s-]', '')
       .trim()
       .replaceRegex('\\s+', '-')
-      .replaceRegex('-{2,}', '-');
+      .replaceRegex('-{2,}', '-')
+      .replaceRegex('^-+|-+$', '');
   },
 
   /**
