@@ -40,7 +40,6 @@ export const GaiaFlix: PageInterface = {
         .string('/detail/')
         .concat($c.this('sync.getIdentifier').run())
         .replaceRegex('-.*', '')
-        .concat($c.getVariable<string>('isMovie', '').run())
         .urlAbsolute()
         .run();
     },
@@ -129,6 +128,6 @@ function getSeason($c: ChibiGenerator<unknown>) {
       )
       .run(),
     // fallback reason because it broke concat when it null
-    $c.setVariable('isMovie', $c.string('?type=movie').run()).string(' ').run(),
+    $c.string(' ').run(),
   );
 }
