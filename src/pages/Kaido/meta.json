@@ -1,8 +1,0 @@
-{
-  "search": "https://kaido.to/search?keyword={searchtermPlus}",
-  "urls": {
-    "match": [
-      "*://kaido.to/*"
-    ]
-  }
-}

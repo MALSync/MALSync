@@ -1,5 +1,6 @@
 import { PageInterface } from './pageInterface';
 
+import { Kaido } from './implementations/Kaido/main';
 import { animeav1 } from './implementations/animeav1/main';
 import { anicrush } from './implementations/anicrush/main';
 import { mangaNato } from './implementations/mangaNato/main';
@@ -192,4 +193,5 @@ export const pages: { [key: string]: PageInterface } = {
   BigSolo,
   Plex,
   allManga,
+  Kaido,
 };

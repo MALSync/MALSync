@@ -20,7 +20,8 @@
         "overviewUrl": "https://kaido.to/naruto-677",
         "nextEpUrl": "https://kaido.to/watch/naruto-677?ep=12353",
         "episode": 1,
-        "uiSelector": false
+        "uiSelector": false,
+        "malUrl": "https://myanimelist.net/anime/20"
       }
     }
   ]
