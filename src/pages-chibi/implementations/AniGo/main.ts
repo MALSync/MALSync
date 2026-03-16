@@ -39,26 +39,12 @@ export const AniGo: PageInterface = {
         .run();
     },
     getMalUrl($c) {
-      const getMal = getJsonData($c)
-        .get('mal_id')
-        .number()
-        .ifNotReturn()
-        .string('https://myanimelist.net/anime/<identifier>')
-        .replace('<identifier>', getJsonData($c).get('mal_id').run())
+      return $c
+        .providerUrlUtility({
+          malId: getJsonData($c).get('mal_id'),
+          anilistId: getJsonData($c).get('al_id'),
+        })
         .run();
-
-      const getAnilist = $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .get('al_id')
-        .number()
-        .ifNotReturn()
-        .string('https://anilist.co/anime/<identifier>')
-        .replace('<identifier>', getJsonData($c).get('al_id').run())
-        .run();
-
-      return $c.coalesce($c.fn(getAnilist).run(), $c.fn(getMal).run()).ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('h1').uiBefore().run();

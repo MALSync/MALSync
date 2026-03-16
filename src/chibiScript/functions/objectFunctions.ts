@@ -10,12 +10,16 @@ export default {
    * @example
    * $c.object({user: {name: "John"}}).get("user") // returns {name: "John"}
    */
-  get: (ctx: ChibiCtx, input: any, key: ChibiParam<string>) => {
+  get: <Input, Key extends 0 extends 1 & Input ? PropertyKey : keyof Input>(
+    ctx: ChibiCtx,
+    input: Input,
+    key: ChibiParam<Key>,
+  ): 0 extends 1 & Input ? any : Input extends Record<PropertyKey, unknown> ? Input[Key] : any => {
     if (!input || typeof input !== 'object') {
-      return undefined;
+      return undefined as any;
     }
 
-    return input[key];
+    return input[key as any];
   },
 
   /**
