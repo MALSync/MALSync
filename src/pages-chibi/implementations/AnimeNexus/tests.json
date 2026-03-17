@@ -7,7 +7,7 @@
       "expected": {
         "sync": true,
         "title": "[Oshi No Ko] Season 3",
-        "identifier": "oshi-no-ko-season-3-e6a4d5ac742ff01a1c9c",
+        "identifier": "oshi-no-ko-season-3",
         "overviewUrl": "https://anime.nexus/series/9d31950f-d875-407f-b8ca-dde0b20b1d51/oshi-no-ko-season-3-e6a4d5ac742ff01a1c9c",
         "nextEpUrl": "https://anime.nexus/watch/019c292c-683a-7263-a0f7-2fdc26e55967/episode-4-10b4189d61db224ab660",
         "episode": 3,
@@ -19,12 +19,26 @@
       "expected": {
         "sync": false,
         "title": "[Oshi No Ko] Season 3",
-        "identifier": "oshi-no-ko-season-3-e6a4d5ac742ff01a1c9c",
+        "identifier": "oshi-no-ko-season-3",
         "image": "https://anime.delivery/6c53s-YhpIgpYMvjweMNAA4X_ZpTv6K1CSPqijQBzns/rs:fill/q:70/w:3840/h:2160/aHR0cHM6Ly9hc3Nl/dHMuYW5pbWUubmV4/dXMvc3RvcmFnZS9h/cHAvc2hvd3MvcHVi/bGljLzY5Ni83YmUv/YmNiLzY5NjdiZWJj/YjAzOGQwNzQ2NDk2/NjIucG5n.avif",
         "uiSelector": true,
         "epList": {
           "2": "https://anime.nexus/watch/019be229-d5ba-73c9-b2ed-cb01b1970e03/episode-2-c73a5fd9c3903777a0ac",
           "6": "https://anime.nexus/watch/019c7146-062f-7115-b2aa-29a532688c16/episode-6-57a70202b8b21bb1383b"
+        }
+      }
+    },
+    {
+      "url": "https://anime.nexus/series/9afbcf90-5d36-4777-bffb-5ed7c2cbb612/jujutsu-kaisen-the-culling-game-part-1-5cb404b530b5f0e31fc3",
+      "expected": {
+        "sync": false,
+        "title": "Jujutsu Kaisen: The Culling Game Part 1",
+        "identifier": "jujutsu-kaisen-the-culling-game-part-1",
+        "image": "https://anime.delivery/BUgiEQzzkGs1-6lpNnB8AY3JfnDxoGGapEYCy-suMxQ/rs:fill/q:70/w:3840/h:2160/aHR0cHM6Ly9hc3Nl/dHMuYW5pbWUubmV4/dXMvc3RvcmFnZS9h/cHAvc2hvd3MvcHVi/bGljLzY5OC8zODUv/YjcxLzY5ODM4NWI3/MTAxZWE5ODc2NDQ5/MjMucG5n.avif",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://anime.nexus/watch/019b9e91-1fc6-72b1-a156-26138fa1796e/one-more-time-54c8af4977d582cd418e",
+          "6": "https://anime.nexus/watch/019c2eae-f254-708b-ab07-60130fce4a19/cog-7aa677fafac214cf71a7"
         }
       }
     }

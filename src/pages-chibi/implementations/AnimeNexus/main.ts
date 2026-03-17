@@ -19,7 +19,7 @@ export const AnimeNexus: PageInterface = {
       return getJsonData($c).get('partOfSeries').get('name').run();
     },
     getIdentifier($c) {
-      return $c.this('sync.getOverviewUrl').urlPart(5).run();
+      return $c.this('sync.getOverviewUrl').urlPart(5).replaceRegex('-[^-]+$', '').run();
     },
     getOverviewUrl($c) {
       return $c
@@ -50,7 +50,7 @@ export const AnimeNexus: PageInterface = {
       return $c.querySelector('h1').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(5).run();
+      return $c.url().urlPart(5).replaceRegex('-[^-]+$', '').run();
     },
     getImage($c) {
       return $c.querySelector('picture img').getAttribute('src').ifNotReturn().run();
@@ -67,7 +67,14 @@ export const AnimeNexus: PageInterface = {
       return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.this('list.elementUrl').regex('episode-(\\d+)', 1).number().run();
+      return $c
+        .next()
+        .findAll('span')
+        .arrayFind($el => $el.text().matches('Episode').run())
+        .text()
+        .regex('Episode (\\d+)', 1)
+        .number()
+        .run();
     },
   },
   lifecycle: {
@@ -75,7 +82,21 @@ export const AnimeNexus: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c.detectChanges($c.title().run(), $c.trigger().run()).domReady().trigger().run();
+    },
+    listChange($c) {
+      return $c
+        .detectChanges(
+          $c.querySelector('div[id*="episode"]').ifNotReturn().text().run(),
+          $c.trigger().run(),
+        )
+        .run();
+    },
+    overviewIsReady($c) {
+      return $c
+        .waitUntilTrue($c.querySelector('div[id*="episode"]').boolean().run())
+        .trigger()
+        .run();
     },
   },
 };
