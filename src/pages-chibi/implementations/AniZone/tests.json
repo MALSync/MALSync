@@ -11,7 +11,7 @@
         "overviewUrl": "https://anizone.to/anime/pv69kwz0",
         "episode": 1,
         "nextEpUrl": "https://anizone.to/anime/pv69kwz0/2",
-        "uiSelector": true,
+        "uiSelector": false,
         "epList": {
           "1": "https://anizone.to/anime/pv69kwz0/1",
           "2": "https://anizone.to/anime/pv69kwz0/2"
@@ -27,7 +27,7 @@
         "overviewUrl": "https://anizone.to/anime/pv69kwz0",
         "episode": 12,
         "nextEpUrl": null,
-        "uiSelector": true,
+        "uiSelector": false,
         "epList": {
           "1": "https://anizone.to/anime/pv69kwz0/1",
           "2": "https://anizone.to/anime/pv69kwz0/2"

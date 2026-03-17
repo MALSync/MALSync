@@ -36,9 +36,6 @@ export const AniZone: PageInterface = {
         .urlAbsolute()
         .run();
     },
-    uiInjection($c) {
-      return $c.querySelector('h1').uiBefore().run();
-    },
   },
   overview: {
     isOverviewPage($c) {
