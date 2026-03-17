@@ -19,7 +19,7 @@ export const AnimeNexus: PageInterface = {
       return getJsonData($c).get('partOfSeries').get('name').run();
     },
     getIdentifier($c) {
-      return $c.this('sync.getTitle').slugify().run();
+      return $c.this('sync.getOverviewUrl').urlPart(5).run();
     },
     getOverviewUrl($c) {
       return $c
@@ -50,7 +50,7 @@ export const AnimeNexus: PageInterface = {
       return $c.querySelector('h1').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
-      return $c.this('overview.getTitle').slugify().run();
+      return $c.url().urlPart(5).run();
     },
     getImage($c) {
       return $c.querySelector('picture img').getAttribute('src').ifNotReturn().run();
