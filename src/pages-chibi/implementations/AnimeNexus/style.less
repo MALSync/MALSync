@@ -1,0 +1,31 @@
+@import './../pages';
+
+@boxBackground: color-mix(in oklab, var(--card) 50%, transparent);
+@highlightStyle: 5;
+@activeEp: var(--primary);
+@boxHighlightBackground: color-mix(in oklab, var(--primary) 10%, transparent);
+
+#malp {
+  padding-top: calc(var(--spacing) * 1);
+  #MalData {
+    .malp-group {
+      .malp-group-field:not(.malp-group-input),
+      .malp-group-value-section {
+        border: 1px solid color-mix(in oklab, var(--border) 50%, transparent);
+      }
+      .malp-group-field:not(.malp-group-input):hover,
+      .malp-group-value-section:focus-within,
+      .malp-group-value-section:hover {
+        background-color: var(--accent) !important;
+        transition-duration: var(--tw-duration, var(--default-transition-duration));
+      }
+      #AddMal:hover {
+        background-color: color-mix(in oklab, var(--muted) 80%, transparent) !important;
+        transition-duration: var(--tw-duration, var(--default-transition-duration));
+      }
+      option {
+        background-color: var(--accent) !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "title": "AnimeNexus",
+  "url": "https://anime.nexus",
+  "testCases": [
+    {
+      "url": "https://anime.nexus/watch/019c051f-afb3-710f-99c5-b170ed8cf449/episode-3-8cedc4d6d9f8ca27556e",
+      "expected": {
+        "sync": true,
+        "title": "[Oshi No Ko] Season 3",
+        "identifier": "oshi-no-ko-season-3",
+        "overviewUrl": "https://anime.nexus/series/9d31950f-d875-407f-b8ca-dde0b20b1d51/oshi-no-ko-season-3-e6a4d5ac742ff01a1c9c",
+        "nextEpUrl": "https://anime.nexus/watch/019c292c-683a-7263-a0f7-2fdc26e55967/episode-4-10b4189d61db224ab660",
+        "episode": 3,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://anime.nexus/series/9d31950f-d875-407f-b8ca-dde0b20b1d51/oshi-no-ko-season-3-e6a4d5ac742ff01a1c9c",
+      "expected": {
+        "sync": false,
+        "title": "[Oshi No Ko] Season 3",
+        "identifier": "oshi-no-ko-season-3",
+        "image": "https://anime.delivery/6c53s-YhpIgpYMvjweMNAA4X_ZpTv6K1CSPqijQBzns/rs:fill/q:70/w:3840/h:2160/aHR0cHM6Ly9hc3Nl/dHMuYW5pbWUubmV4/dXMvc3RvcmFnZS9h/cHAvc2hvd3MvcHVi/bGljLzY5Ni83YmUv/YmNiLzY5NjdiZWJj/YjAzOGQwNzQ2NDk2/NjIucG5n.avif",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://anime.nexus/watch/019be229-d5ba-73c9-b2ed-cb01b1970e03/episode-2-c73a5fd9c3903777a0ac",
+          "6": "https://anime.nexus/watch/019c7146-062f-7115-b2aa-29a532688c16/episode-6-57a70202b8b21bb1383b"
+        }
+      }
+    }
+  ]
+}
