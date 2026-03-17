@@ -1,0 +1,52 @@
+{
+  "title": "AniZone",
+  "url": "https://anizone.to",
+  "testCases": [
+    {
+      "url": "https://anizone.to/anime/pv69kwz0/1",
+      "expected": {
+        "sync": true,
+        "title": "Aharen-san wa Hakarenai",
+        "identifier": "pv69kwz0",
+        "overviewUrl": "https://anizone.to/anime/pv69kwz0",
+        "episode": 1,
+        "nextEpUrl": "https://anizone.to/anime/pv69kwz0/2",
+        "uiSelector": false,
+        "epList": {
+          "1": "https://anizone.to/anime/pv69kwz0/1",
+          "2": "https://anizone.to/anime/pv69kwz0/2"
+        }
+      }
+    },
+    {
+      "url": "https://anizone.to/anime/pv69kwz0/12",
+      "expected": {
+        "sync": true,
+        "title": "Aharen-san wa Hakarenai",
+        "identifier": "pv69kwz0",
+        "overviewUrl": "https://anizone.to/anime/pv69kwz0",
+        "episode": 12,
+        "nextEpUrl": null,
+        "uiSelector": false,
+        "epList": {
+          "1": "https://anizone.to/anime/pv69kwz0/1",
+          "2": "https://anizone.to/anime/pv69kwz0/2"
+        }
+      }
+    },
+    {
+      "url": "https://anizone.to/anime/pv69kwz0",
+      "expected": {
+        "sync": false,
+        "title": "Aharen-san wa Hakarenai",
+        "identifier": "pv69kwz0",
+        "image": "https://anizone.to/images/anime/1a7ca8cf-e1d6-47b9-989f-e359003d01a4.jpg",
+        "uiSelector": true,
+        "epList": {
+          "7": "https://anizone.to/anime/pv69kwz0/7",
+          "12": "https://anizone.to/anime/pv69kwz0/12"
+        }
+      }
+    }
+  ]
+}

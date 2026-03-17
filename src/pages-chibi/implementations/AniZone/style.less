@@ -1,0 +1,29 @@
+@import './../pages';
+
+@boxBackground: rgb(15 23 42 / var(--tw-bg-opacity, 1));
+@highlightStyle: 1;
+@activeEp: rgb(2 132 199 / var(--tw-bg-opacity, 1));
+@boxHighlightBackground: @boxBackground;
+
+#malp {
+  #MalData {
+    .malp-group {
+      .malp-group-field {
+        box-shadow: none;
+      }
+      .malp-group-field:not(.malp-group-input):hover,
+      .malp-group-value-section:hover,
+      .malp-group-value-section:focus-within {
+        color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important;
+        transition-duration: 0.3s;
+      }
+    }
+    #AddMal {
+      border: 2px solid @activeEp;
+      &:hover {
+        background-color: @activeEp !important;
+        transition-duration: 0.3s;
+      }
+    }
+  }
+}

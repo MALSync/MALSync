@@ -96,6 +96,7 @@ import { BigSolo } from './implementations/BigSolo/main';
 import { Plex } from './implementations/Plex/main';
 import { allManga } from './implementations/allManga/main';
 import { GaiaFlix } from './implementations/GaiaFlix/main';
+import { AniZone } from './implementations/AniZone/main';
 import { AnimeNexus } from './implementations/AnimeNexus/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -195,5 +196,6 @@ export const pages: { [key: string]: PageInterface } = {
   Plex,
   allManga,
   GaiaFlix,
+  AniZone,
   AnimeNexus,
 };
