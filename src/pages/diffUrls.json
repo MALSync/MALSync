@@ -140,6 +140,7 @@
   },
   "0.12.3": {
     "iframe": [
+      "*://playnixes.com/*",
       "*://dianaavoidthey.com/e/*"
     ]
   }
