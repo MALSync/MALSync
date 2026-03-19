@@ -835,6 +835,7 @@ module.exports = {
       '*://megaup.live/e/*',
       '*://4spromax.site/e/*',
       '*://megaup22.online/e/*',
+      '*://megaup.nl/e/*',
     ],
   },
   // hikari
