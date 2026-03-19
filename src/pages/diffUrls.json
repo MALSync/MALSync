@@ -141,7 +141,8 @@
   "0.12.3": {
     "iframe": [
       "*://playnixes.com/*",
-      "*://dianaavoidthey.com/e/*"
+      "*://dianaavoidthey.com/e/*",
+      "*://megaup.nl/e/*"
     ]
   }
 }
