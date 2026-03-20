@@ -14,6 +14,7 @@ export const AsuraScans: PageInterface = {
       '*://asurascans.com/*',
       '*://asuratoon.com/*',
       '*://asuracomic.net/*',
+      '*://asurascans.com/*',
     ],
   },
   search: 'https://asuracomic.net/series?page=1&name={searchtermRaw}',
