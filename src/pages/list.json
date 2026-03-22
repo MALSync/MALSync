@@ -1003,5 +1003,20 @@
     "domain": "https://allmanga.to",
     "type": "anime",
     "name": "allManga"
+  },
+  {
+    "domain": "https://gaiaflix.live",
+    "type": "anime",
+    "name": "GaiaFlix"
+  },
+  {
+    "domain": "https://anizone.to",
+    "type": "anime",
+    "name": "AniZone"
+  },
+  {
+    "domain": "https://anime.nexus",
+    "type": "anime",
+    "name": "AnimeNexus"
   }
 ]
