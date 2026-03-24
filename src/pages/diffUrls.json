@@ -143,6 +143,9 @@
       "*://*.kaa.lt/*",
       "*://*.kaa.rs/*"
     ],
+    "Voiranime": [
+      "*://*.voiranime.tv/*"
+    ],
     "iframe": [
       "*://playnixes.com/*",
       "*://dianaavoidthey.com/e/*",
