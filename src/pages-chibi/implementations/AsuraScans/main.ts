@@ -17,33 +17,33 @@ export const AsuraScans: PageInterface = {
       '*://asurascans.com/*',
     ],
   },
-  search: 'https://asuracomic.net/series?page=1&name={searchtermRaw}',
+  search: 'https://asurascans.com/browse?q={searchtermRaw}',
   sync: {
     isSyncPage($c) {
       return $c
         .and(
-          $c.url().urlPart(3).equals('series').run(),
+          $c.url().urlPart(3).equals('comics').run(),
           $c.url().urlPart(6).boolean().run(),
           $c.url().urlPart(5).matches('chapter').run(),
         )
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.text-sm a span').text().trim().run();
+      return $c.title().replaceRegex('chapter.*', '').trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).replaceRegex('-[^-]+$', '').trim().run();
     },
     getOverviewUrl($c) {
-      return $c.querySelector('.text-sm a').getAttribute('href').urlAbsolute().ifNotReturn().run();
+      return $c.url().split('/').slice(0, 5).join('/').run();
     },
     getEpisode($c) {
       return $c.url().urlPart(6).number().run();
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.pl-4 .text-sm')
-        .closest('a')
+        .querySelector('link[rel="next"]')
+        .ifNotReturn()
         .getAttribute('href')
         .ifNotReturn()
         .urlAbsolute()
@@ -52,11 +52,11 @@ export const AsuraScans: PageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '.py-8 img',
+          selector: '[data-page]',
           mode: 'countAbove',
         },
         total: {
-          selector: '.py-8 img',
+          selector: '[data-page]',
           mode: 'count',
         },
       },
@@ -67,13 +67,13 @@ export const AsuraScans: PageInterface = {
       return $c
         .and(
           $c.url().urlPart(4).boolean().run(),
-          $c.url().urlPart(3).equals('series').run(),
+          $c.url().urlPart(3).equals('comics').run(),
           $c.url().urlPart(5).boolean().not().run(),
         )
         .run();
     },
     getTitle($c) {
-      return $c.title().split(' - Asura').at(0).trim().run();
+      return $c.title().replaceRegex('(-|\\|) ?asura.*', '').trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
@@ -82,16 +82,15 @@ export const AsuraScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.gap-1.py-4').uiBefore().run();
+      return $c.querySelector('article h1').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.pr-2 .py-2').run();
+      return $c.querySelectorAll('[opts*="ChapterListReact"] a[href*="chapter"]').run();
     },
     elementUrl($c) {
-      // url doesn't include '/series/' even after urlAbsolute
-      return $c.find('a').getAttribute('href').replaceRegex('^', '/series/').urlAbsolute().run();
+      return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
       return $c.this('list.elementUrl').this('sync.getEpisode').run();
