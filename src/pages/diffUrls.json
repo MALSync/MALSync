@@ -139,6 +139,10 @@
     ]
   },
   "0.12.3": {
+    "KickAssAnime": [
+      "*://*.kaa.lt/*",
+      "*://*.kaa.rs/*"
+    ],
     "iframe": [
       "*://playnixes.com/*",
       "*://dianaavoidthey.com/e/*",
