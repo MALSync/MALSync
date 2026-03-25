@@ -100,7 +100,6 @@ import { Taiyo } from './Taiyo/main';
 import { AnimesOnline } from './AnimesOnline/main';
 import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
-import { TempleScan } from './TempleScan/main';
 import { Kavita } from './Kavita/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
@@ -208,7 +207,6 @@ export const pages = {
   AnimesOnline,
   Latanime,
   MangaRead,
-  TempleScan,
   Kavita,
   Aninexus,
   AniDream,
