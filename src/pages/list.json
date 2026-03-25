@@ -45,7 +45,7 @@
     "name": "Shinden"
   },
   {
-    "domain": "https://voiranime.com",
+    "domain": "https://voiranime.tv",
     "type": "anime",
     "name": "Voiranime"
   },
@@ -508,11 +508,6 @@
     "domain": "https://www.mangaread.org",
     "type": "manga",
     "name": "MangaRead"
-  },
-  {
-    "domain": "https://templescan.net",
-    "type": "manga",
-    "name": "TempleScan"
   },
   {
     "domain": "https://demo.kavitareader.com",
@@ -1018,5 +1013,10 @@
     "domain": "https://anime.nexus",
     "type": "anime",
     "name": "AnimeNexus"
+  },
+  {
+    "domain": "https://templetoons.com",
+    "type": "manga",
+    "name": "TempleScan"
   }
 ]

@@ -622,7 +622,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://voiranime.com"><img src="https://favicon.malsync.moe/?domain=https://voiranime.com"> Voiranime</a></td>
+    <td><a href="https://voiranime.tv"><img src="https://favicon.malsync.moe/?domain=https://voiranime.tv"> Voiranime</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -1345,7 +1345,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://templescan.net"><img src="https://favicon.malsync.moe/?domain=https://templescan.net"> TempleScan</a></td>
+    <td><a href="https://templetoons.com"><img src="https://favicon.malsync.moe/?domain=https://templetoons.com"> TempleScan</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
