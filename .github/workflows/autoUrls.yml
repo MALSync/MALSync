@@ -104,7 +104,7 @@ jobs:
             src/pages-chibi
             src/pages/**/*.ts
 
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: site-data-${{ matrix.task }}
           path: scraped_data/
@@ -131,7 +131,7 @@ jobs:
       - name: Build
         run: npm install
 
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           pattern: site-data-*
           path: .
