@@ -1,0 +1,41 @@
+{
+  "title": "AnimeSite",
+  "url": "https://animesite.fr",
+  "testCases": [
+    {
+      "url": "https://animesite.fr/play/1483440-naruto/1/1",
+      "expected": {
+        "sync": true,
+        "title": "naruto",
+        "identifier": "naruto",
+        "overviewUrl": "https://animesite.fr/1483440-naruto",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animesite.fr/play/1503264-kimetsu-no-yaiba/2/7",
+      "expected": {
+        "sync": true,
+        "title": "demon slayer kimetsu no yaiba",
+        "identifier": "demon-slayer-kimetsu-no-yaiba",
+        "overviewUrl": "https://animesite.fr/1503264-kimetsu-no-yaiba",
+        "episode": 7,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animesite.fr/1483440-naruto",
+      "expected": {
+        "sync": false,
+        "title": "naruto",
+        "identifier": "naruto",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://animesite.fr/play/1483440-naruto/1/1",
+          "10": "https://animesite.fr/play/1483440-naruto/1/10"
+        }
+      }
+    }
+  ]
+}
