@@ -143,6 +143,9 @@
       "*://*.kaa.lt/*",
       "*://*.kaa.rs/*"
     ],
+    "TempleScan": [
+      "*://*.templetoons.com/*"
+    ],
     "Voiranime": [
       "*://*.voiranime.tv/*"
     ],
