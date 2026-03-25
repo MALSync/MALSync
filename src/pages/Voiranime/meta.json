@@ -1,6 +1,6 @@
 {
-  "search": "https://voiranime.com/?s={searchtermPlus}",
+  "search": "https://voiranime.tv/?s={searchtermPlus}",
   "urls": {
-    "match": ["*://*.voiranime.com/*", "*://*.voiranime.tv/*"]
+    "match": ["*://*.voiranime.tv/*", "*://*.voiranime.tv/*"]
   }
 }
