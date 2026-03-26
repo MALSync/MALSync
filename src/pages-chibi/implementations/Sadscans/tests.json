@@ -1,6 +1,7 @@
 {
   "title": "Sadscans",
   "url": "https://sadscans.net/",
+  "offline": true,
   "testCases": [
     {
       "url": "https://sadscans.net/reader/chainsaw-man/1-bolum-kopek-ve-testere/609850233655f",
