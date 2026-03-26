@@ -5,13 +5,13 @@ const CHAPTER_REGEX = '[Bb](?:ö|Ö)l(?:ü|Ü)m\\s*([\\d.]+)';
 
 export const Sadscans: PageInterface = {
   name: 'Sadscans',
-  domain: ['https://sadscans.com'],
+  domain: ['https://sadscans.net'],
   languages: ['Turkish'],
   type: 'manga',
   urls: {
-    match: ['*://sadscans.com/*', '*://www.sadscans.com/*'],
+    match: ['*://sadscans.net/*', '*://www.sadscans.net/*'],
   },
-  search: 'https://sadscans.com/series?search={searchtermPlus}',
+  search: 'https://sadscans.net/series?search={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
@@ -21,31 +21,40 @@ export const Sadscans: PageInterface = {
     getTitle($c) {
       return $c
         .coalesce(
-          $c.querySelector('.series-title').ifNotReturn().text().trim().run(),
+          $c
+            .querySelector('meta[property="og:title"]')
+            .ifNotReturn()
+            .getAttribute('content')
+            .split('Bölüm')
+            .at(0)
+            .trim()
+            .run(),
           $c.title().split('Bölüm').at(0).trim().run(),
         )
         .run();
     },
     getIdentifier($c) {
-      return $c.this('sync.getOverviewUrl').urlPart(4).run();
+      return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
       return $c
-        .querySelector('.series-title')
-        .ifNotReturn()
-        .getAttribute('href')
-        .urlAbsolute()
-        .string()
-        .replaceRegex('/$', '')
+        .coalesce(
+          $c
+            .this('sync.getIdentifier')
+            .string()
+            .replaceRegex('^', 'https://sadscans.net/series/')
+            .run(),
+          $c.url().urlAbsolute().string().replaceRegex('/reader/.*', '/series/').run(),
+        )
         .run();
     },
     getEpisode($c) {
       return $c
         .coalesce(
           $c
-            .querySelector('select.chap-select option[selected]')
+            .querySelector('meta[property="og:title"]')
             .ifNotReturn()
-            .text()
+            .getAttribute('content')
             .regex(CHAPTER_REGEX, 1)
             .number()
             .run(),
@@ -56,15 +65,21 @@ export const Sadscans: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('a.next-chap[href*="/reader/"]')
-        .ifNotReturn()
-        .getAttribute('href')
-        .urlAbsolute()
+        .coalesce(
+          $c
+            .querySelector(
+              'a:contains("Sonraki"), a[href*="/reader/"]:has(svg.lucide-arrow-right), a[href*="/reader/"]:last-of-type',
+            )
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlAbsolute()
+            .run(),
+        )
         .run();
     },
     getImage($c) {
       return $c
-        .querySelector('[property="og:image"]')
+        .querySelector('meta[property="og:image"]')
         .ifNotReturn()
         .getAttribute('content')
         .ifNotReturn()
@@ -76,11 +91,13 @@ export const Sadscans: PageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '.swiper-wrapper img',
+          selector:
+            'img[src*="assets/series"], img[src*="uploads/series"], .container img:not([src*="avatar"]):not([src*="logo"])',
           mode: 'countAbove',
         },
         total: {
-          selector: '.swiper-wrapper img',
+          selector:
+            'img[src*="assets/series"], img[src*="uploads/series"], .container img:not([src*="avatar"]):not([src*="logo"])',
           mode: 'count',
         },
       },
@@ -97,43 +114,46 @@ export const Sadscans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.series-information .detail .title h2').text().trim().run();
+      return $c
+        .coalesce(
+          $c.querySelector('h1').ifNotReturn().text().trim().run(),
+          $c
+            .querySelector('meta[property="og:title"]')
+            .ifNotReturn()
+            .getAttribute('content')
+            .split('|')
+            .at(0)
+            .trim()
+            .run(),
+        )
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
       return $c
-        .coalesce(
-          $c.querySelector('.series-image img').ifNotReturn().getAttribute('src').run(),
-          $c.querySelector('[property="og:image"]').ifNotReturn().getAttribute('content').run(),
-        )
+        .querySelector('meta[property="og:image"]')
         .ifNotReturn()
+        .getAttribute('content')
         .urlAbsolute()
         .string()
         .replaceRegex('\\?.*$', '')
         .run();
     },
     uiInjection($c) {
-      return $c.querySelector('.series-information .detail .title').uiAfter().run();
+      return $c.querySelector('h1').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.chap-section .chap').run();
+      return $c.querySelectorAll('a[href*="/reader/"]').run();
     },
     elementUrl($c) {
-      return $c.find('.chap-link .link a').ifNotReturn().getAttribute('href').urlAbsolute().run();
+      return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c
-        .find('.chap-link .link a')
-        .ifNotReturn()
-        .text()
-        .regex(CHAPTER_REGEX, 1)
-        .number()
-        .ifNotReturn()
-        .run();
+      return $c.text().regex(CHAPTER_REGEX, 1).number().ifNotReturn().run();
     },
   },
   lifecycle: {
@@ -150,7 +170,7 @@ export const Sadscans: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('.chap-section').ifNotReturn().text().run(),
+          $c.querySelector('a[href*="/reader/"]').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();
