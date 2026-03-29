@@ -62,6 +62,9 @@ export const Crunchyroll: PageInterface = {
         .urlAbsolute()
         .run();
     },
+    uiInjection($c) {
+      return $c.querySelector('.erc-current-media-info').uiPrepend().run();
+    },
   },
   lifecycle: {
     setup($c) {
