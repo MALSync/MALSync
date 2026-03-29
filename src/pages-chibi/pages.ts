@@ -15,6 +15,7 @@ import { bato } from './implementations/bato/main';
 import { Crunchyroll } from './implementations/Crunchyroll/main';
 import { animevost } from './implementations/animevost/main';
 import { AnimeKAI } from './implementations/AnimeKAI/main';
+import { FireAnime } from './implementations/FireAnime/main';
 import { WeebCentral } from './implementations/WeebCentral/main';
 import { MangaDemon } from './implementations/MangaDemon/main';
 import { RoliaScan } from './implementations/RoliaScan/main';
@@ -59,7 +60,6 @@ import { Anoboye } from './implementations/Anoboye/main';
 import { AnimeKhor } from './implementations/AnimeKhor/main';
 import { TCBScans } from './implementations/TCBScans/main';
 import { Mangapill } from './implementations/Mangapill/main';
-import { Armageddon } from './implementations/Armageddon/main';
 import { Silentquill } from './implementations/Silentquill/main';
 import { ComicDays } from './implementations/ComicDays/main';
 import { MangaPlus } from './implementations/MangaPlus/main';
@@ -89,6 +89,16 @@ import { ComicWalker } from './implementations/ComicWalker/main';
 import { MangaLivreTV } from './implementations/MangaLivreTV/main';
 import { SanaScans } from './implementations/SanaScans/main';
 import { RezoScans } from './implementations/RezoScans/main';
+import { RageScans } from './implementations/RageScans/main';
+import { AniGo } from './implementations/AniGo/main';
+import { Kuudere } from './implementations/Kuudere/main';
+import { BigSolo } from './implementations/BigSolo/main';
+import { Plex } from './implementations/Plex/main';
+import { allManga } from './implementations/allManga/main';
+import { GaiaFlix } from './implementations/GaiaFlix/main';
+import { AniZone } from './implementations/AniZone/main';
+import { AnimeNexus } from './implementations/AnimeNexus/main';
+import { templeScan } from './implementations/TempleScan/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -106,6 +116,7 @@ export const pages: { [key: string]: PageInterface } = {
   Crunchyroll,
   animevost,
   AnimeKAI,
+  FireAnime,
   WeebCentral,
   MangaDemon,
   RoliaScan,
@@ -151,7 +162,6 @@ export const pages: { [key: string]: PageInterface } = {
   AnimeKhor,
   TCBScans,
   Mangapill,
-  Armageddon,
   Silentquill,
   ComicDays,
   MangaPlus,
@@ -180,4 +190,14 @@ export const pages: { [key: string]: PageInterface } = {
   MangaLivreTV,
   SanaScans,
   RezoScans,
+  RageScans,
+  AniGo,
+  Kuudere,
+  BigSolo,
+  Plex,
+  allManga,
+  GaiaFlix,
+  AniZone,
+  AnimeNexus,
+  templeScan,
 };

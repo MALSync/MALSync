@@ -30,6 +30,19 @@ export interface PageInterface {
    */
   urls: {
     match: string[];
+    /**
+     * Optional URL patterns used to identify video player iframes
+     */
+    player?: { [key: string]: string[] };
+  };
+  /**
+   * Additional features for the page integration
+   */
+  features?: {
+    /** Proxy website requests */
+    requestProxy?: boolean;
+    /** Add the possibility to add custom domains to this implementation */
+    customDomains?: boolean;
   };
   /**
    * URL template for the site's search functionality
@@ -284,6 +297,7 @@ export type PageListInterface = Pick<
   | 'database'
   | 'version'
   | 'minimumVersion'
+  | 'features'
 > & {
   /** The unique key of the page integration */
   key: string;

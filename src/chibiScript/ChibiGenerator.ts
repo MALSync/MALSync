@@ -1,5 +1,6 @@
 import functionsRegistry from './functions';
-import { ChibiGeneratorFunctions } from './ChibiGeneratorTypes';
+import utilitiesRegistry from './utilities';
+import { ChibiGeneratorFunctions, ChibiGeneratorUtilities } from './ChibiGeneratorTypes';
 
 const randomKeys = {
   waitUntilTrue: 1,
@@ -39,6 +40,10 @@ class ChibiGenerator<Input> {
         return new ChibiGenerator(config);
       };
     });
+
+    Object.values(utilitiesRegistry).forEach((util: any) => {
+      this[util.name] = (...args) => util(this as any, ...args);
+    });
   }
 
   /**
@@ -53,6 +58,8 @@ class ChibiGenerator<Input> {
 
 // eslint-disable-next-line no-redeclare
 interface ChibiGenerator<Input> extends ChibiGeneratorFunctions<Input> {}
+// eslint-disable-next-line no-redeclare
+interface ChibiGenerator<Input> extends ChibiGeneratorUtilities<Input> {}
 
 export type { ChibiGenerator };
 

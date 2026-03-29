@@ -22,7 +22,14 @@ const { getKeys } = require('./utils/keys');
 let chibiUrls = [];
 try {
   const chibiList = require('../dist/webextension/chibi/list.json');
-  chibiUrls = Object.values(chibiList.pages).map(chibi => chibi.urls.match);
+  const chibiAdultList = require('../dist/adult/chibi/list.json');
+  const chibiPages = [...Object.values(chibiList.pages), ...Object.values(chibiAdultList.pages)];
+  chibiUrls = chibiPages.map(chibi => {
+    return [
+      ...chibi.urls.match,
+      ...(chibi.urls.player ? Object.values(chibi.urls.player).flat() : []),
+    ];
+  });
 } catch (e) {
   console.log(e);
   throw 'Chibi list not found. Please build the extension first. `npm run build:webextension`';
@@ -93,7 +100,9 @@ const generateMetadataBlock = metadata => {
   return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())};\n`;
 };
 
-const proxyScripts = [];
+const proxyScripts = [
+  `export const proxy_request = require('./dist/webextension/content/proxy/proxy_request.js?raw');`,
+];
 pagesUtils.pages().forEach(page => {
   pageRoot = path.join(__dirname, '..', 'src/pages/', page);
   const scriptPath = `dist/webextension/content/proxy/proxy_${page}.js`;

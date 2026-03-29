@@ -1,12 +1,10 @@
 import { Mangadex } from './Mangadex/main';
 import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
-import { Plex } from './Plex/main';
 import { Netflix } from './Netflix/main';
 import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Proxer } from './Proxer/main';
-import { Aniflix } from './Aniflix/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { Shinden } from './Shinden/main';
 import { Voiranime } from './Voiranime/main';
@@ -102,7 +100,6 @@ import { Taiyo } from './Taiyo/main';
 import { AnimesOnline } from './AnimesOnline/main';
 import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
-import { TempleScan } from './TempleScan/main';
 import { Kavita } from './Kavita/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
@@ -115,8 +112,6 @@ export const pages = {
   Jkanime,
   Proxer,
   Emby,
-  Plex,
-  Aniflix,
   KickAssAnime,
   Shinden,
   Voiranime,
@@ -212,7 +207,6 @@ export const pages = {
   AnimesOnline,
   Latanime,
   MangaRead,
-  TempleScan,
   Kavita,
   Aninexus,
   AniDream,

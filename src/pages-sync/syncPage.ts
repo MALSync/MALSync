@@ -1,0 +1,1404 @@
+import { pageInterface, pageState } from '../pages/pageInterface';
+import { getSingle } from '../_provider/singleFactory';
+import { hideFloatbutton, initFloatButton, showFloatbutton } from '../floatbutton/init';
+import { providerTemplates } from '../provider/templates';
+import { fullscreenNotification, PlayerSingleton } from '../utils/player';
+import { SearchClass } from '../_provider/Search/vueSearchClass';
+import { emitter } from '../utils/emitter';
+import { Cache } from '../utils/Cache';
+import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
+import { localStore } from '../utils/localStore';
+import { getPageConfig } from '../utils/test';
+import { status } from '../_provider/definitions';
+import { getTrackingMode, TrackingModeType } from './trackingMode';
+import type { ProgressElement, TrackingModeInterface } from './trackingMode/TrackingModeInterface';
+import {
+  resumeMessageElement,
+  trackingBarElement,
+  trackingErrorElement,
+  trackingNoteElement,
+  trackingSyncButtonElement,
+} from './messageElements';
+
+declare let browser: any;
+
+let extensionId = 'agnaejlkbiiggajjmnpmeheigkflbnoo'; // Chrome
+if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
+  extensionId = '{57081fef-67b4-482f-bcb0-69296e63ec4f}'; // Firefox
+}
+
+const logger = con.m('Sync', '#348fff');
+
+let browsingTimeout;
+
+export class SyncPage {
+  page: pageInterface;
+
+  searchObj;
+
+  singleObj;
+
+  trackingModeInstance: TrackingModeInterface | undefined;
+
+  public novel = false;
+
+  public strongVolumes = false;
+
+  constructor(
+    public url,
+    public pages,
+    protected floatClick: any = () => {
+      throw 'No click handling found';
+    },
+  ) {
+    this.page = this.getPage(url);
+    if (this.page === null) {
+      throw new Error('Page could not be recognized');
+    }
+    this.domainSet();
+    logger.log('Page', this.page.name);
+    if (
+      !(
+        typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||
+        api.settings.get('enablePages')[this.page.name]
+      )
+    ) {
+      logger.info('Sync is disabled for this page', this.page.name);
+      throw 'Stop Script';
+    }
+
+    emitter.on('syncPage_fillUi', () => this.fillUI());
+  }
+
+  init() {
+    const This = this;
+    j.$(document).ready(function () {
+      initFloatButton(This, This.floatClick);
+    });
+
+    if (this.testForCloudflare()) {
+      logger.log('loading');
+      this.cdn();
+      return;
+    }
+
+    this.page.init(this);
+
+    if (api.type === 'webextension') {
+      // Discord Presence
+      try {
+        chrome.runtime.onMessage.addListener((info, sender, sendResponse) => {
+          this.presence(info, sender, sendResponse);
+        });
+      } catch (e) {
+        logger.error(e);
+      }
+    }
+  }
+
+  private getPage(url) {
+    if (this.pages.type) return this.pages;
+    return getPageConfig(url, this.pages);
+  }
+
+  private domainSet() {
+    this.page.domain = new URL(window.location.href).origin;
+  }
+
+  public openNextEp() {
+    if (typeof this.page.sync.nextEpUrl !== 'undefined') {
+      if (this.page.isSyncPage(this.url)) {
+        const nextEp = this.page.sync.nextEpUrl(this.url);
+        if (nextEp) {
+          window.location.href = nextEp;
+          return;
+        }
+      }
+      utils.flashm(api.storage.lang('nextEpShort_no_nextEp'), {
+        error: true,
+        type: 'EpError',
+      });
+      return;
+    }
+    utils.flashm(api.storage.lang('nextEpShort_no_support'), {
+      error: true,
+      type: 'EpError',
+    });
+  }
+
+  autoNextEpRun = false;
+
+  public autoNextEp(item) {
+    if (api.settings.get('autoNextEp') && !this.autoNextEpRun && item.current + 1 > item.duration) {
+      this.autoNextEpRun = true;
+      this.openNextEp();
+    }
+  }
+
+  curState: any = undefined;
+
+  reset() {
+    this.url = window.location.href;
+    this.UILoaded = false;
+    this.curState = undefined;
+    this.setSearchObj(undefined);
+    if (this.trackingModeInstance) {
+      this.trackingModeInstance.stop();
+      this.trackingModeInstance = undefined;
+    }
+    $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+    clearInterval(this.imageFallbackInterval);
+  }
+
+  setSearchObj(searchObj) {
+    if (searchObj) {
+      showFloatbutton();
+    } else if (api.settings.get('floatButtonCorrection')) {
+      hideFloatbutton();
+    }
+    this.searchObj = searchObj;
+  }
+
+  async handlePage(curUrl = window.location.href) {
+    let state: pageState;
+    this.curState = undefined;
+    this.setSearchObj(undefined);
+    this.url = curUrl;
+    this.browsingtime = Date.now();
+    let tempSingle;
+
+    if (this.page.isSyncPage(this.url)) {
+      this.loadUI();
+      state = {
+        on: 'SYNC',
+        title: this.page.sync.getTitle(this.url),
+        identifier: this.page.sync.getIdentifier(this.url),
+        detectedEpisode: parseInt(`${this.page.sync.getEpisode(this.url)}`),
+      };
+
+      this.setSearchObj(
+        new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
+      );
+      this.searchObj.setPage(this.page);
+      this.searchObj.setSyncPage(this);
+      this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
+      this.curState = state;
+      await this.searchObj.search();
+
+      try {
+        tempSingle = await this.searchObj.initRules();
+      } catch (e) {
+        if (e instanceof UrlNotSupportedError) {
+          this.incorrectUrl();
+        }
+        throw e;
+      }
+
+      if (!state.detectedEpisode && state.detectedEpisode !== 0) {
+        if (this.page.type === 'anime') {
+          state.episode = 1;
+        } else {
+          state.episode = 0;
+        }
+      } else {
+        state.episode =
+          state.detectedEpisode + parseInt(this.searchObj.getRuledOffset(state.detectedEpisode));
+      }
+
+      if (typeof this.page.sync.getVolume !== 'undefined') {
+        state.volume = this.page.sync.getVolume(this.url);
+      }
+      if (this.page.type === 'anime') {
+        const playerInstance = PlayerSingleton.getInstance().startTracking();
+        playerInstance.addListener('syncPage', item => {
+          this.autoNextEp(item);
+        });
+      }
+      logger.m('Sync', 'green').log(state);
+    } else {
+      if (typeof this.page.overview === 'undefined') {
+        logger.log('No overview definition');
+        return;
+      }
+      if (typeof this.page.isOverviewPage !== 'undefined' && !this.page.isOverviewPage(this.url)) {
+        logger.info('Not an overview/sync page');
+        return;
+      }
+      this.loadUI();
+      state = {
+        on: 'OVERVIEW',
+        title: this.page.overview.getTitle(this.url),
+        identifier: this.page.overview.getIdentifier(this.url),
+      };
+
+      this.setSearchObj(
+        new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
+      );
+      this.searchObj.setPage(this.page);
+      this.searchObj.setSyncPage(this);
+      this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
+      this.curState = state;
+      await this.searchObj.search();
+
+      try {
+        tempSingle = await this.searchObj.initRules();
+      } catch (e) {
+        if (e instanceof UrlNotSupportedError) {
+          this.incorrectUrl();
+        }
+        throw e;
+      }
+
+      logger.m('Overview', 'green').log(state);
+    }
+
+    this.curState = state;
+
+    let malUrl = this.searchObj.getRuledUrl(state.detectedEpisode);
+
+    const localUrl = this.generateLocalUrl(this.page, state);
+
+    if ((malUrl === null || !malUrl) && api.settings.get('localSync')) {
+      logger.log('Local Fallback');
+      malUrl = localUrl;
+    }
+
+    if (malUrl === null) {
+      j.$('#MalInfo').text(api.storage.lang('Not_Found'));
+      j.$('#MalData').css('display', 'none');
+      logger.log('Not on mal');
+    } else if (!malUrl) {
+      j.$('#MalInfo').text(api.storage.lang('NothingFound'));
+      j.$('#MalData').css('display', 'none');
+      logger.log('Nothing found');
+    } else {
+      logger.log('MyAnimeList', malUrl);
+      try {
+        if (!tempSingle) {
+          tempSingle = getSingle(malUrl);
+          await tempSingle.update();
+        }
+        this.singleObj = tempSingle;
+      } catch (e) {
+        if (e instanceof UrlNotSupportedError) {
+          this.incorrectUrl();
+          throw e;
+        } else if (e instanceof NotFoundError && api.settings.get('localSync')) {
+          logger.log('Local Fallback');
+          tempSingle = getSingle(localUrl);
+          await tempSingle.update();
+          this.singleObj = tempSingle;
+        } else {
+          if (tempSingle) this.singleObj = tempSingle;
+          this.singleObj.flashmError(e);
+          this.fillUI();
+          throw e;
+        }
+      }
+
+      // Discord Presence
+      if (api.type === 'webextension' && api.settings.get('rpc')) {
+        try {
+          chrome.runtime.sendMessage(extensionId, { mode: 'active' }, function (response) {
+            logger.log('Presence registred', response);
+          });
+        } catch (e) {
+          logger.error(e);
+        }
+      }
+
+      // fillUI
+      this.fillUI();
+
+      // sync
+      if (this.page.isSyncPage(this.url)) {
+        const rerun = await this.searchObj.openCorrectionCheck();
+
+        if (rerun) {
+          // If malUrl changed
+          this.handlePage(curUrl);
+          return;
+        }
+
+        if (await this.singleObj.checkSync(state.episode, state.volume)) {
+          await this.singleObj.lifeCycleHook('afterCheckSync');
+          if (!(this.strongVolumes && !state.episode)) this.singleObj.setEpisode(state.episode);
+          this.singleObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
+
+          if (typeof state.volume !== 'undefined' && state.volume > this.singleObj.getVolume())
+            this.singleObj.setVolume(state.volume);
+
+          logger.log(`Start Sync (${api.settings.get('delay')} Seconds)`);
+
+          // filler
+          if (
+            this.singleObj.getMalId() &&
+            this.singleObj.getType() === 'anime' &&
+            api.settings.get('checkForFiller')
+          ) {
+            this.checkForFiller(this.singleObj.getMalId(), this.singleObj.getEpisode());
+          }
+
+          await this.startSyncHandling(state, malUrl);
+        } else {
+          logger.log('Nothing to Sync');
+        }
+      }
+
+      this.imageFallback(state);
+    }
+  }
+
+  protected async startSyncHandling(state, malUrl) {
+    const progressStorageKey = `progress/${this.curState.identifier}/${this.curState.episode}/v1`;
+    let tracking: InstanceType<ReturnType<typeof getTrackingMode>> | null = null;
+    if (this.page.type === 'manga' && api.settings.get('readerTracking')) {
+      try {
+        tracking = new (getTrackingMode('manga' as TrackingModeType))();
+        await tracking.start(this);
+      } catch (e) {
+        logger.error(e);
+        tracking = null;
+      }
+    }
+    if (!tracking) {
+      tracking = new (getTrackingMode(
+        api.settings.get(`autoTrackingMode${this.page.type}`) as TrackingModeType,
+      ))();
+      await tracking.start(this);
+    }
+
+    this.trackingModeInstance = tracking;
+
+    const syncButtonTranslation = {
+      key: `syncPage_flashm_sync_${this.page.type}`,
+      value: String(state.episode),
+    };
+
+    if (this.page.type === 'manga' && !state.episode && state.volume) {
+      syncButtonTranslation.key = 'syncPage_flashm_sync_manga_volume';
+      syncButtonTranslation.value = String(state.volume);
+    }
+
+    const messageArray: HTMLElement[] = [];
+
+    if ('addListener' in tracking) {
+      messageArray.push(trackingBarElement());
+    }
+
+    messageArray.push(
+      trackingSyncButtonElement(
+        api.storage.lang(syncButtonTranslation.key, [
+          providerTemplates(this.page.type, malUrl).shortName,
+          syncButtonTranslation.value,
+        ]),
+      ),
+    );
+
+    if ('note' in tracking) {
+      const note = tracking.note();
+      if (note) {
+        messageArray.push(trackingNoteElement(note));
+      }
+    }
+
+    messageArray.push(trackingErrorElement());
+
+    const message = messageArray.map(el => el.outerHTML).join('');
+
+    const flashEl = utils.flashm(message, tracking.flashOptions());
+
+    if ('addListener' in tracking) {
+      let saveDebounce = true;
+
+      const localItem = localStore.getItem(progressStorageKey);
+      const lastProgress: ProgressElement | null = localItem
+        ? (JSON.parse(localItem) as ProgressElement)
+        : null;
+      let resumed = !lastProgress;
+
+      let saveBlocked = Boolean(lastProgress);
+
+      tracking.addListener(progress => {
+        let finalPercent = Number(progress.progress);
+        if (progress.progressTrigger && Number(progress.progressTrigger)) {
+          finalPercent = Math.min(finalPercent / Number(progress.progressTrigger), 1);
+        }
+
+        // Progress Bar
+        if (finalPercent === 1) {
+          j.$('#malSyncProgress').addClass('ms-done');
+        } else {
+          flashEl.find('.ms-progress').css('width', `${finalPercent * 100}%`);
+          flashEl.find('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
+
+          if (lastProgress) {
+            let lastProgressFinalPercent = Number(lastProgress.progress);
+            if (progress.progressTrigger && Number(progress.progressTrigger)) {
+              lastProgressFinalPercent = Math.min(
+                lastProgressFinalPercent / Number(progress.progressTrigger),
+                1,
+              );
+            }
+            flashEl.find('.ms-progress-resume').css('width', `${lastProgressFinalPercent * 100}%`);
+            if (progress.progress < lastProgress.progress) {
+              flashEl.find('.ms-progress').addClass('ms-resume');
+            } else {
+              flashEl.find('.ms-progress').removeClass('ms-resume');
+            }
+          }
+        }
+
+        // Save progress
+        if (saveBlocked && lastProgress && progress.progress >= lastProgress.progress) {
+          saveBlocked = false;
+          if (!resumed && j.$('#MALSyncResume').length) {
+            resumed = true;
+            j.$('#MALSyncResume').parentsUntil('.flash').remove();
+          }
+        }
+
+        if (
+          'resumeTo' in tracking &&
+          'getResumeText' in tracking &&
+          'canResume' in tracking &&
+          !resumed &&
+          lastProgress &&
+          tracking.canResume(lastProgress)
+        ) {
+          if (j.$('#MALSyncResume').length) {
+            return;
+          }
+
+          if (api.settings.get('autoresume')) {
+            tracking.resumeTo(lastProgress);
+            resumed = true;
+            return;
+          }
+
+          const resumeTimeString = tracking.getResumeText(lastProgress) || '';
+          const resumeMessageDiv = resumeMessageElement(
+            api.storage.lang('syncPage_flashm_resumeMsg', [resumeTimeString]),
+          );
+
+          const resumeMsg = utils.flashm(resumeMessageDiv.innerHTML, {
+            permanent: true,
+            error: false,
+            type: 'resume',
+            minimized: false,
+            position: 'top',
+          });
+
+          resumeMsg.find('.sync').on('click', () => {
+            tracking.resumeTo(lastProgress);
+            resumed = true;
+            resumeMsg.remove();
+          });
+
+          resumeMsg.find('.resumeClose').on('click', function () {
+            resumed = true;
+            resumeMsg.remove();
+          });
+          return;
+        }
+
+        if (!saveBlocked && saveDebounce) {
+          logger.debug('Set Resume', progress);
+          localStore.setItem(progressStorageKey, JSON.stringify(progress));
+          saveDebounce = false;
+          setTimeout(() => {
+            saveDebounce = true;
+          }, 10000);
+        }
+      });
+    }
+
+    if ('addErrorListener' in tracking) {
+      tracking.addErrorListener(errorEl => {
+        const errorContainer = flashEl.find('#malSyncError');
+        if (!errorEl) {
+          // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+          errorContainer.html('');
+          flashEl.removeClass('open');
+        } else {
+          errorContainer.html(j.html(errorEl.outerHTML));
+          flashEl.addClass('open');
+        }
+      });
+    }
+
+    const clickPromise = new Promise<void>(resolve => {
+      flashEl.find('.sync').on('click', () => resolve());
+    });
+
+    await Promise.race([clickPromise, tracking.waitForTrackingAction()]);
+
+    tracking.stop();
+
+    flashEl.remove();
+
+    localStore.removeItem(progressStorageKey);
+
+    // Debugging
+    logger.log('overviewUrl', this.page.sync.getOverviewUrl(this.url));
+    if (typeof this.page.sync.nextEpUrl !== 'undefined') {
+      logger.log('nextEp', this.page.sync.nextEpUrl(this.url));
+    }
+
+    return this.sync(state);
+  }
+
+  protected async sync(state) {
+    await this.singleObj.lifeCycleHook('beforeSync');
+    this.singleObj.setResumeWatching(this.url, state.episode);
+    if (typeof this.page.sync.nextEpUrl !== 'undefined') {
+      const continueWatching = this.page.sync.nextEpUrl(this.url);
+      if (continueWatching && !(continueWatching.indexOf('undefined') !== -1)) {
+        this.singleObj.setContinueWatching(continueWatching, state.episode! + 1);
+      }
+    }
+    this.syncHandling(true);
+  }
+
+  public generateLocalUrl(page, state) {
+    return `local://${page.name}/${page.type}/${state.identifier}/${encodeURIComponent(
+      state.title,
+    )}`;
+  }
+
+  // eslint-disable-next-line consistent-return
+  public openCorrectionUi() {
+    if (this.searchObj) {
+      return this.searchObj.openCorrection().then(rerun => {
+        if (rerun) {
+          this.handlePage();
+        }
+      });
+    }
+  }
+
+  private syncHandling(hoverInfo = false, undo = false) {
+    let p;
+    if (undo) {
+      p = this.singleObj.undo();
+    } else {
+      p = this.singleObj.sync();
+    }
+
+    return p
+      .then(() => {
+        let message = this.singleObj.getTitle();
+        let split = '<br>';
+        let totalVol = this.singleObj.getTotalVolumes();
+        if (totalVol === 0) totalVol = '?';
+        let totalEp = this.singleObj.getTotalEpisodes();
+        if (totalEp === 0) totalEp = '?';
+        let diffState = this.singleObj.getStateDiff();
+
+        if (!diffState)
+          diffState = {
+            onList: this.singleObj.isOnList(),
+            episode: this.singleObj.getEpisode(),
+            volume: this.singleObj.getVolume(),
+            status: this.singleObj.getStatus(),
+            score: this.singleObj.getScore(),
+          };
+
+        if (typeof diffState.onList === 'undefined') diffState.onList = true;
+
+        if (diffState.onList && diffState.status) {
+          let statusString = '';
+          switch (parseInt(diffState.status)) {
+            case status.Watching:
+              statusString = api.storage.lang(`UI_Status_watching_${this.page.type}`);
+              break;
+            case status.Completed:
+              statusString = api.storage.lang('UI_Status_Completed');
+              break;
+            case status.Onhold:
+              statusString = api.storage.lang('UI_Status_OnHold');
+              break;
+            case status.Dropped:
+              statusString = api.storage.lang('UI_Status_Dropped');
+              break;
+            case status.PlanToWatch:
+              statusString = api.storage.lang(`UI_Status_planTo_${this.page.type}`);
+              break;
+            case status.Rewatching:
+              statusString = api.storage.lang(`UI_Status_Rewatching_${this.page.type}`);
+              break;
+            case status.Considering:
+              statusString = api.storage.lang('UI_Status_Considering');
+              break;
+            default:
+          }
+          message += split + statusString;
+          split = ' | ';
+        }
+        if (!diffState.onList) {
+          message += split + api.storage.lang('removed');
+          split = ' | ';
+        }
+        if (diffState.onList && this.page.type === 'manga' && diffState.volume) {
+          message += `${split + api.storage.lang('UI_Volume')} ${diffState.volume}/${totalVol}`;
+          split = ' | ';
+        }
+        if (diffState.onList && diffState.episode) {
+          message += `${split + utils.episode(this.page.type)} ${diffState.episode}/${totalEp}`;
+          split = ' | ';
+        }
+        if (diffState.onList && diffState.score) {
+          message += `${split + api.storage.lang('UI_Score')} ${diffState.score}`;
+          split = ' | ';
+        }
+
+        if (hoverInfo) {
+          /* if(episodeInfoBox){//TODO
+                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
+                    undoAnime['checkIncrease'] = 0;
+                    setanime(thisUrl, undoAnime, null, localListType);
+                    j.$('.info-Mal-undo').remove();
+                    if(j.$('.flashinfo>div').text() == ''){
+                        j.$('.flashinfo').remove();
+                    }
+                });
+            } */
+
+          this.fullNotification(message);
+
+          message += `
+            <br>
+            <button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
+              ${api.storage.lang('syncPage_flashm_sync_undefined_undo')}
+            </button>
+            <button class="wrongButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
+              ${api.storage.lang('syncPage_flashm_sync_undefined_wrong')}
+            </button>`;
+
+          const flashmItem = utils.flashm(message, {
+            hoverInfo: true,
+            type: 'update',
+          });
+          flashmItem.find('.undoButton').on('click', e => {
+            const fl = e.target.closest('.flash');
+            if (fl) fl.remove();
+            this.syncHandling(false, true);
+          });
+          flashmItem.find('.wrongButton').on('click', e => {
+            this.openCorrectionUi();
+            const fl = e.target.closest('.flash');
+            if (fl) fl.remove();
+            this.syncHandling(false, true);
+          });
+        } else {
+          utils.flashm(message);
+        }
+
+        this.fillUI();
+      })
+      .catch(e => {
+        this.singleObj.flashmError(e);
+        throw e;
+      });
+  }
+
+  fullNotification(text) {
+    try {
+      fullscreenNotification(text);
+      if (api.type === 'webextension') {
+        chrome.runtime.sendMessage({
+          name: 'content',
+          item: { action: 'fullscreenNotification', text },
+        });
+      }
+    } catch (e) {
+      logger.error(e);
+    }
+  }
+
+  fillUI() {
+    j.$('.MalLogin').css('display', '');
+    j.$('#AddMalDiv, .malp-group-mal-add, #LoginMalDiv').remove();
+
+    j.$('#malRating').attr('href', this.singleObj.getDisplayUrl());
+
+    if (this.singleObj.getLastError()) {
+      j.$('.MalLogin').css('display', 'none');
+      j.$('#MalData').css('display', 'flex');
+      j.$('#MalInfo').text('');
+      j.$('#malRating').after(
+        j.html(
+          `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>${this.singleObj.getLastErrorMessage()}</span>`,
+        ),
+      );
+      return;
+    }
+
+    let scoreCheckbox = '';
+    this.singleObj.getScoreCheckbox().forEach(el => {
+      scoreCheckbox += `<option value="${el.value}" >${el.label}</option>`;
+    });
+    j.$('#malUserRating').html(j.html(scoreCheckbox));
+
+    let statusCheckbox = '';
+    this.singleObj.getStatusCheckbox().forEach(el => {
+      statusCheckbox += `<option value="${el.value}" >${el.label}</option>`;
+    });
+    j.$('#malStatus').html(j.html(statusCheckbox));
+
+    this.singleObj.getRating().then(rating => {
+      j.$('#malRating').text(rating);
+    });
+
+    if (!this.singleObj.isOnList()) {
+      j.$('.MalLogin').css('display', 'none');
+      j.$('#malRating').after(
+        j.html(
+          `<span id='AddMalDiv'><a href='#' id='AddMal' class="malp-mal-add" onclick='return false;'>${api.storage.lang(
+            'syncPage_malObj_addAnime',
+            [this.singleObj.shortName],
+          )}</a></span>`,
+        ),
+      );
+      j.$('.malp-group-rating').after(
+        j.html(
+          `<span class="malp-group malp-group-mal-add" style="display: none;"><span class="add malp-group-label">_</span><a href='#' id='AddMal' class="malp-group-field malp-mal-add" onclick='return false;'>${api.storage.lang(
+            'syncPage_malObj_addAnime',
+            [this.singleObj.shortName],
+          )}</a></span>`,
+        ),
+      );
+      const This = this;
+      j.$('.malp-mal-add').click(async function (event) {
+        event.preventDefault();
+        if (!This.page.isSyncPage(This.url)) {
+          This.singleObj.setStreamingUrl(This.url);
+        }
+
+        const rerun = await This.searchObj.openCorrectionCheck();
+
+        if (rerun) {
+          // If malUrl changed
+          This.handlePage();
+          return;
+        }
+
+        This.syncHandling()
+          .then(() => {
+            return This.singleObj.update();
+          })
+          .then(() => {
+            This.fillUI();
+          });
+      });
+    } else {
+      j.$('#malTotal, #malTotalCha').text(this.singleObj.getTotalEpisodes());
+      if (this.singleObj.getTotalEpisodes() === 0) {
+        j.$('#malTotal, #malTotalCha').text('?');
+      }
+
+      j.$('#malTotalVol').text(this.singleObj.getTotalVolumes());
+      if (this.singleObj.getTotalVolumes() === 0) {
+        j.$('#malTotalVol').text('?');
+      }
+
+      j.$('#malEpisodes').val(this.singleObj.getEpisode());
+      j.$('#malVolumes').val(this.singleObj.getVolume());
+
+      j.$('#malStatus').val(this.singleObj.getStatusCheckboxValue());
+      j.$('#malUserRating').val(this.singleObj.getScoreCheckboxValue());
+    }
+    j.$('#MalData').css('display', 'flex');
+    j.$('#MalInfo').text('');
+
+    this.calcSelectWidth(j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus'));
+    j.$('#malEpisodes, #malVolumes').trigger('input');
+
+    try {
+      this.handleList(true);
+    } catch (e) {
+      logger.error(e);
+    }
+  }
+
+  handleList(searchCurrent = false, reTry = 0) {
+    if (!this.singleObj) return; // Object not ready yet
+    j.$('.mal-sync-active').removeClass('mal-sync-active');
+    j.$('[data-mal-sync-episode]').removeAttr('data-mal-sync-episode');
+    j.$('[data-mal-sync-episode-detected]').removeAttr('data-mal-sync-episode-detected');
+    j.$('[data-mal-sync-entry]').removeAttr('data-mal-sync-entry');
+    if (
+      typeof this.page.overview !== 'undefined' &&
+      typeof this.page.overview.list !== 'undefined'
+    ) {
+      const epList = this.getEpList();
+      if (typeof epList !== 'undefined' && epList.length > 0) {
+        this.offsetHandler(epList);
+        if (this.page.overview.list.elementUrl) {
+          const { elementUrl } = this.page.overview.list;
+          logger.log(
+            'Episode List',
+            j.$.map(epList, function (val, i) {
+              if (typeof val !== 'undefined') {
+                return elementUrl(val);
+              }
+              return '-';
+            }),
+          );
+          if (typeof this.page.overview.list.handleListHook !== 'undefined')
+            this.page.overview.list.handleListHook(this.singleObj.getEpisode(), epList);
+          const curEp = epList[parseInt(this.singleObj.getEpisode() || 1)];
+          if (
+            typeof curEp === 'undefined' &&
+            !curEp &&
+            searchCurrent &&
+            reTry < 10 &&
+            typeof this.page.overview.list.paginationNext !== 'undefined'
+          ) {
+            logger.log('Pagination next');
+            const This = this;
+            if (this.page.overview.list.paginationNext(false)) {
+              setTimeout(function () {
+                reTry++;
+                This.handleList(true, reTry);
+              }, 500);
+            }
+          }
+
+          const nextEp = epList[this.singleObj.getEpisode() + 1];
+          if (typeof nextEp !== 'undefined' && nextEp && !this.page.isSyncPage(this.url)) {
+            const message = `<a href="${elementUrl(nextEp)}">${api.storage.lang(
+              `syncPage_malObj_nextEp_${this.page.type}`,
+              [this.singleObj.getEpisode() + 1],
+            )}</a>`;
+            utils.flashm(message, {
+              hoverInfo: true,
+              type: 'nextEp',
+              minimized: true,
+            });
+          }
+        }
+      }
+    }
+  }
+
+  getEpList() {
+    const This = this;
+    const elementArray = [] as JQuery<HTMLElement>[];
+    if (
+      typeof this.page.overview !== 'undefined' &&
+      typeof this.page.overview.list !== 'undefined'
+    ) {
+      const { elementEp } = this.page.overview.list;
+      let currentEpisode = 0;
+      if (this.singleObj) {
+        currentEpisode = parseInt(this.singleObj.getEpisode());
+      }
+
+      this.page.overview.list.elementsSelector().each(function (index, el) {
+        try {
+          const epNumber = parseInt(`${elementEp(j.$(el))}`);
+
+          let offset = 0;
+          if (This.searchObj && This.searchObj.getRuledOffset(epNumber)) {
+            offset = Number(This.searchObj.getRuledOffset(epNumber));
+
+            const searchObjUrl = This.searchObj.getUrl();
+            const ruledUrl = This.searchObj.getRuledUrl(epNumber);
+
+            if (searchObjUrl !== ruledUrl) {
+              j.$(el).attr('data-mal-sync-entry', ruledUrl);
+              return;
+            }
+          }
+
+          const elEp = epNumber + offset;
+          elementArray[elEp] = j.$(el);
+
+          j.$(el).attr('data-mal-sync-episode', elEp);
+          if (elEp !== epNumber) {
+            j.$(el).attr('data-mal-sync-episode-detected', epNumber);
+          }
+
+          if (
+            (api.settings.get('highlightAllEp') && elEp <= currentEpisode) ||
+            elEp === currentEpisode
+          ) {
+            j.$(el).addClass('mal-sync-active');
+          }
+        } catch (e) {
+          logger.info(e);
+        }
+      });
+    }
+    return elementArray;
+  }
+
+  offsetHandler(epList) {
+    if (!this.page.overview!.list!.offsetHandler) return;
+    if (this.getOffset()) return;
+    if (!this.searchObj || this.searchObj.provider === 'user') return;
+    for (let i = 0; i < epList.length; ++i) {
+      if (typeof epList[i] !== 'undefined') {
+        logger.log('Offset', i);
+        if (i > 1) {
+          const calcOffset = 1 - i;
+          utils.flashConfirm(
+            api.storage.lang('syncPage_flashConfirm_offsetHandler_1', [String(calcOffset)]),
+            'offset',
+            () => {
+              this.setOffset(calcOffset);
+            },
+            () => {
+              this.setOffset(0);
+            },
+            true,
+          );
+        }
+        return;
+      }
+    }
+  }
+
+  protected imageFallbackInterval: NodeJS.Timeout | undefined = undefined;
+
+  imageFallback(state: pageState) {
+    clearInterval(this.imageFallbackInterval);
+    if (
+      this.singleObj &&
+      typeof this.singleObj.setImage !== 'undefined' &&
+      (this.page.getImage || this.page.sync.getImage || this.page.overview?.getImage)
+    ) {
+      this.imageFallbackInterval = setInterval(() => imageFallbackInternal.call(this), 30 * 1000);
+      imageFallbackInternal.call(this);
+    }
+
+    async function imageFallbackInternal() {
+      let image: string | undefined;
+      if (this.page.getImage) {
+        image = await this.page.getImage();
+      }
+      if (!image && this.page.sync.getImage && state.on === 'SYNC') {
+        image = this.page.sync.getImage();
+      }
+      if (!image && this.page.overview?.getImage && state.on === 'OVERVIEW') {
+        image = this.page.overview.getImage();
+      }
+
+      if (image) {
+        con.log('Image Fallback', image);
+        clearInterval(this.imageFallbackInterval);
+        this.singleObj.setImage(image);
+      }
+    }
+  }
+
+  incorrectUrl() {
+    utils.flashm('Incorrect url provided', {
+      error: true,
+      type: 'error',
+    });
+    this.openCorrectionUi();
+  }
+
+  testForCloudflare() {
+    if (document.title === 'Just a moment...' || document.title.indexOf('Cloudflare') !== -1) {
+      return true;
+    }
+    return false;
+  }
+
+  cdn(type: 'default' | 'captcha' | 'blocked' = 'default') {
+    api.storage.addStyle(`
+      .bubbles {
+        display: none !important;
+      }
+      div#cf-content:before {
+        content: '';
+        background-image: url(https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png);
+        height: 64px;
+        width: 64px;
+        display: block;
+        background-size: cover;
+        animation: rotate 3s linear infinite;
+        background-color: #251e2b;
+        border-radius: 50%;
+      }
+      @keyframes rotate{ to{ transform: rotate(360deg); } }
+    `);
+  }
+
+  getOffset() {
+    if (this.searchObj && this.searchObj.getOffset()) {
+      return this.searchObj.getOffset();
+    }
+    return 0;
+  }
+
+  async setOffset(value: number) {
+    if (this.searchObj) {
+      this.searchObj.setOffset(value);
+    }
+    if (typeof this.singleObj !== 'undefined') {
+      api.storage.remove(`updateCheck/${this.singleObj.getType()}/${this.singleObj.getCacheKey()}`);
+    }
+  }
+
+  UILoaded = false;
+
+  private loadUI() {
+    const This = this;
+    if (this.UILoaded) return;
+    this.UILoaded = true;
+    const wrapEnd = '</span>';
+
+    let ui = `<p id="malp" dir="${api.storage.langDirection()}">`;
+    ui += `<span id="MalInfo">${api.storage.lang('Loading')}</span>`;
+
+    ui +=
+      '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
+
+    ui += '<span style="display: inline-block;" class="malp-group malp-group-rating">';
+    ui += `<span class="info malp-group-label">${api.storage.lang('search_Score')} </span>`;
+    ui +=
+      '<a id="malRating" class="malp-group-field" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
+    ui += wrapEnd;
+
+    // ui += '<span id="MalLogin">';
+    const wrapStart = (section: string) =>
+      `<span style="display: inline-block; display: none;" class="MalLogin malp-group malp-group-${section}">`;
+
+    ui += wrapStart('status');
+    ui += `<span class="info malp-group-label">${api.storage.lang('UI_Status')} </span>`;
+    ui += '<select id="malStatus" class="malp-group-field malp-group-select">';
+    ui += '</select>';
+    ui += wrapEnd;
+
+    let middle = '';
+    if (this.page.type === 'anime') {
+      middle += wrapStart('episode');
+      middle += `<span class="info malp-group-label">${api.storage.lang('UI_Episode')} </span>`;
+      middle +=
+        '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<input id="malEpisodes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotal" class="malp-group-value">0</span>';
+      middle += '</span>';
+      middle += wrapEnd;
+    } else {
+      middle += wrapStart('volume');
+      middle += `<span class="info malp-group-label">${api.storage.lang('UI_Volume')} </span>`;
+      middle +=
+        '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<input id="malVolumes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotalVol" class="malp-group-value">0</span>';
+      middle += '</span>';
+      middle += wrapEnd;
+
+      middle += wrapStart('chapter');
+      middle += `<span class="info malp-group-label">${api.storage.lang('UI_Chapter')} </span>`;
+      middle +=
+        '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<input id="malEpisodes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotalCha" class="malp-group-value">0</span>';
+      middle += '</span>';
+      middle += wrapEnd;
+    }
+
+    ui += middle;
+
+    ui += wrapStart('score');
+    ui += `<span class="info malp-group-label">${api.storage.lang('UI_Score')}</span>`;
+    ui += '<select id="malUserRating" class="malp-group-field malp-group-select">';
+    ui += '</select>';
+    ui += wrapEnd;
+
+    // ui += '</span>';
+    ui += '</span>';
+    ui += '</p>';
+
+    if (this.page.isSyncPage(this.url)) {
+      if (typeof this.page.sync.uiSelector !== 'undefined') {
+        this.page.sync.uiSelector(ui);
+      }
+    } else if (typeof this.page.overview !== 'undefined') {
+      this.page.overview.uiSelector(ui);
+    }
+
+    j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(function () {
+      This.buttonclick();
+      // @ts-ignore
+      const el = j.$(this);
+      This.calcSelectWidth(el);
+    });
+
+    j.$('#malEpisodes, #malVolumes')
+      .on('input', function () {
+        // @ts-ignore
+        const el = j.$(this);
+        let numberlength = el.val()!.toString().length;
+        if (numberlength < 1) numberlength = 1;
+        const numberWidth = numberlength;
+        el.css('width', `${numberWidth}ch`);
+      })
+      .trigger('input');
+  }
+
+  private calcSelectWidth(selectors) {
+    selectors.each(function (index, selector) {
+      const text = j.$(selector).find('option:selected').text();
+      const aux = j.$('<select style="width: auto;"/>').append(j.html(`<option>${text}</option>`));
+      const width = aux.width() || 0;
+
+      if (width) {
+        j.$('#malp').append(
+          // @ts-expect-error
+          // TODO --fix this line doesn't make sense
+          // .html will return [object Object] 'cause aux is JQuery<HTMLElement>
+          j.html(aux),
+        );
+        j.$(selector).width(width + 5);
+        aux.remove();
+      }
+    });
+  }
+
+  private async buttonclick() {
+    this.singleObj.setEpisode(j.$('#malEpisodes').val());
+    if (j.$('#malVolumes').length) this.singleObj.setVolume(j.$('#malVolumes').val());
+    this.singleObj.handleScoreCheckbox(j.$('#malUserRating').val());
+    this.singleObj.handleStatusCheckbox(j.$('#malStatus').val());
+    if (!this.page.isSyncPage(this.url)) {
+      this.singleObj.setStreamingUrl(this.url);
+    }
+
+    const rerun = await this.searchObj.openCorrectionCheck();
+
+    if (rerun) {
+      // If malUrl changed
+      this.handlePage();
+      return;
+    }
+
+    this.syncHandling()
+      .then(() => {
+        return this.singleObj.update();
+      })
+      .then(() => {
+        this.fillUI();
+      });
+  }
+
+  private browsingtime: number | undefined = Date.now();
+
+  private presence(info, sender, sendResponse) {
+    try {
+      if (info.action === 'presence') {
+        console.log('Presence requested', info, this.curState);
+
+        // Reset browsingTime if not in focus for more than 5 min
+        clearTimeout(browsingTimeout);
+        browsingTimeout = setTimeout(
+          () => {
+            this.browsingtime = undefined;
+          },
+          5 * 60 * 1000,
+        );
+        if (!this.browsingtime) this.browsingtime = Date.now();
+
+        // Cover
+        let presenceShowCover = true;
+        let presenceHidePage = true;
+
+        const option = api.settings.get('presenceLargeImage');
+
+        switch (option) {
+          case 'website':
+            presenceShowCover = false;
+            presenceHidePage = false;
+            break;
+
+          case 'malsync':
+            presenceShowCover = false;
+            presenceHidePage = true;
+            break;
+
+          default:
+            break;
+        }
+
+        let clientId = '606504719212478504';
+        if (api.settings.get('presenceActivityName') === 'type') {
+          if (this.page.type !== 'anime') {
+            clientId = '823563138669608980';
+          } else {
+            clientId = '823563096747802695';
+          }
+        }
+
+        let largeImageKeyTemp;
+        let largeImageTextTemp;
+        if (!presenceHidePage) {
+          largeImageKeyTemp = this.page.name.toLowerCase();
+          largeImageTextTemp = `${this.page.name} • MAL-Sync`;
+        } else {
+          largeImageKeyTemp = 'malsync';
+          largeImageTextTemp = 'MAL-Sync';
+        }
+
+        if (presenceShowCover && this.singleObj.getImage()) {
+          largeImageKeyTemp = this.singleObj.getImage();
+        }
+
+        if (this.curState) {
+          const pres: any = {
+            clientId,
+            presence: {
+              details: this.singleObj.getTitle(true) || this.curState.title,
+              largeImageKey: largeImageKeyTemp,
+              largeImageText: largeImageTextTemp,
+              instance: true,
+              type: 3,
+            },
+          };
+
+          if (api.settings.get('presenceActivityName') === 'title') {
+            pres.presence.name = pres.presence.details.substring(0, 127);
+            delete pres.presence.details;
+          } else if (api.settings.get('presenceActivityName') === 'website') {
+            pres.presence.name = this.page.name.substring(0, 127);
+          }
+
+          if (api.settings.get('presenceShowButtons')) {
+            let url = null;
+            if (this.singleObj.shortName !== 'Local') url = this.singleObj.getDisplayUrl();
+            if (!url) url = this.singleObj.getMalUrl();
+            if (!url && !presenceHidePage) url = this.singleObj.getStreamingUrl();
+            if (url) {
+              pres.presence.buttons = [
+                {
+                  label: api.storage.lang(`discord_rpc_view_${this.singleObj.getType()}`),
+                  url,
+                },
+              ];
+            }
+          }
+          if (typeof this.curState.episode !== 'undefined') {
+            const stateParts: string[] = [];
+
+            if (this.curState.episode > 0) {
+              let totalEp = this.singleObj.getTotalEpisodes();
+              totalEp = totalEp ? `/${totalEp}` : '';
+              stateParts.push(
+                `${utils.episode(this.page.type)} ${this.curState.episode}${totalEp}`,
+              );
+            }
+
+            if (this.curState.volume > 0) {
+              const vol = this.curState.volume;
+              let totalVol = this.singleObj.getTotalVolumes();
+              totalVol = totalVol ? `/${totalVol}` : '';
+              stateParts.push(`${api.storage.lang('UI_Volume')} ${vol}${totalVol}`);
+            }
+
+            pres.presence.state = stateParts.join(' | ');
+
+            if (
+              this.trackingModeInstance &&
+              'getDiscordState' in this.trackingModeInstance &&
+              this.trackingModeInstance.getDiscordState!()
+            ) {
+              const discordState = this.trackingModeInstance.getDiscordState!()!;
+
+              if (discordState.paused) {
+                pres.presence.smallImageKey = 'pause';
+                pres.presence.smallImageText = 'Paused';
+                pres.presence.startTimestamp = this.browsingtime;
+              } else {
+                const timeleft = discordState.duration - discordState.current;
+
+                const videoProgress = discordState.current;
+                pres.presence.startTimestamp = Date.now() - videoProgress * 1000;
+                pres.presence.endTimestamp = Date.now() + timeleft * 1000;
+                pres.presence.smallImageKey = 'play';
+                pres.presence.smallImageText = 'Playing';
+              }
+            } else {
+              pres.presence.startTimestamp = this.browsingtime;
+              if (this.page.type !== 'anime') {
+                pres.presence.smallImageKey = 'reading';
+                pres.presence.smallImageText = 'Reading';
+              }
+            }
+          } else {
+            let browsingTemp;
+            if (!presenceHidePage) {
+              browsingTemp = this.page.name;
+            } else {
+              browsingTemp = this.page.type.toString();
+            }
+            pres.presence.startTimestamp = this.browsingtime;
+            pres.presence.state = api.storage.lang('Discord_rpc_browsing', [browsingTemp]);
+          }
+
+          sendResponse(pres);
+          return;
+        }
+      }
+    } catch (e) {
+      logger.error(e);
+    }
+    sendResponse({});
+  }
+
+  private async checkForFiller(malid: number, episode: number) {
+    const page = Math.ceil(episode / 100);
+
+    const cacheObj = new Cache(`fillers/${malid}/${page}`, 7 * 24 * 60 * 60 * 1000);
+
+    if (!(await cacheObj.hasValueAndIsNotEmpty())) {
+      const url = `https://api.jikan.moe/v4/anime/${malid}/episodes?page=${page}`;
+      const request = await api.request.xhr('GET', url).then(async response => {
+        try {
+          if (response.status === 200 && response.responseText) {
+            const data = JSON.parse(response.responseText);
+            if (data.data && data.data.length) {
+              return data.data
+                .map(e => ({
+                  filler: e.filler,
+                  recap: e.recap,
+                  episode_id: e.mal_id, // mal_id is the episode_id in the v4 API very stupid
+                }))
+                .filter(e => e.filler || e.recap);
+            }
+          }
+        } catch (e) {
+          // do nothing.
+        }
+        return [];
+      });
+      await cacheObj.setValue(request);
+    }
+    const episodes = await cacheObj.getValue();
+
+    if (episodes && episodes.length) {
+      const episodeData = episodes.find(e => e.episode_id === episode);
+      if (episodeData && (episodeData.filler || episodeData.recap)) {
+        const type = episodeData.filler ? 'filler' : 'recap';
+        utils.flashConfirm(
+          api.storage.lang(`filler_${type}_confirm`),
+          'filler',
+          () => {
+            this.openNextEp();
+          },
+          () => {
+            // do nothing.
+          },
+          true,
+        );
+      }
+    }
+  }
+}

@@ -3,7 +3,14 @@ import { isIframeUrl } from '../utils/manifest';
 
 const logger = con.m('Custom Domain');
 
-export type domainType = { domain: string; page: string; auto?: boolean; chibi?: boolean };
+export type domainType = {
+  domain: string;
+  page: string;
+  auto?: boolean;
+  proxy?: string;
+  chibi?: boolean;
+  player?: boolean;
+};
 
 export async function initCustomDomain() {
   updateListener();
@@ -31,8 +38,14 @@ async function registerScripts() {
   let domains: domainType[] = await api.settings.getAsync('customDomains');
 
   try {
-    const chibiRepo = await ChibiListRepository.getInstance().init();
-    const chibiDomains = chibiRepo.getPermissions();
+    const chibiRepo = await (await ChibiListRepository.getInstance()).init();
+    const chibiDomains = await chibiRepo.getPermissions();
+
+    // Filter out custom domains that exist in chibi
+    domains = domains.filter(domain => {
+      return domain.player || !chibiRepo.getList()[domain.page]?.features?.customDomains;
+    });
+
     domains = domains.concat(chibiDomains);
   } catch (e) {
     logger.error('Could not load chibi permissions', e);
@@ -58,14 +71,19 @@ async function registerScript(domainConfig: domainType) {
       matches: [fixDomain],
       allFrames: false,
       runAt: 'document_start' as const,
+      world: undefined as 'MAIN' | 'ISOLATED' | undefined,
     };
 
-    if (domainConfig.page === 'iframe') {
+    if (domainConfig.page === 'iframe' || domainConfig.player) {
       scriptConfig.js.push('content/iframe.js');
       scriptConfig.allFrames = true;
     } else if (domainConfig.chibi) {
       scriptConfig.js.push('content/chibi.js');
       scriptConfig.js.push('content/content-script.js');
+    } else if (domainConfig.proxy) {
+      scriptConfig.id = `${scriptConfig.id}-${domainConfig.page}`;
+      scriptConfig.js = [domainConfig.proxy];
+      scriptConfig.world = 'MAIN';
     } else {
       scriptConfig.js.push(`content/page_${domainConfig.page}.js`);
       scriptConfig.js.push('content/content-script.js');

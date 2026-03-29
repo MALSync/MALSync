@@ -1,0 +1,24 @@
+@import './../pages';
+
+@highlightStyle: 0;
+@activeEp: var(--color-highlight-control-focus);
+
+#flashinfo-div {
+  z-index: 200000 !important;
+}
+
+:fullscreen {
+  .open-info-popup.floatbutton,
+  #flashinfo-div,
+  #flash-div-bottom,
+  #flash-div-top {
+    display: none !important;
+  }
+}
+
+.mal-sync-active {
+  [class*='MetadataSimplePosterCard-image'] img {
+    border: 2px solid @activeEp;
+    border-radius: 5px;
+  }
+}

@@ -117,7 +117,7 @@ async function fillFromApi(combined, type, id) {
 
 function simplifyObject(combined, type, title, id): Quicklink[] {
   return combined
-    .filter(el => el.search && el.search[type])
+    .filter(el => (el.search && el.search[type]) || el.databaseLinks)
     .map(el => {
       const links: Links[] = [];
       let quickGroup: QuicklinkGroup;

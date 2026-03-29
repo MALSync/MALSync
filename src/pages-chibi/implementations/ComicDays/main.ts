@@ -105,7 +105,7 @@ function multiEpisode($c) {
       $c
         .getVariable('epList')
         .string()
-        .toHalfWidth()
+        .normalize()
         .regex('(\\d+)', 1)
         .ifThen($c => $c.number().run())
         .run(),

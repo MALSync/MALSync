@@ -1,4 +1,4 @@
-import type { ChibiJson, ChibiParam } from 'src/chibiScript/ChibiGenerator';
+import type { ChibiGenerator, ChibiJson, ChibiParam } from '../../ChibiGenerator';
 import type { ChibiCtx } from '../../ChibiCtx';
 
 export default {
@@ -151,5 +151,26 @@ export default {
         }, ms),
       );
     }) as unknown as Input;
+  },
+
+  /**
+   * Listen for requests made in the page and run a callback with the request data every time a request is made. Only works if the request proxy feature is enabled
+   * @param callback  Callback to execute when a request is intercepted, receives the request data as a parameter
+   * @example
+   * $c.requestProxy($c => $c.log().run()).run();
+   */
+  requestProxy: <Input extends void, Callback extends ($c: ChibiGenerator<any>) => ChibiJson<any>>(
+    ctx: ChibiCtx,
+    input: Input,
+    callback: Callback,
+  ): void => {
+    window.addEventListener(
+      'malsync-xhr',
+      event => {
+        ctx.runAsync(callback as any, (event as any).detail);
+      },
+      false,
+    );
+    window.dispatchEvent(new CustomEvent('malsync-xhr-start'));
   },
 };

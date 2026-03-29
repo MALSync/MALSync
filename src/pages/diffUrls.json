@@ -1,31 +1,4 @@
 {
-  "0.11.0": {
-    "KickAssAnime": [
-      "*://*.kaa.mx/*"
-    ],
-    "TRanimeizle": [
-      "*://*.tranimeizle.top/*"
-    ],
-    "iframe": [
-      "*://maxfinishseveral.com/e/*",
-      "*://krussdomi.com/*",
-      "*://filemoon.sx/lol/*",
-      "*://kerapoxy.cc/lol/*",
-      "*://vpcxz19p.xyz/lol/*",
-      "*://filemoon.top/lol/*",
-      "*://fmoonembed.pro/lol/*",
-      "*://rgeyyddl.skin/lol/*",
-      "*://designparty.sx/lol/*",
-      "*://c4qhk0je.xyz/lol/*",
-      "*://1azayf9w.xyz/lol/*",
-      "*://81u6xl9d.xyz/lol/*",
-      "*://gorro-chfzoaas.fun/e/*",
-      "*://gorro-chfzoaas.fun/lol/*",
-      "*://animenosub.upn.one/#*",
-      "*://*.bunniescdn.online/*",
-      "*://megaup.cc/e/*"
-    ]
-  },
   "0.11.1": {
     "Anime365": [
       "*://smotret-anime.ru/catalog/*",
@@ -92,6 +65,7 @@
       "*://*.md3b0j6hj.com/e/*",
       "*://animevost.org/frame5.php?play=*",
       "*://vidmoly.net/*",
+      "*://vidmoly.biz/*",
       "*://jilliandescribecompany.com/e/*",
       "*://lukesitturn.com/e/*",
       "*://mikaylaarealike.com/e/*",
@@ -127,16 +101,58 @@
       "*://smotret-anime.app/*"
     ],
     "AnimeSama": [
+      "*://anime-sama.tv/*",
+      "*://anime-sama.si/*",
+      "*://anime-sama.to/*",
       "*://anime-sama.eu/*"
+    ],
+    "KickAssAnime": [
+      "*://*.kaa.si/*",
+      "*://*.kickass-anime.ro/*",
+      "*://*.kickassanime.cx/*"
     ],
     "iframe": [
       "*://smotret-anime.ru/translations/embed/*",
       "*://smotretanime.ru/translations/embed/*",
       "*://smotret-anime.app/translations/embed/*",
+      "*://*.m1xdrop.net/e/*",
+      "*://*.m1xdrop.com/e/*",
+      "*://*.m1xdrop.bz/e/*",
+      "*://vidmoly.biz/*",
       "*://christopheruntilpoint.com/e/*",
       "*://walterprettytheir.com/e/*",
+      "*://crystaltreatmenteast.com/e/*",
+      "*://myvidplay.com/e/*",
+      "*://lauradaydo.com/e/*",
+      "*://lancewhosedifficult.com/e/*",
+      "*://guxhag.com/*",
       "*://megaup22.online/e/*",
-      "*://player.anoboye.com/watch/*"
+      "*://player.anoboye.com/watch/*",
+      "*://zencloudz.cc/*",
+      "*://*.playerp2p.live/*",
+      "*://*.rpmvip.com/*",
+      "*://callistanise.com/*",
+      "*://habetar.com/*",
+      "*://yuguaab.com/*",
+      "*://allanime.day/*",
+      "*://allanime.uns.bio/*"
+    ]
+  },
+  "0.12.3": {
+    "KickAssAnime": [
+      "*://*.kaa.lt/*",
+      "*://*.kaa.rs/*"
+    ],
+    "TempleScan": [
+      "*://*.templetoons.com/*"
+    ],
+    "Voiranime": [
+      "*://*.voiranime.tv/*"
+    ],
+    "iframe": [
+      "*://playnixes.com/*",
+      "*://dianaavoidthey.com/e/*",
+      "*://megaup.nl/e/*"
     ]
   }
 }

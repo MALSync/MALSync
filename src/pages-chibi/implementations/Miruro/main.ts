@@ -32,7 +32,7 @@ export const Miruro: PageInterface = {
       return $c.querySelector('#root a[href*="info/"]').getAttribute('href').urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.url().regex('/episode-(\\d+)', 1).number().run();
+      return $c.url().urlParam('ep').number().run();
     },
     getMalUrl($c) {
       const getMalId = $c

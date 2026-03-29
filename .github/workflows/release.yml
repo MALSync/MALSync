@@ -21,6 +21,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -51,6 +53,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -80,6 +84,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -92,16 +98,6 @@ jobs:
         upload_url: ${{ github.event.release.upload_url }}
         asset_path: ./dist/malsync.user.js
         asset_name: malsync.user.js
-        asset_content_type: application/javascript
-    - name: Upload adult userscript
-      id: upload-adult-userscript-asset
-      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./dist/malsync-adult.user.js
-        asset_name: malsync-adult.user.js
         asset_content_type: application/javascript
 
   chrome:
@@ -119,6 +115,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -146,6 +144,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -173,6 +173,8 @@ jobs:
         APP_TARGET: firefox
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package

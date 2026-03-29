@@ -2,25 +2,32 @@ import { PageInterface } from '../../pageInterface';
 
 export const gojo: PageInterface = {
   name: 'Gojo',
-  domain: ['https://animetsu.bz', 'https://gojo.live'],
+  domain: ['https://animetsu.net'],
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://animetsu.to/*', '*://animetsu.cc/*', '*://animetsu.bz/*', '*://gojo.live/*'],
+    match: ['*://animetsu.cc/*', '*://animetsu.bz/*', '*://animetsu.net/*', '*://animetsu.live/*'],
   },
-  search: 'https://animetsu.bz/search?query={searchtermPlus}',
+  search: 'https://animetsu.live/browse?query={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c.url().urlPart(3).equals('watch').run();
     },
     getTitle($c) {
-      return $c.querySelector('.INFO a[href^="/anime/"] > span').text().trim().run();
+      return $c
+        .querySelector(
+          $c
+            .string('a[href="/anime/')
+            .concat($c.url().this('sync.getIdentifier').run())
+            .concat('"].flex-center')
+            .run(),
+        )
+        .text()
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
-    },
-    getImage($c) {
-      return $c.querySelector('.INFO img.object-cover').getAttribute('src').ifNotReturn().run();
     },
     getOverviewUrl($c) {
       return $c
@@ -30,22 +37,12 @@ export const gojo: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c.url().urlParam('ep').number().run();
-    },
-    nextEpUrl($c) {
       return $c
-        .querySelector('.Episode > div > button.order-\\[-999999\\]')
+        .querySelector('.bg-white\\/10.ml-auto')
         .ifNotReturn()
-        .this('list.elementUrl')
-        .run();
-    },
-    getMalUrl($c) {
-      return $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .string('https://anilist.co/anime/<identifier>')
-        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
+        .text()
+        .regex('ep (\\d+)', 1)
+        .number()
         .run();
     },
   },
@@ -60,36 +57,35 @@ export const gojo: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c
-        .querySelector('.rounded-xl img.object-cover')
-        .getAttribute('src')
-        .ifNotReturn()
-        .run();
+      return $c.querySelector('.aspect-cover img').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('#root > main div:has(> a[href^="/watch/"])').uiAfter().run();
+      return $c.querySelector('.text-xl').uiAfter().run();
     },
     getMalUrl($c) {
-      return $c.provider().this('sync.getMalUrl').run();
+      return $c
+        .providerUrlUtility({
+          anilistUrl: $c
+            .querySelector('[href^="https://anilist.co/anime/"]')
+            .getAttribute('href')
+            .run(),
+          malUrl: $c
+            .querySelector('[href^="https://myanimelist.net/anime/"]')
+            .getAttribute('href')
+            .run(),
+        })
+        .run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c
-        .querySelectorAll('.Episode > div > button')
-        .filter($el => $el.elementMatches('.order-\\[-999999\\]').not().run())
-        .run();
+      return $c.querySelectorAll('.bubbly a[href^="/watch/"]').run();
     },
     elementUrl($c) {
-      return $c
-        .string('/watch/<identifier>?ep=<ep>')
-        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
-        .replace('<ep>', $c.target().this('list.elementEp').run())
-        .urlAbsolute()
-        .run();
+      return $c.getAttribute('href').ifNotReturn().urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('.smoothie').text().regex('\\d+', 0).number().run();
+      return $c.this('list.elementUrl').urlParam('ep').number().run();
     },
   },
   lifecycle: {
@@ -97,16 +93,9 @@ export const gojo: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
-    },
-    syncIsReady($c) {
-      return $c.waitUntilTrue($c.url().this('sync.getTitle').boolean().run()).trigger().run();
-    },
-    overviewIsReady($c) {
       return $c
-        .waitUntilTrue(
-          $c.querySelectorAll('#root > main a[href^="/watch/"]').length().boolean().run(),
-        )
+        .detectChanges($c.url().concat($c.title().run()).run(), $c.trigger().run())
+        .domReady()
         .trigger()
         .run();
     },

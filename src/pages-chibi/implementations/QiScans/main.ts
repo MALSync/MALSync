@@ -6,7 +6,7 @@ export const QiScans: PageInterface = {
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://qiscans.org/*'],
+    match: ['*://qiscans.org/*', '*://qimanhwa.com/*'],
   },
   search: 'https://qiscans.org/series?searchTerm={searchtermPlus}',
   sync: {
@@ -19,10 +19,10 @@ export const QiScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().split('Chapter').at(0).trim().replaceRegex('-$', '').trim().run();
+      return $c.querySelector('h2').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      return $c.url().urlPart(4).replaceRegex('^\\d+-', '').trim().run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
@@ -49,6 +49,15 @@ export const QiScans: PageInterface = {
         .number()
         .run();
     },
+    nextEpUrl($c) {
+      return $c
+        .querySelector('.lucide-chevron-right')
+        .closest('a[href*="/chapter"]')
+        .ifNotReturn()
+        .getAttribute('href')
+        .urlAbsolute()
+        .run();
+    },
     readerConfig: [
       {
         current: $c => $c.querySelectorAll('.container img[tabindex]').countAbove().run(),
@@ -67,7 +76,7 @@ export const QiScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().split('- Qi Scans').at(0).trim().run();
+      return $c.querySelector('h1').text().trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
@@ -76,7 +85,7 @@ export const QiScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.sticky > .space-y-2').uiAppend().run();
+      return $c.querySelector('[role="tablist"]').uiBefore().run();
     },
   },
   list: {
@@ -87,7 +96,7 @@ export const QiScans: PageInterface = {
       return $c.closest('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('h3').text().regex('Chapter (\\d+)', 1).number().run();
+      return $c.find('h3').ifNotReturn().text().regex('Chapter (\\d+)', 1).number().run();
     },
   },
   lifecycle: {
@@ -95,7 +104,15 @@ export const QiScans: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c
+        .querySelector('h1')
+        .text()
+        .contains('Web server is returning an unknown')
+        .ifThen($c => $c.string('404').log().return().run())
+        .detectURLChanges($c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
     },
     listChange($c) {
       return $c
