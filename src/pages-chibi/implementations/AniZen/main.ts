@@ -85,7 +85,7 @@ export const AniZen: PageInterface = {
       return $c.this('sync.getImage').run();
     },
     uiInjection($c) {
-      return $c.querySelector('.prebreadcrumb').uiAfter().run();
+      return $c.querySelector('#mal-sync').uiAppend().run();
     },
   },
   list: {
