@@ -35,7 +35,12 @@ export const Atsumaru: PageInterface = {
     getEpisode($c) {
       return $c
         .coalesceFn(
-          $c.querySelector('span.relative').ifNotReturn().text().regex('(\\d+)\\s*/', 1).run(),
+          $c
+            .querySelector('span.relative:last-child')
+            .ifNotReturn()
+            .text()
+            .regex('(\\d+)\\s*/', 1)
+            .run(),
           $c
             .querySelectorAll('select option:checked')
             .arrayFind($text => $text.text().includes('Page').not().run())
@@ -53,7 +58,7 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        condition: $c => $c.querySelector('.z-1').boolean().run(),
+        condition: $c => $c.querySelector('[id*="atsu-page-group"]').boolean().run(),
         // I use arrayFind in case it read chapter number instead
         current: $c =>
           $c
@@ -64,6 +69,12 @@ export const Atsumaru: PageInterface = {
             .number()
             .run(),
         total: $c => $c.querySelectorAll('.z-1 img').length().run(),
+      },
+      {
+        current: $c =>
+          $c.querySelector('span.relative').text().regex('(\\d+)\\s*/', 1).number().run(),
+        total: $c =>
+          $c.querySelector('span.relative').text().regex('/\\s*(\\d+)', 1).number().run(),
       },
     ],
   },
