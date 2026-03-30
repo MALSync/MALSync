@@ -16,24 +16,38 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.box-content a[href^="/manga/"]').ifNotReturn().text().trim().run();
+      return $c
+        .coalesce(
+          $c.querySelector('.box-content a[href^="/manga/"]').run(),
+          $c.querySelector('p.invisible').run(),
+        )
+        .ifNotReturn()
+        .text()
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c
-        .querySelector('.box-content a[href^="/manga/"]')
-        .getAttribute('href')
-        .urlAbsolute()
-        .run();
+      return $c.querySelector('a[href^="/manga/"]').getAttribute('href').urlAbsolute().run();
     },
     getEpisode($c) {
       return $c
-        .querySelectorAll('select option:checked')
-        .arrayFind($text => $text.text().includes('Page').not().run())
-        .text()
-        .regex('\\d+')
+        .coalesceFn(
+          $c
+            .querySelector('span.relative:last-child')
+            .ifNotReturn()
+            .text()
+            .regex('(\\d+)(?:\\.\\d+)?\\s*/', 1)
+            .run(),
+          $c
+            .querySelectorAll('select option:checked')
+            .arrayFind($text => $text.text().includes('Page').not().run())
+            .text()
+            .regex('\\d+')
+            .run(),
+        )
         .number()
         .run();
     },
@@ -44,7 +58,7 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        condition: $c => $c.querySelector('.z-1').boolean().run(),
+        condition: $c => $c.querySelector('[id*="atsu-page-group"]').boolean().run(),
         // I use arrayFind in case it read chapter number instead
         current: $c =>
           $c
@@ -55,6 +69,12 @@ export const Atsumaru: PageInterface = {
             .number()
             .run(),
         total: $c => $c.querySelectorAll('.z-1 img').length().run(),
+      },
+      {
+        current: $c =>
+          $c.querySelector('span.relative').text().regex('(\\d+)\\s*/', 1).number().run(),
+        total: $c =>
+          $c.querySelector('span.relative').text().regex('/\\s*(\\d+)', 1).number().run(),
       },
     ],
   },
