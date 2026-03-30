@@ -16,24 +16,33 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.box-content a[href^="/manga/"]').ifNotReturn().text().trim().run();
+      return $c
+        .coalesce(
+          $c.querySelector('.box-content a[href^="/manga/"]').run(),
+          $c.querySelector('p.invisible').run(),
+        )
+        .ifNotReturn()
+        .text()
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c
-        .querySelector('.box-content a[href^="/manga/"]')
-        .getAttribute('href')
-        .urlAbsolute()
-        .run();
+      return $c.querySelector('a[href^="/manga/"]').getAttribute('href').urlAbsolute().run();
     },
     getEpisode($c) {
       return $c
-        .querySelectorAll('select option:checked')
-        .arrayFind($text => $text.text().includes('Page').not().run())
-        .text()
-        .regex('\\d+')
+        .coalesceFn(
+          $c.querySelector('span.relative').ifNotReturn().text().regex('(\\d+)\\s*/', 1).run(),
+          $c
+            .querySelectorAll('select option:checked')
+            .arrayFind($text => $text.text().includes('Page').not().run())
+            .text()
+            .regex('\\d+')
+            .run(),
+        )
         .number()
         .run();
     },
