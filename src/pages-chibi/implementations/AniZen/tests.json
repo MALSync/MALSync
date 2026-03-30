@@ -1,0 +1,42 @@
+{
+  "title": "AniZen",
+  "url": "https://anizen.tr",
+  "testCases": [
+    {
+      "url": "https://anizen.tr/watch/jujutsu-kaisen-the-culling-game-part-1-20401?ep=8",
+      "expected": {
+        "sync": true,
+        "title": "Campfire Cooking in Another World with My Absurd Skill",
+        "overviewUrl": "https://anizen.tr/details/jujutsu-kaisen-the-culling-game-part-1-20401",
+        "identifier": "jujutsu-kaisen-the-culling-game-part-1-20401",
+        "image": "https://v2.anizen.tr/poster/jujutsu-kaisen-the-culling-game-part-1-20401.jpg",
+        "episode": 8,
+        "nextEpUrl": "https://anizen.tr/watch/jujutsu-kaisen-the-culling-game-part-1-20401?ep=9",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://anizen.tr/watch/jujutsu-kaisen-the-culling-game-part-1-20401?ep=12",
+      "expected": {
+        "sync": true,
+        "title": "Campfire Cooking in Another World with My Absurd Skill",
+        "overviewUrl": "https://anizen.tr/details/jujutsu-kaisen-the-culling-game-part-1-20401",
+        "identifier": "jujutsu-kaisen-the-culling-game-part-1-20401",
+        "image": "https://v2.anizen.tr/poster/jujutsu-kaisen-the-culling-game-part-1-20401.jpg",
+        "episode": 12,
+        "nextEpUrl": null,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://anizen.tr/details/the-darwin-incident-20321",
+      "expected": {
+        "sync": false,
+        "title": "The Darwin Incident",
+        "identifier": "the-darwin-incident-20321",
+        "image": "https://v2.anizen.tr/poster/the-darwin-incident-20321.jpg",
+        "uiSelector": true
+      }
+    }
+  ]
+}
