@@ -39,7 +39,7 @@ export const Atsumaru: PageInterface = {
             .querySelector('span.relative:last-child')
             .ifNotReturn()
             .text()
-            .regex('(\\d+)\\s*/', 1)
+            .regex('(\\d+)(?:\\.\\d+)?\\s*/', 1)
             .run(),
           $c
             .querySelectorAll('select option:checked')
