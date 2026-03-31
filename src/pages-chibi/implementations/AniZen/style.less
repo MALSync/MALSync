@@ -1,10 +1,38 @@
 @import './../pages';
 
 @activeEp: var(--bs-primary) !important;
-@boxBackground: #1e1e1e80;
+@boxBackground: #191826;
 @highlightStyle: 1;
+@boxBackground: #201f31;
+@boxOptionsFontColor: #fff;
+@boxHighlightBackground: #86e3ce;
+@boxHighlightFontColor: #000;
 
-/*
-fixing bad ui. Take a look at styles.min.css in style editor inspect element. that is what causing it. It has its own style.
-You can remove all below this then if it too messy. I just copy paste from that style.min.css and replace it with 0 value
-*/
+#malp {
+  margin-bottom: 20px;
+  #MalData {
+    .malp-group-field:hover:not(.malp-mal-add),
+    .malp-group-value-section:focus-within,
+    .malp-group-value-section:hover {
+      color: #86e3ce !important;
+      .malp-group-input,
+      .malp-group-value {
+        color: #86e3ce !important;
+      }
+    }
+  }
+}
+
+// canceling out the css preset site use for its malsync ui
+#MalData,
+#MalData > span,
+#malStatus,
+#malUserRating,
+#AddMalDiv {
+  all: revert;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+  background: none !important;
+  float: none !important;
+}
