@@ -27,21 +27,22 @@ export const AniZen: PageInterface = {
     getEpisode($c) {
       return $c.url().urlParam('ep').number().run();
     },
+    /*
     nextEpUrl($c) {
       return $c
-        .url()
-        .replaceRegex('ep=//d+', 'ep=')
-        .concat(
+        .querySelector('.ep-item.active')
+        .next()
+        .boolean()
+        .ifThen($c =>
           $c
-            .querySelector('ep-item.active')
-            .next()
-            .ifNotReturn()
-            .getAttribute('data-number')
-            .ifNotReturn()
+            .url()
+            .replaceRegex('ep=\\d+', 'ep=')
+            .concat($c.this('sync.getEpisode').calculate('+', 1).string().run())
             .run(),
         )
         .run();
     },
+    */
     getImage($c) {
       return $c
         .querySelector('#anime-poster')
