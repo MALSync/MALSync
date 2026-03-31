@@ -139,8 +139,20 @@
     ]
   },
   "0.12.3": {
+    "KickAssAnime": [
+      "*://*.kaa.lt/*",
+      "*://*.kaa.rs/*"
+    ],
+    "TempleScan": [
+      "*://*.templetoons.com/*"
+    ],
+    "Voiranime": [
+      "*://*.voiranime.tv/*"
+    ],
     "iframe": [
-      "*://dianaavoidthey.com/e/*"
+      "*://playnixes.com/*",
+      "*://dianaavoidthey.com/e/*",
+      "*://megaup.nl/e/*"
     ]
   }
 }

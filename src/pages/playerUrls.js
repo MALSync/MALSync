@@ -84,7 +84,7 @@ module.exports = {
     match: ['*://*.mega.nz/*'],
   },
   animeflv: {
-    match: ['*://*.animeflv.net/*', '*://*.jwplayerhls.com/*'],
+    match: ['*://*.animeflv.net/*', '*://*.jwplayerhls.com/*', '*://playnixes.com/*'],
   },
   netu: {
     match: ['*://*.hqq.tv/*', '*://waaw.tv/*'],
@@ -835,6 +835,7 @@ module.exports = {
       '*://megaup.live/e/*',
       '*://4spromax.site/e/*',
       '*://megaup22.online/e/*',
+      '*://megaup.nl/e/*',
     ],
   },
   // hikari

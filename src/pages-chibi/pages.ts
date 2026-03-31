@@ -97,6 +97,9 @@ import { Plex } from './implementations/Plex/main';
 import { allManga } from './implementations/allManga/main';
 import { GaiaFlix } from './implementations/GaiaFlix/main';
 import { AniZen } from './implementations/AniZen/main';
+import { AniZone } from './implementations/AniZone/main';
+import { AnimeNexus } from './implementations/AnimeNexus/main';
+import { templeScan } from './implementations/TempleScan/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -196,4 +199,7 @@ export const pages: { [key: string]: PageInterface } = {
   allManga,
   GaiaFlix,
   AniZen,
+  AniZone,
+  AnimeNexus,
+  templeScan,
 };

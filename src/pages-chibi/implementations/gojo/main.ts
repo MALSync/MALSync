@@ -8,7 +8,7 @@ export const gojo: PageInterface = {
   urls: {
     match: ['*://animetsu.cc/*', '*://animetsu.bz/*', '*://animetsu.net/*', '*://animetsu.live/*'],
   },
-  search: 'https://animetsu.live/search?query={searchtermPlus}',
+  search: 'https://animetsu.live/browse?query={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c.url().urlPart(3).equals('watch').run();

@@ -38,8 +38,14 @@ export const Plex: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .string('/title/<identifier>')
-        .replace('<identifier>', $c.this('sync.getIdentifier').run())
+        .querySelector(
+          $c
+            .string('[href$="%2Flibrary%2Fmetadata%2F<identifier>"]')
+            .replace('<identifier>', $c.this('sync.getIdentifier').run())
+            .run(),
+        )
+        .ifNotReturn()
+        .getAttribute('href')
         .urlAbsolute()
         .run();
     },
@@ -105,7 +111,7 @@ export const Plex: PageInterface = {
           '[class*="MetadataDetailsRow-subtitle"] [title], [class*="MetadataPosterCardTitle"] a',
         )
         .text()
-        .regex('\\d$')
+        .regex('\\d+$')
         .number()
         .run();
     },
