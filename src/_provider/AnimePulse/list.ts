@@ -19,19 +19,21 @@ export class UserList extends ListAbstract {
     };
 
     const pulseStatus = statusMap[this.status] || 'ALL';
+    const statusParam = pulseStatus !== 'ALL' ? `&status=${pulseStatus}` : '';
 
-    const data = await helper.apiCall('/anime-list');
+    const data = await helper.apiCall(`/anime-list?offset=${this.offset}&limit=50${statusParam}`);
 
-    if (!data || !Array.isArray(data)) {
+    if (!data || !Array.isArray(data) || data.length === 0) {
       this.done = true;
       return [];
     }
 
-    const filtered = pulseStatus === 'ALL'
-      ? data
-      : data.filter((entry: any) => entry.status === pulseStatus);
+    // If we got less than 50, we're done
+    if (data.length < 50) {
+      this.done = true;
+    }
 
-    const retList: listElement[] = filtered.map((entry: any) => ({
+    const retList: listElement[] = data.map((entry: any) => ({
       uid: entry.animeId,
       malId: entry.animeId,
       apiCacheKey: entry.animeId,
@@ -55,14 +57,13 @@ export class UserList extends ListAbstract {
       },
     }));
 
-    this.done = true;
     return retList;
   }
 
   async getUserObject(): Promise<{ username: string; picture: string; href: string }> {
     const data = await helper.apiCall('/user/settings');
     return {
-      username: data.displayUsername || data.username || 'User',
+      username: data.displayUsername || data.username || data.name || 'User',
       picture: data.avatarUrl || data.image || '',
       href: `https://myanimepulse.com/profile/${data.displayUsername || data.username}`,
     };
