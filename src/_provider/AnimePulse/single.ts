@@ -13,7 +13,7 @@ export class Single extends SingleAbstract {
 
   shortName = 'AnimePulse';
 
-  authenticationUrl = 'https://myanimepulse.com/settings#extensions';
+  authenticationUrl = 'https://myanimepulse.com/auth/extension';
 
   protected handleUrl(url: string) {
     if (url.match(/myanimepulse\.com\/anime\/\d+/i)) {

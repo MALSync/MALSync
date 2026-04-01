@@ -4,7 +4,7 @@ import * as helper from './helper';
 export class UserList extends ListAbstract {
   name = 'AnimePulse';
 
-  authenticationUrl = 'https://myanimepulse.com/settings#extensions';
+  authenticationUrl = 'https://myanimepulse.com/auth/extension';
 
   async getPart(): Promise<any> {
     this.logger.log('UserList', 'getPart', this.status, this.offset);
