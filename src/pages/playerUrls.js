@@ -556,6 +556,7 @@ module.exports = {
       '*://lauradaydo.com/e/*',
       '*://lancewhosedifficult.com/e/*',
       '*://dianaavoidthey.com/e/*',
+      '*://jefferycontrolmodel.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
