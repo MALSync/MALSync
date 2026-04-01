@@ -1,12 +1,15 @@
 import { SingleAbstract } from '../singleAbstract';
-import { NotFoundError } from '../Errors';
+import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 
 export class Single extends SingleAbstract {
-  constructor(url: string) {
+  constructor(protected url: string) {
     super(url);
-    this.logger = this.logger.m('AnimePulse');
+    this.logger = con.m(this.shortName, '#CC0000');
+    return this;
   }
+
+  private animeInfo: any = {};
 
   shortName = 'AnimePulse';
 
@@ -16,28 +19,35 @@ export class Single extends SingleAbstract {
     if (url.match(/myanimepulse\.com\/anime\/\d+/i)) {
       this.type = 'anime';
       const match = url.match(/\/anime\/(\d+)/);
-      if (match) {
-        this.ids.mal = Number(match[1]);
-      }
+      if (match) this.ids.mal = Number(match[1]);
       return;
     }
-    throw new NotFoundError(url);
+    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
+      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
+      this.ids.mal = Number(utils.urlPart(url, 4));
+      return;
+    }
+    throw new UrlNotSupportedError(url);
   }
 
   getCacheKey() {
-    return helper.getCacheKey(this.ids.mal);
+    return this.ids.mal;
   }
 
   getPageId() {
     return this.ids.mal;
   }
 
+  _getDisplayUrl() {
+    return `https://myanimepulse.com/anime/${this.ids.mal}`;
+  }
+
   _getStatus() {
-    return helper.translateList(this.animeInfo.status) as number;
+    return parseInt(String(helper.translateList(this.animeInfo.status)));
   }
 
   _setStatus(status: number) {
-    this.animeInfo.status = helper.translateList('', status) as string;
+    this.animeInfo.status = helper.translateList('', status);
   }
 
   _getScore() {
@@ -69,7 +79,7 @@ export class Single extends SingleAbstract {
   }
 
   _setVolume(_volume: number) {
-    // AnimePulse doesn't track volumes (anime only)
+    // AnimePulse is anime-only
   }
 
   _getTitle() {
@@ -92,20 +102,20 @@ export class Single extends SingleAbstract {
     return this.animeInfo.communityScore || '';
   }
 
-  _getStartDate() {
-    return undefined;
+  _getStartDate(): never {
+    throw new Error('AnimePulse does not support start date');
   }
 
   _setStartDate(_date: any) {
-    // Not implemented yet
+    // not supported
   }
 
-  _getFinishDate() {
-    return undefined;
+  _getFinishDate(): never {
+    throw new Error('AnimePulse does not support finish date');
   }
 
   _setFinishDate(_date: any) {
-    // Not implemented yet
+    // not supported
   }
 
   _getRewatchCount() {
@@ -121,40 +131,33 @@ export class Single extends SingleAbstract {
   }
 
   _setTags(_tags: string) {
-    // Not implemented
+    // not supported
   }
 
   async _update(): Promise<void> {
     this.logger.log('Update', this.ids.mal);
 
-    try {
-      // Fetch the user's list entry for this anime
-      const data = await helper.apiCall(`/anime-list?animeId=${this.ids.mal}`);
+    const data = await helper.apiCall(`/anime-list?animeId=${this.ids.mal}`);
 
-      if (data && data.entry) {
-        this.animeInfo.status = data.entry.status;
-        this.animeInfo.score = data.entry.rating || 0;
-        this.animeInfo.episode = data.entry.episodesWatched || 0;
-        this.animeInfo.rewatchCount = data.entry.rewatchCount || 0;
-      }
+    if (data && data.entry) {
+      this.animeInfo.status = data.entry.status;
+      this.animeInfo.score = data.entry.rating || 0;
+      this.animeInfo.episode = data.entry.episodesWatched || 0;
+      this.animeInfo.rewatchCount = data.entry.rewatchCount || 0;
+    }
 
-      // Fetch anime details
-      const animeData = await helper.apiCall(`/anime/${this.ids.mal}`);
-      if (animeData && animeData.data) {
-        const anime = animeData.data;
-        this.animeInfo.title = anime.title || anime.title_english || '';
-        this.animeInfo.totalEpisodes = anime.episodes || 0;
-        this.animeInfo.image = anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url || '';
-        this.animeInfo.communityScore = anime.score || 0;
-      }
-    } catch (e) {
-      this.logger.error('Update failed', e);
-      throw e;
+    const animeData = await helper.apiCall(`/anime/${this.ids.mal}`);
+    if (animeData && animeData.data) {
+      const anime = animeData.data;
+      this.animeInfo.title = anime.title || '';
+      this.animeInfo.totalEpisodes = anime.episodes || 0;
+      this.animeInfo.image = anime.images?.jpg?.large_image_url || '';
+      this.animeInfo.communityScore = anime.score || 0;
     }
   }
 
   async _sync(): Promise<void> {
-    this.logger.log('Sync', this.ids.mal, this.animeInfo);
+    this.logger.log('Sync', this.ids.mal);
 
     const body: Record<string, any> = {
       status: this.animeInfo.status,
@@ -166,15 +169,10 @@ export class Single extends SingleAbstract {
     }
 
     try {
-      // Try to update existing entry
       await helper.apiCall(`/anime-list/${this.ids.mal}`, body, 'PATCH');
     } catch (e: any) {
-      if (e.status === 404) {
-        // Entry doesn't exist, create it
-        await helper.apiCall('/anime-list', {
-          animeId: this.ids.mal,
-          ...body,
-        }, 'POST');
+      if (e?.status === 404) {
+        await helper.apiCall('/anime-list', { animeId: this.ids.mal, ...body }, 'POST');
       } else {
         throw e;
       }
@@ -183,9 +181,5 @@ export class Single extends SingleAbstract {
 
   async _delete(): Promise<void> {
     await helper.apiCall(`/anime-list/${this.ids.mal}`, {}, 'DELETE');
-  }
-
-  getScoreMode() {
-    return 'point10';
   }
 }

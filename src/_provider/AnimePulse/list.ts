@@ -2,6 +2,8 @@ import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
 export class UserList extends ListAbstract {
+  name = 'AnimePulse';
+
   authenticationUrl = 'https://myanimepulse.com/settings#extensions';
 
   async getPart(): Promise<any> {
@@ -10,7 +12,7 @@ export class UserList extends ListAbstract {
     const statusMap: Record<number, string> = {
       1: 'WATCHING',
       2: 'COMPLETED',
-      3: 'ONHOLD',
+      3: 'ON_HOLD',
       4: 'DROPPED',
       6: 'PLAN_TO_WATCH',
       7: 'ALL',
@@ -25,7 +27,6 @@ export class UserList extends ListAbstract {
       return [];
     }
 
-    // Filter by status if not ALL
     const filtered = pulseStatus === 'ALL'
       ? data
       : data.filter((entry: any) => entry.status === pulseStatus);
@@ -33,6 +34,7 @@ export class UserList extends ListAbstract {
     const retList: listElement[] = filtered.map((entry: any) => ({
       uid: entry.animeId,
       malId: entry.animeId,
+      apiCacheKey: entry.animeId,
       cacheKey: helper.getCacheKey(entry.animeId),
       type: 'anime' as const,
       title: entry.anime?.title || `Anime #${entry.animeId}`,
@@ -43,16 +45,22 @@ export class UserList extends ListAbstract {
       score: entry.rating || 0,
       image: entry.anime?.imageUrl || '',
       tags: '',
-      airingState: undefined,
+      startDate: null,
+      finishDate: null,
+      rewatchCount: entry.rewatchCount || 0,
+      fn: {
+        continueUrl: () => `https://myanimepulse.com/anime/${entry.animeId}`,
+        initProgress: async () => {},
+        progress: null,
+      },
     }));
 
-    this.done = true; // AnimePulse returns all entries at once
+    this.done = true;
     return retList;
   }
 
   async getUserObject(): Promise<{ username: string; picture: string; href: string }> {
     const data = await helper.apiCall('/user/settings');
-
     return {
       username: data.displayUsername || data.username || 'User',
       picture: data.avatarUrl || data.image || '',
