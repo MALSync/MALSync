@@ -60,6 +60,11 @@ let entry = {
     '..',
     'src/index-webextension/shikiOauth.ts',
   ),
+  'oauth-animepulse-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/animepulseOauth.ts',
+  ),
   'pwa-script': path.join(
     __dirname,
     '..',
