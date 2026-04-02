@@ -147,7 +147,8 @@
       "*://*.templetoons.com/*"
     ],
     "Voiranime": [
-      "*://*.voiranime.tv/*"
+      "*://*.voiranime.tv/*",
+      "*://*.voir-anime.to/*"
     ],
     "iframe": [
       "*://playnixes.com/*",
