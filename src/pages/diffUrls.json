@@ -49,6 +49,10 @@
       "*://tranimeizle.io/*",
       "*://www.tranimeizle.io/*"
     ],
+    "Voiranime": [
+      "*://*.voiranime.tv/*",
+      "*://*.voir-anime.to/*"
+    ],
     "Zoro": [
       "*://hianime.cx/*",
       "*://hianime.gs/*",
