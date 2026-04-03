@@ -184,8 +184,8 @@ export function getQuicklinks(): QuicklinkObject[] {
         typeof el.search === 'object'
           ? el.search
           : {
-              anime: el.type === 'anime' ? el.search || null : null,
-              manga: el.type === 'manga' ? el.search || null : null,
+              anime: el.type === 'anime' ? el.search || 'home' : null,
+              manga: el.type === 'manga' ? el.search || 'home' : null,
             },
     };
   });
