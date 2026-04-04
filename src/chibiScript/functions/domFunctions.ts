@@ -205,4 +205,45 @@ export default {
   title: (ctx: ChibiCtx, input: void) => {
     return document.title;
   },
+
+  /**
+   * Checks if the selected element is currently visible
+   * @input Element - DOM element
+   * @returns Boolean indicating if the element is visible
+   * @example
+   * $c.querySelector('#player').checkVisibility()
+   */
+  checkVisibility: (ctx: ChibiCtx, input: Element) => {
+    return input.checkVisibility({ visibilityProperty: true, opacityProperty: true });
+  },
+
+  /**
+   * Checks if the selected element is currently within the browser's viewport.
+   * By default, it checks if the element is **fully** in the viewport.
+   * If `partial` is true, it checks if **any part** of it is in the viewport.
+   * @param ctx - The ChibiCtx context
+   * @param input - The DOM element to check
+   * @param partial - Allow partial visibility. Defaults to false (must be fully visible).
+   * @returns A boolean indicating if the element is in the viewport
+   * @example
+   * // Checks if ANY part of the player is visible
+   * $c.querySelector('#player').isInViewport(true)
+   * * // Checks if the ENTIRE player is visible
+   * $c.querySelector('#player').isInViewport()
+   */
+  isInViewport: (ctx: ChibiCtx, input: Element, partial?: boolean): boolean => {
+    const rect = input.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+    if (partial) {
+      return (
+        rect.top <= windowHeight && rect.bottom >= 0 && rect.left <= windowWidth && rect.right >= 0
+      );
+    }
+
+    return (
+      rect.top >= 0 && rect.left >= 0 && rect.bottom <= windowHeight && rect.right <= windowWidth
+    );
+  },
 };
