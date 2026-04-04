@@ -55,13 +55,29 @@ export const TeamShadowi: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').text().trim().run();
+      return $c.querySelector('h1').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).trim().run();
     },
     getImage($c) {
       return $c.querySelector('[href*="thumbnail"] img').getAttribute('src').ifNotReturn().run();
+    },
+    getMalUrl($c) {
+      return $c
+        .providerUrlUtility({
+          malUrl: $c
+            .querySelector('a[href*="myanimelist"]')
+            .getAttribute('href')
+            .ifNotReturn()
+            .run(),
+          anilistUrl: $c
+            .querySelector('a[href*="anilist"]')
+            .getAttribute('href')
+            .ifNotReturn()
+            .run(),
+        })
+        .run();
     },
     uiInjection($c) {
       return $c.querySelector('h1').uiAfter().run();
@@ -84,6 +100,14 @@ export const TeamShadowi: PageInterface = {
     },
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+    },
+    listChange($c) {
+      return $c
+        .detectChanges(
+          $c.querySelector('.space-y-2').text().ifNotReturn().run(),
+          $c.trigger().run(),
+        )
+        .run();
     },
   },
 };
