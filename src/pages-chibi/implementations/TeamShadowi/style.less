@@ -5,6 +5,13 @@
 @boxLabelFontColor: var(--label-malsync);
 @boxHighlightBackground: #a855f7;
 
+@highlightStyle: 0;
+@activeEp: #a855f7;
+
+.mal-sync-active > * {
+  outline: 2px solid @activeEp !important;
+}
+
 #malp {
   margin-bottom: calc(var(--spacing) * 2);
   #MalData {
