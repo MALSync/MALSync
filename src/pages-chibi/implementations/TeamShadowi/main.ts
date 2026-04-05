@@ -43,6 +43,23 @@ export const TeamShadowi: PageInterface = {
     },
     readerConfig: [
       {
+        condition: $c => $c.querySelector('.absolute.top-2.right-2').boolean().run(),
+        current: $c =>
+          $c
+            .querySelector('.absolute.top-2.right-2')
+            .text()
+            .regex('(\\d+)\\D*\\/\\D*(\\d+)', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('.absolute.top-2.right-2')
+            .text()
+            .regex('(\\d+)\\D*\\/\\D*(\\d+)', 2)
+            .number()
+            .run(),
+      },
+      {
         current: $c => $c.querySelectorAll('img[data-chapter-image]').countAbove().run(),
         total: $c => $c.querySelectorAll('img[data-chapter-image]').length().run(),
       },
