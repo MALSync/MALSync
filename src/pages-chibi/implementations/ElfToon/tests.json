@@ -1,0 +1,36 @@
+{
+    "title": "ElfToon",
+    "url": "https://elftoon.com",
+    "testCases": [
+      {
+        "url": "https://elftoon.com/the-rebel-of-the-tyrant-noble-family-chapter-14/",
+        "expected": {
+          "sync": true,
+          "title": "The Rebel of the Tyrant Noble Family",
+          "identifier": "the-rebel-of-the-tyrant-noble-family",
+          "overviewUrl": "https://elftoon.com/manga/the-rebel-of-the-tyrant-noble-family/",
+          "episode": 14,
+          "nextEpUrl": "https://elftoon.com/the-rebel-of-the-tyrant-noble-family-chapter-15/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://elftoon.com/manga/rebirth-of-the-campus-special-forces-soldier/",
+        "expected": {
+          "sync": false,
+          "title": "Rebirth of the Campus Special Forces Soldier",
+          "identifier": "rebirth-of-the-campus-special-forces-soldier",
+          "image": "https://elftoon.com/wp-content/uploads/2025/08/thumbnail-1.jpg",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://elftoon.com/rebirth-of-the-campus-special-forces-soldier-chapter-1/",
+            "5": "https://elftoon.com/rebirth-of-the-campus-special-forces-soldier-chapter-5/",
+            "14": "https://elftoon.com/rebirth-of-the-campus-special-forces-soldier-chapter-14/",
+            "15": "https://elftoon.com/rebirth-of-the-campus-special-forces-soldier-chapter-15/"
+            }
+          }
+        }
+     ]
+   }
+
+
