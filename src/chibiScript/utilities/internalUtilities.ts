@@ -13,7 +13,9 @@ export default {
         | 'kitsuId'
         | 'kitsuUrl'
         | 'malId'
-        | 'malUrl']?: ChibiJson<any>;
+        | 'malUrl'
+        | 'mangabakaId'
+        | 'mangabakaUrl']?: ChibiJson<any>;
     },
   ) => {
     const providerConfig = [
@@ -28,6 +30,12 @@ export default {
         urlKey: 'kitsuUrl',
         idKey: 'kitsuId',
         urlTemplate: 'https://kitsu.app/manga/<identifier>',
+      },
+      {
+        provider: 'MANGABAKA',
+        urlKey: 'mangabakaUrl',
+        idKey: 'mangabakaId',
+        urlTemplate: 'https://mangabaka.org/<identifier>',
       },
       {
         provider: 'MAL',

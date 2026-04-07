@@ -93,6 +93,11 @@ export const TeamShadowi: PageInterface = {
             .getAttribute('href')
             .ifNotReturn()
             .run(),
+          mangabakaUrl: $c
+            .querySelector('a[href*="mangabaka"]')
+            .getAttribute('href')
+            .ifNotReturn()
+            .run(),
         })
         .run();
     },
