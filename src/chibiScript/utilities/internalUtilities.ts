@@ -12,10 +12,10 @@ export default {
         | 'anilistUrl'
         | 'kitsuId'
         | 'kitsuUrl'
-        | 'malId'
-        | 'malUrl'
         | 'mangabakaId'
-        | 'mangabakaUrl']?: ChibiJson<any>;
+        | 'mangabakaUrl'
+        | 'malId'
+        | 'malUrl']?: ChibiJson<any>;
     },
   ) => {
     const providerConfig = [
