@@ -1,0 +1,32 @@
+{
+  "title": "AniKoto",
+  "url": "https://anikototv.to",
+  "testCases": [
+    {
+      "url": "https://anikototv.to/watch/that-time-i-got-reincarnated-as-a-slime-2nd-season-part-2-pvdj7/ep-11",
+      "expected": {
+        "sync": true,
+        "title": "That Time I Got Reincarnated as a Slime 2nd Season Part 2",
+        "overviewUrl": "https://anikototv.to/watch/that-time-i-got-reincarnated-as-a-slime-2nd-season-part-2-pvdj7/ep-1",
+        "identifier": "pvdj7",
+        "image": "https://cdn.anipixcdn.co/thumbnail/b57fac77ca8ccadbcca2335607697701.jpg",
+        "episode": 11,
+        "nextEpUrl": "https://anikototv.to/watch/that-time-i-got-reincarnated-as-a-slime-2nd-season-part-2-pvdj7/ep-12",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://anikototv.to/watch/dark-gathering-meodu/ep-1",
+      "expected": {
+        "sync": true,
+        "title": "Dark Gathering",
+        "overviewUrl": "https://anikototv.to/watch/dark-gathering-meodu/ep-1",
+        "identifier": "meodu",
+        "image": "https://cdn.anipixcdn.co/thumbnail/5b685c54b72bac34e7b56feb9f7be2c5.jpg",
+        "episode": 1,
+        "nextEpUrl": "https://anikototv.to/watch/dark-gathering-meodu/ep-2",
+        "uiSelector": true
+      }
+    }
+  ]
+}
