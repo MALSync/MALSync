@@ -622,7 +622,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://voiranime.tv"><img src="https://favicon.malsync.moe/?domain=https://voiranime.tv"> Voiranime</a></td>
+    <td><a href="https://voir-anime.to"><img src="https://favicon.malsync.moe/?domain=https://voir-anime.to"> Voiranime</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -1339,6 +1339,13 @@
     <td>:x:</td>
   </tr><tr>
     <td><a href="https://tcbonepiecechapters.com"><img src="https://favicon.malsync.moe/?domain=https://tcbonepiecechapters.com"> TCBScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://www.team-shadowi.com/"><img src="https://favicon.malsync.moe/?domain=https://www.team-shadowi.com/"> TeamShadowi</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
