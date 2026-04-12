@@ -100,7 +100,7 @@ import { AniZone } from './implementations/AniZone/main';
 import { AnimeNexus } from './implementations/AnimeNexus/main';
 import { templeScan } from './implementations/TempleScan/main';
 import { TeamShadowi } from './implementations/TeamShadowi/main';
-import { Th3Anime } from `./implementations/Th3Anime/main`;
+import { Th3Anime } from './implementations/Th3Anime/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,

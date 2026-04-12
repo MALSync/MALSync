@@ -1,6 +1,6 @@
 import { PageInterface } from '../../pageInterface';
 
-export const The3Anime: PageInterface = {
+export const Th3Anime: PageInterface = {
   name: "Th3Anime",
   domain: "https://th3anime.me/",
   languages: ["English"],
