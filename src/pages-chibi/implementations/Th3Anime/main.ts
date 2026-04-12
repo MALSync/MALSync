@@ -35,6 +35,19 @@ export const Th3Anime: PageInterface = {
     uiInjection($c) {
       return $c.querySelector('.player-control').uiAfter().run();
     },
+    nextEpUrl($c) {
+      return $c
+        .url().split('/').slice(0, 4).join(
+        $c.querySelector('.ssl-item .ep-item .active')
+        .parent()
+        .next()
+        .ifNotReturn()
+        .find('a')
+        .getAttribute('data-id')
+        .ifNotReturn()
+        .urlAbsolute()
+        .run()).run();
+    },
   },
   lifecycle: {
     setup($c) {
