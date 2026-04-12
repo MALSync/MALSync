@@ -1,0 +1,34 @@
+{
+  "title": "YourSite",
+  "url": "https://th3anime.me/",
+  "testCases": [
+    {
+      "url": "https://th3anime.me/watch/rezero-starting-life-in-another-world-season-3-19301?ep=16",
+      "expected": {
+        "sync": true,
+        "title": "Re:ZERO -Starting Life in Another World- Season 3",
+        "identifier": "rezero-starting-life-in-another-world-season-3-19301",
+        "overviewUrl": "https://th3anime.me/details/rezero-starting-life-in-another-world-season-3-19301",
+        "nextEpUrl": null,
+        "episode": 16,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://th3anime.me/watch/no-game-no-life-261?ep=4",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life",
+        "identifier": "no-game-no-life-261",
+        "overviewUrl": "https://th3anime.me/details/no-game-no-life-261",
+        "nextEpUrl": "https://th3anime.me/watch/no-game-no-life-261?ep=5",
+        "episode": 4,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/19815",
+        "epList": {
+          "5": "https://th3anime.me/watch/no-game-no-life-261?ep=5"
+        }
+      }
+    }
+  ]
+}
