@@ -32,6 +32,9 @@ export const Th3Anime: PageInterface = {
         .number()
         .run();
     },
+    uiInjection($c) {
+      return $c.querySelector('.player-control').uiAfter().run();
+    },
   },
   lifecycle: {
     setup($c) {
