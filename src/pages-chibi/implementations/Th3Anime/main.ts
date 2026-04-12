@@ -6,7 +6,7 @@ export const Th3Anime: PageInterface = {
   languages: ["English"],
   type: "anime",
   urls: {
-    match: ["*://*.th3anime.me/*"],
+    match: ["*://th3anime.me/*"],
   },
   search: 'https://th3anime.me/search?keyword={searchtermPlus}',
   sync: {
