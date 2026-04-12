@@ -16,13 +16,13 @@ export const yourSite: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector(".text-white dynamic-name").getAttribute("data-title").text().trim().run();
+      return $c.querySelector(".text-white dynamic-name").getAttribute("data-title").trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c.urlStrip().replace("watch", "details").run();
+      return $c.url().urlStrip().replace("watch", "details").run();
     },
     getEpisode($c) {
       return $c
