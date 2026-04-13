@@ -45,7 +45,7 @@
     "name": "Shinden"
   },
   {
-    "domain": "https://voiranime.tv",
+    "domain": "https://voir-anime.to",
     "type": "anime",
     "name": "Voiranime"
   },
@@ -1018,5 +1018,10 @@
     "domain": "https://templetoons.com",
     "type": "manga",
     "name": "TempleScan"
+  },
+  {
+    "domain": "https://www.team-shadowi.com/",
+    "type": "manga",
+    "name": "TeamShadowi"
   }
 ]

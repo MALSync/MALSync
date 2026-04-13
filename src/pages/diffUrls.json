@@ -147,12 +147,15 @@
       "*://*.templetoons.com/*"
     ],
     "Voiranime": [
-      "*://*.voiranime.tv/*"
+      "*://*.voiranime.tv/*",
+      "*://*.voir-anime.to/*"
     ],
     "iframe": [
       "*://playnixes.com/*",
       "*://dianaavoidthey.com/e/*",
       "*://jefferycontrolmodel.com/e/*",
+      "*://jessicaclearout.com/e/*",
+      "*://marissasharecareer.com/e/*",
       "*://megaup.nl/e/*"
     ]
   }

@@ -67,7 +67,7 @@ async function kickassanime() {
 }
 
 async function animekai() {
-  const response = await fetch('https://animekai.ws/');
+  const response = await fetch('https://animekai.pw/');
   const body = await response.text();
 
   const $ = cheerio.load(body);

@@ -15,6 +15,8 @@ export const animepahe: PageInterface = {
       '*://animepahe.org/anime/*',
       '*://animepahe.si/play/*',
       '*://animepahe.si/anime/*',
+      '*://animepahe.pw/play/*',
+      '*://animepahe.pw/anime/*',
     ],
   },
   sync: {

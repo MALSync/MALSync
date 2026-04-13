@@ -358,7 +358,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://reset-scans.org"><img src="https://favicon.malsync.moe/?domain=https://reset-scans.org"> ResetScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://voiranime.tv"><img src="https://favicon.malsync.moe/?domain=https://voiranime.tv"> Voiranime</a></td>
+                <td><a href="https://voir-anime.to"><img src="https://favicon.malsync.moe/?domain=https://voir-anime.to"> Voiranime</a></td>
                 <td><a href="https://rezoscan.org"><img src="https://favicon.malsync.moe/?domain=https://rezoscan.org"> RezoScans</a></td>
                 <td></td>
               </tr><tr>
@@ -408,6 +408,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
               </tr><tr>
                 <td></td>
                 <td><a href="https://tcbonepiecechapters.com"><img src="https://favicon.malsync.moe/?domain=https://tcbonepiecechapters.com"> TCBScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://www.team-shadowi.com/"><img src="https://favicon.malsync.moe/?domain=https://www.team-shadowi.com/"> TeamShadowi</a></td>
                 <td></td>
               </tr><tr>
                 <td></td>
