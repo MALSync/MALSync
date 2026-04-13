@@ -42,13 +42,18 @@ export const ElfToon: PageInterface = {
       {
         current: $c =>
           $c
-            .querySelector('#select-paged option:selected')
-            .text()
+            .querySelector('#select-paged')
+            .selectedText()
             .regex('(\\d+)/(\\d+)$', 1)
             .number()
             .run(),
         total: $c =>
-          $c.querySelector('#select-paged option').text().regex('(\\d+)/(\\d+)$', 2).number().run(),
+          $c
+            .querySelector('#select-paged')
+            .selectedText()
+            .regex('(\\d+)/(\\d+)$', 2)
+            .number()
+            .run(),
       },
     ],
   },
