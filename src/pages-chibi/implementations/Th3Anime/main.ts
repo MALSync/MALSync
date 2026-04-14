@@ -25,7 +25,7 @@ export const Th3Anime: PageInterface = {
       return $c.url().urlStrip().replace('watch', 'details').run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(4).regex('ep[=](\d+)', 1).number().run();
+      return $c.url().urlParam('ep').number().run();
     },
     uiInjection($c) {
       return $c.querySelector('.player-control').uiAfter().run();
