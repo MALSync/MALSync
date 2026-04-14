@@ -27,9 +27,6 @@ export const Th3Anime: PageInterface = {
     getEpisode($c) {
       return $c.url().urlParam('ep').number().run();
     },
-    uiInjection($c) {
-      return $c.querySelector('.player-control').uiAfter().run();
-    },
     nextEpUrl($c) {
       return $c
         .url()
@@ -48,6 +45,23 @@ export const Th3Anime: PageInterface = {
             .run(),
         )
         .run();
+    },
+  },
+  overview: {
+    isOverviewPage($c) {
+      return $c.url().urlPart(3).matches('details').run();
+    },
+    getTitle($c) {
+      return $c.querySelector('.breadcrumb-item.dynamic-name.active').getAttribute('data-title').trim().run();
+    },
+    getIdentifier($c) {
+      return $c.url().urlPart(4).run();
+    },
+    uiInjection($c) {
+      return $c.querySelector('.dr-fav.dropdown').uiAfter().run();
+    },
+    getImage($c) {
+      return $c.querySelector('.film-poster-img').getAttribute('src').run();
     },
   },
   lifecycle: {
