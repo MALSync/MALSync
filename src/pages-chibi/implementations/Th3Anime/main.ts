@@ -58,10 +58,10 @@ export const Th3Anime: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     uiInjection($c) {
-      return $c.querySelector('.dr-fav.dropdown').uiAfter().run();
+      return $c.querySelector('.film-buttons').uiAfter().run();
     },
     getImage($c) {
-      return $c.querySelector('.film-poster-img').getAttribute('src').run();
+      return $c.querySelector('.anisc-poster').querySelector('.film-poster-img').getAttribute('src').ifNotReturn().run();
     },
   },
   lifecycle: {
