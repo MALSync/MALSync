@@ -28,7 +28,7 @@ const rootWindow = inject('rootWindow') as Window;
 
 const route = useRoute();
 const router = useRouter();
-const display = document.documentElement.getAttribute('mode') === 'popup';
+const display = ['popup', 'sidebar'].includes(document.documentElement.getAttribute('mode') || '');
 const hasPrevious = ref(rootWindow.history.length > 1);
 
 if (display) {
