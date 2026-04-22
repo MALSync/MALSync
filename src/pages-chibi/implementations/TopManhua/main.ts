@@ -2,11 +2,11 @@ import { PageInterface } from '../../pageInterface';
 
 export const TopManhua: PageInterface = {
   name: 'TopManhua',
-  domain: 'https://manhuatop.org/',
+  domain: ['https://manhuatop.org/', 'https://topmanhua.com/'],
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://manhuatop.org/*'],
+    match: ['*://manhuatop.org/*', '*://topmanhua.com/*'],
   },
   features: {
     customDomains: true,
