@@ -15,16 +15,18 @@ export const MangaClash: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and($c.url().urlPart(5).boolean().run(), $c.url().urlPart(3).equals('manga').run())
+        .and(
+          $c.url().urlPart(5).boolean().run(),
+          $c.url().urlPart(5).matches('chapter').run(),
+          $c.url().urlPart(3).equals('manga').run(),
+        )
         .run();
     },
     getTitle($c) {
-      // .split(' - Chapter ')[0]
       return $c
         .querySelector('h1#chapter-heading')
         .text()
         .replaceAll('\n', ' ')
-        .replaceRegex('\\s+', ' ')
         .replaceRegex('\\s+', ' ')
         .split(' - Chapter ')
         .first()
@@ -61,7 +63,11 @@ export const MangaClash: PageInterface = {
   overview: {
     isOverviewPage($c) {
       return $c
-        .and($c.url().urlPart(5).boolean().not().run(), $c.url().urlPart(3).equals('manga').run())
+        .and(
+          $c.url().urlPart(5).boolean().not().run(),
+          $c.url().urlPart(4).boolean().run(),
+          $c.url().urlPart(3).equals('manga').run(),
+        )
         .run();
     },
     getTitle($c) {
