@@ -2,11 +2,11 @@ import { PageInterface } from '../../pageInterface';
 
 export const MangaClash: PageInterface = {
   name: 'MangaClash',
-  domain: 'https://mangaclash.com/',
+  domain: ['https://mangaclash.com/', 'https://toonclash.com/'],
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://mangaclash.com/*'],
+    match: ['*://mangaclash.com/*', '*://toonclash.com/*'],
   },
   features: {
     customDomains: true,
