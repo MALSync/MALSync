@@ -15,7 +15,11 @@ export const TopManhua: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and($c.url().urlPart(5).boolean().run(), $c.url().urlPart(3).equals('manhua').run())
+        .and(
+          $c.url().urlPart(5).boolean().run(),
+          $c.url().urlPart(5).matches('chapter').run(),
+          $c.url().urlPart(3).equals('manhua').run(),
+        )
         .run();
     },
     getTitle($c) {
@@ -23,7 +27,6 @@ export const TopManhua: PageInterface = {
         .querySelector('h1#chapter-heading')
         .text()
         .replaceAll('\n', ' ')
-        .replaceRegex('\\s+', ' ')
         .replaceRegex('\\s+', ' ')
         .split(' - Chapter ')
         .first()
@@ -60,7 +63,11 @@ export const TopManhua: PageInterface = {
   overview: {
     isOverviewPage($c) {
       return $c
-        .and($c.url().urlPart(5).boolean().not().run(), $c.url().urlPart(3).equals('manhua').run())
+        .and(
+          $c.url().urlPart(4).boolean().run(),
+          $c.url().urlPart(5).boolean().not().run(),
+          $c.url().urlPart(3).equals('manhua').run(),
+        )
         .run();
     },
     getTitle($c) {
