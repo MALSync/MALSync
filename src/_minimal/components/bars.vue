@@ -65,13 +65,13 @@ const barStyle = (el: Bar) => {
     bottom: 0;
     transition: width @fast-transition;
     &-red {
-      background-color: #eb5757;
+      background-color: var(--cl-bar-prediction);
     }
     &-blue {
-      background-color: #56ccf2;
+      background-color: var(--cl-bar-progess);
     }
     &-violet {
-      background-color: #bb6bd9;
+      background-color: var(--cl-bar-score);
     }
   }
 }

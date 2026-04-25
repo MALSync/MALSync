@@ -1,6 +1,0 @@
-{
-  "search": "https://animenosub.to/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://animenosub.to/*"]
-  }
-}

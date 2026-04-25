@@ -29,7 +29,9 @@ const length = computed(() => props.text.length);
 const getCharWidth = (fontSize: number) => fontSize * 0.55;
 
 const size = computed(() => {
-  const fieldWidth = target.value ? target.value.clientWidth : rootWindow.innerWidth - 310;
+  const fieldWidth = target.value
+    ? target.value.clientWidth
+    : Math.min(rootWindow.innerWidth, rootWindow.screen.width) - 310;
 
   let found = props.sizes.find(fontSize => {
     const charWidth = getCharWidth(fontSize);

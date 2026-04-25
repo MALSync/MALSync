@@ -1,0 +1,60 @@
+{
+    "title": "SetsuScans",
+    "url": "https://setsuscans.com/",
+    "testCases": [
+      {
+        "url": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/chapter-34-2/",
+        "expected": {
+          "sync": true,
+          "title": "The Demon King's Daughter is Too Kind!!",
+          "identifier": "the-demon-kings-daughter-is-too-kind",
+          "image": "https://setsuscans.com/wp-content/uploads/2023/05/67b2d875-6210-48fc-a97f-73f33e6f4400-1200x630.jpg",
+          "overviewUrl": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/",
+          "episode": 34,
+          "nextEpUrl": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/chapter-34-5/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/chapter-45/",
+        "expected": {
+          "sync": true,
+          "title": "The Demon King's Daughter is Too Kind!!",
+          "identifier": "the-demon-kings-daughter-is-too-kind",
+          "image": "https://setsuscans.com/wp-content/uploads/2023/05/67b2d875-6210-48fc-a97f-73f33e6f4400-1200x630.jpg",
+		      "overviewUrl": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/",
+          "episode": 45,
+          "nextEpUrl": null,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/",
+        "expected": {
+          "sync": false,
+          "title": "The Demon King’s Daughter is Too Kind!!",
+          "identifier": "the-demon-kings-daughter-is-too-kind",
+          "image": "https://setsuscans.com/wp-content/uploads/2023/05/67b2d875-6210-48fc-a97f-73f33e6f4400.jpg",
+          "uiSelector": true,
+          "epList": {
+            "43": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/chapter-43/",
+            "34": "https://setsuscans.com/manga/the-demon-kings-daughter-is-too-kind/chapter-34/"
+          }
+        }
+      },
+      {
+        "url": "https://setsuscans.com/manga/1-tales-of-the-demon-and-gods/",
+        "expected": {
+          "sync": false,
+          "title": "Tales of the Demon and Gods",
+          "identifier": "1-tales-of-the-demon-and-gods",
+          "image": "https://setsuscans.com/wp-content/uploads/2023/05/TODG-NEW-COVER-for-md.jpg",
+          "uiSelector": true,
+          "epList": {
+            "506": "https://setsuscans.com/manga/1-tales-of-the-demon-and-gods/chapter-506-1/",
+            "499": "https://setsuscans.com/manga/1-tales-of-the-demon-and-gods/chapter-499-1/"
+          }
+       }
+     }
+   ]
+ }

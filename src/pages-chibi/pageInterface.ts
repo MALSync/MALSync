@@ -10,6 +10,13 @@ export interface PageInterface {
   name: string;
   /** The type of media this page handles */
   type: 'anime' | 'manga';
+
+  /**
+   * (Optional) Function to compute the type dynamically. In cases a page contains multiple types of content.
+   * Evaluated during page trigger
+   */
+  computedType?: ($c: ChibiGenerator<unknown>) => ChibiJson<'anime' | 'manga' | 'novel' | string>;
+
   /** The domain(s) of the website */
   domain: string | string[];
   /**
@@ -23,6 +30,19 @@ export interface PageInterface {
    */
   urls: {
     match: string[];
+    /**
+     * Optional URL patterns used to identify video player iframes
+     */
+    player?: { [key: string]: string[] };
+  };
+  /**
+   * Additional features for the page integration
+   */
+  features?: {
+    /** Proxy website requests */
+    requestProxy?: boolean;
+    /** Add the possibility to add custom domains to this implementation */
+    customDomains?: boolean;
   };
   /**
    * URL template for the site's search functionality
@@ -94,6 +114,13 @@ export interface PageInterface {
     getVolume?: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
 
     /**
+     * Returns the URL to the image of the anime or manga.
+     * This function is optional.
+     * @returns A ChibiJson wrapped string containing the image URL, or undefined if not available
+     */
+    getImage?: ($c: ChibiGenerator<unknown>) => ChibiJson<string | undefined>;
+
+    /**
      * Returns the URL to the next episode or chapter.
      * Used for providing quick navigation links on the userlist.
      * This function is optional.
@@ -122,7 +149,7 @@ export interface PageInterface {
      * Configuration for the manga progress functionality.
      * This property is optional.
      */
-    readerConfig?: mangaProgressConfig[];
+    readerConfig?: (ChibiMangaProgressConfig | mangaProgressConfig)[];
   };
 
   /**
@@ -155,6 +182,12 @@ export interface PageInterface {
      * Injects a small UI element with the current episode or chapter number.
      */
     uiInjection: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
+
+    /**
+     * Returns the URL to the image of the anime or manga.
+     * @returns A ChibiJson wrapped string containing the image URL, or undefined if not available
+     */
+    getImage: ($c: ChibiGenerator<unknown>) => ChibiJson<string | undefined>;
 
     /**
      * Returns the MyAnimeList URL for the current anime or manga.
@@ -236,6 +269,15 @@ export interface PageInterface {
   };
 }
 
+export type ChibiMangaProgressConfig = {
+  /** A condition to check if this config should be applied */
+  condition?: ($c: ChibiGenerator<unknown>) => ChibiJson<boolean>;
+  /** The current page number */
+  current: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
+  /** The total number of pages */
+  total: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
+};
+
 export interface PageInterfaceCompiled extends PageInterface {
   /** The version of the page integration */
   version: {
@@ -255,6 +297,7 @@ export type PageListInterface = Pick<
   | 'database'
   | 'version'
   | 'minimumVersion'
+  | 'features'
 > & {
   /** The unique key of the page integration */
   key: string;
@@ -268,6 +311,7 @@ export type PageListJsonInterface = {
 };
 
 export type PageJsonInterface = PageInterfaceCompiled & {
+  computedType: ReturnType<NonNullable<PageInterface['computedType']>>;
   sync: {
     isSyncPage: ReturnType<PageInterface['sync']['isSyncPage']>;
     getTitle: ReturnType<PageInterface['sync']['getTitle']>;
@@ -275,6 +319,7 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getOverviewUrl: ReturnType<PageInterface['sync']['getOverviewUrl']>;
     getEpisode: ReturnType<PageInterface['sync']['getEpisode']>;
     getVolume?: ReturnType<NonNullable<PageInterface['sync']['getVolume']>>;
+    getImage?: ReturnType<NonNullable<PageInterface['sync']['getImage']>>;
     nextEpUrl?: ReturnType<NonNullable<PageInterface['sync']['nextEpUrl']>>;
     uiInjection?: ReturnType<NonNullable<PageInterface['sync']['uiInjection']>>;
     getMalUrl?: ReturnType<NonNullable<PageInterface['sync']['getMalUrl']>>;
@@ -286,6 +331,7 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getTitle: ReturnType<NonNullable<PageInterface['overview']>['getTitle']>;
     getIdentifier: ReturnType<NonNullable<PageInterface['overview']>['getIdentifier']>;
     uiInjection: ReturnType<NonNullable<PageInterface['overview']>['uiInjection']>;
+    getImage: ReturnType<NonNullable<PageInterface['overview']>['getImage']>;
     getMalUrl?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getMalUrl']>>;
   };
   list?: {

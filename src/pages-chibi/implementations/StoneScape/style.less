@@ -1,0 +1,48 @@
+@import './../pages';
+
+@activeEp: #b096e14d;
+@boxBackground: var(--bg-malsync);
+
+#malp {
+  #MalData {
+    .malp-group {
+      .malp-group-field,
+      .malp-group-value-section {
+        color: var(--text-malsync) !important;
+        display: flex;
+        option {
+          color: var(--bg-option-malsync);
+          font-family: sans-serif;
+        }
+      }
+      .malp-group-field:hover,
+      .malp-group-input:focus,
+      .malp-group-value-section:hover {
+        background-color: var(--bg-malsync-hover) !important;
+        color: var(--hover-malsync) !important;
+        transition-duration: 0.25s;
+      }
+    }
+  }
+}
+
+.mal-sync-active {
+  border-left: 5px solid @activeEp;
+  border-right: 5px solid @activeEp;
+  border-radius: 8px;
+}
+
+// the site didn't set it as variables for light mode
+.text-ui-dark {
+  --bg-malsync: #e3d6fe;
+  --text-malsync: #8858a8;
+  --hover-malsync: #8858a8;
+  --bg-option-malsync: #8858a8;
+  --bg-malsync-hover: #ddccff;
+}
+.text-ui-light {
+  --bg-malsync: #28282f;
+  --bg-malsync-hover: #28282f;
+  --text-malsync: #b399e6;
+  --hover-malsync: #d1c4e9;
+}

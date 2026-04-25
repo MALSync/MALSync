@@ -35,7 +35,7 @@ const rootHtml = inject('rootHtml') as HTMLElement;
 const rootBody = inject('rootBody') as HTMLElement;
 
 function setBreakpoint() {
-  if (rootWindow.innerWidth < 900) {
+  if (Math.min(rootWindow.innerWidth, rootWindow.screen.width) < 900) {
     breakpoint.value = 'mobile';
   } else {
     breakpoint.value = 'desktop';
@@ -50,11 +50,9 @@ function isExtension() {
 onMounted(() => {
   rootWindow.addEventListener('resize', setBreakpoint);
   nextTick(() => {
-    if (
-      ['popup', 'settings'].includes(rootHtml.getAttribute('mode')!) &&
-      rootWindow.innerWidth !== 550
-    ) {
-      rootHtml.style.minWidth = `${rootWindow.innerWidth}px`;
+    const width = Math.min(rootWindow.innerWidth, rootWindow.screen.width);
+    if (['popup', 'settings'].includes(rootHtml.getAttribute('mode')!) && width !== 550) {
+      rootHtml.style.minWidth = `${width}px`;
       // rootHtml.style.maxWidth = `${rootWindow.innerWidth}px`;
       rootHtml.style.width = 'auto';
       rootBody.style.width = 'auto';

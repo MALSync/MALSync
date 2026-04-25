@@ -1,0 +1,44 @@
+{
+  "title": "FRAnime",
+  "url": "https://franime.fr",
+  "testCases": [
+    {
+      "url": "https://franime.fr/anime/spy-x-family?s=2&ep=13&lang=vo&anime_id=45398",
+      "expected": {
+        "sync": true,
+        "title": "SPY x FAMILY Season 2",
+        "identifier": "spy-x-family-season-2",
+        "overviewUrl": "https://franime.fr/anime/spy-x-family?s=2&lang=vo&anime_id=45398",
+        "image": "https://media.kitsu.app/anime/45398/poster_image/cc0bbc0dd2a123fb79b041078fce6f89.jpg",
+        "episode": 13,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://franime.fr/anime/bocchi-the-rock?s=1&ep=12&lang=vo&anime_id=44196",
+      "expected": {
+        "sync": true,
+        "title": "Bocchi the Rock!",
+        "identifier": "bocchi-the-rock",
+        "overviewUrl": "https://franime.fr/anime/bocchi-the-rock?s=1&lang=vo&anime_id=44196",
+        "image": "https://media.kitsu.app/anime/44196/poster_image/8a882ca91a826640364578a7c0289fa7.jpg",
+        "episode": 12,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://franime.fr/anime/bocchi-the-rock?s=1&lang=vo&anime_id=44196",
+      "expected": {
+        "sync": false,
+        "title": "Bocchi the Rock!",
+        "identifier": "bocchi-the-rock",
+        "image": "https://media.kitsu.app/anime/44196/poster_image/8a882ca91a826640364578a7c0289fa7.jpg",
+        "uiSelector": true,
+        "epList": {
+          "4": "https://franime.fr/anime/bocchi-the-rock?s=1&ep=4&lang=vo&anime_id=44196",
+          "8": "https://franime.fr/anime/bocchi-the-rock?s=1&ep=8&lang=vo&anime_id=44196"
+        }
+      }
+    }
+  ]
+}

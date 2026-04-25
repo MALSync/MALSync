@@ -26,9 +26,9 @@
           :additional-slot="Boolean(progress)"
           @update:value="episode = $event"
         >
-          <span v-if="progress" class="mal-sync-ep" :title="progress.getAutoText()">
+          <span v-if="progress" class="mal-sync-ep" :title="progress.progress()!.getAutoText()">
             [<span :style="`border-bottom: 1px dotted ${progress.getColor()};`">{{
-              progress.getCurrentEpisode()
+              progress.progress()!.getCurrentEpisode()!
             }}</span
             >]
           </span>
@@ -98,13 +98,12 @@ export default {
       return this.malObj ? this.malObj.getVolume() : null;
     },
     progress() {
+      const malObj = this.malObj as SingleAbstract | null;
       if (
-        this.malObj &&
-        this.malObj.getProgress() &&
-        this.malObj.getProgress().isAiring() &&
-        this.malObj.getProgress().getCurrentEpisode()
+        malObj?.getProgress()?.isAiring() &&
+        malObj.getProgress()?.progress()?.getCurrentEpisode()
       ) {
-        return this.malObj.getProgress();
+        return malObj.getProgress()!;
       }
       return '';
     },

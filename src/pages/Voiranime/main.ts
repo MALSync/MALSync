@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Voiranime: pageInterface = {
   name: 'Voiranime',
-  domain: 'https://voiranime.com',
+  domain: 'https://voir-anime.to',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {

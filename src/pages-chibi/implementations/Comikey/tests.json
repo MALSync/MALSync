@@ -1,0 +1,87 @@
+{
+    "title": "Comikey",
+    "url": "https://comikey.com/",
+    "testCases": [
+      {
+        "url": "https://comikey.com/read/inept-at-home-but-super-adept-compared-to-the-rest-manga/eg72Ye/chapter-1-2/",
+        "expected": {
+          "sync": true,
+          "title": "I Was Called Inept at Home, but Turns Out I’m Super Adept Compared to the Rest of the World",
+          "identifier": "inept-at-home-but-super-adept-compared-to-the-rest",
+          "image": "https://comikey.com/media/comics/nDqqpD/a8c8b370e12b.png",
+          "overviewUrl": "https://comikey.com/comics/inept-at-home-but-super-adept-compared-to-the-rest-manga/491/",
+          "episode": 1,
+          "nextEpUrl": "https://comikey.com/read/inept-at-home-but-super-adept-compared-to-the-rest-manga/kaJqwD/chapter-2/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://comikey.com/read/kengan-omega-manga/DO3zND/bab-bahasa-147/",
+        "expected": {
+          "sync": true,
+          "title": "Kengan Omega",
+          "identifier": "kengan-omega",
+          "image": "https://comikey.com/media/comics/WeRbe0/f29b9873bd69.png",
+		      "overviewUrl": "https://comikey.com/comics/kengan-omega-manga/10/",
+          "episode": 147,
+          "nextEpUrl": "https://comikey.com/read/kengan-omega-manga/kjZYvk/chapter-148/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://comikey.com/read/kengan-omega-manga/elrKXk/capitulo-espanol-144/",
+        "expected": {
+          "sync": true,
+          "title": "Kengan Omega",
+          "identifier": "kengan-omega",
+          "image": "https://comikey.com/media/comics/WeRbe0/f29b9873bd69.png",
+		      "overviewUrl": "https://comikey.com/comics/kengan-omega-manga/10/",
+          "episode": 144,
+          "nextEpUrl": "https://comikey.com/read/kengan-omega-manga/e9a0ge/chapter-145/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://br.comikey.com/read/kengan-omega-pt-br-manga/DQ82dk/capitulo-portugues-8/",
+        "expected": {
+          "sync": true,
+          "title": "Kengan Omega",
+          "identifier": "kengan-omega",
+          "image": "https://br.comikey.com/media/comics/WeRbe0/8bdd3f50afaf.png",
+		      "overviewUrl": "https://br.comikey.com/comics/kengan-omega-pt-br-manga/492/",
+          "episode": 8,
+          "nextEpUrl": "https://br.comikey.com/read/kengan-omega-pt-br-manga/or8O7D/chapter-9/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://comikey.com/comics/inept-at-home-but-super-adept-compared-to-the-rest-manga/491/",
+        "expected": {
+          "sync": false,
+          "title": "I Was Called Inept at Home, but Turns Out I’m Super Adept Compared to the Rest of the World",
+          "identifier": "inept-at-home-but-super-adept-compared-to-the-rest",
+          "image": "https://media.comikey.com/gazo/600/jpg/comics/nDqqpD/e434c349aee0.png",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comikey.com/read/inept-at-home-but-super-adept-compared-to-the-rest-manga/eg72Ye/chapter-1-2/",
+            "3": "https://comikey.com/read/inept-at-home-but-super-adept-compared-to-the-rest-manga/DvXPLo/chapter-3-4/",
+            "5": "https://comikey.com/read/inept-at-home-but-super-adept-compared-to-the-rest-manga/kN26pk/chapter-5-3/"
+          }
+       }
+     },
+     {  
+        "url": "https://br.comikey.com/comics/kengan-omega-pt-br-manga/492/",
+        "expected": {
+          "sync": false,
+          "title": "Kengan Omega",
+          "identifier": "kengan-omega",
+          "image": "https://media.comikey.com/gazo/600/jpg/comics/WeRbe0/aafeca1bbc8d.png",
+          "uiSelector": true,
+          "epList": {
+            "5": "https://br.comikey.com/read/kengan-omega-pt-br-manga/onQOQe/capitulo-portugues-5/",
+            "10": "https://br.comikey.com/read/kengan-omega-pt-br-manga/ex3OlD/capitulo-portugues-10/"
+          }
+       }
+     }
+   ]
+ }

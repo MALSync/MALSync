@@ -177,6 +177,7 @@ async function PreparePage(block, page, url, testPage) {
     log(block, 'Cached', 2);
 
     await page.setRequestInterception(true);
+    await page.setBypassServiceWorker(true);
 
     page.on('request', (request) => {
       if (!request.isInterceptResolutionHandled()) {
@@ -399,7 +400,7 @@ async function singleCase(block, test, page, testPage, retry = 0) {
           getManifest: function() {
             console.log('chrome.runtime.getManifest');
             return {
-              version: '0.1',
+              version: '10.1.1',
             };
           }
         },
@@ -408,12 +409,28 @@ async function singleCase(block, test, page, testPage, retry = 0) {
             get: function(keys, callback) {
               console.log('chrome.storage.local.get', keys, callback);
               callback({});
+              return promise.resolve({});
             },
             set: function(items, callback) {
               console.log('chrome.storage.local.set', items, callback);
               if (callback) {
                 callback();
               }
+              return promise.resolve({});
+            }
+          },
+          sync: {
+            get: function(keys, callback) {
+              console.log('chrome.storage.sync.get', keys, callback);
+              callback({});
+              return promise.resolve({});
+            },
+            set: function(items, callback) {
+              console.log('chrome.storage.sync.set', items, callback);
+              if (callback) {
+                callback();
+              }
+              return promise.resolve({});
             }
           }
         },
@@ -444,6 +461,7 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   expect(text.sync, 'Sync').to.equal(test.expected.sync);
   expect(text.title, 'Title').to.equal(test.expected.title);
   expect(text.identifier, 'Identifier').to.equal(test.expected.identifier);
+  expect(text.image, 'Image').to.equal(test.expected.image);
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
     if (test.expected.volume) {

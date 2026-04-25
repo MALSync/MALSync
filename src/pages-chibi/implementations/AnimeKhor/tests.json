@@ -1,0 +1,32 @@
+{
+    "title": "AnimeKhor",
+    "url": "https://animekhor.org",
+    "testCases": [
+      {
+        "url": "https://animekhor.org/shrouding-the-heavens-episode-124-subtitles-english-indonesian/",
+        "expected": {
+          "sync": true,
+          "title": "Shrouding the Heavens",
+          "identifier": "shrounding-the-heavens",
+          "overviewUrl": "https://animekhor.org/anime/shrounding-the-heavens/",
+          "episode": 124,
+          "nextEpUrl": "https://animekhor.org/shrouding-the-heavens-episode-125-subtitles-english-indonesian/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://animekhor.org/anime/shrounding-the-heavens/",
+        "expected": {
+          "sync": false,
+          "title": "Shrouding the Heavens",
+          "identifier": "shrounding-the-heavens",
+          "image": "https://i2.wp.com/animekhor.org/wp-content/uploads/2023/05/Shrouding-the-Heavens-Subbed.webp?resize=247,350",
+          "uiSelector": true,
+          "epList": {
+            "7" : "https://animekhor.org/shrounding-the-heavens-episode-7-english-subtitles/",
+            "120": "https://animekhor.org/shrouding-the-heavens-episode-120-subtitles-english-indonesian/"
+         }
+        }
+      }
+    ]
+  }

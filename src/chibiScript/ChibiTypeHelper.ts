@@ -1,8 +1,12 @@
-import type { ChibiJson } from './ChibiGenerator';
+import type { ChibiJson, ChibiGenerator } from './ChibiGenerator';
 
 export type GetArrayType<T extends any[]> = T extends (infer U)[] ? U : never;
 
 export type InputType<T extends (...args: any) => any> = Parameters<T>[1];
+
+export type InputTypeUtility<T extends (...args: any) => any> = UnwrapGenerator<Parameters<T>[0]>;
+
+export type UnwrapGenerator<T> = T extends ChibiGenerator<infer U> ? U : never;
 
 export type UnwrapJson<T> = T extends ChibiJson<infer U> ? U : never;
 

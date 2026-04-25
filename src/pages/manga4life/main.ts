@@ -34,13 +34,15 @@ export const manga4life: pageInterface = {
       );
     },
     getEpisode(url) {
-      return utils
-        .getBaseText(
-          $(
-            'div.MainContainer > div.container > div.row > div.Column:nth-child(2) > button',
-          ).first(),
-        )
-        .match(/\d+/gim);
+      return parseInt(
+        utils
+          .getBaseText(
+            $(
+              'div.MainContainer > div.container > div.row > div.Column:nth-child(2) > button',
+            ).first(),
+          )
+          .match(/\d+/gim)![0],
+      );
     },
     readerConfig: [
       {

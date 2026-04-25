@@ -1,0 +1,44 @@
+{
+    "title": "WritersScans",
+    "url": "https://writerscans.com",
+    "testCases": [
+      {
+        "url": "https://writerscans.com/chapter/64116117bfc-641164935e1/",
+        "expected": {
+          "sync": true,
+          "title": "I Want to Be the Director's Husband",
+          "identifier": "64116117bfc",
+          "overviewUrl": "https://writerscans.com/series/64116117bfc/",
+          "episode": 8,
+          "nextEpUrl": "https://writerscans.com/chapter/64116117bfc-6418cc622e3/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://writerscans.com/chapter/640ecb8f2bb-640eceb4c73/",
+        "expected": {
+          "sync": true,
+          "title": "Classmate",
+          "identifier": "640ecb8f2bb",
+          "overviewUrl": "https://writerscans.com/series/640ecb8f2bb/",
+          "episode": 6,
+          "nextEpUrl": "https://writerscans.com/chapter/640ecb8f2bb-640eceb94c6/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://writerscans.com/series/640ecb8f2bb/",
+        "expected": {
+          "sync": false,
+          "title": "Classmate",
+          "identifier": "640ecb8f2bb",
+          "image": "https://wsrv.nl/?url=cdn.meowing.org/uploads/cnguoVxx6ul",
+          "uiSelector": true,
+          "epList": {
+            "1" : "https://writerscans.com/chapter/640ecb8f2bb-640ece9aebc/",
+            "6" : "https://writerscans.com/chapter/640ecb8f2bb-640eceb4c73/"
+          }
+        }
+      }
+    ]
+  }

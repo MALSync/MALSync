@@ -1,0 +1,28 @@
+{
+  "title": "FalconScans",
+  "url": "https://falconscans.com",
+  "testCases": [
+    {
+      "url": "https://falconscans.com/manga/the-return-of-the-crazy-demon/chapter/176",
+      "expected": {
+        "sync": true,
+        "title": "The Return Of The Crazy Demon",
+        "identifier": "the-return-of-the-crazy-demon",
+        "image": "https://falconscans.com/uploads/manga/20/cover/1474671581378913.webp",
+        "overviewUrl": "https://falconscans.com/manga/the-return-of-the-crazy-demon",
+        "episode": 176,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://falconscans.com/manga/the-return-of-the-crazy-demon",
+      "expected": {
+        "sync": false,
+        "title": "The Return Of The Crazy Demon",
+        "identifier": "the-return-of-the-crazy-demon",
+        "image": "https://falconscans.com/uploads/manga/20/cover/1474671581378913.webp",
+        "uiSelector": true
+      }
+    }
+  ]
+}

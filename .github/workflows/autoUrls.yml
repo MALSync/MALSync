@@ -10,37 +10,156 @@ on:
     paths:
       - '**/meta.json'
       - '**/playerUrls.js'
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
 jobs:
-  main:
-    name: main
+  # ------------------------------------------------------------------
+  # JOB 1: PREPARE
+  # ------------------------------------------------------------------
+  prepare-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          ref: master
+          persist-credentials: false
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22.x'
+          cache: 'npm' # <--- Simple, standard caching
+
+      - name: Build
+        run: npm install
+
+      - id: set-matrix
+        name: Set Matrix
+        env:
+          CI_MODE: travis
+          SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+          SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+          MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+          MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
+        run: |
+          TASKS=$(node webpackConfig/autoUrls.mjs --list)
+          echo "matrix=$TASKS" >> $GITHUB_OUTPUT
+
+  # ------------------------------------------------------------------
+  # JOB 2: UPDATE SITES
+  # ------------------------------------------------------------------
+  update-urls:
+    needs: prepare-matrix
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        task: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          ref: master
+          persist-credentials: false
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22.x'
+          cache: 'npm' # <--- Restores cache automatically
+
+      - name: Build
+        run: npm install
+
+      - name: Run ${{ matrix.task }}
+        env:
+          CI_MODE: travis
+          SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+          SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+          MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+          MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
+        run: node webpackConfig/autoUrls.mjs ${{ matrix.task }}
+
+      - name: Stage Site Changes
+        run: |
+          mkdir -p scraped_data
+          git diff --name-only src/ | xargs -I {} cp --parents {} scraped_data/ 2>/dev/null || true
+          touch scraped_data/.keep
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          commit-message: 'Auto Urls: ${{ matrix.task }}'
+          branch: 'auto-urls-${{ matrix.task }}'
+          delete-branch: true
+          title: 'Auto Urls: ${{ matrix.task }}'
+          body: 'Automatically added Urls for ${{ matrix.task }}'
+          labels: 'auto-urls'
+          add-paths: |
+            src/pages-chibi
+            src/pages/**/*.ts
+
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: site-data-${{ matrix.task }}
+          path: scraped_data/
+          retention-days: 1
+          if-no-files-found: ignore
+
+  # ------------------------------------------------------------------
+  # JOB 3: AGGREGATE PERMISSIONS
+  # ------------------------------------------------------------------
+  build-permissions:
+    needs: update-urls
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-      with:
-        ref: master
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+        with:
+          ref: master
+          persist-credentials: false
+      
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '22.x'
+          cache: 'npm' # <--- Restores cache automatically
 
-    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-      with:
-        node-version: '22.x'
+      - name: Build
+        run: npm install
 
-    - name: Build
-      run: npm install
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          pattern: site-data-*
+          path: .
+          merge-multiple: true
 
-    - name: Run
-      run: npm run build:autoUrls
-      env:
-        CI_MODE: travis
-        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
-        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+      - name: Delete Artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api --paginate repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts \
+            --jq '.artifacts[] | select(.name | startswith("site-data-")) | .id' \
+            | xargs -r -I {} gh api -X DELETE repos/${{ github.repository }}/actions/artifacts/{}
 
-    - name: Lint Fix
-      run: npm run build:chibiTypes && npm run lint:fix
+      - name: Build Permissions & Types
+        run: |
+          npm run build:missingPermissions
+          npm run build:chibiTypes
+          npm run lint:fix
 
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7
-      with:
-        commit-message: Auto Urls
-        branch: auto-urls
-        delete-branch: true
-        title: 'Auto Urls'
-        body: 'Automatically added Urls'
+      - name: Create Aggregate PR
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          commit-message: 'chore: update permissions and types'
+          branch: 'auto-urls-aggregate'
+          delete-branch: true
+          title: 'Auto Urls: Update Permissions'
+          body: 'Aggregated permissions build from all auto-url jobs.'
+          labels: 'auto-urls'
+          add-paths: |
+            src/**/*.json
+            src/**/*.js

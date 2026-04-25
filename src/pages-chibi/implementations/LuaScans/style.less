@@ -1,0 +1,20 @@
+@import './../pages';
+
+@boxBackground: hsl(var(--border));
+@highlightStyle: 1;
+@activeEp: hsl(var(--muted-foreground));
+
+#malp {
+  .malp-group-field {
+    box-shadow: none;
+  }
+  .malp-group-field:focus:not(.malp-group-input),
+  .malp-group-field:hover:not(.malp-group-input),
+  .malp-group-value-section:hover,
+  .malp-group-value-section:focus-within {
+    box-shadow: 0 0 0 1px @activeEp;
+    option {
+      font-family: sans-serif;
+    }
+  }
+}

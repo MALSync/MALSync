@@ -23,6 +23,7 @@ export const Anime365: pageInterface = {
     'https://smotret-anime.com',
     'https://smotret-anime.ru',
     'https://smotretanime.ru',
+    'https://smotret-anime.app',
   ],
   type: 'anime',
   isSyncPage(url) {

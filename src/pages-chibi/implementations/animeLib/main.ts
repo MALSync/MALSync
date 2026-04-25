@@ -5,12 +5,12 @@ import type { PageInterface } from '../../pageInterface';
 export const animeLib: PageInterface = {
   name: 'AnimeLib',
   type: 'anime',
-  domain: ['https://anilib.me', 'https://v1.animelib.org'],
+  domain: ['https://v3.animelib.org'],
   languages: ['Russian'],
   urls: {
-    match: ['*://anilib.me/*', '*://*.animelib.org/*'],
+    match: ['*://*.animelib.org/*'],
   },
-  search: 'https://v1.animelib.org/ru/catalog?q={searchterm}',
+  search: 'https://v3.animelib.org/ru/catalog?q={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c
@@ -32,6 +32,9 @@ export const animeLib: PageInterface = {
     getEpisode($c) {
       const btnEp = getCurrentEpisodeBtn($c);
       return btnEp.ifNotReturn().text().split(' ').at(0).number().run();
+    },
+    getImage($c) {
+      return $c.querySelector('._container .cover img').getAttribute('src').ifNotReturn().run();
     },
     nextEpUrl($c) {
       const btnEp = getCurrentEpisodeBtn($c);
@@ -65,6 +68,9 @@ export const animeLib: PageInterface = {
       const slug = $c.url().urlPart(5);
       const id = slug.string().regex('(\\d+)', 1);
       return id.run();
+    },
+    getImage($c) {
+      return $c.querySelector('.cover img').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.tabs._border').uiBefore().run();

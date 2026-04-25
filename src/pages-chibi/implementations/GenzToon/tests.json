@@ -1,0 +1,32 @@
+{
+    "title": "GenzToon",
+    "url": "https://genzupdates.com",
+    "testCases": [
+      {
+        "url": "https://genzupdates.com/chapter/634504a70a7-63c7cfe8fc4/",
+        "expected": {
+          "sync": true,
+          "title": "The Concept-Grasping Magical Genius",
+          "identifier": "634504a70a7",
+          "overviewUrl": "https://genzupdates.com/series/634504a70a7/",
+          "episode": 33,
+          "nextEpUrl": "https://genzupdates.com/chapter/634504a70a7-63d08fcef4a/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://genzupdates.com/series/634504a70a7/",
+        "expected": {
+          "sync": false,
+          "title": "The Concept-Grasping Magical Genius",
+          "identifier": "634504a70a7",
+          "image": "https://wsrv.nl/?url=cdn.meowing.org/uploads/DLYi8Atxxz-",
+          "uiSelector": true,
+          "epList": {
+            "1" : "https://genzupdates.com/chapter/634504a70a7-63451720fbb/",
+            "38" : "https://genzupdates.com/chapter/634504a70a7-6405576ac41/"
+          }
+        }
+      }
+    ]
+  }

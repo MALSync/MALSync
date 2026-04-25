@@ -1,3 +1,15 @@
 @import './../pages';
 
-@boxBackground: var(--light);
+@boxBackground: color-mix(in oklab, var(--color-white) 8%, transparent);
+@boxOptionsBackground: black;
+@boxOptionsFontColor: white;
+
+@highlightStyle: 0;
+@activeEp: var(--color-green-400);
+
+.epHighlight() {
+  img {
+    border: 2px solid @activeEp;
+    border-radius: 10px !important;
+  }
+}

@@ -16,5 +16,10 @@
   ],
   "npm": {
      "rangeStrategy": "update-lockfile"
+  },
+  "force": {
+    "constraints": {
+      "npm": "10.x"
+    }
   }
 }

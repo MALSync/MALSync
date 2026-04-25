@@ -1,0 +1,41 @@
+{
+    "title": "ResetScans",
+    "url": "https://reset-scans.org/",
+    "testCases": [
+      {
+        "url": "https://reset-scans.org/manga/dungeon-reset/chapter-263/",
+        "expected": {
+          "sync": true,
+          "title": "Dungeon Reset",
+          "identifier": "dungeon-reset",
+          "image": "https://reset-scans.org/wp-content/uploads/2024/12/DUNGEON-RESET.webp",
+          "overviewUrl": "https://reset-scans.org/manga/dungeon-reset",
+          "episode": 263,
+          "nextEpUrl": "https://reset-scans.org/manga/dungeon-reset/chapter-264/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://reset-scans.org/manga/dungeon-reset/chapter265/",
+        "expected": {
+          "sync": true,
+          "title": "Dungeon Reset",
+          "identifier": "dungeon-reset",
+          "image": "https://reset-scans.org/wp-content/uploads/2024/12/DUNGEON-RESET.webp",
+		      "overviewUrl": "https://reset-scans.org/manga/dungeon-reset",
+          "episode": 265,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://reset-scans.org/manga/dungeon-reset",
+        "expected": {
+          "sync": false,
+          "title": "Dungeon Reset",
+          "identifier": "dungeon-reset",
+          "image": "https://reset-scans.org/wp-content/uploads/2024/12/DUNGEON-RESET.webp",
+          "uiSelector": true
+       }
+     }
+   ]
+ }

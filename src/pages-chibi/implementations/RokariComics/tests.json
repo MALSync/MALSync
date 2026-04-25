@@ -1,0 +1,32 @@
+{
+    "title": "RokariComics",
+    "url": "https://rokaricomics.com",
+    "testCases": [
+      {
+        "url": "https://rokaricomics.com/do-your-best-and-regret-chapter-32/",
+        "expected": {
+          "sync": true,
+          "title": "Do Your Best and Regret",
+          "identifier": "do-your-best-and-regret",
+          "overviewUrl": "https://rokaricomics.com/manga/do-your-best-and-regret/",
+          "episode": 32,
+          "nextEpUrl": "https://rokaricomics.com/do-your-best-and-regret-chapter-33/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://rokaricomics.com/manga/do-your-best-and-regret/",
+        "expected": {
+          "sync": false,
+          "title": "Do Your Best and Regret",
+          "identifier": "do-your-best-and-regret",
+          "image": "https://rokaricomics.com/wp-content/uploads/2025/06/thumbnail_IMAG21_6b157955-9483-4b72-ae49-acd7034e52f2.jpg",
+          "uiSelector": true,
+          "epList": {
+            "32": "https://rokaricomics.com/do-your-best-and-regret-chapter-32/",
+            "1": "https://rokaricomics.com/do-your-best-and-regret-chapter-1/"
+          }
+        }
+      }
+    ]
+  }

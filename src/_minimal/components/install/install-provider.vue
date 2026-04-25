@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts" setup>
+import { providerOptions } from '../../../_provider/helper';
 import Header from '../header.vue';
 import Section from '../section.vue';
 import SettingsRendering from '../settings/settings-rendering.vue';
-import { providerOptions } from '../settings/settings-structure-tracking';
 import SettingsGeneral from '../settings/settings-general.vue';
 
 const emit = defineEmits(['next', 'back']);
@@ -26,7 +26,7 @@ const comp = {
     option: 'syncMode',
     labelSection: false,
     props: {
-      options: providerOptions('short'),
+      options: providerOptions('primary', true),
       ignoreSelect: true,
     },
   },

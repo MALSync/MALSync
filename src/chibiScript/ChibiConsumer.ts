@@ -3,6 +3,8 @@ import { ChibiError, UnknownChibiFunctionError } from './ChibiErrors';
 import type { ChibiJson } from './ChibiGenerator';
 import { ChibiReturn } from './ChibiReturn';
 import functionsRegistry from './functions';
+import { chibiParamIndices } from './ChibiGeneratorTypes';
+import type { ChibiEvents } from './ChibiEventEmitter';
 
 export class ChibiConsumer {
   private script: ChibiJson<any>;
@@ -34,6 +36,7 @@ export class ChibiConsumer {
   }
 
   _subroutine(script: ChibiJson<any>, startState: any = null) {
+    this.ctx.setAsyncContext(false);
     let state: any = startState;
     // eslint-disable-next-line no-restricted-syntax
     for (const [functionName, ...args] of script) {
@@ -42,6 +45,13 @@ export class ChibiConsumer {
       }
       const func = functionsRegistry[functionName];
       try {
+        // Resolve chibiJson arguments if necessary
+        for (let i = 0; i < args.length; i += 1) {
+          if (this.isChibiJson(i, functionName, args[i])) {
+            args[i] = this._subroutine(args[i] as unknown as ChibiJson<any>);
+          }
+        }
+
         state = func(this.ctx, state, ...args);
       } catch (error) {
         if (error instanceof ChibiError) {
@@ -78,6 +88,7 @@ export class ChibiConsumer {
   }
 
   async _subroutineAsync(script: ChibiJson<any>, startState: any = null) {
+    this.ctx.setAsyncContext(true);
     let state: any = startState;
     // eslint-disable-next-line no-restricted-syntax
     for (const [functionName, ...args] of script) {
@@ -86,6 +97,13 @@ export class ChibiConsumer {
       }
       const func = functionsRegistry[functionName];
       try {
+        // Resolve chibiJson arguments if necessary
+        for (let i = 0; i < args.length; i += 1) {
+          if (this.isChibiJson(i, functionName, args[i])) {
+            args[i] = await this._subroutineAsync(args[i] as unknown as ChibiJson<any>);
+          }
+        }
+
         state = func(this.ctx, state, ...args);
 
         if (state && state instanceof Promise) {
@@ -113,6 +131,21 @@ export class ChibiConsumer {
 
   clearIntervals() {
     return this.ctx.clearIntervals();
+  }
+
+  emitEvent(eventName: ChibiEvents, data?: any) {
+    this.ctx.event.emit(eventName, data);
+  }
+
+  protected isChibiJson(index: number, functionName: string, argument: any) {
+    return (
+      Array.isArray(argument) &&
+      argument.length > 0 &&
+      Array.isArray(argument[0]) &&
+      argument[0].length > 0 &&
+      chibiParamIndices[functionName] &&
+      chibiParamIndices[functionName].includes(index + 2) // +2 to account for ctx and input arguments
+    );
   }
 
   logError(error, functionName, input, args) {

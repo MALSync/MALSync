@@ -62,6 +62,9 @@ export class Single extends SingleAbstract {
     if (status === definitions.status.Rewatching && !this.supportsRewatching()) {
       status = definitions.status.Watching;
     }
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
+    }
     this.animeInfo.status = status;
   }
 
@@ -163,8 +166,9 @@ export class Single extends SingleAbstract {
   }
 
   setImage(url: string) {
+    const hasImage = Boolean(this.animeInfo.image);
     this.animeInfo.image = url;
-    if (this._onList) this.sync();
+    if (this._onList && !hasImage) this.sync();
   }
 
   _getRating() {

@@ -66,6 +66,7 @@ defineProps({
 
     &.primary-dark {
       background-color: var(--cl-primary-dark);
+      color: var(--cl-primary-dark-contrast);
     }
     &.secondary {
       background-color: var(--cl-secondary);

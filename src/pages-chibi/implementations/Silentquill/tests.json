@@ -1,0 +1,43 @@
+{
+  "title": "Silentquill",
+  "url": "https://www.silentquill.net/",
+  "testCases": [
+    {
+      "url": "https://www.silentquill.net/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me-chapter-1-1/",
+      "expected": {
+        "sync": true,
+        "title": "The Young Lady Has Been Acting Weird Ever Since Someone Confessed to Me",
+        "identifier": "the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me",
+        "overviewUrl": "https://www.silentquill.net/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me/",
+        "nextEpUrl": "https://www.silentquill.net/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me-chapter-1-2/",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.silentquill.net/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me-ch-6/",
+      "expected": {
+        "sync": true,
+        "title": "The Young Lady Has Been Acting Weird Ever Since Someone Confessed to Me",
+        "identifier": "the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me",
+        "overviewUrl": "https://www.silentquill.net/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me/",
+        "episode": 6,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.silentquill.net/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me/",
+      "expected": {
+        "sync": false,
+        "title": "The Young Lady Has Been Acting Weird Ever Since Someone Confessed to Me",
+        "identifier": "the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me",
+        "uiSelector": true,
+        "image": "https://www.silentquill.net/wp-content/uploads/2025/06/c_0001.webp",
+        "epList": {
+          "1": "https://www.silentquill.net/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me-chapter-1-1/",
+          "6": "https://www.silentquill.net/the-young-lady-has-been-acting-weird-ever-since-someone-confessed-to-me-ch-6/"
+        }
+      }
+    }
+  ]
+}

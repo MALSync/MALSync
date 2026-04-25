@@ -181,7 +181,7 @@ defineProps({
 
     each(@state-colors, {
       &.state-@{key} {
-        background: linear-gradient(90deg, ~"var(--state-@{key})"0%, ~"var(--cl-backdrop)" 30%);
+        background: linear-gradient(90deg, ~"var(--cl-state-@{key})"0%, ~"var(--cl-backdrop)" 30%);
       }
     });
 

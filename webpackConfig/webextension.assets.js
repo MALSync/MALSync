@@ -21,9 +21,11 @@ console.log('appTarget', appTarget);
 const malUrls = { myanimelist: pageUrls.myanimelist };
 const aniUrls = { anilist: pageUrls.anilist };
 const kitsuUrls = { anilist: pageUrls.kitsu };
+const mangabakaUrls = { mangabaka: pageUrls.mangabaka };
 const simklUrls = { anilist: pageUrls.simkl };
 const malsyncUrls = { anilist: pageUrls.malsync };
 const malsyncAnilistUrls = { anilist: pageUrls.malsyncAnilist };
+const malsyncMangabakaUrls = { mangabaka: pageUrls.malsyncMangabaka };
 const malsyncShikiUrls = { shiki: pageUrls.malsyncShiki };
 const malsyncPwaUrls = { anilist: pageUrls.malsyncPwa };
 
@@ -55,6 +57,12 @@ var content_scripts = [
     run_at: 'document_start',
   },
   {
+    matches: generateMatchExcludes(malsyncMangabakaUrls).match,
+    exclude_globs: generateMatchExcludes(malsyncMangabakaUrls).exclude,
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-mangabaka-script.js'],
+    run_at: 'document_start',
+  },
+  {
     matches: generateMatchExcludes(malsyncShikiUrls).match,
     exclude_globs: generateMatchExcludes(malsyncShikiUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-shiki-script.js'],
@@ -70,6 +78,12 @@ var content_scripts = [
     matches: generateMatchExcludes(kitsuUrls).match,
     exclude_globs: generateMatchExcludes(kitsuUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/kitsu-script.js'],
+    run_at: 'document_start',
+  },
+  {
+    matches: generateMatchExcludes(mangabakaUrls).match,
+    exclude_globs: generateMatchExcludes(mangabakaUrls).exclude,
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/mangabaka-script.js'],
     run_at: 'document_start',
   },
   {
@@ -131,7 +145,22 @@ const generateManifest = () => {
     },
     action: {
       default_popup: 'popup.html',
-      default_icon: 'icons/icon16.png',
+      default_icon: {
+        '16': 'icons/icon16.png',
+        '32': 'icons/icon32.png',
+        '48': 'icons/icon48.png',
+        '128': 'icons/icon128.png',
+      },
+    },
+    sidebar_action: {
+      default_panel: 'window.html',
+      open_at_install: false,
+      default_icon: {
+        '16': 'icons/icon16.png',
+        '32': 'icons/icon32.png',
+        '48': 'icons/icon48.png',
+        '128': 'icons/icon128.png',
+      },
     },
     options_ui: {
       page: 'settings.html',

@@ -1,13 +1,10 @@
-import { pages as part1 } from '../src/pages/pages';
-import { pages as part2 } from '../src/pages-adult/pages';
+import { pages } from '../src/pages/pages';
 import { getPageConfig } from '../src/utils/test';
 import { xhrAction } from '../src/background/messageHandler';
 import { Chibi } from '../src/pages-chibi/ChibiProxy';
 import { NotFoundError } from '../src/_provider/Errors';
 import chibiList from '../src/pages-chibi/builder/chibiList';
 import chibiPages from '../src/pages-chibi/builder/chibiPages';
-
-const pages = { ...part1, ...part2 };
 
 // @ts-ignore
 window.chrome.runtime.sendMessage = (message: any, callback: (response: any) => void) => {
@@ -83,6 +80,9 @@ window.MalSyncTest = async function() {
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }
+          if (typeof page.sync.getImage !== 'undefined') {
+            value.image = page.sync.getImage();
+          }
         } else if (!page.isOverviewPage || page.isOverviewPage(window.location.href)) {
           value.sync = false;
           value.title = page.overview.getTitle(window.location.href);
@@ -92,6 +92,9 @@ window.MalSyncTest = async function() {
               '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
+          }
+          if (typeof page.overview.getImage !== 'undefined') {
+            value.image = page.overview.getImage();
           }
         } else {
           reject('Not an overview or sync page');

@@ -1,0 +1,29 @@
+{
+    "title": "MangaTaro",
+    "url": "https://mangataro.org/",
+    "testCases": [
+      {
+        "url": "https://mangataro.org/read/a-modern-man-who-transmigrated-into-the-murim-world/ch143-454457",
+        "expected": {
+          "sync": true,
+          "title": "A Modern Man Who Transmigrated Into the Murim World",
+          "identifier": "a-modern-man-who-transmigrated-into-the-murim-world",
+          "image": "https://mangataro.org/content/media/281309l.webp",
+          "overviewUrl": "https://mangataro.org/manga/a-modern-man-who-transmigrated-into-the-murim-world",
+          "episode": 143,
+          "nextEpUrl": "https://mangataro.org/read/a-modern-man-who-transmigrated-into-the-murim-world/ch144-462660",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://mangataro.org/manga/wild-west-murim",
+        "expected": {
+          "sync": false,
+          "title": "Wild West Murim",
+          "identifier": "wild-west-murim",
+          "image": "https://mangataro.org/content/media/291043l.webp",
+          "uiSelector": true
+        }
+      }
+   ]
+ }

@@ -18,16 +18,23 @@
         v-model="parameters.state"
         :type="parameters.type"
         :rewatching="
-          listRequest.data ? listRequest.data?.seperateRewatching : parameters.state === 23
+          listRequest.data
+            ? listRequest.data?.seperateRewatching
+            : parameters.state === status.Rewatching
+        "
+        :considering="
+          listRequest.data
+            ? listRequest.data?.consideringSupport
+            : parameters.state === status.Considering
         "
       />
       <FormButton padding="pill" @click="refresh()">
         <div class="material-icons m-pill" :title="lang('updateCheck_Refresh')">refresh</div>
       </FormButton>
       <FormButton
-        v-if="parameters.state === 6"
+        v-if="parameters.state === 6 || parameters.state === 3"
         padding="pill"
-        @click="openRandom(6, parameters.type)"
+        @click="openRandom(parameters.state, parameters.type)"
       >
         <div class="material-icons m-pill" title="random">shuffle</div>
       </FormButton>
@@ -148,6 +155,7 @@ import TextIcon from '../components/text-icon.vue';
 import FormButton from '../components/form/form-button.vue';
 import { urlToSlug } from '../../utils/slugs';
 import { localStore } from '../../utils/localStore';
+import { status } from '../../_provider/definitions';
 
 const rootWindow = inject('rootWindow') as Window;
 const rootDocument = inject('rootDocument') as Document;
@@ -251,9 +259,9 @@ const formatItem = (item: listElement): bookmarkItem => {
       resItem.streamIcon = utils.favicon(resItem.streamUrl.split('/')[2]);
     }
   }
-  if (item.fn.progress && item.fn.progress.isAiring()) {
-    resItem.progressText = item.fn.progress.getAuto();
-    resItem.progressEp = item.fn.progress.getCurrentEpisode();
+  if (item.fn.progress?.isAiring() && item.fn.progress.progress()) {
+    resItem.progressText = item.fn.progress.progress()!.getAutoText();
+    resItem.progressEp = item.fn.progress.progress()!.getCurrentEpisode() || undefined;
     resItem.progress = item.fn.progress;
   }
   return resItem;
@@ -343,23 +351,24 @@ const sort = computed({
   },
 });
 
-const randomListCache = { anime: [], manga: [] };
-async function openRandom(status, type) {
-  if (!randomListCache[type].length) {
+const randomListCache = {};
+async function openRandom(st, type) {
+  const cacheKey = `${st}-${type}`;
+  if (typeof randomListCache[cacheKey] === 'undefined' || !randomListCache[cacheKey].length) {
     utils.flashm('Loading');
-    const listProvider = await getList(status, type);
+    const listProvider = await getList(st, type);
     await listProvider
       .getCompleteList()
       .then(async res => {
-        randomListCache[type] = res;
+        randomListCache[cacheKey] = res;
       })
       .catch(e => {
         con.error(e);
       });
   }
-  if (randomListCache[type].length > 1) {
+  if (typeof randomListCache[cacheKey] !== 'undefined' && randomListCache[cacheKey].length > 1) {
     const currentUrl =
-      randomListCache[type][Math.floor(Math.random() * randomListCache[type].length)].url;
+      randomListCache[cacheKey][Math.floor(Math.random() * randomListCache[cacheKey].length)].url;
     const slugObj = urlToSlug(currentUrl);
     router.push({ name: 'Overview', params: slugObj.path });
   } else {

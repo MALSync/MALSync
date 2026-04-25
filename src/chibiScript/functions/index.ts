@@ -6,6 +6,7 @@ import coreFunctions from './core';
 import conditionFunctions from './conditionFunctions';
 import arrayFunctions from './arrayFunctions';
 import objectFunctions from './objectFunctions';
+import numberFunctions from './numberFunctions';
 
 export default {
   ...literalFunctions,
@@ -16,4 +17,5 @@ export default {
   ...conditionFunctions,
   ...arrayFunctions,
   ...objectFunctions,
+  ...numberFunctions,
 };

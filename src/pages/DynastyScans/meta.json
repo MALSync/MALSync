@@ -1,6 +1,0 @@
-{
-  "search": "https://dynasty-scans.com/search?q={searchtermPlus}",
-  "urls": {
-    "match": ["*://dynasty-scans.com/*"]
-  }
-}

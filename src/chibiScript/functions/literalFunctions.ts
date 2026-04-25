@@ -53,4 +53,15 @@ export default {
   object: (ctx: ChibiCtx, input: void, value: object) => {
     return value;
   },
+
+  /**
+   * Type assertion function to cast input to a specified type
+   * @input any
+   * @returns The input value cast to the specified type
+   * @example
+   * $c.getVariable('list').type<HTMLElement>().run();
+   */
+  type: <Input, Output>(ctx: ChibiCtx, input: Input): Output => {
+    return input as unknown as Output;
+  },
 };

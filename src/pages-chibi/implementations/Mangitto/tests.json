@@ -1,0 +1,35 @@
+{
+  "title": "Mangitto",
+  "url": "https://mangtto.com/",
+  "testCases": [
+    {
+      "url": "https://mangtto.com/manga/na-honjaman-level-up/1",
+      "expected": {
+        "sync": true,
+        "title": "Na Honjaman Level Up",
+        "identifier": "na-honjaman-level-up",
+        "overviewUrl": "https://mangtto.com/manga/na-honjaman-level-up",
+        "episode": 1,
+        "image": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx105398-b673Vt5ZSuz3.jpg",
+        "nextEpUrl": "https://mangtto.com/manga/na-honjaman-level-up/2",
+        "uiSelector": false,
+        "malId": 121496
+      }
+    },
+    {
+      "url": "https://mangtto.com/manga/na-honjaman-level-up",
+      "expected": {
+        "sync": false,
+        "title": "Na Honjaman Level Up",
+        "identifier": "na-honjaman-level-up",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx105398-b673Vt5ZSuz3.jpg",
+        "uiSelector": true,
+        "epList": {
+          "200": "https://mangtto.com/manga/na-honjaman-level-up/200",
+          "199": "https://mangtto.com/manga/na-honjaman-level-up/199"
+        },
+        "malId": 121496
+      }
+    }
+  ]
+}

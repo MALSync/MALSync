@@ -1,7 +1,0 @@
-{
-  "search": "https://q1n.net/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://q1n.net/*"]
-  }
-}
-

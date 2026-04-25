@@ -1,0 +1,74 @@
+{
+  "title": "QiScans",
+  "url": "https://qiscans.org",
+  "testCases": [
+    {
+      "url": "https://qiscans.org/series/reincarnated-murim-lord/chapter-88",
+      "expected": {
+        "sync": true,
+        "title": "Reincarnated Murim Lord",
+        "identifier": "reincarnated-murim-lord",
+        "image": null,
+        "overviewUrl": "https://qiscans.org/series/reincarnated-murim-lord",
+        "episode": 88,
+        "nextEpUrl": "https://qiscans.org/series/reincarnated-murim-lord/chapter-89",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://qiscans.org/series/i-shall-seal-the-heavens",
+      "expected": {
+        "sync": false,
+        "title": "I Shall Seal The Heavens",
+        "identifier": "i-shall-seal-the-heavens",
+        "image": "https://storage.qiscans.org/upload/2025/09/28/2f827db8-bfd3-4caf-b396-47b3cc72b489.webp",
+        "uiSelector": true,
+        "epList": {
+          "19": "https://qiscans.org/series/i-shall-seal-the-heavens/chapter-19",
+          "18": "https://qiscans.org/series/i-shall-seal-the-heavens/chapter-18"
+        }
+      }
+    },
+    {
+      "url": "https://qiscans.org/series/4190634673-nano-machine",
+      "expected": {
+        "sync": false,
+        "title": "Nano Machine",
+        "identifier": "nano-machine",
+        "image": "https://storage.qiscans.org/upload/series/4190634673-nano-machine/wp-featured-7780/featured.png",
+        "uiSelector": true,
+        "epList": {
+          "290": "https://qiscans.org/series/4190634673-nano-machine/chapter-290",
+          "291": "https://qiscans.org/series/4190634673-nano-machine/chapter-291",
+          "292": "https://qiscans.org/series/4190634673-nano-machine/chapter-292"
+        }
+      }
+    },
+    {
+      "url": "https://qiscans.org/series/4190634673-nano-machine/chapter-290",
+      "expected": {
+        "sync": true,
+        "title": "Nano Machine",
+        "identifier": "nano-machine",
+        "image": null,
+        "overviewUrl": "https://qiscans.org/series/4190634673-nano-machine",
+        "episode": 290,
+        "nextEpUrl": "https://qiscans.org/series/4190634673-nano-machine/chapter-291",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://qiscans.org/series/4190634673-nano-machine/chapter-293",
+      "expected": {
+        "sync": true,
+        "title": "Nano Machine",
+        "identifier": "nano-machine",
+        "image": null,
+        "overviewUrl": "https://qiscans.org/series/4190634673-nano-machine",
+        "episode": 293,
+        "nextEpUrl": null,
+        "uiSelector": false
+      }
+    }
+  ]
+}

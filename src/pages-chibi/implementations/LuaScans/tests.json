@@ -1,0 +1,46 @@
+{
+    "title": "LuaScans",
+    "url": "https://luacomic.org",
+    "testCases": [
+      {
+        "url": "https://luacomic.org/series/how-to-live-as-a-civil-servant-in-murim/chapter-42",
+        "expected": {
+          "sync": true,
+          "title": "How to Live as a Civil Servant in Murim",
+          "identifier": "how-to-live-as-a-civil-servant-in-murim",
+          "overviewUrl": "https://luacomic.org/series/how-to-live-as-a-civil-servant-in-murim",
+          "image": "https://media.luacomic.org/file/V4IKlhs/khwzw5chyaaoldrwhsrbps12.webp",
+          "episode": 42,
+          "nextEpUrl": null,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://luacomic.org/series/how-to-live-as-a-civil-servant-in-murim/chapter-41",
+        "expected": {
+          "sync": true,
+          "title": "How to Live as a Civil Servant in Murim",
+          "identifier": "how-to-live-as-a-civil-servant-in-murim",
+          "overviewUrl": "https://luacomic.org/series/how-to-live-as-a-civil-servant-in-murim",
+          "image": "https://media.luacomic.org/file/V4IKlhs/khwzw5chyaaoldrwhsrbps12.webp",
+          "episode": 41,
+          "nextEpUrl": "https://luacomic.org/series/how-to-live-as-a-civil-servant-in-murim/chapter-42",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://luacomic.org/series/how-to-live-as-a-civil-servant-in-murim",
+        "expected": {
+          "sync": false,
+          "title": "How to Live as a Civil Servant in Murim",
+          "identifier": "how-to-live-as-a-civil-servant-in-murim",
+          "image": "https://media.luacomic.org/file/V4IKlhs/khwzw5chyaaoldrwhsrbps12.webp",
+          "uiSelector": true,
+          "epList": {
+            "41" : "https://luacomic.org/series/how-to-live-as-a-civil-servant-in-murim/chapter-41",
+            "42" : "https://luacomic.org/series/how-to-live-as-a-civil-servant-in-murim/chapter-42"
+          }
+        }
+      }
+    ]
+  }

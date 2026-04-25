@@ -1,0 +1,33 @@
+{
+    "title": "AuroraScans",
+    "url": "https://aurorascans.com/",
+    "testCases": [
+      {
+        "url": "https://aurorascans.com/series/the-archmage-returns-after-4000-years/chapter-206",
+        "expected": {
+          "sync": true,
+          "title": "The Archmage Returns After 4000 Years",
+          "identifier": "the-archmage-returns-after-4000-years",
+          "image": "https://storage.aurorascans.com/public//upload/2025/05/09/cover_1746809693167.webp",
+          "overviewUrl": "https://aurorascans.com/series/the-archmage-returns-after-4000-years",
+          "episode": 206,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://aurorascans.com/series/i'm-the-only-one-with-outstanding-cheats-after-my-class-got-transported-to-another-world!",
+        "expected": {
+          "sync": false,
+          "title": "I’m the Only One with Outstanding Cheats After My Class Got Transported to Another World?!",
+          "identifier": "i'm-the-only-one-with-outstanding-cheats-after-my-class-got-transported-to-another-world!",
+          "image": "https://storage.aurorascans.com/public/upload/2025/02/12/ac3aedd1-0102-47d4-9123-283d3c8cbcb2.webp",
+          "uiSelector": true,
+          "eplist": {
+            "1": "https://aurorascans.com/series/i'm-the-only-one-with-outstanding-cheats-after-my-class-got-transported-to-another-world!/chapter-1",
+            "20": "https://aurorascans.com/series/i'm-the-only-one-with-outstanding-cheats-after-my-class-got-transported-to-another-world!/chapter-20",
+            "22": "https://aurorascans.com/series/i'm-the-only-one-with-outstanding-cheats-after-my-class-got-transported-to-another-world!/chapter-22"
+          }
+        }
+      }
+    ]
+  }

@@ -1,0 +1,127 @@
+{
+    "title": "ComicWalker",
+    "url": "https://comic-walker.com/",
+    "testCases": [
+      {
+        "url": "https://comic-walker.com/detail/KC_001519_S/episodes/KC_0015190000800011_E?episodeType=first",
+        "expected": {
+          "sync": true,
+          "title": "青春鉄道（株）",
+          "identifier": "KC_001519_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/001519/resized/001519_001_01_0001.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_001519_S",
+          "episode": 3,
+          "nextEpUrl": null,
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-walker.com/detail/KC_001519_S/episodes/KC_0015190000600011_E?co=true&episodeType=first",
+            "2": "https://comic-walker.com/detail/KC_001519_S/episodes/KC_0015190000700011_E?co=true&episodeType=first",
+            "17": "https://comic-walker.com/detail/KC_001519_S/episodes/KC_0015190002200011_E?co=true&episodeType=first"
+          }
+        }
+      },
+      {
+        "url": "https://comic-walker.com/detail/KC_007216_S/episodes/KC_0072160000200011_E?episodeType=latest",
+        "expected": {
+          "sync": true,
+          "title": "女はいつまで女ですか？　莉子の結論【タテスク】",
+          "identifier": "KC_007216_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/007216/resized/007216_001_01_0001.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_007216_S",
+          "episode": 2,
+          "nextEpUrl": "https://comic-walker.com/detail/KC_007216_S/episodes/KC_0072160000300011_E?co=true&episodeType=latest",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-walker.com/detail/KC_007216_S/episodes/KC_0072160000100011_E?co=true&episodeType=latest",
+            "3": "https://comic-walker.com/detail/KC_007216_S/episodes/KC_0072160000300011_E?co=true&episodeType=latest"
+          }
+       }
+     },
+     {
+        "url": "https://comic-walker.com/detail/KC_007032_S?episodeType=first",
+        "expected": {
+          "sync": true,
+          "title": "銀河特急 ミルキー☆サブウェイ",
+          "identifier": "KC_007032_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/007032/resized/007032_001_01_0001.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_007032_S",
+          "episode": 1,
+          "nextEpUrl": "https://comic-walker.com/detail/KC_007032_S/episodes/KC_0070320000300011_E?co=true&episodeType=first",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-walker.com/detail/KC_007032_S/episodes/KC_0070320000200011_E?co=true&episodeType=first",
+            "4": "https://comic-walker.com/detail/KC_007032_S/episodes/KC_0070320000500011_E?co=true&episodeType=first"
+          }
+       }
+     },
+     {
+        "url": "https://comic-walker.com/detail/KC_007141_S/episodes/KC_0071410000200011_E?episodeType=first",
+        "expected": {
+          "sync": true,
+          "title": "死にたいあなたに男子大学生がお肉をごちそうしてくれるだけのお話",
+          "identifier": "KC_007141_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/007141/resized/007141_001_01_0001.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_007141_S",
+          "episode": 1,
+          "nextEpUrl": "https://comic-walker.com/detail/KC_007141_S/episodes/KC_0071410000200021_E?co=true&episodeType=first",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-walker.com/detail/KC_007141_S/episodes/KC_0071410000200031_E?co=true&episodeType=first"
+          }
+       }
+     },
+     {
+        "url": "https://comic-walker.com/detail/KC_004188_S/episodes/KC_0041880000200021_E?episodeType=first",
+        "expected": {
+          "sync": true,
+          "title": "准教授・高槻彰良の推察",
+          "identifier": "KC_004188_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/004188/resized/004188_001_01_0001.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_004188_S",
+          "episode": 1,
+          "nextEpUrl": null,
+          "uiSelector": true,
+          "epList": {
+            "11": "https://comic-walker.com/detail/KC_004188_S/episodes/KC_0041880003300021_E?co=true&episodeType=first"
+          }
+       }
+     },
+     {
+        "url": "https://comic-walker.com/detail/KC_001188_S/episodes/KC_0011880000300021_E?episodeType=first",
+        "expected": {
+          "sync": true,
+          "title": "無能才女は悪女になりたい ～義妹の身代わりで嫁いだ令嬢、公爵様の溺愛に気づかない～",
+          "identifier": "KC_001188_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/001188/resized/001188_001_01_0001.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_001188_S",
+          "episode": 2,
+          "nextEpUrl": "https://comic-walker.com/detail/KC_001188_S/episodes/KC_0011880000400011_E?co=true&episodeType=first",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-walker.com/detail/KC_001188_S/episodes/KC_0011880000200011_E?co=true&episodeType=first",
+            "3": "https://comic-walker.com/detail/KC_001188_S/episodes/KC_0011880000400021_E?co=true&episodeType=first"
+          }
+       }
+     },
+     {
+        "url": "https://comic-walker.com/detail/KC_007142_S/episodes/KC_0071420000200021_E?episodeType=first",
+        "expected": {
+          "sync": true,
+          "title": "Toxic-a-Holic トキシカホリック Alternate Episode",
+          "identifier": "KC_007142_S",
+          "image": "https://cdn.comic-walker.com/integration/cdpf/resources/007142/resized/007142_001_01_0002.jpg",
+          "overviewUrl": "https://comic-walker.com/detail/KC_007142_S",
+          "episode": 1,
+          "nextEpUrl": null,
+          "uiSelector": true,
+          "epList": {
+            "1": "https://comic-walker.com/detail/KC_007142_S/episodes/KC_0071420000200021_E?co=true&episodeType=first"
+          }
+       }
+     }
+   ]
+ }
+
+
+ 
+

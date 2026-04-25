@@ -8,7 +8,67 @@ export const batoV2: PageInterface = {
   languages: ['Many'],
   type: 'manga',
   urls: {
-    match: ['*://bato.to/*'],
+    match: [
+      '*://bato.to/*',
+      '*://bato.ac/*',
+      '*://bato.bz/*',
+      '*://bato.cc/*',
+      '*://bato.cx/*',
+      '*://bato.id/*',
+      '*://bato.pw/*',
+      '*://bato.sh/*',
+      '*://bato.vc/*',
+      '*://bato.day/*',
+      '*://bato.red/*',
+      '*://bato.run/*',
+      '*://ato.to/*',
+      '*://lto.to/*',
+      '*://nto.to/*',
+      '*://vto.to/*',
+      '*://xto.to/*',
+      '*://yto.to/*',
+      '*://vba.to/*',
+      '*://wba.to/*',
+      '*://xba.to/*',
+      '*://yba.to/*',
+      '*://zba.to/*',
+      '*://kuku.to/*',
+      '*://okok.to/*',
+      '*://ruru.to/*',
+      '*://xdxd.to/*',
+      '*://batoto.in/*',
+      '*://batoto.tv/*',
+      '*://batpub.com/*',
+      '*://batread.com/*',
+      '*://fto.to/*',
+      '*://jto.to/*',
+      '*://hto.to/*',
+      '*://zbato.com/*',
+      '*://zbato.net/*',
+      '*://zbato.org/*',
+      '*://readtoto.com/*',
+      '*://readtoto.net/*',
+      '*://readtoto.org/*',
+      '*://batocomic.com/*',
+      '*://batocomic.net/*',
+      '*://batocomic.org/*',
+      '*://batotoo.com/*',
+      '*://batotwo.com/*',
+      '*://comiko.net/*',
+      '*://comiko.org/*',
+      '*://battwo.com/*',
+      '*://dto.to/*',
+      '*://mto.to/*',
+      '*://wto.to/*',
+      '*://xbato.com/*',
+      '*://xbato.net/*',
+      '*://xbato.org/*',
+      '*://mangatoto.com/*',
+      '*://mangatoto.net/*',
+      '*://mangatoto.org/*',
+      '*://bato.si/*',
+      '*://bato.ing/*',
+    ],
   },
   search: 'https://bato.to/search?word={searchtermPlus}',
   sync: {
@@ -22,6 +82,9 @@ export const batoV2: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
+    },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     getOverviewUrl($c) {
       return $c
@@ -110,6 +173,9 @@ export const batoV2: PageInterface = {
     getIdentifier($c) {
       return $c.url().urlPart(4).ifNotReturn().run();
     },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+    },
     uiInjection($c) {
       return $c.querySelector('.detail-set .attr-main').uiPrepend().run();
     },
@@ -147,7 +213,10 @@ function getChapterText($c: ChibiGenerator<any>) {
 }
 
 export function getChapter($c: ChibiGenerator<string>) {
-  return $c.regex('(ch|chapter|episode|ep|chap|chp|no\\.?)\\D?(\\d+)', 2).ifNotReturn().number();
+  return $c
+    .regex('(ch|chapter|episode|ep\\.?|chap|chp|no\\.?)\\D?(\\d+)', 2)
+    .ifNotReturn()
+    .number();
 }
 
 export function getVolume($c: ChibiGenerator<string>) {

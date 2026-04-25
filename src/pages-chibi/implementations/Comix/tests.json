@@ -1,0 +1,43 @@
+{
+  "title": "Comix",
+  "url": "https://comix.to/",
+  "testCases": [
+    {
+      "url": "https://comix.to/title/3z2z2-reincarnated-as-a-sword/2734337-chapter-84",
+      "expected": {
+        "sync": true,
+        "title": "Reincarnated as a Sword",
+        "identifier": "3z2z2",
+        "image": "https://static.mfcdn.cc/a0bb/i/f/a0/68dec74db0a14.jpg",
+        "overviewUrl": "https://comix.to/title/3z2z2-reincarnated-as-a-sword",
+        "episode": 84,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://comix.to/title/3z2z2-reincarnated-as-a-sword/1679664-chapter-84",
+      "expected": {
+        "sync": true,
+        "title": "Reincarnated as a Sword",
+        "identifier": "3z2z2",
+        "image": "https://static.mfcdn.cc/a0bb/i/f/a0/68dec74db0a14.jpg",
+        "overviewUrl": "https://comix.to/title/3z2z2-reincarnated-as-a-sword",
+        "episode": 84,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://comix.to/title/3z2z2-reincarnated-as-a-sword",
+      "expected": {
+        "sync": false,
+        "title": "Reincarnated as a Sword",
+        "identifier": "3z2z2",
+        "image": "https://static.mfcdn.cc/a0bb/i/f/a0/68dec74db0a14.jpg",
+        "uiSelector": true,
+        "epList": {
+          "84": "https://comix.to/title/3z2z2-reincarnated-as-a-sword/1679664-chapter-84"
+        }
+      }
+    }
+  ]
+}

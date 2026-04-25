@@ -1,14 +1,14 @@
 {
   "title": "AnimeSama",
-  "url": "https://anime-sama.fr",
+  "url": "https://anime-sama.eu",
   "testCases": [
     {
-      "url": "https://anime-sama.fr/catalogue/love-live-sunshine/saison1/vostfr/",
+      "url": "https://anime-sama.eu/catalogue/love-live-sunshine/saison1/vostfr/",
       "expected": {
         "sync": true,
         "title": "Love Live! Sunshine!!",
         "identifier": "love-live-sunshine/saison1",
-        "overviewUrl": "https://anime-sama.fr/catalogue/love-live-sunshine",
+        "overviewUrl": "https://anime-sama.eu/catalogue/love-live-sunshine",
         "episode": 1,
         "uiSelector": false
       }

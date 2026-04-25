@@ -13,6 +13,7 @@ const anilistRegex = /^https:\/\/anilist\.co\/(anime|manga)\/(\d+)(\/|$)/;
 const kitsuRegex = /^https:\/\/kitsu\.app\/(anime|manga)\/([^/]+)(\/|$)/;
 const simklRegex = /^https:\/\/simkl\.com\/(anime|manga)\/(\d+)(\/|$)/;
 const shikiRegex = /^https:\/\/shikimori\.one\/(animes|mangas|ranobe)\/\D?(\d+)/;
+const mangabakaRegex = /^https:\/\/mangabaka\.(?:dev|org)\/(\d+)(\/|$)/;
 const localRegex = /^local:\/\/([^/]+)\/(anime|manga)\/([^/]+)(\/|$)/;
 
 export function urlToSlug(url: string): slugObject {
@@ -65,11 +66,20 @@ export function urlToSlug(url: string): slugObject {
     return obj;
   }
 
+  const mangabakaMatch = url.match(mangabakaRegex);
+  if (mangabakaMatch) {
+    obj.path = {
+      type: 'manga',
+      slug: `baka:${mangabakaMatch[1]}`,
+    };
+    return obj;
+  }
+
   const localMatch = url.match(localRegex);
   if (localMatch) {
     obj.path = {
       type: localMatch[2] as 'anime' | 'manga',
-      slug: `l:${localMatch[1]}::${localMatch[3]}`,
+      slug: `l:${localMatch[1]}::${encodeURIComponent(localMatch[3])}`,
     };
     obj.url = '';
     return obj;
@@ -94,10 +104,13 @@ export function pathToUrl(path: Path): string {
   if (path.slug.startsWith('shi:')) {
     return `https://shikimori.one/${path.type}s/${path.slug.substring(4)}`;
   }
+  if (path.slug.startsWith('baka:')) {
+    return `https://mangabaka.org/${path.slug.substring(5)}`;
+  }
   if (path.slug.startsWith('l:')) {
     const match = path.slug.match(/^l:([^:]+)::([^:]+)$/);
     if (match) {
-      return `local://${match[1]}/${path.type}/${match[2]}`;
+      return `local://${match[1]}/${path.type}/${decodeURIComponent(match[2])}`;
     }
   }
 

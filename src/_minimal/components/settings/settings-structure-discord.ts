@@ -29,11 +29,19 @@ export const discord: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
-    key: 'presenceShowMalsync',
-    title: () => api.storage.lang('settings_presenceShowMalsync'),
+    key: 'presenceActivityName',
+    title: () => api.storage.lang('settings_presence_activityName'),
     props: {
-      component: 'checkbox',
-      option: 'presenceShowMalsync',
+      component: 'dropdown',
+      option: 'presenceActivityName',
+      props: {
+        options: [
+          { title: api.storage.lang('settings_presence_activityName_title'), value: 'title' },
+          { title: api.storage.lang('settings_presence_activityName_website'), value: 'website' },
+          { title: api.storage.lang('settings_presence_activityName_type'), value: 'type' },
+          { title: api.storage.lang('settings_presence_activityName_malsync'), value: 'malsync' },
+        ],
+      },
     },
     component: SettingsGeneral,
   },

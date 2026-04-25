@@ -1,0 +1,21 @@
+@import './../pages';
+
+@boxBackground: color-mix(in oklab, var(--input) 30%, transparent);
+@boxBorderRadius: calc(var(--radius) - 2px);
+@boxHighlightBackground: @activeEp;
+@boxHighlightFontColor: var(--primary-foreground);
+@boxGap: calc(var(--spacing) * 1);
+
+@highlightStyle: 1;
+@activeEp: var(--primary);
+
+#malp {
+  margin-bottom: 10px;
+  #MalData #AddMal:hover {
+    background-color: color-mix(in oklab, var(--primary) 90%, transparent) !important;
+  }
+}
+
+.mal-sync-active:hover {
+  border-color: color-mix(in oklab, var(--primary) 70%, transparent) !important;
+}

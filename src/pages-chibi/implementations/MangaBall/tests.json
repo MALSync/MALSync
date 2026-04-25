@@ -1,0 +1,74 @@
+{
+  "title": "MangaBall",
+  "url": "https://mangaball.net",
+  "testCases": [
+    {
+      "url": "https://mangaball.net/chapter-detail/689b2ee2aafdff27c6331c8a/",
+      "expected": {
+        "sync": true,
+        "title": "Ren'ai Shikou Seitokai",
+        "identifier": "renai-shikou-seitokai",
+        "image": "https://bulbasaur.poke-black-and-white.net/covers/685232aebec3a4d08474ae43/cover_1754765227253.jpg",
+        "overviewUrl": "https://mangaball.net/title-detail/renai-shikou-seitokai-685232aebec3a4d08474ae43/",
+        "episode": 10,
+        "Volume": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangaball.net/title-detail/revenge-of-the-baskerville-bloodhound-6851547b702284f834178357/",
+      "expected": {
+        "sync": false,
+        "title": "Revenge of the Baskerville Bloodhound",
+        "identifier": "revenge-of-the-baskerville-bloodhound",
+        "image": "https://bulbasaur.poke-black-and-white.net/covers/6851547b702284f834178357/cover_1752077533539.jpg",
+        "uiSelector": true,
+        "epList": {
+          "752": "https://mangaball.net/chapter-detail/68ede28819cd65ec0a163d83/",
+          "741": "https://mangaball.net/chapter-detail/68ede28819cd65ec0a163d84/",
+          "134": "https://mangaball.net/chapter-detail/68ebb8c944adc98aa222eb9a/",
+          "118": "https://mangaball.net/chapter-detail/689b2f0aaafdff27c633222b/"
+        }
+      }
+    },
+    {
+      "url": "https://mangaball.net/chapter-detail/685359506c8186610a03d5c4/",
+      "expected": {
+        "sync": true,
+        "title": "Moto Kouzou Kaiseki Kenkyuusho no Isekai Boukentan",
+        "identifier": "moto-kouzou-kaiseki-kenkyuusho-no-isekai-boukentan",
+        "image": "https://bulbasaur.poke-black-and-white.net/covers/68526f4d6908629fc2c8226e/cover_1754760194468.jpg",
+        "overviewUrl": "https://mangaball.net/title-detail/moto-kouzou-kaiseki-kenkyuusho-no-isekai-boukentan-68526f4d6908629fc2c8226e/",
+        "episode": 37,
+        "Volume": 7,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangaball.net/chapter-detail/68532ef26c8186610afe2d41/",
+      "expected": {
+        "sync": true,
+        "title": "Reki Yomi",
+        "identifier": "reki-yomi",
+        "image": "https://bulbasaur.poke-black-and-white.net/covers/685273f26908629fc2c82a06/cover_1754759099480.jpg",
+        "overviewUrl": "https://mangaball.net/title-detail/reki-yomi-685273f26908629fc2c82a06/",
+        "episode": 26,
+        "Volume": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangaball.net/chapter-detail/68d573527a50a90a6f0348f6/",
+      "expected": {
+        "sync": true,
+        "title": "The Greatest Estate Developer",
+        "identifier": "the-greatest-estate-developer",
+        "image": "https://bulbasaur.poke-black-and-white.net/covers/685155de702284f8341785f8/cover_1752066012498.jpg",
+        "overviewUrl": "https://mangaball.net/title-detail/the-greatest-estate-developer-685155de702284f8341785f8/",
+        "episode": 210,
+        "Volume": null,
+        "uiSelector": false
+      }
+    }
+  ]
+}

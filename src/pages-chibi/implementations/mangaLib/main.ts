@@ -77,6 +77,11 @@ export const mangaLib: PageInterface = {
           group: 2,
         },
       },
+      // TODO - Replace when PR#3296 is merged
+      // {
+      //   current: $c => $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 1).run(),
+      //   total: $c => $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 2).run(),
+      // },
     ],
   },
   overview: {
@@ -92,6 +97,9 @@ export const mangaLib: PageInterface = {
       const slug = $c.url().urlPart(5);
       const id = slug.string().regex('(\\d+)', 1);
       return id.run();
+    },
+    getImage($c) {
+      return $c.querySelector('.cover img').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.tabs._border').uiBefore().run();

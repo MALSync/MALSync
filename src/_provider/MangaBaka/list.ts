@@ -1,0 +1,167 @@
+import { ListAbstract, listElement } from '../listAbstract';
+import { status } from '../definitions';
+import {
+  bakaStateToState,
+  call,
+  stateToBakaState,
+  urls,
+  authenticationUrl,
+  getImageUrl,
+  timestampToDate,
+} from './helper';
+import type { BakaLibraryEntry, BakaSorting, LibraryResponse } from './types';
+import { cacheSeriesList } from './seriesService';
+
+export class UserList extends ListAbstract {
+  name = 'MangaBaka';
+
+  authenticationUrl = authenticationUrl;
+
+  seperateRewatching = true;
+
+  consideringSupport = true;
+
+  async getUserObject() {
+    const json = (await call(urls.userInfo())) as { name: string; preferred_username: string };
+    console.log(json);
+    return {
+      username: json.name || this.name,
+      picture: 'https://mangabaka.org/images/logo.png',
+      href: json.preferred_username
+        ? `https://mangabaka.org/u/${json.preferred_username}`
+        : 'https://mangabaka.org',
+    };
+  }
+
+  deauth() {
+    return api.settings
+      .set('mangabakaToken', '')
+      .then(() => api.settings.set('mangabakaRefresh', ''));
+  }
+
+  _getSortingOptions() {
+    return [
+      {
+        icon: 'sort_by_alpha',
+        title: api.storage.lang('list_sorting_alpha'),
+        value: 'alpha',
+        asc: true,
+      },
+      {
+        icon: 'history',
+        title: api.storage.lang('list_sorting_history'),
+        value: 'updated',
+        asc: true,
+      },
+      {
+        icon: 'score',
+        title: api.storage.lang('list_sorting_score'),
+        value: 'score',
+        asc: true,
+      },
+    ];
+  }
+
+  getOrder(sort): BakaSorting {
+    switch (sort) {
+      case 'alpha_asc':
+        return 'series_title_asc';
+      case 'alpha':
+        return 'series_title_desc';
+      case 'updated_asc':
+        return 'updated_at_asc';
+      case 'updated':
+        return 'updated_at_desc';
+      case 'score_asc':
+        return 'my_rating_asc';
+      case 'score':
+        return 'my_rating_desc';
+      default:
+        if (this.status === status.Watching) return this.getOrder('updated');
+        if (this.status === status.PlanToWatch) return this.getOrder('updated');
+        return 'default';
+    }
+  }
+
+  private limit = 100;
+
+  async getPart() {
+    if (this.listType !== 'manga') {
+      throw new Error('MangaBaka only supports manga');
+    }
+
+    this.limit = 100;
+    this.offset = Math.max(1, this.offset);
+    if (this.modes.frontend && !this.modes.sortAiring) {
+      this.limit = 24;
+    }
+
+    const json = (await call(
+      urls.library(
+        stateToBakaState(this.status),
+        this.getOrder(this.sort),
+        this.offset,
+        this.limit,
+      ),
+    )) as LibraryResponse;
+
+    console.log(json);
+
+    if (json.pagination.next) {
+      this.offset += 1;
+    } else {
+      this.done = true;
+    }
+
+    return this.prepareData(json.data);
+  }
+
+  protected async cacheList(data: BakaLibraryEntry[]) {
+    const series = data.map(el => el.Series);
+    await cacheSeriesList(series);
+  }
+
+  public async prepareData(data: BakaLibraryEntry[]): Promise<listElement[]> {
+    if (this.modes.frontend) {
+      this.cacheList(data); // Fire and forget
+    }
+    const newData = [] as listElement[];
+    for (let i = 0; i < data.length; i++) {
+      const el = data[i];
+
+      const item = await this.fn({
+        uid: el.series_id,
+        malId: el.Series.source.my_anime_list.id || null,
+        apiCacheKey:
+          el.Series.source.my_anime_list.id ||
+          el.Series.source.anilist.id ||
+          `mangabaka:${el.series_id}`,
+        cacheKey: el.Series.source.my_anime_list.id || `mangabaka:${el.series_id}`,
+        type: this.listType,
+        title: el.Series.title,
+        url: `https://mangabaka.org/${el.series_id}`,
+        score: el.rating ? Math.round(el.rating / 10) : 0,
+        watchedEp: el.progress_chapter || 0,
+        readVol: el.progress_volume || 0,
+        totalEp: Number(el.Series.total_chapters) || 0,
+        totalVol: Number(el.Series.final_volume) || 0,
+        status: bakaStateToState(el.state!),
+        startDate: el.start_date ? timestampToDate(el.start_date) : null,
+        finishDate: el.finish_date ? timestampToDate(el.finish_date) : null,
+        rewatchCount: el.number_of_rereads || 0,
+        image: getImageUrl(el.Series, 'small'),
+        imageLarge: getImageUrl(el.Series, 'large'),
+        tags: el.note || '',
+        airingState: el.Series.status || '',
+      });
+
+      if (el.read_link) {
+        item.options!.u = el.read_link;
+      }
+
+      newData.push(item);
+    }
+
+    return newData;
+  }
+}

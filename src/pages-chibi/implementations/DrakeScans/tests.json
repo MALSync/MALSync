@@ -1,0 +1,32 @@
+{
+    "title": "DrakeScans",
+    "url": "https://drakecomic.org",
+    "testCases": [
+      {
+        "url": "https://drakecomic.org/master-this-villainous-disciple-is-not-the-holy-child-chapter-149/",
+        "expected": {
+          "sync": true,
+          "title": "Master: This Villainous Disciple Is Not The Holy Child",
+          "identifier": "master-this-villainous-disciple-is-not-the-holy-child",
+          "overviewUrl": "https://drakecomic.org/manga/master-this-villainous-disciple-is-not-the-holy-child/",
+          "episode": 149,
+          "nextEpUrl": "https://drakecomic.org/master-this-villainous-disciple-is-not-the-holy-child-chapter-150/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://drakecomic.org/manga/serpent-ancestor/",
+        "expected": {
+          "sync": false,
+          "title": "Serpent Ancestor",
+          "identifier": "serpent-ancestor",
+          "image": "https://drakecomic.org/wp-content/uploads/2025/09/kRxWky.webp",
+          "uiSelector": true,
+          "epList": {
+            "1" : "https://drakecomic.org/serpent-ancestor-chapter-1/",
+            "57" : "https://drakecomic.org/serpent-ancestor-chapter-57/"
+          }
+        }
+      }
+    ]
+  }

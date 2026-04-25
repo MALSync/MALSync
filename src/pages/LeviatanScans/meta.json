@@ -1,6 +1,0 @@
-{
-  "search": "https://lscomic.com/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://lscomic.com/*", "*://en.leviatanscans.com/*"]
-  }
-}

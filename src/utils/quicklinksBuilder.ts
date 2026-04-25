@@ -117,7 +117,7 @@ async function fillFromApi(combined, type, id) {
 
 function simplifyObject(combined, type, title, id): Quicklink[] {
   return combined
-    .filter(el => el.search && el.search[type])
+    .filter(el => (el.search && el.search[type]) || el.databaseLinks)
     .map(el => {
       const links: Links[] = [];
       let quickGroup: QuicklinkGroup;
@@ -184,13 +184,21 @@ export function getQuicklinks(): QuicklinkObject[] {
         typeof el.search === 'object'
           ? el.search
           : {
-              anime: el.type === 'anime' ? el.search || null : null,
-              manga: el.type === 'manga' ? el.search || null : null,
+              anime: el.type === 'anime' ? el.search || 'home' : null,
+              manga: el.type === 'manga' ? el.search || 'home' : null,
             },
     };
   });
 
-  tempQuicklinks = [...quicklinkPages, ...quicklinkChibi];
+  // **Solves a duplication issue when searching for quicklinks, caused by having 2 instances of the same name**
+  // If a chibi quicklink has the same name as a page quicklink, it will overwrite it
+  // This is done to ensure that chibi quicklinks are always preferred over pages quicklinks
+  // This is because chibi quicklinks are more up-to-date and maintained
+  const combined = new Map<string, QuicklinkObject>();
+  quicklinkPages.forEach(p => combined.set(p.name, p));
+  quicklinkChibi.forEach(c => combined.set(c.name, c));
+
+  tempQuicklinks = Array.from(combined.values());
   return tempQuicklinks;
 }
 

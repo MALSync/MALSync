@@ -13,5 +13,11 @@ export const nordtheme: Theme = {
     secondary: '#BF616A',
     'secondary-text': '#88C0D0',
     'dark-background': '#434C5E',
+    'state-1': '#a3be8c',
+    'state-2': '#88c0d0',
+    'state-3': '#d08770',
+    'state-4': '#bf616a',
+    'state-6': '#b48ead',
+    'state-23': '#5e81ac',
   },
 };

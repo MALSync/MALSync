@@ -1,0 +1,31 @@
+{
+  "title": "AsuraScans",
+  "url": "https://asuracomic.net",
+  "testCases": [
+    {
+      "url": "https://asurascans.com/comics/infinite-mage-f6174291/chapter/18",
+      "expected": {
+        "sync": true,
+        "title": "Infinite Mage",
+        "identifier": "infinite-mage",
+        "overviewUrl": "https://asurascans.com/comics/infinite-mage-f6174291",
+        "nextEpUrl": "https://asurascans.com/comics/infinite-mage-f6174291/chapter/19",
+        "episode": 18,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://asurascans.com/comics/infinite-mage-f6174291",
+      "expected": {
+        "sync": false,
+        "title": "Infinite Mage",
+        "identifier": "infinite-mage",
+        "image": "https://cdn.asurascans.com/asura-images/covers/infinite-mage.6ef33d.webp",
+        "uiSelector": true,
+        "epList": {
+          "25": "https://asurascans.com/comics/infinite-mage-f6174291/chapter/25"
+        }
+      }
+    }
+  ]
+}

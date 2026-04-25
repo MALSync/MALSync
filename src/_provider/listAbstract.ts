@@ -1,13 +1,13 @@
 import { Cache } from '../utils/Cache';
-import { Progress } from '../utils/progress';
+import { ProgressRelease } from '../utils/progressRelease';
 import { emitter } from '../utils/emitter';
 import { errorMessage as _errorMessage } from './Errors';
 
 Object.seal(emitter);
 
 export interface listElement {
-  uid: number;
-  malId: number;
+  uid: number | string;
+  malId: number | null;
   apiCacheKey: number | string;
   cacheKey: any;
   type: 'anime' | 'manga';
@@ -23,14 +23,14 @@ export interface listElement {
   finishDate: string | null;
   rewatchCount: number;
   image: string;
-  imageLarge: string;
+  imageLarge?: string;
   imageBanner?: string;
   tags: string;
-  airingState: number;
+  airingState?: number | string;
   fn: {
     continueUrl: () => string;
-    initProgress: () => void;
-    progress: false | Progress;
+    initProgress: () => Promise<void>;
+    progress: ProgressRelease | null;
   };
   options?: {
     u: string;
@@ -54,6 +54,8 @@ export abstract class ListAbstract {
   protected logger;
 
   public seperateRewatching = false;
+
+  public consideringSupport = false;
 
   // Modes
   modes = {
@@ -128,7 +130,7 @@ export abstract class ListAbstract {
     if (
       this.modes.frontend &&
       this.status === 1 &&
-      (this.sort === 'default' || this.sort === 'unread')
+      ['default', 'unread', 'latest_release'].includes(this.sort)
     ) {
       this.modes.sortAiring = true;
       return this.getCompleteList();
@@ -218,6 +220,12 @@ export abstract class ListAbstract {
       });
     }
 
+    res.push({
+      icon: 'fiber_new',
+      title: api.storage.lang('list_sorting_latest_release'),
+      value: 'latest_release',
+    });
+
     const options = this._getSortingOptions();
     options.forEach(el => {
       if (!simple) {
@@ -246,8 +254,15 @@ export abstract class ListAbstract {
   }
 
   // itemFunctions;
-  async fn(item, streamurl = '') {
+  async fn(
+    // TODO: Remove 'startDate' | 'finishDate' | 'rewatchCount' from Omit when all providers are updated
+    passedItem: Omit<listElement, 'fn' | 'startDate' | 'finishDate' | 'rewatchCount'> & {
+      [k: string]: any;
+    },
+    streamurl = '',
+  ) {
     let continueUrlTemp: any = null;
+    const item = passedItem as listElement;
     item.fn = {
       continueUrl: () => {
         if (continueUrlTemp !== null) return continueUrlTemp;
@@ -262,14 +277,14 @@ export abstract class ListAbstract {
         });
       },
       initProgress: () => {
-        return new Progress(item.cacheKey, item.type).init().then(progress => {
+        return new ProgressRelease(item.cacheKey, item.type).init().then(progress => {
           item.fn.progress = progress;
         });
       },
-      progress: false,
+      progress: null,
     };
     item.options = await utils.getEntrySettings(item.type, item.cacheKey, item.tags);
-    if (streamurl) item.options.u = streamurl;
+    if (streamurl) item.options!.u = streamurl;
     if (this.modes.sortAiring || this.modes.initProgress) await item.fn.initProgress();
 
     return item;
@@ -291,14 +306,19 @@ export abstract class ListAbstract {
       return;
     }
 
+    if (this.sort === 'latest_release') {
+      this.templist = this.templist.sort(sortItemsByLastTimestamp);
+      return;
+    }
+
     const normalItems: listElement[] = [];
     let preItems: listElement[] = [];
     let watchedItems: listElement[] = [];
     this.templist.forEach(item => {
       const prediction = item.fn.progress;
       if (this.listType === 'anime') {
-        if (prediction && prediction.isAiring() && prediction.getPredictionTimestamp()) {
-          if (item.watchedEp < prediction.getCurrentEpisode()) {
+        if (prediction?.isAiring() && prediction.progress()?.getCurrentEpisode()) {
+          if (item.watchedEp < prediction.progress()!.getCurrentEpisode()!) {
             preItems.push(item);
           } else {
             watchedItems.push(item);
@@ -308,27 +328,66 @@ export abstract class ListAbstract {
         }
       } else if (
         // Manga only if less than 5 chapters to read
-        prediction &&
-        prediction.isAiring() &&
-        prediction.getCurrentEpisode() &&
+        prediction?.isAiring() &&
+        prediction.progress()?.getCurrentEpisode() &&
         item.watchedEp &&
-        item.watchedEp < prediction.getCurrentEpisode() &&
-        item.watchedEp + 6 > prediction.getCurrentEpisode()
+        item.watchedEp < prediction!.progress()!.getCurrentEpisode()! &&
+        item.watchedEp + 6 > prediction.progress()!.getCurrentEpisode()!
       ) {
         preItems.push(item);
       } else {
         normalItems.push(item);
       }
     });
-
-    preItems = preItems.sort(sortItems).reverse();
-    watchedItems = watchedItems.sort(sortItems);
+    if (this.listType === 'anime') {
+      preItems = orderItems(preItems, true);
+      watchedItems = orderItems(watchedItems, false);
+    } else {
+      preItems = orderItems(preItems, false);
+      watchedItems = orderItems(watchedItems, false);
+    }
 
     this.templist = preItems.concat(watchedItems, normalItems);
 
-    function sortItems(a, b) {
-      let valA = a.fn.progress.getPredictionTimestamp();
-      let valB = b.fn.progress.getPredictionTimestamp();
+    function orderItems(items: listElement[], reverse = false) {
+      const itemsWithPrediction: listElement[] = [];
+      const itemsWithLastTimestamp: listElement[] = [];
+      const itemsWithoutTimestamp: listElement[] = [];
+
+      items.forEach(item => {
+        if (item.fn.progress?.progress()?.getPredictionTimestamp()) {
+          itemsWithPrediction.push(item);
+        } else if (item.fn.progress?.progress()?.getLastTimestamp()) {
+          itemsWithLastTimestamp.push(item);
+        } else {
+          itemsWithoutTimestamp.push(item);
+        }
+      });
+
+      itemsWithPrediction.sort(sortItemsByPrediction);
+      itemsWithLastTimestamp.sort(sortItemsByLastTimestamp);
+
+      if (reverse) {
+        itemsWithPrediction.reverse();
+        itemsWithLastTimestamp.reverse();
+      }
+
+      return [...itemsWithPrediction, ...itemsWithLastTimestamp, ...itemsWithoutTimestamp];
+    }
+
+    function sortItemsByLastTimestamp(a: listElement, b: listElement) {
+      const valA = a.fn.progress?.progress()?.getLastTimestamp();
+      const valB = b.fn.progress?.progress()?.getLastTimestamp();
+
+      if (!valA || !a.fn.progress?.isAiring()) return 1;
+      if (!valB || !b.fn.progress?.isAiring()) return -1;
+
+      return valB - valA;
+    }
+
+    function sortItemsByPrediction(a: listElement, b: listElement) {
+      let valA = a.fn.progress?.progress()?.getPredictionTimestamp();
+      let valB = b.fn.progress?.progress()?.getPredictionTimestamp();
 
       if (!valA) valA = 999999999999;
       if (!valB) valB = valA;
@@ -342,12 +401,12 @@ export abstract class ListAbstract {
       let valA = 10000;
       let valB = 10000;
 
-      if (a.fn.progress && a.fn.progress.getCurrentEpisode()) {
-        const tempA = a.fn.progress.getCurrentEpisode() - a.watchedEp;
+      if (a.fn.progress?.isAiring() && a.fn.progress.progress()?.getCurrentEpisode()) {
+        const tempA = a.fn.progress.progress()!.getCurrentEpisode()! - a.watchedEp;
         if (tempA > 0) valA = tempA;
       }
-      if (b.fn.progress && b.fn.progress.getCurrentEpisode()) {
-        const tempB = b.fn.progress.getCurrentEpisode() - b.watchedEp;
+      if (b.fn.progress?.isAiring() && b.fn.progress.progress()?.getCurrentEpisode()) {
+        const tempB = b.fn.progress.progress()!.getCurrentEpisode()! - b.watchedEp;
         if (tempB > 0) valB = tempB;
       }
 

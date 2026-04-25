@@ -53,7 +53,7 @@ const picked = computed({
       width: 24px;
       left: 4px;
       bottom: 4px;
-      background-color: white;
+      background-color: var(--cl-primary-contrast);
       transition: transform @normal-transition;
     }
   }

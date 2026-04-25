@@ -1,0 +1,46 @@
+{
+  "title": "MangaSushi",
+  "url": "https://mangasushi.org",
+  "testCases": [
+    {
+      "url": "https://mangasushi.org/manga/konjiki-no-word-master-yuusha-yonin-ni-makikomareta-unique-cheat/chapter-015-1/",
+      "expected": {
+        "sync": true,
+        "title": "Konjiki no Word Master - Yuusha Yonin ni Makikomareta Unique Cheat",
+        "identifier": "konjiki-no-word-master-yuusha-yonin-ni-makikomareta-unique-cheat",
+        "image": "https://mangasushi.org/wp-content/uploads/2022/08/konjiki-1200x630.jpg",
+        "overviewUrl": "https://mangasushi.org/manga/konjiki-no-word-master-yuusha-yonin-ni-makikomareta-unique-cheat/",
+        "nextEpUrl": "https://mangasushi.org/manga/konjiki-no-word-master-yuusha-yonin-ni-makikomareta-unique-cheat/chapter-016/",
+        "episode": 15,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangasushi.org/manga/lonely-attack-on-the-different-world/chapter-67/",
+      "expected": {
+        "sync": true,
+        "title": "Lonely Attack on the Different World",
+        "identifier": "lonely-attack-on-the-different-world",
+        "image": "https://mangasushi.org/wp-content/uploads/2022/01/LONELY.jpg",
+        "overviewUrl": "https://mangasushi.org/manga/lonely-attack-on-the-different-world/",
+        "nextEpUrl": "https://mangasushi.org/manga/lonely-attack-on-the-different-world/chapter-68/",
+        "episode": 67,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangasushi.org/manga/lonely-attack-on-the-different-world/",
+      "expected": {
+        "sync": false,
+        "title": "Lonely Attack on the Different World",
+        "identifier": "lonely-attack-on-the-different-world",
+        "image": "https://mangasushi.org/wp-content/uploads/2022/01/LONELY.jpg",
+        "uiSelector": true,
+        "epList": {
+          "47": "https://mangasushi.org/manga/lonely-attack-on-the-different-world/chapter-47/",
+          "79": "https://mangasushi.org/manga/lonely-attack-on-the-different-world/chapter-79/"
+        }
+      }
+    }
+  ]
+}

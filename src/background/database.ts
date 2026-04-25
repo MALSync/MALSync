@@ -127,7 +127,7 @@ export interface Entry {
   uid: number | string;
   type: 'anime' | 'manga';
   title: string;
-  malId: number;
+  malId: number | null;
   cacheKey: number | string;
   image: string;
   score: number;
