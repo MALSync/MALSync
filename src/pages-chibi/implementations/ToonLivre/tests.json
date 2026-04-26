@@ -6,8 +6,8 @@
       "url": "https://toonlivre.net/nascido-com-sangue-maldito/83",
       "expected": {
         "sync": true,
-        "title": "Nascido Com Sangue Maldito",
-        "identifier": "nascido-com-sangue-maldito",
+        "title": "Bad Born Blood",
+        "identifier": "bad-born-blood",
         "overviewUrl": "https://toonlivre.net/nascido-com-sangue-maldito",
         "episode": 83,
         "uiSelector": false,
@@ -18,8 +18,8 @@
       "url": "https://toonlivre.net/nascido-com-sangue-maldito",
       "expected": {
         "sync": false,
-        "title": "Nascido Com Sangue Maldito",
-        "identifier": "nascido-com-sangue-maldito",
+        "title": "Bad Born Blood",
+        "identifier": "bad-born-blood",
         "image": "https://cdn.toonlivre.net/covers/obra-2327cc36/cover_1768487449.webp",
         "uiSelector": true,
         "epList": {
