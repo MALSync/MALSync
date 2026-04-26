@@ -1,0 +1,29 @@
+{
+  "title": "OmegaScans",
+  "url": "https://omegascans.org/",
+  "offline": true,
+  "testCases": [
+    {
+      "url": "https://omegascans.org/series/mind-control/chapter-1",
+      "expected": {
+        "sync": true,
+        "title": "Mind Control",
+        "identifier": "mind-control",
+        "image": "",
+        "overviewUrl": "https://omegascans.org/series/mind-control",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://omegascans.org/series/mind-control",
+      "expected": {
+        "sync": false,
+        "title": "Mind Control",
+        "identifier": "mind-control",
+        "image": "",
+        "uiSelector": true
+      }
+    }
+  ]
+}
