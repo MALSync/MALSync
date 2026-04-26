@@ -104,6 +104,7 @@ import { ElfToon } from './implementations/ElfToon/main';
 import { Zoro } from './implementations/Zoro/main';
 import { TeamShadowi } from './implementations/TeamShadowi/main';
 import { TopManhua } from './implementations/TopManhua/main';
+import { OmegaScans } from './implementations/OmegaScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -210,4 +211,5 @@ export const pages: { [key: string]: PageInterface } = {
   ElfToon,
   Zoro,
   TeamShadowi,
+  OmegaScans,
 };
