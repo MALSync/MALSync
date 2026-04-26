@@ -1,7 +1,7 @@
 import { PageInterface } from '../../pageInterface';
 
-export const MangaLivreTV: PageInterface = {
-  name: 'MangaLivreTV',
+export const ToonLivre: PageInterface = {
+  name: 'ToonLivre',
   domain: 'https://toonlivre.net',
   languages: ['Portuguese'],
   type: 'manga',
@@ -89,27 +89,30 @@ export const MangaLivreTV: PageInterface = {
         .run();
     },
     uiInjection($c) {
-      return $c.querySelector('body').uiAppend().run();
+      return $c.querySelector('h2').parent().uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
       return $c
-        .querySelectorAll('[role="button"]')
+        .querySelectorAll('.divide-y:last-of-type > div[class*="p-4"]')
         .run();
     },
     elementUrl($c) {
       return $c
         .string('/<slug>/<number>')
         .replace('<slug>', $c.url().urlPart(3).run())
-        .replace('<number>', $c.text().regex('Capítulo\\s+(\\d+(?:\\.\\d+)?)', 1).trim().run())
+        .replace('<number>', $c.find('span').text().regex('Capítulo\\s+(\\d+(?:\\.\\d+)?)', 1).trim().run())
         .urlAbsolute()
         .run();
     },
     elementEp($c) {
+      // Extract chapter number from the text (e.g., "Capítulo 171" → 171)
+      // Remove decimals and convert to integer
       return $c
+        .find('span')
         .text()
-        .regex('Capítulo\\s+(\\d+(?:\\.\\d+)?)', 1)
+        .regex('Capítulo\\s+(\\d+)(?:\\.\\d+)?', 1)
         .number()
         .run();
     },

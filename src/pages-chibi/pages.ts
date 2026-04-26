@@ -86,7 +86,7 @@ import { Mgeko } from './implementations/Mgeko/main';
 import { LuaScans } from './implementations/LuaScans/main';
 import { KaynScan } from './implementations/KaynScan/main';
 import { ComicWalker } from './implementations/ComicWalker/main';
-import { MangaLivreTV } from './implementations/MangaLivreTV/main';
+import { ToonLivre } from './implementations/ToonLivre/main';
 import { SanaScans } from './implementations/SanaScans/main';
 import { RezoScans } from './implementations/RezoScans/main';
 import { RageScans } from './implementations/RageScans/main';
@@ -190,7 +190,7 @@ export const pages: { [key: string]: PageInterface } = {
   LuaScans,
   KaynScan,
   ComicWalker,
-  MangaLivreTV,
+  ToonLivre,
   SanaScans,
   RezoScans,
   RageScans,
