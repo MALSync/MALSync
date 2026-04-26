@@ -20,7 +20,7 @@ export const MangaLivreTV: PageInterface = {
     },
     getTitle($c) {
       return $c
-        .querySelector('h1')
+        .querySelector('h2')
         .text()
         .trim()
         .run();
@@ -73,7 +73,7 @@ export const MangaLivreTV: PageInterface = {
     },
     getTitle($c) {
       return $c
-        .querySelector('h1')
+        .querySelector('h2')
         .text()
         .trim()
         .run();
