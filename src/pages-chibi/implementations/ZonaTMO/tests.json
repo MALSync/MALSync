@@ -1,0 +1,29 @@
+{
+  "title": "ZonaTMO",
+  "url": "https://zonatmo.to/",
+  "testCases": [
+    {
+      "url": "https://zonatmo.to/manga/reincarnation-no-kaben/alejandro",
+      "expected": {
+        "sync": true,
+        "title": "Reincarnation no Kaben",
+        "identifier": "reincarnation-no-kaben",
+        "overviewUrl": "https://zonatmo.to/manga/reincarnation-no-kaben",
+        "episode": 73
+      }
+    },
+    {
+      "url": "https://zonatmo.to/manga/reincarnation-no-kaben/",
+      "expected": {
+        "sync": false,
+        "title": "Reincarnation no Kaben",
+        "identifier": "reincarnation-no-kaben",
+        "uiSelector": true,
+        "epList": {
+          "73": "https://zonatmo.to/manga/reincarnation-no-kaben/alejandro",
+          "31": "https://zonatmo.to/manga/reincarnation-no-kaben/capitulo-31-00"
+        }
+      }
+    }
+  ]
+}
