@@ -1,0 +1,33 @@
+{
+  "title": "MangaClash",
+  "url": "https://mangaclash.com/",
+  "testCases": [
+    {
+      "url": "https://mangaclash.com/manga/the-survival-story-of-the-sword-king-in-another-world/chapter-3/",
+      "expected": {
+        "sync": true,
+        "title": "Survival Story of a Sword King in a Fantasy World",
+        "identifier": "the-survival-story-of-the-sword-king-in-another-world",
+        "overviewUrl": "https://mangaclash.com/manga/the-survival-story-of-the-sword-king-in-another-world/",
+        "image": "https://mangaclash.com/wp-content/uploads/2020/08/thumb_5f42edeb36351.png",
+        "episode": 3,
+        "nextEpUrl": "https://mangaclash.com/manga/the-survival-story-of-the-sword-king-in-another-world/chapter-4/",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangaclash.com/manga/the-survival-story-of-the-sword-king-in-another-world/",
+      "expected": {
+        "sync": false,
+        "title": "Survival Story of a Sword King in a Fantasy World",
+        "identifier": "the-survival-story-of-the-sword-king-in-another-world",
+        "image": "https://mangaclash.com/wp-content/uploads/2020/08/thumb_5f42edeb36351.png",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://mangaclash.com/manga/the-survival-story-of-the-sword-king-in-another-world/chapter-3/",
+          "6": "https://mangaclash.com/manga/the-survival-story-of-the-sword-king-in-another-world/chapter-6/"
+        }
+      }
+    }
+  ]
+}
