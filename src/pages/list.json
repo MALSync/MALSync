@@ -300,11 +300,6 @@
     "name": "ImmortalUpdates"
   },
   {
-    "domain": "https://hianime.to",
-    "type": "anime",
-    "name": "HiAnime"
-  },
-  {
     "domain": "https://lhtranslation.net",
     "type": "manga",
     "name": "LHTranslation"
@@ -1018,6 +1013,16 @@
     "domain": "https://templetoons.com",
     "type": "manga",
     "name": "TempleScan"
+  },
+  {
+    "domain": "https://elftoon.com",
+    "type": "manga",
+    "name": "ElfToon"
+  },
+  {
+    "domain": "https://hianime.to",
+    "type": "anime",
+    "name": "HiAnime"
   },
   {
     "domain": "https://www.team-shadowi.com/",

@@ -9,6 +9,7 @@ export const AnimeNexus: PageInterface = {
   urls: {
     match: ['*://anime.nexus/*'],
   },
+  search: 'https://anime.nexus/series?search={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c

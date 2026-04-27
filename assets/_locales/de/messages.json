@@ -1660,5 +1660,29 @@
     },
     "list_sorting_latest_release": {
         "message": "Letztes Release"
+    },
+    "settings_chibi_repos_modal_add": {
+        "message": "Möchten Sie die Quelle wirklich hinzufügen?"
+    },
+    "settings_presence_activityName_title": {
+        "message": "Serientitel"
+    },
+    "settings_presence_activityName": {
+        "message": "Name der Aktivität"
+    },
+    "settings_presence_activityName_website": {
+        "message": "Genutzte Webseite"
+    },
+    "settings_presence_activityName_type": {
+        "message": "Anime/Manga"
+    },
+    "settings_presence_activityName_malsync": {
+        "message": "MALSync"
+    },
+    "settings_anilist_external_sources": {
+        "message": "Externe Quellen anzeigen"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Kapitel als gelesen markieren, bei Prozentsatz"
     }
 }
