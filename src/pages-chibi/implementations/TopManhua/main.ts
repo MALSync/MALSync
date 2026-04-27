@@ -8,9 +8,6 @@ export const TopManhua: PageInterface = {
   urls: {
     match: ['*://manhuatop.org/*', '*://topmanhua.com/*'],
   },
-  features: {
-    customDomains: true,
-  },
   search: 'https://manhuatop.org/?s={searchtermPlus}&post_type=wp-manga',
   sync: {
     isSyncPage($c) {
