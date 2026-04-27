@@ -8,9 +8,6 @@ export const MangaClash: PageInterface = {
   urls: {
     match: ['*://mangaclash.com/*', '*://toonclash.com/*'],
   },
-  features: {
-    customDomains: true,
-  },
   search: 'https://mangaclash.com/?s={searchtermPlus}&post_type=wp-manga',
   sync: {
     isSyncPage($c) {
