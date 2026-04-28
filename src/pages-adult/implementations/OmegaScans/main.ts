@@ -1,4 +1,4 @@
-import { PageInterface } from '../../pageInterface';
+import { PageInterface } from '../../../pages-chibi/pageInterface';
 
 export const OmegaScans: PageInterface = {
   name: 'OmegaScans',
