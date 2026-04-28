@@ -64,24 +64,10 @@ export const mangaLib: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: 'footer',
-          mode: 'text',
-          regex: '(\\d+) / (\\d+)$',
-          group: 1,
-        },
-        total: {
-          selector: 'footer',
-          mode: 'text',
-          regex: '(\\d+) / (\\d+)$',
-          group: 2,
-        },
+        current: $c =>
+          $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 1).number().run(),
+        total: $c => $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 2).number().run(),
       },
-      // TODO - Replace when PR#3296 is merged
-      // {
-      //   current: $c => $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 1).run(),
-      //   total: $c => $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 2).run(),
-      // },
     ],
   },
   overview: {

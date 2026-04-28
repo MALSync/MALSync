@@ -53,28 +53,17 @@ export const ranobeLib: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          mode: 'countAbove',
-          selector: '[data-paragraph-index], .text-content p, .text-content img',
-        },
-        total: {
-          mode: 'count',
-          selector: '[data-paragraph-index], .text-content p, .text-content img',
-        },
+        current: $c =>
+          $c
+            .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
+            .countAbove()
+            .run(),
+        total: $c =>
+          $c
+            .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
+            .length()
+            .run(),
       },
-      // TODO - Replace when PR#3296 is merged
-      // {
-      //   current: $c =>
-      //     $c
-      //       .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
-      //       .countAbove()
-      //       .run(),
-      //   total: $c =>
-      //     $c
-      //       .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
-      //       .length()
-      //       .run(),
-      // },
     ],
   },
   overview: {
