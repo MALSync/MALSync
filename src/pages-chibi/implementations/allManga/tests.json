@@ -1,0 +1,50 @@
+{
+    "title": "allManga",
+    "url": "https://allmanga.to",
+    "testCases": [
+      {
+        "url": "https://allmanga.to/bangumi/qpeexkeTa7DzLjRnp/p-3-sub",
+        "expected": {
+          "sync": true,
+          "title": "Sousou no Frieren 2nd Season",
+          "identifier": "qpeexkeTa7DzLjRnp",
+          "overviewUrl": "https://allmanga.to/bangumi/qpeexkeTa7DzLjRnp",
+          "image": null,
+          "episode": 3,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://allmanga.to/bangumi/qpeexkeTa7DzLjRnp",
+        "expected": {
+          "sync": false,
+          "title": "Sousou no Frieren 2nd Season",
+          "identifier": "qpeexkeTa7DzLjRnp",
+          "image": "https://wp.youtube-anime.com/s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
+          "uiSelector": true
+        }
+      },
+      {
+        "url": "https://allmanga.to/manga/K5fQWrJjxtYLnCfde/chapter-2-sub",
+        "expected": {
+          "sync": true,
+          "title": "Kimi wa Akeboshi",
+          "identifier": "K5fQWrJjxtYLnCfde",
+          "overviewUrl": "https://allmanga.to/manga/K5fQWrJjxtYLnCfde",
+          "image": "https://wp.youtube-anime.com/aln.youtube-anime.com/mcovers/m_tbs/DpbSpjJ2jodFLcBg7/001.jpg?w=250",
+          "episode": 2,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://allmanga.to/manga/K5fQWrJjxtYLnCfde",
+        "expected": {
+          "sync": false,
+          "title": "Kimi wa Akeboshi",
+          "identifier": "K5fQWrJjxtYLnCfde",
+          "image": "https://wp.youtube-anime.com/aln.youtube-anime.com/mcovers/m_tbs/DpbSpjJ2jodFLcBg7/001.jpg?w=250",
+          "uiSelector": true
+        }
+      }
+    ]
+  }

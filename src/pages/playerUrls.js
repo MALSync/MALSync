@@ -84,7 +84,7 @@ module.exports = {
     match: ['*://*.mega.nz/*'],
   },
   animeflv: {
-    match: ['*://*.animeflv.net/*', '*://*.jwplayerhls.com/*'],
+    match: ['*://*.animeflv.net/*', '*://*.jwplayerhls.com/*', '*://playnixes.com/*'],
   },
   netu: {
     match: ['*://*.hqq.tv/*', '*://waaw.tv/*'],
@@ -256,6 +256,9 @@ module.exports = {
       '*://*.mixdrop.sn/e/*',
       '*://*.mixdrop.cv/e/*',
       '*://*.md3b0j6hj.com/e/*',
+      '*://*.m1xdrop.net/e/*',
+      '*://*.m1xdrop.com/e/*',
+      '*://*.m1xdrop.bz/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -483,6 +486,7 @@ module.exports = {
       '*://vidmoly.me/*',
       '*://vidmoly.to/*',
       '*://vidmoly.net/*',
+      '*://vidmoly.biz/*',
       // auto-vidmoly-replace-dont-remove
     ],
   },
@@ -547,6 +551,16 @@ module.exports = {
       '*://mikaylaarealike.com/e/*',
       '*://christopheruntilpoint.com/e/*',
       '*://walterprettytheir.com/e/*',
+      '*://crystaltreatmenteast.com/e/*',
+      '*://myvidplay.com/e/*',
+      '*://lauradaydo.com/e/*',
+      '*://lancewhosedifficult.com/e/*',
+      '*://dianaavoidthey.com/e/*',
+      '*://jefferycontrolmodel.com/e/*',
+      '*://jessicaclearout.com/e/*',
+      '*://marissasharecareer.com/e/*',
+      '*://charlestoughrace.com/e/*',
+      '*://timmaybealready.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -774,6 +788,7 @@ module.exports = {
       '*://awish.pro/e/*',
       '*://hlswish.com/e/*',
       '*://swishsrv.com/e/*',
+      '*://guxhag.com/*',
       // auto-gogostreamwish-replace-dont-remove
     ],
   },
@@ -825,6 +840,7 @@ module.exports = {
       '*://megaup.live/e/*',
       '*://4spromax.site/e/*',
       '*://megaup22.online/e/*',
+      '*://megaup.nl/e/*',
     ],
   },
   // hikari
@@ -863,9 +879,21 @@ module.exports = {
   p2pstream: {
     match: ['*://*.p2pstream.vip/*'],
   },
-
-    // Anoboye
- anoboye: {
-  match: ['*://player.anoboye.com/watch/*'],
-},
+  // Anoboye
+  anoboye: {
+    match: ['*://player.anoboye.com/watch/*'],
+  },
+  // kuudere
+  zencloud: {
+    match: ['*://zencloudz.cc/*'],
+  },
+  kumi: {
+    match: ['*://*.playerp2p.live/*', '*://*.rpmvip.com/*'],
+  },
+  sHide: {
+    match: ['*://callistanise.com/*', '*://habetar.com/*', '*://yuguaab.com/*'],
+  },
+  allManga: {
+    match: ['*://allanime.day/*', '*://allanime.uns.bio/*'],
+  },
 };

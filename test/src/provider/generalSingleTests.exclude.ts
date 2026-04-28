@@ -35,6 +35,7 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
         def.status.Dropped,
         def.status.PlanToWatch,
         def.status.Rewatching,
+        def.status.Considering,
       ].forEach(el => {
         it(def.status[el], function() {
           singleEntry.setStatus(el);
@@ -43,6 +44,11 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
             !singleEntry.supportsRewatching()
           ) {
             expect(singleEntry.getStatus()).equal(def.status.Watching);
+          } else if (
+            el === def.status.Considering &&
+            !singleEntry.supportsConsidering()
+          ) {
+            expect(singleEntry.getStatus()).equal(def.status.PlanToWatch);
           } else {
             expect(singleEntry.getStatus()).equal(el);
           }

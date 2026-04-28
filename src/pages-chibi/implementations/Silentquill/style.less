@@ -1,1 +1,23 @@
-@import './../Armageddon/style';
+@import './../pages';
+
+@activeEp: var(--theme-color) !important;
+@boxBackground: var(--box-background);
+@highlightStyle: 1;
+
+#malp {
+  --box-background: #343434;
+
+  color: #ffffff;
+
+  .lightmode & {
+    --box-background: #f0f2f5;
+
+    color: #333333;
+  }
+
+  @media only screen and (max-width: 650px) {
+    #MalData {
+      justify-content: center !important;
+    }
+  }
+}

@@ -30,26 +30,12 @@ export const Comix: PageInterface = {
       return $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run();
     },
     getMalUrl($c) {
-      const getMalId = getJsonData($c)
-        .get('mal_id')
-        .number()
-        .ifNotReturn()
-        .string('https://myanimelist.net/manga/<identifier>')
-        .replace('<identifier>', getJsonData($c).get('mal_id').run())
+      return $c
+        .providerUrlUtility({
+          malId: getJsonData($c).get('mal_id').number().ifNotReturn().run(),
+          anilistId: getJsonData($c).get('anilist_id').number().ifNotReturn().run(),
+        })
         .run();
-
-      const getAnilistId = getJsonData($c)
-        .get('al_id')
-        .number()
-        .ifNotReturn()
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .string('https://anilist.co/manga/<identifier>')
-        .replace('<identifier>', getJsonData($c).get('al_id').run())
-        .run();
-
-      return $c.coalesce($c.fn(getMalId).run(), $c.fn(getAnilistId).run()).ifNotReturn().run();
     },
     readerConfig: [
       {
@@ -79,6 +65,9 @@ export const Comix: PageInterface = {
     },
     uiInjection($c) {
       return $c.querySelector('.description').uiBefore().run();
+    },
+    getMalUrl($c) {
+      return $c.provider().this('sync.getMalUrl').run();
     },
   },
   list: {

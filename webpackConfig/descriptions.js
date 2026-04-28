@@ -16,14 +16,6 @@ pages.sort(function(a, b) {
   return textA < textB ? -1 : textA > textB ? 1 : 0;
 });
 
-const hpages = Object.values(pagesMain.pages('../../src/pages-adult/pages.ts'));
-
-hpages.sort(function(a, b) {
-  const textA = a.name.toUpperCase();
-  const textB = b.name.toUpperCase();
-  return textA < textB ? -1 : textA > textB ? 1 : 0;
-});
-
 createTable();
 function createTable() {
   let animehtml = '';
@@ -99,6 +91,7 @@ function createTable() {
 
 adultDep();
 function adultDep() {
+  const hpages = pagesMain.adult();
   let html = `
   <table>
     <tbody>
@@ -118,13 +111,16 @@ function adultDep() {
   `;
 
   const descFile = path.join(__dirname, '../src/pages-adult/README.md');
-  fs.readFile(descFile, 'utf8', function(err, data) {
+  fs.readFile(descFile, 'utf8', function (err, data) {
     if (err) {
       return console.log(err);
     }
-    const result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, `<!--pages-->${html}<!--/pages-->`);
+    const result = data.replace(
+      /<!--pages-->((.|\n|\r)*)<!--\/pages-->/g,
+      `<!--pages-->${html}<!--/pages-->`,
+    );
 
-    fs.writeFile(descFile, result, 'utf8', function(err) {
+    fs.writeFile(descFile, result, 'utf8', function (err) {
       if (err) return console.log(err);
     });
   });

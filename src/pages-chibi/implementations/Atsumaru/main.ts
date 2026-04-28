@@ -16,20 +16,40 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.box-content a[href^="/manga/"]').text().trim().run();
+      return $c
+        .coalesce(
+          $c.querySelector('.box-content a[href^="/manga/"]').run(),
+          $c.querySelector('p.invisible').run(),
+        )
+        .ifNotReturn()
+        .text()
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c
-        .querySelector('.box-content a[href^="/manga/"]')
-        .getAttribute('href')
-        .urlAbsolute()
-        .run();
+      return $c.querySelector('a[href^="/manga/"]').getAttribute('href').urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.title().regex('(\\d+)', 1).number().run();
+      return $c
+        .coalesceFn(
+          $c
+            .querySelector('span.relative:last-child')
+            .ifNotReturn()
+            .text()
+            .regex('(\\d+)(?:\\.\\d+)?\\s*/', 1)
+            .run(),
+          $c
+            .querySelectorAll('select option:checked')
+            .arrayFind($text => $text.text().includes('Page').not().run())
+            .text()
+            .regex('\\d+')
+            .run(),
+        )
+        .number()
+        .run();
     },
     readerConfig: [
       {
@@ -38,7 +58,7 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        condition: $c => $c.querySelector('.z-1').boolean().run(),
+        condition: $c => $c.querySelector('[id*="atsu-page-group"]').boolean().run(),
         // I use arrayFind in case it read chapter number instead
         current: $c =>
           $c
@@ -49,6 +69,12 @@ export const Atsumaru: PageInterface = {
             .number()
             .run(),
         total: $c => $c.querySelectorAll('.z-1 img').length().run(),
+      },
+      {
+        current: $c =>
+          $c.querySelector('span.relative').text().regex('(\\d+)\\s*/', 1).number().run(),
+        total: $c =>
+          $c.querySelector('span.relative').text().regex('/\\s*(\\d+)', 1).number().run(),
       },
     ],
   },
@@ -63,7 +89,7 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().run();
+      return $c.title().trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
@@ -77,21 +103,35 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getMalUrl($c) {
-      const getMal = $c
-        .querySelector('.aspect-square[title="MyAnimeList"]')
-        .ifNotReturn()
-        .getAttribute('href')
+      return $c
+        .providerUrlUtility({
+          malUrl: $c
+            .querySelector('a.btn[title="MyAnimeList"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlAbsolute()
+            .run(),
+          anilistUrl: $c
+            .querySelector('a.btn[title="AniList"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlAbsolute()
+            .run(),
+          kitsuId: $c
+            .querySelector('a.btn[title="Kitsu"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            // site using outdated .io domain
+            .urlPart(4)
+            .run(),
+          mangabakaId: $c
+            .querySelector('a.btn[title*="MangaBaka"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlPart(3)
+            .run(),
+        })
         .run();
-
-      const getAnilist = $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .querySelector('.aspect-square[title="AniList"]')
-        .getAttribute('href')
-        .run();
-
-      return $c.coalesce($c.fn(getAnilist).run(), $c.fn(getMal).run()).ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.md\\:block').uiAfter().run();
@@ -105,7 +145,7 @@ export const Atsumaru: PageInterface = {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('span').text().regex('(\\d+)', 1).number().run();
+      return $c.find('.truncate').text().regex('\\d+').number().run();
     },
   },
   lifecycle: {

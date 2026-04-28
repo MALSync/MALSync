@@ -7,7 +7,6 @@ export const animepahe: PageInterface = {
   type: 'anime',
   database: 'animepahe',
   minimumVersion: '0.12.1',
-  search: 'https://animepahe.si/', // Temporary workaround until next release
   urls: {
     match: [
       '*://animepahe.com/play/*',
@@ -16,6 +15,8 @@ export const animepahe: PageInterface = {
       '*://animepahe.org/anime/*',
       '*://animepahe.si/play/*',
       '*://animepahe.si/anime/*',
+      '*://animepahe.pw/play/*',
+      '*://animepahe.pw/anime/*',
     ],
   },
   sync: {

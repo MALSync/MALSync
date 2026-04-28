@@ -35,16 +35,6 @@
     "name": "Emby"
   },
   {
-    "domain": "http://app.plex.tv",
-    "type": "anime",
-    "name": "Plex"
-  },
-  {
-    "domain": "https://aniflix.cc",
-    "type": "anime",
-    "name": "Aniflix"
-  },
-  {
     "domain": "https://kickassanime.am",
     "type": "anime",
     "name": "KickAssAnime"
@@ -55,7 +45,7 @@
     "name": "Shinden"
   },
   {
-    "domain": "https://voiranime.com",
+    "domain": "https://voir-anime.to",
     "type": "anime",
     "name": "Voiranime"
   },
@@ -310,11 +300,6 @@
     "name": "ImmortalUpdates"
   },
   {
-    "domain": "https://hianime.to",
-    "type": "anime",
-    "name": "HiAnime"
-  },
-  {
     "domain": "https://lhtranslation.net",
     "type": "manga",
     "name": "LHTranslation"
@@ -425,7 +410,7 @@
     "name": "Animelon"
   },
   {
-    "domain": "https://anime-sama.fr",
+    "domain": "https://anime-sama.tv",
     "type": "anime",
     "name": "AnimeSama"
   },
@@ -455,7 +440,7 @@
     "name": "AnimeKO"
   },
   {
-    "domain": "https://animego.org",
+    "domain": "https://animego.me",
     "type": "anime",
     "name": "AnimeGO"
   },
@@ -520,11 +505,6 @@
     "name": "MangaRead"
   },
   {
-    "domain": "https://templescan.net",
-    "type": "manga",
-    "name": "TempleScan"
-  },
-  {
     "domain": "https://demo.kavitareader.com",
     "type": "manga",
     "name": "Kavita"
@@ -555,7 +535,7 @@
     "name": "MangaNato"
   },
   {
-    "domain": "https://animetsu.bz",
+    "domain": "https://animetsu.net",
     "type": "anime",
     "name": "Gojo"
   },
@@ -615,6 +595,11 @@
     "name": "AnimeKAI"
   },
   {
+    "domain": "https://fireani.me",
+    "type": "anime",
+    "name": "FireAnime"
+  },
+  {
     "domain": "https://weebcentral.com",
     "type": "manga",
     "name": "WeebCentral"
@@ -650,9 +635,9 @@
     "name": "MangaPark"
   },
   {
-    "domain": "https://q1n.net",
+    "domain": "https://topanimes.net",
     "type": "anime",
-    "name": "Q1N"
+    "name": "Topanimes"
   },
   {
     "domain": "https://qiscans.org",
@@ -840,14 +825,9 @@
     "name": "Mangapill"
   },
   {
-    "domain": "https://armageddontl.com",
-    "type": "manga",
-    "name": "Armageddon"
-  },
-  {
     "domain": "https://www.silentquill.net",
     "type": "manga",
-    "name": "Silentquill"
+    "name": "Armageddon"
   },
   {
     "domain": "https://comic-days.com",
@@ -983,5 +963,70 @@
     "domain": "https://rezoscan.org",
     "type": "manga",
     "name": "RezoScans"
+  },
+  {
+    "domain": "https://ragescans.com",
+    "type": "manga",
+    "name": "RageScans"
+  },
+  {
+    "domain": "https://anigo.to",
+    "type": "anime",
+    "name": "AniGo"
+  },
+  {
+    "domain": "https://Kuudere.to",
+    "type": "anime",
+    "name": "Kuudere"
+  },
+  {
+    "domain": "https://bigsolo.org",
+    "type": "manga",
+    "name": "BigSolo"
+  },
+  {
+    "domain": "http://app.plex.tv/",
+    "type": "anime",
+    "name": "Plex"
+  },
+  {
+    "domain": "https://allmanga.to",
+    "type": "anime",
+    "name": "allManga"
+  },
+  {
+    "domain": "https://gaiaflix.live",
+    "type": "anime",
+    "name": "GaiaFlix"
+  },
+  {
+    "domain": "https://anizone.to",
+    "type": "anime",
+    "name": "AniZone"
+  },
+  {
+    "domain": "https://anime.nexus",
+    "type": "anime",
+    "name": "AnimeNexus"
+  },
+  {
+    "domain": "https://templetoons.com",
+    "type": "manga",
+    "name": "TempleScan"
+  },
+  {
+    "domain": "https://elftoon.com",
+    "type": "manga",
+    "name": "ElfToon"
+  },
+  {
+    "domain": "https://hianime.to",
+    "type": "anime",
+    "name": "HiAnime"
+  },
+  {
+    "domain": "https://www.team-shadowi.com/",
+    "type": "manga",
+    "name": "TeamShadowi"
   }
 ]

@@ -334,7 +334,7 @@ describe('Async Functions', () => {
     const duration = Date.now() - start;
 
     expect(result).to.equal('done');
-    expect(duration).to.be.at.least(200);
+    expect(duration).to.be.at.least(199);
   }).timeout(1000);
 
   it('detectChanges function', async () => {

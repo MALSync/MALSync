@@ -4,7 +4,12 @@
 // Style 2 = classic style
 @boxBackground: #00000038;
 @boxFontColor: inherit;
+@boxBorderRadius: 4px;
+@boxHighlightBackground: #9b96db38;
+@boxHighlightFontColor: inherit;
 @boxLabelFontColor: inherit;
+@boxOptionsBackground: if(@boxBackground = #00000038, #272626, @boxBackground);
+@boxOptionsFontColor: if(@boxBackground = #00000038, #eaeffd, @boxFontColor);
 @boxGap: 10px;
 
 @highlightStyle: 2;
@@ -12,6 +17,8 @@
 // Style 1 = border style
 // Style 2 = background style
 // Style 3 = text color style
+// Style 4 = bold text style
+// Style 5 = img border style
 @activeEp: #002e7459;
 
 .malp() when (@malpStyle = 0) {
@@ -37,13 +44,14 @@
         flex-grow: 1;
         background-color: @boxBackground !important;
         color: @boxFontColor !important;
-        border-radius: 4px;
+        border-radius: @boxBorderRadius;
         padding: 4px 8px !important;
       }
     }
 
     option {
-      background-color: @boxBackground !important;
+      background-color: @boxOptionsBackground !important;
+      color: @boxOptionsFontColor !important;
     }
 
     .malp-group-label {
@@ -59,6 +67,10 @@
       }
       a {
         color: @boxFontColor !important;
+      }
+      .malp-mal-add {
+        background-color: @boxHighlightBackground !important;
+        color: @boxHighlightFontColor !important;
       }
     }
     #AddMalDiv {
@@ -126,6 +138,11 @@
     font-weight: bold !important;
   }
 }
+.epHighlight() when (@highlightStyle = 5) {
+  img {
+    border: 2px solid @activeEp;
+  }
+}
 
 .mal-sync-active {
   .epHighlight();
@@ -185,5 +202,10 @@
       background-color: #ff4081 !important;
       transition: background-color 1s !important;
     }
+  }
+
+  .ms-progress.ms-resume {
+    background-color: #ff4081 !important;
+    transition: width 0.1s !important;
   }
 }

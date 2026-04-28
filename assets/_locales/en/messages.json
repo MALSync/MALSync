@@ -159,6 +159,10 @@
         "message": "Rereading",
         "description": "Status to reread manga"
     },
+    "UI_Status_Considering": {
+        "message": "Considering",
+        "description": "Status to consider an anime/manga"
+    },
     "UI_Episode": {
         "message": "Episode:",
         "description": "Episode"
@@ -853,6 +857,10 @@
             }
         }
     },
+    "settings_splitTracking": {
+        "message": "Split Tracking",
+        "description": "Option to use different providers for anime and manga tracking"
+    },
     "settings_LocalSync": {
         "message": "Local storage fallback",
         "description": "Option to activate the local storage fallback sync"
@@ -1460,6 +1468,10 @@
     "settings_custom_domains_wrong": {
         "message": "Configuration is not correct!",
         "description": "Error text if the configuration is not correct"
+    },
+    "settings_chibi_repos_modal_add": {
+        "message": "Are you sure you want to add this repository?",
+        "description": "Confirmation text for adding a chibi repository"
     },
     "settings_clean_tags_button": {
         "message": "Clean Tags",

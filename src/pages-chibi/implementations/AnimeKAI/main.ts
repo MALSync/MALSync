@@ -3,11 +3,24 @@ import { PageInterface } from '../../pageInterface';
 
 export const AnimeKAI: PageInterface = {
   name: 'AnimeKAI',
+  database: 'AnimeKAI',
   type: 'anime',
   domain: 'https://animekai.to',
   languages: ['English'],
   urls: {
-    match: ['*://animekai.to/*', '*://animekai.cc/*', '*://animekai.ac/*', '*://anikai.to/*'],
+    match: [
+      '*://animekai.to/*',
+      '*://animekai.cc/*',
+      '*://animekai.ac/*',
+      '*://anikai.to/*',
+      '*://animekai.im/*',
+      '*://animekai.la/*',
+      '*://animekai.nl/*',
+      '*://animekai.vc/*',
+      '*://animekai.fi/*',
+      '*://animekai.fo/*',
+      '*://animekai.gs/*',
+    ],
   },
   search: 'https://animekai.to/browser?keyword={searchtermPlus}',
   sync: {

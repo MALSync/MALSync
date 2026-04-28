@@ -117,7 +117,7 @@ async function fillFromApi(combined, type, id) {
 
 function simplifyObject(combined, type, title, id): Quicklink[] {
   return combined
-    .filter(el => el.search && el.search[type])
+    .filter(el => (el.search && el.search[type]) || el.databaseLinks)
     .map(el => {
       const links: Links[] = [];
       let quickGroup: QuicklinkGroup;
@@ -184,8 +184,8 @@ export function getQuicklinks(): QuicklinkObject[] {
         typeof el.search === 'object'
           ? el.search
           : {
-              anime: el.type === 'anime' ? el.search || null : null,
-              manga: el.type === 'manga' ? el.search || null : null,
+              anime: el.type === 'anime' ? el.search || 'home' : null,
+              manga: el.type === 'manga' ? el.search || 'home' : null,
             },
     };
   });

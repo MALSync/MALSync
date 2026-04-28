@@ -18,7 +18,14 @@
         v-model="parameters.state"
         :type="parameters.type"
         :rewatching="
-          listRequest.data ? listRequest.data?.seperateRewatching : parameters.state === 23
+          listRequest.data
+            ? listRequest.data?.seperateRewatching
+            : parameters.state === status.Rewatching
+        "
+        :considering="
+          listRequest.data
+            ? listRequest.data?.consideringSupport
+            : parameters.state === status.Considering
         "
       />
       <FormButton padding="pill" @click="refresh()">
@@ -148,6 +155,7 @@ import TextIcon from '../components/text-icon.vue';
 import FormButton from '../components/form/form-button.vue';
 import { urlToSlug } from '../../utils/slugs';
 import { localStore } from '../../utils/localStore';
+import { status } from '../../_provider/definitions';
 
 const rootWindow = inject('rootWindow') as Window;
 const rootDocument = inject('rootDocument') as Document;
@@ -251,9 +259,9 @@ const formatItem = (item: listElement): bookmarkItem => {
       resItem.streamIcon = utils.favicon(resItem.streamUrl.split('/')[2]);
     }
   }
-  if (item.fn.progress && item.fn.progress.isAiring()) {
-    resItem.progressText = item.fn.progress.getAuto();
-    resItem.progressEp = item.fn.progress.getCurrentEpisode();
+  if (item.fn.progress?.isAiring() && item.fn.progress.progress()) {
+    resItem.progressText = item.fn.progress.progress()!.getAutoText();
+    resItem.progressEp = item.fn.progress.progress()!.getCurrentEpisode() || undefined;
     resItem.progress = item.fn.progress;
   }
   return resItem;
@@ -344,11 +352,11 @@ const sort = computed({
 });
 
 const randomListCache = {};
-async function openRandom(status, type) {
-  const cacheKey = `${status}-${type}`;
+async function openRandom(st, type) {
+  const cacheKey = `${st}-${type}`;
   if (typeof randomListCache[cacheKey] === 'undefined' || !randomListCache[cacheKey].length) {
     utils.flashm('Loading');
-    const listProvider = await getList(status, type);
+    const listProvider = await getList(st, type);
     await listProvider
       .getCompleteList()
       .then(async res => {
