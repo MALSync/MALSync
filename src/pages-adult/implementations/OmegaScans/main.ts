@@ -38,18 +38,6 @@ export const OmegaScans: PageInterface = {
     getEpisode($c) {
       return $c.url().urlPart(5).regex('chapter[_-]?(\\d+)', 1).number().ifNotReturn().run();
     },
-    readerConfig: [
-      {
-        current: {
-          selector: '#content > div > div > div > img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#content > div > div > div > img',
-          mode: 'count',
-        },
-      },
-    ],
   },
   overview: {
     isOverviewPage($c) {
