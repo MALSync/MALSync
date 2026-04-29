@@ -20,7 +20,7 @@ export const OmegaScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().split(' Chapter').at(0).trim().run();
+      return $c.title().split(' - Chapter').at(0).trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -41,11 +41,11 @@ export const OmegaScans: PageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '.reading-content img',
+          selector: '#content > div > div > div > img',
           mode: 'countAbove',
         },
         total: {
-          selector: '.reading-content img',
+          selector: '#content > div > div > div > img',
           mode: 'count',
         },
       },
