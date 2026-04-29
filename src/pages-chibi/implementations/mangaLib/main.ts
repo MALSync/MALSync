@@ -4,21 +4,10 @@ import type { PageInterface } from '../../pageInterface';
 export const mangaLib: PageInterface = {
   name: 'MangaLib',
   type: 'manga',
-  domain: [
-    'https://mangalib.me',
-    'https://mangalib.org',
-    'https://slashlib.me',
-    'https://v2.slashlib.me',
-    'https://v1.yaoilib.net',
-  ],
+  domain: ['https://mangalib.me', 'https://mangalib.org', 'https://v2.shlib.life'],
   languages: ['Russian'],
   urls: {
-    match: [
-      '*://mangalib.org/*',
-      '*://mangalib.me/*',
-      '*://*.slashlib.me/*',
-      '*://*.yaoilib.net/*',
-    ],
+    match: ['*://mangalib.org/*', '*://mangalib.me/*', '*://*.shlib.life/*'],
   },
   search: 'https://mangalib.me/ru/catalog?q={searchterm}',
   sync: {
@@ -84,6 +73,7 @@ export const mangaLib: PageInterface = {
       const id = slug.string().regex('(\\d+)', 1);
       return id.run();
     },
+    // NOTE - Image is there but it's protected by referrer header comparison
     getImage($c) {
       return $c.querySelector('.cover img').getAttribute('src').ifNotReturn().run();
     },
