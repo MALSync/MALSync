@@ -18,19 +18,19 @@ export const anikoto: PageInterface = {
       return getJsonData($c).get('name').run();
     },
     getIdentifier($c) {
-      return getJsonData($c).get('anime_id').run();
+      return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
       return getJsonData($c).get('series_url').ifNotReturn().string().urlAbsolute().run();
     },
     getEpisode($c) {
-      return getJsonData($c).get('episode').number().run();
+      return $c.url().urlPart(6).replaceRegex('ep-', '').number().run();
     },
     getImage($c) {
       return $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('#player-control').uiAfter().run();
+      return $c.querySelector('#controls').uiAfter().run();
     },
     nextEpUrl($c) {
       return $c
