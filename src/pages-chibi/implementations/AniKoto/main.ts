@@ -1,4 +1,3 @@
-import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const anikoto: PageInterface = {
@@ -12,19 +11,19 @@ export const anikoto: PageInterface = {
   search: 'https://anikoto.cz/filter?keyword={searchtermPlus}',
   sync: {
     isSyncPage($c) {
-      return getJsonData($c).get('page').equals('episode').run();
+      return $c.and($c.url().urlPart(3).equals('watch').run(), $c.url().urlPart(5).boolean().run()).run();
     },
     getTitle($c) {
-      return getJsonData($c).get('name').run();
+      return $c.querySelector('h1[itemprop="name"]').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return getJsonData($c).get('series_url').ifNotReturn().string().urlAbsolute().run();
+      return $c.url().replaceRegex('/ep-\\d+$', '').run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(6).replaceRegex('ep-', '').number().run();
+      return $c.url().urlPart(5).replaceRegex('ep-', '').number().run();
     },
     getImage($c) {
       return $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run();
@@ -34,7 +33,7 @@ export const anikoto: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.eplist .active')
+        .querySelector('#w-episodes .active')
         .parent()
         .next()
         .ifNotReturn()
@@ -45,34 +44,21 @@ export const anikoto: PageInterface = {
         .run();
     },
     getMalUrl($c) {
-      const getMalId = getJsonData($c)
-        .get('mal_id')
-        .number()
-        .ifNotReturn()
+      return $c
         .string('https://myanimelist.net/anime/<identifier>')
-        .replace('<identifier>', getJsonData($c).get('mal_id').run())
+        .replace('<identifier>', $c.querySelector('#w-episodes .active').getAttribute('data-mal').ifNotReturn().run())
         .run();
-
-      const getAnilistId = $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .string('https://anilist.co/anime/<identifier>')
-        .replace('<identifier>', getJsonData($c).get('al_id').run())
-        .run();
-
-      return $c.coalesce($c.fn(getMalId).run(), $c.fn(getAnilistId).run()).ifNotReturn().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.eplist a').run();
+      return $c.querySelectorAll('#w-episodes .ep-range a').run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').ifNotReturn().urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.getAttribute('num').number().run();
+      return $c.getAttribute('data-num').number().run();
     },
   },
   lifecycle: {
@@ -80,27 +66,10 @@ export const anikoto: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c
-        .domReady()
-        .detectChanges(
-          $c.querySelector('#syncData').ifNotReturn().text().trim().run(),
-          $c.trigger().run(),
-        )
-        .trigger()
-        .run();
+      return $c.domReady().detectURLChanges($c.trigger().run()).trigger().run();
     },
     syncIsReady($c) {
-      return $c
-        .querySelector('#syncData')
-        .ifNotReturn()
-        .text()
-        .contains('\\/\\/')
-        .ifNotReturn($c.trigger().return().run())
-        .run();
+      return $c.querySelector('#w-episodes .active').boolean().run();
     },
   },
 };
-
-function getJsonData($c: ChibiGenerator<unknown>) {
-  return $c.querySelector('#syncData').ifNotReturn().text().jsonParse();
-}
