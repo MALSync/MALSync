@@ -1,0 +1,71 @@
+{
+  "title": "AniKoto",
+  "url": "https://anikoto.cz",
+  "offline": true,
+  "testCases": [
+    {
+      "url": "https://anikoto.cz/watch/one-piece-odmau/ep-5",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "one-piece-odmau",
+        "overviewUrl": "https://anikoto.cz/watch/one-piece-odmau",
+        "nextEpUrl": "https://anikoto.cz/watch/one-piece-odmau/ep-6",
+        "episode": 5,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/21",
+        "epList": {
+          "5": "https://anikoto.cz/watch/one-piece-odmau/ep-5"
+        }
+      }
+    },
+    {
+      "url": "https://anikoto.cz/watch/one-piece-odmau/ep-1159",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "one-piece-odmau",
+        "overviewUrl": "https://anikoto.cz/watch/one-piece-odmau",
+        "nextEpUrl": "https://anikoto.cz/watch/one-piece-odmau/ep-1160",
+        "episode": 1159,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/21",
+        "epList": {
+          "1159": "https://anikoto.cz/watch/one-piece-odmau/ep-1159"
+        }
+      }
+    },
+    {
+      "url": "https://anikoto.cz/watch/violet-evergarden-uxbvu/ep-1",
+      "expected": {
+        "sync": true,
+        "title": "Violet Evergarden",
+        "identifier": "violet-evergarden-uxbvu",
+        "overviewUrl": "https://anikoto.cz/watch/violet-evergarden-uxbvu",
+        "nextEpUrl": "https://anikoto.cz/watch/violet-evergarden-uxbvu/ep-2",
+        "episode": 1,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/33352",
+        "epList": {
+          "1": "https://anikoto.cz/watch/violet-evergarden-uxbvu/ep-1"
+        }
+      }
+    },
+    {
+      "url": "https://anikoto.cz/watch/solo-leveling-ilh08/ep-9",
+      "expected": {
+        "sync": true,
+        "title": "Solo Leveling",
+        "identifier": "solo-leveling-ilh08",
+        "overviewUrl": "https://anikoto.cz/watch/solo-leveling-ilh08",
+        "nextEpUrl": "https://anikoto.cz/watch/solo-leveling-ilh08/ep-10",
+        "episode": 9,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/52299",
+        "epList": {
+          "9": "https://anikoto.cz/watch/solo-leveling-ilh08/ep-9"
+        }
+      }
+    }
+  ]
+}

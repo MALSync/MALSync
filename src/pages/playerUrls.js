@@ -897,4 +897,8 @@ module.exports = {
   allManga: {
     match: ['*://allanime.day/*', '*://allanime.uns.bio/*'],
   },
+  //AniKoto
+  vidcloud: {
+    match: ['*://vidwish.live/*'],
+  },
 };
