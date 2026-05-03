@@ -6,6 +6,16 @@ export type PlayerTime = {
   paused: boolean;
 };
 
+function collectVideos(root: Document | ShadowRoot): HTMLVideoElement[] {
+  const found: HTMLVideoElement[] = Array.from(root.querySelectorAll('video'));
+  const all = root.querySelectorAll('*');
+  for (let i = 0; i < all.length; i++) {
+    const el = all[i] as Element;
+    if (el.shadowRoot) found.push(...collectVideos(el.shadowRoot));
+  }
+  return found;
+}
+
 export class PlayerSingleton {
   // eslint-disable-next-line es-x/no-class-static-fields
   private static instance: PlayerSingleton = new PlayerSingleton();
@@ -34,7 +44,7 @@ export class PlayerSingleton {
 
   public startTracking() {
     setInterval(() => {
-      const players = document.getElementsByTagName('video');
+      const players = collectVideos(document);
       for (let i = 0; i < players.length; i++) {
         const player: HTMLVideoElement = players[i];
         const { duration } = player;

@@ -52,7 +52,11 @@ export const Crunchyroll: PageInterface = {
       return getJsonData($c).get('partOfSeason').get('@id').run();
     },
     getEpisode($c) {
-      return getJsonData($c).get('episodeNumber').number().run();
+      return getJsonData($c)
+        .get('episodeNumber')
+        .number()
+        .calculate('+', getEpisodeRangeOffset($c).run())
+        .run();
     },
     nextEpUrl($c) {
       return $c
@@ -71,7 +75,7 @@ export const Crunchyroll: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectChanges($c.title().run(), $c.trigger().run()).domReady().trigger().run();
+      return $c.detectChanges($c.url().run(), $c.trigger().run()).domReady().trigger().run();
     },
   },
 };
@@ -86,6 +90,18 @@ function getSeasonName($c: ChibiGenerator<unknown>) {
 
 function getSeriesName($c: ChibiGenerator<unknown>) {
   return getJsonData($c).get('partOfSeries').get('name').string();
+}
+
+function hasEpisodeRange($c: ChibiGenerator<unknown>) {
+  return getSeasonName($c).matches('\\(\\d+-\\d+\\)');
+}
+
+function getEpisodeRangeOffset($c: ChibiGenerator<unknown>) {
+  return $c.if(
+    hasEpisodeRange($c).run(),
+    getSeasonName($c).regex('\\((\\d+)-\\d+\\)', 1).number().calculate('-', 1).run(),
+    $c.number(0).run(),
+  );
 }
 
 function getJsonData($c: ChibiGenerator<unknown>) {
