@@ -6,14 +6,21 @@ export type PlayerTime = {
   paused: boolean;
 };
 
-function collectVideos(root: Document | ShadowRoot): HTMLVideoElement[] {
-  const found: HTMLVideoElement[] = Array.from(root.querySelectorAll('video'));
+function findUsableVideo(root: Document | ShadowRoot): HTMLVideoElement | null {
+  const direct = root.querySelectorAll('video');
+  for (let i = 0; i < direct.length; i++) {
+    const v = direct[i];
+    if (v.duration && v.duration > 60) return v;
+  }
   const all = root.querySelectorAll('*');
   for (let i = 0; i < all.length; i++) {
     const el = all[i] as Element;
-    if (el.shadowRoot) found.push(...collectVideos(el.shadowRoot));
+    if (el.shadowRoot) {
+      const found = findUsableVideo(el.shadowRoot);
+      if (found) return found;
+    }
   }
-  return found;
+  return null;
 }
 
 export class PlayerSingleton {
@@ -44,25 +51,18 @@ export class PlayerSingleton {
 
   public startTracking() {
     setInterval(() => {
-      const players = collectVideos(document);
-      for (let i = 0; i < players.length; i++) {
-        const player: HTMLVideoElement = players[i];
-        const { duration } = player;
-        const current = player.currentTime;
-        const { paused } = player;
-
-        if (duration && duration > 60) {
-          const item = {
-            current,
-            duration,
-            paused,
-          };
-          logger.debug(window.location.href, item);
-          this.currentPlayer = player;
-          this.notifyListeners(item, player);
-          playerExtras(item, player);
-          return;
-        }
+      const player = findUsableVideo(document);
+      if (player) {
+        const item = {
+          current: player.currentTime,
+          duration: player.duration,
+          paused: player.paused,
+        };
+        logger.debug(window.location.href, item);
+        this.currentPlayer = player;
+        this.notifyListeners(item, player);
+        playerExtras(item, player);
+        return;
       }
       this.currentPlayer = null;
     }, 1000);
