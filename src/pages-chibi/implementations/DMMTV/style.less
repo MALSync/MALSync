@@ -1,0 +1,49 @@
+@import './../pages';
+
+@boxBackground: #ffffff14;
+@boxFontColor: #fff;
+@boxBorderRadius: 8px;
+@boxHighlightBackground: #ffe900;
+@boxHighlightFontColor: #111;
+@boxLabelFontColor: #b8b8b8;
+@boxOptionsBackground: #202020;
+@boxOptionsFontColor: #fff;
+@activeEp: #ffe900;
+@highlightStyle: 1;
+
+#malp {
+  width: min(720px, calc(100% - 80px));
+  margin: 14px 40px 0;
+  color: #fff;
+  font-size: 14px;
+
+  #MalData {
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .malp-group {
+      min-width: 108px;
+
+      & > .malp-group-field,
+      & > .malp-group-value-section {
+        border: 1px solid #ffffff1f;
+        box-shadow: inset 0 1px 0 #ffffff12;
+        min-height: 30px;
+      }
+
+      & > .malp-group-field:hover,
+      & > .malp-group-value-section:focus-within,
+      & > .malp-group-value-section:hover {
+        background-color: @boxHighlightBackground !important;
+        color: @boxHighlightFontColor !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  #malp {
+    width: calc(100% - 32px);
+    margin-inline: 16px;
+  }
+}

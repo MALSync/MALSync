@@ -1,0 +1,33 @@
+{
+  "title": "DMM TV",
+  "url": "https://tv.dmm.com/",
+  "unreliable": true,
+  "testCases": [
+    {
+      "url": "https://tv.dmm.com/vod/playback/on-demand/?season=na2unvskytbfhm3yzkjan774t&content=fuiad15shn3wv9dzr5o648953",
+      "expected": {
+        "sync": true,
+        "title": "水属性の魔法使い",
+        "identifier": "na2unvskytbfhm3yzkjan774t",
+        "overviewUrl": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t",
+        "episode": 1,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t",
+      "expected": {
+        "sync": false,
+        "title": "水属性の魔法使い",
+        "identifier": "na2unvskytbfhm3yzkjan774t",
+        "image": "https://awsimgsrc.dmm.com/dig/dmmtv/video/na2unvskytbfhm3yzkjan774t/keylogo_1.png",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t&content=fuiad15shn3wv9dzr5o648953",
+          "2": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t&content=jahja423uz3f525uu9g9n8nce",
+          "3": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t&content=1ptv87aer95ze5akkyadhfc7f"
+        }
+      }
+    }
+  ]
+}
