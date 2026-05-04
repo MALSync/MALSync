@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://*/Reader/MangaReader/*", "*://*/Libraries/MangaInfo/*"]
+  }
+}
