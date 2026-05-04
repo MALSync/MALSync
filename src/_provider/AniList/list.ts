@@ -110,76 +110,65 @@ export class UserList extends ListAbstract {
       this.username = await this.getUsername();
     }
 
-    let query = `
-    query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus, $sort: [MediaListSort] ) {
-      Page (page: $page, perPage: 100) {
-        pageInfo {
-          hasNextPage
+    const fields = this.compact
+      ? 'progress media { id idMal }'
+      : `
+        status
+        startedAt {
+          year
+          month
+          day
         }
-        mediaList (status: $status, type: $type, userName: $userName, sort: $sort) {
+        completedAt {
+          year
+          month
+          day
+        }
+        repeat
+        score(format: POINT_100)
+        progress
+        progressVolumes
+        notes
+        media {
+          siteUrl
+          id
+          idMal
+          episodes
+          chapters
+          volumes
           status
-          startedAt {
-            year
-            month
-            day
+          averageScore
+          coverImage{
+            large
+            extraLarge
           }
-          completedAt {
-            year
-            month
-            day
+          bannerImage
+          title {
+            userPreferred
           }
-          repeat
-          score(format: POINT_100)
-          progress
-          progressVolumes
-          notes
-          media {
-            siteUrl
-            id
-            idMal
-            episodes
-            chapters
-            volumes
-            status
-            averageScore
-            coverImage{
-              large
-              extraLarge
-            }
-            bannerImage
-            title {
-              userPreferred
-            }
+        }
+`;
+
+    const query = `
+    query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus, $sort: [MediaListSort], $itemCount: Int ) {
+      MediaListCollection(status: $status, type: $type, userName: $userName, sort: $sort, chunk: $page, perChunk: $itemCount, forceSingleCompletedList: true ) {
+        hasNextChunk
+        lists { 
+          entries {
+            ${fields}
           }
         }
       }
     }
     `;
 
-    if (this.compact) {
-      query = `
-      query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus, $sort: [MediaListSort]) {
-        Page (page: $page, perPage: 100) {
-          pageInfo {
-            hasNextPage
-          }
-          mediaList (status: $status, type: $type, userName: $userName, sort: $sort) {
-            progress
-            media {
-              id
-              idMal
-            }
-          }
-        }
-      }
-      `;
-    }
     const variables = {
       page: this.offset,
       userName: this.username,
       type: this.listType.toUpperCase(),
       status: helper.statusTranslate[parseInt(this.status.toString())],
       sort: null,
+      itemCount: this.modes.frontend && !this.modes.sortAiring ? 50 : 500,
     };
 
     const order = this.getOrder(this.sort);
@@ -191,9 +180,9 @@ export class UserList extends ListAbstract {
 
     return helper.apiCall(query, variables, true).then(res => {
       con.log('res', res);
-      const data = res.data.Page.mediaList;
+      const data = res.data.MediaListCollection.lists.flatMap(list => list.entries);
       this.offset += 1;
-      if (!res.data.Page.pageInfo.hasNextPage) {
+      if (!res.data.MediaListCollection.hasNextChunk) {
         this.done = true;
       }
 
