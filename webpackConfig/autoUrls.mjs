@@ -105,6 +105,49 @@ async function bato() {
   addChibiUrls('bato', formattedUrls, 'mainV3.ts');
 }
 
+async function miruro() {
+  const response = await fetch('https://www.miruro.com/#domains');
+  const body = await response.text();
+
+  const $ = cheerio.load(body);
+
+  const sectionHtml = $('#domains').html() || body;
+
+  const urlMatches = [...sectionHtml.matchAll(/https?:\/\/[^\s\"'<>]+/g)].map(m => m[0]);
+
+  let urls = urlMatches
+    .map(u => {
+      try {
+        return new URL(u);
+      } catch (e) {
+        return null;
+      }
+    })
+    .filter(Boolean);
+
+  if (urls.length === 0) {
+    const domainMatches = [...sectionHtml.matchAll(/([a-z0-9-]+\.)+[a-z]{2,}/gi)].map(m => m[0]);
+    const unique = [...new Set(domainMatches)];
+    urls = unique
+      .map(d => {
+        try {
+          return new URL('https://' + d);
+        } catch (e) {
+          return null;
+        }
+      })
+      .filter(Boolean);
+  }
+
+  let formattedUrls = [];
+  for (const url of urls) {
+    const host = url.hostname.replace(/^www\./i, '');
+    formattedUrls.push('*://*.' + host + '/*');
+  }
+
+  addChibiUrls('Miruro', [...new Set(formattedUrls)]);
+}
+
 async function mangapark() {
   const response = await fetch('https://mangaparkmirrors.pages.dev');
   const body = await response.text();
@@ -289,6 +332,7 @@ async function start() {
     kickassanime,
     animekai,
     bato,
+    miruro,
     mangapark,
   };
 
