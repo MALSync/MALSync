@@ -1676,5 +1676,11 @@
     },
     "settings_chibi_repos_modal_add": {
         "message": "Вы уверены что хотите добавить этот репозиторий?"
+    },
+    "settings_splitTracking": {
+        "message": "Раздельное отслеживание"
+    },
+    "UI_Status_Considering": {
+        "message": "Рассматриваю"
     }
 }

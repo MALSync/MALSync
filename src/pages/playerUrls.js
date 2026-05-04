@@ -562,6 +562,7 @@ module.exports = {
       '*://charlestoughrace.com/e/*',
       '*://timmaybealready.com/e/*',
       '*://richardquestionbuilding.com/e/*',
+      '*://charlessheimprove.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

@@ -139,7 +139,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://v3.animelib.org"><img src="https://favicon.malsync.moe/?domain=https://v3.animelib.org"> AnimeLib</a></td>
+    <td><a href="https://v5.animelib.org"><img src="https://favicon.malsync.moe/?domain=https://v5.animelib.org"> AnimeLib</a></td>
     <td>Russian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -981,6 +981,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://mangaclash.com/"><img src="https://favicon.malsync.moe/?domain=https://mangaclash.com/"> MangaClash</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://demonicscans.org"><img src="https://favicon.malsync.moe/?domain=https://demonicscans.org"> MangaDemon</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -1381,6 +1388,13 @@
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://toonily.com"><img src="https://favicon.malsync.moe/?domain=https://toonily.com"> Toonily</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://manhuatop.org/"><img src="https://favicon.malsync.moe/?domain=https://manhuatop.org/"> TopManhua</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
