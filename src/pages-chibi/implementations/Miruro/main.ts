@@ -2,7 +2,8 @@ import { PageInterface } from '../../pageInterface';
 
 export const Miruro: PageInterface = {
   name: 'Miruro',
-  domain: ['https://www.miruro.to', 'https://www.miruro.tv', 'https://www.miruro.online'],
+  // Add new official domain from https://www.miruro.com/#domains
+  domain: ['https://www.miruro.to', 'https://www.miruro.tv', 'https://www.miruro.online', 'https://www.miruro.bz'],
   languages: ['English'],
   type: 'anime',
   urls: {

@@ -2,6 +2,7 @@ import { PageInterface } from './pageInterface';
 
 import { animeav1 } from './implementations/animeav1/main';
 import { anicrush } from './implementations/anicrush/main';
+import { anikoto } from './implementations/AniKoto/main';
 import { mangaNato } from './implementations/mangaNato/main';
 import { gojo } from './implementations/gojo/main';
 import { animeLib } from './implementations/animeLib/main';
@@ -108,6 +109,7 @@ import { TopManhua } from './implementations/TopManhua/main';
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
   anicrush,
+  anikoto,
   mangaNato,
   gojo,
   animeLib,
