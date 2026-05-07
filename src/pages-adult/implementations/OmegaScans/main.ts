@@ -41,11 +41,11 @@ export const OmegaScans: PageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '#content > div > div > div > img',
+          selector: '#content img',
           mode: 'countAbove',
         },
         total: {
-          selector: '#content > div > div > div > img',
+          selector: '#content img',
           mode: 'count',
         },
       },
