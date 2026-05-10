@@ -147,13 +147,18 @@ export const Atsumaru: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.flex-col > .pb-8').run();
+      return $c.querySelectorAll('.w-full > [class*="md:w"]').run();
     },
     elementUrl($c) {
       return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('.my-auto').text().regex('\\d+').number().run();
+      return $c
+        .coalesce($c.target().find('.my-auto').run(), $c.target().find('.truncate').run())
+        .text()
+        .regex('\\d+')
+        .number()
+        .run();
     },
   },
   lifecycle: {
