@@ -1,3 +1,5 @@
+const { match } = require("assert");
+
 module.exports = {
   openload: {
     match: ['*://*.openload.co/*', '*://*.openload.pw/*'],
@@ -898,4 +900,8 @@ module.exports = {
   allManga: {
     match: ['*://allanime.day/*', '*://allanime.uns.bio/*'],
   },
+  // Re:Anime
+  flixcloud: {
+    match:['*://flixcloud.cc/*'],
+  }
 };
