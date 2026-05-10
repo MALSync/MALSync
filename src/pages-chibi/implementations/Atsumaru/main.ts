@@ -43,7 +43,15 @@ export const Atsumaru: PageInterface = {
             .run(),
           $c
             .querySelectorAll('select option:checked')
-            .arrayFind($text => $text.text().includes('Page').not().run())
+            .arrayFind($text =>
+              $text
+                .setVariable('text')
+                .and(
+                  $c.getVariable('text').type<HTMLElement>().text().includes('Page').not().run(),
+                  $c.getVariable('text').type<HTMLElement>().text().matches('\\d+').run(),
+                )
+                .run(),
+            )
             .text()
             .regex('\\d+')
             .run(),
@@ -139,13 +147,13 @@ export const Atsumaru: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.flex-col > .relative.flex > a').run();
+      return $c.querySelectorAll('.flex-col > .pb-8').run();
     },
     elementUrl($c) {
-      return $c.getAttribute('href').urlAbsolute().run();
+      return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('.truncate').text().regex('\\d+').number().run();
+      return $c.find('.my-auto').text().regex('\\d+').number().run();
     },
   },
   lifecycle: {
