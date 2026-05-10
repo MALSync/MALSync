@@ -975,6 +975,11 @@
     "name": "RezoScans"
   },
   {
+    "domain": "https://sekai.one",
+    "type": "anime",
+    "name": "Sekai"
+  },
+  {
     "domain": "https://ragescans.com",
     "type": "manga",
     "name": "RageScans"
