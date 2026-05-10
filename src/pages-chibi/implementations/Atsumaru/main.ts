@@ -161,12 +161,12 @@ export const Atsumaru: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c.detectChanges($c.title().run(), $c.trigger().run()).domReady().trigger().run();
     },
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('.flex-col.gap-6').ifNotReturn().text().run(),
+          $c.querySelector('.flex-col.w-full').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();
