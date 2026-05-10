@@ -192,9 +192,9 @@ module.exports = {
   streamium: {
     match: ['*://*.streamium.xyz/*'],
   },
-  // AnimeGO
+  // AnimeGO AnimeLib
   kodik: {
-    match: ['*://kodik.info/*'],
+    match: ['*://kodik.info/*', '*://kodikplayer.com/*'],
   },
   // AnimeGO
   aniboom: {
