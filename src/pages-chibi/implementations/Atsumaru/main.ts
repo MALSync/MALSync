@@ -124,6 +124,12 @@ export const Atsumaru: PageInterface = {
             // site using outdated .io domain
             .urlPart(4)
             .run(),
+          mangabakaId: $c
+            .querySelector('a.btn[title*="MangaBaka"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlPart(3)
+            .run(),
         })
         .run();
     },

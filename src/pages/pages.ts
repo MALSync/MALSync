@@ -58,7 +58,6 @@ import { MangaHub } from './MangaHub/main';
 import { Bentomanga } from './Bentomanga/main';
 import { ReadManhua } from './ReadManhua/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
-import { Zoro } from './Zoro/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
 import { BlueSolo } from './BlueSolo/main';
@@ -165,7 +164,6 @@ export const pages = {
   Bentomanga,
   ReadManhua,
   ImmortalUpdates,
-  Zoro,
   LHTranslation,
   MangasOrigines,
   BlueSolo,

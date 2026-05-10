@@ -300,11 +300,6 @@
     "name": "ImmortalUpdates"
   },
   {
-    "domain": "https://hianime.to",
-    "type": "anime",
-    "name": "HiAnime"
-  },
-  {
     "domain": "https://lhtranslation.net",
     "type": "manga",
     "name": "LHTranslation"
@@ -545,7 +540,7 @@
     "name": "Gojo"
   },
   {
-    "domain": "https://v3.animelib.org",
+    "domain": "https://v5.animelib.org",
     "type": "anime",
     "name": "AnimeLib"
   },
@@ -940,6 +935,16 @@
     "name": "Mgeko"
   },
   {
+    "domain": "https://mangaclash.com/",
+    "type": "manga",
+    "name": "MangaClash"
+  },
+  {
+    "domain": "https://manhuatop.org/",
+    "type": "manga",
+    "name": "TopManhua"
+  },
+  {
     "domain": "https://luacomic.org",
     "type": "manga",
     "name": "LuaScans"
@@ -968,6 +973,11 @@
     "domain": "https://rezoscan.org",
     "type": "manga",
     "name": "RezoScans"
+  },
+  {
+    "domain": "https://sekai.one",
+    "type": "anime",
+    "name": "Sekai"
   },
   {
     "domain": "https://ragescans.com",
@@ -1018,6 +1028,16 @@
     "domain": "https://templetoons.com",
     "type": "manga",
     "name": "TempleScan"
+  },
+  {
+    "domain": "https://elftoon.com",
+    "type": "manga",
+    "name": "ElfToon"
+  },
+  {
+    "domain": "https://hianime.to",
+    "type": "anime",
+    "name": "HiAnime"
   },
   {
     "domain": "https://www.team-shadowi.com/",

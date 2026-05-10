@@ -12,6 +12,8 @@ export default {
         | 'anilistUrl'
         | 'kitsuId'
         | 'kitsuUrl'
+        | 'mangabakaId'
+        | 'mangabakaUrl'
         | 'malId'
         | 'malUrl']?: ChibiJson<any>;
     },
@@ -28,6 +30,12 @@ export default {
         urlKey: 'kitsuUrl',
         idKey: 'kitsuId',
         urlTemplate: 'https://kitsu.app/manga/<identifier>',
+      },
+      {
+        provider: 'MANGABAKA',
+        urlKey: 'mangabakaUrl',
+        idKey: 'mangabakaId',
+        urlTemplate: 'https://mangabaka.org/<identifier>',
       },
       {
         provider: 'MAL',

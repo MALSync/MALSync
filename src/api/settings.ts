@@ -57,7 +57,6 @@ export const settingsObj = {
       'MangaFox',
       'MangaSee',
       'MangaFire',
-      'HiAnime',
       'Hulu',
       'Netflix',
       'Hidive',
@@ -67,6 +66,7 @@ export const settingsObj = {
       'WeebCentral',
       'KickAssAnime',
       'animepahe',
+      'AnimeKAI',
     ],
     quicklinksPosition: 'default',
 

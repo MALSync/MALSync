@@ -3,6 +3,7 @@ import { PageInterface } from '../../pageInterface';
 
 export const AnimeKAI: PageInterface = {
   name: 'AnimeKAI',
+  database: 'AnimeKAI',
   type: 'anime',
   domain: 'https://animekai.to',
   languages: ['English'],
