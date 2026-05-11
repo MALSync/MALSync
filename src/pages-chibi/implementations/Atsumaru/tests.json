@@ -87,6 +87,20 @@
           "256": "https://atsu.moe/read/v8Kbg/hMWr9"
         }
       }
+    },
+    {
+      "url": "https://atsu.moe/manga/1HCA",
+      "expected": {
+        "sync": false,
+        "title": "Sand Mage of the Burnt Desert",
+        "identifier": "1HCA",
+        "image": "https://atsu.moe/static/posters/TKzki9XinBVjC3GQ-large.webp",
+        "uiSelector": true,
+        "epList": {
+          "7": "https://atsu.moe/read/1HCA/qELIni",
+          "10": "https://atsu.moe/read/1HCA/PW5MQZ"
+        }
+      }
     }
   ]
 }

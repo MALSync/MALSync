@@ -150,11 +150,18 @@ export const Atsumaru: PageInterface = {
       return $c.querySelectorAll('.w-full > [class*="md:w"]').run();
     },
     elementUrl($c) {
-      return $c.find('a').getAttribute('href').urlAbsolute().run();
+      return $c.find('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
       return $c
-        .coalesce($c.target().find('.my-auto').run(), $c.target().find('.truncate').run())
+        .coalesce(
+          $c
+            .target()
+            .findAll('.my-auto')
+            .arrayFind($item => $item.text().matches('\\d+').run())
+            .run(),
+          $c.target().find('.truncate').run(),
+        )
         .text()
         .regex('\\d+')
         .number()
