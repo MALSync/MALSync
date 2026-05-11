@@ -51,7 +51,9 @@ export default {
     for (const config of providerConfig) {
       if (provider[config.idKey] || provider[config.urlKey]) {
         let providerFn: ChibiGenerator<any> =
-          config.provider === 'MAL' ? $c : $c.provider().equals(config.provider).ifNotReturn();
+          config.provider === 'MAL'
+            ? $c
+            : $c.getVariable('provider', null).equals(config.provider).ifNotReturn();
 
         if (provider[config.urlKey]) {
           providerFn = providerFn.fn(provider[config.urlKey]).ifThen($c => $c.return().run());

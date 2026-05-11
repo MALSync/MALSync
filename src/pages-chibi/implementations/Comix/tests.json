@@ -3,39 +3,41 @@
   "url": "https://comix.to/",
   "testCases": [
     {
-      "url": "https://comix.to/title/3z2z2-reincarnated-as-a-sword/2734337-chapter-84",
+      "url": "https://comix.to/title/3z2z2-i-was-a-sword-when-i-reincarnated-mangatoon/2734337-chapter-84",
       "expected": {
         "sync": true,
-        "title": "Reincarnated as a Sword",
+        "title": "I Was a Sword When I Reincarnated (MangaToon)",
         "identifier": "3z2z2",
-        "image": "https://static.mfcdn.cc/a0bb/i/f/a0/68dec74db0a14.jpg",
-        "overviewUrl": "https://comix.to/title/3z2z2-reincarnated-as-a-sword",
+        "image": "https://80pd.wowpic2.store/ii/bEqPbYfoNT0GmxHlOj6frD5cxq0pZ/01.webp",
+        "overviewUrl": "https://comix.to/title/3z2z2-i-was-a-sword-when-i-reincarnated-mangatoon",
         "episode": 84,
+        "nextEpUrl": "https://comix.to/title/3z2z2-i-was-a-sword-when-i-reincarnated-mangatoon/1679858-chapter-85",
         "uiSelector": false
       }
     },
     {
-      "url": "https://comix.to/title/3z2z2-reincarnated-as-a-sword/1679664-chapter-84",
+      "url": "https://comix.to/title/3z2z2-i-was-a-sword-when-i-reincarnated-mangatoon/1679664-chapter-84",
       "expected": {
         "sync": true,
-        "title": "Reincarnated as a Sword",
+        "title": "I Was a Sword When I Reincarnated (MangaToon)",
         "identifier": "3z2z2",
-        "image": "https://static.mfcdn.cc/a0bb/i/f/a0/68dec74db0a14.jpg",
-        "overviewUrl": "https://comix.to/title/3z2z2-reincarnated-as-a-sword",
+        "image": "https://80pd.wowpic2.store/ii/bEqPbYfoNT0GmxHlOj6frD5cxq0pZ/01.webp",
+        "overviewUrl": "https://comix.to/title/3z2z2-i-was-a-sword-when-i-reincarnated-mangatoon",
         "episode": 84,
+        "nextEpUrl": "https://comix.to/title/3z2z2-i-was-a-sword-when-i-reincarnated-mangatoon/1679858-chapter-85",
         "uiSelector": false
       }
     },
     {
-      "url": "https://comix.to/title/3z2z2-reincarnated-as-a-sword",
+      "url": "https://comix.to/title/3z2z2-i-was-a-sword-when-i-reincarnated-mangatoon",
       "expected": {
         "sync": false,
-        "title": "Reincarnated as a Sword",
+        "title": "I Was a Sword When I Reincarnated (MangaToon)",
         "identifier": "3z2z2",
-        "image": "https://static.mfcdn.cc/a0bb/i/f/a0/68dec74db0a14.jpg",
+        "image": "https://static.comix.to/bfbe/i/f/a0/68dec74db0a14@280.jpg",
         "uiSelector": true,
         "epList": {
-          "84": "https://comix.to/title/3z2z2-reincarnated-as-a-sword/1679664-chapter-84"
+          "84": "https://comix.to/title/3z2z2-i-was-a-sword-when-i-reincarnated-mangatoon/1679664-chapter-84"
         }
       }
     }
