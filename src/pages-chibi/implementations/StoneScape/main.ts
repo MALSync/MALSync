@@ -20,23 +20,16 @@ export const StoneScape: PageInterface = {
         .run();
     },
     getTitle($c) {
-      const filter = $f =>
-        $f.getAttribute('href').contains($c.this('sync.getIdentifier').run()).run();
       return $c
-        .coalesce(
-          $c.querySelectorAll('.breadcrumb a').arrayFind(filter).text().run(),
-          $c.title().split('Chapter').at(0).run(),
-        )
-        .replaceRegex(' • StoneScape', '')
+        .querySelector('[class*="navbar-title"]')
+        .ifNotReturn()
+        .text()
         .replaceLinebreaks()
         .trim()
         .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
-    },
-    getImage($c) {
-      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     getOverviewUrl($c) {
       return $c
@@ -46,25 +39,19 @@ export const StoneScape: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c
-        .coalesce($c.url().urlPart(5).regex('ch[_-](\\d+)', 1).number().run())
-        .ifNotReturn()
-        .run();
-    },
-    nextEpUrl($c) {
-      return $c.querySelector('a.next_page').getAttribute('href').ifNotReturn().urlAbsolute().run();
+      return $c.url().urlPart(5).regex('ch[_-](\\d+)', 1).number().run();
     },
     readerConfig: [
       {
-        condition: $c => $c.querySelector('#single-pager').boolean().run(),
+        condition: $c => $c.querySelector('[class*="page-counter"]').boolean().run(),
         current: $c =>
-          $c.querySelector('#single-pager [selected]').text().regex('(\\d+)/', 1).number().run(),
+          $c.querySelector('[class*="page-counter"]').text().regex('(\\d+)\\s*/', 1).number().run(),
         total: $c =>
-          $c.querySelector('#single-pager option').text().regex('/(\\d+)', 1).number().run(),
+          $c.querySelector('[class*="page-counter"]').text().regex('/\\s*(\\d+)', 1).number().run(),
       },
       {
-        current: $c => $c.querySelectorAll('.reading-content img').countAbove().run(),
-        total: $c => $c.querySelectorAll('.reading-content img').length().run(),
+        current: $c => $c.querySelectorAll('[class*="page-image"]').countAbove().run(),
+        total: $c => $c.querySelectorAll('[class*="page-image"]').length().run(),
       },
     ],
   },
@@ -79,24 +66,29 @@ export const StoneScape: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').text().replaceLinebreaks().trim().run();
+      return $c.querySelector('main h1').text().replaceLinebreaks().trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
-      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+      return $c
+        .querySelector('img[src*="covers"]')
+        .ifNotReturn()
+        .getAttribute('src')
+        .urlAbsolute()
+        .run();
     },
     uiInjection($c) {
-      return $c.querySelector('.page-content-listing').uiBefore().run();
+      return $c.querySelector('main h1').next().uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.listing-chapters_wrap .wp-manga-chapter').run();
+      return $c.querySelectorAll('[class*="chapter-grid"] a').run();
     },
     elementUrl($c) {
-      return $c.find('a').getAttribute('href').urlAbsolute().run();
+      return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
       return $c.this('list.elementUrl').this('sync.getEpisode').run();
@@ -111,14 +103,16 @@ export const StoneScape: PageInterface = {
     },
     overviewIsReady($c) {
       return $c
-        .waitUntilTrue($c.querySelector('#manga-chapters-holder').find('div').isNil().not().run())
+        .waitUntilTrue($c.querySelector('[class*="chapter-grid"]').boolean().run())
         .trigger()
         .run();
     },
-    syncIsReady($c) {
+    listChange($c) {
       return $c
-        .waitUntilTrue($c.querySelector('#manga-reading-nav-head').isNil().not().run())
-        .trigger()
+        .detectChanges(
+          $c.querySelector('[class*="chapter-grid"]').ifNotReturn().text().run(),
+          $c.trigger().run(),
+        )
         .run();
     },
   },
