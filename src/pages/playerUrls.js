@@ -891,6 +891,9 @@ module.exports = {
   zencloud: {
     match: ['*://zencloudz.cc/*'],
   },
+  flixcloud: {
+    match:['*://flixcloud.cc/*'],
+  },
   kumi: {
     match: ['*://*.playerp2p.live/*', '*://*.rpmvip.com/*'],
   },
@@ -900,8 +903,4 @@ module.exports = {
   allManga: {
     match: ['*://allanime.day/*', '*://allanime.uns.bio/*'],
   },
-  // Re:Anime
-  flixcloud: {
-    match:['*://flixcloud.cc/*'],
-  }
 };
