@@ -41,5 +41,5 @@
 // Comix uses nested row wrappers; add explicit highlight rules so read chapters are clearly visible.
 .mchap-list > li.mchap-item.mal-sync-active {
   border-left: 4px solid var(--bs-primary) !important;
-  background-color: color-mix(in srgb, var(--surface) 85%, var(--accent) 15%) !important;
+  background-color: color-mix(in srgb, var(--surface, var(--bs-body-bg, #fff)) 85%, var(--accent, var(--bs-primary)) 15%) !important;
 }

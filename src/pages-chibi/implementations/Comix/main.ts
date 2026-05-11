@@ -44,9 +44,9 @@ export const Comix: PageInterface = {
     getImage($c) {
       return $c
         .coalesce(
-          $c.querySelector('main img[alt]').getAttribute('src').ifNotReturn().run(),
-          $c.querySelector('meta[property="og:image"]').getAttribute('content').ifNotReturn().run(),
-          $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run(),
+          $c.querySelector('main img[alt]').ifNotReturn().getAttribute('src').ifNotReturn().run(),
+          $c.querySelector('meta[property="og:image"]').ifNotReturn().getAttribute('content').ifNotReturn().run(),
+          $c.querySelector('[itemprop="image"]').ifNotReturn().getAttribute('src').ifNotReturn().run(),
         )
         .run();
     },
@@ -58,6 +58,7 @@ export const Comix: PageInterface = {
               getSyncData($c).get('mal_id').number().ifNotReturn().run(),
               $c
                 .querySelector('a[href*="myanimelist.net/manga/"]')
+                .ifNotReturn()
                 .getAttribute('href')
                 .regex('/manga/(\\d+)', 1)
                 .number()
@@ -70,6 +71,7 @@ export const Comix: PageInterface = {
               getSyncData($c).get('anilist_id').number().ifNotReturn().run(),
               $c
                 .querySelector('a[href*="anilist.co/manga/"]')
+                .ifNotReturn()
                 .getAttribute('href')
                 .regex('/manga/(\\d+)', 1)
                 .number()
@@ -97,6 +99,7 @@ export const Comix: PageInterface = {
         .coalesce(
           getSyncData($c)
             .get('next_chapter_url')
+            .ifNotReturn()
             .string()
             .replaceRegex('^(https?:\\/\\/comix\\.to)+', 'https://comix.to')
             .ifNotReturn()
@@ -104,6 +107,7 @@ export const Comix: PageInterface = {
           getSyncData($c).get('next_url').ifNotReturn().string().urlAbsolute().run(),
           $c
             .querySelector('link[rel="next"]')
+            .ifNotReturn()
             .getAttribute('href')
             .ifNotReturn()
             .urlAbsolute()
@@ -178,7 +182,7 @@ export const Comix: PageInterface = {
       return $c
         .waitUntilTrue(
           $c
-            .querySelector('.mchap-list > li.mchap-item, .chap-list > li:not(.head)')
+            .querySelector('.mchap-list > li.mchap-item')
             .boolean()
             .run(),
         )
