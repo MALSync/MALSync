@@ -9,7 +9,7 @@ export const Comix: PageInterface = {
   urls: {
     match: ['*://comix.to/*'],
   },
-  search: 'https://comix.to/browser?keyword={searchtermPlus}&order=relevance%3Adesc',
+  search: 'https://comix.to/browse?q={searchtermPlus}&sort=relevance%3Adesc',
   sync: {
     isSyncPage($c) {
       return $c

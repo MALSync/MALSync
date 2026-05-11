@@ -767,9 +767,9 @@
     <td><a href="https://comix.to"><img src="https://favicon.malsync.moe/?domain=https://comix.to"> Comix</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
     <td>:x:</td>
-    <td>:x:</td>
-    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://danke.moe/"><img src="https://favicon.malsync.moe/?domain=https://danke.moe/"> DankefürsLesen</a></td>
     <td>English</td>
