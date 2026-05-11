@@ -30,11 +30,11 @@
         "sync": false,
         "title": "The Knight Only Lives Today",
         "identifier": "3xHoW",
-        "image": "https://atsu.moe/static/posters/x1BERFcIuUolgTbf-large.webp",
+        "image": "https://atsu.moe/static/posters/3Pe8J1zAEnTA0UeP-large.webp",
         "uiSelector": true,
         "epList": {
-          "95": "https://atsu.moe/read/3xHoW/imn_RA",
-          "92": "https://atsu.moe/read/3xHoW/sm9n8t"
+          "105": "https://atsu.moe/read/3xHoW/Eh9n_e",
+          "109": "https://atsu.moe/read/3xHoW/LUlbCv"
         }
       }
     },
@@ -55,10 +55,10 @@
         "sync": false,
         "title": "An Adventurer’s Daily Grind at Age 29",
         "identifier": "QFGPm",
-        "image": "https://atsu.moe/static/posters/Hck4Ei0yjYfxe8Wk-large.webp",
+        "image": "https://atsu.moe/static/posters/SDmngWQUCdlSZTVk-large.webp",
         "uiSelector": true,
         "epList": {
-          "4": "https://atsu.moe/read/QFGPm/YoxU9YZh",
+          "4": "https://atsu.moe/read/QFGPm/4tWtoskw",
           "76": "https://atsu.moe/read/QFGPm/xBiS7"
         }
       }
@@ -80,11 +80,11 @@
         "sync": false,
         "title": "Sakamoto Days",
         "identifier": "v8Kbg",
-        "image": "https://atsu.moe/static/posters/L86QVtl90AthPz6V-large.webp",
+        "image": "https://atsu.moe/static/posters/n6oo6UH4grMnLAow-large.webp",
         "uiSelector": true,
         "epList": {
-          "249": "https://atsu.moe/read/v8Kbg/Wzgml",
-          "248": "https://atsu.moe/read/v8Kbg/AhA8b"
+          "258": "https://atsu.moe/read/v8Kbg/CKvz2",
+          "256": "https://atsu.moe/read/v8Kbg/hMWr9"
         }
       }
     }

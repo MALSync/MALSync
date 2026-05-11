@@ -43,7 +43,15 @@ export const Atsumaru: PageInterface = {
             .run(),
           $c
             .querySelectorAll('select option:checked')
-            .arrayFind($text => $text.text().includes('Page').not().run())
+            .arrayFind($text =>
+              $text
+                .setVariable('text')
+                .and(
+                  $c.getVariable('text').type<HTMLElement>().text().includes('Page').not().run(),
+                  $c.getVariable('text').type<HTMLElement>().text().matches('\\d+').run(),
+                )
+                .run(),
+            )
             .text()
             .regex('\\d+')
             .run(),
@@ -139,13 +147,18 @@ export const Atsumaru: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.flex-col > .relative.flex > a').run();
+      return $c.querySelectorAll('.w-full > [class*="md:w"]').run();
     },
     elementUrl($c) {
-      return $c.getAttribute('href').urlAbsolute().run();
+      return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('.truncate').text().regex('\\d+').number().run();
+      return $c
+        .coalesce($c.target().find('.my-auto').run(), $c.target().find('.truncate').run())
+        .text()
+        .regex('\\d+')
+        .number()
+        .run();
     },
   },
   lifecycle: {
@@ -153,12 +166,12 @@ export const Atsumaru: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c.detectChanges($c.title().run(), $c.trigger().run()).domReady().trigger().run();
     },
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('.flex-col.gap-6').ifNotReturn().text().run(),
+          $c.querySelector('.flex-col.w-full').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();
