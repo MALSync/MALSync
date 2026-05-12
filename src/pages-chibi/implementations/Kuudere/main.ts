@@ -19,12 +19,7 @@ export const Kuudere: PageInterface = {
       return $c.url().contains('/watch/').run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('div.watch-info-enter p.line-clamp-2, div.watch-info-enter p.text-xs')
-        .ifNotReturn()
-        .text()
-        .trim()
-        .run();
+      return $c.querySelector('h2[title]').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).ifNotReturn().split('-').last().run();
@@ -71,26 +66,6 @@ export const Kuudere: PageInterface = {
     setup($c) {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
-
-    overviewIsReady($c) {
-      return $c
-        .waitUntilTrue($c.querySelector('h1.font-bold.text-white').boolean().run())
-        .trigger()
-        .run();
-    },
-
-    syncIsReady($c) {
-      return $c
-        .waitUntilTrue(
-          $c
-            .querySelector('div.watch-info-enter p.line-clamp-2, div.watch-info-enter p.text-xs')
-            .boolean()
-            .run(),
-        )
-        .trigger()
-        .run();
-    },
-
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
