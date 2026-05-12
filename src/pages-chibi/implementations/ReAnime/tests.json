@@ -1,0 +1,32 @@
+{
+  "title": "ReAnime",
+  "url": "https://reanime.to",
+  "testCases": [
+    {
+      "url": "https://reanime.to/watch/one-piece-xamk74?ep=1149",
+      "expected": {
+        "sync": true,
+        "title": "ONE PIECE",
+        "identifier": "one-piece-xamk74",
+        "overviewUrl": "https://reanime.to/anime/one-piece-one-piece-xamk74",
+        "episode": 1149,
+        "nextEpUrl": "https://reanime.to/watch/one-piece-xamk74?ep=1150",
+        "uiSelector": true,
+        "epList": {
+          "1149": "https://reanime.to/watch/one-piece-xamk74?ep=1149",
+          "1148": "https://reanime.to/watch/one-piece-xamk74?ep=1148"
+        }
+      }
+    },
+    {
+      "url": "https://reanime.to/anime/the-rising-of-the-shield-hero-tate-no-yuusha-no-nariagari-ggb3nd",
+      "expected": {
+        "sync": false,
+        "title": "The Rising of the Shield Hero",
+        "identifier": "the-rising-of-the-shield-hero-tate-no-yuusha-no-nariagari-ggb3nd",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx99263-LcazQwdlWzMy.jpg",
+        "uiSelector": true
+      }
+    }
+  ]
+}

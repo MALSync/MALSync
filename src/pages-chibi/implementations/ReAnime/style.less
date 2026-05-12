@@ -1,0 +1,55 @@
+@import './../pages';
+
+@boxBackground: rgb(0, 0, 0);
+@highlightStyle: 0;
+
+#malp {
+  align-self: flex-start;
+  #MalData {
+    .malp-group {
+      .malp-group-field {
+        box-shadow: none;
+      }
+      .malp-group-field:not(.malp-group-input),
+      .malp-group-value-section {
+        border: 1px solid var(--color-zinc-700) !important;
+        border-radius: var(--radius-md);
+      }
+      .malp-group-field:hover:not(.malp-mal-add),
+      .malp-group-value-section:hover,
+      .malp-group-value-section:focus-within {
+        background-color: var(--color-zinc-800) !important;
+        transition: 0.15s;
+      }
+      .malp-mal-add {
+        background-color: var(--color-gray-200) !important;
+        color: var(--color-black) !important;
+      }
+      .malp-mal-add:hover {
+        scale: 105% 105%;
+        transition: 0.15s;
+      }
+      #malRating {
+        background-color: #fb2c361a !important;
+        color: var(--color-red-500) !important;
+        border: 1px solid var(--color-red-500) !important;
+      }
+      #malRating:hover {
+        background-color: color-mix(in oklab, var(--color-red-500) 20%, transparent) !important;
+        scale: 105% 105%;
+        transition: 0.3s;
+      }
+      option {
+        background-color: var(--color-zinc-800) !important;
+      }
+    }
+  }
+}
+
+.mal-sync-active:not(.gap-3) {
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-red-500) 30%, transparent);
+}
+
+.mal-sync-active.gap-3 {
+  border-right: 5px solid var(--color-red-500);
+}
