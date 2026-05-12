@@ -1,5 +1,3 @@
-const { match } = require("assert");
-
 module.exports = {
   openload: {
     match: ['*://*.openload.co/*', '*://*.openload.pw/*'],
@@ -890,9 +888,6 @@ module.exports = {
   // kuudere
   zencloud: {
     match: ['*://zencloudz.cc/*'],
-  },
-  flixcloud: {
-    match:['*://flixcloud.cc/*'],
   },
   kumi: {
     match: ['*://*.playerp2p.live/*', '*://*.rpmvip.com/*'],
