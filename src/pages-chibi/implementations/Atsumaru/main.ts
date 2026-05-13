@@ -30,7 +30,11 @@ export const Atsumaru: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c.querySelector('a[href^="/manga/"]').getAttribute('href').urlAbsolute().run();
+      return $c
+        .string('/manga/<identifier>')
+        .replace('<identifier>', $c.this('sync.getIdentifier').run())
+        .urlAbsolute()
+        .run();
     },
     getEpisode($c) {
       return $c
@@ -47,7 +51,12 @@ export const Atsumaru: PageInterface = {
               $text
                 .setVariable('text')
                 .and(
-                  $c.getVariable('text').type<HTMLElement>().text().includes('Page').not().run(),
+                  $c
+                    .getVariable('text')
+                    .type<HTMLElement>()
+                    .getAttribute('value')
+                    .matches('\\b(?!\\d+\\b)\\w+')
+                    .run(),
                   $c.getVariable('text').type<HTMLElement>().text().matches('\\d+').run(),
                 )
                 .run(),
@@ -55,6 +64,7 @@ export const Atsumaru: PageInterface = {
             .text()
             .regex('\\d+')
             .run(),
+          $c.title().regex('\\d+').run(),
         )
         .number()
         .run();
@@ -66,7 +76,7 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        condition: $c => $c.querySelector('[id*="atsu-page-group"]').boolean().run(),
+        condition: $c => $c.querySelector('option[value="0"]').boolean().run(),
         // I use arrayFind in case it read chapter number instead
         current: $c =>
           $c
@@ -77,6 +87,23 @@ export const Atsumaru: PageInterface = {
             .number()
             .run(),
         total: $c => $c.querySelectorAll('.z-1 img').length().run(),
+      },
+      {
+        condition: $c =>
+          $c
+            .querySelectorAll('style')
+            .arrayFind($style => $style.html().matches('#atsu-page-group').run())
+            .boolean()
+            .run(),
+        current: $c =>
+          $c
+            .querySelectorAll('style')
+            .arrayFind($style => $style.text().matches('#atsu-page-group').run())
+            .html()
+            .regex('#atsu-page-group-(\\d+)', 1)
+            .number()
+            .run(),
+        total: $c => $c.querySelectorAll('[id*="atsu-page-group"]').length().run(),
       },
       {
         current: $c =>
@@ -173,7 +200,12 @@ export const Atsumaru: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectChanges($c.title().run(), $c.trigger().run()).domReady().trigger().run();
+      return $c
+        .detectChanges($c.url().urlPart(5).run(), $c.trigger().run())
+        .detectChanges($c.url().urlPart(4).run(), $c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
     },
     listChange($c) {
       return $c
