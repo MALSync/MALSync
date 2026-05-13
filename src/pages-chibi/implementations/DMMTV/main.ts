@@ -15,17 +15,29 @@ export const DMMTV: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(3).equals('vod').run(),
-          $c.url().urlPart(4).equals('playback').run(),
-          $c.url().urlParam('season').boolean().run(),
-          $c.url().urlParam('content').boolean().run(),
+        .or(
+          $c
+            .and(
+              $c.url().urlPart(3).equals('vod').run(),
+              $c.url().urlPart(4).equals('playback').run(),
+              $c.url().urlParam('season').boolean().run(),
+              $c.url().urlParam('content').boolean().run(),
+            )
+            .run(),
+          $c
+            .and(
+              $c.url().urlPart(3).equals('vod').run(),
+              $c.url().urlPart(4).equals('detail').run(),
+              $c.url().urlParam('season').boolean().run(),
+              $c.url().urlParam('content').boolean().run(),
+            )
+            .run(),
         )
         .run();
     },
     getTitle($c) {
       return pageTitle($c)
-        .replaceRegex('\\s+第\\d+話.*$', '')
+        .replaceRegex('\\s+(?:第\\d+話|#\\d+).*$', '')
         .replaceRegex('\\s+\\(アニメ/\\d{4}年\\).*$', '')
         .trim()
         .run();
@@ -40,7 +52,7 @@ export const DMMTV: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return pageTitle($c).regex('第(\\d+)話', 1).number().run();
+      return pageTitle($c).regex('(?:第|#)\\s*(\\d+)(?:話)?', 1).number().run();
     },
     uiInjection($c) {
       return $c.querySelector('body').uiAppend().run();
@@ -57,7 +69,21 @@ export const DMMTV: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return getJsonData($c).get('name').string().trim().run();
+      return $c
+        .coalesce(
+          $c
+            .querySelector('#detail-header span.mr-2')
+            .text()
+            .trim()
+            .regex(
+              '^(.+(?:\\d+(?:st|nd|rd|th)\\s+[Ss]eason|[Ss]eason\\s*\\d+|第\\d+期|シーズン\\s*\\d+).*)$',
+              1,
+            )
+            .run(),
+          $c.querySelector('h1').text().trim().run(),
+          getJsonData($c).get('name').string().trim().run(),
+        )
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlParam('season').string().run();
@@ -77,7 +103,7 @@ export const DMMTV: PageInterface = {
       return $c.getAttribute('href').urlAbsolute(domain).run();
     },
     elementEp($c) {
-      return $c.text().regex('第(\\d+)話', 1).number().run();
+      return $c.text().regex('(?:第|#)\\s*(\\d+)(?:話)?', 1).number().run();
     },
   },
   lifecycle: {
@@ -85,7 +111,12 @@ export const DMMTV: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectChanges($c.title().run(), $c.trigger().run()).domReady().trigger().run();
+      return $c
+        .detectURLChanges($c.trigger().run(), { ignoreQuery: false, ignoreAnchor: true })
+        .detectChanges($c.title().run(), $c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
     },
     overviewIsReady($c) {
       return $c.waitUntilTrue($c.querySelector('h1').boolean().run()).trigger().run();

@@ -15,6 +15,17 @@
       }
     },
     {
+      "url": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t&content=fuiad15shn3wv9dzr5o648953",
+      "expected": {
+        "sync": true,
+        "title": "水属性の魔法使い",
+        "identifier": "na2unvskytbfhm3yzkjan774t",
+        "overviewUrl": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t",
+        "episode": 1,
+        "uiSelector": true
+      }
+    },
+    {
       "url": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t",
       "expected": {
         "sync": false,
@@ -26,6 +37,34 @@
           "1": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t&content=fuiad15shn3wv9dzr5o648953",
           "2": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t&content=jahja423uz3f525uu9g9n8nce",
           "3": "https://tv.dmm.com/vod/detail/?season=na2unvskytbfhm3yzkjan774t&content=1ptv87aer95ze5akkyadhfc7f"
+        }
+      }
+    },
+    {
+      "url": "https://tv.dmm.com/vod/detail/?season=97soz44nrkr9d79001ub8y53p",
+      "expected": {
+        "sync": false,
+        "title": "異世界でチート能力を手にした俺は、現実世界をも無双する ～レベルアップは人生を変えた～",
+        "identifier": "97soz44nrkr9d79001ub8y53p",
+        "image": "https://awsimgsrc.dmm.com/dig/dmmtv/video/97soz44nrkr9d79001ub8y53p/keylogo_1.png",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://tv.dmm.com/vod/detail/?season=97soz44nrkr9d79001ub8y53p&content=b2h23ap9qpn9pb5c0mveeou3x"
+        }
+      }
+    },
+    {
+      "url": "https://tv.dmm.com/vod/detail/?season=ntv80vbyn5b9222yjji2czv3m",
+      "expected": {
+        "sync": false,
+        "title": "自動販売機に生まれ変わった俺は迷宮を彷徨う 3rd season",
+        "identifier": "ntv80vbyn5b9222yjji2czv3m",
+        "image": "https://awsimgsrc.dmm.com/dig/dmmtv/video/ntv80vbyn5b9222yjji2czv3m/keylogo_1.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://tv.dmm.com/vod/detail/?season=ntv80vbyn5b9222yjji2czv3m&content=u2u04a3qk96f4c3o18t5j3hpu",
+          "2": "https://tv.dmm.com/vod/detail/?season=ntv80vbyn5b9222yjji2czv3m&content=emkcg3dwd8w1etaxwiqaoqkkm",
+          "3": "https://tv.dmm.com/vod/detail/?season=ntv80vbyn5b9222yjji2czv3m&content=ijpt8e5ktj6xvy0gwkee2g6o3"
         }
       }
     }
