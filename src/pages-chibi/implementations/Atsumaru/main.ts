@@ -64,7 +64,7 @@ export const Atsumaru: PageInterface = {
             .text()
             .regex('\\d+')
             .run(),
-          $c.title().regex('\\d+').run(),
+          $c.title().regex('-\\s+\\w*\\s+(\\d+)', 1).run(),
         )
         .number()
         .run();
