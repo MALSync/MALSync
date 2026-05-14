@@ -79,7 +79,7 @@ export const Kanae: PageInterface = {
         .run();
     },
     overviewIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('h1').boolean().run()).trigger().run();
+      return $c.waitUntilTrue($c.querySelector('a.group.shrink-0').boolean().run()).trigger().run();
     },
   },
 };

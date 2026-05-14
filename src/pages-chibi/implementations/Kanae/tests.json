@@ -1,6 +1,7 @@
 {
   "title": "Kanae",
   "url": "https://kanae.to",
+  "unreliable": true,
   "testCases": [
     {
       "url": "https://kanae.to/series/019e125e-f925-7ac6-aba7-d656fc82e9c4/watch/019e2755-6d44-77a8-b1b8-ec419f5c5e6a",
