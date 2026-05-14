@@ -102,6 +102,7 @@ import { MangaRead } from './MangaRead/main';
 import { Kavita } from './Kavita/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
+import { AnimeSuge } from './AnimeSuge/main';
 
 export const pages = {
   Mangadex,
@@ -208,4 +209,5 @@ export const pages = {
   Kavita,
   Aninexus,
   AniDream,
+  AnimeSuge,
 };

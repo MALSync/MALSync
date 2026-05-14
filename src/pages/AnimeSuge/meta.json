@@ -1,0 +1,9 @@
+{
+  "search": "https://animesuge.cz/filter?keyword={searchtermPlus}",
+  "urls": {
+    "match": [
+      "*://animesuge.cz/anime/*",
+      "*://animesuge.cz/watch/*"
+    ]
+  }
+}

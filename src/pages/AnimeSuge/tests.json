@@ -1,0 +1,30 @@
+{
+  "title": "AnimeSuge",
+  "url": "https://animesuge.cz/",
+  "testCases": [
+    {
+      "url": "https://animesuge.cz/anime/naruto",
+      "expected": {
+        "sync": false,
+        "title": "Naruto",
+        "identifier": "naruto",
+        "uiSelector": true,
+        "epList": {
+          "220": "https://animesuge.cz/watch/naruto?ep=220"
+        }
+      }
+    },
+    {
+      "url": "https://animesuge.cz/watch/naruto?ep=1",
+      "expected": {
+        "sync": true,
+        "title": "Naruto",
+        "identifier": "naruto",
+        "episode": 1,
+        "overviewUrl": "https://animesuge.cz/anime/naruto",
+        "nextEpUrl": "https://animesuge.cz/watch/naruto?ep=2",
+        "uiSelector": false
+      }
+    }
+  ]
+}

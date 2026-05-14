@@ -520,6 +520,11 @@
     "name": "AniDream"
   },
   {
+    "domain": "https://animesuge.cz",
+    "type": "anime",
+    "name": "AnimeSuge"
+  },
+  {
     "domain": "https://animeav1.com",
     "type": "anime",
     "name": "Animeav1"
