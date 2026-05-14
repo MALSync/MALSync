@@ -20,7 +20,10 @@
         "title": "Petals of Reincarnation",
         "identifier": "019e125e-f925-7ac6-aba7-d656fc82e9c4",
         "image": "https://yuzuki.kagane.org/api/v2/image/019e125e-f6fc-73c3-9a63-b4603fab6503/compressed",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "1": "https://kanae.to/series/019e125e-f925-7ac6-aba7-d656fc82e9c4/watch/019e125f-206b-7757-bc0a-e83bd5e9363c"
+        }
       }
     }
   ]

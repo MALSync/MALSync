@@ -22,7 +22,13 @@ export const Kanae: PageInterface = {
       return $c.string('/series/').concat($c.this('sync.getIdentifier').run()).urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.querySelector('nav span.font-medium').text().trim().regex('E(\\d+)', 1).number().run();
+      return $c
+        .querySelector('nav span.font-medium')
+        .text()
+        .trim()
+        .regex('E(\\d+)', 1)
+        .number()
+        .run();
     },
     getImage($c) {
       return $c.querySelector('img[alt]:not([alt=""])').getAttribute('src').ifNotReturn().run();
@@ -31,10 +37,7 @@ export const Kanae: PageInterface = {
   overview: {
     isOverviewPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(3).equals('series').run(),
-          $c.url().urlPart(5).boolean().not().run(),
-        )
+        .and($c.url().urlPart(3).equals('series').run(), $c.url().urlPart(5).boolean().not().run())
         .run();
     },
     getTitle($c) {
