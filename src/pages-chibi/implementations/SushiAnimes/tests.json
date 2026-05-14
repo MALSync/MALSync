@@ -1,0 +1,39 @@
+{
+  "title": "SushiAnimes",
+  "url": "https://sushianimes.com.br/",
+  "testCases": [
+    {
+      "url": "https://sushianimes.com.br/anime/texhnolyze-988-1-season-3-episode",
+      "expected": {
+        "sync": true,
+        "title": "Texhnolyze",
+        "identifier": "988",
+        "overviewUrl": "https://sushianimes.com.br/anime/texhnolyze-988",
+        "nextEpUrl": "https://sushianimes.com.br/anime/texhnolyze-988-1-season-4-episode?page=1",
+        "episode": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://sushianimes.com.br/filme/byousoku-5-centimeter-974",
+      "expected": {
+        "sync": true,
+        "title": "Byousoku 5 Centimeter",
+        "identifier": "974",
+        "overviewUrl": "https://sushianimes.com.br/assistir/texhnolyze-988",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://sushianimes.com.br/anime/texhnolyze-988",
+      "expected": {
+        "sync": false,
+        "title": "Texhnolyze",
+        "identifier": "988",
+        "image": "https://sushianimes.com.br/public/upload/cover/texhnolyze.webp",
+        "uiSelector": true
+      }
+    }
+  ]
+}
