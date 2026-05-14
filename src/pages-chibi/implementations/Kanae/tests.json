@@ -1,0 +1,27 @@
+{
+  "title": "Kanae",
+  "url": "https://kanae.to",
+  "testCases": [
+    {
+      "url": "https://kanae.to/series/019e125e-f925-7ac6-aba7-d656fc82e9c4/watch/019e2755-6d44-77a8-b1b8-ec419f5c5e6a",
+      "expected": {
+        "sync": true,
+        "title": "Petals of Reincarnation",
+        "identifier": "019e125e-f925-7ac6-aba7-d656fc82e9c4",
+        "episode": 7,
+        "overviewUrl": "https://kanae.to/series/019e125e-f925-7ac6-aba7-d656fc82e9c4",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kanae.to/series/019e125e-f925-7ac6-aba7-d656fc82e9c4",
+      "expected": {
+        "sync": false,
+        "title": "Petals of Reincarnation",
+        "identifier": "019e125e-f925-7ac6-aba7-d656fc82e9c4",
+        "image": "https://yuzuki.kagane.org/api/v2/image/019e125e-f6fc-73c3-9a63-b4603fab6503/compressed",
+        "uiSelector": true
+      }
+    }
+  ]
+}
