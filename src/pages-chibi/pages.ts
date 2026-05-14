@@ -104,6 +104,7 @@ import { templeScan } from './implementations/TempleScan/main';
 import { ElfToon } from './implementations/ElfToon/main';
 import { Zoro } from './implementations/Zoro/main';
 import { TeamShadowi } from './implementations/TeamShadowi/main';
+import { Senshi } from './implementations/senshi/main';
 import { TopManhua } from './implementations/TopManhua/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -212,4 +213,5 @@ export const pages: { [key: string]: PageInterface } = {
   ElfToon,
   Zoro,
   TeamShadowi,
+  Senshi,
 };

@@ -1,0 +1,32 @@
+{
+  "title": "Senshi",
+  "url": "https://senshi.live/",
+  "testCases": [
+    {
+      "url": "https://senshi.live/watch/tek2r/1",
+      "expected": {
+        "sync": true,
+        "title": "That Time I Got Reincarnated as a Slime Season 3",
+        "identifier": "tek2r",
+        "overviewUrl": "https://senshi.live/watch/tek2r/1",
+        "episode": 1,
+        "nextEpUrl": "https://senshi.live/watch/tek2r/2",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://senshi.live/watch/tek2r/2",
+          "7": "https://senshi.live/watch/tek2r/7"
+        }
+      }
+    },
+    {
+      "url": "https://senshi.live/watch/nztbk/1",
+      "expected": {
+        "sync": false,
+        "title": "Dark Gathering",
+        "identifier": "nztbk",
+        "image": "https://senshi.live/posters/52505.webp",
+        "uiSelector": true
+      }
+    }
+  ]
+}
