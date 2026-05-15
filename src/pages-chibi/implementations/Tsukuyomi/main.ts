@@ -8,6 +8,7 @@ export const Tsukuyomi: PageInterface = {
   urls: {
     match: ['*://tsukuyomi.tv/*'],
   },
+  search: 'https://tsukuyomi.tv/search?q={searchTerms}',
   sync: {
     isSyncPage($c) {
       return $c
