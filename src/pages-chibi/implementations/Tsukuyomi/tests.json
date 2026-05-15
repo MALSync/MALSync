@@ -7,15 +7,15 @@
       "expected": {
         "sync": true,
         "title": "Frieren: Beyond Journey’s End Season 2",
-        "identifier": "182255",
-        "overviewUrl": "https://tsukuyomi.tv/anime/182255",
+        "identifier": "frieren-beyond-journeys-end-season-2-4rq4",
+        "overviewUrl": "https://tsukuyomi.tv/anime/frieren-beyond-journeys-end-season-2-4rq4",
         "episode": 9,
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
-        "nextEpUrl": "https://tsukuyomi.tv/watch/182255/10",
+        "nextEpUrl": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/10",
         "uiSelector": false,
         "epList": {
-          "1": "https://tsukuyomi.tv/watch/182255/1",
-          "9": "https://tsukuyomi.tv/watch/182255/9"
+          "1": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/1",
+          "9": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/9"
         }
       }
     },
@@ -24,29 +24,29 @@
       "expected": {
         "sync": true,
         "title": "Dr. STONE SCIENCE FUTURE Cour 3",
-        "identifier": "199221",
-        "overviewUrl": "https://tsukuyomi.tv/anime/199221",
+        "identifier": "dr-stone-science-future-cour-3-3qfa",
+        "overviewUrl": "https://tsukuyomi.tv/anime/dr-stone-science-future-cour-3-3qfa",
         "episode": 7,
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199221-TReDQMNhslHu.jpg",
         "nextEpUrl": null,
         "uiSelector": false,
         "epList": {
-          "1": "https://tsukuyomi.tv/watch/199221/1",
-          "7": "https://tsukuyomi.tv/watch/199221/7"
+          "1": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/1",
+          "7": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/7"
         }
       }
     },
     {
-      "url": "https://tsukuyomi.tv/anime/182255",
+      "url": "https://tsukuyomi.tv/anime/frieren-beyond-journeys-end-season-2-4rq4",
       "expected": {
         "sync": false,
         "title": "Frieren: Beyond Journey’s End Season 2",
-        "identifier": "182255",
+        "identifier": "frieren-beyond-journeys-end-season-2-4rq4",
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
         "uiSelector": true,
         "epList": {
-          "1": "https://tsukuyomi.tv/watch/182255/1",
-          "9": "https://tsukuyomi.tv/watch/182255/9"
+          "1": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/1",
+          "9": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/9"
         }
       }
     }

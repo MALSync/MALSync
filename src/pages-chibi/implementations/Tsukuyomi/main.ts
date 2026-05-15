@@ -44,13 +44,6 @@ export const Tsukuyomi: PageInterface = {
         .replaceRegex('\\d+$', $c.querySelector('.ep-cell.cur').next().text().trim().run())
         .run();
     },
-    getMalUrl($c) {
-      return $c
-        .providerUrlUtility({
-          anilistId: $c.url().urlPart(4).run(),
-        })
-        .run();
-    },
   },
   overview: {
     isOverviewPage($c) {
@@ -67,13 +60,6 @@ export const Tsukuyomi: PageInterface = {
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
-    },
-    getMalUrl($c) {
-      return $c
-        .providerUrlUtility({
-          anilistId: $c.url().urlPart(4).run(),
-        })
-        .run();
     },
   },
   list: {
