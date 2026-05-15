@@ -10,6 +10,7 @@ import { ChibiListRepository } from './loader/ChibiListRepository';
 function getConsumer(code: ChibiJson<any>, page: pageInterface, name: string) {
   const cons = new ChibiConsumer(code, name);
   cons.addVariable('pageObject', page);
+  cons.addVariable('mediaType', page.type);
   return cons;
 }
 

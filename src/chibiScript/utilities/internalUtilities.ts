@@ -23,13 +23,13 @@ export default {
         provider: 'ANILIST',
         urlKey: 'anilistUrl',
         idKey: 'anilistId',
-        urlTemplate: 'https://anilist.co/manga/<identifier>',
+        urlTemplate: 'https://anilist.co/<type>/<identifier>',
       },
       {
         provider: 'KITSU',
         urlKey: 'kitsuUrl',
         idKey: 'kitsuId',
-        urlTemplate: 'https://kitsu.app/manga/<identifier>',
+        urlTemplate: 'https://kitsu.app/<type>/<identifier>',
       },
       {
         provider: 'MANGABAKA',
@@ -41,7 +41,7 @@ export default {
         provider: 'MAL',
         urlKey: 'malUrl',
         idKey: 'malId',
-        urlTemplate: 'https://myanimelist.net/manga/<identifier>',
+        urlTemplate: 'https://myanimelist.net/<type>/<identifier>',
       },
     ];
 
@@ -65,6 +65,7 @@ export default {
               $c
                 .string(config.urlTemplate)
                 .replace('<identifier>', $c.getVariable(config.idKey).run())
+                .replace('<type>', $c.getVariable('mediaType').run())
                 .return()
                 .run(),
             );
