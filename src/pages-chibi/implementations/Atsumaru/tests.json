@@ -101,6 +101,17 @@
           "10": "https://atsu.moe/read/1HCA/PW5MQZ"
         }
       }
+    },
+    {
+      "url": "https://atsu.moe/read/f54JG/TQ16F",
+      "expected": {
+        "sync": true,
+        "title": "Black Clover",
+        "identifier": "f54JG",
+        "overviewUrl": "https://atsu.moe/manga/f54JG",
+        "episode": 387,
+        "uiSelector": false
+      }
     }
   ]
 }
