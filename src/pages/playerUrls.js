@@ -857,7 +857,7 @@ module.exports = {
   },
   // miruro
   megaplay: {
-    match: ['*://megaplay.buzz/*'],
+    match: ['*://megaplay.buzz/*', '*://vidwish.live/*'],
   },
   // Anizm
   anizmplayer: {
