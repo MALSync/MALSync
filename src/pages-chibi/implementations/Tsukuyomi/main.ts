@@ -106,7 +106,7 @@ export const Tsukuyomi: PageInterface = {
     },
     listChange($c) {
       return $c
-        .detectChanges($c.querySelector('.ep-btn').ifNotReturn().run(), $c.trigger().run())
+        .detectChanges($c.querySelector('.ep-grid').ifNotReturn().text().run(), $c.trigger().run())
         .run();
     },
   },
