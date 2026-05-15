@@ -30,11 +30,7 @@ export const Kanae: PageInterface = {
     },
     getIdentifier($c) {
       const seriesId = $c.url().urlPart(4);
-      const seasonText = $c
-        .querySelector('nav span.font-medium')
-        .text()
-        .trim()
-        .regex('S(\\d+)', 1);
+      const seasonText = $c.querySelector('nav span.font-medium').text().trim().regex('S(\\d+)', 1);
       return $c
         .if(
           seasonText.boolean().run(),
