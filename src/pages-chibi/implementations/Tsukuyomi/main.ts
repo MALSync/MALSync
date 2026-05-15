@@ -19,7 +19,7 @@ export const Tsukuyomi: PageInterface = {
       return $c.querySelector('.wp-title').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      return $c.url().urlPart(4).split('-').last().run();
     },
     getOverviewUrl($c) {
       return $c.querySelector('.wp-back').getAttribute('href').urlAbsolute().run();
@@ -44,13 +44,6 @@ export const Tsukuyomi: PageInterface = {
         .replaceRegex('\\d+$', $c.querySelector('.ep-cell.cur').next().text().trim().run())
         .run();
     },
-    getMalUrl($c) {
-      return $c
-        .providerUrlUtility({
-          anilistId: $c.url().urlPart(4).run(),
-        })
-        .run();
-    },
   },
   overview: {
     isOverviewPage($c) {
@@ -67,13 +60,6 @@ export const Tsukuyomi: PageInterface = {
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
-    },
-    getMalUrl($c) {
-      return $c
-        .providerUrlUtility({
-          anilistId: $c.url().urlPart(4).run(),
-        })
-        .run();
     },
   },
   list: {
@@ -120,7 +106,7 @@ export const Tsukuyomi: PageInterface = {
     },
     listChange($c) {
       return $c
-        .detectChanges($c.querySelector('.ep-btn').ifNotReturn().run(), $c.trigger().run())
+        .detectChanges($c.querySelector('.ep-grid').ifNotReturn().text().run(), $c.trigger().run())
         .run();
     },
   },
