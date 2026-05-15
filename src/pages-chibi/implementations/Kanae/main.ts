@@ -13,13 +13,38 @@ export const Kanae: PageInterface = {
       return $c.url().urlPart(5).equals('watch').run();
     },
     getTitle($c) {
-      return $c.querySelector('nav a[href^="/series/"] span.truncate').text().trim().run();
+      const title = $c.querySelector('nav a[href^="/series/"] span.truncate').text().trim();
+      const seasonNum = $c
+        .querySelector('nav span.font-medium')
+        .text()
+        .trim()
+        .regex('S(\\d+)', 1)
+        .number();
+      return $c
+        .if(
+          seasonNum.greaterThan(1).run(),
+          title.concat($c.string(' Season ').run()).concat(seasonNum.string().run()).run(),
+          title.run(),
+        )
+        .run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      const seriesId = $c.url().urlPart(4);
+      const seasonText = $c
+        .querySelector('nav span.font-medium')
+        .text()
+        .trim()
+        .regex('S(\\d+)', 1);
+      return $c
+        .if(
+          seasonText.boolean().run(),
+          seriesId.concat($c.string('_S').run()).concat(seasonText.run()).run(),
+          seriesId.run(),
+        )
+        .run();
     },
     getOverviewUrl($c) {
-      return $c.string('/series/').concat($c.this('sync.getIdentifier').run()).urlAbsolute().run();
+      return $c.string('/series/').concat($c.url().urlPart(4).run()).urlAbsolute().run();
     },
     getEpisode($c) {
       return $c
