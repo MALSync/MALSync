@@ -65,7 +65,7 @@ export default {
               $c
                 .string(config.urlTemplate)
                 .replace('<identifier>', $c.getVariable(config.idKey).run())
-                .replace('<type>', $c.getVariable('mediaType').run())
+                .replace('<type>', $c.getVariable<object>('pageObject').get('type').run())
                 .return()
                 .run(),
             );
