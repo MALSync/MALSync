@@ -7,7 +7,7 @@
       "expected": {
         "sync": true,
         "title": "Frieren: Beyond Journey’s End Season 2",
-        "identifier": "frieren-beyond-journeys-end-season-2-4rq4",
+        "identifier": "4rq4",
         "overviewUrl": "https://tsukuyomi.tv/anime/frieren-beyond-journeys-end-season-2-4rq4",
         "episode": 9,
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
@@ -24,7 +24,7 @@
       "expected": {
         "sync": true,
         "title": "Dr. STONE SCIENCE FUTURE Cour 3",
-        "identifier": "dr-stone-science-future-cour-3-3qfa",
+        "identifier": "3qfa",
         "overviewUrl": "https://tsukuyomi.tv/anime/dr-stone-science-future-cour-3-3qfa",
         "episode": 7,
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199221-TReDQMNhslHu.jpg",
@@ -41,7 +41,7 @@
       "expected": {
         "sync": false,
         "title": "Frieren: Beyond Journey’s End Season 2",
-        "identifier": "frieren-beyond-journeys-end-season-2-4rq4",
+        "identifier": "4rq4",
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
         "uiSelector": true,
         "epList": {

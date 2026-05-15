@@ -19,7 +19,7 @@ export const Tsukuyomi: PageInterface = {
       return $c.querySelector('.wp-title').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      return $c.url().urlPart(4).split('-').last().run();
     },
     getOverviewUrl($c) {
       return $c.querySelector('.wp-back').getAttribute('href').urlAbsolute().run();
