@@ -358,19 +358,19 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://readmanhua.net"><img src="https://favicon.malsync.moe/?domain=https://readmanhua.net"> ReadManhua</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.turkanime.co"><img src="https://favicon.malsync.moe/?domain=https://www.turkanime.co"> TurkAnime</a></td>
+                <td><a href="https://tsukuyomi.tv"><img src="https://favicon.malsync.moe/?domain=https://tsukuyomi.tv"> Tsukuyomi</a></td>
                 <td><a href="https://reaperscans.com"><img src="https://favicon.malsync.moe/?domain=https://reaperscans.com"> ReaperScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://voir-anime.to"><img src="https://favicon.malsync.moe/?domain=https://voir-anime.to"> Voiranime</a></td>
+                <td><a href="https://www.turkanime.co"><img src="https://favicon.malsync.moe/?domain=https://www.turkanime.co"> TurkAnime</a></td>
                 <td><a href="https://reset-scans.org"><img src="https://favicon.malsync.moe/?domain=https://reset-scans.org"> ResetScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://witanime.pics"><img src="https://favicon.malsync.moe/?domain=https://witanime.pics"> WitAnime</a></td>
+                <td><a href="https://voir-anime.to"><img src="https://favicon.malsync.moe/?domain=https://voir-anime.to"> Voiranime</a></td>
                 <td><a href="https://rezoscan.org"><img src="https://favicon.malsync.moe/?domain=https://rezoscan.org"> RezoScans</a></td>
                 <td></td>
               </tr><tr>
-                <td></td>
+                <td><a href="https://witanime.pics"><img src="https://favicon.malsync.moe/?domain=https://witanime.pics"> WitAnime</a></td>
                 <td><a href="https://ritharscans.com"><img src="https://favicon.malsync.moe/?domain=https://ritharscans.com"> Ritharscans</a></td>
                 <td></td>
               </tr><tr>

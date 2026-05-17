@@ -622,6 +622,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://tsukuyomi.tv"><img src="https://favicon.malsync.moe/?domain=https://tsukuyomi.tv"> Tsukuyomi</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://www.turkanime.co"><img src="https://favicon.malsync.moe/?domain=https://www.turkanime.co"> TurkAnime</a></td>
     <td>Turkish</td>
     <td>:heavy_check_mark:</td>
