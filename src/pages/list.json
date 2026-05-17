@@ -540,7 +540,7 @@
     "name": "Gojo"
   },
   {
-    "domain": "https://v3.animelib.org",
+    "domain": "https://v5.animelib.org",
     "type": "anime",
     "name": "AnimeLib"
   },
@@ -935,6 +935,16 @@
     "name": "Mgeko"
   },
   {
+    "domain": "https://mangaclash.com/",
+    "type": "manga",
+    "name": "MangaClash"
+  },
+  {
+    "domain": "https://manhuatop.org/",
+    "type": "manga",
+    "name": "TopManhua"
+  },
+  {
     "domain": "https://luacomic.org",
     "type": "manga",
     "name": "LuaScans"
@@ -965,6 +975,11 @@
     "name": "RezoScans"
   },
   {
+    "domain": "https://sekai.one",
+    "type": "anime",
+    "name": "Sekai"
+  },
+  {
     "domain": "https://ragescans.com",
     "type": "manga",
     "name": "RageScans"
@@ -975,9 +990,9 @@
     "name": "AniGo"
   },
   {
-    "domain": "https://Kuudere.to",
+    "domain": "https://reanime.to",
     "type": "anime",
-    "name": "Kuudere"
+    "name": "Re:Anime"
   },
   {
     "domain": "https://bigsolo.org",

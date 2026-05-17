@@ -13,83 +13,73 @@ export const KappaBeast: PageInterface = {
     isSyncPage($c) {
       return $c
         .and(
-          $c.url().urlPart(4).boolean().not().run(),
-          $c.url().urlPart(3).matches('(\\d+)').run(),
-          $c.querySelector('#chapter').boolean().run(),
+          $c.url().urlPart(5).matches('(\\d+)').run(),
+          $c.url().urlPart(3).equals('reader').run(),
         )
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.allc a').text().trim().run();
+      return $c.querySelector('h1').ifNotReturn().text().replaceLinebreaks().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
+      return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c.querySelector('.allc a').getAttribute('href').ifNotReturn().urlAbsolute().run();
+      return $c
+        .string('/series/<identifier>')
+        .replace('<identifier>', $c.this('sync.getIdentifier').run())
+        .urlAbsolute()
+        .run();
     },
     getEpisode($c) {
-      return $c
-        .querySelector('#chapter option[selected]')
-        .ifNotReturn()
-        .text()
-        .regex('Chapter\\s+(\\d+)', 1)
-        .number()
-        .run();
+      return $c.url().urlPart(5).number().run();
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.ch-next-btn')
-        .getAttribute('href')
+        .querySelector('option:checked')
+        .prev()
         .ifNotReturn()
+        .string('/reader/<identifier>/')
+        .replace('<identifier>', $c.this('sync.getIdentifier').run())
+        .concat($c.querySelector('option:checked').prev().getAttribute('value').ifNotReturn().run())
         .urlAbsolute()
         .run();
     },
     readerConfig: [
       {
-        current: {
-          selector: '#select-paged option:selected',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 1,
-        },
-        total: {
-          selector: '#select-paged option',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 2,
-        },
+        current: $c => $c.querySelectorAll('.w-full img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.w-full img').length().run(),
       },
     ],
   },
   overview: {
     isOverviewPage($c) {
       return $c
-        .and($c.url().urlPart(4).boolean().run(), $c.url().urlPart(3).equals('manga').run())
+        .and($c.url().urlPart(4).boolean().run(), $c.url().urlPart(3).equals('series').run())
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.entry-title').text().trim().run();
+      return $c.querySelector('h1').ifNotReturn().text().replaceLinebreaks().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).trim().run();
+      return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c.querySelector('.thumb > img').getAttribute('src').ifNotReturn().run();
+      return $c.querySelector('.object-cover').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.entry-title').uiAfter().run();
+      return $c.querySelector('h1').parent().uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('#chapterlist .chbox').run();
+      return $c.querySelectorAll('.grid > a[href*="reader"]').run();
     },
     elementUrl($c) {
-      return $c.find('a').getAttribute('href').urlAbsolute().run();
+      return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('.chapternum').text().regex('(\\d+)').number().run();
+      return $c.this('list.elementUrl').this('sync.getEpisode').number().run();
     },
   },
   lifecycle: {
@@ -99,11 +89,12 @@ export const KappaBeast: PageInterface = {
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
-    syncIsReady($c) {
-      // It doesn't detect chapter when I don't do this
+    listChange($c) {
       return $c
-        .waitUntilTrue($c.querySelector('#chapter option[selected]').boolean().run())
-        .trigger()
+        .detectChanges(
+          $c.querySelector('.grid > a[href*="reader"]').ifNotReturn().parent().run(),
+          $c.trigger().run(),
+        )
         .run();
     },
   },

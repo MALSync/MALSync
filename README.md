@@ -94,7 +94,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://reader.deathtollscans.net"><img src="https://favicon.malsync.moe/?domain=https://reader.deathtollscans.net"> DeathTollScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://v3.animelib.org"><img src="https://favicon.malsync.moe/?domain=https://v3.animelib.org"> AnimeLib</a></td>
+                <td><a href="https://v5.animelib.org"><img src="https://favicon.malsync.moe/?domain=https://v5.animelib.org"> AnimeLib</a></td>
                 <td><a href="https://disasterscans.com"><img src="https://favicon.malsync.moe/?domain=https://disasterscans.com"> DisasterScans</a></td>
                 <td></td>
               </tr><tr>
@@ -203,130 +203,134 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.bilibili.tv"><img src="https://favicon.malsync.moe/?domain=https://www.bilibili.tv"> BStation</a></td>
-                <td><a href="https://demonicscans.org"><img src="https://favicon.malsync.moe/?domain=https://demonicscans.org"> MangaDemon</a></td>
+                <td><a href="https://mangaclash.com/"><img src="https://favicon.malsync.moe/?domain=https://mangaclash.com/"> MangaClash</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.crunchyroll.com"><img src="https://favicon.malsync.moe/?domain=https://www.crunchyroll.com"> Crunchyroll</a></td>
-                <td><a href="https://www.mangadenizi.net"><img src="https://favicon.malsync.moe/?domain=https://www.mangadenizi.net"> mangadenizi</a></td>
+                <td><a href="https://demonicscans.org"><img src="https://favicon.malsync.moe/?domain=https://demonicscans.org"> MangaDemon</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://desu-online.pl"><img src="https://favicon.malsync.moe/?domain=https://desu-online.pl"> DesuOnline</a></td>
-                <td><a href="https://www.mangadex.org"><img src="https://favicon.malsync.moe/?domain=https://www.mangadex.org"> Mangadex</a></td>
+                <td><a href="https://www.mangadenizi.net"><img src="https://favicon.malsync.moe/?domain=https://www.mangadenizi.net"> mangadenizi</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://docchi.pl"><img src="https://favicon.malsync.moe/?domain=https://docchi.pl"> Docchi</a></td>
-                <td><a href="https://mangafire.to"><img src="https://favicon.malsync.moe/?domain=https://mangafire.to"> MangaFire</a></td>
+                <td><a href="https://www.mangadex.org"><img src="https://favicon.malsync.moe/?domain=https://www.mangadex.org"> Mangadex</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://fireani.me"><img src="https://favicon.malsync.moe/?domain=https://fireani.me"> FireAnime</a></td>
-                <td><a href="https://fanfox.net"><img src="https://favicon.malsync.moe/?domain=https://fanfox.net"> MangaFox</a></td>
+                <td><a href="https://mangafire.to"><img src="https://favicon.malsync.moe/?domain=https://mangafire.to"> MangaFire</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://franime.fr"><img src="https://favicon.malsync.moe/?domain=https://franime.fr"> FRAnime</a></td>
-                <td><a href="http://www.mangahere.cc"><img src="https://favicon.malsync.moe/?domain=http://www.mangahere.cc"> MangaHere</a></td>
+                <td><a href="https://fanfox.net"><img src="https://favicon.malsync.moe/?domain=https://fanfox.net"> MangaFox</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://french-anime.com"><img src="https://favicon.malsync.moe/?domain=https://french-anime.com"> French Anime</a></td>
-                <td><a href="https://mangahub.io"><img src="https://favicon.malsync.moe/?domain=https://mangahub.io"> MangaHub</a></td>
+                <td><a href="http://www.mangahere.cc"><img src="https://favicon.malsync.moe/?domain=http://www.mangahere.cc"> MangaHere</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://frixysubs.pl"><img src="https://favicon.malsync.moe/?domain=https://frixysubs.pl"> FrixySubs</a></td>
-                <td><a href="https://mangajar.pro"><img src="https://favicon.malsync.moe/?domain=https://mangajar.pro"> MangaJar</a></td>
+                <td><a href="https://mangahub.io"><img src="https://favicon.malsync.moe/?domain=https://mangahub.io"> MangaHub</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://fumetsu.pl"><img src="https://favicon.malsync.moe/?domain=https://fumetsu.pl"> Fumetsu</a></td>
-                <td><a href="http://mangakatana.com"><img src="https://favicon.malsync.moe/?domain=http://mangakatana.com"> MangaKatana</a></td>
+                <td><a href="https://mangajar.pro"><img src="https://favicon.malsync.moe/?domain=https://mangajar.pro"> MangaJar</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://gaiaflix.live"><img src="https://favicon.malsync.moe/?domain=https://gaiaflix.live"> GaiaFlix</a></td>
-                <td><a href="https://mangalib.me"><img src="https://favicon.malsync.moe/?domain=https://mangalib.me"> MangaLib</a></td>
+                <td><a href="http://mangakatana.com"><img src="https://favicon.malsync.moe/?domain=http://mangakatana.com"> MangaKatana</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animetsu.net"><img src="https://favicon.malsync.moe/?domain=https://animetsu.net"> Gojo</a></td>
-                <td><a href="https://mangalivre.tv"><img src="https://favicon.malsync.moe/?domain=https://mangalivre.tv"> MangaLivreTV</a></td>
+                <td><a href="https://mangalib.me"><img src="https://favicon.malsync.moe/?domain=https://mangalib.me"> MangaLib</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://hdrezka.ag"><img src="https://favicon.malsync.moe/?domain=https://hdrezka.ag"> Hdrezka</a></td>
-                <td><a href="https://proxer.me"><img src="https://favicon.malsync.moe/?domain=https://proxer.me"> Proxer</a></td>
+                <td><a href="https://mangalivre.tv"><img src="https://favicon.malsync.moe/?domain=https://mangalivre.tv"> MangaLivreTV</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://hianime.to"><img src="https://favicon.malsync.moe/?domain=https://hianime.to"> HiAnime</a></td>
-                <td><a href="https://manganato.gg"><img src="https://favicon.malsync.moe/?domain=https://manganato.gg"> MangaNato</a></td>
+                <td><a href="https://proxer.me"><img src="https://favicon.malsync.moe/?domain=https://proxer.me"> Proxer</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.hidive.com"><img src="https://favicon.malsync.moe/?domain=https://www.hidive.com"> Hidive</a></td>
-                <td><a href="https://mangapark.to"><img src="https://favicon.malsync.moe/?domain=https://mangapark.to"> MangaPark</a></td>
+                <td><a href="https://manganato.gg"><img src="https://favicon.malsync.moe/?domain=https://manganato.gg"> MangaNato</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://hinatasoul.com"><img src="https://favicon.malsync.moe/?domain=https://hinatasoul.com"> HinataSoul</a></td>
-                <td><a href="https://mangapill.com"><img src="https://favicon.malsync.moe/?domain=https://mangapill.com"> Mangapill</a></td>
+                <td><a href="https://mangapark.to"><img src="https://favicon.malsync.moe/?domain=https://mangapark.to"> MangaPark</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.hulu.com"><img src="https://favicon.malsync.moe/?domain=https://www.hulu.com"> Hulu</a></td>
-                <td><a href="https://mangaplus.shueisha.co.jp"><img src="https://favicon.malsync.moe/?domain=https://mangaplus.shueisha.co.jp"> MangaPlus</a></td>
+                <td><a href="https://mangapill.com"><img src="https://favicon.malsync.moe/?domain=https://mangapill.com"> Mangapill</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://jkanime.net"><img src="https://favicon.malsync.moe/?domain=https://jkanime.net"> Jkanime</a></td>
-                <td><a href="https://www.mangaread.org"><img src="https://favicon.malsync.moe/?domain=https://www.mangaread.org"> MangaRead</a></td>
+                <td><a href="https://mangaplus.shueisha.co.jp"><img src="https://favicon.malsync.moe/?domain=https://mangaplus.shueisha.co.jp"> MangaPlus</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://kaguya.app"><img src="https://favicon.malsync.moe/?domain=https://kaguya.app"> Kaguya</a></td>
-                <td><a href="https://mangareader.to"><img src="https://favicon.malsync.moe/?domain=https://mangareader.to"> MangaReader</a></td>
+                <td><a href="https://www.mangaread.org"><img src="https://favicon.malsync.moe/?domain=https://www.mangaread.org"> MangaRead</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://kickassanime.am"><img src="https://favicon.malsync.moe/?domain=https://kickassanime.am"> KickAssAnime</a></td>
-                <td><a href="https://mangasee123.com"><img src="https://favicon.malsync.moe/?domain=https://mangasee123.com"> MangaSee</a></td>
-                <td></td>
-              </tr><tr>
-                <td><a href="https://Kuudere.to"><img src="https://favicon.malsync.moe/?domain=https://Kuudere.to"> Kuudere</a></td>
-                <td><a href="https://mangas-origines.fr/"><img src="https://favicon.malsync.moe/?domain=https://mangas-origines.fr/"> MangasOrigines</a></td>
+                <td><a href="https://mangareader.to"><img src="https://favicon.malsync.moe/?domain=https://mangareader.to"> MangaReader</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://latanime.org"><img src="https://favicon.malsync.moe/?domain=https://latanime.org"> Latanime</a></td>
-                <td><a href="https://mangasushi.org"><img src="https://favicon.malsync.moe/?domain=https://mangasushi.org"> MangaSushi</a></td>
+                <td><a href="https://mangasee123.com"><img src="https://favicon.malsync.moe/?domain=https://mangasee123.com"> MangaSee</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://luciferdonghua.in"><img src="https://favicon.malsync.moe/?domain=https://luciferdonghua.in"> Lucifer Donghua</a></td>
-                <td><a href="https://mangataro.org"><img src="https://favicon.malsync.moe/?domain=https://mangataro.org"> MangaTaro</a></td>
+                <td><a href="https://mangas-origines.fr/"><img src="https://favicon.malsync.moe/?domain=https://mangas-origines.fr/"> MangasOrigines</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.miruro.to"><img src="https://favicon.malsync.moe/?domain=https://www.miruro.to"> Miruro</a></td>
-                <td><a href="https://mangatx.com"><img src="https://favicon.malsync.moe/?domain=https://mangatx.com"> mangatx</a></td>
+                <td><a href="https://mangasushi.org"><img src="https://favicon.malsync.moe/?domain=https://mangasushi.org"> MangaSushi</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://moeclip.com"><img src="https://favicon.malsync.moe/?domain=https://moeclip.com"> moeclip</a></td>
-                <td><a href="https://mangtto.com"><img src="https://favicon.malsync.moe/?domain=https://mangtto.com"> Mangitto</a></td>
+                <td><a href="https://mangataro.org"><img src="https://favicon.malsync.moe/?domain=https://mangataro.org"> MangaTaro</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://monoschinos2.com"><img src="https://favicon.malsync.moe/?domain=https://monoschinos2.com"> MonosChinos</a></td>
-                <td><a href="https://manhuafast.com"><img src="https://favicon.malsync.moe/?domain=https://manhuafast.com"> manhuafast</a></td>
+                <td><a href="https://mangatx.com"><img src="https://favicon.malsync.moe/?domain=https://mangatx.com"> mangatx</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://myanimelist.net"><img src="https://favicon.malsync.moe/?domain=https://myanimelist.net"> MyAnimeList</a></td>
-                <td><a href="https://manhuaplus.com"><img src="https://favicon.malsync.moe/?domain=https://manhuaplus.com"> ManhuaPlus</a></td>
+                <td><a href="https://mangtto.com"><img src="https://favicon.malsync.moe/?domain=https://mangtto.com"> Mangitto</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.netflix.com"><img src="https://favicon.malsync.moe/?domain=https://www.netflix.com"> Netflix</a></td>
-                <td><a href="https://manhuaus.com"><img src="https://favicon.malsync.moe/?domain=https://manhuaus.com"> ManhuaUS</a></td>
+                <td><a href="https://manhuafast.com"><img src="https://favicon.malsync.moe/?domain=https://manhuafast.com"> manhuafast</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://ogladajanime.pl"><img src="https://favicon.malsync.moe/?domain=https://ogladajanime.pl"> OgladajAnime</a></td>
-                <td><a href="https://www.mgeko.cc"><img src="https://favicon.malsync.moe/?domain=https://www.mgeko.cc"> Mgeko</a></td>
+                <td><a href="https://manhuaplus.com"><img src="https://favicon.malsync.moe/?domain=https://manhuaplus.com"> ManhuaPlus</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://okanime.tv"><img src="https://favicon.malsync.moe/?domain=https://okanime.tv"> Okanime</a></td>
-                <td><a href="https://neoxscans.com/"><img src="https://favicon.malsync.moe/?domain=https://neoxscans.com/"> NeoxScans</a></td>
+                <td><a href="https://manhuaus.com"><img src="https://favicon.malsync.moe/?domain=https://manhuaus.com"> ManhuaUS</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://otakufr.cc"><img src="https://favicon.malsync.moe/?domain=https://otakufr.cc"> OtakuFR</a></td>
-                <td><a href="https://novelfire.net"><img src="https://favicon.malsync.moe/?domain=https://novelfire.net"> Novelfire</a></td>
+                <td><a href="https://www.mgeko.cc"><img src="https://favicon.malsync.moe/?domain=https://www.mgeko.cc"> Mgeko</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.otakustv.com"><img src="https://favicon.malsync.moe/?domain=https://www.otakustv.com"> Otakustv</a></td>
-                <td><a href="https://philiascans.org/"><img src="https://favicon.malsync.moe/?domain=https://philiascans.org/"> PhiliaScans</a></td>
+                <td><a href="https://neoxscans.com/"><img src="https://favicon.malsync.moe/?domain=https://neoxscans.com/"> NeoxScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://proxer.me"><img src="https://favicon.malsync.moe/?domain=https://proxer.me"> Proxer</a></td>
+                <td><a href="https://novelfire.net"><img src="https://favicon.malsync.moe/?domain=https://novelfire.net"> Novelfire</a></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://reanime.to"><img src="https://favicon.malsync.moe/?domain=https://reanime.to"> Re:Anime</a></td>
+                <td><a href="https://philiascans.org/"><img src="https://favicon.malsync.moe/?domain=https://philiascans.org/"> PhiliaScans</a></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://sekai.one"><img src="https://favicon.malsync.moe/?domain=https://sekai.one"> Sekai</a></td>
                 <td><a href="https://projectsuki.com"><img src="https://favicon.malsync.moe/?domain=https://projectsuki.com"> projectsuki</a></td>
                 <td></td>
               </tr><tr>
@@ -432,6 +436,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
               </tr><tr>
                 <td></td>
                 <td><a href="https://toonily.com"><img src="https://favicon.malsync.moe/?domain=https://toonily.com"> Toonily</a></td>
+                <td></td>
+              </tr><tr>
+                <td></td>
+                <td><a href="https://manhuatop.org/"><img src="https://favicon.malsync.moe/?domain=https://manhuatop.org/"> TopManhua</a></td>
                 <td></td>
               </tr><tr>
                 <td></td>

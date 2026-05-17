@@ -105,6 +105,25 @@ async function bato() {
   addChibiUrls('bato', formattedUrls, 'mainV3.ts');
 }
 
+async function miruro() {
+  const response = await fetch('https://www.miruro.com/#domains');
+  const body = await response.text();
+
+  const $ = cheerio.load(body);
+
+  const urls = $('nav.domains a.domain')
+    .map((i, el) => new URL($(el).attr('href')))
+    .get();
+
+  let formattedUrls = [];
+  for (const url of urls) {
+    const host = url.hostname.replace(/^www\./i, '');
+    formattedUrls.push('*://*.' + host + '/*');
+  }
+
+  addChibiUrls('Miruro', [...new Set(formattedUrls)]);
+}
+
 async function mangapark() {
   const response = await fetch('https://mangaparkmirrors.pages.dev');
   const body = await response.text();
@@ -289,6 +308,7 @@ async function start() {
     kickassanime,
     animekai,
     bato,
+    miruro,
     mangapark,
   };
 
