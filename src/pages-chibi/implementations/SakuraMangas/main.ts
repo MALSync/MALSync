@@ -8,6 +8,7 @@ export const SakuraMangas: PageInterface = {
   urls: {
     match: ['*://*.sakuramangas.org/*'],
   },
+  search: 'https://sakuramangas.org/',
   sync: {
     isSyncPage($c) {
       // Reading page follows pattern: /obras/{slug}/{number}/
@@ -59,8 +60,8 @@ export const SakuraMangas: PageInterface = {
       return $c.this('sync.getIdentifier').run();
     },
     uiInjection($c) {
-      // Inject UI after the first col-xxl-10 element
-      return $c.querySelector('.col-xxl-10').uiAfter().run();
+      // Inject UI after the first groupbutton element
+      return $c.querySelector('.groupbutton').uiAfter().run();
     },
     getImage($c) {
       return $c
