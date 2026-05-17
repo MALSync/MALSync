@@ -52,19 +52,18 @@ export const Atsumaru: PageInterface = {
                 .setVariable('text')
                 .and(
                   $c
-                    .getVariable('text')
-                    .type<HTMLElement>()
+                    .getVariable<HTMLElement>('text')
                     .getAttribute('value')
                     .matches('\\b(?!\\d+\\b)\\w+')
                     .run(),
-                  $c.getVariable('text').type<HTMLElement>().text().matches('\\d+').run(),
+                  $c.getVariable<HTMLElement>('text').text().matches('\\d+').run(),
                 )
                 .run(),
             )
             .text()
             .regex('\\d+')
             .run(),
-          $c.title().regex('-\\s+\\w*\\s+(\\d+)', 1).run(),
+          $c.title().regex('-\\s+.*?\\s+(\\d+)', 1).run(),
         )
         .number()
         .run();

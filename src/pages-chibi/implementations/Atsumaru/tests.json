@@ -113,5 +113,16 @@
         "uiSelector": false
       }
     }
+    {
+      "url": "https://atsu.moe/read/qitEK/aImqQq8L",
+      "expected": {
+        "sync": true,
+        "title": "Pandora Hearts",
+        "identifier": "qitEK",
+        "overviewUrl": "https://atsu.moe/manga/qitEK",
+        "episode": 8,
+        "uiSelector": false
+      }
+    }
   ]
 }
