@@ -52,7 +52,7 @@
     "postcss-less": "^6.0.0",
     "prettier": "^3.8.1",
     "puppeteer": "^24.40.0",
-    "serialize-javascript": "^7.0.4",
+    "serialize-javascript": "^7.0.5",
     "style-loader": "^3.3.4",
     "stylelint": "^15.11.0",
     "stylelint-config-recommended-vue": "^1.6.1",
