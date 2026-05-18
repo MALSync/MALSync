@@ -23,7 +23,7 @@ import {
 declare let browser: any;
 
 let extensionId = 'agnaejlkbiiggajjmnpmeheigkflbnoo'; // Chrome
-if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
+if (typeof browser !== 'undefined' && typeof browser.runtime?.getBrowserInfo === 'function') {
   extensionId = '{57081fef-67b4-482f-bcb0-69296e63ec4f}'; // Firefox
 }
 
