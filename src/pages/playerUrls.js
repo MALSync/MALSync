@@ -567,6 +567,7 @@ module.exports = {
       '*://benjaminreducecommunity.com/e/*',
       '*://nicholasbreakplan.com/e/*',
       '*://rebeccasciencestreet.com/e/*',
+      '*://ericeastweight.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
