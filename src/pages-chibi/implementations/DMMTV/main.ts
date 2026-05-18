@@ -11,8 +11,20 @@ function selectedSeasonTitlePattern() {
   return '^(.+(?:\\d+(?:st|nd|rd|th)\\s+[Ss]eason|[Ss]eason\\s*\\d+|\\u7b2c\\d+\\u671f|\\u30b7\\u30fc\\u30ba\\u30f3\\s*\\d+).*)$';
 }
 
-function episodePattern() {
+function digitEpisodePattern() {
   return '(?:\\u7b2c|#|Episode)\\s*(\\d+)(?:\\u8a71)?';
+}
+
+function japaneseEpisodePattern() {
+  return '\\u7b2c\\s*([\\u96f6\\u3007\\u4e00\\u4e8c\\u4e09\\u56db\\u4e94\\u516d\\u4e03\\u516b\\u4e5d\\u5341\\u767e\\u5343\\u4e07\\u5104\\u5146]+)\\s*\\u8a71';
+}
+
+function titleEpisodePattern() {
+  return `(?:${digitEpisodePattern()}|${japaneseEpisodePattern()})`;
+}
+
+function missing($c: ChibiGenerator<unknown>) {
+  return $c.object({}).get('missing').run();
 }
 
 function selectedSeasonLabel($c: ChibiGenerator<unknown>) {
@@ -38,7 +50,7 @@ function selectedSeasonTitle($c: ChibiGenerator<unknown>) {
     .if(
       isSelectedSeasonTitle($c),
       selectedSeasonLabel($c).regex(selectedSeasonTitlePattern(), 1).run(),
-      $c.object({}).get('missing').run(),
+      missing($c),
     )
     .run();
 }
@@ -72,8 +84,35 @@ function titleWithSeasonLabel($c: ChibiGenerator<unknown>) {
     .if(
       isSeasonMarker($c),
       $c.querySelector('h1').text().trim().concat(' ').concat(selectedSeasonLabel($c).run()).run(),
-      $c.object({}).get('missing').run(),
+      missing($c),
     )
+    .run();
+}
+
+function episodeNumber($c: ChibiGenerator<string>) {
+  return $c
+    .coalesce(
+      $c
+        .if(
+          $c.matches(digitEpisodePattern()).run(),
+          $c.regex(digitEpisodePattern(), 1).number().run(),
+          missing($c),
+        )
+        .run(),
+      $c
+        .if(
+          $c.matches(japaneseEpisodePattern()).run(),
+          $c.regex(japaneseEpisodePattern(), 1).JPtoNumeral().number().run(),
+          missing($c),
+        )
+        .run(),
+    )
+    .ifNotReturn();
+}
+
+function isEpisodeText($c: ChibiGenerator<string>) {
+  return $c
+    .or($c.matches(digitEpisodePattern()).run(), $c.matches(japaneseEpisodePattern()).run())
     .run();
 }
 
@@ -134,6 +173,7 @@ export const DMMTV: PageInterface = {
     },
     getTitle($c) {
       return pageTitle($c)
+        .replaceRegex(`\\s+${titleEpisodePattern()}.*$`, '')
         .replaceRegex('\\s+(?:第\\d+話|#\\d+|Episode\\s*\\d+).*$', '')
         .replaceRegex('\\s+\\(アニメ/\\d{4}年\\).*$', '')
         .trim()
@@ -150,7 +190,7 @@ export const DMMTV: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return pageTitle($c).regex(episodePattern(), 1).ifNotReturn().number().run();
+      return episodeNumber(pageTitle($c)).run();
     },
     uiInjection($c) {
       return $c.querySelector('body').uiAppend().run();
@@ -194,14 +234,14 @@ export const DMMTV: PageInterface = {
         .querySelectorAll(
           'a[href*="/vod/detail/?season="][href*="content="], a[href*="/vod/rated/detail/?season="][href*="content="]',
         )
-        .filter($el => $el.text().matches(episodePattern()).run())
+        .filter($el => $el.text().matches(digitEpisodePattern()).run())
         .run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute(domain).run();
     },
     elementEp($c) {
-      return $c.text().regex(episodePattern(), 1).ifNotReturn().number().run();
+      return $c.text().regex(digitEpisodePattern(), 1).ifNotReturn().number().run();
     },
   },
   lifecycle: {
@@ -243,7 +283,7 @@ export const DMMTV: PageInterface = {
           $c
             .and(
               $c.url().urlParam('season').boolean().run(),
-              pageTitle($c).matches(episodePattern()).run(),
+              isEpisodeText(pageTitle($c)),
               $c.this('sync.getTitle').boolean().run(),
             )
             .run(),
