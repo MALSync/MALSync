@@ -129,7 +129,7 @@
     "marked": "^17.0.4",
     "node-fetch": "^3.3.2",
     "overlayscrollbars": "^2.2.1",
-    "overlayscrollbars-vue": "^0.5.7",
+    "overlayscrollbars-vue": "^0.5.10",
     "popper-max-size-modifier": "^0.2.0",
     "semver": "^7.7.4",
     "string-similarity": "^4.0.4",
