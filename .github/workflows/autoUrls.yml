@@ -32,7 +32,7 @@ jobs:
 
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           cache: 'npm' # <--- Simple, standard caching
 
       - name: Build
@@ -70,7 +70,7 @@ jobs:
 
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           cache: 'npm' # <--- Restores cache automatically
 
       - name: Build
@@ -125,7 +125,7 @@ jobs:
       
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           cache: 'npm' # <--- Restores cache automatically
 
       - name: Build
