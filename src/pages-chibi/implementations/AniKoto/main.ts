@@ -7,11 +7,16 @@ export const anikoto: PageInterface = {
   type: 'anime',
   urls: {
     match: ['*://*.anikoto.cz/*', '*://*.anikototv.to/*'],
+    player: {
+      megaplay: ['*://vidwish.live/*', '*://megaplay.buzz/*'],
+    },
   },
   search: 'https://anikoto.cz/filter?keyword={searchtermPlus}',
   sync: {
     isSyncPage($c) {
-      return $c.and($c.url().urlPart(3).equals('watch').run(), $c.url().urlPart(5).boolean().run()).run();
+      return $c
+        .and($c.url().urlPart(3).equals('watch').run(), $c.url().urlPart(5).boolean().run())
+        .run();
     },
     getTitle($c) {
       return $c.querySelector('h1[itemprop="name"]').text().trim().run();
@@ -20,20 +25,20 @@ export const anikoto: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c.url().replaceRegex('/ep-\\d+$', '').run();
+      return $c.url().split('/').slice(0, 5).join('/').run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).replaceRegex('ep-', '').number().run();
+      return $c.querySelector('#w-episodes a.active').getAttribute('data-num').number().run();
     },
     getImage($c) {
       return $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('#controls').uiAfter().run();
+      return $c.querySelector('h1[itemprop="name"]').uiAfter().run();
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('#w-episodes .active')
+        .querySelector('#w-episodes .episodes .active')
         .parent()
         .next()
         .ifNotReturn()
@@ -45,8 +50,14 @@ export const anikoto: PageInterface = {
     },
     getMalUrl($c) {
       return $c
-        .string('https://myanimelist.net/anime/<identifier>')
-        .replace('<identifier>', $c.querySelector('#w-episodes .active').getAttribute('data-mal').ifNotReturn().run())
+        .providerUrlUtility({
+          malId: $c
+            .querySelector('#w-episodes .episodes .active')
+            .getAttribute('data-mal')
+            .number()
+            .ifNotReturn()
+            .run(),
+        })
         .run();
     },
   },
@@ -69,7 +80,10 @@ export const anikoto: PageInterface = {
       return $c.domReady().detectURLChanges($c.trigger().run()).trigger().run();
     },
     syncIsReady($c) {
-      return $c.querySelector('#w-episodes .active').boolean().run();
+      return $c
+        .waitUntilTrue($c.querySelector('#w-episodes .episodes .active').boolean().run())
+        .trigger()
+        .run();
     },
   },
 };

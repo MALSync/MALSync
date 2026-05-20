@@ -853,10 +853,6 @@ module.exports = {
   animeav1: {
     match: ['*://player.zilla-networks.com/*'],
   },
-  // miruro
-  megaplay: {
-    match: ['*://megaplay.buzz/*'],
-  },
   // Anizm
   anizmplayer: {
     match: ['*://*.anizmplayer.com/*'],
@@ -897,9 +893,5 @@ module.exports = {
   },
   allManga: {
     match: ['*://allanime.day/*', '*://allanime.uns.bio/*'],
-  },
-  //AniKoto
-  vidcloud: {
-    match: ['*://vidwish.live/*'],
   },
 };

@@ -1,7 +1,6 @@
 {
   "title": "AniKoto",
   "url": "https://anikoto.cz",
-  "offline": true,
   "testCases": [
     {
       "url": "https://anikoto.cz/watch/one-piece-odmau/ep-5",
@@ -11,6 +10,7 @@
         "identifier": "one-piece-odmau",
         "overviewUrl": "https://anikoto.cz/watch/one-piece-odmau",
         "nextEpUrl": "https://anikoto.cz/watch/one-piece-odmau/ep-6",
+        "image": "https://cdn.anipixcdn.co/thumbnail/f899139df5e1059396431415e770c6dd.jpg",
         "episode": 5,
         "uiSelector": true,
         "malUrl": "https://myanimelist.net/anime/21",
@@ -27,6 +27,7 @@
         "identifier": "one-piece-odmau",
         "overviewUrl": "https://anikoto.cz/watch/one-piece-odmau",
         "nextEpUrl": "https://anikoto.cz/watch/one-piece-odmau/ep-1160",
+        "image": "https://cdn.anipixcdn.co/thumbnail/f899139df5e1059396431415e770c6dd.jpg",
         "episode": 1159,
         "uiSelector": true,
         "malUrl": "https://myanimelist.net/anime/21",
@@ -43,6 +44,7 @@
         "identifier": "violet-evergarden-uxbvu",
         "overviewUrl": "https://anikoto.cz/watch/violet-evergarden-uxbvu",
         "nextEpUrl": "https://anikoto.cz/watch/violet-evergarden-uxbvu/ep-2",
+        "image": "https://cdn.anipixcdn.co/thumbnail/093f65e080a295f8076b1c5722a46aa2.jpg",
         "episode": 1,
         "uiSelector": true,
         "malUrl": "https://myanimelist.net/anime/33352",
@@ -59,6 +61,7 @@
         "identifier": "solo-leveling-ilh08",
         "overviewUrl": "https://anikoto.cz/watch/solo-leveling-ilh08",
         "nextEpUrl": "https://anikoto.cz/watch/solo-leveling-ilh08/ep-10",
+        "image": "https://cdn.anipixcdn.co/thumbnail/53adb96c287c3931b3bc41cebb003788.png",
         "episode": 9,
         "uiSelector": true,
         "malUrl": "https://myanimelist.net/anime/52299",
