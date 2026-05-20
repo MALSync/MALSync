@@ -1,0 +1,31 @@
+@import './../pages';
+
+@boxBackground: hsla(0, 0%, 55%, 0.05);
+@activeEp: rgba(177, 6, 189, 0.103);
+@highlightStyle: 0;
+
+#malp {
+  #MalData {
+    .malp-group {
+      .malp-group-field:not(.malp-group-input),
+      .malp-group-value-section {
+        border: #ffffff1f solid 1px;
+      }
+      .malp-group-field:not(.malp-group-input):hover,
+      .malp-group-value-section:focus-within,
+      .malp-group-value-section:hover {
+        background-color: #8c8c8c14 !important;
+        transition-duration: 0.25s;
+        option {
+          font-family: sans-serif;
+        }
+        .malp-group-input:focus {
+          border-color: #ffffff;
+        }
+      }
+    }
+  }
+}
+.mal-sync-active {
+  border: solid 2px #17c96433 !important;
+}
