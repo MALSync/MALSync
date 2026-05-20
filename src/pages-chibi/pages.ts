@@ -91,6 +91,7 @@ import { ComicWalker } from './implementations/ComicWalker/main';
 import { MangaLivreTV } from './implementations/MangaLivreTV/main';
 import { SanaScans } from './implementations/SanaScans/main';
 import { RezoScans } from './implementations/RezoScans/main';
+import { Sekai } from './implementations/Sekai/main';
 import { RageScans } from './implementations/RageScans/main';
 import { AniGo } from './implementations/AniGo/main';
 import { Kuudere } from './implementations/Kuudere/main';
@@ -105,6 +106,7 @@ import { ElfToon } from './implementations/ElfToon/main';
 import { Zoro } from './implementations/Zoro/main';
 import { TeamShadowi } from './implementations/TeamShadowi/main';
 import { TopManhua } from './implementations/TopManhua/main';
+import { Tsukuyomi } from './implementations/Tsukuyomi/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -199,6 +201,7 @@ export const pages: { [key: string]: PageInterface } = {
   MangaLivreTV,
   SanaScans,
   RezoScans,
+  Sekai,
   RageScans,
   AniGo,
   Kuudere,
@@ -212,4 +215,5 @@ export const pages: { [key: string]: PageInterface } = {
   ElfToon,
   Zoro,
   TeamShadowi,
+  Tsukuyomi,
 };

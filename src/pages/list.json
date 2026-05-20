@@ -975,6 +975,11 @@
     "name": "RezoScans"
   },
   {
+    "domain": "https://sekai.one",
+    "type": "anime",
+    "name": "Sekai"
+  },
+  {
     "domain": "https://ragescans.com",
     "type": "manga",
     "name": "RageScans"
@@ -985,9 +990,9 @@
     "name": "AniGo"
   },
   {
-    "domain": "https://Kuudere.to",
+    "domain": "https://reanime.to",
     "type": "anime",
-    "name": "Kuudere"
+    "name": "Re:Anime"
   },
   {
     "domain": "https://bigsolo.org",
@@ -1038,5 +1043,10 @@
     "domain": "https://www.team-shadowi.com/",
     "type": "manga",
     "name": "TeamShadowi"
+  },
+  {
+    "domain": "https://tsukuyomi.tv",
+    "type": "anime",
+    "name": "Tsukuyomi"
   }
 ]

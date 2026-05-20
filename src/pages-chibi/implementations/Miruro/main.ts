@@ -7,7 +7,13 @@ export const Miruro: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://*.miruro.to/*', '*://*.miruro.tv/*', '*://*.miruro.online/*', '*://*.miruro.bz/*'],
+    match: [
+      '*://*.miruro.to/*',
+      '*://*.miruro.tv/*',
+      '*://*.miruro.online/*',
+      '*://*.miruro.bz/*',
+      '*://*.miruro.ru/*',
+    ],
   },
   search: 'https://www.miruro.to/search?query={searchtermPlus}',
   sync: {

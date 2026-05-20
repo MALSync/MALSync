@@ -192,9 +192,9 @@ module.exports = {
   streamium: {
     match: ['*://*.streamium.xyz/*'],
   },
-  // AnimeGO
+  // AnimeGO AnimeLib
   kodik: {
-    match: ['*://kodik.info/*'],
+    match: ['*://kodik.info/*', '*://kodikplayer.com/*'],
   },
   // AnimeGO
   aniboom: {
@@ -563,6 +563,12 @@ module.exports = {
       '*://timmaybealready.com/e/*',
       '*://richardquestionbuilding.com/e/*',
       '*://charlessheimprove.com/e/*',
+      '*://maryspecialwatch.com/e/*',
+      '*://benjaminreducecommunity.com/e/*',
+      '*://nicholasbreakplan.com/e/*',
+      '*://rebeccasciencestreet.com/e/*',
+      '*://ericeastweight.com/e/*',
+      '*://kathyinformationwhether.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

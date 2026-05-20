@@ -40,11 +40,11 @@ export const Comix: PageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '.progress-line > span.p, .progress-line > span.c',
+          selector: '.rpage-progress__seg.is-visited, .rpage-progress__seg.is-active',
           mode: 'count',
         },
         total: {
-          selector: '.progress-line > span',
+          selector: '.rpage-progress__seg',
           mode: 'count',
         },
       },
