@@ -1,0 +1,36 @@
+{
+  "title": "U-NEXT",
+  "url": "https://video.unext.jp/",
+  "testCases": [
+    {
+      "url": "https://video.unext.jp/title/SID0282797",
+      "expected": {
+        "sync": false,
+        "title": "最強の職業は勇者でも賢者でもなく鑑定士（仮）らしいですよ？",
+        "identifier": "SID0282797",
+        "image": "https://imgc.nxtv.jp/img/info/tit/00282/SID0282797.png?f=jpg&q=H&p=W1024",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://video.unext.jp/genre/anime?td=SID0285884&feid=FET0012733",
+      "expected": {
+        "sync": false,
+        "title": "クラスで2番目に可愛い女の子と友だちになった",
+        "identifier": "SID0285884",
+        "image": "https://imgc.nxtv.jp/img/info/tit/00285/SID0285884.png?f=jpg&q=H&p=W1024",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://video.unext.jp/browse/feature/FET0012733?td=SID0285884",
+      "expected": {
+        "sync": false,
+        "title": "クラスで2番目に可愛い女の子と友だちになった",
+        "identifier": "SID0285884",
+        "image": "https://imgc.nxtv.jp/img/info/tit/00285/SID0285884.png?f=jpg&q=H&p=W1024",
+        "uiSelector": true
+      }
+    }
+  ]
+}
