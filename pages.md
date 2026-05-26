@@ -62,6 +62,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://anikoto.cz"><img src="https://favicon.malsync.moe/?domain=https://anikoto.cz"> AniKoto</a></td>
+    <td>English</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://smotret-anime.org"><img src="https://favicon.malsync.moe/?domain=https://smotret-anime.org"> Anime365</a></td>
     <td>Russian</td>
     <td>:heavy_check_mark:</td>

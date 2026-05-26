@@ -530,6 +530,11 @@
     "name": "Anicrush"
   },
   {
+    "domain": "https://anikoto.cz",
+    "type": "anime",
+    "name": "AniKoto"
+  },
+  {
     "domain": "https://manganato.gg",
     "type": "manga",
     "name": "MangaNato"
