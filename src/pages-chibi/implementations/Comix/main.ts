@@ -64,7 +64,7 @@ export const Comix: PageInterface = {
       return $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.description').uiBefore().run();
+      return $c.querySelector('.mpage__desc-wrap').uiBefore().run();
     },
     getMalUrl($c) {
       return $c.provider().this('sync.getMalUrl').run();
@@ -72,13 +72,13 @@ export const Comix: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.chap-list > li:not(.head)').run();
+      return $c.querySelectorAll('.mchap-list > .mchap-item').run();
     },
     elementUrl($c) {
       return $c.find('a').getAttribute('href').ifNotReturn().urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('a b').text().regex('ch\\. (\\d+)', 1).number().run();
+      return $c.find('a').text().regex('ch\\.(\\d+)', 1).number().run();
     },
   },
   lifecycle: {
@@ -107,7 +107,7 @@ export const Comix: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('.chap-list > li:not(.head)').ifNotReturn().text().run(),
+          $c.querySelector('.mchap-foot__hint').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();
