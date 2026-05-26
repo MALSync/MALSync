@@ -137,46 +137,51 @@ export class Single extends SingleAbstract {
   async _update(): Promise<void> {
     this.logger.log('Update', this.ids.mal);
 
-    const data = await helper.apiCall(`/anime-list?animeId=${this.ids.mal}`);
+    // Path route, not the /anime-list?animeId=... collection route, which
+    // ignores the param and returns the whole list instead of one entry.
+    const data = await helper.apiCall(`/anime-list/${this.ids.mal}`);
 
     if (data && data.entry) {
+      this._onList = true;
       this.animeInfo.status = data.entry.status;
       this.animeInfo.score = data.entry.rating || 0;
       this.animeInfo.episode = data.entry.episodesWatched || 0;
       this.animeInfo.rewatchCount = data.entry.rewatchCount || 0;
+    } else {
+      // SingleAbstract only flips _onList true after a successful sync, so
+      // the provider must report "not on list" from the read itself.
+      this._onList = false;
     }
 
-    const animeData = await helper.apiCall(`/anime/${this.ids.mal}`);
-    if (animeData && animeData.data) {
-      const anime = animeData.data;
-      this.animeInfo.title = anime.title || '';
-      this.animeInfo.totalEpisodes = anime.episodes || 0;
-      this.animeInfo.image = anime.images?.jpg?.large_image_url || '';
-      this.animeInfo.communityScore = anime.score || 0;
+    try {
+      const animeData = await helper.apiCall(`/anime/${this.ids.mal}`);
+      if (animeData) {
+        this.animeInfo.title = animeData.title || '';
+        this.animeInfo.totalEpisodes = animeData.episodes || 0;
+        this.animeInfo.image =
+          animeData.images?.jpg?.large_image_url || animeData.image_url || '';
+        this.animeInfo.communityScore = animeData.score || 0;
+      }
+    } catch (e) {
+      this.logger.log('Metadata fetch failed (non-fatal)', e);
     }
   }
 
   async _sync(): Promise<void> {
     this.logger.log('Sync', this.ids.mal);
 
-    const body: Record<string, any> = {
-      status: this.animeInfo.status,
-      episodesWatched: this.animeInfo.episode,
-    };
-
-    if (this.animeInfo.score) {
-      body.rating = this.animeInfo.score;
-    }
-
-    try {
-      await helper.apiCall(`/anime-list/${this.ids.mal}`, body, 'PATCH');
-    } catch (e: any) {
-      if (e?.status === 404) {
-        await helper.apiCall('/anime-list', { animeId: this.ids.mal, ...body }, 'POST');
-      } else {
-        throw e;
-      }
-    }
+    // POST (not PATCH): PATCH can't create a new entry, so first-time
+    // tracking would fail. POST upserts.
+    await helper.apiCall(
+      '/anime-list',
+      {
+        animeId: this.ids.mal,
+        status: this.animeInfo.status,
+        episodesWatched: this.animeInfo.episode,
+        ...(this.animeInfo.score ? { rating: this.animeInfo.score } : {}),
+      },
+      'POST',
+    );
   }
 
   async _delete(): Promise<void> {

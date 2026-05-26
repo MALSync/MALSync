@@ -54,9 +54,16 @@ export async function apiCall(
       throw new NotAutenticatedError('AnimePulse token expired');
     }
 
+    if (response.status >= 400) {
+      const err: any = new Error(`AnimePulse API error ${response.status}`);
+      err.status = response.status;
+      throw err;
+    }
+
     return parseJson(response.responseText);
-  } catch (e) {
+  } catch (e: any) {
     if (e instanceof NotAutenticatedError || e instanceof ServerOfflineError) throw e;
+    if (e?.status) throw e;
     throw new ServerOfflineError(`AnimePulse API error: ${e}`);
   }
 }
