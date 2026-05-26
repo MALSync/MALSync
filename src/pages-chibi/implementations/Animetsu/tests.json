@@ -1,0 +1,30 @@
+{
+  "title": "YourSite",
+  "url": "https://yoursite.com",
+  "testCases": [
+    {
+      "url": "https://yoursite.com/watch/123/episode-1",
+      "expected": {
+        "sync": true,
+        "title": "Test Title",
+        "identifier": "123",
+        "overviewUrl": "https://yoursite.com/watch/123/",
+        "nextEpUrl": "https://yoursite.com/watch/123/episode-2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://yoursite.com/watch/123/",
+      "expected": {
+        "sync": false,
+        "title": "Test Title",
+        "identifier": "123",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://yoursite.com/watch/123/episode-2"
+        }
+      }
+    }
+  ]
+}
