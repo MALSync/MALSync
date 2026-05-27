@@ -7,7 +7,7 @@ import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
 import { MetaOverview as MangaBakaMeta } from './MangaBaka/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';
 import { MetaOverview as ShikiMeta } from './Shikimori/metaOverview';
-import { MetaOverview as MyAnimePulseMeta } from './AnimePulse/metaOverview';
+import { MetaOverview as MyAnimePulseMeta } from './MyAnimePulse/metaOverview';
 
 export function getOverview(url, type, syncMode = '') {
   if (!syncMode) {

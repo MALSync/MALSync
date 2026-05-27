@@ -4,7 +4,7 @@ import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
 import { Single as ShikiSingle } from '../_provider/Shikimori/single';
 import { Single as BakaSingle } from '../_provider/MangaBaka/single';
-import { Single as MyAnimePulseSingle } from '../_provider/AnimePulse/single';
+import { Single as MyAnimePulseSingle } from '../_provider/MyAnimePulse/single';
 
 import { UserList as MalList } from '../_provider/MyAnimeList_hybrid/list';
 import { UserList as AnilistList } from '../_provider/AniList/list';

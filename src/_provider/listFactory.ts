@@ -7,7 +7,7 @@ import { UserList as KitsuList } from './Kitsu/list';
 import { UserList as MangaBakaList } from './MangaBaka/list';
 import { UserList as SimklList } from './Simkl/list';
 import { UserList as ShikiList } from './Shikimori/list';
-import { UserList as AnimePulseList } from './AnimePulse/list';
+import { UserList as MyAnimePulseList } from './MyAnimePulse/list';
 import { UserList as LocalList } from './Local/list';
 
 export async function getList(...args) {
@@ -61,7 +61,7 @@ function getListObj(args, syncMode = '') {
     return new ShikiList(status, listType, sorting);
   }
   if (syncMode === 'MYANIMEPULSE') {
-    return new AnimePulseList(status, listType, sorting);
+    return new MyAnimePulseList(status, listType, sorting);
   }
   throw 'Unknown sync mode';
 }

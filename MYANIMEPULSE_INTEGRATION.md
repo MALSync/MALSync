@@ -13,10 +13,10 @@ Token-based, no OAuth redirect. The user opens
 `https://myanimepulse.com/auth/extension`, which shows a scoped `ap_` token and
 also posts it to the page (`postMessage`, `{ type: 'myanimepulse-token' }`). The
 content script (`src/index-webextension/myanimepulseOauth.ts`) captures it via the
-shared handler (`src/_provider/AnimePulse/oauth.ts`) and stores it in the
+shared handler (`src/_provider/MyAnimePulse/oauth.ts`) and stores it in the
 `animepulseToken` setting. API calls send it as `Authorization: Bearer`.
 
-## Provider (`src/_provider/AnimePulse/`)
+## Provider (`src/_provider/MyAnimePulse/`)
 
 - **helper.ts** — `apiCall()` (Bearer wrapper over `https://myanimepulse.com/api`,
   throws on non-2xx) and `translateList()` status mapping.

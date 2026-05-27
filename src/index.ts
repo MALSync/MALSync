@@ -13,7 +13,7 @@ import { pwa } from './floatbutton/userscriptPwa';
 import { databaseRequest, initDatabase } from './background/database';
 import { anilistOauth } from './anilist/oauth';
 import { shikiOauth } from './_provider/Shikimori/oauth';
-import { myAnimePulseOauth } from './_provider/AnimePulse/oauth';
+import { myAnimePulseOauth } from './_provider/MyAnimePulse/oauth';
 import { Chibi } from './pages-chibi/ChibiProxy';
 import { NotFoundError } from './_provider/Errors';
 import { mangabakaOauth } from './mangabaka/oauth';
