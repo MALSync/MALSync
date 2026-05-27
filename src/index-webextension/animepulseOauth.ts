@@ -26,7 +26,7 @@ api.settings.init().then(() => {
 
   // Also listen for postMessage
   window.addEventListener('message', (event) => {
-    if (event.data?.type === 'animepulse-token' && event.data?.token) {
+    if (event.data?.type === 'myanimepulse-token' && event.data?.token) {
       clearInterval(interval);
       api.settings.set('animepulseToken', event.data.token).then(() => {
         document.body.innerHTML = `
