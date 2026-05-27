@@ -28,7 +28,6 @@ export class UserList extends ListAbstract {
       return [];
     }
 
-    // If we got less than 50, we're done
     if (data.length < 50) {
       this.done = true;
     }

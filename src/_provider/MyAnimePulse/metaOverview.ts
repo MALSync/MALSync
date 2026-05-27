@@ -5,8 +5,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
     this.logger = this.logger.m('MyAnimePulse');
-    // Accept both the MyAnimePulse and the MAL url for the same entry, since
-    // a MyAnimePulse id IS the MAL id and either can reach this overview.
+    // A MyAnimePulse id is the MAL id, so accept either host's /anime/{id} URL.
     const match = url.match(/(?:myanimepulse\.com|myanimelist\.net)\/anime\/(\d+)/i);
     if (match) {
       this.type = 'anime';
@@ -23,8 +22,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   async _init() {
     let data;
     try {
-      // Public endpoint, no auth needed for metadata. Returns Jikan-shaped
-      // anime data from our DB/Jikan/AniList fallback chain.
+      // Public endpoint, no auth token needed; returns Jikan-shaped anime data.
       const response = await api.request.xhr('GET', {
         url: `https://myanimepulse.com/api/anime/${this.malId}`,
       });

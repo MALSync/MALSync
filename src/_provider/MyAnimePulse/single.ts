@@ -80,9 +80,7 @@ export class Single extends SingleAbstract {
     return 0;
   }
 
-  _setVolume(_volume: number) {
-    // MyAnimePulse is anime-only
-  }
+  _setVolume(_volume: number) {}
 
   _getTitle() {
     return this.animeInfo.title || '';
@@ -132,9 +130,7 @@ export class Single extends SingleAbstract {
     return '';
   }
 
-  _setTags(_tags: string) {
-    // not supported
-  }
+  _setTags(_tags: string) {}
 
   async _update(): Promise<void> {
     this.logger.log('Update', this.ids.mal);
