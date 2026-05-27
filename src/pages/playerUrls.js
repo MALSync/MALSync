@@ -78,7 +78,7 @@ module.exports = {
     match: ['*://*.vidlox.me/*'],
   },
   kwik: {
-    match: ['*://*.kwik.cx/*', '*://*.kwik.si/*'],
+    match: ['*://*.kwik.cx/*', '*://*.kwik.si/*', '*://*.mewcdn.online/*'],
   },
   mega: {
     match: ['*://*.mega.nz/*'],
