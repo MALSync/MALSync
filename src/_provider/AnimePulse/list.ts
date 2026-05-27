@@ -46,6 +46,8 @@ export class UserList extends ListAbstract {
       status: helper.translateList(entry.status) as number,
       score: entry.rating || 0,
       image: entry.anime?.imageUrl || '',
+      // Card views render imageLarge (not image); only have one URL, so reuse it.
+      imageLarge: entry.anime?.imageUrl || '',
       tags: '',
       startDate: null,
       finishDate: null,
