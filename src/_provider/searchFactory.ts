@@ -34,7 +34,7 @@ export function search(
   if (syncMode === 'SHIKI') {
     return shikiSearch(keyword, type, options, sync);
   }
-  if (syncMode === 'ANIMEPULSE') {
+  if (syncMode === 'MYANIMEPULSE') {
     return animePulseSearch(keyword, type, options, sync);
   }
   if (syncMode === 'MALAPI') {

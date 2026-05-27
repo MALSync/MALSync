@@ -60,7 +60,7 @@ function getListObj(args, syncMode = '') {
   if (syncMode === 'SHIKI') {
     return new ShikiList(status, listType, sorting);
   }
-  if (syncMode === 'ANIMEPULSE') {
+  if (syncMode === 'MYANIMEPULSE') {
     return new AnimePulseList(status, listType, sorting);
   }
   throw 'Unknown sync mode';

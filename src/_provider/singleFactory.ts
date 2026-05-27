@@ -44,7 +44,7 @@ export function getSingle(url: string) {
   if (syncMode === 'SHIKI') {
     return new ShikiSingle(url);
   }
-  if (syncMode === 'ANIMEPULSE') {
+  if (syncMode === 'MYANIMEPULSE') {
     return new AnimePulseSingle(url);
   }
   throw 'Unknown sync mode';
