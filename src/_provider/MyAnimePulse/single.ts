@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import { UrlNotSupportedError } from '../Errors';
+import { status as listStatus } from '../definitions';
 import * as helper from './helper';
 
 export class Single extends SingleAbstract {
@@ -45,10 +46,13 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
+    // The list status stays WATCHING during a rewatch; the flag carries the distinction.
+    if (this.animeInfo.isRewatching) return listStatus.Rewatching;
     return parseInt(String(helper.translateList(this.animeInfo.status)));
   }
 
   _setStatus(status: number) {
+    this.animeInfo.isRewatching = status === listStatus.Rewatching;
     this.animeInfo.status = helper.translateList('', status);
   }
 
@@ -145,6 +149,7 @@ export class Single extends SingleAbstract {
       this.animeInfo.score = data.entry.rating || 0;
       this.animeInfo.episode = data.entry.episodesWatched || 0;
       this.animeInfo.rewatchCount = data.entry.rewatchCount || 0;
+      this.animeInfo.isRewatching = data.entry.isRewatching || false;
       // API returns ISO datetimes; the tracker works in YYYY-MM-DD strings.
       this.animeInfo.startDate = data.entry.startDate ? String(data.entry.startDate).slice(0, 10) : null;
       this.animeInfo.finishDate = data.entry.finishDate ? String(data.entry.finishDate).slice(0, 10) : null;
@@ -180,6 +185,7 @@ export class Single extends SingleAbstract {
         status: this.animeInfo.status,
         episodesWatched: this.animeInfo.episode,
         rewatchCount: this.animeInfo.rewatchCount ?? 0,
+        isRewatching: this.animeInfo.isRewatching ?? false,
         startDate: this.animeInfo.startDate ?? null,
         finishDate: this.animeInfo.finishDate ?? null,
         ...(this.animeInfo.score ? { rating: this.animeInfo.score } : {}),
