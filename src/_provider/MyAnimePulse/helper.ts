@@ -13,6 +13,8 @@ export function translateList(pulseStatus: string, malStatus: null | number = nu
   };
 
   if (malStatus !== null) {
+    // MyAnimePulse has no "rewatching" status; surface an in-progress rewatch as Watching.
+    if (malStatus === status.Rewatching) return 'WATCHING';
     return Object.keys(list).find(key => list[key] === malStatus) || 'PLAN_TO_WATCH';
   }
   return list[pulseStatus] ?? status.PlanToWatch;
