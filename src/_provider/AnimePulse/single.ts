@@ -15,6 +15,8 @@ export class Single extends SingleAbstract {
 
   authenticationUrl = 'https://myanimepulse.com/auth/extension';
 
+  protected datesSupport = true;
+
   protected handleUrl(url: string) {
     if (url.match(/myanimepulse\.com\/anime\/\d+/i)) {
       this.type = 'anime';
@@ -98,24 +100,24 @@ export class Single extends SingleAbstract {
     return this.animeInfo.image || '';
   }
 
-  _getRating() {
-    return this.animeInfo.communityScore || '';
+  async _getRating(): Promise<string> {
+    return this.animeInfo.communityScore ? String(this.animeInfo.communityScore) : '';
   }
 
-  _getStartDate(): never {
-    throw new Error('MyAnimePulse does not support start date');
+  _getStartDate(): string | null {
+    return this.animeInfo.startDate ?? null;
   }
 
-  _setStartDate(_date: any) {
-    // not supported
+  _setStartDate(startDate: string | null) {
+    this.animeInfo.startDate = startDate;
   }
 
-  _getFinishDate(): never {
-    throw new Error('MyAnimePulse does not support finish date');
+  _getFinishDate(): string | null {
+    return this.animeInfo.finishDate ?? null;
   }
 
-  _setFinishDate(_date: any) {
-    // not supported
+  _setFinishDate(finishDate: string | null) {
+    this.animeInfo.finishDate = finishDate;
   }
 
   _getRewatchCount() {
@@ -147,6 +149,9 @@ export class Single extends SingleAbstract {
       this.animeInfo.score = data.entry.rating || 0;
       this.animeInfo.episode = data.entry.episodesWatched || 0;
       this.animeInfo.rewatchCount = data.entry.rewatchCount || 0;
+      // API returns ISO datetimes; the tracker works in YYYY-MM-DD strings.
+      this.animeInfo.startDate = data.entry.startDate ? String(data.entry.startDate).slice(0, 10) : null;
+      this.animeInfo.finishDate = data.entry.finishDate ? String(data.entry.finishDate).slice(0, 10) : null;
     } else {
       // SingleAbstract only flips _onList true after a successful sync, so
       // the provider must report "not on list" from the read itself.
@@ -178,6 +183,9 @@ export class Single extends SingleAbstract {
         animeId: this.ids.mal,
         status: this.animeInfo.status,
         episodesWatched: this.animeInfo.episode,
+        rewatchCount: this.animeInfo.rewatchCount ?? 0,
+        startDate: this.animeInfo.startDate ?? null,
+        finishDate: this.animeInfo.finishDate ?? null,
         ...(this.animeInfo.score ? { rating: this.animeInfo.score } : {}),
       },
       'POST',
