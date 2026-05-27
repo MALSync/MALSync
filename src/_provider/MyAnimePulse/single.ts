@@ -130,6 +130,12 @@ export class Single extends SingleAbstract {
     this.animeInfo.rewatchCount = count;
   }
 
+  // Base increaseRewatchCount() is a no-op; providers must override to persist
+  // the bump that finishRewatchingMessage() triggers on completing a rewatch.
+  increaseRewatchCount(): void {
+    this.animeInfo.rewatchCount = (this.animeInfo.rewatchCount || 0) + 1;
+  }
+
   _getTags() {
     return '';
   }
