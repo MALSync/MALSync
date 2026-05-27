@@ -107,6 +107,7 @@ import { Zoro } from './implementations/Zoro/main';
 import { TeamShadowi } from './implementations/TeamShadowi/main';
 import { TopManhua } from './implementations/TopManhua/main';
 import { Tsukuyomi } from './implementations/Tsukuyomi/main';
+import { UNext } from './implementations/UNext/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -216,4 +217,5 @@ export const pages: { [key: string]: PageInterface } = {
   Zoro,
   TeamShadowi,
   Tsukuyomi,
+  UNext,
 };
