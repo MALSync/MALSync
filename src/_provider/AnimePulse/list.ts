@@ -2,7 +2,7 @@ import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
 export class UserList extends ListAbstract {
-  name = 'AnimePulse';
+  name = 'MyAnimePulse';
 
   authenticationUrl = 'https://myanimepulse.com/auth/extension';
 

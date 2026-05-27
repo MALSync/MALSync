@@ -46,7 +46,7 @@ const providers: { [key in SyncTypes]: ProviderOption } = {
     short: false,
   },
   ANIMEPULSE: {
-    title: 'AnimePulse',
+    title: 'MyAnimePulse',
     value: 'ANIMEPULSE',
     anime: true,
     manga: false,

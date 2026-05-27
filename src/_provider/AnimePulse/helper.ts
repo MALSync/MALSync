@@ -29,7 +29,7 @@ export async function apiCall(
 ): Promise<any> {
   const token = await api.settings.getAsync('animepulseToken');
   if (!token) {
-    throw new NotAutenticatedError('AnimePulse token not found');
+    throw new NotAutenticatedError('MyAnimePulse token not found');
   }
 
   const headers: Record<string, string> = {
@@ -47,15 +47,15 @@ export async function apiCall(
     });
 
     if (response.status >= 500) {
-      throw new ServerOfflineError('AnimePulse server error');
+      throw new ServerOfflineError('MyAnimePulse server error');
     }
 
     if (response.status === 401) {
-      throw new NotAutenticatedError('AnimePulse token expired');
+      throw new NotAutenticatedError('MyAnimePulse token expired');
     }
 
     if (response.status >= 400) {
-      const err: any = new Error(`AnimePulse API error ${response.status}`);
+      const err: any = new Error(`MyAnimePulse API error ${response.status}`);
       err.status = response.status;
       throw err;
     }
@@ -64,6 +64,6 @@ export async function apiCall(
   } catch (e: any) {
     if (e instanceof NotAutenticatedError || e instanceof ServerOfflineError) throw e;
     if (e?.status) throw e;
-    throw new ServerOfflineError(`AnimePulse API error: ${e}`);
+    throw new ServerOfflineError(`MyAnimePulse API error: ${e}`);
   }
 }

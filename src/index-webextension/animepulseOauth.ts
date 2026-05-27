@@ -1,4 +1,4 @@
-// AnimePulse OAuth handler — auto-captures token from the auth page
+// MyAnimePulse OAuth handler — auto-captures token from the auth page
 api.settings.init().then(() => {
   // Poll for the token element (it loads async after auth)
   const interval = setInterval(() => {
@@ -13,7 +13,7 @@ api.settings.init().then(() => {
             <div style="width:48px;height:48px;border-radius:50%;background:rgba(52,211,153,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
             </div>
-            <h1 style="font-size:20px;font-weight:700;margin-bottom:4px;">Connected to AnimePulse</h1>
+            <h1 style="font-size:20px;font-weight:700;margin-bottom:4px;">Connected to MyAnimePulse</h1>
             <p style="color:#888;font-size:14px;">Token saved. You can close this page.</p>
           </div>
         `;
@@ -34,7 +34,7 @@ api.settings.init().then(() => {
             <div style="width:48px;height:48px;border-radius:50%;background:rgba(52,211,153,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
             </div>
-            <h1 style="font-size:20px;font-weight:700;margin-bottom:4px;">Connected to AnimePulse</h1>
+            <h1 style="font-size:20px;font-weight:700;margin-bottom:4px;">Connected to MyAnimePulse</h1>
             <p style="color:#888;font-size:14px;">Token saved. You can close this page.</p>
           </div>
         `;

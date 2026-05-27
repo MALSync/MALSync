@@ -11,7 +11,7 @@ export class Single extends SingleAbstract {
 
   private animeInfo: any = {};
 
-  shortName = 'AnimePulse';
+  shortName = 'MyAnimePulse';
 
   authenticationUrl = 'https://myanimepulse.com/auth/extension';
 
@@ -79,7 +79,7 @@ export class Single extends SingleAbstract {
   }
 
   _setVolume(_volume: number) {
-    // AnimePulse is anime-only
+    // MyAnimePulse is anime-only
   }
 
   _getTitle() {
@@ -103,7 +103,7 @@ export class Single extends SingleAbstract {
   }
 
   _getStartDate(): never {
-    throw new Error('AnimePulse does not support start date');
+    throw new Error('MyAnimePulse does not support start date');
   }
 
   _setStartDate(_date: any) {
@@ -111,7 +111,7 @@ export class Single extends SingleAbstract {
   }
 
   _getFinishDate(): never {
-    throw new Error('AnimePulse does not support finish date');
+    throw new Error('MyAnimePulse does not support finish date');
   }
 
   _setFinishDate(_date: any) {
