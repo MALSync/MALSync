@@ -7,6 +7,7 @@ import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
 import { MetaOverview as MangaBakaMeta } from './MangaBaka/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';
 import { MetaOverview as ShikiMeta } from './Shikimori/metaOverview';
+import { MetaOverview as MyAnimePulseMeta } from './AnimePulse/metaOverview';
 
 export function getOverview(url, type, syncMode = '') {
   if (!syncMode) {
@@ -36,6 +37,9 @@ export function getOverview(url, type, syncMode = '') {
   }
   if (syncMode === 'MALAPI') {
     return new MalApiMeta(url);
+  }
+  if (syncMode === 'MYANIMEPULSE') {
+    return new MyAnimePulseMeta(url);
   }
 
   throw 'Unknown sync mode';
