@@ -43,7 +43,7 @@ var content_scripts = [
   {
     matches: generateMatchExcludes(animepulseUrls).match,
     exclude_globs: generateMatchExcludes(animepulseUrls).exclude,
-    js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-animepulse-script.js'],
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-myanimepulse-script.js'],
     run_at: 'document_idle',
   },
   {
