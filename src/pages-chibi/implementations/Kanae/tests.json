@@ -1,0 +1,54 @@
+{
+  "title": "Kanae",
+  "url": "https://kanae.to",
+  "unreliable": true,
+  "testCases": [
+    {
+      "url": "https://kanae.to/series/019e125e-f925-7ac6-aba7-d656fc82e9c4/watch/019e2755-6d44-77a8-b1b8-ec419f5c5e6a",
+      "expected": {
+        "sync": true,
+        "title": "Petals of Reincarnation",
+        "identifier": "019e125e-f925-7ac6-aba7-d656fc82e9c4_S1",
+        "episode": 7,
+        "overviewUrl": "https://kanae.to/series/019e125e-f925-7ac6-aba7-d656fc82e9c4",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kanae.to/series/019e2121-30ef-7e51-a9a2-3cacc432ae4f/watch/019e212f-8cda-7292-b632-22f5210a4879",
+      "expected": {
+        "sync": true,
+        "title": "Reborn as a Vending Machine, I Now Wander the Dungeon Season 2",
+        "identifier": "019e2121-30ef-7e51-a9a2-3cacc432ae4f_S2",
+        "episode": 1,
+        "overviewUrl": "https://kanae.to/series/019e2121-30ef-7e51-a9a2-3cacc432ae4f",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kanae.to/series/019e125e-f925-7ac6-aba7-d656fc82e9c4",
+      "expected": {
+        "sync": false,
+        "title": "Petals of Reincarnation",
+        "identifier": "019e125e-f925-7ac6-aba7-d656fc82e9c4",
+        "image": "https://yuzuki.kagane.org/api/v2/image/019e125e-f6fc-73c3-9a63-b4603fab6503/compressed",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://kanae.to/series/019e125e-f925-7ac6-aba7-d656fc82e9c4/watch/019e125f-206b-7757-bc0a-e83bd5e9363c"
+        }
+      }
+    },
+    {
+      "url": "https://kanae.to/series/019e2121-30ef-7e51-a9a2-3cacc432ae4f",
+      "expected": {
+        "sync": false,
+        "title": "Reborn as a Vending Machine, I Now Wander the Dungeon",
+        "identifier": "019e2121-30ef-7e51-a9a2-3cacc432ae4f",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://kanae.to/series/019e2121-30ef-7e51-a9a2-3cacc432ae4f/watch/019e2121-9e06-7463-af3f-01065c690547"
+        }
+      }
+    }
+  ]
+}
