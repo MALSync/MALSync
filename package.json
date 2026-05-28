@@ -46,7 +46,7 @@
     "less": "^4.6.4",
     "less-loader": "^12.3.3",
     "mkdirp": "^1.0.4",
-    "mocha": "^11.7.5",
+    "mocha": "^11.7.6",
     "node-dir": "^0.1.17",
     "postcss-html": "^1.8.1",
     "postcss-less": "^6.0.0",
