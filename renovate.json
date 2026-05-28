@@ -20,7 +20,7 @@
   "minimumReleaseAge": "2 days",
   "force": {
     "constraints": {
-      "npm": "10.x"
+      "npm": "11.x"
     }
   }
 }
