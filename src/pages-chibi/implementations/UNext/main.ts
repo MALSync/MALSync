@@ -79,6 +79,8 @@ const hasTitleModal = ($c: UNextContext) =>
 
 const missing = ($c: UNextContext) => $c.object({}).get('missing').run();
 
+const pageState = ($c: UNextContext) => $c.url().concat('|').concat($c.title().run());
+
 const episodeNumber = ($c: UNextContext, input: ReturnType<typeof playerEpisodeTitle>) =>
   $c
     .coalesce(
@@ -189,25 +191,9 @@ export const UNext: PageInterface = {
     },
     ready($c) {
       return $c
-        .detectURLChanges($c.trigger().run(), { ignoreQuery: false, ignoreAnchor: true })
-        .detectChanges($c.title().run(), $c.trigger().run())
-        .detectChanges(
-          $c
-            .querySelectorAll(
-              '[data-testid="videoStageMain-title-text"], [data-testid="player-header-back"]',
-            )
-            .length()
-            .run(),
-          $c.trigger().run(),
-        )
-        .detectChanges(
-          $c
-            .querySelectorAll('[data-testid="videoDetail-episodeList-episodeDetail"]')
-            .length()
-            .run(),
-          $c.trigger().run(),
-        )
+        .detectChanges(pageState($c).run(), $c.debounce(750).trigger().run())
         .domReady()
+        .debounce(750)
         .trigger()
         .run();
     },
