@@ -883,6 +883,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://en-hijala.com"><img src="https://favicon.malsync.moe/?domain=https://en-hijala.com"> HijalaScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://immortalupdates.com"><img src="https://favicon.malsync.moe/?domain=https://immortalupdates.com"> ImmortalUpdates</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>

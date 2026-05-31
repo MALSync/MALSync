@@ -1053,5 +1053,10 @@
     "domain": "https://tsukuyomi.tv",
     "type": "anime",
     "name": "Tsukuyomi"
+  },
+  {
+    "domain": "https://en-hijala.com",
+    "type": "manga",
+    "name": "HijalaScans"
   }
 ]

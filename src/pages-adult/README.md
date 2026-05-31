@@ -15,6 +15,8 @@ Add the adult repository by using this [link](https://malsync.moe/pwa/#/settings
               <td><a href="https://hentaiocean.com"><img src="https://favicon.malsync.moe/?domain=https://hentaiocean.com"> HentaiOcean</a></td>
             </tr><tr>
               <td><a href="https://mangadistrict.com"><img src="https://favicon.malsync.moe/?domain=https://mangadistrict.com"> Mangadistrict</a></td>
+            </tr><tr>
+              <td><a href="https://omegascans.org"><img src="https://favicon.malsync.moe/?domain=https://omegascans.org"> OmegaScans</a></td>
             </tr>
     </tbody>
   </table>
