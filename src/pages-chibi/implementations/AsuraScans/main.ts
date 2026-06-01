@@ -7,11 +7,8 @@ export const AsuraScans: PageInterface = {
   type: 'manga',
   urls: {
     match: [
-      '*://asuracomic.net/*',
-      '*://asuratoon.com/*',
       '*://asuracomics.com/*',
       '*://asura.gg/*',
-      '*://asurascans.com/*',
       '*://asuratoon.com/*',
       '*://asuracomic.net/*',
       '*://asurascans.com/*',
