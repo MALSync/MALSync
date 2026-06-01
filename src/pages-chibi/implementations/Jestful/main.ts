@@ -33,14 +33,8 @@ export const Jestful: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.chapter-img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.chapter-img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.chapter-img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.chapter-img').length().run(),
       },
     ],
   },

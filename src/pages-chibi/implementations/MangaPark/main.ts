@@ -81,34 +81,10 @@ export const MangaPark: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '[href^="?page="].btn-outline',
-        current: {
-          selector: '[href^="?page="].btn-outline',
-          mode: 'text',
-        },
-        total: {
-          selector: '[href^="?page="]:last-of-type',
-          mode: 'text',
-        },
-      },
-      {
-        current: {
-          selector: '[data-name="image-item"] img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '[data-name="image-item"]:first-child [data-name="image-show"]',
-          mode: 'attr',
-          attribute: 'style',
-          regex: '(\\d+)<\\/text>',
-          group: 1,
-        },
-      },
-      /*
-      {
         condition: $c => $c.querySelector('[href^="?page="].btn-outline').boolean().run(),
-        current: $c => $c.querySelector('[href^="?page="].btn-outline').text().number().run(),
-        total: $c => $c.querySelector('[href^="?page="]:last-of-type').text().number().run(),
+        current: $c =>
+          $c.querySelector('[href^="?page="].btn-outline').text().trim().number().run(),
+        total: $c => $c.querySelector('[href^="?page="]:last-of-type').text().trim().number().run(),
       },
       {
         current: $c => $c.querySelectorAll('[data-name="image-item"] img').countAbove().run(),
@@ -116,11 +92,11 @@ export const MangaPark: PageInterface = {
           $c
             .querySelector('[data-name="image-item"]:first-child [data-name="image-show"]')
             .getAttribute('style')
+            .ifNotReturn()
             .regex('(\\d+)<\\/text>', 1)
             .number()
             .run(),
       },
-      */
     ],
   },
   overview: {

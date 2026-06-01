@@ -48,14 +48,8 @@ export const AsuraScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '[data-page]',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '[data-page]',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('[data-page]').countAbove().run(),
+        total: $c => $c.querySelectorAll('[data-page]').length().run(),
       },
     ],
   },

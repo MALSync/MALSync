@@ -52,26 +52,21 @@ export const WeebCentral: PageInterface = {
     },
     readerConfig: [
       {
-        condition: 'button.col-span-2[\\@click="nextPage()"]',
-        current: {
-          selector: '[onclick*="page_select_modal"]',
-          mode: 'text',
-          regex: '\\d+$',
-        },
-        total: {
-          selector: 'main img[src*="/manga/"]',
-          mode: 'count',
-        },
+        condition: $c =>
+          $c.querySelector('button.col-span-2[\\@click="nextPage()"]').boolean().run(),
+        current: $c =>
+          $c
+            .querySelector('[onclick*="page_select_modal"]')
+            .text()
+            .trim()
+            .regex('\\d+$')
+            .number()
+            .run(),
+        total: $c => $c.querySelectorAll('main img[src*="/manga/"]').length().run(),
       },
       {
-        current: {
-          selector: 'main img[src*="/manga/"]',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: 'main img[src*="/manga/"]',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('main img[src*="/manga/"]').countAbove().run(),
+        total: $c => $c.querySelectorAll('main img[src*="/manga/"]').length().run(),
       },
     ],
   },

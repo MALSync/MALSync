@@ -54,14 +54,8 @@ export const Mangitto: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '[data-page-number]',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '[data-page-number]',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('[data-page-number]').countAbove().run(),
+        total: $c => $c.querySelectorAll('[data-page-number]').length().run(),
       },
     ],
   },

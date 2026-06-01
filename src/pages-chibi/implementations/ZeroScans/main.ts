@@ -42,29 +42,28 @@ export const ZeroScans: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '.hooper-navigation + .hooper-liveregion',
-        current: {
-          selector: '.hooper-navigation + .hooper-liveregion',
-          mode: 'text',
-          regex: '(\\d+) of (\\d+)$',
-          group: 1,
-        },
-        total: {
-          selector: '.hooper-navigation + .hooper-liveregion',
-          mode: 'text',
-          regex: '(\\d+) of (\\d+)$',
-          group: 2,
-        },
+        condition: $c =>
+          $c.querySelector('.hooper-navigation + .hooper-liveregion').boolean().run(),
+        current: $c =>
+          $c
+            .querySelector('.hooper-navigation + .hooper-liveregion')
+            .text()
+            .trim()
+            .regex('(\\d+) of (\\d+)$', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('.hooper-navigation + .hooper-liveregion')
+            .text()
+            .trim()
+            .regex('(\\d+) of (\\d+)$', 2)
+            .number()
+            .run(),
       },
       {
-        current: {
-          selector: '.group .v-image__image',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.group .v-image__image',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.group .v-image__image').countAbove().run(),
+        total: $c => $c.querySelectorAll('.group .v-image__image').length().run(),
       },
     ],
   },

@@ -48,14 +48,8 @@ export const Ritharscans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '[x-text="currentPage + 1"]',
-          mode: 'text',
-        },
-        total: {
-          selector: '[x-text="pages.length"]',
-          mode: 'text',
-        },
+        current: $c => $c.querySelector('[x-text="currentPage + 1"]').text().trim().number().run(),
+        total: $c => $c.querySelector('[x-text="pages.length"]').text().trim().number().run(),
       },
     ],
   },
