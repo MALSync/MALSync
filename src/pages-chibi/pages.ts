@@ -80,7 +80,6 @@ import { MangaSushi } from './implementations/MangaSushi/main';
 import { Comix } from './implementations/Comix/main';
 import { DynastyScans } from './implementations/DynastyScans/main';
 import { LagoonScans } from './implementations/LagoonScans/main';
-import { WeebDex } from './implementations/WeebDex/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
 import { Mgeko } from './implementations/Mgeko/main';
 import { MangaClash } from './implementations/MangaClash/main';
@@ -187,7 +186,6 @@ export const pages: { [key: string]: PageInterface } = {
   Comix,
   DynastyScans,
   LagoonScans,
-  WeebDex,
   SetsuScans,
   Mgeko,
   MangaClash,
