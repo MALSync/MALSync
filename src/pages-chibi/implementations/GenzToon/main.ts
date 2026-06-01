@@ -50,14 +50,8 @@ export const GenzToon: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '#pages img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#pages img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('#pages img').countAbove().run(),
+        total: $c => $c.querySelectorAll('#pages img').length().run(),
       },
     ],
   },

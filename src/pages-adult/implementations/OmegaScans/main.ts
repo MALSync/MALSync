@@ -40,14 +40,8 @@ export const OmegaScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '#content img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#content img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('#content img').countAbove().run(),
+        total: $c => $c.querySelectorAll('#content img').length().run(),
       },
     ],
   },

@@ -49,14 +49,8 @@ export const MangaBall: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          mode: 'text',
-          selector: '#currentPageNum',
-        },
-        total: {
-          mode: 'text',
-          selector: '#totalPages',
-        },
+        current: $c => $c.querySelector('#currentPageNum').text().trim().number().run(),
+        total: $c => $c.querySelector('#totalPages').text().trim().number().run(),
       },
     ],
   },

@@ -26,14 +26,8 @@ export const RoliaScan: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.manga-child-the-content img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.manga-child-the-content img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.manga-child-the-content img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.manga-child-the-content img').length().run(),
       },
     ],
   },

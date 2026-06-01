@@ -28,18 +28,22 @@ export const DankefürsLesen: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.rdr-page-selector-counter',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)',
-          group: 1,
-        },
-        total: {
-          selector: '.rdr-page-selector-counter',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)',
-          group: 2,
-        },
+        current: $c =>
+          $c
+            .querySelector('.rdr-page-selector-counter')
+            .text()
+            .trim()
+            .regex('(\\d+)/(\\d+)', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('.rdr-page-selector-counter')
+            .text()
+            .trim()
+            .regex('(\\d+)/(\\d+)', 2)
+            .number()
+            .run(),
       },
     ],
   },

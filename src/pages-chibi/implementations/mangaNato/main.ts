@@ -60,14 +60,8 @@ export const mangaNato: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.container-chapter-reader img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.container-chapter-reader img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.container-chapter-reader img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.container-chapter-reader img').length().run(),
       },
     ],
   },

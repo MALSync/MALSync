@@ -50,31 +50,27 @@ export const AsmodeusScans: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '.splide__slide',
-        current: {
-          selector: '.splide__slide.is-active',
-          mode: 'attr',
-          attribute: 'aria-label',
-          regex: '(\\d+) of (\\d+)',
-          group: 1,
-        },
-        total: {
-          selector: '.splide__slide.is-active',
-          mode: 'attr',
-          attribute: 'aria-label',
-          regex: '(\\d+) of (\\d+)',
-          group: 2,
-        },
+        condition: $c => $c.querySelector('.splide__slide').boolean().run(),
+        current: $c =>
+          $c
+            .querySelector('.splide__slide.is-active')
+            .getAttribute('aria-label')
+            .ifNotReturn()
+            .regex('(\\d+) of (\\d+)', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('.splide__slide.is-active')
+            .getAttribute('aria-label')
+            .ifNotReturn()
+            .regex('(\\d+) of (\\d+)', 2)
+            .number()
+            .run(),
       },
       {
-        current: {
-          selector: '#pages img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#pages img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('#pages img').countAbove().run(),
+        total: $c => $c.querySelectorAll('#pages img').length().run(),
       },
     ],
   },

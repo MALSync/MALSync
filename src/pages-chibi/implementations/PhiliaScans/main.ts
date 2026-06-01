@@ -56,14 +56,8 @@ export const PhiliaScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.page img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.page img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.page img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.page img').length().run(),
       },
     ],
   },

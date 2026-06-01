@@ -41,18 +41,20 @@ export const Madarascans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '#select-paged option:selected',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 1,
-        },
-        total: {
-          selector: '#select-paged option:selected',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 2,
-        },
+        current: $c =>
+          $c
+            .querySelector('#select-paged')
+            .selectedText()
+            .regex('(\\d+)/(\\d+)$', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('#select-paged')
+            .selectedText()
+            .regex('(\\d+)/(\\d+)$', 2)
+            .number()
+            .run(),
       },
     ],
   },

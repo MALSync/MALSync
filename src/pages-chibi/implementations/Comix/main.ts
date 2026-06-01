@@ -39,14 +39,12 @@ export const Comix: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.rpage-progress__seg.is-visited, .rpage-progress__seg.is-active',
-          mode: 'count',
-        },
-        total: {
-          selector: '.rpage-progress__seg',
-          mode: 'count',
-        },
+        current: $c =>
+          $c
+            .querySelectorAll('.rpage-progress__seg.is-visited, .rpage-progress__seg.is-active')
+            .length()
+            .run(),
+        total: $c => $c.querySelectorAll('.rpage-progress__seg').length().run(),
       },
     ],
   },

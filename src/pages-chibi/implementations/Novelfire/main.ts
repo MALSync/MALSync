@@ -47,14 +47,8 @@ export const Novelfire: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '#content p',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#content p',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('#content p').countAbove().run(),
+        total: $c => $c.querySelectorAll('#content p').length().run(),
       },
     ],
   },

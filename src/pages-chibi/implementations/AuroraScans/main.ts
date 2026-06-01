@@ -41,14 +41,8 @@ export const AuroraScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.font-semibold img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.font-semibold img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.font-semibold img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.font-semibold img').length().run(),
       },
     ],
   },

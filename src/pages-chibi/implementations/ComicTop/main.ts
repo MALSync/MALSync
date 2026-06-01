@@ -63,44 +63,32 @@ export const ComicTop: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '#slider-bar',
-        current: {
-          selector: '.slider-page',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 1,
-        },
-        total: {
-          selector: '.slider-page',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 2,
-        },
+        condition: $c => $c.querySelector('#slider-bar').boolean().run(),
+        current: $c =>
+          $c.querySelector('.slider-page').text().trim().regex('(\\d+)/(\\d+)$', 1).number().run(),
+        total: $c =>
+          $c.querySelector('.slider-page').text().trim().regex('(\\d+)/(\\d+)$', 2).number().run(),
       },
       {
-        condition: '.select_paged',
-        current: {
-          selector: '.select_paged option:selected',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 1,
-        },
-        total: {
-          selector: '.select_paged option:selected',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 2,
-        },
+        condition: $c => $c.querySelector('.select_paged').boolean().run(),
+        current: $c =>
+          $c
+            .querySelector('.select_paged')
+            .selectedText()
+            .regex('(\\d+)/(\\d+)$', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('.select_paged')
+            .selectedText()
+            .regex('(\\d+)/(\\d+)$', 2)
+            .number()
+            .run(),
       },
       {
-        current: {
-          selector: '.reader-area img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.reader-area img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.reader-area img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.reader-area img').length().run(),
       },
     ],
   },

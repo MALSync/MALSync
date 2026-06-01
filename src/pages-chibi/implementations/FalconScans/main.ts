@@ -40,14 +40,8 @@ export const FalconScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.w-full img.w-full',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.w-full img.w-full',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.w-full img.w-full').countAbove().run(),
+        total: $c => $c.querySelectorAll('.w-full img.w-full').length().run(),
       },
     ],
   },
