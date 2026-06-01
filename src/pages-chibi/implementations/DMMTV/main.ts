@@ -31,8 +31,79 @@ function titleEpisodePattern() {
   return `(?:${digitEpisodePattern()}|${japaneseEpisodePattern()})`;
 }
 
+function animeCategoryName() {
+  return '\\u30a2\\u30cb\\u30e1';
+}
+
 function missing($c: ChibiGenerator<unknown>) {
   return $c.object({}).get('missing').run();
+}
+
+function videoCacheKey($c: ChibiGenerator<unknown>, seasonId: ChibiGenerator<string>) {
+  return $c.string('DMM TV#').concat(seasonId.run());
+}
+
+function currentVideo($c: ChibiGenerator<unknown>) {
+  return $c.getGlobalVariable(videoCacheKey($c, $c.url().urlParam('season').string()).run());
+}
+
+function requestVideo($c: ChibiGenerator<unknown>) {
+  return $c.get('data').get('data').get('video');
+}
+
+function cacheRequestVideo($c: ChibiGenerator<unknown>) {
+  return $c.if(
+    $c.url().urlParam('season').boolean().run(),
+    requestVideo($c)
+      .setGlobalVariable(videoCacheKey($c, requestVideo($c).get('id').string()).run())
+      .setGlobalVariable(videoCacheKey($c, $c.url().urlParam('season').string()).run())
+      .trigger()
+      .run(),
+    requestVideo($c)
+      .setGlobalVariable(videoCacheKey($c, requestVideo($c).get('id').string()).run())
+      .trigger()
+      .run(),
+  );
+}
+
+function hasAnimeCategory($c: ChibiGenerator<unknown>) {
+  return $c
+    .and(
+      $c.get('categories').boolean().run(),
+      $c
+        .get('categories')
+        .arrayFind($category =>
+          $c
+            .or(
+              $category.get('id').string().equals('15').run(),
+              $category.get('name').string().equals(animeCategoryName()).run(),
+            )
+            .run(),
+        )
+        .boolean()
+        .run(),
+    )
+    .run();
+}
+
+function isAnimeVideo($c: ChibiGenerator<unknown>) {
+  return currentVideo($c)
+    .ifThen($video => hasAnimeCategory($video))
+    .boolean()
+    .run();
+}
+
+function handleVideoRequest($c: ChibiGenerator<unknown>) {
+  return $c
+    .and(
+      $c.get('url').equals('https://api.tv.dmm.com/graphql').run(),
+      requestVideo($c).get('id').boolean().run(),
+      requestVideo($c)
+        .ifThen($video => hasAnimeCategory($video))
+        .boolean()
+        .run(),
+    )
+    .ifThen($request => cacheRequestVideo($request).run());
 }
 
 function cleanDmmTitle($c: ChibiGenerator<string>) {
@@ -93,6 +164,19 @@ function isSeasonMarker($c: ChibiGenerator<unknown>) {
 
 function pageTitle($c: ChibiGenerator<unknown>) {
   return $c.title().split('|').first().trim();
+}
+
+function hasAnimePageMarker($c: ChibiGenerator<unknown>) {
+  return $c
+    .or(
+      pageTitle($c).matches('\\u30a2\\u30cb\\u30e1/\\d{4}\\u5e74').run(),
+      $c
+        .querySelectorAll('main a[href*="/vod/list/?categories="]')
+        .arrayFind($el => $el.text().trim().matches('^\\u30a2\\u30cb\\u30e1$').run())
+        .boolean()
+        .run(),
+    )
+    .run();
 }
 
 function getJsonData($c: ChibiGenerator<unknown>) {
@@ -175,16 +259,7 @@ function isAnimeDetail($c: ChibiGenerator<unknown>) {
     .and(
       $c.querySelector('#detail-header').boolean().run(),
       hasValidDetailTitle($c),
-      $c
-        .or(
-          pageTitle($c).matches('\\u30a2\\u30cb\\u30e1/\\d{4}\\u5e74').run(),
-          $c
-            .querySelectorAll('main a[href*="/vod/list/?categories="]')
-            .arrayFind($el => $el.text().trim().matches('^\\u30a2\\u30cb\\u30e1$').run())
-            .boolean()
-            .run(),
-        )
-        .run(),
+      $c.or(isAnimeVideo($c), hasAnimePageMarker($c)).run(),
     )
     .run();
 }
@@ -197,6 +272,9 @@ export const DMMTV: PageInterface = {
   urls: {
     match: ['*://tv.dmm.com/vod/*'],
   },
+  features: {
+    requestProxy: true,
+  },
   search: 'https://tv.dmm.com/vod/search/?keyword={searchterm}',
   sync: {
     isSyncPage($c) {
@@ -206,6 +284,7 @@ export const DMMTV: PageInterface = {
           $c.url().urlPart(4).equals('playback').run(),
           $c.url().urlParam('season').boolean().run(),
           $c.url().urlParam('content').boolean().run(),
+          isAnimeVideo($c),
         )
         .run();
     },
@@ -294,10 +373,7 @@ export const DMMTV: PageInterface = {
           $c.querySelectorAll('#detail-header h1, #detail-header span.mr-2').length().run(),
           $c.trigger().run(),
         )
-        .detectChanges(
-          $c.querySelectorAll('main a[href*="/vod/list/?categories="]').length().run(),
-          $c.trigger().run(),
-        )
+        .requestProxy($request => handleVideoRequest($request).run())
         .domReady()
         .trigger()
         .run();
@@ -323,6 +399,7 @@ export const DMMTV: PageInterface = {
           $c
             .and(
               $c.url().urlParam('season').boolean().run(),
+              isAnimeVideo($c),
               isEpisodeText(pageTitle($c)),
               $c.this('sync.getTitle').boolean().run(),
             )
