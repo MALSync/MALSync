@@ -55,7 +55,6 @@ export const settingsObj = {
       'Mangadex',
       'MangaNato',
       'MangaFox',
-      'MangaSee',
       'MangaFire',
       'Hulu',
       'Netflix',

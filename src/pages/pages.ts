@@ -41,7 +41,6 @@ import { DeathTollScans } from './DeathTollScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
-import { MangaSee } from './MangaSee/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
 import { Jellyfin } from './Jellyfin/main';
@@ -146,7 +145,6 @@ export const pages = {
   ManhuaPlus,
   Readm,
   tioanime,
-  MangaSee,
   Okanime,
   BSTO,
   Jellyfin,
