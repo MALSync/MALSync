@@ -84,7 +84,7 @@ export default {
               $c
                 .string(config.urlTemplate)
                 .replace('<identifier>', $c.getVariable(config.idKey).run())
-                .replace('<type>', $c.getVariable<object>('pageObject').get('type').run())
+                .replace('<type>', $c.getVariable<{ type: string }>('pageObject').get('type').run())
                 .return()
                 .run(),
             );
