@@ -35,7 +35,6 @@ import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { DesuOnline } from './DesuOnline/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
-import { ReaperScans } from './ReaperScans/main';
 import { LynxScans } from './LynxScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
@@ -139,7 +138,6 @@ export const pages = {
   MangaFox,
   DesuOnline,
   WuxiaWorld,
-  ReaperScans,
   LynxScans,
   DeathTollScans,
   ManhuaPlus,
