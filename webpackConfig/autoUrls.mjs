@@ -49,28 +49,6 @@ async function kickassanime() {
   addPageUrls('KickAssAnime', formattedUrls);
 }
 
-async function bato() {
-  const response = await fetch('https://batotomirrors.pages.dev');
-  const body = await response.text();
-  const $ = cheerio.load(body);
-
-  // Bato url gave JS to list their bato endpoint when fetch() it.
-  const urlJS = $('script')
-    .map((i, el) => $(el).html())
-    .get()
-    .find(text => text.includes('const domains'));
-
-  const ExtractUrl = [...urlJS.matchAll(/url:\s*"(.*?)"/g)];
-  const urls = ExtractUrl.map(m => new URL(m[1]));
-
-  let formattedUrls = [];
-  for (const url of urls) {
-    formattedUrls.push('*://' + url.hostname + '/*');
-  }
-  addChibiUrls('bato', formattedUrls, 'mainV2.ts');
-  addChibiUrls('bato', formattedUrls, 'mainV3.ts');
-}
-
 async function miruro() {
   const response = await fetch('https://www.miruro.com/#domains');
   const body = await response.text();
@@ -271,7 +249,6 @@ async function start() {
     vidmoly,
     mixdrop,
     kickassanime,
-    bato,
     miruro,
     mangapark,
   };
