@@ -32,23 +32,6 @@ async function mixdrop() {
 
 // pages
 
-async function zoro() {
-  const response = await fetch('https://hianime.tv');
-  const body = await response.text();
-
-  const $ = cheerio.load(body);
-
-  const urls = $('ul.site-opt > li > a')
-    .map((i, el) => new URL($(el).attr('href')))
-    .get();
-
-  let formattedUrls = [];
-  for (const url of urls) {
-    formattedUrls.push('*://' + url.hostname + '/*');
-  }
-  addPageUrls('Zoro', formattedUrls);
-}
-
 async function kickassanime() {
   const response = await fetch('https://watchanime.io');
   const body = await response.text();
@@ -287,7 +270,6 @@ async function start() {
     voe,
     vidmoly,
     mixdrop,
-    zoro,
     kickassanime,
     bato,
     miruro,

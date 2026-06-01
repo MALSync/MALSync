@@ -103,7 +103,6 @@ import { AniZone } from './implementations/AniZone/main';
 import { AnimeNexus } from './implementations/AnimeNexus/main';
 import { templeScan } from './implementations/TempleScan/main';
 import { ElfToon } from './implementations/ElfToon/main';
-import { Zoro } from './implementations/Zoro/main';
 import { TeamShadowi } from './implementations/TeamShadowi/main';
 import { TopManhua } from './implementations/TopManhua/main';
 import { Tsukuyomi } from './implementations/Tsukuyomi/main';
@@ -213,7 +212,6 @@ export const pages: { [key: string]: PageInterface } = {
   AnimeNexus,
   templeScan,
   ElfToon,
-  Zoro,
   TeamShadowi,
   Tsukuyomi,
   HijalaScans,
