@@ -30,18 +30,14 @@ export const MangaLivreTV: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '[data-page]',
-          mode: 'attr',
-          attribute: 'data-page',
-        },
-        total: {
-          selector: 'canvas[aria-label]',
-          mode: 'attr',
-          attribute: 'aria-label',
-          regex: 'Page (\\d+)',
-          group: 1,
-        },
+        current: $c => $c.querySelector('[data-page]').getAttribute('data-page').number().run(),
+        total: $c =>
+          $c
+            .querySelector('canvas[aria-label]')
+            .getAttribute('aria-label')
+            .regex('Page (\\d+)', 1)
+            .number()
+            .run(),
       },
       {
         condition: $c => $c.querySelector('#single-pager').boolean().run(),
