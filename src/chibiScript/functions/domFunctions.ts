@@ -172,11 +172,17 @@ export default {
    * Checks if the selected element is currently visible
    * @input Element - DOM element
    * @returns Boolean indicating if the element is visible
+   * @options Optional settings for visibility check. Defaults to { visibilityProperty: true, opacityProperty: true }.
    * @example
    * $c.querySelector('#player').checkVisibility()
+   * $c.querySelector('#player').checkVisibility({ opacityProperty: false })
    */
-  checkVisibility: (ctx: ChibiCtx, input: Element) => {
-    return input.checkVisibility({ visibilityProperty: true, opacityProperty: true });
+  checkVisibility: (
+    ctx: ChibiCtx,
+    input: Element,
+    options: CheckVisibilityOptions = { visibilityProperty: true, opacityProperty: true },
+  ) => {
+    return input.checkVisibility(options);
   },
 
   /**
