@@ -44,13 +44,11 @@ export const Animex: pageInterface = {
       return match ? match[1] : '';
     },
     uiSelector(selector) {
-      j.$('h1.line-clamp-2').first().after(selector);
+      j.$('h1.line-clamp-2').first().after(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less'),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less'));
     j.$(document).ready(function () {
       page.handlePage();
     });
