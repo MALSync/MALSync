@@ -26,7 +26,7 @@ export function globalEmit(eventName: string, ...params) {
 
   if (typeof api !== 'undefined' && api && api.type === 'webextension') {
     const ts = Date.now();
-    const key = `${KEY_PREFIX}${eventName}:${scriptId}:${ts}`;
+    const key = `${KEY_PREFIX}${eventName}:${scriptId}:${Math.random().toString(36).slice(2)}`;
     let safeParams = params;
     try {
       safeParams = JSON.parse(JSON.stringify(params));
