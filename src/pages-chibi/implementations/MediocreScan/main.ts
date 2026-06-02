@@ -52,13 +52,21 @@ export const MediocreScan: PageInterface = {
     },
     uiInjection($c) {
       return $c
-        .querySelector('.md\\:hidden')
-        .getComputedStyle('display')
-        .equals('none')
+        .querySelectorAll('.md\\:hidden')
+        .length()
+        .greaterThan(0)
         .ifThen($c =>
-          $c.querySelector('.flex.flex-wrap.items-center.gap-3.mb-8').uiAfter().return().run(),
+          $c
+            .querySelector('.md\\:hidden')
+            .getComputedStyle('display')
+            .equals('none')
+            .ifThen($c =>
+              $c.querySelector('.flex.flex-wrap.items-center.gap-3.mb-8').uiAfter().return().run(),
+            )
+            .ifNotReturn($c.querySelector('.md\\:hidden .space-y-3').uiAfter().return().run())
+            .run(),
         )
-        .ifNotReturn($c.querySelector('.md\\:hidden .space-y-3').uiAfter().run())
+        .ifNotReturn($c.querySelector('.flex.flex-wrap.items-center.gap-3.mb-8').uiAfter().run())
         .run();
     },
     getImage($c) {
@@ -78,7 +86,7 @@ export const MediocreScan: PageInterface = {
         .regex('/capitulo/(\\d+)', 1)
         .number()
         .setVariable('capIdFromUrl')
-        .getGlobalVariable<any[]>('capitulos')
+        .coalesce($c.getGlobalVariable('capitulos').run(), $c.array([]).run())
         .arrayFind($el =>
           $el.get('cap_id').number().equals($c.getVariable<number>('capIdFromUrl').run()).run(),
         )
@@ -106,38 +114,76 @@ export const MediocreScan: PageInterface = {
                 .getVariable('request')
                 .get('data')
                 .setVariable('obraData')
-                .getVariable('obraData')
-                .get('obr_titulos_alternativos')
-                .ifNotReturn($c.array([]).run())
-                .arrayFind($el => $el.string().trim().equals('').not().run())
-                .ifNotReturn($c.getVariable('obraData').get('obr_nome').run())
-                .ifNotReturn($c.getVariable('obraData').get('obr_titulo').run())
-                .ifNotReturn($c.getVariable('obraData').get('nome').run())
-                .ifNotReturn($c.string('').run())
+                .coalesce(
+                  $c
+                    .getVariable('obraData')
+                    .get('obr_titulos_alternativos')
+                    .setVariable('titulosAltData')
+                    .if(
+                      $c
+                        .coalesce($c.getVariable('titulosAltData').run(), $c.string('').run())
+                        .string()
+                        .equals('')
+                        .run(),
+                      $c.getVariable('titulosAlt_undefined').run(),
+                      $c
+                        .if(
+                          $c.getVariable('titulosAltData').string().equals('null').run(),
+                          $c.getVariable('titulosAlt_undefined').run(),
+                          $c
+                            .if(
+                              $c.getVariable('titulosAltData').string().matches('^\\[').run(),
+                              $c
+                                .if(
+                                  $c
+                                    .getVariable('titulosAltData')
+                                    .string()
+                                    .matches('^\\[\\s*\\]')
+                                    .run(),
+                                  $c.getVariable('titulosAlt_undefined').run(),
+                                  $c
+                                    .getVariable('titulosAltData')
+                                    .string()
+                                    .regex('^\\[\\s*"((?:[^"\\\\]|\\\\.)*)"', 1)
+                                    .run(),
+                                )
+                                .run(),
+                              $c
+                                .getVariable('titulosAltData')
+                                .arrayFind($el => $el.string().trim().equals('').not().run())
+                                .run(),
+                            )
+                            .run(),
+                        )
+                        .run(),
+                    )
+                    .run(),
+                  $c.getVariable('obraData').get('obr_nome').run(),
+                  $c.getVariable('obraData').get('obr_titulo').run(),
+                  $c.getVariable('obraData').get('nome').run(),
+                  $c.string('').run(),
+                )
                 .string()
-                .trim()
-                .replaceRegex('^\\["|"\\]$', '')
-                .regex('^([^"]+)', 1)
                 .trim()
                 .setGlobalVariable('workTitle')
-                .getVariable('obraData')
-                .get('obr_id')
-                .ifNotReturn($c.string('').run())
+                .coalesce($c.getVariable('obraData').get('obr_id').run(), $c.string('').run())
                 .string()
                 .setGlobalVariable('workId')
-                .getVariable('obraData')
-                .get('obr_imagem')
-                .ifNotReturn($c.string('').run())
+                .coalesce($c.getVariable('obraData').get('obr_imagem').run(), $c.string('').run())
                 .string()
                 .setVariable('imgPath')
-                .string('https://cdn.mediocrescan.com/obras/')
-                .concat($c.getGlobalVariable('workId').run())
-                .concat('/')
-                .concat($c.getVariable('imgPath').run())
+                .if(
+                  $c.getVariable('imgPath').equals('').not().run(),
+                  $c
+                    .string('https://cdn.mediocrescan.com/obras/')
+                    .concat($c.getGlobalVariable('workId').run())
+                    .concat('/')
+                    .concat($c.getVariable('imgPath').run())
+                    .run(),
+                  $c.string('').run(),
+                )
                 .setGlobalVariable('workImage')
-                .getVariable('obraData')
-                .get('capitulos')
-                .ifNotReturn($c.array([]).run())
+                .coalesce($c.getVariable('obraData').get('capitulos').run(), $c.array([]).run())
                 .setGlobalVariable('capitulos')
                 .run(),
             )
@@ -157,37 +203,83 @@ export const MediocreScan: PageInterface = {
                 .get('obra')
                 .setVariable('obraInfo')
                 .getVariable('obraInfo')
-                .get('id')
-                .ifNotReturn($c.getVariable('obraInfo').get('obr_id').run())
+                .coalesce(
+                  $c.getVariable('obraInfo').get('id').run(),
+                  $c.getVariable('obraInfo').get('obr_id').run(),
+                  $c.string('').run(),
+                )
                 .string()
                 .setGlobalVariable('workId')
-                .getVariable('obraInfo')
-                .get('obr_titulos_alternativos')
-                .ifNotReturn($c.array([]).run())
-                .arrayFind($el => $el.string().trim().equals('').not().run())
-                .ifNotReturn($c.getVariable('obraInfo').get('obr_nome').run())
-                .ifNotReturn($c.getVariable('obraInfo').get('nome').run())
-                .ifNotReturn($c.string('').run())
+                .coalesce(
+                  $c
+                    .if(
+                      $c
+                        .coalesce(
+                          $c.getVariable('obraInfo').get('obr_titulos_alternativos').run(),
+                          $c.array([]).run(),
+                        )
+                        .string()
+                        .matches('^\\[\\s*"')
+                        .run(),
+                      $c
+                        .coalesce(
+                          $c.getVariable('obraInfo').get('obr_titulos_alternativos').run(),
+                          $c.array([]).run(),
+                        )
+                        .string()
+                        .regex('^\\[\\s*"((?:[^"\\\\]|\\\\.)*)"', 1)
+                        .run(),
+                      $c
+                        .if(
+                          $c
+                            .coalesce(
+                              $c.getVariable('obraInfo').get('obr_titulos_alternativos').run(),
+                              $c.array([]).run(),
+                            )
+                            .string()
+                            .matches('^\\[\\s*\\]$')
+                            .run(),
+                          $c.getVariable('titulosAlt_undefined').run(),
+                          $c
+                            .coalesce(
+                              $c.getVariable('obraInfo').get('obr_titulos_alternativos').run(),
+                              $c.array([]).run(),
+                            )
+                            .arrayFind($el => $el.string().trim().equals('').not().run())
+                            .run(),
+                        )
+                        .run(),
+                    )
+                    .run(),
+                  $c.getVariable('obraInfo').get('obr_nome').run(),
+                  $c.getVariable('obraInfo').get('nome').run(),
+                  $c.string('').run(),
+                )
                 .string()
                 .trim()
                 .replaceRegex('^\\["|"\\]$', '')
                 .regex('^([^"]+)', 1)
                 .trim()
                 .setGlobalVariable('workTitle')
-                .getVariable('obraInfo')
-                .get('imagem')
-                .ifNotReturn($c.getVariable('obraInfo').get('obr_imagem').run())
-                .ifNotReturn($c.string('').run())
+                .coalesce(
+                  $c.getVariable('obraInfo').get('imagem').run(),
+                  $c.getVariable('obraInfo').get('obr_imagem').run(),
+                  $c.string('').run(),
+                )
                 .string()
                 .setVariable('imgPath')
-                .string('https://cdn.mediocrescan.com/obras/')
-                .concat($c.getGlobalVariable('workId').run())
-                .concat('/')
-                .concat($c.getVariable('imgPath').run())
+                .if(
+                  $c.getVariable('imgPath').equals('').not().run(),
+                  $c
+                    .string('https://cdn.mediocrescan.com/obras/')
+                    .concat($c.getGlobalVariable('workId').run())
+                    .concat('/')
+                    .concat($c.getVariable('imgPath').run())
+                    .run(),
+                  $c.string('').run(),
+                )
                 .setGlobalVariable('workImage')
-                .getVariable('obraInfo')
-                .get('capitulos')
-                .ifNotReturn($c.array([]).run())
+                .coalesce($c.getVariable('obraInfo').get('capitulos').run(), $c.array([]).run())
                 .setGlobalVariable('capitulos')
                 .run(),
             )
@@ -195,7 +287,13 @@ export const MediocreScan: PageInterface = {
         )
         .detectURLChanges($c.trigger().run())
         .detectChanges(
-          $c.querySelector('.md\\:hidden').getComputedStyle('display').run(),
+          $c
+            .if(
+              $c.querySelectorAll('.md\\:hidden').length().greaterThan(0).run(),
+              $c.querySelector('.md\\:hidden').getComputedStyle('display').run(),
+              $c.string('').run(),
+            )
+            .run(),
           $c.trigger().run(),
         )
         .domReady()
@@ -219,9 +317,11 @@ export const MediocreScan: PageInterface = {
         )
         .detectChanges(
           $c
-            .querySelector('#capitulos a[href*="/capitulo/"]')
-            .ifThen($c => $c.getAttribute('href').run())
-            .ifNotReturn($c.string('').run())
+            .if(
+              $c.querySelectorAll('#capitulos a[href*="/capitulo/"]').length().greaterThan(0).run(),
+              $c.querySelector('#capitulos a[href*="/capitulo/"]').getAttribute('href').run(),
+              $c.string('').run(),
+            )
             .run(),
           $c.trigger().run(),
         )
