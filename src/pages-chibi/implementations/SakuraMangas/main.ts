@@ -8,7 +8,7 @@ export const SakuraMangas: PageInterface = {
   urls: {
     match: ['*://*.sakuramangas.org/*'],
   },
-  search: 'https://sakuramangas.org/',
+
   sync: {
     isSyncPage($c) {
       // Reading page follows pattern: /obras/{slug}/{number}/
