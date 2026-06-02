@@ -37,11 +37,13 @@ jobs:
     - name: Page Tests
       run: |
         npm ci
-        rm -rf ~/.cache/puppeteer/chrome
+        rm -rf "$PUPPETEER_CACHE_DIR"
         npx puppeteer browsers install chrome
+        node -e "const fs=require('fs');const p=require('puppeteer').executablePath();console.log('launcher wants:',p,fs.existsSync(p)?'EXISTS':'MISSING')"
         npm run build:webextension
         npm run test:headless
       env:
         CI: true
         FILES: ${{steps.files.outputs.added_modified}}
+        PUPPETEER_CACHE_DIR: ${{ github.workspace }}/.cache/puppeteer
 
