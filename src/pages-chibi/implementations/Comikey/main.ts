@@ -49,26 +49,14 @@ export const Comikey: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '#br-spine canvas',
-        current: {
-          selector: '#br-spine canvas',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#br-spine canvas',
-          mode: 'count',
-        },
+        condition: $c => $c.querySelector('#br-spine canvas').boolean().run(),
+        current: $c => $c.querySelectorAll('#br-spine canvas').countAbove().run(),
+        total: $c => $c.querySelectorAll('#br-spine canvas').length().run(),
       },
       {
-        condition: '#br-spine img',
-        current: {
-          selector: '#br-spine img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#br-spine img',
-          mode: 'count',
-        },
+        condition: $c => $c.querySelector('#br-spine img').boolean().run(),
+        current: $c => $c.querySelectorAll('#br-spine img').countAbove().run(),
+        total: $c => $c.querySelectorAll('#br-spine img').length().run(),
       },
     ],
   },

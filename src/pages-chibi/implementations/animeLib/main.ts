@@ -5,12 +5,12 @@ import type { PageInterface } from '../../pageInterface';
 export const animeLib: PageInterface = {
   name: 'AnimeLib',
   type: 'anime',
-  domain: ['https://v3.animelib.org'],
+  domain: ['https://v5.animelib.org'],
   languages: ['Russian'],
   urls: {
     match: ['*://*.animelib.org/*'],
   },
-  search: 'https://v3.animelib.org/ru/catalog?q={searchterm}',
+  search: 'https://v5.animelib.org/ru/catalog?q={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c
@@ -76,17 +76,16 @@ export const animeLib: PageInterface = {
       return $c.querySelector('.tabs._border').uiBefore().run();
     },
     getMalUrl($c) {
-      const malID = $c
-        .querySelectorAll('.page a.btn')
-        .last()
-        .ifNotReturn()
-        .getAttribute('href')
-        .regex('[a-z]?(\\d+)', 1)
-        .setVariable('malID')
-        .string('https://myanimelist.net/anime/_ID_')
-        .replace('_ID_', $c.getVariable('malID').run());
-
-      return malID.run();
+      return $c
+        .providerUrlUtility({
+          anilistUrl: $c
+            .querySelectorAll('.page a.btn')
+            .last()
+            .ifNotReturn()
+            .getAttribute('href')
+            .run(),
+        })
+        .run();
     },
   },
   lifecycle: {

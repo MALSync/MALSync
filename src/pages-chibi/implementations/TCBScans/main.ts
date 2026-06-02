@@ -49,21 +49,9 @@ export const TCBScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.fixed-ratio img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.fixed-ratio img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.fixed-ratio img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.fixed-ratio img').length().run(),
       },
-      /*
-      {
-        current: $c => $c.querySelectorAll('.fixed-ratio img'').countAbove().run(),
-        total: $c => $c.querySelectorAll('.fixed-ratio img'"]').count().run(),
-      },
-      */
     ],
   },
   overview: {

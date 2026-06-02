@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           cache: 'npm'
 
       - name: Install dependencies
@@ -43,7 +43,7 @@ jobs:
           cp -r ./dist/adult/chibi/* ./pages-deploy/adult/
           cp .github/pages-files/_headers ./pages-deploy/
       - name: Deploy
-        uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_PAGES_ACCOUNT_ID }}

@@ -106,21 +106,17 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
     const temp: mangaProgressConfig[] = [];
 
     page.sync.readerConfig.forEach(config => {
-      if (typeof config.current === 'function') {
-        const tempConfig: mangaProgressConfig = {
-          current: (config.current as any)($c),
-          total: (config.total as any)($c),
-        };
-        if (config.condition) {
-          tempConfig.condition = (config.condition as any)($c);
-        }
-        temp.push(tempConfig);
-      } else {
-        temp.push(config as mangaProgressConfig);
+      const tempConfig: mangaProgressConfig = {
+        current: (config.current as any)($c),
+        total: (config.total as any)($c),
+      };
+      if (config.condition) {
+        tempConfig.condition = (config.condition as any)($c);
       }
+      temp.push(tempConfig);
     });
 
-    page.sync.readerConfig = temp;
+    page.sync.readerConfig = temp as any;
   }
 
   if (page.overview) {

@@ -75,14 +75,8 @@ export const Sadscans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.swiper-wrapper img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.swiper-wrapper img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.swiper-wrapper img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.swiper-wrapper img').length().run(),
       },
     ],
   },

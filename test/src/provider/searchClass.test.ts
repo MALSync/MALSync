@@ -274,9 +274,9 @@ describe('Full Search', function() {
 
   it('Not Found', async function() {
     this.timeout(10000);
-    const searchObj = new SearchClass('Castlevania', 'anime', '17870');
+    const searchObj = new SearchClass('Castlevania', 'anime', 'castlevania-ff98');
     searchObj.setPage({
-      database: 'Zoro',
+      database: 'KickAssAnime',
       type: 'anime',
     });
     const result = await searchObj.searchForIt();

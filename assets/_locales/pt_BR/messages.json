@@ -1652,5 +1652,32 @@
     },
     "settings_Mangasync_readerTracking_percentage": {
         "message": "Marcar capítulo como lido em (%)"
+    },
+    "UI_Status_Considering": {
+        "message": "Considerando"
+    },
+    "settings_splitTracking": {
+        "message": "Rastreamento Separado"
+    },
+    "settings_presence_activityName_title": {
+        "message": "Título da Série"
+    },
+    "settings_presence_activityName_website": {
+        "message": "Site atual"
+    },
+    "settings_presence_activityName_type": {
+        "message": "Anime/Mangá"
+    },
+    "settings_presence_activityName_malsync": {
+        "message": "MALSync"
+    },
+    "list_sorting_latest_release": {
+        "message": "Último lançamento"
+    },
+    "settings_anilist_external_sources": {
+        "message": "Mostrar fontes externas"
+    },
+    "settings_chibi_repos_modal_add": {
+        "message": "Tem certeza de que deseja adicionar este repositório?"
     }
 }

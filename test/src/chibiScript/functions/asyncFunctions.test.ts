@@ -379,9 +379,9 @@ describe('Async Functions', () => {
     consumer.addVariable('bar', 'first');
     await new Promise(res => setTimeout(res, 50));
     consumer.addVariable('bar', 'second');
-    await new Promise(res => setTimeout(res, 1500));
+    await waitFor(() => callCount === 1, 2500);
     consumer.addVariable('bar', 'third');
-    await new Promise(res => setTimeout(res, 1500));
+    await waitFor(() => callCount === 2, 2500);
 
     expect(callCount).to.equal(2);
     consumer.clearIntervals();
@@ -394,4 +394,22 @@ function generateAndExecute(input: ChibiJson<any>) {
   const consumer = new ChibiConsumer(script);
 
   return consumer;
+}
+
+function waitFor(condition: () => boolean, timeoutMs: number) {
+  return new Promise<void>((resolve, reject) => {
+    const start = Date.now();
+    const interval = setInterval(() => {
+      if (condition()) {
+        clearInterval(interval);
+        resolve();
+        return;
+      }
+
+      if (Date.now() - start >= timeoutMs) {
+        clearInterval(interval);
+        reject(new Error('Timed out waiting for condition'));
+      }
+    }, 25);
+  });
 }

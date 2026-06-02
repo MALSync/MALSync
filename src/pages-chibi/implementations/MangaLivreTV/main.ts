@@ -43,6 +43,28 @@ export const MangaLivreTV: PageInterface = {
           group: 1,
         },
       },
+      {
+        condition: $c => $c.querySelector('#single-pager').boolean().run(),
+        current: $c =>
+          $c
+            .querySelector('#single-pager')
+            .selectedText()
+            .regex('(\\d+)/(\\d+)$', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('#single-pager option')
+            .text()
+            .trim()
+            .regex('(\\d+)/(\\d+)$', 2)
+            .number()
+            .run(),
+      },
+      {
+        current: $c => $c.querySelectorAll('.reading-content img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.reading-content img').length().run(),
+      },
     ],
   },
   overview: {

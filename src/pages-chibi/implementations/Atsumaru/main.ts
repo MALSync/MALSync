@@ -30,7 +30,11 @@ export const Atsumaru: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c.querySelector('a[href^="/manga/"]').getAttribute('href').urlAbsolute().run();
+      return $c
+        .string('/manga/<identifier>')
+        .replace('<identifier>', $c.this('sync.getIdentifier').run())
+        .urlAbsolute()
+        .run();
     },
     getEpisode($c) {
       return $c
@@ -43,10 +47,23 @@ export const Atsumaru: PageInterface = {
             .run(),
           $c
             .querySelectorAll('select option:checked')
-            .arrayFind($text => $text.text().includes('Page').not().run())
+            .arrayFind($text =>
+              $text
+                .setVariable('text')
+                .and(
+                  $c
+                    .getVariable<HTMLElement>('text')
+                    .getAttribute('value')
+                    .matches('\\b(?!\\d+\\b)\\w+')
+                    .run(),
+                  $c.getVariable<HTMLElement>('text').text().matches('\\d+').run(),
+                )
+                .run(),
+            )
             .text()
             .regex('\\d+')
             .run(),
+          $c.title().regex('-\\s+.*?\\s+(\\d+)', 1).run(),
         )
         .number()
         .run();
@@ -58,7 +75,7 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        condition: $c => $c.querySelector('[id*="atsu-page-group"]').boolean().run(),
+        condition: $c => $c.querySelector('option[value="0"]').boolean().run(),
         // I use arrayFind in case it read chapter number instead
         current: $c =>
           $c
@@ -69,6 +86,23 @@ export const Atsumaru: PageInterface = {
             .number()
             .run(),
         total: $c => $c.querySelectorAll('.z-1 img').length().run(),
+      },
+      {
+        condition: $c =>
+          $c
+            .querySelectorAll('style')
+            .arrayFind($style => $style.html().matches('#atsu-page-group').run())
+            .boolean()
+            .run(),
+        current: $c =>
+          $c
+            .querySelectorAll('style')
+            .arrayFind($style => $style.text().matches('#atsu-page-group').run())
+            .html()
+            .regex('#atsu-page-group-(\\d+)', 1)
+            .number()
+            .run(),
+        total: $c => $c.querySelectorAll('[id*="atsu-page-group"]').length().run(),
       },
       {
         current: $c =>
@@ -124,6 +158,12 @@ export const Atsumaru: PageInterface = {
             // site using outdated .io domain
             .urlPart(4)
             .run(),
+          mangabakaId: $c
+            .querySelector('a.btn[title*="MangaBaka"]')
+            .ifNotReturn()
+            .getAttribute('href')
+            .urlPart(3)
+            .run(),
         })
         .run();
     },
@@ -133,13 +173,25 @@ export const Atsumaru: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.flex-col > .relative.flex > a').run();
+      return $c.querySelectorAll('.w-full > [class*="md:w"]').run();
     },
     elementUrl($c) {
-      return $c.getAttribute('href').urlAbsolute().run();
+      return $c.find('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('.truncate').text().regex('\\d+').number().run();
+      return $c
+        .coalesce(
+          $c
+            .target()
+            .findAll('.my-auto')
+            .arrayFind($item => $item.text().matches('\\d+').run())
+            .run(),
+          $c.target().find('.truncate').run(),
+        )
+        .text()
+        .regex('\\d+')
+        .number()
+        .run();
     },
   },
   lifecycle: {
@@ -147,12 +199,17 @@ export const Atsumaru: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c
+        .detectChanges($c.url().urlPart(5).run(), $c.trigger().run())
+        .detectChanges($c.url().urlPart(4).run(), $c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
     },
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('.flex-col.gap-6').ifNotReturn().text().run(),
+          $c.querySelector('.flex-col.w-full').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();

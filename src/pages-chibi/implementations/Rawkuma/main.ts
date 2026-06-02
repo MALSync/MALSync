@@ -48,14 +48,8 @@ export const Rawkuma: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '[data-image-data] img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '[data-image-data] img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('[data-image-data] img').countAbove().run(),
+        total: $c => $c.querySelectorAll('[data-image-data] img').length().run(),
       },
     ],
   },

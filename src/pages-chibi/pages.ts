@@ -2,6 +2,7 @@ import { PageInterface } from './pageInterface';
 
 import { animeav1 } from './implementations/animeav1/main';
 import { anicrush } from './implementations/anicrush/main';
+import { anikoto } from './implementations/AniKoto/main';
 import { mangaNato } from './implementations/mangaNato/main';
 import { gojo } from './implementations/gojo/main';
 import { animeLib } from './implementations/animeLib/main';
@@ -83,12 +84,14 @@ import { LagoonScans } from './implementations/LagoonScans/main';
 import { WeebDex } from './implementations/WeebDex/main';
 import { SetsuScans } from './implementations/SetsuScans/main';
 import { Mgeko } from './implementations/Mgeko/main';
+import { MangaClash } from './implementations/MangaClash/main';
 import { LuaScans } from './implementations/LuaScans/main';
 import { KaynScan } from './implementations/KaynScan/main';
 import { ComicWalker } from './implementations/ComicWalker/main';
 import { MangaLivreTV } from './implementations/MangaLivreTV/main';
 import { SanaScans } from './implementations/SanaScans/main';
 import { RezoScans } from './implementations/RezoScans/main';
+import { Sekai } from './implementations/Sekai/main';
 import { RageScans } from './implementations/RageScans/main';
 import { AniGo } from './implementations/AniGo/main';
 import { Kuudere } from './implementations/Kuudere/main';
@@ -102,10 +105,14 @@ import { templeScan } from './implementations/TempleScan/main';
 import { ElfToon } from './implementations/ElfToon/main';
 import { Zoro } from './implementations/Zoro/main';
 import { TeamShadowi } from './implementations/TeamShadowi/main';
+import { TopManhua } from './implementations/TopManhua/main';
+import { Tsukuyomi } from './implementations/Tsukuyomi/main';
+import { HijalaScans } from './implementations/HijalaScans/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
   anicrush,
+  anikoto,
   mangaNato,
   gojo,
   animeLib,
@@ -187,12 +194,15 @@ export const pages: { [key: string]: PageInterface } = {
   WeebDex,
   SetsuScans,
   Mgeko,
+  MangaClash,
+  TopManhua,
   LuaScans,
   KaynScan,
   ComicWalker,
   MangaLivreTV,
   SanaScans,
   RezoScans,
+  Sekai,
   RageScans,
   AniGo,
   Kuudere,
@@ -206,4 +216,6 @@ export const pages: { [key: string]: PageInterface } = {
   ElfToon,
   Zoro,
   TeamShadowi,
+  Tsukuyomi,
+  HijalaScans,
 };

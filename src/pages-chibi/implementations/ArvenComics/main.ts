@@ -41,14 +41,8 @@ export const ArvenComics: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.reading-content img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.reading-content img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.reading-content img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.reading-content img').length().run(),
       },
     ],
   },

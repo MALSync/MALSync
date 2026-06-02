@@ -55,21 +55,9 @@ export const Mangapill: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.lg\\:container chapter-page',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.lg\\:container chapter-page',
-          mode: 'count',
-        },
-      },
-      /*
-      {
         current: $c => $c.querySelectorAll('.lg\\:container chapter-page').countAbove().run(),
-        total: $c => $c.querySelectorAll('.lg\\:container chapter-page"]').count().run(),
+        total: $c => $c.querySelectorAll('.lg\\:container chapter-page').length().run(),
       },
-      */
     ],
   },
   overview: {

@@ -1,48 +1,27 @@
 @import './../pages';
 
-@activeEp: #b096e14d;
-@boxBackground: var(--bg-malsync);
+@boxBackground: var(--s-tag-bg);
+@boxFontColor: var(--s-hero-text);
+@boxLabelFontColor: var(--s-hero-text);
+@boxOptionsBackground: var(--s-c-accent);
+@boxOptionsFontColor: var(--s-bg-primary);
+@highlightStyle: 0;
 
 #malp {
+  margin-top: 0.5rem;
   #MalData {
     .malp-group {
-      .malp-group-field,
-      .malp-group-value-section {
-        color: var(--text-malsync) !important;
-        display: flex;
-        option {
-          color: var(--bg-option-malsync);
-          font-family: sans-serif;
-        }
-      }
-      .malp-group-field:hover,
-      .malp-group-input:focus,
+      .malp-group-field:hover:not(.malp-group-input),
+      .malp-group-value-section:focus-within,
       .malp-group-value-section:hover {
-        background-color: var(--bg-malsync-hover) !important;
-        color: var(--hover-malsync) !important;
-        transition-duration: 0.25s;
+        background-color: var(--s-c-accent) !important;
+        color: var(--s-bg-primary) !important;
+        transition-duration: 0.3s;
       }
     }
   }
 }
 
 .mal-sync-active {
-  border-left: 5px solid @activeEp;
-  border-right: 5px solid @activeEp;
-  border-radius: 8px;
-}
-
-// the site didn't set it as variables for light mode
-.text-ui-dark {
-  --bg-malsync: #e3d6fe;
-  --text-malsync: #8858a8;
-  --hover-malsync: #8858a8;
-  --bg-option-malsync: #8858a8;
-  --bg-malsync-hover: #ddccff;
-}
-.text-ui-light {
-  --bg-malsync: #28282f;
-  --bg-malsync-hover: #28282f;
-  --text-malsync: #b399e6;
-  --hover-malsync: #d1c4e9;
+  border-color: var(--s-c-accent) !important;
 }

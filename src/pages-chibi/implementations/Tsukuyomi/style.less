@@ -1,0 +1,48 @@
+@import './../pages';
+
+@boxBackground: rgba(255, 255, 255, 0.03);
+@boxFontColor: var(--hi);
+@highlightStyle: 0;
+@boxOptionsBackground: var(--bg2);
+@boxHighlightBackground: #0f0f14;
+
+#malp {
+  margin-bottom: 12px;
+  font-size: 0.62rem;
+  #MalData {
+    .malp-group {
+      .malp-group-field:not(.malp-group-input),
+      .malp-group-value-section {
+        border: var(--line2) solid 1px;
+      }
+      .malp-group-field:not(.malp-group-input):hover,
+      .malp-group-value-section:hover,
+      .malp-group-value-section:focus-within {
+        background-color: #ffffff0f !important;
+        border-color: var(--line3);
+        transition-duration: 150ms;
+      }
+      #AddMal:hover {
+        color: var(--gold, #e8b84b) !important;
+        transition-duration: 150ms;
+      }
+      #malRating {
+        text-align: center;
+        font-weight: 600;
+        background-color: var(--gold) !important;
+        color: #06050a !important;
+      }
+      #malRating:hover {
+        opacity: 0.9;
+        box-shadow:
+          0 0 32px #c9972a73,
+          0 4px 16px #00000080;
+      }
+    }
+  }
+}
+
+.mal-sync-active {
+  border-color: #c9972a38 !important;
+  border-width: 2px !important;
+}

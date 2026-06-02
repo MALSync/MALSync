@@ -38,14 +38,8 @@ export const FlameScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.mantine-Stack-root img[width]',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.mantine-Stack-root img[width]',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.mantine-Stack-root img[width]').countAbove().run(),
+        total: $c => $c.querySelectorAll('.mantine-Stack-root img[width]').length().run(),
       },
     ],
   },

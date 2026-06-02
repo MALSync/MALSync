@@ -26,14 +26,8 @@ export const MangaDemon: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: 'img.imgholder',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: 'img.imgholder',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('img.imgholder').countAbove().run(),
+        total: $c => $c.querySelectorAll('img.imgholder').length().run(),
       },
     ],
   },

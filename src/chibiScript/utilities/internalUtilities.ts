@@ -12,6 +12,8 @@ export default {
         | 'anilistUrl'
         | 'kitsuId'
         | 'kitsuUrl'
+        | 'mangabakaId'
+        | 'mangabakaUrl'
         | 'malId'
         | 'malUrl']?: ChibiJson<any>;
     },
@@ -21,19 +23,25 @@ export default {
         provider: 'ANILIST',
         urlKey: 'anilistUrl',
         idKey: 'anilistId',
-        urlTemplate: 'https://anilist.co/manga/<identifier>',
+        urlTemplate: 'https://anilist.co/<type>/<identifier>',
       },
       {
         provider: 'KITSU',
         urlKey: 'kitsuUrl',
         idKey: 'kitsuId',
-        urlTemplate: 'https://kitsu.app/manga/<identifier>',
+        urlTemplate: 'https://kitsu.app/<type>/<identifier>',
+      },
+      {
+        provider: 'MANGABAKA',
+        urlKey: 'mangabakaUrl',
+        idKey: 'mangabakaId',
+        urlTemplate: 'https://mangabaka.org/<identifier>',
       },
       {
         provider: 'MAL',
         urlKey: 'malUrl',
         idKey: 'malId',
-        urlTemplate: 'https://myanimelist.net/manga/<identifier>',
+        urlTemplate: 'https://myanimelist.net/<type>/<identifier>',
       },
     ];
 
@@ -57,6 +65,7 @@ export default {
               $c
                 .string(config.urlTemplate)
                 .replace('<identifier>', $c.getVariable(config.idKey).run())
+                .replace('<type>', $c.getVariable<object>('pageObject').get('type').run())
                 .return()
                 .run(),
             );

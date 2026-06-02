@@ -4,10 +4,10 @@ import type { PageInterface } from '../../pageInterface';
 export const ranobeLib: PageInterface = {
   name: 'RanobeLib',
   type: 'manga',
-  domain: ['https://ranobelib.me', 'https://v1.novelslib.me'],
+  domain: ['https://ranobelib.me'],
   languages: ['Russian'],
   urls: {
-    match: ['*://ranobelib.me/*', '*://*.novelslib.me/*'],
+    match: ['*://ranobelib.me/*'],
   },
   search: 'https://ranobelib.me/ru/catalog?q={searchterm}',
   sync: {
@@ -53,28 +53,17 @@ export const ranobeLib: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          mode: 'countAbove',
-          selector: '[data-paragraph-index], .text-content p, .text-content img',
-        },
-        total: {
-          mode: 'count',
-          selector: '[data-paragraph-index], .text-content p, .text-content img',
-        },
+        current: $c =>
+          $c
+            .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
+            .countAbove()
+            .run(),
+        total: $c =>
+          $c
+            .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
+            .length()
+            .run(),
       },
-      // TODO - Replace when PR#3296 is merged
-      // {
-      //   current: $c =>
-      //     $c
-      //       .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
-      //       .countAbove()
-      //       .run(),
-      //   total: $c =>
-      //     $c
-      //       .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
-      //       .length()
-      //       .run(),
-      // },
     ],
   },
   overview: {
@@ -91,6 +80,7 @@ export const ranobeLib: PageInterface = {
       const id = slug.string().regex('(\\d+)', 1);
       return id.run();
     },
+    // NOTE - Image is there but it's protected by referrer header comparison
     getImage($c) {
       return $c.querySelector('.cover img').getAttribute('src').ifNotReturn().run();
     },
