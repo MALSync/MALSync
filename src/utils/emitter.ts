@@ -42,7 +42,8 @@ export function globalEmit(eventName: string, ...params) {
 }
 
 if (typeof api !== 'undefined' && api && api.type === 'webextension') {
-  chrome.storage.local.onChanged.addListener(changes => {
+  api.storage.storageOnChanged((changes, namespace) => {
+    if (namespace !== 'local') return;
     const now = Date.now();
     Object.keys(changes).forEach(key => {
       if (!key.startsWith(KEY_PREFIX)) return;
@@ -60,7 +61,8 @@ if (typeof api !== 'undefined' && api && api.type === 'webextension') {
 }
 
 export function registerBackgroundEmitterCleanup() {
-  chrome.storage.local.onChanged.addListener(changes => {
+  api.storage.storageOnChanged((changes, namespace) => {
+    if (namespace !== 'local') return;
     const keys = Object.keys(changes).filter(k => k.startsWith(KEY_PREFIX) && changes[k].newValue);
     if (keys.length) chrome.storage.local.remove(keys).catch(() => {});
   });
