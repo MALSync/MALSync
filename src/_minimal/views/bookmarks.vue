@@ -296,7 +296,7 @@ async function loadNext() {
   await listRequest.data.getNextPage();
 }
 
-let scrollDebounce: number;
+let scrollDebounce: ReturnType<typeof setTimeout>;
 
 const handleScroll = () => {
   clearTimeout(scrollDebounce);
