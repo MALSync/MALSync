@@ -37,6 +37,7 @@ jobs:
     - name: Page Tests
       run: |
         npm ci
+        rm -rf ~/.cache/puppeteer/chrome
         npx puppeteer browsers install chrome
         npm run build:webextension
         npm run test:headless
