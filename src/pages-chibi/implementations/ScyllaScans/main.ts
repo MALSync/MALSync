@@ -38,29 +38,28 @@ export const ScyllaScans: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '#chapter-container img.hidden[data-id="0"]',
-        current: {
-          selector: '#chapter-container img.lazyloaded:not(.hidden):not([data-id="0"])',
-          mode: 'attr',
-          attribute: 'data-id',
-          regex: '(\\d+)',
-        },
-        total: {
-          selector: '#chapter-container img:last-of-type',
-          mode: 'attr',
-          attribute: 'data-id',
-          regex: '(\\d+)',
-        },
+        condition: $c =>
+          $c.querySelector('#chapter-container img.hidden[data-id="0"]').boolean().run(),
+        current: $c =>
+          $c
+            .querySelector('#chapter-container img.lazyloaded:not(.hidden):not([data-id="0"])')
+            .getAttribute('data-id')
+            .ifNotReturn()
+            .regex('(\\d+)', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('#chapter-container img:last-of-type')
+            .getAttribute('data-id')
+            .ifNotReturn()
+            .regex('(\\d+)', 1)
+            .number()
+            .run(),
       },
       {
-        current: {
-          selector: '#chapter-container img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '#chapter-container img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('#chapter-container img').countAbove().run(),
+        total: $c => $c.querySelectorAll('#chapter-container img').length().run(),
       },
     ],
   },

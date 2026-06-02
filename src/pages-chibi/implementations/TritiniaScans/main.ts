@@ -45,29 +45,26 @@ export const TritiniaScans: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '#single-pager',
-        current: {
-          selector: '#single-pager [selected="selected"]',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 1,
-        },
-        total: {
-          selector: '#single-pager option',
-          mode: 'text',
-          regex: '(\\d+)/(\\d+)$',
-          group: 2,
-        },
+        condition: $c => $c.querySelector('#single-pager').boolean().run(),
+        current: $c =>
+          $c
+            .querySelector('#single-pager')
+            .selectedText()
+            .regex('(\\d+)/(\\d+)$', 1)
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('#single-pager option')
+            .text()
+            .trim()
+            .regex('(\\d+)/(\\d+)$', 2)
+            .number()
+            .run(),
       },
       {
-        current: {
-          selector: '.reading-content img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.reading-content img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.reading-content img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.reading-content img').length().run(),
       },
     ],
   },

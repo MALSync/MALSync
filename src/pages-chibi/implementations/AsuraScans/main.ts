@@ -7,11 +7,8 @@ export const AsuraScans: PageInterface = {
   type: 'manga',
   urls: {
     match: [
-      '*://asuracomic.net/*',
-      '*://asuratoon.com/*',
       '*://asuracomics.com/*',
       '*://asura.gg/*',
-      '*://asurascans.com/*',
       '*://asuratoon.com/*',
       '*://asuracomic.net/*',
       '*://asurascans.com/*',
@@ -51,14 +48,8 @@ export const AsuraScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '[data-page]',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '[data-page]',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('[data-page]').countAbove().run(),
+        total: $c => $c.querySelectorAll('[data-page]').length().run(),
       },
     ],
   },

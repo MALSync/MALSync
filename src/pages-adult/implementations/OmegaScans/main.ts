@@ -1,15 +1,14 @@
-import { PageInterface } from '../../pageInterface';
+import { PageInterface } from '../../../pages-chibi/pageInterface';
 
-export const AuroraScans: PageInterface = {
-  name: 'AuroraScans',
-  domain: 'https://aurorascans.com',
+export const OmegaScans: PageInterface = {
+  name: 'OmegaScans',
+  domain: 'https://omegascans.org',
   languages: ['English'],
   type: 'manga',
-  search:
-    'https://aurorascans.com/series?genre=&seriesType=&seriesStatus=&searchTerm={searchtermPlus}',
   urls: {
-    match: ['*://aurorascans.com/*'],
+    match: ['*://omegascans.org/*'],
   },
+  search: 'https://omegascans.org/series?search={searchtermRaw}',
   sync: {
     isSyncPage($c) {
       return $c
@@ -21,7 +20,7 @@ export const AuroraScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().split(' Chapter').at(0).trim().run();
+      return $c.title().split(' - Chapter').at(0).trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -32,17 +31,17 @@ export const AuroraScans: PageInterface = {
     getOverviewUrl($c) {
       return $c
         .string('/series/<identifier>')
-        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
+        .replace('<identifier>', $c.this('sync.getIdentifier').run())
         .urlAbsolute()
         .run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).regex('(\\d+)$', 1).number().ifNotReturn().run();
+      return $c.url().urlPart(5).regex('chapter[_-]?(\\d+)', 1).number().ifNotReturn().run();
     },
     readerConfig: [
       {
-        current: $c => $c.querySelectorAll('.font-semibold img').countAbove().run(),
-        total: $c => $c.querySelectorAll('.font-semibold img').length().run(),
+        current: $c => $c.querySelectorAll('#content img').countAbove().run(),
+        total: $c => $c.querySelectorAll('#content img').length().run(),
       },
     ],
   },
@@ -57,30 +56,24 @@ export const AuroraScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1[itemprop="name"]').text().trim().run();
+      return $c.querySelector('h1').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('h1[itemprop="name"]').uiAfter().run();
+      return $c.querySelector('h1').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.space-y-2 > div').run();
+      return $c.querySelectorAll('a[href*="chapter-"]').run();
     },
     elementUrl($c) {
-      return $c
-        .find('img[alt]')
-        .getAttribute('alt')
-        .trim()
-        .replaceRegex('^(.*?)(?=\\d+)', $c.this('sync.getOverviewUrl').concat('/chapter-').run())
-        .urlAbsolute()
-        .run();
+      return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
       return $c.this('list.elementUrl').this('sync.getEpisode').run();
@@ -92,16 +85,6 @@ export const AuroraScans: PageInterface = {
     },
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
-    },
-    listChange($c) {
-      return $c
-        .waitUntilTrue($c.querySelector('.space-y-2').boolean().run())
-        .trigger()
-        .detectChanges(
-          $c.querySelector('.space-y-2').ifNotReturn().text().run(),
-          $c.trigger().run(),
-        )
-        .run();
     },
   },
 };

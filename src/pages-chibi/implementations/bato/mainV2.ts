@@ -111,53 +111,48 @@ export const batoV2: PageInterface = {
     },
     readerConfig: [
       {
-        condition: '.item:nth-child(2)',
-        current: {
-          selector: '#viewer > .item',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.page-num',
-          mode: 'text',
-          regex: '\\d+$',
-        },
+        condition: $c => $c.querySelector('.item:nth-child(2)').boolean().run(),
+        current: $c => $c.querySelectorAll('#viewer > .item').countAbove().run(),
+        total: $c => $c.querySelector('.page-num').text().trim().regex('\\d+$').number().run(),
       },
       {
-        condition: 'div[name="image-items"] > div > div[name="image-item"]:nth-child(2)',
-        current: {
-          selector: 'div[name="image-item"]',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: 'div[name="image-item"] span.text-3xl',
-          mode: 'text',
-          regex: '\\d+$',
-        },
+        condition: $c =>
+          $c
+            .querySelector('div[name="image-items"] > div > div[name="image-item"]:nth-child(2)')
+            .boolean()
+            .run(),
+        current: $c => $c.querySelectorAll('div[name="image-item"]').countAbove().run(),
+        total: $c =>
+          $c
+            .querySelector('div[name="image-item"] span.text-3xl')
+            .text()
+            .trim()
+            .regex('\\d+$')
+            .number()
+            .run(),
       },
       {
-        condition: 'div[name="image-item"]',
-        current: {
-          selector: 'div[name="image-item"] > div > span:nth-child(1)',
-          mode: 'text',
-          regex: '^\\d+',
-        },
-        total: {
-          selector: 'div[name="image-item"] > div > span:nth-child(1)',
-          mode: 'text',
-          regex: '\\d+$',
-        },
+        condition: $c => $c.querySelector('div[name="image-item"]').boolean().run(),
+        current: $c =>
+          $c
+            .querySelector('div[name="image-item"] > div > span:nth-child(1)')
+            .text()
+            .trim()
+            .regex('^\\d+')
+            .number()
+            .run(),
+        total: $c =>
+          $c
+            .querySelector('div[name="image-item"] > div > span:nth-child(1)')
+            .text()
+            .trim()
+            .regex('\\d+$')
+            .number()
+            .run(),
       },
       {
-        current: {
-          selector: '.page-num',
-          mode: 'text',
-          regex: '^\\d+',
-        },
-        total: {
-          selector: '.page-num',
-          mode: 'text',
-          regex: '\\d+$',
-        },
+        current: $c => $c.querySelector('.page-num').text().trim().regex('^\\d+').number().run(),
+        total: $c => $c.querySelector('.page-num').text().trim().regex('\\d+$').number().run(),
       },
     ],
   },

@@ -33,8 +33,8 @@
         "image": "https://atsu.moe/static/posters/3Pe8J1zAEnTA0UeP-large.webp",
         "uiSelector": true,
         "epList": {
-          "105": "https://atsu.moe/read/3xHoW/Eh9n_e",
-          "109": "https://atsu.moe/read/3xHoW/LUlbCv"
+          "105": "https://atsu.moe/read/3xHoW/6A7Ox",
+          "109": "https://atsu.moe/read/3xHoW/QYxaa"
         }
       }
     },
@@ -97,7 +97,7 @@
         "image": "https://atsu.moe/static/posters/TKzki9XinBVjC3GQ-large.webp",
         "uiSelector": true,
         "epList": {
-          "7": "https://atsu.moe/read/1HCA/qELIni",
+          "7": "https://atsu.moe/read/1HCA/7PWZTJ",
           "10": "https://atsu.moe/read/1HCA/PW5MQZ"
         }
       }
@@ -110,6 +110,17 @@
         "identifier": "f54JG",
         "overviewUrl": "https://atsu.moe/manga/f54JG",
         "episode": 387,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/qitEK/aImqQq8L",
+      "expected": {
+        "sync": true,
+        "title": "Pandora Hearts",
+        "identifier": "qitEK",
+        "overviewUrl": "https://atsu.moe/manga/qitEK",
+        "episode": 8,
         "uiSelector": false
       }
     }

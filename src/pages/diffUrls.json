@@ -151,8 +151,10 @@
       "*://*.voir-anime.to/*"
     ],
     "iframe": [
+      "*://*.mewcdn.online/*",
       "*://playnixes.com/*",
       "*://kodikplayer.com/*",
+      "*://*.miixdrop.net/e/*",
       "*://dianaavoidthey.com/e/*",
       "*://jefferycontrolmodel.com/e/*",
       "*://jessicaclearout.com/e/*",
@@ -165,8 +167,12 @@
       "*://benjaminreducecommunity.com/e/*",
       "*://nicholasbreakplan.com/e/*",
       "*://rebeccasciencestreet.com/e/*",
-      "*://megaup.nl/e/*",
-      "*://vidwish.live/*"
+      "*://ericeastweight.com/e/*",
+      "*://kathyinformationwhether.com/e/*",
+      "*://bryantenunder.com/e/*",
+      "*://vickisaveworker.com/e/*",
+      "*://rebeccacostthousand.com/e/*",
+      "*://megaup.nl/e/*"
     ]
   }
 }

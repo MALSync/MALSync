@@ -1,27 +1,25 @@
 import { PageInterface } from '../../pageInterface';
 
-export const AuroraScans: PageInterface = {
-  name: 'AuroraScans',
-  domain: 'https://aurorascans.com',
+export const HijalaScans: PageInterface = {
+  name: 'HijalaScans',
+  domain: ['https://en-hijala.com'],
   languages: ['English'],
   type: 'manga',
-  search:
-    'https://aurorascans.com/series?genre=&seriesType=&seriesStatus=&searchTerm={searchtermPlus}',
   urls: {
-    match: ['*://aurorascans.com/*'],
+    match: ['*://en-hijala.com/*'],
   },
+  search: 'https://en-hijala.com/series?searchTerm={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
         .and(
           $c.url().urlPart(3).equals('series').run(),
-          $c.url().urlPart(5).boolean().run(),
-          $c.url().urlPart(5).matches('chapter[_-]?(\\d+)').run(),
+          $c.url().urlPart(5).matches('chapter[_-]').run(),
         )
         .run();
     },
     getTitle($c) {
-      return $c.title().split(' Chapter').at(0).trim().run();
+      return $c.querySelector('a[href*="/series/"] p').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -31,18 +29,31 @@ export const AuroraScans: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .string('/series/<identifier>')
-        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
+        .querySelector('a[href*="/series/"]')
+        .getAttribute('href')
         .urlAbsolute()
+        .ifNotReturn()
         .run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).regex('(\\d+)$', 1).number().ifNotReturn().run();
+      return $c
+        .coalesce(
+          $c
+            .url()
+            .urlPart(5)
+            .regex('chapter[_-](\\d+)', 1)
+            .ifThen($c => $c.number().run())
+            .run(),
+          $c.title().regex('chapter (\\d+)', 1).run(),
+        )
+        .ifNotReturn()
+        .number()
+        .run();
     },
     readerConfig: [
       {
-        current: $c => $c.querySelectorAll('.font-semibold img').countAbove().run(),
-        total: $c => $c.querySelectorAll('.font-semibold img').length().run(),
+        current: $c => $c.querySelectorAll('.relative img[data-image-index]').countAbove().run(),
+        total: $c => $c.querySelectorAll('.relative img[data-image-index]').length().run(),
       },
     ],
   },
@@ -60,7 +71,7 @@ export const AuroraScans: PageInterface = {
       return $c.querySelector('h1[itemprop="name"]').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
@@ -71,16 +82,10 @@ export const AuroraScans: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.space-y-2 > div').run();
+      return $c.querySelectorAll('.space-y-2 >div >.flex').run();
     },
     elementUrl($c) {
-      return $c
-        .find('img[alt]')
-        .getAttribute('alt')
-        .trim()
-        .replaceRegex('^(.*?)(?=\\d+)', $c.this('sync.getOverviewUrl').concat('/chapter-').run())
-        .urlAbsolute()
-        .run();
+      return $c.find('a').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
       return $c.this('list.elementUrl').this('sync.getEpisode').run();
@@ -91,16 +96,19 @@ export const AuroraScans: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c
+        .querySelector('h1')
+        .text()
+        .contains('erver error')
+        .ifThen($c => $c.string('404').log().return().run())
+        .detectURLChanges($c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
     },
     listChange($c) {
       return $c
-        .waitUntilTrue($c.querySelector('.space-y-2').boolean().run())
-        .trigger()
-        .detectChanges(
-          $c.querySelector('.space-y-2').ifNotReturn().text().run(),
-          $c.trigger().run(),
-        )
+        .detectChanges($c.querySelector('.space-y-2').ifNotReturn().run(), $c.trigger().run())
         .run();
     },
   },

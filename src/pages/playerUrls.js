@@ -78,7 +78,7 @@ module.exports = {
     match: ['*://*.vidlox.me/*'],
   },
   kwik: {
-    match: ['*://*.kwik.cx/*', '*://*.kwik.si/*'],
+    match: ['*://*.kwik.cx/*', '*://*.kwik.si/*', '*://*.mewcdn.online/*'],
   },
   mega: {
     match: ['*://*.mega.nz/*'],
@@ -259,6 +259,7 @@ module.exports = {
       '*://*.m1xdrop.net/e/*',
       '*://*.m1xdrop.com/e/*',
       '*://*.m1xdrop.bz/e/*',
+      '*://*.miixdrop.net/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -567,6 +568,11 @@ module.exports = {
       '*://benjaminreducecommunity.com/e/*',
       '*://nicholasbreakplan.com/e/*',
       '*://rebeccasciencestreet.com/e/*',
+      '*://ericeastweight.com/e/*',
+      '*://kathyinformationwhether.com/e/*',
+      '*://bryantenunder.com/e/*',
+      '*://vickisaveworker.com/e/*',
+      '*://rebeccacostthousand.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -856,10 +862,6 @@ module.exports = {
   // animeav1
   animeav1: {
     match: ['*://player.zilla-networks.com/*'],
-  },
-  // miruro
-  megaplay: {
-    match: ['*://megaplay.buzz/*', '*://vidwish.live/*'],
   },
   // Anizm
   anizmplayer: {

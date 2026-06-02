@@ -52,20 +52,10 @@ export const Silentquill: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '#select-paged option:checked',
-          property: 'text',
-          regex: '(\\d+)/\\d+',
-          group: 1,
-          mode: 'prop',
-        },
-        total: {
-          selector: '#select-paged option:checked',
-          property: 'text',
-          regex: '\\d+/(\\d+)',
-          group: 1,
-          mode: 'prop',
-        },
+        current: $c =>
+          $c.querySelector('#select-paged').selectedText().regex('(\\d+)/\\d+', 1).number().run(),
+        total: $c =>
+          $c.querySelector('#select-paged').selectedText().regex('\\d+/(\\d+)', 1).number().run(),
       },
     ],
   },
