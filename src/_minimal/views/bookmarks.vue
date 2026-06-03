@@ -296,16 +296,21 @@ async function loadNext() {
   await listRequest.data.getNextPage();
 }
 
+let scrollDebounce: ReturnType<typeof setTimeout>;
+
 const handleScroll = () => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  if (
-    rootWindow.pageYOffset + rootWindow.innerHeight >
-    rootDocument.documentElement.scrollHeight - 600
-  ) {
-    loadNext();
-  }
+  clearTimeout(scrollDebounce);
+  scrollDebounce = setTimeout(() => {
+    if (
+      rootWindow.pageYOffset + rootWindow.innerHeight >
+      rootDocument.documentElement.scrollHeight - 600
+    ) {
+      loadNext();
+    }
+  }, 100);
 };
+
+watch(list, () => handleScroll());
 
 watch(
   () => listRequest.data,

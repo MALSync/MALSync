@@ -1,6 +1,5 @@
 import {
   content,
-  emitter,
   minimalWindow,
   responseMessageI,
   sendMessageI,
@@ -11,8 +10,6 @@ import {
 } from '../api/messageInterface';
 import { databaseRequest } from './database';
 import { sendNotification } from './notifications';
-
-const activeEmitterTabs = new Set<number>();
 
 export function initMessageHandler() {
   chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse) => {
@@ -50,8 +47,6 @@ function messageHandler(
       return videoTimeSetAction(message, sender, sendResponse);
     case 'minimalWindow':
       return minimalWindowAction(message, sender, sendResponse);
-    case 'emitter':
-      return emitterAction(message, sender, sendResponse);
     case 'notification': {
       sendNotification(message.options);
       return undefined;
@@ -59,10 +54,6 @@ function messageHandler(
     case 'database': {
       databaseRequest(message.options.call, message.options.param).then(res => sendResponse(res));
       return true;
-    }
-    case 'registerEmitter': {
-      if (sender.tab?.id) registerEmitterTab(sender.tab.id);
-      return undefined;
     }
     default:
       throw new Error(`Unknown action: ${message.name}`);
@@ -149,21 +140,6 @@ function minimalWindowAction(message: minimalWindow, sender, sendResponse) {
     }
   });
   return true;
-}
-
-function emitterAction(message: emitter, sender, sendResponse) {
-  chrome.runtime.sendMessage(message);
-
-  activeEmitterTabs.forEach(tabId => {
-    chrome.tabs.sendMessage(tabId, message).catch(() => {
-      activeEmitterTabs.delete(tabId);
-    });
-  });
-  return undefined;
-}
-
-function registerEmitterTab(tabId: number) {
-  activeEmitterTabs.add(tabId);
 }
 
 export function xhrAction(
