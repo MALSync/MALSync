@@ -167,7 +167,7 @@ function pageTitle($c: ChibiGenerator<unknown>) {
 }
 
 function hasAnimeTitleMarker($c: ChibiGenerator<unknown>) {
-  return pageTitle($c).matches('\\u30a2\\u30cb\\u30e1/\\d{4}\\u5e74').run();
+  return pageTitle($c).matches('\\u30a2\\u30cb\\u30e1[^|)]*/\\d{4}\\u5e74').run();
 }
 
 function isAnimePlayback($c: ChibiGenerator<unknown>) {
