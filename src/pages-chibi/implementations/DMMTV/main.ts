@@ -166,10 +166,18 @@ function pageTitle($c: ChibiGenerator<unknown>) {
   return $c.title().split('|').first().trim();
 }
 
+function hasAnimeTitleMarker($c: ChibiGenerator<unknown>) {
+  return pageTitle($c).matches('\\u30a2\\u30cb\\u30e1/\\d{4}\\u5e74').run();
+}
+
+function isAnimePlayback($c: ChibiGenerator<unknown>) {
+  return $c.or(isAnimeVideo($c), hasAnimeTitleMarker($c)).run();
+}
+
 function hasAnimePageMarker($c: ChibiGenerator<unknown>) {
   return $c
     .or(
-      pageTitle($c).matches('\\u30a2\\u30cb\\u30e1/\\d{4}\\u5e74').run(),
+      hasAnimeTitleMarker($c),
       $c
         .querySelectorAll('main a[href*="/vod/list/?categories="]')
         .arrayFind($el => $el.text().trim().matches('^\\u30a2\\u30cb\\u30e1$').run())
@@ -284,7 +292,7 @@ export const DMMTV: PageInterface = {
           $c.url().urlPart(4).equals('playback').run(),
           $c.url().urlParam('season').boolean().run(),
           $c.url().urlParam('content').boolean().run(),
-          isAnimeVideo($c),
+          isAnimePlayback($c),
         )
         .run();
     },
@@ -399,7 +407,7 @@ export const DMMTV: PageInterface = {
           $c
             .and(
               $c.url().urlParam('season').boolean().run(),
-              isAnimeVideo($c),
+              isAnimePlayback($c),
               isEpisodeText(pageTitle($c)),
               $c.this('sync.getTitle').boolean().run(),
             )
