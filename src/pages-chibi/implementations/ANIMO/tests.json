@@ -1,0 +1,27 @@
+{
+  "title": "ANIMO",
+  "url": "https://4animo.xyz",
+  "testCases": [
+    {
+      "url": "https://4animo.xyz/witch-hat-atelier-15818",
+      "expected": {
+        "sync": false,
+        "overview": true,
+        "title": "Witch Hat Atelier",
+        "identifier": "15818",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://4animo.xyz/watch/witch-hat-atelier-15818?ep=1",
+      "expected": {
+        "sync": true,
+        "title": "Witch Hat Atelier",
+        "identifier": "15818",
+        "episode": 1,
+        "overviewUrl": "https://4animo.xyz/witch-hat-atelier-15818",
+        "uiSelector": false
+      }
+    }
+  ]
+}
