@@ -52,6 +52,9 @@ export const ANIMO: PageInterface = {
         .ifNotReturn()
         .run();
     },
+    uiInjection($c) {
+      return $c.querySelector('#animo-watch-actions').uiAppend().run();
+    },
     getMalUrl($c) {
       // Prefer window.activeAnime if injected by the React client
       return $c
@@ -108,7 +111,7 @@ export const ANIMO: PageInterface = {
         .run();
     },
     uiInjection($c) {
-      return $c.querySelector('main').uiPrepend().run();
+      return $c.querySelector('#animo-header-actions').uiAppend().run();
     },
     getMalUrl($c) {
       return $c.this('sync.getMalUrl').run();
@@ -124,13 +127,13 @@ export const ANIMO: PageInterface = {
     },
     syncIsReady($c) {
       return $c
-        .waitUntilTrue($c.querySelector('meta[property="og:title"]').boolean().run())
+        .waitUntilTrue($c.querySelector('#animo-watch-actions').boolean().run())
         .trigger()
         .run();
     },
     overviewIsReady($c) {
       return $c
-        .waitUntilTrue($c.querySelector('meta[property="og:title"]').boolean().run())
+        .waitUntilTrue($c.querySelector('#animo-header-actions').boolean().run())
         .trigger()
         .run();
     },
