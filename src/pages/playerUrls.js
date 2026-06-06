@@ -573,6 +573,7 @@ module.exports = {
       '*://bryantenunder.com/e/*',
       '*://vickisaveworker.com/e/*',
       '*://rebeccacostthousand.com/e/*',
+      '*://jessicayeahcatch.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
