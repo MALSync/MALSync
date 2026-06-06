@@ -7,6 +7,10 @@ export const Tsukuyomi: PageInterface = {
   type: 'anime',
   urls: {
     match: ['*://tsukuyomi.tv/*'],
+    player: {
+      hd1: ['*://bibiemb.xyz/*'],
+      hd2: ['*://vibeplayer.site/*'],
+    },
   },
   search: 'https://tsukuyomi.tv/search?q={searchTerms}',
   sync: {
