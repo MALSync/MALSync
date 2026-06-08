@@ -1,6 +1,39 @@
 import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
+type CREpisode = {
+  type: 'episode';
+  id: string;
+  title: string;
+  description: string;
+  slug_title: string;
+  episode_metadata: {
+    episode_number: number;
+    season_display_number: string;
+    season_id: string;
+    season_number: number;
+    season_sequence_number: number;
+    season_slug_title: string;
+    season_title: string;
+    sequence_number: number;
+    series_id: string;
+    series_slug_title: string;
+    series_title: string;
+  };
+};
+
+type CRMetadata = CREpisode;
+
+type RequestData = {
+  data: [CREpisode];
+  meta: {};
+  total: number;
+};
+
+function meta<P = CRMetadata>($c: ChibiGenerator<unknown>) {
+  return $c.getGlobalVariable<P>('metadataGlobal');
+}
+
 export const Crunchyroll: PageInterface = {
   name: 'Crunchyroll',
   domain: ['https://www.crunchyroll.com'],
@@ -17,6 +50,9 @@ export const Crunchyroll: PageInterface = {
   type: 'anime',
   urls: {
     match: ['*://*.crunchyroll.com/*'],
+  },
+  features: {
+    requestProxy: true,
   },
   search: 'https://www.crunchyroll.com/search?q={searchtermPlus}',
   sync: {
@@ -43,16 +79,17 @@ export const Crunchyroll: PageInterface = {
         .run();
     },
     getIdentifier($c) {
-      return getSeriesName($c)
-        .concat(getSeasonName($c).run())
-        .concat(getSeasonNumber($c).run())
-        .run();
+      return meta($c).get('episode_metadata').get('season_id').run();
     },
     getOverviewUrl($c) {
-      return getJsonData($c).get('partOfSeason').get('@id').run();
+      return $c
+        .string('/series/')
+        .concat(meta($c).get('episode_metadata').get('series_id').run())
+        .urlAbsolute()
+        .run();
     },
     getEpisode($c) {
-      return getJsonData($c).get('episodeNumber').number().run();
+      return meta($c).get('episode_metadata').get('episode_number').run();
     },
     nextEpUrl($c) {
       return $c
@@ -71,28 +108,51 @@ export const Crunchyroll: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectChanges($c.title().run(), $c.trigger().run()).domReady().trigger().run();
+      return $c
+        .requestProxy($c =>
+          $c.setVariable('request').get('url').setVariable('requestUrl').exec(checkRequest).run(),
+        )
+        .run();
     },
   },
 };
 
+function checkRequest($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable<string>('requestUrl')
+    .matches('/(cms/objects)/')
+    .ifThen($c => $c.exec(checkMetadataRequest).run());
+}
+
+function checkMetadataRequest($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable('requestUrl')
+    .log('url')
+    .getVariable<{ data: RequestData }>('request')
+    .get('data')
+    .get('data')
+    .log()
+    .get(0)
+    .setVariable('metadata')
+    .log($c.getVariable('metadata').get('type').run())
+    .getVariable<CRMetadata>('metadata')
+    .get('type')
+    .equals('episode')
+    .ifThen($c => $c.exec(handleEpisode).return().run());
+}
+
+function handleEpisode($c: ChibiGenerator<unknown>) {
+  return $c.debounce(500).getVariable('metadata').setGlobalVariable('metadataGlobal').trigger();
+}
+
 function getSeasonNumber($c: ChibiGenerator<unknown>) {
-  return getJsonData($c).get('partOfSeason').get('seasonNumber');
+  return meta($c).get('episode_metadata').get('season_number');
 }
 
 function getSeasonName($c: ChibiGenerator<unknown>) {
-  return getJsonData($c).get('partOfSeason').get('name').string();
+  return meta($c).get('episode_metadata').get('season_title');
 }
 
 function getSeriesName($c: ChibiGenerator<unknown>) {
-  return getJsonData($c).get('partOfSeries').get('name').string();
-}
-
-function getJsonData($c: ChibiGenerator<unknown>) {
-  return $c
-    .querySelectorAll('[type="application/ld+json"]')
-    .arrayFind($el => $el.text().includes('episodeNumber').run())
-    .ifNotReturn()
-    .text()
-    .jsonParse();
+  return meta($c).get('episode_metadata').get('series_title');
 }
