@@ -34,9 +34,6 @@ export const AnimesDigital: PageInterface = {
       return $c.querySelectorAll('.b_itens .info span:nth-child(2)').at(1).text().number().run();
     },
     uiInjection($c) {
-      // return $c.querySelector('#player').uiBefore().run(); // em cima player
-      // debaixo do player return $c.querySelector('#player').uiAfter().run();
-      // atras dos comentarios return $c.querySelector('.comentarios').uiBefore().run();
       return $c.querySelector('.tabs_videos').uiPrepend().run();
     },
   },
