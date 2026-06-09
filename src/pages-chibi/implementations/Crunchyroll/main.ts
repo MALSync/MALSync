@@ -223,7 +223,9 @@ function handleEpisode($c: ChibiGenerator<unknown>) {
 
 function getActiveSeasonTitle($c: ChibiGenerator<unknown>) {
   return $c
-    .querySelector('.season-info [class*="select-trigger__title-truncated-text--"]')
+    .querySelector(
+      '.season-info [class*="select-trigger__title-truncated-text--"], .seasons-select [seasontitle]',
+    )
     .ifNotReturn()
     .text();
 }
