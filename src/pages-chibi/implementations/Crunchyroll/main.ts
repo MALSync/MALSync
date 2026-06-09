@@ -79,20 +79,11 @@ export const Crunchyroll: PageInterface = {
         .run();
     },
     getTitle($c) {
-      const seasonSuffix = $c
-        .if(
-          getSeasonNumber($c).number().greaterThan(1).run(),
-          $c.string(' Season ').concat(getSeasonNumber($c).string().run()).run(),
-          $c.string('').run(),
-        )
-        .run();
-
-      return getSeriesName($c)
+      return $c
+        .setVariable('seriesTitle', meta($c).get('episode_metadata').get('series_title').run())
+        .setVariable('seasonTitle', meta($c).get('episode_metadata').get('season_title').run())
+        .exec(getTitle)
         .ifNotReturn()
-        .string()
-        .replaceRegex('\\([^\\)]+\\)', '')
-        .trim()
-        .concat(seasonSuffix)
         .run();
     },
     getIdentifier($c) {
@@ -131,17 +122,19 @@ export const Crunchyroll: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.exec(getActiveSeasonTitle).run();
+      return $c
+        .setVariable('activeTitle', $c.exec(getActiveSeasonTitle).run())
+        .exec(getActiveSeason)
+        .setVariable('seriesTitle', $c.querySelector('h1').text().trim().run())
+        .setVariable('seasonTitle', $c.getVariable('foundSeason').get('title').run())
+        .exec(getTitle)
+        .ifNotReturn()
+        .run();
     },
     getIdentifier($c) {
       return $c
         .setVariable('activeTitle', $c.exec(getActiveSeasonTitle).run())
-        .getGlobalVariable<CRSeason[]>('seasonsGlobal')
-        .arrayFind(season =>
-          season.get('title').trim().equals($c.getVariable('activeTitle').run()).run(),
-        )
-        .ifNotReturn()
-        .setVariable('foundSeason')
+        .exec(getActiveSeason)
         .setVariable('identifier.seriesId', $c.getVariable('foundSeason').get('series_id').run())
         .setVariable('identifier.seasonSlug', $c.getVariable('foundSeason').get('slug_title').run())
         .exec(getIdentifier)
@@ -228,18 +221,6 @@ function handleEpisode($c: ChibiGenerator<unknown>) {
   return $c.debounce(500).getVariable('metadata').setGlobalVariable('metadataGlobal').trigger();
 }
 
-function getSeasonNumber($c: ChibiGenerator<unknown>) {
-  return meta($c).get('episode_metadata').get('season_number');
-}
-
-function getSeasonName($c: ChibiGenerator<unknown>) {
-  return meta($c).get('episode_metadata').get('season_title');
-}
-
-function getSeriesName($c: ChibiGenerator<unknown>) {
-  return meta($c).get('episode_metadata').get('series_title');
-}
-
 function getActiveSeasonTitle($c: ChibiGenerator<unknown>) {
   return $c
     .querySelector('.season-info [class*="select-trigger__title-truncated-text--"]')
@@ -247,9 +228,32 @@ function getActiveSeasonTitle($c: ChibiGenerator<unknown>) {
     .text();
 }
 
+function getActiveSeason($c: ChibiGenerator<unknown>) {
+  return $c
+    .getGlobalVariable<CRSeason[]>('seasonsGlobal')
+    .arrayFind(season =>
+      season.get('title').trim().equals($c.getVariable('activeTitle').run()).run(),
+    )
+    .ifNotReturn()
+    .setVariable('foundSeason');
+}
+
 function getIdentifier($c: ChibiGenerator<unknown>) {
   return $c
     .getVariable<string>('identifier.seriesId')
     .concat('|')
     .concat($c.getVariable<string>('identifier.seasonSlug').run());
+}
+
+function getTitle($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable<string>('seriesTitle')
+    .concat(' ')
+    .concat(
+      $c
+        .getVariable<string>('seasonTitle')
+        .replace($c.getVariable<string>('seriesTitle').trim().run(), '')
+        .trim()
+        .run(),
+    );
 }
