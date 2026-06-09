@@ -10,6 +10,23 @@ const apiDomain = 'https://shikimori.one/api/';
 
 export const domain = 'https://shikimori.one';
 
+let lastRequestTime = 0;
+let requestQueue = Promise.resolve();
+
+function getQueueSlot(): Promise<void> {
+  const nextSlot = requestQueue.then(async () => {
+    const now = Date.now();
+    const elapsed = now - lastRequestTime;
+    const waitTime = Math.max(0, 250 - elapsed);
+    if (waitTime > 0) {
+      await new Promise(resolve => setTimeout(resolve, waitTime));
+    }
+    lastRequestTime = Date.now();
+  });
+  requestQueue = nextSlot.catch(() => {});
+  return nextSlot;
+}
+
 export async function apiCall(options: {
   type: 'GET' | 'PUT' | 'DELETE' | 'POST';
   path: string;
@@ -23,6 +40,8 @@ export async function apiCall(options: {
   if (!token && !token.access_token && !options.auth) {
     throw new NotAutenticatedError('No token set');
   }
+
+  await getQueueSlot();
 
   let url = apiDomain + options.path;
   if (options.parameter && Object.keys(options.parameter).length) {
