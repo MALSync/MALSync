@@ -22,10 +22,27 @@ type CREpisode = {
   };
 };
 
+type CRSeason = {
+  id: string;
+  title: string;
+  description: string;
+  season_display_number?: string;
+  season_number: number;
+  season_sequence_number: number;
+  series_id: string;
+  slug_title: string;
+  number_of_episodes: number;
+};
 type CRMetadata = CREpisode;
 
-type RequestData = {
+type EpisodeRequestData = {
   data: [CREpisode];
+  meta: {};
+  total: number;
+};
+
+type SeasonRequestData = {
+  data: CRSeason[];
   meta: {};
   total: number;
 };
@@ -99,8 +116,49 @@ export const Crunchyroll: PageInterface = {
         .urlAbsolute()
         .run();
     },
+  },
+  overview: {
+    isOverviewPage($c) {
+      return $c
+        .or($c.url().urlPart(3).equals('series').run(), $c.url().urlPart(4).equals('series').run())
+        .run();
+    },
+    getTitle($c) {
+      return $c.exec(getActiveSeasonTitle).run();
+    },
+    getIdentifier($c) {
+      return $c
+        .setVariable('activeTitle', $c.exec(getActiveSeasonTitle).run())
+        .getGlobalVariable<CRSeason[]>('seasonsGlobal')
+        .arrayFind(season =>
+          season.get('title').trim().equals($c.getVariable('activeTitle').run()).run(),
+        )
+        .ifNotReturn()
+        .get('id')
+        .run();
+    },
+    getImage($c) {
+      return $c.string('').run();
+    },
     uiInjection($c) {
-      return $c.querySelector('.erc-current-media-info').uiPrepend().run();
+      return $c.querySelector('.top-controls').uiBefore().run();
+    },
+  },
+  list: {
+    elementsSelector($c) {
+      return $c.querySelectorAll('.episode-list .card').run();
+    },
+    elementUrl($c) {
+      return $c.find('a').getAttribute('href').ifNotReturn().urlAbsolute().run();
+    },
+    elementEp($c) {
+      return $c
+        .find('[class*="playable-card__title-link"]')
+        .ifNotReturn()
+        .text()
+        .regex('E(\\d+)', 1)
+        .number()
+        .run();
     },
   },
   lifecycle: {
@@ -112,6 +170,7 @@ export const Crunchyroll: PageInterface = {
         .requestProxy($c =>
           $c.setVariable('request').get('url').setVariable('requestUrl').exec(checkRequest).run(),
         )
+        .detectChanges($c.exec(getActiveSeasonTitle).run(), $c.trigger().run())
         .run();
     },
   },
@@ -120,15 +179,18 @@ export const Crunchyroll: PageInterface = {
 function checkRequest($c: ChibiGenerator<unknown>) {
   return $c
     .getVariable<string>('requestUrl')
-    .matches('/(cms/objects)/')
-    .ifThen($c => $c.exec(checkMetadataRequest).run());
+    .matches('(/cms/objects/)')
+    .ifThen($c => $c.exec(checkMetadataRequest).run())
+    .getVariable<string>('requestUrl')
+    .matches('(/cms/series/[^/]+/seasons)')
+    .ifThen($c => $c.exec(handleSeasonsRequest).run());
 }
 
 function checkMetadataRequest($c: ChibiGenerator<unknown>) {
   return $c
     .getVariable('requestUrl')
     .log('url')
-    .getVariable<{ data: RequestData }>('request')
+    .getVariable<{ data: EpisodeRequestData }>('request')
     .get('data')
     .get('data')
     .log()
@@ -139,6 +201,17 @@ function checkMetadataRequest($c: ChibiGenerator<unknown>) {
     .get('type')
     .equals('episode')
     .ifThen($c => $c.exec(handleEpisode).return().run());
+}
+
+function handleSeasonsRequest($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable('requestUrl')
+    .log('url')
+    .getVariable<{ data: SeasonRequestData }>('request')
+    .get('data')
+    .get('data')
+    .log('seasons')
+    .setGlobalVariable('seasonsGlobal');
 }
 
 function handleEpisode($c: ChibiGenerator<unknown>) {
@@ -155,4 +228,11 @@ function getSeasonName($c: ChibiGenerator<unknown>) {
 
 function getSeriesName($c: ChibiGenerator<unknown>) {
   return meta($c).get('episode_metadata').get('series_title');
+}
+
+function getActiveSeasonTitle($c: ChibiGenerator<unknown>) {
+  return $c
+    .querySelector('.season-info [class*="select-trigger__title-truncated-text--"]')
+    .ifNotReturn()
+    .text();
 }
