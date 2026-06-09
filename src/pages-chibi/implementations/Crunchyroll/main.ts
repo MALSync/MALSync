@@ -96,7 +96,14 @@ export const Crunchyroll: PageInterface = {
         .run();
     },
     getIdentifier($c) {
-      return meta($c).get('episode_metadata').get('season_id').run();
+      return $c
+        .setVariable('identifier.seriesId', meta($c).get('episode_metadata').get('series_id').run())
+        .setVariable(
+          'identifier.seasonSlug',
+          meta($c).get('episode_metadata').get('season_slug_title').run(),
+        )
+        .exec(getIdentifier)
+        .run();
     },
     getOverviewUrl($c) {
       return $c
@@ -134,7 +141,10 @@ export const Crunchyroll: PageInterface = {
           season.get('title').trim().equals($c.getVariable('activeTitle').run()).run(),
         )
         .ifNotReturn()
-        .get('id')
+        .setVariable('foundSeason')
+        .setVariable('identifier.seriesId', $c.getVariable('foundSeason').get('series_id').run())
+        .setVariable('identifier.seasonSlug', $c.getVariable('foundSeason').get('slug_title').run())
+        .exec(getIdentifier)
         .run();
     },
     getImage($c) {
@@ -235,4 +245,11 @@ function getActiveSeasonTitle($c: ChibiGenerator<unknown>) {
     .querySelector('.season-info [class*="select-trigger__title-truncated-text--"]')
     .ifNotReturn()
     .text();
+}
+
+function getIdentifier($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable<string>('identifier.seriesId')
+    .concat('|')
+    .concat($c.getVariable<string>('identifier.seasonSlug').run());
 }
