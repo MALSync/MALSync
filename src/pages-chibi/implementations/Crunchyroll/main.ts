@@ -81,6 +81,7 @@ export const Crunchyroll: PageInterface = {
     getTitle($c) {
       return $c
         .setVariable('seriesTitle', meta($c).get('episode_metadata').get('series_title').run())
+        .setVariable('seriesSlug', meta($c).get('episode_metadata').get('series_slug_title').run())
         .setVariable('seasonTitle', meta($c).get('episode_metadata').get('season_title').run())
         .exec(getTitle)
         .ifNotReturn()
@@ -126,6 +127,14 @@ export const Crunchyroll: PageInterface = {
         .setVariable('activeTitle', $c.exec(getActiveSeasonTitle).run())
         .exec(getActiveSeason)
         .setVariable('seriesTitle', $c.querySelector('h1').text().trim().run())
+        .setVariable(
+          'seriesSlug',
+          $c
+            .querySelector('[rel="alternate"][hreflang="en"]')
+            .getAttribute('href')
+            .urlPart(5)
+            .run(),
+        )
         .setVariable('seasonTitle', $c.getVariable('foundSeason').get('title').run())
         .exec(getTitle)
         .ifNotReturn()
@@ -249,7 +258,8 @@ function getIdentifier($c: ChibiGenerator<unknown>) {
 
 function getTitle($c: ChibiGenerator<unknown>) {
   return $c
-    .getVariable<string>('seriesTitle')
+    .getVariable<string>('seriesSlug')
+    .replaceAll('-', ' ')
     .concat(' ')
     .concat(
       $c
