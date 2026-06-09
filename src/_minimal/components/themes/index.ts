@@ -1,6 +1,7 @@
 import { nordtheme } from './nordtheme';
 import { installTheme } from './installTheme';
 import { bestTheme } from './bestTheme';
+import { best2024, best2025, best2026 } from './bestThemes';
 import { latte, frappe, macchiato, mocha } from './catppuccinTheme';
 
 export const themeOverrides = ['sidebars', 'image', 'opacity', 'color'] as const;
@@ -16,6 +17,9 @@ const themes: { [key: string]: Theme } = {
   nordtheme,
   installTheme,
   bestTheme,
+  best2024,
+  best2025,
+  best2026,
   latte,
   frappe,
   macchiato,
