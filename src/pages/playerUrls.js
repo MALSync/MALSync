@@ -574,6 +574,7 @@ module.exports = {
       '*://vickisaveworker.com/e/*',
       '*://rebeccacostthousand.com/e/*',
       '*://jessicayeahcatch.com/e/*',
+      '*://jeanprofessorcentral.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
