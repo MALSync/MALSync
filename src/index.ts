@@ -13,6 +13,7 @@ import { pwa } from './floatbutton/userscriptPwa';
 import { databaseRequest, initDatabase } from './background/database';
 import { anilistOauth } from './anilist/oauth';
 import { shikiOauth } from './_provider/Shikimori/oauth';
+import { myAnimePulseOauth } from './_provider/MyAnimePulse/oauth';
 import { Chibi } from './pages-chibi/ChibiProxy';
 import { NotFoundError } from './_provider/Errors';
 import { mangabakaOauth } from './mangabaka/oauth';
@@ -60,6 +61,11 @@ async function main() {
     window.location.pathname.startsWith('/shikimori/oauth')
   ) {
     shikiOauth();
+  } else if (
+    utils.isDomainMatching(window.location.href, 'myanimepulse.com') &&
+    window.location.pathname.startsWith('/auth/extension')
+  ) {
+    myAnimePulseOauth();
   } else if (
     window.location.hostname === 'malsync.moe' &&
     window.location.pathname.startsWith('/pwa')

@@ -6,6 +6,7 @@ import { search as kitsuSearch } from './Kitsu/search';
 import { search as mangaBakaSearch } from './MangaBaka/search';
 import { search as simklSearch } from './Simkl/search';
 import { search as shikiSearch } from './Shikimori/search';
+import { search as myAnimePulseSearch } from './MyAnimePulse/search';
 
 export function search(
   keyword,
@@ -32,6 +33,9 @@ export function search(
   }
   if (syncMode === 'SHIKI') {
     return shikiSearch(keyword, type, options, sync);
+  }
+  if (syncMode === 'MYANIMEPULSE') {
+    return myAnimePulseSearch(keyword, type, options, sync);
   }
   if (syncMode === 'MALAPI') {
     return malApiSearch(keyword, type, options, sync);

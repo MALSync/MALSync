@@ -124,6 +124,7 @@ export const settingsObj = {
     shikiOptions: {
       locale: 'ru',
     },
+    animepulseToken: '',
   }),
 
   debounceArray: {},
