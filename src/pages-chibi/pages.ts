@@ -1,4 +1,5 @@
 import { PageInterface } from './pageInterface';
+import { ANIMO } from './implementations/ANIMO/main';
 
 import { animeav1 } from './implementations/animeav1/main';
 import { anicrush } from './implementations/anicrush/main';
@@ -111,6 +112,7 @@ import { HijalaScans } from './implementations/HijalaScans/main';
 import { Jellyfin } from './implementations/Jellyfin/main';
 
 export const pages: { [key: string]: PageInterface } = {
+  ANIMO,
   animeav1,
   anicrush,
   anikoto,
