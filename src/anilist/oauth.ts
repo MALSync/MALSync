@@ -4,7 +4,6 @@ export function anilistOauth() {
       const tokens = /access_token=[^&]+/gi.exec(window.location.href);
       if (tokens !== null && typeof tokens[0] !== 'undefined' && tokens[0]) {
         const token = tokens[0].toString().replace(/access_token=/gi, '');
-        con.log('Token Found', token);
 
         await api.settings.set('anilistToken', token);
 

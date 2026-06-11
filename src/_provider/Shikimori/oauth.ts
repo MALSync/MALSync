@@ -6,7 +6,6 @@ export function shikiOauth() {
       const tokens = /code=[^&]+/gi.exec(window.location.href);
       if (tokens !== null && typeof tokens[0] !== 'undefined' && tokens[0]) {
         const token = tokens[0].toString().replace(/code=/gi, '');
-        con.log('Token Found', token);
 
         const res = await authRequest({
           code: token,
