@@ -48,7 +48,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integruje MyAnimeList/AniList/Kitsu/Simkl do různých stránek s automatickým aktualizováním sledování.",
+        "message": "Integruje MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka do různých stránek s automatickým aktualizováním sledování.",
         "description": "Description MALSync"
     },
     "syncPage_flashConfirm_start_manga": {

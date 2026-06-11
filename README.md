@@ -5,9 +5,9 @@
 
 # MAL-Sync
 
-**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList/Anilist/Kitsu/Simkl and multiple anime streaming websites.
+**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList/Anilist/Kitsu/Simkl/Shikimori/MangaBaka and multiple anime streaming websites.
 
-Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as a centralized bookmarks system for all supported pages.
+Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl/Shikimori/MangaBaka anime/mangalist as a centralized bookmarks system for all supported pages.
 
 #### **Supported Pages** <a id="anchor-link"></a>
 

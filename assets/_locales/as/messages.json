@@ -112,7 +112,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "MyAnimeList/AniList/Kitsu/Simkl/Shikimori ক বিভিন্ন চাইটত সংহত কৰে, স্বয়ংক্ৰিয় খণ্ড অনুসৰণৰ সৈতে।",
+        "message": "MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka ক বিভিন্ন চাইটত সংহত কৰে, স্বয়ংক্ৰিয় খণ্ড অনুসৰণৰ সৈতে।",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -894,7 +894,7 @@
         "description": "Quicklinks"
     },
     "settings_StreamingSite_text": {
-        "message": "যদি অক্ষম কৰা হয়, এনিমে বাৰৰ MAL/AniList/Kitsu/Simkl ত সম্প্ৰচাৰ সংযোগ নেদেখায়।",
+        "message": "যদি অক্ষম কৰা হয়, এনিমে বাৰৰ MAL/AniList/Kitsu/Simkl/Shikimori/MangaBaka ত সম্প্ৰচাৰ সংযোগ নেদেখায়।",
         "description": "Streaming Site Links - Text"
     },
     "settings_StreamingSite_custom": {
