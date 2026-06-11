@@ -109,6 +109,7 @@ import { TopManhua } from './implementations/TopManhua/main';
 import { Tsukuyomi } from './implementations/Tsukuyomi/main';
 import { HijalaScans } from './implementations/HijalaScans/main';
 import { Jellyfin } from './implementations/Jellyfin/main';
+import { AnimesDigital } from './implementations/AnimesDigital/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -220,4 +221,5 @@ export const pages: { [key: string]: PageInterface } = {
   Tsukuyomi,
   HijalaScans,
   Jellyfin,
+  AnimesDigital,
 };
