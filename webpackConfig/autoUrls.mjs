@@ -32,23 +32,6 @@ async function mixdrop() {
 
 // pages
 
-async function zoro() {
-  const response = await fetch('https://hianime.tv');
-  const body = await response.text();
-
-  const $ = cheerio.load(body);
-
-  const urls = $('ul.site-opt > li > a')
-    .map((i, el) => new URL($(el).attr('href')))
-    .get();
-
-  let formattedUrls = [];
-  for (const url of urls) {
-    formattedUrls.push('*://' + url.hostname + '/*');
-  }
-  addPageUrls('Zoro', formattedUrls);
-}
-
 async function kickassanime() {
   const response = await fetch('https://watchanime.io');
   const body = await response.text();
@@ -64,45 +47,6 @@ async function kickassanime() {
     formattedUrls.push('*://*.' + url.hostname + '/*');
   }
   addPageUrls('KickAssAnime', formattedUrls);
-}
-
-async function animekai() {
-  const response = await fetch('https://animekai.pw/');
-  const body = await response.text();
-
-  const $ = cheerio.load(body);
-
-  const urls = $('.site-lists li > a')
-    .map((i, el) => new URL($(el).attr('href')))
-    .get();
-
-  let formattedUrls = [];
-  for (const url of urls) {
-    formattedUrls.push('*://' + url.hostname + '/*');
-  }
-  addChibiUrls('AnimeKAI', formattedUrls);
-}
-
-async function bato() {
-  const response = await fetch('https://batotomirrors.pages.dev');
-  const body = await response.text();
-  const $ = cheerio.load(body);
-
-  // Bato url gave JS to list their bato endpoint when fetch() it.
-  const urlJS = $('script')
-    .map((i, el) => $(el).html())
-    .get()
-    .find(text => text.includes('const domains'));
-
-  const ExtractUrl = [...urlJS.matchAll(/url:\s*"(.*?)"/g)];
-  const urls = ExtractUrl.map(m => new URL(m[1]));
-
-  let formattedUrls = [];
-  for (const url of urls) {
-    formattedUrls.push('*://' + url.hostname + '/*');
-  }
-  addChibiUrls('bato', formattedUrls, 'mainV2.ts');
-  addChibiUrls('bato', formattedUrls, 'mainV3.ts');
 }
 
 async function miruro() {
@@ -304,10 +248,7 @@ async function start() {
     voe,
     vidmoly,
     mixdrop,
-    zoro,
     kickassanime,
-    animekai,
-    bato,
     miruro,
     mangapark,
   };
