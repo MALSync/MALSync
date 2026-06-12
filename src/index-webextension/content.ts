@@ -76,18 +76,19 @@ function messagePageListener(page) {
 
     if (msg.action === 'videoTimeSet') {
       con.log('[Iframe] Set Time', msg);
-      if (typeof page.tempPlayer === 'undefined') {
+      const player = PlayerSingleton.getInstance()['currentPlayer'];
+      if (!player) {
         con.error('[Iframe] No player Found');
         return;
       }
       if (typeof msg.time !== 'undefined') {
-        page.tempPlayer.play();
-        page.tempPlayer.currentTime = msg.time;
+        player.play();
+        player.currentTime = msg.time;
         return;
       }
       if (typeof msg.timeAdd !== 'undefined') {
-        page.tempPlayer.play();
-        page.tempPlayer.currentTime += msg.timeAdd;
+        player.play();
+        player.currentTime += msg.timeAdd;
         return;
       }
     }
@@ -131,7 +132,7 @@ function messagePageListener(page) {
     }
 
     async function addVideoTime(forward: boolean) {
-      if (typeof page.tempPlayer === 'undefined') {
+      if (!PlayerSingleton.getInstance().canSetTime()) {
         if (!timeAddCb) {
           con.error('[content] No iframe and onsite player found');
           return;
@@ -142,16 +143,15 @@ function messagePageListener(page) {
       let time = parseInt(await api.settings.getAsync('introSkip'));
       if (!forward) time = 0 - time;
 
-      const totalTime = page.tempPlayer.currentTime + time;
-      if (
-        page.tempPlayer.duration &&
-        page.tempPlayer.duration > 15 &&
-        totalTime > page.tempPlayer.duration - 3
-      ) {
-        page.tempPlayer.currentTime = page.tempPlayer.duration - 3;
+      const player = PlayerSingleton.getInstance()['currentPlayer'];
+      if (!player) return;
+      await player.play();
+      const totalTime = player.currentTime + time;
+      if (player.duration && player.duration > 15 && totalTime > player.duration - 3) {
+        player.currentTime = player.duration - 3;
         return;
       }
-      page.tempPlayer.currentTime = totalTime;
+      player.currentTime = totalTime;
     }
   });
 }
