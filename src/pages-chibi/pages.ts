@@ -106,6 +106,7 @@ import { ElfToon } from './implementations/ElfToon/main';
 import { Zoro } from './implementations/Zoro/main';
 import { TeamShadowi } from './implementations/TeamShadowi/main';
 import { TopManhua } from './implementations/TopManhua/main';
+import { DMMTV } from './implementations/DMMTV/main';
 import { Tsukuyomi } from './implementations/Tsukuyomi/main';
 import { HijalaScans } from './implementations/HijalaScans/main';
 import { Jellyfin } from './implementations/Jellyfin/main';
@@ -217,6 +218,7 @@ export const pages: { [key: string]: PageInterface } = {
   ElfToon,
   Zoro,
   TeamShadowi,
+  DMMTV,
   Tsukuyomi,
   HijalaScans,
   Jellyfin,
