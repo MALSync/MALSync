@@ -454,7 +454,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://jellyfin.org/"><img src="https://favicon.malsync.moe/?domain=https://jellyfin.org/"> Jellyfin</a></td>
+    <td><a href="https://jellyfin.org"><img src="https://favicon.malsync.moe/?domain=https://jellyfin.org"> Jellyfin</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
