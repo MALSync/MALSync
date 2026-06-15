@@ -17,7 +17,7 @@ export const Kagane: PageInterface = {
     },
     getTitle($c) {
       return $c
-        .querySelector('[name="series-title"]')
+        .querySelector('[property="og:image:alt"]')
         .ifNotReturn()
         .getAttribute('content')
         .trim()
@@ -40,21 +40,18 @@ export const Kagane: PageInterface = {
     },
     getEpisode($c) {
       return $c
-        .coalesce(
-          $c
-            .querySelector('[name="chapter-title"]')
-            .getAttribute('content')
-            .regexAutoGroup(ChRegex)
-            .run(),
-          $c.querySelector('[name="chapter-number"]').getAttribute('content').run(),
-        )
+        .querySelector('[property="og:title"]')
+        .getAttribute('content')
+        .regexAutoGroup(ChRegex)
+        .ifNotReturn()
         .number()
         .run();
     },
     getVolume($c) {
       return $c
-        .querySelector('[name="volume-number"]')
+        .querySelector('[property="og:title"]')
         .getAttribute('content')
+        .regexAutoGroup(VolRegex)
         .ifNotReturn()
         .number()
         .run();
@@ -135,4 +132,6 @@ export const Kagane: PageInterface = {
     },
   },
 };
+
 const ChRegex = '(?:Ch\\.|Chapter|Ep\\.|Episode|Round)\\s*(\\d+)|(\\d+)\\.';
+const VolRegex = '(?:Vol\\.|Volume)\\s*(\\d+)';
