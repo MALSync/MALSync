@@ -2,13 +2,13 @@ import { PageInterface } from '../../pageInterface';
 
 export const Kagane: PageInterface = {
   name: 'Kagane',
-  domain: 'https://kagane.org',
+  domain: 'https://kagane.to',
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://kagane.org/*'],
+    match: ['*://kagane.org/*', '*://kagane.to/*'],
   },
-  search: 'https://kagane.org/search?q={searchtermPlus}',
+  search: 'https://kagane.to/search?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
