@@ -19,7 +19,9 @@ function getQueueSlot(): Promise<void> {
     const elapsed = now - lastRequestTime;
     const waitTime = Math.max(0, 250 - elapsed);
     if (waitTime > 0) {
-      await new Promise(resolve => setTimeout(resolve, waitTime));
+      await new Promise(resolve => {
+        setTimeout(resolve, waitTime);
+      });
     }
     lastRequestTime = Date.now();
   });
