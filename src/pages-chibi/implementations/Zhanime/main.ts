@@ -11,7 +11,9 @@ export const Zhanime: PageInterface = {
   search: 'https://zhanime.se/search?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
-      return $c.and($c.url().urlPart(3).equals('watch').run(), $c.url().urlPart(5).boolean().run()).run();
+      return $c
+        .and($c.url().urlPart(3).equals('watch').run(), $c.url().urlPart(5).boolean().run())
+        .run();
     },
     getTitle($c) {
       return $c.querySelector('.vc-info__title .title-en').text().trim().run();
@@ -44,7 +46,9 @@ export const Zhanime: PageInterface = {
   },
   overview: {
     isOverviewPage($c) {
-      return $c.and($c.url().urlPart(3).equals('anime').run(), $c.url().urlPart(4).boolean().run()).run();
+      return $c
+        .and($c.url().urlPart(3).equals('anime').run(), $c.url().urlPart(4).boolean().run())
+        .run();
     },
     getTitle($c) {
       return $c.querySelector('h1 .title-en').text().trim().run();
