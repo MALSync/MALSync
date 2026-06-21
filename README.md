@@ -159,7 +159,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl/Shikimori/MangaBak
                 <td></td>
               </tr><tr>
                 <td><a href="https://animexin.vip"><img src="https://favicon.malsync.moe/?domain=https://animexin.vip"> AnimeXin</a></td>
-                <td><a href="https://kagane.org"><img src="https://favicon.malsync.moe/?domain=https://kagane.org"> Kagane</a></td>
+                <td><a href="https://kagane.to"><img src="https://favicon.malsync.moe/?domain=https://kagane.to"> Kagane</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animezone.pl"><img src="https://favicon.malsync.moe/?domain=https://www.animezone.pl"> AnimeZone</a></td>
