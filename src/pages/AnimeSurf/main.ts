@@ -21,7 +21,7 @@ function getLdJson(type: string): Record<string, any> | null {
 }
 
 function hasMalSyncTitle(): boolean {
-  return Boolean(j.$('a[mal_sync="title"]').text());
+  return Boolean(j.$('a[mal_sync="title"]').text().trim());
 }
 
 function isPageReady(url: string): boolean {
