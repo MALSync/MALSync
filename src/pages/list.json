@@ -415,6 +415,11 @@
     "name": "AnimeSama"
   },
   {
+    "domain": "https://anime.surf",
+    "type": "anime",
+    "name": "AnimeSurf"
+  },
+  {
     "domain": "https://mangafire.to",
     "type": "manga",
     "name": "MangaFire"
