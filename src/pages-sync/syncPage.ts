@@ -1355,24 +1355,33 @@ export class SyncPage {
 
   private async checkForFiller(malid: number, episode: number) {
     const page = Math.ceil(episode / 100);
+    const offset = (page - 1) * 100;
 
-    const cacheObj = new Cache(`fillers/${malid}/${page}`, 7 * 24 * 60 * 60 * 1000);
+    const cacheObj = new Cache(`fillers-mal/${malid}/${page}`, 7 * 24 * 60 * 60 * 1000);
 
     if (!(await cacheObj.hasValueAndIsNotEmpty())) {
-      const url = `https://api.jikan.moe/v4/anime/${malid}/episodes?page=${page}`;
+      const url = `https://myanimelist.net/anime/${malid}/_/episode?offset=${offset}`;
       const request = await api.request.xhr('GET', url).then(async response => {
         try {
           if (response.status === 200 && response.responseText) {
-            const data = JSON.parse(response.responseText);
-            if (data.data && data.data.length) {
-              return data.data
-                .map(e => ({
-                  filler: e.filler,
-                  recap: e.recap,
-                  episode_id: e.mal_id, // mal_id is the episode_id in the v4 API very stupid
-                }))
-                .filter(e => e.filler || e.recap);
-            }
+            const doc = j.$.parseHTML(response.responseText);
+            const rows = j.$(doc).find('tr.episode-list-data');
+            const episodes: { filler: boolean; recap: boolean; episode_id: number }[] = [];
+            rows.each((_, row) => {
+              const $row = j.$(row);
+              const raw = $row.find('td.episode-number').attr('data-raw');
+              const episodeId = Number(raw);
+              if (!episodeId) return;
+              const typeSpan = $row.find('td.episode-title .icon-episode-type-bg');
+              const typeText = (typeSpan.text() || '').trim().toLowerCase();
+              const isFiller = typeText === 'filler';
+              const isRecap = typeText === 'recap';
+              if (isFiller || isRecap) {
+                episodes.push({ filler: isFiller, recap: isRecap, episode_id: episodeId });
+              }
+            });
+
+            return episodes;
           }
         } catch (e) {
           // do nothing.
