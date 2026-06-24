@@ -104,6 +104,7 @@ export class MangaBakaClass {
     main.appendChild(links);
 
     element.addClass('malsync-injected').removeClass('hidden');
+    element.find('#malsync-quick-links').remove();
     // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     element.append(main);
 
