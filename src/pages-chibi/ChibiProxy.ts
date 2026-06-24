@@ -19,6 +19,22 @@ function getUrlConsumer(code: ChibiJson<any>, url: string, page: pageInterface, 
   return consumer;
 }
 
+// Firefox does not allow port numbers in host permission match patterns, so a
+// self-hosted url like http://1.2.3.4:8096/... can only be stored as a port-less
+// pattern such as *://1.2.3.4/*. The match-pattern check keeps the port while
+// matching, which makes that pattern miss the actual url. Retry against a
+// port-stripped url so those custom domains keep working. See:
+// https://github.com/MALSync/MALSync/issues/3995
+function customDomainMatchesUrl(url: string, pattern: string) {
+  if (doesUrlMatchPatterns(url, pattern)) return true;
+
+  const portless = new URL(url);
+  if (!portless.port) return false;
+  portless.port = '';
+
+  return doesUrlMatchPatterns(portless.href, pattern);
+}
+
 export const Chibi = async (): Promise<pageInterface> => {
   const repo = await (await ChibiListRepository.getInstance()).init();
   const allPages = repo.getList();
@@ -32,7 +48,7 @@ export const Chibi = async (): Promise<pageInterface> => {
   if (matchingPages.length === 0) {
     const customDomains: domainType[] = await api.settings.getAsync('customDomains');
     const matchingDomain = customDomains.find(
-      domain => domain.page && domain.domain && doesUrlMatchPatterns(currentUrl, domain.domain),
+      domain => domain.page && domain.domain && customDomainMatchesUrl(currentUrl, domain.domain),
     );
     if (matchingDomain) {
       const page = allPages[matchingDomain.page];
