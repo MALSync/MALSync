@@ -212,7 +212,7 @@ export abstract class SingleAbstract {
 
   public setEpisode(episode: number): SingleAbstract {
     episode = parseInt(`${episode}`);
-    if (this.getTotalEpisodes() && episode > this.getTotalEpisodes())
+    if (this.getTotalEpisodes() && episode > this.getTotalEpisodes() && this.finishedAiring())
       episode = this.getTotalEpisodes();
     this._setEpisode(episode);
     return this;
