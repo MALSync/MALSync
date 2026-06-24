@@ -21,7 +21,7 @@ export class Single extends SingleAbstract {
   protected datesSupport = false;
 
   protected handleUrl(url) {
-    if (url.match(/shikimori\.one\/(animes|mangas|ranobe)\/\D?\d+/i)) {
+    if (url.match(/shikimori\.(one|io)\/(animes|mangas|ranobe)\/\D?\d+/i)) {
       this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
       const res = utils.urlPart(url, 4).match(/^\D?(\d+)/);
       if (res && res[1]) {

@@ -12,7 +12,7 @@ const malRegex = /^https:\/\/myanimelist\.net\/(anime|manga)\/(\d+)(\/|$)/;
 const anilistRegex = /^https:\/\/anilist\.co\/(anime|manga)\/(\d+)(\/|$)/;
 const kitsuRegex = /^https:\/\/kitsu\.app\/(anime|manga)\/([^/]+)(\/|$)/;
 const simklRegex = /^https:\/\/simkl\.com\/(anime|manga)\/(\d+)(\/|$)/;
-const shikiRegex = /^https:\/\/shikimori\.one\/(animes|mangas|ranobe)\/\D?(\d+)/;
+const shikiRegex = /^https:\/\/shikimori\.(one|io)\/(animes|mangas|ranobe)\/\D?(\d+)/;
 const mangabakaRegex = /^https:\/\/mangabaka\.(?:dev|org)\/(\d+)(\/|$)/;
 const localRegex = /^local:\/\/([^/]+)\/(anime|manga)\/([^/]+)(\/|$)/;
 
@@ -102,7 +102,7 @@ export function pathToUrl(path: Path): string {
     return `https://simkl.com/${path.type}/${path.slug.substring(2)}`;
   }
   if (path.slug.startsWith('shi:')) {
-    return `https://shikimori.one/${path.type}s/${path.slug.substring(4)}`;
+    return `https://shikimori.io/${path.type}s/${path.slug.substring(4)}`;
   }
   if (path.slug.startsWith('baka:')) {
     return `https://mangabaka.org/${path.slug.substring(5)}`;
