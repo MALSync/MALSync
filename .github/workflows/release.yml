@@ -150,7 +150,7 @@ jobs:
       run: |
         npm run package
     - name: Deploy Edge
-      uses: wdzeng/edge-addon@d4db1eea77297a24d799394dec87e8912e0902f9 # v2
+      uses: wdzeng/edge-addon@9881f57720358040d079eaa06a4596dc9c273eb6 # v2
       with:
         product-id: ${{ secrets.EDGE_PRODUCT_ID }}
         zip-path: dist/webextension.zip
