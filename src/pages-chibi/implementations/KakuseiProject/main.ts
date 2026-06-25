@@ -2,14 +2,14 @@ import { PageInterface } from '../../pageInterface';
 
 export const KakuseiProject: PageInterface = {
   name: 'KakuseiProject',
-  domain: 'https://kakuseiproject.com',
+  domain: 'https://kakuseiproject.org',
   languages: ['Portuguese'],
   type: 'manga',
   urls: {
-    match: ['*://kakuseiproject.com/*'],
+    match: ['*://kakuseiproject.org/*'],
   },
   search:
-    'https://kakuseiproject.com/?s={searchtermPlus}&post_type=wp-manga&op=&author=&artist=&release=&adult=',
+    'https://kakuseiproject.org/?s={searchtermPlus}&post_type=wp-manga&op=&author=&artist=&release=&adult=',
   sync: {
     isSyncPage($c) {
       return $c
