@@ -84,7 +84,7 @@ export const MediocreScan: PageInterface = {
         .regex('/capitulo/(\\d+)', 1)
         .number()
         .setVariable('capIdFromUrl')
-        .coalesce($c.getGlobalVariable('capitulos').run(), $c.array([]).run())
+        .coalesce($c.getGlobalVariable<Record<string, any>[]>('capitulos').run(), $c.array([]).run())
         .arrayFind($el =>
           $el.get('cap_id').number().equals($c.getVariable<number>('capIdFromUrl').run()).run(),
         )
