@@ -848,17 +848,6 @@ module.exports = {
   bun: {
     match: ['*://*.bunniescdn.online/*'],
   },
-  // animekai
-  megaup: {
-    match: [
-      '*://megaup.cc/e/*',
-      '*://megaup.site/e/*',
-      '*://megaup.live/e/*',
-      '*://4spromax.site/e/*',
-      '*://megaup22.online/e/*',
-      '*://megaup.nl/e/*',
-    ],
-  },
   // hikari
   boosterx: {
     match: ['*://boosterx.stream/*'],

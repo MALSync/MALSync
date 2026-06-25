@@ -19,7 +19,6 @@ import { JapScan } from './JapScan/main';
 import { Hulu } from './Hulu/main';
 import { Hidive } from './Hidive/main';
 import { MangaKatana } from './MangaKatana/main';
-import { manga4life } from './manga4life/main';
 import { AnimeXin } from './AnimeXin/main';
 import { MonosChinos } from './MonosChinos/main';
 import { Anime365 } from './Anime365/main';
@@ -36,13 +35,11 @@ import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { DesuOnline } from './DesuOnline/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
-import { ReaperScans } from './ReaperScans/main';
 import { LynxScans } from './LynxScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
-import { MangaSee } from './MangaSee/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
 import { An1me } from './An1me/main';
@@ -124,7 +121,6 @@ export const pages = {
   Hulu,
   Hidive,
   MangaKatana,
-  manga4life,
   AnimeXin,
   MonosChinos,
   Anime365,
@@ -141,13 +137,11 @@ export const pages = {
   MangaFox,
   DesuOnline,
   WuxiaWorld,
-  ReaperScans,
   LynxScans,
   DeathTollScans,
   ManhuaPlus,
   Readm,
   tioanime,
-  MangaSee,
   Okanime,
   BSTO,
   An1me,
