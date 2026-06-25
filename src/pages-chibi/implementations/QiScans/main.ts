@@ -2,13 +2,13 @@ import { PageInterface } from '../../pageInterface';
 
 export const QiScans: PageInterface = {
   name: 'QiScans',
-  domain: 'https://qiscans.org',
+  domain: 'https://qimanga.com',
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://qiscans.org/*', '*://qimanhwa.com/*'],
+    match: ['*://qimanga.com/*'],
   },
-  search: 'https://qiscans.org/series?searchTerm={searchtermPlus}',
+  search: 'https://qimanga.com/series?searchTerm={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
