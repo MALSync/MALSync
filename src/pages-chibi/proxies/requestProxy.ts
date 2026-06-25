@@ -66,78 +66,47 @@ function proxyFetch() {
   };
 }
 
+const xhrListeners = new WeakMap<XMLHttpRequest, EventListener>();
+
+// Old implementation did block the Crunchyroll video player from loading.
 function proxyXHR() {
-  const originalXHR = window.XMLHttpRequest;
+  const proto = window.XMLHttpRequest.prototype;
+  const originalOpen = proto.open;
 
-  window.XMLHttpRequest = class extends originalXHR {
-    private _malsyncUrl = '';
+  proto.open = function open(
+    this: XMLHttpRequest,
+    method: string,
+    url: string | URL,
+    ...rest: [boolean?, (string | null)?, (string | null)?]
+  ) {
+    const requestUrl = url.toString();
 
-    open(method: string, url: string | URL): void;
-    // eslint-disable-next-line no-dupe-class-members
-    open(
-      method: string,
-      url: string | URL,
-      async: boolean,
-      username?: string | null,
-      password?: string | null,
-    ): void;
-    // eslint-disable-next-line no-dupe-class-members
-    open(
-      method: string,
-      url: string | URL,
-      async?: boolean,
-      username?: string | null,
-      password?: string | null,
-    ): void {
-      this._malsyncUrl = url.toString();
-      return super.open(method, url, async as boolean, username, password);
-    }
+    const previous = xhrListeners.get(this);
+    if (previous) this.removeEventListener('load', previous);
 
-    send(body?: Document | XMLHttpRequestBodyInit | null) {
-      const xhr = this;
-      const originalOnReadyStateChange = this.onreadystatechange;
+    const onLoad = () => {
+      const { responseType } = this;
+      if (responseType !== '' && responseType !== 'text' && responseType !== 'json') {
+        return;
+      }
 
-      this.onreadystatechange = function (this: XMLHttpRequest, event: Event) {
-        if (this.readyState === 4) {
-          try {
-            const contentType = xhr.getResponseHeader('content-type');
-            if (xhr.responseType === 'json' && xhr.response) {
-              forwardRequest({
-                source: 'xhr',
-                url: xhr._malsyncUrl,
-                data: xhr.response,
-              });
-            } else if (allowedContentType(contentType)) {
-              if (typeof xhr.response === 'string') {
-                if (xhr.response) {
-                  let data;
-                  try {
-                    data = JSON.parse(xhr.response);
-                  } catch (e) {
-                    data = xhr.responseText || null;
-                  }
-                  forwardRequest({
-                    source: 'xhr',
-                    url: xhr._malsyncUrl,
-                    data,
-                  });
-                }
-              }
-            }
-          } catch (e) {
-            // Ignore parsing errors or other issues
-          }
+      if (responseType === 'json' && this.response) {
+        forwardRequest({ source: 'xhr', url: requestUrl, data: this.response });
+      } else if (allowedContentType(this.getResponseHeader('content-type')) && this.responseText) {
+        let data: unknown;
+        try {
+          data = JSON.parse(this.responseText);
+        } catch (e) {
+          data = this.responseText;
         }
+        forwardRequest({ source: 'xhr', url: requestUrl, data });
+      }
+    };
 
-        if (originalOnReadyStateChange) {
-          return originalOnReadyStateChange.apply(this, [event] as any);
-        }
+    xhrListeners.set(this, onLoad);
+    this.addEventListener('load', onLoad);
 
-        return undefined;
-      };
-
-      return super.send(body);
-    }
+    return originalOpen.call(this, method, url, ...(rest as [boolean]));
   };
 }
 
