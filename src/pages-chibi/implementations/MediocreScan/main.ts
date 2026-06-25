@@ -60,9 +60,7 @@ export const MediocreScan: PageInterface = {
             .querySelector('.md\\:hidden')
             .getComputedStyle('display')
             .equals('none')
-            .ifThen($c =>
-              $c.querySelector('.mb-8.space-y-3').uiAfter().return().run(),
-            )
+            .ifThen($c => $c.querySelector('.mb-8.space-y-3').uiAfter().return().run())
             .ifNotReturn($c.querySelector('.md\\:hidden .space-y-3').uiAfter().return().run())
             .run(),
         )
