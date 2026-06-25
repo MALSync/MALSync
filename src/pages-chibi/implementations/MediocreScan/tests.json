@@ -1,5 +1,5 @@
 {
-  "title": "MediocreScan",
+  "title": "MediocreToons",
   "url": "https://mediocrescan.com",
   "testCases": [
     {
@@ -11,7 +11,7 @@
         "overviewUrl": "https://mediocrescan.com/obra/2307",
         "episode": 1,
         "uiSelector": false,
-        "image": "https://cdn.mediocrescan.com/obras/2307/c4d0f75fc3cf5bb7887a89f75d49b85b07f2ab71.webp"
+        "image": "https://back.mediocrescan.com/media/obras/2307/capa?f=c4d0f75fc3cf5bb7887a89f75d49b85b07f2ab71.webp"
       }
     },
     {
@@ -20,7 +20,7 @@
         "sync": false,
         "title": "Centuria",
         "identifier": "2307",
-        "image": "https://cdn.mediocrescan.com/obras/2307/c4d0f75fc3cf5bb7887a89f75d49b85b07f2ab71.webp",
+        "image": "https://back.mediocrescan.com/media/obras/2307/capa?f=c4d0f75fc3cf5bb7887a89f75d49b85b07f2ab71.webp",
         "uiSelector": true,
         "epList": {
           "1": "https://mediocrescan.com/capitulo/166219",
@@ -34,7 +34,7 @@
         "sync": false,
         "title": "Release that Witch",
         "identifier": "1603",
-        "image": "https://cdn.mediocrescan.com/obras/1603/2c2e3d950c47eedc0e6f4a2086480453bfe3144d.webp",
+        "image": "https://back.mediocrescan.com/media/obras/1603/capa?f=2c2e3d950c47eedc0e6f4a2086480453bfe3144d.webp",
         "uiSelector": true,
         "epList": {
           "1": "https://mediocrescan.com/capitulo/124139"

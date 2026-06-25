@@ -1,7 +1,7 @@
 import type { PageInterface } from '../../pageInterface';
 
 export const MediocreScan: PageInterface = {
-  name: 'MediocreScan',
+  name: 'MediocreToons',
   domain: 'https://mediocrescan.com',
   languages: ['Portuguese'],
   type: 'manga',
@@ -37,7 +37,7 @@ export const MediocreScan: PageInterface = {
       return $c.getGlobalVariable('workImage').run();
     },
     uiInjection($c) {
-      return $c.querySelector('nav').uiAfter().run();
+      return $c.querySelector('header').uiAfter().run();
     },
   },
   overview: {
@@ -61,12 +61,12 @@ export const MediocreScan: PageInterface = {
             .getComputedStyle('display')
             .equals('none')
             .ifThen($c =>
-              $c.querySelector('.flex.flex-wrap.items-center.gap-3.mb-8').uiAfter().return().run(),
+              $c.querySelector('.mb-8.space-y-3').uiAfter().return().run(),
             )
             .ifNotReturn($c.querySelector('.md\\:hidden .space-y-3').uiAfter().return().run())
             .run(),
         )
-        .ifNotReturn($c.querySelector('.flex.flex-wrap.items-center.gap-3.mb-8').uiAfter().run())
+        .ifNotReturn($c.querySelector('.mb-8.space-y-3').uiAfter().run())
         .run();
     },
     getImage($c) {
@@ -175,9 +175,9 @@ export const MediocreScan: PageInterface = {
                 .if(
                   $c.getVariable('imgPath').equals('').not().run(),
                   $c
-                    .string('https://cdn.mediocrescan.com/obras/')
+                    .string('https://back.mediocrescan.com/media/obras/')
                     .concat($c.getGlobalVariable('workId').run())
-                    .concat('/')
+                    .concat('/capa?f=')
                     .concat($c.getVariable('imgPath').run())
                     .run(),
                   $c.string('').run(),
@@ -271,9 +271,9 @@ export const MediocreScan: PageInterface = {
                 .if(
                   $c.getVariable('imgPath').equals('').not().run(),
                   $c
-                    .string('https://cdn.mediocrescan.com/obras/')
+                    .string('https://back.mediocrescan.com/media/obras/')
                     .concat($c.getGlobalVariable('workId').run())
-                    .concat('/')
+                    .concat('/capa?f=')
                     .concat($c.getVariable('imgPath').run())
                     .run(),
                   $c.string('').run(),
