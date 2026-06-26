@@ -60,8 +60,8 @@ export function urlToSlug(url: string): slugObject {
   const shikiMatch = url.match(shikiRegex);
   if (shikiMatch) {
     obj.path = {
-      type: shikiMatch[1].toLowerCase() === 'animes' ? 'anime' : 'manga',
-      slug: `shi:${shikiMatch[2]}`,
+      type: shikiMatch[2].toLowerCase() === 'animes' ? 'anime' : 'manga',
+      slug: `shi:${shikiMatch[3]}`,
     };
     return obj;
   }
