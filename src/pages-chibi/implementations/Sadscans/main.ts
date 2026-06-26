@@ -9,7 +9,7 @@ export const Sadscans: PageInterface = {
   languages: ['Turkish'],
   type: 'manga',
   urls: {
-    match: ['*://sadscans.net/*', '*://www.sadscans.net/*'],
+    match: ['*://*.sadscans.com/*', '*://*.sadscans.net/*'],
   },
   search: 'https://sadscans.net/series?search={searchtermPlus}',
   sync: {
