@@ -153,7 +153,7 @@ const generateManifest = () => {
       },
     },
     sidebar_action: {
-      default_panel: 'window.html',
+      default_panel: 'sidebar.html',
       open_at_install: false,
       default_icon: {
         '16': 'icons/icon16.png',
@@ -273,6 +273,17 @@ mkdirp(path.join(__dirname, '../dist/webextension')).then(err => {
   extra.copy(
     path.join(__dirname, '../src/_minimal/popup.html'),
     path.join(__dirname, '../dist/webextension/popup.html'),
+    err => {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      }
+    },
+  );
+
+  extra.copy(
+    path.join(__dirname, '../src/_minimal/sidebar.html'),
+    path.join(__dirname, '../dist/webextension/sidebar.html'),
     err => {
       if (err) {
         console.error(err);
