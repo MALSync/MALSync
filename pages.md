@@ -454,7 +454,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://jellyfin.org/"><img src="https://favicon.malsync.moe/?domain=https://jellyfin.org/"> Jellyfin</a></td>
+    <td><a href="https://jellyfin.org"><img src="https://favicon.malsync.moe/?domain=https://jellyfin.org"> Jellyfin</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -911,7 +911,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://kagane.org"><img src="https://favicon.malsync.moe/?domain=https://kagane.org"> Kagane</a></td>
+    <td><a href="https://kagane.to"><img src="https://favicon.malsync.moe/?domain=https://kagane.to"> Kagane</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
