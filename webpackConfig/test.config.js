@@ -58,6 +58,7 @@ module.exports = {
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
+      __IS_FIREFOX__: false,
     }),
   ],
 };

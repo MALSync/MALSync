@@ -19,13 +19,11 @@ import {
   trackingNoteElement,
   trackingSyncButtonElement,
 } from './messageElements';
+import { isFirefox } from '../utils/general';
 
-declare let browser: any;
-
-let extensionId = 'agnaejlkbiiggajjmnpmeheigkflbnoo'; // Chrome
-if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
-  extensionId = '{57081fef-67b4-482f-bcb0-69296e63ec4f}'; // Firefox
-}
+const extensionId = isFirefox()
+  ? '{57081fef-67b4-482f-bcb0-69296e63ec4f}'
+  : 'agnaejlkbiiggajjmnpmeheigkflbnoo';
 
 const logger = con.m('Sync', '#348fff');
 
