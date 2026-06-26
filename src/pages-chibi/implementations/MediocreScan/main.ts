@@ -90,7 +90,7 @@ export const MediocreScan: PageInterface = {
             .arrayFind($el =>
               $el.get('cap_id').number().equals($c.getVariable<number>('capIdFromUrl').run()).run(),
             )
-            .get('cap_num')
+            .search('cap_num')
             .number()
             .run(),
           $c.number(0).run(),
