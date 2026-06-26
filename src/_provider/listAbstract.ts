@@ -1,3 +1,4 @@
+import { reactive } from 'vue';
 import { Cache } from '../utils/Cache';
 import { ProgressRelease } from '../utils/progressRelease';
 import { emitter } from '../utils/emitter';
@@ -71,6 +72,10 @@ export abstract class ListAbstract {
 
   protected templist: listElement[] = [];
 
+  protected applyTemplist(list: listElement[]) {
+    this.templist = this.modes.frontend ? (reactive(list) as listElement[]) : list;
+  }
+
   constructor(
     protected status: number = 1,
     protected listType: 'anime' | 'manga' = 'anime',
@@ -84,7 +89,7 @@ export abstract class ListAbstract {
   public api = api;
 
   public setTemplist(list) {
-    this.templist = list;
+    this.applyTemplist(list);
     return this;
   }
 
@@ -148,7 +153,7 @@ export abstract class ListAbstract {
   private async getNext() {
     this.loading = true;
     const retList = await this.getPart();
-    this.templist = this.templist.concat(retList);
+    this.applyTemplist(this.templist.concat(retList));
     this.loading = false;
   }
 
@@ -173,14 +178,12 @@ export abstract class ListAbstract {
       'update.*',
       data => {
         con.log('update', data);
-        if (data.cacheKey) {
-          const item = this.templist.find(el => el.cacheKey === data.cacheKey);
-          con.log(item);
-          if (item && data.state) {
-            item.watchedEp = data.state.episode;
-            item.score = data.state.score;
-            item.status = data.state.status;
-          }
+        if (!data.cacheKey) return;
+        const item = this.templist.find(el => el.cacheKey === data.cacheKey);
+        if (item && data.state) {
+          item.watchedEp = data.state.episode;
+          item.score = data.state.score;
+          item.status = data.state.status;
         }
       },
       { objectify: true },
@@ -307,7 +310,7 @@ export abstract class ListAbstract {
     }
 
     if (this.sort === 'latest_release') {
-      this.templist = this.templist.sort(sortItemsByLastTimestamp);
+      this.applyTemplist(this.templist.sort(sortItemsByLastTimestamp));
       return;
     }
 
@@ -347,7 +350,7 @@ export abstract class ListAbstract {
       watchedItems = orderItems(watchedItems, false);
     }
 
-    this.templist = preItems.concat(watchedItems, normalItems);
+    this.applyTemplist(preItems.concat(watchedItems, normalItems));
 
     function orderItems(items: listElement[], reverse = false) {
       const itemsWithPrediction: listElement[] = [];
@@ -397,21 +400,23 @@ export abstract class ListAbstract {
   }
 
   sortUnread() {
-    this.templist = this.templist.sort(function (a, b) {
-      let valA = 10000;
-      let valB = 10000;
+    this.applyTemplist(
+      this.templist.sort(function (a, b) {
+        let valA = 10000;
+        let valB = 10000;
 
-      if (a.fn.progress?.isAiring() && a.fn.progress.progress()?.getCurrentEpisode()) {
-        const tempA = a.fn.progress.progress()!.getCurrentEpisode()! - a.watchedEp;
-        if (tempA > 0) valA = tempA;
-      }
-      if (b.fn.progress?.isAiring() && b.fn.progress.progress()?.getCurrentEpisode()) {
-        const tempB = b.fn.progress.progress()!.getCurrentEpisode()! - b.watchedEp;
-        if (tempB > 0) valB = tempB;
-      }
+        if (a.fn.progress?.isAiring() && a.fn.progress.progress()?.getCurrentEpisode()) {
+          const tempA = a.fn.progress.progress()!.getCurrentEpisode()! - a.watchedEp;
+          if (tempA > 0) valA = tempA;
+        }
+        if (b.fn.progress?.isAiring() && b.fn.progress.progress()?.getCurrentEpisode()) {
+          const tempB = b.fn.progress.progress()!.getCurrentEpisode()! - b.watchedEp;
+          if (tempB > 0) valB = tempB;
+        }
 
-      return valA - valB;
-    });
+        return valA - valB;
+      }),
+    );
   }
 
   cacheObj: any = undefined;
