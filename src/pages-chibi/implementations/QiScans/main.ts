@@ -6,7 +6,7 @@ export const QiScans: PageInterface = {
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://qimanga.com/*'],
+    match: ['*://qiscans.org/*', '*://qimanhwa.com/*', '*://qimanga.com/*'],
   },
   search: 'https://qimanga.com/series?searchTerm={searchtermPlus}',
   sync: {
