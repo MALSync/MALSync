@@ -126,7 +126,7 @@
     "fuse.js": "^7.4.2",
     "hex-to-hsl": "^1.0.2",
     "jquery": "^3.6.2",
-    "marked": "^17.0.6",
+    "marked": "^18.0.5",
     "node-fetch": "^3.3.2",
     "overlayscrollbars": "^2.2.1",
     "overlayscrollbars-vue": "^0.5.7",
