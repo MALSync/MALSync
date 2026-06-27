@@ -24,6 +24,14 @@
 .malp() when (@malpStyle = 0) {
   // Unstyled
 }
+
+.box() {
+  background-color: @boxBackground !important;
+  color: @boxFontColor !important;
+  border-radius: @boxBorderRadius;
+  padding: 4px 8px !important;
+}
+
 .malp() when (@malpStyle = 1) {
   #MalData {
     justify-content: flex-start !important;
@@ -42,10 +50,7 @@
       & > .malp-group-field,
       & > .malp-group-value-section {
         flex-grow: 1;
-        background-color: @boxBackground !important;
-        color: @boxFontColor !important;
-        border-radius: @boxBorderRadius;
-        padding: 4px 8px !important;
+        .box();
       }
     }
 
