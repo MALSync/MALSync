@@ -1,0 +1,30 @@
+{
+  "title": "AniZen",
+  "url": "https://anizen.tr",
+  "testCases": [
+    {
+      "url": "https://anizen.tr/watch/one-piece-odmau",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "one-piece-odmau",
+        "episode": 1,
+        "image": "https://cdn.anizen.tr/poster/one-piece-odmau.jpg",
+        "overviewUrl": "https://anizen.tr/watch/one-piece-odmau",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://anizen.tr/watch/one-piece-odmau?ep=5",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "one-piece-odmau",
+        "episode": 5,
+        "image": "https://cdn.anizen.tr/poster/one-piece-odmau.jpg",
+        "overviewUrl": "https://anizen.tr/watch/one-piece-odmau",
+        "uiSelector": true
+      }
+    }
+  ]
+}
