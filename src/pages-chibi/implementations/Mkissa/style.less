@@ -1,7 +1,10 @@
 @import './../pages';
 
-@boxBackground: #ffffff14;
-@boxHighlightBackground: #f59e0b;
-@boxHighlightFontColor: #000;
+@boxBackground: var(--color-surface-muted) !important;
+@boxFontColor: var(--color-text-secondary);
+@boxHighlightBackground: var(--color-manga-accent) !important;
+@boxHighlightFontColor: var(--color-manga-surface) !important;
 
-@activeEp: #f59e0b40;
+.box() {
+  border: 0.5px solid color-mix(in srgb, var(--color-border-subtle) 55%, transparent);
+}
