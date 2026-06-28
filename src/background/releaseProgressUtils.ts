@@ -62,8 +62,8 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
   if (malDATA.length <= 0) return [];
   const malDATAID = malDATA.map(el => el.apiCacheKey);
   const returnArray: xhrResponseI[] = [];
-  for (let i = 0; i <= malDATAID.length; ) {
-    const tempArray = malDATAID.slice(i, i + 49);
+  for (let i = 0; i < malDATAID.length; i += 50) {
+    const tempArray = malDATAID.slice(i, i + 50);
     const Request = {
       url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`,
       data: JSON.stringify({ malids: tempArray }),
@@ -72,7 +72,6 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
     await utils.wait(5000);
     const response = await api.request.xhr('POST', Request);
     returnArray.push(JSON.parse(response.responseText));
-    i += 50;
   }
 
   return returnArray.reduce((acc: xhrResponseI[], val) => acc.concat(val), []);
