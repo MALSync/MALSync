@@ -36,11 +36,11 @@ module.exports = {
       },
     ],
   },
-  devtool: 'source-map',
+  devtool: false,
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  mode: 'development',
+  mode: 'production',
   output: {
     filename: 'background.js',
     path: path.resolve(__dirname, '..', 'dist', 'webextension'),
