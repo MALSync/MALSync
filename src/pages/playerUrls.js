@@ -577,6 +577,7 @@ module.exports = {
       '*://jeanprofessorcentral.com/e/*',
       '*://juliewomanwish.com/e/*',
       '*://garylargeavailable.com/e/*',
+      '*://jennifereconomicgive.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
