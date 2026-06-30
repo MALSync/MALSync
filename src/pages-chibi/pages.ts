@@ -95,6 +95,7 @@ import { AniGo } from './implementations/AniGo/main';
 import { Kuudere } from './implementations/Kuudere/main';
 import { BigSolo } from './implementations/BigSolo/main';
 import { Plex } from './implementations/Plex/main';
+import { KamiYomu } from './implementations/KamiYomu/main';
 import { allManga } from './implementations/allManga/main';
 import { Mkissa } from './implementations/Mkissa/main';
 import { GaiaFlix } from './implementations/GaiaFlix/main';
@@ -204,6 +205,7 @@ export const pages: { [key: string]: PageInterface } = {
   Kuudere,
   BigSolo,
   Plex,
+  KamiYomu,
   allManga,
   Mkissa,
   GaiaFlix,

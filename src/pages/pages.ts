@@ -96,6 +96,7 @@ import { AnimesOnline } from './AnimesOnline/main';
 import { Latanime } from './Latanime/main';
 import { MangaRead } from './MangaRead/main';
 import { Kavita } from './Kavita/main';
+import { KamiYomu } from './KamiYomu/main';
 import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
 
@@ -198,6 +199,7 @@ export const pages = {
   Latanime,
   MangaRead,
   Kavita,
+  KamiYomu,
   Aninexus,
   AniDream,
 };
