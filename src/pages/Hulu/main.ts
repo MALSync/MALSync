@@ -136,11 +136,9 @@ async function checkPage(): Promise<boolean> {
 
   const json = JSON.parse(response.responseText);
 
-  if (
-    !(
-      json.items[0].genre_names.includes('Anime') || json.items[0].genre_names.includes('Animation')
-    )
-  )
+  if (!(
+    json.items[0].genre_names.includes('Anime') || json.items[0].genre_names.includes('Animation')
+  ))
     return false;
 
   episode = parseInt(json.items[0].number);

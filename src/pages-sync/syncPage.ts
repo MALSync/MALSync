@@ -55,12 +55,10 @@ export class SyncPage {
     }
     this.domainSet();
     logger.log('Page', this.page.name);
-    if (
-      !(
-        typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||
-        api.settings.get('enablePages')[this.page.name]
-      )
-    ) {
+    if (!(
+      typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||
+      api.settings.get('enablePages')[this.page.name]
+    )) {
       logger.info('Sync is disabled for this page', this.page.name);
       throw 'Stop Script';
     }

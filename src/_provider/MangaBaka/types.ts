@@ -1,11 +1,5 @@
 export type BakaState =
-  | 'completed'
-  | 'dropped'
-  | 'paused'
-  | 'plan_to_read'
-  | 'reading'
-  | 'rereading'
-  | 'considering';
+  'completed' | 'dropped' | 'paused' | 'plan_to_read' | 'reading' | 'rereading' | 'considering';
 
 export type BakaSorting =
   | 'default'
