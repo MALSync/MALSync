@@ -139,6 +139,6 @@
     "vue-slider-component": "^4.1.0-beta.6",
     "vue-tsc": "^3.3.5",
     "vuedraggable": "^4.1.0",
-    "webext-patterns": "^1.5.1"
+    "webext-patterns": "^3.0.0"
   }
 }
