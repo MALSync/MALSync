@@ -69,7 +69,7 @@
     "vue-eslint-parser": "10.4.1",
     "vue-loader": "^17.4.2",
     "web-ext": "^10.4.0",
-    "webpack": "^5.105.3",
+    "webpack": "^5.108.3",
     "webpack-cli": "^7.0.3"
   },
   "scripts": {
