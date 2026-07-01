@@ -678,7 +678,7 @@
         "message": "Аніме"
     },
     "Package_Description": {
-        "message": "Додає MyAnimeList/AniList/Kitsu/Simkl/Shikimori на різні сайти, з авто оновленням переглянутих серій."
+        "message": "Додає MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka на різні сайти, з авто оновленням переглянутих серій."
     },
     "syncPage_flashm_resumeMsg": {
         "message": "Продовжити з $time$",
@@ -756,7 +756,7 @@
         "message": "Оцінки друзів на детальній сторінці"
     },
     "settings_StreamingSite_text": {
-        "message": "Якщо вимкнено посилання, то сайт більше не з'являтиметься на панелі на MyAnimeList/AniList/Kitsu/Simkl."
+        "message": "Якщо вимкнено посилання, то сайт більше не з'являтиметься на панелі на MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka."
     },
     "settings_malTags_Text": {
         "message": "Якщо увімкнено: сайт з аніме/мангою, який ви використовували минулого разу, буде збережено назавжди (у всіх браузерах) у списку тегів/поміток. Збережений рядок у секції тегів має не найкращий вигляд, тому рекомендується так робити тільки якщо ви не використовуєте список тегів/поміток на MyAnimeList."

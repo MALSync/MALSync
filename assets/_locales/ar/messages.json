@@ -804,7 +804,7 @@
         "description": "Search text"
     },
     "Package_Description": {
-        "message": "يقوم بدمج MyAnimeList/AniList/Kitsu/Simkl/Shikimori الى مواقع متنوعة، مع تتبع تلقائي للحلقات.",
+        "message": "يقوم بدمج MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka الى مواقع متنوعة، مع تتبع تلقائي للحلقات.",
         "description": "Description MALSync"
     },
     "UI_Status_OnHold": {
@@ -944,7 +944,7 @@
         }
     },
     "settings_StreamingSite_text": {
-        "message": "إذا تم تعطيله ، فلن يظهر موقع البث بعد الآن في الشريط الجانبي للأنمي على MyAnimeList / AniList / Kitsu / Simkl.",
+        "message": "إذا تم تعطيله ، فلن يظهر موقع البث بعد الآن في الشريط الجانبي للأنمي على MyAnimeList / AniList / Kitsu / Simkl / Shikimori / MangaBaka.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails_text": {

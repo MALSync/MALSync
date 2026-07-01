@@ -2,13 +2,13 @@ import { PageInterface } from '../../pageInterface';
 
 export const KaynScan: PageInterface = {
   name: 'KaynScan',
-  domain: 'https://kaynscan.com',
+  domain: 'https://kaynscan.org',
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://kaynscan.com/*'],
+    match: ['*://kaynscan.org/*'],
   },
-  search: 'https://kaynscan.com/series/?q={searchtermPlus}',
+  search: 'https://kaynscan.org/series/?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

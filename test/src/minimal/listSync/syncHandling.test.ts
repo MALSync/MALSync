@@ -61,6 +61,9 @@ describe('Sync Handling', function() {
     it('Shiki', function() {
       expect(sync.getType('https://shikimori.one/animes/z19815-no-game-no-life')).to.equal('SHIKI');
     });
+    it('Shiki', function () {
+      expect(sync.getType('https://shikimori.io/animes/z19815-no-game-no-life')).to.equal('SHIKI');
+    });
     it('Random', function() {
       expect(() => sync.getType('Random')).to.throw();
     });

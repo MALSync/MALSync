@@ -4,11 +4,11 @@ import { Cache } from '../../utils/Cache';
 
 const clientId = 'z3NJ84kK9iy5NU6SnhdCDB38rr4-jFIJ67bMIUDzdoo';
 
-export const authUrl = `https://shikimori.one/oauth/authorize?client_id=${clientId}&redirect_uri=https%3A%2F%2Fmalsync.moe%2Fshikimori%2Foauth&response_type=code&scope=user_rates`;
+export const authUrl = `https://shikimori.io/oauth/authorize?client_id=${clientId}&redirect_uri=https%3A%2F%2Fmalsync.moe%2Fshikimori%2Foauth&response_type=code&scope=user_rates`;
 
-const apiDomain = 'https://shikimori.one/api/';
+const apiDomain = 'https://shikimori.io/api/';
 
-export const domain = 'https://shikimori.one';
+export const domain = 'https://shikimori.io';
 
 let lastRequestTime = 0;
 let requestQueue = Promise.resolve();
@@ -68,7 +68,7 @@ export async function apiCall(options: {
 
   if (options.auth) {
     delete headers.Authorization;
-    url = 'https://shikimori.one/oauth/token';
+    url = 'https://shikimori.io/oauth/token';
   }
 
   return api.request
@@ -193,12 +193,7 @@ export function title(rus: string, eng: string, headline = false) {
 }
 
 export type StatusType =
-  | 'planned'
-  | 'watching'
-  | 'rewatching'
-  | 'completed'
-  | 'on_hold'
-  | 'dropped';
+  'planned' | 'watching' | 'rewatching' | 'completed' | 'on_hold' | 'dropped';
 
 // eslint-disable-next-line no-shadow
 export enum statusTranslate {

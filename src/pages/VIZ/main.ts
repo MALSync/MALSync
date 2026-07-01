@@ -49,10 +49,16 @@ export const VIZ: pageInterface = {
       return Number(episodeNumberMatches[0]);
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(
-        j.$('#end_page_next_up a[data-event*="Next Chapter"]').attr('href'),
-        VIZ.domain,
-      );
+      const nextChapterHref = j.$('#end_page_next_up a[data-event*="Next Chapter"]').attr('href');
+
+      if (!nextChapterHref) return undefined;
+
+      // Viz renders the next chapter link as a `javascript:tryReadChapter(id, '/path')`
+      // pseudo-url, so extract the real path before resolving it. Otherwise the
+      // "Continue reading" button points to an unusable javascript: url (#2648).
+      const chapterPath = nextChapterHref.match(/tryReadChapter\(\d+,\s*'([^']+)'/i);
+
+      return utils.absoluteLink(chapterPath ? chapterPath[1] : nextChapterHref, VIZ.domain);
     },
   },
   overview: {

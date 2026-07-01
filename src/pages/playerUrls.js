@@ -574,6 +574,10 @@ module.exports = {
       '*://vickisaveworker.com/e/*',
       '*://rebeccacostthousand.com/e/*',
       '*://jessicayeahcatch.com/e/*',
+      '*://jeanprofessorcentral.com/e/*',
+      '*://juliewomanwish.com/e/*',
+      '*://garylargeavailable.com/e/*',
+      '*://jennifereconomicgive.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -844,17 +848,6 @@ module.exports = {
   // miruro
   bun: {
     match: ['*://*.bunniescdn.online/*'],
-  },
-  // animekai
-  megaup: {
-    match: [
-      '*://megaup.cc/e/*',
-      '*://megaup.site/e/*',
-      '*://megaup.live/e/*',
-      '*://4spromax.site/e/*',
-      '*://megaup22.online/e/*',
-      '*://megaup.nl/e/*',
-    ],
   },
   // hikari
   boosterx: {
