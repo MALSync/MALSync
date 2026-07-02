@@ -50,7 +50,7 @@ export const animepahe: PageInterface = {
       return $c
         .providerUrlUtility({
           malId: $c
-            .querySelector('meta[name=myanimelist]')
+            .querySelector('meta[name=mal], meta[name=myanimelist]')
             .getAttribute('content')
             .number()
             .ifNotReturn()
