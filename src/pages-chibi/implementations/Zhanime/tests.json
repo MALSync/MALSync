@@ -1,0 +1,40 @@
+{
+  "title": "Zhanime",
+  "url": "https://zhanime.se",
+  "testCases": [
+    {
+      "url": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-1",
+      "expected": {
+        "sync": true,
+        "title": "Ichijyoma Mankitsu Gurashi!",
+        "identifier": "ichijyoma-mankitsu-gurashi",
+        "overviewUrl": "https://zhanime.se/anime/ichijyoma-mankitsu-gurashi",
+        "episode": 1,
+        "nextEpUrl": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-2",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://zhanime.se/anime/ichijyoma-mankitsu-gurashi",
+      "expected": {
+        "sync": false,
+        "title": "Ichijyoma Mankitsu Gurashi!",
+        "identifier": "ichijyoma-mankitsu-gurashi",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-1",
+          "2": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-2",
+          "3": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-3",
+          "4": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-4",
+          "5": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-5",
+          "6": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-6",
+          "7": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-7",
+          "8": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-8",
+          "9": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-9",
+          "10": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-10",
+          "11": "https://zhanime.se/watch/ichijyoma-mankitsu-gurashi/episode-11"
+        }
+      }
+    }
+  ]
+}
