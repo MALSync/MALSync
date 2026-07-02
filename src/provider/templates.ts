@@ -37,6 +37,11 @@ export function providerTemplates(type: 'anime' | 'manga', malUrl?: string) {
       shortName: 'MangaBaka',
     };
   }
+  if (syncMode === 'MYANIMEPULSE') {
+    return {
+      shortName: 'MyAnimePulse',
+    };
+  }
   return {
     shortName: 'Page',
   };

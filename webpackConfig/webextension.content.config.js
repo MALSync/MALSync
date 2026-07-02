@@ -62,6 +62,11 @@ let entry = {
     '..',
     'src/index-webextension/shikiOauth.ts',
   ),
+  'oauth-myanimepulse-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/myanimepulseOauth.ts',
+  ),
   'pwa-script': path.join(
     __dirname,
     '..',

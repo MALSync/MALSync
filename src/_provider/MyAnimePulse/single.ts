@@ -1,0 +1,206 @@
+import { SingleAbstract } from '../singleAbstract';
+import { UrlNotSupportedError } from '../Errors';
+import { status as listStatus } from '../definitions';
+import * as helper from './helper';
+
+export class Single extends SingleAbstract {
+  constructor(protected url: string) {
+    super(url);
+    this.logger = con.m(this.shortName, '#CC0000');
+    return this;
+  }
+
+  private animeInfo: any = {};
+
+  shortName = 'MyAnimePulse';
+
+  authenticationUrl = 'https://myanimepulse.com/auth/extension';
+
+  protected datesSupport = true;
+
+  protected handleUrl(url: string) {
+    if (url.match(/myanimepulse\.com\/anime\/\d+/i)) {
+      this.type = 'anime';
+      const match = url.match(/\/anime\/(\d+)/);
+      if (match) this.ids.mal = Number(match[1]);
+      return;
+    }
+    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
+      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
+      this.ids.mal = Number(utils.urlPart(url, 4));
+      return;
+    }
+    throw new UrlNotSupportedError(url);
+  }
+
+  getCacheKey() {
+    return this.ids.mal;
+  }
+
+  getPageId() {
+    return this.ids.mal;
+  }
+
+  _getDisplayUrl() {
+    return `https://myanimepulse.com/anime/${this.ids.mal}`;
+  }
+
+  _getStatus() {
+    // The list status stays WATCHING during a rewatch; the flag carries the distinction.
+    if (this.animeInfo.isRewatching) return listStatus.Rewatching;
+    return parseInt(String(helper.translateList(this.animeInfo.status)));
+  }
+
+  _setStatus(status: number) {
+    this.animeInfo.isRewatching = status === listStatus.Rewatching;
+    this.animeInfo.status = helper.translateList('', status);
+  }
+
+  _getScore() {
+    return this.animeInfo.score || 0;
+  }
+
+  _setScore(score: number) {
+    this.animeInfo.score = score;
+  }
+
+  _getAbsoluteScore() {
+    return this.animeInfo.score ? this.animeInfo.score * 10 : 0;
+  }
+
+  _setAbsoluteScore(score: number) {
+    this.animeInfo.score = Math.round(score / 10);
+  }
+
+  _getEpisode() {
+    return this.animeInfo.episode || 0;
+  }
+
+  _setEpisode(episode: number) {
+    this.animeInfo.episode = episode;
+  }
+
+  _getVolume() {
+    return 0;
+  }
+
+  _setVolume(_volume: number) {}
+
+  _getTitle() {
+    return this.animeInfo.title || '';
+  }
+
+  _getTotalEpisodes() {
+    return this.animeInfo.totalEpisodes || 0;
+  }
+
+  _getTotalVolumes() {
+    return 0;
+  }
+
+  _getImage() {
+    return this.animeInfo.image || '';
+  }
+
+  async _getRating(): Promise<string> {
+    return this.animeInfo.communityScore ? String(this.animeInfo.communityScore) : '';
+  }
+
+  _getStartDate(): string | null {
+    return this.animeInfo.startDate ?? null;
+  }
+
+  _setStartDate(startDate: string | null) {
+    this.animeInfo.startDate = startDate;
+  }
+
+  _getFinishDate(): string | null {
+    return this.animeInfo.finishDate ?? null;
+  }
+
+  _setFinishDate(finishDate: string | null) {
+    this.animeInfo.finishDate = finishDate;
+  }
+
+  _getRewatchCount() {
+    return this.animeInfo.rewatchCount || 0;
+  }
+
+  _setRewatchCount(count: number) {
+    this.animeInfo.rewatchCount = count;
+  }
+
+  // Base increaseRewatchCount() is a no-op; providers must override to persist
+  // the bump that finishRewatchingMessage() triggers on completing a rewatch.
+  increaseRewatchCount(): void {
+    this.animeInfo.rewatchCount = (this.animeInfo.rewatchCount || 0) + 1;
+  }
+
+  _getTags() {
+    return '';
+  }
+
+  _setTags(_tags: string) {}
+
+  async _update(): Promise<void> {
+    this.logger.log('Update', this.ids.mal);
+
+    // Path route, not the /anime-list?animeId=... collection route, which
+    // ignores the param and returns the whole list instead of one entry.
+    const data = await helper.apiCall(`/anime-list/${this.ids.mal}`);
+
+    if (data && data.entry) {
+      this._onList = true;
+      this.animeInfo.status = data.entry.status;
+      this.animeInfo.score = data.entry.rating || 0;
+      this.animeInfo.episode = data.entry.episodesWatched || 0;
+      this.animeInfo.rewatchCount = data.entry.rewatchCount || 0;
+      this.animeInfo.isRewatching = data.entry.isRewatching || false;
+      // API returns ISO datetimes; the tracker works in YYYY-MM-DD strings.
+      this.animeInfo.startDate = data.entry.startDate ? String(data.entry.startDate).slice(0, 10) : null;
+      this.animeInfo.finishDate = data.entry.finishDate ? String(data.entry.finishDate).slice(0, 10) : null;
+    } else {
+      // SingleAbstract only flips _onList true after a successful sync, so
+      // the provider must report "not on list" from the read itself.
+      this._onList = false;
+    }
+
+    try {
+      const animeData = await helper.apiCall(`/anime/${this.ids.mal}`);
+      if (animeData) {
+        this.animeInfo.title = animeData.title || '';
+        this.animeInfo.totalEpisodes = animeData.episodes || 0;
+        this.animeInfo.image =
+          animeData.images?.jpg?.large_image_url || animeData.image_url || '';
+        this.animeInfo.communityScore = animeData.score || 0;
+      }
+    } catch (e) {
+      this.logger.log('Metadata fetch failed (non-fatal)', e);
+    }
+  }
+
+  async _sync(): Promise<void> {
+    this.logger.log('Sync', this.ids.mal);
+
+    // POST (not PATCH): PATCH can't create a new entry, so first-time
+    // tracking would fail. POST upserts.
+    await helper.apiCall(
+      '/anime-list',
+      {
+        animeId: this.ids.mal,
+        status: this.animeInfo.status,
+        episodesWatched: this.animeInfo.episode,
+        rewatchCount: this.animeInfo.rewatchCount ?? 0,
+        isRewatching: this.animeInfo.isRewatching ?? false,
+        startDate: this.animeInfo.startDate ?? null,
+        finishDate: this.animeInfo.finishDate ?? null,
+        ...(this.animeInfo.score ? { rating: this.animeInfo.score } : {}),
+      },
+      'POST',
+    );
+  }
+
+  async _delete(): Promise<void> {
+    await helper.apiCall(`/anime-list/${this.ids.mal}`, {}, 'DELETE');
+  }
+}
