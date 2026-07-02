@@ -7,7 +7,7 @@
   "version": "0.12.3",
   "description": "Integrates MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka into various sites, with auto episode tracking.",
   "engines": {
-    "npm": ">=11.0.0",
+    "npm": ">=11.18.0",
     "node": ">=24.0.0"
   },
   "devDependencies": {
