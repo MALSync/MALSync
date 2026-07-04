@@ -91,7 +91,7 @@ const progress = computed(() => {
   if (!props.single) return false;
   const progressEl = props.single.getProgress();
   if (!progressEl) return false;
-  if (!progressEl.isAiring()) return false;
+  if (!progressEl.shouldShowProgress()) return false;
   return progressEl;
 });
 </script>

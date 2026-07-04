@@ -287,7 +287,7 @@ const progress = computed(() => {
   const progressEl = props.single.getProgress();
   if (!progressEl) return false;
   if (
-    !progressEl.isAiring() ||
+    !progressEl.shouldShowProgress() ||
     !progressEl.progress() ||
     !progressEl.progress()!.getCurrentEpisode()
   )

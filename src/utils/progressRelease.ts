@@ -80,6 +80,10 @@ export class ProgressRelease {
     return !this.isFinished();
   }
 
+  shouldShowProgress(): boolean {
+    return this.isAiring() || Boolean(api.settings.get('progressShowFinished'));
+  }
+
   getColor(): string {
     return '#f57c00';
   }
