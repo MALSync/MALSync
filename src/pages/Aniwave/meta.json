@@ -1,0 +1,6 @@
+{
+  "search": "https://aniwaves.ru/filter?keyword={searchterm}",
+  "urls": {
+    "match": ["*://*.aniwaves.ru/*"]
+  }
+}

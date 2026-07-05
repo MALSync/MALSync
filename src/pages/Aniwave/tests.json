@@ -1,0 +1,37 @@
+{
+  "title": "aniwave",
+  "url": "https://aniwaves.ru/",
+  "testCases": [
+    {
+      "url": "https://aniwaves.ru/watch/one-piece-81553/ep-2",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "one-piece-81553",
+        "overviewUrl": "https://aniwaves.ru/watch/one-piece-81553",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://aniwaves.ru/watch/one-piece-81553",
+      "expected": {
+        "sync": false,
+        "title": "One Piece",
+        "identifier": "one-piece-81553",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://aniwaves.ru/watch/one-piece-episode-of-luffy-hand-island-no-bouken-76119/ep-1",
+      "expected": {
+        "sync": true,
+        "title": "One Piece: Episode of Luffy - Adventure on Hand Island",
+        "identifier": "one-piece-episode-of-luffy-hand-island-no-bouken-76119",
+        "overviewUrl": "https://aniwaves.ru/watch/one-piece-episode-of-luffy-hand-island-no-bouken-76119",
+        "episode": 1,
+        "uiSelector": false
+      }
+    }
+  ]
+}

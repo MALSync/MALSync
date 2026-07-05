@@ -6,6 +6,7 @@ import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Proxer } from './Proxer/main';
 import { KickAssAnime } from './KickAssAnime/main';
+import { Aniwave } from './Aniwave/main';
 import { Shinden } from './Shinden/main';
 import { Voiranime } from './Voiranime/main';
 import { VIZ } from './VIZ/main';
@@ -108,6 +109,7 @@ export const pages = {
   Proxer,
   Emby,
   KickAssAnime,
+  Aniwave,
   Shinden,
   Voiranime,
   VIZ,
