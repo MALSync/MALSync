@@ -91,7 +91,8 @@ const progress = computed(() => {
   if (!props.single) return false;
   const progressEl = props.single.getProgress();
   if (!progressEl) return false;
-  if (!progressEl.shouldShowProgress(props.single.getEpisode())) return false;
+  if (!progressEl.shouldShowProgress(props.single.getEpisode(), props.single.getTotalEpisodes()))
+    return false;
   return progressEl;
 });
 </script>

@@ -80,14 +80,12 @@ export class ProgressRelease {
     return !this.isFinished();
   }
 
-  shouldShowProgress(watchedEp?: number | null): boolean {
+  shouldShowProgress(watchedEp?: number | null, totalEp?: number | null): boolean {
     if (this.isAiring()) return true;
     if (!api.settings.get('progressShowFinished')) return false;
 
-    const currentEpisode = this.progress()?.getCurrentEpisode();
-    if (!currentEpisode || typeof watchedEp !== 'number') return false;
-
-    return currentEpisode > watchedEp;
+    if (typeof watchedEp !== 'number' || typeof totalEp !== 'number') return false;
+    return totalEp > watchedEp;
   }
 
   getColor(): string {
