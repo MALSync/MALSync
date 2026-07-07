@@ -88,13 +88,6 @@ export const AnimeStream: PageInterface = {
         .urlAbsolute()
         .run();
     },
-    uiInjection($c) {
-      return $c
-        .querySelector('div.mp-watch-movie-info > div.mp-watch-actions')
-        .ifNotReturn($c.querySelector('div.mp-wsa').uiAfter().run())
-        .uiAfter()
-        .run();
-    },
     getMalUrl($c) {
       return $c
         .providerUrlUtility({
