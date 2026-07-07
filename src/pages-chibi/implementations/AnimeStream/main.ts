@@ -11,7 +11,6 @@ export const AnimeStream: PageInterface = {
   },
   features: {
     requestProxy: true,
-    customDomains: true,
   },
   search: 'https://anime.uniquestream.net/search?q={searchtermPlus}',
   sync: {
