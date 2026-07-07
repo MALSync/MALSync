@@ -36,7 +36,10 @@ function animeCategoryName() {
 }
 
 function missing($c: ChibiGenerator<any>) {
-  return $c.object({}).get('missing' as any).run();
+  return $c
+    .object({})
+    .get('missing' as any)
+    .run();
 }
 
 function videoCacheKey($c: ChibiGenerator<any>, seasonId: ChibiGenerator<string>) {
