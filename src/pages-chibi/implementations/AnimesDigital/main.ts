@@ -33,9 +33,6 @@ export const AnimesDigital: PageInterface = {
     getEpisode($c) {
       return $c.querySelectorAll('.b_itens .info span:nth-child(2)').at(1).text().number().run();
     },
-    uiInjection($c) {
-      return $c.querySelector('.tabs_videos').uiPrepend().run();
-    },
   },
   overview: {
     isOverviewPage($c) {
