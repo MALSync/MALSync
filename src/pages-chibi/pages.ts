@@ -14,7 +14,6 @@ import { voidScans } from './implementations/VoidScans/main';
 import { AniXL } from './implementations/AniXL/main';
 import { Crunchyroll } from './implementations/Crunchyroll/main';
 import { animevost } from './implementations/animevost/main';
-
 import { FireAnime } from './implementations/FireAnime/main';
 import { WeebCentral } from './implementations/WeebCentral/main';
 import { MangaDemon } from './implementations/MangaDemon/main';
@@ -108,6 +107,7 @@ import { DMMTV } from './implementations/DMMTV/main';
 import { Tsukuyomi } from './implementations/Tsukuyomi/main';
 import { HijalaScans } from './implementations/HijalaScans/main';
 import { Jellyfin } from './implementations/Jellyfin/main';
+import { AnimeStream } from './implementations/AnimeStream/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -217,4 +217,5 @@ export const pages: { [key: string]: PageInterface } = {
   Tsukuyomi,
   HijalaScans,
   Jellyfin,
+  AnimeStream,
 };

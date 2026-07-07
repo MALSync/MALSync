@@ -1,0 +1,74 @@
+@import './../pages';
+
+@boxBackground: var(--mp-paper);
+
+@highlightStyle: 2;
+
+@activeEp: #4c8ff2 !important;
+
+.mal-sync-active {
+  h4 {
+    padding-left: 6px;
+    padding-bottom: 4px;
+  }
+
+  border-radius: 8px;
+}
+
+.mal-sync-active div.mp-ep-thumb {
+  border-color: #4c8ff2 !important;
+}
+
+#malp {
+  font-family: 'Bebas Neue', Inter, sans-serif;
+  background-color: var(--mp-paper);
+  padding: 0;
+  margin: 0 0 18px;
+  min-height: 70px;
+}
+
+div.mp-mv-info > #malp {
+  margin: 28px 0 0;
+}
+
+#malp #MalData {
+  .malp-group > .malp-group-field,
+  .malp-group > .malp-group-value-section {
+    background-color: var(--mp-paper);
+  }
+
+  .malp-group-label {
+    font-size: 14px !important;
+  }
+}
+
+span.malp-group {
+  align-items: center;
+  background-color: var(--mp-paper);
+  border: 2px solid var(--mp-ink);
+  color: var(--mp-ink);
+  display: inline-flex;
+  font-family: 'Bebas Neue', Inter, sans-serif;
+  font-size: 14px;
+  min-height: 65px;
+  letter-spacing: 0.07em;
+  padding: 6px 14px;
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s,
+    background 0.12s,
+    color 0.12s;
+}
+
+span.malp-group:hover:not(:disabled) {
+  box-shadow: 3px 3px 0 var(--mp-red);
+  transform: translate(-2px, -2px);
+}
+
+select.malp-group-select {
+  cursor: pointer !important;
+}
+
+#malEpisodes {
+  min-width: 4ch;
+}
