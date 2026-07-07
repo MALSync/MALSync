@@ -70,7 +70,6 @@ import { ToonAnime } from './ToonAnime/main';
 import { ADKami } from './ADKami/main';
 import { Kaguya } from './Kaguya/main';
 import { Hdrezka } from './Hdrezka/main';
-import { SovetRomantica } from './SovetRomantica/main';
 import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 import { Docchi } from './Docchi/main';
@@ -172,7 +171,6 @@ export const pages = {
   ADKami,
   Kaguya,
   Hdrezka,
-  SovetRomantica,
   ADN,
   Aniyan,
   Docchi,
