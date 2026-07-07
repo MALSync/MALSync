@@ -35,23 +35,23 @@ function animeCategoryName() {
   return '\\u30a2\\u30cb\\u30e1';
 }
 
-function missing($c: ChibiGenerator<unknown>) {
-  return $c.object({}).get('missing').run();
+function missing($c: ChibiGenerator<any>) {
+  return $c.object({}).get('missing' as any).run();
 }
 
-function videoCacheKey($c: ChibiGenerator<unknown>, seasonId: ChibiGenerator<string>) {
+function videoCacheKey($c: ChibiGenerator<any>, seasonId: ChibiGenerator<string>) {
   return $c.string('DMM TV#').concat(seasonId.run());
 }
 
-function currentVideo($c: ChibiGenerator<unknown>) {
+function currentVideo($c: ChibiGenerator<any>) {
   return $c.getGlobalVariable(videoCacheKey($c, $c.url().urlParam('season').string()).run());
 }
 
-function requestVideo($c: ChibiGenerator<unknown>) {
+function requestVideo($c: ChibiGenerator<any>) {
   return $c.get('data').get('data').get('video');
 }
 
-function cacheRequestVideo($c: ChibiGenerator<unknown>) {
+function cacheRequestVideo($c: ChibiGenerator<any>) {
   return $c.if(
     $c.url().urlParam('season').boolean().run(),
     requestVideo($c)
@@ -66,13 +66,13 @@ function cacheRequestVideo($c: ChibiGenerator<unknown>) {
   );
 }
 
-function hasAnimeCategory($c: ChibiGenerator<unknown>) {
+function hasAnimeCategory($c: ChibiGenerator<any>) {
   return $c
     .and(
       $c.get('categories').boolean().run(),
       $c
         .get('categories')
-        .arrayFind($category =>
+        .arrayFind(($category: ChibiGenerator<any>) =>
           $c
             .or(
               $category.get('id').string().equals('15').run(),
@@ -86,14 +86,14 @@ function hasAnimeCategory($c: ChibiGenerator<unknown>) {
     .run();
 }
 
-function isAnimeVideo($c: ChibiGenerator<unknown>) {
+function isAnimeVideo($c: ChibiGenerator<any>) {
   return currentVideo($c)
     .ifThen($video => hasAnimeCategory($video))
     .boolean()
     .run();
 }
 
-function handleVideoRequest($c: ChibiGenerator<unknown>) {
+function handleVideoRequest($c: ChibiGenerator<any>) {
   return $c
     .and(
       $c.get('url').equals('https://api.tv.dmm.com/graphql').run(),
@@ -110,7 +110,7 @@ function cleanDmmTitle($c: ChibiGenerator<string>) {
   return $c.replaceRegex(duplicatedDmmTitlePattern(), '$1').trim();
 }
 
-function hasValidDetailTitle($c: ChibiGenerator<unknown>) {
+function hasValidDetailTitle($c: ChibiGenerator<any>) {
   return $c
     .and(
       $c.querySelector('#detail-header h1').boolean().run(),
@@ -125,7 +125,7 @@ function hasValidDetailTitle($c: ChibiGenerator<unknown>) {
     .run();
 }
 
-function selectedSeasonLabel($c: ChibiGenerator<unknown>) {
+function selectedSeasonLabel($c: ChibiGenerator<any>) {
   return $c
     .querySelector('#detail-header span.mr-2')
     .text()
@@ -134,7 +134,7 @@ function selectedSeasonLabel($c: ChibiGenerator<unknown>) {
     .replaceRegex('([Ss]eason)\\s*(\\d+)', '$1 $2');
 }
 
-function isSelectedSeasonTitle($c: ChibiGenerator<unknown>) {
+function isSelectedSeasonTitle($c: ChibiGenerator<any>) {
   return $c
     .and(
       $c.querySelector('#detail-header span.mr-2').boolean().run(),
@@ -143,7 +143,7 @@ function isSelectedSeasonTitle($c: ChibiGenerator<unknown>) {
     .run();
 }
 
-function selectedSeasonTitle($c: ChibiGenerator<unknown>) {
+function selectedSeasonTitle($c: ChibiGenerator<any>) {
   return $c
     .if(
       isSelectedSeasonTitle($c),
@@ -153,7 +153,7 @@ function selectedSeasonTitle($c: ChibiGenerator<unknown>) {
     .run();
 }
 
-function isSeasonMarker($c: ChibiGenerator<unknown>) {
+function isSeasonMarker($c: ChibiGenerator<any>) {
   return $c
     .and(
       $c.querySelector('#detail-header span.mr-2').boolean().run(),
@@ -162,19 +162,19 @@ function isSeasonMarker($c: ChibiGenerator<unknown>) {
     .run();
 }
 
-function pageTitle($c: ChibiGenerator<unknown>) {
+function pageTitle($c: ChibiGenerator<any>) {
   return $c.title().split('|').first().trim();
 }
 
-function hasAnimeTitleMarker($c: ChibiGenerator<unknown>) {
+function hasAnimeTitleMarker($c: ChibiGenerator<any>) {
   return pageTitle($c).matches('\\u30a2\\u30cb\\u30e1[^|)]*/\\d{4}\\u5e74').run();
 }
 
-function isAnimePlayback($c: ChibiGenerator<unknown>) {
+function isAnimePlayback($c: ChibiGenerator<any>) {
   return $c.or(isAnimeVideo($c), hasAnimeTitleMarker($c)).run();
 }
 
-function hasAnimePageMarker($c: ChibiGenerator<unknown>) {
+function hasAnimePageMarker($c: ChibiGenerator<any>) {
   return $c
     .or(
       hasAnimeTitleMarker($c),
@@ -187,7 +187,7 @@ function hasAnimePageMarker($c: ChibiGenerator<unknown>) {
     .run();
 }
 
-function getJsonData($c: ChibiGenerator<unknown>) {
+function getJsonData($c: ChibiGenerator<any>) {
   return $c
     .querySelectorAll('[type="application/ld+json"]')
     .arrayFind($el => $el.text().includes('TVSeries').run())
@@ -196,7 +196,7 @@ function getJsonData($c: ChibiGenerator<unknown>) {
     .jsonParse();
 }
 
-function detailTitle($c: ChibiGenerator<unknown>) {
+function detailTitle($c: ChibiGenerator<any>) {
   return $c
     .coalesce(
       $c.fn($c.querySelector('#detail-header h1').ifNotReturn().text().trim().run()).run(),
@@ -206,7 +206,7 @@ function detailTitle($c: ChibiGenerator<unknown>) {
     .ifNotReturn();
 }
 
-function isDetailUrl($c: ChibiGenerator<unknown>) {
+function isDetailUrl($c: ChibiGenerator<any>) {
   return $c
     .or(
       $c.url().urlPart(4).equals('detail').run(),
@@ -217,7 +217,7 @@ function isDetailUrl($c: ChibiGenerator<unknown>) {
     .run();
 }
 
-function titleWithSeasonLabel($c: ChibiGenerator<unknown>) {
+function titleWithSeasonLabel($c: ChibiGenerator<any>) {
   return $c
     .if(
       isSeasonMarker($c),
@@ -262,7 +262,7 @@ function isEpisodeText($c: ChibiGenerator<string>) {
     .run();
 }
 
-function isAnimeDetail($c: ChibiGenerator<unknown>) {
+function isAnimeDetail($c: ChibiGenerator<any>) {
   return $c
     .and(
       $c.querySelector('#detail-header').boolean().run(),
