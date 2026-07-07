@@ -260,11 +260,10 @@ const formatItem = (item: listElement): bookmarkItem => {
     }
   }
   const progressEl = item.fn.progress;
-  if (progressEl?.shouldShowProgress(item.watchedEp, item.totalEp) && progressEl.progress()) {
+  const progressEp = progressEl ? progressEl.getDisplayEpisode(item.watchedEp, item.totalEp) : null;
+  if (progressEl && progressEp) {
     resItem.progressText = progressEl.progress()!.getAutoText();
-    resItem.progressEp = progressEl.isFinished()
-      ? item.totalEp
-      : progressEl.progress()!.getCurrentEpisode() || undefined;
+    resItem.progressEp = progressEp;
     resItem.progress = progressEl;
   }
   return resItem;

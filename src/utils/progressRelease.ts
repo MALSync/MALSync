@@ -88,6 +88,14 @@ export class ProgressRelease {
     return totalEp > watchedEp;
   }
 
+  getDisplayEpisode(watchedEp?: number | null, totalEp?: number | null): number | null {
+    if (!this.shouldShowProgress(watchedEp, totalEp)) return null;
+    if (this.isFinished() && typeof totalEp === 'number' && totalEp > 0) return totalEp;
+
+    const progress = this.progress();
+    return progress ? progress.getCurrentEpisode() || null : null;
+  }
+
   getColor(): string {
     return '#f57c00';
   }

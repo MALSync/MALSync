@@ -288,19 +288,18 @@ const progress = computed(() => {
   if (!props.single) return false;
   const progressEl = props.single.getProgress();
   if (!progressEl) return false;
-  if (
-    !progressEl.shouldShowProgress(props.single.getEpisode(), props.single.getTotalEpisodes()) ||
-    !progressEl.progress() ||
-    !progressEl.progress()!.getCurrentEpisode()
-  )
+  if (!progressEl.getDisplayEpisode(props.single.getEpisode(), props.single.getTotalEpisodes()))
     return false;
   return progressEl;
 });
 
 const progressEpisode = computed(() => {
   if (!props.single || !progress.value) return 0;
-  if (progress.value.isFinished()) return props.single.getTotalEpisodes() || 0;
-  return progress.value.progress()!.getCurrentEpisode() || 0;
+  const displayEpisode = progress.value.getDisplayEpisode(
+    props.single.getEpisode(),
+    props.single.getTotalEpisodes(),
+  );
+  return displayEpisode || 0;
 });
 
 const progressText = computed(() => {
