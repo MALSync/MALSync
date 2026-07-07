@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "ผสาน MyAnimeList/AniList/Kitsu/Simkl เข้าสู่เว็บไซต์ต่างๆ ด้วยการติดตามตอนอัตโนมัติ.",
+        "message": "ผสาน MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka เข้าสู่เว็บไซต์ต่างๆ ด้วยการติดตามตอนอัตโนมัติ.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -674,7 +674,7 @@
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "หากปิดใช้งานไซต์สตรีมมิ่งจะไม่ปรากฏในแถบด้านข้างของอะนิเมะ MyAnimeList/AniList/Kitsu/Simkl.",
+        "message": "หากปิดใช้งานไซต์สตรีมมิ่งจะไม่ปรากฏในแถบด้านข้างของอะนิเมะ MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {

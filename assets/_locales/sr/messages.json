@@ -345,7 +345,7 @@
         "message": "Претрага сајта"
     },
     "Package_Description": {
-        "message": "Интегрише MyAnimeList/AniList/Kitsu/Simkl/Shikimori на различите сајтове, уз аутоматско праћење епизода."
+        "message": "Интегрише MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka на различите сајтове, уз аутоматско праћење епизода."
     },
     "UI_Status": {
         "message": "Статус:"
@@ -680,7 +680,7 @@
         "message": "Мала"
     },
     "settings_StreamingSite_text": {
-        "message": "Ако је онемогућено, сајт за емитовање више неће бити приказан у бочној траци анимеа на MyAnimeList/AniList/Kitsu/Simkl."
+        "message": "Ако је онемогућено, сајт за емитовање више неће бити приказан у бочној траци анимеа на MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka."
     },
     "settings_Authenticate": {
         "message": "Аутентификујте се"

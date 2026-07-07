@@ -10,7 +10,7 @@ export default {
    * @example
    * $c.object({user: {name: "John"}}).get("user") // returns {name: "John"}
    */
-  get: <Input, Key extends 0 extends 1 & Input ? PropertyKey : keyof Input>(
+  get: <Input, Key extends (0 extends 1 & Input ? PropertyKey : keyof Input)>(
     ctx: ChibiCtx,
     input: Input,
     key: ChibiParam<Key>,

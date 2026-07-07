@@ -26,15 +26,17 @@ export default {
   providerUrlUtility: (
     $c: ChibiGenerator<void>,
     provider: {
-      [K in
-        | 'anilistId'
-        | 'anilistUrl'
-        | 'kitsuId'
-        | 'kitsuUrl'
-        | 'mangabakaId'
-        | 'mangabakaUrl'
-        | 'malId'
-        | 'malUrl']?: ChibiJson<any>;
+      [
+        K in
+          | 'anilistId'
+          | 'anilistUrl'
+          | 'kitsuId'
+          | 'kitsuUrl'
+          | 'mangabakaId'
+          | 'mangabakaUrl'
+          | 'malId'
+          | 'malUrl'
+      ]?: ChibiJson<any>;
     },
   ) => {
     const providerConfig = [

@@ -690,7 +690,7 @@
         "description": "Header for the MAL-sync provider dropdown"
     },
     "Package_Description": {
-        "message": "将MyAnimeList/AniList/Kitsu/Simkl集成一体并具备剧集自动跟踪功能。",
+        "message": "将MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka集成一体并具备剧集自动跟踪功能。",
         "description": "Description MALSync"
     },
     "UI_Rules": {

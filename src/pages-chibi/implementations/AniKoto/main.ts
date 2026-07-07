@@ -9,6 +9,7 @@ export const anikoto: PageInterface = {
     match: ['*://*.anikoto.cz/*', '*://*.anikototv.to/*'],
     player: {
       megaplay: ['*://vidwish.live/*', '*://megaplay.buzz/*'],
+      vidtube: ['*://vidtube.site/*'],
     },
   },
   search: 'https://anikoto.cz/filter?keyword={searchtermPlus}',

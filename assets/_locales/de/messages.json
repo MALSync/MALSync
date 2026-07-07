@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integriert MyAnimeList/AniList/Kitsu/Simkl/Shikimori auf diversen Seiten mit automatischer Episodenverfolgung.",
+        "message": "Integriert MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka auf diversen Seiten mit automatischer Episodenverfolgung.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -688,7 +688,7 @@
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "Die deaktivierten Seiten erscheinen nicht mehr in der Seitenleiste auf MAL.",
+        "message": "Die deaktivierten Seiten erscheinen nicht mehr in der Seitenleiste auf MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {

@@ -871,7 +871,7 @@ export function htmlDecode(text) {
 }
 
 export function isFirefox(): boolean {
-  return Boolean(typeof browser !== 'undefined' && typeof chrome !== 'undefined');
+  return __IS_FIREFOX__;
 }
 
 export function waitForPageToBeVisible() {

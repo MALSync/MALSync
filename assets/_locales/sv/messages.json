@@ -64,7 +64,7 @@
         "description": "All"
     },
     "Package_Description": {
-        "message": "Integrerar MyAnimeList/AniList/Kitsu/Simkl till olika platser, med automatisk episodspårning.",
+        "message": "Integrerar MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka till olika platser, med automatisk episodspårning.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -520,7 +520,7 @@
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "Vid inaktivering så kommer streaming sidan inte längre visas vid sidofältet bredvid en anime på MyAnimeList/AniList/Kitsu.",
+        "message": "Vid inaktivering så kommer streaming sidan inte längre visas vid sidofältet bredvid en anime på MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {

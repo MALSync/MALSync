@@ -4,6 +4,8 @@ const fs = require('fs');
 const { VueLoaderPlugin } = require('vue-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
+const isFirefox = (process.env.APP_TARGET || 'general') === 'firefox';
+
 const pages = require('./utils/pages').pages();
 const { getKeys } = require('./utils/keys');
 const { getVirtualScript } = require('./utils/general');
@@ -172,6 +174,7 @@ module.exports = {
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
+      __IS_FIREFOX__: isFirefox,
     }),
     ...(process.env.ADULT_DEV
       ? [

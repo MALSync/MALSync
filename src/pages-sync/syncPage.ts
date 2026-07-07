@@ -19,13 +19,11 @@ import {
   trackingNoteElement,
   trackingSyncButtonElement,
 } from './messageElements';
+import { isFirefox } from '../utils/general';
 
-declare let browser: any;
-
-let extensionId = 'agnaejlkbiiggajjmnpmeheigkflbnoo'; // Chrome
-if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
-  extensionId = '{57081fef-67b4-482f-bcb0-69296e63ec4f}'; // Firefox
-}
+const extensionId = isFirefox()
+  ? '{57081fef-67b4-482f-bcb0-69296e63ec4f}'
+  : 'agnaejlkbiiggajjmnpmeheigkflbnoo';
 
 const logger = con.m('Sync', '#348fff');
 
@@ -57,12 +55,10 @@ export class SyncPage {
     }
     this.domainSet();
     logger.log('Page', this.page.name);
-    if (
-      !(
-        typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||
-        api.settings.get('enablePages')[this.page.name]
-      )
-    ) {
+    if (!(
+      typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||
+      api.settings.get('enablePages')[this.page.name]
+    )) {
       logger.info('Sync is disabled for this page', this.page.name);
       throw 'Stop Script';
     }
@@ -1355,24 +1351,33 @@ export class SyncPage {
 
   private async checkForFiller(malid: number, episode: number) {
     const page = Math.ceil(episode / 100);
+    const offset = (page - 1) * 100;
 
-    const cacheObj = new Cache(`fillers/${malid}/${page}`, 7 * 24 * 60 * 60 * 1000);
+    const cacheObj = new Cache(`fillers-mal/${malid}/${page}`, 7 * 24 * 60 * 60 * 1000);
 
     if (!(await cacheObj.hasValueAndIsNotEmpty())) {
-      const url = `https://api.jikan.moe/v4/anime/${malid}/episodes?page=${page}`;
+      const url = `https://myanimelist.net/anime/${malid}/_/episode?offset=${offset}`;
       const request = await api.request.xhr('GET', url).then(async response => {
         try {
           if (response.status === 200 && response.responseText) {
-            const data = JSON.parse(response.responseText);
-            if (data.data && data.data.length) {
-              return data.data
-                .map(e => ({
-                  filler: e.filler,
-                  recap: e.recap,
-                  episode_id: e.mal_id, // mal_id is the episode_id in the v4 API very stupid
-                }))
-                .filter(e => e.filler || e.recap);
-            }
+            const doc = j.$.parseHTML(response.responseText);
+            const rows = j.$(doc).find('tr.episode-list-data');
+            const episodes: { filler: boolean; recap: boolean; episode_id: number }[] = [];
+            rows.each((_, row) => {
+              const $row = j.$(row);
+              const raw = $row.find('td.episode-number').attr('data-raw');
+              const episodeId = Number(raw);
+              if (!episodeId) return;
+              const typeSpan = $row.find('td.episode-title .icon-episode-type-bg');
+              const typeText = (typeSpan.text() || '').trim().toLowerCase();
+              const isFiller = typeText === 'filler';
+              const isRecap = typeText === 'recap';
+              if (isFiller || isRecap) {
+                episodes.push({ filler: isFiller, recap: isRecap, episode_id: episodeId });
+              }
+            });
+
+            return episodes;
           }
         } catch (e) {
           // do nothing.

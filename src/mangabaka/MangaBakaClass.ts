@@ -104,6 +104,7 @@ export class MangaBakaClass {
     main.appendChild(links);
 
     element.addClass('malsync-injected').removeClass('hidden');
+    element.find('#malsync-quick-links').remove();
     // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     element.append(main);
 
@@ -212,8 +213,7 @@ export class MangaBakaClass {
       const progressList = document.createElement('div');
       progressList.classList = 'flex flex-wrap gap-3 pt-2';
 
-      const badgeStyling =
-        j.$('[data-slot="badge"][class*="bg-secondary"]').first().attr('class') || '';
+      const badgeStyling = j.$('[data-slot="badge"]').first().attr('class') || '';
 
       progressItems.forEach(item => {
         if (!item.getCurrentEpisode()) return;
