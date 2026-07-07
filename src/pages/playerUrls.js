@@ -578,6 +578,7 @@ module.exports = {
       '*://juliewomanwish.com/e/*',
       '*://garylargeavailable.com/e/*',
       '*://jennifereconomicgive.com/e/*',
+      '*://pamelachangemission.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
