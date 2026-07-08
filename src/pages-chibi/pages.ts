@@ -108,6 +108,7 @@ import { Tsukuyomi } from './implementations/Tsukuyomi/main';
 import { HijalaScans } from './implementations/HijalaScans/main';
 import { Jellyfin } from './implementations/Jellyfin/main';
 import { AnimeStream } from './implementations/AnimeStream/main';
+import { MangaFire } from './implementations/MangaFire/main';
 import { AnimesDigital } from './implementations/AnimesDigital/main';
 
 export const pages: { [key: string]: PageInterface } = {
@@ -219,5 +220,6 @@ export const pages: { [key: string]: PageInterface } = {
   HijalaScans,
   Jellyfin,
   AnimeStream,
+  MangaFire,
   AnimesDigital,
 };
