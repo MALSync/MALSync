@@ -62,7 +62,12 @@ async function registerScripts() {
 
 async function registerScript(domainConfig: domainType) {
   if (domainConfig.page === 'hostpermission') return;
-  const fixDomain = domainConfig.domain;
+  let fixDomain = domainConfig.domain;
+
+  if (domainConfig.chibi || domainConfig.proxy) {
+    // Remove port. Chibi will handle the port onsite
+    fixDomain = fixDomain.replace(/:\d+/, '');
+  }
 
   try {
     const scriptConfig = {
