@@ -76,7 +76,7 @@ function messagePageListener(page) {
 
     if (msg.action === 'videoTimeSet') {
       con.log('[Iframe] Set Time', msg);
-      const player = PlayerSingleton.getInstance()['currentPlayer'];
+      const player = PlayerSingleton.getInstance().currentPlayer;
       if (!player) {
         con.error('[Iframe] No player Found');
         return;
@@ -143,7 +143,7 @@ function messagePageListener(page) {
       let time = parseInt(await api.settings.getAsync('introSkip'));
       if (!forward) time = 0 - time;
 
-      const player = PlayerSingleton.getInstance()['currentPlayer'];
+      const player = PlayerSingleton.getInstance().currentPlayer;
       if (!player) return;
       await player.play();
       const totalTime = player.currentTime + time;
