@@ -10,7 +10,7 @@ export class PlayerSingleton {
   // eslint-disable-next-line es-x/no-class-static-fields
   private static instance: PlayerSingleton = new PlayerSingleton();
 
-  protected currentPlayer: HTMLVideoElement | null = null;
+  public currentPlayer: HTMLVideoElement | null = null;
 
   private listeners: { [key: string]: (time: PlayerTime, player?: HTMLVideoElement) => void } = {};
 
