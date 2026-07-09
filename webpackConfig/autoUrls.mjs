@@ -68,6 +68,24 @@ async function miruro() {
   addChibiUrls('Miruro', [...new Set(formattedUrls)]);
 }
 
+async function anikoto() {
+  const response = await fetch('https://anikoto.site/#domains');
+  const body = await response.text();
+
+  const $ = cheerio.load(body);
+
+  const urls = $('div.endpoint-row > div.endpoint-url > a')
+    .map((i, el) => new URL($(el).attr('href')))
+    .get();
+
+  let formattedUrls = [];
+  for (const url of urls) {
+    formattedUrls.push('*://*.' + url.hostname + '/*');
+  }
+
+  addChibiUrls('AniKoto', [...new Set(formattedUrls)]);
+}
+
 async function mangapark() {
   const response = await fetch('https://mangaparkmirrors.pages.dev');
   const body = await response.text();
@@ -251,6 +269,7 @@ async function start() {
     kickassanime,
     miruro,
     mangapark,
+    anikoto,
   };
 
   // Lists all jobs to launch in parallel used in autoUrls.yml
