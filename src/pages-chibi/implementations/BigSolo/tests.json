@@ -3,20 +3,20 @@
   "url": "https://bigsolo.org/",
   "testCases": [
     {
-      "url": "https://bigsolo.org/kaoru-hana-wa-rin-to-saku/158",
+      "url": "https://bigsolo.org/manga/kaoru-hana-wa-rin-to-saku/158",
       "expected": {
         "sync": true,
         "title": "薫る花は凛と咲く",
         "identifier": "kaoru-hana-wa-rin-to-saku",
-        "overviewUrl": "https://bigsolo.org/kaoru-hana-wa-rin-to-saku",
-        "nextEpUrl": "https://bigsolo.org/kaoru-hana-wa-rin-to-saku/159",
+        "overviewUrl": "https://bigsolo.org/manga/kaoru-hana-wa-rin-to-saku",
+        "nextEpUrl": "https://bigsolo.org/manga/kaoru-hana-wa-rin-to-saku/159/1",
         "episode": 158,
         "volume": 21,
         "uiSelector": false
       }
     },
     {
-      "url": "https://bigsolo.org/le-chant-de-la-meduse",
+      "url": "https://bigsolo.org/manga/le-chant-de-la-meduse",
       "expected": {
         "sync": false,
         "title": "海月のうた",
@@ -24,35 +24,35 @@
         "image": "https://cdn.imgchest.com/files/ffcff507f252.png",
         "uiSelector": true,
         "epList": {
-          "0": "https://bigsolo.org/le-chant-de-la-meduse/0"
+          "0": "https://bigsolo.org/manga/le-chant-de-la-meduse/0/1"
         }
       }
     },
     {
-      "url": "https://bigsolo.org/magical-girl-dandelion/2/7",
+      "url": "https://bigsolo.org/manga/magical-girl-dandelion/2/7",
       "expected": {
         "sync": true,
         "title": "魔法少女ダンデライオン",
         "identifier": "magical-girl-dandelion",
-        "overviewUrl": "https://bigsolo.org/magical-girl-dandelion",
+        "overviewUrl": "https://bigsolo.org/manga/magical-girl-dandelion",
         "episode": 2,
         "uiSelector": false
       }
     },
     {
-      "url": "https://bigsolo.org/futari-bus/11",
+      "url": "https://bigsolo.org/manga/futari-bus/11",
       "expected": {
         "sync": true,
         "title": "ふたりバス",
         "identifier": "futari-bus",
-        "overviewUrl": "https://bigsolo.org/futari-bus",
-        "nextEpUrl": "https://bigsolo.org/futari-bus/11.5",
+        "overviewUrl": "https://bigsolo.org/manga/futari-bus",
+        "nextEpUrl": "https://bigsolo.org/manga/futari-bus/11.5/1",
         "episode": 11,
         "uiSelector": false
       }
     },
     {
-      "url": "https://bigsolo.org/noname",
+      "url": "https://bigsolo.org/manga/noname",
       "expected": {
         "sync": false,
         "title": "NO＼NAME",
@@ -60,20 +60,20 @@
         "image": "https://cdn.imgchest.com/files/269b2198c635.jpeg",
         "uiSelector": true,
         "epList": {
-          "1": "https://bigsolo.org/noname/1",
-          "2": "https://bigsolo.org/noname/2",
-          "3": "https://bigsolo.org/noname/3",
-          "4": "https://bigsolo.org/noname/4",
-          "5": "https://bigsolo.org/noname/5",
-          "6": "https://bigsolo.org/noname/6",
-          "7": "https://bigsolo.org/noname/7",
-          "8": "https://bigsolo.org/noname/8",
-          "9": "https://bigsolo.org/noname/9",
-          "10": "https://bigsolo.org/noname/10",
-          "11": "https://bigsolo.org/noname/11",
-          "12": "https://bigsolo.org/noname/12",
-          "13": "https://bigsolo.org/noname/13",
-          "14": "https://bigsolo.org/noname/14"
+          "1": "https://bigsolo.org/manga/noname/1/1",
+          "2": "https://bigsolo.org/manga/noname/2/1",
+          "3": "https://bigsolo.org/manga/noname/3/1",
+          "4": "https://bigsolo.org/manga/noname/4/1",
+          "5": "https://bigsolo.org/manga/noname/5/1",
+          "6": "https://bigsolo.org/manga/noname/6/1",
+          "7": "https://bigsolo.org/manga/noname/7/1",
+          "8": "https://bigsolo.org/manga/noname/8/1",
+          "9": "https://bigsolo.org/manga/noname/9/1",
+          "10": "https://bigsolo.org/manga/noname/10/1",
+          "11": "https://bigsolo.org/manga/noname/11/1",
+          "12": "https://bigsolo.org/manga/noname/12/1",
+          "13": "https://bigsolo.org/manga/noname/13/1",
+          "14": "https://bigsolo.org/manga/noname/14/1"
         }
       }
     }
