@@ -99,6 +99,12 @@ export const Comix: PageInterface = {
         .ifNotReturn($c.trigger().return().run())
         .run();
     },
+    overviewIsReady($c) {
+      return $c
+        .waitUntilTrue($c.querySelector('.mpage__desc-wrap').boolean().run())
+        .trigger()
+        .run();
+    },
     listChange($c) {
       return $c
         .detectChanges(
