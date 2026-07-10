@@ -30,7 +30,11 @@ type MovieMetadata = {
   Name: string;
 } & CommonMetadata;
 
-type Metadata = EpisodeMetadata | SeasonMetadata | MovieMetadata;
+type SeriesMetadata = {
+  Type: 'Series';
+} & CommonMetadata;
+
+type Metadata = EpisodeMetadata | SeasonMetadata | MovieMetadata | SeriesMetadata;
 
 type OverviewMeta = SeasonMetadata;
 
@@ -214,7 +218,11 @@ function checkMetadataRequest($c: ChibiGenerator<unknown>) {
     .getVariable('metadata')
     .get('Type')
     .equals('Movie')
-    .ifThen($c => $c.exec(handleMovie).return().run());
+    .ifThen($c => $c.exec(handleMovie).return().run())
+    .getVariable('metadata')
+    .get('Type')
+    .equals('Series')
+    .ifThen($c => $c.exec(handleSeries).return().run());
 }
 
 function isAnime($c: ChibiGenerator<unknown>) {
@@ -237,15 +245,75 @@ function isAnime($c: ChibiGenerator<unknown>) {
     .log('isAnime');
 }
 
-function handleSeason($c: ChibiGenerator<unknown>) {
+// Jellyfin only tags the Anime genre/tag on the Series item; episodes and seasons come back
+// with empty Genres/Tags. Flag an anime Series in the global store keyed by its own Id, then
+// flush any child that was seen before the Series response so detection works regardless of
+// request order (chibi is listen-only and cannot fetch the Series itself).
+function handleSeries($c: ChibiGenerator<unknown>) {
   return isAnime($c).ifThen($c =>
-    $c.getVariable('metadata').setGlobalVariable('metadataGlobal').trigger().run(),
+    $c
+      .boolean(true)
+      .setGlobalVariable($c.getVariable<SeriesMetadata>('metadata').get('Id').run())
+      .getGlobalVariable(
+        $c
+          .string('pending_')
+          .concat($c.getVariable<SeriesMetadata>('metadata').get('Id').run())
+          .run(),
+      )
+      .ifThen($c => $c.setGlobalVariable('metadataGlobal').trigger().run())
+      .run(),
   );
 }
 
-function handleEpisode($c: ChibiGenerator<unknown>) {
-  return isAnime($c).ifThen($c =>
+// Anime if the item's own fields say so, or its parent Series was already flagged anime.
+// Otherwise stash it keyed by SeriesId so a later Series response can flush it.
+function handleSeason($c: ChibiGenerator<unknown>) {
+  return $c.if(
+    $c
+      .or(
+        isAnime($c).run(),
+        $c
+          .getGlobalVariable($c.getVariable<SeasonMetadata>('metadata').get('SeriesId').run())
+          .boolean()
+          .run(),
+      )
+      .run(),
     $c.getVariable('metadata').setGlobalVariable('metadataGlobal').trigger().run(),
+    $c
+      .getVariable('metadata')
+      .setGlobalVariable(
+        $c
+          .string('pending_')
+          .concat($c.getVariable<SeasonMetadata>('metadata').get('SeriesId').run())
+          .run(),
+      )
+      .run(),
+  );
+}
+
+// Anime if the item's own fields say so, or its parent Series was already flagged anime.
+// Otherwise stash it keyed by SeriesId so a later Series response can flush it.
+function handleEpisode($c: ChibiGenerator<unknown>) {
+  return $c.if(
+    $c
+      .or(
+        isAnime($c).run(),
+        $c
+          .getGlobalVariable($c.getVariable<EpisodeMetadata>('metadata').get('SeriesId').run())
+          .boolean()
+          .run(),
+      )
+      .run(),
+    $c.getVariable('metadata').setGlobalVariable('metadataGlobal').trigger().run(),
+    $c
+      .getVariable('metadata')
+      .setGlobalVariable(
+        $c
+          .string('pending_')
+          .concat($c.getVariable<EpisodeMetadata>('metadata').get('SeriesId').run())
+          .run(),
+      )
+      .run(),
   );
 }
 
