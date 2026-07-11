@@ -1,0 +1,58 @@
+{
+  "title": "AnimeStream",
+  "url": "https://anime.uniquestream.net",
+  "testCases": [
+    {
+      "url": "https://anime.uniquestream.net/watch/2newHZtl/Izuku-Midoriya-Origin",
+      "expected": {
+        "sync": true,
+        "title": "My Hero Academia",
+        "identifier": "oC7sJj1J_2newHZtl",
+        "overviewUrl": "https://anime.uniquestream.net/series/oC7sJj1J/My-Hero-Academia",
+        "episode": 1,
+        "nextEpUrl": "https://anime.uniquestream.net/watch/hd5sf03G/What-It-Takes-to-Be-a-Hero",
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/31964",
+        "epList": {
+          "2": "https://anime.uniquestream.net/watch/hd5sf03G/What-It-Takes-to-Be-a-Hero",
+          "6": "https://anime.uniquestream.net/watch/JvzJmNxK/Rage-You-Damn-Nerd"
+        }
+      }
+    },
+    {
+      "url": "https://anime.uniquestream.net/series/oC7sJj1J/My-Hero-Academia",
+      "expected": {
+        "sync": false,
+        "title": "My Hero Academia",
+        "identifier": "oC7sJj1J_2newHZtl",
+        "uiSelector": true,
+        "image": "https://media.uniquestream.net/anime/images/posters/480x720/995d0bcf2c09c3c175e49fc052d96895.webp",
+        "malUrl": "https://myanimelist.net/anime/31964",
+        "epList": {
+          "2": "https://anime.uniquestream.net/watch/hd5sf03G/What-It-Takes-to-Be-a-Hero",
+          "6": "https://anime.uniquestream.net/watch/JvzJmNxK/Rage-You-Damn-Nerd"
+        }
+      }
+    },
+    {
+      "url": "https://anime.uniquestream.net/watch/dv_715215/ninja-scroll",
+      "expected": {
+        "sync": true,
+        "title": "Ninja Scroll",
+        "identifier": "dv_715215",
+        "overviewUrl": "https://anime.uniquestream.net/movies/dv_715215/ninja-scroll",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://anime.uniquestream.net/movies/dv_715215/ninja-scroll",
+      "expected": {
+        "sync": false,
+        "title": "Ninja Scroll",
+        "identifier": "dv_715215",
+        "uiSelector": true,
+        "image": "https://media.uniquestream.net/anime/images/posters/480x720/3b1fecd03822c3744140747cc03d75f9.webp"
+      }
+    }
+  ]
+}

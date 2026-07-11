@@ -48,49 +48,26 @@ export const animepahe: PageInterface = {
     },
     getMalUrl($c) {
       return $c
-        .querySelector('meta[name=myanimelist]')
-        .ifThen($c =>
-          $c
+        .providerUrlUtility({
+          malId: $c
+            .querySelector('meta[name=mal], meta[name=myanimelist]')
             .getAttribute('content')
-            .setVariable('mal')
-            .string('https://myanimelist.net/anime/')
-            .concat($c.getVariable('mal').run())
-            .return()
+            .number()
+            .ifNotReturn()
             .run(),
-        )
-        .provider()
-        .equals('ANILIST')
-        .ifThen($c =>
-          $c
+          anilistId: $c
             .querySelector('meta[name=anilist]')
-            .ifThen($c =>
-              $c
-                .getAttribute('content')
-                .setVariable('al')
-                .string('https://anilist.co/anime/')
-                .concat($c.getVariable('al').run())
-                .return()
-                .run(),
-            )
+            .getAttribute('content')
+            .number()
+            .ifNotReturn()
             .run(),
-        )
-        .provider()
-        .equals('KITSU')
-        .ifThen($c =>
-          $c
+          kitsuId: $c
             .querySelector('meta[name=kitsu]')
-            .ifThen($c =>
-              $c
-                .getAttribute('content')
-                .setVariable('kitsu')
-                .string('https://kitsu.app/anime/')
-                .concat($c.getVariable('kitsu').run())
-                .return()
-                .run(),
-            )
+            .getAttribute('content')
+            .number()
+            .ifNotReturn()
             .run(),
-        )
-        .boolean(false)
+        })
         .run();
     },
   },

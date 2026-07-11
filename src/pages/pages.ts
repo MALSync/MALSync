@@ -70,14 +70,12 @@ import { ToonAnime } from './ToonAnime/main';
 import { ADKami } from './ADKami/main';
 import { Kaguya } from './Kaguya/main';
 import { Hdrezka } from './Hdrezka/main';
-import { SovetRomantica } from './SovetRomantica/main';
 import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 import { Docchi } from './Docchi/main';
 import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 import { AnimeSama } from './AnimeSama/main';
-import { MangaFire } from './MangaFire/main';
 import { projectsuki } from './projectsuki/main';
 import { AnimeBuff } from './AnimeBuff/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
@@ -172,14 +170,12 @@ export const pages = {
   ADKami,
   Kaguya,
   Hdrezka,
-  SovetRomantica,
   ADN,
   Aniyan,
   Docchi,
   FMTeam,
   Animelon,
   AnimeSama,
-  MangaFire,
   projectsuki,
   AnimeBuff,
   AnimeOnegai,

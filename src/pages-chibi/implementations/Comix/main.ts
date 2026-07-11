@@ -9,7 +9,7 @@ export const Comix: PageInterface = {
   urls: {
     match: ['*://comix.to/*'],
   },
-  search: 'https://comix.to/browse?q={searchtermPlus}',
+  search: 'https://comix.to/browse?q={searchtermPlus}&sort=relevance%3Adesc',
   sync: {
     isSyncPage($c) {
       return getJsonData($c).get('page').equals('chapter').run();
@@ -97,6 +97,12 @@ export const Comix: PageInterface = {
         .text()
         .contains('\\/\\/')
         .ifNotReturn($c.trigger().return().run())
+        .run();
+    },
+    overviewIsReady($c) {
+      return $c
+        .waitUntilTrue($c.querySelector('.mpage__desc-wrap').boolean().run())
+        .trigger()
         .run();
     },
     listChange($c) {

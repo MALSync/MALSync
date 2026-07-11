@@ -12,7 +12,7 @@ export const BigSolo: PageInterface = {
   urls: {
     match: ['*://bigsolo.org/*'],
   },
-  search: 'https://bigsolo.org/series?q={searchterm}',
+  search: 'https://bigsolo.org/catalogue?q={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c.querySelector('#readerpage').boolean().run();
@@ -21,16 +21,16 @@ export const BigSolo: PageInterface = {
       return $c.querySelector('#japanese-title').getAttribute('value').trim().ifNotReturn().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(3).run();
+      return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c.url().split('/').slice(0, 4).join('/').run();
+      return $c.url().split('/').slice(0, 5).join('/').run();
     },
     getVolume($c) {
       return $c.querySelector('#current-volume').getAttribute('value').trim().number().run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(4).ifNotReturn().number().run();
+      return $c.url().urlPart(5).ifNotReturn().number().run();
     },
     nextEpUrl($c) {
       const nextChapterId = $c
@@ -40,7 +40,7 @@ export const BigSolo: PageInterface = {
       return $c
         .if(
           nextChapterId.boolean().run(),
-          $c.this('sync.getOverviewUrl').concat('/').concat(nextChapterId.run()).run(),
+          $c.this('sync.getOverviewUrl').concat('/').concat(nextChapterId.run()).concat('/1').run(),
           $c.boolean(false).run(),
         )
         .run();
@@ -72,7 +72,7 @@ export const BigSolo: PageInterface = {
       return $c.querySelector('.detail-jp-title').text().trim().ifNotReturn().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(3).run();
+      return $c.url().urlPart(4).run();
     },
     getImage($c) {
       return $c.querySelector('img.detail-cover').getAttribute('src').ifNotReturn().run();
@@ -83,7 +83,7 @@ export const BigSolo: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.chapter-card-list-item').run();
+      return $c.querySelectorAll('.chapter-card-list-item:not(.licensed-chapter)').run();
     },
     elementEp($c) {
       return $c.getAttribute('data-chapter-id').ifNotReturn().number().run();
