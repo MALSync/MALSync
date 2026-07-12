@@ -360,11 +360,6 @@
     "name": "Hdrezka"
   },
   {
-    "domain": "https://sovetromantica.com",
-    "type": "anime",
-    "name": "SovetRomantica"
-  },
-  {
     "domain": "https://animationdigitalnetwork.com",
     "type": "anime",
     "name": "ADN"
@@ -393,11 +388,6 @@
     "domain": "https://anime-sama.tv",
     "type": "anime",
     "name": "AnimeSama"
-  },
-  {
-    "domain": "https://mangafire.to",
-    "type": "manga",
-    "name": "MangaFire"
   },
   {
     "domain": "https://projectsuki.com",
@@ -1015,6 +1005,11 @@
     "name": "TeamShadowi"
   },
   {
+    "domain": "https://tv.dmm.com",
+    "type": "anime",
+    "name": "DMM TV"
+  },
+  {
     "domain": "https://tsukuyomi.tv",
     "type": "anime",
     "name": "Tsukuyomi"
@@ -1028,5 +1023,20 @@
     "domain": "https://jellyfin.org",
     "type": "anime",
     "name": "Jellyfin"
+  },
+  {
+    "domain": "https://anime.uniquestream.net",
+    "type": "anime",
+    "name": "AnimeStream"
+  },
+  {
+    "domain": "https://mangafire.to",
+    "type": "manga",
+    "name": "MangaFire"
+  },
+  {
+    "domain": "https://animesdigital.org",
+    "type": "anime",
+    "name": "AnimesDigital"
   }
 ]
