@@ -17,6 +17,8 @@ import { moeclip } from './moeclip/main';
 import { tmofans } from './tmofans/main';
 import { JapScan } from './JapScan/main';
 import { Hulu } from './Hulu/main';
+import { PrimeVideo } from './PrimeVideo/main';
+import { HBOMax } from './HBOMax/main';
 import { Hidive } from './Hidive/main';
 import { MangaKatana } from './MangaKatana/main';
 import { AnimeXin } from './AnimeXin/main';
@@ -117,6 +119,8 @@ export const pages = {
   tmofans,
   JapScan,
   Hulu,
+  PrimeVideo,
+  HBOMax,
   Hidive,
   MangaKatana,
   AnimeXin,

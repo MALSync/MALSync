@@ -152,16 +152,6 @@ const generateManifest = () => {
         '128': 'icons/icon128.png',
       },
     },
-    sidebar_action: {
-      default_panel: 'sidebar.html',
-      open_at_install: false,
-      default_icon: {
-        '16': 'icons/icon16.png',
-        '32': 'icons/icon32.png',
-        '48': 'icons/icon48.png',
-        '128': 'icons/icon128.png',
-      },
-    },
     options_ui: {
       page: 'settings.html',
       browser_style: false,
@@ -221,6 +211,11 @@ const generateManifest = () => {
       .toISOString()
       .replace(/T.*/, '')
       .replace(/-/g, '.');
+  }
+
+  // Chrome doesn't support sidebar_action in Manifest V3
+  if (appTarget !== 'firefox') {
+    delete mani.sidebar_action;
   }
 
   return JSON.stringify(mani, null, 2);

@@ -1,0 +1,7 @@
+{
+  "search": "https://www.max.com/search?q={searchterm}",
+  "searchDatabase": "HBOMax",
+  "urls": {
+    "match": ["*://www.max.com/*", "*://www.hbomax.com/*", "*://play.hbomax.com/*", "*://play.max.com/*"]
+  }
+}

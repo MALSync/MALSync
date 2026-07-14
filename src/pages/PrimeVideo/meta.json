@@ -1,0 +1,7 @@
+{
+  "search": "https://www.primevideo.com/search?k={searchterm}",
+  "searchDatabase": "PrimeVideo",
+  "urls": {
+    "match": ["*://www.primevideo.com/*", "*://primevideo.com/*"]
+  }
+}

@@ -95,6 +95,16 @@
     "name": "Hulu"
   },
   {
+    "domain": "https://www.primevideo.com",
+    "type": "anime",
+    "name": "PrimeVideo"
+  },
+  {
+    "domain": "https://www.max.com",
+    "type": "anime",
+    "name": "HBOMax"
+  },
+  {
     "domain": "https://www.hidive.com",
     "type": "anime",
     "name": "Hidive"
