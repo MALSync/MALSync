@@ -271,8 +271,6 @@ export function shortcutListener(callback) {
     function keyEvent(e) {
 
       e = e || event;
-      // Holding a key fires repeated keydowns, each re-triggering the shortcut
-      // (e.g. toggling the correction popup open/closed).
       if (e.repeat) return;
       const key = e.which || e.keyCode;
       keyMap[key] = e.type === 'keydown';
