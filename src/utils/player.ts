@@ -271,6 +271,7 @@ export function shortcutListener(callback) {
     function keyEvent(e) {
 
       e = e || event;
+      if (e.repeat) return;
       const key = e.which || e.keyCode;
       keyMap[key] = e.type === 'keydown';
 
