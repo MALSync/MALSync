@@ -89,7 +89,7 @@
     "build:missingPermissions": "node webpackConfig/missingPermissions.js",
     "build:autoUrls": "node webpackConfig/autoUrls.mjs && npm run build:missingPermissions",
     "package": "npm run package:webextension",
-    "package:webextension": "node package/webextension.js",
+    "package:webextension": "node package/webextension.mjs",
     "package:firefox": "node node_modules/web-ext/bin/web-ext sign -a dist -s dist/webextension --api-key $SIGN_KEY --api-secret $SIGN_SECRET --channel unlisted",
     "package:chrome": "CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} EXTENSION_ID=${EXTENSION_ID} REFRESH_TOKEN=${REFRESH_TOKEN} node ./package/deployChrome.mjs",
     "dev:webextension:userscript": "npm run dev:webextension | npm run dev:userscript",
