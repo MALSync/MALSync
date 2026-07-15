@@ -1,12 +1,20 @@
 import { pageInterface } from '../pageInterface';
+import {
+  interceptFetch,
+  parseSeasonEpisodeText,
+  slugifyTitle,
+} from '../../utils/streamingProviderHelpers';
 
-let episode = 0;
-let season = 0;
+let episode = 1;
+let season = 1;
 let hboMaxId: string | undefined;
 let name = '';
-let movie = false;
 let nextEp = '';
-let apiDataFetched = false;
+
+const TITLE_SELECTOR = '[data-testid="player-ux-asset-title"]';
+const SEASON_EPISODE_SELECTOR = '[data-testid="player-ux-season-episode"]';
+// HBO Max's "up next" API response, used to resolve a link to the next episode.
+const API_URL_MATCH = 'nextVideos';
 
 export const HBOMax: pageInterface = {
   name: 'HBOMax',
@@ -14,25 +22,31 @@ export const HBOMax: pageInterface = {
   languages: ['Many'],
   type: 'anime',
   isSyncPage(url: string) {
-    if (url.includes('/video/') || url.includes('/watch/')) {
-      return true;
-    }
-    return false;
+    return url.includes('/video/') || url.includes('/watch/');
   },
   sync: {
     getTitle() {
       return name;
     },
     getIdentifier() {
-      return `${hboMaxId}?s=${season}`;
+      // Deliberately title-based (not `hboMaxId`): the id segment parsed out
+      // of HBO Max's /video/watch/{a}/{b} URL was only confirmed for a single
+      // episode. If it turns out to be per-episode rather than per-series,
+      // using it here would silently break episode progress tracking. The
+      // series title is guaranteed stable across episodes.
+      return `${slugifyTitle(name)}?s=${season}`;
     },
     getOverviewUrl() {
-      if (window.location.href.includes('/video/')) {
-        const parts = window.location.href.split('/video/');
-        const id = parts[1].split('?')[0].split('/')[0];
-        return `${HBOMax.domain}/series/${id}`;
+      const currentUrl = window.location.href;
+      const origin = window.location.origin;
+      if (currentUrl.includes('/video/')) {
+        const videoPart = currentUrl.split('/video/')[1];
+        const seriesId = videoPart ? videoPart.split('?')[0].split('/')[0] : undefined;
+        if (seriesId) {
+          return `${origin}/series/${seriesId}`;
+        }
       }
-      return `${HBOMax.domain}/watch/${hboMaxId}`;
+      return currentUrl;
     },
     getEpisode() {
       return episode;
@@ -41,244 +55,126 @@ export const HBOMax: pageInterface = {
       return nextEp;
     },
   },
-  overview: {
-    getTitle() {
-      const titleElement = j.$('[data-testid="player-ux-asset-title"]');
-      if (titleElement && titleElement.text()) {
-        return titleElement.text().trim();
-      }
-      return name;
-    },
-    getIdentifier() {
-      if (movie) {
-        return `${hboMaxId}?s=1`;
-      }
-      const seasonEpisodeElement = j.$('[data-testid="player-ux-season-episode"]');
-      let seasonNum = 1;
-      if (seasonEpisodeElement.length) {
-        const seasonText = seasonEpisodeElement.text();
-        const match = seasonText.match(/T(\d+)/);
-        if (match) {
-          seasonNum = parseInt(match[1]);
-        }
-      }
-      return `${hboMaxId}?s=${seasonNum}`;
-    },
-    uiSelector(selector: string) {
-      const titleContainer = j.$('[data-testid="player-ux-asset-title"]').parent();
-      if (titleContainer.length) {
-        titleContainer.after(j.html(selector));
-      }
-    },
-  },
   init(page: any) {
     // eslint-disable-next-line no-void
     void api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
 
-    function tryExtractFromAPI(data: any): boolean {
+    function tryExtractNextEpisodeFromAPI(data: any): void {
       try {
-        // Extract next episode info from API response
-        if (data.data && data.data.length > 0) {
-          const nextVideo = data.data[0];
-          const attrs = nextVideo.attributes || {};
-          const videoType = attrs.videoType || '';
+        const nextVideo = data && data.data && data.data[0];
+        const attributes = nextVideo && nextVideo.attributes;
+        if (!nextVideo || !attributes || attributes.videoType !== 'EPISODE') {
+          return;
+        }
 
-          // Only process if it's an episode
-          if (videoType === 'EPISODE') {
-            // Try to find the route to the next episode
-            const routes = (data.included || []).filter(
-              (item: any) =>
-                item.type === 'route' && item.attributes && item.attributes.canonical,
-            );
-            if (routes.length > 0) {
-              const routeUrl = (routes[0] as any).attributes?.url;
-              if (routeUrl) {
-                nextEp = `${HBOMax.domain}${routeUrl}`;
-                con.log('HBOMax - Next episode URL extracted from API:', nextEp);
-                return true;
-              }
-            }
-          }
+        const included = data.included || [];
+        const route = included.find(
+          (item: any) => item.type === 'route' && item.attributes && item.attributes.canonical,
+        );
+        const routeUrl = route && route.attributes && route.attributes.url;
+        if (routeUrl) {
+          nextEp = `${window.location.origin}${routeUrl}`;
         }
       } catch (e) {
-        con.log('Could not extract next episode from API:', e);
-      }
-      return false;
-    }
-
-    function setupAPIInterceptor(): void {
-      try {
-        // Override fetch to intercept API responses
-        const originalFetch = window.fetch;
-        // eslint-disable-next-line no-inner-declarations
-        async function interceptedFetch(input: any, init?: any) {
-          const response = await originalFetch(input, init);
-          try {
-            let url: string | undefined;
-            if (typeof input === 'string') {
-              url = input;
-            } else if (input && typeof input === 'object' && input.url) {
-              url = input.url;
-            }
-            if (url && url.includes('nextVideos')) {
-              const clonedResponse = response.clone();
-              const data = await clonedResponse.json();
-              tryExtractFromAPI(data);
-            }
-          } catch (e) {
-            // Silent fail
-          }
-          return response;
-        }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (window as any).fetch = interceptedFetch;
-      } catch (e) {
-        con.log('Could not setup API interceptor:', e);
+        // API interception is optional; not having a "next episode" link is not fatal.
       }
     }
 
     function extractFromDOM(): boolean {
-      try {
-        // Get title from page using HBO Max's test IDs
-        const titleElement = j.$('[data-testid="player-ux-asset-title"]');
-        con.log('HBOMax extractFromDOM() - Looking for title. Found:', titleElement.length);
-        if (!titleElement.length) {
-          con.log('HBOMax - Title element not found');
-          return false;
-        }
-
-        name = titleElement.text().trim();
-        con.log('HBOMax - Title extracted:', name);
-
-        // Get episode and season info from season-episode element (DOM fallback)
-        // Format: "T{season} Ep.{episode}:"
-        const seasonEpisodeElement = j.$('[data-testid="player-ux-season-episode"]');
-        const seasonEpisodeText = seasonEpisodeElement.text().trim();
-        con.log('HBOMax - Season/Episode text:', seasonEpisodeText);
-
-        if (seasonEpisodeText) {
-          // Parse season from "T1 Ep.1:" format
-          const seasonMatch = seasonEpisodeText.match(/T(\d+)/);
-          if (seasonMatch) {
-            season = parseInt(seasonMatch[1]);
-          } else {
-            season = 1;
-          }
-
-          // Parse episode from "T1 Ep.1:" format
-          const episodeMatch = seasonEpisodeText.match(/Ep\.(\d+)/);
-          if (episodeMatch) {
-            episode = parseInt(episodeMatch[1]);
-          } else {
-            episode = 1;
-          }
-        } else {
-          // If no season/episode info found, it's likely a movie
-          episode = 1;
-          season = 1;
-          movie = true;
-        }
-
-        con.log(
-          // eslint-disable-next-line max-len
-          `HBOMax - Data extracted from DOM - Title: ${name}, Episode: ${episode}, Season: ${season}`,
-        );
-        return true;
-      } catch (e) {
-        con.error('HBOMax DOM extraction error:', e);
+      const titleElement = j.$(TITLE_SELECTOR);
+      if (!titleElement.length) {
         return false;
       }
+
+      name = titleElement.text().trim();
+
+      const seasonEpisodeText = j.$(SEASON_EPISODE_SELECTOR).text().trim();
+      const parsed = parseSeasonEpisodeText(seasonEpisodeText);
+
+      if (parsed) {
+        season = parsed.season;
+        episode = parsed.episode;
+      } else {
+        // No season/episode info rendered for this title - treat it as a movie.
+        season = 1;
+        episode = 1;
+      }
+
+      return true;
     }
 
-    async function checkPage(): Promise<boolean> {
-      try {
-        // Extract ID from URL
-        const url = window.location.href;
-        let id: string | undefined;
-        con.log('HBOMax checkPage() - URL:', url);
+    function checkPage(): boolean {
+      const url = window.location.href;
+      let id: string | undefined;
 
-        if (url.includes('/video/')) {
-          // Format: /video/[ID]/[ID]
-          const [, videoPart] = url.split('/video/');
-          if (videoPart) {
-            // Get first ID segment
-            [id] = videoPart.split('?')[0].split('/');
-          }
-          con.log('HBOMax - Extracted ID from /video/:', id);
-        } else if (url.includes('/watch/')) {
-          // Format: /watch/[ID]
-          const [, watchPart] = url.split('/watch/');
-          if (watchPart) {
-            [id] = watchPart.split('?')[0].split('/');
-          }
-          con.log('HBOMax - Extracted ID from /watch/:', id);
-        }
+      if (url.includes('/video/')) {
+        // Format: /video/watch/{id}/{episodeId}
+        const videoPart = url.split('/video/')[1];
+        id = videoPart ? videoPart.split('?')[0].split('/')[0] : undefined;
+      } else if (url.includes('/watch/')) {
+        // Format: /watch/{id}
+        const watchPart = url.split('/watch/')[1];
+        id = watchPart ? watchPart.split('?')[0].split('/')[0] : undefined;
+      }
 
-        if (!id) {
-          con.log('HBOMax - No ID found');
-          return false;
-        }
-
-        hboMaxId = id;
-
-        // Extract metadata from DOM
-        con.log('HBOMax - Calling extractFromDOM()');
-        if (!extractFromDOM()) {
-          con.log('HBOMax - extractFromDOM() failed');
-          return false;
-        }
-
-        con.log(
-          // eslint-disable-next-line max-len
-          `HBOMax - Title: ${name}, Episode: ${episode}, Season: ${season}, ID: ${hboMaxId}, NextEp: ${nextEp}`,
-        );
-        return true;
-      } catch (e) {
-        con.error('HBOMax error:', e);
+      if (!id) {
         return false;
       }
+
+      hboMaxId = id;
+
+      if (!extractFromDOM()) {
+        return false;
+      }
+
+      con.log(
+        // eslint-disable-next-line max-len
+        `HBOMax - Title: ${name}, Episode: ${episode}, Season: ${season}, ID: ${hboMaxId}`,
+      );
+      return true;
     }
 
     function startCheck() {
-      con.log('HBOMax startCheck() called');
+      // Reset state left over from a previous episode/navigation so stale
+      // data can never leak into the next `checkPage()` call.
+      nextEp = '';
+
       $('html').addClass('miniMAL-hide');
 
-      // Setup API interceptor to capture responses
-      setupAPIInterceptor();
-
-      if (window.location.href.includes('/video/') || window.location.href.includes('/watch/')) {
-        con.log('HBOMax - URL matches /video/ or /watch/');
-        utils.waitUntilTrue(
-          function () {
-            const titleElement = j.$('[data-testid="player-ux-asset-title"]');
-            con.log('HBOMax - Looking for title element. Found:', titleElement.length);
-            return titleElement.length > 0;
-          },
-          // eslint-disable-next-line func-names
-          async function () {
-            con.log('HBOMax - Title element found! Calling checkPage()');
-            if (await checkPage()) {
-              con.log('HBOMax - checkPage() returned true. Calling page.handlePage()');
-              page.handlePage();
-              $('html').removeClass('miniMAL-hide');
-            } else {
-              con.log('HBOMax - checkPage() returned false');
-              $('html').removeClass('miniMAL-hide');
-            }
-          },
-        );
-      } else {
-        con.log('HBOMax - URL does NOT match /video/ or /watch/. Current URL:', window.location.href);
+      if (!window.location.href.includes('/video/') && !window.location.href.includes('/watch/')) {
+        return;
       }
+
+      interceptFetch((url, response) => {
+        if (!url.includes(API_URL_MATCH)) return;
+        response
+          .clone()
+          .json()
+          .then(data => tryExtractNextEpisodeFromAPI(data))
+          .catch(() => {
+            // Silent fail - the next episode link is a nice-to-have, not required for sync.
+          });
+      });
+
+      utils.waitUntilTrue(
+        function () {
+          return j.$(TITLE_SELECTOR).length > 0;
+        },
+        function () {
+          if (checkPage()) {
+            page.handlePage();
+          }
+          $('html').removeClass('miniMAL-hide');
+        },
+      );
     }
 
     startCheck();
 
     utils.urlChangeDetect(function () {
       page.reset();
-      con.log('HBOMax URL change');
       startCheck();
     });
   },
