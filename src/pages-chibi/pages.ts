@@ -110,6 +110,7 @@ import { Jellyfin } from './implementations/Jellyfin/main';
 import { AnimeStream } from './implementations/AnimeStream/main';
 import { MangaFire } from './implementations/MangaFire/main';
 import { AnimesDigital } from './implementations/AnimesDigital/main';
+import { DonghuaStream } from './implementations/DonghuaStream/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -222,4 +223,5 @@ export const pages: { [key: string]: PageInterface } = {
   AnimeStream,
   MangaFire,
   AnimesDigital,
+  DonghuaStream,
 };
