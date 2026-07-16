@@ -105,6 +105,7 @@ import { TeamShadowi } from './implementations/TeamShadowi/main';
 import { TopManhua } from './implementations/TopManhua/main';
 import { DMMTV } from './implementations/DMMTV/main';
 import { Tsukuyomi } from './implementations/Tsukuyomi/main';
+import { MediocreScan } from './implementations/MediocreScan/main';
 import { HijalaScans } from './implementations/HijalaScans/main';
 import { Jellyfin } from './implementations/Jellyfin/main';
 import { AnimeStream } from './implementations/AnimeStream/main';
@@ -195,6 +196,7 @@ export const pages: { [key: string]: PageInterface } = {
   Mgeko,
   MangaClash,
   TopManhua,
+  MediocreScan,
   LuaScans,
   KaynScan,
   ComicWalker,
