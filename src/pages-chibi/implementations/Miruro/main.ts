@@ -13,6 +13,9 @@ export const Miruro: PageInterface = {
       '*://*.miruro.bz/*',
       '*://*.miruro.ru/*',
     ],
+    player: {
+      strm: ['*://strm.cx/*'],
+    },
   },
   search: 'https://www.miruro.to/search?query={searchtermPlus}',
   sync: {
