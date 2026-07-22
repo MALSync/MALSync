@@ -1,4 +1,5 @@
 import { PageInterface } from './pageInterface';
+import { ANIMO } from './implementations/ANIMO/main';
 
 import { animeav1 } from './implementations/animeav1/main';
 import { anicrush } from './implementations/anicrush/main';
@@ -112,6 +113,7 @@ import { MangaFire } from './implementations/MangaFire/main';
 import { AnimesDigital } from './implementations/AnimesDigital/main';
 
 export const pages: { [key: string]: PageInterface } = {
+  ANIMO,
   animeav1,
   anicrush,
   anikoto,
