@@ -397,14 +397,18 @@ export class AnilistClass {
             }
 
             await en.fn.initProgress();
-            if (en.fn.progress?.isAiring() && en.fn.progress.progress()?.getCurrentEpisode()) {
+            const progress = en.fn.progress;
+            const progressEpisode = progress
+              ? progress.getDisplayEpisode(en.watchedEp, en.totalEp)
+              : null;
+            if (progress && progressEpisode) {
               element
                 .parent()
                 .find('.progress')
                 .first()
                 .append(
                   j.html(
-                    ` <span class="mal-sync-ep-pre" title="${en.fn.progress.progress()!.getAutoText()}">[<span style="border-bottom: 1px dotted ${en.fn.progress.getColor()};">${en.fn.progress.progress()!.getCurrentEpisode()!}</span>]</span>`,
+                    ` <span class="mal-sync-ep-pre" title="${progress.progress()!.getAutoText()}">[<span style="border-bottom: 1px dotted ${progress.getColor()};">${progressEpisode}</span>]</span>`,
                   ),
                 );
             }
