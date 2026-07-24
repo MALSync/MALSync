@@ -260,6 +260,7 @@ module.exports = {
       '*://*.m1xdrop.com/e/*',
       '*://*.m1xdrop.bz/e/*',
       '*://*.miixdrop.net/e/*',
+      '*://*.miiiixdrop.net/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -577,6 +578,8 @@ module.exports = {
       '*://jeanprofessorcentral.com/e/*',
       '*://juliewomanwish.com/e/*',
       '*://garylargeavailable.com/e/*',
+      '*://jennifereconomicgive.com/e/*',
+      '*://pamelachangemission.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -847,17 +850,6 @@ module.exports = {
   // miruro
   bun: {
     match: ['*://*.bunniescdn.online/*'],
-  },
-  // animekai
-  megaup: {
-    match: [
-      '*://megaup.cc/e/*',
-      '*://megaup.site/e/*',
-      '*://megaup.live/e/*',
-      '*://4spromax.site/e/*',
-      '*://megaup22.online/e/*',
-      '*://megaup.nl/e/*',
-    ],
   },
   // hikari
   boosterx: {

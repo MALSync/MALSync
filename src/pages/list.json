@@ -105,11 +105,6 @@
     "name": "MangaKatana"
   },
   {
-    "domain": "https://manga4life.com",
-    "type": "manga",
-    "name": "manga4life"
-  },
-  {
     "domain": "https://animexin.vip",
     "type": "anime",
     "name": "AnimeXin"
@@ -190,11 +185,6 @@
     "name": "WuxiaWorld"
   },
   {
-    "domain": "https://reaperscans.com",
-    "type": "manga",
-    "name": "ReaperScans"
-  },
-  {
     "domain": "https://lynxscans.com",
     "type": "manga",
     "name": "LynxScans"
@@ -220,11 +210,6 @@
     "name": "tioanime"
   },
   {
-    "domain": "https://mangasee123.com",
-    "type": "manga",
-    "name": "MangaSee"
-  },
-  {
     "domain": "https://okanime.tv",
     "type": "anime",
     "name": "Okanime"
@@ -233,11 +218,6 @@
     "domain": "https://bs.to",
     "type": "anime",
     "name": "bs.to"
-  },
-  {
-    "domain": "https://jellyfin.org/",
-    "type": "anime",
-    "name": "Jellyfin"
   },
   {
     "domain": "https://an1me.to",
@@ -380,11 +360,6 @@
     "name": "Hdrezka"
   },
   {
-    "domain": "https://sovetromantica.com",
-    "type": "anime",
-    "name": "SovetRomantica"
-  },
-  {
     "domain": "https://animationdigitalnetwork.com",
     "type": "anime",
     "name": "ADN"
@@ -413,11 +388,6 @@
     "domain": "https://anime-sama.tv",
     "type": "anime",
     "name": "AnimeSama"
-  },
-  {
-    "domain": "https://mangafire.to",
-    "type": "manga",
-    "name": "MangaFire"
   },
   {
     "domain": "https://projectsuki.com",
@@ -580,11 +550,6 @@
     "name": "AniXL"
   },
   {
-    "domain": "https://bato.to",
-    "type": "manga",
-    "name": "bato"
-  },
-  {
     "domain": "https://www.crunchyroll.com",
     "type": "anime",
     "name": "Crunchyroll"
@@ -593,11 +558,6 @@
     "domain": "https://animevost.org",
     "type": "anime",
     "name": "AnimeVost"
-  },
-  {
-    "domain": "https://animekai.to",
-    "type": "anime",
-    "name": "AnimeKAI"
   },
   {
     "domain": "https://fireani.me",
@@ -645,7 +605,7 @@
     "name": "Topanimes"
   },
   {
-    "domain": "https://qiscans.org",
+    "domain": "https://qimanga.com",
     "type": "manga",
     "name": "QiScans"
   },
@@ -675,7 +635,7 @@
     "name": "WitchScans"
   },
   {
-    "domain": "https://sadscans.com",
+    "domain": "https://sadscans.net",
     "type": "manga",
     "name": "Sadscans"
   },
@@ -845,7 +805,7 @@
     "name": "MangaPlus"
   },
   {
-    "domain": "https://kagane.org",
+    "domain": "https://kagane.to",
     "type": "manga",
     "name": "Kagane"
   },
@@ -925,11 +885,6 @@
     "name": "LagoonScan"
   },
   {
-    "domain": "https://weebdex.org/",
-    "type": "manga",
-    "name": "WeebDex"
-  },
-  {
     "domain": "https://setsuscans.com",
     "type": "manga",
     "name": "SetsuScans"
@@ -955,7 +910,7 @@
     "name": "LuaScans"
   },
   {
-    "domain": "https://kaynscan.com",
+    "domain": "https://kaynscan.org",
     "type": "manga",
     "name": "KaynScan"
   },
@@ -1015,6 +970,11 @@
     "name": "allManga"
   },
   {
+    "domain": "https://mkissa.to",
+    "type": "manga",
+    "name": "Mkissa"
+  },
+  {
     "domain": "https://gaiaflix.live",
     "type": "anime",
     "name": "GaiaFlix"
@@ -1040,14 +1000,14 @@
     "name": "ElfToon"
   },
   {
-    "domain": "https://hianime.to",
-    "type": "anime",
-    "name": "HiAnime"
-  },
-  {
     "domain": "https://www.team-shadowi.com/",
     "type": "manga",
     "name": "TeamShadowi"
+  },
+  {
+    "domain": "https://tv.dmm.com",
+    "type": "anime",
+    "name": "DMM TV"
   },
   {
     "domain": "https://tsukuyomi.tv",
@@ -1058,5 +1018,25 @@
     "domain": "https://en-hijala.com",
     "type": "manga",
     "name": "HijalaScans"
+  },
+  {
+    "domain": "https://jellyfin.org",
+    "type": "anime",
+    "name": "Jellyfin"
+  },
+  {
+    "domain": "https://anime.uniquestream.net",
+    "type": "anime",
+    "name": "AnimeStream"
+  },
+  {
+    "domain": "https://mangafire.to",
+    "type": "manga",
+    "name": "MangaFire"
+  },
+  {
+    "domain": "https://animesdigital.org",
+    "type": "anime",
+    "name": "AnimesDigital"
   }
 ]

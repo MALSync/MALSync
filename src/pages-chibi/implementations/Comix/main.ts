@@ -9,7 +9,7 @@ export const Comix: PageInterface = {
   urls: {
     match: ['*://comix.to/*'],
   },
-  search: 'https://comix.to/browse?keyword={searchtermPlus}&order=relevance%3Adesc',
+  search: 'https://comix.to/browse?q={searchtermPlus}&sort=relevance%3Adesc',
   sync: {
     isSyncPage($c) {
       return getJsonData($c).get('page').equals('chapter').run();
@@ -25,9 +25,6 @@ export const Comix: PageInterface = {
     },
     getEpisode($c) {
       return getJsonData($c).get('number').number().run();
-    },
-    getImage($c) {
-      return $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run();
     },
     getMalUrl($c) {
       return $c
@@ -59,7 +56,7 @@ export const Comix: PageInterface = {
       return getJsonData($c).get('manga_id').run();
     },
     getImage($c) {
-      return $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run();
+      return $c.querySelector('.mpage__poster img').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.mpage__desc-wrap').uiBefore().run();
@@ -100,6 +97,12 @@ export const Comix: PageInterface = {
         .text()
         .contains('\\/\\/')
         .ifNotReturn($c.trigger().return().run())
+        .run();
+    },
+    overviewIsReady($c) {
+      return $c
+        .waitUntilTrue($c.querySelector('.mpage__desc-wrap').boolean().run())
+        .trigger()
         .run();
     },
     listChange($c) {

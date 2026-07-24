@@ -1,6 +1,0 @@
-{
-  "search": "https://mangasee123.com/search/?name={searchterm}",
-  "urls": {
-    "match": ["*://*.mangasee123.com/manga*", "*://*.mangasee123.com/read-online*"]
-  }
-}

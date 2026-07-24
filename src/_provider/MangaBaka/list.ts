@@ -83,14 +83,14 @@ export class UserList extends ListAbstract {
     }
   }
 
-  private limit = 100;
+  private limit = 50;
 
   async getPart() {
     if (this.listType !== 'manga') {
       throw new Error('MangaBaka only supports manga');
     }
 
-    this.limit = 100;
+    this.limit = 50;
     this.offset = Math.max(1, this.offset);
     if (this.modes.frontend && !this.modes.sortAiring) {
       this.limit = 24;

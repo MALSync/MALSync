@@ -5,13 +5,13 @@ const CHAPTER_REGEX = '[Bb](?:ö|Ö)l(?:ü|Ü)m\\s*([\\d.]+)';
 
 export const Sadscans: PageInterface = {
   name: 'Sadscans',
-  domain: ['https://sadscans.com'],
+  domain: ['https://sadscans.net'],
   languages: ['Turkish'],
   type: 'manga',
   urls: {
-    match: ['*://sadscans.com/*', '*://www.sadscans.com/*'],
+    match: ['*://*.sadscans.com/*', '*://*.sadscans.net/*'],
   },
-  search: 'https://sadscans.com/series?search={searchtermPlus}',
+  search: 'https://sadscans.net/series?search={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

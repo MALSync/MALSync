@@ -8,7 +8,7 @@ import {
 import type { BakaSeries, BakaSorting, BakaState } from './types';
 import { startFinishDate, status } from '../definitions';
 
-export const apiDomain = 'https://api.mangabaka.dev';
+export const apiDomain = 'https://api.mangabaka.org';
 
 export const authenticationUrl = 'https://malsync.moe/mangabaka/oauth';
 

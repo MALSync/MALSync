@@ -13,6 +13,9 @@ export const Miruro: PageInterface = {
       '*://*.miruro.bz/*',
       '*://*.miruro.ru/*',
     ],
+    player: {
+      strm: ['*://strm.cx/*'],
+    },
   },
   search: 'https://www.miruro.to/search?query={searchtermPlus}',
   sync: {
@@ -41,19 +44,20 @@ export const Miruro: PageInterface = {
       return $c.url().urlParam('ep').number().run();
     },
     getMalUrl($c) {
-      const getMalId = $c
-        .querySelector("a[href^='https://myanimelist.net']")
-        .getAttribute('href')
+      return $c
+        .providerUrlUtility({
+          malUrl: $c
+            .querySelector("a[href^='https://myanimelist.net']")
+            .getAttribute('href')
+            .ifNotReturn()
+            .run(),
+          anilistUrl: $c
+            .querySelector("a[href^='https://anilist.co']")
+            .getAttribute('href')
+            .ifNotReturn()
+            .run(),
+        })
         .run();
-      const getAnilistId = $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .querySelector("a[href^='https://anilist.co']")
-        .getAttribute('href')
-        .run();
-
-      return $c.coalesce($c.fn(getAnilistId).run(), $c.fn(getMalId).run()).ifNotReturn().run();
     },
   },
   overview: {
@@ -76,19 +80,20 @@ export const Miruro: PageInterface = {
       return $c.querySelector('#root h1').uiAfter().run();
     },
     getMalUrl($c) {
-      const getMalId = $c
-        .querySelector("a[href^='https://myanimelist.net']")
-        .getAttribute('href')
+      return $c
+        .providerUrlUtility({
+          malUrl: $c
+            .querySelector("a[href^='https://myanimelist.net']")
+            .getAttribute('href')
+            .ifNotReturn()
+            .run(),
+          anilistUrl: $c
+            .querySelector("a[href^='https://anilist.co']")
+            .getAttribute('href')
+            .ifNotReturn()
+            .run(),
+        })
         .run();
-      const getAnilistId = $c
-        .provider()
-        .equals('ANILIST')
-        .ifNotReturn()
-        .querySelector("a[href^='https://anilist.co']")
-        .getAttribute('href')
-        .run();
-
-      return $c.coalesce($c.fn(getAnilistId).run(), $c.fn(getMalId).run()).ifNotReturn().run();
     },
     getImage($c) {
       return $c.querySelector('img[alt="Cover"]').getAttribute('src').ifNotReturn().run();

@@ -1260,7 +1260,7 @@
         "description": "Button to show less the description"
     },
     "settings_presenceShowMalsync": {
-        "message": "إظهار Mal-Sync في العنوان الحالي بدلا من الأنمي / المانجا",
+        "message": "إظهار MAL-Sync في العنوان الحالي بدلا من الأنمي / المانجا",
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     },
     "updateCheck_Refresh": {
@@ -1536,5 +1536,8 @@
     "locale": {
         "message": "ar",
         "description": "Current locale"
+    },
+    "overview_sidebar_Type": {
+        "message": "النوع:"
     }
 }

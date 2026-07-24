@@ -2,28 +2,28 @@ import { PageInterface } from '../../pageInterface';
 
 export const KaynScan: PageInterface = {
   name: 'KaynScan',
-  domain: 'https://kaynscan.com',
+  domain: 'https://kaynscan.org',
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://kaynscan.com/*'],
+    match: ['*://kaynscan.org/*'],
   },
-  search: 'https://kaynscan.com/series/?q={searchtermPlus}',
+  search: 'https://kaynscan.org/series/?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
-        .and($c.url().urlPart(4).boolean().run(), $c.url().urlPart(3).equals('chapter').run())
+        .and($c.url().urlPart(4).boolean().run(), $c.url().urlPart(5).contains('chapter').run())
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.opacity-100[alt]').text().trim().run();
+      return $c.querySelector('a[href*="/series/"] p.text-sm').text().trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getOverviewUrl').this('overview.getIdentifier').run();
     },
     getOverviewUrl($c) {
       return $c
-        .querySelector('.opacity-100[alt]')
+        .querySelector('a[href*="/series/"]')
         .getAttribute('href')
         .ifNotReturn()
         .urlAbsolute()
@@ -31,27 +31,16 @@ export const KaynScan: PageInterface = {
     },
     getEpisode($c) {
       return $c
-        .querySelector('.opacity-100[alt]')
-        .closest('span')
-        .ifNotReturn()
+        .querySelector('a[href*="/series/"] h1')
         .text()
         .regex('chapter[ _-]?(\\d+)', 1)
         .number()
         .run();
     },
-    nextEpUrl($c) {
-      return $c
-        .querySelector('img[src*="arrow-right"]')
-        .closest('a')
-        .getAttribute('href')
-        .ifNotReturn()
-        .urlAbsolute()
-        .run();
-    },
     readerConfig: [
       {
-        current: $c => $c.querySelectorAll('#pages img').countAbove().run(),
-        total: $c => $c.querySelectorAll('#pages img').length().run(),
+        current: $c => $c.querySelectorAll('[data-reader-page-image]').countAbove().run(),
+        total: $c => $c.querySelectorAll('[data-reader-page-image]').length().run(),
       },
     ],
   },
@@ -62,11 +51,12 @@ export const KaynScan: PageInterface = {
           $c.url().urlPart(4).boolean().run(),
           $c.url().urlPart(3).equals('series').run(),
           $c.url().urlPart(4).matches('genre').boolean().not().run(),
+          $c.url().urlPart(5).boolean().not().run(),
         )
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').text().trim().run();
+      return $c.querySelector('h1[itemprop="name"]').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -75,18 +65,18 @@ export const KaynScan: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('h1').next().uiAfter().run();
+      return $c.querySelector('h1[itemprop="name"]').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('#chapters a').run();
+      return $c.querySelectorAll('a[data-astro-prefetch]').run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.getAttribute('title').regex('chapter[ _-]?(\\d+)', 1).number().run();
+      return $c.find('.text-xs.font-medium').text().regex('chapter[ _-]?(\\d+)', 1).number().run();
     },
   },
   lifecycle: {
@@ -95,9 +85,6 @@ export const KaynScan: PageInterface = {
     },
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
-    },
-    syncIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('#pages_panel').boolean().run()).trigger().run(); // locked chapter
     },
   },
 };

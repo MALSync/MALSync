@@ -301,7 +301,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
         sources.push({
           text: title,
-          url: `https://shikimori.one/mangas/${src.shikimori.id}`,
+          url: `https://shikimori.io/mangas/${src.shikimori.id}`,
         });
       }
       if (src.anime_news_network && src.anime_news_network.id) {

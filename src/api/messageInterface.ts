@@ -41,11 +41,6 @@ export interface minimalWindow {
   left: number;
 }
 
-export interface emitter {
-  name: 'emitter';
-  item: any;
-}
-
 export interface notification {
   url: string;
   title: string;
@@ -67,10 +62,6 @@ export interface databaseMessage {
   };
 }
 
-export interface registerEmitterMessage {
-  name: 'registerEmitter';
-}
-
 export type sendMessageI =
   | xhrI
   | iframeDone
@@ -78,9 +69,7 @@ export type sendMessageI =
   | videoTimeSet
   | minimalWindow
   | content
-  | emitter
   | notificationMessage
-  | databaseMessage
-  | registerEmitterMessage;
+  | databaseMessage;
 
 export type responseMessageI = xhrResponseI;
