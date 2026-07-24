@@ -1,6 +1,7 @@
 import { PageInterface } from './pageInterface';
 
 import { animeav1 } from './implementations/animeav1/main';
+import { AnimeSurf } from './implementations/AnimeSurf/main';
 import { anicrush } from './implementations/anicrush/main';
 import { anikoto } from './implementations/AniKoto/main';
 import { mangaNato } from './implementations/mangaNato/main';
@@ -112,6 +113,7 @@ import { Jellyfin } from './implementations/Jellyfin/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
+  AnimeSurf,
   anicrush,
   anikoto,
   mangaNato,
