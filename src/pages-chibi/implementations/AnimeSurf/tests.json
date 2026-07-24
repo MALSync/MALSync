@@ -1,0 +1,27 @@
+{
+  "title": "AnimeSurf",
+  "url": "https://anime.surf",
+  "testCases": [
+    {
+      "url": "https://anime.surf/watch/113415?episode=1",
+      "expected": {
+        "sync": true,
+        "title": "JUJUTSU KAISEN",
+        "identifier": "113415",
+        "overviewUrl": "https://anime.surf/anime/113415",
+        "nextEpUrl": "https://anime.surf/watch/113415?episode=2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://anime.surf/anime/113415",
+      "expected": {
+        "sync": false,
+        "title": "JUJUTSU KAISEN",
+        "identifier": "113415",
+        "uiSelector": true
+      }
+    }
+  ]
+}
