@@ -158,9 +158,11 @@ async function importFallbackSync(filecontent: string) {
 
   const trimmed = filecontent.trim();
   const isJson = trimmed.startsWith('{');
-  const isCsv = trimmed.includes('Title') || trimmed.includes('title') || trimmed.includes('TITLE');
-
-  con.log('Detection - isJson:', isJson, 'isCsv:', isCsv);
+  // Same header-column check convertCsvToImportFormat itself requires, so detection here can't
+  // diverge from what actually makes a CSV valid - only the header line is checked, not the whole
+  // file, so a JSON export whose data happens to contain the word "title" isn't misread as a CSV.
+  const headerCells = (trimmed.split('\n')[0] || '').split(',').map(h => h.trim().toLowerCase());
+  const isCsv = headerCells.includes('title');
 
   if (isJson) {
     importJson(filecontent);

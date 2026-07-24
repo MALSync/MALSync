@@ -1,5 +1,6 @@
 import * as helper from './helper';
 import { search } from '../searchFactory';
+import { status } from '../definitions';
 
 export async function exportData() {
   const data = await helper.getSyncList();
@@ -103,14 +104,20 @@ export async function convertCsvToImportFormat(csvContent: string) {
         continue;
       }
 
-      const localKey = `local://${malUrl.split('/')[4]}/${malUrl.split('/')[3]}`;
+      // Local keys are read back as local://{source}/{type}/{id} (see Local/single.ts and
+      // Local/list.ts, which pulls id/source out of the URL by fixed segment index) - "mal" here
+      // just marks that this entry was matched by title search rather than a real streaming site.
+      const malId = malUrl.split('/')[4];
+      const localKey = `local://mal/anime/${malId}`;
 
+      // A CSV only ever gives us a title, so there's no source for progress/score beyond what
+      // marking the entry Completed implies: the full episode count, and no personal score.
       importedData[localKey] = {
         name: result.name || title,
-        progress: result.list?.episode || 0,
+        progress: result.totalEp || 0,
         volumeprogress: 0,
-        score: result.list?.score || 0,
-        status: 2, // Completed
+        score: 0,
+        status: status.Completed,
         tags: '',
         image: result.image || '',
         sUrl: malUrl,
