@@ -1,4 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
+import { urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
@@ -31,15 +32,16 @@ export class Single extends SingleAbstract {
   protected datesSupport = false;
 
   protected handleUrl(url) {
-    if (url.match(/simkl\.com\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.simkl = parseInt(utils.urlPart(url, 4));
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'SIMKL') {
+      this.type = path.type;
+      this.ids.simkl = parseInt(path.id);
       if (this.type === 'manga') throw 'Simkl has no manga support';
       return;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.mal = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.ids.mal = Number(path.id);
       if (this.type === 'manga') throw 'Simkl has no manga support';
       return;
     }

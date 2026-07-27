@@ -1,4 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
+import { urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
@@ -21,17 +22,10 @@ export class Single extends SingleAbstract {
   protected datesSupport = false;
 
   protected handleUrl(url) {
-    if (url.match(/shikimori\.(one|io)\/(animes|mangas|ranobe)\/\D?\d+/i)) {
-      this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
-      const res = utils.urlPart(url, 4).match(/^\D?(\d+)/);
-      if (res && res[1]) {
-        this.ids.mal = Number(res[1]);
-        return;
-      }
-    }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.mal = Number(utils.urlPart(url, 4));
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'SHIKI' || path?.provider === 'MAL') {
+      this.type = path.type;
+      this.ids.mal = Number(path.id);
       return;
     }
     throw new UrlNotSupportedError(url);
