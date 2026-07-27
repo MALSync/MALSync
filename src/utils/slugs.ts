@@ -67,11 +67,7 @@ export function buildProviderUrl(
     .replace('<identifier>', String(identifier));
 }
 
-export function pageUrl(
-  page: 'mal' | 'anilist' | 'kitsu' | 'simkl' | 'shiki' | 'mangabaka',
-  type: 'anime' | 'manga',
-  id: string | number,
-) {
+export function pageUrl(page: ProviderIdentifier, type: 'anime' | 'manga', id: string | number) {
   const syncMode = page.toUpperCase() as UrlSyncMode;
   if (!providerUrls[syncMode]) throw `${page} not a valid page`;
   return buildProviderUrl(syncMode, type, id);
