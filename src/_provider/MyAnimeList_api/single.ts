@@ -1,4 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
+import { urlToSlug } from '../../utils/slugs';
 import { NotAutenticatedError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 import * as definitions from '../definitions';
@@ -23,9 +24,10 @@ export class Single extends SingleAbstract {
   authenticationUrl = helper.authenticationUrl;
 
   protected handleUrl(url) {
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.mal = Number(utils.urlPart(url, 4));
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.ids.mal = Number(path.id);
       return;
     }
     throw new UrlNotSupportedError(url);

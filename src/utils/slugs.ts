@@ -5,8 +5,13 @@ export type Path = {
   slug: string;
 };
 
+export type ParsedPath = Path & {
+  provider: UrlSyncMode | 'LOCAL';
+  id: string;
+};
+
 type slugObject = {
-  path?: Path;
+  path?: ParsedPath;
   url: string;
 };
 
@@ -82,6 +87,8 @@ export function urlToSlug(url: string): slugObject {
     obj.path = {
       type: malMatch[1] as 'anime' | 'manga',
       slug: malMatch[2],
+      provider: 'MAL',
+      id: malMatch[2],
     };
     return obj;
   }
@@ -91,6 +98,8 @@ export function urlToSlug(url: string): slugObject {
     obj.path = {
       type: anilistMatch[1] as 'anime' | 'manga',
       slug: `a:${anilistMatch[2]}`,
+      provider: 'ANILIST',
+      id: anilistMatch[2],
     };
     return obj;
   }
@@ -100,6 +109,8 @@ export function urlToSlug(url: string): slugObject {
     obj.path = {
       type: kitsuMatch[1] as 'anime' | 'manga',
       slug: `k:${kitsuMatch[2]}`,
+      provider: 'KITSU',
+      id: kitsuMatch[2],
     };
     return obj;
   }
@@ -109,6 +120,8 @@ export function urlToSlug(url: string): slugObject {
     obj.path = {
       type: simklMatch[1] as 'anime' | 'manga',
       slug: `s:${simklMatch[2]}`,
+      provider: 'SIMKL',
+      id: simklMatch[2],
     };
     return obj;
   }
@@ -118,6 +131,8 @@ export function urlToSlug(url: string): slugObject {
     obj.path = {
       type: shikiMatch[2].toLowerCase() === 'animes' ? 'anime' : 'manga',
       slug: `shi:${shikiMatch[3]}`,
+      provider: 'SHIKI',
+      id: shikiMatch[3],
     };
     return obj;
   }
@@ -127,6 +142,8 @@ export function urlToSlug(url: string): slugObject {
     obj.path = {
       type: 'manga',
       slug: `baka:${mangabakaMatch[1]}`,
+      provider: 'MANGABAKA',
+      id: mangabakaMatch[1],
     };
     return obj;
   }
@@ -136,6 +153,8 @@ export function urlToSlug(url: string): slugObject {
     obj.path = {
       type: localMatch[2] as 'anime' | 'manga',
       slug: `l:${localMatch[1]}::${encodeURIComponent(localMatch[3])}`,
+      provider: 'LOCAL',
+      id: localMatch[3],
     };
     obj.url = '';
     return obj;
