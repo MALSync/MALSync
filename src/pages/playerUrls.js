@@ -455,6 +455,7 @@ module.exports = {
       '*://dood.re/e/*',
       '*://dooood.com/e/*',
       '*://dood.li/e/*',
+      '*://playmogo.com/e/*',
       // auto-gogodood-replace-dont-remove
     ],
   },
