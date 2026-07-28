@@ -7,7 +7,13 @@
       "*://jkanime.net/letra/*",
       "*://jkanime.net/buscar/*",
       "*://jkanime.net/directorio/*",
-      "*://jkanime.net/terminos-condiciones/"
+      "*://jkanime.net/dash/*",
+      "*://jkanime.net/aplicacion/",
+      "*://jkanime.net/guardado/",
+      "*://jkanime.net/historial/",
+      "*://jkanime.net/notificaciones/",
+      "*://jkanime.net/top/",
+      "*://jkanime.net/usuario/*"
     ]
   }
 }

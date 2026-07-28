@@ -21,10 +21,9 @@ export const Jkanime: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('div.breadcrumb-option > div > div > div> div.breadcrumb__links > h1')
+        .$('div.player_normal > div.row.mb-2 > div.col-md-4.col-12.col-lg-5.langopcs > div > h1')
         .first()
-        .text()
-        .split(' - ')[0];
+        .text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
@@ -37,20 +36,27 @@ export const Jkanime: pageInterface = {
     },
     nextEpUrl(url) {
       return j
-        .$('div:contains("Proximo Episodio"), div:contains("Episodio final")')
+        .$('div.ep_bar > div.p-2.anime_slug.text-center > div > a > div:contains("Siguiente")')
         .parent('a')
         .attr('href');
+    },
+    uiSelector(selector) {
+      j.$('#collapseServers').before(j.html(selector));
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('div.anime__details__title > h3').text();
+      return j
+        .$('div.anime__details__content > div.row > div.col-lg-10 > div.anime_info > h3')
+        .text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
-      j.$('section.contenido.spad > div > div.row').before(j.html(selector));
+      j.$('div.anime__details__content > div.row > div.col-lg-10 > div.anime_info').after(
+        j.html(selector),
+      );
     },
     list: {
       offsetHandler: false,
@@ -96,7 +102,7 @@ export const Jkanime: pageInterface = {
         page.handleList();
       },
       () => {
-        return j.$('div.epcontent > div.anime__item a').first().attr('href');
+        return j.$('div.epcontent > div.anime__item a').last().attr('href');
       },
     );
     $('div.anime__pagination > a').click(function () {
