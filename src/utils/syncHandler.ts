@@ -4,6 +4,7 @@ import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
 import { Single as ShikiSingle } from '../_provider/Shikimori/single';
 import { Single as BakaSingle } from '../_provider/MangaBaka/single';
+import { Single as MyAnimePulseSingle } from '../_provider/MyAnimePulse/single';
 
 import { UserList as MalList } from '../_provider/MyAnimeList_hybrid/list';
 import { UserList as AnilistList } from '../_provider/AniList/list';
@@ -43,6 +44,7 @@ export function getType(url) {
   if (utils.isDomainMatching(url, 'shikimori.one') || utils.isDomainMatching(url, 'shikimori.io'))
     return 'SHIKI';
   if (utils.isDomainMatching(url, 'mangabaka.org')) return 'MANGABAKA';
+  if (utils.isDomainMatching(url, 'myanimepulse.com')) return 'MYANIMEPULSE';
   throw 'Type not found';
 }
 
@@ -77,7 +79,7 @@ export function shouldCheckDates(item) {
 }
 
 export function shouldCheckRewatchCount(item) {
-  return ['MAL', 'ANILIST', 'KITSU', 'SHIKI', 'MANGABAKA'].includes(getType(item.url));
+  return ['MAL', 'ANILIST', 'KITSU', 'SHIKI', 'MANGABAKA', 'MYANIMEPULSE'].includes(getType(item.url));
 }
 
 export function changeCheck(item, mode) {
@@ -239,6 +241,8 @@ export function syncItem(slave, pageType) {
       singleClass = new ShikiSingle(slave.url);
     } else if (pageType === 'MANGABAKA') {
       singleClass = new BakaSingle(slave.url);
+    } else if (pageType === 'MYANIMEPULSE') {
+      singleClass = new MyAnimePulseSingle(slave.url);
     } else {
       throw 'No sync type';
     }

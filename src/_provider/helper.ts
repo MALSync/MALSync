@@ -1,4 +1,4 @@
-export type SyncTypes = 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI' | 'MALAPI' | 'MANGABAKA';
+export type SyncTypes = 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI' | 'MALAPI' | 'MANGABAKA' | 'MYANIMEPULSE';
 
 export function getSyncMode(type = '' as 'anime' | 'manga' | '') {
   const primaryMode = api.settings.get('syncMode') as SyncTypes;
@@ -44,6 +44,13 @@ const providers: { [key in SyncTypes]: ProviderOption } = {
     anime: true,
     manga: true,
     short: false,
+  },
+  MYANIMEPULSE: {
+    title: 'MyAnimePulse',
+    value: 'MYANIMEPULSE',
+    anime: true,
+    manga: false,
+    short: true,
   },
 };
 

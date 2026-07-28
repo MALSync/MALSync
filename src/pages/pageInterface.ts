@@ -20,7 +20,7 @@ export interface pageInterface {
     nextEpUrl?: (url: string) => string | undefined; // (optional) return the link to the next episode. Used for links on the userlist
     uiSelector?: (selector: string) => void; // (optional) Inject a small ui with current status chapter... Only use this if there is no overview page
     getMalUrl?: (
-      provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI',
+      provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI' | 'MYANIMEPULSE',
     ) => Promise<string | false> | string | false; // (optional) Return the MALUrl. Only really needs to be implemented if the page provides that info.
     readerConfig?: mangaProgressConfig[]; // (optional) Usd to get the current reading progress of a manga chapter
   };
@@ -30,7 +30,7 @@ export interface pageInterface {
     uiSelector: (selector: string) => void;
     getImage?: () => string | undefined;
     getMalUrl?: (
-      provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI',
+      provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI' | 'MYANIMEPULSE',
     ) => Promise<string | false> | string | false;
     list?: {
       // (optional) Used for recognizing the list of episodes/chapters on the overview page. Best is to ask for help on discord for this.

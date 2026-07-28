@@ -46,4 +46,7 @@ module.exports = {
   malsyncPwa: {
     match: ['*://malsync.moe/pwa*'],
   },
+  animepulse: {
+    match: ['*://myanimepulse.com/auth/extension*'],
+  },
 };
