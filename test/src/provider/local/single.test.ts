@@ -3,6 +3,7 @@ import { Single } from '../../../../src/_provider/Local/single';
 import * as utils from '../../../../src/utils/general';
 
 import { generalSingleTests } from '../generalSingleTests.exclude';
+import { generalSingleSyncTests } from '../generalSingleSyncTests.exclude';
 
 const state = {
   'local://crunchyroll/anime/nogamenolife': {
@@ -108,6 +109,7 @@ describe('Local single', function() {
     setGlobals();
   });
   generalSingleTests(Single, setGlobals, titlePrefix);
+  generalSingleSyncTests(Single);
 
   describe('title', function() {
     [
