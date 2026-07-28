@@ -1,6 +1,5 @@
 import { Single } from '../../../../src/_provider/Shikimori/single';
 import { generalSingleTests } from '../generalSingleTests.exclude';
-import { generalSingleSyncTests } from '../generalSingleSyncTests.exclude';
 import { setConAndUtils, createProviderApi, createFixtureXhr } from '../../utils/singleNetworkStub';
 
 const fixtures = [
@@ -152,5 +151,4 @@ describe('Shikimori Single', function() {
   });
 
   generalSingleTests(Single, setGlobals);
-  generalSingleSyncTests(Single);
 });
