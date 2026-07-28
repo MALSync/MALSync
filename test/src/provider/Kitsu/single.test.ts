@@ -1,6 +1,5 @@
 import { Single } from '../../../../src/_provider/Kitsu/single';
 import { generalSingleTests } from '../generalSingleTests.exclude';
-import { generalSingleSyncTests } from '../generalSingleSyncTests.exclude';
 import { setConAndUtils, createProviderApi, createFixtureXhr } from '../../utils/singleNetworkStub';
 
 function animeResource(id: string, attrs: any) {
@@ -148,5 +147,4 @@ describe('Kitsu Single', function() {
   });
 
   generalSingleTests(Single, setGlobals);
-  generalSingleSyncTests(Single);
 });

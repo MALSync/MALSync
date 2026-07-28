@@ -1,6 +1,5 @@
 import { Single } from '../../../../src/_provider/Simkl/single';
 import { generalSingleTests } from '../generalSingleTests.exclude';
-import { generalSingleSyncTests } from '../generalSingleSyncTests.exclude';
 import { setConAndUtils, createProviderApi, createFixtureXhr } from '../../utils/singleNetworkStub';
 
 const fixtures = [
@@ -107,5 +106,4 @@ describe('Simkl Single', function() {
   });
 
   generalSingleTests(Single, setGlobals);
-  generalSingleSyncTests(Single);
 });

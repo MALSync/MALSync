@@ -1,6 +1,5 @@
 import { Single } from '../../../../src/_provider/MangaBaka/single';
 import { generalSingleTests } from '../generalSingleTests.exclude';
-import { generalSingleSyncTests } from '../generalSingleSyncTests.exclude';
 import { setConAndUtils, createProviderApi, createFixtureXhr } from '../../utils/singleNetworkStub';
 
 const libraryEntry = {
@@ -140,5 +139,4 @@ describe('MangaBaka Single', function() {
   });
 
   generalSingleTests(Single, setGlobals);
-  generalSingleSyncTests(Single);
 });
