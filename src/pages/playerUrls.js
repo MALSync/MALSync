@@ -8,22 +8,21 @@ module.exports = {
   mp4upload: {
     match: ['*://*.mp4upload.com/*'],
   },
-  mcloud: {
-    match: ['*://*.mcloud.to/*', '*://*.mcloud.bz/*'],
-  },
   crunchyroll: {
     match: ['*://*.static.crunchyroll.com/*'],
   },
   vidstreaming: {
-    match: ['*://*.vidstreaming.io/*', '*://*.vidstreaming.link/*'],
+    match: ['*://*.vidstreaming.io/*'],
   },
   xstreamcdn: {
-    match: ['*://*.xstreamcdn.com/*', '*://*.gcloud.live/*'],
+    match: ['*://*.gcloud.live/*'],
   },
   oload: {
     match: ['*://*.oload.tv/*'],
   },
   mail: {
+    // TODO(player): pattern non restreint — iframe.js est injecté sur tout mail.ru,
+    // pas seulement sur les pages d'embed. À restreindre au chemin d'embed après vérification.
     match: ['*://*.mail.ru/*'],
   },
   myvi: {
@@ -33,23 +32,24 @@ module.exports = {
     match: ['*://*.sibnet.ru/*'],
   },
   tune: {
-    match: ['*://*.tune.pk/*', '*://*.tune.ke/*'],
+    match: ['*://*.tune.pk/*'],
   },
   vimple: {
     match: ['*://*.vimple.ru/*'],
   },
   href: {
+    // TODO(player): pattern non restreint — iframe.js est injecté sur tout vk.com,
+    // pas seulement sur les pages d'embed. À restreindre au chemin d'embed après vérification.
     match: ['*://*.href.li/*', '*://*.vk.com/*'],
   },
   cloudvideo: {
     match: ['*://*.cloudvideo.tv/*'],
   },
-  // gogoanime.to
+  // gogoanime.to (page retirée)
   fembed: {
     match: [
       '*://*.fembed.net/*',
       '*://*.fembed.com/*',
-      '*://*.animeproxy.info/*',
       '*://*.feurl.com/*',
       '*://*.embedsito.com/v/*',
       '*://*.fcdn.stream/v/*',
@@ -68,9 +68,6 @@ module.exports = {
       // auto-gogofembed-replace-dont-remove
     ],
   },
-  youpload: {
-    match: ['*://*.youpload.co/*'],
-  },
   yourupload: {
     match: ['*://*.yourupload.com/*'],
   },
@@ -81,6 +78,8 @@ module.exports = {
     match: ['*://*.kwik.cx/*', '*://*.kwik.si/*', '*://*.mewcdn.online/*'],
   },
   mega: {
+    // TODO(player): pattern non restreint — iframe.js est injecté sur tout mega.nz,
+    // pas seulement sur les pages d'embed. À restreindre au chemin d'embed après vérification.
     match: ['*://*.mega.nz/*'],
   },
   animeflv: {
@@ -93,6 +92,8 @@ module.exports = {
     match: ['*://*.jkanime.net/*'],
   },
   ok: {
+    // TODO(player): pattern non restreint — iframe.js est injecté sur tout ok.ru,
+    // pas seulement sur les pages d'embed. À restreindre au chemin d'embed après vérification.
     match: ['*://*.ok.ru/*'],
   },
   novelplanet: {
@@ -101,7 +102,6 @@ module.exports = {
   proxer: {
     match: [
       '*://*.stream.proxer.me/*',
-      '*://*.stream.proxer.net/*',
       '*://*.stream-service.proxer.me/*',
     ],
   },
@@ -131,9 +131,9 @@ module.exports = {
   dailymotion: {
     match: ['*://www.dailymotion.com/embed/*', '*://geo.dailymotion.com/*'],
   },
-  // gogoanime
+  // gogoanime (page retirée)
   theVideo: {
-    match: ['*://vev.io/embed/*', '*://vev.red/embed/*'],
+    match: ['*://vev.red/embed/*'],
   },
   // voiranime
   jwpstream: {
@@ -141,21 +141,21 @@ module.exports = {
   },
   // voiranime
   vaplayer: {
-    match: ['*://www.vaplayer.xyz/v/*', '*://vaplayer.me/*'],
+    match: ['*://www.vaplayer.xyz/v/*'],
   },
-  // dubbedanime
+  // dubbedanime (page retirée)
   mp4sh: {
     match: ['*://mp4.sh/embed/*'],
   },
-  // animeultima
+  // animeultima (page retirée)
   mystream: {
     match: ['*://embed.mystream.to/*'],
   },
-  // animeultima
+  // animeultima (page retirée)
   bitchute: {
     match: ['*://*.bitchute.com/embed/*'],
   },
-  // animeultima
+  // animeultima (page retirée)
   streamcherry: {
     match: ['*://*.streamcherry.com/embed/*'],
   },
@@ -169,6 +169,8 @@ module.exports = {
   },
   // anime-odcinki
   vshare: {
+    // TODO(player): vshare.io ne résout plus (NXDOMAIN, 2026-07-29).
+    // Page "anime-odcinki" encore livrée : trouver le domaine de remplacement.
     match: ['*://*.vshare.io/v/*'],
   },
   // anime-odcinki shinden animezone
@@ -179,7 +181,7 @@ module.exports = {
   lycoris: {
     match: ['*://www.lycoris.cafe/*'],
   },
-  // kissanime/9anime/gogoanime/animekisa
+  // kissanime/9anime/gogoanime/animekisa (pages retirées)
   hydrax: {
     match: [
       '*://*.replay.watch/*',
@@ -194,7 +196,7 @@ module.exports = {
   },
   // AnimeGO AnimeLib
   kodik: {
-    match: ['*://kodik.info/*', '*://kodikplayer.com/*'],
+    match: ['*://kodikplayer.com/*'],
   },
   // AnimeGO
   aniboom: {
@@ -217,27 +219,25 @@ module.exports = {
       '*://smotret-anime.app/translations/embed/*',
     ],
   },
-  // Neko-sama
+  // Neko-sama (page retirée)
   pstream: {
     match: ['*://*.pstream.net/e/*'],
   },
-  // Neko-sama
+  // Neko-sama (page retirée)
   fusevideo: {
-    match: ['*://fusevideo.net/e/*', '*://fusevideo.io/e/*'],
-  },
-  // Animeultima
-  animefever: {
-    match: ['*://*.animefever.tv/embed/*'],
+    match: ['*://fusevideo.net/e/*'],
   },
   // kickassanime
   haloani: {
+    // TODO(player): haloani.ru ne résout plus (NXDOMAIN, 2026-07-29).
+    // Page "kickassanime" encore livrée : trouver le domaine de remplacement.
     match: ['*://*.haloani.ru/*'],
   },
   // moeclip
   moeclip: {
     match: ['*://*.moeclip.com/v/*', '*://*.moeclip.com/embed/*'],
   },
-  // gogoanime
+  // gogoanime (page retirée)
   mixdrop: {
     match: [
       '*://*.mixdrop.co/e/*',
@@ -248,9 +248,7 @@ module.exports = {
       '*://*.mixdropjmk.pw/e/*',
       '*://*.mixdrop21.net/e/*',
       '*://*.mixdrop.si/e/*',
-      '*://*.mixdrop.nu/e/*',
       '*://*.mixdrop.sx/e/*',
-      '*://*.mixdrop.ms/e/*',
       '*://*.mixdrop.ps/e/*',
       '*://*.mixdrop.my/e/*',
       '*://*.mixdrop.sn/e/*',
@@ -278,17 +276,19 @@ module.exports = {
   },
   // OtakuFR/animewho
   vidbm: {
-    match: ['*://*.vidbm.com/embed-*', '*://*.vidbem.com/embed-*'],
+    match: ['*://*.vidbem.com/embed-*'],
   },
   // OtakuFR
   cloudhost: {
+    // TODO(player): cloudhost.to ne résout plus (NXDOMAIN, 2026-07-29).
+    // Page "OtakuFR" encore livrée : trouver le domaine de remplacement.
     match: ['*://*.cloudhost.to/*/mediaplayer/*/_embed.php?*'],
   },
   // OtakuFR
   letsupload: {
     match: ['*://*.letsupload.co/*/mediaplayer/*/_embed.php?*'],
   },
-  // 9anime
+  // 9anime (page retirée)
   streamtape: {
     match: [
       '*://streamtape.com/*',
@@ -317,15 +317,15 @@ module.exports = {
   uptostream: {
     match: ['*://uptostream.com/iframe/*'],
   },
-  // Gogoanime
+  // Gogoanime (page retirée)
   easyload: {
     match: ['*://easyload.io/e/*'],
   },
-  // Kissanime
+  // Kissanime (page retirée)
   googleusercontent: {
     match: ['*://*.googleusercontent.com/gadgets/*'],
   },
-  // animedesu
+  // animedesu (page retirée)
   animedesu: {
     match: ['*://animedesu.pl/player/desu.php?v=*'],
   },
@@ -333,38 +333,23 @@ module.exports = {
   animevost: {
     match: ['*://animevost.org/frame5.php?play=*'],
   },
-  // animixplay
-  animixplay: {
-    match: ['*://*.plyr.link/*', '*://v.vvid.cc/*'],
-  },
   // okanime
   okanime: {
     match: ['*://*.okanime.com/cdn/*/embed/?*'],
   },
-  // gogoanime
+  // gogoanime (page retirée)
   gogostream: {
     match: [
       '*://*.gogo-stream.com/*',
       '*://*.gogo-play.net/*',
-      '*://*.gogo-play.tv/*',
       '*://*.streamani.net/*',
-      '*://*.streamani.io/*',
-      '*://*.goload.one/*',
       '*://*.goload.pro/*',
       '*://*.goload.io/*',
       '*://*.gogoplay1.com/*',
-      '*://*.gogoplay2.com/*',
-      '*://*.gogoplay4.com/*',
-      '*://*.gogoplay5.com/*',
       '*://*.gogoplay.io/*',
       '*://*.gogohd.net/*',
-      '*://*.gogohd.pro/*',
-      '*://*.gembedhd.com/*',
-      '*://*.playgo1.cc/*',
-      '*://*.anihdplay.com/*',
       '*://*.playtaku.net/*',
       '*://*.playtaku.online/*',
-      '*://*.gotaku1.com/*',
       '*://*.goone.pro/*',
       '*://*.embtaku.pro/*',
       '*://*.embtaku.com/*',
@@ -377,43 +362,24 @@ module.exports = {
   vivo: {
     match: ['*://vivo.sx/embed/*'],
   },
-  // pantsubase.tv
-  googleDrive: {
-    match: ['*://play.api-web.site/*'],
-  },
-  // 9anime
+  // 9anime (page retirée)
   vidstream: {
     match: [
       '*://vidstream.pro/embed/*',
       '*://vidstream.pro/e/*',
-      '*://vidstreamz.online/embed/*',
-      '*://vidstreamz.online/e/*',
       '*://vidstream.pro/embed/*',
       '*://vidstream.pro/e/*',
-      '*://vizcloud.ru/embed/*',
-      '*://vizcloud.ru/e/*',
-      '*://vizcloud2.ru/embed/*',
-      '*://vizcloud2.ru/e/*',
       '*://vizcloud.online/embed/*',
       '*://vizcloud.online/e/*',
-      '*://vizstream.ru/embed/*',
-      '*://vizstream.ru/e/*',
-      '*://vizcloud.xyz/embed/*',
-      '*://vizcloud.xyz/e/*',
-      '*://vizcloud.cloud/embed/*',
-      '*://vizcloud.cloud/e/*',
-      '*://vizcloud.co/embed/*',
-      '*://vizcloud.co/e/*',
       '*://vidplay.site/e/*',
       '*://vidplay.lol/e/*',
       '*://vidplay.online/e/*',
-      '*://a9bfed0818.nl/e/*',
       '*://vid142.site/e/*',
       '*://vid1a52.site/e/*',
       '*://vid2a41.site/e/*',
     ],
   },
-  // gogo
+  // gogo (page retirée)
   streamsb: {
     match: [
       '*://streamsb.net/*',
@@ -427,7 +393,6 @@ module.exports = {
       '*://sbplay2.com/*',
       '*://embedsb.com/*',
       '*://watchsb.com/*',
-      '*://sbplay2.xyz/*',
       '*://sbfull.com/e/*',
       '*://ssbstream.net/*',
       '*://streamsss.net/*',
@@ -439,7 +404,7 @@ module.exports = {
       // auto-gogostreamsb-replace-dont-remove
     ],
   },
-  // gogo
+  // gogo (page retirée)
   dood: {
     match: [
       '*://dood.to/*',
@@ -515,26 +480,15 @@ module.exports = {
       '*://voe.sx/e/*',
       '*://gamoneinterrupted.com/e/*',
       '*://crownmakermacaronicism.com/e/*',
-      '*://generatesnitrosate.com/e/*',
-      '*://yodelswartlike.com/e/*',
       '*://cigarlessarefy.com/e/*',
-      '*://valeronevijao.com/e/*',
       '*://strawberriesporail.com/e/*',
-      '*://timberwoodanotia.com/e/*',
-      '*://phenomenalityuniform.com/e/*',
       '*://nonesnanking.com/e/*',
-      '*://kathleenmemberhistory.com/e/*',
       '*://bradleyviewdoctor.com/e/*',
-      '*://seanshowcould.com/e/*',
       '*://johntryopen.com/e/*',
-      '*://morganoperationface.com/e/*',
       '*://brookethoughi.com/e/*',
-      '*://jamesstartstudent.com/e/*',
       '*://ryanagoinvolve.com/e/*',
-      '*://jasonresponsemeasure.com/e/*',
       '*://shannonpersonalcost.com/e/*',
       '*://brucevotewithin.com/e/*',
-      '*://rebeccaneverbase.com/e/*',
       '*://loriwithinfamily.com/e/*',
       '*://bethshouldercan.com/e/*',
       '*://sandratableother.com/e/*',
@@ -542,13 +496,8 @@ module.exports = {
       '*://maxfinishseveral.com/e/*',
       '*://alejandrocenturyoil.com/e/*',
       '*://heatherwholeinvolve.com/e/*',
-      '*://nathanfromsubject.com/e/*',
-      '*://jennifercertaindevelopment.com/e/*',
       '*://richardsignfish.com/e/*',
-      '*://sarahnewspaperbeat.com/e/*',
       '*://diananatureforeign.com/e/*',
-      '*://jonathansociallike.com/e/*',
-      '*://mariatheserepublican.com/e/*',
       '*://jilliandescribecompany.com/e/*',
       '*://lukesitturn.com/e/*',
       '*://mikaylaarealike.com/e/*',
@@ -587,6 +536,8 @@ module.exports = {
   },
   // animewho
   vidoo: {
+    // TODO(player): vidoo.tv ne résout plus (NXDOMAIN, 2026-07-29).
+    // Page "animewho" encore livrée : trouver le domaine de remplacement.
     match: ['*://vidoo.tv/*'],
   },
   // animewho
@@ -608,15 +559,12 @@ module.exports = {
   // kickassanime
   kaaplay: {
     match: [
-      '*://kaa-play.me/*',
-      '*://kaavid.com/*',
       '*://vidnethub.net/*',
       '*://vidco.pro/*',
-      '*://omegadthree.com/*',
       '*://krussdomi.com/*',
     ],
   },
-  // animeshouse
+  // animeshouse (page retirée)
   animeshouse: {
     match: [
       '*://*.animeshouse.net/gcloud/*',
@@ -625,46 +573,42 @@ module.exports = {
       '*://*.animeshouse.net/ah-clp-new/*',
     ],
   },
-  // animixplay
+  // animixplay (page retirée)
   animato: {
     match: ['*://animato.me/embed/*'],
   },
-  // animixplay
+  // animixplay (page retirée)
   kimanime: {
     match: ['*://kimanime.ru/AnimeIframe/*'],
   },
-  // zoro
-  vidcloud: {
-    match: ['*://vidcloud.spb.ru/*'],
-  },
-  // gogoanime
+  // gogoanime (page retirée)
   streamhd: {
     match: ['*://*.streamhd.cc/*'],
   },
-  // zoro
+  // zoro (page retirée)
   rapidstream: {
-    match: ['*://*.rapid-cloud.ru/*', '*://*.rapid-cloud.co/*'],
+    match: ['*://*.rapid-cloud.co/*'],
   },
-  // 9anime
+  // 9anime (page retirée)
   videovard: {
     match: ['*://videovard.sx/*', '*://videovard.to/*'],
   },
-  // Streamlare
+  // Streamlare (page retirée)
   streamlare: {
     match: ['*://streamlare.com/e/*'],
   },
   BetterAnime: {
     match: ['*://betteranime.net/player*'],
   },
-  // animixplay
+  // animixplay (page retirée)
   streamzz: {
     match: ['*://streamzz.to/*'],
   },
-  // animixplay
+  // animixplay (page retirée)
   protonvideo: {
     match: ['*://protonvideo.to/iframe/*'],
   },
-  // animixplay
+  // animixplay (page retirée)
   ninjastream: {
     match: ['*://ninjastream.to/watch/*'],
   },
@@ -672,7 +616,7 @@ module.exports = {
   harajuku: {
     match: ['*://harajuku.pl/*'],
   },
-  // anime-shitai
+  // anime-shitai (page retirée)
   vupload: {
     match: ['*://vupload.com/*'],
   },
@@ -686,25 +630,31 @@ module.exports = {
   },
   // turkanime
   cozyplayer: {
+    // TODO(player): play.cozyplayer.com ne résout plus (NXDOMAIN, 2026-07-29).
+    // Page "turkanime" encore livrée : trouver le domaine de remplacement.
     match: ['*://play.cozyplayer.com/*'],
   },
   // turkanime
   odnoklassniki: {
+    // TODO(player): pattern non restreint — iframe.js est injecté sur tout odnoklassniki.ru,
+    // pas seulement sur les pages d'embed. À restreindre au chemin d'embed après vérification.
     match: ['*://odnoklassniki.ru/*'],
   },
   // turkanime
   myalucard: {
+    // TODO(player): myalucard.xyz ne résout plus (NXDOMAIN, 2026-07-29).
+    // Page "turkanime" encore livrée : trouver le domaine de remplacement.
     match: ['*://myalucard.xyz/*'],
   },
   // animexin
   mobi: {
     match: ['*://uploads.mobi/*'],
   },
-  // anistream
+  // anistream (page retirée)
   bunny: {
     match: ['*://iframe.mediadelivery.net/embed/*'],
   },
-  // animixplay
+  // animixplay (page retirée)
   yfvf: {
     match: ['*://*.yfvf.com/*'],
   },
@@ -718,6 +668,8 @@ module.exports = {
   },
   // monoschinos
   solidfiles: {
+    // TODO(player): pattern non restreint — iframe.js est injecté sur tout solidfiles.com,
+    // pas seulement sur les pages d'embed. À restreindre au chemin d'embed après vérification.
     match: ['*://*.solidfiles.com/*'],
   },
   // animeworld
@@ -733,26 +685,12 @@ module.exports = {
     match: [
       '*://filemoon.sx/e/*',
       '*://filemoon.sx/lol/*',
-      '*://kerapoxy.cc/e/*',
-      '*://kerapoxy.cc/lol/*',
-      '*://vpcxz19p.xyz/e/*',
-      '*://vpcxz19p.xyz/lol/*',
       '*://filemoon.top/e/*',
       '*://filemoon.top/lol/*',
       '*://fmoonembed.pro/e/*',
       '*://fmoonembed.pro/lol/*',
-      '*://rgeyyddl.skin/e/*',
-      '*://rgeyyddl.skin/lol/*',
-      '*://designparty.sx/e/*',
-      '*://designparty.sx/lol/*',
-      '*://c4qhk0je.xyz/e/*',
-      '*://c4qhk0je.xyz/lol/*',
       '*://1azayf9w.xyz/e/*',
       '*://1azayf9w.xyz/lol/*',
-      '*://81u6xl9d.xyz/e/*',
-      '*://81u6xl9d.xyz/lol/*',
-      '*://gorro-chfzoaas.fun/e/*',
-      '*://gorro-chfzoaas.fun/lol/*',
       '*://z7ihwgqj.fun/*',
       '*://pqham.com/*',
     ],
@@ -777,7 +715,7 @@ module.exports = {
   streamhide: {
     match: ['*://*.streamhide.to/e/*'],
   },
-  // zoro
+  // zoro (page retirée)
   megacloud: {
     match: ['*://megacloud.tv/*', '*://megacloud.club/*', '*://megacloud.blog/*'],
   },
@@ -787,14 +725,20 @@ module.exports = {
   },
   // WitAnime
   yonaplay: {
+    // TODO(player): yonaplay.org ne résout plus (NXDOMAIN, 2026-07-29).
+    // Page "WitAnime" encore livrée : trouver le domaine de remplacement.
     match: ['*://yonaplay.org/*'],
   },
   // WitAnime
   fourshared: {
+    // TODO(player): pattern non restreint — iframe.js est injecté sur tout 4shared.com,
+    // pas seulement sur les pages d'embed. À restreindre au chemin d'embed après vérification.
     match: ['*://*.4shared.com/*'],
   },
   // WitAnime
   videa: {
+    // TODO(player): pattern non restreint — iframe.js est injecté sur tout videa.hu,
+    // pas seulement sur les pages d'embed. À restreindre au chemin d'embed après vérification.
     match: ['*://*.videa.hu/*'],
   },
   // WitAnime
@@ -809,18 +753,17 @@ module.exports = {
       '*://awish.pro/e/*',
       '*://hlswish.com/e/*',
       '*://swishsrv.com/e/*',
-      '*://guxhag.com/*',
       // auto-gogostreamwish-replace-dont-remove
     ],
   },
-  // gogo
+  // gogo (page retirée)
   filelions: {
     match: [
       '*://alions.pro/v/*',
       // auto-gogofilelions-replace-dont-remove
     ],
   },
-  // 9anime
+  // 9anime (page retirée)
   megaf: {
     match: ['*://megaf.cc/e/*'],
   },
@@ -828,7 +771,6 @@ module.exports = {
   q1n: {
     match: [
       '*://rogeriobetin.com/*',
-      '*://nvlabs-fi-cdn.q9x.in/*',
       '*://api.anivideo.net/*',
       '*://listeamed.net/*',
     ],
@@ -847,13 +789,13 @@ module.exports = {
   },
   // aninexus
   aninexusPlayer: {
-    match: ['*://fle-rvd0i9o8-moo.com/*', '*://dhtpre.com/*'],
+    match: ['*://dhtpre.com/*'],
   },
   // miruro
   bun: {
     match: ['*://*.bunniescdn.online/*'],
   },
-  // hikari
+  // hikari (page retirée)
   boosterx: {
     match: ['*://boosterx.stream/*'],
   },
@@ -871,6 +813,8 @@ module.exports = {
   },
   // AnimeKhor
   odysee: {
+    // TODO(player): pattern non restreint — iframe.js est injecté sur tout odysee.com,
+    // pas seulement sur les pages d'embed. À restreindre au chemin d'embed après vérification.
     match: ['*://odysee.com/*'],
   },
   // AnimeKhor
@@ -887,6 +831,8 @@ module.exports = {
   },
   // Anoboye
   anoboye: {
+    // TODO(player): player.anoboye.com ne résout plus (NXDOMAIN, 2026-07-29).
+    // Page "Anoboye" encore livrée : trouver le domaine de remplacement.
     match: ['*://player.anoboye.com/watch/*'],
   },
   // kuudere
@@ -897,7 +843,7 @@ module.exports = {
     match: ['*://*.playerp2p.live/*', '*://*.rpmvip.com/*'],
   },
   sHide: {
-    match: ['*://callistanise.com/*', '*://habetar.com/*', '*://yuguaab.com/*'],
+    match: ['*://callistanise.com/*'],
   },
   allManga: {
     match: ['*://allanime.day/*', '*://allanime.uns.bio/*'],
