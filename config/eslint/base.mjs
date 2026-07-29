@@ -15,7 +15,7 @@ export function preConfig() {
   return merge(
     js.configs.recommended,
     cspellConfigs.recommended,
-    esX.configs['flat/restrict-to-es2018'],
+    esX.configs['flat/restrict-to-es2021'],
     stylistic.configs['recommended-flat'],
   );
 }
@@ -32,7 +32,7 @@ export function postConfig() {
       stylisticRules,
       {
         languageOptions: {
-          ecmaVersion: 2018,
+          ecmaVersion: 2021,
         },
       },
     )

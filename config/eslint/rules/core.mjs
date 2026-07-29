@@ -46,5 +46,6 @@ export default /** @type {import('eslint').Linter.FlatConfig} */ ({
     'prefer-template': 'error',
     'no-console': 'off',
     radix: ['error', 'as-needed'],
+    'prefer-object-has-own': 'off',
   },
 });
