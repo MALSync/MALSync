@@ -41,6 +41,11 @@ module.exports = {
       vue: '@vue/runtime-dom',
     },
   },
+  resolveLoader: {
+    alias: {
+      'to-string-loader': require.resolve('./utils/toStringLoader'),
+    },
+  },
   mode: 'development',
   output: {
     filename: 'testCode.js',
