@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
+import dns from 'dns/promises';
 import fs from 'fs';
 import path from 'path';
 
@@ -217,6 +218,179 @@ function addPlayerUrls(key, urls) {
   }
 }
 
+const PRUNE_DNS_TIMEOUT = 5000;
+const PRUNE_DNS_CONCURRENCY = 20;
+// Above this share of dead hosts, assume the resolver is broken rather than the internet.
+const PRUNE_ABORT_RATIO = 0.4;
+
+/**
+ * Extracts the resolvable hostname of a match pattern, or null when it cannot be
+ * checked (leading `*.` is stripped, a bare `*` host is unverifiable).
+ */
+function patternHost(pattern) {
+  const parsed = pattern.match(/^[^:]+:\/\/([^/]*)/);
+  if (!parsed) return null;
+  const host = parsed[1].replace(/^\*\./, '');
+  return host && !host.includes('*') ? host : null;
+}
+
+/**
+ * @returns {Promise<'alive' | 'dead' | 'unknown'>} `dead` only for a definitive NXDOMAIN.
+ */
+async function resolveHost(host) {
+  const classify = async () => {
+    for (const resolve of [h => dns.resolve4(h), h => dns.resolve6(h)]) {
+      try {
+        const addresses = await resolve(host);
+        if (addresses.length) return 'alive';
+      } catch (error) {
+        // Anything other than "does not exist" is inconclusive, so keep the pattern.
+        if (error.code !== 'ENOTFOUND' && error.code !== 'ENODATA') return 'unknown';
+      }
+    }
+    return 'dead';
+  };
+
+  return Promise.race([
+    classify(),
+    new Promise(resolve => setTimeout(() => resolve('unknown'), PRUNE_DNS_TIMEOUT)),
+  ]);
+}
+
+async function mapWithConcurrency(items, limit, worker) {
+  const results = new Map();
+  let cursor = 0;
+  await Promise.all(
+    Array.from({ length: Math.min(limit, items.length) }, async () => {
+      while (cursor < items.length) {
+        const item = items[cursor++];
+        results.set(item, await worker(item));
+      }
+    }),
+  );
+  return results;
+}
+
+/**
+ * Drops match patterns from playerUrls.js whose host no longer exists.
+ *
+ * `addPlayerUrls` only ever appends, so entries like `voe` or `gogostream` accumulate
+ * domains forever; this is the missing counterpart. Deliberately conservative — a DNS
+ * hiccup must never delete a working domain:
+ *   - only a definitive NXDOMAIN removes a pattern (timeouts and errors are kept);
+ *   - an entry is never emptied; if every host is dead it is reported, not touched,
+ *     because that needs a human to find the replacement domain;
+ *   - the run aborts when an implausible share of hosts looks dead.
+ */
+async function prunePlayerUrls({ dryRun = false } = {}) {
+  const file = fs.readFileSync(path.resolve('./src/pages/playerUrls.js'), 'utf8');
+  const eol = file.includes('\r\n') ? '\r\n' : '\n';
+  const lines = file.split(/\r?\n/);
+
+  // Map every line to the player entry it belongs to.
+  const entryOfLine = [];
+  let currentKey = null;
+  lines.forEach((line, index) => {
+    const opening = line.match(/^ {2}([A-Za-z0-9_]+):\s*\{/);
+    if (opening) currentKey = opening[1];
+    entryOfLine[index] = currentKey;
+    if (/^ {2}\},/.test(line)) currentKey = null;
+  });
+
+  const occurrences = [];
+  lines.forEach((line, index) => {
+    const key = entryOfLine[index];
+    if (!key) return;
+    for (const quoted of line.matchAll(/'([^']+)'/g)) {
+      const host = patternHost(quoted[1]);
+      if (host) occurrences.push({ index, pattern: quoted[1], host, key });
+    }
+  });
+
+  const hosts = [...new Set(occurrences.map(o => o.host))];
+  const players = new Set(occurrences.map(o => o.key));
+  console.log(`\n[prune] Resolving ${hosts.length} hosts across ${players.size} players...`);
+
+  const status = await mapWithConcurrency(hosts, PRUNE_DNS_CONCURRENCY, resolveHost);
+  const tally = { alive: 0, dead: 0, unknown: 0 };
+  status.forEach(value => { tally[value]++; });
+  console.log(
+    `[prune] alive: ${tally.alive}, dead: ${tally.dead}, undetermined: ${tally.unknown}`,
+  );
+
+  if (hosts.length && tally.dead / hosts.length > PRUNE_ABORT_RATIO) {
+    throw new Error(
+      `${Math.round((tally.dead / hosts.length) * 100)}% of hosts look dead. ` +
+        'Refusing to prune — check the network or the DNS resolver.',
+    );
+  }
+
+  const perEntry = {};
+  occurrences.forEach(o => {
+    perEntry[o.key] = perEntry[o.key] || { total: 0, dead: [] };
+    perEntry[o.key].total++;
+    if (status.get(o.host) === 'dead') perEntry[o.key].dead.push(o);
+  });
+
+  const removals = new Map();
+  const needsHuman = [];
+  Object.entries(perEntry).forEach(([key, info]) => {
+    if (!info.dead.length) return;
+    if (info.dead.length === info.total) {
+      needsHuman.push({ key, hosts: [...new Set(info.dead.map(o => o.host))] });
+      return;
+    }
+    info.dead.forEach(o => {
+      if (!removals.has(o.index)) removals.set(o.index, new Set());
+      removals.get(o.index).add(o.pattern);
+    });
+  });
+
+  const removed = [];
+  const output = [];
+  lines.forEach((line, index) => {
+    const targets = removals.get(index);
+    if (!targets) {
+      output.push(line);
+      return;
+    }
+    let updated = line;
+    targets.forEach(pattern => {
+      const literal = `'${pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}'`;
+      const before = updated;
+      updated = updated.replace(new RegExp(`${literal},\\s*`), '');
+      if (updated === before) updated = updated.replace(new RegExp(`,\\s*${literal}`), '');
+      if (updated === before) updated = updated.replace(new RegExp(literal), '');
+      removed.push(pattern);
+    });
+    // A line that only held removed patterns disappears entirely.
+    if (!/^\s*$/.test(updated)) output.push(updated);
+  });
+
+  if (needsHuman.length) {
+    console.log(`\n[prune] All hosts dead for ${needsHuman.length} player(s) — left untouched:`);
+    needsHuman.forEach(e => console.log(`  ${e.key}: ${e.hosts.join(', ')}`));
+    console.log('  A replacement domain has to be found before these can be removed.');
+  }
+
+  if (!removed.length) {
+    console.log('\n[prune] Nothing to remove.');
+    return;
+  }
+
+  const verb = dryRun ? 'Would remove' : 'Removed';
+  console.log(`\n[prune] ${verb} ${removed.length} dead pattern(s):`);
+  removed.forEach(pattern => console.log(`  ${pattern}`));
+
+  if (dryRun) {
+    console.log('\n[prune] Dry run — playerUrls.js left unchanged.');
+    return;
+  }
+
+  fs.writeFileSync(path.resolve('./src/pages/playerUrls.js'), output.join(eol));
+  console.log('\n[prune] playerUrls.js updated.');
+}
+
 const URL_TYPES = {
   PAGE: 'page',
   CHIBI: 'chibi',
@@ -275,6 +449,14 @@ async function start() {
   // Lists all jobs to launch in parallel used in autoUrls.yml
   if (args.includes('--list')) {
     console.log(JSON.stringify(Object.keys(tasks)));
+    return;
+  }
+
+  // Counterpart of the scraping tasks: removes player domains that no longer exist.
+  // Kept out of `tasks` on purpose, it is not a per-site job.
+  if (args.includes('--prune')) {
+    await prunePlayerUrls({ dryRun: args.includes('--dry-run') });
+    console.log('\nAutoUrls — Done.');
     return;
   }
 

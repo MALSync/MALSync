@@ -88,6 +88,8 @@
     "build:descriptions": "node webpackConfig/descriptions.js",
     "build:missingPermissions": "node webpackConfig/missingPermissions.js",
     "build:autoUrls": "node webpackConfig/autoUrls.mjs && npm run build:missingPermissions",
+    "build:autoUrls:prune": "node webpackConfig/autoUrls.mjs --prune",
+    "build:autoUrls:prune:dry": "node webpackConfig/autoUrls.mjs --prune --dry-run",
     "package": "npm run package:webextension",
     "package:webextension": "node package/webextension.mjs",
     "package:firefox": "node node_modules/web-ext/bin/web-ext sign -a dist -s dist/webextension --api-key $SIGN_KEY --api-secret $SIGN_SECRET --channel unlisted",

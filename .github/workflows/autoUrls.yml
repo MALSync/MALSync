@@ -145,6 +145,12 @@ jobs:
             --jq '.artifacts[] | select(.name | startswith("site-data-")) | .id' \
             | xargs -r -I {} gh api -X DELETE repos/${{ github.repository }}/actions/artifacts/{}
 
+      - name: Prune dead player domains
+        # Counterpart of the scraping jobs, which only ever append. Conservative by
+        # design: only NXDOMAIN is removed, and the whole step aborts rather than
+        # prune when an implausible share of hosts looks dead.
+        run: npm run build:autoUrls:prune
+
       - name: Build Permissions & Types
         run: |
           npm run build:missingPermissions
