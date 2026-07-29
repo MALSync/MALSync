@@ -127,7 +127,7 @@ export class PermissionsHandler {
 
   public async requestPermissions() {
     const permissions = {
-      origins: this.required!.match,
+      origins: this.required.match,
     };
 
     if (this.required.api) {

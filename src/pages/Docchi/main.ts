@@ -62,7 +62,7 @@ export const Docchi: pageInterface = {
       return j.$('a[mal_sync="title"]').text();
     },
     getIdentifier(url) {
-      return Docchi.sync!.getIdentifier(url);
+      return Docchi.sync.getIdentifier(url);
     },
     uiSelector(selector) {
       j.$('div[mal_sync="episodes_list"]').before(j.html(selector));

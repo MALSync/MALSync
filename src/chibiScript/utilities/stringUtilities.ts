@@ -23,7 +23,7 @@ export default {
     replacements?: Record<string, ChibiParam<string>> | [ChibiParam<string>, ChibiParam<string>][],
   ) => {
     const entries: [string, ChibiParam<string>][] = Array.isArray(replacements)
-      ? (replacements as [ChibiParam<string>, ChibiParam<string>][])
+      ? replacements
       : Object.entries(replacements ?? {});
 
     const expr = entries.reduce((acc, [from, to]) => acc.replaceAll(from, to), $c.toLowerCase());

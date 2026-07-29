@@ -1,4 +1,4 @@
-import type { Theme } from './index';
+import type { Theme } from '.';
 
 export const nordtheme: Theme = {
   name: 'Nord',

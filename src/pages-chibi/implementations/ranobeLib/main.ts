@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import type { PageInterface } from '../../pageInterface';
 
 export const ranobeLib: PageInterface = {

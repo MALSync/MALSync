@@ -13,7 +13,7 @@ export class ChibiConsumer {
 
   private ctx: ChibiCtx;
 
-  private hasRun: boolean = false;
+  private hasRun = false;
 
   constructor(script: ChibiJson<any>, name = 'Unknown') {
     this.script = script;

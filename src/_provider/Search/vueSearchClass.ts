@@ -13,7 +13,7 @@ export class SearchClass extends SearchClassExtend {
       con.log('similarity', this.state.similarity.value);
       return false;
     }
-    return this.openCorrection(true)!.then(() => {
+    return this.openCorrection(true).then(() => {
       return this.changed;
     });
   }

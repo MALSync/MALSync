@@ -1,4 +1,4 @@
-import type { Theme } from './index';
+import type { Theme } from '.';
 
 export const best2024: Theme = {
   name: 'Best 2024',
