@@ -858,7 +858,7 @@ module.exports = {
     match: ['*://rumble.com/embed/*'],
   },
   // aninexus
-  rumble: {
+  aninexusPlayer: {
     match: ['*://fle-rvd0i9o8-moo.com/*', '*://dhtpre.com/*'],
   },
   // miruro
