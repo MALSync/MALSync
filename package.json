@@ -11,10 +11,10 @@
     "node": ">=24.0.0"
   },
   "devDependencies": {
-    "@ghostery/adblocker-puppeteer": "^2.18.1",
     "@cspell/eslint-plugin": "10.0.1",
     "@eslint/eslintrc": "3.3.5",
     "@eslint/js": "9.39.4",
+    "@ghostery/adblocker-puppeteer": "^2.18.1",
     "@stylistic/eslint-plugin": "3.1.0",
     "@types/chai": "^5.2.3",
     "@types/eslint": "9.6.1",
@@ -28,6 +28,7 @@
     "@vue/eslint-config-typescript": "13.0.0",
     "archiver": "^8.0.0",
     "chai": "^6.2.2",
+    "cheerio": "^1.2.0",
     "chrome-webstore-upload": "^4.0.4",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.4",
@@ -140,5 +141,8 @@
     "vue-tsc": "^3.3.5",
     "vuedraggable": "^4.1.0",
     "webext-patterns": "^1.5.1"
+  },
+  "allowScripts": {
+    "puppeteer@25.3.0": true
   }
 }
