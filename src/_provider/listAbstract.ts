@@ -77,9 +77,9 @@ export abstract class ListAbstract {
   }
 
   constructor(
-    protected status: number = 1,
+    protected status = 1,
     protected listType: 'anime' | 'manga' = 'anime',
-    protected sort: string = 'default',
+    protected sort = 'default',
   ) {
     this.status = Number(this.status);
     this.logger = con.m('[S]', '#348fff');
