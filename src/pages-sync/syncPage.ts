@@ -350,7 +350,7 @@ export class SyncPage {
     let tracking: InstanceType<ReturnType<typeof getTrackingMode>> | null = null;
     if (this.page.type === 'manga' && api.settings.get('readerTracking')) {
       try {
-        tracking = new (getTrackingMode('manga' as TrackingModeType))();
+        tracking = new (getTrackingMode('manga'))();
         await tracking.start(this);
       } catch (e) {
         logger.error(e);

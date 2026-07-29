@@ -68,7 +68,7 @@ export const ADN: pageInterface = {
       clearInterval(checkInterval);
       if (ADN.isSyncPage(window.location.href)) {
         checkInterval = utils.waitUntilTrue(
-          () => ADN.sync!.getTitle(window.location.href),
+          () => ADN.sync.getTitle(window.location.href),
           () => page.handlePage(),
         );
       } else if (ADN.isOverviewPage!(window.location.href)) {

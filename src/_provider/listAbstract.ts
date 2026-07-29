@@ -334,7 +334,7 @@ export abstract class ListAbstract {
         prediction?.isAiring() &&
         prediction.progress()?.getCurrentEpisode() &&
         item.watchedEp &&
-        item.watchedEp < prediction!.progress()!.getCurrentEpisode()! &&
+        item.watchedEp < prediction.progress()!.getCurrentEpisode()! &&
         item.watchedEp + 6 > prediction.progress()!.getCurrentEpisode()!
       ) {
         preItems.push(item);

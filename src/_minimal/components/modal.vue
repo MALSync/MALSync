@@ -44,10 +44,8 @@ watch(
 );
 
 // https://github.com/vuejs/core/issues/2855
-const Teleport = teleport_ as {
-  new (): {
-    $props: VNodeProps & TeleportProps;
-  };
+const Teleport = teleport_ as new () => {
+  $props: VNodeProps & TeleportProps;
 };
 </script>
 

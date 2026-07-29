@@ -174,7 +174,6 @@ export function title(rus: string, eng: string, headline = false) {
 export type StatusType =
   'planned' | 'watching' | 'rewatching' | 'completed' | 'on_hold' | 'dropped';
 
-// eslint-disable-next-line no-shadow
 export enum statusTranslate {
   watching = status.Watching,
   planned = status.PlanToWatch,

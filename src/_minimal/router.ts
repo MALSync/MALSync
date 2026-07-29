@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router';
 import { getUrlObj, setUrlObj } from './utils/state';
 
-const routes: Array<RouteRecordRaw> = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: () => {

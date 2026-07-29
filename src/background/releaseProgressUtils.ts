@@ -180,7 +180,7 @@ export async function single(
     value: progressValue,
     mode,
     finished,
-  } as releaseItemInterface);
+  });
 }
 
 export function progressIsOld(releaseItem: releaseItemInterface) {

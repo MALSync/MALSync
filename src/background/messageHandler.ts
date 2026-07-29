@@ -132,7 +132,7 @@ function minimalWindowAction(message: minimalWindow, sender, sendResponse) {
           };
 
           chrome.tabs.create(config, function (win) {
-            api.storage.set('windowId', win!.id);
+            api.storage.set('windowId', win.id);
             sendResponse();
           });
         }

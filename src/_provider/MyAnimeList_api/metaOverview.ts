@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
