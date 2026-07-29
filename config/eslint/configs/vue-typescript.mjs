@@ -24,8 +24,8 @@ const airbnb = adaptAirbnbConfigs([airbnbPlugins.importX, ...airbnbConfigs.base.
 });
 
 export default mergeAll(
+  /** @type {import('eslint').Linter.FlatConfig[]} */ (jQueryUnsafeMalSync.configs?.recommended),
   /** @type {import('eslint').Linter.FlatConfig[]} */ (
-    jQueryUnsafeMalSync.configs?.recommended,
     ts.config(
       js.configs.recommended,
       airbnb,
