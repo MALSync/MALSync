@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const AnimeSama: pageInterface = {
   name: 'AnimeSama',
-  domain: 'https://anime-sama.tv',
+  domain: 'https://anime-sama.to',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
