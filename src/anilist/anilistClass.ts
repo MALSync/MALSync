@@ -5,6 +5,7 @@ import { UserList } from '../_provider/AniList/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import updateUi from './updateUi.vue';
 import { waitForPageToBeVisible } from '../utils/general';
+import { buildProviderUrl } from '../utils/slugs';
 import { NotAutenticatedError } from '../_provider/Errors';
 import type { listElement } from '../_provider/listAbstract';
 
@@ -114,7 +115,7 @@ export class AnilistClass {
       const aniListId = utils.urlPart(this.url, 4);
       return helper.aniListToMal(Number(aniListId), urlpart).then(malId => {
         if (!malId) return '';
-        return `https://myanimelist.net/${urlpart}/${malId}/${utils.urlPart(this.url, 5)}`;
+        return buildProviderUrl('MAL', urlpart, malId);
       });
     }
     return '';
