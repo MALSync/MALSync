@@ -14,7 +14,7 @@
     "@ghostery/adblocker-puppeteer": "^2.18.1",
     "@cspell/eslint-plugin": "10.0.1",
     "@eslint/eslintrc": "3.3.6",
-    "@eslint/js": "9.39.4",
+    "@eslint/js": "9.39.5",
     "@stylistic/eslint-plugin": "3.1.0",
     "@types/chai": "^5.2.3",
     "@types/eslint": "9.6.1",
