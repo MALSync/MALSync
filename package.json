@@ -68,7 +68,7 @@
     "vue-loader": "^17.4.2",
     "web-ext": "^10.4.0",
     "webpack": "^5.105.3",
-    "webpack-cli": "^7.2.1"
+    "webpack-cli": "^7.2.2"
   },
   "scripts": {
     "clean": "rm -rf dist",
