@@ -36,13 +36,13 @@ export class Single extends SingleAbstract {
     if (path?.provider === 'SIMKL') {
       this.type = path.type;
       this.ids.simkl = parseInt(path.id);
-      if (this.type === 'manga') throw 'Simkl has no manga support';
+      if (this.type === 'manga') throw new UrlNotSupportedError('Simkl has no manga support');
       return;
     }
     if (path?.provider === 'MAL') {
       this.type = path.type;
       this.ids.mal = Number(path.id);
-      if (this.type === 'manga') throw 'Simkl has no manga support';
+      if (this.type === 'manga') throw new UrlNotSupportedError('Simkl has no manga support');
       return;
     }
     throw new UrlNotSupportedError(url);

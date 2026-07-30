@@ -13,14 +13,14 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.simklId = parseInt(utils.urlPart(url, 4));
       this.malId = NaN;
-      if (this.type === 'manga') throw 'Simkl has no manga support';
+      if (this.type === 'manga') throw new UrlNotSupportedError('Simkl has no manga support');
       return this;
     }
     if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
       this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.malId = Number(utils.urlPart(url, 4));
       this.simklId = NaN;
-      if (this.type === 'manga') throw 'Simkl has no manga support';
+      if (this.type === 'manga') throw new UrlNotSupportedError('Simkl has no manga support');
       return this;
     }
 
