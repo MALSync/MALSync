@@ -583,7 +583,7 @@ async function openPage(b) {
 }
 
 async function initTestsArray() {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     dir.readFiles(
       `${__dirname}/../../src/`,
       {
