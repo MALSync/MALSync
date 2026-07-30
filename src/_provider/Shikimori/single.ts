@@ -150,11 +150,11 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return this.animeMeta!.url ? `${helper.domain}${this.animeMeta!.url}` : this.url;
+    return this.animeMeta?.url ? `${helper.domain}${this.animeMeta.url}` : this.url;
   }
 
   _getImage() {
-    return this.animeMeta!.image.preview ? `${helper.domain}${this.animeMeta!.image.preview}` : '';
+    return this.animeMeta?.image.preview ? `${helper.domain}${this.animeMeta.image.preview}` : '';
   }
 
   _getRating() {
@@ -168,6 +168,8 @@ export class Single extends SingleAbstract {
       path: `${this.type}s/${this.ids.mal}`,
       type: 'GET',
     });
+
+    this._authenticated = true;
 
     if (!metadata.id) {
       throw new NotFoundError(this.url);
@@ -203,8 +205,6 @@ export class Single extends SingleAbstract {
       this._onList = true;
       [this.animeInfo] = rating;
     }
-
-    this._authenticated = true;
 
     return Promise.resolve();
   }
