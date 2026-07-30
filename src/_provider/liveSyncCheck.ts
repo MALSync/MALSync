@@ -79,10 +79,7 @@ export async function runLiveSyncCheck(
       const single = new Single(url);
       await single.update();
       const total = single.getTotalEpisodes();
-      single
-        .setScore(definitions.score.R5)
-        .setStatus(definitions.status.Watching)
-        .setEpisode(100000);
+      single.setScore(definitions.score.R5).setStatus(definitions.status.Watching).setEpisode(1000);
       await single.sync();
       await single.update();
 
@@ -91,7 +88,7 @@ export async function runLiveSyncCheck(
           throw new Error(
             `entry has ${total} total episodes, expected clamp to it, got ${single.getEpisode()}`,
           );
-      } else if (single.getEpisode() !== 100000) {
+      } else if (single.getEpisode() !== 1000) {
         throw new Error(`entry has no known total, expected no clamp, got ${single.getEpisode()}`);
       }
     });
