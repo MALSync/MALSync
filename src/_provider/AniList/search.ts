@@ -1,4 +1,5 @@
 import { searchInterface } from '../definitions';
+import { buildProviderUrl } from '../../utils/slugs';
 import * as helper from './helper';
 
 export const search: searchInterface = async function (
@@ -58,7 +59,7 @@ export const search: searchInterface = async function (
       altNames: Object.values(item.title).concat(item.synonyms),
       url: item.siteUrl,
       malUrl: () => {
-        return item.idMal ? `https://myanimelist.net/${type}/${item.idMal}` : null;
+        return item.idMal ? buildProviderUrl('MAL', type, item.idMal) : null;
       },
       image: helper.imgCheck(item.coverImage.large),
       imageLarge: helper.imgCheck(item.coverImage.extraLarge),

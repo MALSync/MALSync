@@ -31,7 +31,7 @@ type ProviderOption = {
   short: boolean;
 };
 
-const providers: { [key in SyncTypes]: ProviderOption } = {
+export const providers: { [key in SyncTypes]: ProviderOption } = {
   MAL: { title: 'MyAnimeList', value: 'MAL', anime: true, manga: true, short: true },
   ANILIST: { title: 'AniList', value: 'ANILIST', anime: true, manga: true, short: true },
   KITSU: { title: 'Kitsu', value: 'KITSU', anime: true, manga: true, short: true },

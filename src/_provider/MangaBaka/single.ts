@@ -1,4 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point100 } from '../ScoreMode/point100';
 import {
@@ -33,24 +34,25 @@ export class Single extends SingleAbstract {
   authenticationUrl = authenticationUrl;
 
   protected handleUrl(url) {
-    if (url.match(/mangabaka\.(dev|org)\/\d*(\/|$)/i)) {
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'MANGABAKA') {
       this.type = 'manga';
-      this.ids.baka = Number(utils.urlPart(url, 3));
+      this.ids.baka = Number(path.id);
       return;
     }
-    if (url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.ani = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'ANILIST') {
+      this.type = path.type;
+      this.ids.ani = Number(path.id);
       if (this.type !== 'manga') {
-        throw new Error('MangaBaka only supports manga');
+        throw new UrlNotSupportedError('MangaBaka only supports manga');
       }
       return;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.mal = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.ids.mal = Number(path.id);
       if (this.type !== 'manga') {
-        throw new Error('MangaBaka only supports manga');
+        throw new UrlNotSupportedError('MangaBaka only supports manga');
       }
       return;
     }
@@ -237,7 +239,7 @@ export class Single extends SingleAbstract {
       }
     }
 
-    this.displayUrl = `https://mangabaka.org/${seriesEntry.id}`;
+    this.displayUrl = buildProviderUrl('MANGABAKA', 'manga', seriesEntry.id);
 
     let json: BakaLibraryEntry | null = null;
 

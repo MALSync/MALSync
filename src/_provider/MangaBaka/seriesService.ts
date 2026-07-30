@@ -78,7 +78,9 @@ export async function getSeries(ids: Partial<SingleAbstract['ids']>) {
     throw new Error('No valid ID found');
   }
 
-  await cacheSeries(seriesEntry);
+  if (seriesEntry) {
+    await cacheSeries(seriesEntry);
+  }
 
   return seriesEntry;
 }
