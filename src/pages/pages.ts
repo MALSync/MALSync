@@ -3,7 +3,6 @@ import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
 import { Netflix } from './Netflix/main';
 import { Animeflv } from './Animeflv/main';
-import { Jkanime } from './Jkanime/main';
 import { Proxer } from './Proxer/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { Shinden } from './Shinden/main';
@@ -102,7 +101,6 @@ export const pages = {
   TurkAnime,
   Netflix,
   Animeflv,
-  Jkanime,
   Proxer,
   Emby,
   KickAssAnime,
