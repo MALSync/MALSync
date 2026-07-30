@@ -1,5 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
-import { urlToSlug } from '../../utils/slugs';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
@@ -172,7 +172,7 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return `https://simkl.com/${this.getType()}/${this.ids.simkl}`;
+    return buildProviderUrl('SIMKL', this.getType()!, this.ids.simkl);
   }
 
   _getImage() {

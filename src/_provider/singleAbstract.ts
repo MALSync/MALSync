@@ -365,7 +365,7 @@ export abstract class SingleAbstract {
       res.push({
         name: 'AniList',
         icon: 'https://anilist.co/img/icons/favicon-32x32.png',
-        link: `https://anilist.co/${this.type}/${this.ids.ani}`,
+        link: buildProviderUrl('ANILIST', this.type!, this.ids.ani),
       });
     }
 
@@ -373,7 +373,7 @@ export abstract class SingleAbstract {
       res.push({
         name: 'Kitsu',
         icon: 'https://kitsu.app/favicon-32x32-3e0ecb6fc5a6ae681e65dcbc2bdf1f17.png',
-        link: `https://kitsu.app/${this.type}/${this.ids.kitsu.id}`,
+        link: buildProviderUrl('KITSU', this.type!, this.ids.kitsu.id),
       });
     }
 
@@ -381,7 +381,7 @@ export abstract class SingleAbstract {
       res.push({
         name: 'Simkl',
         icon: 'https://eu.simkl.in/img_favicon/v2/favicon-32x32.png',
-        link: `https://simkl.com/${this.type}/${this.ids.simkl}`,
+        link: buildProviderUrl('SIMKL', this.type!, this.ids.simkl),
       });
     }
 

@@ -1,7 +1,7 @@
 import { parse as mdParse } from 'marked';
 import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
-import { urlToSlug } from '../../utils/slugs';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 import { BakaSeries, RelatedSeries } from './types';
 import { call, getAlternativeTitles, getImageUrl, urls } from './helper';
@@ -253,7 +253,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
         sources.push({
           text: title,
-          url: `https://anilist.co/manga/${src.anilist.id}`,
+          url: buildProviderUrl('ANILIST', 'manga', src.anilist.id),
         });
       }
       if (src.anime_planet && src.anime_planet.id) {
@@ -273,7 +273,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
         sources.push({
           text: title,
-          url: `https://myanimelist.net/manga/${src.my_anime_list.id}`,
+          url: buildProviderUrl('MAL', 'manga', src.my_anime_list.id),
         });
       }
       if (src.kitsu && src.kitsu.id) {
@@ -303,7 +303,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
         sources.push({
           text: title,
-          url: `https://shikimori.io/mangas/${src.shikimori.id}`,
+          url: buildProviderUrl('SHIKI', 'manga', src.shikimori.id),
         });
       }
       if (src.anime_news_network && src.anime_news_network.id) {
@@ -349,7 +349,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             }
 
             links[relationType].links.push({
-              url: `https://mangabaka.org/${series.id}`,
+              url: buildProviderUrl('MANGABAKA', 'manga', series.id),
               title,
               type: 'manga',
               id: series.id,

@@ -1,6 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
-import { urlToSlug } from '../../utils/slugs';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 
@@ -296,7 +296,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeInfo.included.forEach(function (i) {
         if (i.type === 'manga' || i.type === 'anime') {
           an[i.id] = {
-            url: `https://kitsu.app/${i.type}/${i.attributes.slug}`,
+            url: buildProviderUrl('KITSU', i.type, i.attributes.slug),
             title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
             id: i.id,
             type: i.type,

@@ -1,6 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
-import { urlToSlug } from '../../utils/slugs';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 import { IntlDuration, IntlRange } from '../../utils/IntlWrapper';
@@ -403,7 +403,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
 
         links[el.relation_type].links.push({
-          url: `https://myanimelist.net/anime/${el.node.id}`,
+          url: buildProviderUrl('MAL', 'anime', el.node.id),
           title: el.node.title,
           id: el.node.id,
           type: 'anime',
@@ -421,7 +421,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
 
         links[el.relation_type].links.push({
-          url: `https://myanimelist.net/manga/${el.node.id}`,
+          url: buildProviderUrl('MAL', 'manga', el.node.id),
           title: el.node.title,
           id: el.node.id,
           type: 'manga',

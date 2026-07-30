@@ -1,5 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
-import { urlToSlug } from '../../utils/slugs';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point100 } from '../ScoreMode/point100';
 import {
@@ -239,7 +239,7 @@ export class Single extends SingleAbstract {
       }
     }
 
-    this.displayUrl = `https://mangabaka.org/${seriesEntry.id}`;
+    this.displayUrl = buildProviderUrl('MANGABAKA', 'manga', seriesEntry.id);
 
     let json: BakaLibraryEntry | null = null;
 

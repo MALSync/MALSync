@@ -1,5 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
-import { urlToSlug } from '../../utils/slugs';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
@@ -178,7 +178,7 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return `https://kitsu.app/${this.getType()}/${this.animeI().attributes.slug}`;
+    return buildProviderUrl('KITSU', this.getType()!, this.animeI().attributes.slug);
   }
 
   _getImage() {

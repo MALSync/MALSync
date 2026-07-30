@@ -1,6 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
-import { urlToSlug } from '../../utils/slugs';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 import { IntlDuration } from '../../utils/IntlWrapper';
@@ -179,7 +179,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (genres.length < 6) {
         genres.push({
           text: i,
-          url: `https://simkl.com/${this.type}/${i.toLowerCase()}`,
+          url: buildProviderUrl('SIMKL', this.type, i.toLowerCase()),
         });
       }
     });
@@ -220,7 +220,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         };
       }
       links[i.relation_type].links.push({
-        url: `https://simkl.com/anime/${i.ids.simkl}/${i.ids.slug}`,
+        url: buildProviderUrl('SIMKL', 'anime', i.ids.simkl),
         title: i.title,
         type: 'anime',
         id: i.ids.simkl,

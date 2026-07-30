@@ -25,7 +25,7 @@ export const search: searchInterface = async function (
           id: Number(item.id),
           name: helper.getTitle(item.attributes.titles, item.attributes.canonicalTitle),
           altNames: Object.values(item.attributes.titles),
-          url: `https://kitsu.app/${type}/${item.attributes.slug}`,
+          url: buildProviderUrl('KITSU', type, item.attributes.slug),
           malUrl: async () => {
             const malId = await helper.kitsuToMal(item.id, type);
             return malId ? buildProviderUrl('MAL', type, malId) : null;
