@@ -56,7 +56,8 @@ function generateChibiTypes() {
   typeDefinitions += `import utilitiesRegistry from './utilities';\n`;
   typeDefinitions += `import type { ChibiGenerator, ChibiJson } from './ChibiGenerator';\n`;
   typeDefinitions += `import type { ReservedKey } from './ChibiRegistry';\n`;
-  typeDefinitions += `import type * as CT from './ChibiTypeHelper';\n\n`;
+  typeDefinitions += `import type * as CT from './ChibiTypeHelper';\n`;
+  typeDefinitions += `import type { ProviderKey } from './utilities/internalUtilities';\n\n`;
   typeDefinitions += `type ChibiParam<T> = T | ChibiJson<T>;\n\n`;
   typeDefinitions += `export interface ChibiGeneratorFunctions<Input> {\n`;
 

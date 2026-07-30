@@ -1,4 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
+import { urlToSlug } from '../../utils/slugs';
+import * as definitions from '../definitions';
 import * as helper from './helper';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
@@ -21,17 +23,10 @@ export class Single extends SingleAbstract {
   protected datesSupport = false;
 
   protected handleUrl(url) {
-    if (url.match(/shikimori\.(one|io)\/(animes|mangas|ranobe)\/\D?\d+/i)) {
-      this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
-      const res = utils.urlPart(url, 4).match(/^\D?(\d+)/);
-      if (res && res[1]) {
-        this.ids.mal = Number(res[1]);
-        return;
-      }
-    }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.mal = Number(utils.urlPart(url, 4));
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'SHIKI' || path?.provider === 'MAL') {
+      this.type = path.type;
+      this.ids.mal = Number(path.id);
       return;
     }
     throw new UrlNotSupportedError(url);
@@ -50,6 +45,9 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
+    }
     this.animeInfo!.status = helper.statusTranslate[status] as helper.StatusType;
   }
 
@@ -152,11 +150,11 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return this.animeMeta!.url ? `${helper.domain}${this.animeMeta!.url}` : this.url;
+    return this.animeMeta?.url ? `${helper.domain}${this.animeMeta.url}` : this.url;
   }
 
   _getImage() {
-    return this.animeMeta!.image.preview ? `${helper.domain}${this.animeMeta!.image.preview}` : '';
+    return this.animeMeta?.image.preview ? `${helper.domain}${this.animeMeta.image.preview}` : '';
   }
 
   _getRating() {
@@ -170,6 +168,8 @@ export class Single extends SingleAbstract {
       path: `${this.type}s/${this.ids.mal}`,
       type: 'GET',
     });
+
+    this._authenticated = true;
 
     if (!metadata.id) {
       throw new NotFoundError(this.url);
@@ -205,8 +205,6 @@ export class Single extends SingleAbstract {
       this._onList = true;
       [this.animeInfo] = rating;
     }
-
-    this._authenticated = true;
 
     return Promise.resolve();
   }

@@ -1,5 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
+import { urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 
@@ -7,17 +8,10 @@ export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
     this.logger = this.logger.m('Shiki');
-    if (url.match(/shikimori\.(one|io)\/(animes|mangas|ranobe)\/\D?\d+/i)) {
-      this.type = utils.urlPart(url, 3) === 'animes' ? 'anime' : 'manga';
-      const res = utils.urlPart(url, 4).match(/^\D?(\d+)/);
-      if (res && res[1]) {
-        this.malId = Number(res[1]);
-        return this;
-      }
-    }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.malId = Number(utils.urlPart(url, 4));
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'SHIKI' || path?.provider === 'MAL') {
+      this.type = path.type;
+      this.malId = Number(path.id);
       return this;
     }
     throw new UrlNotSupportedError(url);

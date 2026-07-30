@@ -56,6 +56,16 @@ const routes: RouteRecordRaw[] = [
     name: 'Install',
     component: () => import('./views/install.vue'),
   },
+  {
+    path: '/test',
+    name: 'LiveSyncCheck',
+    component: () => import('./views/test.vue'),
+  },
+  {
+    path: '/test/components',
+    name: 'ComponentTest',
+    component: () => import('./views/componentTest.vue'),
+  },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('./views/notFound.vue') },
 ];
 

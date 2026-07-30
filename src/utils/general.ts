@@ -836,25 +836,6 @@ export function wait(ms: number) {
   });
 }
 
-export function pageUrl(
-  page: 'mal' | 'anilist' | 'kitsu' | 'simkl',
-  type: 'anime' | 'manga',
-  id: string | number,
-) {
-  switch (page) {
-    case 'mal':
-      return `https://myanimelist.net/${type}/${id}`;
-    case 'anilist':
-      return `https://anilist.co/${type}/${id}`;
-    case 'kitsu':
-      return `https://kitsu.app/${type}/${id}`;
-    case 'simkl':
-      return `https://simkl.com/${type}/${id}`;
-    default:
-      throw `${page} not a valid page`;
-  }
-}
-
 export function returnYYYYMMDD(numFromToday = 0) {
   const d = new Date();
   d.setDate(d.getDate() + numFromToday);

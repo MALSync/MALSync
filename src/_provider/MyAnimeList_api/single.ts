@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
-import { NotAutenticatedError, UrlNotSupportedError } from '../Errors';
+import { urlToSlug } from '../../utils/slugs';
+import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 import { malToAnilist } from '../AniList/helper';
@@ -23,9 +24,10 @@ export class Single extends SingleAbstract {
   authenticationUrl = helper.authenticationUrl;
 
   protected handleUrl(url) {
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.mal = Number(utils.urlPart(url, 4));
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.ids.mal = Number(path.id);
       return;
     }
     throw new UrlNotSupportedError(url);
@@ -58,6 +60,9 @@ export class Single extends SingleAbstract {
       this.setRewatching(true);
     } else {
       this.setRewatching(false);
+    }
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
     }
     if (this.type === 'manga') {
       this.animeInfo.my_list_status.status = helper.mangaStatus[status];
@@ -235,6 +240,8 @@ export class Single extends SingleAbstract {
       .catch(e => {
         if (e instanceof NotAutenticatedError) {
           this._authenticated = false;
+        } else if (e instanceof NotFoundError) {
+          this._authenticated = true;
         }
         throw e;
       })
