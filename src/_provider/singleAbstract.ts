@@ -6,6 +6,7 @@ import { predictionXhrGET, ProgressItem } from '../background/releaseProgressUti
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
 import { returnYYYYMMDD } from '../utils/general';
+import { buildProviderUrl } from '../utils/slugs';
 import { errorMessage as _errorMessage } from './Errors';
 import { point10 } from './ScoreMode/point10';
 import { SyncTypes } from './helper';
@@ -356,7 +357,7 @@ export abstract class SingleAbstract {
       res.push({
         name: 'MAL',
         icon: 'https://cdn.myanimelist.net/images/favicon.ico',
-        link: `https://myanimelist.net/${this.type}/${this.ids.mal}`,
+        link: buildProviderUrl('MAL', this.type!, this.ids.mal),
       });
     }
 
@@ -562,7 +563,7 @@ export abstract class SingleAbstract {
 
   public getMalUrl(): string | null {
     if (!Number.isNaN(this.ids.mal)) {
-      return `https://myanimelist.net/${this.getType()}/${this.ids.mal}`;
+      return buildProviderUrl('MAL', this.getType()!, this.ids.mal);
     }
     return null;
   }
