@@ -20,11 +20,6 @@
     "name": "Animeflv"
   },
   {
-    "domain": "https://jkanime.net",
-    "type": "anime",
-    "name": "Jkanime"
-  },
-  {
     "domain": "https://proxer.me",
     "type": "anime",
     "name": "Proxer"
