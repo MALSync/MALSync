@@ -23,7 +23,9 @@ export const JKAnime: PageInterface = {
     getTitle($c) {
       return $c
         .querySelector('div.player_normal > div.video-info div.video_i')
+        .ifNotReturn()
         .find('a')
+        .ifNotReturn()
         .text()
         .trim()
         .run();
@@ -34,6 +36,7 @@ export const JKAnime: PageInterface = {
     getImage($c) {
       return $c
         .querySelector('div.player_normal > div.video-info div.video_t > a > img')
+        .ifNotReturn()
         .getAttribute('src')
         .ifNotReturn()
         .run();
@@ -41,7 +44,9 @@ export const JKAnime: PageInterface = {
     getOverviewUrl($c) {
       return $c
         .querySelector('div.ep_bar > div.anime_slug > a > div')
+        .ifNotReturn()
         .parent()
+        .ifNotReturn()
         .getAttribute('href')
         .urlAbsolute()
         .run();
@@ -52,14 +57,17 @@ export const JKAnime: PageInterface = {
     nextEpUrl($c) {
       return $c
         .querySelector('div.ep_bar > div.anime_slug > div > a > div > i.ti-chevron-right')
+        .ifNotReturn()
         .parent()
+        .ifNotReturn()
         .parent()
+        .ifNotReturn()
         .getAttribute('href')
         .urlAbsolute()
         .run();
     },
     uiInjection($c) {
-      return $c.querySelectorAll('#collapseServers').last().uiBefore().run();
+      return $c.querySelectorAll('#collapseServers').ifNotReturn().last().uiBefore().run();
     },
   },
   overview: {
@@ -74,6 +82,7 @@ export const JKAnime: PageInterface = {
     getTitle($c) {
       return $c
         .querySelector('div.anime__details__content div.anime_info > h3')
+        .ifNotReturn()
         .text()
         .trim()
         .run();
@@ -116,8 +125,10 @@ export const JKAnime: PageInterface = {
         .detectChanges(
           $c
             .querySelectorAll('#episodes-content > div.epcontent')
+            .ifNotReturn()
             .last()
             .find('a')
+            .ifNotReturn()
             .getAttribute('href')
             .run(),
           $c.trigger().run(),
