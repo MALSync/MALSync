@@ -61,6 +61,9 @@ export class Single extends SingleAbstract {
     } else {
       this.setRewatching(false);
     }
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
+    }
     if (this.type === 'manga') {
       this.animeInfo.my_list_status.status = helper.mangaStatus[status];
       return;

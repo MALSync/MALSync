@@ -64,6 +64,9 @@ export class Single extends SingleAbstract {
     if (status === definitions.status.Rewatching) {
       status = definitions.status.Watching;
     }
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
+    }
     status = helper.translateList(status, parseInt(status.toString()));
     if (status !== this.animeInfo.status) {
       this.statusUpdate = true;

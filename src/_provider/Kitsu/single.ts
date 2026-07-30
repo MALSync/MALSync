@@ -65,6 +65,9 @@ export class Single extends SingleAbstract {
     } else {
       this.listI().attributes.reconsuming = false;
     }
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
+    }
     this.listI().attributes.status = helper.translateList(status, parseInt(status.toString()));
   }
 

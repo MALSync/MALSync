@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import { urlToSlug } from '../../utils/slugs';
+import * as definitions from '../definitions';
 import * as helper from './helper';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
@@ -44,6 +45,9 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
+    }
     this.animeInfo!.status = helper.statusTranslate[status] as helper.StatusType;
   }
 
