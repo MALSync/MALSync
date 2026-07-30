@@ -139,5 +139,8 @@
     "vue-tsc": "^3.3.8",
     "vuedraggable": "^4.1.0",
     "webext-patterns": "^1.5.1"
+  },
+  "allowScripts": {
+    "puppeteer@25.3.0": true
   }
 }
