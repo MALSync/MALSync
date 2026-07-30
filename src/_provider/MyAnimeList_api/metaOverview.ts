@@ -1,5 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
+import { urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 import { IntlDuration, IntlRange } from '../../utils/IntlWrapper';
@@ -61,9 +62,10 @@ export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
     this.logger = this.logger.m('MAL');
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.malId = Number(utils.urlPart(url, 4));
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.malId = Number(path.id);
       return;
     }
     throw new UrlNotSupportedError(url);

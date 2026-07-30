@@ -1,6 +1,7 @@
 import { parse as mdParse } from 'marked';
 import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
+import { urlToSlug } from '../../utils/slugs';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 import { BakaSeries, RelatedSeries } from './types';
 import { call, getAlternativeTitles, getImageUrl, urls } from './helper';
@@ -10,15 +11,16 @@ export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
     this.logger = this.logger.m('MangaBaka');
-    if (url.match(/mangabaka\.(dev|org)\/\d*(\/|$)/i)) {
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'MANGABAKA') {
       this.type = 'manga';
       this.malId = NaN;
-      this.bakaId = Number(utils.urlPart(url, 3));
+      this.bakaId = Number(path.id);
       return this;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.malId = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.malId = Number(path.id);
       this.bakaId = NaN;
       if (this.type !== 'manga') {
         throw new Error('MangaBaka only supports manga');

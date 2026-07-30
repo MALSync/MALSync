@@ -1,5 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
+import { urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 
@@ -8,15 +9,16 @@ export class MetaOverview extends MetaOverviewAbstract {
     super(url);
     this.logger = this.logger.m('Kitsu');
 
-    if (url.match(/kitsu\.app\/(anime|manga)\/.*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.kitsuSlug = utils.urlPart(url, 4);
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'KITSU') {
+      this.type = path.type;
+      this.kitsuSlug = path.id;
       this.malId = NaN;
       return this;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.malId = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.malId = Number(path.id);
       this.kitsuSlug = '';
       return this;
     }
