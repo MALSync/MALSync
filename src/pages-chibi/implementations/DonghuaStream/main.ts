@@ -1,4 +1,3 @@
-import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const DonghuaStream: PageInterface = {
