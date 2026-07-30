@@ -29,7 +29,7 @@ export const YummyAni: PageInterface = {
       return $c.url().run();
     },
     getEpisode($c) {
-      return $c.querySelector('.pGCG').text().regex('[0-9.]+').number().run();
+      return $c.querySelector('.pQCG').text().regex('[0-9.]+').number().run();
     },
     getImage($c) {
       return $c.querySelector('img.bordered-top').getAttribute('src').ifNotReturn().run();
@@ -52,6 +52,7 @@ export const YummyAni: PageInterface = {
         .contains('Страница не найдена')
         .ifThen($c => $c.string('404').log().return().run())
         .domReady()
+        .detectChanges($c.querySelector('.pQCG').run(), $c.trigger().run())
         .trigger()
         .run();
     },
