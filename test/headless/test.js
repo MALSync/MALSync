@@ -26,7 +26,7 @@ if (process.env.FILES) {
 // Define global variables
 let browser;
 const debugging = false;
-let headless = OnlyPage ? false : true;
+let headless = OnlyPage && !process.env.CI ? false : true;
 let buildFailed = false;
 const mode = {
   quiet: false,
@@ -653,6 +653,15 @@ async function main() {
   const awaitArray = [];
   let running = 0;
   await initTestsArray();
+
+  if (process.env.LIST_PAGES) {
+    const pages = testsArray
+      .filter(t => (t.enabled || typeof t.enabled === 'undefined') && !t.offline)
+      .map(t => t.title);
+    console.log(JSON.stringify(pages));
+    process.exit();
+  }
+
   if (mode.parallel) {
     await getBrowser();
     for (const testPage of testsArray) {
