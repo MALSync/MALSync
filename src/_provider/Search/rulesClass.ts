@@ -1,3 +1,5 @@
+import { pageUrl } from '../../utils/slugs';
+
 interface rules {
   provider: 'firebase' | 'user';
   cache?: boolean;

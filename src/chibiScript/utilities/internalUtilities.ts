@@ -1,7 +1,7 @@
 import type { ChibiGenerator, ChibiJson } from '../ChibiGenerator';
 import { providerUrls, ProviderIdentifier, UrlSyncMode } from '../../utils/slugs';
 
-type ProviderKey = `${ProviderIdentifier}Id` | `${ProviderIdentifier}Url`;
+export type ProviderKey = `${ProviderIdentifier}Id` | `${ProviderIdentifier}Url`;
 
 export default {
   /**
