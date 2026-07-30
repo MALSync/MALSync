@@ -155,6 +155,11 @@ module.exports = {
       vue: '@vue/runtime-dom',
     },
   },
+  resolveLoader: {
+    alias: {
+      'to-string-loader': require.resolve('./utils/toStringLoader'),
+    },
+  },
   output: {
     filename: 'malsync.user.js',
     path: path.resolve(__dirname, '..', 'dist'),

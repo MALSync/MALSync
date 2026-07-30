@@ -597,9 +597,9 @@ module.exports = {
   videobin: {
     match: ['*://videobin.co/*'],
   },
-  // animewho
+  // animewho animesama
   uqload: {
-    match: ['*://uqload.com/*'],
+    match: ['*://uqload.com/*', '*://uqload.is/*'],
   },
   // animewho
   evoload: {
@@ -837,6 +837,18 @@ module.exports = {
   oneupload: {
     match: ['*://oneupload.to/*'],
   },
+  // animesama
+  ansembed: {
+    match: ['*://*.ansembed.net/*'],
+  },
+  // animesama
+  embed4me: {
+    match: ['*://*.embed4me.com/*'],
+  },
+  // animesama
+  minochinos: {
+    match: ['*://*.minochinos.com/*'],
+  },
   // animexin
   vimeo: {
     match: ['*://player.vimeo.com/*'],
@@ -846,7 +858,7 @@ module.exports = {
     match: ['*://rumble.com/embed/*'],
   },
   // aninexus
-  rumble: {
+  aninexusPlayer: {
     match: ['*://fle-rvd0i9o8-moo.com/*', '*://dhtpre.com/*'],
   },
   // miruro

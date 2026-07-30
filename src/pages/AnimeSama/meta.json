@@ -1,5 +1,5 @@
 {
-  "search": "https://anime-sama.tv/catalogue/?search={searchterm}",
+  "search": "https://anime-sama.to/catalogue/?search={searchtermPlus}",
   "urls": {
     "match": [
       "*://anime-sama.tv/*",

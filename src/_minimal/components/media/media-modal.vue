@@ -53,10 +53,8 @@ watch(url, () => {
   open.value = true;
 });
 
-const Teleport = teleport_ as {
-  new (): {
-    $props: VNodeProps & TeleportProps;
-  };
+const Teleport = teleport_ as new () => {
+  $props: VNodeProps & TeleportProps;
 };
 </script>
 
