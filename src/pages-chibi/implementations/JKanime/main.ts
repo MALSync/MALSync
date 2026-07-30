@@ -31,6 +31,13 @@ export const JKAnime: PageInterface = {
     getIdentifier($c) {
       return $c.url().urlPart(3).run();
     },
+    getImage($c) {
+      return $c
+        .querySelector('div.player_normal > div.video-info div.video_t > a > img')
+        .getAttribute('src')
+        .ifNotReturn()
+        .run();
+    },
     getOverviewUrl($c) {
       return $c
         .querySelector('div.ep_bar > div.anime_slug > a > div')
@@ -72,7 +79,7 @@ export const JKAnime: PageInterface = {
         .run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').urlAbsolute().run();
+      return $c.url().this('sync.getIdentifier').run();
     },
     getImage($c) {
       return $c
