@@ -44,7 +44,7 @@ export class Single extends SingleAbstract {
       this.type = path.type;
       this.ids.ani = Number(path.id);
       if (this.type !== 'manga') {
-        throw new Error('MangaBaka only supports manga');
+        throw new UrlNotSupportedError('MangaBaka only supports manga');
       }
       return;
     }
@@ -52,7 +52,7 @@ export class Single extends SingleAbstract {
       this.type = path.type;
       this.ids.mal = Number(path.id);
       if (this.type !== 'manga') {
-        throw new Error('MangaBaka only supports manga');
+        throw new UrlNotSupportedError('MangaBaka only supports manga');
       }
       return;
     }
