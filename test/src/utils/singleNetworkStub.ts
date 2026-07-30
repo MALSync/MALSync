@@ -1,10 +1,10 @@
 
 export function setConAndUtils() {
-  global.con = require('../../../src/utils/console');
-  global.con.log = function() {};
-  global.con.error = function() {};
-  global.con.info = function() {};
-  global.utils = require('../../../src/utils/general');
+  (globalThis as any).con = require('../../../src/utils/console');
+  (globalThis as any).con.log = function() {};
+  (globalThis as any).con.error = function() {};
+  (globalThis as any).con.info = function() {};
+  (globalThis as any).utils = require('../../../src/utils/general');
 }
 
 export function createStorageStub() {
