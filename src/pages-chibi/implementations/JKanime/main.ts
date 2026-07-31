@@ -114,8 +114,13 @@ export const JKAnime: PageInterface = {
   },
   lifecycle: {
     setup($c) {
+      // this is added here because stylelint doesn't support the starting-style
+      // at-rule until version 16, so it will not let me add it cleanly in
+      // style.less without yelling at me in the lint:css check
+      const _startingStyle =
+        '@starting-style{#malp,#malp *{opacity:0!important;font-size:-1.25rem!important;}#malp{width:0;}}';
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call, global-require, @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-member-access
-      return $c.addStyle(require('./style.less?raw').toString()).run();
+      return $c.addStyle(require('./style.less?raw').toString()).addStyle(_startingStyle).run();
     },
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
