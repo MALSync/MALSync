@@ -122,6 +122,8 @@ export const JKAnime: PageInterface = {
     },
     listChange($c) {
       return $c
+        .this('overview.isOverviewPage')
+        .ifNotReturn()
         .detectChanges(
           $c
             .querySelectorAll('#episodes-content > div.epcontent')
@@ -130,6 +132,7 @@ export const JKAnime: PageInterface = {
             .find('a')
             .ifNotReturn()
             .getAttribute('href')
+            .ifNotReturn()
             .run(),
           $c.trigger().run(),
         )
