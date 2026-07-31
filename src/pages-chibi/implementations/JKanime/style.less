@@ -85,10 +85,14 @@
   }
 }
 
-.mal-sync-active > div {
+div.anime__item .mal-sync-active > div {
   // outline: 0.25rem solid #ff9d00;
   // box-shadow: #027bff 0 0 0.75rem 0.625rem;
   box-shadow: inset #ff9d00 0 0 0 0.25rem;
+}
+
+#episodes-content li.list-group-item:has(.mal-sync-active) {
+  border-left: #ff9d00 0.25rem solid !important;
 }
 
 html > button.open-info-popup.floatbutton {

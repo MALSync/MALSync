@@ -103,7 +103,17 @@ export const JKAnime: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('#episodes-content div.anime__item a').run();
+      return $c
+        .querySelectorAll(
+          $c
+            .if(
+              $c.this('overview.isOverviewPage').run(),
+              $c.string('#episodes-content div.anime__item a').run(),
+              $c.string('#episodes-content li.list-group-item a').run(),
+            )
+            .run(),
+        )
+        .run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
@@ -127,13 +137,19 @@ export const JKAnime: PageInterface = {
     },
     listChange($c) {
       return $c
-        .this('overview.isOverviewPage')
-        .ifNotReturn()
         .detectChanges(
           $c
-            .querySelectorAll('#episodes-content > div.epcontent')
-            .ifNotReturn()
+            .querySelectorAll(
+              $c
+                .if(
+                  $c.this('overview.isOverviewPage').run(),
+                  $c.string('#episodes-content div.anime__item').run(),
+                  $c.string('#episodes-content li').run(),
+                )
+                .run(),
+            )
             .last()
+            .ifNotReturn()
             .find('a')
             .ifNotReturn()
             .getAttribute('href')
