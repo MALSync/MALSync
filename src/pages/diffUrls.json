@@ -144,6 +144,7 @@
   },
   "0.12.4": {
     "iframe": [
+      "*://*.miixdrop.com/e/*",
       "*://playmogo.com/e/*",
       "*://matthewhotelscience.com/e/*",
       "*://uqload.is/*",
