@@ -385,7 +385,7 @@
     "name": "Animelon"
   },
   {
-    "domain": "https://anime-sama.tv",
+    "domain": "https://anime-sama.to",
     "type": "anime",
     "name": "AnimeSama"
   },
@@ -1038,5 +1038,10 @@
     "domain": "https://animesdigital.org",
     "type": "anime",
     "name": "AnimesDigital"
+  },
+  {
+    "domain": "https://donghuastream.org",
+    "type": "anime",
+    "name": "DonghuaStream"
   }
 ]
