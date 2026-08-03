@@ -54,7 +54,7 @@
     "serialize-javascript": "^7.0.7",
     "style-loader": "^3.3.4",
     "stylelint": "^15.11.0",
-    "stylelint-config-recommended-vue": "^1.6.1",
+    "stylelint-config-recommended-vue": "^2.0.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-prettier": "^4.1.0",
     "terser-webpack-plugin": "^5.6.1",
