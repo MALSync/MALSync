@@ -49,7 +49,7 @@ export const Jellyfin: PageInterface = {
   domain: 'https://jellyfin.org',
   languages: ['Many'],
   type: 'anime',
-  minimumVersion: '0.12.3',
+  minimumVersion: '0.12.5',
   urls: {
     match: [],
   },
@@ -245,13 +245,13 @@ function isAnime($c: ChibiGenerator<unknown>) {
     .log('isAnime');
 }
 
-// Jellyfin only tags anime on the series, not on the episodes/seasons. Remember anime series
-// by id, and if an episode already came through waiting on it, flush it now.
+// Jellyfin only tags anime on the series, not on the episodes/seasons. Persist the anime flag
+// by series id, and flush any episode that already came through waiting on it.
 function handleSeries($c: ChibiGenerator<unknown>) {
   return isAnime($c).ifThen($c =>
     $c
       .boolean(true)
-      .setGlobalVariable($c.getVariable<SeriesMetadata>('metadata').get('Id').run())
+      .setPersistentVariable($c.getVariable<SeriesMetadata>('metadata').get('Id').run())
       .getGlobalVariable(
         $c
           .string('pending_')
@@ -271,7 +271,7 @@ function handleSeason($c: ChibiGenerator<unknown>) {
       .or(
         isAnime($c).run(),
         $c
-          .getGlobalVariable($c.getVariable<SeasonMetadata>('metadata').get('SeriesId').run())
+          .getPersistentVariable($c.getVariable<SeasonMetadata>('metadata').get('SeriesId').run())
           .boolean()
           .run(),
       )
@@ -297,7 +297,7 @@ function handleEpisode($c: ChibiGenerator<unknown>) {
       .or(
         isAnime($c).run(),
         $c
-          .getGlobalVariable($c.getVariable<EpisodeMetadata>('metadata').get('SeriesId').run())
+          .getPersistentVariable($c.getVariable<EpisodeMetadata>('metadata').get('SeriesId').run())
           .boolean()
           .run(),
       )
