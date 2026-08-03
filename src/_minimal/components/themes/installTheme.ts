@@ -1,4 +1,4 @@
-import type { Theme } from './index';
+import type { Theme } from '.';
 import { nordtheme } from './nordtheme';
 
 const colors = { ...nordtheme.colors };

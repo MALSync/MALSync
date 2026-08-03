@@ -1,13 +1,12 @@
 {
-  "search": "https://anime-sama.tv/catalogue/?search={searchterm}",
+  "search": "https://anime-sama.to/catalogue/?search={searchtermPlus}",
   "urls": {
     "match": [
       "*://anime-sama.tv/*",
       "*://anime-sama.si/*",
       "*://anime-sama.to/*",
       "*://anime-sama.org/*",
-      "*://anime-sama.fr/*",
-      "*://anime-sama.eu/*"
+      "*://anime-sama.fr/*"
     ]
   }
 }

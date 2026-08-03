@@ -1,5 +1,6 @@
 import { NotAutenticatedError } from '../Errors';
 import { ListAbstract, listElement } from '../listAbstract';
+import { buildProviderUrl } from '../../utils/slugs';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 
@@ -176,7 +177,7 @@ export class UserList extends ListAbstract {
           kitsuSlug: el.attributes.slug,
           type: listType,
           title: name,
-          url: `https://kitsu.app/${listType}/${el.attributes.slug}`,
+          url: buildProviderUrl('KITSU', listType, el.attributes.slug),
           score: Math.round(list.attributes.ratingTwenty / 2),
           watchedEp: list.attributes.progress,
           totalEp: el.attributes.episodeCount,
@@ -208,7 +209,7 @@ export class UserList extends ListAbstract {
           kitsuSlug: el.attributes.slug,
           type: listType,
           title: name,
-          url: `https://kitsu.app/${listType}/${el.attributes.slug}`,
+          url: buildProviderUrl('KITSU', listType, el.attributes.slug),
           score: Math.round(list.attributes.ratingTwenty / 2),
           watchedEp: list.attributes.progress,
           readVol: list.attributes.volumesOwned,

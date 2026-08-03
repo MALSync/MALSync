@@ -2,17 +2,11 @@ import { PageInterface } from '../../pageInterface';
 
 export const Miruro: PageInterface = {
   name: 'Miruro',
-  domain: ['https://www.miruro.to', 'https://www.miruro.tv', 'https://www.miruro.online'],
+  domain: ['https://www.miruro.to', 'https://www.miruro.tv'],
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: [
-      '*://*.miruro.to/*',
-      '*://*.miruro.tv/*',
-      '*://*.miruro.online/*',
-      '*://*.miruro.bz/*',
-      '*://*.miruro.ru/*',
-    ],
+    match: ['*://*.miruro.to/*', '*://*.miruro.tv/*', '*://*.miruro.bz/*', '*://*.miruro.ru/*'],
     player: {
       strm: ['*://strm.cx/*'],
     },

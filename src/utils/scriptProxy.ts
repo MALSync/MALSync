@@ -8,7 +8,7 @@ export class ScriptProxy<T = any> {
     return this;
   }
 
-  async getData(retry: number = 1): Promise<T> {
+  async getData(retry = 1): Promise<T> {
     return new Promise((resolve, reject) => {
       const eventId = generateUniqueID();
 

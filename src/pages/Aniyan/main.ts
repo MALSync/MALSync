@@ -34,7 +34,7 @@ export const Aniyan: pageInterface = {
     },
     uiSelector(selector) {
       if (jsonData.page === 'movie') {
-        Aniyan.overview!.uiSelector!(selector);
+        Aniyan.overview!.uiSelector(selector);
       }
     },
     getMalUrl(provider) {

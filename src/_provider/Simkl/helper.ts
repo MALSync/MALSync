@@ -177,6 +177,9 @@ export async function call(
       data: sData,
     })
     .then(async response => {
+      if ((response.status > 499 && response.status < 600) || response.status === 0) {
+        throw new ServerOfflineError(`Server Offline status: ${response.status}`);
+      }
       const res = parseJson(response.responseText);
       this.errorHandling(res, response.status);
       return res;

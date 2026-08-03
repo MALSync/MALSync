@@ -1,7 +1,7 @@
 export function dateFromTimezoneToTimezone(
   date: Date,
   sourceTimezone: string,
-  targetTimezone: string = 'UTC',
+  targetTimezone = 'UTC',
 ): Date {
   const sourceDate = new Date(new Date().toLocaleString('en-US', { timeZone: sourceTimezone }));
   const targetDate = new Date(new Date().toLocaleString('en-US', { timeZone: targetTimezone }));

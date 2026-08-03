@@ -369,7 +369,7 @@ export default {
     input: void,
     name: string,
     callback: ChibiJson<string>,
-    defaultValue: string = '',
+    defaultValue = '',
   ) {
     const storageKey = `mal-sync-css-var${name}`;
 

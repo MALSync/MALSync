@@ -1,4 +1,5 @@
-/* eslint-disable no-shadow */
+import { pageUrl } from '../../utils/slugs';
+
 interface rules {
   provider: 'firebase' | 'user';
   cache?: boolean;
@@ -88,13 +89,13 @@ export class RulesClass {
           return {
             from: {
               title: rule.from.title,
-              url: utils.pageUrl(res.page, this.type, rule.from.id),
+              url: pageUrl(res.page, this.type, rule.from.id),
               start: rule.from.start,
               end: rule.from.end,
             },
             to: {
               title: rule.to.title,
-              url: utils.pageUrl(res.page, this.type, rule.to.id),
+              url: pageUrl(res.page, this.type, rule.to.id),
               start: rule.to.start,
               end: rule.to.end,
             },

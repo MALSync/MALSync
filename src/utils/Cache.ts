@@ -4,8 +4,8 @@ export class Cache<T = any> {
   constructor(
     protected key: string,
     protected ttl: number,
-    protected localStorage: boolean = true,
-    protected refetchTtl: number = 0,
+    protected localStorage = true,
+    protected refetchTtl = 0,
   ) {
     return this;
   }

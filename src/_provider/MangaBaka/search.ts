@@ -1,4 +1,5 @@
 import { searchInterface } from '../definitions';
+import { buildProviderUrl } from '../../utils/slugs';
 import { call, getAlternativeTitles, getImageUrl, urls } from './helper';
 import type { SearchResponse } from './types';
 
@@ -15,11 +16,11 @@ export const search: searchInterface = async function (
       id: item.id,
       name: item.title,
       altNames: getAlternativeTitles(item),
-      url: `https://mangabaka.org/${item.id}`,
+      url: buildProviderUrl('MANGABAKA', 'manga', item.id),
       malUrl: () => {
         return Promise.resolve(
           item.source.my_anime_list?.id
-            ? `https://myanimelist.net/manga/${item.source.my_anime_list.id}`
+            ? buildProviderUrl('MAL', 'manga', item.source.my_anime_list.id)
             : null,
         );
       },

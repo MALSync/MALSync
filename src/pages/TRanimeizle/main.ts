@@ -145,7 +145,6 @@ export const TRanimeizle: pageInterface = {
     },
   },
   init(page) {
-    // eslint-disable-next-line import/no-unresolved, global-require
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );

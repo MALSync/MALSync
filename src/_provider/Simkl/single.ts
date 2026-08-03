@@ -1,4 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
@@ -31,16 +32,17 @@ export class Single extends SingleAbstract {
   protected datesSupport = false;
 
   protected handleUrl(url) {
-    if (url.match(/simkl\.com\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.simkl = parseInt(utils.urlPart(url, 4));
-      if (this.type === 'manga') throw 'Simkl has no manga support';
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'SIMKL') {
+      this.type = path.type;
+      this.ids.simkl = parseInt(path.id);
+      if (this.type === 'manga') throw new UrlNotSupportedError('Simkl has no manga support');
       return;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.mal = Number(utils.urlPart(url, 4));
-      if (this.type === 'manga') throw 'Simkl has no manga support';
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.ids.mal = Number(path.id);
+      if (this.type === 'manga') throw new UrlNotSupportedError('Simkl has no manga support');
       return;
     }
     throw new UrlNotSupportedError(url);
@@ -61,6 +63,9 @@ export class Single extends SingleAbstract {
   _setStatus(status) {
     if (status === definitions.status.Rewatching) {
       status = definitions.status.Watching;
+    }
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
     }
     status = helper.translateList(status, parseInt(status.toString()));
     if (status !== this.animeInfo.status) {
@@ -167,7 +172,7 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return `https://simkl.com/${this.getType()}/${this.ids.simkl}`;
+    return buildProviderUrl('SIMKL', this.getType()!, this.ids.simkl);
   }
 
   _getImage() {
