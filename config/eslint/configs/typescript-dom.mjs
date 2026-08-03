@@ -3,6 +3,7 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import noUnsanitized from 'eslint-plugin-no-unsanitized';
 import ts from 'typescript-eslint';
 import js from '@eslint/js';
+import { configs as airbnbConfigs, plugins as airbnbPlugins } from 'eslint-config-airbnb-extended';
 import { postConfig, preConfig } from '../base.mjs';
 import core from '../rules/core.mjs';
 import importRules from '../rules/importRules.mjs';
@@ -10,12 +11,11 @@ import noUnsanitizedRules from '../rules/no-unsanitized.mjs';
 import typescript from '../rules/typescript.mjs';
 import { merge } from '../utils/merge.mjs';
 import { mergeAll } from '../utils/mergeAllConfig.mjs';
+import { adaptAirbnbConfigs } from '../utils/airbnb.mjs';
+// eslint-disable-next-line import-x/no-useless-path-segments -- native ESM needs the explicit index file
 import jQueryUnsafeMalSync from '../plugins/jquery-unsafe-malsync/index.mjs';
-import { compat } from '../utils/compat.mjs';
 
-const airbnb = merge(compat.extends('airbnb-base', 'airbnb-typescript/base'));
-
-delete airbnb.languageOptions?.parserOptions?.ecmaFeatures?.globalReturn;
+const airbnb = [airbnbPlugins.importX, ...adaptAirbnbConfigs(airbnbConfigs.base.all)];
 
 const seen = new Set();
 const tsconfigs = [...ts.configs.recommended, ...ts.configs.recommendedTypeChecked].filter(

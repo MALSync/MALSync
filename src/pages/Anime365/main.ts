@@ -95,7 +95,7 @@ export const Anime365: pageInterface = {
       return undefined;
     },
     uiSelector(selector) {
-      Anime365.overview!.uiSelector!(selector);
+      Anime365.overview!.uiSelector(selector);
     },
   },
   init(page) {

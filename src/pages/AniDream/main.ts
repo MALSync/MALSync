@@ -34,7 +34,7 @@ export const AniDream: pageInterface = {
     },
     uiSelector(selector) {
       if (jsonData.page === 'movie') {
-        AniDream.overview!.uiSelector!(selector);
+        AniDream.overview!.uiSelector(selector);
       }
     },
     getMalUrl(provider) {

@@ -209,6 +209,20 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://animesdigital.org"><img src="https://favicon.malsync.moe/?domain=https://animesdigital.org"> AnimesDigital</a></td>
+    <td>Portuguese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://anime.uniquestream.net"><img src="https://favicon.malsync.moe/?domain=https://anime.uniquestream.net"> AnimeStream</a></td>
+    <td>English, Malay, Indonesian, Japanese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://www.animetoast.cc"><img src="https://favicon.malsync.moe/?domain=https://www.animetoast.cc"> Animetoast</a></td>
     <td>German</td>
     <td>:heavy_check_mark:</td>
@@ -348,6 +362,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://tv.dmm.com"><img src="https://favicon.malsync.moe/?domain=https://tv.dmm.com"> DMM TV</a></td>
+    <td>Japanese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://docchi.pl"><img src="https://favicon.malsync.moe/?domain=https://docchi.pl"> Docchi</a></td>
     <td>Polish</td>
@@ -579,13 +600,6 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://sovetromantica.com"><img src="https://favicon.malsync.moe/?domain=https://sovetromantica.com"> SovetRomantica</a></td>
-    <td>Russian</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
   </tr><tr>
     <td><a href="https://tioanime.com"><img src="https://favicon.malsync.moe/?domain=https://tioanime.com"> tioanime</a></td>
     <td>Spanish</td>
@@ -921,7 +935,7 @@
     <td><a href="https://kaynscan.org"><img src="https://favicon.malsync.moe/?domain=https://kaynscan.org"> KaynScan</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
@@ -1014,7 +1028,7 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://fanfox.net"><img src="https://favicon.malsync.moe/?domain=https://fanfox.net"> MangaFox</a></td>
     <td>English</td>

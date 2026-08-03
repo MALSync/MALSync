@@ -8,6 +8,8 @@ const testCases = [
       path: {
         type: 'anime',
         slug: '19815',
+        provider: 'MAL',
+        id: '19815',
       },
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
     },
@@ -19,6 +21,8 @@ const testCases = [
       path: {
         type: 'manga',
         slug: '48399',
+        provider: 'MAL',
+        id: '48399',
       },
       url: 'https://myanimelist.net/manga/48399/No_Game_No_Life',
     },
@@ -30,6 +34,8 @@ const testCases = [
       path: {
         type: 'anime',
         slug: '19815',
+        provider: 'MAL',
+        id: '19815',
       },
       url: 'https://myanimelist.net/anime/19815',
     },
@@ -47,6 +53,8 @@ const testCases = [
       path: {
         type: 'anime',
         slug: 'a:19815',
+        provider: 'ANILIST',
+        id: '19815',
       },
       url: 'https://anilist.co/anime/19815/No-Game-No-Life/',
     },
@@ -58,6 +66,8 @@ const testCases = [
       path: {
         type: 'manga',
         slug: 'a:78399',
+        provider: 'ANILIST',
+        id: '78399',
       },
       url: 'https://anilist.co/manga/78399/No-Game-No-Life/',
     },
@@ -69,6 +79,8 @@ const testCases = [
       path: {
         type: 'anime',
         slug: 'k:no-game-no-life',
+        provider: 'KITSU',
+        id: 'no-game-no-life',
       },
       url: 'https://kitsu.app/anime/no-game-no-life',
     },
@@ -80,6 +92,8 @@ const testCases = [
       path: {
         type: 'manga',
         slug: 'k:no-game-no-life-novel',
+        provider: 'KITSU',
+        id: 'no-game-no-life-novel',
       },
       url: 'https://kitsu.app/manga/no-game-no-life-novel',
     },
@@ -91,6 +105,8 @@ const testCases = [
       path: {
         type: 'anime',
         slug: 's:46128',
+        provider: 'SIMKL',
+        id: '46128',
       },
       url: 'https://simkl.com/anime/46128/no-game-no-life',
     },
@@ -102,6 +118,8 @@ const testCases = [
       path: {
         type: 'manga',
         slug: 'l:MangaNato::manga-jz987034',
+        provider: 'LOCAL',
+        id: 'manga-jz987034',
       },
       url: '',
     },
@@ -113,6 +131,8 @@ const testCases = [
       path: {
         type: 'manga',
         slug: 'l:MangaNato::no%3Agame%3Ano%3Alife',
+        provider: 'LOCAL',
+        id: 'no:game:no:life',
       },
       url: '',
     },
@@ -124,6 +144,8 @@ const testCases = [
       path: {
         type: 'manga',
         slug: 'l:MangaNato::no%3A%3Agame%3A%3Ano%3A%3Alife',
+        provider: 'LOCAL',
+        id: 'no::game::no::life',
       },
       url: '',
     },

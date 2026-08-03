@@ -60,9 +60,7 @@ export const syncRegex =
 
 export const rateLimitExclude = /^https:\/\/api.malsync.moe\/(shark|mal\/|nc\/mal\/.*\/progress$)/i;
 
-// eslint-disable-next-line no-shadow
 export enum status {
-  // eslint-disable-next-line no-shadow
   watching = 1,
   completed = 2,
   onhold = 3,
@@ -382,7 +380,6 @@ export function canHideTabs() {
   return false;
 }
 
-// eslint-disable-next-line no-shadow
 export function statusTag(status, type, id) {
   const info = {
     anime: {
@@ -837,25 +834,6 @@ export function wait(ms: number) {
   return new Promise(resolve => {
     setTimeout(resolve, ms);
   });
-}
-
-export function pageUrl(
-  page: 'mal' | 'anilist' | 'kitsu' | 'simkl',
-  type: 'anime' | 'manga',
-  id: string | number,
-) {
-  switch (page) {
-    case 'mal':
-      return `https://myanimelist.net/${type}/${id}`;
-    case 'anilist':
-      return `https://anilist.co/${type}/${id}`;
-    case 'kitsu':
-      return `https://kitsu.app/${type}/${id}`;
-    case 'simkl':
-      return `https://simkl.com/${type}/${id}`;
-    default:
-      throw `${page} not a valid page`;
-  }
 }
 
 export function returnYYYYMMDD(numFromToday = 0) {

@@ -1,4 +1,5 @@
 import { searchInterface } from '../definitions';
+import { buildProviderUrl } from '../../utils/slugs';
 import * as helper from './helper';
 
 export const search: searchInterface = async function (
@@ -24,10 +25,10 @@ export const search: searchInterface = async function (
           id: Number(item.id),
           name: helper.getTitle(item.attributes.titles, item.attributes.canonicalTitle),
           altNames: Object.values(item.attributes.titles),
-          url: `https://kitsu.app/${type}/${item.attributes.slug}`,
+          url: buildProviderUrl('KITSU', type, item.attributes.slug),
           malUrl: async () => {
             const malId = await helper.kitsuToMal(item.id, type);
-            return malId ? `https://myanimelist.net/${type}/${malId}` : null;
+            return malId ? buildProviderUrl('MAL', type, malId) : null;
           },
           image:
             item.attributes.posterImage && item.attributes.posterImage.small

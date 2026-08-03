@@ -1,4 +1,4 @@
-import type { Theme } from './index';
+import type { Theme } from '.';
 
 export const latte: Theme = {
   name: 'Catppuccin Latte',

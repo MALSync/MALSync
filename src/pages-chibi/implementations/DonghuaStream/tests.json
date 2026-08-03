@@ -1,0 +1,30 @@
+{
+  "title": "DonghuaStream",
+  "url": "https://donghuastream.org",
+  "testCases": [
+    {
+      "url": "https://donghuastream.org/perfect-world-episode-279-multiple-subtitles/",
+      "expected": {
+        "sync": true,
+        "title": "Perfect World",
+        "identifier": "perfect-world1",
+        "overviewUrl": "https://donghuastream.org/anime/perfect-world1/",
+        "nextEpUrl": "https://donghuastream.org/perfect-world-episode-280-multiple-subtitles/",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://donghuastream.org/anime/perfect-world1/",
+      "expected": {
+        "sync": false,
+        "title": "Perfect World",
+        "identifier": "perfect-world1",
+        "uiSelector": true,
+        "epList": {
+          "279": "https://donghuastream.org/perfect-world-episode-279-multiple-subtitles/"
+        }
+      }
+    }
+  ]
+}

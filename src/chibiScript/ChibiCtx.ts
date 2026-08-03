@@ -13,7 +13,7 @@ export class ChibiCtx {
 
   private consumer: ChibiConsumer;
 
-  private async: boolean = false;
+  private async = false;
 
   public event = chibiEventEmitterSingleton;
 

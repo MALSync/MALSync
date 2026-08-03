@@ -32,7 +32,7 @@ export const Fumetsu: pageInterface = {
       return j.$('.ep-info h2').first().text();
     },
     getIdentifier(url) {
-      return Fumetsu.sync!.getIdentifier(url);
+      return Fumetsu.sync.getIdentifier(url);
     },
     uiSelector(selector) {
       j.$('.newsy.container > .row').first().before(j.html(selector));

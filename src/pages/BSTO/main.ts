@@ -92,7 +92,6 @@ export const BSTO: pageInterface = {
     },
   },
   init(page) {
-    // eslint-disable-next-line global-require
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
@@ -115,7 +114,7 @@ export const BSTO: pageInterface = {
         return j.$('div.hoster-player > a[href^="https://vivo"]').length;
       },
       function () {
-        const array = j.$('div.hoster-player > a[href^="https://vivo"]')!.attr('href')!.split('/');
+        const array = j.$('div.hoster-player > a[href^="https://vivo"]').attr('href')!.split('/');
         const id = array.pop()!;
         array.push('embed');
         array.push(id);

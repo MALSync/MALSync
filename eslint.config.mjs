@@ -43,8 +43,7 @@ export default [
       },
     },
     rules: {
-      '@typescript-eslint/no-throw-literal': 'warn',
-      'import/no-cycle': [
+      'import-x/no-cycle': [
         'error',
         {
           allowUnsafeDynamicCyclicDependency: true,
@@ -79,11 +78,9 @@ export default [
         '@typescript-eslint/no-use-before-define': 'warn',
         '@typescript-eslint/require-await': 'warn',
         '@typescript-eslint/no-misused-promises': 'warn',
-        '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
         '@typescript-eslint/no-require-imports': 'warn',
         'no-unused-vars': 'warn',
         '@typescript-eslint/naming-convention': 'warn',
-        '@typescript-eslint/no-throw-literal': 'warn',
         '@typescript-eslint/only-throw-error': 'warn',
       },
     },
@@ -116,7 +113,6 @@ export default [
         '@typescript-eslint/no-use-before-define': 'warn',
         '@typescript-eslint/require-await': 'warn',
         '@typescript-eslint/no-misused-promises': 'warn',
-        '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
         '@typescript-eslint/no-require-imports': 'warn',
         'no-unused-vars': 'warn',
         '@typescript-eslint/no-for-in-array': 'warn',
@@ -127,7 +123,6 @@ export default [
         '@typescript-eslint/no-shadow': 'warn',
         '@typescript-eslint/no-unsafe-enum-comparison': 'warn',
         '@typescript-eslint/naming-convention': 'warn',
-        '@typescript-eslint/no-throw-literal': 'warn',
         '@typescript-eslint/only-throw-error': 'warn',
         '@typescript-eslint/no-unsafe-function-type': 'warn',
         '@typescript-eslint/no-unused-vars': 'warn',

@@ -3,6 +3,7 @@ import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { UserList } from '../_provider/Kitsu/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import { waitForPageToBeVisible } from '../utils/general';
+import { buildProviderUrl } from '../utils/slugs';
 import { NotAutenticatedError } from '../_provider/Errors';
 
 export class KitsuClass {
@@ -181,10 +182,7 @@ export class KitsuClass {
 
   async getMalUrl() {
     if (this.page !== null && this.page.page === 'detail' && this.page.malid) {
-      return `https://myanimelist.net/${this.page.type}/${this.page.malid}/${utils.urlPart(
-        this.url,
-        5,
-      )}`;
+      return buildProviderUrl('MAL', this.page.type, this.page.malid);
     }
     return '';
   }

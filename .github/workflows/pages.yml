@@ -12,8 +12,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      pages: ${{ steps.list.outputs.pages }}
     steps:
-    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
     - id: files
       continue-on-error: true
       uses: jitterbit/get-changed-files@b17fbb00bdc0c0f63fcf166580804b4d2cdc2a42 # v1
@@ -22,8 +24,43 @@ jobs:
     - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
       with:
         node-version: '24.x'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build:webextension
+    - run: npx webpack --config webpackConfig/test.config.js
+    - id: list
+      name: List pages to test
+      run: echo "pages=$(LIST_PAGES=true node test/headless/test.js | tail -n1)" >> "$GITHUB_OUTPUT"
+      env:
+        FILES: ${{steps.files.outputs.added_modified}}
+    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+      with:
+        name: webextension-build
+        path: |
+          dist/webextension
+          test/dist
+        retention-days: 1
+
+  test:
+    needs: build
+    if: needs.build.outputs.pages != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        page: ${{ fromJson(needs.build.outputs.pages) }}
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+    - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+      with:
+        node-version: '24.x'
+        cache: 'npm'
+    - run: npm ci
+    - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+      with:
+        name: webextension-build
     - name: Checkout test data
-      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       with:
         repository: MALSync/test_data
         ref: 'master'
@@ -34,12 +71,7 @@ jobs:
     # see https://github.com/puppeteer/puppeteer/issues/12818
     - name: Disable AppArmor
       run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
-    - name: Page Tests
-      run: |
-        npm ci
-        npm run build:webextension
-        npm run test:headless
+    - name: Page Test
+      run: node test/headless/test.js "${{ matrix.page }}"
       env:
         CI: true
-        FILES: ${{steps.files.outputs.added_modified}}
-

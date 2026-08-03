@@ -1,4 +1,7 @@
 import type { ChibiGenerator, ChibiJson } from '../ChibiGenerator';
+import { providerUrls, ProviderIdentifier, UrlSyncMode } from '../../utils/slugs';
+
+export type ProviderKey = `${ProviderIdentifier}Id` | `${ProviderIdentifier}Url`;
 
 export default {
   /**
@@ -25,46 +28,17 @@ export default {
    */
   providerUrlUtility: (
     $c: ChibiGenerator<void>,
-    provider: {
-      [
-        K in
-          | 'anilistId'
-          | 'anilistUrl'
-          | 'kitsuId'
-          | 'kitsuUrl'
-          | 'mangabakaId'
-          | 'mangabakaUrl'
-          | 'malId'
-          | 'malUrl'
-      ]?: ChibiJson<any>;
-    },
+    provider: { [K in ProviderKey]?: ChibiJson<any> },
   ) => {
-    const providerConfig = [
-      {
-        provider: 'ANILIST',
-        urlKey: 'anilistUrl',
-        idKey: 'anilistId',
-        urlTemplate: 'https://anilist.co/<type>/<identifier>',
-      },
-      {
-        provider: 'KITSU',
-        urlKey: 'kitsuUrl',
-        idKey: 'kitsuId',
-        urlTemplate: 'https://kitsu.app/<type>/<identifier>',
-      },
-      {
-        provider: 'MANGABAKA',
-        urlKey: 'mangabakaUrl',
-        idKey: 'mangabakaId',
-        urlTemplate: 'https://mangabaka.org/<identifier>',
-      },
-      {
-        provider: 'MAL',
-        urlKey: 'malUrl',
-        idKey: 'malId',
-        urlTemplate: 'https://myanimelist.net/<type>/<identifier>',
-      },
-    ];
+    const providerConfig = (Object.keys(providerUrls) as UrlSyncMode[]).map(syncMode => {
+      const { identifier, urlTemplate } = providerUrls[syncMode];
+      return {
+        provider: syncMode,
+        urlKey: `${identifier}Url`,
+        idKey: `${identifier}Id`,
+        urlTemplate,
+      };
+    });
 
     const providerFunctions: ChibiJson<any>[] = [];
 

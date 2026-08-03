@@ -26,7 +26,7 @@ if (process.env.FILES) {
 // Define global variables
 let browser;
 const debugging = false;
-let headless = OnlyPage ? false : true;
+let headless = OnlyPage && !process.env.CI ? false : true;
 let buildFailed = false;
 const mode = {
   quiet: false,
@@ -409,28 +409,33 @@ async function singleCase(block, test, page, testPage, retry = 0) {
             get: function(keys, callback) {
               console.log('chrome.storage.local.get', keys, callback);
               callback({});
-              return promise.resolve({});
+              return Promise.resolve({});
             },
             set: function(items, callback) {
               console.log('chrome.storage.local.set', items, callback);
               if (callback) {
                 callback();
               }
-              return promise.resolve({});
+              return Promise.resolve({});
             }
           },
           sync: {
             get: function(keys, callback) {
               console.log('chrome.storage.sync.get', keys, callback);
               callback({});
-              return promise.resolve({});
+              return Promise.resolve({});
             },
             set: function(items, callback) {
               console.log('chrome.storage.sync.set', items, callback);
               if (callback) {
                 callback();
               }
-              return promise.resolve({});
+              return Promise.resolve({});
+            }
+          },
+          onChanged: {
+            addListener: function(callback) {
+              console.log('chrome.storage.onChanged.addListener', callback);
             }
           }
         },
@@ -578,7 +583,7 @@ async function openPage(b) {
 }
 
 async function initTestsArray() {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     dir.readFiles(
       `${__dirname}/../../src/`,
       {
@@ -648,6 +653,15 @@ async function main() {
   const awaitArray = [];
   let running = 0;
   await initTestsArray();
+
+  if (process.env.LIST_PAGES) {
+    const pages = testsArray
+      .filter(t => (t.enabled || typeof t.enabled === 'undefined') && !t.offline)
+      .map(t => t.title);
+    console.log(JSON.stringify(pages));
+    process.exit();
+  }
+
   if (mode.parallel) {
     await getBrowser();
     for (const testPage of testsArray) {

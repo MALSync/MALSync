@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import type { PageInterface } from '../../pageInterface';
 
 export const mangaLib: PageInterface = {
@@ -7,7 +6,7 @@ export const mangaLib: PageInterface = {
   domain: ['https://mangalib.me', 'https://mangalib.org', 'https://v2.shlib.life'],
   languages: ['Russian'],
   urls: {
-    match: ['*://mangalib.org/*', '*://mangalib.me/*', '*://*.shlib.life/*'],
+    match: ['*://mangalib.org/*', '*://mangalib.me/*'],
   },
   search: 'https://mangalib.me/ru/catalog?q={searchterm}',
   sync: {

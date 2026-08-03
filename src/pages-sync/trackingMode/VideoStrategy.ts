@@ -35,7 +35,7 @@ export class VideoStrategy implements TrackingModeInterface {
     let discordTimeout;
 
     this.playerFoundTimeout = setTimeout(
-      (async () => {
+      async () => {
         if (this.errorListener) {
           const errorDiv = videoStrategyErrorElement(await hasMissingPermissions());
           this.errorListener(errorDiv);
@@ -50,7 +50,7 @@ export class VideoStrategy implements TrackingModeInterface {
 
           con.log('No Player found', iframes);
         }
-      }) as () => void,
+      },
       5 * 60 * 1000,
     );
     PlayerSingleton.getInstance()

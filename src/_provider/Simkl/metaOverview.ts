@@ -1,5 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 import { IntlDuration } from '../../utils/IntlWrapper';
@@ -9,18 +10,19 @@ export class MetaOverview extends MetaOverviewAbstract {
     super(url);
     this.logger = this.logger.m('Simkl');
 
-    if (url.match(/simkl\.com\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.simklId = parseInt(utils.urlPart(url, 4));
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'SIMKL') {
+      this.type = path.type;
+      this.simklId = parseInt(path.id);
       this.malId = NaN;
-      if (this.type === 'manga') throw 'Simkl has no manga support';
+      if (this.type === 'manga') throw new UrlNotSupportedError('Simkl has no manga support');
       return this;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.malId = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.malId = Number(path.id);
       this.simklId = NaN;
-      if (this.type === 'manga') throw 'Simkl has no manga support';
+      if (this.type === 'manga') throw new UrlNotSupportedError('Simkl has no manga support');
       return this;
     }
 
@@ -177,7 +179,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (genres.length < 6) {
         genres.push({
           text: i,
-          url: `https://simkl.com/${this.type}/${i.toLowerCase()}`,
+          url: buildProviderUrl('SIMKL', this.type, i.toLowerCase()),
         });
       }
     });
@@ -218,7 +220,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         };
       }
       links[i.relation_type].links.push({
-        url: `https://simkl.com/anime/${i.ids.simkl}/${i.ids.slug}`,
+        url: buildProviderUrl('SIMKL', 'anime', i.ids.simkl),
         title: i.title,
         type: 'anime',
         id: i.ids.simkl,

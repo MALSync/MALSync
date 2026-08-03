@@ -204,7 +204,7 @@ async function multiple(Array: listElement[], type, logger = con.m('release')) {
         value: progressValue,
         mode,
         finished,
-      } as releaseItemInterface);
+      });
     }
   });
 }

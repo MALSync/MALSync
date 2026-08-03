@@ -1,6 +1,7 @@
 import { parse as mdParse } from 'marked';
 import { MetaOverviewAbstract, Recommendation, Review } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 import { BakaSeries, RelatedSeries } from './types';
 import { call, getAlternativeTitles, getImageUrl, urls } from './helper';
@@ -10,15 +11,16 @@ export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
     this.logger = this.logger.m('MangaBaka');
-    if (url.match(/mangabaka\.(dev|org)\/\d*(\/|$)/i)) {
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'MANGABAKA') {
       this.type = 'manga';
       this.malId = NaN;
-      this.bakaId = Number(utils.urlPart(url, 3));
+      this.bakaId = Number(path.id);
       return this;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.malId = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.malId = Number(path.id);
       this.bakaId = NaN;
       if (this.type !== 'manga') {
         throw new Error('MangaBaka only supports manga');
@@ -251,7 +253,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
         sources.push({
           text: title,
-          url: `https://anilist.co/manga/${src.anilist.id}`,
+          url: buildProviderUrl('ANILIST', 'manga', src.anilist.id),
         });
       }
       if (src.anime_planet && src.anime_planet.id) {
@@ -271,7 +273,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
         sources.push({
           text: title,
-          url: `https://myanimelist.net/manga/${src.my_anime_list.id}`,
+          url: buildProviderUrl('MAL', 'manga', src.my_anime_list.id),
         });
       }
       if (src.kitsu && src.kitsu.id) {
@@ -301,7 +303,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
         sources.push({
           text: title,
-          url: `https://shikimori.io/mangas/${src.shikimori.id}`,
+          url: buildProviderUrl('SHIKI', 'manga', src.shikimori.id),
         });
       }
       if (src.anime_news_network && src.anime_news_network.id) {
@@ -347,7 +349,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             }
 
             links[relationType].links.push({
-              url: `https://mangabaka.org/${series.id}`,
+              url: buildProviderUrl('MANGABAKA', 'manga', series.id),
               title,
               type: 'manga',
               id: series.id,
