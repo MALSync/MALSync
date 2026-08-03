@@ -52,7 +52,8 @@ export const YummyAni: PageInterface = {
         .contains('Страница не найдена')
         .ifThen($c => $c.string('404').log().return().run())
         .domReady()
-        .detectChanges($c.querySelector('.pQCG').run(), $c.trigger().run())
+        .detectChanges($c.querySelector('.pQCG').ifNotReturn().text().run(), $c.trigger().run())
+        
         .trigger()
         .run();
     },
