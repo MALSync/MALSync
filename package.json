@@ -122,7 +122,7 @@
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.5",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
-    "fuse.js": "^7.4.2",
+    "fuse.js": "^7.5.0",
     "hex-to-hsl": "^1.0.2",
     "jquery": "^3.6.2",
     "marked": "^18.0.7",
