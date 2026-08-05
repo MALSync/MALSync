@@ -41,6 +41,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://4animo.xyz"><img src="https://favicon.malsync.moe/?domain=https://4animo.xyz"> ANIMO</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://anicrush.to"><img src="https://favicon.malsync.moe/?domain=https://anicrush.to"> Anicrush</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
