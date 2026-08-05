@@ -1,0 +1,222 @@
+@import './../pages';
+
+@textColor: #fafafa;
+@mutedColor: #a3a3a3;
+@activeEp: rgba(99, 102, 241, 0.35);
+@inputBackground: #171717;
+@indigo: #6366f1;
+@indigoHover: #818cf8;
+@groupBg: rgba(255, 255, 255, 0.04);
+@groupBorder: rgba(255, 255, 255, 0.08);
+
+#malp {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: @textColor;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+
+  .info,
+  .malp-group-label {
+    color: @mutedColor !important;
+    background-color: transparent !important;
+    font-size: 0.625rem !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  #MalInfo {
+    color: @mutedColor;
+    font-size: 0.8125rem;
+    padding: 0.25rem 0;
+  }
+
+  #MalData {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .malp-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-wrap: nowrap;
+    padding: 0.5rem 0.75rem;
+    background: @groupBg;
+    border: 1px solid @groupBorder;
+    border-radius: 0.75rem;
+    min-height: 2.375rem;
+    box-sizing: border-box;
+  }
+
+  .malp-group-value-section {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    white-space: nowrap;
+  }
+
+  select,
+  input,
+  a {
+    color: @textColor !important;
+    font-family: inherit;
+    line-height: 1.25;
+  }
+
+  select {
+    appearance: none;
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5rem;
+    padding: 0.3125rem 1.625rem 0.3125rem 0.625rem !important;
+    margin: 0 !important;
+    min-height: 1.75rem;
+    min-width: 6.5rem;
+    font-size: 0.8125rem !important;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      border-color: rgba(99, 102, 241, 0.35) !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    &:focus {
+      border-color: rgba(99, 102, 241, 0.5) !important;
+      outline: none;
+    }
+
+    option {
+      background-color: @inputBackground !important;
+      color: @textColor !important;
+    }
+  }
+
+  #malEpisodes,
+  #malVolumes {
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5rem;
+    color: @textColor !important;
+    width: auto !important;
+    min-width: 2rem;
+    min-height: 1.75rem;
+    padding: 0.3125rem 0.5rem !important;
+    margin: 0 !important;
+    text-align: center;
+    font-size: 0.8125rem !important;
+    font-weight: 600;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: rgba(99, 102, 241, 0.5) !important;
+      outline: none;
+    }
+  }
+
+  .malp-group-value {
+    color: @mutedColor !important;
+    font-weight: 500;
+    font-size: 0.8125rem !important;
+    padding: 0 0.125rem;
+  }
+
+  #malRating {
+    display: inline-block;
+    color: #facc15 !important;
+    font-weight: 700;
+    font-size: 0.875rem !important;
+    text-decoration: none;
+    padding: 0.125rem 0;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #fde047 !important;
+    }
+  }
+
+  #AddMalDiv {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 0.5rem 0.75rem !important;
+    margin: 0 !important;
+    background: @groupBg;
+    border: 1px solid @groupBorder;
+    border-radius: 0.75rem;
+    min-height: 2.375rem;
+    box-sizing: border-box;
+  }
+
+  #AddMal {
+    color: @indigo !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8125rem !important;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: @indigoHover !important;
+    }
+  }
+
+  a[target='_blank'] {
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: @indigoHover !important;
+    }
+  }
+}
+
+@media (min-width: 640px) {
+  #malp {
+    padding: 1rem 1.125rem;
+
+    #MalData {
+      gap: 0.625rem !important;
+    }
+
+    .malp-group {
+      padding: 0.5rem 0.875rem;
+      gap: 0.75rem;
+    }
+  }
+}
+
+.mal-sync-active {
+  background-color: @activeEp !important;
+  outline: 1px solid rgba(99, 102, 241, 0.45) !important;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+}
+
+#malSyncProgress {
+  &.ms-loading {
+    background-color: rgba(255, 255, 255, 0.08);
+
+    &::before {
+      background-color: @indigo;
+    }
+  }
+
+  &.ms-done .ms-progress,
+  .ms-progress.ms-resume {
+    background-color: @indigo !important;
+  }
+}
