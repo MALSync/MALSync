@@ -116,7 +116,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@types/chrome": "0.2.2",
+    "@types/chrome": "0.2.5",
     "dexie": "^4.4.4",
     "dompurify": "^3.4.12",
     "download-file": "^0.1.5",
