@@ -1,0 +1,100 @@
+@import '../pages.less';
+
+@malpStyle: 2;
+@highlightStyle: 5;
+
+#malp {
+  border-radius: 0.625rem;
+  background-color: #50a1e5;
+  padding: 0.3125rem 0;
+  justify-self: center;
+  width: 100%;
+  overflow: hidden;
+  height: min-content;
+  min-height: 3.75rem;
+  max-height: 3.75rem;
+  &:has(#AddMalDiv) {
+    height: 3.75rem;
+    padding: 1rem 0;
+    #AddMalDiv {
+      margin-left: 1rem;
+    }
+  }
+}
+
+#malp,
+#malp * {
+  transition:
+    all 0.3s ease-in-out 1.2s allow-discrete,
+    height 0.7s ease-in-out 1s,
+    font-size 0.7s ease-in-out 1s,
+    width 1s ease-in-out 1s;
+  transition-behavior: allow-discrete;
+  opacity: 1;
+}
+
+#malp a,
+#malp p,
+#malp span,
+#malStatus,
+#malTotal,
+#malEpisodes,
+#malUserRating,
+#malRating,
+#AddMal {
+  color: white;
+
+  option {
+    color: white;
+    background-color: #50a1e5;
+  }
+}
+
+#MalData {
+  display: flex;
+  justify-content: space-around !important;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+#malUserRating,
+#malStatus {
+  text-align: center;
+}
+
+#malp span:not(#MalInfo) > span {
+  align-items: center;
+  max-width: 80%;
+  margin: 0;
+  // gap: 0.625rem;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+#malp:not(:has(#AddMalDiv)) span {
+  & > span {
+    display: flex !important;
+
+    span.malp-group-value-section {
+      flex-direction: row;
+    }
+  }
+}
+
+div.anime__item .mal-sync-active > div {
+  // outline: 0.25rem solid #ff9d00;
+  // box-shadow: #027bff 0 0 0.75rem 0.625rem;
+  box-shadow: inset #ff9d00 0 0 0 0.25rem;
+}
+
+#episodes-content li.list-group-item:has(.mal-sync-active) {
+  border-left: #ff9d00 0.25rem solid !important;
+}
+
+html > button.open-info-popup.floatbutton {
+  bottom: 4.5rem !important;
+}
