@@ -99,6 +99,36 @@ describe('Core Functions', () => {
     });
   });
 
+  describe('persistent variables', () => {
+    it('should round-trip a value through separate executions', () => {
+      generateAndExecute($c.string('remembered').setPersistentVariable('persistTest').run()).run();
+
+      const result = generateAndExecute(
+        $c.getPersistentVariable('persistTest', 'default').run(),
+      ).run();
+
+      expect(result).to.equal('remembered');
+    });
+
+    it('should return the default when nothing is stored', () => {
+      const result = generateAndExecute(
+        $c.getPersistentVariable('missingPersistKey', 'default').run(),
+      ).run();
+
+      expect(result).to.equal('default');
+    });
+
+    it('should preserve non-string types via JSON serialization', () => {
+      generateAndExecute($c.boolean(true).setPersistentVariable('persistBool').run()).run();
+
+      const result = generateAndExecute(
+        $c.getPersistentVariable('persistBool', false).boolean().run(),
+      ).run();
+
+      expect(result).to.equal(true);
+    });
+  });
+
   describe('function', () => {
     it('should execute function body and return its result', () => {
       const code = $c.fn($c.string('hello').run()).run();
