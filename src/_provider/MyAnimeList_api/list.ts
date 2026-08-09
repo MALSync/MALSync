@@ -126,6 +126,10 @@ export class UserList extends ListAbstract {
     const useAltTitle = api.settings.get('forceEnglishTitles');
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
+      if (!el || !el.node || !el.list_status) {
+        con.error('[MyAnimeList] Skipping list entry with missing node/list_status', el);
+        continue;
+      }
       if (this.listType === 'anime') {
         newData.push(
           await this.fn({

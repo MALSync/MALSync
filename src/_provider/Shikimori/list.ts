@@ -111,6 +111,11 @@ export class UserList extends ListAbstract {
       const entry = data[key];
       const meta = metadata[entry.target_id];
 
+      if (!meta) {
+        con.error('[Shikimori] Skipping list entry with missing metadata', entry);
+        continue;
+      }
+
       // eslint-disable-next-line no-await-in-loop
       const tempData = await this.fn({
         malId: entry.target_id,
