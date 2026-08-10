@@ -146,6 +146,7 @@
     "iframe": [
       "*://*.miixdrop.com/e/*",
       "*://playmogo.com/e/*",
+      "*://voembed.net/*",
       "*://matthewhotelscience.com/e/*",
       "*://jessicachoosemake.com/e/*",
       "*://stevenfamilyedge.com/e/*",
