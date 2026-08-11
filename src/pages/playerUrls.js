@@ -422,6 +422,7 @@ module.exports = {
       '*://vidmoly.to/*',
       '*://vidmoly.net/*',
       '*://vidmoly.biz/*',
+      '*://voembed.net/*',
       // auto-vidmoly-replace-dont-remove
     ],
   },
