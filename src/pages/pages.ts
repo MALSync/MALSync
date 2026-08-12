@@ -41,7 +41,6 @@ import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
 import { Okanime } from './Okanime/main';
-import { BSTO } from './BSTO/main';
 import { An1me } from './An1me/main';
 import { MangaJar } from './MangaJar/main';
 import { Otakustv } from './Otakustv/main';
@@ -141,7 +140,6 @@ export const pages = {
   Readm,
   tioanime,
   Okanime,
-  BSTO,
   An1me,
   MangaJar,
   Otakustv,
