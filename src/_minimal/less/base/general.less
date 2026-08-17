@@ -35,6 +35,7 @@ body,
 html,
 .dropdown-pop {
   scrollbar-width: none;
+  scrollbar-color: var(--cl-background) var(--cl-backdrop);
 
   &::-webkit-scrollbar {
     width: 0;
@@ -51,6 +52,18 @@ html,
   }
 }
 
+.__breakpoint-max-content-width__({
+  body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  body,
+  html {
+    scrollbar-width: thin;
+  }
+});
+
 .os-theme-custom {
   --os-size: 10px;
   --os-handle-perpendicular-size: 3px;
@@ -63,7 +76,7 @@ html,
 
 #minimalApp {
   background-color: var(--cl-background);
-  max-width: 1400px;
+  max-width: @max-content-width;
   min-height: 100vh;
   margin-left: auto;
   margin-right: auto;
