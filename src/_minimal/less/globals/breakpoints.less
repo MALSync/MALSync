@@ -19,7 +19,8 @@
 }
 
 .__breakpoint-max-content-width__(@rules) {
-  @media screen and (min-width: @max-content-width){
+  /* stylelint-disable-next-line media-query-no-invalid */
+  @media screen and (min-width: @max-content-width) {
     @rules();
   }
 }
