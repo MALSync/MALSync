@@ -83,6 +83,7 @@ export const Crunchyroll: PageInterface = {
         .setVariable('seriesTitle', meta($c).get('episode_metadata').get('series_title').run())
         .setVariable('seriesSlug', meta($c).get('episode_metadata').get('series_slug_title').run())
         .setVariable('seasonTitle', meta($c).get('episode_metadata').get('season_title').run())
+        .setVariable('seasonNumber', meta($c).get('episode_metadata').get('season_number').run())
         .exec(getTitle)
         .ifNotReturn()
         .run();
@@ -136,6 +137,7 @@ export const Crunchyroll: PageInterface = {
             .run(),
         )
         .setVariable('seasonTitle', $c.getVariable('foundSeason').get('title').run())
+        .setVariable('seasonNumber', $c.getVariable('foundSeason').get('season_number').run())
         .exec(getTitle)
         .ifNotReturn()
         .run();
@@ -257,15 +259,24 @@ function getIdentifier($c: ChibiGenerator<unknown>) {
 }
 
 function getTitle($c: ChibiGenerator<unknown>) {
+  // ponytail: season 1 has no suffix, its title is the series title anyway
   return $c
-    .getVariable<string>('seriesSlug')
-    .replaceAll('-', ' ')
-    .concat(' ')
-    .concat(
+    .if(
+      $c.getVariable<number>('seasonNumber').greaterThan(1).run(),
       $c
-        .getVariable<string>('seasonTitle')
-        .replace($c.getVariable<string>('seriesTitle').trim().run(), '')
-        .trim()
+        .getVariable<string>('seriesSlug')
+        .replaceAll('-', ' ')
+        .concat(' ')
+        .concat(
+          $c
+            .getVariable<string>('seasonTitle')
+            .replace($c.getVariable<string>('seriesTitle').trim().run(), '')
+            .trim()
+            .run(),
+        )
         .run(),
-    );
+      $c.getVariable<string>('seriesSlug').replaceAll('-', ' ').run(),
+    )
+    .replaceRegex('\\s+', ' ')
+    .trim();
 }
