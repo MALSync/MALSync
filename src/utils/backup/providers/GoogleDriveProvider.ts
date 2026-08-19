@@ -1,0 +1,188 @@
+/**
+ * GoogleDriveProvider
+ *
+ * Uses chrome.identity.launchWebAuthFlow (works in Chrome, Firefox, Edge,
+ * Opera) instead of getAuthToken (Chrome/store-only). The OAuth implicit
+ * grant flow is used for simplicity; tokens are short-lived (~1 h) and
+ * re-requested on each operation.
+ *
+ * Setup required by the extension maintainer:
+ *   1. Google Cloud Console → APIs & Services → Credentials
+ *   2. Create an OAuth 2.0 Client ID of type "Chrome Extension" (or
+ *      "Web application" for Firefox compatibility)
+ *   3. Add chrome.identity.getRedirectURL() as an authorised redirect URI
+ *   4. Enable the Google Drive API for the project
+ *   5. Set OAUTH_CLIENT_ID below (or store it in settings/backup_drive_clientId)
+ *
+ * Backup is stored in the hidden drive.appdata scope — the file is not
+ * visible in the user's Drive UI.
+ */
+
+import type { BackupData, CloudResult, CloudDownloadResult, ICloudProvider } from '../types';
+import type { BackupManager } from '../BackupManager';
+
+const SCOPE = 'https://www.googleapis.com/auth/drive.appdata';
+const FILE_NAME = 'malsync-backup.json';
+const DRIVE_API = 'https://www.googleapis.com/drive/v3';
+const UPLOAD_API = 'https://www.googleapis.com/upload/drive/v3';
+
+// ── Identity API shim (Chrome / Firefox) ─────────────────────────────────────
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const identity: typeof chrome.identity | undefined = (globalThis as any).chrome?.identity ?? (globalThis as any).browser?.identity;
+
+function getRedirectUri(): string {
+  if (identity?.getRedirectURL) return identity.getRedirectURL();
+  // Fallback for browsers that don't implement getRedirectURL
+  return `https://${chrome.runtime.id}.chromiumapp.org/`;
+}
+
+// ── Token via launchWebAuthFlow ───────────────────────────────────────────────
+
+async function getClientId(): Promise<string | null> {
+  const stored = await api.storage.get('settings/backup_drive_clientId');
+  return (stored as string | undefined) ?? null;
+}
+
+async function launchOAuth(clientId: string, interactive: boolean): Promise<string> {
+  const redirectUri = getRedirectUri();
+
+  const authUrl = new URL('https://accounts.google.com/o/oauth2/auth');
+  authUrl.searchParams.set('client_id', clientId);
+  authUrl.searchParams.set('response_type', 'token');
+  authUrl.searchParams.set('redirect_uri', redirectUri);
+  authUrl.searchParams.set('scope', SCOPE);
+
+  return new Promise((resolve, reject) => {
+    if (!identity?.launchWebAuthFlow) {
+      reject(new Error('chrome.identity.launchWebAuthFlow is not available in this browser.'));
+      return;
+    }
+    identity.launchWebAuthFlow({ url: authUrl.toString(), interactive }, responseUrl => {
+      const err = chrome.runtime.lastError;
+      if (err || !responseUrl) {
+        reject(new Error(err?.message ?? 'Auth cancelled or failed'));
+        return;
+      }
+      const hash = new URL(responseUrl).hash.slice(1);
+      const token = new URLSearchParams(hash).get('access_token');
+      if (!token) {
+        reject(new Error('No access token in OAuth response'));
+        return;
+      }
+      resolve(token);
+    });
+  });
+}
+
+// ── Drive API helpers ─────────────────────────────────────────────────────────
+
+async function driveRequest<T = unknown>(token: string, url: string, init: RequestInit = {}): Promise<T> {
+  const res = await fetch(url, {
+    ...init,
+    headers: { Authorization: `Bearer ${token}`, ...(init.headers as Record<string, string> ?? {}) },
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => '');
+    throw new Error(`Google Drive API ${res.status}: ${body}`);
+  }
+  return res.json() as Promise<T>;
+}
+
+interface DriveFile { id: string }
+interface DriveFileList { files: DriveFile[] }
+
+// ── Provider ──────────────────────────────────────────────────────────────────
+
+export class GoogleDriveProvider implements ICloudProvider {
+  constructor(private readonly mgr: BackupManager) {}
+
+  isConfigured(): boolean {
+    return !!identity?.launchWebAuthFlow;
+  }
+
+  /** Store the user-provided OAuth client ID */
+  async saveClientId(clientId: string): Promise<void> {
+    await api.storage.set('settings/backup_drive_clientId', clientId.trim());
+  }
+
+  async testConnection(): Promise<string | null> {
+    try {
+      const clientId = await getClientId();
+      if (!clientId) return 'No Google OAuth client ID configured.';
+      const token = await launchOAuth(clientId, true);
+      await driveRequest(token, `${DRIVE_API}/files?spaces=appDataFolder&pageSize=1&fields=files(id)`);
+      return null;
+    } catch (e) {
+      return e instanceof Error ? e.message : String(e);
+    }
+  }
+
+  async upload(data: BackupData): Promise<CloudResult> {
+    try {
+      const clientId = await getClientId();
+      if (!clientId) return { success: false, error: 'No Google OAuth client ID configured.' };
+      const token = await launchOAuth(clientId, true);
+      const body = this.mgr.serialise(data);
+      const existingId = await this.findFileId(token);
+
+      if (existingId) {
+        const res = await fetch(`${UPLOAD_API}/files/${existingId}?uploadType=media`, {
+          method: 'PATCH',
+          headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+          body,
+        });
+        if (!res.ok) throw new Error(`PATCH returned ${res.status}`);
+        return { success: true };
+      }
+
+      // Multipart create
+      const boundary = '-------malsync314159';
+      const multipart =
+        `--${boundary}\r\nContent-Type: application/json\r\n\r\n` +
+        JSON.stringify({ name: FILE_NAME, parents: ['appDataFolder'] }) +
+        `\r\n--${boundary}\r\nContent-Type: application/json\r\n\r\n` +
+        body +
+        `\r\n--${boundary}--`;
+
+      const res = await fetch(`${UPLOAD_API}/files?uploadType=multipart&fields=id`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': `multipart/related; boundary="${boundary}"`,
+        },
+        body: multipart,
+      });
+      if (!res.ok) throw new Error(`Upload returned ${res.status}`);
+      return { success: true };
+    } catch (e) {
+      return { success: false, error: e instanceof Error ? e.message : String(e) };
+    }
+  }
+
+  async download(): Promise<CloudDownloadResult> {
+    try {
+      const clientId = await getClientId();
+      if (!clientId) return { success: false, error: 'No Google OAuth client ID configured.' };
+      const token = await launchOAuth(clientId, true);
+      const fileId = await this.findFileId(token);
+      if (!fileId) return { success: false, error: 'No backup found in Google Drive.' };
+
+      const res = await fetch(`${DRIVE_API}/files/${fileId}?alt=media`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) return { success: false, error: `Download returned ${res.status}` };
+      return { success: true, data: this.mgr.parse(await res.text()) };
+    } catch (e) {
+      return { success: false, error: e instanceof Error ? e.message : String(e) };
+    }
+  }
+
+  private async findFileId(token: string): Promise<string | null> {
+    const list = await driveRequest<DriveFileList>(
+      token,
+      `${DRIVE_API}/files?spaces=appDataFolder&q=name%3D%27${encodeURIComponent(FILE_NAME)}%27&fields=files(id)`,
+    );
+    return list.files?.[0]?.id ?? null;
+  }
+}
