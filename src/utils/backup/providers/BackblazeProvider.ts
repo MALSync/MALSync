@@ -4,10 +4,11 @@
  * Uses the Backblaze B2 Native API (not S3-compatible) to avoid
  * any external SDK dependency.
  *
- * Recommended bucket policy: application key scoped to one bucket
- * with readFiles + writeFiles permissions only.
+ * Recommended: application key scoped to one bucket with
+ * readFiles + writeFiles permissions only.
  *
- * Credentials stored under settings/backup_b2_* (→ sync storage).
+ * Note: the app key matches SYNC_CREDENTIAL_PATTERNS and is
+ * therefore excluded from backup exports.
  */
 
 import type { BackupData, CloudResult, CloudDownloadResult, ICloudProvider } from '../types';
@@ -39,38 +40,63 @@ export class BackblazeProvider implements ICloudProvider {
 
   // ── Config ────────────────────────────────────────────────────────────────────
 
-  async getConfig(): Promise<{ keyId: string; appKey: string; bucketId: string; bucketName: string } | null> {
-    const [keyId, appKey, bucketId, bucketName] = await Promise.all([
-      api.storage.get('settings/backup_b2_keyId'),
-      api.storage.get('settings/backup_b2_appKey'),
-      api.storage.get('settings/backup_b2_bucketId'),
-      api.storage.get('settings/backup_b2_bucketName'),
-    ]);
-    if (!keyId || !appKey || !bucketId) return null;
-    return {
-      keyId: keyId as string,
-      appKey: appKey as string,
-      bucketId: bucketId as string,
-      bucketName: (bucketName as string) ?? '',
-    };
+  async getConfig(): Promise<{
+    keyId: string;
+    appKey: string;
+    bucketId: string;
+    bucketName: string;
+  } | null> {
+    return new Promise(resolve => {
+      chrome.storage.sync.get(
+        [
+          'settings/backup_b2_keyId',
+          'settings/backup_b2_appKey',
+          'settings/backup_b2_bucketId',
+          'settings/backup_b2_bucketName',
+        ],
+        items => {
+          const keyId = items['settings/backup_b2_keyId'] as string | undefined;
+          const appKey = items['settings/backup_b2_appKey'] as string | undefined;
+          const bucketId = items['settings/backup_b2_bucketId'] as string | undefined;
+          const bucketName = (items['settings/backup_b2_bucketName'] as string | undefined) ?? '';
+          if (keyId && appKey && bucketId) resolve({ keyId, appKey, bucketId, bucketName });
+          else resolve(null);
+        },
+      );
+    });
   }
 
-  async saveConfig(keyId: string, appKey: string, bucketId: string, bucketName: string): Promise<void> {
-    await Promise.all([
-      api.storage.set('settings/backup_b2_keyId', keyId),
-      api.storage.set('settings/backup_b2_appKey', appKey),
-      api.storage.set('settings/backup_b2_bucketId', bucketId),
-      api.storage.set('settings/backup_b2_bucketName', bucketName),
-    ]);
+  async saveConfig(
+    keyId: string,
+    appKey: string,
+    bucketId: string,
+    bucketName: string,
+  ): Promise<void> {
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.set(
+        {
+          'settings/backup_b2_keyId': keyId,
+          'settings/backup_b2_appKey': appKey,
+          'settings/backup_b2_bucketId': bucketId,
+          'settings/backup_b2_bucketName': bucketName,
+        },
+        () => {
+          if (chrome.runtime.lastError) reject(new Error(chrome.runtime.lastError.message));
+          else resolve();
+        },
+      );
+    });
   }
 
   isConfigured(): boolean {
     return true;
   }
 
-  // ── B2 helpers ────────────────────────────────────────────────────────────────
+  // ── B2 API ────────────────────────────────────────────────────────────────────
 
-  private async authorize(cfg: NonNullable<Awaited<ReturnType<BackblazeProvider['getConfig']>>>): Promise<B2Auth> {
+  private async authorize(
+    cfg: NonNullable<Awaited<ReturnType<BackblazeProvider['getConfig']>>>,
+  ): Promise<B2Auth> {
     const res = await fetch('https://api.backblazeb2.com/b2api/v2/b2_authorize_account', {
       headers: { Authorization: `Basic ${btoa(`${cfg.keyId}:${cfg.appKey}`)}` },
     });
@@ -108,7 +134,7 @@ export class BackblazeProvider implements ICloudProvider {
         body: JSON.stringify({ bucketId: cfg.bucketId }),
       });
       if (!uploadUrlRes.ok) throw new Error(`b2_get_upload_url: ${uploadUrlRes.status}`);
-      const uploadUrlData = await uploadUrlRes.json() as B2UploadUrl;
+      const uploadUrlData = (await uploadUrlRes.json()) as B2UploadUrl;
 
       const uploadRes = await fetch(uploadUrlData.uploadUrl, {
         method: 'POST',

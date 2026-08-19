@@ -1,21 +1,18 @@
 /**
  * GoogleDriveProvider
  *
- * Uses chrome.identity.launchWebAuthFlow (works in Chrome, Firefox, Edge,
- * Opera) instead of getAuthToken (Chrome/store-only). The OAuth implicit
- * grant flow is used for simplicity; tokens are short-lived (~1 h) and
- * re-requested on each operation.
+ * Uses chrome.identity.launchWebAuthFlow — works in Chrome, Firefox,
+ * Opera, and Edge. The identity permission must be in the manifest.
  *
- * Setup required by the extension maintainer:
- *   1. Google Cloud Console → APIs & Services → Credentials
- *   2. Create an OAuth 2.0 Client ID of type "Chrome Extension" (or
- *      "Web application" for Firefox compatibility)
- *   3. Add chrome.identity.getRedirectURL() as an authorised redirect URI
- *   4. Enable the Google Drive API for the project
- *   5. Set OAUTH_CLIENT_ID below (or store it in settings/backup_drive_clientId)
- *
- * Backup is stored in the hidden drive.appdata scope — the file is not
+ * Backup is stored in the drive.appdata scope — the file is not
  * visible in the user's Drive UI.
+ *
+ * Setup required (maintainer or user):
+ *   1. Google Cloud Console → APIs & Services → Credentials
+ *   2. Create OAuth 2.0 Client ID → type: Chrome Extension
+ *   3. Add the extension ID as the Item ID
+ *   4. Enable the Google Drive API
+ *   5. Paste the client ID into Settings → Backup & Restore → Google Drive
  */
 
 import type { BackupData, CloudResult, CloudDownloadResult, ICloudProvider } from '../types';
@@ -25,21 +22,19 @@ const SCOPE = 'https://www.googleapis.com/auth/drive.appdata';
 const FILE_NAME = 'malsync-backup.json';
 const DRIVE_API = 'https://www.googleapis.com/drive/v3';
 const UPLOAD_API = 'https://www.googleapis.com/upload/drive/v3';
+const CLIENT_ID_KEY = 'settings/backup_drive_clientId';
 
 // ── Identity API shim (Chrome / Firefox) ─────────────────────────────────────
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const identity: typeof chrome.identity | undefined = (globalThis as any).chrome?.identity ?? (globalThis as any).browser?.identity;
+const identity: typeof chrome.identity | undefined =
+  (globalThis as any).chrome?.identity ?? (globalThis as any).browser?.identity;
 
 function getRedirectUri(): string {
-  if (identity?.getRedirectURL) return identity.getRedirectURL();
-  // Fallback for browsers that don't implement getRedirectURL
-  return `https://${chrome.runtime.id}.chromiumapp.org/`;
+  return identity?.getRedirectURL?.() ?? `https://${chrome.runtime.id}.chromiumapp.org/`;
 }
 
-// ── Token via launchWebAuthFlow ───────────────────────────────────────────────
-
-const CLIENT_ID_KEY = 'settings/backup_drive_clientId';
+// ── Credential storage (direct chrome.storage to avoid api wrapper issues) ───
 
 async function getClientId(): Promise<string | null> {
   return new Promise(resolve => {
@@ -49,6 +44,8 @@ async function getClientId(): Promise<string | null> {
     });
   });
 }
+
+// ── Token via launchWebAuthFlow ───────────────────────────────────────────────
 
 async function launchOAuth(clientId: string, interactive: boolean): Promise<string> {
   const redirectUri = getRedirectUri();
@@ -83,10 +80,17 @@ async function launchOAuth(clientId: string, interactive: boolean): Promise<stri
 
 // ── Drive API helpers ─────────────────────────────────────────────────────────
 
-async function driveRequest<T = unknown>(token: string, url: string, init: RequestInit = {}): Promise<T> {
+async function driveRequest<T = unknown>(
+  token: string,
+  url: string,
+  init: RequestInit = {},
+): Promise<T> {
   const res = await fetch(url, {
     ...init,
-    headers: { Authorization: `Bearer ${token}`, ...(init.headers as Record<string, string> ?? {}) },
+    headers: {
+      Authorization: `Bearer ${token}`,
+      ...((init.headers as Record<string, string>) ?? {}),
+    },
   });
   if (!res.ok) {
     const body = await res.text().catch(() => '');
@@ -95,8 +99,12 @@ async function driveRequest<T = unknown>(token: string, url: string, init: Reque
   return res.json() as Promise<T>;
 }
 
-interface DriveFile { id: string }
-interface DriveFileList { files: DriveFile[] }
+interface DriveFile {
+  id: string;
+}
+interface DriveFileList {
+  files: DriveFile[];
+}
 
 // ── Provider ──────────────────────────────────────────────────────────────────
 
@@ -107,7 +115,6 @@ export class GoogleDriveProvider implements ICloudProvider {
     return !!identity?.launchWebAuthFlow;
   }
 
-  /** Store the user-provided OAuth client ID */
   async saveClientId(clientId: string): Promise<void> {
     return new Promise((resolve, reject) => {
       chrome.storage.sync.set({ [CLIENT_ID_KEY]: clientId.trim() }, () => {
@@ -117,12 +124,19 @@ export class GoogleDriveProvider implements ICloudProvider {
     });
   }
 
+  async loadClientId(): Promise<string> {
+    return (await getClientId()) ?? '';
+  }
+
   async testConnection(): Promise<string | null> {
     try {
       const clientId = await getClientId();
       if (!clientId) return 'No Google OAuth client ID configured.';
       const token = await launchOAuth(clientId, true);
-      await driveRequest(token, `${DRIVE_API}/files?spaces=appDataFolder&pageSize=1&fields=files(id)`);
+      await driveRequest(
+        token,
+        `${DRIVE_API}/files?spaces=appDataFolder&pageSize=1&fields=files(id)`,
+      );
       return null;
     } catch (e) {
       return e instanceof Error ? e.message : String(e);
@@ -147,13 +161,12 @@ export class GoogleDriveProvider implements ICloudProvider {
         return { success: true };
       }
 
-      // Multipart create
       const boundary = '-------malsync314159';
       const multipart =
         `--${boundary}\r\nContent-Type: application/json\r\n\r\n` +
-        JSON.stringify({ name: FILE_NAME, parents: ['appDataFolder'] }) +
+        `${JSON.stringify({ name: FILE_NAME, parents: ['appDataFolder'] })}` +
         `\r\n--${boundary}\r\nContent-Type: application/json\r\n\r\n` +
-        body +
+        `${body}` +
         `\r\n--${boundary}--`;
 
       const res = await fetch(`${UPLOAD_API}/files?uploadType=multipart&fields=id`, {

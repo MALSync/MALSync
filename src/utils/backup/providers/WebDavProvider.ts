@@ -5,6 +5,8 @@
  * QNAP NAS, ownCloud, and generic WebDAV endpoints.
  *
  * Credentials stored under settings/backup_webdav_* (→ sync storage).
+ * Note: the password key matches SYNC_CREDENTIAL_PATTERNS and is
+ * therefore excluded from backup exports.
  */
 
 import type { BackupData, CloudResult, CloudDownloadResult, ICloudProvider } from '../types';
@@ -22,25 +24,41 @@ export class WebDavProvider implements ICloudProvider {
   // ── Config ────────────────────────────────────────────────────────────────────
 
   async getConfig(): Promise<{ url: string; username: string; password: string } | null> {
-    const [url, username, password] = await Promise.all([
-      api.storage.get('settings/backup_webdav_url'),
-      api.storage.get('settings/backup_webdav_username'),
-      api.storage.get('settings/backup_webdav_password'),
-    ]);
-    if (!url || !username) return null;
-    return { url: (url as string).replace(/\/$/, ''), username: username as string, password: (password as string) ?? '' };
+    return new Promise(resolve => {
+      chrome.storage.sync.get(
+        ['settings/backup_webdav_url', 'settings/backup_webdav_username', 'settings/backup_webdav_password'],
+        items => {
+          const url = items['settings/backup_webdav_url'] as string | undefined;
+          const username = items['settings/backup_webdav_username'] as string | undefined;
+          const password = (items['settings/backup_webdav_password'] as string | undefined) ?? '';
+          if (url && username) resolve({ url: url.replace(/\/$/, ''), username, password });
+          else resolve(null);
+        },
+      );
+    });
   }
 
-  async saveConfig(url: string, username: string, password: string): Promise<void> {
-    await Promise.all([
-      api.storage.set('settings/backup_webdav_url', url.replace(/\/$/, '')),
-      api.storage.set('settings/backup_webdav_username', username),
-      api.storage.set('settings/backup_webdav_password', password),
-    ]);
+  async saveConfig(
+    url: string,
+    username: string,
+    password: string,
+  ): Promise<void> {
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.set(
+        {
+          'settings/backup_webdav_url': url.replace(/\/$/, ''),
+          'settings/backup_webdav_username': username,
+          'settings/backup_webdav_password': password,
+        },
+        () => {
+          if (chrome.runtime.lastError) reject(new Error(chrome.runtime.lastError.message));
+          else resolve();
+        },
+      );
+    });
   }
 
   isConfigured(): boolean {
-    // Synchronous check not possible; callers should await getConfig()
     return true;
   }
 

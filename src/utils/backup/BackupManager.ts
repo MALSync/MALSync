@@ -1,22 +1,29 @@
-import { BACKUP_VERSION, LOCAL_EXCLUDE_PREFIXES, BackupData, BackupMeta } from './types';
+import { BACKUP_VERSION, LOCAL_EXCLUDE_PREFIXES, SYNC_CREDENTIAL_PATTERNS, BackupData, BackupMeta } from './types';
 
 function shouldExcludeLocalKey(key: string): boolean {
   return LOCAL_EXCLUDE_PREFIXES.some(p => key.startsWith(p));
+}
+
+function shouldExcludeSyncKey(key: string): boolean {
+  return SYNC_CREDENTIAL_PATTERNS.some(pattern => pattern.test(key));
 }
 
 export class BackupManager {
   // ── Snapshot ────────────────────────────────────────────────────────────────
 
   async createBackup(): Promise<BackupData> {
-    const [syncData, localData] = await Promise.all([
-      api.storage.list('sync'),
-      api.storage.list('local'),
+    const [rawSync, rawLocal] = await Promise.all([
+      this.storageGetAll(chrome.storage.sync),
+      this.storageGetAll(chrome.storage.local),
     ]);
 
-    const filteredLocal: Record<string, unknown> = {};
-    for (const [key, value] of Object.entries(localData)) {
-      if (!shouldExcludeLocalKey(key)) filteredLocal[key] = value;
-    }
+    const filteredSync = Object.fromEntries(
+      Object.entries(rawSync).filter(([key]) => !shouldExcludeSyncKey(key)),
+    );
+
+    const filteredLocal = Object.fromEntries(
+      Object.entries(rawLocal).filter(([key]) => !shouldExcludeLocalKey(key)),
+    );
 
     const meta: BackupMeta = {
       version: BACKUP_VERSION,
@@ -24,7 +31,7 @@ export class BackupManager {
       malsync_version: api.storage.version(),
     };
 
-    return { meta, sync: syncData, local: filteredLocal };
+    return { meta, sync: filteredSync, local: filteredLocal };
   }
 
   // ── Validate ─────────────────────────────────────────────────────────────────
@@ -45,14 +52,13 @@ export class BackupManager {
     const error = this.validate(data);
     if (error) throw new Error(error);
 
-    // Restore sync keys one-by-one (chrome.storage.sync.set has a per-item size limit)
-    for (const [key, value] of Object.entries(data.sync)) {
-      await api.storage.set(key, value);
-    }
+    await Promise.all(
+      Object.entries(data.sync).map(([key, value]) => api.storage.set(key, value)),
+    );
 
-    for (const [key, value] of Object.entries(data.local)) {
-      await api.storage.set(key, value);
-    }
+    await Promise.all(
+      Object.entries(data.local).map(([key, value]) => api.storage.set(key, value)),
+    );
 
     return {
       sync: Object.keys(data.sync).length,
@@ -110,6 +116,13 @@ export class BackupManager {
     });
   }
 
+  // ── Reload helper ─────────────────────────────────────────────────────────────
+
+  /** Reload the extension so restored settings take effect immediately */
+  reload(): void {
+    chrome.runtime.reload();
+  }
+
   // ── Last-run tracking ────────────────────────────────────────────────────────
 
   async recordRun(provider: string): Promise<void> {
@@ -118,6 +131,20 @@ export class BackupManager {
 
   async getLastRun(provider: string): Promise<string | undefined> {
     return api.storage.get(`backup/lastRun_${provider}`);
+  }
+
+  // ── Storage helpers ───────────────────────────────────────────────────────────
+
+  private storageGetAll(area: chrome.storage.StorageArea): Promise<Record<string, unknown>> {
+    return new Promise((resolve, reject) => {
+      area.get(null, items => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(chrome.runtime.lastError.message));
+        } else {
+          resolve(items as Record<string, unknown>);
+        }
+      });
+    });
   }
 }
 

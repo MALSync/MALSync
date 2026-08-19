@@ -172,10 +172,9 @@ async function confirmRestore(ts: string): Promise<boolean> {
 }
 
 function warnExport() {
-  utils.flashm(
-    'Backup exported. Keep this file safe — it contains your tokens and credentials.',
-    { type: 'warning' },
-  );
+  utils.flashm('Backup exported. Keep this file safe — it contains your settings.', {
+    type: 'warning',
+  });
 }
 
 // ── Local file ────────────────────────────────────────────────────────────────
@@ -199,7 +198,8 @@ async function importLocal(fileContent: string) {
     const confirmed = await confirmRestore(data.meta.timestamp);
     if (!confirmed) return;
     const result = await backupManager.restoreBackup(data);
-    utils.flashm(`Restored ${result.sync + result.local} items — please reload`);
+    utils.flashm(`Restored ${result.sync + result.local} items — reloading…`);
+    setTimeout(() => backupManager.reload(), 1500);
   } catch (e) {
     utils.flashm(e instanceof Error ? e.message : 'Import failed', { error: true });
   }
@@ -238,7 +238,8 @@ async function driveAction(action: 'backup' | 'restore' | 'test') {
     const confirmed = await confirmRestore(dl.data.meta.timestamp);
     if (!confirmed) return;
     const result = await backupManager.restoreBackup(dl.data);
-    utils.flashm(`Restored ${result.sync + result.local} items — please reload`);
+    utils.flashm(`Restored ${result.sync + result.local} items — reloading…`);
+    setTimeout(() => backupManager.reload(), 1500);
   } catch (e) {
     utils.flashm(e instanceof Error ? e.message : 'Drive operation failed', { error: true });
   }

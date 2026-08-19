@@ -9,8 +9,8 @@
 export const BACKUP_VERSION = 1;
 
 /**
- * Local-storage key prefixes that are always excluded from backups.
- * These are caches and ephemeral state that should not be restored.
+ * Local-storage key prefixes excluded from backups.
+ * Caches and ephemeral state that should not be restored.
  */
 export const LOCAL_EXCLUDE_PREFIXES = [
   'cache/',
@@ -18,6 +18,23 @@ export const LOCAL_EXCLUDE_PREFIXES = [
   'reqCache/',
   'notificationHistory',
   'rateLimit',
+];
+
+/**
+ * Sync-storage key patterns for credentials/tokens that must never
+ * be included in a backup file. Backups may be shared or stored in
+ * cloud services — credentials should always stay on-device.
+ */
+export const SYNC_CREDENTIAL_PATTERNS: RegExp[] = [
+  /[Tt]oken/,
+  /[Pp]assword/,
+  /[Ss]ecret/,
+  /[Aa]uth/,
+  /[Cc]redential/,
+  /[Aa]pi[Kk]ey/,
+  /backup_webdav_password/,
+  /backup_b2_appKey/,
+  /backup_drive_clientId/,
 ];
 
 export interface BackupMeta {
@@ -28,9 +45,9 @@ export interface BackupMeta {
 
 export interface BackupData {
   meta: BackupMeta;
-  /** All chrome.storage.sync keys at the time of backup */
+  /** chrome.storage.sync keys at the time of backup — credentials excluded */
   sync: Record<string, unknown>;
-  /** Filtered chrome.storage.local keys (caches excluded) */
+  /** Filtered chrome.storage.local keys — caches excluded */
   local: Record<string, unknown>;
 }
 
@@ -44,9 +61,7 @@ export interface CloudDownloadResult extends CloudResult {
 }
 
 export interface ICloudProvider {
-  /** Whether the provider has enough config to attempt an operation */
   isConfigured(): boolean;
-  /** Returns null on success, error string on failure */
   testConnection(): Promise<string | null>;
   upload(data: BackupData): Promise<CloudResult>;
   download(): Promise<CloudDownloadResult>;
