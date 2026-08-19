@@ -39,9 +39,15 @@ function getRedirectUri(): string {
 
 // ── Token via launchWebAuthFlow ───────────────────────────────────────────────
 
+const CLIENT_ID_KEY = 'settings/backup_drive_clientId';
+
 async function getClientId(): Promise<string | null> {
-  const stored = await api.storage.get('settings/backup_drive_clientId');
-  return (stored as string | undefined) ?? null;
+  return new Promise(resolve => {
+    chrome.storage.sync.get(CLIENT_ID_KEY, items => {
+      const val = items[CLIENT_ID_KEY];
+      resolve(typeof val === 'string' && val.length > 0 ? val : null);
+    });
+  });
 }
 
 async function launchOAuth(clientId: string, interactive: boolean): Promise<string> {
@@ -103,7 +109,12 @@ export class GoogleDriveProvider implements ICloudProvider {
 
   /** Store the user-provided OAuth client ID */
   async saveClientId(clientId: string): Promise<void> {
-    await api.storage.set('settings/backup_drive_clientId', clientId.trim());
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.set({ [CLIENT_ID_KEY]: clientId.trim() }, () => {
+        if (chrome.runtime.lastError) reject(new Error(chrome.runtime.lastError.message));
+        else resolve();
+      });
+    });
   }
 
   async testConnection(): Promise<string | null> {

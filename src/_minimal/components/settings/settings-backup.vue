@@ -146,7 +146,9 @@ defineProps({
   title: { type: String, default: '' },
 });
 
-const driveAvailable = typeof chrome?.identity?.getAuthToken === 'function';
+// Google Drive uses chrome.identity.launchWebAuthFlow — available in the
+// webextension build now that the identity permission is in the manifest.
+const driveAvailable = api.type === 'webextension';
 
 const webdav = ref({ url: '', username: '', password: '' });
 const b2 = ref({ keyId: '', appKey: '', bucketId: '', bucketName: '' });
