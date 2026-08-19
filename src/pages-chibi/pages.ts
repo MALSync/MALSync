@@ -113,6 +113,7 @@ import { AnimesDigital } from './implementations/AnimesDigital/main';
 import { JKAnime } from './implementations/JKanime/main';
 import { YummyAni } from './implementations/YummyAni/main';
 import { DonghuaStream } from './implementations/DonghuaStream/main';
+import { BSTO } from './implementations/BSTO/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -228,4 +229,5 @@ export const pages: { [key: string]: PageInterface } = {
   JKAnime,
   YummyAni,
   DonghuaStream,
+  BSTO,
 };

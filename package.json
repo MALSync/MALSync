@@ -11,7 +11,7 @@
     "node": ">=24.0.0"
   },
   "devDependencies": {
-    "@ghostery/adblocker-puppeteer": "^2.18.1",
+    "@ghostery/adblocker-puppeteer": "^2.18.2",
     "@cspell/eslint-plugin": "10.0.1",
     "@eslint/eslintrc": "3.3.6",
     "@eslint/js": "9.39.5",
@@ -32,7 +32,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.4",
     "eslint": "9.39.5",
-    "eslint-config-airbnb-extended": "3.1.1",
+    "eslint-config-airbnb-extended": "3.2.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.2",
     "eslint-plugin-es-x": "8.7.0",
@@ -116,7 +116,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@types/chrome": "0.2.2",
+    "@types/chrome": "0.2.5",
     "dexie": "^4.4.4",
     "dompurify": "^3.4.12",
     "download-file": "^0.1.5",

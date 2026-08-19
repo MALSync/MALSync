@@ -7,14 +7,24 @@ export const Mkissa: PageInterface = {
   languages: ['English'],
   urls: {
     match: ['*://mkissa.to/*'],
+    player: {
+      uni: ['*://*.uns.bio/*'],
+      byse: ['*://*.q8y5z.com/*'],
+    },
   },
-  search: 'https://mkissa.to/search/manga?query={searchtermRaw}',
+  search: {
+    anime: 'https://mkissa.to/search/manga?query={searchtermRaw}',
+    manga: 'https://mkissa.to/search/anime?query={searchtermRaw}',
+  },
+  computedType: $c => {
+    return $c.url().urlPart(3).toLowerCase().run();
+  },
   sync: {
     isSyncPage($c) {
       return $c
         .and(
-          $c.url().urlPart(3).equals('manga').run(),
-          $c.url().urlPart(5).matches('^chapter-').run(),
+          $c.url().urlPart(3).matches('^(manga|anime)$').run(),
+          $c.url().urlPart(5).matches('^(chapter-|p-)').run(),
         )
         .run();
     },
@@ -31,10 +41,10 @@ export const Mkissa: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c.url().replaceRegex('/[^/]+$', '').run();
+      return $c.url().split('/').slice(0, 5).join('/').run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).regex('chapter-(\\d+)', 1).number().run();
+      return $c.url().urlPart(5).regex('^(chapter-|p-)(\\d+)', 2).number().run();
     },
     readerConfig: [
       {
@@ -49,7 +59,7 @@ export const Mkissa: PageInterface = {
     isOverviewPage($c) {
       return $c
         .and(
-          $c.url().urlPart(3).equals('manga').run(),
+          $c.url().urlPart(3).matches('^(manga|anime)$').run(),
           $c.url().urlPart(4).boolean().run(),
           $c.url().urlPart(5).boolean().not().run(),
         )

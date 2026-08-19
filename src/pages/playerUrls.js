@@ -422,6 +422,7 @@ module.exports = {
       '*://vidmoly.to/*',
       '*://vidmoly.net/*',
       '*://vidmoly.biz/*',
+      '*://voembed.net/*',
       // auto-vidmoly-replace-dont-remove
     ],
   },
@@ -499,6 +500,7 @@ module.exports = {
       '*://pamelachangemission.com/e/*',
       '*://matthewhotelscience.com/e/*',
       '*://jessicachoosemake.com/e/*',
+      '*://stevenfamilyedge.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
