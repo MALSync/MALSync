@@ -501,6 +501,7 @@ module.exports = {
       '*://matthewhotelscience.com/e/*',
       '*://jessicachoosemake.com/e/*',
       '*://stevenfamilyedge.com/e/*',
+      '*://tracylocalschool.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
