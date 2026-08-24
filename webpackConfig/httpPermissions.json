@@ -17,6 +17,8 @@
   "https://api.mangadex.org/",
   "https://api.mangabaka.org/",
   "https://*.mangabaka.org/",
+  "https://www.animeoshi.com/",
+  "https://media.animeoshi.com/",
   "https://shikimori.io/",
   "https://*.plex.direct/"
 ]

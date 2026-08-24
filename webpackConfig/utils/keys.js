@@ -8,8 +8,11 @@ module.exports = {
     let mangabakaId = 'gkakHAvTRJdSNROnJVeCborCYCqveNSx';
     let mangabakaSecret = 'aSJdQANfWahFBPpqkVqYDYaFzvYjRUJv';
 
+    let animeoshiId = 'malsync';
+    let animeoshiApiKey = '856a7ee8b016eb9b6cb8a5991f9e3b26b4f779a47d8ab4ce61855084b7a9c9f8';
+
     if (mode === 'travis') {
-      if (!process.env.SIMKL_API_ID || !process.env.SIMKL_API_SECRET || !process.env.MANGABAKA_API_ID || !process.env.MANGABAKA_API_SECRET) {
+      if (!process.env.SIMKL_API_ID || !process.env.SIMKL_API_SECRET || !process.env.MANGABAKA_API_ID || !process.env.MANGABAKA_API_SECRET || !process.env.ANIMEOSHI_API_ID || !process.env.ANIMEOSHI_API_KEY || !process.env.ANIMEOSHI_API_KEY) {
         throw new Error('SIMKL_API_ID, SIMKL_API_SECRET, MANGABAKA_API_ID and MANGABAKA_API_SECRET are not set');
       }
 
@@ -17,6 +20,8 @@ module.exports = {
       simklSecret = process.env.SIMKL_API_SECRET;
       mangabakaId = process.env.MANGABAKA_API_ID;
       mangabakaSecret = process.env.MANGABAKA_API_SECRET;
+      animeoshiId = process.env.ANIMEOSHI_API_ID;
+      animeoshiApiKey = process.env.ANIMEOSHI_API_KEY;
     }
 
     return {
@@ -27,6 +32,10 @@ module.exports = {
       mangabaka: {
         id: mangabakaId,
         secret: mangabakaSecret,
+      },
+      animeoshi: {
+        id: animeoshiId,
+        apiKey: animeoshiApiKey,
       },
     }
   }
