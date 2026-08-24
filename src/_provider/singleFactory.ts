@@ -11,6 +11,7 @@ import { Single as KitsuSingle } from './Kitsu/single';
 import { Single as MangaBakaSingle } from './MangaBaka/single';
 import { Single as SimklSingle } from './Simkl/single';
 import { Single as ShikiSingle } from './Shikimori/single';
+import { Single as OshiSingle } from './AnimeOshi/single';
 import { Single as LocalSingle } from './Local/single';
 
 export const singleClasses: { [key in SyncTypes]: new (url: string) => SingleAbstract } = {
@@ -21,6 +22,7 @@ export const singleClasses: { [key in SyncTypes]: new (url: string) => SingleAbs
   MANGABAKA: MangaBakaSingle,
   SIMKL: SimklSingle,
   SHIKI: ShikiSingle,
+  ANIMEOSHI: OshiSingle,
 };
 
 export function getSingle(url: string) {

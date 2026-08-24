@@ -7,6 +7,7 @@ import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
 import { MetaOverview as MangaBakaMeta } from './MangaBaka/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';
 import { MetaOverview as ShikiMeta } from './Shikimori/metaOverview';
+import { MetaOverview as OshiMeta } from './AnimeOshi/metaOverview';
 
 export function getOverview(url, type, syncMode = '') {
   if (!syncMode) {
@@ -30,6 +31,9 @@ export function getOverview(url, type, syncMode = '') {
   }
   if (syncMode === 'SHIKI') {
     return new ShikiMeta(url);
+  }
+  if (syncMode === 'ANIMEOSHI') {
+    return new OshiMeta(url);
   }
   if (syncMode === 'MAL') {
     return new MalMeta(url);
