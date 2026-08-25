@@ -8,6 +8,7 @@
     <PillSplit :left="false" :right="Boolean(showEp || streamUrl)" :img="img">
       <template #right>
         <div class="right-section">
+          <span v-if="score" class="material-icons lead-icon">face</span>
           <MediaLink v-if="Boolean(streamUrl)" :href="streamUrl">
             <img class="streamIcon" :src="streamIcon" />
           </MediaLink>
@@ -100,9 +101,13 @@ const showEp = computed(() =>
 
   & + .pill {
     z-index: 0;
-    margin-inline-start: -18px;
-    padding-inline-start: 18px;
+    margin-inline-start: -28px;
   }
+}
+
+.lead-icon {
+  font-size: 18px;
+  width: 18px;
 }
 
 .right-section {
