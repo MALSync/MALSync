@@ -6,7 +6,7 @@
       <label>{{ label }}</label>
     </div>
 
-    <button v-if="inputString !== state" @click="click">Update</button>
+    <button v-if="inputString !== state || dirty" @click="click" :class="{disabled: inputString === state}">Update</button>
   </div>
 </template>
 
@@ -29,14 +29,18 @@ export default {
   data() {
     return {
       inputString: '',
+      dirty: false,
     };
   },
   watch: {
     state() {
       this.inputString = this.state;
+      this.$emit('changed', this.inputString);
     },
     inputString() {
-      this.$emit('changed', this.inputString);
+      if (this.inputString !== this.state) {
+        this.dirty = true;
+      }
     },
   },
   mounted() {
@@ -50,3 +54,10 @@ export default {
   },
 };
 </script>
+
+<style lang="less" scoped>
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+</style>
