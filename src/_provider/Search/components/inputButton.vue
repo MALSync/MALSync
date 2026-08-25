@@ -6,7 +6,13 @@
       <label>{{ label }}</label>
     </div>
 
-    <button v-if="inputString !== state || dirty" @click="click" :class="{disabled: inputString === state}">Update</button>
+    <button
+      v-if="inputString !== state || dirty"
+      @click="click"
+      :class="{ disabled: inputString === state }"
+    >
+      Update
+    </button>
   </div>
 </template>
 
