@@ -233,6 +233,7 @@ module.exports = {
       '*://*.miixdrop.net/e/*',
       '*://*.miiiixdrop.net/e/*',
       '*://*.miixdrop.com/e/*',
+      '*://*.miixdrop.top/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -501,6 +502,7 @@ module.exports = {
       '*://matthewhotelscience.com/e/*',
       '*://jessicachoosemake.com/e/*',
       '*://stevenfamilyedge.com/e/*',
+      '*://tracylocalschool.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

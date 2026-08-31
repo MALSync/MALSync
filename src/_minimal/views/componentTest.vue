@@ -310,12 +310,12 @@ const list: bookmarkItem[] = [
     imageLarge:
       'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg',
     status: 1,
-    score: 3,
-    watchedEp: 3,
+    score: 10,
+    watchedEp: 144,
     totalEp: 0,
     streamUrl: 'https://www.crunchyroll.com',
     streamIcon: 'https://www.google.com/s2/favicons?domain=crunchyroll.com',
-    progressEp: 4,
+    progressEp: 144,
     progressText: '5 Days 3 Hours',
   },
   {

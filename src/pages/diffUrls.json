@@ -145,11 +145,13 @@
   "0.12.4": {
     "iframe": [
       "*://*.miixdrop.com/e/*",
+      "*://*.miixdrop.top/e/*",
       "*://playmogo.com/e/*",
       "*://voembed.net/*",
       "*://matthewhotelscience.com/e/*",
       "*://jessicachoosemake.com/e/*",
       "*://stevenfamilyedge.com/e/*",
+      "*://tracylocalschool.com/e/*",
       "*://uqload.is/*",
       "*://*.ansembed.net/*",
       "*://*.embed4me.com/*",
