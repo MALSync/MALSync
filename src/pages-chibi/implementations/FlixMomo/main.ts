@@ -8,6 +8,20 @@ export const FlixMomo: PageInterface = {
   type: 'anime',
   urls: {
     match: ['*://flixmomo.app/*'],
+    player: {
+      vidsrc: ['*://vsembed.su/*', '*://cloudorchestranova.com/*'],
+      vidcore: ['*://vidcore.net/*'],
+      videasy: ['*://player.videasy.to/*'],
+      mapple: ['*://mapple.rip/*'],
+      vidbolt: ['*://vidbolt.xyz/*'],
+      cinemaos: ['*://cinemaos.tech/*'],
+      zxcstream: ['*://zxcstream.xyz/*'],
+      peachify: ['*://peachify.top/*'],
+      xpass: ['*://play.xpass.top/*'],
+      oneembed: ['*://1embed.cc/*'],
+      multiembed: ['*://multiembed.mov/*'],
+      vidfast: ['*://vidfast.vc/*'],
+    },
   },
   search: 'https://flixmomo.app/search?q={searchterm}',
   sync: {

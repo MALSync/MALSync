@@ -6,7 +6,7 @@
       "url": "https://flixmomo.app/tv/72517/classroom-of-the-elite/season/1?e=1&p=1",
       "expected": {
         "sync": true,
-        "title": "Classroom of the Elite Season 1",
+        "title": "Classroom of the Elite",
         "identifier": "72517-season-1",
         "overviewUrl": "https://flixmomo.app/tv/72517/classroom-of-the-elite",
         "episode": 1,
@@ -21,7 +21,7 @@
       "url": "https://flixmomo.app/tv/72517/classroom-of-the-elite",
       "expected": {
         "sync": false,
-        "title": "Classroom of the Elite Season 1",
+        "title": "Classroom of the Elite",
         "identifier": "72517-season-1",
         "image": "https://image.tmdb.org/t/p/w780/yuHanbUUIv2UWRxxQFt9n8jtmOJ.jpg",
         "uiSelector": true
