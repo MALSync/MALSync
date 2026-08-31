@@ -7,8 +7,9 @@ export const FlixMomo: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://flixmomo.app/tv/*'],
+    match: ['*://flixmomo.app/*'],
   },
+  search: 'https://flixmomo.app/search?q={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c
