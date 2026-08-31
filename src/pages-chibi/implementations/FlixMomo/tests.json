@@ -26,6 +26,42 @@
         "image": "https://image.tmdb.org/t/p/w780/yuHanbUUIv2UWRxxQFt9n8jtmOJ.jpg",
         "uiSelector": true
       }
+    },
+    {
+      "url": "https://flixmomo.app/tv/94664/mushoku-tensei-jobless-reincarnation/season/1?e=1&p=1",
+      "expected": {
+        "sync": true,
+        "title": "Mushoku Tensei: Jobless Reincarnation",
+        "identifier": "94664-season-1",
+        "overviewUrl": "https://flixmomo.app/tv/94664/mushoku-tensei-jobless-reincarnation",
+        "episode": 1,
+        "uiSelector": false,
+        "epList": {
+          "1": "https://flixmomo.app/tv/94664/mushoku-tensei-jobless-reincarnation/season/1?e=1&p=1",
+          "23": "https://flixmomo.app/tv/94664/mushoku-tensei-jobless-reincarnation/season/1?e=23&p=1"
+        }
+      }
+    },
+    {
+      "url": "https://flixmomo.app/tv/94664/mushoku-tensei-jobless-reincarnation/season/1?e=1&p=12",
+      "expected": {
+        "sync": true,
+        "title": "Mushoku Tensei: Jobless Reincarnation",
+        "identifier": "94664-season-1",
+        "overviewUrl": "https://flixmomo.app/tv/94664/mushoku-tensei-jobless-reincarnation",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://flixmomo.app/tv/94664/mushoku-tensei-jobless-reincarnation",
+      "expected": {
+        "sync": false,
+        "title": "Mushoku Tensei: Jobless Reincarnation",
+        "identifier": "94664-season-1",
+        "image": "https://image.tmdb.org/t/p/w780/gLKOYIMyKlUHW0SVdskhgf9C0yy.jpg",
+        "uiSelector": true
+      }
     }
   ]
 }
