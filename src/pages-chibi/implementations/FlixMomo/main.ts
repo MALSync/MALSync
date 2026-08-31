@@ -36,7 +36,12 @@ export const FlixMomo: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.title().regex('^Watch (.+) - Free Episodes', 1).trim().run();
+      return $c
+        .title()
+        .regex('^Watch (.+) - Free Episodes', 1)
+        .replaceRegex(' Season 1$', '')
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return getIdentifier($c).run();
@@ -59,7 +64,7 @@ export const FlixMomo: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('main h4').text().trim().concat(' Season 1').run();
+      return $c.querySelector('main h4').text().trim().run();
     },
     getIdentifier($c) {
       return getIdentifier($c).run();
@@ -92,7 +97,15 @@ export const FlixMomo: PageInterface = {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
     syncIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('main h1').boolean().run()).trigger().run();
+      return $c
+        .waitUntilTrue(
+          $c.and(
+            $c.querySelector('main h1').boolean().run(),
+            $c.title().contains(' - Free Episodes').run(),
+          ).run(),
+        )
+        .trigger()
+        .run();
     },
     overviewIsReady($c) {
       return $c.waitUntilTrue($c.querySelector('main h4').boolean().run()).trigger().run();
