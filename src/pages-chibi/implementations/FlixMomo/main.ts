@@ -7,7 +7,7 @@ export const FlixMomo: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://flixmomo.app/*'],
+    match: ['*://*.flixmomo.app/*'],
     player: {
       vidsrc: ['*://vsembed.su/*', '*://cloudorchestranova.com/*'],
       vidcore: ['*://vidcore.net/*'],
@@ -99,10 +99,12 @@ export const FlixMomo: PageInterface = {
     syncIsReady($c) {
       return $c
         .waitUntilTrue(
-          $c.and(
-            $c.querySelector('main h1').boolean().run(),
-            $c.title().contains(' - Free Episodes').run(),
-          ).run(),
+          $c
+            .and(
+              $c.querySelector('main h1').boolean().run(),
+              $c.title().contains(' - Free Episodes').run(),
+            )
+            .run(),
         )
         .trigger()
         .run();
