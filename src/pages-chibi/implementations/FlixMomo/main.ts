@@ -2,7 +2,7 @@ import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const FlixMomo: PageInterface = {
-  name: 'FlixMomo',
+  name: 'Flixmomo',
   domain: 'https://flixmomo.app',
   languages: ['English'],
   type: 'anime',
