@@ -58,6 +58,17 @@
       }
     },
     {
+      "url": "https://roliascan.com/read/study-group/ch1-58344/",
+      "expected": {
+        "sync": true,
+        "title": "study group",
+        "identifier": "study-group",
+        "overviewUrl": "https://roliascan.com/manga/study-group",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
       "url": "https://roliascan.com/manga/kingdom/",
       "expected": {
         "sync": false,
