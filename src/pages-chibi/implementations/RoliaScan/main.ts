@@ -11,7 +11,12 @@ export const RoliaScan: PageInterface = {
   search: 'https://roliascan.com/browse/?title={searchtermRaw}',
   sync: {
     isSyncPage($c) {
-      return $c.url().urlPart(3).equals('read').run();
+      return $c
+        .and(
+          $c.url().urlPart(3).equals('read').run(),
+          $c.url().urlPart(5).matches('^ch\\d').run(),
+        )
+        .run();
     },
     getTitle($c) {
       return $c.url().urlPart(4).replaceAll('-', ' ').run();
@@ -27,14 +32,8 @@ export const RoliaScan: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.comic-image',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.comic-image',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.comic-image').countAbove().run(),
+        total: $c => $c.querySelectorAll('.comic-image').length().run(),
       },
     ],
   },
