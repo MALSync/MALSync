@@ -22,11 +22,9 @@ export const JKAnime: PageInterface = {
     },
     getTitle($c) {
       return $c
-        .querySelector('div.player_normal > div.video-info div.video_i')
-        .ifNotReturn()
-        .find('a')
-        .ifNotReturn()
-        .text()
+        .title()
+        .replaceRegex(' \\d+ Sub Español Online gratis — JkAnime', '')
+        .string()
         .trim()
         .run();
     },
@@ -35,35 +33,24 @@ export const JKAnime: PageInterface = {
     },
     getImage($c) {
       return $c
-        .querySelector('div.player_normal > div.video-info div.video_t > a > img')
-        .ifNotReturn()
-        .getAttribute('src')
-        .ifNotReturn()
+        .string('/assets/images/animes/image/')
+        .concat($c.this('sync.getIdentifier').run())
+        .concat('.jpg')
+        .urlAbsolute('https://cdn.jkdesa.com')
         .run();
     },
     getOverviewUrl($c) {
-      return $c
-        .querySelector('div.ep_bar > div.anime_slug > a > div')
-        .ifNotReturn()
-        .parent()
-        .ifNotReturn()
-        .getAttribute('href')
-        .urlAbsolute()
-        .run();
+      return $c.this('sync.getIdentifier').urlAbsolute().concat('/').run();
     },
     getEpisode($c) {
       return $c.url().urlPart(4).number().run();
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('div.ep_bar > div.anime_slug > div > a > div > i.ti-chevron-right')
-        .ifNotReturn()
-        .parent()
-        .ifNotReturn()
-        .parent()
+        .querySelector('.ep_bar a:has(i.ti-chevron-right)')
         .ifNotReturn()
         .getAttribute('href')
-        .urlAbsolute()
+        .replaceRegex('^#', '')
         .run();
     },
     uiInjection($c) {
@@ -75,44 +62,35 @@ export const JKAnime: PageInterface = {
       return $c
         .and(
           $c.this('sync.isSyncPage').not().run(),
-          $c.querySelector('#guardar-anime').ifNotReturn().boolean().run(),
+          $c
+            .or(
+              $c.title().contains(' - anime ').ifNotReturn().boolean().run(),
+              $c.querySelector('#guardar-anime').ifNotReturn().boolean().run(),
+            )
+            .run(),
         )
         .run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('div.anime__details__content div.anime_info > h3')
-        .ifNotReturn()
-        .text()
-        .trim()
-        .run();
+      return $c.title().split(' - anime ').at(0).string().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.url().urlPart(3).run();
     },
     getImage($c) {
-      return $c
-        .querySelector('div.anime__details__content div.anime_pic.pc > img')
-        .getAttribute('src')
-        .ifNotReturn()
-        .run();
+      return $c.this('sync.getImage').run();
     },
     uiInjection($c) {
-      return $c.querySelector('div.anime_info').uiAfter().run();
+      return $c.querySelector('div.anime_info').ifNotReturn().uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
       return $c
-        .querySelectorAll(
-          $c
-            .if(
-              $c.this('overview.isOverviewPage').run(),
-              $c.string('#episodes-content div.anime__item a').run(),
-              $c.string('#episodes-content li.list-group-item a').run(),
-            )
-            .run(),
-        )
+        .this('overview.isOverviewPage')
+        .ifNotReturn()
+        .querySelectorAll('#episodes-content div.anime__item a')
+        .ifNotReturn()
         .run();
     },
     elementUrl($c) {
@@ -126,7 +104,7 @@ export const JKAnime: PageInterface = {
     setup($c) {
       // this is added here because stylelint doesn't support the starting-style
       // at-rule until version 16, so it will not let me add it cleanly in
-      // style.less without yelling at me in the lint:css check
+      // style.less without yelling at me in the lint:less check
       const _startingStyle =
         '@starting-style{#malp,#malp *{opacity:0!important;font-size:-1.25rem!important;}#malp{width:0;}}';
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call, global-require, @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-member-access
@@ -136,28 +114,29 @@ export const JKAnime: PageInterface = {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
     listChange($c) {
-      return $c
-        .detectChanges(
-          $c
-            .querySelectorAll(
-              $c
-                .if(
-                  $c.this('overview.isOverviewPage').run(),
-                  $c.string('#episodes-content div.anime__item').run(),
-                  $c.string('#episodes-content li').run(),
-                )
-                .run(),
-            )
-            .last()
-            .ifNotReturn()
-            .find('a')
-            .ifNotReturn()
-            .getAttribute('href')
-            .ifNotReturn()
-            .run(),
-          $c.trigger().run(),
-        )
-        .run();
+      return (
+        $c
+          .title()
+          .contains('Página no encontrada')
+          // eslint-disable-next-line @typescript-eslint/no-shadow
+          .ifThen($c => $c.string('404').log().return().run())
+          .domReady()
+          .detectChanges(
+            $c
+              .this('overview.isOverviewPage')
+              .ifNotReturn()
+              .querySelectorAll('#episodes-content div.anime__item')
+              .last()
+              .ifNotReturn()
+              .find('a')
+              .ifNotReturn()
+              .getAttribute('href')
+              .ifNotReturn()
+              .run(),
+            $c.trigger().run(),
+          )
+          .run()
+      );
     },
   },
 };
