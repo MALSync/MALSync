@@ -28,11 +28,11 @@ export const RoliaScan: PageInterface = {
     readerConfig: [
       {
         current: {
-          selector: '.manga-child-the-content img',
+          selector: '.comic-image',
           mode: 'countAbove',
         },
         total: {
-          selector: '.manga-child-the-content img',
+          selector: '.comic-image',
           mode: 'count',
         },
       },
