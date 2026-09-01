@@ -38,6 +38,19 @@
         "nextEpUrl": "https://jkanime.net/gaikotsu-kishi-sama-tadaima-isekai-e-odekakechuu/11/",
         "uiSelector": true
       }
+    },
+    {
+      "url": "https://jkanime.net/gaikotsu-kishi-sama-tadaima-isekai-e-odekakechuu/12/",
+      "expected": {
+        "sync": true,
+        "image": "https://cdn.jkdesa.com/assets/images/animes/image/gaikotsu-kishi-sama-tadaima-isekai-e-odekakechuu.jpg",
+        "title": "Gaikotsu Kishi-sama, Tadaima Isekai e Odekakechuu",
+        "identifier": "gaikotsu-kishi-sama-tadaima-isekai-e-odekakechuu",
+        "episode": 12,
+        "overviewUrl": "https://jkanime.net/gaikotsu-kishi-sama-tadaima-isekai-e-odekakechuu/",
+        "nextEpUrl": null,
+        "uiSelector": true
+      }
     }
   ]
 }
