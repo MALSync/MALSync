@@ -112,7 +112,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka ক বিভিন্ন চাইটত সংহত কৰে, স্বয়ংক্ৰিয় খণ্ড অনুসৰণৰ সৈতে।",
+        "message": "MyAnimeList, AniList, Kitsu, Simkl, MangaBaka ক বিভিন্ন চাইটত সংহত কৰে, স্বয়ংক্ৰিয় খণ্ড অনুসৰণৰ সৈতে।",
         "description": "Description MALSync"
     },
     "UI_Status": {

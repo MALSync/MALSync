@@ -804,7 +804,7 @@
         "description": "Search text"
     },
     "Package_Description": {
-        "message": "يقوم بدمج MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka الى مواقع متنوعة، مع تتبع تلقائي للحلقات.",
+        "message": "يقوم بدمج MyAnimeList, AniList, Kitsu, Simkl, MangaBaka الى مواقع متنوعة، مع تتبع تلقائي للحلقات.",
         "description": "Description MALSync"
     },
     "UI_Status_OnHold": {

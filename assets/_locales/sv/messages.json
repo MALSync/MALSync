@@ -64,7 +64,7 @@
         "description": "All"
     },
     "Package_Description": {
-        "message": "Integrerar MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka till olika platser, med automatisk episodspårning.",
+        "message": "Integrerar MyAnimeList, AniList, Kitsu, Simkl, MangaBaka till olika platser, med automatisk episodspårning.",
         "description": "Description MALSync"
     },
     "UI_Status": {
