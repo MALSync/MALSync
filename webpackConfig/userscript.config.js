@@ -100,8 +100,13 @@ const generateMetadataBlock = metadata => {
   return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())};\n`;
 };
 
+const proxyScriptRequest = scriptPath =>
+  JSON.stringify(`${path.resolve(__dirname, '..', scriptPath).replace(/\\/g, '/')}?raw`);
+
 const proxyScripts = [
-  `export const proxy_request = require('./dist/webextension/content/proxy/proxy_request.js?raw');`,
+  `export const proxy_request = require(${proxyScriptRequest(
+    'dist/webextension/content/proxy/proxy_request.js',
+  )});`,
 ];
 pagesUtils.pages().forEach(page => {
   pageRoot = path.join(__dirname, '..', 'src/pages/', page);
@@ -109,7 +114,7 @@ pagesUtils.pages().forEach(page => {
   if (fs.existsSync(path.join(pageRoot, 'proxy.ts'))) {
     if (!fs.existsSync(path.join(__dirname, '..', scriptPath)))
       throw new Error(`Proxy script for ${page} does not exist. Please build the extension first.`);
-    proxyScripts.push(`export const ${page} = require('./${scriptPath}?raw');`);
+    proxyScripts.push(`export const ${page} = require(${proxyScriptRequest(scriptPath)});`);
   }
 });
 console.log('Proxy', proxyScripts);
