@@ -1,52 +1,4 @@
 {
-  "0.12.0": {
-    "AnimeSama": [
-      "*://anime-sama.org/*"
-    ],
-    "KickAssAnime": [
-      "*://*.kaa.to/*"
-    ],
-    "TRanimeizle": [
-      "*://tranimeizle.io/*",
-      "*://www.tranimeizle.io/*"
-    ],
-    "Zoro": [
-      "*://hianime.cx/*",
-      "*://hianime.gs/*",
-      "*://hianime.do/*"
-    ],
-    "animepahe": [
-      "*://animepahe.si/play/*",
-      "*://animepahe.si/anime/*"
-    ],
-    "iframe": [
-      "*://x.anizium.co/*",
-      "*://*.mixdrop.sn/e/*",
-      "*://*.mixdrop.cv/e/*",
-      "*://*.md3b0j6hj.com/e/*",
-      "*://animevost.org/frame5.php?play=*",
-      "*://vidmoly.net/*",
-      "*://vidmoly.biz/*",
-      "*://jilliandescribecompany.com/e/*",
-      "*://lukesitturn.com/e/*",
-      "*://mikaylaarealike.com/e/*",
-      "*://pqham.com/*",
-      "*://nova.upn.one/*",
-      "*://api.anivideo.net/*",
-      "*://listeamed.net/*",
-      "*://megaup.site/e/*",
-      "*://megaup.live/e/*",
-      "*://4spromax.site/e/*",
-      "*://player.zilla-networks.com/*",
-      "*://megaplay.buzz/*",
-      "*://*.anizmplayer.com/*",
-      "*://loadx.ws/*",
-      "*://odysee.com/*",
-      "*://emturbovid.com/*",
-      "*://*.upns.live/*",
-      "*://*.p2pstream.vip/*"
-    ]
-  },
   "0.12.1": {
     "iframe": []
   },
@@ -158,5 +110,8 @@
       "*://*.minochinos.com/*",
       "*://rumble.com/embed/*"
     ]
+  },
+  "0.12.5": {
+    "iframe": []
   }
 }
