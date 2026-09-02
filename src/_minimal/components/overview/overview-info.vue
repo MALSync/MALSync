@@ -5,7 +5,7 @@
       <div v-for="item in info" :key="item.title" class="item">
         <div class="type">{{ item.title }}</div>
         <div class="content">
-          <template v-for="(link, index) in item.body" :key="link">
+          <template v-for="(link, index) in item.body" :key="index">
             <div v-if="'type' in link && link.type === 'weektime' && link.date">
               <template v-if="link.date instanceof Date || !isNaN(Date.parse(link.date))">
                 <span dir="auto">{{ getTimezoneDate(link.date) }}</span>
