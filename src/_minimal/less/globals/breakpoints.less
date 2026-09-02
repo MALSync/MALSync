@@ -1,3 +1,5 @@
+@max-content-width: 1400px;
+
 .__breakpoint-desktop__(@rules) {
   @media screen and (min-width: 900px) {
     @rules();
@@ -12,6 +14,13 @@
 
 .__breakpoint-popup__(@rules) {
   @media screen and (max-width: 600px) {
+    @rules();
+  }
+}
+
+.__breakpoint-max-content-width__(@rules) {
+  /* stylelint-disable-next-line media-query-no-invalid */
+  @media screen and (min-width: @max-content-width) {
     @rules();
   }
 }
