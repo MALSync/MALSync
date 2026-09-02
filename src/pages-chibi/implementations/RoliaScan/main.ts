@@ -12,10 +12,7 @@ export const RoliaScan: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(3).equals('read').run(),
-          $c.url().urlPart(5).matches('^ch\\d').run(),
-        )
+        .and($c.url().urlPart(3).equals('read').run(), $c.url().urlPart(5).matches('^ch\\d').run())
         .run();
     },
     getTitle($c) {
