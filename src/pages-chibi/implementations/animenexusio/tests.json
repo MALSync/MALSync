@@ -1,0 +1,16 @@
+{
+  "title": "animenexusio",
+  "url": "https://anime-nexus.io",
+  "testCases": [
+    {
+      "url": "https://anime-nexus.io/nexus/anime/toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita/9",
+      "expected": {
+        "sync": true,
+        "title": "Toumei na Yoru ni Kakeru Kimi to, Me ni Mienai Koi wo Shita. / Love Unseen Beneath the Clear Night Sky Ep. 9",
+        "identifier": "toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita",
+        "overviewUrl": "https://anime-nexus.io/nexus/anime/toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita",
+        "episode": 9
+      }
+    }
+  ]
+}
