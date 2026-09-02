@@ -8,9 +8,12 @@ export const RoliaScan: PageInterface = {
   urls: {
     match: ['*://roliascan.com/*'],
   },
+  search: 'https://roliascan.com/browse/?title={searchtermRaw}',
   sync: {
     isSyncPage($c) {
-      return $c.url().urlPart(5).matches('chapter[_-]').run();
+      return $c
+        .and($c.url().urlPart(3).equals('read').run(), $c.url().urlPart(5).matches('^ch\\d').run())
+        .run();
     },
     getTitle($c) {
       return $c.url().urlPart(4).replaceAll('-', ' ').run();
@@ -22,12 +25,12 @@ export const RoliaScan: PageInterface = {
       return $c.string('/manga/').concat($c.this('sync.getIdentifier').run()).urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).regex('chapter[_-](\\d+)', 1).number().run();
+      return $c.url().urlPart(5).regex('^ch0*(\\d+)', 1).number().run();
     },
     readerConfig: [
       {
-        current: $c => $c.querySelectorAll('.manga-child-the-content img').countAbove().run(),
-        total: $c => $c.querySelectorAll('.manga-child-the-content img').length().run(),
+        current: $c => $c.querySelectorAll('.comic-image').countAbove().run(),
+        total: $c => $c.querySelectorAll('.comic-image').length().run(),
       },
     ],
   },

@@ -3,34 +3,78 @@
   "url": "https://roliascan.com",
   "testCases": [
     {
-      "url": "https://roliascan.com/manga/gosu/chapter-232_-s2-145/",
+      "url": "https://roliascan.com/read/kingdom/ch1-31634/",
       "expected": {
         "sync": true,
-        "title": "gosu",
-        "identifier": "gosu",
-        "overviewUrl": "https://roliascan.com/manga/gosu",
-        "episode": 232,
+        "title": "kingdom",
+        "identifier": "kingdom",
+        "overviewUrl": "https://roliascan.com/manga/kingdom",
+        "episode": 1,
         "uiSelector": false
       }
     },
     {
-      "url": "https://roliascan.com/manga/study-group/chapter-234-5-s2-epilogue/",
+      "url": "https://roliascan.com/read/kingdom/ch52-1-31686/",
+      "expected": {
+        "sync": true,
+        "title": "kingdom",
+        "identifier": "kingdom",
+        "overviewUrl": "https://roliascan.com/manga/kingdom",
+        "episode": 52,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://roliascan.com/read/yongbi/ch32-79157/",
+      "expected": {
+        "sync": true,
+        "title": "yongbi",
+        "identifier": "yongbi",
+        "overviewUrl": "https://roliascan.com/manga/yongbi",
+        "episode": 32,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://roliascan.com/read/eleceed/ch001-17457/",
+      "expected": {
+        "sync": true,
+        "title": "eleceed",
+        "identifier": "eleceed",
+        "overviewUrl": "https://roliascan.com/manga/eleceed",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://roliascan.com/read/eleceed/ch12-17468/",
+      "expected": {
+        "sync": true,
+        "title": "eleceed",
+        "identifier": "eleceed",
+        "overviewUrl": "https://roliascan.com/manga/eleceed",
+        "episode": 12,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://roliascan.com/read/study-group/ch1-58344/",
       "expected": {
         "sync": true,
         "title": "study group",
         "identifier": "study-group",
         "overviewUrl": "https://roliascan.com/manga/study-group",
-        "episode": 234,
+        "episode": 1,
         "uiSelector": false
       }
     },
     {
-      "url": "https://roliascan.com/manga/hero-killer/",
+      "url": "https://roliascan.com/manga/kingdom/",
       "expected": {
         "sync": false,
-        "title": "hero killer",
-        "identifier": "hero-killer",
-        "image": "https://roliascan.com/wp-content/uploads/2024/11/xll1.jpg",
+        "title": "kingdom",
+        "identifier": "kingdom",
+        "image": "https://roliascan.com/content/media/manga-10610-cover-1775133365.jpg",
         "uiSelector": true
       }
     }
