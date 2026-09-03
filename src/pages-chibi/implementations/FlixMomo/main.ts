@@ -144,25 +144,14 @@ function getIdentifier($c: ChibiGenerator<unknown>) {
 
 function handleRequest($c: ChibiGenerator<{ url: string; data: SeriesMetadata }>) {
   return $c
-    .setVariable('flixMomoRequest')
-    .get('url')
-    .matches('^https://api\\.themoviedb\\.org/3/tv/\\d+(?:\\?|$)')
+    .values()
+    .type<SeriesMetadata[]>()
+    .filter(data => data.get('id').string().equals($c.url().urlPart(4).run()).run())
+    .filter(data => data.get('genres').boolean().run())
+    .filter(data => data.get('origin_country').boolean().run())
+    .first()
     .ifNotReturn()
-    .getVariable<{ data: SeriesMetadata }>('flixMomoRequest')
-    .get('data')
-    .setGlobalVariable(
-      $c
-        .string('flixMomoSeries:')
-        .concat(
-          $c
-            .getVariable<{ data: SeriesMetadata }>('flixMomoRequest')
-            .get('data')
-            .get('id')
-            .string()
-            .run(),
-        )
-        .run(),
-    );
+    .setGlobalVariable($c.string('flixMomoSeries:').concat($c.url().urlPart(4).run()).run());
 }
 
 function isAnime($c: ChibiGenerator<unknown>) {
