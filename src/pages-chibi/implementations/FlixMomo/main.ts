@@ -1,11 +1,20 @@
 import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
+type SeriesMetadata = {
+  id: number;
+  genres: { id: number }[];
+  origin_country: string[];
+};
+
 export const FlixMomo: PageInterface = {
   name: 'Flixmomo',
   domain: 'https://flixmomo.app',
   languages: ['English'],
   type: 'anime',
+  features: {
+    requestProxy: true,
+  },
   urls: {
     match: ['*://*.flixmomo.app/*'],
     player: {
@@ -32,6 +41,7 @@ export const FlixMomo: PageInterface = {
           $c.url().urlPart(6).equals('season').run(),
           $c.url().urlPart(7).boolean().run(),
           $c.url().urlParam('e').boolean().run(),
+          isAnime($c).run(),
         )
         .run();
     },
@@ -60,6 +70,7 @@ export const FlixMomo: PageInterface = {
           $c.url().urlPart(3).equals('tv').run(),
           $c.url().urlPart(4).boolean().run(),
           $c.url().urlPart(6).boolean().not().run(),
+          isAnime($c).run(),
         )
         .run();
     },
@@ -94,7 +105,13 @@ export const FlixMomo: PageInterface = {
       return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
-      return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
+      return $c
+        .requestProxy($request => handleRequest($request).run())
+        .detectChanges(isAnime($c).run(), $c.trigger().run())
+        .detectURLChanges($c.trigger().run())
+        .domReady()
+        .trigger()
+        .run();
     },
     syncIsReady($c) {
       return $c
@@ -123,4 +140,46 @@ function getIdentifier($c: ChibiGenerator<unknown>) {
   );
 
   return $c.url().urlPart(4).concat('-season-').concat(season.string().run());
+}
+
+function handleRequest($c: ChibiGenerator<{ url: string; data: SeriesMetadata }>) {
+  return $c
+    .setVariable('flixMomoRequest')
+    .get('url')
+    .matches('^https://api\\.themoviedb\\.org/3/tv/\\d+(?:\\?|$)')
+    .ifNotReturn()
+    .getVariable<{ data: SeriesMetadata }>('flixMomoRequest')
+    .get('data')
+    .setGlobalVariable(
+      $c
+        .string('flixMomoSeries:')
+        .concat(
+          $c
+            .getVariable<{ data: SeriesMetadata }>('flixMomoRequest')
+            .get('data')
+            .get('id')
+            .string()
+            .run(),
+        )
+        .run(),
+    );
+}
+
+function isAnime($c: ChibiGenerator<unknown>) {
+  const metadata = $c.getGlobalVariable<SeriesMetadata>(
+    $c.string('flixMomoSeries:').concat($c.url().urlPart(4).run()).run(),
+    { id: 0, genres: [], origin_country: [] },
+  );
+
+  return $c.and(
+    metadata.get('id').string().equals($c.url().urlPart(4).run()).run(),
+    metadata.get('genres').boolean().run(),
+    metadata
+      .get('genres')
+      .arrayFind(genre => genre.get('id').equals(16).run()) // 16 is animation
+      .boolean()
+      .run(),
+    metadata.get('origin_country').boolean().run(),
+    metadata.get('origin_country').arrayIncludes('JP').run(), // animation + japan = anime?
+  );
 }
