@@ -42,7 +42,7 @@
     "eslint-plugin-vue-scoped-css": "2.12.0",
     "expose-loader": "^5.0.1",
     "fs-extra": "^11.4.0",
-    "less": "^4.9.0",
+    "less": "^4.9.1",
     "less-loader": "^13.0.0",
     "mkdirp": "^1.0.4",
     "mocha": "^11.8.0",
@@ -116,7 +116,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@types/chrome": "0.2.8",
+    "@types/chrome": "0.2.7",
     "dexie": "^4.4.5",
     "dompurify": "^3.4.14",
     "download-file": "^0.1.5",
