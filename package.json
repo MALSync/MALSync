@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@ghostery/adblocker-puppeteer": "^2.18.2",
-    "@cspell/eslint-plugin": "10.1.1",
+    "@cspell/eslint-plugin": "10.2.1",
     "@eslint/eslintrc": "3.3.6",
     "@eslint/js": "9.39.5",
     "@stylistic/eslint-plugin": "3.1.0",
@@ -116,7 +116,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@types/chrome": "0.2.8",
+    "@types/chrome": "0.2.7",
     "dexie": "^4.4.5",
     "dompurify": "^3.4.14",
     "download-file": "^0.1.5",
