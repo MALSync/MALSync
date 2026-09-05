@@ -503,6 +503,7 @@ module.exports = {
       '*://jessicachoosemake.com/e/*',
       '*://stevenfamilyedge.com/e/*',
       '*://tracylocalschool.com/e/*',
+      '*://eugenemakedraw.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
