@@ -815,6 +815,10 @@
         "message": "Charger PTW/PTR pour l'évaluation des progrès",
         "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
     },
+    "settings_progressShowFinished": {
+        "message": "Afficher la progression des sorties pour les entrées terminées",
+        "description": "Option to show release progress bars and pills for finished anime or manga entries"
+    },
     "settings_Video_Player": {
         "message": "Lecteur de vidéo",
         "description": "Video settings header"

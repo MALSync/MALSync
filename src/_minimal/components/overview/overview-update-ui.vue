@@ -40,8 +40,8 @@
                   <MediaProgressPill
                     v-if="progress"
                     :watched-ep="Number(episode)"
-                    :episode="progress.progress()!.getCurrentEpisode()!"
-                    :text="progress.progress()!.getPredictionText()"
+                    :episode="progressEpisode"
+                    :text="progressText"
                   />
                 </div>
               </template>
@@ -60,6 +60,8 @@
             :disabled="!single.getTotalEpisodes()"
             :min="0"
             :max="single.getTotalEpisodes()"
+            :progress-ep="progressEpisode"
+            :progress-text="progressText"
             color="blue"
           />
         </template>
@@ -286,13 +288,23 @@ const progress = computed(() => {
   if (!props.single) return false;
   const progressEl = props.single.getProgress();
   if (!progressEl) return false;
-  if (
-    !progressEl.isAiring() ||
-    !progressEl.progress() ||
-    !progressEl.progress()!.getCurrentEpisode()
-  )
+  if (!progressEl.getDisplayEpisode(props.single.getEpisode(), props.single.getTotalEpisodes()))
     return false;
   return progressEl;
+});
+
+const progressEpisode = computed(() => {
+  if (!props.single || !progress.value) return 0;
+  const displayEpisode = progress.value.getDisplayEpisode(
+    props.single.getEpisode(),
+    props.single.getTotalEpisodes(),
+  );
+  return displayEpisode || 0;
+});
+
+const progressText = computed(() => {
+  if (!progress.value) return '';
+  return progress.value.progress()!.getAutoText();
 });
 
 async function update() {
