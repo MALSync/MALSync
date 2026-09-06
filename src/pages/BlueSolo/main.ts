@@ -75,7 +75,7 @@ export const BlueSolo: pageInterface = {
     utils.fullUrlChangeDetect(() => {
       page.reset();
       start();
-    });
+    }, true);
 
     function start() {
       clearInterval(inter);

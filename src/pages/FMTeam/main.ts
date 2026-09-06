@@ -76,7 +76,7 @@ export const FMTeam: pageInterface = {
     utils.fullUrlChangeDetect(() => {
       page.reset();
       start();
-    });
+    }, true);
 
     function start() {
       clearInterval(inter);
