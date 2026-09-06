@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integriert MyAnimeList/AniList/Kitsu/Simkl/Shikimori auf diversen Seiten mit automatischer Episodenverfolgung.",
+        "message": "Integriert MyAnimeList, AniList, Kitsu, Simkl, MangaBaka auf diversen Seiten mit automatischer Episodenverfolgung.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -688,7 +688,7 @@
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "Die deaktivierten Seiten erscheinen nicht mehr in der Seitenleiste auf MAL.",
+        "message": "Die deaktivierten Seiten erscheinen nicht mehr in der Seitenleiste auf MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -1657,5 +1657,32 @@
     },
     "settings_listsync_list": {
         "message": "Liste:"
+    },
+    "list_sorting_latest_release": {
+        "message": "Letztes Release"
+    },
+    "settings_chibi_repos_modal_add": {
+        "message": "Möchten Sie die Quelle wirklich hinzufügen?"
+    },
+    "settings_presence_activityName_title": {
+        "message": "Serientitel"
+    },
+    "settings_presence_activityName": {
+        "message": "Name der Aktivität"
+    },
+    "settings_presence_activityName_website": {
+        "message": "Genutzte Webseite"
+    },
+    "settings_presence_activityName_type": {
+        "message": "Anime/Manga"
+    },
+    "settings_presence_activityName_malsync": {
+        "message": "MALSync"
+    },
+    "settings_anilist_external_sources": {
+        "message": "Externe Quellen anzeigen"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Kapitel als gelesen markieren, bei Prozentsatz"
     }
 }

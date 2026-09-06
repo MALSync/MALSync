@@ -10,6 +10,7 @@ import { getRulesCacheKey } from '../singleFactory';
 import { RulesClass } from './rulesClass';
 
 import { getSyncMode } from '../helper';
+import { buildProviderUrl } from '../../utils/slugs';
 
 interface SearchResult {
   id?: number;
@@ -314,7 +315,7 @@ export class SearchClass {
 
     let returnUrl = '';
 
-    if (id !== 'Not-Found') returnUrl = `https://myanimelist.net/${this.page.type}/${id}`;
+    if (id !== 'Not-Found') returnUrl = buildProviderUrl('MAL', this.page.type, id);
 
     return {
       url: returnUrl,
@@ -349,7 +350,11 @@ export class SearchClass {
 
     let pageUrl = res.malUrl;
 
-    if (!pageUrl && res.aniUrl && getSyncMode(this.getNormalizedType()) === 'ANILIST') {
+    if (
+      !pageUrl &&
+      res.aniUrl &&
+      ['ANILIST', 'MANGABAKA'].includes(getSyncMode(this.getNormalizedType()))
+    ) {
       pageUrl = res.aniUrl;
     }
 

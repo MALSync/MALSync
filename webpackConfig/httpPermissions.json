@@ -1,6 +1,5 @@
 [
   "https://myanimelist.net/",
-  "https://myanimelist.cdn-dena.com/",
   "https://cdn.myanimelist.net/",
   "https://kissanimelist.firebaseio.com/",
   "https://*.anilist.co/",
@@ -16,6 +15,8 @@
   "https://chibi.malsync.moe/",
   "https://api.myanimelist.net/",
   "https://api.mangadex.org/",
-  "https://shikimori.one/",
+  "https://api.mangabaka.org/",
+  "https://*.mangabaka.org/",
+  "https://shikimori.io/",
   "https://*.plex.direct/"
 ]

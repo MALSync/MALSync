@@ -1,4 +1,5 @@
 import { ListAbstract, listElement } from '../listAbstract';
+import { buildProviderUrl } from '../../utils/slugs';
 
 export class UserList extends ListAbstract {
   name = 'MyAnimeList';
@@ -112,7 +113,7 @@ export class UserList extends ListAbstract {
             cacheKey: el.anime_id,
             type: this.listType,
             title: el.anime_title,
-            url: `https://myanimelist.net${el.anime_url}`,
+            url: buildProviderUrl('MAL', 'anime', el.anime_id),
             watchedEp: el.num_watched_episodes,
             totalEp: el.anime_num_episodes,
             status: el.status,
@@ -131,7 +132,7 @@ export class UserList extends ListAbstract {
             cacheKey: el.manga_id,
             type: this.listType,
             title: el.manga_title,
-            url: `https://myanimelist.net${el.manga_url}`,
+            url: buildProviderUrl('MAL', 'manga', el.manga_id),
             watchedEp: el.num_read_chapters,
             totalEp: el.manga_num_chapters,
             status: el.status,

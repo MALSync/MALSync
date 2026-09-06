@@ -1,0 +1,26 @@
+@import './../pages';
+
+@boxBackground: var(--global-div);
+
+#flashinfo-div {
+  z-index: 2147483647 !important;
+}
+
+.flash {
+  * {
+    background: var(--global-secondary-bg) !important;
+    color: var(--global-text) !important;
+    button {
+      color: var(--primary-accent) !important;
+    }
+  }
+  .ms-progress,
+  #malSyncProgress.ms-loading::before {
+    background: var(--primary-accent) !important;
+  }
+}
+
+#malp {
+  border: none;
+  margin-top: 0;
+}

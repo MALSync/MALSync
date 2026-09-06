@@ -6,6 +6,7 @@ import { tracking } from './settings-structure-tracking';
 import { ConfObj } from '../../../_provider/definitions';
 import { theming } from './settings-structure-theming';
 import { customDomains, missingPermissions } from './settings-structure-custom-domains';
+import { chibiRepos } from './settings-structure-chibi-repos';
 import { onsite } from './settings-structure-onsite';
 import { discord } from './settings-structure-discord';
 import { etc } from './settings-structure-etc';
@@ -115,6 +116,13 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: customDomains,
+  },
+  {
+    key: 'chibiRepositories',
+    title: 'Chibi Repositories',
+    condition: () => false,
+    component: SettingsGroup,
+    children: chibiRepos,
   },
   {
     key: 'listSyncSection',

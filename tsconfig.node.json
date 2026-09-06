@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "outDir": "./src/",
+    "rootDir": ".",
     "noImplicitAny": false,
     "noImplicitThis": false,
     "module": "commonjs",
-    "moduleResolution": "node",
     "target": "es6",
     "lib": ["es5", "es6", "es2015.collection", "es2015.iterable", "dom"],
     "jsx": "react",
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
-    "useUnknownInCatchVariables": false
+    "useUnknownInCatchVariables": false,
+    "types": ["chrome", "jquery", "node", "mocha", "chai"]
   }
 }

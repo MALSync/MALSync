@@ -1,0 +1,71 @@
+{
+  "title": "Tsukuyomi",
+  "url": "https://tsukuyomi.tv",
+  "testCases": [
+    {
+      "url": "https://tsukuyomi.tv/watch/182255/8",
+      "expected": {
+        "sync": true,
+        "title": "Frieren: Beyond Journey’s End Season 2",
+        "identifier": "4rq4",
+        "overviewUrl": "https://tsukuyomi.tv/anime/182255",
+        "episode": 8,
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
+        "nextEpUrl": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/9",
+        "uiSelector": false,
+        "epList": {
+          "1": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/1",
+          "9": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/9"
+        }
+      }
+    },
+    {
+      "url": "https://tsukuyomi.tv/watch/182255/10",
+      "expected": {
+        "sync": true,
+        "title": "Frieren: Beyond Journey’s End Season 2",
+        "identifier": "4rq4",
+        "overviewUrl": "https://tsukuyomi.tv/anime/182255",
+        "episode": 10,
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
+        "nextEpUrl": null,
+        "uiSelector": false,
+        "epList": {
+          "1": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/1",
+          "9": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/9"
+        }
+      }
+    },
+    {
+      "url": "https://tsukuyomi.tv/watch/199221/6",
+      "expected": {
+        "sync": true,
+        "title": "Dr. STONE SCIENCE FUTURE Cour 3",
+        "identifier": "3qfa",
+        "overviewUrl": "https://tsukuyomi.tv/anime/199221",
+        "episode": 6,
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199221-TReDQMNhslHu.jpg",
+        "nextEpUrl": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/7",
+        "uiSelector": false,
+        "epList": {
+          "1": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/1",
+          "7": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/7"
+        }
+      }
+    },
+    {
+      "url": "https://tsukuyomi.tv/anime/dr-stone-science-future-cour-3-3qfa",
+      "expected": {
+        "sync": false,
+        "title": "Dr. STONE SCIENCE FUTURE Cour 3",
+        "identifier": "3qfa",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199221-TReDQMNhslHu.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/1",
+          "7": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/7"
+        }
+      }
+    }
+  ]
+}

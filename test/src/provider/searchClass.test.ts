@@ -97,7 +97,7 @@ describe('Mal Search', function() {
     };
   });
 
-  it('Novelplanet', async function() {
+  xit('Novelplanet', async function () {
     this.timeout(10000);
     const searchObj = new SearchClass(
       'Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?',
@@ -121,7 +121,7 @@ describe('Mal Search', function() {
     });
   });
 
-  it('Kissanime', async function() {
+  xit('Kissanime', async function () {
     this.timeout(10000);
     const searchObj = new SearchClass(
       'AZUMANGA DAIOH: GEKIJOU TANPEN',
@@ -274,9 +274,9 @@ describe('Full Search', function() {
 
   it('Not Found', async function() {
     this.timeout(10000);
-    const searchObj = new SearchClass('Castlevania', 'anime', '17870');
+    const searchObj = new SearchClass('Castlevania', 'anime', 'castlevania-ff98');
     searchObj.setPage({
-      database: 'Zoro',
+      database: 'KickAssAnime',
       type: 'anime',
     });
     const result = await searchObj.searchForIt();

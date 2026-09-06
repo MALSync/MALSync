@@ -1,6 +1,0 @@
-{
-  "search": "https://rawkuma.com/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://rawkuma.com/*"]
-  }
-}

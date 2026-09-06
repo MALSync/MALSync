@@ -1,0 +1,28 @@
+{
+    "title": "Thunderscans",
+    "url": "https://en-thunderscans.com",
+    "testCases": [
+      {
+        "url": "https://en-thunderscans.com/top-tier-providence-secretly-cultivate-for-a-thousand-years-chapter-188/",
+        "expected": {
+          "sync": true,
+          "title": "Top Tier Providence: Secretly Cultivate for a Thousand Years",
+          "identifier": "top-tier-providence-secretly-cultivate-for-a-thousand-years",
+          "overviewUrl": "https://en-thunderscans.com/comics/top-tier-providence-secretly-cultivate-for-a-thousand-years/",
+          "episode": 188,
+          "nextEpUrl": "https://en-thunderscans.com/top-tier-providence-secretly-cultivate-for-a-thousand-years-chapter-189/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://en-thunderscans.com/comics/top-tier-providence-secretly-cultivate-for-a-thousand-years",
+        "expected": {
+          "sync": false,
+          "title": "Top Tier Providence: Secretly Cultivate for a Thousand Years",
+          "identifier": "top-tier-providence-secretly-cultivate-for-a-thousand-years",
+          "image": "https://en-thunderscans.com/wp-content/uploads/2025/08/2025-08-28-04-22-25-1756398145894.jpg",
+          "uiSelector": true
+        }
+      }
+    ]
+  }

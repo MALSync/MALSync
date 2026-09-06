@@ -1,4 +1,5 @@
 import { searchInterface } from '../definitions';
+import { buildProviderUrl } from '../../utils/slugs';
 import * as helper from './helper';
 
 const tempObj = {
@@ -55,9 +56,9 @@ export const search: searchInterface = async function (
           id: item.node.id,
           name: item.node.title,
           altNames: alt,
-          url: `https://myanimelist.net/${type}/${item.node.id}`,
+          url: buildProviderUrl('MAL', type, item.node.id),
           malUrl: () => {
-            return `https://myanimelist.net/${type}/${item.node.id}`;
+            return buildProviderUrl('MAL', type, item.node.id);
           },
           image: item.node.main_picture?.medium ?? '',
           imageLarge: item.node.main_picture?.large || item.node.main_picture?.medium || '',

@@ -91,6 +91,15 @@ export const onsite: ConfObj[] = [
     component: SettingsHr,
   },
   {
+    key: 'anilistExternalSources',
+    title: () => api.storage.lang('settings_anilist_external_sources'),
+    props: () => ({
+      component: 'checkbox',
+      option: 'anilistExternalSources',
+    }),
+    component: SettingsGeneral,
+  },
+  {
     key: 'anilistUpdateUi',
     title: () => api.storage.lang('settings_anilist_update_ui'),
     props: () => ({

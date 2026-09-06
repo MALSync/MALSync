@@ -1,5 +1,5 @@
 import { pageInterface } from '../pageInterface';
-import { SyncPage } from '../syncPage';
+import { SyncPage } from '../../pages-sync/syncPage';
 
 export const Animetoast: pageInterface = {
   name: 'Animetoast',

@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Добавляет MyAnimeList/AniList/Kitsu/Simkl/Shikimori на различные сайты, с авто обновлением просмотренных серий.",
+        "message": "Добавляет MyAnimeList, AniList, Kitsu, Simkl, MangaBaka на различные сайты, с авто обновлением просмотренных серий.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -666,7 +666,7 @@
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "Если отключена ссылка, то сайт более не будет появляться на панели на MyAnimeList/AniList/Kitsu/Simkl.",
+        "message": "Если отключена ссылка, то сайт более не будет появляться на панели на MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -1652,5 +1652,35 @@
     },
     "settings_Mangasync_readerTracking_percentage": {
         "message": "Сделать главу прочитанной после процента страниц"
+    },
+    "settings_presence_activityName_malsync": {
+        "message": "MALSync"
+    },
+    "settings_presence_activityName": {
+        "message": "Название активности"
+    },
+    "settings_presence_activityName_title": {
+        "message": "Название произведения"
+    },
+    "settings_presence_activityName_website": {
+        "message": "Текущий сайт"
+    },
+    "settings_presence_activityName_type": {
+        "message": "Аниме/Манга"
+    },
+    "list_sorting_latest_release": {
+        "message": "По дате выхода"
+    },
+    "settings_anilist_external_sources": {
+        "message": "Показывать внешние источники"
+    },
+    "settings_chibi_repos_modal_add": {
+        "message": "Вы уверены что хотите добавить этот репозиторий?"
+    },
+    "settings_splitTracking": {
+        "message": "Раздельное отслеживание"
+    },
+    "UI_Status_Considering": {
+        "message": "Рассматриваю"
     }
 }

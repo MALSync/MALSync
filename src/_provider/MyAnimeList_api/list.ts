@@ -1,4 +1,5 @@
 import { ListAbstract, listElement } from '../listAbstract';
+import { buildProviderUrl } from '../../utils/slugs';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 
@@ -70,7 +71,7 @@ export class UserList extends ListAbstract {
 
   async getPart() {
     this.limit = 100;
-    if (this.modes.frontend) {
+    if (this.modes.frontend && !this.modes.sortAiring) {
       this.limit = 24;
     }
 
@@ -134,7 +135,7 @@ export class UserList extends ListAbstract {
             cacheKey: el.node.id,
             type: this.listType,
             title: useAltTitle ? el.node.alternative_titles.en || el.node.title : el.node.title,
-            url: `https://myanimelist.net/${this.listType}/${el.node.id}`,
+            url: buildProviderUrl('MAL', this.listType, el.node.id),
             score: el.list_status.score,
             watchedEp: el.list_status.num_episodes_watched,
             totalEp: el.node.num_episodes,
@@ -157,7 +158,7 @@ export class UserList extends ListAbstract {
             cacheKey: el.node.id,
             type: this.listType,
             title: useAltTitle ? el.node.alternative_titles.en || el.node.title : el.node.title,
-            url: `https://myanimelist.net/${this.listType}/${el.node.id}`,
+            url: buildProviderUrl('MAL', this.listType, el.node.id),
             score: el.list_status.score,
             watchedEp: el.list_status.num_chapters_read,
             readVol: el.list_status.num_volumes_read,

@@ -1,7 +1,9 @@
+import type { listElement } from '../_provider/listAbstract';
 import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { UserList } from '../_provider/Kitsu/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import { waitForPageToBeVisible } from '../utils/general';
+import { buildProviderUrl } from '../utils/slugs';
 import { NotAutenticatedError } from '../_provider/Errors';
 
 export class KitsuClass {
@@ -180,10 +182,7 @@ export class KitsuClass {
 
   async getMalUrl() {
     if (this.page !== null && this.page.page === 'detail' && this.page.malid) {
-      return `https://myanimelist.net/${this.page.type}/${this.page.malid}/${utils.urlPart(
-        this.url,
-        5,
-      )}`;
+      return buildProviderUrl('MAL', this.page.type, this.page.malid);
     }
     return '';
   }
@@ -311,7 +310,7 @@ export class KitsuClass {
       .first()
       .append(
         j.html(
-          '<div class="malsync-rel-link" style="display: inline-block; margin: 0 5px; vertical-align: bottom;"></div>',
+          '<div class="malsync-rel-link" style="display: inline-block; margin: 0 5px; vertical-align: bottom; user-select: none;"></div>',
         ),
       );
 
@@ -367,7 +366,7 @@ export class KitsuClass {
         let cover = true;
         if ($('.library-list tbody tr').length) cover = false;
         con.log(list);
-        $.each(list, async (index, en) => {
+        $.each(list, async (index, en: listElement & { kitsuSlug: string }) => {
           con.log('en', en);
           if (typeof en.malId !== 'undefined' && en.malId !== null && en.malId) {
             const element = $(
@@ -410,8 +409,8 @@ export class KitsuClass {
               }
             }
 
-            const resumeUrlObj = en.options.r;
-            const continueUrlObj = en.options.c;
+            const resumeUrlObj = en.options!.r;
+            const continueUrlObj = en.options!.c;
 
             const curEp = en.watchedEp;
 
@@ -467,14 +466,14 @@ export class KitsuClass {
             }
 
             await en.fn.initProgress();
-            if (en.fn.progress && en.fn.progress.isAiring() && en.fn.progress.getCurrentEpisode()) {
+            if (en.fn.progress?.isAiring() && en.fn.progress.progress()?.getCurrentEpisode()) {
               element
                 .parent()
                 .find('.entry-unit, .progress-cell > span:last-of-type')
                 .first()
                 .append(
                   j.html(
-                    ` <span class="mal-sync-ep-pre" title="${en.fn.progress.getAutoText()}">[<span style="border-bottom: 1px dotted ${en.fn.progress.getColor()};">${en.fn.progress.getCurrentEpisode()}</span>]</span>`,
+                    ` <span class="mal-sync-ep-pre" title="${en.fn.progress.progress()!.getAutoText()}">[<span style="border-bottom: 1px dotted ${en.fn.progress.getColor()};">${en.fn.progress.progress()!.getCurrentEpisode()!}</span>]</span>`,
                   ),
                 );
             }

@@ -1,4 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
+import { urlToSlug } from '../../utils/slugs';
+import * as definitions from '../definitions';
 import * as helper from './helper';
 import { NotAutenticatedError, UrlNotSupportedError } from '../Errors';
 import { point100 } from '../ScoreMode/point100';
@@ -24,14 +26,15 @@ export class Single extends SingleAbstract {
     'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
   protected handleUrl(url) {
-    if (url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.ani = Number(utils.urlPart(url, 4));
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'ANILIST') {
+      this.type = path.type;
+      this.ids.ani = Number(path.id);
       return;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.mal = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.ids.mal = Number(path.id);
       return;
     }
     throw new UrlNotSupportedError(url);
@@ -50,6 +53,9 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
+    }
     this.animeInfo.mediaListEntry.status = helper.statusTranslate[status];
   }
 

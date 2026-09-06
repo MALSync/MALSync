@@ -6,6 +6,13 @@ export class NotAutenticatedError extends Error {
   }
 }
 
+export class TokenExpiredError extends NotAutenticatedError {
+  constructor(message: string) {
+    super(message);
+    this.name = 'TokenExpiredError';
+  }
+}
+
 export class UrlNotSupportedError extends Error {
   constructor(message: string) {
     super(message);

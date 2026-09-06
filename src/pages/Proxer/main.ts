@@ -35,7 +35,7 @@ export const Proxer: pageInterface = {
       return getEpisodeFallback($('#breadcrumb > a').last().text().trim(), url.split('/')[5]);
     },
     nextEpUrl(url) {
-      return Proxer.domain + $('.no_details a')!.last()!.attr('href')!;
+      return Proxer.domain + $('.no_details a').last().attr('href')!;
     },
   },
   overview: {

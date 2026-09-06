@@ -39,7 +39,7 @@ export function createApp(
   app.mixin({
     beforeCreate() {
       if (this.$options.styles && !loadedStyles[this.$options.__file]) {
-        rootElement!.appendChild(
+        rootElement.appendChild(
           createStyleTag(this.$options.styles.join('\n'), this.$options.__file),
         );
         loadedStyles[this.$options.__file] = true;

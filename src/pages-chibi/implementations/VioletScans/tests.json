@@ -1,0 +1,57 @@
+{
+    "title": "VioletScans",
+    "url": "https://violetscans.org",
+    "testCases": [
+      {
+        "url": "https://violetscans.org/i-became-the-wife-of-the-male-lead-chapter-59-5/",
+        "expected": {
+          "sync": true,
+          "title": "I Became the Wife of the Male Lead",
+          "identifier": "i-became-the-wife-of-the-male-lead",
+          "overviewUrl": "https://violetscans.org/comics/i-became-the-wife-of-the-male-lead/",
+          "episode": 59,
+          "nextEpUrl": "https://violetscans.org/i-became-the-wife-of-the-male-lead-chapter-60/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://violetscans.org/i-became-the-despised-granddaughter-of-the-powerful-martial-arts-family-chapter-47/",
+          "expected": {
+          "sync": true,
+          "title": "I Became the Despised Granddaughter of the Powerful Martial Arts Family",
+          "identifier": "i-became-the-despised-granddaughter-of-the-powerful-martial-arts-family",
+          "overviewUrl": "https://violetscans.org/comics/i-became-the-despised-granddaughter-of-the-powerful-martial-arts-family/",
+          "episode": 47,
+          "nextEpUrl": "https://violetscans.org/i-became-the-despised-granddaughter-of-the-powerful-martial-arts-family-chapter-48/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://violetscans.org/comics/i-became-the-wife-of-the-male-lead/",
+        "expected": {
+          "sync": false,
+          "title": "I Became the Wife of the Male Lead",
+          "identifier": "i-became-the-wife-of-the-male-lead",
+          "image": "https://violetscans.org/wp-content/uploads/2025/03/2025-03-27-11-56-45-1743119805085.jpg",
+          "uiSelector": true,
+          "epList": {
+            "132": "https://violetscans.org/i-became-the-wife-of-the-male-lead-chapter-132/",
+            "1": "https://violetscans.org/i-became-the-wife-of-the-male-lead-chapter-1/"
+          }
+        }
+      },
+      {
+        "url": "https://violetscans.org/comics/i-became-the-despised-granddaughter-of-the-powerful-martial-arts-family/",
+        "expected": {
+          "sync": false,
+          "title": "I Became the Despised Granddaughter of the Powerful Martial Arts Family",
+          "identifier": "i-became-the-despised-granddaughter-of-the-powerful-martial-arts-family",
+          "image": "https://violetscans.org/wp-content/uploads/2025/03/2025-10-13-06-23-06-1760379786429.jpeg",
+          "uiSelector": true,
+          "epList": {
+            "1": "https://violetscans.org/i-became-the-despised-granddaughter-of-the-powerful-martial-arts-family-chapter-1/"
+          }
+        }
+      }
+    ]
+  }

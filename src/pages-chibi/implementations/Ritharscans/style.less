@@ -1,0 +1,11 @@
+@import './../pages';
+
+@boxBackground: var(--bg-white-10);
+
+#malp {
+  --bg-white-10: #ffffff1a;
+
+  @supports (color: color-mix(in lab, red, red)) {
+    --bg-white-10: color-mix(in oklab, var(--color-white) 10%, transparent);
+  }
+}

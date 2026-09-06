@@ -1,0 +1,84 @@
+{
+  "title": "Crunchyroll",
+  "url": "https://www.crunchyroll.com/",
+  "testCases": [
+    {
+      "url": "https://www.crunchyroll.com/watch/GEVUZP0ZM/the-end-of-the-beginning-and-the-beginning-of-the-end",
+      "expected": {
+        "sync": true,
+        "title": "rezero starting life in another world",
+        "identifier": "GRGG9798R|season-1-directors-cut",
+        "overviewUrl": "https://www.crunchyroll.com/series/GRGG9798R",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/G7PU4584Q/reunion-with-the-witch--starting-life-from-zero-in-another-world",
+        "episode": 1,
+        "malUrl": "https://myanimelist.net/anime/19815"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/de/watch/GK9UG2E49/the-result-of-the-battle-for-priestella",
+      "expected": {
+        "sync": true,
+        "title": "rezero starting life in another world Staffel 3",
+        "identifier": "GRGG9798R|season-3",
+        "overviewUrl": "https://www.crunchyroll.com/series/GRGG9798R",
+        "nextEpUrl": "https://www.crunchyroll.com/de/watch/GE00345525DEDE/the-reason-im-taking-you-with-me--gorgeous-tiger-reloaded",
+        "episode": 16
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/de/watch/G14UVJGX1/ceremony",
+      "expected": {
+        "sync": true,
+        "title": "guilty gear strive dual rulers",
+        "identifier": "GEXH3W2MZ|guilty-gear-strive-dual-rulers",
+        "overviewUrl": "https://www.crunchyroll.com/series/GEXH3W2MZ",
+        "nextEpUrl": "https://www.crunchyroll.com/de/watch/GJWUQ7EJW/belief-in-peace",
+        "episode": 1
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/de/watch/GR5VK12DR/untitled",
+      "expected": {
+        "sync": true,
+        "title": "ai mai mi mousou catastrophe",
+        "identifier": "GRP8DZ7GR|ai-mai-mi-mousou-catastrophe",
+        "overviewUrl": "https://www.crunchyroll.com/series/GRP8DZ7GR",
+        "nextEpUrl": "https://www.crunchyroll.com/de/watch/G6GG4ZNE6/untitled",
+        "episode": 3
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/de/watch/GYW4D2706/short-version-digest",
+      "expected": {
+        "sync": true,
+        "title": "katana maidens toji no miko",
+        "identifier": "GY9P1KVER|katana-maidens--toji-no-miko",
+        "episode": 12,
+        "overviewUrl": "https://www.crunchyroll.com/series/GY9P1KVER",
+        "nextEpUrl": "https://www.crunchyroll.com/de/watch/G69VD00VY/hero-of-the-next-generation"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GE00362337JAJP/yano-kun",
+      "expected": {
+        "sync": true,
+        "title": "yano kuns ordinary days",
+        "identifier": "GT00362335|season-1",
+        "episode": 1,
+        "overviewUrl": "https://www.crunchyroll.com/series/GT00362335",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/GE00362339JAJP/a-lovely-portrait"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GE00361957JAJP/a-wild-last-boss-appears",
+      "expected": {
+        "sync": true,
+        "title": "a wild last boss appeared",
+        "identifier": "GT00361955|season-1",
+        "episode": 1,
+        "overviewUrl": "https://www.crunchyroll.com/series/GT00361955",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/GE00361959JAJP/we-came-to-svel"
+      }
+    }
+  ]
+}

@@ -177,7 +177,7 @@ export const Komga: pageInterface = {
             page.handlePage();
           },
         );
-      } else if (Komga.isSyncPage!(window.location.href)) {
+      } else if (Komga.isSyncPage(window.location.href)) {
         apiCall(`/api/v1/books/${utils.urlPart(window.location.href, 4)}`)
           .then(res => {
             const jn = JSON.parse(res.responseText);

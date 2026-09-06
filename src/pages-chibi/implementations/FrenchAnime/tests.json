@@ -1,0 +1,30 @@
+{
+  "title": "FrenchAnime",
+  "url": "https://french-anime.com",
+  "testCases": [
+    {
+      "url": "https://french-anime.com/animes-vostfr/1243-jjjujutsu-kaisenn.html",
+      "expected": {
+        "sync": true,
+        "title": "Jujutsu Kaisen",
+        "identifier": "1243",
+        "overviewUrl": "https://french-anime.com/animes-vostfr/1243-jjjujutsu-kaisenn.html",
+        "image": "https://french-anime.com/images/1600898717_jujutsu-kaisen-vostfr.jpg",
+        "episode": 23,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://french-anime.com/animes-vf/1273-jidou-hanbaiki-ni-umarekawatta-ore-wa-meikyuu-wo-samayou.html",
+      "expected": {
+        "sync": true,
+        "title": "Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou",
+        "identifier": "1273",
+        "image": "https://french-anime.com/images/french-anime-a00a-8fb4-d6eb-432e.jpg",
+        "overviewUrl": "https://french-anime.com/animes-vf/1273-jidou-hanbaiki-ni-umarekawatta-ore-wa-meikyuu-wo-samayou.html",
+        "episode": 12,
+        "uiSelector": true
+      }
+    }
+  ]
+}

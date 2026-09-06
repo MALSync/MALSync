@@ -38,13 +38,12 @@ export default /** @type {import('eslint').Linter.FlatConfig} */ ({
     camelcase: ['error', { allow: ['_'] }],
     'vars-on-top': 'off',
     'global-require': 'warn',
-    'no-inner-declarations': 'warn', // TODO
     'no-unreachable': 'warn',
     'no-use-before-define': 'off',
     eqeqeq: ['error', 'always'],
-    'no-extend-native': 'off',
     'prefer-template': 'error',
     'no-console': 'off',
     radix: ['error', 'as-needed'],
+    'prefer-object-has-own': 'off',
   },
 });

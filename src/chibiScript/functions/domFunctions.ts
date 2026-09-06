@@ -1,5 +1,5 @@
 import type { ChibiCtx } from '../ChibiCtx';
-import type { ChibiJson } from '../ChibiGenerator';
+import type { ChibiParam } from '../ChibiGenerator';
 
 export default {
   /**
@@ -10,9 +10,8 @@ export default {
    * @example
    * $c.querySelector('h1')
    */
-  querySelector: (ctx: ChibiCtx, input: void, selector: string | ChibiJson<string>) => {
-    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
-    return document.querySelector(selectorValue);
+  querySelector: (ctx: ChibiCtx, input: void, selector: ChibiParam<string>) => {
+    return document.querySelector(selector);
   },
 
   /**
@@ -23,9 +22,8 @@ export default {
    * @example
    * $c.querySelectorAll('h1')
    */
-  querySelectorAll: (ctx: ChibiCtx, input: void, selector: string | ChibiJson<string>) => {
-    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
-    return Array.from(document.querySelectorAll(selectorValue));
+  querySelectorAll: (ctx: ChibiCtx, input: void, selector: ChibiParam<string>) => {
+    return Array.from(document.querySelectorAll(selector));
   },
 
   /**
@@ -36,9 +34,8 @@ export default {
    * @example
    * $c.querySelector('div').find('h1')
    */
-  find: (ctx: ChibiCtx, input: Element, selector: string | ChibiJson<string>) => {
-    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
-    return input.querySelector(selectorValue);
+  find: (ctx: ChibiCtx, input: Element, selector: ChibiParam<string>) => {
+    return input.querySelector(selector);
   },
 
   /**
@@ -49,9 +46,8 @@ export default {
    * @example
    * $c.querySelector('div').findAll('h1')
    */
-  findAll: (ctx: ChibiCtx, input: Element, selector: string | ChibiJson<string>) => {
-    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
-    return Array.from(input.querySelectorAll(selectorValue));
+  findAll: (ctx: ChibiCtx, input: Element, selector: ChibiParam<string>) => {
+    return Array.from(input.querySelectorAll(selector));
   },
 
   /**
@@ -77,6 +73,28 @@ export default {
   },
 
   /**
+   * Gets the value of an input, textarea or select element. Equals to .value in JS
+   * @input Element - DOM element
+   * @returns Value of the input or textarea, or null if not applicable
+   * @example
+   * $c.querySelector('select').elementValue().run()
+   */
+  elementValue: (ctx: ChibiCtx, input: Element) => {
+    return (input as HTMLInputElement).value;
+  },
+
+  /**
+   * Gets the text of the selected dropdown element
+   * @input Element - DOM element
+   * @returns text of the option, or null if not applicable
+   * @example
+   * $c.querySelector('select').selectedText().run()
+   */
+  selectedText: (ctx: ChibiCtx, input: Element) => {
+    return (input as HTMLSelectElement).selectedOptions[0]?.text || null;
+  },
+
+  /**
    * Gets the value of an attribute on an element
    * @input Element - DOM element
    * @param name - Name of the attribute
@@ -84,7 +102,7 @@ export default {
    * @example
    * $c.querySelector('input').getAttribute('value')
    */
-  getAttribute: (ctx: ChibiCtx, input: Element, name: string) => {
+  getAttribute: (ctx: ChibiCtx, input: Element, name: ChibiParam<string>) => {
     return input.getAttribute(name);
   },
 
@@ -96,8 +114,29 @@ export default {
    * @example
    * $c.querySelector('h1').getComputedStyle('color')
    */
-  getComputedStyle: (ctx: ChibiCtx, input: Element, property: string) => {
+  getComputedStyle: (ctx: ChibiCtx, input: Element, property: ChibiParam<string>) => {
     return window.getComputedStyle(input).getPropertyValue(property);
+  },
+
+  /**
+   * Sets a CSS style property on an element
+   * @input Element - DOM element
+   * @param property - CSS property name
+   * @param value - Value to set for the property
+   * @param important - Whether to set the property as !important (default: false)
+   * @returns The modified Element
+   * @example
+   * $c.querySelector('h1').setStyle('color', 'red', true)
+   */
+  setStyle: (
+    ctx: ChibiCtx,
+    input: Element,
+    property: ChibiParam<string>,
+    value: ChibiParam<string>,
+    important: ChibiParam<boolean> = false,
+  ) => {
+    (input as HTMLElement).style.setProperty(property, value, important ? 'important' : '');
+    return input;
   },
 
   /**
@@ -108,9 +147,8 @@ export default {
    * @example
    * $c.querySelector('h1').closest('.container')
    */
-  closest: (ctx: ChibiCtx, input: Element, selector: string | ChibiJson<string>) => {
-    const selectorValue = typeof selector === 'string' ? selector : (ctx.run(selector) as string);
-    return input.closest(selectorValue);
+  closest: (ctx: ChibiCtx, input: Element, selector: ChibiParam<string>) => {
+    return input.closest(selector);
   },
 
   /**
@@ -152,9 +190,9 @@ export default {
    * @param selector - CSS selector string
    * @returns Boolean indicating if the element matches the selector
    * @example
-   * $c.querySelector('h1').matches('.highlight')
+   * $c.querySelector('h1').elementMatches('.highlight')
    */
-  elementMatches: (ctx: ChibiCtx, input: Element, selector: string) => {
+  elementMatches: (ctx: ChibiCtx, input: Element, selector: ChibiParam<string>) => {
     return input.matches(selector);
   },
 

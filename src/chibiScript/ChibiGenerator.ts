@@ -1,13 +1,16 @@
 import functionsRegistry from './functions';
-import { ChibiGeneratorFunctions } from './ChibiGeneratorTypes';
+import utilitiesRegistry from './utilities';
+import { ChibiGeneratorFunctions, ChibiGeneratorUtilities } from './ChibiGeneratorTypes';
 
 const randomKeys = {
   waitUntilTrue: 1,
   detectChanges: 2,
   detectURLChanges: 2,
+  debounce: 1,
 };
 
 export type ChibiJson<T = void> = string[][] & { __type?: T };
+export type ChibiParam<T> = T;
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 class ChibiGenerator<Input> {
@@ -37,6 +40,10 @@ class ChibiGenerator<Input> {
         return new ChibiGenerator(config);
       };
     });
+
+    Object.values(utilitiesRegistry).forEach((util: any) => {
+      this[util.name] = (...args) => util(this as any, ...args);
+    });
   }
 
   /**
@@ -51,6 +58,8 @@ class ChibiGenerator<Input> {
 
 // eslint-disable-next-line no-redeclare
 interface ChibiGenerator<Input> extends ChibiGeneratorFunctions<Input> {}
+// eslint-disable-next-line no-redeclare
+interface ChibiGenerator<Input> extends ChibiGeneratorUtilities<Input> {}
 
 export type { ChibiGenerator };
 

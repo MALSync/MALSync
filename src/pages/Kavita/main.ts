@@ -82,11 +82,11 @@ export const Kavita: pageInterface = {
     readerConfig: [
       {
         current: {
-          callback: () => chapterDetails.currentPageNum as any,
+          callback: () => chapterDetails.currentPageNum,
           mode: 'callback',
         },
         total: {
-          callback: () => chapterDetails.totalPageNum as any,
+          callback: () => chapterDetails.totalPageNum,
           mode: 'callback',
         },
       },

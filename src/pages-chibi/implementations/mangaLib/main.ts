@@ -1,24 +1,12 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import type { PageInterface } from '../../pageInterface';
 
 export const mangaLib: PageInterface = {
   name: 'MangaLib',
   type: 'manga',
-  domain: [
-    'https://mangalib.me',
-    'https://mangalib.org',
-    'https://slashlib.me',
-    'https://v2.slashlib.me',
-    'https://v1.yaoilib.net',
-  ],
+  domain: ['https://mangalib.me', 'https://mangalib.org', 'https://v2.shlib.life'],
   languages: ['Russian'],
   urls: {
-    match: [
-      '*://mangalib.org/*',
-      '*://mangalib.me/*',
-      '*://*.slashlib.me/*',
-      '*://*.yaoilib.net/*',
-    ],
+    match: ['*://mangalib.org/*', '*://mangalib.me/*'],
   },
   search: 'https://mangalib.me/ru/catalog?q={searchterm}',
   sync: {
@@ -64,18 +52,9 @@ export const mangaLib: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: 'footer',
-          mode: 'text',
-          regex: '(\\d+) / (\\d+)$',
-          group: 1,
-        },
-        total: {
-          selector: 'footer',
-          mode: 'text',
-          regex: '(\\d+) / (\\d+)$',
-          group: 2,
-        },
+        current: $c =>
+          $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 1).number().run(),
+        total: $c => $c.querySelector('footer').text().regex('(\\d+) / (\\d+)$', 2).number().run(),
       },
     ],
   },
@@ -92,6 +71,10 @@ export const mangaLib: PageInterface = {
       const slug = $c.url().urlPart(5);
       const id = slug.string().regex('(\\d+)', 1);
       return id.run();
+    },
+    // NOTE - Image is there but it's protected by referrer header comparison
+    getImage($c) {
+      return $c.querySelector('.cover img').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.tabs._border').uiBefore().run();

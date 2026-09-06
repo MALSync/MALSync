@@ -1,0 +1,33 @@
+{
+  "title": "TritiniaScans",
+  "url": "https://tritinia.org/",
+  "testCases": [
+    {
+      "url": "https://tritinia.org/manga/33cba9e8-26bc-4c08-8496-5afae401e488/ch-98/",
+      "expected": {
+        "sync": true,
+        "title": "It’s Too Hard to Chase the Tsundere Prince",
+        "identifier": "33cba9e8-26bc-4c08-8496-5afae401e488",
+        "image": "https://tritinia.org/wp-content/uploads/2021/01/35572.jpg",
+        "overviewUrl": "https://tritinia.org/manga/33cba9e8-26bc-4c08-8496-5afae401e488/",
+        "nextEpUrl": "https://tritinia.org/manga/33cba9e8-26bc-4c08-8496-5afae401e488/ch-99/",
+        "episode": 98,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://tritinia.org/manga/33cba9e8-26bc-4c08-8496-5afae401e488/",
+      "expected": {
+        "sync": false,
+        "title": "It’s Too Hard to Chase the Tsundere Prince",
+        "identifier": "33cba9e8-26bc-4c08-8496-5afae401e488",
+        "image": "https://tritinia.org/wp-content/uploads/2021/01/35572.jpg",
+        "uiSelector": true,
+        "epList": {
+          "17": "https://tritinia.org/manga/33cba9e8-26bc-4c08-8496-5afae401e488/ch-17/",
+          "206": "https://tritinia.org/manga/33cba9e8-26bc-4c08-8496-5afae401e488/ch-206/"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Mkissa",
+  "url": "https://mkissa.to",
+  "testCases": [
+    {
+      "url": "https://mkissa.to/manga/M36qvmykA5grCZsmE/chapter-0-sub",
+      "expected": {
+        "sync": true,
+        "title": "Mousou Telepathy",
+        "identifier": "M36qvmykA5grCZsmE",
+        "overviewUrl": "https://mkissa.to/manga/M36qvmykA5grCZsmE",
+        "episode": 0,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mkissa.to/manga/M36qvmykA5grCZsmE",
+      "expected": {
+        "sync": false,
+        "title": "Mousou Telepathy",
+        "identifier": "M36qvmykA5grCZsmE",
+        "image": "https://wp.youtube-anime.com/s4.anilist.co/file/anilistcdn/media/manga/banner/97836-Avz6vkkRwkag.jpg",
+        "uiSelector": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "title": "VortexScans",
+  "url": "https://vortexscans.org",
+  "testCases": [
+    {
+      "url": "https://vortexscans.org/series/i-became-a-childhood-friend-of-a-mid-level-boss/chapter-21",
+      "expected": {
+        "sync": true,
+        "title": "I Became a Childhood Friend of a Mid-Level Boss",
+        "identifier": "i-became-a-childhood-friend-of-a-mid-level-boss",
+        "image": "https://storage.mangagalaxy.net/public/upload/2024/08/13/mid-level-cover-page13.webp",
+        "overviewUrl": "https://vortexscans.org/series/i-became-a-childhood-friend-of-a-mid-level-boss",
+        "episode": 21,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://vortexscans.org/series/the-great-heavenly-demon-sovereign",
+      "expected": {
+        "sync": false,
+        "title": "The Great Heavenly Demon Sovereign",
+        "identifier": "the-great-heavenly-demon-sovereign",
+        "image": "https://storage.vexmanga.com/public/upload/2025/09/14/bed28d68-7a97-482b-81b1-9e1b635938c5.webp",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://vortexscans.org/series/the-great-heavenly-demon-sovereign/chapter-1",
+          "20": "https://vortexscans.org/series/the-great-heavenly-demon-sovereign/chapter-20"
+        }
+      }
+    },
+    {
+      "url": "https://vortexscans.org/series/hardcore-leveling-warrior:-earth-game/chapter-45",
+      "expected": {
+        "sync": true,
+        "title": "Hardcore Leveling Warrior: Earth Game",
+        "identifier": "hardcore-leveling-warrior:-earth-game",
+        "image": "https://storage.mangagalaxy.net/public/upload/2024/07/15/IMG_1013-copy15.webp",
+        "overviewUrl": "https://vortexscans.org/series/hardcore-leveling-warrior:-earth-game",
+        "episode": 45,
+        "uiSelector": false
+      }
+    }
+  ]
+}

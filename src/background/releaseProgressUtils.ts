@@ -2,15 +2,54 @@ import { Cache } from '../utils/Cache';
 import type { listElement } from '../_provider/listAbstract';
 import { xhrResponseI } from '../api/messageInterface';
 
+export type ProgressLanguageType = 'sub' | 'dub';
+
+export type ProgressState = 'complete' | 'ongoing' | 'discontinued' | 'upcoming' | 'dropped';
+
+export interface ProgressItem {
+  id: string;
+  source: string;
+  group?: string;
+  /** ISO-639-1 */
+  lang: string;
+  total?: number;
+  state?: ProgressState;
+  stateInfo?: string;
+  type: ProgressLanguageType;
+  lastEp?: {
+    total: number;
+    timestamp?: number;
+  };
+  predicition?: {
+    timestamp: number;
+    probability: 'low' | 'medium' | 'high';
+  };
+  releaseInterval?: {
+    mean: number;
+    sd: number;
+    n: number;
+    pi: number;
+  };
+  dayOfTheWeek?: {
+    mean: number;
+    sd: number;
+    n: number;
+    ci: number;
+  };
+}
+
 export interface releaseItemInterface {
   timestamp: number;
-  value: any;
+  value: ProgressItem | null;
   finished: boolean;
   mode: string;
 }
 
-export async function predictionXhrGET(type: string, apiCacheKey: number | string | null) {
-  if (!apiCacheKey) return {};
+export async function predictionXhrGET(
+  type: string,
+  apiCacheKey: number | string | null,
+): Promise<ProgressItem[]> {
+  if (!apiCacheKey) return [];
   const response = await api.request.xhr(
     'GET',
     `https://api.malsync.moe/nc/mal/${type}/${apiCacheKey}/pr`,
@@ -21,10 +60,10 @@ export async function predictionXhrGET(type: string, apiCacheKey: number | strin
 export async function predictionXhrPOST(type: string, malDATA: listElement[] | null) {
   if (malDATA === null) return [];
   if (malDATA.length <= 0) return [];
-  const malDATAID = malDATA.map(el => el.apiCacheKey);
+  const ids = [...malDATA.map(el => el.apiCacheKey)];
   const returnArray: xhrResponseI[] = [];
-  for (let i = 0; i <= malDATAID.length; ) {
-    const tempArray = malDATAID.slice(i, i + 49);
+  while (ids.length) {
+    const tempArray = ids.splice(0, 50);
     const Request = {
       url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`,
       data: JSON.stringify({ malids: tempArray }),
@@ -33,7 +72,6 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
     await utils.wait(5000);
     const response = await api.request.xhr('POST', Request);
     returnArray.push(JSON.parse(response.responseText));
-    i += 50;
   }
 
   return returnArray.reduce((acc: xhrResponseI[], val) => acc.concat(val), []);
@@ -142,7 +180,7 @@ export async function single(
     value: progressValue,
     mode,
     finished,
-  } as releaseItemInterface);
+  });
 }
 
 export function progressIsOld(releaseItem: releaseItemInterface) {

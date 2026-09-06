@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import { status, fuzzyDate, startFinishDate } from '../definitions';
 import {
   NotAutenticatedError,

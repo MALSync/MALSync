@@ -10,8 +10,8 @@ export const DisasterScans: pageInterface = {
   isSyncPage(url) {
     return Boolean(
       urlAnime.includes(utils.urlPart(url, 3)) &&
-        utils.urlPart(url, 5) &&
-        utils.urlPart(url, 5).includes('chapter-'),
+      utils.urlPart(url, 5) &&
+      utils.urlPart(url, 5).includes('chapter-'),
     );
   },
   isOverviewPage(url) {

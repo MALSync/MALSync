@@ -2,13 +2,14 @@
   "search": "https://smotret-anime.net/catalog/search?q={searchtermPlus}",
   "urls": {
     "match": [
-      "*://smotret-anime.org/catalog/*",
-      "*://smotret-anime.online/catalog/*",
-      "*://smotret-anime.com/catalog/*",
-      "*://anime365.ru/catalog/*",
-      "*://anime-365.ru/catalog/*",
-      "*://smotret-anime.ru/catalog/*",
-      "*://smotretanime.ru/catalog/*"
+      "*://smotret-anime.org/*",
+      "*://smotret-anime.online/*",
+      "*://smotret-anime.com/*",
+      "*://anime365.ru/*",
+      "*://anime-365.ru/*",
+      "*://smotret-anime.ru/*",
+      "*://smotretanime.ru/*",
+      "*://smotret-anime.app/*"
     ]
   }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 /* export enum type {
   Anime = "anime",
   Manga = "manga"
@@ -19,6 +18,7 @@ export enum status {
   PlanToWatch = 6,
   All = 7,
   Rewatching = 23,
+  Considering = 24,
 }
 
 export enum score {

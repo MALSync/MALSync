@@ -1,14 +1,16 @@
 import * as definitions from './definitions';
 
-import { Progress } from '../utils/progress';
-import { predictionXhrGET } from '../background/releaseProgressUtils';
+import { ProgressRelease } from '../utils/progressRelease';
+import { predictionXhrGET, ProgressItem } from '../background/releaseProgressUtils';
 
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
 import { returnYYYYMMDD } from '../utils/general';
+import { buildProviderUrl } from '../utils/slugs';
 import { errorMessage as _errorMessage } from './Errors';
 import { point10 } from './ScoreMode/point10';
 import { SyncTypes } from './helper';
+import { Progress } from '../utils/progress';
 
 Object.seal(emitter);
 
@@ -25,7 +27,7 @@ export abstract class SingleAbstract {
 
   protected syncMethod: definitions.syncMethod = 'normal';
 
-  protected persistanceState;
+  protected persistenceState?: ReturnType<SingleAbstract['getStateEl']>;
 
   protected undoState;
 
@@ -39,6 +41,8 @@ export abstract class SingleAbstract {
 
   protected rewatchingSupport = true;
 
+  protected consideringSupport = false;
+
   protected datesSupport = true;
 
   protected ids = {
@@ -49,6 +53,7 @@ export abstract class SingleAbstract {
       slug: '',
     },
     simkl: NaN,
+    baka: NaN,
   };
 
   protected options: {
@@ -70,6 +75,10 @@ export abstract class SingleAbstract {
 
   public supportsRewatching() {
     return this.rewatchingSupport;
+  }
+
+  public supportsConsidering() {
+    return this.consideringSupport;
   }
 
   public supportsDates() {
@@ -204,7 +213,7 @@ export abstract class SingleAbstract {
 
   public setEpisode(episode: number): SingleAbstract {
     episode = parseInt(`${episode}`);
-    if (this.getTotalEpisodes() && episode > this.getTotalEpisodes())
+    if (this.getTotalEpisodes() && episode > this.getTotalEpisodes() && this.finishedAiring())
       episode = this.getTotalEpisodes();
     this._setEpisode(episode);
     return this;
@@ -252,13 +261,13 @@ export abstract class SingleAbstract {
     this.options = null;
   }
 
-  protected progress: false | Progress = false;
+  protected progress?: ProgressRelease;
 
-  protected progressXhr;
+  protected progressXhr?: ProgressItem[];
 
   public async initProgress() {
     const xhr = await predictionXhrGET(this.getType()!, this.getApiCacheKey());
-    return new Progress(this.getCacheKey(), this.getType()!)
+    return new ProgressRelease(this.getCacheKey(), this.getType()!)
       .init({
         uid: this.getCacheKey(),
         apiCacheKey: this.getApiCacheKey(),
@@ -277,52 +286,21 @@ export abstract class SingleAbstract {
   }
 
   public getProgress() {
-    if (!this.progress) return false;
+    if (!this.progress) return null;
     return this.progress;
   }
 
-  public getProgressFormated() {
-    const op: {
-      label: string;
-      key: string;
-      state: 'complete' | 'ongoing' | 'dropped' | 'discontinued';
-      type: 'dub' | 'sub';
-      dropped: boolean;
-      episode: number;
-      lastEp?: {
-        total: number;
-        timestamp?: number;
-      };
-      predicition?: {
-        timestamp: number;
-        probability: 'low' | 'medium' | 'high';
-      };
-    }[] = [];
-    const languageNames = new Intl.DisplayNames('en', { type: 'language' });
-    con.log(this.progressXhr);
-    if (this.progressXhr && Object.keys(this.progressXhr).length) {
-      this.progressXhr.forEach(el => {
-        op.push({
-          type: el.type,
-          key: el.id,
-          state: el.state,
-          label: languageNames.of(el.lang.replace(/^jp$/, 'ja')) || el.lang,
-          dropped: el.state === 'dropped' || el.state === 'discontinued',
-          episode: el.lastEp && el.lastEp.total ? el.lastEp.total : 0,
-          lastEp: el.lastEp,
-          predicition: el.prediction,
-        });
-      });
-    }
-    return op;
+  public getProgressFormatted() {
+    if (!this.progressXhr || !this.progressXhr.length) return [];
+    return this.progressXhr.map(el => new Progress(el, this.getType()!));
   }
 
   public getProgressOptions() {
-    return this.getProgressFormated().filter(el => el.state !== 'complete');
+    return this.getProgressFormatted().filter(el => el.getState() !== 'complete');
   }
 
   public getProgressCompleted() {
-    return this.getProgressFormated().filter(el => el.state === 'complete');
+    return this.getProgressFormatted().filter(el => el.getState() === 'complete');
   }
 
   private updateProgress = false;
@@ -379,7 +357,7 @@ export abstract class SingleAbstract {
       res.push({
         name: 'MAL',
         icon: 'https://cdn.myanimelist.net/images/favicon.ico',
-        link: `https://myanimelist.net/${this.type}/${this.ids.mal}`,
+        link: buildProviderUrl('MAL', this.type!, this.ids.mal),
       });
     }
 
@@ -387,7 +365,7 @@ export abstract class SingleAbstract {
       res.push({
         name: 'AniList',
         icon: 'https://anilist.co/img/icons/favicon-32x32.png',
-        link: `https://anilist.co/${this.type}/${this.ids.ani}`,
+        link: buildProviderUrl('ANILIST', this.type!, this.ids.ani),
       });
     }
 
@@ -395,7 +373,7 @@ export abstract class SingleAbstract {
       res.push({
         name: 'Kitsu',
         icon: 'https://kitsu.app/favicon-32x32-3e0ecb6fc5a6ae681e65dcbc2bdf1f17.png',
-        link: `https://kitsu.app/${this.type}/${this.ids.kitsu.id}`,
+        link: buildProviderUrl('KITSU', this.type!, this.ids.kitsu.id),
       });
     }
 
@@ -403,7 +381,7 @@ export abstract class SingleAbstract {
       res.push({
         name: 'Simkl',
         icon: 'https://eu.simkl.in/img_favicon/v2/favicon-32x32.png',
-        link: `https://simkl.com/${this.type}/${this.ids.simkl}`,
+        link: buildProviderUrl('SIMKL', this.type!, this.ids.simkl),
       });
     }
 
@@ -425,7 +403,7 @@ export abstract class SingleAbstract {
         throw e;
       })
       .then(() => {
-        this.persistanceState = this.getStateEl();
+        this.persistenceState = this.getStateEl();
 
         return utils.getEntrySettings(this.type, this.getCacheKey(), this._getTags());
       })
@@ -451,7 +429,7 @@ export abstract class SingleAbstract {
         throw e;
       })
       .then(() => {
-        this.undoState = this.persistanceState;
+        this.undoState = this.persistenceState;
         if (this.updateProgress) this.initProgress();
         this._onList = true;
         this.emitUpdate();
@@ -505,16 +483,26 @@ export abstract class SingleAbstract {
 
     if (data && data.state) {
       this.setStateEl(data.state);
-      this.persistanceState = this.getStateEl();
+      this.persistenceState = this.getStateEl();
       emitter.emit('syncPage_fillUi');
     }
   }
 
   public isDirty(): boolean {
     return (
-      JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl()) ||
+      JSON.stringify(this.persistenceState) !== JSON.stringify(this.getStateEl()) ||
       this.updateProgress
     );
+  }
+
+  public isValueDirty(key: keyof ReturnType<SingleAbstract['getStateEl']>): boolean {
+    if (!this._onList) {
+      return true;
+    }
+    if (this.persistenceState) {
+      return this.persistenceState[key] !== this.getStateEl()[key];
+    }
+    return false;
   }
 
   public undo(): Promise<void> {
@@ -575,7 +563,7 @@ export abstract class SingleAbstract {
 
   public getMalUrl(): string | null {
     if (!Number.isNaN(this.ids.mal)) {
-      return `https://myanimelist.net/${this.getType()}/${this.ids.mal}`;
+      return buildProviderUrl('MAL', this.getType()!, this.ids.mal);
     }
     return null;
   }
@@ -630,6 +618,10 @@ export abstract class SingleAbstract {
     //  do nothing
   }
 
+  public finishedAiring(): boolean {
+    return true;
+  }
+
   getStateEl() {
     return {
       onList: this.isOnList(),
@@ -641,6 +633,7 @@ export abstract class SingleAbstract {
       rewatchCount: this.getRewatchCount(),
       score: this.getScore(),
       absoluteScore: this.getAbsoluteScore(),
+      tags: this._getTags(),
     };
   }
 
@@ -741,7 +734,7 @@ export abstract class SingleAbstract {
       return false;
     }
 
-    if (episode && episode === this.getTotalEpisodes()) {
+    if (episode && episode === this.getTotalEpisodes() && this.finishedAiring()) {
       this.askCompleted = true;
       return true;
     }
@@ -870,6 +863,12 @@ export abstract class SingleAbstract {
         label: api.storage.lang(`UI_Status_Rewatching_${this.getType()}`),
       });
     }
+    if (this.supportsConsidering()) {
+      statusEs.push({
+        value: definitions.status.Considering.toString(),
+        label: api.storage.lang('UI_Status_Considering'),
+      });
+    }
 
     return statusEs;
   }
@@ -887,6 +886,7 @@ export abstract class SingleAbstract {
     if (this.ids.ani && allowed.includes('ANILIST')) return `anilist:${this.ids.ani}`;
     if (this.ids.kitsu.id && allowed.includes('KITSU')) return `kitsu:${this.ids.kitsu.id}`;
     if (this.ids.simkl && allowed.includes('SIMKL')) return `simkl:${this.ids.simkl}`;
+    if (this.ids.baka && allowed.includes('MANGABAKA')) return `mangabaka:${this.ids.baka}`;
     return this.ids.mal;
   }
 

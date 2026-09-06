@@ -1,0 +1,17 @@
+{
+  "title": "AnimesDigital",
+  "url": "https://animesdigital.org",
+  "testCases": [
+    {
+      "url": "https://animesdigital.org/video/a/136482/",
+      "expected": {
+        "sync": true,
+        "title": "Tsue to Tsurugi no Wistoria Season 2",
+        "identifier": "tsue-to-tsurugi-no-wistoria-season-2",
+        "overviewUrl": "https://animesdigital.org/anime/a/tsue-to-tsurugi-no-wistoria-season-2",
+        "episode": 9,
+        "uiSelector": true
+      }
+    }
+  ]
+}

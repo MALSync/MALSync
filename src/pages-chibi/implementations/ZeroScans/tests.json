@@ -1,0 +1,32 @@
+{
+  "title": "ZeroScans",
+  "url": "https://zscans.com/",
+  "testCases": [
+    {
+      "url": "https://zscans.com/comics/hero-i-quit-a-long-time-ago-hero-return/6318",
+      "expected": {
+        "sync": true,
+        "title": "Hero? I Quit a Long Time Ago",
+        "identifier": "hero-i-quit-a-long-time-ago-hero-return",
+        "overviewUrl": "https://zscans.com/comics/hero-i-quit-a-long-time-ago-hero-return",
+        "nextEpUrl": "https://zscans.com/comics/hero-i-quit-a-long-time-ago-hero-return/6319",
+        "episode": 417,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://zscans.com/comics/hero-i-quit-a-long-time-ago-hero-return",
+      "expected": {
+        "sync": false,
+        "title": "Hero? I Quit a Long Time Ago",
+        "identifier": "hero-i-quit-a-long-time-ago-hero-return",
+        "image": "https://api.zscans.com/storage/76132/conversions/db54071da40d343ecc924783ba12d46a-full.webp",
+        "uiSelector": true,
+        "epList": {
+          "417": "https://zscans.com/comics/hero-i-quit-a-long-time-ago-hero-return/6318",
+          "416": "https://zscans.com/comics/hero-i-quit-a-long-time-ago-hero-return/6317"
+        }
+      }
+    }
+  ]
+}

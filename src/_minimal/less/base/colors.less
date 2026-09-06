@@ -8,7 +8,7 @@
 
 :root {
   .root-variables(@colors, cl);
-  .root-variables(@state-colors, state);
+  .root-variables(@state-colors, cl-state);
   --size-spacer: 30px;
   --size-spacer-half: 15px;
   --base-font-size: 1rem;
@@ -31,7 +31,7 @@ html.dark {
 
 each(@state-colors, {
   .gradient-@{key} {
-    background: linear-gradient(360deg, ~"var(--state-@{key})"0%, rgba(255, 255, 255, 0) 116.33%);
+    background: linear-gradient(360deg, ~"var(--cl-state-@{key})"0%, rgba(255, 255, 255, 0) 116.33%);
   }
 })
   .gradient-black {

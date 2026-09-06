@@ -8,17 +8,14 @@ module.exports = {
   mp4upload: {
     match: ['*://*.mp4upload.com/*'],
   },
-  mcloud: {
-    match: ['*://*.mcloud.to/*', '*://*.mcloud.bz/*'],
-  },
   crunchyroll: {
     match: ['*://*.static.crunchyroll.com/*'],
   },
   vidstreaming: {
-    match: ['*://*.vidstreaming.io/*', '*://*.vidstreaming.link/*'],
+    match: ['*://*.vidstreaming.io/*', ],
   },
   xstreamcdn: {
-    match: ['*://*.xstreamcdn.com/*', '*://*.gcloud.live/*'],
+    match: [ '*://*.gcloud.live/*'],
   },
   oload: {
     match: ['*://*.oload.tv/*'],
@@ -33,10 +30,7 @@ module.exports = {
     match: ['*://*.sibnet.ru/*'],
   },
   tune: {
-    match: ['*://*.tune.pk/*', '*://*.tune.ke/*'],
-  },
-  vimple: {
-    match: ['*://*.vimple.ru/*'],
+    match: ['*://*.tune.pk/*', ],
   },
   href: {
     match: ['*://*.href.li/*', '*://*.vk.com/*'],
@@ -49,7 +43,6 @@ module.exports = {
     match: [
       '*://*.fembed.net/*',
       '*://*.fembed.com/*',
-      '*://*.animeproxy.info/*',
       '*://*.feurl.com/*',
       '*://*.embedsito.com/v/*',
       '*://*.fcdn.stream/v/*',
@@ -68,9 +61,6 @@ module.exports = {
       // auto-gogofembed-replace-dont-remove
     ],
   },
-  youpload: {
-    match: ['*://*.youpload.co/*'],
-  },
   yourupload: {
     match: ['*://*.yourupload.com/*'],
   },
@@ -78,13 +68,13 @@ module.exports = {
     match: ['*://*.vidlox.me/*'],
   },
   kwik: {
-    match: ['*://*.kwik.cx/*', '*://*.kwik.si/*'],
+    match: ['*://*.kwik.cx/*', '*://*.kwik.si/*', '*://*.mewcdn.online/*'],
   },
   mega: {
     match: ['*://*.mega.nz/*'],
   },
   animeflv: {
-    match: ['*://*.animeflv.net/*', '*://*.jwplayerhls.com/*'],
+    match: ['*://*.animeflv.net/*', '*://*.jwplayerhls.com/*', '*://playnixes.com/*'],
   },
   netu: {
     match: ['*://*.hqq.tv/*', '*://waaw.tv/*'],
@@ -101,7 +91,6 @@ module.exports = {
   proxer: {
     match: [
       '*://*.stream.proxer.me/*',
-      '*://*.stream.proxer.net/*',
       '*://*.stream-service.proxer.me/*',
     ],
   },
@@ -133,7 +122,7 @@ module.exports = {
   },
   // gogoanime
   theVideo: {
-    match: ['*://vev.io/embed/*', '*://vev.red/embed/*'],
+    match: [ '*://vev.red/embed/*'],
   },
   // voiranime
   jwpstream: {
@@ -141,11 +130,7 @@ module.exports = {
   },
   // voiranime
   vaplayer: {
-    match: ['*://www.vaplayer.xyz/v/*', '*://vaplayer.me/*'],
-  },
-  // dubbedanime
-  mp4sh: {
-    match: ['*://mp4.sh/embed/*'],
+    match: ['*://www.vaplayer.xyz/v/*', ],
   },
   // animeultima
   mystream: {
@@ -166,10 +151,6 @@ module.exports = {
   // anime-odcinki
   flix555: {
     match: ['*://*.flix555.com/*'],
-  },
-  // anime-odcinki
-  vshare: {
-    match: ['*://*.vshare.io/v/*'],
   },
   // anime-odcinki shinden animezone
   cda: {
@@ -192,22 +173,29 @@ module.exports = {
   streamium: {
     match: ['*://*.streamium.xyz/*'],
   },
-  // AnimeGO
+  // AnimeGO AnimeLib
   kodik: {
-    match: ['*://kodik.info/*'],
+    match: [ '*://kodikplayer.com/*'],
   },
   // AnimeGO
   aniboom: {
     match: ['*://aniboom.one/*'],
   },
+  // Anizium
+  anizium: {
+    match: ['*://x.anizium.co/*'],
+  },
   // Anime365
   anime365: {
     match: [
       '*://smotret-anime.org/translations/embed/*',
-      '*://smotret-anime.online/translations/embed/*',
-      '*://smotret-anime.com/translations/embed/*',
       '*://anime365.ru/translations/embed/*',
       '*://anime-365.ru/translations/embed/*',
+      '*://smotret-anime.online/translations/embed/*',
+      '*://smotret-anime.com/translations/embed/*',
+      '*://smotret-anime.ru/translations/embed/*',
+      '*://smotretanime.ru/translations/embed/*',
+      '*://smotret-anime.app/translations/embed/*',
     ],
   },
   // Neko-sama
@@ -216,15 +204,7 @@ module.exports = {
   },
   // Neko-sama
   fusevideo: {
-    match: ['*://fusevideo.net/e/*', '*://fusevideo.io/e/*'],
-  },
-  // Animeultima
-  animefever: {
-    match: ['*://*.animefever.tv/embed/*'],
-  },
-  // kickassanime
-  haloani: {
-    match: ['*://*.haloani.ru/*'],
+    match: ['*://fusevideo.net/e/*', ],
   },
   // moeclip
   moeclip: {
@@ -241,11 +221,19 @@ module.exports = {
       '*://*.mixdropjmk.pw/e/*',
       '*://*.mixdrop21.net/e/*',
       '*://*.mixdrop.si/e/*',
-      '*://*.mixdrop.nu/e/*',
       '*://*.mixdrop.sx/e/*',
-      '*://*.mixdrop.ms/e/*',
       '*://*.mixdrop.ps/e/*',
       '*://*.mixdrop.my/e/*',
+      '*://*.mixdrop.sn/e/*',
+      '*://*.mixdrop.cv/e/*',
+      '*://*.md3b0j6hj.com/e/*',
+      '*://*.m1xdrop.net/e/*',
+      '*://*.m1xdrop.com/e/*',
+      '*://*.m1xdrop.bz/e/*',
+      '*://*.miixdrop.net/e/*',
+      '*://*.miiiixdrop.net/e/*',
+      '*://*.miixdrop.com/e/*',
+      '*://*.miixdrop.top/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -263,11 +251,7 @@ module.exports = {
   },
   // OtakuFR/animewho
   vidbm: {
-    match: ['*://*.vidbm.com/embed-*', '*://*.vidbem.com/embed-*'],
-  },
-  // OtakuFR
-  cloudhost: {
-    match: ['*://*.cloudhost.to/*/mediaplayer/*/_embed.php?*'],
+    match: [ '*://*.vidbem.com/embed-*'],
   },
   // OtakuFR
   letsupload: {
@@ -314,9 +298,9 @@ module.exports = {
   animedesu: {
     match: ['*://animedesu.pl/player/desu.php?v=*'],
   },
-  // animixplay
-  animixplay: {
-    match: ['*://*.plyr.link/*', '*://v.vvid.cc/*'],
+  // animevost
+  animevost: {
+    match: ['*://animevost.org/frame5.php?play=*'],
   },
   // okanime
   okanime: {
@@ -327,25 +311,14 @@ module.exports = {
     match: [
       '*://*.gogo-stream.com/*',
       '*://*.gogo-play.net/*',
-      '*://*.gogo-play.tv/*',
       '*://*.streamani.net/*',
-      '*://*.streamani.io/*',
-      '*://*.goload.one/*',
       '*://*.goload.pro/*',
       '*://*.goload.io/*',
       '*://*.gogoplay1.com/*',
-      '*://*.gogoplay2.com/*',
-      '*://*.gogoplay4.com/*',
-      '*://*.gogoplay5.com/*',
       '*://*.gogoplay.io/*',
       '*://*.gogohd.net/*',
-      '*://*.gogohd.pro/*',
-      '*://*.gembedhd.com/*',
-      '*://*.playgo1.cc/*',
-      '*://*.anihdplay.com/*',
       '*://*.playtaku.net/*',
       '*://*.playtaku.online/*',
-      '*://*.gotaku1.com/*',
       '*://*.goone.pro/*',
       '*://*.embtaku.pro/*',
       '*://*.embtaku.com/*',
@@ -358,37 +331,18 @@ module.exports = {
   vivo: {
     match: ['*://vivo.sx/embed/*'],
   },
-  // pantsubase.tv
-  googleDrive: {
-    match: ['*://play.api-web.site/*'],
-  },
   // 9anime
   vidstream: {
     match: [
       '*://vidstream.pro/embed/*',
       '*://vidstream.pro/e/*',
-      '*://vidstreamz.online/embed/*',
-      '*://vidstreamz.online/e/*',
       '*://vidstream.pro/embed/*',
       '*://vidstream.pro/e/*',
-      '*://vizcloud.ru/embed/*',
-      '*://vizcloud.ru/e/*',
-      '*://vizcloud2.ru/embed/*',
-      '*://vizcloud2.ru/e/*',
       '*://vizcloud.online/embed/*',
       '*://vizcloud.online/e/*',
-      '*://vizstream.ru/embed/*',
-      '*://vizstream.ru/e/*',
-      '*://vizcloud.xyz/embed/*',
-      '*://vizcloud.xyz/e/*',
-      '*://vizcloud.cloud/embed/*',
-      '*://vizcloud.cloud/e/*',
-      '*://vizcloud.co/embed/*',
-      '*://vizcloud.co/e/*',
       '*://vidplay.site/e/*',
       '*://vidplay.lol/e/*',
       '*://vidplay.online/e/*',
-      '*://a9bfed0818.nl/e/*',
       '*://vid142.site/e/*',
       '*://vid1a52.site/e/*',
       '*://vid2a41.site/e/*',
@@ -408,7 +362,6 @@ module.exports = {
       '*://sbplay2.com/*',
       '*://embedsb.com/*',
       '*://watchsb.com/*',
-      '*://sbplay2.xyz/*',
       '*://sbfull.com/e/*',
       '*://ssbstream.net/*',
       '*://streamsss.net/*',
@@ -427,7 +380,6 @@ module.exports = {
       '*://dood.watch/*',
       '*://doodstream.com/*',
       '*://dood.la/*',
-      '*://*.dood.video/*',
       '*://dood.ws/e/*',
       '*://dood.sh/e/*',
       '*://dood.so/e/*',
@@ -436,6 +388,7 @@ module.exports = {
       '*://dood.re/e/*',
       '*://dooood.com/e/*',
       '*://dood.li/e/*',
+      '*://playmogo.com/e/*',
       // auto-gogodood-replace-dont-remove
     ],
   },
@@ -468,6 +421,9 @@ module.exports = {
     match: [
       '*://vidmoly.me/*',
       '*://vidmoly.to/*',
+      '*://vidmoly.net/*',
+      '*://vidmoly.biz/*',
+      '*://voembed.net/*',
       // auto-vidmoly-replace-dont-remove
     ],
   },
@@ -493,26 +449,15 @@ module.exports = {
       '*://voe.sx/e/*',
       '*://gamoneinterrupted.com/e/*',
       '*://crownmakermacaronicism.com/e/*',
-      '*://generatesnitrosate.com/e/*',
-      '*://yodelswartlike.com/e/*',
       '*://cigarlessarefy.com/e/*',
-      '*://valeronevijao.com/e/*',
       '*://strawberriesporail.com/e/*',
-      '*://timberwoodanotia.com/e/*',
-      '*://phenomenalityuniform.com/e/*',
       '*://nonesnanking.com/e/*',
-      '*://kathleenmemberhistory.com/e/*',
       '*://bradleyviewdoctor.com/e/*',
-      '*://seanshowcould.com/e/*',
       '*://johntryopen.com/e/*',
-      '*://morganoperationface.com/e/*',
       '*://brookethoughi.com/e/*',
-      '*://jamesstartstudent.com/e/*',
       '*://ryanagoinvolve.com/e/*',
-      '*://jasonresponsemeasure.com/e/*',
       '*://shannonpersonalcost.com/e/*',
       '*://brucevotewithin.com/e/*',
-      '*://rebeccaneverbase.com/e/*',
       '*://loriwithinfamily.com/e/*',
       '*://bethshouldercan.com/e/*',
       '*://sandratableother.com/e/*',
@@ -520,32 +465,54 @@ module.exports = {
       '*://maxfinishseveral.com/e/*',
       '*://alejandrocenturyoil.com/e/*',
       '*://heatherwholeinvolve.com/e/*',
-      '*://nathanfromsubject.com/e/*',
-      '*://jennifercertaindevelopment.com/e/*',
       '*://richardsignfish.com/e/*',
-      '*://sarahnewspaperbeat.com/e/*',
       '*://diananatureforeign.com/e/*',
-      '*://jonathansociallike.com/e/*',
-      '*://mariatheserepublican.com/e/*',
       '*://jilliandescribecompany.com/e/*',
+      '*://lukesitturn.com/e/*',
+      '*://mikaylaarealike.com/e/*',
+      '*://christopheruntilpoint.com/e/*',
+      '*://walterprettytheir.com/e/*',
+      '*://crystaltreatmenteast.com/e/*',
+      '*://myvidplay.com/e/*',
+      '*://lauradaydo.com/e/*',
+      '*://lancewhosedifficult.com/e/*',
+      '*://dianaavoidthey.com/e/*',
+      '*://jefferycontrolmodel.com/e/*',
+      '*://jessicaclearout.com/e/*',
+      '*://marissasharecareer.com/e/*',
+      '*://charlestoughrace.com/e/*',
+      '*://timmaybealready.com/e/*',
+      '*://richardquestionbuilding.com/e/*',
+      '*://charlessheimprove.com/e/*',
+      '*://maryspecialwatch.com/e/*',
+      '*://benjaminreducecommunity.com/e/*',
+      '*://nicholasbreakplan.com/e/*',
+      '*://rebeccasciencestreet.com/e/*',
+      '*://ericeastweight.com/e/*',
+      '*://kathyinformationwhether.com/e/*',
+      '*://bryantenunder.com/e/*',
+      '*://vickisaveworker.com/e/*',
+      '*://rebeccacostthousand.com/e/*',
+      '*://jessicayeahcatch.com/e/*',
+      '*://jeanprofessorcentral.com/e/*',
+      '*://juliewomanwish.com/e/*',
+      '*://garylargeavailable.com/e/*',
+      '*://jennifereconomicgive.com/e/*',
+      '*://pamelachangemission.com/e/*',
+      '*://matthewhotelscience.com/e/*',
+      '*://jessicachoosemake.com/e/*',
+      '*://stevenfamilyedge.com/e/*',
+      '*://tracylocalschool.com/e/*',
       // auto-voe-replace-dont-remove
     ],
-  },
-  // animewho
-  vidoo: {
-    match: ['*://vidoo.tv/*'],
   },
   // animewho
   nxload: {
     match: ['*://nxload.com/*'],
   },
-  // animewho
-  videobin: {
-    match: ['*://videobin.co/*'],
-  },
-  // animewho
+  // animewho animesama
   uqload: {
-    match: ['*://uqload.com/*'],
+    match: ['*://uqload.com/*', '*://uqload.is/*'],
   },
   // animewho
   evoload: {
@@ -554,11 +521,8 @@ module.exports = {
   // kickassanime
   kaaplay: {
     match: [
-      '*://kaa-play.me/*',
-      '*://kaavid.com/*',
       '*://vidnethub.net/*',
       '*://vidco.pro/*',
-      '*://omegadthree.com/*',
       '*://krussdomi.com/*',
     ],
   },
@@ -580,16 +544,8 @@ module.exports = {
     match: ['*://kimanime.ru/AnimeIframe/*'],
   },
   // zoro
-  vidcloud: {
-    match: ['*://vidcloud.spb.ru/*'],
-  },
-  // gogoanime
-  streamhd: {
-    match: ['*://*.streamhd.cc/*'],
-  },
-  // zoro
   rapidstream: {
-    match: ['*://*.rapid-cloud.ru/*', '*://*.rapid-cloud.co/*'],
+    match: [ '*://*.rapid-cloud.co/*'],
   },
   // 9anime
   videovard: {
@@ -631,16 +587,8 @@ module.exports = {
     ],
   },
   // turkanime
-  cozyplayer: {
-    match: ['*://play.cozyplayer.com/*'],
-  },
-  // turkanime
   odnoklassniki: {
     match: ['*://odnoklassniki.ru/*'],
-  },
-  // turkanime
-  myalucard: {
-    match: ['*://myalucard.xyz/*'],
   },
   // animexin
   mobi: {
@@ -679,27 +627,14 @@ module.exports = {
     match: [
       '*://filemoon.sx/e/*',
       '*://filemoon.sx/lol/*',
-      '*://kerapoxy.cc/e/*',
-      '*://kerapoxy.cc/lol/*',
-      '*://vpcxz19p.xyz/e/*',
-      '*://vpcxz19p.xyz/lol/*',
       '*://filemoon.top/e/*',
       '*://filemoon.top/lol/*',
       '*://fmoonembed.pro/e/*',
       '*://fmoonembed.pro/lol/*',
-      '*://rgeyyddl.skin/e/*',
-      '*://rgeyyddl.skin/lol/*',
-      '*://designparty.sx/e/*',
-      '*://designparty.sx/lol/*',
-      '*://c4qhk0je.xyz/e/*',
-      '*://c4qhk0je.xyz/lol/*',
       '*://1azayf9w.xyz/e/*',
       '*://1azayf9w.xyz/lol/*',
-      '*://81u6xl9d.xyz/e/*',
-      '*://81u6xl9d.xyz/lol/*',
-      '*://gorro-chfzoaas.fun/e/*',
-      '*://gorro-chfzoaas.fun/lol/*',
       '*://z7ihwgqj.fun/*',
+      '*://pqham.com/*',
     ],
   },
   // toonanime
@@ -716,7 +651,7 @@ module.exports = {
   },
   // animenosub
   animenosub: {
-    match: ['*://animenosub.upn.one/#*'],
+    match: ['*://animenosub.upn.one/#*', '*://nova.upn.one/*'],
   },
   // voiranime
   streamhide: {
@@ -729,10 +664,6 @@ module.exports = {
   // animeunity
   vixcloud: {
     match: ['*://vixcloud.cc/*', '*://vixcloud.co/*'],
-  },
-  // WitAnime
-  yonaplay: {
-    match: ['*://yonaplay.org/*'],
   },
   // WitAnime
   fourshared: {
@@ -770,11 +701,27 @@ module.exports = {
   },
   // Q1N
   q1n: {
-    match: ['*://rogeriobetin.com/*', '*://nvlabs-fi-cdn.q9x.in/*'],
+    match: [
+      '*://rogeriobetin.com/*',
+      '*://api.anivideo.net/*',
+      '*://listeamed.net/*',
+    ],
   },
   // animesama
   oneupload: {
     match: ['*://oneupload.to/*'],
+  },
+  // animesama
+  ansembed: {
+    match: ['*://*.ansembed.net/*'],
+  },
+  // animesama
+  embed4me: {
+    match: ['*://*.embed4me.com/*'],
+  },
+  // animesama
+  minochinos: {
+    match: ['*://*.minochinos.com/*'],
   },
   // animexin
   vimeo: {
@@ -785,19 +732,56 @@ module.exports = {
     match: ['*://rumble.com/embed/*'],
   },
   // aninexus
-  rumble: {
-    match: ['*://fle-rvd0i9o8-moo.com/*', '*://dhtpre.com/*'],
+  aninexusPlayer: {
+    match: [ '*://dhtpre.com/*'],
   },
   // miruro
   bun: {
     match: ['*://*.bunniescdn.online/*'],
   },
-  // animekai
-  megaup: {
-    match: ['*://megaup.cc/e/*'],
-  },
   // hikari
   boosterx: {
     match: ['*://boosterx.stream/*'],
+  },
+  // animeav1
+  animeav1: {
+    match: ['*://player.zilla-networks.com/*'],
+  },
+  // Anizm
+  anizmplayer: {
+    match: ['*://*.anizmplayer.com/*'],
+  },
+  // aniworld
+  loadx: {
+    match: ['*://loadx.ws/*'],
+  },
+  // AnimeKhor
+  odysee: {
+    match: ['*://odysee.com/*'],
+  },
+  // AnimeKhor
+  emturbovid: {
+    match: ['*://emturbovid.com/*'],
+  },
+  // AnimeKhor
+  upns: {
+    match: ['*://*.upns.live/*'],
+  },
+  // AnimeKhor
+  p2pstream: {
+    match: ['*://*.p2pstream.vip/*'],
+  },
+  // kuudere
+  zencloud: {
+    match: ['*://zencloudz.cc/*'],
+  },
+  kumi: {
+    match: ['*://*.playerp2p.live/*', '*://*.rpmvip.com/*'],
+  },
+  sHide: {
+    match: ['*://callistanise.com/*',  ],
+  },
+  allManga: {
+    match: ['*://allanime.day/*', '*://allanime.uns.bio/*'],
   },
 };

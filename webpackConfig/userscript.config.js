@@ -22,7 +22,14 @@ const { getKeys } = require('./utils/keys');
 let chibiUrls = [];
 try {
   const chibiList = require('../dist/webextension/chibi/list.json');
-  chibiUrls = Object.values(chibiList.pages).map(chibi => chibi.urls.match);
+  const chibiAdultList = require('../dist/adult/chibi/list.json');
+  const chibiPages = [...Object.values(chibiList.pages), ...Object.values(chibiAdultList.pages)];
+  chibiUrls = chibiPages.map(chibi => {
+    return [
+      ...chibi.urls.match,
+      ...(chibi.urls.player ? Object.values(chibi.urls.player).flat() : []),
+    ];
+  });
 } catch (e) {
   console.log(e);
   throw 'Chibi list not found. Please build the extension first. `npm run build:webextension`';
@@ -93,14 +100,21 @@ const generateMetadataBlock = metadata => {
   return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())};\n`;
 };
 
-const proxyScripts = [];
+const proxyScriptRequest = scriptPath =>
+  JSON.stringify(`${path.resolve(__dirname, '..', scriptPath).replace(/\\/g, '/')}?raw`);
+
+const proxyScripts = [
+  `export const proxy_request = require(${proxyScriptRequest(
+    'dist/webextension/content/proxy/proxy_request.js',
+  )});`,
+];
 pagesUtils.pages().forEach(page => {
   pageRoot = path.join(__dirname, '..', 'src/pages/', page);
   const scriptPath = `dist/webextension/content/proxy/proxy_${page}.js`;
   if (fs.existsSync(path.join(pageRoot, 'proxy.ts'))) {
     if (!fs.existsSync(path.join(__dirname, '..', scriptPath)))
       throw new Error(`Proxy script for ${page} does not exist. Please build the extension first.`);
-    proxyScripts.push(`export const ${page} = require('./${scriptPath}?raw');`);
+    proxyScripts.push(`export const ${page} = require(${proxyScriptRequest(scriptPath)});`);
   }
 });
 console.log('Proxy', proxyScripts);
@@ -146,6 +160,11 @@ module.exports = {
       vue: '@vue/runtime-dom',
     },
   },
+  resolveLoader: {
+    alias: {
+      'to-string-loader': require.resolve('./utils/toStringLoader'),
+    },
+  },
   output: {
     filename: 'malsync.user.js',
     path: path.resolve(__dirname, '..', 'dist'),
@@ -174,6 +193,7 @@ module.exports = {
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
+      __IS_FIREFOX__: false,
     }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,

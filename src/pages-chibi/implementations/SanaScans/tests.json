@@ -1,0 +1,32 @@
+{
+  "title": "SanaScans",
+  "url": "https://sanascans.com",
+  "testCases": [
+    {
+      "url": "https://sanascans.com/series/you-can-kick-me-out-if-you-want-but-i'm-the-one-who-made-all-the-medicine-in-this-house/chapter-8",
+      "expected": {
+        "sync": true,
+        "title": "You Can Kick Me out If You Want, but I'm the One Who Made All the Medicine in This House",
+        "identifier": "you-can-kick-me-out-if-you-want-but-i'm-the-one-who-made-all-the-medicine-in-this-house",
+        "image": "https://storage.sanascans.com/upload/2025/08/18/d546c864-a2f0-4601-a8ff-2a77882cc55e.webp",
+        "overviewUrl": "https://sanascans.com/series/you-can-kick-me-out-if-you-want-but-i'm-the-one-who-made-all-the-medicine-in-this-house",
+        "episode": 8,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://sanascans.com/series/you-can-kick-me-out-if-you-want-but-i'm-the-one-who-made-all-the-medicine-in-this-house",
+      "expected": {
+        "sync": false,
+        "title": "You Can Kick Me out If You Want, but I'm the One Who Made All the Medicine in This House",
+        "identifier": "you-can-kick-me-out-if-you-want-but-i'm-the-one-who-made-all-the-medicine-in-this-house",
+        "image": "https://storage.sanascans.com/upload/2025/08/18/d546c864-a2f0-4601-a8ff-2a77882cc55e.webp",
+        "uiSelector": true,
+        "epList": {
+          "9": "https://sanascans.com/series/you-can-kick-me-out-if-you-want-but-i'm-the-one-who-made-all-the-medicine-in-this-house/chapter-9",
+          "16": "https://sanascans.com/series/you-can-kick-me-out-if-you-want-but-i'm-the-one-who-made-all-the-medicine-in-this-house/chapter-16"
+        }
+      }
+    }
+  ]
+}

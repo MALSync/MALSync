@@ -40,7 +40,7 @@ const hasNewEps = computed(() => {
 .progress-pill {
   font-size: @tiny-text;
   background-color: var(--cl-primary);
-  color: white;
+  color: var(--cl-primary-contrast);
   padding: 0 5px;
   border-radius: 5px;
 

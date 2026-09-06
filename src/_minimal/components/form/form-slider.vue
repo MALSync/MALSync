@@ -119,7 +119,7 @@ const optionsComputed = computed(() => {
 }
 
 .slider-bar {
-  --slider-body: var(--cl-primary);
+  --slider-body: var(--cl-bar-volume);
   .link();
 
   &:hover {
@@ -136,11 +136,11 @@ const optionsComputed = computed(() => {
   }
 
   &.blue {
-    --slider-body: #56ccf2;
+    --slider-body: var(--cl-bar-progess);
   }
 
   &.violet {
-    --slider-body: #bb6bd9;
+    --slider-body: var(--cl-bar-score);
   }
 }
 </style>

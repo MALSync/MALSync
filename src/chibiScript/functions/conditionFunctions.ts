@@ -1,5 +1,5 @@
 import type { ChibiCtx } from '../ChibiCtx';
-import type { ChibiJson } from '../ChibiGenerator';
+import type { ChibiJson, ChibiParam } from '../ChibiGenerator';
 import type * as CT from '../ChibiTypeHelper';
 
 export default {
@@ -11,7 +11,7 @@ export default {
    * @example
    * $c.string("abc").equals("abc") // returns true
    */
-  equals: (ctx: ChibiCtx, input: any, value: any) => {
+  equals: (ctx: ChibiCtx, input: any, value: ChibiParam<any>) => {
     return input === value;
   },
 
@@ -23,7 +23,7 @@ export default {
    * @example
    * $c.number(10).greaterThan(5) // returns true
    */
-  greaterThan: (ctx: ChibiCtx, input: any, value: any) => {
+  greaterThan: (ctx: ChibiCtx, input: any, value: ChibiParam<any>) => {
     return input > value;
   },
 
@@ -35,7 +35,7 @@ export default {
    * @example
    * $c.number(10).greaterThanOrEqual(10) // returns true
    */
-  greaterThanOrEqual: (ctx: ChibiCtx, input: any, value: any) => {
+  greaterThanOrEqual: (ctx: ChibiCtx, input: any, value: ChibiParam<any>) => {
     return input >= value;
   },
 
@@ -47,7 +47,7 @@ export default {
    * @example
    * $c.number(5).lessThan(10) // returns true
    */
-  lessThan: (ctx: ChibiCtx, input: any, value: any) => {
+  lessThan: (ctx: ChibiCtx, input: any, value: ChibiParam<any>) => {
     return input < value;
   },
 
@@ -59,7 +59,7 @@ export default {
    * @example
    * $c.number(10).lessThanOrEqual(10) // returns true
    */
-  lessThanOrEqual: (ctx: ChibiCtx, input: any, value: any) => {
+  lessThanOrEqual: (ctx: ChibiCtx, input: any, value: ChibiParam<any>) => {
     return input <= value;
   },
 
@@ -71,7 +71,7 @@ export default {
    * @example
    * $c.string("Hello world").contains("world") // returns true
    */
-  contains: (ctx: ChibiCtx, input: string, substring: string) => {
+  contains: (ctx: ChibiCtx, input: string, substring: ChibiParam<string>) => {
     return input.includes(substring);
   },
 
@@ -84,7 +84,12 @@ export default {
    * @example
    * $c.string("abc123").matches("^[a-z]+\\d+$") // returns true
    */
-  matches: (ctx: ChibiCtx, input: string, pattern: string, flags: string = 'i') => {
+  matches: (
+    ctx: ChibiCtx,
+    input: string,
+    pattern: ChibiParam<string>,
+    flags: ChibiParam<string> = 'i',
+  ) => {
     const regex = new RegExp(pattern, flags);
     return regex.test(input);
   },
@@ -99,6 +104,17 @@ export default {
    * $c.and($c.boolean(true).run(), $c.boolean(true).run()) // returns true
    */
   and: (ctx: ChibiCtx, input: void, ...values: ChibiJson<boolean>[]) => {
+    if (ctx.isAsync()) {
+      return (async () => {
+        for (let i = 0; i < values.length; i++) {
+          const val = await ctx.runAsync(values[i]);
+          if (!val) {
+            return false;
+          }
+        }
+        return true;
+      })() as unknown as boolean;
+    }
     return values.reduce((result, val) => result && ctx.run(val), true);
   },
 
@@ -112,6 +128,18 @@ export default {
    * $c.or($c.boolean(false).run(), $c.boolean(false).run()) // returns false
    */
   or: (ctx: ChibiCtx, input: void, ...values: ChibiJson<boolean>[]) => {
+    if (ctx.isAsync()) {
+      return (async () => {
+        for (let i = 0; i < values.length; i++) {
+          const val = await ctx.runAsync(values[i]);
+          if (val) {
+            return true;
+          }
+        }
+        return false;
+      })() as unknown as boolean;
+    }
+
     return values.reduce((result, val) => result || ctx.run(val), false);
   },
 
@@ -169,6 +197,19 @@ export default {
     input: void,
     ...values: Values
   ): CT.UnwrapJson<Values[number]> | undefined => {
+    if (ctx.isAsync()) {
+      return (async () => {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const val of values) {
+          const result = await ctx.runAsync(val);
+          if (result !== null && result !== undefined) {
+            return result;
+          }
+        }
+        return undefined;
+      })() as any;
+    }
+
     // eslint-disable-next-line no-restricted-syntax
     for (const val of values) {
       const result = ctx.run(val);

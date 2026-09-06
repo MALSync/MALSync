@@ -1,7 +1,0 @@
-{
-  "search": "https://www.crunchyroll.com/search?q={searchtermPlus}",
-  "searchDatabase": "Crunchyroll",
-  "urls": {
-    "match": ["*://*.crunchyroll.com/*"]
-  }
-}

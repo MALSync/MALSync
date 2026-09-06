@@ -16,5 +16,11 @@
   ],
   "npm": {
      "rangeStrategy": "update-lockfile"
+  },
+  "minimumReleaseAge": "2 days",
+  "force": {
+    "constraints": {
+      "npm": "11.x"
+    }
   }
 }

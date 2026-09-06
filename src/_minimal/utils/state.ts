@@ -1,6 +1,7 @@
 import { ref, watch } from 'vue';
 import { Cache } from '../../utils/Cache';
 import { localStore } from '../../utils/localStore';
+import { status } from '../../_provider/definitions';
 
 const STORAGE_KEY = 'VUE-MAL-SYNC-V2';
 const typeContext = ref('anime');
@@ -21,7 +22,21 @@ export function getTypeContext() {
 }
 
 export function setStateContext(value: number) {
-  if (![0, 1, 2, 3, 4, 6, 7, 23].includes(value)) throw `${value} not a valid State`;
+  if (
+    ![
+      status.NoState,
+      status.Watching,
+      status.Completed,
+      status.Onhold,
+      status.Dropped,
+      status.PlanToWatch,
+      status.All,
+      status.Rewatching,
+      status.Considering,
+    ].includes(value)
+  ) {
+    throw new Error(`${value} not a valid State`);
+  }
   stateContext.value = value;
 }
 

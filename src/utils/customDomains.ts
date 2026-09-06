@@ -10,15 +10,28 @@ export function getPageOptions() {
     { key: 'hostpermission', title: 'Host Permission' },
     { key: 'spacer1', title: '-_-_-' },
   ];
-  getPages()
-    .sort((a, b) => utils.sortAlphabetically(a.name, b.name))
-    .forEach(page => {
-      options.push({
-        key: page.key,
-        title: page.name,
-      });
+
+  const pageOptions: {
+    key: string;
+    title: string;
+  }[] = [];
+
+  getPages().forEach(page => {
+    pageOptions.push({
+      key: page.key,
+      title: page.name,
     });
-  return options;
+  });
+
+  Object.values(api.settings.getStaticChibi())
+    .filter(el => el.features?.customDomains)
+    .forEach(element => {
+      pageOptions.push({ title: element.name, key: element.key });
+    });
+
+  pageOptions.sort((a, b) => utils.sortAlphabetically(a.title, b.title));
+
+  return options.concat(pageOptions);
 }
 
 export class MissingPermissions {

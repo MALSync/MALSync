@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import semverGt from 'semver/functions/gt';
 
 export async function upgradewWizzards(lastVersion) {

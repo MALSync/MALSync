@@ -4,6 +4,8 @@ const fs = require('fs');
 const { VueLoaderPlugin } = require('vue-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
+const isFirefox = (process.env.APP_TARGET || 'general') === 'firefox';
+
 const pages = require('./utils/pages').pages();
 const { getKeys } = require('./utils/keys');
 const { getVirtualScript } = require('./utils/general');
@@ -30,6 +32,11 @@ let entry = {
     '..',
     'src/index-webextension/kitsu.ts',
   ),
+  'mangabaka-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/mangabaka.ts',
+  ),
   'simkl-script': path.join(
     __dirname,
     '..',
@@ -39,6 +46,11 @@ let entry = {
     __dirname,
     '..',
     'src/index-webextension/oauth.ts',
+  ),
+  'oauth-mangabaka-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/mangabakaOauth.ts',
   ),
   'oauth-anilist-script': path.join(
     __dirname,
@@ -55,6 +67,7 @@ let entry = {
     '..',
     'src/index-webextension/pwa.ts',
   ),
+  'proxy/proxy_request': path.join(__dirname, '..', 'src/pages-chibi/proxies/requestProxy.ts'),
   iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   popup: path.join(__dirname, '..', 'src/popup.ts'),
   chibi: 'expose-loader?exposes=_PageChibi|Chibi!' + path.join(__dirname, '..', 'src', 'pages-chibi', 'ChibiProxy.ts'),
@@ -133,6 +146,11 @@ module.exports = {
       vue: '@vue/runtime-dom',
     },
   },
+  resolveLoader: {
+    alias: {
+      'to-string-loader': require.resolve('./utils/toStringLoader'),
+    },
+  },
   mode: 'development',
   output: {
     filename: 'content/[name].js',
@@ -161,17 +179,45 @@ module.exports = {
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
+      __IS_FIREFOX__: isFirefox,
     }),
-    new ExtractJsonPlugin({
-      entryName: 'chibi-list',
-      typescriptFile: path.join(__dirname, '..', 'src/pages-chibi/builder/chibiList.ts'),
-      filename: 'chibi/list.json',
-    }),
-    new ExtractJsonPlugin({
-      entryName: 'chibi-pages',
-      typescriptFile: path.join(__dirname, '..', 'src/pages-chibi/builder/chibiPages.ts'),
-      filename: 'chibi/pages',
-      folderMode: true,
-    }),
+    ...(process.env.ADULT_DEV
+      ? [
+          new ExtractJsonPlugin({
+            entryName: 'chibi-list',
+            typescriptFile: path.join(__dirname, '..', 'src/pages-adult/builder/chibiList.ts'),
+            filename: 'chibi/list.json',
+          }),
+          new ExtractJsonPlugin({
+            entryName: 'chibi-pages',
+            typescriptFile: path.join(__dirname, '..', 'src/pages-adult/builder/chibiPages.ts'),
+            filename: 'chibi/pages',
+            folderMode: true,
+          }),
+        ]
+      : [
+          new ExtractJsonPlugin({
+            entryName: 'chibi-list',
+            typescriptFile: path.join(__dirname, '..', 'src/pages-chibi/builder/chibiList.ts'),
+            filename: 'chibi/list.json',
+          }),
+          new ExtractJsonPlugin({
+            entryName: 'chibi-pages',
+            typescriptFile: path.join(__dirname, '..', 'src/pages-chibi/builder/chibiPages.ts'),
+            filename: 'chibi/pages',
+            folderMode: true,
+          }),
+          new ExtractJsonPlugin({
+            entryName: 'chibi-adult-list',
+            typescriptFile: path.join(__dirname, '..', 'src/pages-adult/builder/chibiList.ts'),
+            filename: '../adult/chibi/list.json',
+          }),
+          new ExtractJsonPlugin({
+            entryName: 'chibi-adult-pages',
+            typescriptFile: path.join(__dirname, '..', 'src/pages-adult/builder/chibiPages.ts'),
+            filename: '../adult/chibi/pages',
+            folderMode: true,
+          }),
+        ]),
   ],
 };

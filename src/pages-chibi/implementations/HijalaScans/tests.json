@@ -1,0 +1,32 @@
+{
+    "title": "HijalaScans",
+    "url": "https://en-hijala.com",
+    "testCases": [
+      {
+        "url": "https://en-hijala.com/series/martial-wild-west/chapter-122",
+        "expected": {
+          "sync": true,
+          "title": "Martial Wild West",
+          "identifier": "martial-wild-west",
+          "image": "https://storage.en-hijala.com/upload/series/featured/cmc8zqikz00008o5qm3zfi3iv/4dd23955-5a56-4479-9e09-16a0894fd4e2.jpg",
+          "overviewUrl": "https://en-hijala.com/series/martial-wild-west",
+          "episode": 122,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://en-hijala.com/series/martial-wild-west",
+        "expected": {
+          "sync": false,
+          "title": "Martial Wild West",
+          "identifier": "martial-wild-west",
+          "image": "https://storage.en-hijala.com/upload/series/featured/cmc8zqikz00008o5qm3zfi3iv/4dd23955-5a56-4479-9e09-16a0894fd4e2.jpg",
+          "uiSelector": true,
+          "epList": {
+            "122": "https://en-hijala.com/series/martial-wild-west/chapter-122",
+            "121": "https://en-hijala.com/series/martial-wild-west/chapter-121"
+          }
+        }
+      }
+    ]
+  }

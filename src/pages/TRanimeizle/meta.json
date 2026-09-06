@@ -5,7 +5,9 @@
       "*://www.tranimeizle.net/*",
       "*://tranimeizle.co/*",
       "*://www.tranimeizle.co/*",
-      "*://*.tranimeizle.top/*"
+      "*://*.tranimeizle.top/*",
+      "*://tranimeizle.io/*",
+      "*://www.tranimeizle.io/*"
     ]
   }
 }

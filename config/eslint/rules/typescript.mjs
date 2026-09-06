@@ -19,6 +19,11 @@ export default /** @type {import('eslint').Linter.FlatConfig} */ ({
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
     'no-undef': 'off',
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
+    // Not part of the previous airbnb ruleset; opt out to avoid an unrelated mass-rewrite.
+    '@typescript-eslint/consistent-type-definitions': 'off',
+    '@typescript-eslint/consistent-indexed-object-style': 'off',
+    '@typescript-eslint/no-inferrable-types': 'error',
   },
 });

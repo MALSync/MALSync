@@ -1,6 +1,0 @@
-{
-  "search": "https://tritinia.com/?s={searchtermPlus}&post_type=wp-manga",
-  "urls": {
-    "match": ["*://tritinia.com/manga*"]
-  }
-}

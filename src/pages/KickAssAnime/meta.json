@@ -1,15 +1,12 @@
 {
-  "search": "https://kaas.am/search?q={searchterm}",
+  "search": "https://kaa.lt/search?q={searchterm}",
   "urls": {
     "match": [
-      "*://*.kaas.am/*",
-      "*://*.kaas.ro/*",
-      "*://*.kaas.to/*",
-      "*://*.kickassanime.ro/*",
-      "*://*.kickassanime.am/*",
-      "*://*.kickassanimes.io/*",
-      "*://*.kickassanime.mx/*",
-      "*://*.kaa.mx/*"
+      "*://*.kaa.lt/*",
+      "*://*.kaa.si/*",
+      "*://*.kaa.to/*",
+      "*://*.kaa.rs/*",
+      "*://*.kickassanime.cx/*"
     ]
   }
 }

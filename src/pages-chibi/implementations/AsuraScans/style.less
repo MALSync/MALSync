@@ -1,0 +1,28 @@
+@import './../pages';
+
+@textColor: #b8b8b8;
+@boxBackground: color-mix(in oklab, var(--color-white) 5%, transparent);
+@boxHighlightBackground: rgb(145 63 226);
+@boxOptionsBackground: black;
+
+@activeEp: rgba(144, 63, 226, 0.267);
+
+#malp {
+  font-size: 14px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  #malEpisodes,
+  #malVolumes {
+    border-color: #b8b8b8;
+  }
+  span span.info {
+    color: #d9d9d9 !important;
+  }
+  input {
+    border-radius: 0;
+  }
+}
+
+#flashinfo-div {
+  z-index: 20000 !important;
+}

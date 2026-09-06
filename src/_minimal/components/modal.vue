@@ -44,10 +44,8 @@ watch(
 );
 
 // https://github.com/vuejs/core/issues/2855
-const Teleport = teleport_ as {
-  new (): {
-    $props: VNodeProps & TeleportProps;
-  };
+const Teleport = teleport_ as new () => {
+  $props: VNodeProps & TeleportProps;
 };
 </script>
 
@@ -65,7 +63,7 @@ const Teleport = teleport_ as {
   align-items: center;
   .content {
     display: inline-block;
-    background-color: var(--cl-white);
+    color: var(--cl-text);
     max-width: min(95%, 800px);
     max-height: 90%;
     overflow: auto;

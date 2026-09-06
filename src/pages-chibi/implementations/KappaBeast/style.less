@@ -1,0 +1,44 @@
+@import './../pages';
+
+@boxBackground: rgb(17 24 39 / 0.2);
+@highlightStyle: 0;
+@boxOptionBackground: #11151c;
+@boxHighlightBackground: rgb(17 24 39 / 0.5);
+
+#malp {
+  margin-bottom: 1.25rem;
+  #MalData {
+    .malp-group {
+      .malp-group-field:not(.malp-group-input),
+      .malp-group-value-section {
+        border: rgb(255 255 255 / 5%) solid 2px;
+      }
+      .malp-group-field:not(.malp-group-input):hover,
+      .malp-group-value-section:hover,
+      .malp-group-value-section:focus-within {
+        background-color: rgb(17 24 39 / 60%) !important;
+        border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+        transition-duration: 150ms;
+      }
+      #AddMal:hover {
+        background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1)) !important;
+        border-color: rgb(47 86 251 / var(--tw-border-opacity, 1)) !important;
+        transition-duration: 150ms;
+      }
+      #malRating {
+        text-align: center;
+        font-weight: 600;
+        background-color: rgb(47 86 251 / var(--tw-bg-opacity, 1)) !important;
+      }
+      #malRating:hover {
+        transform: scale(1.02);
+        transition-duration: 150ms;
+        background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1)) !important;
+      }
+    }
+  }
+}
+
+.mal-sync-active {
+  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1)) !important;
+}

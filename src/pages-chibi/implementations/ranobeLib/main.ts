@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import type { PageInterface } from '../../pageInterface';
 
 export const ranobeLib: PageInterface = {
   name: 'RanobeLib',
   type: 'manga',
-  domain: 'https://ranobelib.me',
+  domain: ['https://ranobelib.me'],
   languages: ['Russian'],
   urls: {
     match: ['*://ranobelib.me/*'],
@@ -53,14 +52,16 @@ export const ranobeLib: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          mode: 'countAbove',
-          selector: '[data-paragraph-index], .text-content p, .text-content img',
-        },
-        total: {
-          mode: 'count',
-          selector: '[data-paragraph-index], .text-content p, .text-content img',
-        },
+        current: $c =>
+          $c
+            .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
+            .countAbove()
+            .run(),
+        total: $c =>
+          $c
+            .querySelectorAll('[data-paragraph-index], .text-content p, .text-content img')
+            .length()
+            .run(),
       },
     ],
   },
@@ -77,6 +78,10 @@ export const ranobeLib: PageInterface = {
       const slug = $c.url().urlPart(5);
       const id = slug.string().regex('(\\d+)', 1);
       return id.run();
+    },
+    // NOTE - Image is there but it's protected by referrer header comparison
+    getImage($c) {
+      return $c.querySelector('.cover img').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.tabs._border').uiBefore().run();

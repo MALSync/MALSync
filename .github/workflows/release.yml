@@ -9,10 +9,10 @@ jobs:
   webextension:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
       with:
-        node-version: '22.x'
+        node-version: '24.x'
     - name: Build
       run: |
         npm ci
@@ -21,6 +21,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -38,10 +40,10 @@ jobs:
   webextension-firefox:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
       with:
-        node-version: '22.x'
+        node-version: '24.x'
     - name: Build
       run: |
         npm ci
@@ -51,6 +53,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -68,10 +72,10 @@ jobs:
   userscript:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
       with:
-        node-version: '22.x'
+        node-version: '24.x'
     - name: Build
       run: |
         npm ci
@@ -80,6 +84,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -93,24 +99,14 @@ jobs:
         asset_path: ./dist/malsync.user.js
         asset_name: malsync.user.js
         asset_content_type: application/javascript
-    - name: Upload adult userscript
-      id: upload-adult-userscript-asset
-      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./dist/malsync-adult.user.js
-        asset_name: malsync-adult.user.js
-        asset_content_type: application/javascript
 
   chrome:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
       with:
-        node-version: '22.x'
+        node-version: '24.x'
     - name: Build
       run: |
         npm ci
@@ -119,6 +115,8 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -134,10 +132,10 @@ jobs:
   edge:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
       with:
-        node-version: '22.x'
+        node-version: '24.x'
     - name: Build
       run: |
         npm ci
@@ -146,11 +144,13 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package
     - name: Deploy Edge
-      uses: wdzeng/edge-addon@d4db1eea77297a24d799394dec87e8912e0902f9 # v2
+      uses: wdzeng/edge-addon@9881f57720358040d079eaa06a4596dc9c273eb6 # v2
       with:
         product-id: ${{ secrets.EDGE_PRODUCT_ID }}
         zip-path: dist/webextension.zip
@@ -160,10 +160,10 @@ jobs:
   firefox:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
       with:
-        node-version: '22.x'
+        node-version: '24.x'
     - name: Build
       run: |
         npm ci
@@ -173,6 +173,8 @@ jobs:
         APP_TARGET: firefox
         SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
+        MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
+        MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
     - name: Pack
       run: |
         npm run package

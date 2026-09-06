@@ -1,5 +1,6 @@
 import { searchInterface } from '../definitions';
 import { parseJson } from '../Errors';
+import { buildProviderUrl } from '../../utils/slugs';
 import * as helper from './helper';
 
 export const search: searchInterface = async function (
@@ -16,10 +17,10 @@ export const search: searchInterface = async function (
         id: item.ids.simkl_id,
         name: item.title,
         altNames: [],
-        url: `https://simkl.com/${type}/${item.ids.simkl_id}/${item.ids.slug}`,
+        url: buildProviderUrl('SIMKL', type, item.ids.simkl_id),
         malUrl: async () => {
           const malId = await simklIdToMal(item.ids.simkl_id);
-          return malId ? `https://myanimelist.net/${type}/${malId}` : null;
+          return malId ? buildProviderUrl('MAL', type, malId) : null;
         },
         image: `https://simkl.in/posters/${item.poster}_ca.jpg`,
         imageLarge: `https://simkl.in/posters/${item.poster}_m.jpg`,

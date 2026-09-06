@@ -1,0 +1,71 @@
+{
+  "title": "ComicTop",
+  "url": "https://comic-top.com/",
+  "testCases": [
+    {
+      "url": "https://comic-top.com/viewer/?cid=149934&ct=elden-ring-the-road-to-the-erdtree-chapter-chapter-69-be-wary-of-secrets-part-1&t=1759109848",
+      "expected": {
+        "sync": true,
+        "title": "ELDEN RING　The Road to the Erdtree",
+        "identifier": "elden-ring-the-road-to-the-erdtree",
+        "overviewUrl": "https://comic-top.com/manga/elden-ring-the-road-to-the-erdtree",
+        "episode": 69,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://comic-top.com/elden-ring-the-road-to-the-erdtree-chapter-chapter-69-be-wary-of-secrets-part-1/",
+      "expected": {
+        "sync": true,
+        "title": "ELDEN RING　The Road to the Erdtree",
+        "identifier": "elden-ring-the-road-to-the-erdtree",
+        "overviewUrl": "https://comic-top.com/manga/elden-ring-the-road-to-the-erdtree",
+        "episode": 69,
+        "nextEpUrl": "https://comic-top.com/elden-ring-the-road-to-the-erdtree-chapter-chapter-69-be-wary-of-secrets-part-2/",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://comic-top.com/viewer/?cid=154351&ct=aruiha-watashi-no-mei-tantei-chapter-1-1&t=1759109626",
+      "expected": {
+        "sync": true,
+        "title": "或いは、私の名探偵",
+        "identifier": "aruiha-watashi-no-mei-tantei",
+        "overviewUrl": "https://comic-top.com/manga/aruiha-watashi-no-mei-tantei",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://comic-top.com/viewer/?cid=86797&ct=nokuta-n-tatanta-nta-n-tatan-puchi-manga-chapter-case-4&t=1759118367",
+      "expected": {
+        "sync": true,
+        "title": "『のくたーんたたんたんたんたたん』プチ漫画",
+        "identifier": "nokuta-n-tatanta-nta-n-tatan-puchi-manga",
+        "overviewUrl": "https://comic-top.com/manga/nokuta-n-tatanta-nta-n-tatan-puchi-manga",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://comic-top.com/manga/elden-ring-the-road-to-the-erdtree/",
+      "expected": {
+        "sync": false,
+        "title": "ELDEN RING　The Road to the Erdtree",
+        "identifier": "elden-ring-the-road-to-the-erdtree",
+        "image": "https://comic-top.com/wp-content/uploads/2022/10/kdcw_mf09203324020000_68.jpg",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://comic-top.com/manga/aruiha-watashi-no-mei-tantei/",
+      "expected": {
+        "sync": false,
+        "title": "或いは、私の名探偵",
+        "identifier": "aruiha-watashi-no-mei-tantei",
+        "image": "https://comic-top.com/wp-content/uploads/2025/09/kc_007014_s.jpg",
+        "uiSelector": true
+      }
+    }
+  ]
+}

@@ -1,6 +1,0 @@
-{
-  "search": "https://mangasushi.net/?s={searchtermPlus}&post_type=wp-manga",
-  "urls": {
-    "match": ["*://mangasushi.net/manga*"]
-  }
-}

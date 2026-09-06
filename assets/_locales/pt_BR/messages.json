@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Integra MyAnimeList/AniList/Kitsu/Simkl/Shikimori com vários sites, com rastreamento automático de episódios.",
+        "message": "Integra MyAnimeList, AniList, Kitsu, Simkl, MangaBaka com vários sites, com rastreamento automático de episódios.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -688,7 +688,7 @@
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "Se desativado, o site de streaming não aparecerá mais na barra lateral de animes no MAL.",
+        "message": "Se desativado, o site de streaming não aparecerá mais na barra lateral de animes no MAL/AniList/Kitsu/Simkl/Shikimori/MangaBaka.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -982,7 +982,7 @@
         "description": "Show button to view the anime/manga on MAL or another provider"
     },
     "settings_presenceShowMalsync": {
-        "message": "Mostrar Mal-Sync no título da presence em vez do anime/mangá",
+        "message": "Mostrar MAL-Sync no título da presença em vez do anime/mangá",
         "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
     },
     "updateCheck_Refresh": {
@@ -1196,7 +1196,7 @@
         "description": "Button to rechecks the login status"
     },
     "settings_Mangasync_readerTracking": {
-        "message": "Sincronizar mangá após $mangaCompletionPercentage$% das páginas",
+        "message": "Sincronizar mangá após ler $mangaCompletionPercentage$% das páginas",
         "description": "Option to track the reading progress of a manga and if 90% of the manga is read, set the chapter to read",
         "placeholders": {
             "mangaCompletionPercentage": {
@@ -1649,5 +1649,35 @@
     },
     "settings_LocalSync_Help_LinkText": {
         "message": "esta janela"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Marcar capítulo como lido em (%)"
+    },
+    "UI_Status_Considering": {
+        "message": "Considerando"
+    },
+    "settings_splitTracking": {
+        "message": "Rastreamento Separado"
+    },
+    "settings_presence_activityName_title": {
+        "message": "Título da Série"
+    },
+    "settings_presence_activityName_website": {
+        "message": "Site atual"
+    },
+    "settings_presence_activityName_type": {
+        "message": "Anime/Mangá"
+    },
+    "settings_presence_activityName_malsync": {
+        "message": "MALSync"
+    },
+    "list_sorting_latest_release": {
+        "message": "Último lançamento"
+    },
+    "settings_anilist_external_sources": {
+        "message": "Mostrar fontes externas"
+    },
+    "settings_chibi_repos_modal_add": {
+        "message": "Tem certeza de que deseja adicionar este repositório?"
     }
 }

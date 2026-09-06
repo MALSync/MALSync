@@ -1,0 +1,33 @@
+{
+  "title": "TopManhua",
+  "url": "https://manhuatop.org/",
+  "testCases": [
+    {
+      "url": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/chapter-3/",
+      "expected": {
+        "sync": true,
+        "title": "I'm a Hero, but the Heroines are Trying to Kill Me",
+        "identifier": "i-m-a-hero-but-the-heroines-are-trying-to-kill-me",
+        "overviewUrl": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/",
+        "image": "https://manhuatop.org/wp-content/uploads/2024/12/post_96993_image.jpg",
+        "episode": 3,
+        "nextEpUrl": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/chapter-4/",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/",
+      "expected": {
+        "sync": false,
+        "title": "I’m a Hero, but the Heroines are Trying to Kill Me",
+        "identifier": "i-m-a-hero-but-the-heroines-are-trying-to-kill-me",
+        "image": "https://manhuatop.org/wp-content/uploads/2024/12/post_96993_image.jpg",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/chapter-3/",
+          "6": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/chapter-6/"
+        }
+      }
+    }
+  ]
+}

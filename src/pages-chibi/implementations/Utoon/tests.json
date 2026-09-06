@@ -1,0 +1,29 @@
+{
+    "title": "Utoon",
+    "url": "https://utoon.net/",
+    "testCases": [
+      {
+        "url": "https://utoon.net/manga/my-gift-lvl-9999-unlimited-gacha/chapter-66/",
+        "expected": {
+          "sync": true,
+          "title": "My Gift LVL 9999 Unlimited Gacha",
+          "identifier": "my-gift-lvl-9999-unlimited-gacha",
+          "image": "https://utoon.net/wp-content/uploads/2024/07/MY-GIFT-LVL-9999-UNLIMITED-GACHA.webp",
+          "overviewUrl": "https://utoon.net/manga/my-gift-lvl-9999-unlimited-gacha",
+          "episode": 66,
+          "nextEpUrl": "https://utoon.net/manga/my-gift-lvl-9999-unlimited-gacha/chapter-67/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://utoon.net/manga/my-gift-lvl-9999-unlimited-gacha",
+        "expected": {
+          "sync": false,
+          "title": "My Gift LVL 9999 Unlimited Gacha",
+          "identifier": "my-gift-lvl-9999-unlimited-gacha",
+          "image": "https://utoon.net/wp-content/uploads/2024/07/MY-GIFT-LVL-9999-UNLIMITED-GACHA.webp",
+          "uiSelector": true
+        }
+      }
+    ]
+  }

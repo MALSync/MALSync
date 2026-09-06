@@ -1,0 +1,56 @@
+@import './../pages';
+
+@boxBackground: var(--bg-malsync);
+@boxFontColor: var(--font-malsync);
+@boxLabelFontColor: var(--label-malsync);
+@boxHighlightBackground: #a855f7;
+
+@highlightStyle: 0;
+@activeEp: #a855f7;
+
+.mal-sync-active > * {
+  outline: 2px solid @activeEp !important;
+}
+
+#malp {
+  margin-bottom: calc(var(--spacing) * 2);
+  #MalData {
+    .malp-group {
+      .malp-group-field:not(.malp-group-input),
+      .malp-group-value-section {
+        border: 0.1px solid var(--border-malsync) !important;
+        box-shadow:
+          var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow),
+          var(--tw-ring-shadow), var(--tw-shadow);
+        &:hover:not(#AddMal),
+        &:focus-within {
+          border-color: color-mix(in oklab, var(--color-purple-500) 50%, transparent) !important;
+          transition-duration: var(--tw-duration, var(--default-transition-duration));
+        }
+      }
+      #malRating:hover {
+        color: #9333ea !important;
+        transition-duration: var(--tw-duration, var(--default-transition-duration));
+      }
+      #AddMal:hover {
+        background-color: #9333ea !important;
+        transition-duration: var(--tw-duration, var(--default-transition-duration));
+      }
+    }
+  }
+}
+
+// site doesn't have var set for dark/light mode
+.light {
+  --bg-malsync: #f0f0f0;
+  --font-malsync: #000;
+  --label-malsync: #666;
+  --border-malsync: var(--color-zinc-300);
+}
+
+.dark {
+  --bg-malsync: color-mix(in oklab, var(--color-zinc-800) 80%, transparent);
+  --font-malsync: var(--color-white);
+  --label-malsync: inherit;
+  --border-malsync: var(--color-zinc-500);
+}

@@ -3,7 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeGO: pageInterface = {
   name: 'AnimeGO',
   languages: ['Russian'],
-  domain: ['https://animego.org', 'https://animego.me'],
+  domain: ['https://animego.me'],
   type: 'anime',
   isSyncPage(url) {
     return true;
@@ -13,7 +13,7 @@ export const AnimeGO: pageInterface = {
   },
   sync: {
     getIdentifier(url) {
-      // tvoe-imya-107 from https://animego.org/anime/tvoe-imya-107
+      // tvoe-imya-107 from https://animego.me/anime/tvoe-imya-107
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
@@ -24,19 +24,19 @@ export const AnimeGO: pageInterface = {
       switch (jsonData.alternativeHeadline.length) {
         case 0: {
           // no headlines
-          // example: https://animego.org/anime/moya-geroyskaya-akademiya-s1-294
+          // example: https://animego.me/anime/moya-geroyskaya-akademiya-s1-294
           return jsonData.name; // Return Russian title, if no English found
         }
         case 3: {
           // Japanese, English, 日本語 (jp)
-          // example: https://animego.org/anime/horimiya-1686
+          // example: https://animego.me/anime/horimiya-1686
           return jsonData.alternativeHeadline[1];
         }
         default: {
           // 1 or 2. Anyway, English is first
           // examples:
-          // 1: https://animego.org/anime/velikiy-pritvorschik-1573
-          // 2: https://animego.org/anime/vanpanchmen-put-k-stanovleniyu-geroem-14
+          // 1: https://animego.me/anime/velikiy-pritvorschik-1573
+          // 2: https://animego.me/anime/vanpanchmen-put-k-stanovleniyu-geroem-14
           return jsonData.alternativeHeadline[0];
         }
       }

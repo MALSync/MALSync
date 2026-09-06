@@ -2,7 +2,7 @@ import { xhrResponseI, sendMessageI, notification } from '../messageInterface';
 
 export interface requestInterface {
   xhr(
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+    method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
     url: string | { url: string; data?: any; headers?: any },
     retry?: number,
   ): Promise<xhrResponseI>;

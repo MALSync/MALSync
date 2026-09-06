@@ -22,13 +22,13 @@ export function urlParam(url, name) {
   return decodeURI(results[1]) || 0;
 }
 
-export function getBaseText(element) {
-  let text = element.text();
-  element.children().each(function () {
-    // @ts-ignore
-    text = text.replace(j.$(this).text(), '');
-  });
-  return text;
+export function getBaseText(element: JQuery<Element>) {
+  return element
+    .contents()
+    .filter(function () {
+      return this.nodeType === Node.TEXT_NODE;
+    })
+    .text();
 }
 
 export function favicon(domain) {
@@ -60,9 +60,7 @@ export const syncRegex =
 
 export const rateLimitExclude = /^https:\/\/api.malsync.moe\/(shark|mal\/|nc\/mal\/.*\/progress$)/i;
 
-// eslint-disable-next-line no-shadow
 export enum status {
-  // eslint-disable-next-line no-shadow
   watching = 1,
   completed = 2,
   onhold = 3,
@@ -138,25 +136,23 @@ export function changeDetect(callback, func, immediate = false) {
   return Number(intervalId);
 }
 
-export function waitUntilTrue(condition: Function, callback: Function, interval = 100) {
-  let counter = 0;
-
-  const intervalId = setInterval(function () {
-    counter++;
+export function waitUntilTrue(condition: Function, callback: Function, interval = 200) {
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  const intervalId = setInterval(async function () {
     let state = false;
     try {
-      state = condition();
+      const conditionState = condition() as boolean | Promise<boolean>;
+      if (conditionState && conditionState instanceof Promise) {
+        state = await conditionState;
+      } else {
+        state = conditionState;
+      }
     } catch (e) {
       con.info('Error in waitUntilTrue', e);
     }
     if (state) {
       clearInterval(intervalId);
       callback();
-    }
-    if (counter > 10) {
-      clearInterval(intervalId);
-      const newIntervalTime = Math.max(Math.min(interval * 2, 15000), 500);
-      waitUntilTrue(condition, callback, newIntervalTime);
     }
   }, interval);
 
@@ -384,7 +380,6 @@ export function canHideTabs() {
   return false;
 }
 
-// eslint-disable-next-line no-shadow
 export function statusTag(status, type, id) {
   const info = {
     anime: {
@@ -481,6 +476,8 @@ export function getStatusText(type: 'anime' | 'manga', state) {
       return api.storage.lang('UI_Status_All');
     case 23:
       return api.storage.lang(`UI_Status_Rewatching_${type}`);
+    case 24:
+      return api.storage.lang('UI_Status_Considering');
     default:
       return '';
   }
@@ -488,8 +485,8 @@ export function getStatusText(type: 'anime' | 'manga', state) {
 
 // eslint-disable-next-line consistent-return
 export function notifications(url: string, title: string, message: string, iconUrl = '') {
-  const messageObj: chrome.notifications.NotificationOptions<true> = {
-    type: 'basic',
+  const messageObj = {
+    type: 'basic' as const,
     title,
     message,
     iconUrl,
@@ -588,7 +585,7 @@ export function flashm(
         </div>\
       </div>`;
 
-  let flashmEl;
+  let flashmEl: JQuery<HTMLElement>;
 
   if (
     typeof options !== 'undefined' &&
@@ -702,7 +699,7 @@ function initflashm() {
                  #flashinfo-div.hover .flashinfo{
                     opacity: 1;
                  }
-                 .flashinfo:hover{
+                 .flashinfo:hover, .flashinfo.open{
                     max-height:5000px !important;
                     z-index: 2147483647;
                     opacity: 1;
@@ -711,7 +708,7 @@ function initflashm() {
                  .flashinfo .synopsis{
                     transition: max-height 2s, max-width 2s ease 2s;
                  }
-                 .flashinfo:hover .synopsis{
+                 .flashinfo:hover .synopsis, .flashinfo.open .synopsis{
                     max-height:9999px !important;
                     max-width: 500px !important;
                     transition: max-height 2s;
@@ -722,22 +719,6 @@ function initflashm() {
                  }
                  #flashinfo-div:hover, #flashinfo-div.hover{
                   z-index: 2147483647;
-                 }
-                 #flashinfo-div.player-error {
-                   z-index: 2147483647;
-                 }
-                 #flashinfo-div.player-error .type-update{
-                  overflow: visible !important;
-                  opacity: 1 !important;
-                 }
-                 #flashinfo-div.player-error .player-error{
-                  display: block !important
-                 }
-                 #flashinfo-div.player-error-missing-permissions .player-error-missing-permissions{
-                  display: block !important
-                 }
-                 #flashinfo-div.player-error-missing-permissions .player-error-default{
-                  display: none !important
                  }
 
                  #flash-div-top, #flash-div-bottom, #flashinfo-div{
@@ -855,25 +836,6 @@ export function wait(ms: number) {
   });
 }
 
-export function pageUrl(
-  page: 'mal' | 'anilist' | 'kitsu' | 'simkl',
-  type: 'anime' | 'manga',
-  id: string | number,
-) {
-  switch (page) {
-    case 'mal':
-      return `https://myanimelist.net/${type}/${id}`;
-    case 'anilist':
-      return `https://anilist.co/${type}/${id}`;
-    case 'kitsu':
-      return `https://kitsu.app/${type}/${id}`;
-    case 'simkl':
-      return `https://simkl.com/${type}/${id}`;
-    default:
-      throw `${page} not a valid page`;
-  }
-}
-
 export function returnYYYYMMDD(numFromToday = 0) {
   const d = new Date();
   d.setDate(d.getDate() + numFromToday);
@@ -887,7 +849,7 @@ export function htmlDecode(text) {
 }
 
 export function isFirefox(): boolean {
-  return Boolean(typeof browser !== 'undefined' && typeof chrome !== 'undefined');
+  return __IS_FIREFOX__;
 }
 
 export function waitForPageToBeVisible() {

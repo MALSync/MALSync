@@ -1,4 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
@@ -29,14 +30,15 @@ export class Single extends SingleAbstract {
   authenticationUrl = 'https://kitsu.app/404?mal-sync=authentication';
 
   protected handleUrl(url) {
-    if (url.match(/kitsu\.app\/(anime|manga)\/.*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.kitsu.slug = utils.urlPart(url, 4);
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'KITSU') {
+      this.type = path.type;
+      this.ids.kitsu.slug = path.id;
       return;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.ids.mal = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.ids.mal = Number(path.id);
       return;
     }
     throw new UrlNotSupportedError(url);
@@ -62,6 +64,9 @@ export class Single extends SingleAbstract {
       this.listI().attributes.reconsuming = true;
     } else {
       this.listI().attributes.reconsuming = false;
+    }
+    if (status === definitions.status.Considering && !this.supportsConsidering()) {
+      status = definitions.status.PlanToWatch;
     }
     this.listI().attributes.status = helper.translateList(status, parseInt(status.toString()));
   }
@@ -173,7 +178,7 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return `https://kitsu.app/${this.getType()}/${this.animeI().attributes.slug}`;
+    return buildProviderUrl('KITSU', this.getType()!, this.animeI().attributes.slug);
   }
 
   _getImage() {

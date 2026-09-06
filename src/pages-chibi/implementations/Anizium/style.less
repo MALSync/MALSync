@@ -1,0 +1,32 @@
+@import './../pages';
+
+/* Anizium specific styles */
+#malsync-container {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgb(0 0 0 / 10%);
+  border-radius: 5px;
+}
+
+.malsync-button {
+  background: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin: 5px;
+  transition: background-color 0.3s;
+}
+
+.malsync-button:hover {
+  background: #0056b3;
+}
+
+/* Dark theme support for Anizium */
+[data-theme='dark'] #malsync-container,
+.dark #malsync-container {
+  background: rgb(255 255 255 / 10%);
+}

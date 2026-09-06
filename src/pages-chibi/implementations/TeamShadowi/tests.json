@@ -1,0 +1,48 @@
+{
+    "title": "TeamShadowi",
+    "url": "https://www.team-shadowi.com",
+    "testCases": [
+      {
+        "url": "https://www.team-shadowi.com/read/the-greatest-estate-developer/219",
+        "expected": {
+          "sync": true,
+          "title": "The Greatest Estate Developer",
+          "identifier": "the-greatest-estate-developer",
+          "overviewUrl": "https://www.team-shadowi.com/series/the-greatest-estate-developer",
+          "episode": 219,
+          "nextEpUrl": "https://www.team-shadowi.com/read/the-greatest-estate-developer/220",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://www.team-shadowi.com/read/the-greatest-estate-developer/223.9",
+        "expected": {
+          "sync": true,
+          "title": "The Greatest Estate Developer",
+          "identifier": "the-greatest-estate-developer",
+          "overviewUrl": "https://www.team-shadowi.com/series/the-greatest-estate-developer",
+          "episode": 223,
+          "nextEpUrl": null,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://www.team-shadowi.com/series/the-greatest-estate-developer",
+        "expected": {
+          "sync": false,
+          "title": "The Greatest Estate Developer",
+          "identifier": "the-greatest-estate-developer",
+          "image": "https://images.team-shadowi.com/Series/The%20Greatest%20Estate%20Developer/cover.jpg",
+          "uiSelector": true,
+          "epList": {
+            "222": "https://www.team-shadowi.com/read/the-greatest-estate-developer/222",
+            "221": "https://www.team-shadowi.com/read/the-greatest-estate-developer/221",
+            "220": "https://www.team-shadowi.com/read/the-greatest-estate-developer/220",
+            "219": "https://www.team-shadowi.com/read/the-greatest-estate-developer/219"
+            }
+          }
+        }
+     ]
+   }
+
+

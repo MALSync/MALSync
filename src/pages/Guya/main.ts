@@ -106,9 +106,6 @@ export const Guya: pageInterface = {
               case 'mangadex':
                 Guya.database = 'Mangadex';
                 break;
-              case 'mangasee':
-                Guya.database = 'MangaSee';
-                break;
               default:
                 Guya.database = undefined;
                 break;

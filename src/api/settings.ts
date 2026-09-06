@@ -14,10 +14,11 @@ export const settingsObj = {
     rpc: true,
     presenceLargeImage: 'cover',
     presenceShowButtons: true,
-    presenceShowMalsync: false,
+    presenceActivityName: 'title',
     userscriptModeButton: false,
     syncMode: 'MAL',
     syncModeSimkl: 'MAL',
+    splitTracking: false,
     localSync: true,
     delay: 0,
     videoDuration: 85,
@@ -51,20 +52,16 @@ export const settingsObj = {
 
     quicklinks: [
       'Crunchyroll',
-      'Gogoanime',
       'Mangadex',
       'MangaNato',
       'MangaFox',
-      'MangaSee',
       'MangaFire',
-      'HiAnime',
       'Hulu',
       'Netflix',
       'Hidive',
       'VIZ',
       'MangaPlus',
       'MangaReader',
-      'ComicK',
       'WeebCentral',
       'KickAssAnime',
       'animepahe',
@@ -97,6 +94,9 @@ export const settingsObj = {
 
     customDomains: [],
 
+    chibiRepos: [],
+
+    anilistExternalSources: false,
     anilistUpdateUi: true,
 
     anilistToken: '',
@@ -114,6 +114,9 @@ export const settingsObj = {
 
     malToken: '',
     malRefresh: '',
+
+    mangabakaToken: '',
+    mangabakaRefresh: '',
 
     shikiToken: '',
     shikiOptions: {
@@ -138,7 +141,7 @@ export const settingsObj = {
     }
 
     try {
-      const chibiRepo = await ChibiListRepository.getInstance(true).init();
+      const chibiRepo = await (await ChibiListRepository.getInstance(true)).init();
       this.chibiList = chibiRepo.getList();
     } catch (e) {
       con.error('Error loading chibi repo', e);

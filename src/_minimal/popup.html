@@ -1,17 +1,24 @@
 <!doctype html>
-<html mode="popup" class="placeholder">
+<html mode="popup">
   <head>
     <title>MAL-Sync</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=500">
+    <meta name="viewport" content="width=550">
     <link rel="stylesheet" type="text/css" href="vendor/materialFont.css">
     <link rel="stylesheet" type="text/css" href="vendor/montserrat.css">
     <style type="text/css">
       html, body {
         width: 550px;
+        max-width: 100%;
       }
-      .placeholder {
+      body {
         height: 1000px;
+      }
+      /* Allows for responsive design, without triggering a crash in chrome */
+      @media (min-width: 599px) {
+        html, body {
+          min-width: 100vw;
+        }
       }
     </style>
   </head>

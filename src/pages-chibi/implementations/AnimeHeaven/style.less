@@ -1,0 +1,57 @@
+@import './../pages';
+
+.malp-group-label {
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+#malp #MalData {
+  justify-content: center !important;
+  .malp-group-label {
+    font-size: 18px !important;
+  }
+}
+
+#AddMal:hover {
+  color: #dd0021 !important;
+}
+
+#malStatus,
+#malUserRating,
+#malEpisodes,
+#malTotal,
+#malRating {
+  background: transparent;
+  color: #dd0021 !important;
+  option {
+    color: #bdbdbd !important;
+    font-size: 18px;
+  }
+}
+
+#malp {
+  #malStatus,
+  #malUserRating {
+    option {
+      background-color: black !important;
+      color: #bdbdbd !important;
+    }
+  }
+}
+
+.malp-group-value-section {
+  display: flex;
+  #malEpisodes,
+  #malTotal {
+    width: 100% !important;
+  }
+}
+
+.mal-sync-active {
+  background-color: #dd0021;
+  .watch2 {
+    color: #dd0021;
+  }
+}

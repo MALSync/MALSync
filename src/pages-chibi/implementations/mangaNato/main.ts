@@ -41,6 +41,9 @@ export const mangaNato: PageInterface = {
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+    },
     getOverviewUrl($c) {
       return $c.url().split('/').slice(0, 5).join('/').run();
     },
@@ -57,14 +60,8 @@ export const mangaNato: PageInterface = {
     },
     readerConfig: [
       {
-        current: {
-          selector: '.container-chapter-reader img',
-          mode: 'countAbove',
-        },
-        total: {
-          selector: '.container-chapter-reader img',
-          mode: 'count',
-        },
+        current: $c => $c.querySelectorAll('.container-chapter-reader img').countAbove().run(),
+        total: $c => $c.querySelectorAll('.container-chapter-reader img').length().run(),
       },
     ],
   },
@@ -83,6 +80,9 @@ export const mangaNato: PageInterface = {
     },
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
+    },
+    getImage($c) {
+      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
       return $c.querySelector('.manga-info-chapter').uiBefore().run();

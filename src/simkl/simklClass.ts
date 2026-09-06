@@ -4,6 +4,7 @@ import * as helper from '../_provider/Simkl/helper';
 import malkiss from './malkiss.vue';
 import { activeLinks } from '../utils/quicklinksBuilder';
 import { waitForPageToBeVisible } from '../utils/general';
+import { buildProviderUrl } from '../utils/slugs';
 
 export class SimklClass {
   page: any = null;
@@ -89,7 +90,7 @@ export class SimklClass {
       const simklId = utils.urlPart(this.url, 4);
       return this.simklIdToMal(simklId).then(malId => {
         if (!malId) return '';
-        return `https://myanimelist.net/${urlpart}/${malId}/${utils.urlPart(this.url, 5)}`;
+        return buildProviderUrl('MAL', urlpart, malId);
       });
     }
     return '';

@@ -3,6 +3,7 @@ import { search as malSearch } from './MyAnimeList_hybrid/search';
 import { search as malApiSearch } from './MyAnimeList_api/search';
 import { search as aniSearch } from './AniList/search';
 import { search as kitsuSearch } from './Kitsu/search';
+import { search as mangaBakaSearch } from './MangaBaka/search';
 import { search as simklSearch } from './Simkl/search';
 import { search as shikiSearch } from './Shikimori/search';
 
@@ -22,6 +23,9 @@ export function search(
   }
   if (syncMode === 'ANILIST') {
     return aniSearch(keyword, type, options, sync);
+  }
+  if (syncMode === 'MANGABAKA') {
+    return mangaBakaSearch(keyword, type, options, sync);
   }
   if (syncMode === 'SIMKL') {
     return simklSearch(keyword, type, options, sync);

@@ -1,4 +1,5 @@
 import type { ChibiCtx } from '../../ChibiCtx';
+import type { ChibiParam } from '../../ChibiGenerator';
 
 export default {
   /**
@@ -10,7 +11,7 @@ export default {
    * $c.string("https://example.com/anime/123").urlpart(4) // returns "123"
    * $c.string("/manga/456/chapter/7").urlpart(2) // returns "456"
    */
-  urlPart: (ctx: ChibiCtx, input: string, part: number) => {
+  urlPart: (ctx: ChibiCtx, input: string, part: ChibiParam<number>) => {
     return utils.urlPart(input, part);
   },
 
@@ -33,7 +34,7 @@ export default {
    * @example
    * $c.string("https://example.com/page?id=123&view=list").urlParam("id") // returns "123"
    */
-  urlParam: (ctx: ChibiCtx, input: string, name: string) => {
+  urlParam: (ctx: ChibiCtx, input: string, name: ChibiParam<string>) => {
     return utils.urlParam(input, name);
   },
 
@@ -45,7 +46,7 @@ export default {
    * @example
    * $c.string("/path/to/page").urlAbsolute() // returns "https://example.com/path/to/page"
    */
-  urlAbsolute: (ctx: ChibiCtx, input: string, domain?: string): string => {
+  urlAbsolute: (ctx: ChibiCtx, input: string, domain?: ChibiParam<string>): string => {
     if (!domain) {
       domain = `${window.location.protocol}//${window.location.host}`;
     }
@@ -60,6 +61,6 @@ export default {
    * $c.html("<div>Parent <span>Child</span></div>").getBaseText() // returns "Parent "
    */
   getBaseText: (ctx: ChibiCtx, input: Element): string => {
-    return utils.getBaseText(input);
+    return utils.getBaseText(j.$(input));
   },
 };

@@ -27,7 +27,7 @@ export const Kaguya: pageInterface = {
       return jsonData.aniId!;
     },
     getOverviewUrl(url) {
-      const id = Kaguya.sync!.getIdentifier(url);
+      const id = Kaguya.sync.getIdentifier(url);
 
       return `${Kaguya.domain}/anime/details/${id}`;
     },

@@ -5,9 +5,16 @@ import { initSyncTags } from '../background/syncTags';
 import { initMessageHandler } from '../background/messageHandler';
 import { upgradewWizzards } from '../background/upgradeWizzards';
 import { cleanupCustomDomains, initCustomDomain } from '../background/customDomain';
+import { registerBackgroundEmitterCleanup } from '../utils/emitter';
 
 try {
   chrome.runtime.onStartup.addListener(() => con.log('Browser started'));
+} catch (e) {
+  con.error(e);
+}
+
+try {
+  registerBackgroundEmitterCleanup();
 } catch (e) {
   con.error(e);
 }

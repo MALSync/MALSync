@@ -24,7 +24,7 @@ export async function search(searchterm: string, type: 'anime' | 'manga'): Promi
     });
   }
 
-  const results = searchFuse[type]!.search(searchterm);
+  const results = searchFuse[type].search(searchterm);
 
   return results.map(el => {
     return {

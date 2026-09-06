@@ -1,5 +1,6 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
+import { buildProviderUrl, urlToSlug } from '../../utils/slugs';
 import * as helper from './helper';
 import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 
@@ -8,15 +9,16 @@ export class MetaOverview extends MetaOverviewAbstract {
     super(url);
     this.logger = this.logger.m('Kitsu');
 
-    if (url.match(/kitsu\.app\/(anime|manga)\/.*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.kitsuSlug = utils.urlPart(url, 4);
+    const { path } = urlToSlug(url);
+    if (path?.provider === 'KITSU') {
+      this.type = path.type;
+      this.kitsuSlug = path.id;
       this.malId = NaN;
       return this;
     }
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
-      this.malId = Number(utils.urlPart(url, 4));
+    if (path?.provider === 'MAL') {
+      this.type = path.type;
+      this.malId = Number(path.id);
       this.kitsuSlug = '';
       return this;
     }
@@ -86,7 +88,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     ).then(res => {
       try {
         res.data = res.data[0];
-        // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         res.data.attributes.slug;
       } catch (e) {
         throw new NotFoundError(e.message);
@@ -294,7 +296,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeInfo.included.forEach(function (i) {
         if (i.type === 'manga' || i.type === 'anime') {
           an[i.id] = {
-            url: `https://kitsu.app/${i.type}/${i.attributes.slug}`,
+            url: buildProviderUrl('KITSU', i.type, i.attributes.slug),
             title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
             id: i.id,
             type: i.type,

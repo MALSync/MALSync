@@ -1,0 +1,53 @@
+{
+    "title": "Jestful",
+    "url": "https://jestful.net/",
+    "testCases": [
+      {
+        "url": "https://jestful.net/bsaq-seijo-ga-kurukara-kimi-wo-ai-suru-koto-wa-nai-to-iwareta-no-de-okazari-ouhi-tettei-shiteitara-seijo-ga-5-sai-datta-node-zenryoku-de-aishimasu-chapter-4.2.html",
+        "expected": {
+          "sync": true,
+          "title": "Seijo Ga Kurukara Kimi Wo Ai Suru Koto Wa Nai To Iwareta No De Okazari Ouhi Tettei Shiteitara, Seijo Ga 5-sai Datta Node Zenryoku De Aishimasu!!",
+          "identifier": "seijo-ga-kurukara-kimi-wo-ai-suru-koto-wa-nai-to-iwareta-no-de-okazari-ouhi-tettei-shiteitara-seijo-ga-5-sai-datta-node-zenryoku-de-aishimasu",
+          "overviewUrl": "https://jestful.net/hwms-seijo-ga-kurukara-kimi-wo-ai-suru-koto-wa-nai-to-iwareta-no-de-okazari-ouhi-tettei-shiteitara-seijo-ga-5-sai-datta-node-zenryoku-de-aishimasu.html",
+          "episode": 4,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://jestful.net/bsaq-world-trigger-raw-chapter-258.html",
+        "expected": {
+          "sync": true,
+          "title": "World Trigger",
+          "identifier": "world-trigger",
+          "overviewUrl": "https://jestful.net/hwms-world-trigger-raw.html",
+          "episode": 258,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://jestful.net/bsaq-fuguushoku-kajishi-dakedo-saikyou-desu-manga-raw-chapter-163.html",
+        "expected": {
+          "sync": true,
+          "title": "Fuguushoku “kajishi” Dakedo Saikyou Desu",
+          "identifier": "fuguushoku-kajishi-dakedo-saikyou-desu",
+          "overviewUrl": "https://jestful.net/hwms-fuguushoku-kajishi-dakedo-saikyou-desu-manga-raw.html",
+          "episode": 163,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://jestful.net/hwms-fuguushoku-kajishi-dakedo-saikyou-desu-manga-raw.html",
+        "expected": {
+          "sync": false,
+          "title": "Fuguushoku “kajishi” Dakedo Saikyou Desu",
+          "identifier": "fuguushoku-kajishi-dakedo-saikyou-desu",
+          "image": "https://j1.jfimv2.xyz/images/20200727/3484916443a1abd48e2a6b1f0e5d032605.jpg",
+          "uiSelector": true,
+          "epList": {
+            "1" : "https://jestful.net/bsaq-fuguushoku-kajishi-dakedo-saikyou-desu-manga-raw-chapter-1.html",
+            "163" : "https://jestful.net/bsaq-fuguushoku-kajishi-dakedo-saikyou-desu-manga-raw-chapter-163.html"
+          }
+        }
+      }
+    ]
+  }

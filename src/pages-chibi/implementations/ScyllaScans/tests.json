@@ -1,0 +1,32 @@
+{
+  "title": "ScyllaScans",
+  "url": "https://scyllacomics.xyz/",
+  "testCases": [
+    {
+      "url": "https://scyllacomics.xyz/manga/kuzulesse-oblige/5.1",
+      "expected": {
+        "sync": true,
+        "title": "Kuzulesse Oblige - 18-kin Game Sekai no Kuzu Akuyaku ni Tensei Shiteshimatta Ore wa, Gensaku Chishiki no Chikara de Doushite mo Mob Jinsei wo Tsukami Toritai",
+        "identifier": "kuzulesse-oblige",
+        "overviewUrl": "https://scyllacomics.xyz/manga/kuzulesse-oblige",
+        "episode": 5,
+        "nextEpUrl": "https://scyllacomics.xyz/manga/kuzulesse-oblige/5.2",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://scyllacomics.xyz/manga/kuzulesse-oblige",
+      "expected": {
+        "sync": false,
+        "title": "Kuzulesse Oblige - 18-kin Game Sekai no Kuzu Akuyaku ni Tensei Shiteshimatta Ore wa, Gensaku Chishiki no Chikara de Doushite mo Mob Jinsei wo Tsukami Toritai",
+        "identifier": "kuzulesse-oblige",
+        "image": "https://scyllacomics.xyz/storage/covers/685791ab8ca99.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://scyllacomics.xyz/manga/kuzulesse-oblige/1",
+          "2": "https://scyllacomics.xyz/manga/kuzulesse-oblige/2.1"
+         }
+        }
+      }
+  ]
+}

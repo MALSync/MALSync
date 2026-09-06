@@ -1,0 +1,7 @@
+@import './../pages';
+
+// After the MALSync UI is injected in the overview page, a nearby
+// flex box grows in size. This CSS rule reverts its size.
+div.heading > div.action > div.flex-grow-1 {
+  flex: 0 0 14px !important;
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Anicrush",
+  "url": "https://anicrush.to",
+  "testCases": [
+    {
+      "url": "https://anicrush.to/detail/rezero-starting-life-in-another-world.ZTfb7l",
+      "expected": {
+        "sync": false,
+        "title": "Re:ZERO -Starting Life in Another World-",
+        "identifier": "ZTfb7l",
+        "image": "https://static.gniyonna.com/media/poster/480x720/100/7a29dc63e078656223dd54471c040528.jpg",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://anicrush.to/watch/rezero-starting-life-in-another-world.ZTfb7l?ep=7",
+      "expected": {
+        "sync": true,
+        "title": "Re:ZERO -Starting Life in Another World-",
+        "identifier": "ZTfb7l",
+        "episode": 7,
+        "image": "https://static.gniyonna.com/media/poster/480x720/100/7a29dc63e078656223dd54471c040528.jpg",
+        "overviewUrl": "https://anicrush.to/detail/rezero-starting-life-in-another-world.ZTfb7l",
+        "uiSelector": false
+      }
+    }
+  ]
+}

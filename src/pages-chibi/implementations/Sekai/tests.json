@@ -1,0 +1,39 @@
+{
+  "title": "Sekai",
+  "url": "https://sekai.one/",
+  "testCases": [
+    {
+      "url": "https://sekai.one/naruto-shippuden-streaming",
+      "expected": {
+        "sync": true,
+        "title": "Naruto Shippuden",
+        "identifier": "naruto-shippuden",
+        "overviewUrl": "https://sekai.one/naruto-shippuden",
+        "episode": 1,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://sekai.one/naruto-streaming/arc-1-pays-des-vagues",
+      "expected": {
+        "sync": true,
+        "title": "Naruto",
+        "identifier": "naruto",
+        "overviewUrl": "https://sekai.one/naruto-streaming",
+        "episode": 1,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://sekai.one/dragon-ball-super/arc-1",
+      "expected": {
+        "sync": true,
+        "title": "Dragon Ball Super",
+        "identifier": "dragon-ball-super",
+        "overviewUrl": "https://sekai.one/dragon-ball-super",
+        "episode": 1,
+        "uiSelector": true
+      }
+    }
+  ]
+}

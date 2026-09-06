@@ -24,6 +24,16 @@ export default {
     thenAction: Then,
     elseAction: Else,
   ): CT.UnwrapJson<Then> | CT.UnwrapJson<Else> {
+    if (ctx.isAsync()) {
+      return (async () => {
+        const conditionState = await ctx.runAsync(condition);
+        if (conditionState) {
+          return ctx.runAsync(thenAction);
+        }
+        return ctx.runAsync(elseAction);
+      })() as any;
+    }
+
     const conditionState = ctx.run(condition);
     if (conditionState) {
       return ctx.run(thenAction);
@@ -45,7 +55,9 @@ export default {
     thenAction: Then,
   ): CT.UnwrapJson<ReturnType<Then>> | Input {
     if (input) {
-      return ctx.run(thenAction as any, input);
+      return ctx.isAsync()
+        ? (ctx.runAsync(thenAction as any, input) as any)
+        : ctx.run(thenAction as any, input);
     }
     return input;
   },
@@ -65,6 +77,9 @@ export default {
   ): Exclude<Input, false | 0 | '' | null | undefined> {
     if (input) {
       return input as any;
+    }
+    if (ctx.isAsync()) {
+      return ctx.return(returnAction ? ctx.runAsync(returnAction) : null) as any;
     }
     return ctx.return(returnAction ? ctx.run(returnAction) : null) as any;
   },

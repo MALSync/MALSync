@@ -4,18 +4,18 @@
     <div class="ms-input-wrapper">
       <div class="el-input-number is-controls-right">
         <span
+          v-show="value"
           role="button"
           class="el-input-number__decrease ms-button"
           @click="decrease()"
-          v-show="value"
         >
           <i class="el-icon-arrow-down"></i>
         </span>
         <span
+          v-show="!(total && value === total)"
           role="button"
           class="el-input-number__increase ms-button"
           @click="increase()"
-          v-show="!(total && value === total)"
         >
           <i class="el-icon-arrow-up"></i>
         </span>

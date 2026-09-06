@@ -10,6 +10,7 @@
         "identifier": "dr-stone",
         "overviewUrl": "https://www.natomanga.com/manga/dr-stone",
         "nextEpUrl": "https://www.natomanga.com/manga/dr-stone/chapter-191",
+        "image": "https://imgs-2.2xstorage.com/thumb/dr-stone.webp",
         "episode": 190,
         "uiSelector": false
       }
@@ -21,6 +22,7 @@
         "title": "Baby Steps",
         "identifier": "baby-steps",
         "uiSelector": true,
+        "image": "https://imgs-2.2xstorage.com/thumb/baby-steps.webp",
         "epList": {
           "5": "https://www.mangakakalot.gg/manga/baby-steps/chapter-5",
           "194": "https://www.mangakakalot.gg/manga/baby-steps/chapter-194"
@@ -33,6 +35,7 @@
         "sync": false,
         "title": "Dr. Stone",
         "identifier": "dr-stone",
+        "image": "https://imgs-2.2xstorage.com/thumb/dr-stone.webp",
         "uiSelector": true,
         "epList": {
           "5": "https://www.natomanga.com/manga/dr-stone/chapter-5",

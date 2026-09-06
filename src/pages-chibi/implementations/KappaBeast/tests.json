@@ -1,0 +1,44 @@
+{
+  "title": "KappaBeast",
+  "url": "https://kappabeast.com",
+  "testCases": [
+    {
+      "url": "https://kappabeast.com/reader/ano-toki-tasukete-itadaita-monster-musume-desu-isekai-ossan-kyoushi-totsuzen-no-moteki-ni-konwaku-suru/55",
+      "expected": {
+        "sync": true,
+        "title": "'Ano Toki Tasukete Itadaita Monster Musume desu.' Isekai Ossan Kyoushi Totsuzen no Moteki ni Konwaku suru",
+        "identifier": "ano-toki-tasukete-itadaita-monster-musume-desu-isekai-ossan-kyoushi-totsuzen-no-moteki-ni-konwaku-suru",
+        "overviewUrl": "https://kappabeast.com/series/ano-toki-tasukete-itadaita-monster-musume-desu-isekai-ossan-kyoushi-totsuzen-no-moteki-ni-konwaku-suru",
+        "episode": 55,
+        "nextEpUrl": "https://kappabeast.com/reader/ano-toki-tasukete-itadaita-monster-musume-desu-isekai-ossan-kyoushi-totsuzen-no-moteki-ni-konwaku-suru/55.5",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kappabeast.com/reader/urenokori-no-dorei-elf-o-hirotta-no-de-musume-ni-suru-koto-ni-shita/25.1",
+      "expected": {
+        "sync": true,
+        "title": "Urenokori no Dorei Elf o Hirotta no de, Musume ni Suru Koto ni shita",
+        "identifier": "urenokori-no-dorei-elf-o-hirotta-no-de-musume-ni-suru-koto-ni-shita",
+        "overviewUrl": "https://kappabeast.com/series/urenokori-no-dorei-elf-o-hirotta-no-de-musume-ni-suru-koto-ni-shita",
+        "episode": 25,
+        "nextEpUrl": null,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://kappabeast.com/series/urenokori-no-dorei-elf-o-hirotta-no-de-musume-ni-suru-koto-ni-shita",
+      "expected": {
+        "sync": false,
+        "title": "Urenokori no Dorei Elf o Hirotta no de, Musume ni Suru Koto ni shita",
+        "identifier": "urenokori-no-dorei-elf-o-hirotta-no-de-musume-ni-suru-koto-ni-shita",
+        "image": "https://strapi.kappabeast.com/uploads/08c3765f_7718_447d_8500_a074b61e69c1_c4de81182c.jpg",
+        "uiSelector": true,
+        "epList": {
+          "25": "https://kappabeast.com/reader/urenokori-no-dorei-elf-o-hirotta-no-de-musume-ni-suru-koto-ni-shita/25.1",
+          "24": "https://kappabeast.com/reader/urenokori-no-dorei-elf-o-hirotta-no-de-musume-ni-suru-koto-ni-shita/24.1"
+        }
+      }
+    }
+  ]
+}

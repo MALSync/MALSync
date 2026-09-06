@@ -1,8 +1,8 @@
 export default /** @type {import('eslint').Linter.FlatConfig} */ ({
   rules: {
-    'import/no-webpack-loader-syntax': 'off',
-    'import/prefer-default-export': 'off',
-    'import/extensions': [
+    'import-x/no-webpack-loader-syntax': 'off',
+    'import-x/prefer-default-export': 'off',
+    'import-x/extensions': [
       'error',
       {
         css: 'always',
@@ -16,8 +16,8 @@ export default /** @type {import('eslint').Linter.FlatConfig} */ ({
         less: 'always',
       },
     ],
-    'import/no-self-import': 'warn',
-    'import/no-unresolved': [
+    'import-x/no-self-import': 'warn',
+    'import-x/no-unresolved': [
       'error',
       {
         ignore: ['style\\.less$', 'quicklinks\\.json$'],

@@ -26,7 +26,7 @@ if (process.env.FILES) {
 // Define global variables
 let browser;
 const debugging = false;
-let headless = OnlyPage ? false : true;
+let headless = OnlyPage && !process.env.CI ? false : true;
 let buildFailed = false;
 const mode = {
   quiet: false,
@@ -177,6 +177,7 @@ async function PreparePage(block, page, url, testPage) {
     log(block, 'Cached', 2);
 
     await page.setRequestInterception(true);
+    await page.setBypassServiceWorker(true);
 
     page.on('request', (request) => {
       if (!request.isInterceptResolutionHandled()) {
@@ -399,7 +400,7 @@ async function singleCase(block, test, page, testPage, retry = 0) {
           getManifest: function() {
             console.log('chrome.runtime.getManifest');
             return {
-              version: '0.1',
+              version: '10.1.1',
             };
           }
         },
@@ -408,12 +409,33 @@ async function singleCase(block, test, page, testPage, retry = 0) {
             get: function(keys, callback) {
               console.log('chrome.storage.local.get', keys, callback);
               callback({});
+              return Promise.resolve({});
             },
             set: function(items, callback) {
               console.log('chrome.storage.local.set', items, callback);
               if (callback) {
                 callback();
               }
+              return Promise.resolve({});
+            }
+          },
+          sync: {
+            get: function(keys, callback) {
+              console.log('chrome.storage.sync.get', keys, callback);
+              callback({});
+              return Promise.resolve({});
+            },
+            set: function(items, callback) {
+              console.log('chrome.storage.sync.set', items, callback);
+              if (callback) {
+                callback();
+              }
+              return Promise.resolve({});
+            }
+          },
+          onChanged: {
+            addListener: function(callback) {
+              console.log('chrome.storage.onChanged.addListener', callback);
             }
           }
         },
@@ -444,6 +466,7 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   expect(text.sync, 'Sync').to.equal(test.expected.sync);
   expect(text.title, 'Title').to.equal(test.expected.title);
   expect(text.identifier, 'Identifier').to.equal(test.expected.identifier);
+  expect(text.image, 'Image').to.equal(test.expected.image);
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
     if (test.expected.volume) {
@@ -560,7 +583,7 @@ async function openPage(b) {
 }
 
 async function initTestsArray() {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     dir.readFiles(
       `${__dirname}/../../src/`,
       {
@@ -630,6 +653,15 @@ async function main() {
   const awaitArray = [];
   let running = 0;
   await initTestsArray();
+
+  if (process.env.LIST_PAGES) {
+    const pages = testsArray
+      .filter(t => (t.enabled || typeof t.enabled === 'undefined') && !t.offline)
+      .map(t => t.title);
+    console.log(JSON.stringify(pages));
+    process.exit();
+  }
+
   if (mode.parallel) {
     await getBrowser();
     for (const testPage of testsArray) {

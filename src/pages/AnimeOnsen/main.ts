@@ -67,7 +67,7 @@ export const AnimeOnsen: pageInterface = {
       // generate ao.details url
       const contentId = AnimeOnsen.overview!.getIdentifier(url) || '';
       const overviewUrl = new URL(<string>AnimeOnsen.domain);
-      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+
       overviewUrl.pathname = `/details/${contentId}`;
       return overviewUrl.href;
     },

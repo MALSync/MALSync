@@ -1,0 +1,37 @@
+{
+  "title": "Ritharscans",
+  "url": "https://ritharscans.com/",
+  "testCases": [
+    {
+      "url": "https://ritharscans.com/series/702e0f05-121f-404f-b0a3-e282cd07385b",
+      "expected": {
+        "sync": false,
+        "title": "Ore wa Kage no Eiyuu ja Arimasen!",
+        "identifier": "702e0f05-121f-404f-b0a3-e282cd07385b",
+        "uiSelector": true,
+        "image": "https://ritharscans.com/storage/series/webtoon/702e0f05-121f-404f-b0a3-e282cd07385b/01JNKZCC9D8X0BZP4G2TJ2FM39.jpg",
+        "epList": {
+          "1": "https://ritharscans.com/read/ac2a05a2-faba-4b7e-b92f-212e82d9c095",
+          "6": "https://ritharscans.com/read/cf4b75d7-79e6-4f6e-8079-587e178325ef"
+        }
+      }
+    },
+    {
+      "url": "https://ritharscans.com/read/ac2a05a2-faba-4b7e-b92f-212e82d9c095",
+      "expected": {
+        "sync": true,
+        "title": "Ore wa Kage no Eiyuu ja Arimasen!",
+        "identifier": "702e0f05-121f-404f-b0a3-e282cd07385b",
+        "uiSelector": false,
+        "image": "https://ritharscans.com/storage/series/webtoon/702e0f05-121f-404f-b0a3-e282cd07385b/01JNKZCC9EYVQPYWMF347FDJFG.jpg",
+        "overviewUrl": "https://ritharscans.com/series/702e0f05-121f-404f-b0a3-e282cd07385b",
+        "episode": 1,
+        "epList": {
+          "1": "https://ritharscans.com/read/ac2a05a2-faba-4b7e-b92f-212e82d9c095",
+          "6": "https://ritharscans.com/read/cf4b75d7-79e6-4f6e-8079-587e178325ef"
+        },
+        "nextEpUrl": "https://ritharscans.com/read/2fa5a177-1d5d-4d55-9f0d-4204bd956768"
+      }
+    }
+  ]
+}

@@ -64,7 +64,7 @@
         "description": "All"
     },
     "Package_Description": {
-        "message": "Integrerar MyAnimeList/AniList/Kitsu/Simkl till olika platser, med automatisk episodspårning.",
+        "message": "Integrerar MyAnimeList, AniList, Kitsu, Simkl, MangaBaka till olika platser, med automatisk episodspårning.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -520,7 +520,7 @@
         "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-        "message": "Vid inaktivering så kommer streaming sidan inte längre visas vid sidofältet bredvid en anime på MyAnimeList/AniList/Kitsu.",
+        "message": "Vid inaktivering så kommer streaming sidan inte längre visas vid sidofältet bredvid en anime på MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka.",
         "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -798,5 +798,47 @@
     "locale": {
         "message": "sv",
         "description": "Current locale"
+    },
+    "Add": {
+        "message": "Lägg till"
+    },
+    "Ok": {
+        "message": "Ok"
+    },
+    "Cancel": {
+        "message": "Avbryt"
+    },
+    "updated": {
+        "message": "Uppdaterad"
+    },
+    "removed": {
+        "message": "Borttaget"
+    },
+    "Synchronize": {
+        "message": "Synkronisera"
+    },
+    "Load": {
+        "message": "Ladda"
+    },
+    "UI_Status_All": {
+        "message": "Alla"
+    },
+    "next": {
+        "message": "Nästa"
+    },
+    "back": {
+        "message": "Tillbaka"
+    },
+    "start": {
+        "message": "Starta"
+    },
+    "Anime": {
+        "message": "Anime"
+    },
+    "Manga": {
+        "message": "Manga"
+    },
+    "UI_Rules": {
+        "message": "Regler"
     }
 }

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const appTarget = process.env.APP_TARGET || 'general';
+const isFirefox = appTarget === 'firefox';
 const packageJson = require('../package.json');
 
 const { getKeys } = require('./utils/keys');
@@ -18,6 +19,7 @@ plugins = [
     __VUE_OPTIONS_API__: true,
     __VUE_PROD_DEVTOOLS__: false,
     __MAL_SYNC_KEYS__: JSON.stringify(getKeys()),
+    __IS_FIREFOX__: isFirefox,
   }),
 ]
 

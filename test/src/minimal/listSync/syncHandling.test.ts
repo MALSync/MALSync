@@ -61,6 +61,9 @@ describe('Sync Handling', function() {
     it('Shiki', function() {
       expect(sync.getType('https://shikimori.one/animes/z19815-no-game-no-life')).to.equal('SHIKI');
     });
+    it('Shiki', function () {
+      expect(sync.getType('https://shikimori.io/animes/z19815-no-game-no-life')).to.equal('SHIKI');
+    });
     it('Random', function() {
       expect(() => sync.getType('Random')).to.throw();
     });
@@ -273,17 +276,18 @@ describe('Sync Handling', function() {
       mal: 'mal',
       anilist: 'anilist',
       kitsu: 'kitsu',
+      mangabaka: 'mangabaka',
       simkl: 'simkl',
       shiki: 'shiki',
     });
     it('providerType', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'SIMKL', 'SHIKI']);
+        expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'MANGABAKA', 'SIMKL', 'SHIKI']);
       }
     });
     it('providerSettings', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl', 'shiki']);
+        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'mangabaka', 'simkl', 'shiki']);
       }
     });
   });
@@ -302,6 +306,11 @@ describe('Sync Handling', function() {
           master: false,
         },
         kitsu: {
+          text: 'Init',
+          list: null,
+          master: false,
+        },
+        mangabaka: {
           text: 'Init',
           list: null,
           master: false,
@@ -335,6 +344,8 @@ describe('Sync Handling', function() {
       const stub = Api.getStub({
         settings: {
           syncMode: 'MAL',
+          syncModeSimkl: 'MAL',
+          splitTracking: false,
         },
       });
       Api.setStub(stub);
@@ -345,13 +356,15 @@ describe('Sync Handling', function() {
       expect(res.master).equal('MAL');
       expect(res.slaves).to.not.include('MAL');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
-      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'KITSU', 'SIMKL', 'SHIKI']);
+      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'KITSU', 'MANGABAKA', 'SIMKL', 'SHIKI']);
     });
 
     it('ANILIST Master', async function() {
       const stub = Api.getStub({
         settings: {
           syncMode: 'ANILIST',
+          syncModeSimkl: 'ANILIST',
+          splitTracking: false,
         },
       });
       Api.setStub(stub);
@@ -368,6 +381,8 @@ describe('Sync Handling', function() {
       const stub = Api.getStub({
         settings: {
           syncMode: 'KITSU',
+          syncModeSimkl: 'KITSU',
+          splitTracking: false,
         },
       });
       Api.setStub(stub);
@@ -383,6 +398,8 @@ describe('Sync Handling', function() {
       const stub = Api.getStub({
         settings: {
           syncMode: 'SIMKL',
+          syncModeSimkl: 'MAL',
+          splitTracking: false,
         },
       });
       Api.setStub(stub);
@@ -400,6 +417,7 @@ describe('Sync Handling', function() {
         settings: {
           syncMode: 'SIMKL',
           syncModeSimkl: 'MAL',
+          splitTracking: false,
         },
       });
       Api.setStub(stub);
@@ -416,6 +434,8 @@ describe('Sync Handling', function() {
       const stub = Api.getStub({
         settings: {
           syncMode: 'SHIKI',
+          syncModeSimkl: 'SHIKI',
+          splitTracking: false,
         },
       });
       Api.setStub(stub);
@@ -426,6 +446,24 @@ describe('Sync Handling', function() {
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
       expect(res.slaves).to.not.include('SHIKI');
     });
+
+    it('MANGABAKA Master', async function () {
+      const stub = Api.getStub({
+        settings: {
+          syncMode: 'MANGABAKA',
+          syncModeSimkl: 'MAL',
+          splitTracking: false,
+        },
+      });
+      Api.setStub(stub);
+      const providerList = getProviderListList();
+      const res = await sync.retriveLists(providerList, 'manga', getListStub);
+
+      expect(res.master).equal('MANGABAKA');
+      expect(res.slaves).to.have.length(res.typeArray.length - 1);
+      expect(res.slaves).to.not.include('MANGABAKA');
+    });
+
 
     it('typeArray', async function() {
       getListStub = (prov, type) => {
@@ -441,6 +479,8 @@ describe('Sync Handling', function() {
       const stub = Api.getStub({
         settings: {
           syncMode: 'MAL',
+          syncModeSimkl: 'MAL',
+          splitTracking: false,
         },
       });
       Api.setStub(stub);
@@ -448,7 +488,7 @@ describe('Sync Handling', function() {
       const providerList = getProviderListList();
       const res = await sync.retriveLists(providerList, 'anime', getListStub);
 
-      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'SIMKL', 'SHIKI']);
+      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'MANGABAKA', 'SIMKL', 'SHIKI']);
     });
   });
 });

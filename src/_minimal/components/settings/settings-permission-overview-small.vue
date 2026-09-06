@@ -27,7 +27,7 @@ if (supportsPermissions && mode !== 'install') {
 
 <style lang="less" scoped>
 .error-section {
-  background-color: var(--state-4);
+  background-color: var(--cl-state-4);
   position: sticky;
   bottom: 0;
   padding: 10px;

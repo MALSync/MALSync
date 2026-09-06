@@ -3,7 +3,7 @@ import { createApp } from '../utils/Vue';
 import minimalApp from './minimalApp.vue';
 import { status } from '../_provider/definitions';
 import { router } from './router';
-import { Progress } from '../utils/progress';
+import { ProgressRelease } from '../utils/progressRelease';
 import { urlToSlug } from '../utils/slugs';
 
 export class Minimal {
@@ -61,5 +61,5 @@ export type bookmarkItem = {
   streamIcon?: string;
   progressEp?: number;
   progressText?: string;
-  progress?: Progress;
+  progress?: ProgressRelease;
 };

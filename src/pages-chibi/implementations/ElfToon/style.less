@@ -1,0 +1,31 @@
+@import './../pages';
+
+@boxBackground: #ffffff1c;
+@activeEp: #00e2ff75;
+@highlightStyle: 0;
+@boxFontColor: #fff;
+@boxLabelFontColor: #fff;
+@boxOptionsBackground: #333;
+
+#malp {
+  margin-top: 20px;
+  #MalData {
+    .malp-group {
+      .malp-group-field:not(.malp-group-input),
+      .malp-group-value-section {
+        border: 0.1px solid #00e2ff75 !important;
+        &:hover,
+        &:focus-within {
+          background-color: #00ffff3b !important;
+        }
+      }
+    }
+  }
+}
+.malp-group-value-section {
+  display: flex !important;
+}
+
+.epHighlight {
+  box-shadow: inset 5px 0 0 0 @activeEp;
+}

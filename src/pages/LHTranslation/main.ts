@@ -8,8 +8,8 @@ export const LHTranslation: pageInterface = {
   isSyncPage(url) {
     return Boolean(
       utils.urlPart(url, 3) === 'manga' &&
-        utils.urlPart(url, 5) &&
-        utils.urlPart(url, 5).startsWith('chapter-'),
+      utils.urlPart(url, 5) &&
+      utils.urlPart(url, 5).startsWith('chapter-'),
     );
   },
   isOverviewPage(url) {

@@ -1,6 +1,0 @@
-{
-  "search": "https://watch.hikaritv.xyz/search?keyword={searchterm}",
-  "urls": {
-    "match": ["*://watch.hikaritv.xyz/*", "*://hikari.gg/*"]
-  }
-}

@@ -10,8 +10,8 @@
             <span class="stream-text">{{ lang(`overview_Continue_${item.type}`) }} <Arrow /></span>
           </TextIcon>
         </MediaLink>
-        <div v-if="item.progressText" class="time">
-          {{ item.progressText }}
+        <div v-if="item.progress?.progress()?.getAuto()" class="time" :title="item.progressText">
+          {{ item.progress.progress()!.getAuto() }}
         </div>
       </div>
       <MediaLink :href="item.url" class="link" />
@@ -181,7 +181,7 @@ defineProps({
 
     each(@state-colors, {
       &.state-@{key} {
-        background: linear-gradient(90deg, ~"var(--state-@{key})"0%, ~"var(--cl-backdrop)" 30%);
+        background: linear-gradient(90deg, ~"var(--cl-state-@{key})"0%, ~"var(--cl-backdrop)" 30%);
       }
     });
 

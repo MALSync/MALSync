@@ -1,5 +1,6 @@
 import { NotAutenticatedError } from '../Errors';
 import { ListAbstract, listElement } from '../listAbstract';
+import { buildProviderUrl } from '../../utils/slugs';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 
@@ -65,7 +66,7 @@ export class UserList extends ListAbstract {
           cacheKey: this.getCacheKey(el.show.ids.mal, el.show.ids.simkl),
           type: listType,
           title: el.show.title,
-          url: `https://simkl.com/${listType}/${el.show.ids.simkl}`,
+          url: buildProviderUrl('SIMKL', listType, el.show.ids.simkl),
           score: el.user_rating ? el.user_rating : 0,
           watchedEp: curep,
           totalEp: el.total_episodes_count,

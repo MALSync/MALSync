@@ -4,7 +4,7 @@ import { greaterCurrentVersion } from '../../utils/version';
 
 type StorageInterface = {
   chibiPages: PageListJsonInterface['pages'];
-  errors: Record<string, unknown>;
+  repoUrls: string[];
 };
 
 export class ChibiListRepository {
@@ -12,14 +12,22 @@ export class ChibiListRepository {
 
   private pages: PageListJsonInterface['pages'] | null = null;
 
+  private data:
+    | ({ url: string; pages: PageListJsonInterface['pages'] } | { error: Error; url: string })[]
+    | null = null;
+
   private useCache: boolean;
 
-  static getInstance(useCache = false) {
+  static async getInstance(useCache = false) {
     let repos;
     if ((api.type as any) === 'userscript') {
-      repos = ['https://chibi.malsync.moe/config'];
+      repos = ['https://chibi.malsync.moe/config', 'https://chibi.malsync.moe/adult'];
     } else {
-      repos = [chrome.runtime.getURL('chibi'), 'https://chibi.malsync.moe/config'];
+      repos = [
+        chrome.runtime.getURL('chibi'),
+        'https://chibi.malsync.moe/config',
+        ...(((await api.settings.getAsync('chibiRepos')) as string[]) || []),
+      ];
     }
     return new ChibiListRepository(repos, useCache);
   }
@@ -30,30 +38,44 @@ export class ChibiListRepository {
   }
 
   async init() {
-    const storageKey = `chibiPages-${api.storage.version()}`;
-    const data: StorageInterface = ((await api.storage.get(
-      storageKey,
-    )) as StorageInterface | null) || { chibiPages: {}, errors: {} };
+    const storageKey = `chibiPages/${api.storage.version()}`;
+    const data: StorageInterface = this.useCache
+      ? ((await api.storage.get(storageKey)) as StorageInterface | null) || {
+          chibiPages: {},
+          repoUrls: this.collections,
+        }
+      : { chibiPages: {}, repoUrls: this.collections };
 
-    if (this.useCache && data.chibiPages && Object.keys(data.chibiPages).length > 0) {
+    if (
+      this.useCache &&
+      data.chibiPages &&
+      Object.keys(data.chibiPages).length > 0 &&
+      JSON.stringify(data.repoUrls) === JSON.stringify(this.collections)
+    ) {
       this.pages = data.chibiPages;
       return this;
     }
 
-    const errors = {};
-    const collectionsData = (
+    const collectionsData: ((PageListJsonInterface | { error: Error }) & { url: string })[] =
       await Promise.all(
         this.collections.map(c =>
-          this.retrieveCollection(c).catch(e => {
-            errors[c] = e;
-            return null as unknown as PageListJsonInterface;
-          }),
+          this.retrieveCollection(c)
+            .catch(e => {
+              return {
+                error: e,
+              };
+            })
+            .then(res => {
+              return {
+                ...res,
+                url: c,
+              };
+            }),
         ),
-      )
-    ).filter(c => c);
-    data.errors = errors;
+      );
 
     collectionsData.forEach(col => {
+      if ('error' in col) return;
       Object.keys(col.pages).forEach(key => {
         // Skip pages that require a higher version than current
         if (col.pages[key].minimumVersion && greaterCurrentVersion(col.pages[key].minimumVersion)) {
@@ -73,6 +95,7 @@ export class ChibiListRepository {
 
     await api.storage.set(storageKey, data);
     this.pages = data.chibiPages;
+    this.data = collectionsData;
 
     return this;
   }
@@ -85,6 +108,16 @@ export class ChibiListRepository {
       res.pages[key].root = root;
     });
     return res;
+  }
+
+  public getData() {
+    if (this.useCache) {
+      throw new Error('Data is not available when using cache');
+    }
+    if (!this.data) {
+      throw new Error('Data not loaded');
+    }
+    return this.data;
   }
 
   public getList() {
@@ -112,10 +145,18 @@ export class ChibiListRepository {
     return res;
   }
 
-  public getPermissions(): domainType[] {
+  public async getPermissions(): Promise<domainType[]> {
     const pages = this.getList();
+    const customDomains: domainType[] = await api.settings.getAsync('customDomains');
     const permissions = Object.values(pages).map(page => {
-      return page.urls.match.map(url => {
+      const matching = page.urls.match;
+
+      if (page.features?.customDomains) {
+        const customDomainMatches = customDomains.filter(domain => domain.page === page.name);
+        matching.push(...customDomainMatches.map(domain => domain.domain));
+      }
+
+      const pagePermissions: domainType[] = matching.map(url => {
         return {
           page: `${page.name} (chibi)`,
           domain: url,
@@ -123,6 +164,29 @@ export class ChibiListRepository {
           chibi: true,
         };
       });
+
+      for (const player in page.urls.player) {
+        page.urls.player[player].forEach(url => {
+          pagePermissions.push({
+            page: `${page.name}[${player}] (chibi)`,
+            domain: url,
+            auto: true,
+            player: true,
+          });
+        });
+      }
+
+      if (page.features?.requestProxy) {
+        matching.forEach(url => {
+          pagePermissions.push({
+            page: `${page.name} (chibi request proxy)`,
+            domain: url,
+            proxy: 'content/proxy/proxy_request.js',
+          });
+        });
+      }
+
+      return pagePermissions;
     });
     return permissions.flat();
   }
@@ -132,7 +196,10 @@ export class ChibiListRepository {
     return Object.values(pages).map(page => {
       return {
         name: `${page.name} (chibi)`,
-        match: page.urls.match,
+        match: [
+          ...page.urls.match,
+          ...(page.urls.player ? Object.values(page.urls.player).flat() : []),
+        ],
       };
     });
   }

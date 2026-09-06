@@ -1,8 +1,9 @@
-import { fullscreenNotification, getPlayerTime, shortcutListener } from './utils/player';
+import { fullscreenNotification, PlayerSingleton, shortcutListener } from './utils/player';
 
 let tempPlayer: any;
 
-getPlayerTime(function (item, player) {
+const playerInstance = PlayerSingleton.getInstance().startTracking();
+playerInstance.addListener('iframe', (item, player) => {
   chrome.runtime.sendMessage({ name: 'videoTime', item });
   tempPlayer = player;
 });

@@ -53,10 +53,8 @@ watch(url, () => {
   open.value = true;
 });
 
-const Teleport = teleport_ as {
-  new (): {
-    $props: VNodeProps & TeleportProps;
-  };
+const Teleport = teleport_ as new () => {
+  $props: VNodeProps & TeleportProps;
 };
 </script>
 
@@ -114,7 +112,7 @@ const Teleport = teleport_ as {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--cl-primary-contrast);
   }
 
   .image-icon {

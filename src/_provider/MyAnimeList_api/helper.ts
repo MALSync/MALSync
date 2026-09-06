@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import { startFinishDate, status } from '../definitions';
 import { clientId } from '../../utils/oauth';
 import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';

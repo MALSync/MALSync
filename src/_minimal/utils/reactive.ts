@@ -1,7 +1,7 @@
 import { reactive, Ref, watch } from 'vue';
 import { Cache } from '../../utils/Cache';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-shadow
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Parameter<G> = G extends (arg: infer G) => any ? G : never;
 
 export function createRequest<F extends (arg: any) => Promise<any>>(

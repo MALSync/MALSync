@@ -1,0 +1,32 @@
+{
+    "title": "KakuseiProject",
+    "url": "https://kakuseiproject.com",
+    "testCases": [
+      {
+        "url": "https://kakuseiproject.com/manga/yamada-kun-to-lv999-no-koi-wo-suru/capitulo-51/",
+        "expected": {
+          "sync": true,
+          "title": "Yamada-kun to Lv999 no Koi wo Suru",
+          "identifier": "yamada-kun-to-lv999-no-koi-wo-suru",
+          "overviewUrl": "https://kakuseiproject.com/manga/yamada-kun-to-lv999-no-koi-wo-suru",
+          "episode": 51,
+          "uiSelector": false,
+          "image": "https://kakuseiproject.com/wp-content/uploads/2024/03/capa-yamada.jpg"
+        }
+      },
+      {
+        "url": "https://kakuseiproject.com/manga/yamada-kun-to-lv999-no-koi-wo-suru/",
+        "expected": {
+          "sync": false,
+          "title": "Yamada-kun to Lv999 no Koi wo Suru",
+          "identifier": "yamada-kun-to-lv999-no-koi-wo-suru",
+          "image": "https://kakuseiproject.com/wp-content/uploads/2024/03/capa-yamada-193x278.jpg",
+          "uiSelector": true,
+          "epList": {
+            "54" : "https://kakuseiproject.com/manga/yamada-kun-to-lv999-no-koi-wo-suru/capitulo-54/",
+            "1": "https://kakuseiproject.com/manga/yamada-kun-to-lv999-no-koi-wo-suru/capitulo-1/"
+          }
+       }
+     }
+   ]
+ }

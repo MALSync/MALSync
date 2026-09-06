@@ -1,0 +1,44 @@
+{
+    "title": "AsmodeusScans",
+    "url": "https://asmotoon.com",
+    "testCases": [
+      {
+        "url": "https://asmotoon.com/chapter/63fee55d460-63fee663c59/",
+        "expected": {
+          "sync": true,
+          "title": "The Villainess, Who Is No Better Than an Extra, Cross-Dresses to Be a Love Interest",
+          "identifier": "63fee55d460",
+          "overviewUrl": "https://asmotoon.com/series/63fee55d460/",
+          "episode": 8,
+          "nextEpUrl": "https://asmotoon.com/chapter/63fee55d460-63fee6db228/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://asmotoon.com/chapter/62f01b00044-639ab1158f8/",
+        "expected": {
+          "sync": true,
+          "title": "Yamamoto-san Gets Caught Up in a Death Game and Destroys the Game Balance",
+          "identifier": "62f01b00044",
+          "overviewUrl": "https://asmotoon.com/series/62f01b00044/",
+          "episode": 4,
+          "nextEpUrl": "https://asmotoon.com/chapter/62f01b00044-63d31262fcd/",
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://asmotoon.com/series/62f01b00044/",
+        "expected": {
+          "sync": false,
+          "title": "Yamamoto-san Gets Caught Up in a Death Game and Destroys the Game Balance",
+          "identifier": "62f01b00044",
+          "image": "https://wsrv.nl/?url=cdn.meowing.org/uploads/H_X8n3chije",
+          "uiSelector": true,
+          "epList": {
+            "4" : "https://asmotoon.com/chapter/62f01b00044-639ab1158f8/",
+            "6" : "https://asmotoon.com/chapter/62f01b00044-64017b338ad/"
+          }
+        }
+      }
+    ]
+  }
