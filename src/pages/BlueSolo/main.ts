@@ -2,72 +2,63 @@ import { pageInterface } from '../pageInterface';
 
 export const BlueSolo: pageInterface = {
   name: 'BlueSolo',
-  domain: 'https://www.bluesolo.org',
+  domain: 'https://bluesolo.org',
   languages: ['French'],
   type: 'manga',
   isSyncPage(url) {
-    return typeof url.split('/')[5] !== 'undefined' && url.split('/')[5] !== '';
+    return url.split('/')[3] === 'read';
   },
   sync: {
     getTitle() {
-      return j.$('div.c-breadcrumb > ol > li:nth-child(3) > a').text().trim();
+      return j.$('.comic-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl() {
-      return utils.absoluteLink(
-        j.$('div.c-breadcrumb > ol > li:nth-child(3) > a').attr('href'),
-        BlueSolo.domain,
-      );
+      return utils.absoluteLink(j.$('.comic-title').attr('href'), BlueSolo.domain);
+    },
+    getVolume(url) {
+      if (utils.urlPart(url, 6) === 'vol') {
+        return Number(utils.urlPart(url, 7));
+      }
+      return 0;
     },
     getEpisode(url) {
-      const type = url.split('/')[5];
-      if (type.includes('chapitre')) {
-        return Number(type.replace('chapitre-', ''));
+      if (utils.urlPart(url, 6) === 'vol') {
+        return Number(utils.urlPart(url, 9));
       }
-      if (type.includes('one-shot')) {
-        return 1;
-      }
-      return NaN;
+      return Number(utils.urlPart(url, 7));
     },
     nextEpUrl() {
-      const nextChapter = j
-        .$('.selectpicker_chapter select option:selected')
-        .prev()
-        .attr('data-redirect');
-      return utils.absoluteLink(nextChapter, BlueSolo.domain);
+      const nextEp = j.$('#chapter-link-right').attr('href');
+      if (String(nextEp).startsWith('/comics')) {
+        return '';
+      }
+      return utils.absoluteLink(nextEp, BlueSolo.domain);
     },
   },
   overview: {
     getTitle() {
-      return j.$('.post-title > h1').text().trim();
+      return j.$('#comic > div:nth-child(1) > div.card-header').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.tab-summary ').after(
-        j.html(`<div class="pagemanga">
-          <div class="c-blog__heading style-2 font-heading">
-            <h2 class="h4">
-              <i class="icon ion-ios-sync"></i>
-              MAL-SYNC </h2>
-          </div>
-          ${selector}
-        </div>`),
+      j.$('#comic > div:nth-child(1)').after(
+        j.html(
+          `<div class="card mt-3"><div class="card-header"><span class="fas fa-rotate fa-fw"></span> MAL-Sync</div><div class="card-body">${selector}</div></div>`,
+        ),
       );
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.version-chap > li.wp-manga-chapter');
+        return j.$('.item');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector.find('a[href*="/manga/"]').attr('href') || '',
-          BlueSolo.domain,
-        );
+        return utils.absoluteLink(selector.find('.filter').attr('href'), BlueSolo.domain);
       },
       elementEp(selector) {
         return BlueSolo.sync.getEpisode(BlueSolo.overview!.list!.elementUrl!(selector));
@@ -78,15 +69,24 @@ export const BlueSolo: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    j.$(document).ready(function () {
-      if (page.url.split('/')[3] === 'manga' && typeof page.url.split('/')[4] !== 'undefined') {
+
+    let inter;
+
+    utils.fullUrlChangeDetect(() => {
+      page.reset();
+      start();
+    });
+
+    function start() {
+      clearInterval(inter);
+      const urlSegment = page.url.split('/')[3];
+      const handlingPage = urlSegment === 'read' || urlSegment === 'comics';
+
+      if (handlingPage && typeof page.url.split('/')[4] !== 'undefined') {
         con.info('Waiting');
-        utils.waitUntilTrue(
+        inter = utils.waitUntilTrue(
           () => {
-            return (
-              (j.$('.post-title > h1').length && j.$('.profile-manga').length) ||
-              j.$('#chapter-heading')
-            );
+            return j.$('#comic').length || j.$('#reader').length;
           },
           () => {
             con.info('Start');
@@ -94,6 +94,6 @@ export const BlueSolo: pageInterface = {
           },
         );
       }
-    });
+    }
   },
 };

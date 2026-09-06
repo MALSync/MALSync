@@ -1,45 +1,24 @@
 @import './../pages';
 
-@textColor: #888 !important;
-@activeEp: #2d5e78;
+@textColor: inherit;
+@activeEp: var(--bs-primary);
+@inputBackground: var(--bs-body-bg);
 
-#malp {
-  margin-bottom: 0 !important;
+.mal-sync-active {
+  background-color: var(--bs-primary) !important;
+
   * {
-    float: left;
-    margin-right: 5px;
-  }
-  #MalInfo {
-    float: none;
-    display: flex;
-  }
-  #MalData {
-    float: none;
-  }
-  .info {
-    font-weight: 600;
-  }
-  select option {
-    background-color: @activeEp !important;
     color: white !important;
-    font-weight: 600;
-  }
-  #malStatus,
-  #malUserRating,
-  #malEpisodes,
-  #malVolumes,
-  #malEpisodes {
-    line-height: normal;
-    inline-size: auto;
-  }
-  #malTotalVol,
-  #malTotalCha {
-    float: none;
   }
 }
 
-.mal-sync-active {
-  * {
-    color: white !important;
+#malp {
+  margin: 0;
+}
+
+// Using breakpoint from overview image
+@media only screen and (max-width: 768px) {
+  #MalData {
+    flex-direction: column;
   }
 }

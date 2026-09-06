@@ -1,25 +1,38 @@
 {
   "title": "BlueSolo",
-  "url": "https://www.bluesolo.org/",
+  "url": "https://bluesolo.org/",
   "testCases": [
     {
-      "url": "https://www.bluesolo.org/manga/red-hood/chapitre-6/",
+      "url": "https://bluesolo.org/read/the-jojolands/fr/vol/10/ch/38",
       "expected": {
         "sync": true,
-        "title": "Red Hood",
-        "identifier": "red-hood",
-        "overviewUrl": "https://www.bluesolo.org/manga/red-hood/",
-        "nextEpUrl": "https://www.bluesolo.org/manga/red-hood/chapitre-7/",
-        "episode": 6,
+        "title": "The JOJOLands : JoJo's Bizarre Adventure Partie 9 (Noir et Blanc)",
+        "identifier": "the-jojolands",
+        "overviewUrl": "https://bluesolo.org/comics/the-jojolands",
+        "nextEpUrl": "https://bluesolo.org/read/the-jojolands/fr/vol/10/ch/39",
+        "episode": 38,
+        "volume": 10,
         "uiSelector": false
       }
     },
     {
-      "url": "https://www.bluesolo.org/manga/red-hood/",
+      "url": "https://bluesolo.org/read/marriage-toxin/fr/ch/177",
+      "expected": {
+        "sync": true,
+        "title": "Marriage Toxin",
+        "identifier": "marriage-toxin",
+        "overviewUrl": "https://bluesolo.org/comics/marriage-toxin",
+        "nextEpUrl": "https://bluesolo.org/read/marriage-toxin/fr/ch/178",
+        "episode": 177,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bluesolo.org/comics/the-jojolands",
       "expected": {
         "sync": false,
-        "title": "Red Hood",
-        "identifier": "red-hood",
+        "title": "The JOJOLands : JoJo's Bizarre Adventure Partie 9 (Noir et Blanc)",
+        "identifier": "the-jojolands",
         "uiSelector": true
       }
     }
