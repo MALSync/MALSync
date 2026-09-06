@@ -10,13 +10,13 @@ export const FMTeam: pageInterface = {
   },
   sync: {
     getTitle() {
-      return j.$('.comic-title').text().trim();
+      return j.$('#reader-sidebar > div > div:first-child > h4').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl() {
-      return utils.absoluteLink(j.$('.comic-title').attr('href'), FMTeam.domain);
+      return utils.absoluteLink(j.$('.back-link').attr('href'), FMTeam.domain);
     },
     getVolume(url) {
       if (utils.urlPart(url, 6) === 'vol') {
@@ -31,33 +31,35 @@ export const FMTeam: pageInterface = {
       return Number(utils.urlPart(url, 7));
     },
     nextEpUrl() {
-      if (String(j.$('#chapter-link-right').attr('href')).startsWith('/comics')) {
-        return '';
-      }
-      return utils.absoluteLink(j.$('#chapter-link-right').attr('href'), FMTeam.domain);
+      return utils.absoluteLink(
+        j.$('.page-nav-btn.chapter-btn').last().attr('href'),
+        FMTeam.domain,
+      );
     },
   },
   overview: {
     getTitle() {
-      return j.$('#comic > div:nth-child(1) > div.card-header').text().trim();
+      return j.$('.manga-title').clone().children().remove().end().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#comic > div:nth-child(1)').after(
-        j.html(
-          `<div class="card mt-3"><div class="card-header"><span class="fas fa-rotate fa-fw"></span> MAL-Sync</div><div class="card-body">${selector}</div></div>`,
-        ),
-      );
+      j.$('.chapters-header')
+        .first()
+        .before(
+          j.html(
+            `<div class="chapters-header"><span class="section-title">MAL-Sync</span></div>${selector}`,
+          ),
+        );
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.item');
+        return j.$('.chapters-list .chapter-item');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('.filter').attr('href'), FMTeam.domain);
+        return utils.absoluteLink(selector.attr('href'), FMTeam.domain);
       },
       elementEp(selector) {
         return FMTeam.sync.getEpisode(FMTeam.overview!.list!.elementUrl!(selector));
@@ -79,13 +81,13 @@ export const FMTeam: pageInterface = {
     function start() {
       clearInterval(inter);
       const urlSegment = page.url.split('/')[3];
-      const handlingPage = urlSegment === 'read' || urlSegment === 'comics';
+      const handlingPage = urlSegment === 'read' || urlSegment === 'manga';
 
       if (handlingPage && typeof page.url.split('/')[4] !== 'undefined') {
         con.info('Waiting');
         inter = utils.waitUntilTrue(
           () => {
-            return j.$('#comic').length || j.$('#jump-chapter').length;
+            return j.$('.manga-header').length || j.$('#reader-sidebar').length;
           },
           () => {
             con.info('Start');
