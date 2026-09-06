@@ -68,7 +68,6 @@ import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
-import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
@@ -205,7 +204,6 @@ export const pages = {
   Guya,
   MangaHub,
   ComicK,
-  Bentomanga,
   MangaSushi,
   TritiniaScans,
   ReadManhua,
