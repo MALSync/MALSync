@@ -63,43 +63,6 @@ export const FlixMomo: PageInterface = {
       return $c.url().urlParam('e').number().run();
     },
   },
-  overview: {
-    isOverviewPage($c) {
-      return $c
-        .and(
-          $c.url().urlPart(3).equals('tv').run(),
-          $c.url().urlPart(4).boolean().run(),
-          $c.url().urlPart(6).boolean().not().run(),
-          isAnime($c).run(),
-        )
-        .run();
-    },
-    getTitle($c) {
-      return $c.querySelector('main h4').text().trim().run();
-    },
-    getIdentifier($c) {
-      return getIdentifier($c).run();
-    },
-    getImage($c) {
-      return $c.querySelector('main img.poster-img').getAttribute('src').ifNotReturn().run();
-    },
-    uiInjection($c) {
-      return $c.querySelector('main h4').uiAfter().run();
-    },
-  },
-  list: {
-    elementsSelector($c) {
-      return $c.querySelectorAll('main button[data-episode]').run();
-    },
-    elementUrl($c) {
-      const episode = $c.target().getAttribute('data-episode').number().string();
-
-      return $c.url().split('?').first().concat('?e=').concat(episode.run()).concat('&p=1').run();
-    },
-    elementEp($c) {
-      return $c.getAttribute('data-episode').number().run();
-    },
-  },
   lifecycle: {
     setup($c) {
       return $c.addStyle(require('./style.less?raw').toString()).run();
@@ -125,9 +88,6 @@ export const FlixMomo: PageInterface = {
         )
         .trigger()
         .run();
-    },
-    overviewIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('main h4').boolean().run()).trigger().run();
     },
   },
 };
