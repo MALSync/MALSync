@@ -112,6 +112,8 @@
     ]
   },
   "0.12.5": {
-    "iframe": []
+    "iframe": [
+      "*://eugenemakedraw.com/e/*"
+    ]
   }
 }
