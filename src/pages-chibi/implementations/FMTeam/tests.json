@@ -11,6 +11,7 @@
         "overviewUrl": "https://fmteam.fr/manga/the-fable-the-second-contact",
         "nextEpUrl": "https://fmteam.fr/read/the-fable-the-second-contact/fr/vol/2/ch/11#1",
         "episode": 10,
+        "volume": 2,
         "uiSelector": false
       }
     },
@@ -20,6 +21,7 @@
         "sync": false,
         "title": "The Fable : The Second contact",
         "identifier": "the-fable-the-second-contact",
+        "image": "https://fmteam.fr/storage/comics/the-fable-the-second-contact_uxAUVlZEVPKdEJXw/51KffgW%2BMFL.jpg",
         "uiSelector": true,
         "epList": {
           "5": "https://fmteam.fr/read/the-fable-the-second-contact/fr/vol/1/ch/5#1",
