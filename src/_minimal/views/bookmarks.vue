@@ -259,10 +259,12 @@ const formatItem = (item: listElement): bookmarkItem => {
       resItem.streamIcon = utils.favicon(resItem.streamUrl.split('/')[2]);
     }
   }
-  if (item.fn.progress?.isAiring() && item.fn.progress.progress()) {
-    resItem.progressText = item.fn.progress.progress()!.getAutoText();
-    resItem.progressEp = item.fn.progress.progress()!.getCurrentEpisode() || undefined;
-    resItem.progress = item.fn.progress;
+  const progressEl = item.fn.progress;
+  const progressEp = progressEl ? progressEl.getDisplayEpisode(item.watchedEp, item.totalEp) : null;
+  if (progressEl && progressEp) {
+    resItem.progressText = progressEl.progress()!.getAutoText();
+    resItem.progressEp = progressEp;
+    resItem.progress = progressEl;
   }
   return resItem;
 };

@@ -26,9 +26,9 @@
           :additional-slot="Boolean(progress)"
           @update:value="episode = $event"
         >
-          <span v-if="progress" class="mal-sync-ep" :title="progress.progress()!.getAutoText()">
+          <span v-if="progress" class="mal-sync-ep" :title="progressText">
             [<span :style="`border-bottom: 1px dotted ${progress.getColor()};`">{{
-              progress.progress()!.getCurrentEpisode()!
+              progressEpisode
             }}</span
             >]
           </span>
@@ -99,13 +99,31 @@ export default {
     },
     progress() {
       const malObj = this.malObj as SingleAbstract | null;
-      if (
-        malObj?.getProgress()?.isAiring() &&
-        malObj.getProgress()?.progress()?.getCurrentEpisode()
-      ) {
-        return malObj.getProgress()!;
+      if (!malObj) return '';
+
+      const progress = malObj.getProgress();
+      if (progress && progress.getDisplayEpisode(malObj.getEpisode(), malObj.getTotalEpisodes())) {
+        return progress;
       }
       return '';
+    },
+    progressEpisode() {
+      const malObj = this.malObj as SingleAbstract | null;
+      if (!malObj) return 0;
+
+      const progress = malObj.getProgress();
+      const displayEpisode = progress
+        ? progress.getDisplayEpisode(malObj.getEpisode(), malObj.getTotalEpisodes())
+        : null;
+      return displayEpisode || 0;
+    },
+    progressText() {
+      const malObj = this.malObj as SingleAbstract | null;
+      if (!malObj) return '';
+
+      const progress = malObj.getProgress();
+      if (!progress || !progress.progress()) return '';
+      return progress.progress()!.getAutoText();
     },
     errorMessage() {
       return this.malObj && this.malObj.getLastError() ? this.malObj.getLastErrorMessage() : '';

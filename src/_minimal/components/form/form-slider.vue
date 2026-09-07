@@ -1,5 +1,13 @@
 <template>
-  <div class="slider-bar" :class="color">
+  <div class="slider-bar" :class="[color, { hasProgress: progressEp }]">
+    <MediaBar
+      v-if="progressEp"
+      class="progress-background"
+      :watched-ep="Number(modelValue)"
+      :total-ep="max"
+      :progress-ep="progressEp"
+      :progress-text="progressText"
+    />
     <vue-slider
       v-model="picked"
       :lazy="true"
@@ -21,6 +29,7 @@
 import { computed, PropType } from 'vue';
 
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min';
+import MediaBar from '../media/media-bar.vue';
 
 const props = defineProps({
   options: {
@@ -52,6 +61,16 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false,
+  },
+  progressEp: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  progressText: {
+    type: String,
+    required: false,
+    default: '',
   },
 });
 
@@ -122,6 +141,8 @@ const optionsComputed = computed(() => {
   --slider-body: var(--cl-bar-volume);
   .link();
 
+  position: relative;
+
   &:hover {
     .vue-slider-dot-handle {
       opacity: 1;
@@ -141,6 +162,25 @@ const optionsComputed = computed(() => {
 
   &.violet {
     --slider-body: var(--cl-bar-score);
+  }
+
+  &.hasProgress {
+    .progress-background {
+      position: absolute;
+      inset: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .vue-slider-rail {
+      background-color: transparent;
+
+      .vue-slider-process {
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
   }
 }
 </style>

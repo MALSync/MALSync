@@ -126,4 +126,14 @@ export const estimation: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+  {
+    key: 'progressShowFinished',
+    title: () => api.storage.lang('settings_progressShowFinished'),
+    condition: () => Boolean(Number(api.settings.get('progressInterval'))),
+    props: {
+      component: 'checkbox',
+      option: 'progressShowFinished',
+    },
+    component: SettingsGeneral,
+  },
 ];
