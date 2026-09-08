@@ -32,40 +32,10 @@ export const NaszeAnime: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      const epId = $c
-        .url()
-        .urlParam('epId')
-        .number()
-        .run();
-
-      const episodes = $c
-        .querySelectorAll('script')
-        .arrayFind(($script) =>
-          $script
-            .text()
-            .contains('episodes')
-            .run(),
-        )
-        .ifNotReturn($c.number(1).run())
+      return $c
+        .querySelector('button.border-blue-500 > span')
         .text()
-        .regex(
-          '\\\\"episodes\\\\":(\\[.*?\\]),\\\\"firstEpisodeId\\\\"',
-          1,
-        )
-        .replaceRegex('\\\\"', '"')
-        .jsonParse()
-        .type<Array<{ id: number; num: string }>>();
-
-      return episodes
-        .arrayFind(($episode) =>
-          $episode
-            .get('id')
-            .number()
-            .equals(epId)
-            .run(),
-        )
-        .ifNotReturn($c.number(1).run())
-        .get('num')
+        .trim()
         .number()
         .run();
     },
@@ -76,14 +46,15 @@ export const NaszeAnime: PageInterface = {
     },
     ready($c) {
       return $c
-        .detectURLChanges(
-          $c.trigger().run(),
-          {
-            ignoreQuery: false,
-            ignoreAnchor: false
-          },
-        )
         .domReady()
+        .detectChanges(
+          $c
+            .querySelector('button.border-blue-500 > span')
+            .ifNotReturn()
+            .text()
+            .run(),
+          $c.trigger().run(),
+        )
         .trigger()
         .run();
     },
