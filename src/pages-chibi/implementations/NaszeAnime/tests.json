@@ -1,31 +1,36 @@
 {
-  "title": "AniGo",
-  "url": "https://anigo.to",
+  "title": "NaszeAnime",
+  "url": "https://naszeanime.pl",
   "testCases": [
     {
-      "url": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4#ep=4",
+      "url": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2/watch?epId=66057",
       "expected": {
         "sync": true,
-        "title": "Campfire Cooking in Another World with My Absurd Skill",
-        "overviewUrl": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4",
-        "identifier": "campfire-cooking-in-another-world-with-my-absurd-skill",
-        "image": "https://static.anigo.to/20/i/3/49/676649edc0c99@300.jpg",
-        "episode": 4,
-        "nextEpUrl": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4#ep=5",
-        "uiSelector": true
+        "title": "Tondemo Skill de Isekai Hourou Meshi 2",
+        "identifier": "tondemo-skill-de-isekai-hourou-meshi-2",
+        "overviewUrl": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2",
+        "episode": 1,
+        "uiSelector": false
       }
     },
     {
-      "url": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4#ep=1",
+      "url": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2/watch?epId=66058",
       "expected": {
         "sync": true,
-        "title": "Campfire Cooking in Another World with My Absurd Skill",
-        "overviewUrl": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4",
-        "identifier": "campfire-cooking-in-another-world-with-my-absurd-skill",
-        "image": "https://static.anigo.to/20/i/3/49/676649edc0c99@300.jpg",
-        "episode": 1,
-        "nextEpUrl": "https://anigo.to/watch/campfire-cooking-in-another-world-with-my-absurd-skill-x1d4#ep=2",
-        "uiSelector": true
+        "title": "Tondemo Skill de Isekai Hourou Meshi 2",
+        "identifier": "tondemo-skill-de-isekai-hourou-meshi-2",
+        "overviewUrl": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2",
+      "expected": {
+        "sync": false,
+        "title": "Tondemo Skill de Isekai Hourou Meshi 2",
+        "identifier": "tondemo-skill-de-isekai-hourou-meshi-2",
+        "uiSelector": false
       }
     }
   ]
