@@ -118,7 +118,7 @@ export class UserList extends ListAbstract {
   }
 
   protected async cacheList(data: BakaLibraryEntry[]) {
-    const series = data.map(el => el.Series);
+    const series = data.map(el => el?.Series).filter(Boolean);
     await cacheSeriesList(series);
   }
 
@@ -129,6 +129,11 @@ export class UserList extends ListAbstract {
     const newData = [] as listElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
+
+      if (!el || !el.Series) {
+        con.error('[MangaBaka] Skipping list entry with missing Series', el);
+        continue;
+      }
 
       const item = await this.fn({
         uid: el.series_id,
