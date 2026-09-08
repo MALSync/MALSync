@@ -237,6 +237,10 @@
             }
         }
     },
+    "syncPage_flashm_resumePlay": {
+        "message": "Start the video, then click resume again",
+        "description": "Shown when resuming did not take effect because playback has not started yet"
+    },
     "syncPage_flashm_sync_anime": {
         "message": "Update $page$ to episode $epNr$",
         "description": "Update MAL to episode 3",
@@ -1274,6 +1278,10 @@
     "settings_Video_Fullscreen": {
         "message": "Auto fullscreen",
         "description": "Auto fullscreen toggle"
+    },
+    "settings_Video_RememberPosition": {
+        "message": "Remember playback position",
+        "description": "Toggle for storing where playback stopped so it can be resumed later"
     },
     "settings_Video_Resume": {
         "message": "Auto resume",

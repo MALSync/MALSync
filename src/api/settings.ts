@@ -69,6 +69,7 @@ export const settingsObj = {
     quicklinksPosition: 'default',
 
     autofull: false,
+    rememberPosition: true,
     autoresume: false,
     autoNextEp: false,
     highlightAllEp: false,
