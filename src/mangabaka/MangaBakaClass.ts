@@ -10,6 +10,9 @@ import { Single } from '../_provider/MangaBaka/single';
 import { ProgressRelease } from '../utils/progressRelease';
 import { buildProviderUrl } from '../utils/slugs';
 
+// Enables extended event reporting
+document.documentElement.setAttribute('data-mb-extension', '1');
+
 let elementEventBuffer: BakaDocumentEvents[] = [];
 let elementEventListener: ((v: BakaDocumentEvents) => void) | null = null;
 document.addEventListener('mb:element:ready', v => {

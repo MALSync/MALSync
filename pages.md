@@ -202,7 +202,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://anime-sama.tv"><img src="https://favicon.malsync.moe/?domain=https://anime-sama.tv"> AnimeSama</a></td>
+    <td><a href="https://anime-sama.to"><img src="https://favicon.malsync.moe/?domain=https://anime-sama.to"> AnimeSama</a></td>
     <td>French</td>
     <td>:x:</td>
     <td>:x:</td>
@@ -335,12 +335,12 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://bs.to"><img src="https://favicon.malsync.moe/?domain=https://bs.to"> bs.to</a></td>
+    <td><a href="https://bs.cine.to"><img src="https://favicon.malsync.moe/?domain=https://bs.cine.to"> bs.to</a></td>
     <td>German</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://www.bilibili.tv"><img src="https://favicon.malsync.moe/?domain=https://www.bilibili.tv"> BStation</a></td>
     <td>Indonesian, English, Thai, Vietnamese, Malay, Arabic</td>
@@ -351,7 +351,7 @@
   </tr><tr>
     <td><a href="https://www.crunchyroll.com"><img src="https://favicon.malsync.moe/?domain=https://www.crunchyroll.com"> Crunchyroll</a></td>
     <td>English, Spanish, Portuguese, French, German, Arabic, Italian, Russian</td>
-    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
@@ -376,6 +376,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://donghuastream.org"><img src="https://favicon.malsync.moe/?domain=https://donghuastream.org"> DonghuaStream</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="http://app.emby.media"><img src="https://favicon.malsync.moe/?domain=http://app.emby.media"> Emby</a></td>
     <td>Many</td>
@@ -654,6 +661,13 @@
     <td>Arabic</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://old.yummyani.me"><img src="https://favicon.malsync.moe/?domain=https://old.yummyani.me"> YummyAni</a></td>
+    <td>Russian, Ukrainian</td>
+    <td>:x:</td>
+    <td>:x:</td>
     <td>:x:</td>
     <td>:x:</td>
   </tr>

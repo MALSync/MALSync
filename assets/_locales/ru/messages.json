@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "Добавляет MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka на различные сайты, с авто обновлением просмотренных серий.",
+        "message": "Добавляет MyAnimeList, AniList, Kitsu, Simkl, MangaBaka на различные сайты, с авто обновлением просмотренных серий.",
         "description": "Description MALSync"
     },
     "UI_Status": {

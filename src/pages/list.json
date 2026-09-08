@@ -215,11 +215,6 @@
     "name": "Okanime"
   },
   {
-    "domain": "https://bs.to",
-    "type": "anime",
-    "name": "bs.to"
-  },
-  {
     "domain": "https://an1me.to",
     "type": "anime",
     "name": "An1me"
@@ -385,7 +380,7 @@
     "name": "Animelon"
   },
   {
-    "domain": "https://anime-sama.tv",
+    "domain": "https://anime-sama.to",
     "type": "anime",
     "name": "AnimeSama"
   },
@@ -1038,5 +1033,20 @@
     "domain": "https://animesdigital.org",
     "type": "anime",
     "name": "AnimesDigital"
+  },
+  {
+    "domain": "https://old.yummyani.me",
+    "type": "anime",
+    "name": "YummyAni"
+  },
+  {
+    "domain": "https://donghuastream.org",
+    "type": "anime",
+    "name": "DonghuaStream"
+  },
+  {
+    "domain": "https://bs.cine.to",
+    "type": "anime",
+    "name": "bs.to"
   }
 ]

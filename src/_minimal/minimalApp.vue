@@ -49,15 +49,6 @@ function isExtension() {
 
 onMounted(() => {
   rootWindow.addEventListener('resize', setBreakpoint);
-  nextTick(() => {
-    const width = Math.min(rootWindow.innerWidth, rootWindow.screen.width);
-    if (['popup', 'settings'].includes(rootHtml.getAttribute('mode')!) && width !== 550) {
-      rootHtml.style.minWidth = `${width}px`;
-      // rootHtml.style.maxWidth = `${rootWindow.innerWidth}px`;
-      rootHtml.style.width = 'auto';
-      rootBody.style.width = 'auto';
-    }
-  });
 });
 
 onUnmounted(() => {

@@ -64,7 +64,7 @@
         "description": "All"
     },
     "Package_Description": {
-        "message": "MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka'yi çeşitli sitelere entegre eder ve otomatik bölüm takibi yapar.",
+        "message": "MyAnimeList, AniList, Kitsu, Simkl, MangaBaka'yi çeşitli sitelere entegre eder ve otomatik bölüm takibi yapar.",
         "description": "Description MALSync"
     },
     "UI_Status": {

@@ -92,7 +92,7 @@
         "description": "General translation of manga for places like drop downs"
     },
     "Package_Description": {
-        "message": "ผสาน MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka เข้าสู่เว็บไซต์ต่างๆ ด้วยการติดตามตอนอัตโนมัติ.",
+        "message": "ผสาน MyAnimeList, AniList, Kitsu, Simkl, MangaBaka เข้าสู่เว็บไซต์ต่างๆ ด้วยการติดตามตอนอัตโนมัติ.",
         "description": "Description MALSync"
     },
     "UI_Status": {

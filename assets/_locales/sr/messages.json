@@ -345,7 +345,7 @@
         "message": "Претрага сајта"
     },
     "Package_Description": {
-        "message": "Интегрише MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka на различите сајтове, уз аутоматско праћење епизода."
+        "message": "Интегрише MyAnimeList, AniList, Kitsu, Simkl, MangaBaka на различите сајтове, уз аутоматско праћење епизода."
     },
     "UI_Status": {
         "message": "Статус:"

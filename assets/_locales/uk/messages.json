@@ -678,7 +678,7 @@
         "message": "Аніме"
     },
     "Package_Description": {
-        "message": "Додає MyAnimeList/AniList/Kitsu/Simkl/Shikimori/MangaBaka на різні сайти, з авто оновленням переглянутих серій."
+        "message": "Додає MyAnimeList, AniList, Kitsu, Simkl, MangaBaka на різні сайти, з авто оновленням переглянутих серій."
     },
     "syncPage_flashm_resumeMsg": {
         "message": "Продовжити з $time$",

@@ -53,7 +53,7 @@ export const YummyAni: PageInterface = {
         .ifThen($c => $c.string('404').log().return().run())
         .domReady()
         .detectChanges($c.querySelector('.pQCG').ifNotReturn().text().run(), $c.trigger().run())
-        
+
         .trigger()
         .run();
     },

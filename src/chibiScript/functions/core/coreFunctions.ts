@@ -285,6 +285,63 @@ export default {
   },
 
   /**
+   * Gets a value from persistent storage (survives page reloads, unlike getGlobalVariable)
+   * @input void - No input required
+   * @param key - Variable name to retrieve
+   * @param defaultValue - Default value if variable is not found
+   * @returns Stored value or default value
+   * @example
+   * $c.getPersistentVariable<boolean>('seen', false) // returns the stored value or false
+   */
+  getPersistentVariable: <Input = void, Output = any>(
+    ctx: ChibiCtx,
+    input: Input,
+    key: ChibiParam<string>,
+    defaultValue?: ChibiParam<Output>,
+  ): Output => {
+    const value = localStore.getItem(`mal-sync-chibi-persist-${key}`);
+    return value !== null ? (JSON.parse(value) as Output) : (defaultValue as Output);
+  },
+
+  /**
+   * Stores a value in persistent storage that survives page reloads (backed by localStorage)
+   * @input any - Value to store if no value parameter is provided
+   * @param key - Variable name to store the value under
+   * @param value - Optional value to store instead of the input
+   * @returns The input value (for chaining)
+   * @example
+   * $c.boolean(true).setPersistentVariable('seen') // persists true under 'seen'
+   */
+  setPersistentVariable: <Input>(
+    ctx: ChibiCtx,
+    input: Input,
+    key: ChibiParam<string>,
+    value?: ChibiJson<any>,
+  ): Input => {
+    const storeKey = `mal-sync-chibi-persist-${key}`;
+
+    if (ctx.isAsync()) {
+      return (async () => {
+        if (value !== undefined) {
+          const resolvedValue = await ctx.runAsync(value);
+          localStore.setItem(storeKey, JSON.stringify(resolvedValue));
+        } else {
+          localStore.setItem(storeKey, JSON.stringify(input));
+        }
+        return input;
+      })() as unknown as Input;
+    }
+
+    if (value !== undefined) {
+      const resolvedValue = ctx.run(value);
+      localStore.setItem(storeKey, JSON.stringify(resolvedValue));
+    } else {
+      localStore.setItem(storeKey, JSON.stringify(input));
+    }
+    return input;
+  },
+
+  /**
    * Creates a function scope.
    * Makes it possible to catch return values similar to a function
    * @input void - No input required

@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "./dist",
+    "paths": {
+      "*": ["./*"]
+    },
     "noImplicitAny": false,
     "noImplicitThis": false,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "es2021",
     "lib": ["es2021", "dom"],
     "jsx": "preserve",
@@ -15,7 +16,8 @@
     "strict": true,
     "useUnknownInCatchVariables": false,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["chrome", "jquery", "node"]
   },
   "include": ["**/*.ts", "src/**/*.vue"],
   "exclude": [
