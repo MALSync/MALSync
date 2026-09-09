@@ -42,7 +42,7 @@ export const NaszeAnime: PageInterface = {
   },
   lifecycle: {
     setup($c) {
-      return $c.string('').run();
+      return $c.addStyle(require('./style.less?raw').toString()).run();
     },
     ready($c) {
       return $c
