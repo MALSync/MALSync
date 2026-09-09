@@ -1,0 +1,41 @@
+{
+  "title": "BlueSolo",
+  "url": "https://bluesolo.org/",
+  "testCases": [
+    {
+      "url": "https://bluesolo.org/read/the-jojolands/fr/vol/10/ch/38",
+      "expected": {
+        "sync": true,
+        "title": "The JOJOLands : JoJo's Bizarre Adventure Partie 9 (Noir et Blanc)",
+        "identifier": "the-jojolands",
+        "overviewUrl": "https://bluesolo.org/comics/the-jojolands",
+        "nextEpUrl": "https://bluesolo.org/read/the-jojolands/fr/vol/10/ch/39",
+        "episode": 38,
+        "volume": 10,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bluesolo.org/read/marriage-toxin/fr/ch/177",
+      "expected": {
+        "sync": true,
+        "title": "Marriage Toxin",
+        "identifier": "marriage-toxin",
+        "overviewUrl": "https://bluesolo.org/comics/marriage-toxin",
+        "nextEpUrl": "https://bluesolo.org/read/marriage-toxin/fr/ch/178",
+        "episode": 177,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://bluesolo.org/comics/the-jojolands",
+      "expected": {
+        "sync": false,
+        "title": "The JOJOLands : JoJo's Bizarre Adventure Partie 9 (Noir et Blanc)",
+        "identifier": "the-jojolands",
+        "image": "https://bluesolo.org/storage/comics/the-jojolands_0sPe9agKafmB5pEw/jojo_s_bizarre_adventure_-_saison_9_-_the_jojolands_81033371_vo.webp?v=1779130426",
+        "uiSelector": true
+      }
+    }
+  ]
+}
