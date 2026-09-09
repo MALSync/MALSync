@@ -12,10 +12,7 @@ export const NaszeAnime: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(3).equals('anime').run(),
-          $c.url().urlPart(5).contains('watch').run(),
-        )
+        .and($c.url().urlPart(3).equals('anime').run(), $c.url().urlPart(5).contains('watch').run())
         .run();
     },
     getTitle($c) {
@@ -25,19 +22,10 @@ export const NaszeAnime: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c
-        .string('/anime/')
-        .concat($c.this('sync.getIdentifier').run())
-        .urlAbsolute()
-        .run();
+      return $c.string('/anime/').concat($c.this('sync.getIdentifier').run()).urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c
-        .querySelector('button.border-blue-500 > span')
-        .text()
-        .trim()
-        .number()
-        .run();
+      return $c.querySelector('button.border-blue-500 > span').text().trim().number().run();
     },
   },
   lifecycle: {
@@ -48,11 +36,7 @@ export const NaszeAnime: PageInterface = {
       return $c
         .domReady()
         .detectChanges(
-          $c
-            .querySelector('button.border-blue-500 > span')
-            .ifNotReturn()
-            .text()
-            .run(),
+          $c.querySelector('button.border-blue-500 > span').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .trigger()
