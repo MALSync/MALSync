@@ -1,6 +1,0 @@
-{
-  "search": "https://www.bentomanga.com/manga_list?search={searchterm}",
-  "urls": {
-    "match": ["*://www.bentomanga.com/*", "*://bentomanga.com/*"]
-  }
-}
