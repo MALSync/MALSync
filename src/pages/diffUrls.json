@@ -113,7 +113,8 @@
   },
   "0.12.5": {
     "iframe": [
-      "*://eugenemakedraw.com/e/*"
+      "*://eugenemakedraw.com/e/*",
+      "*://johnfullwonder.com/e/*"
     ]
   }
 }
