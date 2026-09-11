@@ -1164,5 +1164,71 @@
     "locale": {
         "message": "it",
         "description": "Current locale"
+    },
+    "list_sorting_history": {
+        "message": "Ultimo aggiornamento"
+    },
+    "next": {
+        "message": "Avanti"
+    },
+    "back": {
+        "message": "Indietro"
+    },
+    "start": {
+        "message": "Inizia"
+    },
+    "overview_sidebar_Votes": {
+        "message": "Voti:"
+    },
+    "overview_sidebar_Total_Playtime": {
+        "message": "Durata:"
+    },
+    "overview_sidebar_Favorites": {
+        "message": "Favoriti:"
+    },
+    "overview_sidebar_Season": {
+        "message": "Stagione:"
+    },
+    "list_sorting_latest_release": {
+        "message": "Ultima uscita"
+    },
+    "overview_synonyms": {
+        "message": "Sinonimi"
+    },
+    "overview_sidebar_Mal_Score": {
+        "message": "Voto MAL:"
+    },
+    "overview_sidebar_Ranked": {
+        "message": "Classifica:"
+    },
+    "list_sorting_alpha": {
+        "message": "Alfabetico"
+    },
+    "list_sorting_score": {
+        "message": "Valutazione"
+    },
+    "settings_LocalSync_Help_Before": {
+        "message": "Se riscontri problemi riprova in"
+    },
+    "settings_LocalSync_Help_LinkText": {
+        "message": "questa finestra"
+    },
+    "settings_profile_logout": {
+        "message": "Logout"
+    },
+    "settings_profile_check": {
+        "message": "Controlla"
+    },
+    "settings_profile_logged_via": {
+        "message": "Connesso tramite $provider$",
+        "placeholders": {
+            "provider": {
+                "content": "$1",
+                "example": "MyAnimeList"
+            }
+        }
+    },
+    "overview_sidebar_external_links": {
+        "message": "Link esterni:"
     }
 }
