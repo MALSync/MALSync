@@ -14,7 +14,12 @@
 </template>
 
 <script lang="ts" setup>
-import { exportData, importData, convertCsvToImportFormat } from '../../../_provider/Local/import';
+import {
+  exportData,
+  importData,
+  convertCsvToImportFormat,
+  parseCSV,
+} from '../../../_provider/Local/import';
 import { status, type contentType } from '../../../_provider/definitions';
 import { getListbyType } from '../../../_provider/listFactory';
 import { getSyncMode, getProviderOption } from '../../../_provider/helper';
@@ -81,10 +86,17 @@ async function exportRemoteSync() {
 }
 
 async function exportFallbackSync() {
-  const exportObj = {
-    ...(await exportData()),
-    ...(await exportRemoteSync()),
-  };
+  let exportObj: Record<string, unknown>;
+  try {
+    exportObj = {
+      ...(await exportData()),
+      ...(await exportRemoteSync()),
+    };
+  } catch (e) {
+    con.error('Export failed', e);
+    alert(`Error exporting data: ${e instanceof Error ? e.message : String(e)}`);
+    return;
+  }
   con.log('Export', exportObj);
 
   const encodedUri = `data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(exportObj))}`;
@@ -161,7 +173,9 @@ async function importFallbackSync(filecontent: string) {
   // Same header-column check convertCsvToImportFormat itself requires, so detection here can't
   // diverge from what actually makes a CSV valid - only the header line is checked, not the whole
   // file, so a JSON export whose data happens to contain the word "title" isn't misread as a CSV.
-  const headerCells = (trimmed.split('\n')[0] || '').split(',').map(h => h.trim().toLowerCase());
+  // Uses the same quote-aware parser convertCsvToImportFormat parses the body with, so a header
+  // that quotes its "Title" column (common from spreadsheet exports) is still recognized.
+  const headerCells = (parseCSV(trimmed)[0] || []).map(h => h.trim().toLowerCase());
   const isCsv = headerCells.includes('title');
 
   if (isJson) {
