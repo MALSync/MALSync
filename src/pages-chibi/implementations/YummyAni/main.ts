@@ -11,7 +11,7 @@ export const YummyAni: PageInterface = {
       kodik: ['*://kodikplayer.com/*'],
       alloha: ['*://alloha.yani.tv/*'],
       cvh: ['*://ru.yummyani.me/iframeCVH.html*'],
-      aksor: ['*//player.aksor.tv/video/*']
+      aksor: ['*//player.aksor.tv/video/*'],
     },
   },
   sync: {
