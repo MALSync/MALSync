@@ -8,14 +8,12 @@ export const AnimeOnsen: pageInterface = {
   isOverviewPage(url) {
     // check if current page is details/overview page
     const [, page] = new URL(url).pathname.split('/');
-    if (/^details$/i.test(page)) return true;
-    return false;
+    return /^details$/i.test(page);
   },
   isSyncPage(url) {
     // check if current page is watch/sync page
     const [, page] = new URL(url).pathname.split('/');
-    if (/^watch$/i.test(page)) return true;
-    return false;
+    return /^watch$/i.test(page);
   },
   overview: {
     getTitle(_) {
@@ -137,7 +135,7 @@ export const AnimeOnsen: pageInterface = {
     // wait until page has fully loaded by
     // checking if loading element exists
     // then executes start() function if true
-    /* .ready() method is deprecated since jquery v3.0.0 */
-    j.$(document).ready(() => utils.waitUntilTrue(checkCondition, start));
+    // Use modern jQuery ready handler
+    j.$(() => utils.waitUntilTrue(checkCondition, start));
   },
 };
