@@ -152,6 +152,11 @@ export class UserList extends ListAbstract {
       const list = data.data[i];
       const el = data.included[i];
 
+      if (!list || !el || !el.attributes) {
+        con.error('[Kitsu] Skipping list entry with missing data', list, el);
+        continue;
+      }
+
       const name = helper.getTitle(el.attributes.titles, el.attributes.canonicalTitle);
 
       let malId = NaN;
