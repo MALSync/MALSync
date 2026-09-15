@@ -7,13 +7,12 @@ import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
 import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
-import { localStore } from '../utils/localStore';
 import { getPageConfig } from '../utils/test';
 import { status } from '../_provider/definitions';
 import { getTrackingMode, TrackingModeType } from './trackingMode';
-import type { ProgressElement, TrackingModeInterface } from './trackingMode/TrackingModeInterface';
+import type { TrackingModeInterface } from './trackingMode/TrackingModeInterface';
+import { PlaybackPosition } from './playbackPosition';
 import {
-  resumeMessageElement,
   trackingBarElement,
   trackingErrorElement,
   trackingNoteElement,
@@ -101,6 +100,30 @@ export class SyncPage {
     this.page.domain = new URL(window.location.href).origin;
   }
 
+  protected playbackPosition: PlaybackPosition | null = null;
+
+  /**
+   * Starts remembering the playback position for this episode.
+   *
+   * Called from the sync page branch rather than from `startSyncHandling`, so it is not
+   * tied to the tracking mode nor to there being anything to sync. Both of those cut it
+   * short before: `instant` and `manual` have no progress listener at all, and an episode
+   * already marked as watched never reaches the sync handling.
+   */
+  private startPlaybackPosition(state: pageState) {
+    this.playbackPosition?.stop();
+    this.playbackPosition = null;
+
+    if (!api.settings.get('rememberPosition')) return null;
+
+    this.playbackPosition = new PlaybackPosition(
+      `progress/${state.identifier}/${state.episode}/v1`,
+    );
+    this.playbackPosition.start();
+
+    return this.playbackPosition;
+  }
+
   public openNextEp() {
     if (typeof this.page.sync.nextEpUrl !== 'undefined') {
       if (this.page.isSyncPage(this.url)) {
@@ -142,6 +165,8 @@ export class SyncPage {
       this.trackingModeInstance.stop();
       this.trackingModeInstance = undefined;
     }
+    this.playbackPosition?.stop();
+    this.playbackPosition = null;
     $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
     clearInterval(this.imageFallbackInterval);
   }
@@ -205,9 +230,18 @@ export class SyncPage {
         state.volume = this.page.sync.getVolume(this.url);
       }
       if (this.page.type === 'anime') {
+        const positionTracker = this.startPlaybackPosition(state);
         const playerInstance = PlayerSingleton.getInstance().startTracking();
         playerInstance.addListener('syncPage', item => {
           this.autoNextEp(item);
+          if (positionTracker && item.duration) {
+            positionTracker.report({
+              progress: item.current / item.duration,
+              progressTrigger: Number(api.settings.get('videoDuration')) / 100,
+              current: item.current,
+              total: item.duration,
+            });
+          }
         });
       }
       logger.m('Sync', 'green').log(state);
@@ -405,15 +439,12 @@ export class SyncPage {
     const flashEl = utils.flashm(message, tracking.flashOptions());
 
     if ('addListener' in tracking) {
-      let saveDebounce = true;
-
-      const localItem = localStore.getItem(progressStorageKey);
-      const lastProgress: ProgressElement | null = localItem
-        ? (JSON.parse(localItem) as ProgressElement)
-        : null;
-      let resumed = !lastProgress;
-
-      let saveBlocked = Boolean(lastProgress);
+      // Anime uses the tracker started with the page, so the position outlives this flow.
+      // Reader progress comes from the manga tracking mode instead, so it gets its own.
+      const readerPosition =
+        this.page.type === 'anime' ? null : new PlaybackPosition(progressStorageKey, false);
+      readerPosition?.start();
+      const position = readerPosition ?? this.playbackPosition;
 
       tracking.addListener(progress => {
         let finalPercent = Number(progress.progress);
@@ -428,6 +459,7 @@ export class SyncPage {
           flashEl.find('.ms-progress').css('width', `${finalPercent * 100}%`);
           flashEl.find('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
 
+          const lastProgress = position?.getSaved();
           if (lastProgress) {
             let lastProgressFinalPercent = Number(lastProgress.progress);
             if (progress.progressTrigger && Number(progress.progressTrigger)) {
@@ -445,67 +477,7 @@ export class SyncPage {
           }
         }
 
-        // Save progress
-        if (saveBlocked && lastProgress && progress.progress >= lastProgress.progress) {
-          saveBlocked = false;
-          if (!resumed && j.$('#MALSyncResume').length) {
-            resumed = true;
-            j.$('#MALSyncResume').parentsUntil('.flash').remove();
-          }
-        }
-
-        if (
-          'resumeTo' in tracking &&
-          'getResumeText' in tracking &&
-          'canResume' in tracking &&
-          !resumed &&
-          lastProgress &&
-          tracking.canResume(lastProgress)
-        ) {
-          if (j.$('#MALSyncResume').length) {
-            return;
-          }
-
-          if (api.settings.get('autoresume')) {
-            tracking.resumeTo(lastProgress);
-            resumed = true;
-            return;
-          }
-
-          const resumeTimeString = tracking.getResumeText(lastProgress) || '';
-          const resumeMessageDiv = resumeMessageElement(
-            api.storage.lang('syncPage_flashm_resumeMsg', [resumeTimeString]),
-          );
-
-          const resumeMsg = utils.flashm(resumeMessageDiv.innerHTML, {
-            permanent: true,
-            error: false,
-            type: 'resume',
-            minimized: false,
-            position: 'top',
-          });
-
-          resumeMsg.find('.sync').on('click', () => {
-            tracking.resumeTo(lastProgress);
-            resumed = true;
-            resumeMsg.remove();
-          });
-
-          resumeMsg.find('.resumeClose').on('click', function () {
-            resumed = true;
-            resumeMsg.remove();
-          });
-          return;
-        }
-
-        if (!saveBlocked && saveDebounce) {
-          logger.debug('Set Resume', progress);
-          localStore.setItem(progressStorageKey, JSON.stringify(progress));
-          saveDebounce = false;
-          setTimeout(() => {
-            saveDebounce = true;
-          }, 10000);
-        }
+        readerPosition?.report(progress);
       });
     }
 
@@ -533,7 +505,10 @@ export class SyncPage {
 
     flashEl.remove();
 
-    localStore.removeItem(progressStorageKey);
+    // The stored position is not dropped here on purpose. It is cleared once the episode
+    // has actually been watched through, which is not the same moment as the list being
+    // updated — `instant` syncs after `delay` seconds, and the sync button can be pressed
+    // at any point.
 
     // Debugging
     logger.log('overviewUrl', this.page.sync.getOverviewUrl(this.url));
