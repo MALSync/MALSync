@@ -122,7 +122,7 @@ export const urls = {
     return `${apiDomain}/anime/external/${identifier}`;
   },
   search(keyword: string, limit = 20) {
-    const data = { q: keyword, limit };
+    const data = { q: keyword, limit, include_adult: true };
     return `${apiDomain}/external/search/anime?${new URLSearchParams(Object.entries(data) as any)}`;
   },
   watchlist(params: { anime_id?: number; status?: string; cursor?: string; limit?: number } = {}) {
