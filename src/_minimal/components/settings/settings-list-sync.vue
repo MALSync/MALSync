@@ -377,6 +377,11 @@ const syncRequest = createRequest(parameters, async params => {
       list: null,
       master: false,
     },
+    animeoshi: {
+      text: 'Init',
+      list: null,
+      master: false,
+    },
   });
 
   providerList.value = sync.getListProvider({
@@ -386,6 +391,7 @@ const syncRequest = createRequest(parameters, async params => {
     mangabaka: listProvider.mangabaka,
     simkl: listProvider.simkl,
     shiki: listProvider.shiki,
+    animeoshi: listProvider.animeoshi,
   });
 
   const listOptions = await sync.retriveLists(providerList.value, params.value.type, sync.getList);
