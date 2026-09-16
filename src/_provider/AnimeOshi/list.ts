@@ -1,4 +1,3 @@
-// TODO: User rating, total episodes
 import { ListAbstract, listElement } from '../listAbstract';
 import {
   authenticationUrl,
@@ -77,9 +76,9 @@ export class UserList extends ListAbstract {
           type: 'anime',
           title: el.title,
           url: el.url,
-          score: 0,
+          score: el.user_rating?.score ? Math.round(el.user_rating.score / 10) : 0,
           watchedEp: el.episode_count || 0,
-          totalEp: 0,
+          totalEp: el.total_episodes || 0,
           status: oshiStatusToState(el.status),
           startDate: null,
           finishDate: null,

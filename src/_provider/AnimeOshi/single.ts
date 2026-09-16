@@ -12,7 +12,7 @@ import {
   OshiAnime,
   OshiWatchlistEntry,
   publicCall,
-  stateToMalStatus,
+  stateToOshiStatus,
   titleFromSlug,
   urls,
 } from './helper';
@@ -34,11 +34,7 @@ export class Single extends SingleAbstract {
 
   private anime: OshiAnime = null as unknown as OshiAnime;
 
-  private entry: OshiWatchlistEntry | null = null;
-
-  private curStatus: definitions.status = definitions.status.PlanToWatch;
-
-  private curEpisode = 0;
+  private entry: OshiWatchlistEntry = null as unknown as OshiWatchlistEntry;
 
   protected handleUrl(url) {
     const { path } = urlToSlug(url);
@@ -71,11 +67,11 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
-    return this.curStatus;
+    return oshiStatusToState(this.entry.status);
   }
 
   _setStatus(status) {
-    this.curStatus = status;
+    this.entry.status = stateToOshiStatus(status)!;
   }
 
   _getStartDate(): never {
@@ -103,27 +99,32 @@ export class Single extends SingleAbstract {
   }
 
   _getScore() {
-    return 0;
+    return Math.round(this._getAbsoluteScore() / 10);
   }
 
   _setScore(score) {
-    this.logger.error('AnimeOshi does not support setting a score');
+    this._setAbsoluteScore(score * 10);
   }
 
   _getAbsoluteScore() {
-    return 0;
+    return this.entry.user_rating?.score || 0;
   }
 
   _setAbsoluteScore(score) {
-    this.logger.error('AnimeOshi does not support setting a score');
+    const rounded = Math.round(Number(score) / 10) * 10;
+    if (this.entry.user_rating) {
+      this.entry.user_rating.score = rounded;
+      return;
+    }
+    this.entry.user_rating = { score: rounded, verified: false, rate_date: null };
   }
 
   _getEpisode() {
-    return this.curEpisode;
+    return this.entry.episode_count || 0;
   }
 
   _setEpisode(episode) {
-    this.curEpisode = parseInt(`${episode}`) || 0;
+    this.entry.episode_count = parseInt(`${episode}`) || 0;
   }
 
   _getVolume() {
@@ -143,11 +144,11 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
-    return this.entry?.title || titleFromSlug(this.anime.slug);
+    return this.entry.title;
   }
 
   _getTotalEpisodes() {
-    return this.anime.episode_count || 0;
+    return this.entry.total_episodes || 0;
   }
 
   _getTotalVolumes() {
@@ -179,10 +180,10 @@ export class Single extends SingleAbstract {
     if (Number.isNaN(this.ids.mal) && this.anime.mal_id) this.ids.mal = this.anime.mal_id;
     if (Number.isNaN(this.ids.ani) && this.anime.anilist_id) this.ids.ani = this.anime.anilist_id;
 
-    this.entry = null;
+    let entry: OshiWatchlistEntry | null = null;
     try {
       const list: OshiWatchlistEntry[] = await call(urls.watchlist({ anime_id: this.anime.id }));
-      [this.entry = null] = list || [];
+      [entry = null] = list || [];
     } catch (e) {
       if (e instanceof NotAutenticatedError) {
         this._authenticated = false;
@@ -192,13 +193,27 @@ export class Single extends SingleAbstract {
       }
     }
 
-    this.logger.log('[SINGLE]', 'Data', this.anime, this.entry);
+    this.logger.log('[SINGLE]', 'Data', this.anime, entry);
 
-    this._onList = Boolean(this.entry);
-    this.curStatus = this.entry
-      ? oshiStatusToState(this.entry.status)
-      : definitions.status.PlanToWatch;
-    this.curEpisode = this.entry?.episode_count || 0;
+    this._onList = Boolean(entry);
+    if (!entry) {
+      entry = {
+        anime_id: this.anime.id,
+        title: titleFromSlug(this.anime.slug),
+        slug: this.anime.slug,
+        image: this.anime.image,
+        url: this.anime.url,
+        mal_id: this.anime.mal_id,
+        anilist_id: this.anime.anilist_id,
+        status: 'Want to Watch',
+        episode_count: 0,
+        total_episodes: this.anime.episode_count,
+        user_rating: null,
+        updated_at: null,
+        cursor: '',
+      };
+    }
+    this.entry = entry;
 
     if (!this._authenticated) throw new NotAutenticatedError('Not Authenticated');
   }
@@ -219,18 +234,34 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
-    return call(
+    const res = await call(
       urls.watchlist(),
       {
-        anime_id: this.ids.oshi,
-        mal_status: stateToMalStatus(this.curStatus),
-        episode_number: this.curEpisode,
+        anime_id: this.entry.anime_id,
+        status: this.entry.status,
+        episode_number: this.entry.episode_count,
       },
       'POST',
     );
+
+    if (this.isValueDirty('score')) await this.syncRating();
+
+    return res;
+  }
+
+  private async syncRating() {
+    const score = this.entry.user_rating?.score;
+    if (!score) return;
+
+    if (!this.finishedAiring()) {
+      this.logger.error('Score not synced, AnimeOshi only rates completed anime');
+      return;
+    }
+
+    await call(urls.rating(), { anime_id: this.entry.anime_id, score }, 'POST');
   }
 
   async _delete() {
-    return call(urls.watchlistEntry(this.ids.oshi), undefined, 'DELETE');
+    return call(urls.watchlistEntry(this.entry.anime_id), undefined, 'DELETE');
   }
 }

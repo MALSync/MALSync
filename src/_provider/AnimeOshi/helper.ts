@@ -43,6 +43,47 @@ export type OshiSearchItem = OshiAnime & {
   cursor: string;
 };
 
+export type OshiStatus =
+  'Currently Watching' | 'Completed' | 'On Hold' | 'Dropped' | 'Want to Watch';
+
+export function oshiStatusToState(input: OshiStatus): status {
+  switch (input) {
+    case 'Currently Watching':
+      return status.Watching;
+    case 'Completed':
+      return status.Completed;
+    case 'On Hold':
+      return status.Onhold;
+    case 'Dropped':
+      return status.Dropped;
+    case 'Want to Watch':
+      return status.PlanToWatch;
+    default:
+      throw new Error(`Unhandled AnimeOshi status: ${input}`);
+  }
+}
+
+export function stateToOshiStatus(input: status): OshiStatus {
+  switch (input) {
+    case status.Watching:
+    case status.Rewatching:
+      return 'Currently Watching';
+    case status.Completed:
+      return 'Completed';
+    case status.Onhold:
+      return 'On Hold';
+    case status.Dropped:
+      return 'Dropped';
+    case status.PlanToWatch:
+    case status.Considering:
+      return 'Want to Watch';
+    case status.All:
+      return null as unknown as OshiStatus;
+    default:
+      throw new Error(`Unhandled AnimeOshi status: ${input}`);
+  }
+}
+
 export type OshiWatchlistEntry = {
   anime_id: number;
   title: string;
@@ -51,10 +92,19 @@ export type OshiWatchlistEntry = {
   url: string;
   mal_id: number | null;
   anilist_id: number | null;
-  status: string;
+  status: OshiStatus;
   episode_count: number;
+  total_episodes: number;
+  user_rating: OshiRating | null;
   updated_at: string | null;
   cursor: string;
+};
+
+export type OshiRating = {
+  /** 0-100 in multiples of 10, null when the anime is not currently rateable */
+  score: number | null;
+  verified: boolean;
+  rate_date: string | null;
 };
 
 export const urls = {
@@ -76,11 +126,14 @@ export const urls = {
     return `${apiDomain}/external/search/anime?${new URLSearchParams(Object.entries(data) as any)}`;
   },
   watchlist(params: { anime_id?: number; status?: string; cursor?: string; limit?: number } = {}) {
-    const data = Object.entries(params).filter(([, v]) => typeof v !== 'undefined');
+    const data = Object.entries(params).filter(([, v]) => v !== undefined && v !== null);
     if (!data.length) return `${apiDomain}/external/watchlist`;
     return `${apiDomain}/external/watchlist?${new URLSearchParams(data as any)}`;
   },
-  watchlistEntry(animeId: number|string) {
+  rating() {
+    return `${apiDomain}/external/rating`;
+  },
+  watchlistEntry(animeId: number) {
     return `${apiDomain}/external/watchlist/${animeId}`;
   },
 };
@@ -183,56 +236,6 @@ async function refreshToken() {
       api.settings.set('animeoshiRefresh', '');
       return false;
     });
-}
-
-export function oshiStatusToState(input: string): status {
-  switch (input) {
-    case 'Currently Watching':
-      return status.Watching;
-    case 'Completed':
-      return status.Completed;
-    case 'On Hold':
-      return status.Onhold;
-    case 'Dropped':
-      return status.Dropped;
-    case 'Want to Watch':
-      return status.PlanToWatch;
-    default:
-      throw new Error(`Unhandled AnimeOshi status: ${input}`);
-  }
-}
-
-export function stateToOshiStatus(input: status): string | undefined {
-  switch (input) {
-    case status.Watching:
-    case status.Rewatching:
-      return 'currently-watching';
-    case status.Completed:
-      return 'completed';
-    case status.Onhold:
-      return 'on-hold';
-    case status.Dropped:
-      return 'dropped';
-    case status.PlanToWatch:
-    case status.Considering:
-      return 'want-to-watch';
-    default:
-      // status.All, no filter
-      return undefined;
-  }
-}
-
-export function stateToMalStatus(input: status): number {
-  switch (input) {
-    case status.Rewatching:
-      return status.Watching;
-    case status.Considering:
-      return status.PlanToWatch;
-    case status.NoState:
-      return status.PlanToWatch;
-    default:
-      return input;
-  }
 }
 
 export function oshimeterScore(anime: { oshimeter?: { score: number | null } | null }): string {
