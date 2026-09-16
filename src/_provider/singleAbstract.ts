@@ -433,6 +433,7 @@ export abstract class SingleAbstract {
         this.undoState = this.persistenceState;
         if (this.updateProgress) this.initProgress();
         this._onList = true;
+        this.persistenceState = this.getStateEl();
         this.emitUpdate();
       });
   }
