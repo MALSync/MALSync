@@ -53,16 +53,16 @@ const narutoEntry = {
 const fixtures = [
   { url: /\/anime\/external\/naruto$/, response: naruto },
   { url: /\/anime\/external\/airing$/, response: { ...naruto, id: 999, slug: 'airing', status: 'Ongoing' } },
-  { url: /\/external\/watchlist\?anime_id=999$/, response: [] },
+  { url: /\/external\/watchlist\?anime_id=999&include_adult=true$/, response: [] },
   { url: /\/anime\/external\/222242443$/, response: naruto },
   { url: /\/anime\/external\/743814481$/, response: tayo },
   { url: /\/anime\/external\?mal_id=999999999$/, status: 404, response: { message: 'Not Found' } },
-  { url: /\/external\/watchlist\?anime_id=222242443$/, response: [narutoEntry] },
+  { url: /\/external\/watchlist\?anime_id=222242443&include_adult=true$/, response: [narutoEntry] },
   {
-    url: /\/external\/watchlist\?status=Currently\+Watching&limit=100$/,
+    url: /\/external\/watchlist\?status=Currently\+Watching&limit=100&include_adult=true$/,
     response: [narutoEntry],
   },
-  { url: /\/external\/watchlist\?anime_id=743814481$/, response: [] },
+  { url: /\/external\/watchlist\?anime_id=743814481&include_adult=true$/, response: [] },
   { method: 'POST', url: /\/external\/watchlist$/, response: { created: false } },
   { method: 'POST', url: /\/external\/rating$/, response: { anime_id: 222242443, score: 100 } },
 ];
