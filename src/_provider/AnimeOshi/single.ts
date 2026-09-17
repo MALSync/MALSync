@@ -237,7 +237,7 @@ export class Single extends SingleAbstract {
 
   async _sync() {
     const res = await call(
-      urls.watchlist(),
+      urls.watchlistUpsert(),
       {
         anime_id: this.entry.anime_id,
         status: this.entry.status,

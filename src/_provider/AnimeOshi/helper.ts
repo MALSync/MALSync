@@ -127,8 +127,11 @@ export const urls = {
   },
   watchlist(params: { anime_id?: number; status?: string; cursor?: string; limit?: number } = {}) {
     const data = Object.entries(params).filter(([, v]) => v !== undefined && v !== null);
-    if (!data.length) return `${apiDomain}/external/watchlist`;
+    data.push(['include_adult', 'true']);
     return `${apiDomain}/external/watchlist?${new URLSearchParams(data as any)}`;
+  },
+  watchlistUpsert() {
+    return `${apiDomain}/external/watchlist`;
   },
   rating() {
     return `${apiDomain}/external/rating`;
