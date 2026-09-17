@@ -44,7 +44,7 @@ export async function apiCall(options: {
 
       let res;
       try {
-        res = JSON.parse(response.responseText);
+        res = parseJson(response.responseText);
       } catch (e) {
         if (checkIfBanned(response.responseText)) {
           throw new Error(api.storage.lang('Error_Blocked', ['MyAnimeList']));
