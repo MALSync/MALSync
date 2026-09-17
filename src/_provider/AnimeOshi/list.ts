@@ -14,6 +14,8 @@ export class UserList extends ListAbstract {
 
   authenticationUrl = authenticationUrl;
 
+  supportsTags = false;
+
   private cursor: string | undefined;
 
   async getUserObject() {

@@ -135,6 +135,8 @@ export class Single extends SingleAbstract {
     this.logger.error('You cant set Volumes for animes');
   }
 
+  supportsTags = false;
+
   _getTags() {
     return '';
   }
