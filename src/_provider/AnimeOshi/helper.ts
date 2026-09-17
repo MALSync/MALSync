@@ -1,10 +1,10 @@
-// TODO: Errorhandling
 import {
   NotAutenticatedError,
   NotFoundError,
   parseJson,
   ServerOfflineError,
   TokenExpiredError,
+  UnexpectedResponseError,
 } from '../Errors';
 import { status } from '../definitions';
 
@@ -182,10 +182,10 @@ export async function publicCall(url: string) {
         'x-api-key': __MAL_SYNC_KEYS__.animeoshi.apiKey,
       },
     })
-    .then(response => handleResponse(response));
+    .then(response => handleResponse(response, false));
 }
 
-function handleResponse(response) {
+function handleResponse(response, authenticated = true) {
   if ((response.status > 499 && response.status < 600) || response.status === 0) {
     throw new ServerOfflineError(`Server Offline status: ${response.status}`);
   }
@@ -197,6 +197,8 @@ function handleResponse(response) {
 
   switch (response.status) {
     case 401:
+    case 403:
+      if (!authenticated) throw new UnexpectedResponseError(message || 'Api key rejected');
       throw new TokenExpiredError(message || 'Unauthorized');
     case 404:
       throw new NotFoundError(message || 'Not Found');
@@ -225,7 +227,12 @@ async function refreshToken() {
         refresh_token: rToken,
       }).toString(),
     })
-    .then(res => parseJson(res.responseText))
+    .then(res => {
+      if ((res.status > 499 && res.status < 600) || res.status === 0) {
+        throw new ServerOfflineError(`Server Offline status: ${res.status}`);
+      }
+      return parseJson(res.responseText);
+    })
     .then(json => {
       if (json && json.access_token && json.refresh_token) {
         api.settings.set('animeoshiToken', json.access_token);
