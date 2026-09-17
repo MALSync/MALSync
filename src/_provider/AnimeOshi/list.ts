@@ -1,4 +1,5 @@
 import { ListAbstract, listElement } from '../listAbstract';
+import { NotAutenticatedError } from '../Errors';
 import {
   authenticationUrl,
   call,
@@ -20,8 +21,9 @@ export class UserList extends ListAbstract {
       username: string | null;
       avatar: string | null;
     };
+    if (!json || !json.username) throw new NotAutenticatedError('Not Authenticated');
     return {
-      username: json.username || this.name,
+      username: json.username,
       picture: json.avatar || '',
       href: `https://www.animeoshi.com/profile/${json.username}`,
     };
