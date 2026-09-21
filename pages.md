@@ -139,7 +139,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://v5.animelib.org"><img src="https://favicon.malsync.moe/?domain=https://v5.animelib.org"> AnimeLib</a></td>
+    <td><a href="https://animelib.org"><img src="https://favicon.malsync.moe/?domain=https://animelib.org"> AnimeLib</a></td>
     <td>Russian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
