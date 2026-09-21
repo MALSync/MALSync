@@ -8,7 +8,7 @@ export const Atsumaru: PageInterface = {
   urls: {
     match: ['*://atsu.moe/*'],
   },
-  search: 'https://atsu.moe/search?query={searchtermRaw}',
+  search: 'https://atsu.moe/explore?search={searchtermRaw}',
   sync: {
     isSyncPage($c) {
       return $c
