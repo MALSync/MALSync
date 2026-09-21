@@ -171,16 +171,8 @@ export const Chikari: PageInterface = {
         .run();
     },
     listChange($c) {
-      return $c
-        .detectChanges(
-          $c
-            .this('list.elementsSelector')
-            .map($el => $el.getAttribute('href').string().run())
-            .string()
-            .run(),
-          $c.trigger().run(),
-        )
+    return $c
+        .detectChanges($c.this('list.elementsSelector').length().run(), $c.trigger().run())
         .run();
-    },
   },
 };
