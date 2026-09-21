@@ -46,6 +46,31 @@ function listenForRemote() {
   );
 }
 
+// Pulls a response body chunk by chunk. Detaching the reader from the response
+// means an abort of the underlying request cannot reject the read mid-flight;
+// whatever arrived before the cancellation is still returned.
+async function readDetached(response: Response): Promise<string> {
+  const { body } = response;
+  if (!body) return response.text();
+
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  let text = '';
+
+  try {
+    for (;;) {
+      // eslint-disable-next-line no-await-in-loop
+      const { done, value } = await reader.read();
+      if (done) break;
+      text += decoder.decode(value, { stream: true });
+    }
+  } catch (e) {
+    // Ignore errors during reading
+  }
+
+  return text + decoder.decode();
+}
+
 function proxyFetch() {
   const originalFetch = window.fetch.bind(window);
 
@@ -54,10 +79,8 @@ function proxyFetch() {
     return originalFetch(...args).then(response => {
       const contentType = response.headers?.get('content-type');
       if (allowedContentType(contentType)) {
-        const clone = response.clone();
-        clone
-          .json()
-          .then(data => forwardRequest({ source: 'fetch', url, data }))
+        readDetached(response.clone())
+          .then(text => forwardRequest({ source: 'fetch', url, data: JSON.parse(text) }))
           .catch(() => undefined);
       }
 
