@@ -2,3 +2,28 @@
 
 @boxBackground: var(--mantine-color-blue-filled);
 @activeEp: var(--mantine-color-blue-light) !important;
+
+@blue: var(--primary, #5b9dd9);
+
+// Keep the original popup surfaces and use Chikari blue for their accents.
+#flash-div-top,
+#flash-div-bottom,
+#flashinfo-div {
+  .flash button,
+  .flash a {
+    color: @blue !important;
+  }
+}
+
+#malSyncProgress {
+  &.ms-loading::before,
+  .ms-progress,
+  &.ms-done .ms-progress,
+  .ms-progress.ms-resume {
+    background-color: @blue !important;
+  }
+
+  .ms-progress-resume {
+    border-top-color: @blue !important;
+  }
+}
