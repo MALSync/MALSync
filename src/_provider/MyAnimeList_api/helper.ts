@@ -141,6 +141,61 @@ export enum mangaStatus {
   plan_to_read = status.PlanToWatch,
 }
 
+export type MalTitleNode = {
+  title: string;
+  alternative_titles?: {
+    en?: string;
+  };
+};
+
+export function getMalDisplayTitle(entry: MalTitleNode): string {
+  if (api.settings.get('forceEnglishTitles')) {
+    return entry.alternative_titles?.en || entry.title;
+  }
+  return entry.title;
+}
+
+export async function resolveMalDisplayTitle(
+  type: 'anime' | 'manga',
+  id: number,
+  fallback: string,
+): Promise<string> {
+  if (!api.settings.get('forceEnglishTitles')) {
+    return fallback;
+  }
+
+  if (api.settings.get('malToken')) {
+    try {
+      const data = await apiCall({
+        type: 'GET',
+        path: `${type}/${id}`,
+        fields: ['alternative_titles'],
+      });
+      return getMalDisplayTitle(data);
+    } catch (e) {
+      con.m('MAL').warn('resolveMalDisplayTitle', type, id, e);
+    }
+  }
+
+  try {
+    const response = await api.request.xhr('GET', `https://myanimelist.net/${type}/${id}`);
+    const english = response.responseText
+      .split('class="title-english')[1]
+      ?.split('>')[1]
+      ?.split('</')[0]
+      ?.split('<br')[0]
+      ?.replace(/&quot;/g, '"')
+      ?.replace(/&#039;/g, "'");
+    if (english) {
+      return $('<div>').html(j.html(english)).text().trim();
+    }
+  } catch (e) {
+    con.m('MAL').warn('resolveMalDisplayTitle page', type, id, e);
+  }
+
+  return fallback;
+}
+
 export function getRoundedDate(date?: string): startFinishDate {
   if (!date || !/^\d{4}(?:-\d\d){0,2}$/.test(date)) {
     return null;

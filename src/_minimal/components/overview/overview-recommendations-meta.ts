@@ -1,4 +1,5 @@
 import { Recommendation } from '../../../_provider/metaOverviewAbstract';
+import { resolveMalDisplayTitle } from '../../../_provider/MyAnimeList_api/helper';
 
 export async function recommendationsMeta(malUrl: string): Promise<Recommendation[]> {
   const res: Recommendation[] = [];
@@ -65,8 +66,17 @@ export async function recommendationsMeta(malUrl: string): Promise<Recommendatio
     });
 
     for (const recommendation in res) {
-      const type = utils.urlPart(res[recommendation].entry.url, 3);
+      const type = utils.urlPart(res[recommendation].entry.url, 3) as 'anime' | 'manga';
       const id = Number(utils.urlPart(res[recommendation].entry.url, 4));
+
+      if (api.settings.get('forceEnglishTitles') && type && id) {
+        // eslint-disable-next-line no-await-in-loop
+        res[recommendation].entry.title = await resolveMalDisplayTitle(
+          type,
+          id,
+          res[recommendation].entry.title,
+        );
+      }
 
       // eslint-disable-next-line no-await-in-loop
       const dbEntry = await api.request.database('entryByMalId', {

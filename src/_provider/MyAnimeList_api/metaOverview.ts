@@ -104,8 +104,8 @@ export class MetaOverview extends MetaOverviewAbstract {
         'popularity',
         'num_list_users',
         'num_scoring_users',
-        'related_anime',
-        'related_manga',
+        'related_anime{node{alternative_titles}}',
+        'related_manga{node{alternative_titles}}',
         // Info
         'media_type',
         'num_episodes',
@@ -128,12 +128,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private title(data) {
-    const useAltTitle = api.settings.get('forceEnglishTitles');
-    if (useAltTitle) {
-      this.meta.title = data.alternative_titles.en || data.title;
-    } else {
-      this.meta.title = data.title;
-    }
+    this.meta.title = helper.getMalDisplayTitle(data);
   }
 
   private description(data) {
@@ -404,7 +399,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
         links[el.relation_type].links.push({
           url: buildProviderUrl('MAL', 'anime', el.node.id),
-          title: el.node.title,
+          title: helper.getMalDisplayTitle(el.node),
           id: el.node.id,
           type: 'anime',
         });
@@ -422,7 +417,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
         links[el.relation_type].links.push({
           url: buildProviderUrl('MAL', 'manga', el.node.id),
-          title: el.node.title,
+          title: helper.getMalDisplayTitle(el.node),
           id: el.node.id,
           type: 'manga',
         });

@@ -3,6 +3,7 @@ import { UrlNotSupportedError } from '../Errors';
 import { urlToSlug } from '../../utils/slugs';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 import { IntlDateTime, IntlDuration, IntlRange } from '../../utils/IntlWrapper';
+import { resolveMalDisplayTitle } from '../MyAnimeList_api/helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -36,7 +37,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.info(data);
     this.openingSongs(data);
     this.endingSongs(data);
-    this.related(data);
+    await this.related(data);
 
     this.logger.log('Res', this.meta);
   }
@@ -419,7 +420,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.meta.endingSongs = endingSongs;
   }
 
-  private related(data) {
+  private async related(data) {
     const el: { type: string; links: any[] }[] = [];
     try {
       const relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
@@ -482,6 +483,18 @@ export class MetaOverview extends MetaOverviewAbstract {
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
+
+    if (api.settings.get('forceEnglishTitles')) {
+      for (const group of el) {
+        for (const link of group.links) {
+          if (link.type === 'anime' || link.type === 'manga') {
+            // eslint-disable-next-line no-await-in-loop
+            link.title = await resolveMalDisplayTitle(link.type, link.id, link.title);
+          }
+        }
+      }
+    }
+
     this.meta.related = el;
   }
 }

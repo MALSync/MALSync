@@ -195,7 +195,7 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
-    return this.animeInfo.title;
+    return helper.getMalDisplayTitle(this.animeInfo);
   }
 
   _getTotalEpisodes() {
@@ -230,6 +230,7 @@ export class Single extends SingleAbstract {
       path: `${this.type}/${this.ids.mal}`,
       fields: [
         'my_list_status{tags,is_rewatching,is_rereading,num_times_rewatched,num_times_reread,start_date,finish_date}',
+        'alternative_titles',
         'num_episodes',
         'mean',
         // Manga
