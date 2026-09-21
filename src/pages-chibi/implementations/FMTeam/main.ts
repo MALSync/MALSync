@@ -84,10 +84,10 @@ export const FMTeam: PageInterface = {
       return $c.querySelectorAll('.chapters-list .chapter-item').run();
     },
     elementUrl($c) {
-      return $c.getAttribute('href').ifNotReturn().urlAbsolute().run();
+      return $c.getAttribute('onclick').ifNotReturn().regex("/read/[^']+").urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.getAttribute('href').regex('/ch/(\\d+)', 1).ifNotReturn().number().run();
+      return $c.getAttribute('onclick').ifNotReturn().regex('/ch/(\\d+)', 1).number().run();
     },
   },
   lifecycle: {
