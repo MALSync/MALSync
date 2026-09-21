@@ -109,7 +109,20 @@ export const Chikari: PageInterface = {
         .run();
     },
     uiInjection($c) {
-      return $c.querySelector('main').uiPrepend().run();
+      return (
+        $c
+          .querySelectorAll('main > div')
+          // The site renders separate desktop and mobile details layouts.
+          .arrayFind($el => $el.getComputedStyle('display').equals('none').not().run())
+          .ifNotReturn()
+          .setVariable('detailsLayout')
+          .coalesce(
+            $c.getVariable<Element>('detailsLayout').find('.min-w-0.space-y-5').run(),
+            $c.getVariable<Element>('detailsLayout').run(),
+          )
+          .uiPrepend()
+          .run()
+      );
     },
   },
   list: {
