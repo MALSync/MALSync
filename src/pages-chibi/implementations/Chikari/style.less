@@ -1,9 +1,13 @@
 @import './../pages';
 
-@boxBackground: var(--mantine-color-blue-filled);
-@activeEp: var(--mantine-color-blue-light) !important;
-
 @blue: var(--primary, #5b9dd9);
+
+@boxBackground: var(--card);
+@boxHighlightBackground: @blue;
+@boxHighlightFontColor: var(--primary-foreground) !important;
+
+@highlightStyle: 1;
+@activeEp: @blue !important;
 
 // Keep the original popup surfaces and use Chikari blue for their accents.
 #flash-div-top,
