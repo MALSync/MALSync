@@ -1,7 +1,6 @@
 import { Mangadex } from './Mangadex/main';
 import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
-import { Netflix } from './Netflix/main';
 import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Proxer } from './Proxer/main';
@@ -96,7 +95,6 @@ import { AniDream } from './AniDream/main';
 export const pages = {
   Mangadex,
   TurkAnime,
-  Netflix,
   Animeflv,
   Jkanime,
   Proxer,
