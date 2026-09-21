@@ -485,14 +485,18 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
 
     if (api.settings.get('forceEnglishTitles')) {
-      for (const group of el) {
-        for (const link of group.links) {
-          if (link.type === 'anime' || link.type === 'manga') {
-            // eslint-disable-next-line no-await-in-loop
-            link.title = await resolveMalDisplayTitle(link.type, link.id, link.title);
-          }
-        }
-      }
+      await Promise.all(
+        el.flatMap(group =>
+          group.links.map(link => {
+            if (link.type !== 'anime' && link.type !== 'manga') {
+              return Promise.resolve();
+            }
+            return resolveMalDisplayTitle(link.type, link.id, link.title).then(title => {
+              link.title = title;
+            });
+          }),
+        ),
+      );
     }
 
     this.meta.related = el;
