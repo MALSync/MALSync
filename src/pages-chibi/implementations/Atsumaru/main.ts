@@ -38,7 +38,13 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return slashCounter($c, 'span.relative:last-child', 0).number().run();
+      return $c
+        .coalesceFn(
+          slashCounter($c, 'span.relative:last-child', 0).run(),
+          parseChapterLabel($c.querySelector('select').ifNotReturn().selectedText().trim()).run(),
+        )
+        .number()
+        .run();
     },
     readerConfig: [
       {
