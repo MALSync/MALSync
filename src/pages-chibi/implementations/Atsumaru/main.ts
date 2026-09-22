@@ -157,12 +157,8 @@ function slashCounter($c: ChibiGenerator<unknown>, selector: string, index: numb
 
 function parseChapterLabel($label: ChibiGenerator<string>) {
   return $label
-    .setVariable('chapterLabel')
-    .regex('(ch|chapter|episode|ep|chap|chp|days)\\D?(\\d+(?:\\.\\d+)?)', 2)
-    .ifThen($c => $c.number().return().run())
-    .getVariable('chapterLabel')
-    .string()
-    .regex('((\\d+\\.)?\\d+)$', 1)
+    .replaceRegex('\\([^)]*\\)', '')
+    .regex('(\\d+(?:\\.\\d+)?)(?!.*\\d)', 1)
     .ifNotReturn()
     .number();
 }
