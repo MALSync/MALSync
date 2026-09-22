@@ -104,8 +104,8 @@ export class MetaOverview extends MetaOverviewAbstract {
         'popularity',
         'num_list_users',
         'num_scoring_users',
-        'related_anime{node{alternative_titles}}',
-        'related_manga{node{alternative_titles}}',
+        'related_anime{node{id,title,alternative_titles}}',
+        'related_manga{node{id,title,alternative_titles}}',
         // Info
         'media_type',
         'num_episodes',

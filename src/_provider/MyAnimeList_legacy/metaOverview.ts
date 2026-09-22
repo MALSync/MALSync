@@ -484,7 +484,11 @@ export class MetaOverview extends MetaOverviewAbstract {
           group.links
             .filter(link => link.type === 'anime' || link.type === 'manga')
             .map(async link => {
-              link.title = await resolveMalDisplayTitle(link.type, link.id, link.title);
+              link.title = await resolveMalDisplayTitle(
+                link.type as 'anime' | 'manga',
+                link.id,
+                link.title,
+              );
             }),
         ),
       );

@@ -65,32 +65,33 @@ export async function recommendationsMeta(malUrl: string): Promise<Recommendatio
       });
     });
 
-    for (const recommendation in res) {
-      const type = utils.urlPart(res[recommendation].entry.url, 3) as 'anime' | 'manga';
-      const id = Number(utils.urlPart(res[recommendation].entry.url, 4));
+    const forceEnglishTitles = api.settings.get('forceEnglishTitles');
+    await Promise.all(
+      res.map(async recommendation => {
+        const type = utils.urlPart(recommendation.entry.url, 3) as 'anime' | 'manga';
+        const id = Number(utils.urlPart(recommendation.entry.url, 4));
 
-      if (api.settings.get('forceEnglishTitles') && type && id) {
-        // eslint-disable-next-line no-await-in-loop
-        res[recommendation].entry.title = await resolveMalDisplayTitle(
-          type,
+        if (forceEnglishTitles && type && id) {
+          recommendation.entry.title = await resolveMalDisplayTitle(
+            type,
+            id,
+            recommendation.entry.title,
+          );
+        }
+
+        const dbEntry = await api.request.database('entryByMalId', {
           id,
-          res[recommendation].entry.title,
-        );
-      }
-
-      // eslint-disable-next-line no-await-in-loop
-      const dbEntry = await api.request.database('entryByMalId', {
-        id,
-        type,
-      });
-      if (dbEntry) {
-        res[recommendation].entry.list = {
-          status: dbEntry.status,
-          score: dbEntry.score,
-          episode: dbEntry.watchedEp,
-        };
-      }
-    }
+          type,
+        });
+        if (dbEntry) {
+          recommendation.entry.list = {
+            status: dbEntry.status,
+            score: dbEntry.score,
+            episode: dbEntry.watchedEp,
+          };
+        }
+      }),
+    );
   } catch (e) {
     con.m('review').error(e);
   }
