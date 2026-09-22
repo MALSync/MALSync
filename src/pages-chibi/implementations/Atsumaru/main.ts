@@ -173,23 +173,22 @@ export const Atsumaru: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.w-full > [class*="md:w"]').run();
+      return $c.querySelectorAll('a[href^="/read/"].relative.rounded-sm').run();
     },
     elementUrl($c) {
-      return $c.find('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
+      return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
       return $c
         .coalesce(
           $c
             .target()
-            .findAll('.my-auto')
-            .arrayFind($item => $item.text().matches('\\d+').run())
+            .find('.truncate')
+            .text()
+            .regex('(?:Chapter|Days)\\s+(\\d+(?:\\.\\d+)?)', 1)
             .run(),
-          $c.target().find('.truncate').run(),
+          $c.target().text().regex('(?:Chapter|Days)\\s+(\\d+(?:\\.\\d+)?)', 1).run(),
         )
-        .text()
-        .regex('\\d+')
         .number()
         .run();
     },
@@ -203,6 +202,12 @@ export const Atsumaru: PageInterface = {
         .detectChanges($c.url().urlPart(5).run(), $c.trigger().run())
         .detectChanges($c.url().urlPart(4).run(), $c.trigger().run())
         .domReady()
+        .trigger()
+        .run();
+    },
+    overviewIsReady($c) {
+      return $c
+        .waitUntilTrue($c.querySelector('a[href^="/read/"].relative.rounded-sm').boolean().run())
         .trigger()
         .run();
     },
