@@ -115,7 +115,8 @@
     "iframe": [
       "*://*.mxdrop.top/e/*",
       "*://eugenemakedraw.com/e/*",
-      "*://johnfullwonder.com/e/*"
+      "*://johnfullwonder.com/e/*",
+      "*://jamesbornmain.com/e/*"
     ]
   }
 }
