@@ -3,6 +3,17 @@
   "url": "https://chikari.moe",
   "testCases": [
     {
+      "url": "https://chikari.moe/series/attack-on-titan/1",
+      "expected": {
+        "sync": true,
+        "title": "ATTACK ON TITAN",
+        "identifier": "attack-on-titan",
+        "overviewUrl": "https://chikari.moe/series/attack-on-titan",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
       "url": "https://chikari.moe/series/omniscient-reader",
       "expected": {
         "sync": false,

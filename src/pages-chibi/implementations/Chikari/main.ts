@@ -38,6 +38,31 @@ export const Chikari: PageInterface = {
     },
     readerConfig: [
       {
+        condition: $c => $c.querySelector('.paged-track').boolean().run(),
+        current: $c => {
+          const track = $c.querySelector('.paged-track').ifNotReturn();
+          const firstPage = $c.getVariable<number[]>('visiblePages').first();
+          const lastPage = $c.getVariable<number[]>('visiblePages').last();
+
+          return $c
+            .querySelectorAll('.paged-track > .snap-center')
+            .arrayFind($page =>
+              $page
+                .type<HTMLElement>()
+                .get('offsetLeft')
+                .equals(track.get('scrollLeft').run())
+                .run(),
+            )
+            .ifNotReturn($c.number(0).run())
+            .findAll('img[alt^="Page "]')
+            .map($image => $image.getAttribute('alt').regex('^Page (\\d+)$', 1).number().run())
+            .setVariable('visiblePages')
+            .if(firstPage.greaterThan(lastPage.run()).run(), firstPage.run(), lastPage.run())
+            .run();
+        },
+        total: $c => $c.querySelectorAll('.paged-track img[alt^="Page "]').length().run(),
+      },
+      {
         current: $c =>
           $c
             .querySelectorAll(
@@ -171,8 +196,9 @@ export const Chikari: PageInterface = {
         .run();
     },
     listChange($c) {
-    return $c
+      return $c
         .detectChanges($c.this('list.elementsSelector').length().run(), $c.trigger().run())
         .run();
+    },
   },
 };
