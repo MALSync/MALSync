@@ -3,7 +3,7 @@ import { UrlNotSupportedError } from '../Errors';
 import { urlToSlug } from '../../utils/slugs';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 import { IntlDateTime, IntlDuration, IntlRange } from '../../utils/IntlWrapper';
-import { resolveMalDisplayTitle } from '../MyAnimeList_api/helper';
+import { englishTitleFromMalPageHtml, resolveMalDisplayTitle } from '../MyAnimeList_api/helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -57,13 +57,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     try {
       if (useAltTitle) {
-        title = data
-          .split('class="title-english')[1]
-          .split('>')[1]
-          .split('</')[0]
-          .split('<br')[0]
-          .replace(/&quot;/g, '"')
-          .replace(/&#039;/g, "'");
+        title = englishTitleFromMalPageHtml(data) ?? '';
       } else {
         title = data
           .split('itemprop="name">')[1]
@@ -487,14 +481,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (api.settings.get('forceEnglishTitles')) {
       await Promise.all(
         el.flatMap(group =>
-          group.links.map(link => {
-            if (link.type !== 'anime' && link.type !== 'manga') {
-              return Promise.resolve();
-            }
-            return resolveMalDisplayTitle(link.type, link.id, link.title).then(title => {
-              link.title = title;
-            });
-          }),
+          group.links
+            .filter(link => link.type === 'anime' || link.type === 'manga')
+            .map(async link => {
+              link.title = await resolveMalDisplayTitle(link.type, link.id, link.title);
+            }),
         ),
       );
     }

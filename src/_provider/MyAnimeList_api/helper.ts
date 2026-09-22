@@ -155,6 +155,20 @@ export function getMalDisplayTitle(entry: MalTitleNode): string {
   return entry.title;
 }
 
+export function englishTitleFromMalPageHtml(html: string): string | undefined {
+  const raw = html
+    .split('class="title-english')[1]
+    ?.split('>')[1]
+    ?.split('</')[0]
+    ?.split('<br')[0]
+    ?.replace(/&quot;/g, '"')
+    ?.replace(/&#039;/g, "'");
+  if (!raw) {
+    return undefined;
+  }
+  return $('<div>').html(j.html(raw)).text().trim() || undefined;
+}
+
 export async function resolveMalDisplayTitle(
   type: 'anime' | 'manga',
   id: number,
@@ -179,15 +193,9 @@ export async function resolveMalDisplayTitle(
 
   try {
     const response = await api.request.xhr('GET', `https://myanimelist.net/${type}/${id}`);
-    const english = response.responseText
-      .split('class="title-english')[1]
-      ?.split('>')[1]
-      ?.split('</')[0]
-      ?.split('<br')[0]
-      ?.replace(/&quot;/g, '"')
-      ?.replace(/&#039;/g, "'");
+    const english = englishTitleFromMalPageHtml(response.responseText);
     if (english) {
-      return $('<div>').html(j.html(english)).text().trim();
+      return english;
     }
   } catch (e) {
     con.m('MAL').warn('resolveMalDisplayTitle page', type, id, e);

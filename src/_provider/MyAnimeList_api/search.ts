@@ -54,7 +54,7 @@ export const search: searchInterface = async function (
 
         resItems.push({
           id: item.node.id,
-          name: helper.getMalDisplayTitle(item.node),
+          name: item.node.title,
           altNames: alt,
           url: buildProviderUrl('MAL', type, item.node.id),
           malUrl: () => {
