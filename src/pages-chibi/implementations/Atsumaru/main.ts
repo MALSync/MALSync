@@ -18,8 +18,8 @@ export const Atsumaru: PageInterface = {
     getTitle($c) {
       return $c
         .coalesce(
-          $c.querySelector('.box-content a[href^="/manga/"]').run(),
           $c.querySelector('p.invisible').run(),
+          $c.querySelector('.box-content a[href^="/manga/"]').run(),
         )
         .ifNotReturn()
         .text()
@@ -43,27 +43,11 @@ export const Atsumaru: PageInterface = {
             .querySelector('span.relative:last-child')
             .ifNotReturn()
             .text()
-            .regex('(\\d+)(?:\\.\\d+)?\\s*/', 1)
+            .split('/')
+            .at(0)
+            .trim()
             .run(),
-          $c
-            .querySelectorAll('select option:checked')
-            .arrayFind($text =>
-              $text
-                .setVariable('text')
-                .and(
-                  $c
-                    .getVariable<HTMLElement>('text')
-                    .getAttribute('value')
-                    .matches('\\b(?!\\d+\\b)\\w+')
-                    .run(),
-                  $c.getVariable<HTMLElement>('text').text().matches('\\d+').run(),
-                )
-                .run(),
-            )
-            .text()
-            .regex('\\d+')
-            .run(),
-          $c.title().regex('-\\s+.*?\\s+(\\d+)', 1).run(),
+          $c.title().regex('(?:Chapter|Days)\\s+([\\d.]+)', 1).run(),
         )
         .number()
         .run();
@@ -75,40 +59,24 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        condition: $c => $c.querySelector('option[value="0"]').boolean().run(),
-        // I use arrayFind in case it read chapter number instead
         current: $c =>
           $c
-            .querySelectorAll('.size-full option:checked')
-            .arrayFind($item => $item.text().includes('Page').run())
+            .querySelector('span.relative:last-child')
             .text()
-            .regex('Page (\\d+)', 1)
+            .split('/')
+            .at(0)
+            .trim()
             .number()
             .run(),
-        total: $c => $c.querySelectorAll('.z-1 img').length().run(),
-      },
-      {
-        condition: $c =>
-          $c
-            .querySelectorAll('style')
-            .arrayFind($style => $style.html().matches('#atsu-page-group').run())
-            .boolean()
-            .run(),
-        current: $c =>
-          $c
-            .querySelectorAll('style')
-            .arrayFind($style => $style.text().matches('#atsu-page-group').run())
-            .html()
-            .regex('#atsu-page-group-(\\d+)', 1)
-            .number()
-            .run(),
-        total: $c => $c.querySelectorAll('[id*="atsu-page-group"]').length().run(),
-      },
-      {
-        current: $c =>
-          $c.querySelector('span.relative').text().regex('(\\d+)\\s*/', 1).number().run(),
         total: $c =>
-          $c.querySelector('span.relative').text().regex('/\\s*(\\d+)', 1).number().run(),
+          $c
+            .querySelector('span.relative:last-child')
+            .text()
+            .split('/')
+            .at(1)
+            .trim()
+            .number()
+            .run(),
       },
     ],
   },
@@ -180,15 +148,10 @@ export const Atsumaru: PageInterface = {
     },
     elementEp($c) {
       return $c
-        .coalesce(
-          $c
-            .target()
-            .find('.truncate')
-            .text()
-            .regex('(?:Chapter|Days)\\s+(\\d+(?:\\.\\d+)?)', 1)
-            .run(),
-          $c.target().text().regex('(?:Chapter|Days)\\s+(\\d+(?:\\.\\d+)?)', 1).run(),
-        )
+        .target()
+        .find('.truncate')
+        .text()
+        .regex('(?:Chapter|Days)\\s+([\\d.]+)', 1)
         .number()
         .run();
     },
