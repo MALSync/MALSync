@@ -145,12 +145,28 @@ export type MalTitleNode = {
   title: string;
   alternative_titles?: {
     en?: string;
+    synonyms?: string[];
   };
 };
 
+function malForcedEnglishTitle(entry: MalTitleNode): string | undefined {
+  const en = entry.alternative_titles?.en?.trim();
+  if (en) {
+    return en;
+  }
+  const synonyms = entry.alternative_titles?.synonyms;
+  if (synonyms?.length) {
+    const first = synonyms[0]?.trim();
+    if (first) {
+      return first;
+    }
+  }
+  return undefined;
+}
+
 export function getMalDisplayTitle(entry: MalTitleNode): string {
   if (api.settings.get('forceEnglishTitles')) {
-    return entry.alternative_titles?.en || entry.title;
+    return malForcedEnglishTitle(entry) || entry.title;
   }
   return entry.title;
 }
@@ -167,6 +183,19 @@ export function englishTitleFromMalPageHtml(html: string): string | undefined {
     return undefined;
   }
   return $('<div>').html(j.html(raw)).text().trim() || undefined;
+}
+
+export function englishSynonymFromMalPageHtml(html: string): string | undefined {
+  const block = html.split('<span class="dark_text">Synonyms:</span>')[1];
+  if (!block) {
+    return undefined;
+  }
+  const raw = block.split('</div>')[0]?.split('<')[0]?.trim();
+  if (!raw) {
+    return undefined;
+  }
+  const first = raw.split(',')[0]?.trim();
+  return first || undefined;
 }
 
 export async function resolveMalDisplayTitle(
@@ -193,7 +222,8 @@ export async function resolveMalDisplayTitle(
 
   try {
     const response = await api.request.xhr('GET', `https://myanimelist.net/${type}/${id}`);
-    const english = englishTitleFromMalPageHtml(response.responseText);
+    const pageHtml = response.responseText;
+    const english = englishTitleFromMalPageHtml(pageHtml) || englishSynonymFromMalPageHtml(pageHtml);
     if (english) {
       return english;
     }

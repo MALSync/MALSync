@@ -3,7 +3,11 @@ import { UrlNotSupportedError } from '../Errors';
 import { urlToSlug } from '../../utils/slugs';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 import { IntlDateTime, IntlDuration, IntlRange } from '../../utils/IntlWrapper';
-import { englishTitleFromMalPageHtml, resolveMalDisplayTitle } from '../MyAnimeList_api/helper';
+import {
+  englishSynonymFromMalPageHtml,
+  englishTitleFromMalPageHtml,
+  resolveMalDisplayTitle,
+} from '../MyAnimeList_api/helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -57,7 +61,8 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     try {
       if (useAltTitle) {
-        title = englishTitleFromMalPageHtml(data) ?? '';
+        title =
+          englishTitleFromMalPageHtml(data) ?? englishSynonymFromMalPageHtml(data) ?? '';
       } else {
         title = data
           .split('itemprop="name">')[1]
