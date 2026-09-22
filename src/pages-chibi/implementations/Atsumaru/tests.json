@@ -123,6 +123,45 @@
         "episode": 8,
         "uiSelector": false
       }
+    },
+    {
+      "url": "https://atsu.moe/read/zVuOd/7Goelcjj",
+      "expected": {
+        "sync": true,
+        "title": "A Journey Through Another World: Raising Kids While Adventuring",
+        "identifier": "zVuOd",
+        "overviewUrl": "https://atsu.moe/manga/zVuOd",
+        "episode": 10,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/zVuOd",
+      "expected": {
+        "sync": false,
+        "title": "A Journey Through Another World: Raising Kids While Adventuring",
+        "identifier": "zVuOd",
+        "image": "https://cdn.atsu.moe/static/posters/ksZUgyP8rZrqBklz-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "9": "https://atsu.moe/read/zVuOd/HaOTQWuh",
+          "10": "https://atsu.moe/read/zVuOd/7Goelcjj"
+        }
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/Kw4xF",
+      "expected": {
+        "sync": false,
+        "title": "The Sichuan Tang Clan’s Entomologist",
+        "identifier": "Kw4xF",
+        "image": "https://cdn.atsu.moe/static/posters/BSzWv0xapSuTduhY-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "87": "https://atsu.moe/read/Kw4xF/FM8cms",
+          "88": "https://atsu.moe/read/Kw4xF/5RX6fJ"
+        }
+      }
     }
   ]
 }

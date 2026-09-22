@@ -1,3 +1,4 @@
+import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const Atsumaru: PageInterface = {
@@ -37,20 +38,7 @@ export const Atsumaru: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c
-        .coalesceFn(
-          $c
-            .querySelector('span.relative:last-child')
-            .ifNotReturn()
-            .text()
-            .split('/')
-            .at(0)
-            .trim()
-            .run(),
-          $c.title().regex('(?:Chapter|Days)\\s+([\\d.]+)', 1).run(),
-        )
-        .number()
-        .run();
+      return slashCounter($c, 'span.relative:last-child', 0).number().run();
     },
     readerConfig: [
       {
@@ -59,24 +47,8 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        current: $c =>
-          $c
-            .querySelector('span.relative:last-child')
-            .text()
-            .split('/')
-            .at(0)
-            .trim()
-            .number()
-            .run(),
-        total: $c =>
-          $c
-            .querySelector('span.relative:last-child')
-            .text()
-            .split('/')
-            .at(1)
-            .trim()
-            .number()
-            .run(),
+        current: $c => slashCounter($c, 'span.relative', 0).number().run(),
+        total: $c => slashCounter($c, 'span.relative', 1).number().run(),
       },
     ],
   },
@@ -147,13 +119,7 @@ export const Atsumaru: PageInterface = {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c
-        .target()
-        .find('.truncate')
-        .text()
-        .regex('(?:Chapter|Days)\\s+([\\d.]+)', 1)
-        .number()
-        .run();
+      return parseChapterLabel($c.target().find('span.truncate').text().trim()).run();
     },
   },
   lifecycle: {
@@ -184,3 +150,19 @@ export const Atsumaru: PageInterface = {
     },
   },
 };
+
+function slashCounter($c: ChibiGenerator<unknown>, selector: string, index: number) {
+  return $c.querySelector(selector).ifNotReturn().text().split('/').at(index).trim();
+}
+
+function parseChapterLabel($label: ChibiGenerator<string>) {
+  return $label
+    .setVariable('chapterLabel')
+    .regex('(ch|chapter|episode|ep|chap|chp|days)\\D?(\\d+(?:\\.\\d+)?)', 2)
+    .ifThen($c => $c.number().return().run())
+    .getVariable('chapterLabel')
+    .string()
+    .regex('((\\d+\\.)?\\d+)$', 1)
+    .ifNotReturn()
+    .number();
+}
