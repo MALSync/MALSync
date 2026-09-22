@@ -330,7 +330,12 @@ export abstract class SingleAbstract {
 
     if (!mode) {
       if (this.getType() === 'anime') {
-        mode = api.settings.get('progressIntervalDefaultAnime');
+        const dubLang = api.settings.get('defaultAnimeDubLanguage');
+        if (dubLang) {
+          mode = `${dubLang}/dub`;
+        } else {
+          mode = api.settings.get('progressIntervalDefaultAnime');
+        }
       } else {
         mode = api.settings.get('progressIntervalDefaultManga');
       }

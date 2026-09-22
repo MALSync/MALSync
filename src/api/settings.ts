@@ -85,6 +85,7 @@ export const settingsObj = {
     progressInterval: 120,
     progressIntervalDefaultAnime: 'en/sub',
     progressIntervalDefaultManga: 'en/sub',
+    defaultAnimeDubLanguage: '',
     progressNotificationsAnime: true,
     progressNotificationsManga: true,
     notificationsSticky: true,

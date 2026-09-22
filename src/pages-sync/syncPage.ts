@@ -20,6 +20,7 @@ import {
   trackingSyncButtonElement,
 } from './messageElements';
 import { isFirefox } from '../utils/general';
+import { applyDefaultAnimeDubLanguage } from '../utils/animeDubLanguage';
 
 const extensionId = isFirefox()
   ? '{57081fef-67b4-482f-bcb0-69296e63ec4f}'
@@ -104,7 +105,10 @@ export class SyncPage {
   public openNextEp() {
     if (typeof this.page.sync.nextEpUrl !== 'undefined') {
       if (this.page.isSyncPage(this.url)) {
-        const nextEp = this.page.sync.nextEpUrl(this.url);
+        let nextEp = this.page.sync.nextEpUrl(this.url);
+        if (this.page.type === 'anime') {
+          nextEp = applyDefaultAnimeDubLanguage(nextEp);
+        }
         if (nextEp) {
           window.location.href = nextEp;
           return;
@@ -548,7 +552,10 @@ export class SyncPage {
     await this.singleObj.lifeCycleHook('beforeSync');
     this.singleObj.setResumeWatching(this.url, state.episode);
     if (typeof this.page.sync.nextEpUrl !== 'undefined') {
-      const continueWatching = this.page.sync.nextEpUrl(this.url);
+      let continueWatching = this.page.sync.nextEpUrl(this.url);
+      if (this.page.type === 'anime') {
+        continueWatching = applyDefaultAnimeDubLanguage(continueWatching);
+      }
       if (continueWatching && !(continueWatching.indexOf('undefined') !== -1)) {
         this.singleObj.setContinueWatching(continueWatching, state.episode! + 1);
       }
@@ -863,7 +870,11 @@ export class SyncPage {
 
           const nextEp = epList[this.singleObj.getEpisode() + 1];
           if (typeof nextEp !== 'undefined' && nextEp && !this.page.isSyncPage(this.url)) {
-            const message = `<a href="${elementUrl(nextEp)}">${api.storage.lang(
+            let nextEpLink = elementUrl(nextEp);
+            if (this.page.type === 'anime') {
+              nextEpLink = applyDefaultAnimeDubLanguage(nextEpLink);
+            }
+            const message = `<a href="${nextEpLink}">${api.storage.lang(
               `syncPage_malObj_nextEp_${this.page.type}`,
               [this.singleObj.getEpisode() + 1],
             )}</a>`;

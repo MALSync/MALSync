@@ -1,6 +1,20 @@
 import { ConfObj } from '../../../_provider/definitions';
+import { ANIME_DUB_LANGUAGE_CODES } from '../../../utils/animeDubLanguage';
 import SettingsGeneral from './settings-general.vue';
 import SettingsHr from './settings-hr.vue';
+
+const dubLanguageLabel = (code: string) => {
+  const languageService = new Intl.DisplayNames('en', { type: 'language' });
+  return languageService.of(code) || code;
+};
+
+const animeDubLanguageOptions = () => [
+  { title: api.storage.lang('settings_DefaultAnimeDubLanguage_Default'), value: '' },
+  ...ANIME_DUB_LANGUAGE_CODES.map(code => ({
+    title: dubLanguageLabel(code),
+    value: code,
+  })),
+];
 
 export const video: ConfObj[] = [
   {
@@ -30,6 +44,18 @@ export const video: ConfObj[] = [
       component: 'checkbox',
       option: 'autoNextEp',
     },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'defaultAnimeDubLanguage',
+    title: () => api.storage.lang('settings_DefaultAnimeDubLanguage'),
+    props: () => ({
+      component: 'dropdown',
+      option: 'defaultAnimeDubLanguage',
+      props: {
+        options: animeDubLanguageOptions(),
+      },
+    }),
     component: SettingsGeneral,
   },
   {

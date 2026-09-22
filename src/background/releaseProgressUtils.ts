@@ -217,11 +217,18 @@ export function getProgress(res, mode, type) {
 
   if (mode === 'default') {
     if (type === 'anime') {
-      config.mainId = api.settings.get('progressIntervalDefaultAnime');
+      const dubLang = api.settings.get('defaultAnimeDubLanguage');
+      if (dubLang) {
+        config.mainId = `${dubLang}/dub`;
+        config.fallback = api.settings.get('progressIntervalDefaultAnime');
+      } else {
+        config.mainId = api.settings.get('progressIntervalDefaultAnime');
+        config.fallback = 'en/sub';
+      }
     } else {
       config.mainId = api.settings.get('progressIntervalDefaultManga');
+      config.fallback = 'en/sub';
     }
-    config.fallback = 'en/sub';
   } else {
     config.mainId = mode;
   }

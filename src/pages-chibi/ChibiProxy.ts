@@ -5,6 +5,7 @@ import { NotFoundError } from '../_provider/Errors';
 import type { ChibiJson } from '../chibiScript/ChibiGenerator';
 import { ChibiConsumer } from '../chibiScript/ChibiConsumer';
 import { pageInterface } from '../pages/pageInterface';
+import { applyDefaultAnimeDubLanguage } from '../utils/animeDubLanguage';
 import { ChibiListRepository } from './loader/ChibiListRepository';
 
 function getConsumer(code: ChibiJson<any>, page: pageInterface, name: string) {
@@ -133,7 +134,10 @@ export const Chibi = async (): Promise<pageInterface> => {
               pageD,
               'sync.nextEpUrl',
             );
-            return consumer.run();
+            const nextUrl = consumer.run();
+            return currentPage.type === 'anime'
+              ? applyDefaultAnimeDubLanguage(nextUrl)
+              : nextUrl;
           }
         : undefined,
       uiSelector: currentPage.sync.uiInjection
@@ -233,7 +237,10 @@ export const Chibi = async (): Promise<pageInterface> => {
                           'list.elementUrl',
                         );
                         consumer.addVariable('element', selector);
-                        return consumer.run(selector);
+                        const listUrl = consumer.run(selector);
+                        return currentPage.type === 'anime'
+                          ? applyDefaultAnimeDubLanguage(listUrl)
+                          : listUrl;
                       }
                     : undefined,
                   elementEp(selector) {
