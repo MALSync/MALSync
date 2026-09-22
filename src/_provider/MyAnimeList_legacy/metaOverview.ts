@@ -61,8 +61,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     try {
       if (useAltTitle) {
-        title =
-          englishTitleFromMalPageHtml(data) ?? englishSynonymFromMalPageHtml(data) ?? '';
+        title = englishTitleFromMalPageHtml(data) ?? englishSynonymFromMalPageHtml(data) ?? '';
       } else {
         title = data
           .split('itemprop="name">')[1]

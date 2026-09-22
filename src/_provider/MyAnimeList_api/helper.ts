@@ -223,7 +223,8 @@ export async function resolveMalDisplayTitle(
   try {
     const response = await api.request.xhr('GET', `https://myanimelist.net/${type}/${id}`);
     const pageHtml = response.responseText;
-    const english = englishTitleFromMalPageHtml(pageHtml) || englishSynonymFromMalPageHtml(pageHtml);
+    const english =
+      englishTitleFromMalPageHtml(pageHtml) || englishSynonymFromMalPageHtml(pageHtml);
     if (english) {
       return english;
     }
