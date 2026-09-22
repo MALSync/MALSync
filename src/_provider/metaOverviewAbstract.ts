@@ -149,11 +149,7 @@ export abstract class MetaOverviewAbstract {
             episode: dbEntry.watchedEp,
           };
           const syncMode = getSyncMode(link.type);
-          if (
-            useEnglishTitle &&
-            dbEntry.title &&
-            (syncMode === 'MAL' || syncMode === 'MALAPI')
-          ) {
+          if (useEnglishTitle && dbEntry.title && (syncMode === 'MAL' || syncMode === 'MALAPI')) {
             link.title = dbEntry.title;
           }
         }

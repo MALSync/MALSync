@@ -94,11 +94,14 @@ export async function recommendationsMeta(malUrl: string): Promise<Recommendatio
         }
         if (canForceEnglish && id && (type === 'anime' || type === 'manga')) {
           try {
-            const entry = await apiCall.call({ apiCall }, {
-              type: 'GET',
-              path: `${type}/${id}`,
-              fields: ['title', 'alternative_titles'],
-            });
+            const entry = await apiCall.call(
+              { apiCall },
+              {
+                type: 'GET',
+                path: `${type}/${id}`,
+                fields: ['title', 'alternative_titles'],
+              },
+            );
             const display = getMalDisplayTitle(entry);
             if (display) {
               recommendation.entry.title = display;

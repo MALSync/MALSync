@@ -521,24 +521,24 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
 
     const titles = new Map<string, string>();
-    for (const el of data.related_anime || []) {
+    (data.related_anime || []).forEach(el => {
       titles.set(`anime:${el.node.id}`, getMalDisplayTitle(el.node));
-    }
-    for (const el of data.related_manga || []) {
+    });
+    (data.related_manga || []).forEach(el => {
       titles.set(`manga:${el.node.id}`, getMalDisplayTitle(el.node));
-    }
+    });
 
     const missing: { type: string; id: number | string; title: string }[] = [];
-    for (const group of this.meta.related) {
-      for (const link of group.links) {
+    this.meta.related.forEach(group => {
+      group.links.forEach(link => {
         const title = titles.get(`${link.type}:${link.id}`);
         if (title) {
           link.title = title;
         } else if (link.type === 'anime' || link.type === 'manga') {
           missing.push(link);
         }
-      }
-    }
+      });
+    });
 
     await Promise.all(
       missing.map(async link => {
