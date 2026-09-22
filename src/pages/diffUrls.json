@@ -113,6 +113,7 @@
   },
   "0.12.5": {
     "iframe": [
+      "*://*.mxdrop.top/e/*",
       "*://eugenemakedraw.com/e/*",
       "*://johnfullwonder.com/e/*"
     ]
