@@ -1,5 +1,4 @@
 import { getSyncMode } from '../../../_provider/helper';
-import { apiCall, getMalDisplayTitle } from '../../../_provider/MyAnimeList_api/helper';
 import { Recommendation } from '../../../_provider/metaOverviewAbstract';
 
 export async function recommendationsMeta(malUrl: string): Promise<Recommendation[]> {
@@ -76,39 +75,23 @@ export async function recommendationsMeta(malUrl: string): Promise<Recommendatio
           id,
           type,
         });
+        if (!dbEntry) {
+          return;
+        }
+
+        recommendation.entry.list = {
+          status: dbEntry.status,
+          score: dbEntry.score,
+          episode: dbEntry.watchedEp,
+        };
+
         const syncMode = getSyncMode(type);
         const canForceEnglish =
           useEnglishTitle &&
           Boolean(api.settings.get('malToken')) &&
           (syncMode === 'MAL' || syncMode === 'MALAPI');
-        if (dbEntry) {
-          recommendation.entry.list = {
-            status: dbEntry.status,
-            score: dbEntry.score,
-            episode: dbEntry.watchedEp,
-          };
-          if (canForceEnglish && dbEntry.title) {
-            recommendation.entry.title = dbEntry.title;
-            return;
-          }
-        }
-        if (canForceEnglish && id && (type === 'anime' || type === 'manga')) {
-          try {
-            const entry = await apiCall.call(
-              { apiCall },
-              {
-                type: 'GET',
-                path: `${type}/${id}`,
-                fields: ['title', 'alternative_titles'],
-              },
-            );
-            const display = getMalDisplayTitle(entry);
-            if (display) {
-              recommendation.entry.title = display;
-            }
-          } catch (e) {
-            con.m('review').error(e);
-          }
+        if (canForceEnglish && dbEntry.title) {
+          recommendation.entry.title = dbEntry.title;
         }
       }),
     );

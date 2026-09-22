@@ -504,6 +504,9 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (!api.settings.get('forceEnglishTitles') || !api.settings.get('malToken')) {
       return;
     }
+    if (!this.meta.related.some(group => group.links.length)) {
+      return;
+    }
 
     let data;
     try {
@@ -528,31 +531,13 @@ export class MetaOverview extends MetaOverviewAbstract {
       titles.set(`manga:${el.node.id}`, getMalDisplayTitle(el.node));
     });
 
-    const missing: { type: string; id: number | string; title: string }[] = [];
     this.meta.related.forEach(group => {
       group.links.forEach(link => {
         const title = titles.get(`${link.type}:${link.id}`);
         if (title) {
           link.title = title;
-        } else if (link.type === 'anime' || link.type === 'manga') {
-          missing.push(link);
         }
       });
     });
-
-    await Promise.all(
-      missing.map(async link => {
-        try {
-          const entry = await this.apiCall({
-            type: 'GET',
-            path: `${link.type}/${link.id}`,
-            fields: ['title', 'alternative_titles'],
-          });
-          link.title = getMalDisplayTitle(entry);
-        } catch (e) {
-          this.logger.error(e);
-        }
-      }),
-    );
   }
 }
