@@ -155,7 +155,8 @@ const metaRequest = createRequest(parameters, params => recommendationsMeta(para
     prefix: 'overview-recommendations',
     ttl: 7 * 24 * 60 * 60 * 1000,
     refetchTtl: 7 * 24 * 60 * 60 * 1000,
-    keyFn: params => params.value.url,
+    keyFn: params =>
+      `${params.value.url}:${api.settings.get('forceEnglishTitles') ? 'en2' : 'default'}`,
   },
 });
 

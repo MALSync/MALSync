@@ -1,5 +1,6 @@
+import { getSyncMode } from '../../../_provider/helper';
+import { apiCall, getMalDisplayTitle } from '../../../_provider/MyAnimeList_api/helper';
 import { Recommendation } from '../../../_provider/metaOverviewAbstract';
-import { resolveMalDisplayTitle } from '../../../_provider/MyAnimeList_api/helper';
 
 export async function recommendationsMeta(malUrl: string): Promise<Recommendation[]> {
   const res: Recommendation[] = [];
@@ -65,30 +66,46 @@ export async function recommendationsMeta(malUrl: string): Promise<Recommendatio
       });
     });
 
-    const forceEnglishTitles = api.settings.get('forceEnglishTitles');
+    const useEnglishTitle = api.settings.get('forceEnglishTitles');
     await Promise.all(
       res.map(async recommendation => {
         const type = utils.urlPart(recommendation.entry.url, 3) as 'anime' | 'manga';
         const id = Number(utils.urlPart(recommendation.entry.url, 4));
 
-        if (forceEnglishTitles && type && id) {
-          recommendation.entry.title = await resolveMalDisplayTitle(
-            type,
-            id,
-            recommendation.entry.title,
-          );
-        }
-
         const dbEntry = await api.request.database('entryByMalId', {
           id,
           type,
         });
+        const syncMode = getSyncMode(type);
+        const canForceEnglish =
+          useEnglishTitle &&
+          Boolean(api.settings.get('malToken')) &&
+          (syncMode === 'MAL' || syncMode === 'MALAPI');
         if (dbEntry) {
           recommendation.entry.list = {
             status: dbEntry.status,
             score: dbEntry.score,
             episode: dbEntry.watchedEp,
           };
+          if (canForceEnglish && dbEntry.title) {
+            recommendation.entry.title = dbEntry.title;
+            return;
+          }
+        }
+        if (canForceEnglish && id && (type === 'anime' || type === 'manga')) {
+          try {
+            const entry = await apiCall.call({ apiCall }, {
+              type: 'GET',
+              path: `${type}/${id}`,
+              fields: ['title', 'alternative_titles'],
+            });
+            const display = getMalDisplayTitle(entry);
+            if (display) {
+              recommendation.entry.title = display;
+            }
+          } catch (e) {
+            con.m('review').error(e);
+          }
         }
       }),
     );

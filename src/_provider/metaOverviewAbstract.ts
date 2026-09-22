@@ -1,4 +1,5 @@
 import { Cache } from '../utils/Cache';
+import { getSyncMode } from './helper';
 
 export interface Overview {
   title: string;
@@ -132,19 +133,29 @@ export abstract class MetaOverviewAbstract {
   }
 
   protected async fillOverviewState() {
+    const useEnglishTitle = api.settings.get('forceEnglishTitles');
     for (const relation in this.meta.related) {
-      for (const link in this.meta.related[relation].links) {
+      for (const linkIndex in this.meta.related[relation].links) {
+        const link = this.meta.related[relation].links[linkIndex];
         // eslint-disable-next-line no-await-in-loop
         const dbEntry = await api.request.database('entry', {
-          id: this.meta.related[relation].links[link].id,
-          type: this.meta.related[relation].links[link].type,
+          id: link.id,
+          type: link.type,
         });
         if (dbEntry) {
-          this.meta.related[relation].links[link].list = {
+          link.list = {
             status: dbEntry.status,
             score: dbEntry.score,
             episode: dbEntry.watchedEp,
           };
+          const syncMode = getSyncMode(link.type);
+          if (
+            useEnglishTitle &&
+            dbEntry.title &&
+            (syncMode === 'MAL' || syncMode === 'MALAPI')
+          ) {
+            link.title = dbEntry.title;
+          }
         }
       }
     }

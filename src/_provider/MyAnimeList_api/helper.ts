@@ -198,43 +198,6 @@ export function englishSynonymFromMalPageHtml(html: string): string | undefined 
   return first || undefined;
 }
 
-export async function resolveMalDisplayTitle(
-  type: 'anime' | 'manga',
-  id: number,
-  fallback: string,
-): Promise<string> {
-  if (!api.settings.get('forceEnglishTitles')) {
-    return fallback;
-  }
-
-  if (api.settings.get('malToken')) {
-    try {
-      const data = await apiCall({
-        type: 'GET',
-        path: `${type}/${id}`,
-        fields: ['alternative_titles'],
-      });
-      return getMalDisplayTitle(data);
-    } catch (e) {
-      con.m('MAL').warn('resolveMalDisplayTitle', type, id, e);
-    }
-  }
-
-  try {
-    const response = await api.request.xhr('GET', `https://myanimelist.net/${type}/${id}`);
-    const pageHtml = response.responseText;
-    const english =
-      englishTitleFromMalPageHtml(pageHtml) || englishSynonymFromMalPageHtml(pageHtml);
-    if (english) {
-      return english;
-    }
-  } catch (e) {
-    con.m('MAL').warn('resolveMalDisplayTitle page', type, id, e);
-  }
-
-  return fallback;
-}
-
 export function getRoundedDate(date?: string): startFinishDate {
   if (!date || !/^\d{4}(?:-\d\d){0,2}$/.test(date)) {
     return null;

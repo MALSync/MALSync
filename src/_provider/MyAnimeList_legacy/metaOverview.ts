@@ -1,12 +1,14 @@
+import { Cache } from '../../utils/Cache';
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import { urlToSlug } from '../../utils/slugs';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 import { IntlDateTime, IntlDuration, IntlRange } from '../../utils/IntlWrapper';
 import {
+  apiCall,
   englishSynonymFromMalPageHtml,
   englishTitleFromMalPageHtml,
-  resolveMalDisplayTitle,
+  getMalDisplayTitle,
 } from '../MyAnimeList_api/helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
@@ -25,6 +27,18 @@ export class MetaOverview extends MetaOverviewAbstract {
   protected readonly type;
 
   private readonly malId: number;
+
+  private apiCall = apiCall;
+
+  getCache() {
+    if (this.cacheObj) return this.cacheObj;
+    const titleLanguage = api.settings.get('forceEnglishTitles') ? 'en' : 'default';
+    this.cacheObj = new Cache(
+      `v6/${titleLanguage}/${api.storage.lang('locale')}/${this.url}`,
+      5 * 24 * 60 * 60 * 1000,
+    );
+    return this.cacheObj;
+  }
 
   async _init() {
     this.logger.log('Retrieve', this.type, `MAL: ${this.malId}`);
@@ -482,22 +496,63 @@ export class MetaOverview extends MetaOverviewAbstract {
       console.log('[iframeOverview] Error:', e);
     }
 
-    if (api.settings.get('forceEnglishTitles')) {
-      await Promise.all(
-        el.flatMap(group =>
-          group.links
-            .filter(link => link.type === 'anime' || link.type === 'manga')
-            .map(async link => {
-              link.title = await resolveMalDisplayTitle(
-                link.type as 'anime' | 'manga',
-                link.id,
-                link.title,
-              );
-            }),
-        ),
-      );
+    this.meta.related = el;
+    await this.applyApiEnglishTitles();
+  }
+
+  private async applyApiEnglishTitles() {
+    if (!api.settings.get('forceEnglishTitles') || !api.settings.get('malToken')) {
+      return;
     }
 
-    this.meta.related = el;
+    let data;
+    try {
+      data = await this.apiCall({
+        type: 'GET',
+        path: `${this.type}/${this.malId}`,
+        fields: [
+          'related_anime{node{id,title,alternative_titles}}',
+          'related_manga{node{id,title,alternative_titles}}',
+        ],
+      });
+    } catch (e) {
+      this.logger.error(e);
+      return;
+    }
+
+    const titles = new Map<string, string>();
+    for (const el of data.related_anime || []) {
+      titles.set(`anime:${el.node.id}`, getMalDisplayTitle(el.node));
+    }
+    for (const el of data.related_manga || []) {
+      titles.set(`manga:${el.node.id}`, getMalDisplayTitle(el.node));
+    }
+
+    const missing: { type: string; id: number | string; title: string }[] = [];
+    for (const group of this.meta.related) {
+      for (const link of group.links) {
+        const title = titles.get(`${link.type}:${link.id}`);
+        if (title) {
+          link.title = title;
+        } else if (link.type === 'anime' || link.type === 'manga') {
+          missing.push(link);
+        }
+      }
+    }
+
+    await Promise.all(
+      missing.map(async link => {
+        try {
+          const entry = await this.apiCall({
+            type: 'GET',
+            path: `${link.type}/${link.id}`,
+            fields: ['title', 'alternative_titles'],
+          });
+          link.title = getMalDisplayTitle(entry);
+        } catch (e) {
+          this.logger.error(e);
+        }
+      }),
+    );
   }
 }
