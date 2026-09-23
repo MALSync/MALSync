@@ -50,12 +50,10 @@ import { Fumetsu } from './Fumetsu/main';
 import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
-import { Bentomanga } from './Bentomanga/main';
 import { ReadManhua } from './ReadManhua/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
-import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
 import { Aniworld } from './Aniworld/main';
 import { BetterAnime } from './BetterAnime/main';
@@ -72,7 +70,6 @@ import { Hdrezka } from './Hdrezka/main';
 import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 import { Docchi } from './Docchi/main';
-import { FMTeam } from './FMTeam/main';
 import { Animelon } from './Animelon/main';
 import { AnimeSama } from './AnimeSama/main';
 import { projectsuki } from './projectsuki/main';
@@ -149,12 +146,10 @@ export const pages = {
   FrixySubs,
   Guya,
   MangaHub,
-  Bentomanga,
   ReadManhua,
   ImmortalUpdates,
   LHTranslation,
   MangasOrigines,
-  BlueSolo,
   DisasterScans,
   Aniworld,
   BetterAnime,
@@ -171,7 +166,6 @@ export const pages = {
   ADN,
   Aniyan,
   Docchi,
-  FMTeam,
   Animelon,
   AnimeSama,
   projectsuki,

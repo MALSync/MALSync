@@ -113,6 +113,11 @@ import { AnimesDigital } from './implementations/AnimesDigital/main';
 import { YummyAni } from './implementations/YummyAni/main';
 import { DonghuaStream } from './implementations/DonghuaStream/main';
 import { BSTO } from './implementations/BSTO/main';
+import { FMTeam } from './implementations/FMTeam/main';
+import { BlueSolo } from './implementations/BlueSolo/main';
+import { FlixMomo } from './implementations/FlixMomo/main';
+import { NaszeAnime } from './implementations/NaszeAnime/main';
+import { Chikari } from './implementations/Chikari/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -228,4 +233,9 @@ export const pages: { [key: string]: PageInterface } = {
   YummyAni,
   DonghuaStream,
   BSTO,
+  FMTeam,
+  BlueSolo,
+  FlixMomo,
+  NaszeAnime,
+  Chikari,
 };

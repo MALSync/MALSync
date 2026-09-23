@@ -1,0 +1,37 @@
+{
+  "title": "NaszeAnime",
+  "url": "https://naszeanime.pl",
+  "testCases": [
+    {
+      "url": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2/watch?epId=66057",
+      "expected": {
+        "sync": true,
+        "title": "Tondemo Skill de Isekai Hourou Meshi 2",
+        "identifier": "tondemo-skill-de-isekai-hourou-meshi-2",
+        "overviewUrl": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2/watch?epId=66058",
+      "expected": {
+        "sync": true,
+        "title": "Tondemo Skill de Isekai Hourou Meshi 2",
+        "identifier": "tondemo-skill-de-isekai-hourou-meshi-2",
+        "overviewUrl": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2",
+      "expected": {
+        "sync": false,
+        "title": "Tondemo Skill de Isekai Hourou Meshi 2",
+        "identifier": "tondemo-skill-de-isekai-hourou-meshi-2",
+        "uiSelector": false
+      }
+    }
+  ]
+}

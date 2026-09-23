@@ -429,10 +429,22 @@
         "message": "Пошук потрібного тайтла"
     },
     "correction_NoMal": {
-        "message": "Якщо аніме/манґу не вдається знайти на MAL"
+        "message": "Якщо аніме/манґу не вдається знайти на $page$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "Немає даних на MyAnimeList"
+        "message": "Немає даних на $page$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_OffsetReset": {
         "message": "Зміщення скинуто"
@@ -1291,5 +1303,44 @@
     },
     "settings_listsync_provider_done": {
         "message": "Готово"
+    },
+    "settings_splitTracking": {
+        "message": "Роздільне спостереження"
+    },
+    "settings_presence_activityName": {
+        "message": "Назва активності"
+    },
+    "settings_presence_activityName_title": {
+        "message": "Назва твору"
+    },
+    "settings_presence_activityName_website": {
+        "message": "Поточний сайт"
+    },
+    "settings_presence_activityName_type": {
+        "message": "Аніме/Манґа"
+    },
+    "settings_presence_activityName_malsync": {
+        "message": "MALSync"
+    },
+    "settings_ForceEnglishTitles": {
+        "message": "Назви англійською"
+    },
+    "settings_anilist_external_sources": {
+        "message": "Показати зовнішні джерела"
+    },
+    "settings_listsync_slave": {
+        "message": "Дзеркало"
+    },
+    "settings_chibi_repos_modal_add": {
+        "message": "Ви впевнені що хочете додати цей репозиторій?"
+    },
+    "settings_Mangasync_readerTracking_percentage": {
+        "message": "Зробити главу прочитаною після відсотка сторінок"
+    },
+    "list_sorting_latest_release": {
+        "message": "По даті виходу"
+    },
+    "UI_Status_Considering": {
+        "message": "Розглядаю"
     }
 }

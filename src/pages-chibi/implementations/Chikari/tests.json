@@ -1,0 +1,66 @@
+{
+  "title": "Chikari",
+  "url": "https://chikari.moe",
+  "testCases": [
+    {
+      "url": "https://chikari.moe/series/attack-on-titan/1",
+      "expected": {
+        "sync": true,
+        "title": "ATTACK ON TITAN",
+        "identifier": "attack-on-titan",
+        "overviewUrl": "https://chikari.moe/series/attack-on-titan",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://chikari.moe/series/omniscient-reader",
+      "expected": {
+        "sync": false,
+        "title": "Omniscient Reader",
+        "identifier": "omniscient-reader",
+        "image": "https://cdn.chikari.moe/series/4/cover.webp",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://chikari.moe/series/omniscient-reader/1",
+          "311": "https://chikari.moe/series/omniscient-reader/311"
+        }
+      }
+    },
+    {
+      "url": "https://chikari.moe/series/omniscient-reader/0",
+      "expected": {
+        "sync": true,
+        "title": "Omniscient Reader",
+        "identifier": "omniscient-reader",
+        "overviewUrl": "https://chikari.moe/series/omniscient-reader",
+        "episode": 0,
+        "nextEpUrl": "https://chikari.moe/series/omniscient-reader/1",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://chikari.moe/series/omniscient-reader/1",
+      "expected": {
+        "sync": true,
+        "title": "Omniscient Reader",
+        "identifier": "omniscient-reader",
+        "overviewUrl": "https://chikari.moe/series/omniscient-reader",
+        "episode": 1,
+        "nextEpUrl": "https://chikari.moe/series/omniscient-reader/2",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://chikari.moe/series/omniscient-reader/311",
+      "expected": {
+        "sync": true,
+        "title": "Omniscient Reader",
+        "identifier": "omniscient-reader",
+        "overviewUrl": "https://chikari.moe/series/omniscient-reader",
+        "episode": 311,
+        "uiSelector": false
+      }
+    }
+  ]
+}
