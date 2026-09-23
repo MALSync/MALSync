@@ -162,6 +162,128 @@
           "88": "https://atsu.moe/read/Kw4xF/5RX6fJ"
         }
       }
+    },
+    {
+      "url": "https://atsu.moe/read/Kw4xF/5RX6fJ",
+      "expected": {
+        "sync": true,
+        "title": "The Sichuan Tang Clan’s Entomologist",
+        "identifier": "Kw4xF",
+        "overviewUrl": "https://atsu.moe/manga/Kw4xF",
+        "episode": 88,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/kSd1f",
+      "expected": {
+        "sync": false,
+        "title": "I Want to End This Love Game",
+        "identifier": "kSd1f",
+        "image": "https://cdn.atsu.moe/static/posters/7lfYtxFZnb7RNuYq-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "70": "https://atsu.moe/read/kSd1f/5Jx0n",
+          "71": "https://atsu.moe/read/kSd1f/m8fFl"
+        }
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/kSd1f/m8fFl",
+      "expected": {
+        "sync": true,
+        "title": "I Want to End This Love Game",
+        "identifier": "kSd1f",
+        "overviewUrl": "https://atsu.moe/manga/kSd1f",
+        "episode": 71,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/Yy7K",
+      "expected": {
+        "sync": false,
+        "title": "A Death Sentence From an Unsmiling Witch",
+        "identifier": "Yy7K",
+        "image": "https://cdn.atsu.moe/static/posters/UPvyYZ4YOjSuvYy5-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://atsu.moe/read/Yy7K/81ygOv",
+          "6": "https://atsu.moe/read/Yy7K/eqqT72"
+        }
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/Yy7K/81ygOv",
+      "expected": {
+        "sync": true,
+        "title": "A Death Sentence From an Unsmiling Witch",
+        "identifier": "Yy7K",
+        "overviewUrl": "https://atsu.moe/manga/Yy7K",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/at4U",
+      "expected": {
+        "sync": false,
+        "title": "Friend Request",
+        "identifier": "at4U",
+        "image": "https://cdn.atsu.moe/static/posters/lr3BZTjeILlkBYRu-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://atsu.moe/read/at4U/oGr7-9",
+          "4": "https://atsu.moe/read/at4U/-H28QU",
+          "31": "https://atsu.moe/read/at4U/DdBHEP",
+          "32": "https://atsu.moe/read/at4U/Gd-NS3",
+          "37": "https://atsu.moe/read/at4U/2vrd4s"
+        }
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/at4U/2vrd4s",
+      "expected": {
+        "sync": true,
+        "title": "Friend Request",
+        "identifier": "at4U",
+        "overviewUrl": "https://atsu.moe/manga/at4U",
+        "episode": 37,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/at4U/-H28QU",
+      "expected": {
+        "sync": true,
+        "title": "Friend Request",
+        "identifier": "at4U",
+        "overviewUrl": "https://atsu.moe/manga/at4U",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/at4U/Gd-NS3",
+      "expected": {
+        "sync": true,
+        "title": "Friend Request",
+        "identifier": "at4U",
+        "overviewUrl": "https://atsu.moe/manga/at4U",
+        "episode": 32,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/3xHoW/hiXvdP",
+      "expected": {
+        "sync": true,
+        "title": "The Knight Only Lives Today",
+        "identifier": "3xHoW",
+        "overviewUrl": "https://atsu.moe/manga/3xHoW",
+        "episode": 112,
+        "uiSelector": false
+      }
     }
   ]
 }

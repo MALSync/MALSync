@@ -1,5 +1,19 @@
-import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
+import { $c as generator, type ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
+
+function slashCounter($c: ChibiGenerator<unknown>, selector: string, index: number) {
+  return $c.querySelector(selector).ifNotReturn().text().split('/').at(index).trim();
+}
+
+function chapterLabelNumber($label: ChibiGenerator<string>) {
+  return $label
+    .setVariable('chapterLabel')
+    .if(
+      generator.getVariable('chapterLabel').string().matches('\\d').run(),
+      generator.getVariable('chapterLabel').string().regex('(\\d+(?:\\.\\d+)?)', 1).number().run(),
+      generator.boolean(false).ifNotReturn().run(),
+    );
+}
 
 export const Atsumaru: PageInterface = {
   name: 'Atsumaru',
@@ -41,7 +55,7 @@ export const Atsumaru: PageInterface = {
       return $c
         .coalesceFn(
           slashCounter($c, 'span.relative:last-child', 0).run(),
-          parseChapterLabel($c.querySelector('select').ifNotReturn().selectedText().trim()).run(),
+          chapterLabelNumber($c.querySelector('select').ifNotReturn().selectedText().trim()).run(),
         )
         .number()
         .run();
@@ -125,7 +139,21 @@ export const Atsumaru: PageInterface = {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return parseChapterLabel($c.target().find('span.truncate').text().trim()).run();
+      return $c
+        .coalesceFn(
+          chapterLabelNumber(
+            $c
+              .target()
+              .closest('.shadow-sm')
+              .ifNotReturn()
+              .find('span.uppercase')
+              .ifNotReturn()
+              .text()
+              .trim(),
+          ).run(),
+          chapterLabelNumber($c.target().find('span.truncate').text().trim()).run(),
+        )
+        .run();
     },
   },
   lifecycle: {
@@ -156,15 +184,3 @@ export const Atsumaru: PageInterface = {
     },
   },
 };
-
-function slashCounter($c: ChibiGenerator<unknown>, selector: string, index: number) {
-  return $c.querySelector(selector).ifNotReturn().text().split('/').at(index).trim();
-}
-
-function parseChapterLabel($label: ChibiGenerator<string>) {
-  return $label
-    .replaceRegex('\\([^)]*\\)', '')
-    .regex('(\\d+(?:\\.\\d+)?)(?!.*\\d)', 1)
-    .ifNotReturn()
-    .number();
-}
