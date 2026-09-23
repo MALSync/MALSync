@@ -1,5 +1,6 @@
 <template>
   <div class="settings-block" :class="{ designed: !components.path.length }">
+    <SettingsSearch v-if="!components.path.length" />
     <transition :name="components.path.length ? 'slide-in' : 'slide-out'">
       <div :key="components.path.join('/')">
         <Link
@@ -46,6 +47,7 @@ import { ConfObj } from '../../_provider/definitions';
 import TransitionSlide from '../components/transition-slide.vue';
 import SettingsDesigned from '../components/settings/settings-designed.vue';
 import SettingsRendering from '../components/settings/settings-rendering.vue';
+import SettingsSearch from '../components/settings/settings-search.vue';
 
 const rootWindow = inject('rootWindow') as Window;
 const rootDocument = inject('rootDocument') as Document;
