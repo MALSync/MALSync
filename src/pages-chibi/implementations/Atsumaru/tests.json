@@ -30,16 +30,16 @@
         "sync": false,
         "title": "The Knight Only Lives Today",
         "identifier": "3xHoW",
-        "image": "https://atsu.moe/static/posters/3Pe8J1zAEnTA0UeP-large.webp",
+        "image": "https://cdn.atsu.moe/static/posters/3Pe8J1zAEnTA0UeP-large.avif",
         "uiSelector": true,
         "epList": {
-          "105": "https://atsu.moe/read/3xHoW/6A7Ox",
-          "109": "https://atsu.moe/read/3xHoW/QYxaa"
+          "109": "https://atsu.moe/read/3xHoW/umXgQI",
+          "110": "https://atsu.moe/read/3xHoW/1JQOma"
         }
       }
     },
     {
-      "url": "https://atsu.moe/read/QFGPm/YoxU9YZh",
+      "url": "https://atsu.moe/read/QFGPm/4tWtoskw",
       "expected": {
         "sync": true,
         "title": "An Adventurer’s Daily Grind at Age 29",
@@ -55,11 +55,11 @@
         "sync": false,
         "title": "An Adventurer’s Daily Grind at Age 29",
         "identifier": "QFGPm",
-        "image": "https://atsu.moe/static/posters/SDmngWQUCdlSZTVk-large.webp",
+        "image": "https://cdn.atsu.moe/static/posters/SDmngWQUCdlSZTVk-large.avif",
         "uiSelector": true,
         "epList": {
-          "4": "https://atsu.moe/read/QFGPm/4tWtoskw",
-          "76": "https://atsu.moe/read/QFGPm/xBiS7"
+          "84": "https://atsu.moe/read/QFGPm/R0je7",
+          "85": "https://atsu.moe/read/QFGPm/se2mI"
         }
       }
     },
@@ -80,11 +80,11 @@
         "sync": false,
         "title": "Sakamoto Days",
         "identifier": "v8Kbg",
-        "image": "https://atsu.moe/static/posters/n6oo6UH4grMnLAow-large.webp",
+        "image": "https://cdn.atsu.moe/static/posters/n6oo6UH4grMnLAow-large.avif",
         "uiSelector": true,
         "epList": {
-          "258": "https://atsu.moe/read/v8Kbg/CKvz2",
-          "256": "https://atsu.moe/read/v8Kbg/hMWr9"
+          "274": "https://atsu.moe/read/v8Kbg/mxLoh",
+          "275": "https://atsu.moe/read/v8Kbg/e6tdi"
         }
       }
     },
@@ -94,11 +94,11 @@
         "sync": false,
         "title": "Sand Mage of the Burnt Desert",
         "identifier": "1HCA",
-        "image": "https://atsu.moe/static/posters/TKzki9XinBVjC3GQ-large.webp",
+        "image": "https://cdn.atsu.moe/static/posters/pdt6HFmJ3E08lbBO-large.avif",
         "uiSelector": true,
         "epList": {
-          "7": "https://atsu.moe/read/1HCA/7PWZTJ",
-          "10": "https://atsu.moe/read/1HCA/PW5MQZ"
+          "28": "https://atsu.moe/read/1HCA/p9KXqh",
+          "29": "https://atsu.moe/read/1HCA/VvpOhn"
         }
       }
     },
@@ -121,6 +121,167 @@
         "identifier": "qitEK",
         "overviewUrl": "https://atsu.moe/manga/qitEK",
         "episode": 8,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/zVuOd/7Goelcjj",
+      "expected": {
+        "sync": true,
+        "title": "A Journey Through Another World: Raising Kids While Adventuring",
+        "identifier": "zVuOd",
+        "overviewUrl": "https://atsu.moe/manga/zVuOd",
+        "episode": 10,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/zVuOd",
+      "expected": {
+        "sync": false,
+        "title": "A Journey Through Another World: Raising Kids While Adventuring",
+        "identifier": "zVuOd",
+        "image": "https://cdn.atsu.moe/static/posters/ksZUgyP8rZrqBklz-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "9": "https://atsu.moe/read/zVuOd/HaOTQWuh",
+          "10": "https://atsu.moe/read/zVuOd/7Goelcjj"
+        }
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/Kw4xF",
+      "expected": {
+        "sync": false,
+        "title": "The Sichuan Tang Clan’s Entomologist",
+        "identifier": "Kw4xF",
+        "image": "https://cdn.atsu.moe/static/posters/BSzWv0xapSuTduhY-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "87": "https://atsu.moe/read/Kw4xF/FM8cms",
+          "88": "https://atsu.moe/read/Kw4xF/5RX6fJ"
+        }
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/Kw4xF/5RX6fJ",
+      "expected": {
+        "sync": true,
+        "title": "The Sichuan Tang Clan’s Entomologist",
+        "identifier": "Kw4xF",
+        "overviewUrl": "https://atsu.moe/manga/Kw4xF",
+        "episode": 88,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/kSd1f",
+      "expected": {
+        "sync": false,
+        "title": "I Want to End This Love Game",
+        "identifier": "kSd1f",
+        "image": "https://cdn.atsu.moe/static/posters/7lfYtxFZnb7RNuYq-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "70": "https://atsu.moe/read/kSd1f/5Jx0n",
+          "71": "https://atsu.moe/read/kSd1f/m8fFl"
+        }
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/kSd1f/m8fFl",
+      "expected": {
+        "sync": true,
+        "title": "I Want to End This Love Game",
+        "identifier": "kSd1f",
+        "overviewUrl": "https://atsu.moe/manga/kSd1f",
+        "episode": 71,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/Yy7K",
+      "expected": {
+        "sync": false,
+        "title": "A Death Sentence From an Unsmiling Witch",
+        "identifier": "Yy7K",
+        "image": "https://cdn.atsu.moe/static/posters/UPvyYZ4YOjSuvYy5-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "2": "https://atsu.moe/read/Yy7K/81ygOv",
+          "6": "https://atsu.moe/read/Yy7K/eqqT72"
+        }
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/Yy7K/81ygOv",
+      "expected": {
+        "sync": true,
+        "title": "A Death Sentence From an Unsmiling Witch",
+        "identifier": "Yy7K",
+        "overviewUrl": "https://atsu.moe/manga/Yy7K",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/manga/at4U",
+      "expected": {
+        "sync": false,
+        "title": "Friend Request",
+        "identifier": "at4U",
+        "image": "https://cdn.atsu.moe/static/posters/lr3BZTjeILlkBYRu-large.avif",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://atsu.moe/read/at4U/oGr7-9",
+          "4": "https://atsu.moe/read/at4U/-H28QU",
+          "31": "https://atsu.moe/read/at4U/DdBHEP",
+          "32": "https://atsu.moe/read/at4U/Gd-NS3",
+          "37": "https://atsu.moe/read/at4U/2vrd4s"
+        }
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/at4U/2vrd4s",
+      "expected": {
+        "sync": true,
+        "title": "Friend Request",
+        "identifier": "at4U",
+        "overviewUrl": "https://atsu.moe/manga/at4U",
+        "episode": 37,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/at4U/-H28QU",
+      "expected": {
+        "sync": true,
+        "title": "Friend Request",
+        "identifier": "at4U",
+        "overviewUrl": "https://atsu.moe/manga/at4U",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/at4U/Gd-NS3",
+      "expected": {
+        "sync": true,
+        "title": "Friend Request",
+        "identifier": "at4U",
+        "overviewUrl": "https://atsu.moe/manga/at4U",
+        "episode": 32,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://atsu.moe/read/3xHoW/hiXvdP",
+      "expected": {
+        "sync": true,
+        "title": "The Knight Only Lives Today",
+        "identifier": "3xHoW",
+        "overviewUrl": "https://atsu.moe/manga/3xHoW",
+        "episode": 112,
         "uiSelector": false
       }
     }
