@@ -1,18 +1,28 @@
-import { $c as generator, type ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
+import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 function slashCounter($c: ChibiGenerator<unknown>, selector: string, index: number) {
   return $c.querySelector(selector).ifNotReturn().text().split('/').at(index).trim();
 }
 
-function chapterLabelNumber($label: ChibiGenerator<string>) {
+export function chapterLabelNumber($label: ChibiGenerator<string>) {
   return $label
     .setVariable('chapterLabel')
-    .if(
-      generator.getVariable('chapterLabel').string().matches('\\d').run(),
-      generator.getVariable('chapterLabel').string().regex('(\\d+(?:\\.\\d+)?)', 1).number().run(),
-      generator.boolean(false).ifNotReturn().run(),
-    );
+    .matches('(chapter|episode|chap|ch|ep)[^\\d]{0,3}\\d')
+    .ifThen($c =>
+      $c
+        .getVariable('chapterLabel')
+        .string()
+        .regex('(chapter|episode|chap|ch|ep)[^\\d]{0,3}(\\d+(?:\\.\\d+)?)', 2)
+        .number()
+        .return()
+        .run(),
+    )
+    .getVariable('chapterLabel')
+    .string()
+    .regex('(\\d+(?:\\.\\d+)?)', 1)
+    .ifNotReturn()
+    .number();
 }
 
 export const Atsumaru: PageInterface = {
@@ -140,19 +150,18 @@ export const Atsumaru: PageInterface = {
     },
     elementEp($c) {
       return $c
-        .coalesceFn(
-          chapterLabelNumber(
-            $c
-              .target()
-              .closest('.shadow-sm')
-              .ifNotReturn()
-              .find('span.uppercase')
-              .ifNotReturn()
-              .text()
-              .trim(),
-          ).run(),
-          chapterLabelNumber($c.target().find('span.truncate').text().trim()).run(),
+        .coalesce(
+          $c
+            .target()
+            .closest('.shadow-sm')
+            .findAll('.my-auto')
+            .arrayFind($item => $item.text().matches('\\d+').run())
+            .run(),
+          $c.target().find('.truncate').run(),
         )
+        .text()
+        .regex('(\\d+(?:\\.\\d+)?)', 1)
+        .number()
         .run();
     },
   },
