@@ -28,6 +28,10 @@ export class UserList extends ListAbstract {
       if (this.getRegex(listType).test(key)) {
         const el = data[key];
         con.log(key, el);
+        if (!el) {
+          con.error('[Local] Skipping malformed list entry', key);
+          continue;
+        }
         if (status !== definitions.status.All && parseInt(el.status) !== status) {
           continue;
         }

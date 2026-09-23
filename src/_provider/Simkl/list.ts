@@ -48,6 +48,10 @@ export class UserList extends ListAbstract {
     const newData = [] as listElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
+      if (!el || !el.show) {
+        con.error('[Simkl] Skipping list entry with missing show', el);
+        continue;
+      }
       const st = this.translateList(el.status);
       if (status !== definitions.status.All && parseInt(st) !== status) {
         continue;
