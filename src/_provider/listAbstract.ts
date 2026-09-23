@@ -50,6 +50,8 @@ export abstract class ListAbstract {
 
   protected abstract authenticationUrl: string;
 
+  protected supportsTags = true;
+
   abstract readonly name;
 
   protected logger;
@@ -286,7 +288,12 @@ export abstract class ListAbstract {
       },
       progress: null,
     };
-    item.options = await utils.getEntrySettings(item.type, item.cacheKey, item.tags);
+    item.options = await utils.getEntrySettings(
+      item.type,
+      item.cacheKey,
+      item.tags,
+      this.supportsTags,
+    );
     if (streamurl) item.options!.u = streamurl;
     if (this.modes.sortAiring || this.modes.initProgress) await item.fn.initProgress();
 

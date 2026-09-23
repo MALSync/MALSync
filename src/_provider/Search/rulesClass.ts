@@ -1,4 +1,5 @@
 import { pageUrl } from '../../utils/slugs';
+import { parseJson } from '../Errors';
 
 interface rules {
   provider: 'firebase' | 'user';
@@ -79,7 +80,7 @@ export class RulesClass {
       const response = await api.request.xhr('GET', url);
       logger.log('Response', response);
 
-      const res = JSON.parse(response.responseText);
+      const res = parseJson(response.responseText);
 
       return {
         provider: 'firebase',
