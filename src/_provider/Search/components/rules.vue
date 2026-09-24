@@ -1,31 +1,24 @@
 <template>
   <div v-if="rules && rules.length" class="rules">
-    <div class="title">{{ lang('UI_Rules') }}</div>
+    <div class="title">
+      {{ lang('UI_Rules') }}
+      <template v-if="isEpisode">S{{ season }} E{{ episode }}</template>
+    </div>
     <div v-for="(rule, index) in rules" :key="index" class="rule" :class="activeRule(rule)">
       <div class="header">
-        <template v-if="rule.to.title">
-          <span class="noHover">
-            {{ rule.to.title }}
-          </span>
-          <span class="hover">
-            {{ rule.to.url }}
-          </span>
-        </template>
-        <template v-else>
-          {{ rule.to.url }}
-        </template>
+        {{ ruleUrl(rule) }}
       </div>
 
       <div class="content">
-        {{ lang('UI_Episode') }}
-        {{ rule.from.start }}
-        <template v-if="rule.from.start !== rule.from.end">
-          - {{ Number.MAX_SAFE_INTEGER === rule.from.end ? '∞' : rule.from.end }}</template
+        S{{ rule.season }} {{ lang('UI_Episode') }}
+        {{ rule.start }}
+        <template v-if="rule.start !== rule.end">
+          - {{ rule.end === null ? '∞' : rule.end }}</template
         >
         ➞
-        {{ Number.MAX_SAFE_INTEGER === rule.to.start ? '∞' : rule.to.start }}
-        <template v-if="rule.to.start !== rule.to.end">
-          - {{ Number.MAX_SAFE_INTEGER === rule.to.end ? '∞' : rule.to.end }}</template
+        {{ rule.episodeStart }}
+        <template v-if="rule.start !== rule.end">
+          - {{ rule.end === null ? '∞' : rule.episodeStart + rule.end - rule.start }}</template
         >
       </div>
     </div>
@@ -33,26 +26,49 @@
 </template>
 
 <script lang="ts">
+import { pageUrl } from '../../../utils/slugs';
+
 export default {
   props: {
     obj: {
       type: Object,
       default: undefined,
     },
+    episode: {
+      type: Number,
+      default: undefined,
+    },
+    season: {
+      type: Number,
+      default: undefined,
+    },
+    offset: {
+      type: [Number, String],
+      default: 0,
+    },
   },
   data() {
     return {};
   },
   computed: {
+    isEpisode() {
+      return typeof this.episode === 'number' && typeof this.season === 'number';
+    },
     rules() {
-      if (this.obj && this.obj.getRules()) {
-        return this.obj.getRules().sort((a, b) => a.from.start - b.from.start);
+      if (!this.obj) return [];
+      if (this.isEpisode) {
+        return this.obj
+          .getMatches(this.episode + Number(this.offset || 0), this.season)
+          .map(match => match.rule);
       }
-      return [];
+      return [...this.obj.getRules()].sort((a, b) => a.season - b.season || a.start - b.start);
     },
   },
   methods: {
     lang: api.storage.lang,
+    ruleUrl(rule) {
+      return pageUrl(rule.provider, 'anime', rule.id);
+    },
     activeRule(rule) {
       return {
         active: this.obj ? rule === this.obj.activeRule : false,

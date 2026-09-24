@@ -7,7 +7,8 @@ import { compareTwoStrings } from 'string-similarity';
 import { search as pageSearch } from '../searchFactory';
 import { Single as LocalSingle } from '../Local/single';
 import { getRulesCacheKey } from '../singleFactory';
-import { RulesClass } from './rulesClass';
+import { RuleMatch, RulesClass } from './rulesClass';
+import type { pageState } from '../../pages/pageInterface';
 
 import { getSyncMode } from '../helper';
 import { buildProviderUrl } from '../../utils/slugs';
@@ -595,36 +596,56 @@ export class SearchClass {
   // Rules
   rules: RulesClass | undefined;
 
-  async initRules() {
+  // Loads the rules and asks the user which entry is watched if needed.
+  async resolveRules(state: pageState) {
     const logger = con.m('Rules');
     const url = this.getUrl();
     logger.log('Url', url);
-    if (url) {
-      const cacheKeyObj = await getRulesCacheKey(url);
-      logger.log('Cachekey', cacheKeyObj);
-      this.rules = await new RulesClass(cacheKeyObj.rulesCacheKey, this.getNormalizedType()).init();
-      return cacheKeyObj.singleObj;
+    if (!url) return undefined;
+
+    const cacheKeyObj = await getRulesCacheKey(url);
+    logger.log('Cachekey', cacheKeyObj);
+    this.rules = await new RulesClass(
+      cacheKeyObj.rulesCacheKey,
+      this.getNormalizedType(),
+      `${this.page.name}/${this.identifier}/RuleSelection`,
+    ).init();
+
+    if (state.detectedEpisode || state.detectedEpisode === 0) {
+      const userOffset = this.getOffset() || 0;
+      await this.rules.resolve(
+        Number(state.detectedEpisode) + Number(userOffset),
+        state.season,
+        this.getUrl(),
+        matches => this.selectRule(matches),
+      );
     }
-    return undefined;
+
+    return cacheKeyObj.singleObj;
   }
 
-  applyRules(episode: number) {
+  public async selectRule(matches: RuleMatch[]): Promise<string | null | undefined> {
+    /* UI implemented in vueSearchClass */
+    return matches[0].key;
+  }
+
+  applyRules(episode: number, season?: number) {
     if (this.rules) {
       const userOffset = this.getOffset() || 0;
-      const res = this.rules.applyRules(Number(episode) + Number(userOffset));
+      const res = this.rules.applyRules(Number(episode) + Number(userOffset), season);
       if (res) res.offset = Number(res.offset) + Number(userOffset);
       return res;
     }
     return undefined;
   }
 
-  getRuledOffset(episode: number): number {
-    const res = this.applyRules(episode);
+  getRuledOffset(episode: number, season?: number): number {
+    const res = this.applyRules(episode, season);
     return res ? res.offset : this.getOffset();
   }
 
-  getRuledUrl(episode: number): string | null {
-    const res = this.applyRules(episode);
+  getRuledUrl(episode: number, season?: number): string | null {
+    const res = this.applyRules(episode, season);
     return res ? res.url : this.getUrl();
   }
 }
