@@ -170,6 +170,8 @@ export class SyncPage {
         title: this.page.sync.getTitle(this.url),
         identifier: this.page.sync.getIdentifier(this.url),
         detectedEpisode: parseInt(`${this.page.sync.getEpisode(this.url)}`),
+        // TODO: Provided by the page implementations
+        season: 1,
       };
 
       this.setSearchObj(
@@ -182,7 +184,7 @@ export class SyncPage {
       await this.searchObj.search();
 
       try {
-        tempSingle = await this.searchObj.initRules();
+        tempSingle = await this.searchObj.resolveRules(state);
       } catch (e) {
         if (e instanceof UrlNotSupportedError) {
           this.incorrectUrl();
@@ -198,7 +200,8 @@ export class SyncPage {
         }
       } else {
         state.episode =
-          state.detectedEpisode + parseInt(this.searchObj.getRuledOffset(state.detectedEpisode));
+          state.detectedEpisode +
+          parseInt(this.searchObj.getRuledOffset(state.detectedEpisode, state.season));
       }
 
       if (typeof this.page.sync.getVolume !== 'undefined') {
@@ -225,6 +228,8 @@ export class SyncPage {
         on: 'OVERVIEW',
         title: this.page.overview.getTitle(this.url),
         identifier: this.page.overview.getIdentifier(this.url),
+        // TODO: Provided by the page implementations
+        season: 1,
       };
 
       this.setSearchObj(
@@ -237,7 +242,7 @@ export class SyncPage {
       await this.searchObj.search();
 
       try {
-        tempSingle = await this.searchObj.initRules();
+        tempSingle = await this.searchObj.resolveRules(state);
       } catch (e) {
         if (e instanceof UrlNotSupportedError) {
           this.incorrectUrl();
@@ -250,7 +255,10 @@ export class SyncPage {
 
     this.curState = state;
 
-    let malUrl = this.searchObj.getRuledUrl(state.detectedEpisode);
+    let malUrl = this.searchObj.getRuledUrl(state.detectedEpisode, state.season);
+
+    // resolveRules returns the single of the unruled url
+    if (malUrl !== this.searchObj.getUrl()) tempSingle = undefined;
 
     const localUrl = this.generateLocalUrl(this.page, state);
 
@@ -894,13 +902,14 @@ export class SyncPage {
       this.page.overview.list.elementsSelector().each(function (index, el) {
         try {
           const epNumber = parseInt(`${elementEp(j.$(el))}`);
+          const season = This.curState?.season;
 
           let offset = 0;
-          if (This.searchObj && This.searchObj.getRuledOffset(epNumber)) {
-            offset = Number(This.searchObj.getRuledOffset(epNumber));
+          if (This.searchObj && This.searchObj.getRuledOffset(epNumber, season)) {
+            offset = Number(This.searchObj.getRuledOffset(epNumber, season));
 
             const searchObjUrl = This.searchObj.getUrl();
-            const ruledUrl = This.searchObj.getRuledUrl(epNumber);
+            const ruledUrl = This.searchObj.getRuledUrl(epNumber, season);
 
             if (searchObjUrl !== ruledUrl) {
               j.$(el).attr('data-mal-sync-entry', ruledUrl);

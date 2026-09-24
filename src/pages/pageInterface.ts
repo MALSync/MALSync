@@ -53,5 +53,6 @@ export interface pageState {
   identifier: string;
   episode?: number;
   detectedEpisode?: number;
+  season?: number;
   volume?: number;
 }

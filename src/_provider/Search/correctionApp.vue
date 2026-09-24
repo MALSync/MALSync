@@ -12,7 +12,12 @@
     </div>
     <div v-else class="scroll">
       <entry v-if="!syncMode" :obj="syncPage.singleObj"></entry>
-      <rules :obj="rulesClass"></rules>
+      <rules
+        :obj="rulesClass"
+        :episode="ruleEpisode"
+        :season="syncPage.curState?.season"
+        :offset="offset"
+      ></rules>
 
       <input-button
         v-if="!syncMode"
@@ -101,6 +106,13 @@ export default {
     },
     offset() {
       return this.searchClass.getOffset();
+    },
+    ruleEpisode() {
+      const state = this.syncPage && this.syncPage.curState;
+      if (state && state.on === 'SYNC' && typeof state.detectedEpisode === 'number') {
+        return Number.isNaN(state.detectedEpisode) ? undefined : state.detectedEpisode;
+      }
+      return undefined;
     },
     episodeWindow() {
       let start = this.currentStateEp + parseInt(this.inputOffset) - 2;

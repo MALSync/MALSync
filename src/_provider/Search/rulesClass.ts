@@ -1,24 +1,39 @@
 import { pageUrl } from '../../utils/slugs';
 
+export type TvdbRuleProvider = 'anidb' | 'mal' | 'anilist';
+
+export interface TvdbRange {
+  start: number;
+  end: number | null;
+}
+
+export interface TvdbRule extends TvdbRange {
+  season: number;
+  provider: TvdbRuleProvider;
+  id: number;
+  episodeStart: number;
+  via?: TvdbRuleProvider;
+}
+
+export interface TvdbRuleSet {
+  tvdbId: number;
+  rules: TvdbRule[];
+  ids: Record<TvdbRuleProvider, number[]>;
+}
+
+export interface RuleMatch {
+  key: string;
+  rule: TvdbRule;
+  url: string;
+  offset: number;
+  episode: number;
+}
+
 interface rules {
-  provider: 'firebase' | 'user';
+  provider: 'api';
   cache?: boolean;
   updated: number;
-  last_modified?: string;
-  rules: {
-    from: {
-      title?: string;
-      url: number;
-      start: number;
-      end: number;
-    };
-    to: {
-      title?: string;
-      url: number;
-      start: number;
-      end: number;
-    };
-  }[];
+  ruleSet: TvdbRuleSet | null;
 }
 
 export class RulesClass {
@@ -26,9 +41,13 @@ export class RulesClass {
 
   protected state: rules | undefined;
 
+  protected selections: Record<string, string | null> = {};
+
   constructor(
     protected cacheKey: string | number,
     protected type: 'anime' | 'manga',
+    // Storage key to remember the user selections, not remembered if empty
+    protected selectionKey = '',
   ) {
     this.logger = con.m('Rules');
     return this;
@@ -36,13 +55,9 @@ export class RulesClass {
 
   public async init() {
     this.state = await this.getCache();
+    if (this.selectionKey) this.selections = (await api.storage.get(this.selectionKey)) || {};
 
-    if (
-      !this.state ||
-      (this.state.provider === 'firebase' &&
-        this.state.updated &&
-        this.state.updated + 7 * 24 * 60 * 60 * 1000 < new Date().getTime())
-    ) {
+    if (!this.state || this.state.updated + 7 * 24 * 60 * 60 * 1000 < new Date().getTime()) {
       const tempState = await this.api();
       if (tempState) this.state = tempState;
     }
@@ -55,9 +70,18 @@ export class RulesClass {
     return this;
   }
 
-  public getRules() {
-    if (this.state && this.state.rules && this.state.rules.length) return this.state.rules;
-    return [];
+  public getRuleProvider(): 'mal' | 'anilist' {
+    return String(this.cacheKey).startsWith('anilist:') ? 'anilist' : 'mal';
+  }
+
+  public getRules(): TvdbRule[] {
+    if (!this.state || !this.state.ruleSet || !this.state.ruleSet.rules) return [];
+    const provider = this.getRuleProvider();
+    return this.state.ruleSet.rules.filter(rule => rule.provider === provider);
+  }
+
+  static ruleKey(rule: TvdbRule): string {
+    return `${rule.season}:${rule.provider}:${rule.id}:${rule.start}`;
   }
 
   protected async api(): Promise<rules | undefined> {
@@ -68,39 +92,23 @@ export class RulesClass {
         return undefined;
       }
 
-      if (String(this.cacheKey).startsWith('simkl:')) {
-        logger.info('Simkl is not supported');
+      if (/^(simkl|kitsu|mangabaka):/.test(String(this.cacheKey))) {
+        logger.info('Cache key not supported', this.cacheKey);
         return undefined;
       }
 
-      const url = `https://api.malsync.moe/rules/${this.cacheKey}`;
+      const url = `https://api.malsync.moe/tvdb/rules/cache-key/${this.cacheKey}`;
       logger.log(url);
 
       const response = await api.request.xhr('GET', url);
       logger.log('Response', response);
 
-      const res = JSON.parse(response.responseText);
+      const res: TvdbRuleSet | null = JSON.parse(response.responseText);
 
       return {
-        provider: 'firebase',
+        provider: 'api',
         updated: new Date().getTime(),
-        last_modified: res.last_modified,
-        rules: res.rules.map(rule => {
-          return {
-            from: {
-              title: rule.from.title,
-              url: pageUrl(res.page, this.type, rule.from.id),
-              start: rule.from.start,
-              end: rule.from.end,
-            },
-            to: {
-              title: rule.to.title,
-              url: pageUrl(res.page, this.type, rule.to.id),
-              start: rule.to.start,
-              end: rule.to.end,
-            },
-          };
-        }),
+        ruleSet: res && Array.isArray(res.rules) ? res : null,
       };
     } catch (e) {
       logger.error(e);
@@ -109,7 +117,7 @@ export class RulesClass {
   }
 
   protected async getCache(): Promise<rules | undefined> {
-    return api.storage.get(`${this.type}/${this.cacheKey}/Rules`).then(state => {
+    return api.storage.get(`${this.type}/${this.cacheKey}/TvdbRules`).then(state => {
       if (state) state.cache = true;
       return state;
     });
@@ -117,41 +125,78 @@ export class RulesClass {
 
   protected setCache(cache: rules) {
     cache = JSON.parse(JSON.stringify(cache));
-    return api.storage.set(`${this.type}/${this.cacheKey}/Rules`, cache);
+    return api.storage.set(`${this.type}/${this.cacheKey}/TvdbRules`, cache);
   }
 
-  public activeRule: any | undefined;
+  public getMatches(episode: number, season?: number): RuleMatch[] {
+    // Rules need a season
+    if (season === undefined || season === null) return [];
 
-  public applyRules(currentEpisode: number, rules?): { url: string; offset: number } | undefined {
+    return (
+      this.getRules()
+        // Same season
+        .filter(rule => rule.season === season)
+        // Episode in range, end null = open-ended
+        .filter(rule => episode >= rule.start && (rule.end === null || episode <= rule.end))
+        // Most specific rule first
+        .sort((a, b) => b.start - a.start)
+        .map(rule => ({
+          key: RulesClass.ruleKey(rule),
+          rule,
+          url: pageUrl(rule.provider as 'mal' | 'anilist', this.type, rule.id),
+          offset: rule.episodeStart - rule.start,
+          episode: rule.episodeStart + episode - rule.start,
+        }))
+    );
+  }
+
+  static candidateKey(matches: RuleMatch[]): string {
+    return matches
+      .map(el => el.key)
+      .sort()
+      .join(',');
+  }
+
+  public async resolve(
+    episode: number,
+    season: number | undefined,
+    currentUrl: string | null,
+    select: (matches: RuleMatch[]) => Promise<string | null | undefined>,
+  ) {
+    const matches = this.getMatches(episode, season);
+    if (!matches.length) return;
+    if (matches.length === 1 && matches[0].url === currentUrl) return;
+
+    const key = RulesClass.candidateKey(matches);
+    if (key in this.selections) return;
+
+    const selection = await select(matches);
+    if (selection === undefined) return;
+
+    this.selections[key] = selection;
+    if (this.selectionKey) {
+      await api.storage.set(this.selectionKey, JSON.parse(JSON.stringify(this.selections)));
+    }
+  }
+
+  public activeRule: TvdbRule | undefined;
+
+  public applyRules(
+    currentEpisode: number,
+    season?: number,
+  ): { url: string; offset: number } | undefined {
     this.activeRule = undefined;
-    if (!rules) rules = this.getRules();
-    const rule = rules.find(el => el.from.start <= currentEpisode && el.from.end >= currentEpisode);
+    const matches = this.getMatches(currentEpisode, season);
+    if (!matches.length) return undefined;
 
-    if (rule) {
-      this.activeRule = rule;
-      return {
-        url: rule.to.url,
-        offset: rule.to.start - rule.from.start,
-      };
-    }
+    const selection = this.selections[RulesClass.candidateKey(matches)];
+    if (selection === null) return undefined;
 
-    // If continuous counting and seasons are merged (Crunchyroll: Re:ZERO Season 2)
-    if (rules.length > 1) {
-      const selfRule = rules.find(el => el.from.url === el.to.url && currentEpisode > el.from.end);
-      if (selfRule) {
-        const offset = selfRule.to.start - selfRule.from.start;
-        const newEp = currentEpisode + offset;
-        const res = this.applyRules(
-          newEp,
-          rules.filter(el => el.from.url !== el.to.url),
-        );
-        if (res) {
-          res.offset += offset;
-          return res;
-        }
-      }
-    }
-
-    return undefined;
+    const match = matches.find(el => el.key === selection) || matches[0];
+    this.activeRule = match.rule;
+    return {
+      url: match.url,
+      offset: match.offset,
+    };
   }
 }
