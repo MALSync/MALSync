@@ -386,6 +386,16 @@ export default {
   },
 
   /**
+   * Navigates the current tab to a URL, replacing the current history entry
+   * @input string - URL to navigate to
+   * @example
+   * $c.string('/anime/123').urlAbsolute().redirect() // Navigates to /anime/123
+   */
+  redirect: (ctx: ChibiCtx, input: string): void => {
+    window.location.replace(input);
+  },
+
+  /**
    * Logs a value to the console
    * @input any - Value to log
    * @param prefix - Optional prefix for the log

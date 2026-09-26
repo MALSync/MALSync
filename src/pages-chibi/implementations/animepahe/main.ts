@@ -1,3 +1,4 @@
+import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const animepahe: PageInterface = {
@@ -6,17 +7,21 @@ export const animepahe: PageInterface = {
   languages: ['English'],
   type: 'anime',
   database: 'animepahe',
-  minimumVersion: '0.12.1',
+  minimumVersion: '0.12.6',
   urls: {
     match: [
       '*://animepahe.com/play/*',
       '*://animepahe.com/anime/*',
+      '*://animepahe.com/a/*',
       '*://animepahe.org/play/*',
       '*://animepahe.org/anime/*',
+      '*://animepahe.org/a/*',
       '*://animepahe.si/play/*',
       '*://animepahe.si/anime/*',
+      '*://animepahe.si/a/*',
       '*://animepahe.pw/play/*',
       '*://animepahe.pw/anime/*',
+      '*://animepahe.pw/a/*',
     ],
   },
   sync: {
@@ -112,9 +117,41 @@ export const animepahe: PageInterface = {
     },
     ready($c) {
       return $c
-        .detectURLChanges($c.trigger().run())
-        .waitUntilTrue($c.this('sync.getIdentifier').boolean().run())
-        .trigger()
+        .if(
+          $c.url().urlPart(3).equals('a').run(),
+          // /a/<id> links stopped redirecting and /anime/<session> links rotate,
+          // so look up the current session through the site search
+          (
+            $c
+              .string('https://api.malsync.moe/page/animepahe/')
+              .concat($c.url().urlPart(4).run())
+              .fetchJson()
+              .get('title')
+              .ifNotReturn()
+              .string()
+              .replaceRegex('[^a-z0-9]+', ' ')
+              .setVariable('paheTitle')
+              .string('/api?m=search&q=')
+              .concat($c.getVariable('paheTitle').string().run())
+              .fetchJson() as ChibiGenerator<{ data?: { id: number; session: string }[] }>
+          )
+            .get('data')
+            .ifNotReturn()
+            .arrayFind($item => $item.get('id').equals($c.url().urlPart(4).number().run()).run())
+            .ifNotReturn()
+            .get('session')
+            .setVariable('paheSession')
+            .string('/anime/')
+            .concat($c.getVariable('paheSession').string().run())
+            .urlAbsolute()
+            .redirect()
+            .run(),
+          $c
+            .detectURLChanges($c.trigger().run())
+            .waitUntilTrue($c.this('sync.getIdentifier').boolean().run())
+            .trigger()
+            .run(),
+        )
         .run();
     },
     overviewIsReady($c) {

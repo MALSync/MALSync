@@ -58,6 +58,34 @@ export default {
   },
 
   /**
+   * Fetch and parse JSON. Only same-origin and malsync.moe URLs are allowed.
+   * Same-origin requests are made from the page, so the site's cookies are sent
+   * @input string - URL to fetch
+   * @returns Parsed JSON or null if the request or parsing fails
+   * @example
+   * $c.string('/api?q=test').fetchJson().get('data').run()
+   */
+  fetchJson: (ctx: ChibiCtx, input: string): any => {
+    const url = new URL(input, window.location.href);
+    return (async () => {
+      try {
+        let text: string;
+        if (url.origin === window.location.origin) {
+          text = await (await fetch(url.href, { credentials: 'include' })).text();
+        } else if (utils.isDomainMatching(url.href, 'malsync.moe')) {
+          text = (await api.request.xhr('GET', url.href)).responseText;
+        } else {
+          throw new Error(`fetchJson does not allow ${url.origin}`);
+        }
+        return JSON.parse(text);
+      } catch (e) {
+        con.error('fetchJson', url.href, e);
+        return null;
+      }
+    })();
+  },
+
+  /**
    * Detect changes in a specific target and run a callback every time a change is detected
    * @param target - Target to monitor for changes
    * @param callback - Callback to execute when changes are detected
