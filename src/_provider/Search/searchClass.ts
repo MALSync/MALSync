@@ -7,8 +7,7 @@ import { compareTwoStrings } from 'string-similarity';
 import { search as pageSearch } from '../searchFactory';
 import { Single as LocalSingle } from '../Local/single';
 import { getRulesCacheKey } from '../singleFactory';
-import { RuleMatch, RulesClass } from './rulesClass';
-import type { pageState } from '../../pages/pageInterface';
+import { RuleSetType, RulesClass } from './rulesClass';
 
 import { getSyncMode } from '../helper';
 import { buildProviderUrl } from '../../utils/slugs';
@@ -596,8 +595,7 @@ export class SearchClass {
   // Rules
   rules: RulesClass | undefined;
 
-  // Loads the rules and asks the user which entry is watched if needed.
-  async resolveRules(state: pageState) {
+  async initRules() {
     const logger = con.m('Rules');
     const url = this.getUrl();
     logger.log('Url', url);
@@ -608,25 +606,16 @@ export class SearchClass {
     this.rules = await new RulesClass(
       cacheKeyObj.rulesCacheKey,
       this.getNormalizedType(),
-      `${this.page.name}/${this.identifier}/RuleSelection`,
+      `${this.page.name}/${this.identifier}/RuleSet`,
     ).init();
-
-    if (state.detectedEpisode || state.detectedEpisode === 0) {
-      const userOffset = this.getOffset() || 0;
-      await this.rules.resolve(
-        Number(state.detectedEpisode) + Number(userOffset),
-        state.season,
-        this.getUrl(),
-        matches => this.selectRule(matches),
-      );
-    }
 
     return cacheKeyObj.singleObj;
   }
 
-  public async selectRule(matches: RuleMatch[]): Promise<string | null | undefined> {
-    /* UI implemented in vueSearchClass */
-    return matches[0].key;
+  async setRuleSet(ruleSet: RuleSetType) {
+    if (!this.rules) return;
+    if (this.rules.getRuleSet() !== ruleSet) this.changed = true;
+    await this.rules.setRuleSet(ruleSet);
   }
 
   applyRules(episode: number, season?: number) {
