@@ -170,8 +170,6 @@ export class SyncPage {
         title: this.page.sync.getTitle(this.url),
         identifier: this.page.sync.getIdentifier(this.url),
         detectedEpisode: parseInt(`${this.page.sync.getEpisode(this.url)}`),
-        // TODO: Provided by the page implementations
-        season: 1,
       };
 
       this.setSearchObj(
@@ -184,7 +182,7 @@ export class SyncPage {
       await this.searchObj.search();
 
       try {
-        tempSingle = await this.searchObj.resolveRules(state);
+        tempSingle = await this.searchObj.initRules();
       } catch (e) {
         if (e instanceof UrlNotSupportedError) {
           this.incorrectUrl();
@@ -228,8 +226,6 @@ export class SyncPage {
         on: 'OVERVIEW',
         title: this.page.overview.getTitle(this.url),
         identifier: this.page.overview.getIdentifier(this.url),
-        // TODO: Provided by the page implementations
-        season: 1,
       };
 
       this.setSearchObj(
@@ -242,7 +238,7 @@ export class SyncPage {
       await this.searchObj.search();
 
       try {
-        tempSingle = await this.searchObj.resolveRules(state);
+        tempSingle = await this.searchObj.initRules();
       } catch (e) {
         if (e instanceof UrlNotSupportedError) {
           this.incorrectUrl();
@@ -257,7 +253,7 @@ export class SyncPage {
 
     let malUrl = this.searchObj.getRuledUrl(state.detectedEpisode, state.season);
 
-    // resolveRules returns the single of the unruled url
+    // initRules returns the single of the unruled url
     if (malUrl !== this.searchObj.getUrl()) tempSingle = undefined;
 
     const localUrl = this.generateLocalUrl(this.page, state);
