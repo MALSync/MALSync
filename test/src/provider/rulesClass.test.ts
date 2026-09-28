@@ -10,6 +10,16 @@ const ruleSet = {
   rules: [
     {
       source: 'tvdb',
+      type: 'season',
+      season: 3,
+      provider: 'mal',
+      id: 59193,
+      start: 1,
+      end: 14,
+      episodeStart: 1,
+    },
+    {
+      source: 'tvdb',
       type: 'cour',
       season: 1,
       provider: 'mal',
@@ -97,6 +107,10 @@ describe('Rules', function () {
     },
     request: {
       'https://api.malsync.moe/tvdb/rules/cache-key/39535': {
+        responseText: JSON.stringify(ruleSet),
+        status: 200,
+      },
+      'https://api.malsync.moe/tvdb/rules/cache-key/59193': {
         responseText: JSON.stringify(ruleSet),
         status: 200,
       },
@@ -294,15 +308,42 @@ describe('Rules', function () {
     it('Cour rules of all seasons', async function () {
       const rules = await new RulesClass('39535', 'anime').init();
       await rules.setRuleSet('cour');
-      // 99999 is typed as mapping
-      expect(rules.getRuleSetRules().map(rule => rule.id)).to.eql([45576, 55888]);
+      // No inferred season, first parts are kept. 99999 is typed as mapping
+      expect(rules.getRuleSetRules().map(rule => rule.id)).to.eql([
+        59193, 39535, 45576, 51179, 55888,
+      ]);
+    });
+
+    it('Cour keeps the first part with a provided season', async function () {
+      const rules = await new RulesClass('45576', 'anime').init();
+      await rules.setRuleSet('cour');
+      expect(rules.applyRules(5, 1)).to.eql({
+        url: 'https://myanimelist.net/anime/39535',
+        offset: 0,
+      });
+    });
+
+    it('Cour includes whole seasons with a provided season', async function () {
+      const rules = await new RulesClass('39535', 'anime').init();
+      await rules.setRuleSet('cour');
+      expect(rules.applyRules(5, 3)).to.eql({
+        url: 'https://myanimelist.net/anime/59193',
+        offset: 0,
+      });
+    });
+
+    it('Cour skips whole seasons with an inferred season', async function () {
+      const rules = await new RulesClass('59193', 'anime').init();
+      await rules.setRuleSet('cour');
+      expect(rules.applyRules(5)).to.eql(undefined);
     });
 
     it('Cour with a split first part', async function () {
       const rules = await new RulesClass('2', 'anime').init();
       await rules.setRuleSet('cour');
-      expect(rules.getRuleSetRules().map(rule => rule.id)).to.eql([3]);
-      expect(rules.applyRules(8, 1)).to.eql(undefined);
+      // Inferred season skips both rules of the first part
+      expect(rules.applyRules(8)).to.eql(undefined);
+      expect(rules.getEpisodeSeasonRules(8).map(rule => rule.id)).to.eql([3]);
     });
 
     it('Remembers the rule set', async function () {
