@@ -1,8 +1,13 @@
 <template>
-  <div v-if="rules && rules.length" class="rules">
+  <div v-if="obj && obj.getRules().length" class="rules">
     <div class="title">
       {{ lang('UI_Rules') }}
-      <template v-if="isEpisode">S{{ season }} E{{ episode }}</template>
+      <template v-if="currentSeason !== undefined">S{{ currentSeason }} E{{ episode }}</template>
+      <select v-model="ruleSet" class="ruleSet" @change="$emit('ruleset', ruleSet)">
+        <option v-for="set in ruleSets" :key="set" :value="set">
+          {{ lang(`UI_RuleSet_${set}`) }}
+        </option>
+      </select>
     </div>
     <div v-for="(rule, index) in rules" :key="index" class="rule" :class="activeRule(rule)">
       <div class="header">
@@ -27,6 +32,7 @@
 
 <script lang="ts">
 import { pageUrl } from '../../../utils/slugs';
+import { RULE_SETS, RulesClass, RuleSetType } from '../rulesClass';
 
 export default {
   props: {
@@ -47,21 +53,36 @@ export default {
       default: 0,
     },
   },
+  emits: ['ruleset'],
   data() {
-    return {};
+    return {
+      ruleSet: (this.obj ? this.obj.getRuleSet() : 'tvdb') as RuleSetType,
+      ruleSets: RULE_SETS,
+    };
   },
   computed: {
-    isEpisode() {
-      return typeof this.episode === 'number' && typeof this.season === 'number';
+    ruleEpisode() {
+      if (typeof this.episode !== 'number') return undefined;
+      return this.episode + Number(this.offset || 0);
+    },
+    episodeRules() {
+      if (!this.obj || this.ruleEpisode === undefined) return [];
+      return this.obj
+        .getEpisodeSeasonRules(this.ruleEpisode, this.season)
+        .sort((a, b) => a.start - b.start);
+    },
+    currentSeason() {
+      return this.episodeRules.length ? this.episodeRules[0].season : undefined;
     },
     rules() {
       if (!this.obj) return [];
-      if (this.isEpisode) {
-        return this.obj
-          .getMatches(this.episode + Number(this.offset || 0), this.season)
-          .map(match => match.rule);
-      }
-      return [...this.obj.getRules()].sort((a, b) => a.season - b.season || a.start - b.start);
+      if (this.episodeRules.length) return this.episodeRules;
+      return this.obj.getRuleSetRules().sort((a, b) => a.season - b.season || a.start - b.start);
+    },
+    matchingKey() {
+      if (!this.obj || this.ruleEpisode === undefined) return undefined;
+      const [match] = this.obj.getMatches(this.ruleEpisode, this.season);
+      return match ? match.key : undefined;
     },
   },
   methods: {
@@ -71,7 +92,7 @@ export default {
     },
     activeRule(rule) {
       return {
-        active: this.obj ? rule === this.obj.activeRule : false,
+        active: this.matchingKey !== undefined && RulesClass.ruleKey(rule) === this.matchingKey,
       };
     },
   },

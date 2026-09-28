@@ -223,6 +223,18 @@
         "message": "(1) Appalling",
         "description": "Appalling - Score"
     },
+    "UI_RuleSet_tvdb": {
+        "message": "TVDB",
+        "description": "Rule set with all tvdb episode rules"
+    },
+    "UI_RuleSet_cour": {
+        "message": "Cour",
+        "description": "Rule set with only the rules for later parts/cours of the entry"
+    },
+    "UI_RuleSet_off": {
+        "message": "Off",
+        "description": "Rule set without any rules"
+    },
     "UI_Rules": {
         "message": "Rules",
         "description": "Rules text for the correction UI"
