@@ -119,6 +119,17 @@ export const Chibi = async (): Promise<pageInterface> => {
             return consumer.run();
           }
         : undefined,
+      getSeason: currentPage.sync.getSeason
+        ? url => {
+            const consumer = getUrlConsumer(
+              currentPage.sync.getSeason!,
+              url,
+              pageD,
+              'sync.getSeason',
+            );
+            return consumer.run();
+          }
+        : undefined,
       getImage: currentPage.sync.getImage
         ? () => {
             const consumer = getConsumer(currentPage.sync.getImage!, pageD, 'sync.getImage');

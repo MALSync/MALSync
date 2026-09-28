@@ -472,6 +472,9 @@ async function singleCase(block, test, page, testPage, retry = 0) {
     if (test.expected.volume) {
       expect(text.volume, 'Volume').to.equal(test.expected.volume);
     }
+    if (test.expected.season) {
+      expect(text.season, 'Season').to.equal(test.expected.season);
+    }
     var textOverview =
       typeof text.overviewUrl !== 'undefined' ? text.overviewUrl.replace(/www[^.]*\./, '') : text.overviewUrl;
     var testOverview =

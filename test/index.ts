@@ -70,6 +70,9 @@ window.MalSyncTest = async function() {
           if (page.sync.getVolume) {
             value.volume = parseInt(`${page.sync.getVolume(window.location.href)}`);
           }
+          if (page.sync.getSeason) {
+            value.season = parseInt(`${page.sync.getSeason(window.location.href)}`);
+          }
           value.overviewUrl = page.sync.getOverviewUrl(window.location.href);
           if (typeof page.sync.nextEpUrl !== 'undefined') {
             value.nextEpUrl = page.sync.nextEpUrl(window.location.href);
