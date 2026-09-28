@@ -172,6 +172,11 @@ export class SyncPage {
         detectedEpisode: parseInt(`${this.page.sync.getEpisode(this.url)}`),
       };
 
+      if (typeof this.page.sync.getSeason !== 'undefined') {
+        const season = parseInt(`${this.page.sync.getSeason(this.url)}`);
+        if (!Number.isNaN(season)) state.season = season;
+      }
+
       this.setSearchObj(
         new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );

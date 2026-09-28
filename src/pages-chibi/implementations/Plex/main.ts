@@ -52,6 +52,9 @@ export const Plex: PageInterface = {
     getEpisode($c) {
       return getPlayerMeta($c).get('index').ifNotReturn($c.number(1).run()).number().run();
     },
+    getSeason($c) {
+      return getPlayerMeta($c).get('parentIndex').number().run();
+    },
   },
   overview: {
     isOverviewPage($c) {
