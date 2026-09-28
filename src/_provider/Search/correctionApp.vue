@@ -17,6 +17,7 @@
         :episode="ruleEpisode"
         :season="syncPage.curState?.season"
         :offset="offset"
+        @ruleset="setRuleSet"
       ></rules>
 
       <input-button
@@ -137,6 +138,9 @@ export default {
     },
     setOffset(offset) {
       this.searchClass.setOffset(offset);
+    },
+    setRuleSet(ruleSet) {
+      this.searchClass.setRuleSet(ruleSet);
     },
     close() {
       this.$.appContext.app.unmount();
