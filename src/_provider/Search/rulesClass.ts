@@ -186,20 +186,25 @@ export class RulesClass {
     return inferred;
   }
 
-  protected getSeasonRules(season: number): TvdbTypedRule[] {
+  // inferred: the season was inferred from the current entry, not provided by the page
+  protected getSeasonRules(season: number, inferred = false): TvdbTypedRule[] {
     // Rule set off
     if (this.ruleSet === 'off') return [];
 
     // Same season
     const seasonRules = this.getRules().filter(rule => rule.season === season);
 
-    // Cour: only parts after the first part of the season
     if (this.ruleSet === 'cour') {
-      // First part, it can be split into multiple rules of the same id
-      const firstRule = [...seasonRules].sort((a, b) => a.start - b.start)[0];
-      return seasonRules
-        .filter(rule => rule.type === 'cour')
-        .filter(rule => rule.id !== firstRule.id);
+      // Provided season: seasons split into cours and whole seasons
+      if (!inferred) {
+        return seasonRules.filter(rule => rule.type === 'cour' || rule.type === 'season');
+      }
+
+      // Inferred season: only seasons split into cours, without the first part.
+      // The page could number a later part from 1. The first part can be split into multiple rules of the same id
+      const courRules = seasonRules.filter(rule => rule.type === 'cour');
+      const firstRule = [...courRules].sort((a, b) => a.start - b.start)[0];
+      return courRules.filter(rule => rule.id !== firstRule.id);
     }
 
     return seasonRules;
@@ -215,7 +220,7 @@ export class RulesClass {
   public getEpisodeSeasonRules(episode: number, season?: number): TvdbTypedRule[] {
     const resolved = this.resolveSeason(episode, season);
     if (resolved === undefined) return [];
-    return this.getSeasonRules(resolved);
+    return this.getSeasonRules(resolved, season === undefined || season === null);
   }
 
   public getMatches(episode: number, season?: number): RuleMatch[] {
