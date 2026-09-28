@@ -76,7 +76,8 @@ export default {
     },
     rules() {
       if (!this.obj) return [];
-      if (this.episodeRules.length) return this.episodeRules;
+      // Episode page: rules of the current season, empty if none apply
+      if (this.ruleEpisode !== undefined) return this.episodeRules;
       return this.obj.getRuleSetRules().sort((a, b) => a.season - b.season || a.start - b.start);
     },
     matchingKey() {
