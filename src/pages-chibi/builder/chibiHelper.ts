@@ -89,6 +89,9 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
   if (page.sync.getVolume) {
     page.sync.getVolume = page.sync.getVolume($c) as any;
   }
+  if (page.sync.getSeason) {
+    page.sync.getSeason = page.sync.getSeason($c) as any;
+  }
   if (page.sync.getImage) {
     page.sync.getImage = page.sync.getImage($c) as any;
   }
