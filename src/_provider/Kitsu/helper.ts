@@ -87,7 +87,7 @@ export function kitsuToMal(kitsuId: number, type: 'anime' | 'manga') {
       },
     })
     .then(response => {
-      const res = JSON.parse(response.responseText);
+      const res = parseJson(response.responseText);
       con.log('[KtoM]', res);
       if (typeof res.data === 'undefined' || !res.data.length) return null;
       return Number(res.data[0].attributes.externalId);
