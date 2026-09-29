@@ -21,6 +21,7 @@ export type TvdbRuleType = 'season' | 'cour' | 'mapping';
 
 export interface TvdbTypedRule extends TvdbRule {
   type: TvdbRuleType;
+  absoluteStart: number | null;
 }
 
 export interface TvdbRuleSet {
@@ -37,9 +38,9 @@ export interface RuleMatch {
   episode: number;
 }
 
-export type RuleSetType = 'tvdb' | 'cour' | 'off';
+export type RuleSetType = 'tvdb' | 'cour' | 'absolute' | 'off';
 
-export const RULE_SETS: RuleSetType[] = ['tvdb', 'cour', 'off'];
+export const RULE_SETS: RuleSetType[] = ['tvdb', 'cour', 'absolute', 'off'];
 
 export const DEFAULT_RULE_SET: RuleSetType = 'cour';
 
@@ -77,7 +78,9 @@ export class RulesClass {
     if (
       !this.state ||
       this.state.updated + 7 * 24 * 60 * 60 * 1000 < new Date().getTime() ||
-      (this.state.ruleSet && this.state.ruleSet.rules.some(rule => !rule.type))
+      // Cached before the rules had all fields
+      (this.state.ruleSet &&
+        this.state.ruleSet.rules.some(rule => !rule.type || rule.absoluteStart === undefined))
     ) {
       const tempState = await this.api();
       if (tempState) this.state = tempState;
@@ -210,14 +213,27 @@ export class RulesClass {
     return seasonRules;
   }
 
+  // Absolute: rules with a known absolute episode, seasons do not matter
+  protected getAbsoluteRules(): TvdbTypedRule[] {
+    return this.getRules().filter(rule => rule.absoluteStart !== null);
+  }
+
+  // First episode of a rule in the numbering of the rule set
+  protected ruleStart(rule: TvdbTypedRule): number {
+    if (this.ruleSet === 'absolute' && rule.absoluteStart !== null) return rule.absoluteStart;
+    return rule.start;
+  }
+
   // Rules of all seasons in the selected rule set
   public getRuleSetRules(): TvdbTypedRule[] {
+    if (this.ruleSet === 'absolute') return this.getAbsoluteRules();
     const seasons = [...new Set(this.getRules().map(rule => rule.season))];
     return seasons.flatMap(season => this.getSeasonRules(season));
   }
 
   // Rules of the season the episode is in
   public getEpisodeSeasonRules(episode: number, season?: number): TvdbTypedRule[] {
+    if (this.ruleSet === 'absolute') return this.getAbsoluteRules();
     const resolved = this.resolveSeason(episode, season);
     if (resolved === undefined) return [];
     return this.getSeasonRules(resolved, season === undefined || season === null);
@@ -227,16 +243,20 @@ export class RulesClass {
     return (
       this.getEpisodeSeasonRules(episode, season)
         // Episode in range, end null = open-ended
-        .filter(rule => episode >= rule.start && (rule.end === null || episode <= rule.end))
+        .filter(
+          rule =>
+            episode >= this.ruleStart(rule) &&
+            (rule.end === null || episode <= this.ruleStart(rule) + rule.end - rule.start),
+        )
         // Most specific rule first
-        .sort((a, b) => b.start - a.start)
+        .sort((a, b) => this.ruleStart(b) - this.ruleStart(a))
         // Target entry url and episode
         .map(rule => ({
           key: RulesClass.ruleKey(rule),
           rule,
           url: pageUrl(rule.provider as 'mal' | 'anilist', this.type, rule.id),
-          offset: rule.episodeStart - rule.start,
-          episode: rule.episodeStart + episode - rule.start,
+          offset: rule.episodeStart - this.ruleStart(rule),
+          episode: rule.episodeStart + episode - this.ruleStart(rule),
         }))
     );
   }

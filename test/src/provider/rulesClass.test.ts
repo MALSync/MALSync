@@ -17,6 +17,7 @@ const ruleSet = {
       start: 1,
       end: 14,
       episodeStart: 1,
+      absoluteStart: 48,
     },
     {
       source: 'tvdb',
@@ -27,6 +28,7 @@ const ruleSet = {
       start: 1,
       end: 11,
       episodeStart: 1,
+      absoluteStart: 1,
     },
     {
       source: 'tvdb',
@@ -37,6 +39,7 @@ const ruleSet = {
       start: 1,
       end: 11,
       episodeStart: 1,
+      absoluteStart: 1,
     },
     {
       source: 'tvdb',
@@ -47,6 +50,7 @@ const ruleSet = {
       start: 12,
       end: 23,
       episodeStart: 1,
+      absoluteStart: 12,
     },
     {
       source: 'tvdb',
@@ -57,6 +61,7 @@ const ruleSet = {
       start: 12,
       end: 23,
       episodeStart: 1,
+      absoluteStart: 12,
     },
     {
       source: 'tvdb',
@@ -67,6 +72,7 @@ const ruleSet = {
       start: 1,
       end: 12,
       episodeStart: 1,
+      absoluteStart: 24,
     },
     {
       source: 'tvdb',
@@ -77,6 +83,7 @@ const ruleSet = {
       start: 13,
       end: 24,
       episodeStart: 1,
+      absoluteStart: 36,
     },
     // Overlapping rule, not part of the real response
     {
@@ -88,6 +95,7 @@ const ruleSet = {
       start: 10,
       end: null,
       episodeStart: 1,
+      absoluteStart: 33,
     },
   ],
   ids: { anidb: [], mal: [39535, 45576, 51179, 55888, 99999], anilist: [108465, 127720] },
@@ -136,6 +144,7 @@ describe('Rules', function () {
               start: 1,
               end: 6,
               episodeStart: 1,
+              absoluteStart: 1,
             },
             {
               source: 'tvdb',
@@ -146,6 +155,7 @@ describe('Rules', function () {
               start: 7,
               end: 11,
               episodeStart: 7,
+              absoluteStart: 7,
             },
             {
               source: 'tvdb',
@@ -156,6 +166,7 @@ describe('Rules', function () {
               start: 12,
               end: 23,
               episodeStart: 1,
+              absoluteStart: 12,
             },
           ],
           ids: { anidb: [], mal: [2, 3], anilist: [] },
@@ -344,6 +355,29 @@ describe('Rules', function () {
       // Inferred season skips both rules of the first part
       expect(rules.applyRules(8)).to.eql(undefined);
       expect(rules.getEpisodeSeasonRules(8).map(rule => rule.id)).to.eql([3]);
+    });
+
+    it('Absolute numbering across seasons', async function () {
+      const rules = await new RulesClass('39535', 'anime').init();
+      await rules.setRuleSet('absolute');
+      expect(rules.applyRules(12)).to.eql({
+        url: 'https://myanimelist.net/anime/45576',
+        offset: -11,
+      });
+      expect(rules.applyRules(30)).to.eql({
+        url: 'https://myanimelist.net/anime/51179',
+        offset: -23,
+      });
+      expect(rules.applyRules(50)).to.eql({
+        url: 'https://myanimelist.net/anime/59193',
+        offset: -47,
+      });
+    });
+
+    it('Absolute ignores the season', async function () {
+      const rules = await new RulesClass('39535', 'anime').init();
+      await rules.setRuleSet('absolute');
+      expect(rules.applyRules(30, 1)?.url).to.equal('https://myanimelist.net/anime/51179');
     });
 
     it('Remembers the rule set', async function () {

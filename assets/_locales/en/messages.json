@@ -231,6 +231,10 @@
         "message": "Cour",
         "description": "Rule set with only the rules for later parts/cours of the entry"
     },
+    "UI_RuleSet_absolute": {
+        "message": "Absolute",
+        "description": "Rule set for sites numbering episodes across all seasons"
+    },
     "UI_RuleSet_off": {
         "message": "Off",
         "description": "Rule set without any rules"
