@@ -2,7 +2,10 @@
   <div v-if="obj && obj.getRules().length" class="rules">
     <div class="title">
       {{ lang('UI_Rules') }}
-      <template v-if="currentSeason !== undefined">S{{ currentSeason }} E{{ episode }}</template>
+      <template v-if="ruleSet === 'absolute' && ruleEpisode !== undefined">E{{ episode }}</template>
+      <template v-else-if="currentSeason !== undefined"
+        >S{{ currentSeason }} E{{ episode }}</template
+      >
       <select v-model="ruleSet" class="ruleSet" @change="$emit('ruleset', ruleSet)">
         <option v-for="set in ruleSets" :key="set" :value="set">
           {{ lang(`UI_RuleSet_${set}`) }}
@@ -15,11 +18,20 @@
       </div>
 
       <div class="content">
-        S{{ rule.season }} {{ lang('UI_Episode') }}
-        {{ rule.start }}
-        <template v-if="rule.start !== rule.end">
-          - {{ rule.end === null ? '∞' : rule.end }}</template
-        >
+        <template v-if="ruleSet === 'absolute'">
+          {{ lang('UI_Episode') }} {{ rule.absoluteStart }}
+          <template v-if="rule.start !== rule.end">
+            -
+            {{ rule.end === null ? '∞' : rule.absoluteStart + rule.end - rule.start }}</template
+          >
+        </template>
+        <template v-else>
+          S{{ rule.season }} {{ lang('UI_Episode') }}
+          {{ rule.start }}
+          <template v-if="rule.start !== rule.end">
+            - {{ rule.end === null ? '∞' : rule.end }}</template
+          >
+        </template>
         ➞
         {{ rule.episodeStart }}
         <template v-if="rule.start !== rule.end">
@@ -69,7 +81,7 @@ export default {
       if (!this.obj || this.ruleEpisode === undefined) return [];
       return this.obj
         .getEpisodeSeasonRules(this.ruleEpisode, this.season)
-        .sort((a, b) => a.start - b.start);
+        .sort((a, b) => a.season - b.season || a.start - b.start);
     },
     currentSeason() {
       return this.episodeRules.length ? this.episodeRules[0].season : undefined;
