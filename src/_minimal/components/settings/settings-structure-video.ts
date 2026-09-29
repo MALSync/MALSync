@@ -15,8 +15,18 @@ export const video: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'rememberPosition',
+    title: () => api.storage.lang('settings_Video_RememberPosition'),
+    props: {
+      component: 'checkbox',
+      option: 'rememberPosition',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'autoresume',
     title: () => api.storage.lang('settings_Video_Resume'),
+    condition: () => api.settings.get('rememberPosition'),
     props: {
       component: 'checkbox',
       option: 'autoresume',
