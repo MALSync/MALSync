@@ -127,6 +127,9 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
     page.overview.getTitle = page.overview.getTitle($c) as any;
     page.overview.getIdentifier = page.overview.getIdentifier($c) as any;
     page.overview.uiInjection = page.overview.uiInjection($c) as any;
+    if (page.overview.getSeason) {
+      page.overview.getSeason = page.overview.getSeason($c) as any;
+    }
     if (page.overview.getImage) {
       page.overview.getImage = page.overview.getImage($c) as any;
     }

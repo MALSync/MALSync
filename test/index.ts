@@ -90,6 +90,9 @@ window.MalSyncTest = async function() {
           value.sync = false;
           value.title = page.overview.getTitle(window.location.href);
           value.identifier = page.overview.getIdentifier(window.location.href);
+          if (page.overview.getSeason) {
+            value.season = parseInt(`${page.overview.getSeason(window.location.href)}`);
+          }
           if (typeof page.overview.uiSelector !== 'undefined') {
             page.overview.uiSelector(
               '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'

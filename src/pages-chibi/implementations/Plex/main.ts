@@ -89,6 +89,13 @@ export const Plex: PageInterface = {
         meta($c).get('parentRatingKey').run(),
       );
     },
+    getSeason($c) {
+      return typeHandling(
+        $c,
+        meta($c).get('index').number().run(),
+        meta($c).get('parentIndex').number().run(),
+      ) as ChibiJson<number>;
+    },
     getImage($c) {
       return typeHandling(
         $c,
