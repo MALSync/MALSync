@@ -261,7 +261,11 @@ export class SyncPage {
 
     this.curState = state;
 
-    let malUrl = this.searchObj.getRuledUrl(state.detectedEpisode, state.season);
+    // Overview with a season: resolve the entry like episode 1 of that season
+    const ruleEpisode =
+      state.on === 'OVERVIEW' && typeof state.season === 'number' ? 1 : state.detectedEpisode;
+
+    let malUrl = this.searchObj.getRuledUrl(ruleEpisode, state.season);
 
     // initRules returns the single of the unruled url
     if (malUrl !== this.searchObj.getUrl()) tempSingle = undefined;

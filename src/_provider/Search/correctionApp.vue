@@ -113,6 +113,8 @@ export default {
       if (state && state.on === 'SYNC' && typeof state.detectedEpisode === 'number') {
         return Number.isNaN(state.detectedEpisode) ? undefined : state.detectedEpisode;
       }
+      // Overview with a season: like episode 1 of that season
+      if (state && state.on === 'OVERVIEW' && typeof state.season === 'number') return 1;
       return undefined;
     },
     episodeWindow() {
