@@ -467,13 +467,13 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   expect(text.title, 'Title').to.equal(test.expected.title);
   expect(text.identifier, 'Identifier').to.equal(test.expected.identifier);
   expect(text.image, 'Image').to.equal(test.expected.image);
+  if (test.expected.season) {
+    expect(text.season, 'Season').to.equal(test.expected.season);
+  }
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
     if (test.expected.volume) {
       expect(text.volume, 'Volume').to.equal(test.expected.volume);
-    }
-    if (test.expected.season) {
-      expect(text.season, 'Season').to.equal(test.expected.season);
     }
     var textOverview =
       typeof text.overviewUrl !== 'undefined' ? text.overviewUrl.replace(/www[^.]*\./, '') : text.overviewUrl;

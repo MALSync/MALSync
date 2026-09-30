@@ -190,6 +190,13 @@ export interface PageInterface {
     uiInjection: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
 
     /**
+     * Returns the current season number for anime.
+     * This function is optional.
+     * @returns A ChibiJson wrapped number representing the season
+     */
+    getSeason?: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
+
+    /**
      * Returns the URL to the image of the anime or manga.
      * @returns A ChibiJson wrapped string containing the image URL, or undefined if not available
      */
@@ -338,6 +345,7 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getTitle: ReturnType<NonNullable<PageInterface['overview']>['getTitle']>;
     getIdentifier: ReturnType<NonNullable<PageInterface['overview']>['getIdentifier']>;
     uiInjection: ReturnType<NonNullable<PageInterface['overview']>['uiInjection']>;
+    getSeason?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getSeason']>>;
     getImage: ReturnType<NonNullable<PageInterface['overview']>['getImage']>;
     getMalUrl?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getMalUrl']>>;
   };
