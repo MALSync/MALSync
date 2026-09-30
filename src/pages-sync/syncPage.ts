@@ -233,6 +233,11 @@ export class SyncPage {
         identifier: this.page.overview.getIdentifier(this.url),
       };
 
+      if (typeof this.page.overview.getSeason !== 'undefined') {
+        const season = parseInt(`${this.page.overview.getSeason(this.url)}`);
+        if (!Number.isNaN(season)) state.season = season;
+      }
+
       this.setSearchObj(
         new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );

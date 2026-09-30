@@ -29,6 +29,7 @@ export interface pageInterface {
     getTitle: (url: string) => string;
     getIdentifier: (url: string) => string;
     uiSelector: (selector: string) => void;
+    getSeason?: (url: string) => number; // (optional) Return the current season number
     getImage?: () => string | undefined;
     getMalUrl?: (
       provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI',

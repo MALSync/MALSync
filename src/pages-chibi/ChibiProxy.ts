@@ -199,6 +199,17 @@ export const Chibi = async (): Promise<pageInterface> => {
               consumer.emitEvent('overview.uiSelector');
               return value;
             },
+            getSeason: currentPage.overview?.getSeason
+              ? url => {
+                  const consumer = getUrlConsumer(
+                    currentPage.overview!.getSeason!,
+                    url,
+                    pageD,
+                    'overview.getSeason',
+                  );
+                  return consumer.run();
+                }
+              : undefined,
             getImage: currentPage.overview?.getImage
               ? () => {
                   const consumer = getConsumer(
