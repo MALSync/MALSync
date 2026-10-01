@@ -14,7 +14,11 @@
     </div>
     <div v-for="(rule, index) in rules" :key="index" class="rule" :class="activeRule(rule)">
       <div class="header">
-        {{ ruleUrl(rule) }}
+        <template v-if="rule.providerName">
+          <span class="noHover">{{ rule.providerName }}</span>
+          <span class="hover">{{ ruleUrl(rule) }}</span>
+        </template>
+        <template v-else>{{ ruleUrl(rule) }}</template>
       </div>
 
       <div class="content">

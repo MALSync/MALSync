@@ -18,6 +18,7 @@ const ruleSet = {
       end: 14,
       episodeStart: 1,
       absoluteStart: 48,
+      providerName: null,
     },
     {
       source: 'tvdb',
@@ -29,6 +30,7 @@ const ruleSet = {
       end: 11,
       episodeStart: 1,
       absoluteStart: 1,
+      providerName: null,
     },
     {
       source: 'tvdb',
@@ -40,6 +42,7 @@ const ruleSet = {
       end: 11,
       episodeStart: 1,
       absoluteStart: 1,
+      providerName: null,
     },
     {
       source: 'tvdb',
@@ -51,6 +54,7 @@ const ruleSet = {
       end: 23,
       episodeStart: 1,
       absoluteStart: 12,
+      providerName: 'Mushoku Tensei: Isekai Ittara Honki Dasu Part 2',
     },
     {
       source: 'tvdb',
@@ -62,6 +66,7 @@ const ruleSet = {
       end: 23,
       episodeStart: 1,
       absoluteStart: 12,
+      providerName: null,
     },
     {
       source: 'tvdb',
@@ -73,6 +78,7 @@ const ruleSet = {
       end: 12,
       episodeStart: 1,
       absoluteStart: 24,
+      providerName: null,
     },
     {
       source: 'tvdb',
@@ -84,6 +90,7 @@ const ruleSet = {
       end: 24,
       episodeStart: 1,
       absoluteStart: 36,
+      providerName: null,
     },
     // Overlapping rule, not part of the real response
     {
@@ -96,6 +103,7 @@ const ruleSet = {
       end: null,
       episodeStart: 1,
       absoluteStart: 33,
+      providerName: null,
     },
   ],
   ids: { anidb: [], mal: [39535, 45576, 51179, 55888, 99999], anilist: [108465, 127720] },
@@ -138,6 +146,7 @@ describe('Rules', function () {
               end: 6,
               episodeStart: 1,
               absoluteStart: 1,
+              providerName: null,
             },
             {
               source: 'tvdb',
@@ -149,6 +158,7 @@ describe('Rules', function () {
               end: 11,
               episodeStart: 7,
               absoluteStart: 7,
+              providerName: null,
             },
             {
               source: 'tvdb',
@@ -160,6 +170,7 @@ describe('Rules', function () {
               end: 23,
               episodeStart: 1,
               absoluteStart: 12,
+              providerName: null,
             },
           ],
           ids: { anidb: [], mal: [2, 3], anilist: [] },
@@ -397,6 +408,41 @@ describe('Rules', function () {
 
       const reloaded = await searchObj('remember');
       expect(reloaded.getRuleSet()).to.equal('off');
+    });
+
+    it('Conflict: episode higher than the season uses absolute numbering', async function () {
+      const obj = await searchObj('conflict');
+      const conflict = obj.getRuleConflict(32);
+      expect(conflict?.season).to.equal(1);
+      expect(conflict?.episode).to.equal(32);
+      expect(conflict?.url).to.equal(currentUrl);
+      expect(conflict?.absolute.url).to.equal('https://myanimelist.net/anime/51179');
+      expect(conflict?.absolute.episode).to.equal(9);
+    });
+
+    it('No conflict if a rule applies', async function () {
+      const obj = await searchObj('conflict-rule');
+      expect(obj.getRuleConflict(12)).to.eql(undefined);
+    });
+
+    it('No conflict inside the season', async function () {
+      const obj = await searchObj('conflict-inside');
+      expect(obj.getRuleConflict(5, 1)).to.eql(undefined);
+    });
+
+    it('No conflict with an open-ended season', async function () {
+      const obj = await searchObj('conflict-open');
+      // Season 2 contains the open-ended 99999
+      expect(obj.getRuleConflict(40, 2)).to.eql(undefined);
+    });
+
+    it('No conflict after the user selected a rule set', async function () {
+      const obj = await searchObj('conflict-selected');
+      await obj.setRuleSet(obj.getRuleSet());
+      expect(obj.getRuleConflict(32)).to.eql(undefined);
+
+      const reloaded = await searchObj('conflict-selected');
+      expect(reloaded.getRuleConflict(32)).to.eql(undefined);
     });
   });
 });

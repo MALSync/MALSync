@@ -22,6 +22,8 @@ export type TvdbRuleType = 'season' | 'cour' | 'mapping';
 export interface TvdbTypedRule extends TvdbRule {
   type: TvdbRuleType;
   absoluteStart: number | null;
+  // Mal and anilist title from the database, null if unknown
+  providerName?: string | null;
 }
 
 export interface TvdbRuleSet {
