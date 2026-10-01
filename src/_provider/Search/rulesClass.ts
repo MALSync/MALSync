@@ -56,13 +56,9 @@ export class RulesClass {
 
   protected state: rules | undefined;
 
-  protected ruleSet: RuleSetType = DEFAULT_RULE_SET;
-
   constructor(
     protected cacheKey: string | number,
     protected type: 'anime' | 'manga',
-    // Storage key to remember the selected rule set, not remembered if empty
-    protected ruleSetKey = '',
   ) {
     this.logger = con.m('Rules');
     return this;
@@ -70,10 +66,6 @@ export class RulesClass {
 
   public async init() {
     this.state = await this.getCache();
-    if (this.ruleSetKey) {
-      const ruleSet = await api.storage.get(this.ruleSetKey);
-      if (RULE_SETS.includes(ruleSet)) this.ruleSet = ruleSet;
-    }
 
     if (
       !this.state ||
@@ -92,15 +84,6 @@ export class RulesClass {
       await this.setCache(this.state);
     }
     return this;
-  }
-
-  public getRuleSet(): RuleSetType {
-    return this.ruleSet;
-  }
-
-  public async setRuleSet(ruleSet: RuleSetType) {
-    this.ruleSet = ruleSet;
-    if (this.ruleSetKey) await api.storage.set(this.ruleSetKey, ruleSet);
   }
 
   public getRuleProvider(): 'mal' | 'anilist' {
@@ -190,14 +173,18 @@ export class RulesClass {
   }
 
   // inferred: the season was inferred from the current entry, not provided by the page
-  protected getSeasonRules(season: number, inferred = false): TvdbTypedRule[] {
+  protected getSeasonRules(
+    season: number,
+    inferred: boolean,
+    ruleSet: RuleSetType,
+  ): TvdbTypedRule[] {
     // Rule set off
-    if (this.ruleSet === 'off') return [];
+    if (ruleSet === 'off') return [];
 
     // Same season
     const seasonRules = this.getRules().filter(rule => rule.season === season);
 
-    if (this.ruleSet === 'cour') {
+    if (ruleSet === 'cour') {
       // Provided season: seasons split into cours and whole seasons
       if (!inferred) {
         return seasonRules.filter(rule => rule.type === 'cour' || rule.type === 'season');
@@ -219,53 +206,63 @@ export class RulesClass {
   }
 
   // First episode of a rule in the numbering of the rule set
-  protected ruleStart(rule: TvdbTypedRule): number {
-    if (this.ruleSet === 'absolute' && rule.absoluteStart !== null) return rule.absoluteStart;
+  protected ruleStart(rule: TvdbTypedRule, ruleSet: RuleSetType): number {
+    if (ruleSet === 'absolute' && rule.absoluteStart !== null) return rule.absoluteStart;
     return rule.start;
   }
 
   // Rules of all seasons in the selected rule set
-  public getRuleSetRules(): TvdbTypedRule[] {
-    if (this.ruleSet === 'absolute') return this.getAbsoluteRules();
+  public getRuleSetRules(ruleSet: RuleSetType): TvdbTypedRule[] {
+    if (ruleSet === 'absolute') return this.getAbsoluteRules();
     const seasons = [...new Set(this.getRules().map(rule => rule.season))];
-    return seasons.flatMap(season => this.getSeasonRules(season));
+    return seasons.flatMap(season => this.getSeasonRules(season, false, ruleSet));
   }
 
   // Rules of the season the episode is in
-  public getEpisodeSeasonRules(episode: number, season?: number): TvdbTypedRule[] {
-    if (this.ruleSet === 'absolute') return this.getAbsoluteRules();
+  public getEpisodeSeasonRules(
+    episode: number,
+    season: number | undefined,
+    ruleSet: RuleSetType,
+  ): TvdbTypedRule[] {
+    if (ruleSet === 'absolute') return this.getAbsoluteRules();
     const resolved = this.resolveSeason(episode, season);
     if (resolved === undefined) return [];
-    return this.getSeasonRules(resolved, season === undefined || season === null);
+    return this.getSeasonRules(resolved, season === undefined || season === null, ruleSet);
   }
 
-  public getMatches(episode: number, season?: number): RuleMatch[] {
+  public getMatches(
+    episode: number,
+    season: number | undefined,
+    ruleSet: RuleSetType,
+  ): RuleMatch[] {
+    const start = (rule: TvdbTypedRule) => this.ruleStart(rule, ruleSet);
     return (
-      this.getEpisodeSeasonRules(episode, season)
+      this.getEpisodeSeasonRules(episode, season, ruleSet)
         // Episode in range, end null = open-ended
         .filter(
           rule =>
-            episode >= this.ruleStart(rule) &&
-            (rule.end === null || episode <= this.ruleStart(rule) + rule.end - rule.start),
+            episode >= start(rule) &&
+            (rule.end === null || episode <= start(rule) + rule.end - rule.start),
         )
         // Most specific rule first
-        .sort((a, b) => this.ruleStart(b) - this.ruleStart(a))
+        .sort((a, b) => start(b) - start(a))
         // Target entry url and episode
         .map(rule => ({
           key: RulesClass.ruleKey(rule),
           rule,
           url: pageUrl(rule.provider as 'mal' | 'anilist', this.type, rule.id),
-          offset: rule.episodeStart - this.ruleStart(rule),
-          episode: rule.episodeStart + episode - this.ruleStart(rule),
+          offset: rule.episodeStart - start(rule),
+          episode: rule.episodeStart + episode - start(rule),
         }))
     );
   }
 
   public applyRules(
     currentEpisode: number,
-    season?: number,
+    season: number | undefined,
+    ruleSet: RuleSetType,
   ): { url: string; offset: number } | undefined {
-    const matches = this.getMatches(currentEpisode, season);
+    const matches = this.getMatches(currentEpisode, season, ruleSet);
     if (!matches.length) return undefined;
 
     const match = matches[0];

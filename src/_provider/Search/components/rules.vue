@@ -43,8 +43,9 @@
 </template>
 
 <script lang="ts">
+import { PropType } from 'vue';
 import { pageUrl } from '../../../utils/slugs';
-import { RULE_SETS, RulesClass, RuleSetType } from '../rulesClass';
+import { DEFAULT_RULE_SET, RULE_SETS, RulesClass, RuleSetType } from '../rulesClass';
 
 export default {
   props: {
@@ -64,11 +65,16 @@ export default {
       type: [Number, String],
       default: 0,
     },
+    // Rule set selected for the page
+    initialRuleSet: {
+      type: String as PropType<RuleSetType>,
+      default: DEFAULT_RULE_SET,
+    },
   },
   emits: ['ruleset'],
   data() {
     return {
-      ruleSet: (this.obj ? this.obj.getRuleSet() : 'tvdb') as RuleSetType,
+      ruleSet: this.initialRuleSet as RuleSetType,
       ruleSets: RULE_SETS,
     };
   },
@@ -80,7 +86,7 @@ export default {
     episodeRules() {
       if (!this.obj || this.ruleEpisode === undefined) return [];
       return this.obj
-        .getEpisodeSeasonRules(this.ruleEpisode, this.season)
+        .getEpisodeSeasonRules(this.ruleEpisode, this.season, this.ruleSet)
         .sort((a, b) => a.season - b.season || a.start - b.start);
     },
     currentSeason() {
@@ -90,11 +96,13 @@ export default {
       if (!this.obj) return [];
       // Episode page: rules of the current season, empty if none apply
       if (this.ruleEpisode !== undefined) return this.episodeRules;
-      return this.obj.getRuleSetRules().sort((a, b) => a.season - b.season || a.start - b.start);
+      return this.obj
+        .getRuleSetRules(this.ruleSet)
+        .sort((a, b) => a.season - b.season || a.start - b.start);
     },
     matchingKey() {
       if (!this.obj || this.ruleEpisode === undefined) return undefined;
-      const [match] = this.obj.getMatches(this.ruleEpisode, this.season);
+      const [match] = this.obj.getMatches(this.ruleEpisode, this.season, this.ruleSet);
       return match ? match.key : undefined;
     },
   },

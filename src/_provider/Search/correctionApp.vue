@@ -17,6 +17,7 @@
         :episode="ruleEpisode"
         :season="syncPage.curState?.season"
         :offset="offset"
+        :initial-rule-set="searchClass.getRuleSet()"
         @ruleset="setRuleSet"
       ></rules>
 
