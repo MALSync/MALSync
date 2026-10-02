@@ -1,5 +1,20 @@
 import { pageInterface } from '../pageInterface';
 
+// O site grava temporadas no formato BRASILEIRO („Nª Temporada") — o
+// MAL/AniList usa „Nth Season" (entradas separadas por temporada). A
+// conversão antes da busca: „Iruma-kun 2ª Temporada" → „Iruma-kun 2nd
+// Season" (a entrada certa no MAL). Sem isso, TODAS as temporadas do
+// site davam „não encontrado".
+function toMalTitle(t: string): string {
+  const ordinals = ['', '1st', '2nd', '3rd'];
+  const ordinalOf = (n: number) => (n >= 1 && n <= 3 ? ordinals[n] : `${n}th`);
+  return String(t || '')
+    .replace(/\s+(\d{1,2})ª?\s*Temporada(\s*Final)?\s*$/i, (_m, d, fin) =>
+      ` ${ordinalOf(Number(d))} Season${fin ? ' Final' : ''}`)
+    .replace(/\s+Temporada\s+Final\s*$/i, ' Final Season')
+    .trim();
+}
+
 export const AnimesFHD: pageInterface = {
   name: 'AnimesFHD',
   domain: 'https://animesfhd.net',
@@ -12,7 +27,7 @@ export const AnimesFHD: pageInterface = {
   sync: {
     getTitle(url) {
       // data-anime no player-wrap (gravado no load do episódio)
-      return j.$('#player-wrap').attr('data-anime') || '';
+      return toMalTitle(j.$('#player-wrap').attr('data-anime') || '');
     },
     getIdentifier(url) {
       // o id da SÉRIE (não do episódio) — o cache/link da MAL é por ele
@@ -32,7 +47,7 @@ export const AnimesFHD: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('#series-title').first().text().trim();
+      return toMalTitle(j.$('#series-title').first().text().trim());
     },
     getIdentifier(url) {
       return String(url.split('id=')[1] || '');
