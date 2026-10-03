@@ -1,4 +1,5 @@
 {
+  "search": "https://animesfhd.net/?q={searchterm}",
   "urls": {
     "search": "https://animesfhd.net/?q={searchterm(+)[noSpecial]}",
     "match": [
