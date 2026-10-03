@@ -1,6 +1,13 @@
 /* A caixa da MALSync (MalLogin / malp-group) no DESIGN ser-kpi do
    animesfhd. !important em tudo: a UI deles carrega estilos INLINE
    (style="gap:...") no HTML gerado — só important vence inline. */
+
+/* ESCONDER o AddMalDiv — o UI PADRÃO que o MALSync cria sozinho
+   além do customizado (via uiSelector). Sem isto, DUAS caixas. */
+#AddMalDiv {
+  display: none !important;
+}
+
 #malp,
 #malp * {
   box-sizing: border-box;
@@ -66,12 +73,12 @@
   padding: 0 !important;
 }
 #malp select option {
-  background: #120709 !important;
+  background: #0a0a0c !important;
   color: #fff !important;
 }
 #malp a,
 #malp .malp-mal-add,
 #malp .MalSyncScore {
-  color: #e50914 !important;
+  color: #b245ff !important;
   font-weight: 800 !important;
 }

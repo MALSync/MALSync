@@ -77,23 +77,33 @@ export const AnimesFHD: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
+    // GUARD: o MALSync chama handlePage() UMA vez por página. Sem este
+    // flag, o mecanismo interno + o waitForTitle duplo injetavam a
+    // caixa „Adicionar ao MAL" DUAS VEZES (uma dentro da avaliação).
+    let handled = false;
+    const handle = () => {
+      if (!handled) {
+        handled = true;
+        page.handlePage();
+      }
+    };
     j.$(document).ready(function () {
       if (AnimesFHD.isSyncPage(page.url)) {
-        // os data-attrs são gravados DEPOIS do fetch da API do episódio —
-        // espera o player-wrap ficar pronto para o handlePage.
         const waitForAttrs = () => {
           if (j.$('#player-wrap[data-anime]').length) {
-            page.handlePage();
+            handle();
           } else {
             setTimeout(waitForAttrs, 500);
           }
         };
         waitForAttrs();
       } else if (/\/series(\?id=|\/)/.test(page.url)) {
-        // o título da série também carrega async (fetch do /api) — espera
+        // o título carrega async — espera o data-loaded (setado pelo site
+        // quando o título real substitui o placeholder „Carregando…")
         const waitForTitle = () => {
-          if (j.$('#series-title').length && j.$('#series-title').text().trim()) {
-            page.handlePage();
+          const loaded = j.$('#series-title[data-loaded]').length > 0;
+          if (loaded) {
+            handle();
           } else {
             setTimeout(waitForTitle, 500);
           }
