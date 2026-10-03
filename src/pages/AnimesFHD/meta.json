@@ -1,0 +1,11 @@
+{
+  "search": "https://animesfhd.net/?q={searchterm}",
+  "urls": {
+    "search": "https://animesfhd.net/?q={searchterm(+)[noSpecial]}",
+    "match": [
+      "*://animesfhd.net/*",
+      "*://www.animesfhd.net/*",
+      "*://animesfhd.pages.dev/*"
+    ]
+  }
+}

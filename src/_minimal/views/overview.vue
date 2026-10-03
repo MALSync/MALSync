@@ -101,6 +101,7 @@
             singleRequest.data && !totalLoading ? singleRequest.data!.getApiCacheKey() : ''
           "
           :title="singleRequest.data ? singleRequest.data!.getTitle() : ''"
+          :streaming-url="singleRequest.data?.getStreamingUrl() || ''"
           :alternative-title="metaRequest.data?.alternativeTitle"
         />
       </Section>

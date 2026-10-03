@@ -58,6 +58,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  streamingUrl: {
+    type: String,
+    default: '',
+  },
   alternativeTitle: {
     type: Array as PropType<string[]>,
     default: () => [],
@@ -74,6 +78,7 @@ const parameters = computed(() => {
       type: props.type,
       cacheKey: props.cacheKey,
       title: props.title,
+      streamingUrl: props.streamingUrl,
     };
   }
   return null;
@@ -86,11 +91,16 @@ const streamRequest = createRequest(
       return Promise.resolve(null);
     }
 
-    return activeLinks(param.value.type, param.value.cacheKey, param.value.title);
+    return activeLinks(
+      param.value.type,
+      param.value.cacheKey,
+      param.value.title,
+      param.value.streamingUrl,
+    );
   },
   {
     cache: {
-      prefix: 'overview-streaming',
+      prefix: 'overview-streaming-v2',
       ttl: 10 * 1000,
       refetchTtl: 7 * 24 * 60 * 60 * 1000,
     },

@@ -1,0 +1,28 @@
+{
+  "title": "AnimesFHD",
+  "url": "https://animesfhd.net/",
+  "testCases": [
+    {
+      "url": "https://animesfhd.net/episode?id=29410",
+      "expected": {
+        "sync": true,
+        "title": "Noragami Aragoto",
+        "identifier": "1867",
+        "overviewUrl": "https://animesfhd.net/serie/1867",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animesfhd.net/episod/29410",
+      "expected": {
+        "sync": true,
+        "title": "Noragami Aragoto",
+        "identifier": "1867",
+        "overviewUrl": "https://animesfhd.net/serie/1867",
+        "episode": 1,
+        "uiSelector": false
+      }
+    }
+  ]
+}

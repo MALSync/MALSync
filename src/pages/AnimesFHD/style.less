@@ -1,0 +1,84 @@
+/* A caixa da MALSync (MalLogin / malp-group) no DESIGN ser-kpi do
+   animesfhd. !important em tudo: a UI deles carrega estilos INLINE
+   (style="gap:...") no HTML gerado — só important vence inline. */
+
+/* ESCONDER o AddMalDiv — o UI PADRÃO que o MALSync cria sozinho
+   além do customizado (via uiSelector). Sem isto, DUAS caixas. */
+#AddMalDiv {
+  display: none !important;
+}
+
+#malp,
+#malp * {
+  box-sizing: border-box;
+}
+#malp {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 0.9rem !important;
+  row-gap: 0.65rem !important;
+  width: 100% !important;
+  margin: 0.65rem 0 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+#malp .MalLogin,
+#malp span.malp-group,
+#malp .malp-group {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 0.45rem !important;
+  padding: 0.45rem 0.7rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 10px !important;
+  background: rgba(12, 7, 9, 0.62) !important;
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+}
+#malp .malp-group-label,
+#malp span.info.malp-group-label {
+  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 0.72rem !important;
+  font-weight: 750 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+/* O rótulo „Status" da extensão vira „STATUS MAL" (o texto original
+   colapsa e o ::before escreve no lugar). */
+#malp .malp-group-status .malp-group-label,
+#malp .malp-group-status span.info {
+  font-size: 0 !important;
+}
+#malp .malp-group-status .malp-group-label::before,
+#malp .malp-group-status span.info::before {
+  content: 'Status MAL:';
+  font-size: 0.72rem !important;
+  font-weight: 750 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+#malp .malp-group-value,
+#malp .malp-group-value-section,
+#malp select.malp-group-field,
+#malp input.malp-group-field,
+#malp .malp-group-select {
+  color: #fff !important;
+  font-size: 0.9rem !important;
+  font-weight: 800 !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+#malp select option {
+  background: #0a0a0c !important;
+  color: #fff !important;
+}
+#malp a,
+#malp .malp-mal-add,
+#malp .MalSyncScore {
+  color: #b245ff !important;
+  font-weight: 800 !important;
+}

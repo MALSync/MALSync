@@ -1,3 +1,5 @@
+import { urlToSlug } from './slugs';
+
 const quicklinkPages = require('./quicklinks.json') as QuicklinkObject[];
 
 type QuicklinkGroup = 'home' | 'search' | 'link';
@@ -217,6 +219,7 @@ export async function activeLinks(
   type: 'anime' | 'manga',
   id: any,
   searchterm: string,
+  streamingUrl = '',
 ): Promise<Quicklink[]> {
   let combined = combinedLinks();
 
@@ -225,6 +228,39 @@ export async function activeLinks(
       combined = await fillFromApi(combined, type, id);
     } catch (e) {
       con.m('API Problem').error(e);
+    }
+  }
+
+  const site = combined.find(el => el.key === 'AnimesFHD' && !el.custom);
+  if (site && type === 'anime') {
+    let seriesId = '';
+    try {
+      const parsed = new URL(streamingUrl);
+      if (parsed.origin === site.domain) {
+        seriesId =
+          parsed.pathname.match(/^\/serie\/(\d+)\/?$/)?.[1] ||
+          (/^\/series\/?$/.test(parsed.pathname) ? parsed.searchParams.get('id') || '' : '');
+      }
+    } catch {
+      // An absent streaming link can still have a saved local association.
+    }
+    if (!/^\d+$/.test(seriesId) && id) {
+      try {
+        const stores = await Promise.all([api.storage.list('local'), api.storage.list('sync')]);
+        const associations = Object.entries(Object.assign({}, ...stores));
+        const matches = associations.filter(([key, value]) => {
+          if (!/^AnimesFHD\/\d+\/Search$/.test(key) || !value?.url) return false;
+          const path = urlToSlug(value.url).path;
+          return path?.type === type && String(path.slug) === String(id);
+        });
+        // More than one local edition should remain a choice in the search results.
+        if (matches.length === 1) seriesId = matches[0][0].split('/')[1];
+      } catch {
+        // Search remains available when local storage cannot be read.
+      }
+    }
+    if (/^\d+$/.test(seriesId)) {
+      site.databaseLinks = [{ title: searchterm, url: `${site.domain}/serie/${seriesId}` }];
     }
   }
 
