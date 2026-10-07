@@ -118,6 +118,7 @@ import { BlueSolo } from './implementations/BlueSolo/main';
 import { FlixMomo } from './implementations/FlixMomo/main';
 import { NaszeAnime } from './implementations/NaszeAnime/main';
 import { Chikari } from './implementations/Chikari/main';
+import { AnimesFHD } from './implementations/AnimesFHD/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -238,4 +239,5 @@ export const pages: { [key: string]: PageInterface } = {
   FlixMomo,
   NaszeAnime,
   Chikari,
+  AnimesFHD,
 };

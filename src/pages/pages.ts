@@ -1,5 +1,4 @@
 import { Mangadex } from './Mangadex/main';
-import { AnimesFHD } from './AnimesFHD/main';
 import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
 import { Netflix } from './Netflix/main';
@@ -95,7 +94,6 @@ import { Aninexus } from './Aninexus/main';
 import { AniDream } from './AniDream/main';
 
 export const pages = {
-  AnimesFHD,
   Mangadex,
   TurkAnime,
   Netflix,
