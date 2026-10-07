@@ -2,43 +2,43 @@ import { PageInterface } from '../../pageInterface';
 
 export const MangaLivreTV: PageInterface = {
   name: 'MangaLivreTV',
-  domain: 'https://mangalivre.tv',
+  domain: 'https://toonlivre.net',
   languages: ['Portuguese'],
   type: 'manga',
   urls: {
-    match: ['*://mangalivre.tv/*'],
+    match: ['*://toonlivre.net/*'],
   },
-  search: 'https://mangalivre.tv/?s={searchtermPlus}&post_type=wp-manga',
+  search: 'https://toonlivre.net/?s={searchtermPlus}',
   sync: {
     isSyncPage($c) {
-      return $c
-        .and(
-          $c.url().urlPart(3).equals('manga').run(),
-          $c.url().urlPart(5).boolean().run(),
-          $c.url().urlPart(5).matches('capitulo[_-]?').run(),
-        )
-        .run();
+      return $c.and($c.url().urlPart(3).boolean().run(), $c.url().urlPart(4).boolean().run()).run();
     },
     getTitle($c) {
-      return $c.querySelector('.breadcrumb a[href*="/manga/"]').text().trim().run();
+      return $c.querySelector('h2').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      return $c.url().urlPart(3).run();
     },
     getImage($c) {
-      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+      return $c.querySelector('img[alt]').getAttribute('src').ifNotReturn().run();
     },
     getOverviewUrl($c) {
-      return $c
-        .string('/manga/<identifier>')
-        .replace('<identifier>', $c.url().this('sync.getIdentifier').run())
-        .urlAbsolute()
-        .run();
+      return $c.string('/<slug>').replace('<slug>', $c.url().urlPart(3).run()).urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.url().urlPart(5).regex('capitulo[_-]?(\\d+)', 1).number().ifNotReturn().run();
+      return $c.url().urlPart(4).number().run();
     },
     readerConfig: [
+      {
+        current: $c => $c.querySelector('[data-page]').getAttribute('data-page').number().run(),
+        total: $c =>
+          $c
+            .querySelector('canvas[aria-label]')
+            .getAttribute('aria-label')
+            .regex('Page (\\d+)', 1)
+            .number()
+            .run(),
+      },
       {
         condition: $c => $c.querySelector('#single-pager').boolean().run(),
         current: $c =>
@@ -66,35 +66,41 @@ export const MangaLivreTV: PageInterface = {
   overview: {
     isOverviewPage($c) {
       return $c
-        .and(
-          $c.url().urlPart(4).boolean().run(),
-          $c.url().urlPart(3).equals('manga').run(),
-          $c.url().urlPart(5).boolean().not().run(),
-        )
+        .and($c.url().urlPart(3).boolean().run(), $c.url().urlPart(4).boolean().not().run())
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1').text().trim().run();
+      return $c.querySelector('h2').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().this('sync.getIdentifier').run();
+      return $c.url().urlPart(3).run();
     },
     getImage($c) {
-      return $c.querySelector('.summary_image img').getAttribute('src').log().ifNotReturn().run();
+      return $c.querySelector('img[alt]').getAttribute('src').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.post-content').uiAppend().run();
+      return $c.querySelector('h2').parent().uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.listing-chapters_wrap .wp-manga-chapter').run();
+      return $c.querySelectorAll('.divide-y:last-of-type > div[class*="p-4"]').run();
     },
     elementUrl($c) {
-      return $c.find('a').getAttribute('href').urlAbsolute().run();
+      return $c
+        .string('/<slug>/<number>')
+        .replace('<slug>', $c.url().urlPart(3).run())
+        .replace(
+          '<number>',
+          $c.find('span').text().regex('Capítulo\\s+(\\d+(?:\\.\\d+)?)', 1).trim().run(),
+        )
+        .urlAbsolute()
+        .run();
     },
     elementEp($c) {
-      return $c.this('list.elementUrl').this('sync.getEpisode').run();
+      // Extract chapter number from the text (e.g., "Capítulo 171" → 171)
+      // Remove decimals and convert to integer
+      return $c.find('span').text().regex('Capítulo\\s+(\\d+)(?:\\.\\d+)?', 1).number().run();
     },
   },
   lifecycle: {
