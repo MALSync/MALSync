@@ -9,20 +9,22 @@ import { pageInterface } from '../pageInterface';
 function toMalTitle(t: string): string {
   const ordinals = ['', '1st', '2nd', '3rd'];
   const ordinalOf = (n: number) => (n >= 1 && n <= 3 ? ordinals[n] : `${n}th`);
-  return String(t || '')
-    // Sufixos de importação — o MAL não conhece estes textos
-    .replace(/\s*\(Dublado\)\s*$/i, '')
-    .replace(/\s*-\s*Todos os Epis[óo]dios(?:\s+Online)?\s*$/i, '')
-    .replace(/\s*-\s*Animes?\s+Online\s*$/i, '')
-    .replace(/\s+Online\s*$/i, '')
-    // Temporada BR → Season EN
-    .replace(
-      /\s+(\d{1,2})ª?\s*Temporada(\s*Final)?\s*$/i,
-      (_m, d, fin) => ` ${ordinalOf(Number(d))} Season${fin ? ' Final' : ''}`,
-    )
-    .replace(/\s+Temporada\s+Final\s*$/i, ' Final Season')
-    .replace(/\s+Dublado\s*$/i, '')
-    .trim();
+  return (
+    String(t || '')
+      // Sufixos de importação — o MAL não conhece estes textos
+      .replace(/\s*\(Dublado\)\s*$/i, '')
+      .replace(/\s*-\s*Todos os Epis[óo]dios(?:\s+Online)?\s*$/i, '')
+      .replace(/\s*-\s*Animes?\s+Online\s*$/i, '')
+      .replace(/\s+Online\s*$/i, '')
+      // Temporada BR → Season EN
+      .replace(
+        /\s+(\d{1,2})ª?\s*Temporada(\s*Final)?\s*$/i,
+        (_m, d, fin) => ` ${ordinalOf(Number(d))} Season${fin ? ' Final' : ''}`,
+      )
+      .replace(/\s+Temporada\s+Final\s*$/i, ' Final Season')
+      .replace(/\s+Dublado\s*$/i, '')
+      .trim()
+  );
 }
 
 let nextEpisodeUrl = '';
@@ -166,7 +168,8 @@ export const AnimesFHD: pageInterface = {
         const waitForTitle = () => {
           const loaded = j.$('#series-title[data-loaded]').length > 0;
           const title = j.$('#series-title').first().text().trim();
-          const isReal = title && title !== 'Carregando…' && title !== 'Carregando...' && title !== 'Carregando';
+          const isReal =
+            title && title !== 'Carregando…' && title !== 'Carregando...' && title !== 'Carregando';
           if (loaded || isReal || attempts > 20) {
             handle();
           } else {

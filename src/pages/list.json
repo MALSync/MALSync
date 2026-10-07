@@ -1053,5 +1053,10 @@
     "domain": "https://naszeanime.pl",
     "type": "anime",
     "name": "NaszeAnime"
+  },
+  {
+    "domain": "https://animesfhd.net",
+    "type": "anime",
+    "name": "AnimesFHD"
   }
 ]
