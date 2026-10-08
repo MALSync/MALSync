@@ -9,7 +9,7 @@ export const AnimeGO: pageInterface = {
     return true;
   },
   getImage() {
-    return j.$('.anime-poster img').attr('src');
+    return j.$('.entity__poster img').attr('src');
   },
   sync: {
     getIdentifier(url) {
@@ -21,28 +21,10 @@ export const AnimeGO: pageInterface = {
     },
     getTitle(url) {
       const jsonData = JSON.parse(j.$('script[type~="application/ld+json"]').text());
-      switch (jsonData.alternativeHeadline.length) {
-        case 0: {
-          // no headlines
-          // example: https://animego.me/anime/moya-geroyskaya-akademiya-s1-294
-          return jsonData.name; // Return Russian title, if no English found
-        }
-        case 3: {
-          // Japanese, English, 日本語 (jp)
-          // example: https://animego.me/anime/horimiya-1686
-          return jsonData.alternativeHeadline[1];
-        }
-        default: {
-          // 1 or 2. Anyway, English is first
-          // examples:
-          // 1: https://animego.me/anime/velikiy-pritvorschik-1573
-          // 2: https://animego.me/anime/vanpanchmen-put-k-stanovleniyu-geroem-14
-          return jsonData.alternativeHeadline[0];
-        }
-      }
+      return jsonData.alternateName || jsonData.name;
     },
     getEpisode(url) {
-      return parseInt(j.$('div#video-carousel .video-player__active').attr('data-episode') || '1');
+      return parseInt(j.$('.player-video-bar__series .active').attr('data-episode-number') || '1');
     },
   },
   init(page) {
@@ -73,30 +55,31 @@ export const AnimeGO: pageInterface = {
 };
 
 function isPlayerLoaded() {
-  if (j.$('.video-player-main').length > 0) return true;
+  console.log(j.$('.player-video__online'));
+  if (j.$('.player-video__online').length === 1) return true;
   return false;
 }
 
 type PlayerActiveData = {
   episode: string | undefined;
   player: string | undefined;
-  dubbing: string | undefined;
+  translation: string | undefined;
 };
+
+function getAllActiveDivElementsPlayer() {
+  // Elements with class ".video-player__active"
+  const epDiv = j.$('.player-video-bar__series .active'); // Episode
+  const plDiv = j.$('#playerMenu #provider .active'); //  Player
+  const trDiv = j.$('#playerMenu #translation .active'); //  Translation
+
+  return [epDiv, plDiv, trDiv];
+}
 
 function getAllActiveElementsPlayer(): PlayerActiveData {
   const elements = getAllActiveDivElementsPlayer();
   return {
-    episode: elements[0].attr('data-episode'),
+    episode: elements[0].attr('data-episode-number'),
     player: elements[1].attr('data-provider'),
-    dubbing: elements[2].attr('data-dubbing'),
+    translation: elements[2].attr('data-translation'),
   };
-}
-
-function getAllActiveDivElementsPlayer() {
-  // Elements with class ".video-player__active"
-  const epDiv = j.$('#video-carousel .video-player__active'); // Episode
-  const plDiv = j.$('#video-players .video-player__active'); //  Player
-  const dbDiv = j.$('#video-dubbing .video-player__active'); //  Dubbing
-
-  return [epDiv, plDiv, dbDiv];
 }
