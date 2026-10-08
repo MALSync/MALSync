@@ -45,7 +45,11 @@ export function parseJson(json) {
   try {
     return JSON.parse(json);
   } catch (e) {
-    throw new UnexpectedResponseError(e.message);
+    const text = String(json ?? '');
+    con.error('Response is not json', text);
+    if (!text.trim()) throw new UnexpectedResponseError('Empty response');
+    const title = text.match(/<title[^>]*>([^<]*)<\/title>/i)?.[1]?.trim();
+    throw new UnexpectedResponseError(title || text.replace(/\s+/g, ' ').trim().slice(0, 200));
   }
 }
 

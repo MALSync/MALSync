@@ -1,4 +1,4 @@
-import { NotAutenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
+import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 import { status } from '../definitions';
 import { Cache } from '../../utils/Cache';
 
@@ -63,7 +63,7 @@ export async function apiCall(options: {
 
       let res: any = null;
       if (response.responseText) {
-        res = JSON.parse(response.responseText);
+        res = parseJson(response.responseText);
       }
 
       if (response.status === 401) {

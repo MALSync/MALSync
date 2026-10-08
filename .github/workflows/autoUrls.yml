@@ -46,6 +46,8 @@ jobs:
           SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
           MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
           MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
+          ANIMEOSHI_API_ID: ${{ secrets.ANIMEOSHI_API_ID }}
+          ANIMEOSHI_API_KEY: ${{ secrets.ANIMEOSHI_API_KEY }}
         run: |
           TASKS=$(node webpackConfig/autoUrls.mjs --list)
           echo "matrix=$TASKS" >> $GITHUB_OUTPUT
@@ -83,6 +85,8 @@ jobs:
           SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
           MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
           MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
+          ANIMEOSHI_API_ID: ${{ secrets.ANIMEOSHI_API_ID }}
+          ANIMEOSHI_API_KEY: ${{ secrets.ANIMEOSHI_API_KEY }}
         run: node webpackConfig/autoUrls.mjs ${{ matrix.task }}
 
       - name: Stage Site Changes

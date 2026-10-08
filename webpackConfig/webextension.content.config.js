@@ -52,6 +52,11 @@ let entry = {
     '..',
     'src/index-webextension/mangabakaOauth.ts',
   ),
+  'oauth-animeoshi-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/animeoshiOauth.ts',
+  ),
   'oauth-anilist-script': path.join(
     __dirname,
     '..',

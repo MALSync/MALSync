@@ -4,6 +4,7 @@ import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
 import { Single as ShikiSingle } from '../_provider/Shikimori/single';
 import { Single as BakaSingle } from '../_provider/MangaBaka/single';
+import { Single as OshiSingle } from '../_provider/AnimeOshi/single';
 
 import { UserList as MalList } from '../_provider/MyAnimeList_hybrid/list';
 import { UserList as AnilistList } from '../_provider/AniList/list';
@@ -11,6 +12,7 @@ import { UserList as KitsuList } from '../_provider/Kitsu/list';
 import { UserList as SimklList } from '../_provider/Simkl/list';
 import { UserList as ShikiList } from '../_provider/Shikimori/list';
 import { UserList as BakaList } from '../_provider/MangaBaka/list';
+import { UserList as OshiList } from '../_provider/AnimeOshi/list';
 import { getSyncMode } from '../_provider/helper';
 import { listElement } from '../_provider/listAbstract';
 import { status } from '../_provider/definitions';
@@ -43,6 +45,7 @@ export function getType(url) {
   if (utils.isDomainMatching(url, 'shikimori.one') || utils.isDomainMatching(url, 'shikimori.io'))
     return 'SHIKI';
   if (utils.isDomainMatching(url, 'mangabaka.org')) return 'MANGABAKA';
+  if (utils.isDomainMatching(url, 'animeoshi.com')) return 'ANIMEOSHI';
   throw 'Type not found';
 }
 
@@ -239,6 +242,8 @@ export function syncItem(slave, pageType) {
       singleClass = new ShikiSingle(slave.url);
     } else if (pageType === 'MANGABAKA') {
       singleClass = new BakaSingle(slave.url);
+    } else if (pageType === 'ANIMEOSHI') {
+      singleClass = new OshiSingle(slave.url);
     } else {
       throw 'No sync type';
     }
@@ -354,6 +359,11 @@ export function getListProvider(providerSettingList) {
       providerSettings: providerSettingList.shiki,
       listProvider: ShikiList,
     },
+    {
+      providerType: 'ANIMEOSHI',
+      providerSettings: providerSettingList.animeoshi,
+      listProvider: OshiList,
+    },
   ];
 }
 
@@ -449,6 +459,11 @@ export const background = {
           master: false,
         },
         shiki: {
+          text: 'Init',
+          list: null,
+          master: false,
+        },
+        animeoshi: {
           text: 'Init',
           list: null,
           master: false,
