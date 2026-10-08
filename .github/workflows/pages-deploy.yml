@@ -43,7 +43,7 @@ jobs:
           cp -r ./dist/adult/chibi/* ./pages-deploy/adult/
           cp .github/pages-files/_headers ./pages-deploy/
       - name: Deploy
-        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_PAGES_ACCOUNT_ID }}
