@@ -65,7 +65,13 @@ export const Atsumaru: PageInterface = {
       return $c
         .coalesceFn(
           slashCounter($c, 'span.relative:last-child', 0).run(),
-          chapterLabelNumber($c.querySelector('select').ifNotReturn().selectedText().trim()).run(),
+          chapterLabelNumber(
+            $c
+              .querySelector('.items-center select.cursor-pointer')
+              .ifNotReturn()
+              .selectedText()
+              .trim(),
+          ).run(),
         )
         .number()
         .run();
