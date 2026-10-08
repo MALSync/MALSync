@@ -1,6 +1,7 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
+import { UnexpectedResponseError } from '../Errors';
 
 export class UserList extends ListAbstract {
   name = 'AniList';
@@ -191,6 +192,9 @@ export class UserList extends ListAbstract {
 
     return helper.apiCall(query, variables, true).then(res => {
       con.log('res', res);
+      if (!res.data?.Page) {
+        throw new UnexpectedResponseError('AniList returned an unexpected response');
+      }
       const data = res.data.Page.mediaList;
       this.offset += 1;
       if (!res.data.Page.pageInfo.hasNextPage) {
@@ -205,6 +209,10 @@ export class UserList extends ListAbstract {
     const newData = [] as listElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
+      if (!el || !el.media) {
+        con.error('[AniList] Skipping list entry with missing media', el);
+        continue;
+      }
       let tempData;
       if (listType === 'anime') {
         tempData = await this.fn({
