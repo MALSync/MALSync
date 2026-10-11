@@ -23,16 +23,16 @@ export const Miruro: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.title a').text().trim().run();
+      return $c.querySelector('h1 a').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c.querySelector('#root a[href*="info/"] img').getAttribute('src').ifNotReturn().run();
+      return $c.querySelector('h1 a[href*="info/"] img').getAttribute('src').ifNotReturn().run();
     },
     getOverviewUrl($c) {
-      return $c.querySelector('#root a[href*="info/"]').getAttribute('href').urlAbsolute().run();
+      return $c.querySelector('h1 a[href*="info/"]').getAttribute('href').urlAbsolute().run();
     },
     getEpisode($c) {
       return $c.url().urlParam('ep').number().run();
@@ -108,7 +108,7 @@ export const Miruro: PageInterface = {
               $c.url().urlPart(3).equals('watch').run(),
               $c.url().urlPart(4).boolean().run(),
               $c.url().urlPart(5).boolean().run(),
-              $c.querySelector('.title a').boolean().run(),
+              $c.querySelector('h1 a[href*="info/"]').boolean().log().run(),
             )
             .run(),
         )
