@@ -10,13 +10,14 @@
         "identifier": "perfect-world1",
         "overviewUrl": "https://donghuastream.org/anime/perfect-world1/",
         "nextEpUrl": "https://donghuastream.org/perfect-world-episode-280-multiple-subtitles/",
-        "episode": 1,
+        "episode": 279,
         "uiSelector": false
       }
     },
     {
       "url": "https://donghuastream.org/anime/perfect-world1/",
       "expected": {
+        "image": "https://donghuastream.org/wp-content/uploads/2023/05/Wanmei-Shijie-Perfect-World-完美世界.jpeg",
         "sync": false,
         "title": "Perfect World",
         "identifier": "perfect-world1",

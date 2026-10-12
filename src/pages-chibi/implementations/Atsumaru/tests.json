@@ -33,8 +33,8 @@
         "image": "https://cdn.atsu.moe/static/posters/3Pe8J1zAEnTA0UeP-large.avif",
         "uiSelector": true,
         "epList": {
-          "109": "https://atsu.moe/read/3xHoW/umXgQI",
-          "110": "https://atsu.moe/read/3xHoW/1JQOma"
+          "109": "https://atsu.moe/read/3xHoW/PRpSk8",
+          "110": "https://atsu.moe/read/3xHoW/fM0gfR"
         }
       }
     },
@@ -92,13 +92,13 @@
       "url": "https://atsu.moe/manga/1HCA",
       "expected": {
         "sync": false,
-        "title": "Sand Mage of the Burnt Desert",
+        "title": "Sandmancer of the Scorched Desert",
         "identifier": "1HCA",
-        "image": "https://cdn.atsu.moe/static/posters/pdt6HFmJ3E08lbBO-large.avif",
+        "image": "https://cdn.atsu.moe/static/posters/BzqlW9rfetnCTW1l-large.avif",
         "uiSelector": true,
         "epList": {
-          "28": "https://atsu.moe/read/1HCA/p9KXqh",
-          "29": "https://atsu.moe/read/1HCA/VvpOhn"
+          "28": "https://atsu.moe/read/1HCA/zjR3OB",
+          "29": "https://atsu.moe/read/1HCA/Al4oQ7"
         }
       }
     },

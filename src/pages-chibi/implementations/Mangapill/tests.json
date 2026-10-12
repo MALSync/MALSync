@@ -5,10 +5,11 @@
       {
         "url": "https://mangapill.com/chapters/5343-10210000/mokushiroku-no-yonkishi-chapter-210",
         "expected": {
+          "nextEpUrl": "https://mangapill.com/chapters/5343-10211000/mokushiroku-no-yonkishi-chapter-211",
           "sync": true,
           "title": "Mokushiroku no Yonkishi",
           "identifier": "mokushiroku-no-yonkishi",
-          "image": "https://cdn.readdetectiveconan.com/file/mangapill/i/5343.jpeg",
+          "image": "https://cdn.readdetectiveconan.com/file/mangapill/i/5343.webp?h=019fad52-cf23-7c07-940a-6695551488e0",
           "overviewUrl": "https://mangapill.com/manga/5343",
           "episode": 210,
           "uiSelector": false
