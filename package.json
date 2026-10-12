@@ -26,7 +26,7 @@
     "@typescript-eslint/parser": "^8.71.1",
     "@vue/compiler-sfc": "^3.5.43",
     "archiver": "^8.0.0",
-    "chai": "^6.2.2",
+    "chai": "^6.3.0",
     "cheerio": "^1.2.0",
     "chrome-webstore-upload": "^4.0.4",
     "cross-env": "^7.0.3",
