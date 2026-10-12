@@ -2,11 +2,11 @@ import { PageInterface } from '../../pageInterface';
 
 export const MangaBall: PageInterface = {
   name: 'MangaBall',
-  domain: 'https://mangaball.net',
+  domain: 'https://mangaball.com',
   languages: ['Many'],
   type: 'manga',
   urls: {
-    match: ['*://mangaball.net/*'],
+    match: ['*://mangaball.com/*', '*://mangaball.net/*'],
   },
   sync: {
     isSyncPage($c) {

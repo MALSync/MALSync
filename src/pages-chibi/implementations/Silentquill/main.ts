@@ -2,11 +2,11 @@ import { PageInterface } from '../../pageInterface';
 
 export const Silentquill: PageInterface = {
   name: 'Armageddon',
-  domain: 'https://www.silentquill.net',
+  domain: 'https://silentquill.net',
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://www.silentquill.net/*'],
+    match: ['*://silentquill.net/*', '*://www.silentquill.net/*'],
   },
   search: 'https://silentquill.net/search/?q={searchtermPlus}',
   sync: {

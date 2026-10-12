@@ -2,11 +2,11 @@ import { PageInterface } from '../../pageInterface';
 
 export const VioletScans: PageInterface = {
   name: 'VioletScans',
-  domain: 'https://violetscans.org',
+  domain: 'https://violetmanga.com',
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://violetscans.org/*'],
+    match: ['*://violetmanga.com/*', '*://violetscans.org/*'],
   },
   search: 'https://violetmanga.com/?s={searchtermPlus}',
   sync: {
