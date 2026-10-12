@@ -84,6 +84,7 @@
     "build:webextension:assets": "node webpackConfig/webextension.assets.js",
     "build:chibiTypes": "node webpackConfig/webextension.content.generateChibi.js",
     "build:test": "webpack --config webpackConfig/test.config.js",
+    "chibi": "node test/chibiDev/cli.js",
     "build:descriptions": "node webpackConfig/descriptions.js",
     "build:missingPermissions": "node webpackConfig/missingPermissions.js",
     "build:pruneDeadDomains": "node webpackConfig/pruneDeadDomains.mjs",
