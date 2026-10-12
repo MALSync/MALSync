@@ -51,11 +51,16 @@ export const AnimesFHD: PageInterface = {
     },
     getTitle($c) {
       return cleanTitle(
-        $c
-          .querySelector('#series-alt')
-          .ifNotReturn($c.querySelector('#series-title').text().trim().run())
-          .text()
-          .trim(),
+        $c.if(
+          $c
+            .and(
+              $c.querySelector('#series-alt').boolean().run(),
+              $c.querySelector('#series-alt').text().trim().boolean().run(),
+            )
+            .run(),
+          $c.querySelector('#series-alt').text().trim().run(),
+          $c.querySelector('#series-title').text().trim().run(),
+        ),
       );
     },
     getIdentifier($c) {
@@ -90,7 +95,25 @@ export const AnimesFHD: PageInterface = {
       return $c.waitUntilTrue($c.querySelector('#breadcrumb').boolean().run()).trigger().run();
     },
     overviewIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('#series-title').boolean().run()).trigger().run();
+      return $c
+        .waitUntilTrue(
+          $c
+            .and(
+              $c.querySelector('#series-title').boolean().run(),
+              $c.querySelector('#series-title').text().trim().boolean().run(),
+              $c
+                .querySelector('#series-title')
+                .text()
+                .trim()
+                .matches('^(Anime não encontrado|Anime indisponível)$')
+                .not()
+                .run(),
+              $c.querySelector('#episodes-grid[aria-busy="true"]').boolean().not().run(),
+            )
+            .run(),
+        )
+        .trigger()
+        .run();
     },
     listChange($c) {
       return $c
