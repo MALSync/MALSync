@@ -1,0 +1,32 @@
+{
+  "title": "MistScans",
+  "url": "https://mistscans.com",
+  "testCases": [
+    {
+      "url": "https://mistscans.com/chapter/65669ee0982-65c930e5271/",
+      "expected": {
+        "sync": true,
+        "title": "Serim's Rules",
+        "identifier": "serims-rules",
+        "overviewUrl": "https://mistscans.com/series/serims-rules/",
+        "episode": 17,
+        "nextEpUrl": "https://mistscans.com/chapter/65669ee0982-65d08c79db7/",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mistscans.com/series/serims-rules/",
+      "expected": {
+        "sync": false,
+        "title": "Serim's Rules",
+        "identifier": "serims-rules",
+        "image": "https://wsrv.nl/?url=cdn.meowing.org/uploads/aGOB7QUyLwn",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://mistscans.com/chapter/65669ee0982-6566b53ce00/",
+          "17": "https://mistscans.com/chapter/65669ee0982-65c930e5271/"
+        }
+      }
+    }
+  ]
+}
