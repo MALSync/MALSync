@@ -1,6 +1,6 @@
 @import './../pages';
 
-@boxBackground: var(--global-div);
+@boxBackground: var(--surface-card);
 
 #flashinfo-div {
   z-index: 2147483647 !important;
@@ -8,15 +8,15 @@
 
 .flash {
   * {
-    background: var(--global-secondary-bg) !important;
-    color: var(--global-text) !important;
+    background: var(--surface-tertiary) !important;
+    color: var(--text-primary) !important;
     button {
-      color: var(--primary-accent) !important;
+      color: var(--accent) !important;
     }
   }
   .ms-progress,
   #malSyncProgress.ms-loading::before {
-    background: var(--primary-accent) !important;
+    background: var(--accent) !important;
   }
 }
 

@@ -6,7 +6,7 @@ export const Kagane: PageInterface = {
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://kagane.org/*', '*://kagane.to/*'],
+    match: ['*://kagane.to/*', '*://kagane.org/*'],
   },
   search: 'https://kagane.to/search?q={searchtermPlus}',
   sync: {
@@ -59,9 +59,17 @@ export const Kagane: PageInterface = {
     readerConfig: [
       {
         current: $c =>
-          $c.querySelector('.relative[aria-valuenow]').getAttribute('aria-valuenow').number().run(),
+          $c
+            .querySelector('[role="progressbar"][aria-valuenow]')
+            .getAttribute('aria-valuenow')
+            .number()
+            .run(),
         total: $c =>
-          $c.querySelector('.relative[aria-valuenow]').getAttribute('aria-valuemax').number().run(),
+          $c
+            .querySelector('[role="progressbar"][aria-valuenow]')
+            .getAttribute('aria-valuemax')
+            .number()
+            .run(),
       },
     ],
   },
@@ -83,30 +91,28 @@ export const Kagane: PageInterface = {
       return $c.this('sync.getIdentifier').run();
     },
     getImage($c) {
-      return $c.this('sync.getImage').run();
+      return $c
+        .querySelector('button[class*="aspect-"] img')
+        .ifNotReturn()
+        .getAttribute('src')
+        .replaceRegex('/compressed.*', '')
+        .urlAbsolute()
+        .run();
     },
     uiInjection($c) {
-      return $c
-        .querySelector('a[class*=text-primary] h1')
-        .closest('.items-baseline')
-        .parent()
-        .uiAfter()
-        .run();
+      return $c.querySelector('h1').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelector('.space-y-3').ifNotReturn().findAll('.grid > div').run();
+      return $c.querySelectorAll('div[id^="chapter-"]').run();
+    },
+    elementUrl($c) {
+      return $c.find('a[href*="/reader/"]').getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c
-        .coalesce(
-          // have to put each regexAutoGroup because sometime h4 doesn't provide chapter number for fallback reason.
-          $c.target().find('h4').text().regexAutoGroup(ChRegex).run(),
-          $c.target().find('.font-bold').text().regexAutoGroup(ChRegex).run(),
-        )
-        .number()
-        .run();
+      // the label ("Ch. 12") is localized, so only take the number
+      return $c.find('span.font-semibold').text().regex('(\\d+(?:\\.\\d+)?)', 1).number().run();
     },
   },
   lifecycle: {
@@ -125,7 +131,7 @@ export const Kagane: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('.space-y-3').ifNotReturn().text().run(),
+          $c.querySelectorAll('div[id^="chapter-"]').length().run(),
           $c.trigger().run(),
         )
         .run();

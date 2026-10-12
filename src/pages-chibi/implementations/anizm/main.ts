@@ -44,7 +44,7 @@ export const anizm: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.anizm_alignRight a.anizm_button.default')
+        .querySelector('a.anizm_button.default.puf_02')
         .ifNotReturn()
         .getAttribute('href')
         .urlAbsolute()

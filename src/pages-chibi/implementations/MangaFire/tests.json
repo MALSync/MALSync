@@ -3,27 +3,28 @@
   "url": "https://mangafire.to/",
   "testCases": [
     {
-      "url": "https://mangafire.to/manga/solo-leveling.52x0",
+      "url": "https://mangafire.to/title/52x0-solo-leveling",
       "expected": {
         "sync": false,
         "title": "Solo Leveling",
-        "identifier": "leveling.52x0",
+        "identifier": "52x0",
+        "image": "https://static.mfcdn.nl/79bd/i/a/ac/ac33781ae4e9b3f41ad8b6ff186af636.jpg",
         "uiSelector": true,
         "epList": {
-          "4": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-4",
-          "169": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-169"
+          "198": "https://mangafire.to/title/52x0-solo-leveling/chapter/1872321",
+          "199": "https://mangafire.to/title/52x0-solo-leveling/chapter/1889244"
         }
       }
     },
     {
-      "url": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-168",
+      "url": "https://mangafire.to/title/52x0-solo-leveling/chapter/1889244",
       "expected": {
         "sync": true,
         "title": "Solo Leveling",
-        "identifier": "leveling.52x0",
-        "overviewUrl": "https://mangafire.to/manga/solo-leveling.52x0",
-        "nextEpUrl": "https://mangafire.to/read/solo-leveling.52x0/en/chapter-169",
-        "episode": 168,
+        "identifier": "52x0",
+        "overviewUrl": "https://mangafire.to/title/52x0-solo-leveling",
+        "nextEpUrl": "https://mangafire.to/title/52x0-solo-leveling/chapter/1907825",
+        "episode": 199,
         "uiSelector": false
       }
     }

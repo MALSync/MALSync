@@ -13,7 +13,12 @@ export const MangaBall: PageInterface = {
       return $c.url().urlPart(3).equals('chapter-detail').run();
     },
     getTitle($c) {
-      return $c.querySelector('h6.mb-0').text().trim().run();
+      return $c
+        .querySelector('nav a[href*="/title-detail/"][title]')
+        .ifNotReturn()
+        .text()
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.this('sync.getOverviewUrl').this('overview.getIdentifier').run();
@@ -23,15 +28,15 @@ export const MangaBall: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .querySelector('.yoast-schema-graph')
-        .html()
-        .regex('url"\\s*:\\s*"[^"]*(\\/title-detail\\/[^"]+)', 1)
+        .querySelector('nav a[href*="/title-detail/"][title]')
+        .ifNotReturn()
+        .getAttribute('href')
         .urlAbsolute()
         .run();
     },
     getEpisode($c) {
       return $c
-        .querySelector('#chapterTitle')
+        .querySelector('h1')
         .text()
         .regex('(?:Ch(?:apter)?\\.?\\s*)(\\d+)', 1)
         .number()
@@ -40,7 +45,7 @@ export const MangaBall: PageInterface = {
     },
     getVolume($c) {
       return $c
-        .querySelector('#chapterTitle')
+        .querySelector('h1')
         .text()
         .regex('(?:Vol(?:ume)?\\.?\\s*)(\\d+)', 1)
         .number()
@@ -49,8 +54,8 @@ export const MangaBall: PageInterface = {
     },
     readerConfig: [
       {
-        current: $c => $c.querySelector('#currentPageNum').text().trim().number().run(),
-        total: $c => $c.querySelector('#totalPages').text().trim().number().run(),
+        current: $c => $c.querySelectorAll('div.w-full.relative.group').countAbove().run(),
+        total: $c => $c.querySelectorAll('div.w-full.relative.group').length().run(),
       },
     ],
   },
@@ -59,44 +64,42 @@ export const MangaBall: PageInterface = {
       return $c.url().urlPart(3).equals('title-detail').run();
     },
     getTitle($c) {
-      return $c.querySelector('.comic-title').text().trim().run();
+      return $c.querySelector('main h1').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).replaceRegex('-[^-]+$', '').trim().run();
+      // The title id, urls are "/title-detail/<id>", "/title-detail/<slug>-<id>" or "/title-detail/<id>-<slug>"
+      return $c.url().urlPart(4).regex('[0-9a-f]{24}', 0).run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.comic-detail-card .gap-3').uiAfter().run();
+      return $c.querySelector('main h1').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.chapter-block').run();
+      // One card per chapter, with a row per translation
+      return $c.querySelectorAll('#chapter-section .space-y-2 > div').run();
     },
     elementUrl($c) {
-      // I tried to make elementUrl to default to english, and fallback to any language if there is no english
+      // Prefer the english translation, otherwise the first one
       return $c
-        .find('.chapter-translation [class="badge"][style*="background:#00247d"]')
+        .find('a[title^="Read Ch."]:has(img[alt="English"])')
         .ifNotReturn(
-          $c
-            .target()
-            .find('.btn-read')
-            .getAttribute('onclick')
-            .regex('\\/chapter-detail\\/[^\'"]+')
-            .urlAbsolute()
-            .run(),
+          $c.target().find('a[title^="Read Ch."]').getAttribute('href').urlAbsolute().run(),
         )
-        .parent()
-        .find('.btn-read')
-        .getAttribute('onclick')
-        .regex('\\/chapter-detail\\/[^\'"]+')
+        .getAttribute('href')
         .urlAbsolute()
         .run();
     },
     elementEp($c) {
-      return $c.find('.chapter-number').text().regex('(\\d+)', 1).number().run();
+      return $c
+        .find('a[title^="Read Ch."]')
+        .getAttribute('title')
+        .regex('Ch\\.\\s*(\\d+)', 1)
+        .number()
+        .run();
     },
   },
   lifecycle: {
@@ -109,7 +112,7 @@ export const MangaBall: PageInterface = {
     listChange($c) {
       return $c
         .detectChanges(
-          $c.querySelector('#chaptersContainer').ifNotReturn().text().run(),
+          $c.querySelector('#chapter-section').ifNotReturn().text().run(),
           $c.trigger().run(),
         )
         .run();

@@ -23,7 +23,7 @@ export const Tsukuyomi: PageInterface = {
       return $c.querySelector('.wp-title').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).split('-').last().run();
+      return $c.url().urlPart(4).regex('-([A-Za-z0-9_-]{6})$', 1).ifNotReturn().run();
     },
     getOverviewUrl($c) {
       return $c.querySelector('.wp-back').getAttribute('href').urlAbsolute().run();
@@ -54,13 +54,13 @@ export const Tsukuyomi: PageInterface = {
       return $c.url().urlPart(3).equals('anime').run();
     },
     getTitle($c) {
-      return $c.querySelector('.main-title').ifNotReturn().text().trim().run();
+      return $c.querySelector('.ap-title').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
     },
     uiInjection($c) {
-      return $c.querySelector('.meta').uiPrepend().run();
+      return $c.querySelector('.ap-meta').uiPrepend().run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();

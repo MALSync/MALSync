@@ -24,13 +24,13 @@
       }
     },
     {
-      "url": "https://mangaplus.shueisha.co.jp/viewer/1026314",
+      "url": "https://mangaplus.shueisha.co.jp/viewer/1009364",
       "expected": {
         "sync": true,
         "title": "Choujin X",
         "identifier": "100160",
         "overviewUrl": "https://mangaplus.shueisha.co.jp/titles/100160",
-        "episode": 67,
+        "episode": 1,
         "uiSelector": false
       }
     },

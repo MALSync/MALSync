@@ -1,6 +1,51 @@
 import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
+// Input: a watch url. AniList ids get a prefix so they don't collide with TMDB ids,
+// TMDB tv shows get the season because every season is its own entry.
+function watchUrlIdentifier($c: ChibiGenerator<unknown>) {
+  const watchUrl = () => $c.getVariable<string>('watchUrl');
+  const watchId = () => $c.getVariable<string>('watchId');
+
+  return $c
+    .string()
+    .setVariable('watchUrl')
+    .urlPart(6)
+    .setVariable('watchId')
+    .if(
+      watchUrl().urlParam('isTmdb').equals('1').run(),
+      $c
+        .if(
+          watchUrl().urlParam('tmdbType').equals('tv').run(),
+          watchId().concat('-season-').concat(watchUrl().urlParam('season').string().run()).run(),
+          watchId().run(),
+        )
+        .run(),
+      $c.string('anilist-').concat(watchId().run()).run(),
+    );
+}
+
+// Title and poster of the details page
+function detailData($c: ChibiGenerator<unknown>) {
+  return $c
+    .querySelector('[data-detail-favorite]')
+    .ifNotReturn()
+    .getAttribute('data-detail-favorite')
+    .ifNotReturn()
+    .jsonParse() as ChibiGenerator<{ title: string; poster: string }>;
+}
+
+// The content is rendered after the url changes, so also trigger when it is replaced
+function contentKey($c: ChibiGenerator<unknown>) {
+  return $c.coalesce(
+    $c.fn($c.querySelector('#watch-navigator-title').ifNotReturn().text().run()).run(),
+    $c.fn($c.querySelector('.detail-play-button').ifNotReturn().getAttribute('href').run()).run(),
+  );
+}
+
+// The site uses hash routing, so the url parts start after "/#/":
+// watch:    #/watch/anime/<id>?season=<n>&episode=<n>[&isTmdb=1&tmdbType=tv|movie]
+// overview: #/detail/<tv|movie>/<tmdbId> or #/anime-title/<slug>
 export const GaiaFlix: PageInterface = {
   name: 'GaiaFlix',
   domain: 'https://gaiaflix.live',
@@ -12,86 +57,60 @@ export const GaiaFlix: PageInterface = {
   sync: {
     isSyncPage($c) {
       return $c
-        .and($c.url().urlPart(3).matches('watch').run(), $c.url().urlPart(4).boolean().run())
+        .and(
+          $c.url().urlPart(4).equals('watch').run(),
+          $c.url().urlPart(5).equals('anime').run(),
+          $c.url().urlPart(6).boolean().run(),
+        )
         .run();
     },
     getTitle($c) {
-      return $c
-        .url()
-        .urlParam('title')
-        .ifNotReturn()
-        .concat($c.string(' ').run())
-        .concat(getSeason($c).ifNotReturn().run())
-        .trim()
-        .run();
+      return $c.querySelector('#watch-navigator-title').ifNotReturn().text().trim().run();
     },
     getIdentifier($c) {
-      return $c
-        .coalesce(
-          $c.fn($c.url().urlParam('showId').ifNotReturn().run()).run(),
-          $c.url().urlPart(4).run(),
-        )
-        .concat($c.string('-').concat(getSeason($c).ifNotReturn().run()).run())
-        .slugify()
-        .run();
+      return $c.url().exec(watchUrlIdentifier).run();
     },
     getOverviewUrl($c) {
-      return $c
-        .string('/detail/')
-        .concat($c.this('sync.getIdentifier').run())
-        .replaceRegex('-.*', '')
-        .urlAbsolute()
-        .run();
+      // The watch page has no link to the details page, so use the first episode instead
+      return $c.url().replaceRegex('episode=\\d+', 'episode=1').run();
     },
     getEpisode($c) {
-      return $c.url().urlParam('e').number().run();
-    },
-    /* Won't work on some anime
-    nextEpUrl($c) {
-      return $c
-        .querySelector('.w-max button')
-        .ifNotReturn()
-        .url()
-        .replaceRegex(
-          'e=\\d+',
-          $c.string('e=').concat($c.this('sync.getEpisode').calculate('+', 1).string().run()).run(),
-        )
-        .run();
-    },
-    */
-    uiInjection($c) {
-      return $c.querySelector('h3').uiBefore().run();
+      return $c.url().urlParam('episode').number().run();
     },
   },
   overview: {
     isOverviewPage($c) {
       return $c
-        .and($c.url().urlPart(3).equals('detail').run(), $c.url().urlPart(4).boolean().run())
+        .and(
+          $c.url().urlPart(4).matches('^(detail|anime-title)$').run(),
+          $c.url().urlPart(5).boolean().run(),
+        )
         .run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('h1')
-        .ifNotReturn()
-        .text()
-        .concat($c.string(' ').run())
-        .concat(getSeason($c).run())
-        .trim()
-        .run();
+      return $c.exec(detailData).get('title').ifNotReturn().string().trim().run();
     },
     getIdentifier($c) {
-      return $c.this('sync.getIdentifier').run();
+      return $c
+        .querySelector('.detail-play-button')
+        .ifNotReturn()
+        .getAttribute('href')
+        .ifNotReturn()
+        .urlAbsolute()
+        .exec(watchUrlIdentifier)
+        .run();
     },
     getImage($c) {
-      return $c.querySelector('.object-cover').getAttribute('src').ifNotReturn().run();
+      return $c.exec(detailData).get('poster').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('h1').uiBefore().run();
+      return $c.querySelector('.detail-synopsis').uiBefore().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.mt-10 a').run();
+      // Two layouts, depending on the anime
+      return $c.querySelectorAll('.anime-flat-episode, .episode-list .episode-card').run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
@@ -106,28 +125,11 @@ export const GaiaFlix: PageInterface = {
     },
     ready($c) {
       return $c
-        .detectChanges(getSeason($c).ifNotReturn().run(), $c.trigger().run())
-        .detectURLChanges($c.trigger().run())
+        .detectURLChanges($c.trigger().run(), { ignoreQuery: false, ignoreAnchor: false })
+        .detectChanges($c.exec(contentKey).run(), $c.trigger().run())
         .domReady()
         .trigger()
         .run();
     },
   },
 };
-
-function getSeason($c: ChibiGenerator<unknown>) {
-  return $c.coalesce(
-    $c
-      .fn(
-        $c
-          .querySelectorAll('.w-max button')
-          .arrayFind($item => $item.elementMatches('.bg-background').not().run())
-          .ifNotReturn()
-          .text()
-          .run(),
-      )
-      .run(),
-    // fallback reason because it broke concat when it null
-    $c.string(' ').run(),
-  );
-}

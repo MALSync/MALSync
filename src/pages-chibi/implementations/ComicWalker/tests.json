@@ -50,7 +50,7 @@
           "uiSelector": true,
           "epList": {
             "1": "https://comic-walker.com/detail/KC_007032_S/episodes/KC_0070320000200011_E?co=true&episodeType=first",
-            "4": "https://comic-walker.com/detail/KC_007032_S/episodes/KC_0070320000500011_E?co=true&episodeType=first"
+            "2": "https://comic-walker.com/detail/KC_007032_S/episodes/KC_0070320000300011_E?co=true&episodeType=first"
           }
        }
      },
@@ -82,7 +82,7 @@
           "nextEpUrl": null,
           "uiSelector": true,
           "epList": {
-            "11": "https://comic-walker.com/detail/KC_004188_S/episodes/KC_0041880003300021_E?co=true&episodeType=first"
+            "14": "https://comic-walker.com/detail/KC_004188_S/episodes/KC_0041880004600021_E?co=true&episodeType=first"
           }
        }
      },

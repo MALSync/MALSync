@@ -8,7 +8,9 @@
         "sync": true,
         "title": "Spy Classroom",
         "identifier": "shpionskiy-klass",
-        "overviewUrl": "https://old.yummyani.me/catalog/item/shpionskiy-klass"
+        "episode": 1,
+        "overviewUrl": "https://old.yummyani.me/catalog/item/shpionskiy-klass",
+        "image": "https://static.yani.tv/posters/huge/1636666215.avif"
       }
     }
   ]

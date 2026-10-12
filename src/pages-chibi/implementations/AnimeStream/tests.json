@@ -26,7 +26,7 @@
         "title": "My Hero Academia",
         "identifier": "oC7sJj1J_2newHZtl",
         "uiSelector": true,
-        "image": "https://media.uniquestream.net/anime/images/posters/480x720/995d0bcf2c09c3c175e49fc052d96895.webp",
+        "image": "https://media.uniquestream.net/anime/images/posters/1200x675/995d0bcf2c09c3c175e49fc052d96895.webp",
         "malUrl": "https://myanimelist.net/anime/31964",
         "epList": {
           "2": "https://anime.uniquestream.net/watch/hd5sf03G/What-It-Takes-to-Be-a-Hero",
@@ -41,6 +41,7 @@
         "title": "Ninja Scroll",
         "identifier": "dv_715215",
         "overviewUrl": "https://anime.uniquestream.net/movies/dv_715215/ninja-scroll",
+        "episode": 1,
         "uiSelector": true
       }
     },
@@ -51,7 +52,7 @@
         "title": "Ninja Scroll",
         "identifier": "dv_715215",
         "uiSelector": true,
-        "image": "https://media.uniquestream.net/anime/images/posters/480x720/3b1fecd03822c3744140747cc03d75f9.webp"
+        "image": "https://media.uniquestream.net/anime/images/posters/1200x675/3b1fecd03822c3744140747cc03d75f9.webp"
       }
     }
   ]

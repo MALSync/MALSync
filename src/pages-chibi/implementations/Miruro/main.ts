@@ -29,7 +29,7 @@ export const Miruro: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c.querySelector('h1 a[href*="info/"] img').getAttribute('src').ifNotReturn().run();
+      return $c.querySelector('a[href*="info/"] img').getAttribute('src').ifNotReturn().run();
     },
     getOverviewUrl($c) {
       return $c.querySelector('h1 a[href*="info/"]').getAttribute('href').urlAbsolute().run();
@@ -71,7 +71,7 @@ export const Miruro: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     uiInjection($c) {
-      return $c.querySelector('#root h1').uiAfter().run();
+      return $c.querySelector('#root [class*="_mainColumn"] h1').uiAfter().run();
     },
     getMalUrl($c) {
       return $c

@@ -67,7 +67,7 @@ export const allManga: PageInterface = {
       return $c.querySelector('.breadcrumb-item span').text().trim().run();
     },
     getIdentifier($c) {
-      return $c.querySelector('#linkInput').getAttribute('value').urlPart(4).run();
+      return $c.url().urlStrip().urlPart(4).run();
     },
     getImage($c) {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
