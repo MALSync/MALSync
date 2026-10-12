@@ -8,7 +8,7 @@ export const QiScans: PageInterface = {
   urls: {
     match: ['*://qiscans.org/*', '*://qimanhwa.com/*', '*://qimanga.com/*'],
   },
-  search: 'https://qimanga.com/series?searchTerm={searchtermPlus}',
+  search: 'https://qimanga.com/browse?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

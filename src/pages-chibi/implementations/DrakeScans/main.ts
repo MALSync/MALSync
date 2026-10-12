@@ -8,7 +8,7 @@ export const DrakeScans: PageInterface = {
   urls: {
     match: ['*://drakecomic.org/*'],
   },
-  search: 'https://drakecomic.org/?s={searchtermPlus}',
+  search: 'https://drakecomic.net/search?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

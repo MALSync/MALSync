@@ -8,7 +8,6 @@ export const KappaBeast: PageInterface = {
   urls: {
     match: ['*://kappabeast.com/*'],
   },
-  search: 'https://kappabeast.com/?s={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

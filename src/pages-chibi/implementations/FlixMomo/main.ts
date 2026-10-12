@@ -32,7 +32,7 @@ export const FlixMomo: PageInterface = {
       vidfast: ['*://vidfast.vc/*'],
     },
   },
-  search: 'https://flixmomo.app/search?q={searchterm}',
+  search: 'https://flixmomo.st/search?q={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c

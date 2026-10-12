@@ -8,7 +8,7 @@ export const VioletScans: PageInterface = {
   urls: {
     match: ['*://violetscans.org/*'],
   },
-  search: 'https://violetscans.org/?s={searchtermPlus}',
+  search: 'https://violetmanga.com/?s={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

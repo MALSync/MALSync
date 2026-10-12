@@ -8,7 +8,7 @@ export const Silentquill: PageInterface = {
   urls: {
     match: ['*://www.silentquill.net/*'],
   },
-  search: 'https://www.silentquill.net/?s={searchtermPlus}',
+  search: 'https://silentquill.net/search/?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

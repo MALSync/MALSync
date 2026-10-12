@@ -8,7 +8,7 @@ export const Madarascans: PageInterface = {
   urls: {
     match: ['*://madarascans.com/*'],
   },
-  search: 'https://madarascans.com/?s={searchtermPlus}',
+  search: 'https://madarascans.net/?s={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

@@ -8,7 +8,7 @@ export const KaynScan: PageInterface = {
   urls: {
     match: ['*://kaynscan.org/*'],
   },
-  search: 'https://kaynscan.org/series/?q={searchtermPlus}',
+  search: 'https://kaynscans.com/search?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

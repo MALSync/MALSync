@@ -13,8 +13,8 @@ export const Mkissa: PageInterface = {
     },
   },
   search: {
-    anime: 'https://mkissa.to/search/manga?query={searchtermRaw}',
-    manga: 'https://mkissa.to/search/anime?query={searchtermRaw}',
+    anime: 'https://mkissa.to/search/anime?query={searchtermRaw}',
+    manga: 'https://mkissa.to/search/manga?query={searchtermRaw}',
   },
   computedType: $c => {
     return $c.url().urlPart(3).toLowerCase().run();
