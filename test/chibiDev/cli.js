@@ -11,12 +11,14 @@
 const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
+const JSZip = require('jszip');
 const puppeteer = require('puppeteer');
 
 const root = path.join(__dirname, '../..');
 const outDir = path.join(root, 'test/dist/chibi-dev');
 const extensionDir = path.join(outDir, 'extension');
 const profileDir = path.join(outDir, 'profile');
+const ublockDir = path.join(outDir, 'ublock-origin-lite');
 const runtimePath = path.join(root, 'test/dist/chibiDev.js');
 const chibiRoots = [
   path.join(root, 'dist/webextension/chibi'),
@@ -130,6 +132,30 @@ function watchBuild() {
   }, 1000);
 }
 
+// uBlock Origin Lite against ads and pop-ups, downloaded once from its GitHub releases.
+// Delete test/dist/chibi-dev/ublock-origin-lite to update it.
+async function ensureUblock() {
+  if (fs.existsSync(path.join(ublockDir, 'manifest.json'))) return ublockDir;
+  try {
+    const release = await (await fetch('https://api.github.com/repos/uBlockOrigin/uBOL-home/releases/latest')).json();
+    const asset = (release.assets || []).find(a => a.name.endsWith('.chromium.zip'));
+    if (!asset) throw new Error('No chromium build in the latest release');
+    log(`Downloading ${asset.name}`);
+    const zip = await JSZip.loadAsync(await (await fetch(asset.browser_download_url)).arrayBuffer());
+    for (const file of Object.values(zip.files)) {
+      if (file.dir) continue;
+      const target = path.join(ublockDir, file.name);
+      fs.mkdirSync(path.dirname(target), { recursive: true });
+      fs.writeFileSync(target, await file.async('nodebuffer'));
+    }
+    return ublockDir;
+  } catch (error) {
+    fs.rmSync(ublockDir, { recursive: true, force: true });
+    log(`Could not install uBlock Origin Lite, starting without it (${error.message})`);
+    return null;
+  }
+}
+
 async function main() {
   const options = parseArgs(process.argv.slice(2));
 
@@ -142,6 +168,7 @@ async function main() {
 
   buildExtension();
   fs.mkdirSync(profileDir, { recursive: true });
+  const extensions = [extensionDir, await ensureUblock()].filter(Boolean);
 
   const chrome = spawn(
     await puppeteer.executablePath(),
@@ -149,7 +176,7 @@ async function main() {
       `--remote-debugging-port=${options.port}`,
       // Remote debugging needs a separate profile. It is kept, so logins and captchas persist.
       `--user-data-dir=${profileDir}`,
-      `--load-extension=${extensionDir}`,
+      `--load-extension=${extensions.join(',')}`,
       '--no-first-run',
       '--no-default-browser-check',
       options.url,

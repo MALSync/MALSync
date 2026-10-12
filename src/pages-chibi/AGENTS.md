@@ -43,6 +43,7 @@ async () => ChibiDev.runPage()                                      // run the w
 - After editing `main.ts`, wait until `npm run dev:webextension:content` rebuilt, then reload the tab. A new page also has to be registered in `pages.ts` before it shows up.
 - Bot checks: `runPage()` and `exec()` return `challenge: "cloudflare" | "turnstile"` when the page shows one, and `ChibiDev.challenge()` checks directly. Some pass by themselves, so wait a few seconds and check again. If it stays, ask the user to solve it in the visible browser, wait for their reply, then reload and continue. Do not try to solve it yourself. The browser profile (`test/dist/chibi-dev/profile`) keeps the clearance cookies, so this is rarely needed twice.
 - `ChibiDev.pages()` shows the loaded pages and which match the current url.
+- The browser runs uBlock Origin Lite against ads and pop-ups. If a site behaves differently than for users, check whether a blocked request is the cause (`list_network_requests`).
 
 Before finishing, run the real test with `npm run test:headless <tests.json title>`. Prefix it with `CI=true` to stay headless. The first run caches the page in `test/dist/headless`. If a test cannot pass, for example because the site blocks headless browsers, commit it anyway and say so. The maintainers fix tests during review.
 
