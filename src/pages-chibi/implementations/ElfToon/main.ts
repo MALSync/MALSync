@@ -8,7 +8,7 @@ export const ElfToon: PageInterface = {
   urls: {
     match: ['*://elftoon.com/*'],
   },
-  search: 'https://elftoon.com/?s={searchtermPlus}',
+  search: 'https://elftoon.net/search?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

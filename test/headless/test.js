@@ -1,8 +1,7 @@
 const { expect } = require('chai');
 const puppeteer = require('puppeteer');
-const { PuppeteerBlocker } = require('@ghostery/adblocker-puppeteer');
+const { openPage, injectTestEnvironment } = require('./browser');
 const path = require('path');
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const fs = require('fs');
 const dir = require('node-dir');
@@ -358,20 +357,7 @@ function checkIfFolderExists(block, name) {
 
 async function singleCase(block, test, page, testPage, retry = 0) {
   const saveCallback = await PreparePage(block, page, test.url, testPage);
-  const testJquery = () => page.evaluate(() => {
-    if (typeof jQuery === 'undefined') throw 'jquery could not be loaded';
-  })
-
-  await page
-    .addScriptTag({
-      content: fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'),
-    })
-    .then(() => {
-      return testJquery();
-    }).catch(async () => {
-      await page.evaluate(fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'));
-      await testJquery();
-    });
+  await injectTestEnvironment(page);
 
   const loadContent = await page.evaluate(() => document.body.innerHTML);
 
@@ -379,69 +365,6 @@ async function singleCase(block, test, page, testPage, retry = 0) {
     log(block, 'nginx error', 2);
     throw 'Blocked';
   }
-
-  await page.evaluate(() => console.log(`Adding chrome api`));
-  await page.addScriptTag({
-    content: `
-      window.chrome = {
-        runtime: {
-          onMessage: {
-            addListener: function(callback) {
-              console.log('chrome.runtime.onMessage.addListener', callback);
-            }
-          },
-          sendMessage: function(message, callback) {
-            console.log('chrome.runtime.sendMessage', message, callback);
-          },
-          getURL: function(path) {
-            console.log('chrome.runtime.getURL', path);
-            return '';
-          },
-          getManifest: function() {
-            console.log('chrome.runtime.getManifest');
-            return {
-              version: '10.1.1',
-            };
-          }
-        },
-        storage: {
-          local: {
-            get: function(keys, callback) {
-              console.log('chrome.storage.local.get', keys, callback);
-              callback({});
-              return Promise.resolve({});
-            },
-            set: function(items, callback) {
-              console.log('chrome.storage.local.set', items, callback);
-              if (callback) {
-                callback();
-              }
-              return Promise.resolve({});
-            }
-          },
-          sync: {
-            get: function(keys, callback) {
-              console.log('chrome.storage.sync.get', keys, callback);
-              callback({});
-              return Promise.resolve({});
-            },
-            set: function(items, callback) {
-              console.log('chrome.storage.sync.set', items, callback);
-              if (callback) {
-                callback();
-              }
-              return Promise.resolve({});
-            }
-          },
-          onChanged: {
-            addListener: function(callback) {
-              console.log('chrome.storage.onChanged.addListener', callback);
-            }
-          }
-        },
-      };
-    `,
-  });
 
   await page.evaluate(() => console.log(`Adding script`));
   await page.addScriptTag({ content: script });
@@ -569,17 +492,6 @@ async function loopEl(testPage, headless = true) {
       console.error(e);
     }
   }
-}
-
-async function openPage(b) {
-  const page = await b.newPage();
-
-  const blocker = await PuppeteerBlocker.fromPrebuiltAdsAndTracking(fetch);
-  await blocker.enableBlockingInPage(page);
-
-  await page.setViewport({ width: 1920, height: 1080 });
-
-  return page;
 }
 
 async function initTestsArray() {

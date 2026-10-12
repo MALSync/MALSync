@@ -8,7 +8,7 @@ export const GenzToon: PageInterface = {
   urls: {
     match: ['*://genzupdates.com/*'],
   },
-  search: 'https://genzupdates.com/series/?q={searchtermPlus}',
+  search: 'https://genztoons.org/series?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

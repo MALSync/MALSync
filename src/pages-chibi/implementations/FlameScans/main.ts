@@ -8,7 +8,6 @@ export const FlameScans: PageInterface = {
   urls: {
     match: ['*://flamecomics.com/*', '*://flamecomics.me/*', '*://flamecomics.xyz/*'],
   },
-  search: 'https://flamecomics.xyz/browse?search={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c

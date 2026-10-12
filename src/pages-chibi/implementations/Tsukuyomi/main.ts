@@ -12,7 +12,7 @@ export const Tsukuyomi: PageInterface = {
       hd2: ['*://vibeplayer.site/*'],
     },
   },
-  search: 'https://tsukuyomi.tv/search?q={searchTerms}',
+  search: 'https://tsukuyomi.tv/search?q={searchterm}',
   sync: {
     isSyncPage($c) {
       return $c
