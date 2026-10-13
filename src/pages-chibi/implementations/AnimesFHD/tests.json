@@ -3,24 +3,59 @@
   "url": "https://animesfhd.net",
   "testCases": [
     {
-      "url": "https://animesfhd.net/episod/29410",
+      "url": "https://animesfhd.net/episod/58832",
       "expected": {
         "sync": true,
-        "title": "Noragami Aragoto",
-        "identifier": "1867",
-        "overviewUrl": "https://animesfhd.net/serie/1867",
+        "title": "Machikado Mazoku Season 2",
+        "identifier": "1237539949472249",
         "episode": 1,
+        "overviewUrl": "https://animesfhd.net/serie/1237539949472249",
         "uiSelector": false
       }
     },
     {
-      "url": "https://animesfhd.net/serie/1867",
+      "url": "https://animesfhd.net/serie/1237539949472249",
       "expected": {
         "sync": false,
-        "title": "Noragami Aragoto",
-        "identifier": "1867",
-        "image": "https://animesdigital.org/wp-content/uploads/2021/10/assistir-noragami-aragoto-todos-os-episodios-online-animesdigital.jpg",
+        "title": "Machikado Mazoku Season 2",
+        "identifier": "1237539949472249",
+        "image": "https://image.tmdb.org/t/p/original/jTzpBCrmWfqOdF3XoanFfpwKYZU.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://animesfhd.net/episod/58832",
+          "2": "https://animesfhd.net/episod/58833"
+        }
+      }
+    },
+    {
+      "url": "https://animesfhd.net/serie/3917929175109737",
+      "expected": {
+        "sync": false,
+        "title": "Nisekoi",
+        "identifier": "3917929175109737",
+        "image": "https://image.tmdb.org/t/p/original/vYfnw5eRLrne4ZLDaRdHgvGyys7.jpg",
         "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animesfhd.net/serie/3006846410426130",
+      "expected": {
+        "sync": false,
+        "title": "Magical Explorer",
+        "identifier": "3006846410426130",
+        "image": "https://image.tmdb.org/t/p/original/1mcErCeGi77UmV50E81fwvftdp2.jpg",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animesfhd.net/episod/26778",
+      "expected": {
+        "sync": true,
+        "title": "[Oshi no Ko]",
+        "identifier": "872679688167735",
+        "episode": 1,
+        "overviewUrl": "https://animesfhd.net/serie/872679688167735",
+        "uiSelector": false
       }
     }
   ]

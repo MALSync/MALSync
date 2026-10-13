@@ -17,7 +17,14 @@ export const AnimesFHD: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return cleanTitle($c.querySelector('#episode-meta').text().trim().split(' · ').at(0));
+      // The document title keeps the season ("X — 2ª temporada — Episódio 1 | AnimesFHD"),
+      // #episode-meta and #breadcrumb lose it once the site hydrates.
+      return cleanTitle(
+        $c
+          .title()
+          .replaceRegex('\\s*\\|\\s*AnimesFHD\\s*$', '')
+          .replaceRegex('\\s+[—–-]\\s+Epis[oó]dio\\s.*$', ''),
+      );
     },
     getIdentifier($c) {
       return $c
@@ -29,12 +36,7 @@ export const AnimesFHD: PageInterface = {
         .run();
     },
     getOverviewUrl($c) {
-      return $c
-        .querySelector('#breadcrumb')
-        .getAttribute('href')
-        .ifNotReturn()
-        .urlAbsolute()
-        .run();
+      return $c.querySelector('#breadcrumb').getAttribute('href').ifNotReturn().urlAbsolute().run();
     },
     getEpisode($c) {
       return $c.querySelector('#episode-num').text().trim().number().run();
@@ -43,17 +45,17 @@ export const AnimesFHD: PageInterface = {
   overview: {
     isOverviewPage($c) {
       return $c
-        .or(
-          $c.url().urlPart(3).equals('serie').run(),
-          $c.url().urlPart(3).equals('series').run(),
-        )
+        .or($c.url().urlPart(3).equals('serie').run(), $c.url().urlPart(3).equals('series').run())
         .run();
     },
     getTitle($c) {
+      // #series-alt is the English title, which MAL finds more reliably than the long romaji
+      // titles of the site. It belongs to the first season though, so seasons use #series-title.
       return cleanTitle(
         $c.if(
           $c
             .and(
+              $c.querySelector('#series-title').text().matches('temporada|parte', 'i').not().run(),
               $c.querySelector('#series-alt').boolean().run(),
               $c.querySelector('#series-alt').text().trim().boolean().run(),
             )
@@ -92,14 +94,41 @@ export const AnimesFHD: PageInterface = {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
     syncIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('#breadcrumb').boolean().run()).trigger().run();
+      // Switching season/episode in the player changes the url ~3s before the content.
+      // The comment form gets the episode id once the content of the current url is rendered.
+      return $c
+        .waitUntilTrue(
+          $c
+            .and(
+              $c.querySelector('#breadcrumb').boolean().run(),
+              $c
+                .or(
+                  $c.querySelector('#comment-form[data-episode-id]').boolean().not().run(),
+                  $c
+                    .querySelector('#comment-form')
+                    .getAttribute('data-episode-id')
+                    .equals($c.url().urlPart(4).run())
+                    .run(),
+                )
+                .run(),
+            )
+            .run(),
+        )
+        .trigger()
+        .run();
     },
     overviewIsReady($c) {
       return $c
         .waitUntilTrue(
           $c
             .and(
-              $c.querySelector('#series-title').boolean().run(),
+              // Set once the series of the current url is rendered (also after a season switch)
+              $c.querySelector('#series-title[data-title-for]').boolean().run(),
+              $c
+                .querySelector('#series-title')
+                .getAttribute('data-title-for')
+                .equals($c.url().this('overview.getIdentifier').run())
+                .run(),
               $c.querySelector('#series-title').text().trim().boolean().run(),
               $c
                 .querySelector('#series-title')
@@ -125,16 +154,20 @@ export const AnimesFHD: PageInterface = {
 };
 
 function cleanTitle($c: ChibiGenerator<string>) {
-  return $c
-    .replaceRegex('\\s*\\(Dublado\\)\\s*$', '')
-    .replaceRegex('\\s*-\\s*Todos os Epis[oó]dios(?: Online)?\\s*$', '')
-    .replaceRegex('\\s*-\\s*Animes? Online\\s*$', '')
-    .replaceRegex('\\s+Online\\s*$', '')
-    .replaceRegex('\\s+1ª?\\s*Temporada\\s*$', ' 1st Season')
-    .replaceRegex('\\s+2ª?\\s*Temporada\\s*$', ' 2nd Season')
-    .replaceRegex('\\s+3ª?\\s*Temporada\\s*$', ' 3rd Season')
-    .replaceRegex('\\s+(\\d{1,2})ª?\\s*Temporada\\s*$', ' $1th Season')
-    .replaceRegex('\\s+Dublado\\s*$', '')
-    .trim()
-    .run();
+  return (
+    $c
+      .replaceRegex('\\s*\\((Dublado|Legendado)\\)\\s*$', '')
+      .replaceRegex('\\s*-\\s*Todos os Epis[oó]dios(?: Online)?\\s*$', '')
+      .replaceRegex('\\s*-\\s*Animes? Online\\s*$', '')
+      .replaceRegex('\\s+(Dublado|Legendado)\\s*$', '')
+      .replaceRegex('\\s+[—–-]\\s+Filme\\s*$', '')
+      // Seasons: "X — 2ª temporada", "X 2ª Temporada", "X - Temporada 2" (+ optional "Parte N")
+      .replaceRegex('\\s*[—–-]?\\s*\\b(\\d{1,2})\\s*[ªº°]?\\s*temporada\\b', ' Season $1')
+      .replaceRegex('\\s*[—–-]?\\s*\\btemporada\\s*(\\d{1,2})\\b', ' Season $1')
+      .replaceRegex('\\s*[—–-]?\\s*\\bparte\\s*(\\d{1,2})\\s*$', ' Part $1')
+      // MAL entries of the first season have no season suffix
+      .replaceRegex('\\s+Season 1(?=\\s|$)', '')
+      .trim()
+      .run()
+  );
 }
