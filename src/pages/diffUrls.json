@@ -114,6 +114,7 @@
   "0.12.5": {
     "iframe": [
       "*://*.mxdrop.top/e/*",
+      "*://*.mxdrop.click/e/*",
       "*://eugenemakedraw.com/e/*",
       "*://johnfullwonder.com/e/*",
       "*://jamesbornmain.com/e/*",

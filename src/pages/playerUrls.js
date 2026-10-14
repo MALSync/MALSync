@@ -235,6 +235,7 @@ module.exports = {
       '*://*.miixdrop.com/e/*',
       '*://*.miixdrop.top/e/*',
       '*://*.mxdrop.top/e/*',
+      '*://*.mxdrop.click/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
