@@ -211,6 +211,10 @@ describe('Rules', function () {
         responseText: JSON.stringify(monogatari),
         status: 200,
       },
+      'https://api.malsync.moe/tvdb/rules/cache-key/11597': {
+        responseText: JSON.stringify(monogatari),
+        status: 200,
+      },
       'https://api.malsync.moe/tvdb/rules/cache-key/1': {
         responseText: 'null',
         status: 200,
@@ -412,7 +416,20 @@ describe('Rules', function () {
     });
   });
 
-  describe('Inferred specials', function () {
+  describe('Whole season entry', function () {
+    it('Cour uses the entry of a provided season without changing the episode', async function () {
+      const rules = await new RulesClass('11597', 'anime').init();
+      expect(rules.applyRules(6, 3, 'cour')).to.eql({
+        url: 'https://myanimelist.net/anime/17074',
+        offset: 0,
+      });
+      // tvdb skips the special
+      expect(rules.applyRules(6, 3, 'tvdb')).to.eql({
+        url: 'https://myanimelist.net/anime/17074',
+        offset: 1,
+      });
+    });
+
     it('Never infers the specials season', async function () {
       const rules = await new RulesClass('17074', 'anime').init();
       // Episode 6 of the entry is the special S0E7, the regular season is inferred
@@ -424,17 +441,22 @@ describe('Rules', function () {
         offset: 1,
       });
     });
+
+    it('Not for an inferred season', async function () {
+      const rules = await new RulesClass('11597', 'anime').init();
+      expect(rules.applyRules(5, undefined, 'cour')).to.eql(undefined);
+    });
   });
 
   describe('Search class', function () {
     const currentUrl = 'https://myanimelist.net/anime/39535';
 
     // Loaded lazily, its imports need the globals
-    async function searchObj(identifier: string) {
+    async function searchObj(page: string, identifier = 'rezero') {
       // eslint-disable-next-line global-require
       const { SearchClass } = require('../../../src/_provider/Search/searchClass');
       const obj = new SearchClass('Re:Zero', 'anime', identifier);
-      obj.setPage({ name: 'test' });
+      obj.setPage({ name: page });
       obj.setUrl(currentUrl);
       obj.rules = await new RulesClass('39535', 'anime').init();
       await obj.loadRuleSet();
@@ -452,25 +474,22 @@ describe('Rules', function () {
     it('Remembers the rule set', async function () {
       const obj = await searchObj('remember');
       await obj.setRuleSet('off');
-      expect(await stub.storage.get('test/remember/RuleSet')).to.equal('off');
+      expect(await stub.storage.get('remember/tvdb/371310/RuleSet')).to.equal('off');
       expect(obj.getRuledUrl(12)).to.equal(currentUrl);
 
       const reloaded = await searchObj('remember');
       expect(reloaded.getRuleSet()).to.equal('off');
     });
 
-    it('Switches back to auto', async function () {
-      const obj = await searchObj('auto');
-      await obj.setRuleSet('cour');
+    it('Shares the rule set within the series on the same page', async function () {
+      const obj = await searchObj('series', 'season-1');
+      await obj.setRuleSet('absolute');
 
-      obj.changed = false;
-      await obj.setRuleSet('auto');
-      // Reruns the page, the applied rule set stays the default
-      expect(obj.changed).to.equal(true);
-      expect(obj.getRuleSet()).to.equal(DEFAULT_RULE_SET);
+      const otherEntry = await searchObj('series', 'season-2');
+      expect(otherEntry.getRuleSet()).to.equal('absolute');
 
-      const reloaded = await searchObj('auto');
-      expect(reloaded.getRuleSetSelection()).to.equal('auto');
+      const otherPage = await searchObj('series-other-page', 'season-1');
+      expect(otherPage.getRuleSet()).to.equal(DEFAULT_RULE_SET);
     });
 
     it('Conflict: episode higher than the season uses absolute numbering', async function () {
@@ -478,9 +497,55 @@ describe('Rules', function () {
       const conflict = obj.getRuleConflict(32);
       expect(conflict?.season).to.equal(1);
       expect(conflict?.episode).to.equal(32);
-      expect(conflict?.url).to.equal(currentUrl);
-      expect(conflict?.absolute.url).to.equal('https://myanimelist.net/anime/51179');
-      expect(conflict?.absolute.episode).to.equal(9);
+      // Tvdb is not compared for an inferred season
+      expect(conflict?.options).to.eql([
+        { ruleSets: ['cour'], url: currentUrl, episode: 32 },
+        {
+          ruleSets: ['absolute'],
+          url: 'https://myanimelist.net/anime/51179',
+          episode: 9,
+          season: 2,
+          title: null,
+        },
+      ]);
+    });
+
+    it('Conflict: mapping rules differ from cour', async function () {
+      const obj = await searchObj('conflict-mapping');
+      const conflict = obj.getRuleConflict(40, 2);
+      expect(conflict?.options.map(el => [el.ruleSets, el.url, el.episode])).to.eql([
+        [['cour'], currentUrl, 40],
+        [['tvdb'], 'https://myanimelist.net/anime/99999', 31],
+      ]);
+    });
+
+    it('No conflict if cour and tvdb find the same episode of the whole season entry', async function () {
+      const obj = await searchObj('conflict-whole');
+      obj.setUrl('https://myanimelist.net/anime/11597');
+      obj.rules = await new RulesClass('11597', 'anime').init();
+      expect(obj.getRuledUrl(5, 3)).to.equal('https://myanimelist.net/anime/17074');
+      expect(obj.getRuleConflict(5, 3)).to.eql(undefined);
+    });
+
+    it('Conflict if tvdb skips specials of the whole season entry', async function () {
+      const obj = await searchObj('conflict-whole-specials');
+      obj.setUrl('https://myanimelist.net/anime/11597');
+      obj.rules = await new RulesClass('11597', 'anime').init();
+      expect(
+        obj.getRuleConflict(6, 3)?.options.map(el => [el.ruleSets, el.url, el.episode]),
+      ).to.eql([
+        [['cour'], 'https://myanimelist.net/anime/17074', 6],
+        [['tvdb'], 'https://myanimelist.net/anime/17074', 7],
+      ]);
+    });
+
+    it('No tvdb conflict for an inferred season', async function () {
+      const obj = await searchObj('conflict-inferred');
+      obj.setUrl('https://myanimelist.net/anime/17074');
+      obj.rules = await new RulesClass('17074', 'anime').init();
+      // Tvdb would read episode 6 of the entry as S3E6 and skip the special
+      expect(obj.getRuleConflict(6)).to.eql(undefined);
+      expect(obj.getRuleConflict(6, 3)?.options.length).to.equal(2);
     });
 
     it('No conflict if a rule applies', async function () {
@@ -493,12 +558,6 @@ describe('Rules', function () {
       expect(obj.getRuleConflict(5, 1)).to.eql(undefined);
     });
 
-    it('No conflict with an open-ended season', async function () {
-      const obj = await searchObj('conflict-open');
-      // Season 2 contains the open-ended 99999
-      expect(obj.getRuleConflict(40, 2)).to.eql(undefined);
-    });
-
     it('No conflict after the user selected a rule set', async function () {
       const obj = await searchObj('conflict-selected');
       await obj.setRuleSet(obj.getRuleSet());
@@ -506,6 +565,21 @@ describe('Rules', function () {
 
       const reloaded = await searchObj('conflict-selected');
       expect(reloaded.getRuleConflict(32)).to.eql(undefined);
+    });
+
+    it('Asks again after switching back to auto', async function () {
+      const obj = await searchObj('conflict-auto');
+      await obj.setRuleSet('cour');
+      expect(obj.getRuleConflict(32)).to.eql(undefined);
+
+      obj.changed = false;
+      await obj.setRuleSet('auto');
+      expect(obj.changed).to.equal(true);
+      expect(obj.getRuleSet()).to.equal(DEFAULT_RULE_SET);
+      expect(obj.getRuleConflict(32)?.options.length).to.equal(2);
+
+      const reloaded = await searchObj('conflict-auto');
+      expect(reloaded.getRuleSetSelection()).to.equal('auto');
     });
   });
 });
