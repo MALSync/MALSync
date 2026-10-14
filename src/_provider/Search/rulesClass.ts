@@ -93,6 +93,11 @@ export class RulesClass {
     return this;
   }
 
+  public getTvdbId(): number | undefined {
+    if (!this.state || !this.state.ruleSet) return undefined;
+    return this.state.ruleSet.tvdbId;
+  }
+
   public getRuleProvider(): 'mal' | 'anilist' {
     return String(this.cacheKey).startsWith('anilist:') ? 'anilist' : 'mal';
   }

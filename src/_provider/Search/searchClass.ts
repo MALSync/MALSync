@@ -14,9 +14,13 @@ import {
   RuleSetType,
   RulesClass,
 } from './rulesClass';
+import { RuleConflict, RuleConflictClass } from './ruleConflictClass';
 
 import { getSyncMode } from '../helper';
 import { buildProviderUrl } from '../../utils/slugs';
+
+// default: opened by the user, sync: opened automatically to correct the entry, conflict: only asks to resolve a rule conflict
+export type CorrectionMode = 'default' | 'sync' | 'conflict';
 
 interface SearchResult {
   id?: number;
@@ -605,7 +609,6 @@ export class SearchClass {
 
   async initRules() {
     const logger = con.m('Rules');
-    await this.loadRuleSet();
     const url = this.getUrl();
     logger.log('Url', url);
     if (!url) return undefined;
@@ -613,16 +616,21 @@ export class SearchClass {
     const cacheKeyObj = await getRulesCacheKey(url);
     logger.log('Cachekey', cacheKeyObj);
     this.rules = await new RulesClass(cacheKeyObj.rulesCacheKey, this.getNormalizedType()).init();
+    await this.loadRuleSet();
 
     return cacheKeyObj.singleObj;
   }
 
-  protected getRuleSetKey() {
-    return `${this.page.name}/${this.identifier}/RuleSet`;
+  protected getRuleSetKey(): string | undefined {
+    const tvdbId = this.rules ? this.rules.getTvdbId() : undefined;
+    if (!tvdbId) return undefined;
+    return `${this.page.name}/tvdb/${tvdbId}/RuleSet`;
   }
 
   async loadRuleSet() {
-    const selection = await api.storage.get(this.getRuleSetKey());
+    const key = this.getRuleSetKey();
+    if (!key) return;
+    const selection = await api.storage.get(key);
     if (RULE_SET_SELECTIONS.includes(selection)) this.ruleSetSelection = selection;
   }
 
@@ -639,7 +647,23 @@ export class SearchClass {
     // Also rerun when switching to auto, it can ask for conflicts again
     if (this.ruleSetSelection !== selection) this.changed = true;
     this.ruleSetSelection = selection;
-    await api.storage.set(this.getRuleSetKey(), selection);
+    const key = this.getRuleSetKey();
+    if (key) await api.storage.set(key, selection);
+  }
+
+  isSimilar(): boolean {
+    return Boolean(this.state && this.state.similarity && this.state.similarity.same);
+  }
+
+  getRuleConflict(episode?: number, season?: number): RuleConflict | undefined {
+    if (!this.rules || typeof episode !== 'number' || Number.isNaN(episode)) return undefined;
+
+    if (this.ruleSetSelection !== 'auto') return undefined;
+
+    return new RuleConflictClass(this.rules, this.getRuleSet(), this.getUrl()).getConflict(
+      Number(episode) + Number(this.getOffset() || 0),
+      season,
+    );
   }
 
   applyRules(episode: number, season?: number) {
