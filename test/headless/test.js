@@ -393,6 +393,9 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   if (test.expected.season) {
     expect(text.season, 'Season').to.equal(test.expected.season);
   }
+  if (test.expected.ruleSet) {
+    expect(text.ruleSet, 'Rule set').to.equal(test.expected.ruleSet);
+  }
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
     if (test.expected.volume) {

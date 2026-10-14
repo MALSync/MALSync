@@ -4,6 +4,7 @@ import { hideFloatbutton, initFloatButton, showFloatbutton } from '../floatbutto
 import { providerTemplates } from '../provider/templates';
 import { fullscreenNotification, PlayerSingleton } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
+import { RULE_SETS } from '../_provider/Search/rulesClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
 import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
@@ -177,12 +178,18 @@ export class SyncPage {
         if (!Number.isNaN(season)) state.season = season;
       }
 
+      if (typeof this.page.sync.getRuleSet !== 'undefined') {
+        const ruleSet = this.page.sync.getRuleSet(this.url);
+        if (RULE_SETS.includes(ruleSet)) state.ruleSet = ruleSet;
+      }
+
       this.setSearchObj(
         new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
+      this.searchObj.setPageRuleSet(state.ruleSet);
       this.curState = state;
       await this.searchObj.search();
 
@@ -238,12 +245,18 @@ export class SyncPage {
         if (!Number.isNaN(season)) state.season = season;
       }
 
+      if (typeof this.page.overview.getRuleSet !== 'undefined') {
+        const ruleSet = this.page.overview.getRuleSet(this.url);
+        if (RULE_SETS.includes(ruleSet)) state.ruleSet = ruleSet;
+      }
+
       this.setSearchObj(
         new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
+      this.searchObj.setPageRuleSet(state.ruleSet);
       this.curState = state;
       await this.searchObj.search();
 

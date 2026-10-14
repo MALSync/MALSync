@@ -130,6 +130,17 @@ export const Chibi = async (): Promise<pageInterface> => {
             return consumer.run();
           }
         : undefined,
+      getRuleSet: currentPage.sync.getRuleSet
+        ? url => {
+            const consumer = getUrlConsumer(
+              currentPage.sync.getRuleSet!,
+              url,
+              pageD,
+              'sync.getRuleSet',
+            );
+            return consumer.run();
+          }
+        : undefined,
       getImage: currentPage.sync.getImage
         ? () => {
             const consumer = getConsumer(currentPage.sync.getImage!, pageD, 'sync.getImage');
@@ -206,6 +217,17 @@ export const Chibi = async (): Promise<pageInterface> => {
                     url,
                     pageD,
                     'overview.getSeason',
+                  );
+                  return consumer.run();
+                }
+              : undefined,
+            getRuleSet: currentPage.overview?.getRuleSet
+              ? url => {
+                  const consumer = getUrlConsumer(
+                    currentPage.overview!.getRuleSet!,
+                    url,
+                    pageD,
+                    'overview.getRuleSet',
                   );
                   return consumer.run();
                 }

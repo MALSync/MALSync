@@ -107,6 +107,8 @@ export default {
             | 'getOverviewUrl'
             | `${string}.elementUrl`
             | 'elementUrl'
+            | `${string}.getRuleSet`
+            | 'getRuleSet'
         ? string
         : Property extends `${string}.elementsSelector` | 'elementsSelector'
           ? Element[]

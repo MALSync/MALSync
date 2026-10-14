@@ -567,6 +567,19 @@ describe('Rules', function () {
       expect(reloaded.getRuleConflict(32)).to.eql(undefined);
     });
 
+    it('Auto uses the rule set of the page', async function () {
+      const obj = await searchObj('page-rule-set');
+      obj.setPageRuleSet('absolute');
+      expect(obj.getRuleSetSelection()).to.equal('auto');
+      expect(obj.getRuleSet()).to.equal('absolute');
+      expect(obj.getRuledUrl(30)).to.equal('https://myanimelist.net/anime/51179');
+      // Nothing to ask, the page provides its rule set
+      expect(obj.getRuleConflict(32)).to.eql(undefined);
+
+      await obj.setRuleSet('cour');
+      expect(obj.getRuleSet()).to.equal('cour');
+    });
+
     it('Asks again after switching back to auto', async function () {
       const obj = await searchObj('conflict-auto');
       await obj.setRuleSet('cour');

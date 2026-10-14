@@ -1,3 +1,4 @@
+import type { RuleSetType } from '../_provider/Search/rulesClass';
 import { mangaProgressConfig } from '../utils/mangaProgress/MangaProgress';
 import type { SyncPage } from '../pages-sync/syncPage';
 
@@ -17,6 +18,7 @@ export interface pageInterface {
     getEpisode: (url: string) => number; // Return the recognized episode or chapter number as integer.
     getVolume?: (url: string) => number; // (optional) Return the current volume number
     getSeason?: (url: string) => number; // (optional) Return the current season number
+    getRuleSet?: (url: string) => RuleSetType; // (optional) Return the episode rule set the page uses, e.g. tvdb
     getImage?: () => string | undefined; // Return an image for the entry for local sync
     nextEpUrl?: (url: string) => string | undefined; // (optional) return the link to the next episode. Used for links on the userlist
     uiSelector?: (selector: string) => void; // (optional) Inject a small ui with current status chapter... Only use this if there is no overview page
@@ -30,6 +32,7 @@ export interface pageInterface {
     getIdentifier: (url: string) => string;
     uiSelector: (selector: string) => void;
     getSeason?: (url: string) => number; // (optional) Return the current season number
+    getRuleSet?: (url: string) => RuleSetType; // (optional) Return the episode rule set the page uses, e.g. tvdb
     getImage?: () => string | undefined;
     getMalUrl?: (
       provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL' | 'SHIKI',
@@ -56,5 +59,6 @@ export interface pageState {
   episode?: number;
   detectedEpisode?: number;
   season?: number;
+  ruleSet?: RuleSetType;
   volume?: number;
 }
