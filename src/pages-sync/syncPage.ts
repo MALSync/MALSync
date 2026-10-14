@@ -326,7 +326,7 @@ export class SyncPage {
 
       // sync
       if (this.page.isSyncPage(this.url)) {
-        const rerun = await this.searchObj.openCorrectionCheck();
+        const rerun = await this.searchObj.openCorrectionCheck(state.detectedEpisode, state.season);
 
         if (rerun) {
           // If malUrl changed

@@ -7,8 +7,17 @@
         </a>
       </div>
     </div>
-    <div v-if="syncMode && minimized">
+    <div v-if="automatic && minimized">
       <a style="cursor: pointer" @click="minimized = false"> Action required </a>
+    </div>
+    <div v-else-if="conflictMode" class="scroll">
+      <rule-conflict
+        v-if="ruleConflict"
+        :conflict="ruleConflict"
+        :single="syncPage.singleObj"
+        :current-url="searchClass.getUrl() || ''"
+        @select="selectConflict"
+      ></rule-conflict>
     </div>
     <div v-else class="scroll">
       <entry v-if="!syncMode" :obj="syncPage.singleObj"></entry>
@@ -61,12 +70,12 @@
       <search
         :keyword="searchClass.getSanitizedTitle()"
         :type="searchClass.getNormalizedType()"
-        :sync-mode="Boolean(syncMode)"
+        :sync-mode="syncMode"
         :current-id="searchClass.getId()"
         @clicked="setPage($event.url, $event.id)"
       ></search>
     </div>
-    <a v-if="!(syncMode && minimized)" class="close" @click="close()">{{ lang('close') }}</a>
+    <a v-if="!(automatic && minimized)" class="close" @click="close()">{{ lang('close') }}</a>
   </div>
 </template>
 
@@ -75,7 +84,10 @@ import search from './components/search.vue';
 import inputButton from './components/inputButton.vue';
 import entry from './components/entry.vue';
 import rules from './components/rules.vue';
+import ruleConflict from './components/ruleConflict.vue';
 import { hideFloatbutton, showFloatbutton } from '../../floatbutton/init';
+import type { CorrectionMode } from './searchClass';
+import type { RuleSetType } from './rulesClass';
 
 export default {
   components: {
@@ -83,17 +95,27 @@ export default {
     inputButton,
     search,
     rules,
+    ruleConflict,
   },
   data: () => ({
     inputOffset: 0 as number | '0',
     minimized: false,
-    syncMode: null,
+    mode: 'default' as CorrectionMode,
     searchClass: null as any,
     unmountFnc: () => {
       // placeholder
     },
   }),
   computed: {
+    syncMode() {
+      return this.mode === 'sync';
+    },
+    conflictMode() {
+      return this.mode === 'conflict';
+    },
+    automatic() {
+      return this.mode !== 'default';
+    },
     syncPage() {
       return this.searchClass ? this.searchClass.getSyncPage() : null;
     },
@@ -117,6 +139,11 @@ export default {
       // Overview with a season: like episode 1 of that season
       if (state && state.on === 'OVERVIEW' && typeof state.season === 'number') return 1;
       return undefined;
+    },
+    ruleConflict() {
+      const state = this.syncPage && this.syncPage.curState;
+      if (!this.rulesClass || !state || state.on !== 'SYNC') return undefined;
+      return this.searchClass.getRuleConflict(this.ruleEpisode, state.season);
     },
     episodeWindow() {
       let start = this.currentStateEp + parseInt(this.inputOffset) - 2;
@@ -144,6 +171,10 @@ export default {
     },
     setRuleSet(ruleSet) {
       this.searchClass.setRuleSet(ruleSet);
+    },
+    async selectConflict(ruleSet: RuleSetType) {
+      await this.searchClass.setRuleSet(ruleSet);
+      this.close();
     },
     close() {
       this.$.appContext.app.unmount();

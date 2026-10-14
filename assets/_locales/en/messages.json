@@ -563,6 +563,34 @@
         "message": "This field is for finding an anime, when you need to correct the \"MyAnimeList URL\" shown above.<br>To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.",
         "description": "Search text"
     },
+    "correction_RuleConflict": {
+        "message": "Which episode are you currently watching?",
+        "description": "Title of the list to resolve conflicting episode rules"
+    },
+    "correction_RuleConflictSwitch": {
+        "message": "Switches to the $ruleSet$ rule set",
+        "description": "Rule set a rule conflict option switches to",
+        "placeholders": {
+            "ruleSet": {
+                "content": "$1",
+                "example": "TVDB"
+            }
+        }
+    },
+    "correction_RuleEpisode": {
+        "message": "Season $season$ · Episode $episode$",
+        "description": "Season and episode of an entry in the rule conflict list",
+        "placeholders": {
+            "season": {
+                "content": "$1",
+                "example": "2"
+            },
+            "episode": {
+                "content": "$2",
+                "example": "12"
+            }
+        }
+    },
     "correction_NoMal": {
         "message": "Select this if the Anime/Manga does not exist on $page$",
         "description": "Anime/Manga not found in MAL",
