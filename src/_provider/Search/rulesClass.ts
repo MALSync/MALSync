@@ -151,7 +151,10 @@ export class RulesClass {
   }
 
   protected inferSeason(episode: number): number | undefined {
-    const ownRules = this.getRules().filter(rule => rule.id === this.getEntryId());
+    // Only regular seasons, season 0 collects specials of many entries
+    const ownRules = this.getRules().filter(
+      rule => rule.id === this.getEntryId() && rule.season > 0,
+    );
 
     const covering = ownRules.find(
       rule =>
