@@ -109,6 +109,36 @@ const ruleSet = {
   ids: { anidb: [], mal: [39535, 45576, 51179, 55888, 99999], anilist: [108465, 127720] },
 };
 
+// Trimmed from https://api.malsync.moe/tvdb/rules/cache-key/17074, season 3 is one entry with specials in between
+const monogatariRule = (season, id, start, end, episodeStart, type, absoluteStart) => ({
+  source: 'tvdb',
+  type,
+  season,
+  provider: 'mal',
+  id,
+  start,
+  end,
+  episodeStart,
+  absoluteStart,
+  providerName: null,
+});
+const monogatari = {
+  tvdbId: 102261,
+  rules: [
+    monogatariRule(0, 15689, 3, 6, 1, 'mapping', null),
+    monogatariRule(0, 17074, 7, 7, 6, 'mapping', null),
+    monogatariRule(0, 17074, 8, 8, 11, 'mapping', null),
+    monogatariRule(0, 17074, 9, 9, 16, 'mapping', null),
+    monogatariRule(1, 5081, 1, 15, 1, 'season', 1),
+    monogatariRule(2, 11597, 1, 11, 1, 'season', 16),
+    monogatariRule(3, 17074, 1, 5, 1, 'mapping', 27),
+    monogatariRule(3, 17074, 6, 9, 7, 'mapping', 32),
+    monogatariRule(3, 17074, 10, 13, 12, 'mapping', 36),
+    monogatariRule(3, 17074, 14, 23, 17, 'mapping', 40),
+  ],
+  ids: { anidb: [], mal: [15689, 5081, 11597, 17074], anilist: [] },
+};
+
 describe('Rules', function () {
   const stub = Api.getStub({
     storage: {
@@ -175,6 +205,10 @@ describe('Rules', function () {
           ],
           ids: { anidb: [], mal: [2, 3], anilist: [] },
         }),
+        status: 200,
+      },
+      'https://api.malsync.moe/tvdb/rules/cache-key/17074': {
+        responseText: JSON.stringify(monogatari),
         status: 200,
       },
       'https://api.malsync.moe/tvdb/rules/cache-key/1': {
@@ -375,6 +409,20 @@ describe('Rules', function () {
       expect(rules.applyRules(30, 1, 'absolute')?.url).to.equal(
         'https://myanimelist.net/anime/51179',
       );
+    });
+  });
+
+  describe('Inferred specials', function () {
+    it('Never infers the specials season', async function () {
+      const rules = await new RulesClass('17074', 'anime').init();
+      // Episode 6 of the entry is the special S0E7, the regular season is inferred
+      expect(rules.getEpisodeSeasonRules(6, undefined, 'tvdb').map(rule => rule.season)).to.eql([
+        3, 3, 3, 3,
+      ]);
+      expect(rules.applyRules(6, undefined, 'tvdb')).to.eql({
+        url: 'https://myanimelist.net/anime/17074',
+        offset: 1,
+      });
     });
   });
 
