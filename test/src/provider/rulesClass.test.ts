@@ -443,6 +443,7 @@ describe('Rules', function () {
 
     it('Applies the default rule set', async function () {
       const obj = await searchObj('default');
+      expect(obj.getRuleSetSelection()).to.equal('auto');
       expect(obj.getRuleSet()).to.equal(DEFAULT_RULE_SET);
       expect(obj.getRuledUrl(12)).to.equal('https://myanimelist.net/anime/45576');
       expect(obj.getRuledOffset(12)).to.equal(-11);
@@ -456,6 +457,20 @@ describe('Rules', function () {
 
       const reloaded = await searchObj('remember');
       expect(reloaded.getRuleSet()).to.equal('off');
+    });
+
+    it('Switches back to auto', async function () {
+      const obj = await searchObj('auto');
+      await obj.setRuleSet('cour');
+
+      obj.changed = false;
+      await obj.setRuleSet('auto');
+      // Reruns the page, the applied rule set stays the default
+      expect(obj.changed).to.equal(true);
+      expect(obj.getRuleSet()).to.equal(DEFAULT_RULE_SET);
+
+      const reloaded = await searchObj('auto');
+      expect(reloaded.getRuleSetSelection()).to.equal('auto');
     });
 
     it('Conflict: episode higher than the season uses absolute numbering', async function () {
