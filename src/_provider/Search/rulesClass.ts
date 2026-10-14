@@ -188,6 +188,18 @@ export class RulesClass {
   }
 
   // inferred: the season was inferred from the current entry, not provided by the page
+  // One entry mapped with gaps over the whole season, e.g. counting specials. Used like a season rule
+  protected getWholeSeasonEntry(seasonRules: TvdbTypedRule[]): TvdbTypedRule | undefined {
+    if (!seasonRules.length || seasonRules.some(rule => rule.type !== 'mapping')) return undefined;
+    if (new Set(seasonRules.map(rule => rule.id)).size !== 1) return undefined;
+
+    const [first] = [...seasonRules].sort((a, b) => a.start - b.start);
+    if (first.start !== 1 || first.episodeStart !== 1) return undefined;
+
+    // The entry can count more episodes than the season
+    return { ...first, end: null };
+  }
+
   protected getSeasonRules(
     season: number,
     inferred: boolean,
@@ -202,6 +214,8 @@ export class RulesClass {
     if (ruleSet === 'cour') {
       // Provided season: seasons split into cours and whole seasons
       if (!inferred) {
+        const wholeEntry = this.getWholeSeasonEntry(seasonRules);
+        if (wholeEntry) return [wholeEntry];
         return seasonRules.filter(rule => rule.type === 'cour' || rule.type === 'season');
       }
 
