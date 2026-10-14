@@ -20,14 +20,20 @@ export class RuleConflictClass {
     protected rules: RulesClass,
     protected ruleSet: RuleSetType,
     protected currentUrl: string | null,
+    // Rule set the page uses, only absolute numbering is compared to it
+    protected pageRuleSet?: RuleSetType,
   ) {
     return this;
   }
 
   // Off always equals no rule applying. Tvdb only with a provided season, an inferred season assumes the episode of the entry
   protected getRuleSets(episode: number, season?: number): RuleSetType[] {
-    const ruleSets: RuleSetType[] =
-      season === undefined || season === null ? ['cour'] : ['tvdb', 'cour'];
+    if (this.pageRuleSet === 'absolute' || this.pageRuleSet === 'off') return [];
+
+    let ruleSets: RuleSetType[];
+    if (this.pageRuleSet) ruleSets = [this.pageRuleSet];
+    else if (season === undefined || season === null) ruleSets = ['cour'];
+    else ruleSets = ['tvdb', 'cour'];
 
     // Absolute only past the end of the season
     const seasonRules = this.rules.getEpisodeSeasonRules(episode, season, 'tvdb');
