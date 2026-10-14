@@ -27,6 +27,7 @@
         :season="syncPage.curState?.season"
         :offset="offset"
         :initial-rule-set="searchClass.getRuleSetSelection()"
+        :auto-rule-set="searchClass.getAutoRuleSet()"
         @ruleset="setRuleSet"
       ></rules>
 

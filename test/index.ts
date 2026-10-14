@@ -73,6 +73,9 @@ window.MalSyncTest = async function() {
           if (page.sync.getSeason) {
             value.season = parseInt(`${page.sync.getSeason(window.location.href)}`);
           }
+          if (page.sync.getRuleSet) {
+            value.ruleSet = page.sync.getRuleSet(window.location.href);
+          }
           value.overviewUrl = page.sync.getOverviewUrl(window.location.href);
           if (typeof page.sync.nextEpUrl !== 'undefined') {
             value.nextEpUrl = page.sync.nextEpUrl(window.location.href);
@@ -92,6 +95,9 @@ window.MalSyncTest = async function() {
           value.identifier = page.overview.getIdentifier(window.location.href);
           if (page.overview.getSeason) {
             value.season = parseInt(`${page.overview.getSeason(window.location.href)}`);
+          }
+          if (page.overview.getRuleSet) {
+            value.ruleSet = page.overview.getRuleSet(window.location.href);
           }
           if (typeof page.overview.uiSelector !== 'undefined') {
             page.overview.uiSelector(

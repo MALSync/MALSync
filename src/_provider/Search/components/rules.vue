@@ -11,6 +11,7 @@
       <select v-model="ruleSet" class="ruleSet" @change="$emit('ruleset', ruleSet)">
         <option v-for="set in ruleSetSelections" :key="set" :value="set">
           {{ lang(`UI_RuleSet_${set}`) }}
+          <template v-if="set === 'auto'">({{ lang(`UI_RuleSet_${autoRuleSet}`) }})</template>
         </option>
       </select>
     </div>
@@ -82,6 +83,11 @@ export default {
       type: String as PropType<RuleSetSelection>,
       default: 'auto',
     },
+    // Rule set applied by auto
+    autoRuleSet: {
+      type: String as PropType<RuleSetType>,
+      default: DEFAULT_RULE_SET,
+    },
   },
   emits: ['ruleset'],
   data() {
@@ -93,7 +99,7 @@ export default {
   computed: {
     // Rule set applied, auto uses the default
     activeRuleSet(): RuleSetType {
-      return this.ruleSet === 'auto' ? DEFAULT_RULE_SET : this.ruleSet;
+      return this.ruleSet === 'auto' ? this.autoRuleSet : this.ruleSet;
     },
     ruleEpisode() {
       if (typeof this.episode !== 'number') return undefined;

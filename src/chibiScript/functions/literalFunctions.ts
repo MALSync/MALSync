@@ -1,4 +1,5 @@
 import type { ChibiCtx } from '../ChibiCtx';
+import type { RuleSetType } from '../../_provider/Search/rulesClass';
 
 export default {
   /**
@@ -51,6 +52,18 @@ export default {
    * @returns returns the object
    */
   object: (ctx: ChibiCtx, input: void, value: object) => {
+    return value;
+  },
+
+  /**
+   * Returns the provided episode rule set, only known rule sets are accepted
+   * @input void
+   * @param value - Rule set: 'tvdb', 'cour', 'absolute' or 'off'
+   * @returns returns the rule set
+   * @example
+   * $c.ruleSet('tvdb').run();
+   */
+  ruleSet: (ctx: ChibiCtx, input: void, value: RuleSetType) => {
     return value;
   },
 

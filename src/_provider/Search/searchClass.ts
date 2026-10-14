@@ -607,6 +607,13 @@ export class SearchClass {
 
   protected ruleSetSelection: RuleSetSelection = 'auto';
 
+  // Rule set the page uses, replaces the default for auto
+  protected pageRuleSet: RuleSetType | undefined;
+
+  setPageRuleSet(ruleSet?: RuleSetType) {
+    this.pageRuleSet = ruleSet;
+  }
+
   async initRules() {
     const logger = con.m('Rules');
     const url = this.getUrl();
@@ -638,9 +645,14 @@ export class SearchClass {
     return this.ruleSetSelection;
   }
 
-  // Rule set applied, auto uses the default
+  // Rule set of auto, the one of the page or the default
+  getAutoRuleSet(): RuleSetType {
+    return this.pageRuleSet || DEFAULT_RULE_SET;
+  }
+
   getRuleSet(): RuleSetType {
-    return this.ruleSetSelection === 'auto' ? DEFAULT_RULE_SET : this.ruleSetSelection;
+    if (this.ruleSetSelection !== 'auto') return this.ruleSetSelection;
+    return this.getAutoRuleSet();
   }
 
   async setRuleSet(selection: RuleSetSelection) {
