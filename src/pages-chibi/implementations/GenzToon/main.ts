@@ -2,11 +2,17 @@ import { PageInterface } from '../../pageInterface';
 
 export const GenzToon: PageInterface = {
   name: 'GenzToon',
-  domain: 'https://genzupdates.com/',
+  domain: 'https://genztoons.org',
   languages: ['English'],
   type: 'manga',
+  computedType: $c => {
+    // novels are marked with "[Novel]" in the title of chapter and series pages
+    return $c
+      .if($c.title().contains('[Novel]').run(), $c.string('novel').run(), $c.string('manga').run())
+      .run();
+  },
   urls: {
-    match: ['*://genzupdates.com/*'],
+    match: ['*://genztoons.org/*', '*://genzupdates.com/*'],
   },
   search: 'https://genztoons.org/series?q={searchtermPlus}',
   sync: {
@@ -16,7 +22,7 @@ export const GenzToon: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.opacity-100[alt]').text().trim().run();
+      return $c.querySelector('.opacity-100[alt]').text().replaceAll('[Novel]', '').trim().run();
     },
     getIdentifier($c) {
       return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
@@ -50,6 +56,12 @@ export const GenzToon: PageInterface = {
     },
     readerConfig: [
       {
+        // novel chapters are text, comic chapters only images
+        condition: $c => $c.querySelector('#pages p').boolean().run(),
+        current: $c => $c.querySelectorAll('#pages p').countAbove().run(),
+        total: $c => $c.querySelectorAll('#pages p').length().run(),
+      },
+      {
         current: $c => $c.querySelectorAll('#pages img').countAbove().run(),
         total: $c => $c.querySelectorAll('#pages img').length().run(),
       },
@@ -66,7 +78,7 @@ export const GenzToon: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1.text-xl').text().trim().run();
+      return $c.querySelector('h1').text().replaceAll('[Novel]', '').trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -75,7 +87,7 @@ export const GenzToon: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('h1.text-xl').uiAfter().run();
+      return $c.querySelector('h1').uiAfter().run();
     },
   },
   list: {

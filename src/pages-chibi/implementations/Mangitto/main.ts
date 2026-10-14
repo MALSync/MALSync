@@ -15,41 +15,23 @@ export const Mangitto: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('a.font-bold').ifNotReturn().text().string().run();
+      return $c.title().regex('^(.+?)\\s+[\\d.]+\\. Bölüm', 1).ifNotReturn().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getOverviewUrl($c) {
-      return $c
-        .querySelector('a.font-bold')
-        .ifNotReturn()
-        .getAttribute('href')
-        .urlAbsolute()
-        .string()
-        .replaceRegex('/$', '')
-        .run();
+      return $c.string('/manga/').concat($c.url().urlPart(4).run()).urlAbsolute().run();
     },
     getEpisode($c) {
       return $c.url().urlPart(5).number().run();
     },
-    nextEpUrl($c) {
-      return $c
-        .querySelectorAll('a.bg-mangitto-buttonGray[class*="flex-row-reverse"]')
-        .filter($el => $el.text().trim().equals('Sonraki Bölüm').run())
-        .ifNotReturn()
-        .first()
-        .getAttribute('href')
-        .urlAbsolute()
-        .string()
-        .run();
-    },
     getImage($c) {
       return $c
-        .querySelector('img[alt="Manga Cover"]')
+        .querySelector('meta[property="og:image"]')
         .ifNotReturn()
-        .getAttribute('src')
-        .string()
+        .getAttribute('content')
+        .ifNotReturn()
         .run();
     },
     readerConfig: [
@@ -87,7 +69,7 @@ export const Mangitto: PageInterface = {
     },
     getImage($c) {
       return $c
-        .querySelector('img[alt="Manga Cover"]')
+        .querySelector('img[src*="/media/manga/cover/"]')
         .ifNotReturn()
         .getAttribute('src')
         .string()
@@ -96,7 +78,12 @@ export const Mangitto: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('div.grid.grid-cols-2 > div > a').run();
+      return $c
+        .querySelectorAll(
+          $c.string('a[href^="/manga/').concat($c.url().urlPart(4).run()).concat('/"]').run(),
+        )
+        .filter($el => $el.getAttribute('href').urlPart(3).matches('^[\\d.]+$').run())
+        .run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();

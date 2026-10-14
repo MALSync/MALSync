@@ -37,12 +37,16 @@ export const ComicDays: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('[class*="current-readable-product"]')
-        .prev()
+        .querySelector('#episode-json')
         .ifNotReturn()
-        .find('a')
-        .getAttribute('href')
+        .getAttribute('data-value')
         .ifNotReturn()
+        .jsonParse()
+        .get('readableProduct')
+        .ifNotReturn()
+        .get('nextReadableProductUri')
+        .ifNotReturn()
+        .string()
         .urlAbsolute()
         .run();
     },

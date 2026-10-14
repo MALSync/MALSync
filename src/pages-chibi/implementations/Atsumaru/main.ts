@@ -5,6 +5,19 @@ function slashCounter($c: ChibiGenerator<unknown>, selector: string, index: numb
   return $c.querySelector(selector).ifNotReturn().text().split('/').at(index).trim();
 }
 
+// "Page 3 / 22" button of the page select
+function pageCounter($c: ChibiGenerator<unknown>) {
+  return $c
+    .querySelectorAll('select + button')
+    .arrayFind($item => $item.text().matches('\\d+\\s*/\\s*\\d+').run())
+    .ifNotReturn()
+    .text();
+}
+
+function chapterId($c: ChibiGenerator<unknown>) {
+  return $c.url().urlStrip().urlPart(5);
+}
+
 export function chapterLabelNumber($label: ChibiGenerator<string>) {
   return $label
     .setVariable('chapterLabel')
@@ -67,7 +80,9 @@ export const Atsumaru: PageInterface = {
           slashCounter($c, 'span.relative:last-child', 0).run(),
           chapterLabelNumber(
             $c
-              .querySelector('.items-center select.cursor-pointer')
+              // chapter select, labeled "Page <chapter>", value is the chapter id
+              .querySelectorAll('select')
+              .arrayFind($item => $item.elementValue().equals($c.exec(chapterId).run()).run())
               .ifNotReturn()
               .selectedText()
               .trim(),
@@ -83,8 +98,8 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        current: $c => slashCounter($c, 'span.relative', 0).number().run(),
-        total: $c => slashCounter($c, 'span.relative', 1).number().run(),
+        current: $c => $c.exec(pageCounter).regex('(\\d+)\\s*/\\s*\\d+', 1).number().run(),
+        total: $c => $c.exec(pageCounter).regex('\\d+\\s*/\\s*(\\d+)', 1).number().run(),
       },
     ],
   },
@@ -177,7 +192,7 @@ export const Atsumaru: PageInterface = {
     },
     ready($c) {
       return $c
-        .detectChanges($c.url().urlPart(5).run(), $c.trigger().run())
+        .detectChanges($c.exec(chapterId).run(), $c.trigger().run())
         .detectChanges($c.url().urlPart(4).run(), $c.trigger().run())
         .domReady()
         .trigger()

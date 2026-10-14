@@ -100,7 +100,7 @@ export const Chikari: PageInterface = {
     },
     getImage($c) {
       return $c
-        .querySelector('main img[src*="/series/"]')
+        .querySelector('main img[src*="/series/"][src*="/cover."]')
         .ifNotReturn()
         .getAttribute('src')
         .ifNotReturn()

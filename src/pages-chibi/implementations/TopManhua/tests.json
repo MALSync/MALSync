@@ -3,15 +3,15 @@
   "url": "https://manhuatop.org/",
   "testCases": [
     {
-      "url": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/chapter-3/",
+      "url": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/chapter-60/",
       "expected": {
         "sync": true,
         "title": "I'm a Hero, but the Heroines are Trying to Kill Me",
         "identifier": "i-m-a-hero-but-the-heroines-are-trying-to-kill-me",
         "overviewUrl": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/",
         "image": "https://manhuatop.org/wp-content/uploads/2024/12/post_96993_image.jpg",
-        "episode": 3,
-        "nextEpUrl": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/chapter-4/",
+        "episode": 60,
+        "nextEpUrl": "https://manhuatop.org/manhua/i-m-a-hero-but-the-heroines-are-trying-to-kill-me/chapter-61/",
         "uiSelector": false
       }
     },

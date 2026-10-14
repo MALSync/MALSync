@@ -32,8 +32,12 @@ export const Kuudere: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.episode-playing')
+        .querySelector('.is-playing')
+        .ifNotReturn()
+        .closest('.ep-collapse')
         .next()
+        .ifNotReturn()
+        .find('a.ep-card')
         .ifNotReturn()
         .getAttribute('href')
         .urlAbsolute()

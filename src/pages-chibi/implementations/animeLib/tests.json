@@ -10,18 +10,18 @@
         "identifier": "16133",
         "overviewUrl": "https://v3.animelib.org/ru/anime/16133--jujutsu-kaisen-anime",
         "nextEpUrl": "https://v3.animelib.org/ru/anime/16133--jujutsu-kaisen-anime/watch?episode=41925",
-        "image": "https://cover.imglib.info/uploads/anime/16133/cover/903cef36-9e3e-43b8-aced-7a668da88956.jpg",
+        "image": "https://cover.hentaicdn.org/uploads/anime/16133/cover/8f91a865-14d4-4c23-affb-13c8d032ba29.jpg",
         "episode": 1,
         "uiSelector": false
       }
     },
     {
-      "url": "https://v3.animelib.org/ru/anime/17984--chainsaw-man-anime",
+      "url": "https://v3.animelib.org/ru/anime/16133--jujutsu-kaisen-anime",
       "expected": {
         "sync": false,
-        "title": "Chainsaw Man",
-        "identifier": "17984",
-        "image": "https://cover.imglib.info/uploads/anime/17984/cover/4d3b2a31-0819-427b-bb4b-1669b7992b94.jpg",
+        "title": "Jujutsu Kaisen",
+        "identifier": "16133",
+        "image": "https://cover.hentaicdn.org/uploads/anime/16133/cover/8f91a865-14d4-4c23-affb-13c8d032ba29.jpg",
         "uiSelector": true
       }
     }

@@ -123,7 +123,7 @@ function getChapterText($c: ChibiGenerator<any>) {
 function getChapter($chapterText: ChibiGenerator<string>) {
   return $chapterText
     .setVariable('chapterText')
-    .regex('(ch|chapter|episode|ep|chap|chp)\\D?(\\d+)', 2)
+    .regex('(ch|chapter|episode|ep|chap|chp|period)\\D?(\\d+)', 2)
     .ifThen($c => $c.number().return().run())
     .getVariable('chapterText')
     .string()
