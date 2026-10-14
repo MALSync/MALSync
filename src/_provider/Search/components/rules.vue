@@ -2,12 +2,14 @@
   <div v-if="obj && obj.getRules().length" class="rules">
     <div class="title">
       {{ lang('UI_Rules') }}
-      <template v-if="ruleSet === 'absolute' && ruleEpisode !== undefined">E{{ episode }}</template>
+      <template v-if="activeRuleSet === 'absolute' && ruleEpisode !== undefined"
+        >E{{ episode }}</template
+      >
       <template v-else-if="currentSeason !== undefined"
         >S{{ currentSeason }} E{{ episode }}</template
       >
       <select v-model="ruleSet" class="ruleSet" @change="$emit('ruleset', ruleSet)">
-        <option v-for="set in ruleSets" :key="set" :value="set">
+        <option v-for="set in ruleSetSelections" :key="set" :value="set">
           {{ lang(`UI_RuleSet_${set}`) }}
         </option>
       </select>
@@ -22,7 +24,7 @@
       </div>
 
       <div class="content">
-        <template v-if="ruleSet === 'absolute'">
+        <template v-if="activeRuleSet === 'absolute'">
           {{ lang('UI_Episode') }} {{ rule.absoluteStart }}
           <template v-if="rule.start !== rule.end">
             -
@@ -49,7 +51,13 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { pageUrl } from '../../../utils/slugs';
-import { DEFAULT_RULE_SET, RULE_SETS, RulesClass, RuleSetType } from '../rulesClass';
+import {
+  DEFAULT_RULE_SET,
+  RULE_SET_SELECTIONS,
+  RulesClass,
+  RuleSetSelection,
+  RuleSetType,
+} from '../rulesClass';
 
 export default {
   props: {
@@ -71,18 +79,22 @@ export default {
     },
     // Rule set selected for the page
     initialRuleSet: {
-      type: String as PropType<RuleSetType>,
-      default: DEFAULT_RULE_SET,
+      type: String as PropType<RuleSetSelection>,
+      default: 'auto',
     },
   },
   emits: ['ruleset'],
   data() {
     return {
-      ruleSet: this.initialRuleSet as RuleSetType,
-      ruleSets: RULE_SETS,
+      ruleSet: this.initialRuleSet as RuleSetSelection,
+      ruleSetSelections: RULE_SET_SELECTIONS,
     };
   },
   computed: {
+    // Rule set applied, auto uses the default
+    activeRuleSet(): RuleSetType {
+      return this.ruleSet === 'auto' ? DEFAULT_RULE_SET : this.ruleSet;
+    },
     ruleEpisode() {
       if (typeof this.episode !== 'number') return undefined;
       return this.episode + Number(this.offset || 0);
@@ -90,7 +102,7 @@ export default {
     episodeRules() {
       if (!this.obj || this.ruleEpisode === undefined) return [];
       return this.obj
-        .getEpisodeSeasonRules(this.ruleEpisode, this.season, this.ruleSet)
+        .getEpisodeSeasonRules(this.ruleEpisode, this.season, this.activeRuleSet)
         .sort((a, b) => a.season - b.season || a.start - b.start);
     },
     currentSeason() {
@@ -101,12 +113,12 @@ export default {
       // Episode page: rules of the current season, empty if none apply
       if (this.ruleEpisode !== undefined) return this.episodeRules;
       return this.obj
-        .getRuleSetRules(this.ruleSet)
+        .getRuleSetRules(this.activeRuleSet)
         .sort((a, b) => a.season - b.season || a.start - b.start);
     },
     matchingKey() {
       if (!this.obj || this.ruleEpisode === undefined) return undefined;
-      const [match] = this.obj.getMatches(this.ruleEpisode, this.season, this.ruleSet);
+      const [match] = this.obj.getMatches(this.ruleEpisode, this.season, this.activeRuleSet);
       return match ? match.key : undefined;
     },
   },

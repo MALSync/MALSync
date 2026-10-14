@@ -223,6 +223,10 @@
         "message": "(1) Appalling",
         "description": "Appalling - Score"
     },
+    "UI_RuleSet_auto": {
+        "message": "Auto",
+        "description": "Rule set selection using the default rule set and asking on conflicts"
+    },
     "UI_RuleSet_tvdb": {
         "message": "TVDB",
         "description": "Rule set with all tvdb episode rules"
