@@ -672,10 +672,12 @@ export class SearchClass {
 
     if (this.ruleSetSelection !== 'auto') return undefined;
 
-    return new RuleConflictClass(this.rules, this.getRuleSet(), this.getUrl()).getConflict(
-      Number(episode) + Number(this.getOffset() || 0),
-      season,
-    );
+    return new RuleConflictClass(
+      this.rules,
+      this.getRuleSet(),
+      this.getUrl(),
+      this.pageRuleSet,
+    ).getConflict(Number(episode) + Number(this.getOffset() || 0), season);
   }
 
   applyRules(episode: number, season?: number) {

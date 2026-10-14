@@ -567,13 +567,33 @@ describe('Rules', function () {
       expect(reloaded.getRuleConflict(32)).to.eql(undefined);
     });
 
+    it('Page rule set is only compared to absolute numbering', async function () {
+      const obj = await searchObj('page-rule-set-tvdb');
+      obj.setPageRuleSet('tvdb');
+      // Inside the season, tvdb and cour would differ for the mapping 99999
+      expect(obj.getRuleConflict(40, 2)).to.eql(undefined);
+      // Past the end of the season, e.g. episodes counted across seasons
+      expect(
+        obj.getRuleConflict(32, 1)?.options.map(el => [el.ruleSets, el.url, el.episode]),
+      ).to.eql([
+        [['tvdb'], currentUrl, 32],
+        [['absolute'], 'https://myanimelist.net/anime/51179', 9],
+      ]);
+    });
+
+    it('No conflict if the page uses off', async function () {
+      const obj = await searchObj('page-rule-set-off');
+      obj.setPageRuleSet('off');
+      expect(obj.getRuleConflict(32, 1)).to.eql(undefined);
+    });
+
     it('Auto uses the rule set of the page', async function () {
       const obj = await searchObj('page-rule-set');
       obj.setPageRuleSet('absolute');
       expect(obj.getRuleSetSelection()).to.equal('auto');
       expect(obj.getRuleSet()).to.equal('absolute');
       expect(obj.getRuledUrl(30)).to.equal('https://myanimelist.net/anime/51179');
-      // Nothing to ask, the page provides its rule set
+      // Nothing to compare against absolute
       expect(obj.getRuleConflict(32)).to.eql(undefined);
 
       await obj.setRuleSet('cour');

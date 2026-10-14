@@ -111,6 +111,9 @@ export const Crunchyroll: PageInterface = {
     getSeason($c) {
       return meta($c).get('episode_metadata').get('season_number').run();
     },
+    getRuleSet($c) {
+      return $c.ruleSet('tvdb').run();
+    },
     nextEpUrl($c) {
       return $c
         .querySelector('[data-t="next-episode"] a')
