@@ -46,6 +46,11 @@ export const RULE_SETS: RuleSetType[] = ['tvdb', 'cour', 'absolute', 'off'];
 
 export const DEFAULT_RULE_SET: RuleSetType = 'cour';
 
+// Selected by the user, auto uses the default rule set and asks on conflicts
+export type RuleSetSelection = RuleSetType | 'auto';
+
+export const RULE_SET_SELECTIONS: RuleSetSelection[] = ['auto', ...RULE_SETS];
+
 interface rules {
   provider: 'api';
   cache?: boolean;

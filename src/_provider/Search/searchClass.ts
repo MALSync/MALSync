@@ -7,7 +7,13 @@ import { compareTwoStrings } from 'string-similarity';
 import { search as pageSearch } from '../searchFactory';
 import { Single as LocalSingle } from '../Local/single';
 import { getRulesCacheKey } from '../singleFactory';
-import { DEFAULT_RULE_SET, RULE_SETS, RuleSetType, RulesClass } from './rulesClass';
+import {
+  DEFAULT_RULE_SET,
+  RULE_SET_SELECTIONS,
+  RuleSetSelection,
+  RuleSetType,
+  RulesClass,
+} from './rulesClass';
 
 import { getSyncMode } from '../helper';
 import { buildProviderUrl } from '../../utils/slugs';
@@ -595,7 +601,7 @@ export class SearchClass {
   // Rules
   rules: RulesClass | undefined;
 
-  protected ruleSet: RuleSetType = DEFAULT_RULE_SET;
+  protected ruleSetSelection: RuleSetSelection = 'auto';
 
   async initRules() {
     const logger = con.m('Rules');
@@ -616,24 +622,34 @@ export class SearchClass {
   }
 
   async loadRuleSet() {
-    const ruleSet = await api.storage.get(this.getRuleSetKey());
-    if (RULE_SETS.includes(ruleSet)) this.ruleSet = ruleSet;
+    const selection = await api.storage.get(this.getRuleSetKey());
+    if (RULE_SET_SELECTIONS.includes(selection)) this.ruleSetSelection = selection;
   }
 
+  getRuleSetSelection(): RuleSetSelection {
+    return this.ruleSetSelection;
+  }
+
+  // Rule set applied, auto uses the default
   getRuleSet(): RuleSetType {
-    return this.ruleSet;
+    return this.ruleSetSelection === 'auto' ? DEFAULT_RULE_SET : this.ruleSetSelection;
   }
 
-  async setRuleSet(ruleSet: RuleSetType) {
-    if (this.ruleSet !== ruleSet) this.changed = true;
-    this.ruleSet = ruleSet;
-    await api.storage.set(this.getRuleSetKey(), ruleSet);
+  async setRuleSet(selection: RuleSetSelection) {
+    // Also rerun when switching to auto, it can ask for conflicts again
+    if (this.ruleSetSelection !== selection) this.changed = true;
+    this.ruleSetSelection = selection;
+    await api.storage.set(this.getRuleSetKey(), selection);
   }
 
   applyRules(episode: number, season?: number) {
     if (this.rules) {
       const userOffset = this.getOffset() || 0;
-      const res = this.rules.applyRules(Number(episode) + Number(userOffset), season, this.ruleSet);
+      const res = this.rules.applyRules(
+        Number(episode) + Number(userOffset),
+        season,
+        this.getRuleSet(),
+      );
       if (res) res.offset = Number(res.offset) + Number(userOffset);
       return res;
     }
