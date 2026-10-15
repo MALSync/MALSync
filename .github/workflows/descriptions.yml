@@ -33,6 +33,8 @@ jobs:
         SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
         MANGABAKA_API_ID: ${{ secrets.MANGABAKA_API_ID }}
         MANGABAKA_API_SECRET: ${{ secrets.MANGABAKA_API_SECRET }}
+        ANIMEOSHI_API_ID: ${{ secrets.ANIMEOSHI_API_ID }}
+        ANIMEOSHI_API_KEY: ${{ secrets.ANIMEOSHI_API_KEY }}
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7

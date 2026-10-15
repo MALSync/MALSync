@@ -48,6 +48,11 @@ export const providerUrls = {
     urlTemplate: 'https://mangabaka.org/<identifier>',
     identifier: 'mangabaka',
   },
+  ANIMEOSHI: {
+    regex: /^https:\/\/(?:www\.)?animeoshi\.com\/anime\/([^/?]+)(\?|\/|$)/,
+    urlTemplate: 'https://www.animeoshi.com/anime/<identifier>',
+    identifier: 'oshi',
+  },
 } as const satisfies Record<
   UrlSyncMode,
   { regex: RegExp; urlTemplate: string; identifier: string }
@@ -144,6 +149,17 @@ export function urlToSlug(url: string): slugObject {
     return obj;
   }
 
+  const animeoshiMatch = url.match(providerUrls.ANIMEOSHI.regex);
+  if (animeoshiMatch) {
+    obj.path = {
+      type: 'anime',
+      slug: `oshi:${animeoshiMatch[1]}`,
+      provider: 'ANIMEOSHI',
+      id: animeoshiMatch[1],
+    };
+    return obj;
+  }
+
   const localMatch = url.match(localRegex);
   if (localMatch) {
     obj.path = {
@@ -177,6 +193,9 @@ export function pathToUrl(path: Path): string {
   }
   if (path.slug.startsWith('baka:')) {
     return buildProviderUrl('MANGABAKA', path.type, path.slug.substring(5));
+  }
+  if (path.slug.startsWith('oshi:')) {
+    return buildProviderUrl('ANIMEOSHI', path.type, path.slug.substring(5));
   }
   if (path.slug.startsWith('l:')) {
     const match = path.slug.match(/^l:([^:]+)::([^:]+)$/);
