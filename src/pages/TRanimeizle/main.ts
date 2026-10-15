@@ -16,17 +16,25 @@ function RemoveTurkishPhrases(title: string) {
   return title.replace(/(?: |-)[İi]zle.*/i, '');
 }
 
+function GetEpisodeSlug(episodeElement: JQuery<HTMLElement>) {
+  // overview playlist items carry the slug as data attribute, sidebar items link to the episode
+  const slug: string =
+    episodeElement.data('slug') || episodeElement.children('a').first().attr('href') || '';
+
+  return slug.replace(/^\//, '');
+}
+
 function IsOverviewUrl(url: string) {
   return /\/anime\//.test(url);
 }
 
 // Example urls
-// overview page url: https://www.tranimeizle.net/anime/one-punch-man-izle-hd
-// sync page url: https://www.tranimeizle.net/one-punch-man-1-bolum-izle
+// overview page url: https://www.tranimeizle.live/anime/one-punch-man-izle-hd
+// sync page url: https://www.tranimeizle.live/one-punch-man-1-bolum-izle
 
 export const TRanimeizle: pageInterface = {
   name: 'TRanimeizle',
-  domain: 'https://www.tranimeizle.net/',
+  domain: 'https://www.tranimeizle.live',
   languages: ['Turkish'],
   type: 'anime',
   isSyncPage(_url: string) {
@@ -118,7 +126,7 @@ export const TRanimeizle: pageInterface = {
       elementsSelector: () => j.$('.animeDetail-playlist > .animeDetail-items > ol > li'),
       elementUrl: ($element: JQuery<HTMLElement>) => {
         // episodeSlug: plunderer-1-bolum-izle
-        const episodeSlug: string = $element.data('slug');
+        const episodeSlug = GetEpisodeSlug($element);
 
         if (!episodeSlug) {
           throw Error('Unable to get slug from element');
@@ -127,7 +135,7 @@ export const TRanimeizle: pageInterface = {
         return `${TRanimeizle.domain}/${episodeSlug}`;
       },
       elementEp: (episodeElement: JQuery<HTMLElement>) => {
-        const slug = episodeElement.children().first().attr('href');
+        const slug = GetEpisodeSlug(episodeElement);
 
         if (!slug) {
           throw Error('Unable to get slug');

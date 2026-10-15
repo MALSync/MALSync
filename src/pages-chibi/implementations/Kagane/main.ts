@@ -2,13 +2,20 @@ import { PageInterface } from '../../pageInterface';
 
 export const Kagane: PageInterface = {
   name: 'Kagane',
-  domain: 'https://kagane.to',
+  domain: 'https://kagane.org',
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://kagane.to/*', '*://kagane.org/*'],
+    match: [
+      '*://kagane.org/*',
+      '*://kagane.si/*',
+      '*://kagane.cx/*',
+      '*://kagane.net/*',
+      '*://kagane.moe/*',
+      '*://kagane.to/*',
+    ],
   },
-  search: 'https://kagane.to/search?q={searchtermPlus}',
+  search: 'https://kagane.org/search?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
@@ -24,7 +31,8 @@ export const Kagane: PageInterface = {
         .run();
     },
     getIdentifier($c) {
-      return $c.url().urlPart(4).run();
+      // series urls can be prefixed with a slug: /series/ichi-the-witch-<uuid>
+      return $c.url().urlPart(4).regex(UuidRegex, 1).run();
     },
     getOverviewUrl($c) {
       return $c.url().replaceRegex('/reader.*', '').urlAbsolute().run();
@@ -141,3 +149,4 @@ export const Kagane: PageInterface = {
 
 const ChRegex = '(?:Ch\\.|Chapter|Ep\\.|Episode|Round)\\s*(\\d+)|(\\d+)\\.';
 const VolRegex = '(?:Vol\\.|Volume)\\s*(\\d+)';
+const UuidRegex = '([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$';

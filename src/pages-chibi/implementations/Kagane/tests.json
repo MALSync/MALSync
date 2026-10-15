@@ -1,54 +1,54 @@
 {
   "title": "Kagane",
-  "url": "https://kagane.to",
+  "url": "https://kagane.org",
   "testCases": [
     {
-      "url": "https://kagane.to/series/019c6ce8-cf53-7851-a50f-76f7c459c96e/reader/019de67f-1a52-7505-ae5a-0f909350f7ae",
+      "url": "https://kagane.org/series/019c6ce8-cf53-7851-a50f-76f7c459c96e/reader/019de67f-1a52-7505-ae5a-0f909350f7ae",
       "expected": {
         "sync": true,
         "title": "Ichi the Witch",
         "identifier": "019c6ce8-cf53-7851-a50f-76f7c459c96e",
-        "overviewUrl": "https://kagane.to/series/019c6ce8-cf53-7851-a50f-76f7c459c96e",
-        "image": "https://kagane.to/api/v2/image/019fb8b8-a5bc-7b7d-a1e0-b4d3dfcc07e4",
+        "overviewUrl": "https://kagane.org/series/019c6ce8-cf53-7851-a50f-76f7c459c96e",
+        "image": "https://kagane.org/api/v2/image/019fb8b8-a5bc-7b7d-a1e0-b4d3dfcc07e4",
         "episode": 7,
         "volume": 1,
         "uiSelector": false
       }
     },
     {
-      "url": "https://kagane.to/series/019c2064-df2f-7720-8cdd-0e10c5497ea1/reader/019fe71b-5f1c-7310-96a2-e99b0e52398a",
+      "url": "https://kagane.org/series/019c2064-df2f-7720-8cdd-0e10c5497ea1/reader/019fe71b-5f1c-7310-96a2-e99b0e52398a",
       "expected": {
         "sync": true,
         "title": "I Shall Master this Family",
         "identifier": "019c2064-df2f-7720-8cdd-0e10c5497ea1",
-        "overviewUrl": "https://kagane.to/series/019c2064-df2f-7720-8cdd-0e10c5497ea1",
-        "image": "https://kagane.to/api/v2/image/019c2064-defd-77f8-8517-8f8b2a9abc9a",
+        "overviewUrl": "https://kagane.org/series/019c2064-df2f-7720-8cdd-0e10c5497ea1",
+        "image": "https://kagane.org/api/v2/image/019c2064-defd-77f8-8517-8f8b2a9abc9a",
         "episode": 225,
         "volume": null,
         "uiSelector": false
       }
     },
     {
-      "url": "https://kagane.to/series/019c6ce8-cf53-7851-a50f-76f7c459c96e",
+      "url": "https://kagane.org/series/019c6ce8-cf53-7851-a50f-76f7c459c96e",
       "expected": {
         "sync": false,
         "title": "Ichi the Witch",
         "identifier": "019c6ce8-cf53-7851-a50f-76f7c459c96e",
-        "image": "https://kagane.to/api/v2/image/019fb8b8-a5bc-7b7d-a1e0-b4d3dfcc07e4",
+        "image": "https://kagane.org/api/v2/image/019fb8b8-a5bc-7b7d-a1e0-b4d3dfcc07e4",
         "uiSelector": true,
         "epList": {
-          "1": "https://kagane.to/series/019c6ce8-cf53-7851-a50f-76f7c459c96e/reader/019de67f-0a41-7672-b347-0593fd020f9a",
-          "68": "https://kagane.to/series/019c6ce8-cf53-7851-a50f-76f7c459c96e/reader/019de67f-02b2-75b7-90ae-8f20e7aa933d"
+          "1": "https://kagane.org/series/019c6ce8-cf53-7851-a50f-76f7c459c96e/reader/019de67f-0a41-7672-b347-0593fd020f9a",
+          "68": "https://kagane.org/series/019c6ce8-cf53-7851-a50f-76f7c459c96e/reader/019de67f-02b2-75b7-90ae-8f20e7aa933d"
         }
       }
     },
     {
-      "url": "https://kagane.to/series/019c2064-df2f-7720-8cdd-0e10c5497ea1",
+      "url": "https://kagane.org/series/019c2064-df2f-7720-8cdd-0e10c5497ea1",
       "expected": {
         "sync": false,
         "title": "I Shall Master this Family",
         "identifier": "019c2064-df2f-7720-8cdd-0e10c5497ea1",
-        "image": "https://kagane.to/api/v2/image/019c2064-defd-77f8-8517-8f8b2a9abc9a",
+        "image": "https://kagane.org/api/v2/image/019c2064-defd-77f8-8517-8f8b2a9abc9a",
         "uiSelector": true
       }
     }
