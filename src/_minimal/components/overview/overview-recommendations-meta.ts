@@ -1,3 +1,4 @@
+import { getSyncMode } from '../../../_provider/helper';
 import { Recommendation } from '../../../_provider/metaOverviewAbstract';
 
 export async function recommendationsMeta(malUrl: string): Promise<Recommendation[]> {
@@ -64,23 +65,36 @@ export async function recommendationsMeta(malUrl: string): Promise<Recommendatio
       });
     });
 
-    for (const recommendation in res) {
-      const type = utils.urlPart(res[recommendation].entry.url, 3);
-      const id = Number(utils.urlPart(res[recommendation].entry.url, 4));
+    const useEnglishTitle = api.settings.get('forceEnglishTitles');
+    await Promise.all(
+      res.map(async recommendation => {
+        const type = utils.urlPart(recommendation.entry.url, 3) as 'anime' | 'manga';
+        const id = Number(utils.urlPart(recommendation.entry.url, 4));
 
-      // eslint-disable-next-line no-await-in-loop
-      const dbEntry = await api.request.database('entryByMalId', {
-        id,
-        type,
-      });
-      if (dbEntry) {
-        res[recommendation].entry.list = {
+        const dbEntry = await api.request.database('entryByMalId', {
+          id,
+          type,
+        });
+        if (!dbEntry) {
+          return;
+        }
+
+        recommendation.entry.list = {
           status: dbEntry.status,
           score: dbEntry.score,
           episode: dbEntry.watchedEp,
         };
-      }
-    }
+
+        const syncMode = getSyncMode(type);
+        const canForceEnglish =
+          useEnglishTitle &&
+          Boolean(api.settings.get('malToken')) &&
+          (syncMode === 'MAL' || syncMode === 'MALAPI');
+        if (canForceEnglish && dbEntry.title) {
+          recommendation.entry.title = dbEntry.title;
+        }
+      }),
+    );
   } catch (e) {
     con.m('review').error(e);
   }

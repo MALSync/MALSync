@@ -141,6 +141,63 @@ export enum mangaStatus {
   plan_to_read = status.PlanToWatch,
 }
 
+export type MalTitleNode = {
+  title: string;
+  alternative_titles?: {
+    en?: string;
+    synonyms?: string[];
+  };
+};
+
+function malForcedEnglishTitle(entry: MalTitleNode): string | undefined {
+  const en = entry.alternative_titles?.en?.trim();
+  if (en) {
+    return en;
+  }
+  const synonyms = entry.alternative_titles?.synonyms;
+  if (synonyms?.length) {
+    const first = synonyms[0]?.trim();
+    if (first) {
+      return first;
+    }
+  }
+  return undefined;
+}
+
+export function getMalDisplayTitle(entry: MalTitleNode): string {
+  if (api.settings.get('forceEnglishTitles')) {
+    return malForcedEnglishTitle(entry) || entry.title;
+  }
+  return entry.title;
+}
+
+export function englishTitleFromMalPageHtml(html: string): string | undefined {
+  const raw = html
+    .split('class="title-english')[1]
+    ?.split('>')[1]
+    ?.split('</')[0]
+    ?.split('<br')[0]
+    ?.replace(/&quot;/g, '"')
+    ?.replace(/&#039;/g, "'");
+  if (!raw) {
+    return undefined;
+  }
+  return $('<div>').html(j.html(raw)).text().trim() || undefined;
+}
+
+export function englishSynonymFromMalPageHtml(html: string): string | undefined {
+  const block = html.split('<span class="dark_text">Synonyms:</span>')[1];
+  if (!block) {
+    return undefined;
+  }
+  const raw = block.split('</div>')[0]?.split('<')[0]?.trim();
+  if (!raw) {
+    return undefined;
+  }
+  const first = raw.split(',')[0]?.trim();
+  return first || undefined;
+}
+
 export function getRoundedDate(date?: string): startFinishDate {
   if (!date || !/^\d{4}(?:-\d\d){0,2}$/.test(date)) {
     return null;
