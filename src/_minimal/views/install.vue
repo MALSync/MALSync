@@ -30,6 +30,7 @@ import { computed, ref } from 'vue';
 import Card from '../components/card.vue';
 import FormButton from '../components/form/form-button.vue';
 import installStart from '../components/install/install-start.vue';
+import installBackup from '../components/install/install-backup.vue';
 import installHow from '../components/install/install-how.vue';
 import installCorrect from '../components/install/install-correct.vue';
 import installLinks from '../components/install/install-links.vue';
@@ -44,6 +45,12 @@ const pages = [
     card: true,
     limited: true,
     buttons: true,
+  },
+  {
+    component: installBackup,
+    card: true,
+    limited: true,
+    buttons: false,
   },
   {
     component: installHow,
