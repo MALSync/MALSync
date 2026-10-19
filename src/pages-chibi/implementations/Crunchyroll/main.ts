@@ -8,6 +8,7 @@ type CREpisode = {
   description: string;
   slug_title: string;
   episode_metadata: {
+    episode: string;
     episode_number: number;
     season_display_number: string;
     season_id: string;
@@ -84,6 +85,7 @@ export const Crunchyroll: PageInterface = {
         .setVariable('seriesSlug', meta($c).get('episode_metadata').get('series_slug_title').run())
         .setVariable('seasonTitle', meta($c).get('episode_metadata').get('season_title').run())
         .setVariable('seasonNumber', meta($c).get('episode_metadata').get('season_number').run())
+        .setVariable('season', $c.this('sync.getSeason').run())
         .exec(getTitle)
         .ifNotReturn()
         .run();
@@ -106,13 +108,29 @@ export const Crunchyroll: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return meta($c).get('episode_metadata').get('episode_number').run();
+      // Specials (OVA5, SP, 13.5, ...) still have an episode_number. Episode 0 does not sync
+      return $c
+        .if(
+          $c.exec(isSpecialEpisode).run(),
+          $c.number(0).run(),
+          meta($c).get('episode_metadata').get('episode_number').run(),
+        )
+        .run();
     },
     getSeason($c) {
-      return meta($c).get('episode_metadata').get('season_number').run();
+      return $c.exec(setSyncSeasonVariables).exec(getSeason).run();
     },
     getRuleSet($c) {
-      return $c.ruleSet('tvdb').run();
+      return $c
+        .exec(setSyncSeasonVariables)
+        .this('sync.getEpisode')
+        .number()
+        .calculate('-', meta($c).get('episode_metadata').get('sequence_number').run())
+        .log('Episode difference')
+        .greaterThan(10)
+        .setVariable('isAbsolute')
+        .exec(getRuleSet)
+        .run();
     },
     nextEpUrl($c) {
       return $c
@@ -144,6 +162,7 @@ export const Crunchyroll: PageInterface = {
         )
         .setVariable('seasonTitle', $c.getVariable('foundSeason').get('title').run())
         .setVariable('seasonNumber', $c.getVariable('foundSeason').get('season_number').run())
+        .setVariable('season', $c.this('overview.getSeason').run())
         .exec(getTitle)
         .ifNotReturn()
         .run();
@@ -156,6 +175,12 @@ export const Crunchyroll: PageInterface = {
         .setVariable('identifier.seasonSlug', $c.getVariable('foundSeason').get('slug_title').run())
         .exec(getIdentifier)
         .run();
+    },
+    getSeason($c) {
+      return $c.exec(setOverviewSeasonVariables).exec(getSeason).run();
+    },
+    getRuleSet($c) {
+      return $c.exec(setOverviewSeasonVariables).exec(getRuleSet).run();
     },
     getImage($c) {
       return $c.string('').run();
@@ -251,7 +276,17 @@ function getActiveSeason($c: ChibiGenerator<unknown>) {
   return $c
     .getGlobalVariable<CRSeason[]>('seasonsGlobal')
     .arrayFind(season =>
-      season.get('title').trim().equals($c.getVariable('activeTitle').run()).run(),
+      season
+        .get('title')
+        .trim()
+        .equals(
+          $c
+            .getVariable<string>('activeTitle')
+            // Seasons with a season_display_number are shown as "S1: Season 1"
+            .replaceRegex('^S(\\d+(\\.\\d+)?|P): ', '')
+            .run(),
+        )
+        .run(),
     )
     .ifNotReturn()
     .setVariable('foundSeason');
@@ -265,24 +300,154 @@ function getIdentifier($c: ChibiGenerator<unknown>) {
 }
 
 function getTitle($c: ChibiGenerator<unknown>) {
-  // ponytail: season 1 has no suffix, its title is the series title anyway
   return $c
     .if(
-      $c.getVariable<number>('seasonNumber').greaterThan(1).run(),
+      $c.getVariable<number>('season').greaterThan(0).run(),
+      $c.getVariable<string>('seriesTitle').run(),
       $c
-        .getVariable<string>('seriesSlug')
-        .replaceAll('-', ' ')
-        .concat(' ')
-        .concat(
+        .if(
+          $c.getVariable<number>('seasonNumber').greaterThan(1).run(),
           $c
-            .getVariable<string>('seasonTitle')
-            .replace($c.getVariable<string>('seriesTitle').trim().run(), '')
-            .trim()
+            .getVariable<string>('seriesSlug')
+            .replaceAll('-', ' ')
+            .concat(' ')
+            .concat(
+              $c
+                .getVariable<string>('seasonTitle')
+                .replace($c.getVariable<string>('seriesTitle').trim().run(), '')
+                .trim()
+                .run(),
+            )
             .run(),
+          $c.getVariable<string>('seriesSlug').replaceAll('-', ' ').run(),
         )
         .run(),
-      $c.getVariable<string>('seriesSlug').replaceAll('-', ' ').run(),
     )
     .replaceRegex('\\s+', ' ')
     .trim();
+}
+
+function setSyncSeasonVariables($c: ChibiGenerator<unknown>) {
+  return $c
+    .setVariable('season.slug', meta($c).get('episode_metadata').get('season_slug_title').run())
+    .setVariable(
+      'season.seriesSlug',
+      meta($c).get('episode_metadata').get('series_slug_title').run(),
+    )
+    .setVariable('season.number', meta($c).get('episode_metadata').get('season_number').run())
+    .setVariable(
+      'season.displayNumber',
+      meta($c).get('episode_metadata').get('season_display_number').run(),
+    )
+    .setVariable('season.specialEpisode', $c.exec(isSpecialEpisode).run());
+}
+
+function setOverviewSeasonVariables($c: ChibiGenerator<unknown>) {
+  return $c
+    .setVariable('activeTitle', $c.exec(getActiveSeasonTitle).run())
+    .exec(getActiveSeason)
+    .setVariable('season.slug', $c.getVariable('foundSeason').get('slug_title').run())
+    .setVariable(
+      'season.seriesSlug',
+      $c.querySelector('[rel="alternate"][hreflang="en"]').getAttribute('href').urlPart(5).run(),
+    )
+    .setVariable('season.number', $c.getVariable('foundSeason').get('season_number').run())
+    .setVariable(
+      'season.displayNumber',
+      $c.getVariable('foundSeason').get('season_display_number').run(),
+    )
+    .setVariable('season.specialEpisode', $c.boolean(false).run());
+}
+
+function isSpecialEpisode($c: ChibiGenerator<unknown>) {
+  return meta($c).get('episode_metadata').get('episode').string().matches('^[1-9]\\d*$').not();
+}
+
+// OVAs, movies, extras, ... and specials inside a regular season
+function isSpecialSeason($c: ChibiGenerator<unknown>) {
+  return $c.or(
+    $c.getVariable<boolean>('season.specialEpisode').run(),
+    $c.getVariable<number>('season.number').equals(0).run(),
+    $c.getVariable<number>('season.number').greaterThanOrEqual(100).run(),
+    $c
+      .getVariable<string>('season.slug')
+      .matches(
+        '(^|-)(ovas?|oads?|onas?|specials?|extras?|movies?|film|recaps?|shorts?|picture-drama|bonus)(-|$)',
+      )
+      .run(),
+  );
+}
+
+// season_number counts every entry of the season list (movies, specials, region locked seasons),
+// so it is often too high. season_display_number is right when set (about a quarter of the seasons),
+// otherwise the language independent slug mostly has the real number.
+// Without a number no season is returned (NaN) and the rules infer it from the matched entry.
+function getSeason($c: ChibiGenerator<unknown>) {
+  const seasonPattern = '(?:^|-)season-?([1-9]|[12]\\d|30)(?=-|$)';
+  return (
+    $c
+      .getVariable<string>('season.slug')
+      .replaceRegex('-+', '-')
+      // <series>2, <series>-2-nomad, <series>-r2
+      .replaceRegex(
+        $c
+          .string('^')
+          .concat($c.getVariable<string>('season.seriesSlug').replaceRegex('-+', '-').run())
+          .concat('-?r?(\\d{1,2})(?=-|$)')
+          .run(),
+        'season-$1',
+      )
+      .replaceRegex('-ii(?=-|$)', '-season-2')
+      .replaceRegex('-iii(?=-|$)', '-season-3')
+      .replaceRegex('-iv(?=-|$)', '-season-4')
+      .replaceRegex('-vi(?=-|$)', '-season-6')
+      .replaceRegex('(^|-)(\\d+)(?:st|nd|rd|th)-(?:season|stage|attack|cour)(?=-|$)', '$1season-$2')
+      .replaceRegex('(^|-)second-season(?=-|$)', '$1season-2')
+      .replaceRegex('(^|-)third-season(?=-|$)', '$1season-3')
+      .replaceRegex('(^|-)fourth-season(?=-|$)', '$1season-4')
+      .replaceRegex('(^|-)fifth-season(?=-|$)', '$1season-5')
+      .setVariable('season.parsedSlug')
+      .if(
+        $c.exec(isSpecialSeason).run(),
+        $c.string('none').number().run(),
+        $c
+          .if(
+            $c
+              .getVariable<string>('season.displayNumber')
+              .string()
+              .matches('^([1-9]|[12]\\d|30)$')
+              .run(),
+            $c.getVariable<string>('season.displayNumber').number().run(),
+            $c
+              .if(
+                $c.getVariable<string>('season.parsedSlug').matches(seasonPattern).run(),
+                $c.getVariable<string>('season.parsedSlug').regex(seasonPattern, 1).number().run(),
+                // The first entry of the list is season 1 whatever its slug
+                $c
+                  .if(
+                    $c.getVariable<number>('season.number').equals(1).run(),
+                    $c.number(1).run(),
+                    $c.string('none').number().run(),
+                  )
+                  .run(),
+              )
+              .run(),
+          )
+          .run(),
+      )
+  );
+}
+
+function getRuleSet($c: ChibiGenerator<unknown>) {
+  return $c.if(
+    $c.exec(isSpecialSeason).run(),
+    $c.ruleSet('off').run(),
+    $c
+      .if(
+        $c.getVariable<boolean>('isAbsolute').run(),
+        $c.ruleSet('absolute').run(),
+        $c.ruleSet('cour').run(),
+      )
+      .run(),
+  );
 }
