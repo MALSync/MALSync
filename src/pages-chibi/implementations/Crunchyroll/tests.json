@@ -6,30 +6,34 @@
       "url": "https://www.crunchyroll.com/watch/GEVUZP0ZM/the-end-of-the-beginning-and-the-beginning-of-the-end",
       "expected": {
         "sync": true,
-        "title": "rezero starting life in another world",
+        "title": "Re:ZERO -Starting Life in Another World-",
         "identifier": "GRGG9798R|season-1-directors-cut",
         "overviewUrl": "https://www.crunchyroll.com/series/GRGG9798R",
         "nextEpUrl": "https://www.crunchyroll.com/watch/G7PU4584Q/reunion-with-the-witch--starting-life-from-zero-in-another-world",
         "episode": 1,
-        "malUrl": "https://myanimelist.net/anime/19815"
+        "malUrl": "https://myanimelist.net/anime/19815",
+        "season": 1,
+        "ruleSet": "cour"
       }
     },
     {
       "url": "https://www.crunchyroll.com/de/watch/GK9UG2E49/the-result-of-the-battle-for-priestella",
       "expected": {
         "sync": true,
-        "title": "rezero starting life in another world Staffel 3",
+        "title": "Re:ZERO -Starting Life in Another World-",
         "identifier": "GRGG9798R|season-3",
         "overviewUrl": "https://www.crunchyroll.com/series/GRGG9798R",
         "nextEpUrl": "https://www.crunchyroll.com/de/watch/GE00345525DEDE/the-reason-im-taking-you-with-me--gorgeous-tiger-reloaded",
-        "episode": 16
+        "episode": 16,
+        "season": 3,
+        "ruleSet": "cour"
       }
     },
     {
       "url": "https://www.crunchyroll.com/de/watch/G14UVJGX1/ceremony",
       "expected": {
         "sync": true,
-        "title": "guilty gear strive dual rulers",
+        "title": "GUILTY GEAR",
         "identifier": "GEXH3W2MZ|guilty-gear-strive-dual-rulers",
         "overviewUrl": "https://www.crunchyroll.com/series/GEXH3W2MZ",
         "nextEpUrl": "https://www.crunchyroll.com/de/watch/GJWUQ7EJW/belief-in-peace",
@@ -40,7 +44,7 @@
       "url": "https://www.crunchyroll.com/de/watch/GR5VK12DR/untitled",
       "expected": {
         "sync": true,
-        "title": "ai mai mi mousou catastrophe",
+        "title": "Ai-Mai-Mi Mousou Catastrophe",
         "identifier": "GRP8DZ7GR|ai-mai-mi-mousou-catastrophe",
         "overviewUrl": "https://www.crunchyroll.com/series/GRP8DZ7GR",
         "nextEpUrl": "https://www.crunchyroll.com/de/watch/G6GG4ZNE6/episode-4",
@@ -62,7 +66,7 @@
       "url": "https://www.crunchyroll.com/watch/GE00362337JAJP/yano-kun",
       "expected": {
         "sync": true,
-        "title": "yano kuns ordinary days",
+        "title": "Yano-kun's Ordinary Days",
         "identifier": "GT00362335|season-1",
         "episode": 1,
         "overviewUrl": "https://www.crunchyroll.com/series/GT00362335",
@@ -73,11 +77,99 @@
       "url": "https://www.crunchyroll.com/watch/GE00361957JAJP/a-wild-last-boss-appears",
       "expected": {
         "sync": true,
-        "title": "a wild last boss appeared",
+        "title": "A Wild Last Boss Appeared!",
         "identifier": "GT00361955|season-1",
         "episode": 1,
         "overviewUrl": "https://www.crunchyroll.com/series/GT00361955",
         "nextEpUrl": "https://www.crunchyroll.com/watch/GE00361959JAJP/we-came-to-svel"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GE00367568JAJP/execution",
+      "expected": {
+        "sync": true,
+        "title": "JUJUTSU KAISEN",
+        "identifier": "GRDV0019R|jujutsu-kaisen-season-3",
+        "overviewUrl": "https://www.crunchyroll.com/series/GRDV0019R",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/GE00367569JAJP/one-more-time",
+        "episode": 48,
+        "season": 3,
+        "ruleSet": "absolute"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GN7UDVKPQ/new-world-map",
+      "expected": {
+        "sync": true,
+        "title": "Dr. STONE",
+        "identifier": "GYEXQKJG6|dr-stone-season-3",
+        "overviewUrl": "https://www.crunchyroll.com/series/GYEXQKJG6",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/GK9U3D25X/greed-equals-justice",
+        "episode": 1,
+        "season": 3,
+        "ruleSet": "cour"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GYNV4KX3R/make-it-do-or-die-survival-training-part-2",
+      "expected": {
+        "sync": true,
+        "title": "my hero academia Season 4",
+        "identifier": "G6NQ5DWZ6|season-4",
+        "overviewUrl": "https://www.crunchyroll.com/series/G6NQ5DWZ6",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/G4VUQM0NM/all-hands-on-deck-class-1-a",
+        "episode": 0,
+        "ruleSet": "off"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GR0X55ZPY/join-the-fight-transfer-student",
+      "expected": {
+        "sync": true,
+        "title": "Isekai Quartet",
+        "identifier": "GR8DN7N7R|isekai-quartet2",
+        "overviewUrl": "https://www.crunchyroll.com/series/GR8DN7N7R",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/GR9V171E6/sneak-in-the-principals-office",
+        "episode": 1,
+        "season": 2,
+        "ruleSet": "cour"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GZ7UV7XZ5/jack",
+      "expected": {
+        "sync": true,
+        "title": "tokyo ghoul : OVA Season 1",
+        "identifier": "G6NV7Z50Y|tokyo-ghoul-ova-season-1",
+        "overviewUrl": "https://www.crunchyroll.com/series/G6NV7Z50Y",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/G8WUNDWZ5/pinto",
+        "episode": 1,
+        "ruleSet": "off"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/G2XU057GN/flame-hashira-kyojuro-rengoku",
+      "expected": {
+        "sync": true,
+        "title": "demon slayer kimetsu no yaiba Mugen Train Arc",
+        "identifier": "GY5P48XEY|demon-slayer-kimetsu-no-yaiba-mugen-train-arc",
+        "overviewUrl": "https://www.crunchyroll.com/series/GY5P48XEY",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/G8WUN2J15/deep-sleep",
+        "episode": 1,
+        "ruleSet": "cour"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GEVUW3W5G/you-arent-e-rank-are-you",
+      "expected": {
+        "sync": true,
+        "title": "Solo Leveling",
+        "identifier": "GDKHZEJ0K|season-2--arise-from-the-shadow-",
+        "overviewUrl": "https://www.crunchyroll.com/series/GDKHZEJ0K",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/G7PU323K0/i-suppose-you-arent-aware",
+        "episode": 13,
+        "season": 2,
+        "ruleSet": "absolute"
       }
     }
   ]
