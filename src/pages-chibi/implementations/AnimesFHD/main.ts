@@ -147,6 +147,29 @@ export const AnimesFHD: PageInterface = {
     listChange($c) {
       return $c
         .waitUntilTrue($c.querySelector('#episodes-grid a.card--ep').boolean().run())
+        .detectChanges(
+          $c
+            .querySelector('#episodes-grid')
+            .ifNotReturn()
+            .text()
+            .concat(
+              $c
+                .querySelectorAll('#episodes-grid a.card--ep')
+                .map($el =>
+                  $c
+                    .if(
+                      $el.elementMatches('.mal-sync-active').run(),
+                      $c.string('1').run(),
+                      $c.string('0').run(),
+                    )
+                    .run(),
+                )
+                .string()
+                .run(),
+            )
+            .run(),
+          $c.trigger().run(),
+        )
         .trigger()
         .run();
     },
