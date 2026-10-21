@@ -34,30 +34,36 @@ export class PlayerSingleton {
 
   public startTracking() {
     setInterval(() => {
-      const players = document.getElementsByTagName('video');
-      for (let i = 0; i < players.length; i++) {
-        const player: HTMLVideoElement = players[i];
-        const { duration } = player;
-        const current = player.currentTime;
-        const { paused } = player;
-
-        if (duration && duration > 60) {
-          const item = {
-            current,
-            duration,
-            paused,
-          };
-          logger.debug(window.location.href, item);
-          this.currentPlayer = player;
-          this.notifyListeners(item, player);
-          playerExtras(item, player);
-          return;
-        }
-      }
+      if (this.trackPlayers(document.getElementsByTagName('video'))) return;
+      // Some players (vk) render the video inside an open shadow root
+      if (this.trackPlayers(getShadowVideos())) return;
       this.currentPlayer = null;
     }, 1000);
 
     return this;
+  }
+
+  private trackPlayers(players: ArrayLike<HTMLVideoElement>) {
+    for (let i = 0; i < players.length; i++) {
+      const player: HTMLVideoElement = players[i];
+      const { duration } = player;
+      const current = player.currentTime;
+      const { paused } = player;
+
+      if (duration && duration > 60) {
+        const item = {
+          current,
+          duration,
+          paused,
+        };
+        logger.debug(window.location.href, item);
+        this.currentPlayer = player;
+        this.notifyListeners(item, player);
+        playerExtras(item, player);
+        return true;
+      }
+    }
+    return false;
   }
 
   protected proxySetTime: ((time: number) => void) | null = null;
@@ -96,6 +102,30 @@ export class PlayerSingleton {
     }
     return PlayerSingleton.instance;
   }
+}
+
+let shadowVideoHost: Element | null = null;
+
+function getShadowVideos(): ArrayLike<HTMLVideoElement> {
+  // Only embedded players need this, avoid walking the whole dom of regular pages every second
+  if (window.top === window) return [];
+
+  // Reuse the last host, so the dom is only walked until the player is found
+  if (shadowVideoHost?.isConnected && shadowVideoHost.shadowRoot) {
+    const videos = shadowVideoHost.shadowRoot.querySelectorAll('video');
+    if (videos.length) return videos;
+  }
+
+  const elements = document.querySelectorAll('*');
+  for (let i = 0; i < elements.length; i++) {
+    const videos = elements[i].shadowRoot?.querySelectorAll('video');
+    if (videos?.length) {
+      shadowVideoHost = elements[i];
+      return videos;
+    }
+  }
+  shadowVideoHost = null;
+  return [];
 }
 
 let videoIdentifier = '';
