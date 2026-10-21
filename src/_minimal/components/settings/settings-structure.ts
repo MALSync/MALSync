@@ -1,4 +1,5 @@
 import SettingsGroup from './settings-group.vue';
+import { about } from './settings-structure-about';
 import SettingsProfile from './settings-profile.vue';
 import SettingsListSync from './settings-list-sync.vue';
 import SettingsHr from './settings-hr.vue';
@@ -159,6 +160,15 @@ export const structure: ConfObj[] = [
     children: etc,
   },
   {
+    key: 'aboutSection',
+    title: 'About',
+    props: {
+      icon: 'info',
+    },
+    component: SettingsGroup,
+    children: about,
+  },
+  {
     key: 'hr',
     title: '',
     component: SettingsHr,
@@ -178,7 +188,6 @@ export const structure: ConfObj[] = [
     props: {
       icon: 'forum',
       href: 'https://discord.com/invite/cTH4yaw',
-      special: 'discord',
     },
     component: SettingsGroup,
   },
