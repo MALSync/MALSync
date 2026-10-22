@@ -104,28 +104,17 @@ export class PlayerSingleton {
   }
 }
 
-let shadowVideoHost: Element | null = null;
+// Players that render their video inside an open shadow root
+const shadowVideoHosts = [
+  '.shadow-root-container', // vk
+].join(',');
 
-function getShadowVideos(): ArrayLike<HTMLVideoElement> {
-  // Only embedded players need this, avoid walking the whole dom of regular pages every second
-  if (window.top === window) return [];
-
-  // Reuse the last host, so the dom is only walked until the player is found
-  if (shadowVideoHost?.isConnected && shadowVideoHost.shadowRoot) {
-    const videos = shadowVideoHost.shadowRoot.querySelectorAll('video');
-    if (videos.length) return videos;
-  }
-
-  const elements = document.querySelectorAll('*');
-  for (let i = 0; i < elements.length; i++) {
-    const videos = elements[i].shadowRoot?.querySelectorAll('video');
-    if (videos?.length) {
-      shadowVideoHost = elements[i];
-      return videos;
-    }
-  }
-  shadowVideoHost = null;
-  return [];
+function getShadowVideos(): HTMLVideoElement[] {
+  const videos: HTMLVideoElement[] = [];
+  document.querySelectorAll(shadowVideoHosts).forEach(host => {
+    if (host.shadowRoot) videos.push(...Array.from(host.shadowRoot.querySelectorAll('video')));
+  });
+  return videos;
 }
 
 let videoIdentifier = '';
