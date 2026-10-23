@@ -510,6 +510,7 @@ module.exports = {
       '*://jamesbornmain.com/e/*',
       '*://jeremyparticipantanything.com/e/*',
       '*://teresapoliticallearn.com/e/*',
+      '*://derricknationtop.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
