@@ -118,6 +118,7 @@ import { FlixMomo } from './implementations/FlixMomo/main';
 import { NaszeAnime } from './implementations/NaszeAnime/main';
 import { Chikari } from './implementations/Chikari/main';
 import { MistScans } from './implementations/MistScans/main';
+import { AnimeSaturn } from './implementations/AnimeSaturn/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -238,4 +239,5 @@ export const pages: { [key: string]: PageInterface } = {
   NaszeAnime,
   Chikari,
   MistScans,
+  AnimeSaturn,
 };
