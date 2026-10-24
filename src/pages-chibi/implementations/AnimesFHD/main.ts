@@ -7,6 +7,7 @@ export const AnimesFHD: PageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   urls: {
+    // PlayerSingleton tracks the top-level video without iframe patterns.
     match: ['*://animesfhd.net/*', '*://www.animesfhd.net/*', '*://animesfhd.pages.dev/*'],
   },
   search: 'https://animesfhd.net/animes?q={searchtermRaw}',
@@ -54,7 +55,7 @@ export const AnimesFHD: PageInterface = {
       // The site exposes the next episode url in data-url once it is known.
       return $c
         .querySelectorAll('#ep-next[data-url]:not(:disabled)')
-        .map($el => $el.getAttribute('data-url').ifNotReturn().urlAbsolute().run())
+        .map($el => $el.getAttribute('data-url').trim().ifNotReturn().urlAbsolute().run())
         .type<string[]>()
         .first()
         .run();
@@ -132,6 +133,7 @@ export const AnimesFHD: PageInterface = {
     syncIsReady($c) {
       // Switching season/episode in the player changes the url ~3s before the content.
       // The comment form gets the episode id once the content of the current url is rendered.
+      // Bound navigation retries for last episodes and failed requests.
       return $c
         .waitUntilTrue(
           $c
@@ -146,6 +148,19 @@ export const AnimesFHD: PageInterface = {
                     .equals($c.url().urlPart(4).run())
                     .run(),
                 )
+                .run(),
+            )
+            .run(),
+        )
+        .waitUntilTrue(
+          $c
+            .or(
+              $c.url().this('sync.nextEpUrl').boolean().run(),
+              $c
+                .getVariable<number>('nextEpisodeChecks', 0)
+                .calculate('+', 1)
+                .setVariable('nextEpisodeChecks')
+                .greaterThanOrEqual(50)
                 .run(),
             )
             .run(),

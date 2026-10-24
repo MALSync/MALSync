@@ -4,30 +4,14 @@
 
 #episodes-grid a.card--ep.mal-sync-active {
   position: relative;
+  border-radius: 16px !important;
   background: #21122f !important;
-  outline: 4px solid #b245ff !important;
-  outline-offset: -4px;
+  // Ring drawn outside the card so it never covers the title or meta text
   box-shadow:
-    inset 0 0 0 4px #b245ff,
-    0 0 18px #b245ff8c !important;
+    0 0 0 3px #b245ff,
+    0 0 20px #b245ff8c !important;
 
-  &::after {
-    content: 'MAL';
-    display: block;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    z-index: 3;
-    padding: 3px 6px;
-    border: 1px solid #dbb7ff;
-    border-radius: 4px;
-    background: #6e1fb4;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    pointer-events: none;
+  .card__body {
+    padding: 12px !important;
   }
 }
