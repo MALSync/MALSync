@@ -1,4 +1,4 @@
-import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
+import type { ChibiGenerator, ChibiJson } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
 
 export const AnimesFHD: PageInterface = {
@@ -39,7 +39,25 @@ export const AnimesFHD: PageInterface = {
       return $c.querySelector('#breadcrumb').getAttribute('href').ifNotReturn().urlAbsolute().run();
     },
     getEpisode($c) {
-      return $c.querySelector('#episode-num').text().trim().number().run();
+      return malEpisode(
+        $c.querySelector('#breadcrumb'),
+        $c.querySelector('#episode-num').text().trim().number().run(),
+      );
+    },
+    getMalUrl($c) {
+      return malUrl($c, '#breadcrumb');
+    },
+    getImage($c) {
+      return $c.this('overview.getImage').run();
+    },
+    nextEpUrl($c) {
+      // The site exposes the next episode url in data-url once it is known.
+      return $c
+        .querySelectorAll('#ep-next[data-url]:not(:disabled)')
+        .map($el => $el.getAttribute('data-url').ifNotReturn().urlAbsolute().run())
+        .type<string[]>()
+        .first()
+        .run();
     },
   },
   overview: {
@@ -72,7 +90,16 @@ export const AnimesFHD: PageInterface = {
       return $c.querySelector('#series-kpis').uiAfter().run();
     },
     getImage($c) {
-      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+      return $c
+        .querySelector('[property="og:image"]')
+        .ifNotReturn()
+        .getAttribute('content')
+        .ifNotReturn()
+        .urlAbsolute()
+        .run();
+    },
+    getMalUrl($c) {
+      return malUrl($c, '#series-title');
     },
   },
   list: {
@@ -83,7 +110,16 @@ export const AnimesFHD: PageInterface = {
       return $c.getAttribute('href').ifNotReturn().urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('.card__title').text().regex('EP\\.?\\s*(\\d+)', 1).number().run();
+      return malEpisode(
+        $c.setVariable('episodeElement'),
+        $c
+          .getVariable<Element>('episodeElement')
+          .find('.card__title')
+          .text()
+          .regex('EP\\.?\\s*(\\d+)', 1)
+          .number()
+          .run(),
+      );
     },
   },
   lifecycle: {
@@ -145,36 +181,74 @@ export const AnimesFHD: PageInterface = {
         .run();
     },
     listChange($c) {
+      const checkList = $c.url().this('overview.isOverviewPage').ifNotReturn().trigger().run();
+
       return $c
         .waitUntilTrue($c.querySelector('#episodes-grid a.card--ep').boolean().run())
         .detectChanges(
           $c
-            .querySelector('#episodes-grid')
-            .ifNotReturn()
-            .text()
-            .concat(
+            // Detached nodes detect identical re-renders without observing MALSync's classes.
+            .getVariable<Element[]>('episodeElements', [])
+            .arrayFind($el => $el.get('isConnected').boolean().not().run())
+            .ifThen($c =>
               $c
-                .querySelectorAll('#episodes-grid a.card--ep')
-                .map($el =>
-                  $c
-                    .if(
-                      $el.elementMatches('.mal-sync-active').run(),
-                      $c.string('1').run(),
-                      $c.string('0').run(),
-                    )
-                    .run(),
-                )
-                .string()
+                .getVariable<number>('listRevision', 0)
+                .calculate('+', 1)
+                .setVariable('listRevision')
                 .run(),
             )
+            .setVariable('episodeElements', $c.querySelectorAll('#episodes-grid a.card--ep').run())
+            .querySelectorAll('#episodes-grid a.card--ep')
+            .map($el =>
+              $el
+                .setVariable('episodeCard')
+                .getAttribute('href')
+                .concat(':')
+                .concat(
+                  $c.getVariable<Element>('episodeCard').this('list.elementEp').string().run(),
+                )
+                .run(),
+            )
+            .string()
+            .concat(':')
+            .concat($c.getVariable<number>('listRevision', 0).string().run())
             .run(),
-          $c.trigger().run(),
+          checkList,
         )
-        .trigger()
+        .fn(checkList)
         .run();
     },
   },
 };
+
+function malUrl($c: ChibiGenerator<unknown>, selector: string) {
+  return $c
+    .querySelector(selector)
+    .ifNotReturn($c.boolean(false).run())
+    .getAttribute('data-mal-id')
+    .ifNotReturn($c.boolean(false).run())
+    .trim()
+    .setVariable('malId')
+    .matches('^[1-9]\\d*$')
+    .ifNotReturn($c.boolean(false).run())
+    .string('https://myanimelist.net/anime/')
+    .concat($c.getVariable<string>('malId').run())
+    .run();
+}
+
+function malEpisode($c: ChibiGenerator<Element | null>, fallback: ChibiJson<number>) {
+  return $c
+    .ifNotReturn(fallback)
+    .getAttribute('data-mal-episode')
+    .ifNotReturn(fallback)
+    .trim()
+    .setVariable('malEpisode')
+    .matches('^[1-9]\\d*$')
+    .ifNotReturn(fallback)
+    .getVariable<string>('malEpisode')
+    .number()
+    .run();
+}
 
 function cleanTitle($c: ChibiGenerator<string>) {
   return (
