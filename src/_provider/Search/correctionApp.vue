@@ -24,8 +24,8 @@
       <rules
         :obj="rulesClass"
         :episode="ruleEpisode"
+        :rule-episode="searchClass.withUserOffset(ruleEpisode)"
         :season="syncPage.curState?.season"
-        :offset="offset"
         :initial-rule-set="searchClass.getRuleSetSelection()"
         :auto-rule-set="searchClass.getAutoRuleSet()"
         @ruleset="setRuleSet"
@@ -133,13 +133,7 @@ export default {
       return this.searchClass.getOffset();
     },
     ruleEpisode() {
-      const state = this.syncPage && this.syncPage.curState;
-      if (state && state.on === 'SYNC' && typeof state.detectedEpisode === 'number') {
-        return Number.isNaN(state.detectedEpisode) ? undefined : state.detectedEpisode;
-      }
-      // Overview with a season: like episode 1 of that season
-      if (state && state.on === 'OVERVIEW' && typeof state.season === 'number') return 1;
-      return undefined;
+      return this.searchClass.getRuleEpisode(this.syncPage && this.syncPage.curState);
     },
     ruleConflict() {
       const state = this.syncPage && this.syncPage.curState;

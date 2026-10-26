@@ -58,6 +58,7 @@ import {
   RulesClass,
   RuleSetSelection,
   RuleSetType,
+  resolveRuleSet,
 } from '../rulesClass';
 
 export default {
@@ -66,17 +67,19 @@ export default {
       type: Object,
       default: undefined,
     },
+    // Episode of the page, shown in the title
     episode: {
+      type: Number,
+      default: undefined,
+    },
+    // Episode in the numbering of the rules, includes the user offset
+    ruleEpisode: {
       type: Number,
       default: undefined,
     },
     season: {
       type: Number,
       default: undefined,
-    },
-    offset: {
-      type: [Number, String],
-      default: 0,
     },
     // Rule set selected for the page
     initialRuleSet: {
@@ -97,13 +100,8 @@ export default {
     };
   },
   computed: {
-    // Rule set applied, auto uses the default
     activeRuleSet(): RuleSetType {
-      return this.ruleSet === 'auto' ? this.autoRuleSet : this.ruleSet;
-    },
-    ruleEpisode() {
-      if (typeof this.episode !== 'number') return undefined;
-      return this.episode + Number(this.offset || 0);
+      return resolveRuleSet(this.ruleSet, this.autoRuleSet);
     },
     episodeRules() {
       if (!this.obj || this.ruleEpisode === undefined) return [];
