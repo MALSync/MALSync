@@ -1,4 +1,5 @@
 import { pageUrl } from '../../utils/slugs';
+import { RULE_SET_STRATEGIES, SeasonContext, covers } from './ruleSetStrategies';
 
 export type TvdbRuleProvider = 'anidb' | 'mal' | 'anilist';
 export type TvdbRuleSource = 'tvdb';
@@ -166,11 +167,7 @@ export class RulesClass {
       rule => rule.id === this.getEntryId() && rule.season > 0,
     );
 
-    const covering = ownRules.find(
-      rule =>
-        episode >= rule.episodeStart &&
-        (rule.end === null || episode <= rule.episodeStart + rule.end - rule.start),
-    );
+    const covering = ownRules.find(rule => covers(rule, episode, rule.episodeStart));
     if (covering) return covering.season;
 
     const seasons = [...new Set(ownRules.map(rule => rule.season))];
@@ -179,72 +176,17 @@ export class RulesClass {
     return undefined;
   }
 
-  protected resolveSeason(episode: number, season?: number): number | undefined {
-    if (season !== undefined && season !== null) return season;
+  protected resolveSeason(episode: number, season?: number): SeasonContext | undefined {
+    if (season !== undefined && season !== null) return { season, inferred: false };
     const inferred = this.inferSeason(episode);
-    if (inferred !== undefined)
-      this.logger.log('Inferred season', inferred, 'for episode', episode);
-    return inferred;
-  }
-
-  // inferred: the season was inferred from the current entry, not provided by the page
-  // One entry mapped with gaps over the whole season, e.g. counting specials. Used like a season rule
-  protected getWholeSeasonEntry(seasonRules: TvdbTypedRule[]): TvdbTypedRule | undefined {
-    if (!seasonRules.length || seasonRules.some(rule => rule.type !== 'mapping')) return undefined;
-    if (new Set(seasonRules.map(rule => rule.id)).size !== 1) return undefined;
-
-    const [first] = [...seasonRules].sort((a, b) => a.start - b.start);
-    if (first.start !== 1 || first.episodeStart !== 1) return undefined;
-
-    // The entry can count more episodes than the season
-    return { ...first, end: null };
-  }
-
-  protected getSeasonRules(
-    season: number,
-    inferred: boolean,
-    ruleSet: RuleSetType,
-  ): TvdbTypedRule[] {
-    // Rule set off
-    if (ruleSet === 'off') return [];
-
-    // Same season
-    const seasonRules = this.getRules().filter(rule => rule.season === season);
-
-    if (ruleSet === 'cour') {
-      // Provided season: seasons split into cours and whole seasons
-      if (!inferred) {
-        const wholeEntry = this.getWholeSeasonEntry(seasonRules);
-        if (wholeEntry) return [wholeEntry];
-        return seasonRules.filter(rule => rule.type === 'cour' || rule.type === 'season');
-      }
-
-      // Inferred season: only seasons split into cours, without the first part.
-      // The page could number a later part from 1. The first part can be split into multiple rules of the same id
-      const courRules = seasonRules.filter(rule => rule.type === 'cour');
-      const firstRule = [...courRules].sort((a, b) => a.start - b.start)[0];
-      return courRules.filter(rule => rule.id !== firstRule.id);
-    }
-
-    return seasonRules;
-  }
-
-  // Absolute: rules with a known absolute episode, seasons do not matter
-  protected getAbsoluteRules(): TvdbTypedRule[] {
-    return this.getRules().filter(rule => rule.absoluteStart !== null);
-  }
-
-  // First episode of a rule in the numbering of the rule set
-  protected ruleStart(rule: TvdbTypedRule, ruleSet: RuleSetType): number {
-    if (ruleSet === 'absolute' && rule.absoluteStart !== null) return rule.absoluteStart;
-    return rule.start;
+    if (inferred === undefined) return undefined;
+    this.logger.log('Inferred season', inferred, 'for episode', episode);
+    return { season: inferred, inferred: true };
   }
 
   // Rules of all seasons in the selected rule set
   public getRuleSetRules(ruleSet: RuleSetType): TvdbTypedRule[] {
-    if (ruleSet === 'absolute') return this.getAbsoluteRules();
-    const seasons = [...new Set(this.getRules().map(rule => rule.season))];
-    return seasons.flatMap(season => this.getSeasonRules(season, false, ruleSet));
+    return RULE_SET_STRATEGIES[ruleSet].all(this.getRules());
   }
 
   // Rules of the season the episode is in
@@ -253,10 +195,10 @@ export class RulesClass {
     season: number | undefined,
     ruleSet: RuleSetType,
   ): TvdbTypedRule[] {
-    if (ruleSet === 'absolute') return this.getAbsoluteRules();
-    const resolved = this.resolveSeason(episode, season);
-    if (resolved === undefined) return [];
-    return this.getSeasonRules(resolved, season === undefined || season === null, ruleSet);
+    return RULE_SET_STRATEGIES[ruleSet].select(
+      this.getRules(),
+      this.resolveSeason(episode, season),
+    );
   }
 
   public getMatches(
@@ -264,15 +206,10 @@ export class RulesClass {
     season: number | undefined,
     ruleSet: RuleSetType,
   ): RuleMatch[] {
-    const start = (rule: TvdbTypedRule) => this.ruleStart(rule, ruleSet);
+    const { start } = RULE_SET_STRATEGIES[ruleSet];
     return (
       this.getEpisodeSeasonRules(episode, season, ruleSet)
-        // Episode in range, end null = open-ended
-        .filter(
-          rule =>
-            episode >= start(rule) &&
-            (rule.end === null || episode <= start(rule) + rule.end - rule.start),
-        )
+        .filter(rule => covers(rule, episode, start(rule)))
         // Most specific rule first
         .sort((a, b) => start(b) - start(a))
         // Target entry url and episode
