@@ -1,0 +1,56 @@
+{
+  "title": "AnimeSaturn",
+  "url": "https://www.animesaturn.net",
+  "testCases": [
+    {
+      "url": "https://www.animesaturn.net/anime/cyberpunk-edgerunners-2-Bca7X/ep-1",
+      "expected": {
+        "sync": true,
+        "title": "Cyberpunk: Edgerunners 2",
+        "identifier": "cyberpunk-edgerunners-2-Bca7X",
+        "episode": 1,
+        "overviewUrl": "https://www.animesaturn.net/anime/cyberpunk-edgerunners-2-Bca7X",
+        "nextEpUrl": "https://www.animesaturn.net/anime/cyberpunk-edgerunners-2-Bca7X/ep-2",
+        "image": "https://img.saturncdn.net/static/images/locandine/f9de9ba307d6dbf0.jpg"
+      }
+    },
+    {
+      "url": "https://www.animesaturn.net/anime/cyberpunk-edgerunners-2-Bca7X",
+      "expected": {
+        "sync": false,
+        "title": "Cyberpunk: Edgerunners 2",
+        "identifier": "cyberpunk-edgerunners-2-Bca7X",
+        "image": "https://img.saturncdn.net/static/images/locandine/f9de9ba307d6dbf0.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://www.animesaturn.net/anime/cyberpunk-edgerunners-2-Bca7X/ep-1",
+          "5": "https://www.animesaturn.net/anime/cyberpunk-edgerunners-2-Bca7X/ep-5",
+          "10": "https://www.animesaturn.net/anime/cyberpunk-edgerunners-2-Bca7X/ep-10"
+        }
+      }
+    },
+    {
+      "url": "https://www.animesaturn.net/anime/frieren-beyond-journey-s-end-ita-zVYHh/ep-28",
+      "expected": {
+        "sync": true,
+        "title": "Frieren: Beyond Journey's End",
+        "identifier": "frieren-beyond-journey-s-end-ita-zVYHh",
+        "episode": 28,
+        "overviewUrl": "https://www.animesaturn.net/anime/frieren-beyond-journey-s-end-ita-zVYHh",
+        "image": "https://img.saturncdn.net/static/images/locandine/kbcPv.jpg"
+      }
+    },
+    {
+      "url": "https://www.animesaturn.net/anime/86-eighty-six-2-5jYLB/ep-7",
+      "expected": {
+        "sync": true,
+        "title": "86: Eighty Six 2",
+        "identifier": "86-eighty-six-2-5jYLB",
+        "episode": 7,
+        "overviewUrl": "https://www.animesaturn.net/anime/86-eighty-six-2-5jYLB",
+        "nextEpUrl": "https://www.animesaturn.net/anime/86-eighty-six-2-5jYLB/ep-8",
+        "image": "https://img.saturncdn.net/static/images/locandine/cWHjp.jpg"
+      }
+    }
+  ]
+}
