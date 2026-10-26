@@ -54,7 +54,6 @@ import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
 import { DisasterScans } from './DisasterScans/main';
-import { Aniworld } from './Aniworld/main';
 import { BetterAnime } from './BetterAnime/main';
 import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
@@ -149,7 +148,6 @@ export const pages = {
   LHTranslation,
   MangasOrigines,
   DisasterScans,
-  Aniworld,
   BetterAnime,
   BilibiliComics,
   MangaReader,
