@@ -471,6 +471,23 @@ describe('Rules', function () {
       expect(obj.getRuledOffset(12)).to.equal(-11);
     });
 
+    it('Rule episode of the page', async function () {
+      const obj = await searchObj('ruleEpisode');
+      expect(obj.getRuleEpisode({ on: 'SYNC', detectedEpisode: 12 })).to.equal(12);
+      expect(obj.getRuleEpisode({ on: 'SYNC', detectedEpisode: NaN })).to.equal(undefined);
+      expect(obj.getRuleEpisode({ on: 'OVERVIEW', season: 2 })).to.equal(1);
+      expect(obj.getRuleEpisode({ on: 'OVERVIEW' })).to.equal(undefined);
+      expect(obj.getRuleEpisode(undefined)).to.equal(undefined);
+    });
+
+    it('No rules without an episode', async function () {
+      const obj = await searchObj('noEpisode');
+      expect(obj.withUserOffset(undefined)).to.equal(undefined);
+      expect(obj.withUserOffset(NaN)).to.equal(undefined);
+      expect(obj.getRuledUrl(undefined)).to.equal(currentUrl);
+      expect(obj.getRuleConflict(undefined)).to.equal(undefined);
+    });
+
     it('Remembers the rule set', async function () {
       const obj = await searchObj('remember');
       await obj.setRuleSet('off');

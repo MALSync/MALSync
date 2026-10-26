@@ -52,6 +52,11 @@ export type RuleSetSelection = RuleSetType | 'auto';
 
 export const RULE_SET_SELECTIONS: RuleSetSelection[] = ['auto', ...RULE_SETS];
 
+// Rule set applied for the selection, auto uses the rule set of auto
+export function resolveRuleSet(selection: RuleSetSelection, autoRuleSet: RuleSetType): RuleSetType {
+  return selection === 'auto' ? autoRuleSet : selection;
+}
+
 interface rules {
   provider: 'api';
   cache?: boolean;

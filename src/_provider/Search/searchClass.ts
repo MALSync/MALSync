@@ -13,11 +13,13 @@ import {
   RuleSetSelection,
   RuleSetType,
   RulesClass,
+  resolveRuleSet,
 } from './rulesClass';
 import { RuleConflict, RuleConflictClass } from './ruleConflictClass';
 
 import { getSyncMode } from '../helper';
 import { buildProviderUrl } from '../../utils/slugs';
+import type { pageState } from '../../pages/pageInterface';
 
 // default: opened by the user, sync: opened automatically to correct the entry, conflict: only asks to resolve a rule conflict
 export type CorrectionMode = 'default' | 'sync' | 'conflict';
@@ -651,8 +653,7 @@ export class SearchClass {
   }
 
   getRuleSet(): RuleSetType {
-    if (this.ruleSetSelection !== 'auto') return this.ruleSetSelection;
-    return this.getAutoRuleSet();
+    return resolveRuleSet(this.ruleSetSelection, this.getAutoRuleSet());
   }
 
   async setRuleSet(selection: RuleSetSelection) {
@@ -667,8 +668,25 @@ export class SearchClass {
     return Boolean(this.state && this.state.similarity && this.state.similarity.same);
   }
 
+  // Episode the rules apply to: the episode on sync pages, episode 1 of the season on overview pages
+  getRuleEpisode(state?: pageState | null): number | undefined {
+    if (!state) return undefined;
+    if (state.on === 'SYNC' && typeof state.detectedEpisode === 'number') {
+      return Number.isNaN(state.detectedEpisode) ? undefined : state.detectedEpisode;
+    }
+    if (state.on === 'OVERVIEW' && typeof state.season === 'number') return 1;
+    return undefined;
+  }
+
+  // Episode in the numbering of the rules, includes the user offset
+  withUserOffset(episode?: number): number | undefined {
+    if (typeof episode !== 'number' || Number.isNaN(episode)) return undefined;
+    return Number(episode) + Number(this.getOffset() || 0);
+  }
+
   getRuleConflict(episode?: number, season?: number): RuleConflict | undefined {
-    if (!this.rules || typeof episode !== 'number' || Number.isNaN(episode)) return undefined;
+    const ruleEpisode = this.withUserOffset(episode);
+    if (!this.rules || ruleEpisode === undefined) return undefined;
 
     if (this.ruleSetSelection !== 'auto') return undefined;
 
@@ -677,29 +695,24 @@ export class SearchClass {
       this.getRuleSet(),
       this.getUrl(),
       this.pageRuleSet,
-    ).getConflict(Number(episode) + Number(this.getOffset() || 0), season);
+    ).getConflict(ruleEpisode, season);
   }
 
-  applyRules(episode: number, season?: number) {
-    if (this.rules) {
-      const userOffset = this.getOffset() || 0;
-      const res = this.rules.applyRules(
-        Number(episode) + Number(userOffset),
-        season,
-        this.getRuleSet(),
-      );
-      if (res) res.offset = Number(res.offset) + Number(userOffset);
-      return res;
-    }
-    return undefined;
+  applyRules(episode?: number, season?: number) {
+    const ruleEpisode = this.withUserOffset(episode);
+    if (!this.rules || ruleEpisode === undefined) return undefined;
+
+    const res = this.rules.applyRules(ruleEpisode, season, this.getRuleSet());
+    if (res) res.offset = Number(res.offset) + Number(this.getOffset() || 0);
+    return res;
   }
 
-  getRuledOffset(episode: number, season?: number): number {
+  getRuledOffset(episode?: number, season?: number): number {
     const res = this.applyRules(episode, season);
     return res ? res.offset : this.getOffset();
   }
 
-  getRuledUrl(episode: number, season?: number): string | null {
+  getRuledUrl(episode?: number, season?: number): string | null {
     const res = this.applyRules(episode, season);
     return res ? res.url : this.getUrl();
   }
