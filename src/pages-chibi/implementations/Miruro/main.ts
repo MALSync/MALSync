@@ -6,7 +6,7 @@ export const Miruro: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://*.miruro.to/*', '*://*.miruro.tv/*', '*://*.miruro.bz/*', '*://*.miruro.ru/*'],
+    match: ['*://*.miruro.to/*', '*://*.miruro.tv/*', '*://*.miruro.bz/*', '*://*.miruro.ru/*', '*://*.miruro.cx/*', '*://*.anivault.tv/*', '*://*.status.miruro.com/*'],
     player: {
       strm: ['*://strm.cx/*'],
     },
