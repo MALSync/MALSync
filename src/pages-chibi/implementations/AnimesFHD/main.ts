@@ -246,8 +246,9 @@ function malUrl($c: ChibiGenerator<unknown>, selector: string) {
     .setVariable('malId')
     .matches('^[1-9]\\d*$')
     .ifNotReturn($c.boolean(false).run())
-    .string('https://myanimelist.net/anime/')
-    .concat($c.getVariable<string>('malId').run())
+    .providerUrlUtility({
+      malId: $c.getVariable<string>('malId').run(),
+    })
     .run();
 }
 
