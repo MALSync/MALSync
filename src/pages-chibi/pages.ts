@@ -33,7 +33,6 @@ import { Sadscans } from './implementations/Sadscans/main';
 import { ArvenComics } from './implementations/ArvenComics/main';
 import { FrenchAnime } from './implementations/FrenchAnime/main';
 import { Comikey } from './implementations/Comikey/main';
-import { AuroraScans } from './implementations/AuroraScans/main';
 import { ComicTop } from './implementations/ComicTop/main';
 import { Atsumaru } from './implementations/Atsumaru/main';
 import { Madarascans } from './implementations/Madarascans/main';
@@ -120,6 +119,7 @@ import { NaszeAnime } from './implementations/NaszeAnime/main';
 import { Chikari } from './implementations/Chikari/main';
 import { MistScans } from './implementations/MistScans/main';
 import { AnimesFHD } from './implementations/AnimesFHD/main';
+import { AnimeSaturn } from './implementations/AnimeSaturn/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -156,7 +156,6 @@ export const pages: { [key: string]: PageInterface } = {
   ArvenComics,
   FrenchAnime,
   Comikey,
-  AuroraScans,
   ComicTop,
   Atsumaru,
   Madarascans,
@@ -242,4 +241,5 @@ export const pages: { [key: string]: PageInterface } = {
   Chikari,
   MistScans,
   AnimesFHD,
+  AnimeSaturn,
 };

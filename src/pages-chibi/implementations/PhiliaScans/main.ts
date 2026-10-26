@@ -1,4 +1,12 @@
+import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
+
+function chapterPages($c: ChibiGenerator<unknown>) {
+  return $c
+    .string('.page-wrap[data-chapter-slug="')
+    .concat($c.url().urlPart(5).run())
+    .concat('"] .reader-page');
+}
 
 export const PhiliaScans: PageInterface = {
   name: 'PhiliaScans',
@@ -21,7 +29,7 @@ export const PhiliaScans: PageInterface = {
     },
     getTitle($c) {
       return $c
-        .querySelector('.manga-title')
+        .querySelector('a[title^="Back to"] .sr-only')
         .text()
         .replaceAll('\n', ' ')
         .replaceRegex('\\s+', ' ')
@@ -36,7 +44,7 @@ export const PhiliaScans: PageInterface = {
     },
     getOverviewUrl($c) {
       return $c
-        .querySelector('.manga-title')
+        .querySelector('a[title^="Back to"]')
         .getAttribute('href')
         .ifNotReturn()
         .urlAbsolute()
@@ -56,8 +64,17 @@ export const PhiliaScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: $c => $c.querySelectorAll('.page img').countAbove().run(),
-        total: $c => $c.querySelectorAll('.page img').length().run(),
+        // page mode: "1 / 31" or "16–17 / 33" for double pages
+        condition: $c => $c.querySelector('.reader-h-counter').boolean().run(),
+        current: $c =>
+          $c.querySelector('.reader-h-counter').text().regex('(\\d+)\\s*/', 1).number().run(),
+        total: $c =>
+          $c.querySelector('.reader-h-counter').text().regex('/\\s*(\\d+)', 1).number().run(),
+      },
+      {
+        // scroll mode, only count the current chapter (the next one gets appended)
+        current: $c => $c.querySelectorAll($c.exec(chapterPages).run()).countAbove().run(),
+        total: $c => $c.querySelectorAll($c.exec(chapterPages).run()).length().run(),
       },
     ],
   },
@@ -73,7 +90,7 @@ export const PhiliaScans: PageInterface = {
     },
     getTitle($c) {
       return $c
-        .querySelector('.serie-title')
+        .querySelector('.series-sticky-bar__title')
         .text()
         .replaceAll('\n', ' ')
         .replaceRegex('\\s+', ' ')
@@ -87,23 +104,31 @@ export const PhiliaScans: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.alternative-title').uiBefore().run();
+      return $c.querySelector('.detail-title').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.list-body-hh .item[data-chapter] a').run();
+      return $c.querySelectorAll('#philia-chapters-list a.chapter-item').run();
     },
     elementUrl($c) {
-      return $c.getAttribute('href').urlAbsolute().run();
+      // hrefs are per-request tokens (/read/...), so build the chapter url
+      return $c
+        .find('.chapter-num')
+        .text()
+        .regex('(\\d[\\d.]*)', 1)
+        .replaceAll('.', '-')
+        .setVariable('chapterSlug')
+        .string('/series/')
+        .concat($c.url().urlPart(4).run())
+        .concat('/chapter-')
+        .concat($c.getVariable<string>('chapterSlug').run())
+        .concat('/')
+        .urlAbsolute()
+        .run();
     },
     elementEp($c) {
-      return $c
-        .closest('.item[data-chapter]')
-        .getAttribute('data-chapter')
-        .regex('(\\d+)', 1)
-        .number()
-        .run(); // include locked chapter
+      return $c.find('.chapter-num').text().regex('(\\d+)', 1).number().run(); // include locked chapter
     },
   },
   lifecycle: {

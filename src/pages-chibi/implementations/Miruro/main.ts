@@ -2,16 +2,25 @@ import { PageInterface } from '../../pageInterface';
 
 export const Miruro: PageInterface = {
   name: 'Miruro',
-  domain: ['https://www.miruro.to', 'https://www.miruro.tv'],
+  domain: ['https://miruro.cx', 'https://www.miruro.to'],
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://*.miruro.to/*', '*://*.miruro.tv/*', '*://*.miruro.bz/*', '*://*.miruro.ru/*'],
+    match: [
+      '*://*.miruro.to/*',
+      '*://*.miruro.tv/*',
+      '*://*.miruro.bz/*',
+      '*://*.miruro.cx/*',
+      '*://*.miruro.pw/*',
+      '*://*.miruro.ws/*',
+      '*://*.miruro.ru/*',
+    ],
     player: {
       strm: ['*://strm.cx/*'],
+      megaplay: ['*://megaplay.buzz/*', '*://vidwish.live/*'],
     },
   },
-  search: 'https://www.miruro.to/search?query={searchtermPlus}',
+  search: 'https://miruro.cx/search?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c
@@ -23,16 +32,21 @@ export const Miruro: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h1 a').text().trim().run();
+      return $c
+        .coalesce(
+          $c.fn($c.querySelector('h1 a').ifNotReturn().text().trim().run()).run(),
+          $c.fn($c.querySelector('h2').ifNotReturn().text().trim().run()).run(),
+        )
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c.querySelector('h1 a[href*="info/"] img').getAttribute('src').ifNotReturn().run();
+      return $c.querySelector('a[href*="info/"] img').getAttribute('src').ifNotReturn().run();
     },
     getOverviewUrl($c) {
-      return $c.querySelector('h1 a[href*="info/"]').getAttribute('href').urlAbsolute().run();
+      return $c.querySelector('a[href*="info/"]').getAttribute('href').urlAbsolute().run();
     },
     getEpisode($c) {
       return $c.url().urlParam('ep').number().run();
@@ -65,13 +79,24 @@ export const Miruro: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('#root h1 span').text().trim().run();
+      return $c
+        .coalesce(
+          $c.fn($c.querySelector('#root h1 span').ifNotReturn().text().trim().run()).run(),
+          $c.fn($c.querySelector('h1').ifNotReturn().text().trim().run()).run(),
+        )
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     uiInjection($c) {
-      return $c.querySelector('#root h1').uiAfter().run();
+      return $c
+        .coalesce(
+          $c.fn($c.querySelector('#root [class*="_mainColumn"] h1').ifNotReturn().run()).run(),
+          $c.fn($c.querySelector('h1').ifNotReturn().run()).run(),
+        )
+        .uiAfter()
+        .run();
     },
     getMalUrl($c) {
       return $c
@@ -90,7 +115,45 @@ export const Miruro: PageInterface = {
         .run();
     },
     getImage($c) {
-      return $c.querySelector('img[alt="Cover"]').getAttribute('src').ifNotReturn().run();
+      return $c
+        .coalesce(
+          $c
+            .fn(
+              $c
+                .querySelector('img[alt="Cover"]')
+                .ifNotReturn()
+                .getAttribute('src')
+                .ifNotReturn()
+                .run(),
+            )
+            .run(),
+          $c
+            .fn(
+              $c
+                .querySelector('.info-cover img')
+                .ifNotReturn()
+                .getAttribute('src')
+                .ifNotReturn()
+                .run(),
+            )
+            .run(),
+        )
+        .run();
+    },
+  },
+  list: {
+    elementsSelector($c) {
+      return $c
+        .querySelectorAll(
+          '.watch-episode-panel a.episode-card, .inertia-track > a[href*="/watch/"][href*="ep="]',
+        )
+        .run();
+    },
+    elementUrl($c) {
+      return $c.getAttribute('href').ifNotReturn().urlAbsolute().run();
+    },
+    elementEp($c) {
+      return $c.this('list.elementUrl').urlParam('ep').number().run();
     },
   },
   lifecycle: {
@@ -100,34 +163,18 @@ export const Miruro: PageInterface = {
     ready($c) {
       return $c.detectURLChanges($c.trigger().run()).domReady().trigger().run();
     },
-    syncIsReady($c) {
+    listChange($c) {
       return $c
-        .waitUntilTrue(
+        .detectChanges(
           $c
-            .and(
-              $c.url().urlPart(3).equals('watch').run(),
-              $c.url().urlPart(4).boolean().run(),
-              $c.url().urlPart(5).boolean().run(),
-              $c.querySelector('h1 a[href*="info/"]').boolean().log().run(),
+            .querySelector(
+              '.watch-episode-panel a.episode-card, .inertia-track > a[href*="/watch/"][href*="ep="]',
             )
+            .ifNotReturn()
+            .getAttribute('href')
             .run(),
+          $c.trigger().run(),
         )
-        .trigger()
-        .run();
-    },
-    overviewIsReady($c) {
-      return $c
-        .waitUntilTrue(
-          $c
-            .and(
-              $c.url().urlPart(3).equals('info').run(),
-              $c.url().urlPart(4).boolean().run(),
-              $c.url().urlPart(5).boolean().run(),
-              $c.querySelector('#root h1 span').boolean().run(),
-            )
-            .run(),
-        )
-        .trigger()
         .run();
     },
   },

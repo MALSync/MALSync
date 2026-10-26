@@ -33,7 +33,12 @@ export const YummyAni: PageInterface = {
       return $c.querySelector('.pQCG').text().regex('[0-9.]+').number().run();
     },
     getImage($c) {
-      return $c.querySelector('img.bordered-top').getAttribute('src').ifNotReturn().run();
+      return $c
+        .querySelector('img.bordered-top')
+        .getAttribute('src')
+        .ifNotReturn()
+        .replaceRegex('^//', 'https://')
+        .run();
     },
     getMalUrl($c) {
       return $c

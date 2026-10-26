@@ -3,49 +3,103 @@
   "url": "https://www.miruro.tv",
   "testCases": [
     {
-      "url": "https://www.miruro.tv/watch/139630/boku-no-hero-academia-6/episode-1",
+      "url": "https://www.miruro.tv/watch/rx_c8v5PbJ7kOpUjVKDv9rcIJevyAJIs/boku-no-hero-academia-6?ep=1",
       "expected": {
         "sync": true,
         "title": "My Hero Academia Season 6",
-        "identifier": "139630",
+        "identifier": "rx_c8v5PbJ7kOpUjVKDv9rcIJevyAJIs",
         "uiSelector": false,
-        "overviewUrl": "https://www.miruro.tv/info/139630/boku-no-hero-academia-6",
+        "overviewUrl": "https://www.miruro.tv/info/rx_c8v5PbJ7kOpUjVKDv9rcIJevyAJIs/boku-no-hero-academia-6",
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx139630-3v4gxWtNZxLV.jpg",
         "episode": 1
       }
     },
     {
-      "url": "https://www.miruro.tv/watch/101280/tensei-shitara-slime-datta-ken/episode-19",
+      "url": "https://www.miruro.tv/watch/qsM8VP3YsFM6vf_WAVFC_O7MpoVy-icy/tensei-shitara-slime-datta-ken?ep=19",
       "expected": {
         "sync": true,
         "title": "That Time I Got Reincarnated as a Slime",
-        "identifier": "101280",
+        "identifier": "qsM8VP3YsFM6vf_WAVFC_O7MpoVy-icy",
         "uiSelector": false,
-        "overviewUrl": "https://www.miruro.tv/info/101280/tensei-shitara-slime-datta-ken",
+        "overviewUrl": "https://www.miruro.tv/info/qsM8VP3YsFM6vf_WAVFC_O7MpoVy-icy/tensei-shitara-slime-datta-ken",
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101280-tDxCVJm714nt.jpg",
         "episode": 19
       }
     },
     {
-      "url": "https://www.miruro.tv/watch/104459/yuru-camp-season-2/episode-13",
+      "url": "https://www.miruro.tv/watch/6a_6K_WnxBSifBlG0ydUtpVTzKtrAdWD/yuru-camp-season-2?ep=13",
       "expected": {
         "sync": true,
         "title": "LAID-BACK CAMP SEASON2",
-        "identifier": "104459",
+        "identifier": "6a_6K_WnxBSifBlG0ydUtpVTzKtrAdWD",
         "uiSelector": false,
-        "overviewUrl": "https://www.miruro.tv/info/104459/yuru-camp-season-2",
+        "overviewUrl": "https://www.miruro.tv/info/6a_6K_WnxBSifBlG0ydUtpVTzKtrAdWD/yuru-camp-season-2",
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104459-pywEKGQON613.jpg",
         "episode": 13
       }
     },
     {
-      "url": "https://www.miruro.tv/info/163139/boku-no-hero-academia-7",
+      "url": "https://www.miruro.tv/info/PY-3UFes_366EOcdQiutUPQFmcTOBN4v/boku-no-hero-academia-7",
       "expected": {
         "sync": false,
         "title": "My Hero Academia Season 7",
-        "identifier": "163139",
+        "identifier": "PY-3UFes_366EOcdQiutUPQFmcTOBN4v",
         "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163139-JchZhUFlNTWU.jpg",
         "uiSelector": true
+      }
+    },
+    {
+      "url": "https://miruro.cx/watch/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3?ep=4",
+      "expected": {
+        "sync": true,
+        "title": "Ranma1/2 (2024) Season 3",
+        "identifier": "juZNWYRnOYRELpt-gouK7k83HEhT9qZ2",
+        "uiSelector": false,
+        "overviewUrl": "https://miruro.cx/info/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx209872-RBeVPqwejHFp.jpg",
+        "episode": 4,
+        "epList": {
+          "1": "https://miruro.cx/watch/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3?ep=1",
+          "2": "https://miruro.cx/watch/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3?ep=2",
+          "3": "https://miruro.cx/watch/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3?ep=3"
+        }
+      }
+    },
+    {
+      "url": "https://miruro.pw/watch/qsM8VP3YsFM6vf_WAVFC_O7MpoVy-icy/tensei-shitara-slime-datta-ken?ep=19",
+      "expected": {
+        "sync": true,
+        "title": "That Time I Got Reincarnated as a Slime",
+        "identifier": "qsM8VP3YsFM6vf_WAVFC_O7MpoVy-icy",
+        "uiSelector": false,
+        "overviewUrl": "https://miruro.pw/info/qsM8VP3YsFM6vf_WAVFC_O7MpoVy-icy/tensei-shitara-slime-datta-ken",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101280-tDxCVJm714nt.jpg",
+        "episode": 19
+      }
+    },
+    {
+      "url": "https://miruro.ws/info/PY-3UFes_366EOcdQiutUPQFmcTOBN4v/boku-no-hero-academia-7",
+      "expected": {
+        "sync": false,
+        "title": "My Hero Academia Season 7",
+        "identifier": "PY-3UFes_366EOcdQiutUPQFmcTOBN4v",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163139-JchZhUFlNTWU.jpg",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://miruro.cx/info/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3",
+      "expected": {
+        "sync": false,
+        "title": "Ranma1/2 (2024) Season 3",
+        "identifier": "juZNWYRnOYRELpt-gouK7k83HEhT9qZ2",
+        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx209872-RBeVPqwejHFp.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://miruro.cx/watch/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3?ep=1",
+          "2": "https://miruro.cx/watch/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3?ep=2",
+          "3": "https://miruro.cx/watch/juZNWYRnOYRELpt-gouK7k83HEhT9qZ2/ranma12-2024-season-3?ep=3"
+        }
       }
     }
   ]

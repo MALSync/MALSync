@@ -19,13 +19,28 @@ export const QiScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('h2').text().trim().run();
+      return $c
+        .querySelector('a.r-breadcrumb-link[href^="/series/"]')
+        .ifNotReturn()
+        .text()
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).replaceRegex('^\\d+-', '').trim().run();
     },
     getImage($c) {
-      return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
+      return $c
+        .querySelector('[property="og:image"]')
+        .ifNotReturn()
+        .getAttribute('content')
+        .ifNotReturn()
+        .setVariable('image')
+        .contains('/logo/')
+        .not()
+        .ifNotReturn()
+        .getVariable('image')
+        .run();
     },
     getOverviewUrl($c) {
       return $c
@@ -40,7 +55,7 @@ export const QiScans: PageInterface = {
         .coalesce(
           $c
             .title()
-            .regex('chapter (\\d+)', 1)
+            .regex('(?:chapter|ch\\.) (\\d+)', 1, 'i')
             .ifThen($c => $c.number().run())
             .run(),
           $c.url().urlPart(5).regex('chapter[_-](\\d+)', 1).run(),
@@ -51,8 +66,7 @@ export const QiScans: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.lucide-chevron-right')
-        .closest('a[href*="/chapter"]')
+        .querySelector('a[aria-label="Next chapter"][href*="/chapter"]')
         .ifNotReturn()
         .getAttribute('href')
         .urlAbsolute()
@@ -60,8 +74,10 @@ export const QiScans: PageInterface = {
     },
     readerConfig: [
       {
-        current: $c => $c.querySelectorAll('.container img[tabindex]').countAbove().run(),
-        total: $c => $c.querySelectorAll('.container img[tabindex]').length().run(),
+        current: $c =>
+          $c.querySelector('.r-page-counter').text().regex('(\\d+)\\s*/\\s*\\d+', 1).number().run(),
+        total: $c =>
+          $c.querySelector('.r-page-counter').text().regex('\\d+\\s*/\\s*(\\d+)', 1).number().run(),
       },
     ],
   },
@@ -90,13 +106,13 @@ export const QiScans: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.grid .p-4').run();
+      return $c.querySelectorAll('a.cl-row').run();
     },
     elementUrl($c) {
-      return $c.closest('a').ifNotReturn().getAttribute('href').urlAbsolute().run();
+      return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.find('h3').ifNotReturn().text().regex('Chapter (\\d+)', 1).number().run();
+      return $c.find('.cl-num').ifNotReturn().text().regex('Chapter (\\d+)', 1).number().run();
     },
   },
   lifecycle: {
@@ -116,10 +132,7 @@ export const QiScans: PageInterface = {
     },
     listChange($c) {
       return $c
-        .detectChanges(
-          $c.querySelector('.space-y-2 .grid').ifNotReturn().text().run(),
-          $c.trigger().run(),
-        )
+        .detectChanges($c.querySelector('.cl-list').ifNotReturn().text().run(), $c.trigger().run())
         .run();
     },
   },

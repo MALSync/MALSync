@@ -3,15 +3,15 @@
   "url": "https://qimanga.com",
   "testCases": [
     {
-      "url": "https://qimanga.com/series/reincarnated-murim-lord/chapter-88",
+      "url": "https://qimanga.com/series/i-shall-seal-the-heavens/chapter-50",
       "expected": {
         "sync": true,
-        "title": "Reincarnated Murim Lord",
-        "identifier": "reincarnated-murim-lord",
+        "title": "I Shall Seal The Heavens",
+        "identifier": "i-shall-seal-the-heavens",
         "image": null,
-        "overviewUrl": "https://qimanga.com/series/reincarnated-murim-lord",
-        "episode": 88,
-        "nextEpUrl": "https://qimanga.com/series/reincarnated-murim-lord/chapter-89",
+        "overviewUrl": "https://qimanga.com/series/i-shall-seal-the-heavens",
+        "episode": 50,
+        "nextEpUrl": "https://qimanga.com/series/i-shall-seal-the-heavens/chapter-51",
         "uiSelector": false
       }
     },
@@ -21,11 +21,11 @@
         "sync": false,
         "title": "I Shall Seal The Heavens",
         "identifier": "i-shall-seal-the-heavens",
-        "image": "https://storage.qimanhwa.com/upload/2025/09/28/2f827db8-bfd3-4caf-b396-47b3cc72b489.webp",
+        "image": "https://media.qimanhwa.com/file/qiscans/upload/upload/2025/09/28/2f827db8-bfd3-4caf-b396-47b3cc72b489.webp",
         "uiSelector": true,
         "epList": {
-          "19": "https://qimanga.com/series/i-shall-seal-the-heavens/chapter-19",
-          "18": "https://qimanga.com/series/i-shall-seal-the-heavens/chapter-18"
+          "51": "https://qimanga.com/series/i-shall-seal-the-heavens/chapter-51",
+          "50": "https://qimanga.com/series/i-shall-seal-the-heavens/chapter-50"
         }
       }
     },
@@ -35,12 +35,11 @@
         "sync": false,
         "title": "Nano Machine",
         "identifier": "nano-machine",
-        "image": "https://storage.qimanhwa.com/upload/series/4190634673-nano-machine/wp-featured-7780/featured.png",
+        "image": "https://media.qimanhwa.com/file/qiscans/upload/2026/04/01/1775080554142-nX3D4K82-AIRetouch___________________.webp",
         "uiSelector": true,
         "epList": {
-          "290": "https://qimanga.com/series/4190634673-nano-machine/chapter-290",
-          "291": "https://qimanga.com/series/4190634673-nano-machine/chapter-291",
-          "292": "https://qimanga.com/series/4190634673-nano-machine/chapter-292"
+          "309": "https://qimanga.com/series/4190634673-nano-machine/chapter-309",
+          "310": "https://qimanga.com/series/4190634673-nano-machine/chapter-310-chapter-309-its-not-you-less6greater"
         }
       }
     },
@@ -58,14 +57,14 @@
       }
     },
     {
-      "url": "https://qimanga.com/series/4190634673-nano-machine/chapter-293",
+      "url": "https://qimanga.com/series/4190634673-nano-machine/chapter-333-chapter-333-special-forces-less6greater",
       "expected": {
         "sync": true,
         "title": "Nano Machine",
         "identifier": "nano-machine",
-        "image": null,
+        "image": "https://media.qimanga.com/file/qiscans/upload/2026/10/07/1791399479465-KulZi_-image.webp",
         "overviewUrl": "https://qimanga.com/series/4190634673-nano-machine",
-        "episode": 293,
+        "episode": 333,
         "nextEpUrl": null,
         "uiSelector": false
       }

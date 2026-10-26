@@ -21,7 +21,7 @@
         "sync": false,
         "title": "海月のうた",
         "identifier": "le-chant-de-la-meduse",
-        "image": "https://cdn.imgchest.com/files/ffcff507f252.png",
+        "image": "https://cdnic.bigsolo.org/files/ffcff507f252.png",
         "uiSelector": true,
         "epList": {
           "0": "https://bigsolo.org/manga/le-chant-de-la-meduse/0/1"
@@ -36,6 +36,7 @@
         "identifier": "magical-girl-dandelion",
         "overviewUrl": "https://bigsolo.org/manga/magical-girl-dandelion",
         "episode": 2,
+        "nextEpUrl": "https://bigsolo.org/manga/magical-girl-dandelion/3/1",
         "uiSelector": false
       }
     },
@@ -57,7 +58,7 @@
         "sync": false,
         "title": "NO＼NAME",
         "identifier": "noname",
-        "image": "https://cdn.imgchest.com/files/269b2198c635.jpeg",
+        "image": "https://cdnic.bigsolo.org/files/269b2198c635.jpeg",
         "uiSelector": true,
         "epList": {
           "1": "https://bigsolo.org/manga/noname/1/1",

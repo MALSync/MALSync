@@ -5,6 +5,29 @@ function slashCounter($c: ChibiGenerator<unknown>, selector: string, index: numb
   return $c.querySelector(selector).ifNotReturn().text().split('/').at(index).trim();
 }
 
+// "Page 3 / 22" button of the page select
+function pageCounter($c: ChibiGenerator<unknown>) {
+  return $c
+    .querySelectorAll('select + button')
+    .arrayFind($item => $item.text().matches('\\d+\\s*/\\s*\\d+').run())
+    .ifNotReturn()
+    .text();
+}
+
+function chapterId($c: ChibiGenerator<unknown>) {
+  return $c.url().urlStrip().urlPart(5);
+}
+
+// page images of the current chapter
+function chapterImages($c: ChibiGenerator<unknown>) {
+  return $c.querySelectorAll(
+    $c
+      .string('img[src*="/static/pages/"][src*="/<chapterId>/"]')
+      .replace('<chapterId>', $c.exec(chapterId).run())
+      .run(),
+  );
+}
+
 export function chapterLabelNumber($label: ChibiGenerator<string>) {
   return $label
     .setVariable('chapterLabel')
@@ -67,11 +90,15 @@ export const Atsumaru: PageInterface = {
           slashCounter($c, 'span.relative:last-child', 0).run(),
           chapterLabelNumber(
             $c
-              .querySelector('.items-center select.cursor-pointer')
+              // chapter select, labeled "Page <chapter>", value is the chapter id
+              .querySelectorAll('select')
+              .arrayFind($item => $item.elementValue().equals($c.exec(chapterId).run()).run())
               .ifNotReturn()
               .selectedText()
               .trim(),
           ).run(),
+          // "<title> - Chapter 131", the selects above are missing when the drawer shows the comments
+          chapterLabelNumber($c.title().regex('.* - (.+)$', 1).ifNotReturn()).run(),
         )
         .number()
         .run();
@@ -83,8 +110,23 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        current: $c => slashCounter($c, 'span.relative', 0).number().run(),
-        total: $c => slashCounter($c, 'span.relative', 1).number().run(),
+        condition: $c => $c.exec(pageCounter).boolean().run(),
+        current: $c => $c.exec(pageCounter).regex('(\\d+)\\s*/\\s*\\d+', 1).number().run(),
+        total: $c => $c.exec(pageCounter).regex('\\d+\\s*/\\s*(\\d+)', 1).number().run(),
+      },
+      {
+        // page mode without the page counter (drawer shows the comments), "#rs=p:<0-based page>"
+        current: $c =>
+          $c
+            .url()
+            .matches('#rs=(?:.*;)?p:\\d')
+            .ifNotReturn($c.number(1).run())
+            .url()
+            .regex('#rs=(?:.*;)?p:(\\d+)', 1)
+            .number()
+            .calculate('+', 1)
+            .run(),
+        total: $c => $c.exec(chapterImages).length().run(),
       },
     ],
   },
@@ -177,7 +219,7 @@ export const Atsumaru: PageInterface = {
     },
     ready($c) {
       return $c
-        .detectChanges($c.url().urlPart(5).run(), $c.trigger().run())
+        .detectChanges($c.exec(chapterId).run(), $c.trigger().run())
         .detectChanges($c.url().urlPart(4).run(), $c.trigger().run())
         .domReady()
         .trigger()

@@ -9,14 +9,14 @@ type SeriesMetadata = {
 
 export const FlixMomo: PageInterface = {
   name: 'Flixmomo',
-  domain: 'https://flixmomo.app',
+  domain: 'https://flixmomo.st',
   languages: ['English'],
   type: 'anime',
   features: {
     requestProxy: true,
   },
   urls: {
-    match: ['*://*.flixmomo.app/*'],
+    match: ['*://*.flixmomo.st/*', '*://*.flixmomo.app/*'],
     player: {
       vidsrc: ['*://vsembed.su/*', '*://cloudorchestranova.com/*'],
       vidcore: ['*://vidcore.net/*'],

@@ -7,7 +7,9 @@
       "*://www.tranimeizle.co/*",
       "*://*.tranimeizle.top/*",
       "*://tranimeizle.io/*",
-      "*://www.tranimeizle.io/*"
+      "*://www.tranimeizle.io/*",
+      "*://tranimeizle.live/*",
+      "*://www.tranimeizle.live/*"
     ]
   }
 }

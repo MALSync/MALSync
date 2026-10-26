@@ -235,6 +235,7 @@ module.exports = {
       '*://*.miixdrop.com/e/*',
       '*://*.miixdrop.top/e/*',
       '*://*.mxdrop.top/e/*',
+      '*://*.mxdrop.click/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -509,6 +510,8 @@ module.exports = {
       '*://jamesbornmain.com/e/*',
       '*://jeremyparticipantanything.com/e/*',
       '*://teresapoliticallearn.com/e/*',
+      '*://derricknationtop.com/e/*',
+      '*://ashleyhardat.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

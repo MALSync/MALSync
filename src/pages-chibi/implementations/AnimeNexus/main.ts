@@ -34,7 +34,7 @@ export const AnimeNexus: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('a[href*="episode"]')
+        .querySelector('a[href*="/watch/"]')
         .ifNotReturn()
         .getAttribute('href')
         .urlAbsolute()

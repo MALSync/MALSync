@@ -8,7 +8,7 @@
         "sync": true,
         "title": "Solo Leveling",
         "identifier": "1",
-        "image": "https://cdn.flamecomics.xyz/series/1/thumbnail.png",
+        "image": "https://cdn.flamecomics.xyz/uploads/images/series/1/thumbnail.png?1771776575",
         "overviewUrl": "https://flamecomics.xyz/series/1",
         "episode": 145,
         "uiSelector": false
@@ -20,10 +20,11 @@
         "sync": false,
         "title": "Solo Leveling",
         "identifier": "1",
-        "image": "https://cdn.flamecomics.xyz/series/1/thumbnail.png",
+        "image": "https://cdn.flamecomics.xyz/uploads/images/series/1/thumbnail.png?1771776575",
         "uiSelector": true,
         "epList": {
-          "115": "https://flamecomics.xyz/series/1/c5e48b5cc309810c"
+          "115": "https://flamecomics.xyz/series/1/c5e48b5cc309810c",
+          "145": "https://flamecomics.xyz/series/1/a51617bdb0da930f"
         }
       }
     }

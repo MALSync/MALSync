@@ -6,7 +6,7 @@
       "url": "https://ranobelib.me/ru/26690--omniscient-readers-viewpoint-novel/read/v1/c1.1",
       "expected": {
         "sync": true,
-        "title": "Jeonjijeog dogja sijeom (Novel)",
+        "title": "Jeonjijeog dogja sijeom",
         "identifier": "26690",
         "overviewUrl": "https://ranobelib.me/ru/book/26690--omniscient-readers-viewpoint-novel",
         "nextEpUrl": "https://ranobelib.me/ru/26690--omniscient-readers-viewpoint-novel/read/v1/c1.2",
@@ -21,7 +21,7 @@
         "title": "Guǐmì zhī Zhǔ",
         "identifier": "20818",
         "overviewUrl": "https://ranobelib.me/ru/book/20818--lord-of-the-mysteries",
-        "image": "https://cover.imglib.info/uploads/cover/lord-of-the-mysteries/cover/79b8af3a-542a-4574-b1f3-2e7d3d72ce5f.jpg",
+        "image": "https://cover.cdnlibs.org/uploads/cover/lord-of-the-mysteries/cover/922d2ced-06ae-42ab-b4cd-8dcd2cdc895a.jpg",
         "uiSelector": true
       }
     }

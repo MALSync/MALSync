@@ -3,29 +3,29 @@
   "url": "https://toonily.com/",
   "testCases": [
     {
-      "url": "https://toonily.com/serie/skeleton-protect-dungeon/chapter-125/",
+      "url": "https://toonily.com/serie/skeleton-protect-dungeon-b5ce2d53/chapter-125/",
       "expected": {
         "sync": true,
         "title": "Skeleton Soldier Couldn’t Protect the Dungeon",
-        "identifier": "skeleton-protect-dungeon",
-        "image": "https://toonily.com/wp-content/uploads/2020/05/Skeleton-Soldier-Couldnt-Protect-the-Dungeon-manhwa.jpg",
-        "overviewUrl": "https://toonily.com/serie/skeleton-protect-dungeon/",
-        "nextEpUrl": "https://toonily.com/serie/skeleton-protect-dungeon/chapter-126/",
+        "identifier": "skeleton-protect-dungeon-b5ce2d53",
+        "image": "https://static.tnlycdn.com/2020/05/Skeleton-Soldier-Couldnt-Protect-the-Dungeon-manhwa.jpg",
+        "overviewUrl": "https://toonily.com/serie/skeleton-protect-dungeon-b5ce2d53/",
+        "nextEpUrl": "https://toonily.com/serie/skeleton-protect-dungeon-b5ce2d53/chapter-126/",
         "episode": 125,
         "uiSelector": false
       }
     },
     {
-      "url": "https://toonily.com/serie/skeleton-protect-dungeon/",
+      "url": "https://toonily.com/serie/skeleton-protect-dungeon-b5ce2d53/",
       "expected": {
         "sync": false,
         "title": "Skeleton Soldier Couldn’t Protect the Dungeon",
-        "identifier": "skeleton-protect-dungeon",
-        "image": "https://toonily.com/wp-content/uploads/2020/05/Skeleton-Soldier-Couldnt-Protect-the-Dungeon-manhwa.jpg",
+        "identifier": "skeleton-protect-dungeon-b5ce2d53",
+        "image": "https://static.tnlycdn.com/2020/05/Skeleton-Soldier-Couldnt-Protect-the-Dungeon-manhwa.jpg",
         "uiSelector": true,
         "epList": {
-          "120": "https://toonily.com/serie/skeleton-protect-dungeon/chapter-120/",
-          "125": "https://toonily.com/serie/skeleton-protect-dungeon/chapter-125/"
+          "120": "https://toonily.com/serie/skeleton-protect-dungeon-b5ce2d53/chapter-120/",
+          "125": "https://toonily.com/serie/skeleton-protect-dungeon-b5ce2d53/chapter-125/"
         }
       }
     }

@@ -15,7 +15,11 @@ export const FlameScans: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('[class*="TopChapterNavbar_series_title"]').text().trim().run();
+      return $c
+        .querySelector('[class*="TopChapterNavbar"][class*="series_title"]')
+        .text()
+        .trim()
+        .run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
@@ -28,7 +32,7 @@ export const FlameScans: PageInterface = {
     },
     getEpisode($c) {
       return $c
-        .querySelector('[class*="TopChapterNavbar_chapter_title"]')
+        .querySelector('[class*="TopChapterNavbar"][class*="chapter_title"]')
         .text()
         .regex('Chapter[ _-]?(\\d+)', 1)
         .number()
@@ -67,7 +71,7 @@ export const FlameScans: PageInterface = {
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('[class*="ChapterCard_chapterWrapper"]').run();
+      return $c.querySelectorAll('[class*="ChapterCard"][class*="chapterWrapper"]').run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
