@@ -112,6 +112,13 @@
     ]
   },
   "0.12.5": {
+    "AnimeUnity": [
+      "*://*.animeunity.co/anime/*"
+    ],
+    "TRanimeizle": [
+      "*://tranimeizle.live/*",
+      "*://www.tranimeizle.live/*"
+    ],
     "iframe": [
       "*://*.mxdrop.top/e/*",
       "*://*.mxdrop.click/e/*",
@@ -119,7 +126,9 @@
       "*://johnfullwonder.com/e/*",
       "*://jamesbornmain.com/e/*",
       "*://jeremyparticipantanything.com/e/*",
-      "*://teresapoliticallearn.com/e/*"
+      "*://teresapoliticallearn.com/e/*",
+      "*://derricknationtop.com/e/*",
+      "*://ashleyhardat.com/e/*"
     ]
   }
 }

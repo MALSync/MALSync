@@ -18,6 +18,16 @@ function chapterId($c: ChibiGenerator<unknown>) {
   return $c.url().urlStrip().urlPart(5);
 }
 
+// page images of the current chapter
+function chapterImages($c: ChibiGenerator<unknown>) {
+  return $c.querySelectorAll(
+    $c
+      .string('img[src*="/static/pages/"][src*="/<chapterId>/"]')
+      .replace('<chapterId>', $c.exec(chapterId).run())
+      .run(),
+  );
+}
+
 export function chapterLabelNumber($label: ChibiGenerator<string>) {
   return $label
     .setVariable('chapterLabel')
@@ -87,6 +97,8 @@ export const Atsumaru: PageInterface = {
               .selectedText()
               .trim(),
           ).run(),
+          // "<title> - Chapter 131", the selects above are missing when the drawer shows the comments
+          chapterLabelNumber($c.title().regex('.* - (.+)$', 1).ifNotReturn()).run(),
         )
         .number()
         .run();
@@ -98,8 +110,23 @@ export const Atsumaru: PageInterface = {
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
+        condition: $c => $c.exec(pageCounter).boolean().run(),
         current: $c => $c.exec(pageCounter).regex('(\\d+)\\s*/\\s*\\d+', 1).number().run(),
         total: $c => $c.exec(pageCounter).regex('\\d+\\s*/\\s*(\\d+)', 1).number().run(),
+      },
+      {
+        // page mode without the page counter (drawer shows the comments), "#rs=p:<0-based page>"
+        current: $c =>
+          $c
+            .url()
+            .matches('#rs=(?:.*;)?p:\\d')
+            .ifNotReturn($c.number(1).run())
+            .url()
+            .regex('#rs=(?:.*;)?p:(\\d+)', 1)
+            .number()
+            .calculate('+', 1)
+            .run(),
+        total: $c => $c.exec(chapterImages).length().run(),
       },
     ],
   },
