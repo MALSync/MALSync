@@ -40,8 +40,6 @@ export const FindAnime: PageInterface = {
   urls: {
     match: ['*://*.findanime.me/*'],
     player: {
-      // vk.com is covered by the global player list, but its embeds redirect to vk.ru
-      vk: ['*://*.vk.ru/*'],
       farmedia: ['*://*.farmedia.live/*'],
     },
   },

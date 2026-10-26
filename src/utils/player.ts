@@ -34,36 +34,30 @@ export class PlayerSingleton {
 
   public startTracking() {
     setInterval(() => {
-      if (this.trackPlayers(document.getElementsByTagName('video'))) return;
-      // Some players (vk) render the video inside an open shadow root
-      if (this.trackPlayers(getShadowVideos())) return;
+      const players = document.getElementsByTagName('video');
+      for (let i = 0; i < players.length; i++) {
+        const player: HTMLVideoElement = players[i];
+        const { duration } = player;
+        const current = player.currentTime;
+        const { paused } = player;
+
+        if (duration && duration > 60) {
+          const item = {
+            current,
+            duration,
+            paused,
+          };
+          logger.debug(window.location.href, item);
+          this.currentPlayer = player;
+          this.notifyListeners(item, player);
+          playerExtras(item, player);
+          return;
+        }
+      }
       this.currentPlayer = null;
     }, 1000);
 
     return this;
-  }
-
-  private trackPlayers(players: ArrayLike<HTMLVideoElement>) {
-    for (let i = 0; i < players.length; i++) {
-      const player: HTMLVideoElement = players[i];
-      const { duration } = player;
-      const current = player.currentTime;
-      const { paused } = player;
-
-      if (duration && duration > 60) {
-        const item = {
-          current,
-          duration,
-          paused,
-        };
-        logger.debug(window.location.href, item);
-        this.currentPlayer = player;
-        this.notifyListeners(item, player);
-        playerExtras(item, player);
-        return true;
-      }
-    }
-    return false;
   }
 
   protected proxySetTime: ((time: number) => void) | null = null;
@@ -102,19 +96,6 @@ export class PlayerSingleton {
     }
     return PlayerSingleton.instance;
   }
-}
-
-// Players that render their video inside an open shadow root
-const shadowVideoHosts = [
-  '.shadow-root-container', // vk
-].join(',');
-
-function getShadowVideos(): HTMLVideoElement[] {
-  const videos: HTMLVideoElement[] = [];
-  document.querySelectorAll(shadowVideoHosts).forEach(host => {
-    if (host.shadowRoot) videos.push(...Array.from(host.shadowRoot.querySelectorAll('video')));
-  });
-  return videos;
 }
 
 let videoIdentifier = '';
