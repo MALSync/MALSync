@@ -1,0 +1,59 @@
+{
+  "title": "Dragonroll",
+  "url": "https://www.dragonroll.to",
+  "testCases": [
+    {
+      "url": "https://www.dragonroll.to/watch/frieren-beyond-journey-s-end-c6fbj/45594?language=sub",
+      "expected": {
+        "sync": true,
+        "title": "Frieren: Beyond Journey's End",
+        "identifier": "frieren-beyond-journey-s-end-c6fbj",
+        "episode": 1,
+        "overviewUrl": "https://www.dragonroll.to/title/frieren-beyond-journey-s-end-c6fbj",
+        "nextEpUrl": "https://www.dragonroll.to/watch/frieren-beyond-journey-s-end-c6fbj/45595?language=sub",
+        "uiSelector": false,
+        "epList": {
+          "1": "https://www.dragonroll.to/watch/frieren-beyond-journey-s-end-c6fbj/45594?language=sub&autoplay=1",
+          "2": "https://www.dragonroll.to/watch/frieren-beyond-journey-s-end-c6fbj/45595?language=sub&autoplay=1",
+          "3": "https://www.dragonroll.to/watch/frieren-beyond-journey-s-end-c6fbj/45596?language=sub&autoplay=1"
+        }
+      }
+    },
+    {
+      "url": "https://www.dragonroll.to/watch/frieren-beyond-journey-s-end-c6fbj/45621?language=sub",
+      "expected": {
+        "sync": true,
+        "title": "Frieren: Beyond Journey's End",
+        "identifier": "frieren-beyond-journey-s-end-c6fbj",
+        "episode": 28,
+        "overviewUrl": "https://www.dragonroll.to/title/frieren-beyond-journey-s-end-c6fbj",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.dragonroll.to/title/frieren-beyond-journey-s-end-c6fbj",
+      "expected": {
+        "sync": false,
+        "title": "Frieren: Beyond Journey's End",
+        "identifier": "frieren-beyond-journey-s-end-c6fbj",
+        "image": "https://cdn.anipixcdn.co/thumbnail/bb6d2babd7797d94d8f4a8600bc9b44e.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://www.dragonroll.to/watch/frieren-beyond-journey-s-end-c6fbj/45594?language=sub&autoplay=1",
+          "2": "https://www.dragonroll.to/watch/frieren-beyond-journey-s-end-c6fbj/45595?language=sub&autoplay=1",
+          "28": "https://www.dragonroll.to/watch/frieren-beyond-journey-s-end-c6fbj/45621?language=sub&autoplay=1"
+        }
+      }
+    },
+    {
+      "url": "https://www.dragonroll.to/title/sousou-no-frieren-marumaru-no-mahou-mini-anime-5pfgv",
+      "expected": {
+        "sync": false,
+        "title": "Sousou no Frieren - Marumaru no Mahou (Mini Anime)",
+        "identifier": "sousou-no-frieren-marumaru-no-mahou-mini-anime-5pfgv",
+        "image": "https://cdn.anipixcdn.co/thumbnail/44119006254708ef096f25a96700dfb1.jpg",
+        "uiSelector": true
+      }
+    }
+  ]
+}
