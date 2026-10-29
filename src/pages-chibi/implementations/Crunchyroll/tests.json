@@ -192,6 +192,32 @@
         "season": 1,
         "ruleSet": "cour"
       }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/GQJUG24NV/witch-of-the-starry-skies",
+      "expected": {
+        "sync": true,
+        "title": "Cardfight!! Vanguard overDress",
+        "identifier": "GXJHM3NJ5|cardfight-vanguard-willdress-season-2",
+        "overviewUrl": "https://www.crunchyroll.com/series/GXJHM3NJ5",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/G50UZ5JKV/beginning-of-the-end",
+        "episode": 15,
+        "season": 15,
+        "ruleSet": "cour"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/watch/G50UZ1V17/cooking-class",
+      "expected": {
+        "sync": true,
+        "title": "horimiya : The Missing Pieces",
+        "identifier": "G9VHN9P43|horimiya-the-missing-pieces",
+        "overviewUrl": "https://www.crunchyroll.com/series/G9VHN9P43",
+        "nextEpUrl": "https://www.crunchyroll.com/watch/GWDU8QJQW/sports-day",
+        "episode": 2,
+        "malUrl": "https://myanimelist.net/anime/54856",
+        "ruleSet": "cour"
+      }
     }
   ]
 }
