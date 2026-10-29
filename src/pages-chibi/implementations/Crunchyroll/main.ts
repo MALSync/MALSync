@@ -1,5 +1,6 @@
 import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
+import type { RuleSetType } from '../../../_provider/Search/rulesClass';
 
 type CREpisode = {
   type: 'episode';
@@ -16,6 +17,7 @@ type CREpisode = {
     season_sequence_number: number;
     season_slug_title: string;
     season_title: string;
+    versions?: { original: boolean; season_guid: string }[];
     sequence_number: number;
     series_id: string;
     series_slug_title: string;
@@ -33,6 +35,7 @@ type CRSeason = {
   series_id: string;
   slug_title: string;
   number_of_episodes: number;
+  versions?: { original: boolean; guid: string }[];
 };
 type CRMetadata = CREpisode;
 
@@ -50,6 +53,37 @@ type SeasonRequestData = {
 
 function meta<P = CRMetadata>($c: ChibiGenerator<unknown>) {
   return $c.getGlobalVariable<P>('metadataGlobal');
+}
+
+type CatalogOverride = {
+  season?: number;
+  ruleSet: RuleSetType;
+  offset?: number;
+  malId?: number;
+};
+
+type Catalog = {
+  series: Record<string, { seasons: Record<string, { override?: CatalogOverride }> }>;
+};
+
+// Short keys of the overrides compiled into the page: season, rule set, episode offset, MAL id
+type CompactOverride = { s?: number; r: RuleSetType; o?: number; m?: number };
+
+// Overrides of catalog.json by season id, filtered and shortened at build time
+function compactOverrides(catalog: Catalog) {
+  const overrides: Record<string, CompactOverride> = {};
+  Object.values(catalog.series).forEach(series =>
+    Object.entries(series.seasons).forEach(([seasonId, { override }]) => {
+      if (!override) return;
+      overrides[seasonId] = {
+        s: override.season,
+        r: override.ruleSet,
+        o: override.offset,
+        m: override.malId,
+      };
+    }),
+  );
+  return overrides;
 }
 
 export const Crunchyroll: PageInterface = {
@@ -113,7 +147,11 @@ export const Crunchyroll: PageInterface = {
         .if(
           $c.exec(isSpecialEpisode).run(),
           $c.number(0).run(),
-          meta($c).get('episode_metadata').get('episode_number').run(),
+          meta($c)
+            .get('episode_metadata')
+            .get('episode_number')
+            .calculate('+', $c.exec(getEpisodeOffset).run())
+            .run(),
         )
         .run();
     },
@@ -131,6 +169,9 @@ export const Crunchyroll: PageInterface = {
         .setVariable('isAbsolute')
         .exec(getRuleSet)
         .run();
+    },
+    getMalUrl($c) {
+      return $c.exec(setSyncSeasonVariables).exec(getMalUrl).run();
     },
     nextEpUrl($c) {
       return $c
@@ -182,6 +223,9 @@ export const Crunchyroll: PageInterface = {
     getRuleSet($c) {
       return $c.exec(setOverviewSeasonVariables).exec(getRuleSet).run();
     },
+    getMalUrl($c) {
+      return $c.exec(setOverviewSeasonVariables).exec(getMalUrl).run();
+    },
     getImage($c) {
       return $c.string('').run();
     },
@@ -208,7 +252,13 @@ export const Crunchyroll: PageInterface = {
   },
   lifecycle: {
     setup($c) {
-      return $c.addStyle(require('./style.less?raw').toString()).run();
+      return $c
+        .addStyle(require('./style.less?raw').toString())
+        .setGlobalVariable(
+          'catalogGlobal',
+          $c.object(compactOverrides(require('./catalog.json'))).run(),
+        )
+        .run();
     },
     ready($c) {
       return $c
@@ -329,6 +379,8 @@ function getTitle($c: ChibiGenerator<unknown>) {
 
 function setSyncSeasonVariables($c: ChibiGenerator<unknown>) {
   return $c
+    .setVariable('season.id', $c.exec(getSyncSeasonId).run())
+    .setVariable('season.override', $c.exec(getOverride).run())
     .setVariable('season.slug', meta($c).get('episode_metadata').get('season_slug_title').run())
     .setVariable(
       'season.seriesSlug',
@@ -346,6 +398,8 @@ function setOverviewSeasonVariables($c: ChibiGenerator<unknown>) {
   return $c
     .setVariable('activeTitle', $c.exec(getActiveSeasonTitle).run())
     .exec(getActiveSeason)
+    .setVariable('season.id', $c.exec(getOverviewSeasonId).run())
+    .setVariable('season.override', $c.exec(getOverride).run())
     .setVariable('season.slug', $c.getVariable('foundSeason').get('slug_title').run())
     .setVariable(
       'season.seriesSlug',
@@ -378,11 +432,56 @@ function isSpecialSeason($c: ChibiGenerator<unknown>) {
   );
 }
 
+type CRVersion = { original: boolean; guid: string; season_guid: string };
+
+// Every audio version (dubs) of a season has its own id, the catalog has the id of the original version
+function getSyncSeasonId($c: ChibiGenerator<unknown>) {
+  return $c.coalesce(
+    (
+      (
+        $c.coalesce(
+          meta($c).get('episode_metadata').get('versions').run(),
+          $c.array([]).run(),
+        ) as unknown as ChibiGenerator<CRVersion[]>
+      ).arrayFind(version => version.get('original').run()) as ChibiGenerator<CRVersion>
+    )
+      .get('season_guid')
+      .run(),
+    meta($c).get('episode_metadata').get('season_id').run(),
+  );
+}
+
+function getOverviewSeasonId($c: ChibiGenerator<unknown>) {
+  return $c.coalesce(
+    (
+      (
+        $c.coalesce(
+          $c.getVariable<CRSeason>('foundSeason').get('versions').run(),
+          $c.array([]).run(),
+        ) as unknown as ChibiGenerator<CRVersion[]>
+      ).arrayFind(version => version.get('original').run()) as ChibiGenerator<CRVersion>
+    )
+      .get('guid')
+      .run(),
+    $c.getVariable<CRSeason>('foundSeason').get('id').run(),
+  );
+}
+
+function getOverride($c: ChibiGenerator<unknown>) {
+  return $c.coalesce(
+    $c
+      .getGlobalVariable<Record<string, CompactOverride>>('catalogGlobal')
+      .get($c.getVariable<string>('season.id').run())
+      .run(),
+    $c.object({}).run(),
+  );
+}
+
 // season_number counts every entry of the season list (movies, specials, region locked seasons),
 // so it is often too high. season_display_number is right when set (about a quarter of the seasons),
 // otherwise the language independent slug mostly has the real number.
 // Without a number no season is returned (NaN) and the rules infer it from the matched entry.
-function getSeason($c: ChibiGenerator<unknown>) {
+function getDetectedSeason($c: ChibiGenerator<unknown>) {
   const seasonPattern = '(?:^|-)season-?([1-9]|[12]\\d|30)(?=-|$)';
   return (
     $c
@@ -438,7 +537,7 @@ function getSeason($c: ChibiGenerator<unknown>) {
   );
 }
 
-function getRuleSet($c: ChibiGenerator<unknown>) {
+function getDetectedRuleSet($c: ChibiGenerator<unknown>) {
   return $c.if(
     $c.exec(isSpecialSeason).run(),
     $c.ruleSet('off').run(),
@@ -450,4 +549,71 @@ function getRuleSet($c: ChibiGenerator<unknown>) {
       )
       .run(),
   );
+}
+
+function getSeason($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable<CompactOverride>('season.override')
+    .get('s')
+    .ifThen($o =>
+      $o
+        .getVariable<CompactOverride>('season.override')
+        .get('s')
+        .log('Catalog override season')
+        .return()
+        .run(),
+    )
+    .boolean(true)
+    .ifThen($d => $d.exec(getDetectedSeason).return().run()) as unknown as ChibiGenerator<number>;
+}
+
+function getRuleSet($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable<CompactOverride>('season.override')
+    .get('r')
+    .ifThen($o =>
+      $o
+        .getVariable<CompactOverride>('season.override')
+        .get('r')
+        .log('Catalog override rule set')
+        .return()
+        .run(),
+    )
+    .boolean(true)
+    .ifThen($d =>
+      $d.exec(getDetectedRuleSet).return().run(),
+    ) as unknown as ChibiGenerator<RuleSetType>;
+}
+
+function getMalUrl($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable<CompactOverride>('season.override')
+    .get('m')
+    .ifNotReturn()
+    .log('Catalog override MAL id')
+    .ifThen($o =>
+      $o
+        .providerUrlUtility({
+          malId: $o.getVariable<CompactOverride>('season.override').get('m').run(),
+        })
+        .return()
+        .run(),
+    ) as unknown as ChibiGenerator<string | boolean>;
+}
+
+// Episode offset of the catalog: TVDB episode = Crunchyroll episode + offset
+function getEpisodeOffset($c: ChibiGenerator<unknown>) {
+  return (
+    $c.coalesce(
+      $c
+        .getGlobalVariable<Record<string, CompactOverride>>('catalogGlobal')
+        .get($c.exec(getSyncSeasonId).run())
+        .run(),
+      $c.object({}).run(),
+    ) as unknown as ChibiGenerator<CompactOverride>
+  )
+    .get('o')
+    .setVariable('episodeOffset')
+    .ifThen($o => $o.log('Catalog override episode offset').run())
+    .coalesce($c.getVariable<number>('episodeOffset').run(), $c.number(0).run());
 }
