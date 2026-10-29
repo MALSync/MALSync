@@ -1004,7 +1004,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -1308,7 +1312,11 @@
           "number": 2,
           "display": "",
           "episodes": 6,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 59369
+          }
         }
       }
     },
@@ -1547,7 +1555,11 @@
           "number": 2,
           "display": "",
           "episodes": 24,
-          "regions": ["AE", "BE", "BG", "BR", "CA", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "BE", "BG", "BR", "CA", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -1587,7 +1599,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -1954,7 +1970,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -2608,7 +2628,11 @@
           "number": 1,
           "display": "",
           "episodes": 47,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -3733,7 +3757,11 @@
           "number": 1,
           "display": "2",
           "episodes": 26,
-          "regions": ["AU", "BR", "CA", "GB", "IN", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "IN", "MX", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -4659,7 +4687,11 @@
           "number": 4,
           "display": "3",
           "episodes": 64,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -4907,7 +4939,10 @@
           "number": 4,
           "display": "",
           "episodes": 3,
-          "regions": ["AU", "BE", "BR", "CA", "FR", "GB", "ID", "IN", "MX", "TH", "TW", "US"]
+          "regions": ["AU", "BE", "BR", "CA", "FR", "GB", "ID", "IN", "MX", "TH", "TW", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         }
       }
     },
@@ -5147,7 +5182,11 @@
           "number": 1,
           "display": "",
           "episodes": 8,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -5946,7 +5985,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GRZXCMN1W": {
           "title": "Miss Kobayashi's Dragon Maid S Short Animation Series",
@@ -6105,7 +6148,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "TH", "TW", "UA", "US"]
+          "regions": ["AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GRDQCGKJ0": {
           "title": "Blue Exorcist -Shimane Illuminati Saga-",
@@ -6113,7 +6160,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "G609CX8W1": {
           "title": "Blue Exorcist -Beyond the Snow Saga-",
@@ -6121,7 +6172,11 @@
           "number": 4,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         },
         "G6E5CQE28": {
           "title": "Blue Exorcist -The Blue Night Saga-",
@@ -6129,7 +6184,11 @@
           "number": 5,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 5,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -6448,7 +6507,11 @@
           "number": 3,
           "display": "",
           "episodes": 8,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "G6K5CN118": {
           "title": "Star Blazers: Space Battleship Yamato 3199",
@@ -6456,7 +6519,11 @@
           "number": 4,
           "display": "",
           "episodes": 22,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -6488,7 +6555,11 @@
           "number": 5,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 5,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -6631,7 +6702,11 @@
           "number": 5,
           "display": "",
           "episodes": 2,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 41842
+          }
         },
         "GY8VD57GY": {
           "title": "Specials",
@@ -6655,7 +6730,11 @@
           "number": 11,
           "display": "11",
           "episodes": 4,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 5,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -6671,7 +6750,11 @@
           "number": 1,
           "display": "1",
           "episodes": 27,
-          "regions": ["BR", "CA", "GB", "MX", "US"]
+          "regions": ["BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 7,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -6751,7 +6834,10 @@
           "number": 1,
           "display": "",
           "episodes": 22,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         },
         "GRX045EP6": {
           "title": "Series 1, Arc 2",
@@ -6759,7 +6845,10 @@
           "number": 2,
           "display": "",
           "episodes": 34,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         },
         "G65VEZZP6": {
           "title": "Series 1, Arc 3",
@@ -6767,7 +6856,10 @@
           "number": 3,
           "display": "",
           "episodes": 25,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         },
         "GYX04582R": {
           "title": "Series 1, Arc 4",
@@ -6775,7 +6867,10 @@
           "number": 4,
           "display": "",
           "episodes": 27,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         },
         "GR9PJZK46": {
           "title": "Series 2, Arc 1",
@@ -6783,7 +6878,10 @@
           "number": 5,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         },
         "GRNQ12GJR": {
           "title": "Series 2, Arc 2",
@@ -6791,7 +6889,10 @@
           "number": 6,
           "display": "",
           "episodes": 30,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         }
       }
     },
@@ -7254,7 +7355,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "G6P8CXEWM": {
           "title": "POP TEAM EPIC Season 2",
@@ -7469,7 +7574,11 @@
           "number": 2,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 56609
+          }
         },
         "G6MG8DG26": {
           "title": "Nisemonogatari",
@@ -7477,7 +7586,11 @@
           "number": 3,
           "display": "",
           "episodes": 13,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "G61905XKY": {
           "title": "Nekomonogatari Black",
@@ -7485,7 +7598,11 @@
           "number": 4,
           "display": "",
           "episodes": 4,
-          "regions": ["BR", "CA", "MX", "US"]
+          "regions": ["BR", "CA", "MX", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 15689
+          }
         },
         "GYE5M48XR": {
           "title": "Nekomonogatari White",
@@ -7493,7 +7610,11 @@
           "number": 5,
           "display": "",
           "episodes": 6,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GYX0C47WG": {
           "title": "Kabukimonogatari",
@@ -7501,7 +7622,12 @@
           "number": 6,
           "display": "",
           "episodes": 5,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour",
+            "offset": -1
+          }
         },
         "G6X0MNDKY": {
           "title": "Hanamonogatari",
@@ -7509,7 +7635,11 @@
           "number": 7,
           "display": "",
           "episodes": 1,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 21855
+          }
         },
         "GS00363295JAJP": {
           "title": "Otorimonogatari",
@@ -7517,7 +7647,12 @@
           "number": 8,
           "display": "",
           "episodes": 5,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour",
+            "offset": -2
+          }
         },
         "GS00363296JAJP": {
           "title": "Onimonogatari",
@@ -7525,7 +7660,12 @@
           "number": 9,
           "display": "",
           "episodes": 4,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour",
+            "offset": -3
+          }
         },
         "GS00363297JAJP": {
           "title": "Koimonogatari",
@@ -7533,7 +7673,12 @@
           "number": 10,
           "display": "",
           "episodes": 6,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour",
+            "offset": -3
+          }
         },
         "GR8VX1W9R": {
           "title": "Tsukimonogatari",
@@ -7541,7 +7686,11 @@
           "number": 11,
           "display": "",
           "episodes": 1,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 28025
+          }
         },
         "GYE5KM31R": {
           "title": "Owarimonogatari",
@@ -7549,7 +7698,11 @@
           "number": 13,
           "display": "",
           "episodes": 15,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         },
         "G6K5CN14M": {
           "title": "Orokamonogatari",
@@ -7557,7 +7710,11 @@
           "number": 15,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 6,
+            "ruleSet": "cour"
+          }
         },
         "GS00363303JAJP": {
           "title": "Nademonogatari",
@@ -7565,7 +7722,11 @@
           "number": 16,
           "display": "",
           "episodes": 5,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 6,
+            "ruleSet": "cour"
+          }
         },
         "GS00363304JAJP": {
           "title": "Wazamonogatari",
@@ -7573,7 +7734,11 @@
           "number": 17,
           "display": "",
           "episodes": 3,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 6,
+            "ruleSet": "cour"
+          }
         },
         "GS00363305JAJP": {
           "title": "Shinobumonogatari",
@@ -7581,7 +7746,11 @@
           "number": 18,
           "display": "",
           "episodes": 6,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 6,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -8492,7 +8661,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -8852,7 +9025,11 @@
           "number": 2,
           "display": "",
           "episodes": 22,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -8892,7 +9069,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -9331,7 +9512,11 @@
           "number": 1,
           "display": "",
           "episodes": 48,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 5,
+            "ruleSet": "cour"
+          }
         },
         "GYNQXQ03Y": {
           "title": "Cardfight!! Vanguard G GIRS Crisis",
@@ -9339,7 +9524,11 @@
           "number": 2,
           "display": "",
           "episodes": 26,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 6,
+            "ruleSet": "cour"
+          }
         },
         "GR49M99E6": {
           "title": "Cardfight!! Vanguard G Stride Gate",
@@ -9355,7 +9544,11 @@
           "number": 4,
           "display": "",
           "episodes": 52,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 8,
+            "ruleSet": "cour"
+          }
         },
         "G675DW93R": {
           "title": "Cardfight!! Vanguard G Z",
@@ -9363,7 +9556,11 @@
           "number": 5,
           "display": "",
           "episodes": 24,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 9,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -9531,7 +9728,10 @@
           "number": 7,
           "display": "",
           "episodes": 4,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         },
         "G6DQCG592": {
           "title": "Season 7",
@@ -9555,7 +9755,11 @@
           "number": 10,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 64107
+          }
         },
         "GS00390466JAJP": {
           "title": "My Hero Academia (Korean Compliance Version)",
@@ -9682,7 +9886,11 @@
           "number": 1,
           "display": "",
           "episodes": 25,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -9706,7 +9914,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AT", "AU", "BE", "BR", "CA", "DE", "FR", "GB", "ID", "IN", "IT", "MX", "TH", "TW", "US"]
+          "regions": ["AT", "AU", "BE", "BR", "CA", "DE", "FR", "GB", "ID", "IN", "IT", "MX", "TH", "TW", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GRKE9Z89R": {
           "title": "Tokyo Ghoul: re",
@@ -9714,7 +9926,11 @@
           "number": 3,
           "display": "",
           "episodes": 24,
-          "regions": ["AT", "AU", "BE", "BR", "CA", "DE", "FR", "GB", "ID", "IT", "MX", "TH", "TW", "US"]
+          "regions": ["AT", "AU", "BE", "BR", "CA", "DE", "FR", "GB", "ID", "IT", "MX", "TH", "TW", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GS00050724HIIN": {
           "title": "Tokyo Ghoul: re",
@@ -9722,7 +9938,11 @@
           "number": 3,
           "display": "",
           "episodes": 24,
-          "regions": ["IN"]
+          "regions": ["IN"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GYDQCG42E": {
           "title": "Tokyo Ghoul: OVA Season 1",
@@ -10041,7 +10261,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GRZXJ5GKY": {
           "title": "Shin Koihime Musou - Otome Tairan",
@@ -10049,7 +10273,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -10792,7 +11020,11 @@
           "number": 2,
           "display": "",
           "episodes": 1,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 39576
+          }
         },
         "G6ZXCMKD3": {
           "title": "GOBLIN SLAYER Season 2",
@@ -10824,7 +11056,11 @@
           "number": 2,
           "display": "",
           "episodes": 2,
-          "regions": ["AT", "AU", "BR", "CA", "DE", "GB", "IN", "MX", "US"]
+          "regions": ["AT", "AU", "BR", "CA", "DE", "GB", "IN", "MX", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 31645
+          }
         },
         "GS00363175DEDE": {
           "title": "OVAs (German Dub)",
@@ -10888,7 +11124,11 @@
           "number": 1,
           "display": "",
           "episodes": 12,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -10936,7 +11176,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -10968,7 +11212,11 @@
           "number": 1,
           "display": "",
           "episodes": 9,
-          "regions": ["AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 7596
+          }
         },
         "G6K5K3P9Y": {
           "title": "Haiyoru! Nyaruani: Remember My Mr. Lovecraft",
@@ -10976,7 +11224,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "G60971M76": {
           "title": "Nyarko-san: Another Crawling Chaos",
@@ -10984,7 +11236,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 11785
+          }
         },
         "GR9PX30J6": {
           "title": "Nyarko-san: Another Crawling Chaos W",
@@ -10992,7 +11248,11 @@
           "number": 4,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 15699
+          }
         }
       }
     },
@@ -11064,7 +11324,11 @@
           "number": 2,
           "display": "",
           "episodes": 21,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "KR", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "KR", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -11424,7 +11688,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AU", "BG", "BR", "CA", "EE", "FR", "GB", "HR", "IN", "MX", "PL", "UA", "US"]
+          "regions": ["AE", "AU", "BG", "BR", "CA", "EE", "FR", "GB", "HR", "IN", "MX", "PL", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -11743,7 +12011,11 @@
           "number": 1,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 7,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -11942,7 +12214,11 @@
           "number": 2,
           "display": "",
           "episodes": 25,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -12325,7 +12601,11 @@
           "number": 1,
           "display": "",
           "episodes": 13,
-          "regions": ["AU", "BR", "CA", "GB", "IN", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "IN", "MX", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -12421,7 +12701,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "GY5VCDX5M": {
           "title": "Heaven Official's Blessing (Korean Compliance Version)",
@@ -12429,7 +12713,11 @@
           "number": 4,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -13045,7 +13333,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -13581,7 +13873,11 @@
           "number": 2,
           "display": "",
           "episodes": 26,
-          "regions": ["IN"]
+          "regions": ["IN"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GRE5C3DVG": {
           "title": "Hell Girl: Three Vessels",
@@ -13589,7 +13885,11 @@
           "number": 3,
           "display": "",
           "episodes": 26,
-          "regions": ["IN"]
+          "regions": ["IN"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GR2P952KR": {
           "title": "Season 4",
@@ -13853,7 +14153,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -13949,7 +14253,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 54856
+          }
         }
       }
     },
@@ -14061,7 +14369,11 @@
           "number": 1,
           "display": "",
           "episodes": 35,
-          "regions": ["AU", "BE", "BR", "CA", "FR", "GB", "ID", "IN", "MX", "TH", "TW", "US"]
+          "regions": ["AU", "BE", "BR", "CA", "FR", "GB", "ID", "IN", "MX", "TH", "TW", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "GS00363338JAJP": {
           "title": "Part 2",
@@ -14365,7 +14677,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -14525,7 +14841,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -14635,7 +14955,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -14843,7 +15167,11 @@
           "number": 2,
           "display": "",
           "episodes": 8,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GY49C71NZ": {
           "title": "GaoGaiGar: The King of Braves (Korean Compliance Version)",
@@ -14851,7 +15179,11 @@
           "number": 3,
           "display": "",
           "episodes": 49,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "G619CP9NW": {
           "title": "GaoGaiGar: The King of Braves Final (Korean Compliance Version)",
@@ -14859,7 +15191,11 @@
           "number": 4,
           "display": "",
           "episodes": 8,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -15330,7 +15666,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -15394,7 +15734,11 @@
           "number": 6,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -15746,7 +16090,11 @@
           "number": 1,
           "display": "2",
           "episodes": 50,
-          "regions": ["BR", "CA", "MX", "US"]
+          "regions": ["BR", "CA", "MX", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -16338,7 +16686,10 @@
           "number": 2,
           "display": "",
           "episodes": 8,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         },
         "GR09CXJ1Q": {
           "title": "Arknights: RISE FROM EMBER",
@@ -16362,7 +16713,11 @@
           "number": 1,
           "display": "10",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -16754,7 +17109,11 @@
           "number": 2,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 59489
+          }
         },
         "G6K5CND5X": {
           "title": "Season 2",
@@ -16770,7 +17129,11 @@
           "number": 4,
           "display": "",
           "episodes": 4,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 63138
+          }
         }
       }
     },
@@ -16922,7 +17285,11 @@
           "number": 4,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -17330,7 +17697,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "GS00380761JAJP": {
           "title": "I Was Reincarnated as the 7TH PRINCE so I Can Take My Time Perfecting My MAGICAL ABILITY 2nd Season (Korean Compliance Version)",
@@ -17698,7 +18069,11 @@
           "number": 2,
           "display": "",
           "episodes": 11,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GYGGCV3M0": {
           "title": "Sorcerous Stabber Orphen -Chaos in Urbanrama-",
@@ -17706,7 +18081,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GRZXCM0GX": {
           "title": "Sorcerous Stabber Orphen -Doom of Dragon's Sanctuary-",
@@ -17714,7 +18093,11 @@
           "number": 4,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -17906,7 +18289,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -18002,7 +18389,11 @@
           "number": 2,
           "display": "",
           "episodes": 6,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -18066,7 +18457,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "GS00380767JAJP": {
           "title": "SHY (Korean Compliance Version)",
@@ -18074,7 +18469,11 @@
           "number": 4,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -18418,7 +18817,11 @@
           "number": 1,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -18490,7 +18893,11 @@
           "number": 2,
           "display": "",
           "episodes": 26,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -18658,7 +19065,11 @@
           "number": 3,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -18730,7 +19141,11 @@
           "number": 4,
           "display": "",
           "episodes": 30,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 40435
+          }
         }
       }
     },
@@ -19073,7 +19488,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["CA", "US"]
+          "regions": ["CA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -23063,7 +23482,11 @@
           "number": 3,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "GS00388804JAJP": {
           "title": "Ron Kamonohashi's Forbidden Deductions (Korean Compliance Version)",
@@ -23071,7 +23494,11 @@
           "number": 4,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -23519,7 +23946,11 @@
           "number": 1,
           "display": "",
           "episodes": 7,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -23845,7 +24276,11 @@
           "number": 2,
           "display": "",
           "episodes": 4,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -24045,7 +24480,11 @@
           "number": 4,
           "display": "",
           "episodes": 6,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GS00380273ZHCN": {
           "title": "Season 3",
@@ -24053,7 +24492,11 @@
           "number": 5,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -24300,7 +24743,11 @@
           "number": 3,
           "display": "",
           "episodes": 24,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -25011,7 +25458,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -25431,7 +25882,11 @@
           "number": 4,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -25559,7 +26014,10 @@
           "number": 1,
           "display": "",
           "episodes": 78,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         },
         "GS00380744JAJP": {
           "title": "SKET Dance (Korean Compliance Version)",
@@ -25567,7 +26025,10 @@
           "number": 2,
           "display": "",
           "episodes": 77,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         }
       }
     },
@@ -25687,7 +26148,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -25855,7 +26320,11 @@
           "number": 2,
           "display": "",
           "episodes": 8,
-          "regions": ["AT", "AU", "BE", "BR", "CA", "DE", "EE", "FR", "GB", "ID", "IN", "MX", "TH", "TW", "UA", "US"]
+          "regions": ["AT", "AU", "BE", "BR", "CA", "DE", "EE", "FR", "GB", "ID", "IN", "MX", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -25879,7 +26348,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AU", "BE", "BR", "CA", "FR", "GB", "ID", "MX", "TH", "TW", "US"]
+          "regions": ["AU", "BE", "BR", "CA", "FR", "GB", "ID", "MX", "TH", "TW", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 33028
+          }
         }
       }
     },
@@ -26309,7 +26782,11 @@
           "number": 1,
           "display": "",
           "episodes": 14,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -26557,7 +27034,11 @@
           "number": 2,
           "display": "",
           "episodes": 24,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -26669,7 +27150,10 @@
           "number": 5,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         },
         "GY3VC2P34": {
           "title": "Attack on Titan OADs",
@@ -26757,7 +27241,10 @@
           "number": 2,
           "display": "",
           "episodes": 11,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         },
         "G6K5M071Y": {
           "title": "PSYCHO-PASS 2",
@@ -26773,7 +27260,10 @@
           "number": 4,
           "display": "",
           "episodes": 3,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         },
         "GR5VCD9QK": {
           "title": "PSYCHO-PASS 3",
@@ -27435,7 +27925,11 @@
           "number": 3,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 49236
+          }
         },
         "GS00380130JAJP": {
           "title": "Season 2",
@@ -27793,7 +28287,11 @@
           "number": 3,
           "display": "1",
           "episodes": 6,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -27809,7 +28307,11 @@
           "number": 1,
           "display": "",
           "episodes": 13,
-          "regions": ["AU", "BR", "CA", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "MX", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -28312,7 +28814,12 @@
           "number": 1,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour",
+            "offset": 1
+          }
         }
       }
     },
@@ -28624,7 +29131,11 @@
           "number": 13,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "GS00380765JAJP": {
           "title": "Natsume's Book of Friends (Korean Compliance Version)",
@@ -28632,7 +29143,11 @@
           "number": 14,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GS00380773JAJP": {
           "title": "Natsume's Book of Friends (Korean Compliance Version)",
@@ -28640,7 +29155,11 @@
           "number": 15,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GS00380774JAJP": {
           "title": "Natsume's Book of Friends (Korean Compliance Version)",
@@ -28648,7 +29167,11 @@
           "number": 16,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -28847,7 +29370,11 @@
           "number": 6,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 62634
+          }
         }
       }
     },
@@ -29175,7 +29702,11 @@
           "number": 2,
           "display": "",
           "episodes": 24,
-          "regions": ["BR", "CA", "MX", "US"]
+          "regions": ["BR", "CA", "MX", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GR49G78V6": {
           "title": "Yowamushi Pedal Re:RIDE",
@@ -29215,7 +29746,11 @@
           "number": 6,
           "display": "",
           "episodes": 25,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 5,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -29239,7 +29774,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -29398,7 +29937,11 @@
           "number": 5,
           "display": "",
           "episodes": 4,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 52198
+          }
         },
         "GYGGCV4MV": {
           "title": "Kaguya-sama: Love Is War -Stairway to Adulthood-",
@@ -29406,7 +29949,11 @@
           "number": 6,
           "display": "",
           "episodes": 2,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 61903
+          }
         }
       }
     },
@@ -29446,7 +29993,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -29478,7 +30029,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["GB"]
+          "regions": ["GB"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -29956,7 +30511,11 @@
           "number": 1,
           "display": "",
           "episodes": 61,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GRVNM78ZY": {
           "title": "East Blue Special Edition HD, Subtitled (1-61)",
@@ -29964,7 +30523,11 @@
           "number": 2,
           "display": "",
           "episodes": 61,
-          "regions": ["AU", "BR", "CA", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "MX", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GYWEM933Y": {
           "title": "Alabasta (62-143)",
@@ -29972,7 +30535,11 @@
           "number": 4,
           "display": "",
           "episodes": 82,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "G6X0MWV7Y": {
           "title": "Alabasta Special Edition HD, Subtitled (62-143)",
@@ -29980,7 +30547,11 @@
           "number": 4,
           "display": "",
           "episodes": 82,
-          "regions": ["AU", "BR", "CA", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "MX", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "G63VWN2WY": {
           "title": "Skypiea (144-206)",
@@ -29988,7 +30559,11 @@
           "number": 6,
           "display": "",
           "episodes": 63,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GYGGVE07Y": {
           "title": "Skypiea Special Edition HD, Subtitled (144-206)",
@@ -29996,7 +30571,11 @@
           "number": 6,
           "display": "",
           "episodes": 63,
-          "regions": ["AU", "BR", "CA", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "MX", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GYMG8J7WY": {
           "title": "Davy Back Fight (207-228)",
@@ -30004,7 +30583,11 @@
           "number": 9,
           "display": "",
           "episodes": 22,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "G6WE8NE26": {
           "title": "Water Seven (229-263)",
@@ -30012,7 +30595,11 @@
           "number": 10,
           "display": "",
           "episodes": 35,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "G6GGZMGP6": {
           "title": "Enies Lobby (264-336)",
@@ -30020,7 +30607,11 @@
           "number": 11,
           "display": "",
           "episodes": 73,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GY75N3546": {
           "title": "Thriller Bark (337-381)",
@@ -30028,7 +30619,11 @@
           "number": 12,
           "display": "",
           "episodes": 45,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GR0X5QW7Y": {
           "title": "Sabaody Archipelago (382-407)",
@@ -30036,7 +30631,11 @@
           "number": 13,
           "display": "",
           "episodes": 26,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GY8VCPXXM": {
           "title": "Amazon Lily (408-421)",
@@ -30044,7 +30643,11 @@
           "number": 14,
           "display": "",
           "episodes": 14,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GYP8CXGMD": {
           "title": "Impel Down (422-458)",
@@ -30052,7 +30655,11 @@
           "number": 15,
           "display": "",
           "episodes": 37,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GYP8PM4KY": {
           "title": "Marineford (459-516)",
@@ -30060,7 +30667,11 @@
           "number": 16,
           "display": "",
           "episodes": 58,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GS00392166JAJP": {
           "title": "One Piece Fan Letter",
@@ -30076,7 +30687,11 @@
           "number": 19,
           "display": "",
           "episodes": 62,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GRVNC25QX": {
           "title": "One Piece Log: Fish-Man Island Saga Remastered & Re-Edited",
@@ -30092,7 +30707,11 @@
           "number": 22,
           "display": "",
           "episodes": 49,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GYZXCMZN0": {
           "title": "Dressrosa (629-750)",
@@ -30100,7 +30719,11 @@
           "number": 23,
           "display": "",
           "episodes": 122,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GY8VCP845": {
           "title": "Zou (751-782)",
@@ -30108,7 +30731,11 @@
           "number": 26,
           "display": "",
           "episodes": 32,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GRQ4CZK4J": {
           "title": "Whole Cake Island (783-891)",
@@ -30116,7 +30743,11 @@
           "number": 27,
           "display": "",
           "episodes": 109,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GR5VCDQJQ": {
           "title": "Land of Wano (892-1088)",
@@ -30124,7 +30755,11 @@
           "number": 28,
           "display": "",
           "episodes": 208,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "G65VCD972": {
           "title": "Egghead (1089-1155)",
@@ -30132,7 +30767,11 @@
           "number": 29,
           "display": "",
           "episodes": 78,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         },
         "GS00380777JAJP": {
           "title": "One Piece HEROINES Special",
@@ -30148,7 +30787,11 @@
           "number": 31,
           "display": "",
           "episodes": 25,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "absolute"
+          }
         }
       }
     },
@@ -30196,7 +30839,11 @@
           "number": 3,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GS00393047JAJP": {
           "title": "Trailer",
@@ -30356,7 +31003,10 @@
           "number": 5,
           "display": "",
           "episodes": 40,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         }
       }
     },
@@ -30780,7 +31430,11 @@
           "number": 1,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -30843,7 +31497,11 @@
           "number": 2,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 56671
+          }
         }
       }
     },
@@ -30995,7 +31653,11 @@
           "number": 1,
           "display": "",
           "episodes": 10,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 12,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -31114,7 +31776,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -31944,7 +32610,11 @@
           "number": 3,
           "display": "",
           "episodes": 4,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 55651
+          }
         }
       }
     },
@@ -32191,7 +32861,11 @@
           "number": 1,
           "display": "",
           "episodes": 52,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 10,
+            "ruleSet": "cour"
+          }
         },
         "GRQWNJ22R": {
           "title": "CARDFIGHT!! VANGUARD",
@@ -32247,7 +32921,11 @@
           "number": 2,
           "display": "2",
           "episodes": 12,
-          "regions": ["AU", "BE", "BR", "CA", "FR", "GB", "MX", "US"]
+          "regions": ["AU", "BE", "BR", "CA", "FR", "GB", "MX", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "GS00380757JAJP": {
           "title": "Snow White With The Red Hair (Korean Compliance Version)",
@@ -32255,7 +32933,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "G69PC253D": {
           "title": "Snow White With The Red Hair (Korean Compliance Version)",
@@ -32263,7 +32945,12 @@
           "number": 4,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour",
+            "offset": 12
+          }
         }
       }
     },
@@ -32518,7 +33205,11 @@
           "number": 3,
           "display": "",
           "episodes": 3,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 32902
+          }
         },
         "GRX0C4D79": {
           "title": "The Ancient Magus' Bride: The Boy from the West and the Knight of the Blue Storm",
@@ -32526,7 +33217,11 @@
           "number": 4,
           "display": "",
           "episodes": 3,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 48438
+          }
         }
       }
     },
@@ -32878,7 +33573,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -33070,7 +33769,11 @@
           "number": 2,
           "display": "",
           "episodes": 11,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -33142,7 +33845,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -33182,7 +33889,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -33734,7 +34445,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -33774,7 +34489,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -33942,7 +34661,11 @@
           "number": 2,
           "display": "",
           "episodes": 4,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -34030,7 +34753,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -34886,7 +35613,11 @@
           "number": 2,
           "display": "",
           "episodes": 15,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -35342,7 +36073,11 @@
           "number": 2,
           "display": "",
           "episodes": 3,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -35470,7 +36205,11 @@
           "number": 2,
           "display": "",
           "episodes": 3,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -35798,7 +36537,11 @@
           "number": 2,
           "display": "",
           "episodes": 50,
-          "regions": ["AE", "AT", "BE", "BG", "BR", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA"]
+          "regions": ["AE", "AT", "BE", "BG", "BR", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -36046,7 +36789,11 @@
           "number": 2,
           "display": "",
           "episodes": 24,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -36428,7 +37175,10 @@
           "number": 2,
           "display": "",
           "episodes": 2,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         },
         "GYP8CXZ3P": {
           "title": "Chainsaw Man The Stage",
@@ -36436,7 +37186,10 @@
           "number": 3,
           "display": "",
           "episodes": 1,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         }
       }
     },
@@ -36540,7 +37293,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -36771,7 +37528,11 @@
           "number": 3,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 41780
+          }
         },
         "GRX0C47ZM": {
           "title": "BanG Dream! Episode of Roselia II: Song I am",
@@ -36787,7 +37548,11 @@
           "number": 5,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 41782
+          }
         },
         "GY49C7X87": {
           "title": "Film Live 2nd Stage",
@@ -36835,7 +37600,11 @@
           "number": 2,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 51440
+          }
         }
       }
     },
@@ -36883,7 +37652,11 @@
           "number": 2,
           "display": "",
           "episodes": 51,
-          "regions": ["AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -37331,7 +38104,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -37682,7 +38459,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -37930,7 +38711,11 @@
           "number": 1,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 14,
+            "ruleSet": "cour"
+          }
         },
         "GR19CPE94": {
           "title": "Cardfight!! Vanguard overDress",
@@ -37938,7 +38723,11 @@
           "number": 2,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 14,
+            "ruleSet": "cour"
+          }
         },
         "G6NQCJ75K": {
           "title": "Cardfight!! Vanguard will+Dress",
@@ -37946,7 +38735,11 @@
           "number": 3,
           "display": "1",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 15,
+            "ruleSet": "cour"
+          }
         },
         "GR19CPW89": {
           "title": "Cardfight!! Vanguard will+Dress Season 2",
@@ -37954,7 +38747,12 @@
           "number": 4,
           "display": "2",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 15,
+            "ruleSet": "cour",
+            "offset": 13
+          }
         },
         "GR75CDZE8": {
           "title": "Cardfight!! Vanguard will+Dress Season 3",
@@ -37962,7 +38760,12 @@
           "number": 5,
           "display": "3",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 15,
+            "ruleSet": "cour",
+            "offset": 25
+          }
         },
         "GRQ4CZJK3": {
           "title": "Cardfight!! Vanguard Divinez",
@@ -37970,7 +38773,11 @@
           "number": 6,
           "display": "4",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 16,
+            "ruleSet": "cour"
+          }
         },
         "GY8VCPZEN": {
           "title": "Cardfight!! Vanguard Divinez Season 2",
@@ -37978,7 +38785,12 @@
           "number": 7,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 16,
+            "ruleSet": "cour",
+            "offset": 13
+          }
         }
       }
     },
@@ -38002,7 +38814,11 @@
           "number": 2,
           "display": "1",
           "episodes": 14,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GRZXCMNJV": {
           "title": "All Purpose Cultural Cat Girl Nuku Nuku DASH! OVA",
@@ -38098,7 +38914,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -38665,7 +39485,11 @@
           "number": 2,
           "display": "",
           "episodes": 25,
-          "regions": ["AE", "AT", "AU", "BE", "BR", "CA", "DE", "FR", "GB", "ID", "IN", "IT", "MX", "PL", "TH", "TW", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BR", "CA", "DE", "FR", "GB", "ID", "IN", "IT", "MX", "PL", "TH", "TW", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -38817,7 +39641,11 @@
           "number": 3,
           "display": "3",
           "episodes": 24,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -39257,7 +40085,11 @@
           "number": 8,
           "display": "",
           "episodes": 15,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 43591
+          }
         }
       }
     },
@@ -39313,7 +40145,11 @@
           "number": 4,
           "display": "",
           "episodes": 7,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GYVNC2VPW": {
           "title": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
@@ -39321,7 +40157,11 @@
           "number": 5,
           "display": "",
           "episodes": 11,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GY8VCP4J2": {
           "title": "Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc",
@@ -39329,7 +40169,11 @@
           "number": 6,
           "display": "",
           "episodes": 11,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         },
         "GY49C7N37": {
           "title": "Demon Slayer: Kimetsu no Yaiba Hashira Training Arc",
@@ -39337,7 +40181,11 @@
           "number": 7,
           "display": "",
           "episodes": 8,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 5,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -39473,7 +40321,11 @@
           "number": 1,
           "display": "",
           "episodes": 17,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -39681,7 +40533,11 @@
           "number": 2,
           "display": "1",
           "episodes": 23,
-          "regions": ["AE", "AT", "AU", "BE", "BR", "CA", "DE", "ES", "GB", "IN", "IT", "MX", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BR", "CA", "DE", "ES", "GB", "IN", "IT", "MX", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -39713,7 +40569,11 @@
           "number": 3,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 40763
+          }
         },
         "G6NQCJP55": {
           "title": "Show By Rock!! Stars!!",
@@ -39721,7 +40581,11 @@
           "number": 4,
           "display": "",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 41520
+          }
         }
       }
     },
@@ -40336,7 +41200,11 @@
           "number": 7,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 52742
+          }
         }
       }
     },
@@ -40792,7 +41660,11 @@
           "number": 3,
           "display": "",
           "episodes": 24,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "G6VNC2WK4": {
           "title": "MIX MEISEI STORY (Korean Compliance Version)",
@@ -40800,7 +41672,11 @@
           "number": 4,
           "display": "",
           "episodes": 24,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -40856,7 +41732,11 @@
           "number": 2,
           "display": "2",
           "episodes": 10,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "GRP8CXEDQ": {
           "title": "Ghost in the Shell: The New Movie (English Dub)",
@@ -41040,7 +41920,11 @@
           "number": 2,
           "display": "",
           "episodes": 10,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "ID", "IN", "MX", "PL", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "ID", "IN", "MX", "PL", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GYJQC153X": {
           "title": "OVAs",
@@ -41367,7 +42251,11 @@
           "number": 5,
           "display": "",
           "episodes": 37,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         },
         "GS00369402JAJP": {
           "title": "Extras",
@@ -42038,7 +42926,10 @@
           "number": 1,
           "display": "1",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         },
         "G6P8X2JW6": {
           "title": "Wakakozake Season 2 (Drama)",
@@ -42046,7 +42937,10 @@
           "number": 2,
           "display": "2",
           "episodes": 12,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "ruleSet": "off"
+          }
         }
       }
     },
@@ -42491,7 +43385,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -42969,7 +43867,11 @@
           "number": 7,
           "display": "4",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "UA", "US"],
+          "override": {
+            "season": 5,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -43033,7 +43935,11 @@
           "number": 3,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "G6X0JXJ2Y": {
           "title": "Hayate the Combat Butler! Cuties",
@@ -43041,7 +43947,11 @@
           "number": 4,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -43089,7 +43999,11 @@
           "number": 2,
           "display": "",
           "episodes": 50,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "ID", "IN", "MX", "PL", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "ID", "IN", "MX", "PL", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         },
         "GY5VEXXDY": {
           "title": "Gintama Part 3 (100-150)",
@@ -43097,7 +44011,11 @@
           "number": 3,
           "display": "",
           "episodes": 51,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "IN", "MX", "PL", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "IN", "MX", "PL", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "G609QG3W6": {
           "title": "Gintama Part 4 (151-201)",
@@ -43105,7 +44023,11 @@
           "number": 4,
           "display": "",
           "episodes": 51,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "IN", "MX", "PL", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "IN", "MX", "PL", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         },
         "G69PJMKVY": {
           "title": "Gintama' (202-252)",
@@ -43113,7 +44035,11 @@
           "number": 5,
           "display": "",
           "episodes": 52,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "IN", "MX", "PL", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "IN", "MX", "PL", "UA", "US"],
+          "override": {
+            "season": 5,
+            "ruleSet": "cour"
+          }
         },
         "GYNQ1X99Y": {
           "title": "Gintama': Enchōsen (253-265)",
@@ -43121,7 +44047,11 @@
           "number": 6,
           "display": "",
           "episodes": 14,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "ID", "IN", "MX", "PL", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "ID", "IN", "MX", "PL", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 6,
+            "ruleSet": "cour"
+          }
         },
         "G62PWWX56": {
           "title": "Gintama° (266-316)",
@@ -43489,7 +44419,11 @@
           "number": 3,
           "display": "",
           "episodes": 25,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         },
         "GY5VXKVPY": {
           "title": "Mobile Suit GUNDAM Iron Blooded Orphans (Korean Compliance Version)",
@@ -43497,7 +44431,11 @@
           "number": 4,
           "display": "",
           "episodes": 25,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -43752,7 +44690,10 @@
           "number": 1,
           "display": "",
           "episodes": 69,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "absolute"
+          }
         }
       }
     },
@@ -43784,7 +44725,11 @@
           "number": 1,
           "display": "",
           "episodes": 13,
-          "regions": ["AU", "BR", "CA", "ES", "GB", "MX", "PT", "US"]
+          "regions": ["AU", "BR", "CA", "ES", "GB", "MX", "PT", "US"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -44008,7 +44953,11 @@
           "number": 2,
           "display": "",
           "episodes": 1,
-          "regions": ["AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "IN", "MX", "UA", "US"]
+          "regions": ["AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "FR", "GB", "HR", "IN", "MX", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 38329
+          }
         },
         "G6K5CNDE7": {
           "title": "Rascal Does Not Dream of a Sister Venturing Out",
@@ -44016,7 +44965,11 @@
           "number": 3,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 53129
+          }
         },
         "G6JQC1EWD": {
           "title": "Rascal Does Not Dream of a Knapsack Kid",
@@ -44024,7 +44977,11 @@
           "number": 4,
           "display": "",
           "episodes": 1,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IN", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 54870
+          }
         },
         "GRJQC1EG3": {
           "title": "Rascal Does Not Dream of Santa Claus",
@@ -44159,7 +45116,11 @@
           "number": 4,
           "display": "",
           "episodes": 23,
-          "regions": ["AT", "DE"]
+          "regions": ["AT", "DE"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 30484
+          }
         },
         "GYG518W8Y": {
           "title": "Steins;Gate 0",
@@ -44167,7 +45128,11 @@
           "number": 4,
           "display": "",
           "episodes": 23,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 30484
+          }
         },
         "GR19CPXV3": {
           "title": "OVA",
@@ -44199,7 +45164,11 @@
           "number": 1,
           "display": "",
           "episodes": 24,
-          "regions": ["AU", "BR", "CA", "GB", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "GB", "MX", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -44639,7 +45608,11 @@
           "number": 3,
           "display": "",
           "episodes": 13,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "ID", "IN", "IT", "MX", "PL", "PT", "TH", "TW", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -44671,7 +45644,11 @@
           "number": 3,
           "display": "",
           "episodes": 52,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 3,
+            "ruleSet": "cour"
+          }
         },
         "GY8VCPG4D": {
           "title": "Ace of the Diamond act II -Second Season-",
@@ -44679,7 +45656,11 @@
           "number": 4,
           "display": "",
           "episodes": 16,
-          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"]
+          "regions": ["AE", "AT", "AU", "BE", "BG", "BR", "CA", "DE", "EE", "ES", "FR", "GB", "HR", "IT", "MX", "PL", "PT", "UA", "US"],
+          "override": {
+            "season": 4,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -45039,7 +46020,11 @@
           "number": 2,
           "display": "2",
           "episodes": 12,
-          "regions": ["AU", "CA", "GB", "US"]
+          "regions": ["AU", "CA", "GB", "US"],
+          "override": {
+            "ruleSet": "cour",
+            "malId": 28883
+          }
         }
       }
     },
@@ -45311,7 +46296,11 @@
           "number": 2,
           "display": "",
           "episodes": 12,
-          "regions": ["KR"]
+          "regions": ["KR"],
+          "override": {
+            "season": 1,
+            "ruleSet": "cour"
+          }
         }
       }
     },
@@ -45327,7 +46316,11 @@
           "number": 1,
           "display": "",
           "episodes": 12,
-          "regions": ["AU", "BR", "CA", "MX", "US"]
+          "regions": ["AU", "BR", "CA", "MX", "US"],
+          "override": {
+            "season": 2,
+            "ruleSet": "cour"
+          }
         }
       }
     },
