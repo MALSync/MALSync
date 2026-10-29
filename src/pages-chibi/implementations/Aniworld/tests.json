@@ -8,6 +8,8 @@
         "sync": false,
         "title": "Kaguya-sama: Love is War",
         "identifier": "kaguya-sama-love-is-war?s=staffel-1",
+        "season": 1,
+        "ruleSet": "tvdb",
         "image": "https://aniworld.to/public/img/cover/kaguya-sama-love-is-war-stream-cover-Tyfu6kJfKZcfIx0MruO35iCuZidh66jh_220x330.jpg",
         "uiSelector": true,
         "epList": {
@@ -22,6 +24,8 @@
         "sync": false,
         "title": "Kaguya-sama: Love is War",
         "identifier": "kaguya-sama-love-is-war?s=staffel-3",
+        "season": 3,
+        "ruleSet": "tvdb",
         "image": "https://aniworld.to/public/img/cover/kaguya-sama-love-is-war-stream-cover-Tyfu6kJfKZcfIx0MruO35iCuZidh66jh_220x330.jpg",
         "uiSelector": true,
         "epList": {
@@ -37,6 +41,8 @@
         "title": "Kaguya-sama: Love is War",
         "identifier": "kaguya-sama-love-is-war?s=staffel-2",
         "episode": 3,
+        "season": 2,
+        "ruleSet": "tvdb",
         "overviewUrl": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-2",
         "nextEpUrl": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-2/episode-4",
         "uiSelector": true,

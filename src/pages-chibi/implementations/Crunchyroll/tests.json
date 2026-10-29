@@ -37,7 +37,9 @@
         "identifier": "GEXH3W2MZ|guilty-gear-strive-dual-rulers",
         "overviewUrl": "https://www.crunchyroll.com/series/GEXH3W2MZ",
         "nextEpUrl": "https://www.crunchyroll.com/de/watch/GJWUQ7EJW/belief-in-peace",
-        "episode": 1
+        "episode": 1,
+        "season": 1,
+        "ruleSet": "cour"
       }
     },
     {
@@ -48,7 +50,9 @@
         "identifier": "GRP8DZ7GR|ai-mai-mi-mousou-catastrophe",
         "overviewUrl": "https://www.crunchyroll.com/series/GRP8DZ7GR",
         "nextEpUrl": "https://www.crunchyroll.com/de/watch/G6GG4ZNE6/episode-4",
-        "episode": 3
+        "episode": 3,
+        "season": 1,
+        "ruleSet": "cour"
       }
     },
     {
@@ -59,7 +63,8 @@
         "identifier": "GY9P1KVER|katana-maidens--toji-no-miko",
         "episode": 12,
         "overviewUrl": "https://www.crunchyroll.com/series/GY9P1KVER",
-        "nextEpUrl": "https://www.crunchyroll.com/de/watch/G69VD00VY/hero-of-the-next-generation"
+        "nextEpUrl": "https://www.crunchyroll.com/de/watch/G69VD00VY/hero-of-the-next-generation",
+        "ruleSet": "off"
       }
     },
     {
@@ -70,7 +75,9 @@
         "identifier": "GT00362335|season-1",
         "episode": 1,
         "overviewUrl": "https://www.crunchyroll.com/series/GT00362335",
-        "nextEpUrl": "https://www.crunchyroll.com/watch/GE00362339JAJP/a-lovely-portrait"
+        "nextEpUrl": "https://www.crunchyroll.com/watch/GE00362339JAJP/a-lovely-portrait",
+        "season": 1,
+        "ruleSet": "cour"
       }
     },
     {
@@ -81,7 +88,9 @@
         "identifier": "GT00361955|season-1",
         "episode": 1,
         "overviewUrl": "https://www.crunchyroll.com/series/GT00361955",
-        "nextEpUrl": "https://www.crunchyroll.com/watch/GE00361959JAJP/we-came-to-svel"
+        "nextEpUrl": "https://www.crunchyroll.com/watch/GE00361959JAJP/we-came-to-svel",
+        "season": 1,
+        "ruleSet": "cour"
       }
     },
     {
@@ -170,6 +179,18 @@
         "episode": 13,
         "season": 2,
         "ruleSet": "absolute"
+      }
+    },
+    {
+      "url": "https://www.crunchyroll.com/series/GYEXQKJG6/dr-stone",
+      "expected": {
+        "sync": false,
+        "title": "Dr. STONE",
+        "identifier": "GYEXQKJG6|dr-stone",
+        "image": "",
+        "uiSelector": true,
+        "season": 1,
+        "ruleSet": "cour"
       }
     }
   ]
