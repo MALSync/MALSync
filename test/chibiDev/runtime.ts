@@ -10,6 +10,7 @@ import { xhrAction } from '../../src/background/messageHandler';
 import { Chibi } from '../../src/pages-chibi/ChibiProxy';
 import { ChibiConsumer } from '../../src/chibiScript/ChibiConsumer';
 import { $c } from '../../src/chibiScript/ChibiGenerator';
+import { RULE_SETS } from '../../src/_provider/Search/rulesClass';
 import type { ChibiGenerator, ChibiJson } from '../../src/chibiScript/ChibiGenerator';
 import type { pageInterface } from '../../src/pages/pageInterface';
 import type {
@@ -166,6 +167,15 @@ function uiCheck(inject: (html: string) => void) {
   const result = { text: el.textContent, injectedNextTo: anchor ? describeElement(anchor) : null };
   wrapper.remove();
   return result;
+}
+
+// Same filtering as the test runner and syncPage, NaN is no season
+function addSeasonExpected(v: { [key: string]: Captured }, expected: any) {
+  if (v.season) {
+    const season = parseInt(`${v.season.value}`);
+    if (!Number.isNaN(season)) expected.season = season;
+  }
+  if (v.ruleSet && RULE_SETS.includes(v.ruleSet.value)) expected.ruleSet = v.ruleSet.value;
 }
 
 // Bot checks that need a human in the visible browser
@@ -330,6 +340,8 @@ const ChibiDev = {
       v.identifier = await capture('sync.getIdentifier', () => sync.getIdentifier(url));
       v.episode = await capture('sync.getEpisode', () => sync.getEpisode(url));
       if (sync.getVolume) v.volume = await capture('sync.getVolume', () => sync.getVolume!(url));
+      if (sync.getSeason) v.season = await capture('sync.getSeason', () => sync.getSeason!(url));
+      if (sync.getRuleSet) v.ruleSet = await capture('sync.getRuleSet', () => sync.getRuleSet!(url));
       v.overviewUrl = await capture('sync.getOverviewUrl', () => sync.getOverviewUrl(url));
       if (sync.nextEpUrl) v.nextEpUrl = await capture('sync.nextEpUrl', () => sync.nextEpUrl!(url));
       if (sync.getImage) v.image = await capture('sync.getImage', () => sync.getImage!());
@@ -351,6 +363,7 @@ const ChibiDev = {
       expected.identifier = v.identifier.value;
       expected.episode = parseInt(`${v.episode.value}`);
       if (v.volume) expected.volume = parseInt(`${v.volume.value}`);
+      addSeasonExpected(v, expected);
       expected.overviewUrl = v.overviewUrl.value;
       if (v.nextEpUrl) expected.nextEpUrl = v.nextEpUrl.value;
       if (v.image) expected.image = v.image.value;
@@ -360,6 +373,10 @@ const ChibiDev = {
       report.type = 'overview';
       v.title = await capture('overview.getTitle', () => overview.getTitle(url));
       v.identifier = await capture('overview.getIdentifier', () => overview.getIdentifier(url));
+      if (overview.getSeason) v.season = await capture('overview.getSeason', () => overview.getSeason!(url));
+      if (overview.getRuleSet) {
+        v.ruleSet = await capture('overview.getRuleSet', () => overview.getRuleSet!(url));
+      }
       if (overview.getImage) v.image = await capture('overview.getImage', () => overview.getImage!());
       if (overview.uiSelector) {
         v.uiInjection = await capture('overview.uiInjection', () => uiCheck(overview.uiSelector!));
@@ -368,6 +385,7 @@ const ChibiDev = {
       expected.sync = false;
       expected.title = v.title.value;
       expected.identifier = v.identifier.value;
+      addSeasonExpected(v, expected);
       if (v.image) expected.image = v.image.value;
       if (v.uiInjection && v.uiInjection.value) expected.uiSelector = v.uiInjection.value.text === 'TEST-UI';
     }

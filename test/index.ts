@@ -5,6 +5,7 @@ import { Chibi } from '../src/pages-chibi/ChibiProxy';
 import { NotFoundError } from '../src/_provider/Errors';
 import chibiList from '../src/pages-chibi/builder/chibiList';
 import chibiPages from '../src/pages-chibi/builder/chibiPages';
+import { RULE_SETS } from '../src/_provider/Search/rulesClass';
 
 // @ts-ignore
 window.chrome.runtime.sendMessage = (message: any, callback: (response: any) => void) => {
@@ -70,11 +71,14 @@ window.MalSyncTest = async function() {
           if (page.sync.getVolume) {
             value.volume = parseInt(`${page.sync.getVolume(window.location.href)}`);
           }
+          // Same filtering as the syncPage, NaN is no season
           if (page.sync.getSeason) {
-            value.season = parseInt(`${page.sync.getSeason(window.location.href)}`);
+            const season = parseInt(`${page.sync.getSeason(window.location.href)}`);
+            if (!Number.isNaN(season)) value.season = season;
           }
           if (page.sync.getRuleSet) {
-            value.ruleSet = page.sync.getRuleSet(window.location.href);
+            const ruleSet = page.sync.getRuleSet(window.location.href);
+            if (RULE_SETS.includes(ruleSet)) value.ruleSet = ruleSet;
           }
           value.overviewUrl = page.sync.getOverviewUrl(window.location.href);
           if (typeof page.sync.nextEpUrl !== 'undefined') {
@@ -93,11 +97,14 @@ window.MalSyncTest = async function() {
           value.sync = false;
           value.title = page.overview.getTitle(window.location.href);
           value.identifier = page.overview.getIdentifier(window.location.href);
+          // Same filtering as the syncPage, NaN is no season
           if (page.overview.getSeason) {
-            value.season = parseInt(`${page.overview.getSeason(window.location.href)}`);
+            const season = parseInt(`${page.overview.getSeason(window.location.href)}`);
+            if (!Number.isNaN(season)) value.season = season;
           }
           if (page.overview.getRuleSet) {
-            value.ruleSet = page.overview.getRuleSet(window.location.href);
+            const ruleSet = page.overview.getRuleSet(window.location.href);
+            if (RULE_SETS.includes(ruleSet)) value.ruleSet = ruleSet;
           }
           if (typeof page.overview.uiSelector !== 'undefined') {
             page.overview.uiSelector(
