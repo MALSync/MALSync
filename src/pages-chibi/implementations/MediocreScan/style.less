@@ -1,0 +1,61 @@
+@import './../pages';
+
+@activeEp: #ea580c !important;
+@highlightStyle: 1;
+@boxBackground: #ea580c;
+
+#malp {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  padding-bottom: 15px;
+  margin-top: 15px;
+  font-size: 14px;
+  color: white;
+
+  #MalData {
+    .malp-group-label {
+      font-weight: bold;
+      color: rgb(255 255 255 / 70%) !important;
+    }
+    .malp-group {
+      .malp-group-field,
+      .malp-group-value-section {
+        font-weight: 500;
+        color: white !important;
+        background-color: transparent !important;
+      }
+    }
+  }
+
+  #malEpisodes,
+  #malVolumes {
+    border-color: rgb(255 255 255 / 20%);
+    color: white;
+    background-color: #1c1c1f;
+  }
+
+  select option {
+    background-color: #1c1c1f;
+    color: white;
+  }
+}
+
+.mal-sync-read {
+  .w-12.h-12 {
+    color: #ea580c !important;
+    background-color: rgb(234 88 12 / 10%) !important;
+    box-shadow: inset 0 0 0 1px rgb(234 88 12 / 40%) !important;
+  }
+}
+
+.mal-sync-active {
+  background-color: rgb(234 88 12 / 8%) !important;
+  border-radius: 0.5rem;
+
+  .w-12.h-12 {
+    background-color: #ea580c !important;
+    color: white !important;
+    box-shadow: none !important;
+  }
+}

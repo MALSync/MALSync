@@ -1,0 +1,46 @@
+{
+  "title": "MediocreToons",
+  "url": "https://mediocrescan.com",
+  "testCases": [
+    {
+      "url": "https://mediocrescan.com/capitulo/166219",
+      "expected": {
+        "sync": true,
+        "title": "Centuria",
+        "identifier": "2307",
+        "overviewUrl": "https://mediocrescan.com/obra/2307",
+        "episode": 1,
+        "uiSelector": false,
+        "image": "https://back.mediocrescan.com/media/obras/2307/capa?f=c4d0f75fc3cf5bb7887a89f75d49b85b07f2ab71.webp"
+      }
+    },
+    {
+      "url": "https://mediocrescan.com/obra/2307",
+      "expected": {
+        "sync": false,
+        "title": "Centuria",
+        "identifier": "2307",
+        "image": "https://back.mediocrescan.com/media/obras/2307/capa?f=c4d0f75fc3cf5bb7887a89f75d49b85b07f2ab71.webp",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://mediocrescan.com/capitulo/166219",
+          "2": "https://mediocrescan.com/capitulo/165060"
+        }
+      }
+    },
+    {
+      "url": "https://mediocrescan.com/obra/1603",
+      "expected": {
+        "sync": false,
+        "title": "Release that Witch",
+        "identifier": "1603",
+        "image": "https://back.mediocrescan.com/media/obras/1603/capa?f=2c2e3d950c47eedc0e6f4a2086480453bfe3144d.webp",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://mediocrescan.com/capitulo/124139"
+        }
+      }
+    }
+  ]
+}
+
