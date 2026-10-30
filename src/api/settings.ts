@@ -118,6 +118,9 @@ export const settingsObj = {
     mangabakaToken: '',
     mangabakaRefresh: '',
 
+    animeoshiToken: '',
+    animeoshiRefresh: '',
+
     shikiToken: '',
     shikiOptions: {
       locale: 'ru',

@@ -26,6 +26,10 @@ declare global {
       id: string;
       secret: string;
     };
+    animeoshi: {
+      id: string;
+      apiKey: string;
+    };
   };
 
   interface Window {

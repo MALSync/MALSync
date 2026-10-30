@@ -55,6 +55,9 @@ describe('Sync Handling', function() {
     it('Kitsu', function() {
       expect(sync.getType('https://kitsu.app/anime/no-game-no-life')).to.equal('KITSU');
     });
+    it('AnimeOshi', function() {
+      expect(sync.getType('https://www.animeoshi.com/anime/no-game-no-life')).to.equal('ANIMEOSHI');
+    });
     it('Simkl', function() {
       expect(sync.getType('https://simkl.com/anime/46128/no-game-no-life')).to.equal('SIMKL');
     });
@@ -279,15 +282,16 @@ describe('Sync Handling', function() {
       mangabaka: 'mangabaka',
       simkl: 'simkl',
       shiki: 'shiki',
+      animeoshi: 'animeoshi',
     });
     it('providerType', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'MANGABAKA', 'SIMKL', 'SHIKI']);
+        expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'MANGABAKA', 'SIMKL', 'SHIKI', 'ANIMEOSHI']);
       }
     });
     it('providerSettings', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'mangabaka', 'simkl', 'shiki']);
+        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'mangabaka', 'simkl', 'shiki', 'animeoshi']);
       }
     });
   });
@@ -324,6 +328,11 @@ describe('Sync Handling', function() {
           text: 'Init',
           list: null,
           master: false,
+        },
+        animeoshi: {
+          text: 'Init',
+          list: null,
+          master: false,
         }
       });
 
@@ -356,7 +365,7 @@ describe('Sync Handling', function() {
       expect(res.master).equal('MAL');
       expect(res.slaves).to.not.include('MAL');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
-      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'KITSU', 'MANGABAKA', 'SIMKL', 'SHIKI']);
+      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'KITSU', 'MANGABAKA', 'SIMKL', 'SHIKI', 'ANIMEOSHI']);
     });
 
     it('ANILIST Master', async function() {
@@ -488,7 +497,7 @@ describe('Sync Handling', function() {
       const providerList = getProviderListList();
       const res = await sync.retriveLists(providerList, 'anime', getListStub);
 
-      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'MANGABAKA', 'SIMKL', 'SHIKI']);
+      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'MANGABAKA', 'SIMKL', 'SHIKI', 'ANIMEOSHI']);
     });
   });
 });
