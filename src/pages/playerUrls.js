@@ -512,6 +512,7 @@ module.exports = {
       '*://teresapoliticallearn.com/e/*',
       '*://derricknationtop.com/e/*',
       '*://ashleyhardat.com/e/*',
+      '*://shanelocaldog.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
