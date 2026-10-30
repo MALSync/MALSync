@@ -112,6 +112,7 @@ import { AnimesDigital } from './implementations/AnimesDigital/main';
 import { YummyAni } from './implementations/YummyAni/main';
 import { DonghuaStream } from './implementations/DonghuaStream/main';
 import { BSTO } from './implementations/BSTO/main';
+import { Aniworld } from './implementations/Aniworld/main';
 import { FMTeam } from './implementations/FMTeam/main';
 import { BlueSolo } from './implementations/BlueSolo/main';
 import { FlixMomo } from './implementations/FlixMomo/main';
@@ -233,6 +234,7 @@ export const pages: { [key: string]: PageInterface } = {
   YummyAni,
   DonghuaStream,
   BSTO,
+  Aniworld,
   FMTeam,
   BlueSolo,
   FlixMomo,

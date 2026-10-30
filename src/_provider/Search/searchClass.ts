@@ -7,10 +7,22 @@ import { compareTwoStrings } from 'string-similarity';
 import { search as pageSearch } from '../searchFactory';
 import { Single as LocalSingle } from '../Local/single';
 import { getRulesCacheKey } from '../singleFactory';
-import { RulesClass } from './rulesClass';
+import {
+  DEFAULT_RULE_SET,
+  RULE_SET_SELECTIONS,
+  RuleSetSelection,
+  RuleSetType,
+  RulesClass,
+  resolveRuleSet,
+} from './rulesClass';
+import { RuleConflict, RuleConflictClass } from './ruleConflictClass';
 
 import { getSyncMode } from '../helper';
 import { buildProviderUrl } from '../../utils/slugs';
+import type { pageState } from '../../pages/pageInterface';
+
+// default: opened by the user, sync: opened automatically to correct the entry, conflict: only asks to resolve a rule conflict
+export type CorrectionMode = 'default' | 'sync' | 'conflict';
 
 interface SearchResult {
   id?: number;
@@ -595,36 +607,113 @@ export class SearchClass {
   // Rules
   rules: RulesClass | undefined;
 
+  protected ruleSetSelection: RuleSetSelection = 'auto';
+
+  // Rule set the page uses, replaces the default for auto
+  protected pageRuleSet: RuleSetType | undefined;
+
+  setPageRuleSet(ruleSet?: RuleSetType) {
+    this.pageRuleSet = ruleSet;
+  }
+
   async initRules() {
     const logger = con.m('Rules');
     const url = this.getUrl();
     logger.log('Url', url);
-    if (url) {
-      const cacheKeyObj = await getRulesCacheKey(url);
-      logger.log('Cachekey', cacheKeyObj);
-      this.rules = await new RulesClass(cacheKeyObj.rulesCacheKey, this.getNormalizedType()).init();
-      return cacheKeyObj.singleObj;
+    if (!url) return undefined;
+
+    const cacheKeyObj = await getRulesCacheKey(url);
+    logger.log('Cachekey', cacheKeyObj);
+    this.rules = await new RulesClass(cacheKeyObj.rulesCacheKey, this.getNormalizedType()).init();
+    await this.loadRuleSet();
+
+    return cacheKeyObj.singleObj;
+  }
+
+  protected getRuleSetKey(): string | undefined {
+    const tvdbId = this.rules ? this.rules.getTvdbId() : undefined;
+    if (!tvdbId) return undefined;
+    return `${this.page.name}/tvdb/${tvdbId}/RuleSet`;
+  }
+
+  async loadRuleSet() {
+    const key = this.getRuleSetKey();
+    if (!key) return;
+    const selection = await api.storage.get(key);
+    if (RULE_SET_SELECTIONS.includes(selection)) this.ruleSetSelection = selection;
+  }
+
+  getRuleSetSelection(): RuleSetSelection {
+    return this.ruleSetSelection;
+  }
+
+  // Rule set of auto, the one of the page or the default
+  getAutoRuleSet(): RuleSetType {
+    return this.pageRuleSet || DEFAULT_RULE_SET;
+  }
+
+  getRuleSet(): RuleSetType {
+    return resolveRuleSet(this.ruleSetSelection, this.getAutoRuleSet());
+  }
+
+  async setRuleSet(selection: RuleSetSelection) {
+    // Also rerun when switching to auto, it can ask for conflicts again
+    if (this.ruleSetSelection !== selection) this.changed = true;
+    this.ruleSetSelection = selection;
+    const key = this.getRuleSetKey();
+    if (key) await api.storage.set(key, selection);
+  }
+
+  isSimilar(): boolean {
+    return Boolean(this.state && this.state.similarity && this.state.similarity.same);
+  }
+
+  // Episode the rules apply to: the episode on sync pages, episode 1 of the season on overview pages
+  getRuleEpisode(state?: pageState | null): number | undefined {
+    if (!state) return undefined;
+    if (state.on === 'SYNC' && typeof state.detectedEpisode === 'number') {
+      return Number.isNaN(state.detectedEpisode) ? undefined : state.detectedEpisode;
     }
+    if (state.on === 'OVERVIEW' && typeof state.season === 'number') return 1;
     return undefined;
   }
 
-  applyRules(episode: number) {
-    if (this.rules) {
-      const userOffset = this.getOffset() || 0;
-      const res = this.rules.applyRules(Number(episode) + Number(userOffset));
-      if (res) res.offset = Number(res.offset) + Number(userOffset);
-      return res;
-    }
-    return undefined;
+  // Episode in the numbering of the rules, includes the user offset
+  withUserOffset(episode?: number): number | undefined {
+    if (typeof episode !== 'number' || Number.isNaN(episode)) return undefined;
+    return Number(episode) + Number(this.getOffset() || 0);
   }
 
-  getRuledOffset(episode: number): number {
-    const res = this.applyRules(episode);
+  getRuleConflict(episode?: number, season?: number): RuleConflict | undefined {
+    const ruleEpisode = this.withUserOffset(episode);
+    if (!this.rules || ruleEpisode === undefined) return undefined;
+
+    if (this.ruleSetSelection !== 'auto') return undefined;
+
+    return new RuleConflictClass(
+      this.rules,
+      this.getRuleSet(),
+      this.getUrl(),
+      this.pageRuleSet,
+    ).getConflict(ruleEpisode, season);
+  }
+
+  applyRules(episode?: number, season?: number) {
+    const ruleEpisode = this.withUserOffset(episode);
+    if (!this.rules || ruleEpisode === undefined) return undefined;
+
+    const res = this.rules.applyRules(ruleEpisode, season, this.getRuleSet());
+    if (res) res.offset = Number(res.offset) + Number(this.getOffset() || 0);
+    return res;
+  }
+
+  getRuledOffset(episode?: number, season?: number): number {
+    const res = this.applyRules(episode, season);
     return res ? res.offset : this.getOffset();
   }
 
-  getRuledUrl(episode: number): string | null {
-    const res = this.applyRules(episode);
+  getRuledUrl(episode?: number, season?: number): string | null {
+    const res = this.applyRules(episode, season);
     return res ? res.url : this.getUrl();
   }
 }

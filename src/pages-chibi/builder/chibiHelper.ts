@@ -89,6 +89,12 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
   if (page.sync.getVolume) {
     page.sync.getVolume = page.sync.getVolume($c) as any;
   }
+  if (page.sync.getSeason) {
+    page.sync.getSeason = page.sync.getSeason($c) as any;
+  }
+  if (page.sync.getRuleSet) {
+    page.sync.getRuleSet = page.sync.getRuleSet($c) as any;
+  }
   if (page.sync.getImage) {
     page.sync.getImage = page.sync.getImage($c) as any;
   }
@@ -124,6 +130,12 @@ function compilePage(page: PageInterfaceCompiled): PageInterfaceCompiled {
     page.overview.getTitle = page.overview.getTitle($c) as any;
     page.overview.getIdentifier = page.overview.getIdentifier($c) as any;
     page.overview.uiInjection = page.overview.uiInjection($c) as any;
+    if (page.overview.getSeason) {
+      page.overview.getSeason = page.overview.getSeason($c) as any;
+    }
+    if (page.overview.getRuleSet) {
+      page.overview.getRuleSet = page.overview.getRuleSet($c) as any;
+    }
     if (page.overview.getImage) {
       page.overview.getImage = page.overview.getImage($c) as any;
     }
