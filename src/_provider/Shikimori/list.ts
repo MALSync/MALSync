@@ -2,7 +2,7 @@ import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 import * as definitions from '../definitions';
 
-const pageSize = 25;
+const pageSize = 50;
 
 export class UserList extends ListAbstract {
   name = 'Shiki';
