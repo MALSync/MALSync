@@ -120,6 +120,7 @@ import { Chikari } from './implementations/Chikari/main';
 import { MistScans } from './implementations/MistScans/main';
 import { AnimeSaturn } from './implementations/AnimeSaturn/main';
 import { Dragonroll } from './implementations/Dragonroll/main';
+import { FindAnime } from './implementations/FindAnime/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -242,4 +243,5 @@ export const pages: { [key: string]: PageInterface } = {
   MistScans,
   AnimeSaturn,
   Dragonroll,
+  FindAnime,
 };
