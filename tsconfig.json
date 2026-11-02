@@ -22,6 +22,7 @@
   "include": ["**/*.ts", "src/**/*.vue"],
   "exclude": [
     "dist",
+    "test/dist",
     "**/*.test.ts",
     "**/*.exclude.ts",
     "node_modules"
