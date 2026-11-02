@@ -43,7 +43,6 @@ export const FindAnime: PageInterface = {
       farmedia: ['*://*.farmedia.live/*'],
     },
   },
-  search: 'https://22.findanime.me/search/advanced?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c.url().matches(SYNC_URL_REGEX).run();
@@ -67,13 +66,12 @@ export const FindAnime: PageInterface = {
       return $c.url().urlStrip().regex('/series(\\d+)$', 1).number().run();
     },
     nextEpUrl($c) {
-      // Last episode links to /<slug>/finish, so only accept real episode links
+      // Preserve the site's query parameters; the last episode links to /<slug>/finish.
       return $c
         .querySelector('a.vi-btn[href*="/series"]:has(.fa-angles-right)')
         .ifNotReturn()
         .getAttribute('href')
         .urlAbsolute()
-        .urlStrip()
         .run();
     },
   },
@@ -94,7 +92,7 @@ export const FindAnime: PageInterface = {
       return $c.url().urlStrip().urlPart(3).run();
     },
     uiInjection($c) {
-      return $c.querySelector('.cr-hero').uiAfter().run();
+      return $c.querySelector('.cr-hero-names').uiAppend().run();
     },
     getImage($c) {
       // Take the first poster, it is either lazy loaded (data-src) or has a plain src
@@ -118,14 +116,14 @@ export const FindAnime: PageInterface = {
     elementsSelector($c) {
       return $c
         .querySelectorAll('.chapters td.item-title a.chapter-link')
-        .filter($el => $el.getAttribute('href').matches('/series[1-9]\\d*$').run())
+        .filter($el => $el.getAttribute('href').urlStrip().matches('/series[1-9]\\d*$').run())
         .run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.getAttribute('href').regex('/series(\\d+)$', 1).number().run();
+      return $c.getAttribute('href').urlStrip().regex('/series(\\d+)$', 1).number().run();
     },
   },
   lifecycle: {
