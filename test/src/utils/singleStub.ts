@@ -151,7 +151,7 @@ export const classConfigs: {
   },
   {
     name: 'MangaBaka',
-    url: 'https://mangabaka.org/21',
+    url: 'https://mangabaka.org/manga/21',
     class: MangaBakaSingle,
     internalStates: 100,
     setup: single => {

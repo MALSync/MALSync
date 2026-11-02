@@ -22,6 +22,7 @@ const fixtures = [
       status: 200,
       data: {
         id: 21,
+        canonical_url: 'https://mangabaka.org/manga/21/Berserk',
         title: 'Berserk',
         source: { my_anime_list: { id: 2 }, anilist: { id: null }, kitsu: { id: null } },
         cover: { x350: { x2: 'https://mangabaka.org/img/21.jpg' } },
@@ -96,6 +97,8 @@ function setGlobals() {
   global.testData = {
     urlTest: [
       { url: 'https://mangabaka.org/21', error: false, type: 'manga' },
+      { url: 'https://mangabaka.org/manga/21', error: false, type: 'manga' },
+      { url: 'https://mangabaka.org/manga/21/Berserk', error: false, type: 'manga' },
       { url: 'https://myanimelist.net/manga/2/Berserk', error: false, type: 'manga' },
       { url: 'https://myanimelist.net/anime/2/Berserk', error: true, type: 'anime' },
       { url: 'https://anilist.co/manga/2/Berserk', error: false, type: 'manga' },
@@ -105,8 +108,8 @@ function setGlobals() {
     ],
     apiTest: {
       defaultUrl: {
-        url: 'https://mangabaka.org/21',
-        displayUrl: 'https://mangabaka.org/21',
+        url: 'https://mangabaka.org/manga/21/Berserk',
+        displayUrl: 'https://mangabaka.org/manga/21/Berserk',
         malUrl: 'https://myanimelist.net/manga/2',
         title: 'Berserk',
         eps: 0,
@@ -117,7 +120,7 @@ function setGlobals() {
       },
       notOnListUrl: {
         url: 'https://mangabaka.org/22',
-        displayUrl: 'https://mangabaka.org/22',
+        displayUrl: 'https://mangabaka.org/manga/22',
         malUrl: 'https://myanimelist.net/manga/20',
         title: 'Naruto',
         eps: 0,

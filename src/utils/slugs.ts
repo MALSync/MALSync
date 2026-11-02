@@ -44,8 +44,8 @@ export const providerUrls = {
     identifier: 'shiki',
   },
   MANGABAKA: {
-    regex: /^https:\/\/mangabaka\.(?:dev|org)\/(\d+)(\/|$)/,
-    urlTemplate: 'https://mangabaka.org/<identifier>',
+    regex: /^https:\/\/mangabaka\.(?:dev|org)\/(?:manga\/)?(\d+)(\/|$)/,
+    urlTemplate: 'https://mangabaka.org/manga/<identifier>',
     identifier: 'mangabaka',
   },
   ANIMEOSHI: {

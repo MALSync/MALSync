@@ -349,7 +349,7 @@ export class MetaOverview extends MetaOverviewAbstract {
             }
 
             links[relationType].links.push({
-              url: buildProviderUrl('MANGABAKA', 'manga', series.id),
+              url: series.canonical_url || buildProviderUrl('MANGABAKA', 'manga', series.id),
               title,
               type: 'manga',
               id: series.id,
