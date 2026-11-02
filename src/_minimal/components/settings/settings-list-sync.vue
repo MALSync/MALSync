@@ -10,7 +10,7 @@
     <Section spacer="half" direction="both">
       <Card>
         <div>
-          <MediaLink color="secondary" href="https://github.com/MALSync/MALSync/wiki/List-Sync">
+          <MediaLink color="secondary" :href="wikiUrl">
             {{ lang('settings_more_info') }}
           </MediaLink>
         </div>
@@ -334,6 +334,8 @@ defineProps({
 });
 
 const mode = 'mirror';
+
+const wikiUrl = 'https://github.com/MALSync/MALSync/wiki/List-Sync';
 
 const providerList = ref(null as any);
 const syncing = ref(false);
