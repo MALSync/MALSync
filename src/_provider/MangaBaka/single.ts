@@ -239,7 +239,8 @@ export class Single extends SingleAbstract {
       }
     }
 
-    this.displayUrl = buildProviderUrl('MANGABAKA', 'manga', seriesEntry.id);
+    this.displayUrl =
+      seriesEntry.canonical_url || buildProviderUrl('MANGABAKA', 'manga', seriesEntry.id);
 
     let json: BakaLibraryEntry | null = null;
 
