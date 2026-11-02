@@ -33,7 +33,7 @@ module.exports = {
     match: ['*://*.tune.pk/*', ],
   },
   href: {
-    match: ['*://*.href.li/*', '*://*.vk.com/*', '*://*.vk.ru/*'],
+    match: ['*://*.href.li/*', '*://*.vk.com/*', '*://*.vk.ru/*', '*://*.vkvideo.ru/*'],
   },
   cloudvideo: {
     match: ['*://*.cloudvideo.tv/*'],
