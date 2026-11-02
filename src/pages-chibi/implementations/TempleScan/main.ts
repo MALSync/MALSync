@@ -52,7 +52,7 @@ export const templeScan: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelectorAll('h1').at(1).text().trim().run();
+      return $c.querySelectorAll('h1').last().text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).trim().run();
@@ -61,7 +61,7 @@ export const templeScan: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelectorAll('h1').at(1).uiAfter().run();
+      return $c.querySelectorAll('h1').last().uiAfter().run();
     },
   },
   lifecycle: {

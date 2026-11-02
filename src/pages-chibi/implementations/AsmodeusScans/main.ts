@@ -54,6 +54,7 @@ export const AsmodeusScans: PageInterface = {
         current: $c =>
           $c
             .querySelector('.splide__slide.is-active')
+            .ifNotReturn()
             .getAttribute('aria-label')
             .ifNotReturn()
             .regex('(\\d+) of (\\d+)', 1)
@@ -62,6 +63,7 @@ export const AsmodeusScans: PageInterface = {
         total: $c =>
           $c
             .querySelector('.splide__slide.is-active')
+            .ifNotReturn()
             .getAttribute('aria-label')
             .ifNotReturn()
             .regex('(\\d+) of (\\d+)', 2)

@@ -1,27 +1,27 @@
 {
   "title": "TRanimeizle",
-  "url": "https://www.tranimeizle.com",
+  "url": "https://www.tranimeizle.live",
   "testCases": [
     {
-      "url": "https://www.tranimeizle.com/anime/one-punch-man-izle-hd",
+      "url": "https://www.tranimeizle.live/anime/one-punch-man-izle",
       "expected": {
         "sync": false,
         "title": "One Punch Man",
-        "identifier": "one-punch-man-izle-hd",
+        "identifier": "one-punch-man-izle",
         "uiSelector": true,
         "epList": {
-          "9": "https://www.tranimeizle.com/one-punch-man-9-bolum-izle"
+          "1": "https://www.tranimeizle.live/one-punch-man-1-bolum-izle-4"
         }
       }
     },
     {
-      "url": "https://www.tranimeizle.com/one-punch-man-2-bolum-izle",
+      "url": "https://www.tranimeizle.live/one-punch-man-2-bolum-izle-1",
       "expected": {
         "sync": true,
         "title": "One Punch Man",
-        "identifier": "one-punch-man-izle-hd",
-        "overviewUrl": "https://www.tranimeizle.com/anime/one-punch-man-izle-hd",
-        "nextEpUrl": "https://www.tranimeizle.com/one-punch-man-3-bolum-izle",
+        "identifier": "one-punch-man-izle",
+        "overviewUrl": "https://www.tranimeizle.live/anime/one-punch-man-izle",
+        "nextEpUrl": "https://www.tranimeizle.live/one-punch-man-3-bolum-izle",
         "episode": 2,
         "uiSelector": false,
       }

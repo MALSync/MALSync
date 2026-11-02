@@ -23,15 +23,6 @@
         "episode": 2,
         "uiSelector": false
       }
-    },
-    {
-      "url": "https://naszeanime.pl/anime/tondemo-skill-de-isekai-hourou-meshi-2",
-      "expected": {
-        "sync": false,
-        "title": "Tondemo Skill de Isekai Hourou Meshi 2",
-        "identifier": "tondemo-skill-de-isekai-hourou-meshi-2",
-        "uiSelector": false
-      }
     }
   ]
 }

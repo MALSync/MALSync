@@ -29,7 +29,7 @@ export const AniZone: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('[x-ref]')
+        .querySelector('a.active-eps')
         .next()
         .ifNotReturn()
         .getAttribute('href')

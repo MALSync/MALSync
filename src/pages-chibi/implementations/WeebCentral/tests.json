@@ -33,7 +33,7 @@
         "url": "https://weebcentral.com/chapters/01JH1X95RSVSEXTHG3759C7H54",
         "expected": {
           "sync": true,
-          "title": "Otaku ni Yasashii Gal wa Inai!?",
+          "title": "Gals Can't Be Kind to Otaku!",
           "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
           "episode": 40,
           "nextEpUrl": "https://weebcentral.com/chapters/01JHRKYDX3ENRASRA65X334Q3Q",
@@ -45,23 +45,24 @@
         "url": "https://weebcentral.com/series/01J76XYGSXQN8BNTPR0QXWQD2S/Otaku-ni-Yasashii-Gal-wa-Inai",
         "expected": {
           "sync": false,
-          "title": "Otaku ni Yasashii Gal wa Inai!?",
+          "title": "Gals Can't Be Kind to Otaku!",
           "identifier": "01J76XYGSXQN8BNTPR0QXWQD2S",
           "uiSelector": true,
           "image": "https://temp.compsci88.com/cover/fallback/01J76XYGSXQN8BNTPR0QXWQD2S.jpg",
           "epList": {
-            "40": "https://weebcentral.com/chapters/01JH1X95RSVSEXTHG3759C7H54"
+            "1": "https://weebcentral.com/chapters/01J76XZ7M6PS3PPNHAZS9EC2KZ",
+            "101": "https://weebcentral.com/chapters/01M3QJ5EDP1CYGRAQZBYBPYYBX"
           }
         }
       },
       {
-        "url": "https://weebcentral.com/chapters/01JH1T8AXF0D8BQR6PFF453WCD",
+        "url": "https://weebcentral.com/chapters/01J76XYYS460C8NNG4M8Z3TBRT",
         "expected": {
           "sync": true,
           "title": "To Your Eternity",
           "identifier": "01J76XYBYX6EGVR7ZNC8VKFJD1",
-          "episode": 195,
-          "nextEpUrl": "https://weebcentral.com/chapters/01JJQSH6B0YRRH1X9Z5S8Q5AFX",
+          "episode": 2,
+          "nextEpUrl": "https://weebcentral.com/chapters/01J76XYYS4Y7RH1W1D6A30XH04",
           "image": "https://temp.compsci88.com/cover/fallback/01J76XYBYX6EGVR7ZNC8VKFJD1.jpg",
           "overviewUrl": "https://weebcentral.com/series/01J76XYBYX6EGVR7ZNC8VKFJD1/To-You-The-Immortal"
         }
@@ -69,6 +70,7 @@
       {
         "url": "https://weebcentral.com/chapters/01JQ5FG4WCVWSVESYGM4VWM0EQ",
         "expected": {
+          "nextEpUrl": "https://weebcentral.com/chapters/01K44BPBDXRM1F7YF5N2G0CYAR",
           "sync": true,
           "title": "Flawless",
           "identifier": "01J76XYF352T2D7MEDFZWAB654",

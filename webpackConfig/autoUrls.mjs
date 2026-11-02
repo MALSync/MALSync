@@ -55,7 +55,7 @@ async function miruro() {
 
   const $ = cheerio.load(body);
 
-  const urls = $('nav.domains a.domain')
+  const urls = $('nav.domains .miruro a.domain')
     .map((i, el) => new URL($(el).attr('href')))
     .get();
 

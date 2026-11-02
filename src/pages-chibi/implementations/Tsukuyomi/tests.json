@@ -3,67 +3,63 @@
   "url": "https://tsukuyomi.tv",
   "testCases": [
     {
-      "url": "https://tsukuyomi.tv/watch/182255/8",
+      "url": "https://tsukuyomi.tv/watch/sousou-no-frieren-2nd-season-JKwG5e/9",
       "expected": {
         "sync": true,
-        "title": "Frieren: Beyond Journey’s End Season 2",
-        "identifier": "4rq4",
-        "overviewUrl": "https://tsukuyomi.tv/anime/182255",
-        "episode": 8,
-        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
-        "nextEpUrl": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/9",
+        "title": "Frieren: Beyond Journey's End Season 2",
+        "identifier": "JKwG5e",
+        "overviewUrl": "https://tsukuyomi.tv/anime/sousou-no-frieren-2nd-season-JKwG5e",
+        "episode": 9,
+        "image": "https://cdn.myanimelist.net/images/anime/1921/154528.jpg",
+        "nextEpUrl": "https://tsukuyomi.tv/watch/sousou-no-frieren-2nd-season-JKwG5e/10",
         "uiSelector": false,
         "epList": {
-          "1": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/1",
-          "9": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/9"
+          "1": "https://tsukuyomi.tv/watch/sousou-no-frieren-2nd-season-JKwG5e/1",
+          "9": "https://tsukuyomi.tv/watch/sousou-no-frieren-2nd-season-JKwG5e/9"
         }
       }
     },
     {
-      "url": "https://tsukuyomi.tv/watch/182255/10",
+      "url": "https://tsukuyomi.tv/watch/sousou-no-frieren-2nd-season-JKwG5e/10",
       "expected": {
         "sync": true,
-        "title": "Frieren: Beyond Journey’s End Season 2",
-        "identifier": "4rq4",
-        "overviewUrl": "https://tsukuyomi.tv/anime/182255",
+        "title": "Frieren: Beyond Journey's End Season 2",
+        "identifier": "JKwG5e",
+        "overviewUrl": "https://tsukuyomi.tv/anime/sousou-no-frieren-2nd-season-JKwG5e",
         "episode": 10,
-        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx182255-butzrqd4I0aC.jpg",
+        "image": "https://cdn.myanimelist.net/images/anime/1921/154528.jpg",
         "nextEpUrl": null,
         "uiSelector": false,
         "epList": {
-          "1": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/1",
-          "9": "https://tsukuyomi.tv/watch/frieren-beyond-journeys-end-season-2-4rq4/9"
+          "1": "https://tsukuyomi.tv/watch/sousou-no-frieren-2nd-season-JKwG5e/1",
+          "9": "https://tsukuyomi.tv/watch/sousou-no-frieren-2nd-season-JKwG5e/9"
         }
       }
     },
     {
-      "url": "https://tsukuyomi.tv/watch/199221/6",
+      "url": "https://tsukuyomi.tv/watch/death-note-Ifl5z-/1",
       "expected": {
         "sync": true,
-        "title": "Dr. STONE SCIENCE FUTURE Cour 3",
-        "identifier": "3qfa",
-        "overviewUrl": "https://tsukuyomi.tv/anime/199221",
-        "episode": 6,
-        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199221-TReDQMNhslHu.jpg",
-        "nextEpUrl": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/7",
-        "uiSelector": false,
-        "epList": {
-          "1": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/1",
-          "7": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/7"
-        }
+        "title": "Death Note",
+        "identifier": "Ifl5z-",
+        "overviewUrl": "https://tsukuyomi.tv/anime/death-note-Ifl5z-",
+        "episode": 1,
+        "image": "https://cdn.myanimelist.net/images/anime/1079/138100l.jpg",
+        "nextEpUrl": "https://tsukuyomi.tv/watch/death-note-Ifl5z-/2",
+        "uiSelector": false
       }
     },
     {
-      "url": "https://tsukuyomi.tv/anime/dr-stone-science-future-cour-3-3qfa",
+      "url": "https://tsukuyomi.tv/anime/sousou-no-frieren-2nd-season-JKwG5e",
       "expected": {
         "sync": false,
-        "title": "Dr. STONE SCIENCE FUTURE Cour 3",
-        "identifier": "3qfa",
-        "image": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx199221-TReDQMNhslHu.jpg",
+        "title": "Frieren: Beyond Journey's End Season 2",
+        "identifier": "JKwG5e",
+        "image": "https://cdn.myanimelist.net/images/anime/1921/154528.jpg",
         "uiSelector": true,
         "epList": {
-          "1": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/1",
-          "7": "https://tsukuyomi.tv/watch/dr-stone-science-future-cour-3-3qfa/7"
+          "1": "https://tsukuyomi.tv/watch/sousou-no-frieren-2nd-season-JKwG5e/1",
+          "7": "https://tsukuyomi.tv/watch/sousou-no-frieren-2nd-season-JKwG5e/7"
         }
       }
     }

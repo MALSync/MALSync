@@ -19,11 +19,11 @@
         "sync": false,
         "title": "Player",
         "identifier": "player",
-        "image": "https://stonescape.xyz/pub/covers/23a23883-ab27-4cf4-932d-3aefc47f1f84.webp",
+        "image": "https://stonescape.xyz/pub/covers/39be7d03-185f-40a2-9cdf-75c585165721.gif",
         "uiSelector": true,
         "epList": {
-          "257": "https://stonescape.xyz/series/player/ch-257",
-          "253": "https://stonescape.xyz/series/player/ch-253"
+          "1": "https://stonescape.xyz/series/player/ch-1",
+          "2": "https://stonescape.xyz/series/player/ch-2"
         }
       }
     }

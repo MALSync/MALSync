@@ -22,7 +22,16 @@ export const FireAnime: PageInterface = {
       return getJsonData($c).get('title').run();
     },
     getOverviewUrl($c) {
-      return getJsonData($c).get('url').ifNotReturn().string().urlAbsolute().run();
+      // /anime/<slug>/watch/<season>/<ep> -> /anime/<slug>/season/<season>
+      // /anime/<slug>/group/<group>/watch/<season>/<ep> -> /anime/<slug>/group/<group>
+      return getJsonData($c)
+        .get('url')
+        .ifNotReturn()
+        .string()
+        .replaceRegex('(/group/[^/?#]+)/watch/[^?#]*', '$1')
+        .replaceRegex('/watch/([^/?#]+)/[^/?#]+/?', '/season/$1')
+        .urlAbsolute()
+        .run();
     },
     getEpisode($c) {
       return getJsonData($c).get('episode_nr').number().run();
@@ -52,7 +61,12 @@ export const FireAnime: PageInterface = {
       return getJsonData($c).get('title').run();
     },
     uiInjection($c) {
-      return $c.querySelector('#malsync-anchor').uiAppend().run();
+      return $c
+        .querySelector('#malsync-anchor')
+        .ifThen($c => $c.uiAppend().return().run())
+        .querySelector('h1')
+        .uiAfter()
+        .run();
     },
     getImage($c) {
       return getJsonData($c).get('image_url').ifNotReturn().run();
@@ -76,7 +90,20 @@ export const FireAnime: PageInterface = {
       return $c.waitUntilTrue($c.querySelector('#playerObject').boolean().run()).trigger().run();
     },
     overviewIsReady($c) {
-      return $c.waitUntilTrue($c.querySelector('#malsync-anchor').boolean().run()).trigger().run();
+      // Group pages (/anime/<slug>/group/<group>) have no #malsync-anchor
+      return $c
+        .waitUntilTrue(
+          $c
+            .or(
+              $c.querySelector('#malsync-anchor').boolean().run(),
+              $c
+                .and($c.url().contains('/group/').run(), $c.querySelector('h1').boolean().run())
+                .run(),
+            )
+            .run(),
+        )
+        .trigger()
+        .run();
     },
   },
 };

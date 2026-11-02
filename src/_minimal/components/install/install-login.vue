@@ -13,12 +13,12 @@
         </div>
       </div>
       <div class="button-section">
-        <MediaLink href="https://malsync.moe/pwa/#/settings" class="button-next" target="">
+        <MediaLink :href="settingsUrl" class="button-next" target="">
           <FormButton color="secondary" class="button-next">
             <TextIcon icon="settings">{{ lang('minimalApp_Settings') }}</TextIcon>
           </FormButton>
         </MediaLink>
-        <MediaLink href="https://malsync.moe/pwa/" class="button-next" target="">
+        <MediaLink :href="pwaUrl" class="button-next" target="">
           <FormButton color="primary" class="button-next">
             <TextIcon icon="play_arrow">{{ lang('start') }}</TextIcon>
           </FormButton>
@@ -95,6 +95,9 @@ defineProps({
 });
 
 defineEmits(['back']);
+
+const pwaUrl = 'https://malsync.moe/pwa/';
+const settingsUrl = `${pwaUrl}#/settings`;
 
 const parameters = computed(() => {
   return {

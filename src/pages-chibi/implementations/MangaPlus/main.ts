@@ -80,7 +80,7 @@ export const MangaPlus: PageInterface = {
     },
     getImage($c) {
       return $c
-        .querySelector('[class*="TitleDetailHeader-module_coverImage"]')
+        .querySelector('img[class*="TitleDetailHeader-module_coverImage"]')
         .getAttribute('src')
         .ifNotReturn()
         .run();

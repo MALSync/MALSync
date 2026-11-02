@@ -50,3 +50,4 @@ src/chibiScript/ChibiGeneratorTypes.ts
 
 # IDE
 .idea
+src/chibiScript/FUNCTIONS.md

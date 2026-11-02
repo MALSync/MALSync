@@ -38,7 +38,7 @@ export const Novelfire: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.chapternav a[rel="next"][href*="https"]')
+        .querySelector('.chapternav a[rel="next"][href*="/chapter"]')
         .ifNotReturn()
         .getAttribute('href')
         .ifNotReturn()

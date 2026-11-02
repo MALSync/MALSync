@@ -33,7 +33,7 @@ module.exports = {
     match: ['*://*.tune.pk/*', ],
   },
   href: {
-    match: ['*://*.href.li/*', '*://*.vk.com/*'],
+    match: ['*://*.href.li/*', '*://*.vk.com/*', '*://*.vk.ru/*', '*://*.vkvideo.ru/*'],
   },
   cloudvideo: {
     match: ['*://*.cloudvideo.tv/*'],
@@ -234,6 +234,8 @@ module.exports = {
       '*://*.miiiixdrop.net/e/*',
       '*://*.miixdrop.com/e/*',
       '*://*.miixdrop.top/e/*',
+      '*://*.mxdrop.top/e/*',
+      '*://*.mxdrop.click/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -505,6 +507,12 @@ module.exports = {
       '*://tracylocalschool.com/e/*',
       '*://eugenemakedraw.com/e/*',
       '*://johnfullwonder.com/e/*',
+      '*://jamesbornmain.com/e/*',
+      '*://jeremyparticipantanything.com/e/*',
+      '*://teresapoliticallearn.com/e/*',
+      '*://derricknationtop.com/e/*',
+      '*://ashleyhardat.com/e/*',
+      '*://shanelocaldog.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

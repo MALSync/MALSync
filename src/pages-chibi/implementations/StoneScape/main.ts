@@ -8,8 +8,7 @@ export const StoneScape: PageInterface = {
   urls: {
     match: ['*://stonescape.xyz/*'],
   },
-  search:
-    'https://stonescape.xyz/?s={searchtermPlus}&post_type=wp-manga&op=&author=&artist=&release=&adult=',
+  search: 'https://stonescape.xyz/browse?q={searchtermPlus}',
   sync: {
     isSyncPage($c) {
       return $c

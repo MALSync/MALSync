@@ -6,7 +6,10 @@ const { getKeys } = require('./utils/keys');
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, '..', 'test/index.ts'),
+    testCode: path.join(__dirname, '..', 'test/index.ts'),
+    // Tooling for test/chibiDev/cli.js
+    chibiDev: path.join(__dirname, '..', 'test/chibiDev/runtime.ts'),
+    chibiDevProxy: path.join(__dirname, '..', 'src/pages-chibi/proxies/requestProxy.ts'),
   },
   module: {
     rules: [
@@ -48,7 +51,7 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    filename: 'testCode.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '..', 'test', 'dist'),
   },
   plugins: [

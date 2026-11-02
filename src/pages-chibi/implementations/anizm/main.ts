@@ -15,21 +15,17 @@ export const anizm: PageInterface = {
   },
   sync: {
     isSyncPage($c) {
-      return $c.querySelector('.episodeInfoContainer .animeIzleInnerContainer').boolean().run();
+      return $c.querySelector('.v3-watch .v3-player').boolean().run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('.episodeContainer .info_otherTitle, .anizm_pageTitle a')
-        .text()
-        .trim()
-        .run();
+      return $c.querySelector('.v3-watch-series-button').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().this('sync.getOverviewUrl').this('overview.getIdentifier').run();
     },
     getOverviewUrl($c) {
       return $c
-        .querySelector('.animeIzleBolumListesi a.animeDetayKutuLink')
+        .querySelector('.v3-watch-series-button')
         .ifNotReturn()
         .getAttribute('href')
         .urlAbsolute()
@@ -44,7 +40,7 @@ export const anizm: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.anizm_alignRight a.anizm_button.default')
+        .querySelector('a.v3-episode-nav-next')
         .ifNotReturn()
         .getAttribute('href')
         .urlAbsolute()
@@ -53,37 +49,35 @@ export const anizm: PageInterface = {
   },
   overview: {
     isOverviewPage($c) {
-      return $c.querySelector('.animeDetayInnerContainer .animeDetayInfoWrapper').boolean().run();
+      return $c.querySelector('.v3-anime-detail .v3-anime-detail-header').boolean().run();
     },
     getTitle($c) {
-      return $c.querySelector('.anizm_pageTitle a').text().trim().run();
+      return $c.querySelector('.v3-anime-detail .v3-breadcrumb > span').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(3).run();
     },
     getImage($c) {
       return $c
-        .querySelector('img.infoPosterImgItem')
+        .querySelector('.v3-anime-detail-cover img')
         .getAttribute('src')
         .ifNotReturn()
         .urlAbsolute()
         .run();
     },
     uiInjection($c) {
-      return $c.querySelector('.infoExtraData ul.dataRows').uiAppend().run();
+      return $c.querySelector('.v3-anime-detail-meta').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c
-        .querySelectorAll('.episodeListTabContent .bolumKutucugu a, .animeEpisodesLongList > a')
-        .run();
+      return $c.querySelectorAll('.v3-anime-episode-grid > a, .v3-episode-list > a').run();
     },
     elementUrl($c) {
       return $c.getAttribute('href').urlAbsolute().run();
     },
     elementEp($c) {
-      return $c.log().this('list.elementUrl').log().this('sync.getEpisode').run();
+      return $c.this('list.elementUrl').this('sync.getEpisode').run();
     },
   },
   lifecycle: {
@@ -92,6 +86,15 @@ export const anizm: PageInterface = {
     },
     ready($c) {
       return $c.domReady().trigger().run();
+    },
+    listChange($c) {
+      // the overview episode grid is paginated client side
+      return $c
+        .detectChanges(
+          $c.querySelector('.v3-anime-episode-grid').ifNotReturn().text().run(),
+          $c.trigger().run(),
+        )
+        .run();
     },
   },
 };

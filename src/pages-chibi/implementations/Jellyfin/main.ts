@@ -197,8 +197,43 @@ export const Jellyfin: PageInterface = {
 function checkRequest($c: ChibiGenerator<unknown>) {
   return $c
     .getVariable<string>('requestUrl')
+    .matches('/Items/[^/]+/PlaybackInfo(\\?|$)')
+    .ifThen($c => $c.exec(checkPlaybackRequest).return().run())
+    .getVariable<string>('requestUrl')
     .matches('/Items/[^/]+(\\?|$)')
     .ifThen($c => $c.exec(checkMetadataRequest).run());
+}
+
+// Up Next also fetches /Items/<id> for the next episode ~30s before the end. PlaybackInfo is only
+// requested for the item that actually starts playing, so it decides which episode gets synced.
+function checkPlaybackRequest($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable<string>('requestUrl')
+    .regex('/Items/([^/]+)/PlaybackInfo', 1)
+    .setGlobalVariable('playingItemId')
+    .exec(promotePlayingItem);
+}
+
+// Jellyfin never resets a sync page on its own, so an episode stopped before the videoDuration
+// progress stays armed and any video reaching that progress later syncs it. Clear it when
+// something that is not cached starts, like a show that is not anime.
+function promotePlayingItem($c: ChibiGenerator<unknown>) {
+  return $c
+    .getGlobalVariable($c.getGlobalVariable<string>('playingItemId').run())
+    .ifThen($c => $c.setGlobalVariable('metadataGlobal').trigger().return().run())
+    .getGlobalVariable('metadataGlobal')
+    .ifThen($c => $c.boolean(false).setGlobalVariable('metadataGlobal').trigger().run());
+}
+
+// Cache episodes and movies by id instead of treating them as playing. Metadata and PlaybackInfo
+// can arrive in either order, so both sides try to promote.
+function cachePlayableItem($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable('metadata')
+    .setGlobalVariable($c.getVariable<Metadata>('metadata').get('Id').run())
+    .get('Id')
+    .equals($c.getGlobalVariable<string>('playingItemId').run())
+    .ifThen($c => $c.exec(promotePlayingItem).run());
 }
 
 function checkMetadataRequest($c: ChibiGenerator<unknown>) {
@@ -258,9 +293,22 @@ function handleSeries($c: ChibiGenerator<unknown>) {
           .concat($c.getVariable<SeriesMetadata>('metadata').get('Id').run())
           .run(),
       )
-      .ifThen($c => $c.setGlobalVariable('metadataGlobal').trigger().run())
+      .ifThen($c => $c.setVariable('metadata').exec(flushPending).run())
       .run(),
   );
+}
+
+// A waiting season is an overview page and shows straight away, a waiting episode could be the
+// Up Next one so it still has to be the item that is playing.
+function flushPending($c: ChibiGenerator<unknown>) {
+  return $c
+    .getVariable<Metadata>('metadata')
+    .get('Type')
+    .equals('Episode')
+    .ifThen($c => $c.exec(cachePlayableItem).return().run())
+    .getVariable('metadata')
+    .setGlobalVariable('metadataGlobal')
+    .trigger();
 }
 
 // Anime if its own fields say so, or the parent series was already flagged. Otherwise stash
@@ -302,7 +350,7 @@ function handleEpisode($c: ChibiGenerator<unknown>) {
           .run(),
       )
       .run(),
-    $c.getVariable('metadata').setGlobalVariable('metadataGlobal').trigger().run(),
+    $c.exec(cachePlayableItem).run(),
     $c
       .getVariable('metadata')
       .setGlobalVariable(
@@ -316,7 +364,5 @@ function handleEpisode($c: ChibiGenerator<unknown>) {
 }
 
 function handleMovie($c: ChibiGenerator<unknown>) {
-  return isAnime($c).ifThen($c =>
-    $c.getVariable('metadata').setGlobalVariable('metadataGlobal').trigger().run(),
-  );
+  return isAnime($c).ifThen($c => $c.exec(cachePlayableItem).run());
 }

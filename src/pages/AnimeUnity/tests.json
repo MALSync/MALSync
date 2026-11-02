@@ -12,6 +12,17 @@
         "episode": 8,
         "uiSelector": true
       }
+    },
+    {
+      "url": "https://www.animeunity.co/anime/331-the-irregular-at-magic-high-school/7846",
+      "expected": {
+        "sync": true,
+        "title": "The Irregular at Magic High School",
+        "identifier": "331-the-irregular-at-magic-high-school",
+        "overviewUrl": "https://animeunity.it/anime/331-the-irregular-at-magic-high-school",
+        "episode": 8,
+        "uiSelector": true
+      }
     }
   ]
 }

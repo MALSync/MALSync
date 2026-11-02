@@ -21,7 +21,7 @@ export const MangaFire: PageInterface = {
   urls: {
     match: ['*://mangafire.to/*'],
   },
-  search: 'https://mangafire.to/filter?keyword={searchtermPlus}',
+  search: 'https://mangafire.to/browse?keyword={searchterm}&sort=relevance:desc',
   sync: {
     isSyncPage($c) {
       return $c.exec(getJsonData).get('page').equals('chapter').run();

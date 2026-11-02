@@ -1,8 +1,8 @@
 @import './../pages';
 
-@boxBackground: hsl(var(--secondary));
+@boxBackground: var(--color-surface-2);
 @highlightStyle: 1;
-@activeEp: hsl(var(--primary));
+@activeEp: var(--color-accent);
 
 #malp {
   margin-bottom: 24px;
@@ -11,11 +11,11 @@
     .malp-group-field:focus,
     .malp-group-value-section:focus-within,
     .malp-group-value-section:hover {
-      background-color: hsl(var(--secondary) / 80%) !important;
+      background-color: var(--color-surface-3) !important;
       transition-duration: 0.25s;
       box-shadow: none;
       option {
-        background-color: hsl(var(--secondary) / 80%) !important;
+        background-color: var(--color-surface-3) !important;
         font-family: sans-serif;
       }
     }

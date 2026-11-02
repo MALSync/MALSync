@@ -429,10 +429,22 @@
         "message": "Пошук потрібного тайтла"
     },
     "correction_NoMal": {
-        "message": "Якщо аніме/манґу не вдається знайти на $page$"
+        "message": "Якщо аніме/манґу не вдається знайти на $page$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_NoEntry": {
-        "message": "Немає даних на $page$"
+        "message": "Немає даних на $page$",
+        "placeholders": {
+            "page": {
+                "content": "$1",
+                "example": "MAL"
+            }
+        }
     },
     "correction_OffsetReset": {
         "message": "Зміщення скинуто"

@@ -94,7 +94,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl/Shikimori/MangaBak
                 <td><a href="https://drakecomic.org"><img src="https://favicon.malsync.moe/?domain=https://drakecomic.org"> DrakeScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://v5.animelib.org"><img src="https://favicon.malsync.moe/?domain=https://v5.animelib.org"> AnimeLib</a></td>
+                <td><a href="https://animelib.org"><img src="https://favicon.malsync.moe/?domain=https://animelib.org"> AnimeLib</a></td>
                 <td><a href="https://dynasty-scans.com"><img src="https://favicon.malsync.moe/?domain=https://dynasty-scans.com"> DynastyScans</a></td>
                 <td></td>
               </tr><tr>

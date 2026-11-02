@@ -8,7 +8,7 @@
           "sync": true,
           "title": "Questism",
           "identifier": "questism",
-          "image": "https://storage.hivetoon.com/public//upload/2024/11/20/cover_1732134769816.webp",
+          "image": "https://storage.hivetoon.com/public/upload/series/featured/cmera5fvc000wpg1hz1ad0qf4/3c77d6a9-95a9-448c-8bac-4fc3a5b0488b.jpg",
           "overviewUrl": "https://hivetoons.org/series/questism",
           "episode": 101,
           "uiSelector": false
@@ -20,7 +20,7 @@
           "sync": false,
           "title": "Questism",
           "identifier": "questism",
-          "image": "https://storage.hivetoon.com/public//upload/2024/11/20/cover_1732134769816.webp",
+          "image": "https://hivetoons.org/api/og-image/series/questism/NJvKtABgsEIxrwpP.webp",
           "uiSelector": true
         }
       }

@@ -1,4 +1,18 @@
+import type { ChibiGenerator } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
+
+// The ld+json holds a @graph, the page's main entity is the ComicIssue (reader) or ComicSeries (series page)
+function getData($c: ChibiGenerator<unknown>) {
+  return $c
+    .querySelector('script[type="application/ld+json"]')
+    .ifNotReturn()
+    .text()
+    .jsonParse()
+    .get('@graph')
+    .ifNotReturn()
+    .type<{ '@type': string }[]>()
+    .arrayFind($item => $item.get('@type').string().matches('^Comic(Issue|Series)$').run());
+}
 
 export const Ritharscans: PageInterface = {
   name: 'Ritharscans',
@@ -58,18 +72,18 @@ export const Ritharscans: PageInterface = {
       return $c.url().urlPart(3).equals('series').run();
     },
     getTitle($c) {
-      return $c
-        .getGlobalVariable('data')
-        .get('name')
-        .string()
-        .regex('^(.*?)(?: \\[.+?\\])* - Ritharscans \\| \\w+$', 1)
-        .run();
+      return $c.getGlobalVariable('data').get('name').string().trim().run();
     },
     getIdentifier($c) {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c.getGlobalVariable('data').get('image').get('url').run();
+      return $c
+        .querySelector('meta[property="og:image"]')
+        .ifNotReturn()
+        .getAttribute('content')
+        .ifNotReturn()
+        .run();
     },
     uiInjection($c) {
       return $c.querySelector('div:has(> [title="Status"])').uiAfter().run();
@@ -93,19 +107,9 @@ export const Ritharscans: PageInterface = {
     ready($c) {
       return $c
         .domReady()
-        .querySelector('script[type="application/ld+json"]')
-        .text()
-        .jsonParse()
+        .exec(getData)
         .setGlobalVariable('data')
-        .detectURLChanges(
-          $c
-            .querySelector('script[type="application/ld+json"]')
-            .text()
-            .jsonParse()
-            .setGlobalVariable('data')
-            .trigger()
-            .run(),
-        )
+        .detectURLChanges($c.exec(getData).setGlobalVariable('data').trigger().run())
         .trigger()
         .run();
     },

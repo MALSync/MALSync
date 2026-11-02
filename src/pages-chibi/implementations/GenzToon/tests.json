@@ -1,32 +1,58 @@
 {
-    "title": "GenzToon",
-    "url": "https://genzupdates.com",
-    "testCases": [
-      {
-        "url": "https://genzupdates.com/chapter/634504a70a7-63c7cfe8fc4/",
-        "expected": {
-          "sync": true,
-          "title": "The Concept-Grasping Magical Genius",
-          "identifier": "634504a70a7",
-          "overviewUrl": "https://genzupdates.com/series/634504a70a7/",
-          "episode": 33,
-          "nextEpUrl": "https://genzupdates.com/chapter/634504a70a7-63d08fcef4a/",
-          "uiSelector": false
-        }
-      },
-      {
-        "url": "https://genzupdates.com/series/634504a70a7/",
-        "expected": {
-          "sync": false,
-          "title": "The Concept-Grasping Magical Genius",
-          "identifier": "634504a70a7",
-          "image": "https://wsrv.nl/?url=cdn.meowing.org/uploads/DLYi8Atxxz-",
-          "uiSelector": true,
-          "epList": {
-            "1" : "https://genzupdates.com/chapter/634504a70a7-63451720fbb/",
-            "38" : "https://genzupdates.com/chapter/634504a70a7-6405576ac41/"
-          }
+  "title": "GenzToon",
+  "url": "https://genztoons.org",
+  "testCases": [
+    {
+      "url": "https://genztoons.org/chapter/634504a70a7-63c7cfe8fc4/",
+      "expected": {
+        "sync": true,
+        "title": "The Concept-Grasping Magical Genius",
+        "identifier": "the-concept-grasping-magical-genius",
+        "overviewUrl": "https://genztoons.org/series/the-concept-grasping-magical-genius/",
+        "episode": 33,
+        "nextEpUrl": "https://genztoons.org/chapter/634504a70a7-63d08fcef4a/",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://genztoons.org/series/the-concept-grasping-magical-genius/",
+      "expected": {
+        "sync": false,
+        "title": "The Concept-Grasping Magical Genius",
+        "identifier": "the-concept-grasping-magical-genius",
+        "image": "https://wsrv.nl/?url=cdn.meowing.org/uploads/njCJwtzpZgK",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://genztoons.org/chapter/634504a70a7-63451720fbb/",
+          "64": "https://genztoons.org/chapter/634504a70a7-65bd6c52298/"
         }
       }
-    ]
-  }
+    },
+    {
+      "url": "https://genztoons.org/chapter/65d93238883-65d94596865/",
+      "expected": {
+        "sync": true,
+        "title": "The Infinite Bacteria Necromancer",
+        "identifier": "the-infinite-bacteria-necromancer-novel",
+        "overviewUrl": "https://genztoons.org/series/the-infinite-bacteria-necromancer-novel/",
+        "episode": 5,
+        "nextEpUrl": "https://genztoons.org/chapter/65d93238883-65d94597405/",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://genztoons.org/series/the-infinite-bacteria-necromancer-novel/",
+      "expected": {
+        "sync": false,
+        "title": "The Infinite Bacteria Necromancer",
+        "identifier": "the-infinite-bacteria-necromancer-novel",
+        "image": "https://wsrv.nl/?url=cdn.meowing.org/uploads/65d9456bfb8.avif",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://genztoons.org/chapter/65d93238883-65d94593903/",
+          "100": "https://genztoons.org/chapter/65d93238883-65da345a511/"
+        }
+      }
+    }
+  ]
+}

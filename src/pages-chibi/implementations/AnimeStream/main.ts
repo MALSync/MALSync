@@ -76,7 +76,8 @@ export const AnimeStream: PageInterface = {
             .matches('e(\\d+)\\s-\\s', 'im')
             .run(),
           $c.getVariable('title').string().regex('e(\\d+)\\s-\\s', 1, 'im').number().run(),
-          $c.number(NaN).run(),
+          // Movies have no episode number
+          $c.number(1).run(),
         )
         .run();
     },
@@ -109,7 +110,7 @@ export const AnimeStream: PageInterface = {
     getTitle($c) {
       const movieTitle = $c.if(
         $c.url().urlPart(3).equals('movies').run(),
-        $c.querySelector('h1.mp-mv-title').text().trim().run(),
+        $c.querySelector('h1.mp-mvd-title').text().trim().run(),
         $c.boolean(false).run(),
       );
       const seriesTitle = $c.querySelector('h1.mp-sr-title').text().trim();
@@ -121,7 +122,9 @@ export const AnimeStream: PageInterface = {
       const seasonId = $c
         .getGlobalVariable($c.string('seasonId_').concat(fistEpisodeId).run())
         .run();
-      const seasonLabel = $c.getGlobalVariable($c.string('title_').concat(seasonId).run()).string();
+      const seasonLabel = $c
+        .getGlobalVariable($c.string('title_').concat(seasonId).run(), '')
+        .string();
       const seasonTitle = $c
         .if(
           seasonLabel.toLowerCase().contains(seriesTitle.toLowerCase().run()).run(),
@@ -153,21 +156,21 @@ export const AnimeStream: PageInterface = {
     uiInjection($c) {
       const movieUi = $c.if(
         $c.url().urlPart(3).equals('movies').run(),
-        $c.querySelector('div.mp-mv-actionzone').uiBefore().run(),
+        $c.querySelector('div.mp-mvd-primary-actions').uiBefore().run(),
         $c.boolean(false).run(),
       );
-      const seriesUi = $c.querySelector('div.mp-sr-actionzone > div.mp-sr-actions').uiAfter().run();
+      const seriesUi = $c.querySelector('div.mp-sr-primary-actions').uiAfter().run();
 
       return movieUi.ifNotReturn(seriesUi).run();
     },
     getImage($c) {
       const movieImageUrl = $c.if(
         $c.url().urlPart(3).equals('movies').run(),
-        $c.querySelector('div.mp-mv-poster img').ifNotReturn().getAttribute('src').run(),
+        $c.querySelector('figure.mp-mvd-stage img').ifNotReturn().getAttribute('src').run(),
         $c.boolean(false).run(),
       );
       const seriesImageUrl = $c
-        .querySelector('div.mp-sr-poster img')
+        .querySelector('figure.mp-sr-stage img')
         .ifNotReturn()
         .getAttribute('src')
         .run();
@@ -303,13 +306,13 @@ export const AnimeStream: PageInterface = {
             .or(
               $c
                 .and(
-                  $c.querySelector('div.mp-sr-actionzone > div.mp-sr-actions').boolean().run(),
+                  $c.querySelector('div.mp-sr-primary-actions').boolean().run(),
                   $c.querySelector('div.mp-sr-epgrid > a').boolean().run(),
                 )
                 .run(),
               $c
                 .and(
-                  $c.querySelector('div.mp-mv-actionzone > a.mp-mv-cta').boolean().run(),
+                  $c.querySelector('div.mp-mvd-primary-actions > a.mp-mvd-cta').boolean().run(),
                   $c.url().urlPart(3).equals('movies').run(),
                 )
                 .run(),
@@ -345,10 +348,14 @@ export const AnimeStream: PageInterface = {
 
 function getSeasonName($c: ChibiGenerator<unknown>) {
   return $c
-    .querySelector('span.mp-watch-meta-item:nth-child(2)')
-    .ifNotReturn()
-    .text()
-    .trim()
+    .fn(
+      $c
+        .querySelector('span.mp-watch-meta-item:nth-child(2)')
+        .ifNotReturn($c.string('').run())
+        .text()
+        .trim()
+        .run(),
+    )
     .string();
 }
 

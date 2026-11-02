@@ -34,7 +34,7 @@ export const TeamShadowi: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('[class*="chevron-right"]')
+        .querySelector('a [class*="chevron-right"]')
         .ifNotReturn()
         .closest('a')
         .getAttribute('href')
@@ -47,6 +47,7 @@ export const TeamShadowi: PageInterface = {
         current: $c =>
           $c
             .querySelector('.absolute.top-2.right-2')
+            .ifNotReturn()
             .text()
             .regex('(\\d+)\\D*\\/\\D*(\\d+)', 1)
             .number()
@@ -54,6 +55,7 @@ export const TeamShadowi: PageInterface = {
         total: $c =>
           $c
             .querySelector('.absolute.top-2.right-2')
+            .ifNotReturn()
             .text()
             .regex('(\\d+)\\D*\\/\\D*(\\d+)', 2)
             .number()
