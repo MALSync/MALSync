@@ -11,7 +11,7 @@
     "node": ">=24.0.0"
   },
   "devDependencies": {
-    "@ghostery/adblocker-puppeteer": "^2.20.3",
+    "@ghostery/adblocker-puppeteer": "^2.20.1",
     "@cspell/eslint-plugin": "10.3.6",
     "@eslint/eslintrc": "3.3.7",
     "@eslint/js": "9.39.5",
@@ -122,7 +122,7 @@
     "dexie": "^4.4.7",
     "dompurify": "^3.4.17",
     "download-file": "^0.1.5",
-    "eventemitter2": "^6.4.5",
+    "eventemitter2": "^6.4.9",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
     "fuse.js": "^7.5.0",
     "hex-to-hsl": "^1.0.2",
