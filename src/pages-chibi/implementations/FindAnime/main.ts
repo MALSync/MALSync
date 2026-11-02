@@ -41,6 +41,7 @@ export const FindAnime: PageInterface = {
     match: ['*://*.findanime.me/*'],
     player: {
       farmedia: ['*://*.farmedia.live/*'],
+      stravers: ['*://*.stravers.live/*'],
     },
   },
   sync: {
