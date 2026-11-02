@@ -8,6 +8,7 @@ import { search as pageSearch } from '../searchFactory';
 import { Single as LocalSingle } from '../Local/single';
 import { getRulesCacheKey } from '../singleFactory';
 import { RulesClass } from './rulesClass';
+import { NotAutenticatedError } from '../Errors';
 
 import { getSyncMode } from '../helper';
 import { buildProviderUrl } from '../../utils/slugs';
@@ -600,7 +601,14 @@ export class SearchClass {
     const url = this.getUrl();
     logger.log('Url', url);
     if (url) {
-      const cacheKeyObj = await getRulesCacheKey(url);
+      let cacheKeyObj;
+      try {
+        cacheKeyObj = await getRulesCacheKey(url);
+      } catch (e) {
+        if (!(e instanceof NotAutenticatedError)) throw e;
+        logger.info('Not authenticated');
+        return undefined;
+      }
       logger.log('Cachekey', cacheKeyObj);
       this.rules = await new RulesClass(cacheKeyObj.rulesCacheKey, this.getNormalizedType()).init();
       return cacheKeyObj.singleObj;

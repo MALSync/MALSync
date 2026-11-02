@@ -54,6 +54,7 @@ export abstract class SingleAbstract {
     },
     simkl: NaN,
     baka: NaN,
+    oshi: '',
   };
 
   protected options: {
@@ -238,6 +239,8 @@ export abstract class SingleAbstract {
     return this._getVolume();
   }
 
+  protected supportsTags = true;
+
   abstract _setTags(tags: string): void;
 
   abstract _getTags(): string;
@@ -318,9 +321,15 @@ export abstract class SingleAbstract {
       this.options.p = mode;
       this.updateProgress = true;
     }
-    if (!api.settings.get('malTags')) {
+    if (!this.supportsTags || !api.settings.get('malTags')) {
       utils
-        .setEntrySettings(this.type, this.getCacheKey(), this.options, this._getTags())
+        .setEntrySettings(
+          this.type,
+          this.getCacheKey(),
+          this.options,
+          this._getTags(),
+          this.supportsTags,
+        )
         .then(() => this.initProgress());
     }
   }
@@ -405,7 +414,12 @@ export abstract class SingleAbstract {
       .then(() => {
         this.persistenceState = this.getStateEl();
 
-        return utils.getEntrySettings(this.type, this.getCacheKey(), this._getTags());
+        return utils.getEntrySettings(
+          this.type,
+          this.getCacheKey(),
+          this._getTags(),
+          this.supportsTags,
+        );
       })
       .then(options => {
         this.options = options;
@@ -420,7 +434,13 @@ export abstract class SingleAbstract {
     this.logger.log('[SINGLE]', 'Sync', this.ids);
     this.lastError = null;
     this._setTags(
-      await utils.setEntrySettings(this.type, this.getCacheKey(), this.options, this._getTags()),
+      await utils.setEntrySettings(
+        this.type,
+        this.getCacheKey(),
+        this.options,
+        this._getTags(),
+        this.supportsTags,
+      ),
     );
     this.fixDates();
     return this._sync()
@@ -432,6 +452,7 @@ export abstract class SingleAbstract {
         this.undoState = this.persistenceState;
         if (this.updateProgress) this.initProgress();
         this._onList = true;
+        this.persistenceState = this.getStateEl();
         this.emitUpdate();
       });
   }
@@ -887,6 +908,7 @@ export abstract class SingleAbstract {
     if (this.ids.kitsu.id && allowed.includes('KITSU')) return `kitsu:${this.ids.kitsu.id}`;
     if (this.ids.simkl && allowed.includes('SIMKL')) return `simkl:${this.ids.simkl}`;
     if (this.ids.baka && allowed.includes('MANGABAKA')) return `mangabaka:${this.ids.baka}`;
+    if (this.ids.oshi && allowed.includes('ANIMEOSHI')) return `animeoshi:${this.ids.oshi}`;
     return this.ids.mal;
   }
 

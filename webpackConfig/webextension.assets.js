@@ -26,6 +26,7 @@ const simklUrls = { anilist: pageUrls.simkl };
 const malsyncUrls = { anilist: pageUrls.malsync };
 const malsyncAnilistUrls = { anilist: pageUrls.malsyncAnilist };
 const malsyncMangabakaUrls = { mangabaka: pageUrls.malsyncMangabaka };
+const malsyncAnimeoshiUrls = { animeoshi: pageUrls.malsyncAnimeoshi };
 const malsyncShikiUrls = { shiki: pageUrls.malsyncShiki };
 const malsyncPwaUrls = { anilist: pageUrls.malsyncPwa };
 
@@ -60,6 +61,12 @@ var content_scripts = [
     matches: generateMatchExcludes(malsyncMangabakaUrls).match,
     exclude_globs: generateMatchExcludes(malsyncMangabakaUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-mangabaka-script.js'],
+    run_at: 'document_start',
+  },
+  {
+    matches: generateMatchExcludes(malsyncAnimeoshiUrls).match,
+    exclude_globs: generateMatchExcludes(malsyncAnimeoshiUrls).exclude,
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-animeoshi-script.js'],
     run_at: 'document_start',
   },
   {

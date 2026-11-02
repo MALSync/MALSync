@@ -72,6 +72,10 @@ const predefinedUrlsByProvider: Record<SyncTypes, string[]> = {
     'https://shikimori.io/mangas/104279-cicada',
   ],
   MANGABAKA: ['https://myanimelist.net/manga/104279/Cicada', 'https://mangabaka.org/65092'],
+  ANIMEOSHI: [
+    'https://myanimelist.net/anime/37258/Omae_wa_Mada_Gunma_wo_Shiranai',
+    'https://www.animeoshi.com/anime/you-dont-know-gunma-yet',
+  ],
 };
 
 const providerOptions = Object.values(providerInfo).map(p => ({ title: p.title, value: p.value }));
