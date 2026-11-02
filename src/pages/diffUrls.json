@@ -120,6 +120,8 @@
       "*://www.tranimeizle.live/*"
     ],
     "iframe": [
+      "*://*.vk.ru/*",
+      "*://*.vkvideo.ru/*",
       "*://*.mxdrop.top/e/*",
       "*://*.mxdrop.click/e/*",
       "*://eugenemakedraw.com/e/*",
@@ -129,7 +131,8 @@
       "*://teresapoliticallearn.com/e/*",
       "*://derricknationtop.com/e/*",
       "*://ashleyhardat.com/e/*",
-      "*://shanelocaldog.com/e/*"
+      "*://shanelocaldog.com/e/*",
+      "*://shannoncoldalready.com/e/*"
     ]
   }
 }
