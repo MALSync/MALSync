@@ -12,6 +12,16 @@ export type permissionElement = tempPermissionElement & {
   permission: permissionType;
 };
 
+type permissionsCacheType = {
+  key: string;
+  result: {
+    required: permissionElement;
+    player: permissionElement;
+    pages: permissionElement[];
+    chibi: permissionElement[];
+  };
+};
+
 export class PermissionsHandler {
   protected required!: permissionElement;
 
@@ -72,10 +82,40 @@ export class PermissionsHandler {
 
     const activePermissions = await chrome.permissions.getAll();
 
+    // permissions.contains blocks the browser UI thread for up to ~250ms per call (#3866)
+    const cacheKey = JSON.stringify([activePermissions.origins, required, player, pages, chibi]);
+    const cache: permissionsCacheType | undefined = await chrome.storage.local
+      .get('permissionsCache')
+      .then(res => res.permissionsCache as permissionsCacheType)
+      .catch(() => undefined);
+    if (cache?.key === cacheKey) {
+      ({
+        required: this.required,
+        player: this.player,
+        pages: this.pages,
+        chibi: this.chibi,
+      } = cache.result);
+      return this;
+    }
+
     this.required = await this.testPermission(required, activePermissions);
     this.player = await this.testPermission(player, activePermissions);
     this.pages = await Promise.all(pages.map(page => this.testPermission(page, activePermissions)));
     this.chibi = await Promise.all(chibi.map(page => this.testPermission(page, activePermissions)));
+
+    chrome.storage.local
+      .set({
+        permissionsCache: {
+          key: cacheKey,
+          result: {
+            required: this.required,
+            player: this.player,
+            pages: this.pages,
+            chibi: this.chibi,
+          },
+        },
+      })
+      .catch(() => {});
 
     return this;
   }
