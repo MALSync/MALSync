@@ -678,7 +678,7 @@
         "description": "General translation of anime for places like drop downs"
     },
     "Package_Description": {
-        "message": "MyAnimeList, AniList, Kitsu, Simkl, Shikimori, MangaBaka लाई स्वत: एपिसोड ट्र्याकिङको साथ विभिन्न साइटहरूमा एकीकृत गर्दछ।",
+        "message": "MyAnimeList, AniList, Kitsu, Simkl, MangaBaka लाई स्वत: एपिसोड ट्र्याकिङको साथ विभिन्न साइटहरूमा एकीकृत गर्दछ।",
         "description": "Description MALSync"
     },
     "UI_Status_OnHold": {
