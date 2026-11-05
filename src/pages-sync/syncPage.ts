@@ -4,6 +4,7 @@ import { hideFloatbutton, initFloatButton, showFloatbutton } from '../floatbutto
 import { providerTemplates } from '../provider/templates';
 import { fullscreenNotification, PlayerSingleton } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
+import { RULE_SETS } from '../_provider/Search/rulesClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
 import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
@@ -172,12 +173,23 @@ export class SyncPage {
         detectedEpisode: parseInt(`${this.page.sync.getEpisode(this.url)}`),
       };
 
+      if (typeof this.page.sync.getSeason !== 'undefined') {
+        const season = parseInt(`${this.page.sync.getSeason(this.url)}`);
+        if (!Number.isNaN(season)) state.season = season;
+      }
+
+      if (typeof this.page.sync.getRuleSet !== 'undefined') {
+        const ruleSet = this.page.sync.getRuleSet(this.url);
+        if (RULE_SETS.includes(ruleSet)) state.ruleSet = ruleSet;
+      }
+
       this.setSearchObj(
         new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
+      this.searchObj.setPageRuleSet(state.ruleSet);
       this.curState = state;
       await this.searchObj.search();
 
@@ -198,7 +210,8 @@ export class SyncPage {
         }
       } else {
         state.episode =
-          state.detectedEpisode + parseInt(this.searchObj.getRuledOffset(state.detectedEpisode));
+          state.detectedEpisode +
+          parseInt(this.searchObj.getRuledOffset(state.detectedEpisode, state.season));
       }
 
       if (typeof this.page.sync.getVolume !== 'undefined') {
@@ -227,12 +240,23 @@ export class SyncPage {
         identifier: this.page.overview.getIdentifier(this.url),
       };
 
+      if (typeof this.page.overview.getSeason !== 'undefined') {
+        const season = parseInt(`${this.page.overview.getSeason(this.url)}`);
+        if (!Number.isNaN(season)) state.season = season;
+      }
+
+      if (typeof this.page.overview.getRuleSet !== 'undefined') {
+        const ruleSet = this.page.overview.getRuleSet(this.url);
+        if (RULE_SETS.includes(ruleSet)) state.ruleSet = ruleSet;
+      }
+
       this.setSearchObj(
         new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier),
       );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
+      this.searchObj.setPageRuleSet(state.ruleSet);
       this.curState = state;
       await this.searchObj.search();
 
@@ -250,7 +274,10 @@ export class SyncPage {
 
     this.curState = state;
 
-    let malUrl = this.searchObj.getRuledUrl(state.detectedEpisode);
+    let malUrl = this.searchObj.getRuledUrl(this.searchObj.getRuleEpisode(state), state.season);
+
+    // initRules returns the single of the unruled url
+    if (malUrl !== this.searchObj.getUrl()) tempSingle = undefined;
 
     const localUrl = this.generateLocalUrl(this.page, state);
 
@@ -308,7 +335,7 @@ export class SyncPage {
 
       // sync
       if (this.page.isSyncPage(this.url)) {
-        const rerun = await this.searchObj.openCorrectionCheck();
+        const rerun = await this.searchObj.openCorrectionCheck(state.detectedEpisode, state.season);
 
         if (rerun) {
           // If malUrl changed
@@ -894,13 +921,14 @@ export class SyncPage {
       this.page.overview.list.elementsSelector().each(function (index, el) {
         try {
           const epNumber = parseInt(`${elementEp(j.$(el))}`);
+          const season = This.curState?.season;
 
           let offset = 0;
-          if (This.searchObj && This.searchObj.getRuledOffset(epNumber)) {
-            offset = Number(This.searchObj.getRuledOffset(epNumber));
+          if (This.searchObj && This.searchObj.getRuledOffset(epNumber, season)) {
+            offset = Number(This.searchObj.getRuledOffset(epNumber, season));
 
             const searchObjUrl = This.searchObj.getUrl();
-            const ruledUrl = This.searchObj.getRuledUrl(epNumber);
+            const ruledUrl = This.searchObj.getRuledUrl(epNumber, season);
 
             if (searchObjUrl !== ruledUrl) {
               j.$(el).attr('data-mal-sync-entry', ruledUrl);

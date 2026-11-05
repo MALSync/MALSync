@@ -1,5 +1,5 @@
 import { createApp } from '../../utils/Vue';
-import { SearchClass as SearchClassExtend } from './searchClass';
+import { CorrectionMode, SearchClass as SearchClassExtend } from './searchClass';
 
 import correctionApp from './correctionApp.vue';
 
@@ -8,21 +8,27 @@ export class SearchClass extends SearchClassExtend {
 
   protected vueInstance;
 
-  public openCorrectionCheck() {
-    if (this.state && this.state.similarity && this.state.similarity.same) {
-      con.log('similarity', this.state.similarity.value);
+  public async openCorrectionCheck(episode?: number, season?: number) {
+    // A changed rule set reruns the page
+    if (this.getRuleConflict(episode, season)) {
+      con.log('Rule conflict');
+      if (await this.openCorrection('conflict')) return true;
+    }
+
+    if (this.isSimilar()) {
+      con.log('similarity', this.state && this.state.similarity.value);
       return false;
     }
-    return this.openCorrection(true).then(() => {
+    return this.openCorrection('sync').then(() => {
       return this.changed;
     });
   }
 
-  public openCorrection(syncMode = false): Promise<boolean> {
+  public openCorrection(mode: CorrectionMode = 'default'): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (this.vueInstance) {
         this.vueInstance.$.appContext.app.unmount();
-        if (!syncMode) {
+        if (mode === 'default') {
           resolve(false);
           return;
         }
@@ -38,7 +44,7 @@ export class SearchClass extends SearchClassExtend {
         shadowDom: true,
       });
       this.vueInstance.searchClass = this;
-      this.vueInstance.syncMode = syncMode;
+      this.vueInstance.mode = mode;
       this.vueInstance.unmountFnc = () => {
         resolve(this.changed);
         flasmessage.remove();

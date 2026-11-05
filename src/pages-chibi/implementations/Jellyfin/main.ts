@@ -80,9 +80,6 @@ export const Jellyfin: PageInterface = {
         .run();
     },
     getTitle($c) {
-      const title = $c.exec(meta<EpisodeMetadata>).get('SeriesName');
-      const seasonIndex = $c.exec(meta<EpisodeMetadata>).get('ParentIndexNumber');
-
       return $c
         .exec(meta<SyncMeta>)
         .get('Type')
@@ -94,11 +91,8 @@ export const Jellyfin: PageInterface = {
             .return()
             .run(),
         )
-        .if(
-          seasonIndex.number().greaterThan(1).run(),
-          title.concat(' ').concat('Season ').concat(seasonIndex.string().run()).run(),
-          title.run(),
-        )
+        .exec(meta<EpisodeMetadata>)
+        .get('SeriesName')
         .run();
     },
     getIdentifier($c) {
@@ -138,6 +132,17 @@ export const Jellyfin: PageInterface = {
         .get('IndexNumber')
         .run();
     },
+    getSeason($c) {
+      return $c
+        .exec(meta<SyncMeta>)
+        .get('Type')
+        .equals('Episode')
+        .ifNotReturn()
+        .exec(meta<EpisodeMetadata>)
+        .get('ParentIndexNumber')
+        .exec(skipFirstSeason)
+        .run();
+    },
   },
   overview: {
     isOverviewPage($c) {
@@ -148,15 +153,9 @@ export const Jellyfin: PageInterface = {
         .run();
     },
     getTitle($c) {
-      const title = $c.exec(meta<OverviewMeta>).get('SeriesName');
-      const seasonIndex = $c.exec(meta<OverviewMeta>).get('IndexNumber');
-
       return $c
-        .if(
-          seasonIndex.number().greaterThan(1).run(),
-          title.concat(' ').concat('Season ').concat(seasonIndex.string().run()).run(),
-          title.run(),
-        )
+        .exec(meta<OverviewMeta>)
+        .get('SeriesName')
         .run();
     },
     getImage($c) {
@@ -166,6 +165,13 @@ export const Jellyfin: PageInterface = {
       return $c
         .exec(meta<OverviewMeta>)
         .get('Id')
+        .run();
+    },
+    getSeason($c) {
+      return $c
+        .exec(meta<OverviewMeta>)
+        .get('IndexNumber')
+        .exec(skipFirstSeason)
         .run();
     },
     uiInjection($c) {
@@ -193,6 +199,16 @@ export const Jellyfin: PageInterface = {
     },
   },
 };
+
+// Season 1 is not passed on, NaN is ignored as season
+function skipFirstSeason($c: ChibiGenerator<unknown>) {
+  return $c
+    .number()
+    .setVariable('season')
+    .equals(1)
+    .ifThen($c => $c.string('NaN').number().return().run())
+    .getVariable<number>('season');
+}
 
 function checkRequest($c: ChibiGenerator<unknown>) {
   return $c

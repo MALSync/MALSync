@@ -390,6 +390,8 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   expect(text.title, 'Title').to.equal(test.expected.title);
   expect(text.identifier, 'Identifier').to.equal(test.expected.identifier);
   expect(text.image, 'Image').to.equal(test.expected.image);
+  expect(text.season, 'Season').to.equal(test.expected.season);
+  expect(text.ruleSet, 'Rule set').to.equal(test.expected.ruleSet);
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
     if (test.expected.volume) {
