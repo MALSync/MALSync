@@ -1,0 +1,85 @@
+{
+  "title": "UAni",
+  "url": "https://uani.fun",
+  "testCases": [
+    {
+      "url": "https://uani.fun/anime/pererodyvsia-hoblinom-ie-pytannia-5052/watch?voice=ridnyi-holos&ep=4",
+      "expected": {
+        "sync": true,
+        "title": "Переродився гобліном, є питання?",
+        "identifier": "pererodyvsia-hoblinom-ie-pytannia-5052",
+        "episode": 4,
+        "overviewUrl": "https://uani.fun/anime/pererodyvsia-hoblinom-ie-pytannia-5052",
+        "nextEpUrl": "https://uani.fun/anime/pererodyvsia-hoblinom-ie-pytannia-5052/watch?ep=5",
+        "image": "https://uani.fun/storage/anime/covers/5052.webp?v=1791214978",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://uani.fun/anime/pererodyvsia-hoblinom-ie-pytannia-5052",
+      "expected": {
+        "sync": false,
+        "title": "So What's Wrong with Getting Reborn as a Goblin?",
+        "identifier": "pererodyvsia-hoblinom-ie-pytannia-5052",
+        "image": "https://uani.fun/storage/anime/covers/5052.webp?v=1791214978",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://uani.fun/anime/pererodyvsia-hoblinom-ie-pytannia-5052/watch?ep=1",
+          "2": "https://uani.fun/anime/pererodyvsia-hoblinom-ie-pytannia-5052/watch?ep=2",
+          "5": "https://uani.fun/anime/pererodyvsia-hoblinom-ie-pytannia-5052/watch?ep=5"
+        }
+      }
+    },
+    {
+      "url": "https://uani.fun/anime/tvoie-imia-176/watch",
+      "expected": {
+        "sync": true,
+        "title": "Твоє ім'я",
+        "identifier": "tvoie-imia-176",
+        "episode": 1,
+        "overviewUrl": "https://uani.fun/anime/tvoie-imia-176",
+        "image": "https://uani.fun/storage/anime/covers/176.webp?v=1779533773",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://uani.fun/manga/upoliuvaty-imperatora-17/read/349",
+      "expected": {
+        "sync": true,
+        "title": "Уполювати Імператора",
+        "identifier": "upoliuvaty-imperatora-17",
+        "episode": 65,
+        "overviewUrl": "https://uani.fun/manga/upoliuvaty-imperatora-17",
+        "nextEpUrl": "https://uani.fun/manga/upoliuvaty-imperatora-17/read/350",
+        "image": "https://uani.fun/storage/manga/covers/17.webp?v=1785841010",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://uani.fun/manga/upoliuvaty-imperatora-17/read/350",
+      "expected": {
+        "sync": true,
+        "title": "Уполювати Імператора",
+        "identifier": "upoliuvaty-imperatora-17",
+        "episode": 66,
+        "overviewUrl": "https://uani.fun/manga/upoliuvaty-imperatora-17",
+        "image": "https://uani.fun/storage/manga/covers/17.webp?v=1785841010",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://uani.fun/manga/upoliuvaty-imperatora-17",
+      "expected": {
+        "sync": false,
+        "title": "Emperor Hunt",
+        "identifier": "upoliuvaty-imperatora-17",
+        "image": "https://uani.fun/storage/manga/covers/17.webp?v=1785841010",
+        "uiSelector": true,
+        "epList": {
+          "65": "https://uani.fun/manga/upoliuvaty-imperatora-17/read/349",
+          "66": "https://uani.fun/manga/upoliuvaty-imperatora-17/read/350"
+        }
+      }
+    }
+  ]
+}

@@ -122,6 +122,8 @@ import { Chikari } from './implementations/Chikari/main';
 import { MistScans } from './implementations/MistScans/main';
 import { AnimeSaturn } from './implementations/AnimeSaturn/main';
 import { Dragonroll } from './implementations/Dragonroll/main';
+import { UAni } from './implementations/UAni/main';
+import { AniTube } from './implementations/AniTube/main';
 
 export const pages: { [key: string]: PageInterface } = {
   animeav1,
@@ -246,4 +248,6 @@ export const pages: { [key: string]: PageInterface } = {
   MistScans,
   AnimeSaturn,
   Dragonroll,
+  UAni,
+  AniTube,
 };
