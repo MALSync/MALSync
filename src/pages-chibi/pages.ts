@@ -120,6 +120,7 @@ import { NaszeAnime } from './implementations/NaszeAnime/main';
 import { Netflix } from './implementations/Netflix/main';
 import { Chikari } from './implementations/Chikari/main';
 import { MistScans } from './implementations/MistScans/main';
+import { AnimesFHD } from './implementations/AnimesFHD/main';
 import { AnimeSaturn } from './implementations/AnimeSaturn/main';
 import { Dragonroll } from './implementations/Dragonroll/main';
 
@@ -244,6 +245,7 @@ export const pages: { [key: string]: PageInterface } = {
   Netflix,
   Chikari,
   MistScans,
+  AnimesFHD,
   AnimeSaturn,
   Dragonroll,
 };
