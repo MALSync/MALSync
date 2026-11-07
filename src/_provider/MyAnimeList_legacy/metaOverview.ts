@@ -1,8 +1,15 @@
+import { Cache } from '../../utils/Cache';
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import { urlToSlug } from '../../utils/slugs';
 import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
 import { IntlDateTime, IntlDuration, IntlRange } from '../../utils/IntlWrapper';
+import {
+  apiCall,
+  englishSynonymFromMalPageHtml,
+  englishTitleFromMalPageHtml,
+  getMalDisplayTitle,
+} from '../MyAnimeList_api/helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -21,6 +28,18 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private readonly malId: number;
 
+  private apiCall = apiCall;
+
+  getCache() {
+    if (this.cacheObj) return this.cacheObj;
+    const titleLanguage = api.settings.get('forceEnglishTitles') ? 'en' : 'default';
+    this.cacheObj = new Cache(
+      `v6/${titleLanguage}/${api.storage.lang('locale')}/${this.url}`,
+      5 * 24 * 60 * 60 * 1000,
+    );
+    return this.cacheObj;
+  }
+
   async _init() {
     this.logger.log('Retrieve', this.type, `MAL: ${this.malId}`);
 
@@ -36,7 +55,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.info(data);
     this.openingSongs(data);
     this.endingSongs(data);
-    this.related(data);
+    await this.related(data);
 
     this.logger.log('Res', this.meta);
   }
@@ -56,13 +75,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     try {
       if (useAltTitle) {
-        title = data
-          .split('class="title-english')[1]
-          .split('>')[1]
-          .split('</')[0]
-          .split('<br')[0]
-          .replace(/&quot;/g, '"')
-          .replace(/&#039;/g, "'");
+        title = englishTitleFromMalPageHtml(data) ?? englishSynonymFromMalPageHtml(data) ?? '';
       } else {
         title = data
           .split('itemprop="name">')[1]
@@ -419,7 +432,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.meta.endingSongs = endingSongs;
   }
 
-  private related(data) {
+  private async related(data) {
     const el: { type: string; links: any[] }[] = [];
     try {
       const relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
@@ -482,6 +495,49 @@ export class MetaOverview extends MetaOverviewAbstract {
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
+
     this.meta.related = el;
+    await this.applyApiEnglishTitles();
+  }
+
+  private async applyApiEnglishTitles() {
+    if (!api.settings.get('forceEnglishTitles') || !api.settings.get('malToken')) {
+      return;
+    }
+    if (!this.meta.related.some(group => group.links.length)) {
+      return;
+    }
+
+    let data;
+    try {
+      data = await this.apiCall({
+        type: 'GET',
+        path: `${this.type}/${this.malId}`,
+        fields: [
+          'related_anime{node{id,title,alternative_titles}}',
+          'related_manga{node{id,title,alternative_titles}}',
+        ],
+      });
+    } catch (e) {
+      this.logger.error(e);
+      return;
+    }
+
+    const titles = new Map<string, string>();
+    (data.related_anime || []).forEach(el => {
+      titles.set(`anime:${el.node.id}`, getMalDisplayTitle(el.node));
+    });
+    (data.related_manga || []).forEach(el => {
+      titles.set(`manga:${el.node.id}`, getMalDisplayTitle(el.node));
+    });
+
+    this.meta.related.forEach(group => {
+      group.links.forEach(link => {
+        const title = titles.get(`${link.type}:${link.id}`);
+        if (title) {
+          link.title = title;
+        }
+      });
+    });
   }
 }
