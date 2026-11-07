@@ -207,6 +207,7 @@ const generateManifest = () => {
     permissions: [
       'storage',
       'alarms',
+      'identity',
       'notifications',
       'declarativeNetRequestWithHostAccess',
     ],
