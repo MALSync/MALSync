@@ -4,9 +4,9 @@ export const Hdrezka: pageInterface = {
   name: 'Hdrezka',
   domain: [
     'https://hdrezka.ag',
-    "https://rezka.ag",
-    "https://rezka.si",
-    "https://rezka.fi"
+    'https://rezka.ag',
+    'https://rezka.si',
+    'https://rezka.fi'
   ],
   languages: ['Russian'],
   type: 'anime',
