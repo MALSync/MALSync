@@ -8,6 +8,9 @@ const watchPath = '/anime/[^/]+-\\d+/watch/?$';
 const readPath = '/manga/[^/]+-\\d+/read/\\d+/?$';
 const overviewPath = '/(anime|manga)/[^/]+-\\d+/?$';
 const listSelector = 'a[data-ep][href*="/seriya-"], a[class*="_chrow"][href*="/read/"]';
+// Cyrillic, kana, CJK and hangul
+const nonLatinScript =
+  '[\\u0400-\\u04FF\\u3040-\\u30FF\\u3400-\\u9FFF\\uAC00-\\uD7AF\\uFF00-\\uFFEF]';
 
 function isAnime($c: ChibiGenerator<unknown>) {
   return $c.url().urlStrip().urlPart(3).equals('anime');
@@ -176,7 +179,8 @@ export const UAni: PageInterface = {
       return $c.url().urlStrip().matches(overviewPath).run();
     },
     getTitle($c) {
-      // "English · Romaji" or "English · 원제"; the heading itself is Ukrainian
+      // The heading is Ukrainian, the line below reads "English · Romaji", "English · 원제" or
+      // just one title. Romaji comes first because Shikimori only compares against it.
       return $c
         .coalesce(
           $c
@@ -186,6 +190,11 @@ export const UAni: PageInterface = {
                 .ifNotReturn()
                 .text()
                 .split(' · ')
+                .filter($item => $item.matches(nonLatinScript).not().run())
+                .last()
+                .ifNotReturn()
+                // Manhwa often list several English titles separated by " / "
+                .split(' / ')
                 .first()
                 .trim()
                 .ifNotReturn()
@@ -277,7 +286,18 @@ export const UAni: PageInterface = {
         .run();
     },
     overviewIsReady($c) {
-      return $c.waitUntilTrue($c.exec(slugMatchesCanonical).run()).trigger().run();
+      return $c
+        .waitUntilTrue(
+          $c
+            .and(
+              $c.exec(slugMatchesCanonical).run(),
+              // Adult titles first show an age confirmation instead of the overview
+              $c.querySelector('#h-gate').boolean().not().run(),
+            )
+            .run(),
+        )
+        .trigger()
+        .run();
     },
     listChange($c) {
       // Long chapter lists render more rows on demand

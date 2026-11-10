@@ -19,7 +19,7 @@
       "url": "https://uani.fun/anime/pererodyvsia-hoblinom-ie-pytannia-5052",
       "expected": {
         "sync": false,
-        "title": "So What's Wrong with Getting Reborn as a Goblin?",
+        "title": "Tensei Goblin dakedo Shitsumon Aru?",
         "identifier": "pererodyvsia-hoblinom-ie-pytannia-5052",
         "image": "https://uani.fun/storage/anime/covers/5052.webp?v=1791214978",
         "uiSelector": true,
@@ -79,6 +79,56 @@
           "65": "https://uani.fun/manga/upoliuvaty-imperatora-17/read/349",
           "66": "https://uani.fun/manga/upoliuvaty-imperatora-17/read/350"
         }
+      }
+    },
+    {
+      "url": "https://uani.fun/anime/kryzhanyi-khlopets-ta-ioho-kruta-divchyna-koleha-1232",
+      "expected": {
+        "sync": false,
+        "title": "Koori Zokusei Danshi to Cool na Douryou Joshi",
+        "identifier": "kryzhanyi-khlopets-ta-ioho-kruta-divchyna-koleha-1232",
+        "image": "https://uani.fun/storage/anime/covers/1232.webp?v=1779535498",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://uani.fun/anime/kholodna-sato-san-myla-tilky-zi-mnoiu-5060",
+      "expected": {
+        "sync": false,
+        "title": "Shiotaiou no Satou-san ga Ore ni dake Amai",
+        "identifier": "kholodna-sato-san-myla-tilky-zi-mnoiu-5060",
+        "image": "https://uani.fun/storage/anime/covers/5060.webp?v=1791307918",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://uani.fun/anime/ia-zustrichaiusia-z-temnoiu-zaklynachkoiu-5047",
+      "expected": {
+        "sync": false,
+        "title": "Dark Summoner to Dekiteiru",
+        "identifier": "ia-zustrichaiusia-z-temnoiu-zaklynachkoiu-5047",
+        "image": "https://uani.fun/storage/anime/covers/5047.webp?v=1791187554",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://uani.fun/anime/ataka-tytaniv-2594",
+      "expected": {
+        "sync": false,
+        "title": "Attack on Titan",
+        "identifier": "ataka-tytaniv-2594",
+        "image": "https://uani.fun/storage/anime/covers/2594.webp?v=1779534806",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://uani.fun/manga/odnoho-dnia-ia-stav-drakoneniam-7",
+      "expected": {
+        "sync": false,
+        "title": "One Day, I Became a Hatchling",
+        "identifier": "odnoho-dnia-ia-stav-drakoneniam-7",
+        "image": "https://uani.fun/storage/manga/covers/7.webp?v=1785832783",
+        "uiSelector": true
       }
     }
   ]
