@@ -7,10 +7,10 @@ const animelon = require('../../../src/pages/Animelon/meta.json') as { search: s
 
 describe('site search links', function () {
   it('uses the matching anime and manga search pages for Mkissa', function () {
-    expect('https://mkissa.to/search/manga?query=attack').to.equal(
+    expect('https://mkissa.to/search/anime?query=attack').to.equal(
       titleSearch(Mkissa.search.anime, 'attack', '1'),
     );
-    expect('https://mkissa.to/search/anime?query=attack').to.equal(
+    expect('https://mkissa.to/search/manga?query=attack').to.equal(
       titleSearch(Mkissa.search.manga, 'attack', '1'),
     );
   });
