@@ -281,6 +281,7 @@ function handleGraphqlRequest($c: ChibiGenerator<{ url: string; data: unknown }>
     .get('unifiedEntities')
     .ifNotReturn()
     .filter($c => $c.get('__typename').equals('Show').run())
+    .log('[handle] Shows')
     .filter($c => $c.get('genreTags').boolean().run())
     .ifNotReturn()
     .setVariable('request.shows')
@@ -293,6 +294,7 @@ function setAnime($c: ChibiGenerator<NetflixShow[]>) {
 
 function isAnime($c: ChibiGenerator<NetflixShow>) {
   return $c
+    .log('[handle] isAnime')
     .setVariable('isAnime.show')
     .get('genreTags')
     .get('edges')
