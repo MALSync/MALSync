@@ -33,12 +33,27 @@ const genres = [
   '3095', // anime from the 1980s
 ];
 
-// Show id => season. For shows Netflix splits differently than the rest of the franchise.
-type SeasonOverrides = { [showId: string]: number };
-
-const seasonOverrides: SeasonOverrides = {
-  82116553: 6, // STEEL BALL RUN JoJo's Bizarre Adventure
+type Override = {
+  season?: number;
+  offset?: number;
+  malId?: number;
 };
+
+type Overrides = {
+  seasons: Record<string, { override: Override }>;
+};
+
+// Short keys of the overrides compiled into the page: season, episode offset, MAL id
+type CompactOverride = { s?: number; o?: number; m?: number };
+
+// Overrides of overrides.json by Netflix season id, shortened at build time
+function compactOverrides(overrides: Overrides) {
+  const compact: Record<string, CompactOverride> = {};
+  Object.entries(overrides.seasons).forEach(([seasonId, { override }]) => {
+    compact[seasonId] = { s: override.season, o: override.offset, m: override.malId };
+  });
+  return compact;
+}
 
 type NetflixEpisodeNode = { id: number; seq: number; title: string };
 
@@ -123,17 +138,36 @@ export const Netflix: PageInterface = {
         .run();
     },
     getEpisode($c) {
-      return $c.getGlobalVariable<NetflixEpisodeNode>('meta.episode').get('seq').run();
+      return $c
+        .getGlobalVariable<NetflixEpisodeNode>('meta.episode')
+        .get('seq')
+        .calculate('+', $c.exec(getEpisodeOffset).run())
+        .run();
     },
+    // Override season, no season if the override sets the MAL entry (a season would remap it),
+    // else the Netflix season
     getSeason($c) {
       return $c
-        .getGlobalVariable<SeasonOverrides>('seasonOverrides')
-        .get($c.getGlobalVariable<NetflixVideoShow>('meta.show').get('id').string().run())
-        .setVariable('seasonOverride')
-        .ifThen($c => $c.getVariable<number>('seasonOverride').return().run())
+        .exec(getOverride)
+        .setVariable('override')
+        .get('s')
+        .ifThen($o => $o.getVariable<CompactOverride>('override').get('s').return().run())
+        .getVariable<CompactOverride>('override')
+        .get('m')
+        .ifThen($m => $m.string('NaN').number().return().run())
         .getGlobalVariable<NetflixSeasonNode>('meta.season')
         .get('seq')
         .exec(skipFirstSeason)
+        .run();
+    },
+    getMalUrl($c) {
+      return $c
+        .exec(getOverride)
+        .get('m')
+        .ifNotReturn()
+        .log('Override MAL id')
+        .setVariable('overrideMalId')
+        .providerUrlUtility({ malId: $c.getVariable<number>('overrideMalId').run() })
         .run();
     },
   },
@@ -141,7 +175,10 @@ export const Netflix: PageInterface = {
     setup($c) {
       return $c
         .addStyle(require('./style.less?raw').toString())
-        .setGlobalVariable('seasonOverrides', $c.object(seasonOverrides).run())
+        .setGlobalVariable(
+          'overrides',
+          $c.object(compactOverrides(require('./overrides.json'))).run(),
+        )
         .run();
     },
     ready($c) {
@@ -161,6 +198,22 @@ export const Netflix: PageInterface = {
     },
   },
 };
+
+// Override of overrides.json for the current Netflix season, {} if there is none
+function getOverride($c: ChibiGenerator<unknown>) {
+  return $c.coalesce(
+    $c
+      .getGlobalVariable<Record<string, CompactOverride>>('overrides')
+      .get($c.getGlobalVariable<NetflixSeasonNode>('meta.season').get('id').string().run())
+      .run(),
+    $c.object({}).run(),
+  ) as unknown as ChibiGenerator<CompactOverride>;
+}
+
+// TVDB episode = Netflix episode + offset
+function getEpisodeOffset($c: ChibiGenerator<unknown>) {
+  return $c.coalesce($c.exec(getOverride).get('o').run(), $c.number(0).run());
+}
 
 // Season 1 is often the whole show, so do not infer a mal entry from it.
 function skipFirstSeason($c: ChibiGenerator<unknown>) {
