@@ -33,6 +33,13 @@ const genres = [
   '3095', // anime from the 1980s
 ];
 
+// Show id => season. For shows Netflix splits differently than the rest of the franchise.
+type SeasonOverrides = { [showId: string]: number };
+
+const seasonOverrides: SeasonOverrides = {
+  82116553: 6, // STEEL BALL RUN JoJo's Bizarre Adventure
+};
+
 type NetflixEpisodeNode = { id: number; seq: number; title: string };
 
 type NetflixSeasonNode = {
@@ -80,7 +87,7 @@ export const Netflix: PageInterface = {
   database: 'Netflix',
   languages: ['Many'],
   type: 'anime',
-  minimumVersion: '0.12.6',
+  minimumVersion: '0.13.0',
   urls: {
     match: ['*://www.netflix.com/*'],
   },
@@ -103,23 +110,7 @@ export const Netflix: PageInterface = {
         .run();
     },
     getTitle($c) {
-      const title = $c.getGlobalVariable<NetflixSeasonNode>('meta.show').get('title');
-
-      return $c
-        .setVariable(
-          'seasonSeq',
-          $c.getGlobalVariable<NetflixSeasonNode>('meta.season').get('seq').run(),
-        )
-        .if(
-          $c.getVariable('seasonSeq').number().greaterThan(1).run(),
-          title
-            .concat(' ')
-            .concat('Season ')
-            .concat($c.getVariable('seasonSeq').string().run())
-            .run(),
-          title.run(),
-        )
-        .run();
+      return $c.getGlobalVariable<NetflixVideoShow>('meta.show').get('title').run();
     },
     getIdentifier($c) {
       return $c.getGlobalVariable<NetflixSeasonNode>('meta.season').get('id').run();
@@ -134,10 +125,24 @@ export const Netflix: PageInterface = {
     getEpisode($c) {
       return $c.getGlobalVariable<NetflixEpisodeNode>('meta.episode').get('seq').run();
     },
+    getSeason($c) {
+      return $c
+        .getGlobalVariable<SeasonOverrides>('seasonOverrides')
+        .get($c.getGlobalVariable<NetflixVideoShow>('meta.show').get('id').string().run())
+        .setVariable('seasonOverride')
+        .ifThen($c => $c.getVariable<number>('seasonOverride').return().run())
+        .getGlobalVariable<NetflixSeasonNode>('meta.season')
+        .get('seq')
+        .exec(skipFirstSeason)
+        .run();
+    },
   },
   lifecycle: {
     setup($c) {
-      return $c.addStyle(require('./style.less?raw').toString()).run();
+      return $c
+        .addStyle(require('./style.less?raw').toString())
+        .setGlobalVariable('seasonOverrides', $c.object(seasonOverrides).run())
+        .run();
     },
     ready($c) {
       return $c
@@ -156,6 +161,16 @@ export const Netflix: PageInterface = {
     },
   },
 };
+
+// Season 1 is often the whole show, so do not infer a mal entry from it.
+function skipFirstSeason($c: ChibiGenerator<unknown>) {
+  return $c
+    .number()
+    .setVariable('season')
+    .equals(1)
+    .ifThen($c => $c.string('NaN').number().return().run())
+    .getVariable<number>('season');
+}
 
 function handleMetadataRequest($c: ChibiGenerator<{ url: string; data: unknown }>) {
   return $c

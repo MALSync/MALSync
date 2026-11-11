@@ -1,0 +1,17 @@
+{
+  "title": "Netflix",
+  "url": "https://www.netflix.com/",
+  "testCases": [
+    {
+      "url": "https://www.netflix.com/watch/82132231",
+      "expected": {
+        "sync": true,
+        "title": "STEEL BALL RUN JoJo’s Bizarre Adventure",
+        "identifier": 82181513,
+        "overviewUrl": "https://www.netflix.com/title/82116553",
+        "episode": 8,
+        "season": 6
+      }
+    }
+  ]
+}
