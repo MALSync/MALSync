@@ -12,6 +12,19 @@
   margin: 12px 0 0;
   padding: 8px;
   border-radius: 4px;
-  background: var(--bs-tertiary-bg);
+  width: fit-content;
+  max-width: 100%;
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
   color: var(--bs-body-color);
+
+  #MalData .malp-group > .malp-group-field,
+  #MalData .malp-group-value-section {
+    border: 1px solid var(--bs-secondary-color);
+  }
+
+  #MalData :is(select, input, a):focus-visible {
+    outline: 2px solid var(--bs-emphasis-color);
+    outline-offset: 1px;
+  }
 }
