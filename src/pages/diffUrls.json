@@ -1,7 +1,4 @@
 {
-  "0.12.1": {
-    "iframe": []
-  },
   "0.12.2": {
     "Anime365": [
       "*://smotret-anime.org/*",
@@ -133,6 +130,11 @@
       "*://ashleyhardat.com/e/*",
       "*://shanelocaldog.com/e/*",
       "*://shannoncoldalready.com/e/*"
+    ]
+  },
+  "0.13.0": {
+    "iframe": [
+      "*://susanexpectcare.com/e/*"
     ]
   }
 }
