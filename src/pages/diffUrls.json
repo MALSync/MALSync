@@ -133,6 +133,9 @@
     ]
   },
   "0.13.0": {
+    "Voiranime": [
+      "*://*.voiranime.cx/*"
+    ],
     "iframe": [
       "*://susanexpectcare.com/e/*"
     ]
