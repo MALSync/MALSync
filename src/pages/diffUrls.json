@@ -133,6 +133,15 @@
     ]
   },
   "0.13.0": {
+    "Hdrezka": [
+      "*://hdrezka-home.tv/animation/*",
+      "*://rezka.ag/animation/*",
+      "*://rezka.si/animation/*",
+      "*://rezka.fi/animation/*"
+    ],
+    "Voiranime": [
+      "*://*.voiranime.cx/*"
+    ],
     "iframe": [
       "*://susanexpectcare.com/e/*"
     ]
