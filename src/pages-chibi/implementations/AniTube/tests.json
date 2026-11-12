@@ -1,0 +1,42 @@
+{
+  "title": "AniTube",
+  "url": "https://anitube.in.ua",
+  "testCases": [
+    {
+      "url": "https://anitube.in.ua/6085-monolog-travnic-3-sezon.html",
+      "expected": {
+        "sync": true,
+        "title": "Kusuriya no Hitorigoto 3rd Season",
+        "identifier": "6085",
+        "episode": 1,
+        "overviewUrl": "https://anitube.in.ua/6085-monolog-travnic-3-sezon.html",
+        "image": "https://anitube.in.ua/uploads/mini/full-news-poster/5/3d6dceeb56ebc5cd691fb7f32d069c.jpg",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://anitube.in.ua/54-sao.html",
+      "expected": {
+        "sync": true,
+        "title": "Sword Art Online",
+        "identifier": "54",
+        "episode": 1,
+        "overviewUrl": "https://anitube.in.ua/54-sao.html",
+        "image": "https://anitube.in.ua/uploads/mini/full-news-poster/4/aa266ae4a86e2aeaf3bdffe348cff0.png",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://anitube.in.ua/5488-lyupen-iii-legenda-pro-zoloto-babilonu.html",
+      "expected": {
+        "sync": true,
+        "title": "Lupin III: Babylon no Ougon Densetsu",
+        "identifier": "5488",
+        "episode": 1,
+        "overviewUrl": "https://anitube.in.ua/5488-lyupen-iii-legenda-pro-zoloto-babilonu.html",
+        "image": "https://anitube.in.ua/uploads/mini/full-news-poster/2/5660983424cd35fa83a8944d58907f.jpg",
+        "uiSelector": true
+      }
+    }
+  ]
+}
