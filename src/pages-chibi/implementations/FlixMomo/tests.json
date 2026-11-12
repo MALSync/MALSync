@@ -34,6 +34,18 @@
         "episode": 1,
         "uiSelector": false
       }
+    },
+    {
+      "url": "https://flixmomo.st/tv/94664/mushoku-tensei-jobless-reincarnation/season/2?e=1&p=1",
+      "expected": {
+        "sync": true,
+        "title": "Mushoku Tensei: Jobless Reincarnation",
+        "identifier": "94664-season-2",
+        "overviewUrl": "https://flixmomo.st/tv/94664/mushoku-tensei-jobless-reincarnation",
+        "episode": 1,
+        "season": 2,
+        "uiSelector": false
+      }
     }
   ]
 }

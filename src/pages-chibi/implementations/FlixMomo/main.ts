@@ -3,6 +3,7 @@ import { PageInterface } from '../../pageInterface';
 
 type SeriesMetadata = {
   id: number;
+  name: string;
   genres: { id: number }[];
   origin_country: string[];
 };
@@ -12,6 +13,7 @@ export const FlixMomo: PageInterface = {
   domain: 'https://flixmomo.st',
   languages: ['English'],
   type: 'anime',
+  minimumVersion: '0.13.0',
   features: {
     requestProxy: true,
   },
@@ -47,10 +49,20 @@ export const FlixMomo: PageInterface = {
     },
     getTitle($c) {
       return $c
-        .title()
-        .regex('^Watch (.+) - Free Episodes', 1)
-        .replaceRegex(' Season 1$', '')
-        .trim()
+        .coalesce(
+          $c.fn(seriesMetadata($c).get('name').ifNotReturn().string().trim().run()).run(),
+          $c
+            .fn(
+              $c
+                .title()
+                .regex('^Watch (.+) - Free Episodes', 1)
+                .ifNotReturn()
+                .replaceRegex(' Season \\d+$', '')
+                .trim()
+                .run(),
+            )
+            .run(),
+        )
         .run();
     },
     getIdentifier($c) {
@@ -61,6 +73,9 @@ export const FlixMomo: PageInterface = {
     },
     getEpisode($c) {
       return $c.url().urlParam('e').number().run();
+    },
+    getSeason($c) {
+      return $c.exec(getSeason).run();
     },
   },
   lifecycle: {
@@ -102,6 +117,25 @@ function getIdentifier($c: ChibiGenerator<unknown>) {
   return $c.url().urlPart(4).concat('-season-').concat(season.string().run());
 }
 
+// TMDB season, season 1 is not passed on, NaN is ignored as season
+function getSeason($c: ChibiGenerator<unknown>) {
+  return $c
+    .url()
+    .urlPart(7)
+    .number()
+    .setVariable('season')
+    .equals(1)
+    .ifThen($c => $c.string('NaN').number().return().run())
+    .getVariable<number>('season');
+}
+
+function seriesMetadata($c: ChibiGenerator<unknown>) {
+  return $c.getGlobalVariable<SeriesMetadata>(
+    $c.string('flixMomoSeries:').concat($c.url().urlPart(4).run()).run(),
+    { id: 0, name: '', genres: [], origin_country: [] },
+  );
+}
+
 function handleRequest($c: ChibiGenerator<{ url: string; data: SeriesMetadata }>) {
   return $c
     .values()
@@ -115,10 +149,7 @@ function handleRequest($c: ChibiGenerator<{ url: string; data: SeriesMetadata }>
 }
 
 function isAnime($c: ChibiGenerator<unknown>) {
-  const metadata = $c.getGlobalVariable<SeriesMetadata>(
-    $c.string('flixMomoSeries:').concat($c.url().urlPart(4).run()).run(),
-    { id: 0, genres: [], origin_country: [] },
-  );
+  const metadata = seriesMetadata($c);
 
   return $c.and(
     metadata.get('id').string().equals($c.url().urlPart(4).run()).run(),
