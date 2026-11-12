@@ -7,7 +7,7 @@ export const Hdrezka: pageInterface = {
     'https://hdrezka-home.tv',
     'https://rezka.ag',
     'https://rezka.si',
-    'https://rezka.fi',
+    'https://rezka.fi'
   ],
   languages: ['Russian'],
   type: 'anime',
