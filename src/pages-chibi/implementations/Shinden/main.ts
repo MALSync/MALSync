@@ -70,14 +70,16 @@ export const Shinden: PageInterface = {
       return $c.url().urlPart(4).run();
     },
     getImage($c) {
-      return $c
-        // series covers only, not the generic "/assets/img/og-shinden-2.jpg"
-        .querySelector('meta[property="og:image"][content*="/og/s/"]')
-        .ifNotReturn()
-        .getAttribute('content')
-        .ifNotReturn()
-        .urlAbsolute()
-        .run();
+      return (
+        $c
+          // series covers only, not the generic "/assets/img/og-shinden-2.jpg"
+          .querySelector('meta[property="og:image"][content*="/og/s/"]')
+          .ifNotReturn()
+          .getAttribute('content')
+          .ifNotReturn()
+          .urlAbsolute()
+          .run()
+      );
     },
     uiInjection($c) {
       return $c.querySelector('.sh-tp-head .sh-tp-meta').ifNotReturn().uiAfter().run();

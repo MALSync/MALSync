@@ -14,6 +14,25 @@ function pageCounter($c: ChibiGenerator<unknown>) {
     .text();
 }
 
+// "pg. 3 / 22" progress text of the page mode (desktop.progress.pageCount)
+function progressCounter($c: ChibiGenerator<unknown>) {
+  return $c
+    .querySelectorAll('span')
+    .arrayFind($item => $item.text().matches('^\\s*pg\\.\\s*\\d+\\s*/\\s*\\d+').run())
+    .ifNotReturn()
+    .text();
+}
+
+// The counters keep the values of the previous chapter until the new one has loaded.
+// Only trust them if their total matches the page count of the current chapter.
+function counterMatchesChapter($c: ChibiGenerator<string>) {
+  return $c
+    .regex('(\\d+)\\s*$', 1)
+    .ifNotReturn()
+    .number()
+    .equals($c.exec(chapterImages).length().run());
+}
+
 function chapterId($c: ChibiGenerator<unknown>) {
   return $c.url().urlStrip().urlPart(5);
 }
@@ -105,12 +124,23 @@ export const Atsumaru: PageInterface = {
     },
     readerConfig: [
       {
+        // chapter change in progress, the reader still shows the previous chapter
+        condition: $c => $c.exec(chapterImages).length().equals(0).run(),
+        current: $c => $c.number(0).run(),
+        total: $c => $c.number(0).run(),
+      },
+      {
         condition: $c => $c.querySelector('.wrapper img').boolean().run(),
         current: $c => $c.querySelectorAll('.wrapper img').countAbove().run(),
         total: $c => $c.querySelectorAll('.wrapper img').length().run(),
       },
       {
-        condition: $c => $c.exec(pageCounter).boolean().run(),
+        condition: $c => $c.exec(progressCounter).ifNotReturn().exec(counterMatchesChapter).run(),
+        current: $c => $c.exec(progressCounter).regex('(\\d+)\\s*/\\s*\\d+', 1).number().run(),
+        total: $c => $c.exec(progressCounter).regex('\\d+\\s*/\\s*(\\d+)', 1).number().run(),
+      },
+      {
+        condition: $c => $c.exec(pageCounter).ifNotReturn().exec(counterMatchesChapter).run(),
         current: $c => $c.exec(pageCounter).regex('(\\d+)\\s*/\\s*\\d+', 1).number().run(),
         total: $c => $c.exec(pageCounter).regex('\\d+\\s*/\\s*(\\d+)', 1).number().run(),
       },
