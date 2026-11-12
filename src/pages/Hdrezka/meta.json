@@ -3,6 +3,7 @@
   "urls": {
     "match": [
       "*://hdrezka.ag/animation/*",
+      "*://hdrezka-home.tv/animation/*",
       "*://rezka.ag/animation/*",
       "*://rezka.si/animation/*",
       "*://rezka.fi/animation/*"

@@ -4,6 +4,7 @@ export const Hdrezka: pageInterface = {
   name: 'Hdrezka',
   domain: [
     'https://hdrezka.ag',
+    'https://hdrezka-home.tv',
     'https://rezka.ag',
     'https://rezka.si',
     'https://rezka.fi'
