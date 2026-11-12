@@ -6,7 +6,7 @@ export const Novelfire: PageInterface = {
   languages: ['English'],
   type: 'manga',
   urls: {
-    match: ['*://novelfire.net/*'],
+    match: ['*://novelfire.net/*', '*://novelphoenix.com/*'],
   },
   computedType: $c => {
     return $c.string('novel').run();
@@ -56,7 +56,7 @@ export const Novelfire: PageInterface = {
     isOverviewPage($c) {
       return $c
         .and(
-          $c.url().urlPart(3).equals('book').run(),
+          $c.url().urlPart(3).matches('^(book|novel)$').run(),
           $c.url().urlPart(4).boolean().run(),
           $c.url().urlPart(5).equals('chapters').run(),
         )
@@ -85,7 +85,7 @@ export const Novelfire: PageInterface = {
     elementEp($c) {
       return getEpisode(
         $c
-          .setVariable('chapterUrlPart', $c.this('list.elementUrl').urlPart(5).run())
+          .setVariable('chapterUrlPart', $c.target().this('list.elementUrl').urlPart(5).run())
           .setVariable('chapterName', $c.target().find('.chapter-title').text().run()),
       ).run();
     },
