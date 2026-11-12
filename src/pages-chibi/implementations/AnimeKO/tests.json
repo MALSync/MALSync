@@ -1,0 +1,44 @@
+{
+  "title": "AnimeKO",
+  "url": "https://animeko.ws",
+  "testCases": [
+    {
+      "url": "https://animeko.ws/skip-to-loafer-episode-01-vostfr",
+      "expected": {
+        "sync": true,
+        "title": "Skip to Loafer",
+        "identifier": "skip-to-loafer",
+        "overviewUrl": "https://animeko.ws/anime/skip-to-loafer",
+        "episode": 1,
+        "nextEpUrl": "https://animeko.ws/skip-to-loafer-episode-02-vostfr",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animeko.ws/the-exiled-heavy-knight-knows-how-to-game-the-system-episode-02-vostfr",
+      "expected": {
+        "sync": true,
+        "title": "Tsuihou Sareta Tensei Juukishi wa Game Chishiki de Musou Suru",
+        "identifier": "tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru",
+        "overviewUrl": "https://animeko.ws/anime/tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru",
+        "episode": 2,
+        "nextEpUrl": "https://animeko.ws/tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru-episode-03-vostfr",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animeko.ws/anime/skip-to-loafer",
+      "expected": {
+        "sync": false,
+        "title": "Skip to Loafer",
+        "identifier": "skip-to-loafer",
+        "image": "https://animeko.ws/media/cover/skip-to-loafer.jpeg?fm=webp&q=90&w=1200&v=1791121774&s=320a8f5c6d4ed78513395c98a2b7d499",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://animeko.ws/skip-to-loafer-episode-01-vostfr",
+          "2": "https://animeko.ws/skip-to-loafer-episode-02-vostfr"
+        }
+      }
+    }
+  ]
+}

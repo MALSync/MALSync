@@ -1,0 +1,86 @@
+{
+  "title": "ADN",
+  "url": "https://animationdigitalnetwork.com",
+  "testCases": [
+    {
+      "url": "https://animationdigitalnetwork.com/video/315-no-game-no-life/5008-episode-6",
+      "expected": {
+        "sync": true,
+        "title": "No Game No Life",
+        "identifier": "315-no-game-no-life",
+        "overviewUrl": "https://animationdigitalnetwork.com/video/315-no-game-no-life",
+        "episode": 6,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animationdigitalnetwork.com/video/315-no-game-no-life",
+      "expected": {
+        "sync": false,
+        "title": "No Game No Life",
+        "identifier": "315-no-game-no-life",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://animationdigitalnetwork.com/video/315-no-game-no-life/5000-episode-1"
+        }
+      }
+    },
+    {
+      "url": "https://animationdigitalnetwork.com/video/267-hunter-x-hunter-2011/3533-episode-70",
+      "expected": {
+        "sync": true,
+        "title": "Hunter x Hunter (2011)",
+        "identifier": "267-hunter-x-hunter-2011",
+        "overviewUrl": "https://animationdigitalnetwork.com/video/267-hunter-x-hunter-2011",
+        "nextEpUrl": "https://animationdigitalnetwork.com/video/267-hunter-x-hunter-2011/3534-episode-71",
+        "episode": 70,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animationdigitalnetwork.com/video/1034-oshi-no-ko/30374-episode-34",
+      "expected": {
+        "sync": true,
+        "title": "Oshi no Ko",
+        "identifier": "1034-oshi-no-ko?s=3",
+        "overviewUrl": "https://animationdigitalnetwork.com/video/1034-oshi-no-ko?s=3",
+        "nextEpUrl": "https://animationdigitalnetwork.com/video/1034-oshi-no-ko/30375-episode-35",
+        "episode": 34,
+        "season": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animationdigitalnetwork.com/video/1034-oshi-no-ko?s=2",
+      "expected": {
+        "sync": false,
+        "title": "Oshi no Ko",
+        "identifier": "1034-oshi-no-ko?s=2",
+        "season": 2,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animationdigitalnetwork.com/de/video/1034-oshi-no-ko?s=3",
+      "expected": {
+        "sync": false,
+        "title": "Oshi no Ko",
+        "identifier": "1034-oshi-no-ko?s=3",
+        "season": 3,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animationdigitalnetwork.com/video/1092-ragna-crimson",
+      "expected": {
+        "sync": false,
+        "title": "Ragna Crimson",
+        "identifier": "1092-ragna-crimson",
+        "uiSelector": true,
+        "epList": {
+          "6": "https://animationdigitalnetwork.com/video/1092-ragna-crimson/23531-episode-6"
+        }
+      }
+    }
+  ]
+}

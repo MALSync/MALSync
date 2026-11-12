@@ -5,7 +5,6 @@ import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Proxer } from './Proxer/main';
 import { KickAssAnime } from './KickAssAnime/main';
-import { Shinden } from './Shinden/main';
 import { Voiranime } from './Voiranime/main';
 import { VIZ } from './VIZ/main';
 import { AnimeZone } from './AnimeZone/main';
@@ -65,7 +64,6 @@ import { ToonAnime } from './ToonAnime/main';
 import { ADKami } from './ADKami/main';
 import { Kaguya } from './Kaguya/main';
 import { Hdrezka } from './Hdrezka/main';
-import { ADN } from './ADN/main';
 import { Aniyan } from './Aniyan/main';
 import { Docchi } from './Docchi/main';
 import { Animelon } from './Animelon/main';
@@ -73,7 +71,6 @@ import { AnimeSama } from './AnimeSama/main';
 import { projectsuki } from './projectsuki/main';
 import { AnimeBuff } from './AnimeBuff/main';
 import { AnimeOnegai } from './AnimeOnegai/main';
-import { AnimeKO } from './AnimeKO/main';
 import { AnimeGO } from './AnimeGO/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
@@ -99,7 +96,6 @@ export const pages = {
   Proxer,
   Emby,
   KickAssAnime,
-  Shinden,
   Voiranime,
   VIZ,
   AnimeOdcinki,
@@ -159,7 +155,6 @@ export const pages = {
   ADKami,
   Kaguya,
   Hdrezka,
-  ADN,
   Aniyan,
   Docchi,
   Animelon,
@@ -167,7 +162,6 @@ export const pages = {
   projectsuki,
   AnimeBuff,
   AnimeOnegai,
-  AnimeKO,
   AnimeGO,
   LuciferDonghua,
   NeoxScans,

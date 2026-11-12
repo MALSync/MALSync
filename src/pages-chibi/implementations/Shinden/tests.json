@@ -1,0 +1,52 @@
+{
+  "title": "Shinden",
+  "url": "https://shinden.pl/",
+  "testCases": [
+    {
+      "url": "https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117041",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "16238-mahouka-koukou-no-rettousei",
+        "overviewUrl": "https://shinden.pl/series/16238-mahouka-koukou-no-rettousei/episodes",
+        "nextEpUrl": "https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117042",
+        "episode": 14,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://shinden.pl/episode/71788-toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita/view/263972",
+      "expected": {
+        "sync": true,
+        "title": "Toumei na Yoru ni Kakeru Kimi to, Me ni Mienai Koi wo Shita.",
+        "identifier": "71788-toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita",
+        "overviewUrl": "https://shinden.pl/series/71788-toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita/episodes",
+        "nextEpUrl": "https://shinden.pl/episode/71788-toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita/view/263973",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://shinden.pl/series/16238-mahouka-koukou-no-rettousei/episodes",
+      "expected": {
+        "sync": false,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "16238-mahouka-koukou-no-rettousei",
+        "uiSelector": true,
+        "epList": {
+          "7": "https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117034",
+          "26": "https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117053"
+        }
+      }
+    },
+    {
+      "url": "https://shinden.pl/series/71788-toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita",
+      "expected": {
+        "sync": false,
+        "title": "Toumei na Yoru ni Kakeru Kimi to, Me ni Mienai Koi wo Shita.",
+        "identifier": "71788-toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita",
+        "uiSelector": true
+      }
+    }
+  ]
+}
