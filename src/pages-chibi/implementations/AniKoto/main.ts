@@ -6,7 +6,14 @@ export const anikoto: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://*.anikoto.cz/*', '*://*.anikototv.to/*', '*://*.anikoto.me/*', '*://*.anikoto.net/*', '*://*.anikototv.se/*', '*://*.anikototv.bz/*'],
+    match: [
+      '*://*.anikoto.cz/*',
+      '*://*.anikototv.to/*',
+      '*://*.anikoto.me/*',
+      '*://*.anikoto.net/*',
+      '*://*.anikototv.se/*',
+      '*://*.anikototv.bz/*',
+    ],
     player: {
       megaplay: ['*://vidwish.live/*', '*://megaplay.buzz/*'],
       vidtube: ['*://vidtube.site/*'],
