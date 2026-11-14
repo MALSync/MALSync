@@ -1,0 +1,21 @@
+@import './../pages';
+
+@boxBackground: var(--findanime-watch-bg);
+@boxFontColor: #fff;
+@boxOptionsBackground: var(--bs-body-bg);
+@boxOptionsFontColor: var(--bs-body-color);
+@boxHighlightBackground: @boxBackground;
+@boxHighlightFontColor: @boxFontColor;
+@activeEp: ~'rgba(var(--bs-primary-rgb), 0.2)';
+
+#malp {
+  // Match the native .read-first-chapter button in the poster header.
+  --findanime-watch-bg: #a64738;
+
+  margin: 12px 0 0;
+  color: inherit;
+}
+
+html.dark #malp {
+  --findanime-watch-bg: #375a7f;
+}

@@ -1,0 +1,45 @@
+{
+  "title": "FindAnime",
+  "url": "https://22.findanime.me",
+  "testCases": [
+    {
+      "url": "https://22.findanime.me/krasnaia_reka_sezon_1/series15",
+      "expected": {
+        "sync": true,
+        "title": "Sora wa Akai Kawa no Hotori",
+        "identifier": "krasnaia_reka_sezon_1",
+        "episode": 15,
+        "overviewUrl": "https://22.findanime.me/krasnaia_reka_sezon_1",
+        "nextEpUrl": "https://22.findanime.me/krasnaia_reka_sezon_1/series16",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://22.findanime.me/bakuman_/series18",
+      "expected": {
+        "sync": true,
+        "title": "Bakuman.",
+        "identifier": "bakuman_",
+        "episode": 18,
+        "overviewUrl": "https://22.findanime.me/bakuman_",
+        "nextEpUrl": "https://22.findanime.me/bakuman_/series19",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://22.findanime.me/monolog_farmacevta_sezon_3",
+      "expected": {
+        "sync": false,
+        "title": "Kusuriya no Hitorigoto 3rd Season",
+        "identifier": "monolog_farmacevta_sezon_3",
+        "image": "https://staticfa.aaa200.one/uploads/pics/01/62/652.webp",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://22.findanime.me/monolog_farmacevta_sezon_3/series1",
+          "2": "https://22.findanime.me/monolog_farmacevta_sezon_3/series2",
+          "3": "https://22.findanime.me/monolog_farmacevta_sezon_3/series3"
+        }
+      }
+    }
+  ]
+}
