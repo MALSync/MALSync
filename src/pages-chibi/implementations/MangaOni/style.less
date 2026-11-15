@@ -1,0 +1,30 @@
+@import './../pages';
+
+@boxBackground: var(--mo-box);
+@boxFontColor: var(--mo-text);
+@boxHighlightBackground: var(--mo-accent);
+@boxHighlightFontColor: #fff;
+@boxOptionsBackground: var(--mo-options);
+@boxOptionsFontColor: var(--mo-text);
+@activeEp: var(--mo-active);
+
+:root {
+  --mo-box: #f1f4f5;
+  --mo-options: #fff;
+  --mo-text: #39454c;
+  --mo-accent: #62a8ea;
+  --mo-active: #62a8ea40;
+}
+
+:root:has(#darkcss) {
+  --mo-box: #1b1c22;
+  --mo-options: #222329;
+  --mo-text: #e9ecec;
+  --mo-accent: #3d50fa;
+  --mo-active: #3d50fa40;
+}
+
+#malp {
+  margin: 10px 0;
+  font-size: 14px;
+}

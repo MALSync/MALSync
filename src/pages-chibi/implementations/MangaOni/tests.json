@@ -1,0 +1,30 @@
+{
+  "title": "MangaOni",
+  "url": "https://manga-oni.com",
+  "testCases": [
+    {
+      "url": "https://manga-oni.com/lector/dandadan/821952/",
+      "expected": {
+        "sync": true,
+        "title": "Dandadan",
+        "identifier": "dandadan",
+        "overviewUrl": "https://manga-oni.com/manga/dandadan/",
+        "episode": 251,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manga-oni.com/manga/dandadan/",
+      "expected": {
+        "sync": false,
+        "title": "Dandadan",
+        "identifier": "dandadan",
+        "image": "https://oni.ntr-files.online/public/archivos/mangas/dandadan/cover.jpg?1751671947",
+        "uiSelector": true,
+        "epList": {
+          "251": "https://manga-oni.com/lector/dandadan/821952/"
+        }
+      }
+    }
+  ]
+}
