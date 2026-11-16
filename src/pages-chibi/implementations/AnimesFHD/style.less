@@ -1,0 +1,17 @@
+@import './../pages';
+
+@highlightStyle: 0;
+
+#episodes-grid a.card--ep.mal-sync-active {
+  position: relative;
+  border-radius: 16px !important;
+  background: #21122f !important;
+  // Ring drawn outside the card so it never covers the title or meta text
+  box-shadow:
+    0 0 0 3px #b245ff,
+    0 0 20px #b245ff8c !important;
+
+  .card__body {
+    padding: 12px !important;
+  }
+}
