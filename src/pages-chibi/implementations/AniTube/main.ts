@@ -24,7 +24,7 @@ export const AniTube: PageInterface = {
   languages: ['Ukrainian'],
   type: 'anime',
   urls: {
-    match: ['*://anitube.in.ua/*', '*://*.anitube.in.ua/*'],
+    match: ['*://*.anitube.in.ua/*'],
     player: {
       ashdi: ['*://*.ashdi.vip/*'],
       moonanime: ['*://*.moonanime.net/*'],
