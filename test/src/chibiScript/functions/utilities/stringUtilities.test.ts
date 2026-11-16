@@ -47,6 +47,20 @@ describe('String Utilities Functions', () => {
       const code = $c.string('hello123mal').regexAutoGroup($c.string('(sync)|(\\d+)|(mal)').run()).run();
       expect(generateAndExecute(code).run()).to.equal('123');
     });
+
+    it('should not copy the preceding chain into the branches', () => {
+      const code = $c
+        .string('Episode 5')
+        .setVariable('label')
+        .matches('\\d')
+        .ifNotReturn($c.number(1).run())
+        .getVariable('label')
+        .string()
+        .regexAutoGroup('(mal)|(\\d+)')
+        .run();
+      expect(JSON.stringify(code).match(/"setVariable","label"/g)).to.have.length(1);
+      expect(generateAndExecute(code).run()).to.equal('5');
+    });
   });
 });
 
