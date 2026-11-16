@@ -31,6 +31,10 @@ const genres = [
   '81216565',
   '3073', // anime from the 1970s
   '3095', // anime from the 1980s
+  '1433679', // Sci-Fi & Fantasy Anime
+  '1819776', // Anime Based on Books
+  '1819777', // Anime based on a Video Game
+  '1622375', // Sports Anime
 ];
 
 type Override = {
@@ -93,7 +97,7 @@ type NetflixVideoShow = {
 type NetflixRequestResponse = {
   data: {
     data: {
-      entities: { __typename: string; parentShow: NetflixVideoShow }[];
+      entities: (NetflixEpisodeNode & { __typename: string; parentShow: NetflixVideoShow })[];
     };
   };
 };
@@ -190,6 +194,7 @@ export const Netflix: PageInterface = {
             .setVariable('request')
             .fn($c.getVariable('request').exec(handleGraphqlRequest).run())
             .fn($c.getVariable('request').exec(handleMetadataRequest).run())
+            .fn($c.getVariable('request').exec(handleMovieRequest).run())
             .run(),
         )
         .detectChanges(
@@ -287,6 +292,34 @@ function handleMetadataRequest($c: ChibiGenerator<{ url: string; data: unknown }
     .trigger();
 }
 
+function handleMovieRequest($c: ChibiGenerator<{ url: string; data: unknown }>) {
+  return $c
+    .get('url')
+    .matches('/graphql')
+    .ifNotReturn()
+    .getVariable<NetflixRequestResponse>('request')
+    .get('data')
+    .ifNotReturn()
+    .get('data')
+    .ifNotReturn()
+    .get('entities')
+    .ifNotReturn()
+    .arrayFind($entity => $entity.get('__typename').equals('Movie').run())
+    .ifNotReturn()
+    .setVariable('meta.movie')
+    .getPersistentVariable(
+      $c.getVariable<NetflixEpisodeNode>('meta.movie').get('videoId').string().run(),
+    )
+    .log('IsAnime movie')
+    .ifNotReturn()
+    .getVariable('meta.movie')
+    .setGlobalVariable('meta.show')
+    .setGlobalVariable('meta.season')
+    .setGlobalVariable('meta.episode')
+    .log('Active movie')
+    .trigger();
+}
+
 function handleGraphqlRequest($c: ChibiGenerator<{ url: string; data: unknown }>) {
   return $c
     .get('url')
@@ -299,7 +332,7 @@ function handleGraphqlRequest($c: ChibiGenerator<{ url: string; data: unknown }>
     .ifNotReturn()
     .get('unifiedEntities')
     .ifNotReturn()
-    .filter($c => $c.get('__typename').equals('Show').run())
+    .filter($c => $c.get('__typename').matches('^(Show|Movie)$').run())
     .log('[handle] Shows')
     .filter($c => $c.get('genreTags').boolean().run())
     .ifNotReturn()
