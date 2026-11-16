@@ -37,7 +37,7 @@ export const UAni: PageInterface = {
     return $c.if($c.exec(isAnime).run(), $c.string('anime').run(), $c.string('manga').run()).run();
   },
   urls: {
-    match: ['*://uani.fun/*', '*://*.uani.fun/*'],
+    match: ['*://*.uani.fun/*'],
     player: {
       ashdi: ['*://*.ashdi.vip/*'],
       moonanime: ['*://*.moonanime.net/*'],
