@@ -1,0 +1,68 @@
+{
+  "title": "Aniworld",
+  "url": "https://aniworld.to",
+  "testCases": [
+    {
+      "url": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war",
+      "expected": {
+        "sync": false,
+        "title": "Kaguya-sama: Love is War",
+        "identifier": "kaguya-sama-love-is-war?s=staffel-1",
+        "season": 1,
+        "ruleSet": "tvdb",
+        "image": "https://aniworld.to/public/img/cover/kaguya-sama-love-is-war-stream-cover-Tyfu6kJfKZcfIx0MruO35iCuZidh66jh_220x330.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-1/episode-1",
+          "12": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-1/episode-12"
+        }
+      }
+    },
+    {
+      "url": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-3",
+      "expected": {
+        "sync": false,
+        "title": "Kaguya-sama: Love is War",
+        "identifier": "kaguya-sama-love-is-war?s=staffel-3",
+        "season": 3,
+        "ruleSet": "tvdb",
+        "image": "https://aniworld.to/public/img/cover/kaguya-sama-love-is-war-stream-cover-Tyfu6kJfKZcfIx0MruO35iCuZidh66jh_220x330.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-3/episode-1",
+          "2": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-3/episode-2"
+        }
+      }
+    },
+    {
+      "url": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-2/episode-3",
+      "expected": {
+        "sync": true,
+        "title": "Kaguya-sama: Love is War",
+        "identifier": "kaguya-sama-love-is-war?s=staffel-2",
+        "episode": 3,
+        "season": 2,
+        "ruleSet": "tvdb",
+        "overviewUrl": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-2",
+        "nextEpUrl": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-2/episode-4",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-2/episode-1",
+          "12": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/staffel-2/episode-12"
+        }
+      }
+    },
+    {
+      "url": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/filme/film-1",
+      "expected": {
+        "sync": true,
+        "title": "Kaguya-sama: Love is War Tensai-tachi no Ren’ai Zunousen",
+        "identifier": "kaguya-sama-love-is-war?m=tensai-tachi-no-ren’ai-zunousen",
+        "episode": 1,
+        "overviewUrl": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war",
+        "nextEpUrl": "https://aniworld.to/anime/stream/kaguya-sama-love-is-war/filme/film-2",
+        "uiSelector": true
+      }
+    }
+  ]
+}

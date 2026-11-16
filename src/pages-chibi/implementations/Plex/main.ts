@@ -28,7 +28,13 @@ export const Plex: PageInterface = {
       return $c
         .if(
           grandparentTitle.boolean().run(),
-          grandparentTitle.concat(' ').concat(parentTitle.run()).run(),
+          $c
+            .if(
+              $c.this('sync.getRuleSet').equals('tvdb').run(),
+              grandparentTitle.run(),
+              grandparentTitle.concat(' ').concat(parentTitle.run()).run(),
+            )
+            .run(),
           parentTitle.run(),
         )
         .run();
@@ -52,6 +58,12 @@ export const Plex: PageInterface = {
     getEpisode($c) {
       return getPlayerMeta($c).get('index').ifNotReturn($c.number(1).run()).number().run();
     },
+    getSeason($c) {
+      return getPlayerMeta($c).get('parentIndex').number().run();
+    },
+    getRuleSet($c) {
+      return $c.ruleSet('tvdb').run();
+    },
   },
   overview: {
     isOverviewPage($c) {
@@ -61,19 +73,28 @@ export const Plex: PageInterface = {
       const title = meta($c).get('title');
       const parentTitle = meta($c).get('parentTitle') as ChibiGenerator<string>;
       const grandparentTitle = meta($c).get('grandparentTitle') as ChibiGenerator<string>;
+      const isTvdb = $c.this('overview.getRuleSet').equals('tvdb').run();
       return typeHandling(
         $c,
         $c
           .if(
             parentTitle.boolean().run(),
-            parentTitle.concat(' ').concat(title.run()).run(),
+            $c
+              .if(isTvdb, parentTitle.run(), parentTitle.concat(' ').concat(title.run()).run())
+              .run(),
             title.run(),
           )
           .run(),
         $c
           .if(
             grandparentTitle.boolean().run(),
-            grandparentTitle.concat(' ').concat(parentTitle.run()).run(),
+            $c
+              .if(
+                isTvdb,
+                grandparentTitle.run(),
+                grandparentTitle.concat(' ').concat(parentTitle.run()).run(),
+              )
+              .run(),
             parentTitle.run(),
           )
           .run(),
@@ -85,6 +106,16 @@ export const Plex: PageInterface = {
         meta($c).get('ratingKey').run(),
         meta($c).get('parentRatingKey').run(),
       );
+    },
+    getSeason($c) {
+      return typeHandling(
+        $c,
+        meta($c).get('index').number().run(),
+        meta($c).get('parentIndex').number().run(),
+      ) as ChibiJson<number>;
+    },
+    getRuleSet($c) {
+      return $c.ruleSet('tvdb').run();
     },
     getImage($c) {
       return typeHandling(

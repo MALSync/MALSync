@@ -44,22 +44,29 @@
           </div>
         </div>
         <div v-else>
-          <draggable
-            v-model="model"
+          <div
+            ref="sortList"
             class="forSorting"
-            group="people"
-            :item-key="link => optionToCombined(link).name"
+            @pointerdown="dragStart"
+            @pointermove="dragMove"
+            @pointerup="dragEnd"
+            @pointercancel="dragEnd"
+            @dragstart.prevent
           >
-            <template #item="{ element }">
-              <FormButton :animation="false" class="grab">
-                <TextIcon icon="drag_handle">
-                  <TextIcon :src="favicon(optionToCombined(element).domain)">
-                    {{ optionToCombined(element).name }}
-                  </TextIcon>
+            <FormButton
+              v-for="(element, index) in sortedLinks"
+              :key="optionToCombined(element).name"
+              :animation="false"
+              class="grab"
+              :class="{ dragging: index === dragIndex }"
+            >
+              <TextIcon icon="drag_handle">
+                <TextIcon :src="favicon(optionToCombined(element).domain)">
+                  {{ optionToCombined(element).name }}
                 </TextIcon>
-              </FormButton>
-            </template>
-          </draggable>
+              </TextIcon>
+            </FormButton>
+          </div>
         </div>
       </Card>
     </Section>
@@ -128,8 +135,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
-import draggable from 'vuedraggable';
+import { computed, ref, shallowRef, toRaw } from 'vue';
 import { optionToCombined, getQuicklinks, removeOptionKey } from '../../../utils/quicklinksBuilder';
 import FormButton from '../form/form-button.vue';
 import TextIcon from '../text-icon.vue';
@@ -261,6 +267,49 @@ const addCustom = () => {
 // Order
 
 const orderMode = ref(false);
+const sortList = ref<HTMLElement | null>(null);
+const dragIndex = ref<number | null>(null);
+// Plain (non-reactive) array: a Vue proxy would not be stored as an array in chrome.storage
+const dragLinks = shallowRef<typeof model.value>([]);
+
+// While dragging, a local copy is reordered; settings are only written on release
+const sortedLinks = computed(() => (dragIndex.value === null ? model.value : dragLinks.value));
+
+const indexAtPointer = (e: PointerEvent) => {
+  if (!sortList.value) return -1;
+  return Array.from(sortList.value.children).findIndex(child => {
+    const rect = child.getBoundingClientRect();
+    return e.clientY >= rect.top && e.clientY <= rect.bottom;
+  });
+};
+
+const dragStart = (e: PointerEvent) => {
+  if (e.button !== 0 || !sortList.value) return;
+  const index = indexAtPointer(e);
+  if (index === -1) return;
+  dragLinks.value = [...toRaw(model.value)];
+  dragIndex.value = index;
+  sortList.value.setPointerCapture(e.pointerId);
+};
+
+const dragMove = (e: PointerEvent) => {
+  if (dragIndex.value === null) return;
+  const target = indexAtPointer(e);
+  if (target === -1 || target === dragIndex.value) return;
+  const list = [...dragLinks.value];
+  const [moved] = list.splice(dragIndex.value, 1);
+  list.splice(target, 0, moved);
+  dragLinks.value = list;
+  dragIndex.value = target;
+};
+
+const dragEnd = () => {
+  if (dragIndex.value === null) return;
+  const original = toRaw(model.value);
+  const changed = dragLinks.value.some((el, i) => el !== original[i]);
+  dragIndex.value = null;
+  if (changed) model.value = dragLinks.value;
+};
 </script>
 
 <style lang="less" scoped>
@@ -311,9 +360,15 @@ const orderMode = ref(false);
   display: flex;
   flex-direction: column;
   gap: 10px;
+  touch-action: none;
+  user-select: none;
 }
 
 .grab {
   cursor: row-resize;
+}
+
+.dragging {
+  opacity: 0.5;
 }
 </style>

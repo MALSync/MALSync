@@ -1,6 +1,6 @@
 {
-  "search": "https://voir-anime.to/?s={searchtermPlus}",
+  "search": "https://voiranime.cx/?s={searchtermPlus}",
   "urls": {
-    "match": [  "*://*.voir-anime.to/*"]
+    "match": [  "*://*.voiranime.cx/*"]
   }
 }

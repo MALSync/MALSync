@@ -6,11 +6,12 @@
       "url": "https://franime.fr/anime/spy-x-family?s=2&ep=13&lang=vo&anime_id=45398",
       "expected": {
         "sync": true,
-        "title": "SPY x FAMILY Season 2",
+        "title": "SPY x FAMILY",
         "identifier": "spy-x-family-season-2",
         "overviewUrl": "https://franime.fr/anime/spy-x-family?s=2&lang=vo&anime_id=45398",
         "image": "https://media.kitsu.app/anime/45398/poster_image/cc0bbc0dd2a123fb79b041078fce6f89.jpg",
         "episode": 13,
+        "season": 2,
         "uiSelector": false
       }
     },

@@ -6,6 +6,7 @@ export const FRAnime: PageInterface = {
   domain: 'https://franime.fr',
   languages: ['French'],
   type: 'anime',
+  minimumVersion: '0.13.0',
   urls: {
     match: ['*://franime.fr/*'],
   },
@@ -21,6 +22,10 @@ export const FRAnime: PageInterface = {
         .run();
     },
     getTitle($c) {
+      return getVideoJson($c).get('name').ifNotReturn().string().trim().run();
+    },
+    getIdentifier($c) {
+      // Kept as the old "<title> Season N" slug, so existing identifiers stay valid
       const season = $c.url().urlParam('s').number().ifNotReturn();
       const s = $c
         .if(
@@ -30,11 +35,9 @@ export const FRAnime: PageInterface = {
         )
         .run();
 
-      return getVideoJson($c).get('name').ifNotReturn().string().trim().concat(s).run();
-    },
-    getIdentifier($c) {
       return $c
         .this('sync.getTitle')
+        .concat(s)
         .replaceRegex('[^A-Za-z0-9]+', '-')
         .replaceRegex('^-+|-+$', '')
         .toLowerCase()
@@ -48,6 +51,9 @@ export const FRAnime: PageInterface = {
     },
     getEpisode($c) {
       return $c.url().urlParam('ep').number().run();
+    },
+    getSeason($c) {
+      return $c.exec(getSeason).run();
     },
   },
   overview: {
@@ -65,6 +71,9 @@ export const FRAnime: PageInterface = {
     },
     getIdentifier($c) {
       return $c.this('sync.getIdentifier').run();
+    },
+    getSeason($c) {
+      return $c.exec(getSeason).run();
     },
     getImage($c) {
       return $c.this('sync.getImage').run();
@@ -93,6 +102,24 @@ export const FRAnime: PageInterface = {
     },
   },
 };
+
+// s=1, 1.5 (second part of season 1), 2, ... Parts and season 1 are not passed on,
+// NaN is ignored as season
+function getSeason($c: ChibiGenerator<unknown>) {
+  return $c
+    .url()
+    .urlParam('s')
+    .ifNotReturn()
+    .setVariable('season')
+    .matches('^\\d+$')
+    .ifNotReturn($c.string('NaN').number().run())
+    .getVariable<string>('season')
+    .number()
+    .setVariable('season')
+    .equals(1)
+    .ifThen($c => $c.string('NaN').number().return().run())
+    .getVariable<number>('season');
+}
 
 function getVideoJson($c: ChibiGenerator<unknown>) {
   return $c

@@ -1,31 +1,48 @@
 <template>
-  <div v-if="rules && rules.length" class="rules">
-    <div class="title">{{ lang('UI_Rules') }}</div>
+  <div v-if="obj && obj.getRules().length" class="rules">
+    <div class="title">
+      {{ lang('UI_Rules') }}
+      <template v-if="activeRuleSet === 'absolute' && ruleEpisode !== undefined"
+        >E{{ episode }}</template
+      >
+      <template v-else-if="currentSeason !== undefined"
+        >S{{ currentSeason }} E{{ episode }}</template
+      >
+      <select v-model="ruleSet" class="ruleSet" @change="$emit('ruleset', ruleSet)">
+        <option v-for="set in ruleSetSelections" :key="set" :value="set">
+          {{ lang(`UI_RuleSet_${set}`) }}
+          <template v-if="set === 'auto'">({{ lang(`UI_RuleSet_${autoRuleSet}`) }})</template>
+        </option>
+      </select>
+    </div>
     <div v-for="(rule, index) in rules" :key="index" class="rule" :class="activeRule(rule)">
       <div class="header">
-        <template v-if="rule.to.title">
-          <span class="noHover">
-            {{ rule.to.title }}
-          </span>
-          <span class="hover">
-            {{ rule.to.url }}
-          </span>
+        <template v-if="rule.providerName">
+          <span class="noHover">{{ rule.providerName }}</span>
+          <span class="hover">{{ ruleUrl(rule) }}</span>
         </template>
-        <template v-else>
-          {{ rule.to.url }}
-        </template>
+        <template v-else>{{ ruleUrl(rule) }}</template>
       </div>
 
       <div class="content">
-        {{ lang('UI_Episode') }}
-        {{ rule.from.start }}
-        <template v-if="rule.from.start !== rule.from.end">
-          - {{ Number.MAX_SAFE_INTEGER === rule.from.end ? '∞' : rule.from.end }}</template
-        >
+        <template v-if="activeRuleSet === 'absolute'">
+          {{ lang('UI_Episode') }} {{ rule.absoluteStart }}
+          <template v-if="rule.start !== rule.end">
+            -
+            {{ rule.end === null ? '∞' : rule.absoluteStart + rule.end - rule.start }}</template
+          >
+        </template>
+        <template v-else>
+          S{{ rule.season }} {{ lang('UI_Episode') }}
+          {{ rule.start }}
+          <template v-if="rule.start !== rule.end">
+            - {{ rule.end === null ? '∞' : rule.end }}</template
+          >
+        </template>
         ➞
-        {{ Number.MAX_SAFE_INTEGER === rule.to.start ? '∞' : rule.to.start }}
-        <template v-if="rule.to.start !== rule.to.end">
-          - {{ Number.MAX_SAFE_INTEGER === rule.to.end ? '∞' : rule.to.end }}</template
+        {{ rule.episodeStart }}
+        <template v-if="rule.start !== rule.end">
+          - {{ rule.end === null ? '∞' : rule.episodeStart + rule.end - rule.start }}</template
         >
       </div>
     </div>
@@ -33,29 +50,90 @@
 </template>
 
 <script lang="ts">
+import { PropType } from 'vue';
+import { pageUrl } from '../../../utils/slugs';
+import {
+  DEFAULT_RULE_SET,
+  RULE_SET_SELECTIONS,
+  RulesClass,
+  RuleSetSelection,
+  RuleSetType,
+  resolveRuleSet,
+} from '../rulesClass';
+
 export default {
   props: {
     obj: {
       type: Object,
       default: undefined,
     },
+    // Episode of the page, shown in the title
+    episode: {
+      type: Number,
+      default: undefined,
+    },
+    // Episode in the numbering of the rules, includes the user offset
+    ruleEpisode: {
+      type: Number,
+      default: undefined,
+    },
+    season: {
+      type: Number,
+      default: undefined,
+    },
+    // Rule set selected for the page
+    initialRuleSet: {
+      type: String as PropType<RuleSetSelection>,
+      default: 'auto',
+    },
+    // Rule set applied by auto
+    autoRuleSet: {
+      type: String as PropType<RuleSetType>,
+      default: DEFAULT_RULE_SET,
+    },
   },
+  emits: ['ruleset'],
   data() {
-    return {};
+    return {
+      ruleSet: this.initialRuleSet as RuleSetSelection,
+      ruleSetSelections: RULE_SET_SELECTIONS,
+    };
   },
   computed: {
+    activeRuleSet(): RuleSetType {
+      return resolveRuleSet(this.ruleSet, this.autoRuleSet);
+    },
+    episodeRules() {
+      if (!this.obj || this.ruleEpisode === undefined) return [];
+      return this.obj
+        .getEpisodeSeasonRules(this.ruleEpisode, this.season, this.activeRuleSet)
+        .sort((a, b) => a.season - b.season || a.start - b.start);
+    },
+    currentSeason() {
+      return this.episodeRules.length ? this.episodeRules[0].season : undefined;
+    },
     rules() {
-      if (this.obj && this.obj.getRules()) {
-        return this.obj.getRules().sort((a, b) => a.from.start - b.from.start);
-      }
-      return [];
+      if (!this.obj) return [];
+      // Episode page: rules of the current season, empty if none apply
+      if (this.ruleEpisode !== undefined) return this.episodeRules;
+      return this.obj
+        .getRuleSetRules(this.activeRuleSet)
+        .sort((a, b) => a.season - b.season || a.start - b.start);
+    },
+    matchingKey() {
+      if (!this.obj || this.ruleEpisode === undefined) return undefined;
+      const [match] = this.obj.getMatches(this.ruleEpisode, this.season, this.activeRuleSet);
+      return match ? match.key : undefined;
     },
   },
   methods: {
     lang: api.storage.lang,
+    ruleUrl(rule) {
+      return pageUrl(rule.provider, 'anime', rule.id);
+    },
     activeRule(rule) {
       return {
-        active: this.obj ? rule === this.obj.activeRule : false,
+        active: this.matchingKey !== undefined && RulesClass.ruleKey(rule) === this.matchingKey,
       };
     },
   },

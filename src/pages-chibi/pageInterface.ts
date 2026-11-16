@@ -1,5 +1,6 @@
 import type { ChibiGenerator, ChibiJson } from 'src/chibiScript/ChibiGenerator';
 import type { searchSyntax, QuicklinkObjectSearch } from '../utils/quicklinksBuilder';
+import type { RuleSetType } from '../_provider/Search/rulesClass';
 
 /**
  * Interface defining the structure for a chibi page integration in MALSync.
@@ -113,6 +114,21 @@ export interface PageInterface {
     getVolume?: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
 
     /**
+     * Returns the current season number for anime.
+     * This function is optional.
+     * @returns A ChibiJson wrapped number representing the season
+     */
+    getSeason?: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
+
+    /**
+     * Returns the episode rule set the page uses, e.g. 'tvdb' if it numbers like tvdb.
+     * Used instead of the default rule set while the user has auto selected.
+     * This function is optional.
+     * @returns A ChibiJson wrapped rule set, use $c.ruleSet('tvdb')
+     */
+    getRuleSet?: ($c: ChibiGenerator<unknown>) => ChibiJson<RuleSetType>;
+
+    /**
      * Returns the URL to the image of the anime or manga.
      * This function is optional.
      * @returns A ChibiJson wrapped string containing the image URL, or undefined if not available
@@ -181,6 +197,21 @@ export interface PageInterface {
      * Injects a small UI element with the current episode or chapter number.
      */
     uiInjection: ($c: ChibiGenerator<unknown>) => ChibiJson<any>;
+
+    /**
+     * Returns the current season number for anime.
+     * This function is optional.
+     * @returns A ChibiJson wrapped number representing the season
+     */
+    getSeason?: ($c: ChibiGenerator<unknown>) => ChibiJson<number>;
+
+    /**
+     * Returns the episode rule set the page uses, e.g. 'tvdb' if it numbers like tvdb.
+     * Used instead of the default rule set while the user has auto selected.
+     * This function is optional.
+     * @returns A ChibiJson wrapped rule set, use $c.ruleSet('tvdb')
+     */
+    getRuleSet?: ($c: ChibiGenerator<unknown>) => ChibiJson<RuleSetType>;
 
     /**
      * Returns the URL to the image of the anime or manga.
@@ -318,6 +349,8 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getOverviewUrl: ReturnType<PageInterface['sync']['getOverviewUrl']>;
     getEpisode: ReturnType<PageInterface['sync']['getEpisode']>;
     getVolume?: ReturnType<NonNullable<PageInterface['sync']['getVolume']>>;
+    getSeason?: ReturnType<NonNullable<PageInterface['sync']['getSeason']>>;
+    getRuleSet?: ReturnType<NonNullable<PageInterface['sync']['getRuleSet']>>;
     getImage?: ReturnType<NonNullable<PageInterface['sync']['getImage']>>;
     nextEpUrl?: ReturnType<NonNullable<PageInterface['sync']['nextEpUrl']>>;
     uiInjection?: ReturnType<NonNullable<PageInterface['sync']['uiInjection']>>;
@@ -330,6 +363,8 @@ export type PageJsonInterface = PageInterfaceCompiled & {
     getTitle: ReturnType<NonNullable<PageInterface['overview']>['getTitle']>;
     getIdentifier: ReturnType<NonNullable<PageInterface['overview']>['getIdentifier']>;
     uiInjection: ReturnType<NonNullable<PageInterface['overview']>['uiInjection']>;
+    getSeason?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getSeason']>>;
+    getRuleSet?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getRuleSet']>>;
     getImage: ReturnType<NonNullable<PageInterface['overview']>['getImage']>;
     getMalUrl?: ReturnType<NonNullable<NonNullable<PageInterface['overview']>['getMalUrl']>>;
   };

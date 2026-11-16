@@ -51,10 +51,22 @@ async function registerScripts() {
     logger.error('Could not load chibi permissions', e);
   }
 
+  // Runs on every service worker start. Re-registering blocks the browser UI thread for ~200ms (#3866)
+  const state = JSON.stringify(domains);
+  const lastState = await chrome.storage.session
+    ?.get('customDomainScripts')
+    .then(res => res.customDomainScripts)
+    .catch(() => undefined);
+  if (lastState === state) {
+    logger.log('Scripts up to date');
+    return;
+  }
+
   await chrome.scripting.unregisterContentScripts();
   if (domains) {
     await Promise.all(domains.map(registerScript));
   }
+  await chrome.storage.session?.set({ customDomainScripts: state }).catch(() => {});
 
   const scripts = await chrome.scripting.getRegisteredContentScripts();
   logger.log(scripts);

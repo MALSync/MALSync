@@ -1,0 +1,48 @@
+{
+  "seasons": {
+    "81595018": {
+      "title": "STEEL BALL RUN JoJo’s Bizarre Adventure - PHASE 1",
+      "override": { "season": 6 }
+    },
+    "82181513": {
+      "title": "STEEL BALL RUN JoJo’s Bizarre Adventure - PHASE 2–3",
+      "override": { "season": 6 }
+    },
+    "81031941": {
+      "title": "Ghost in the Shell: SAC_2045 - Staffel 1",
+      "override": { "season": 3 }
+    },
+    "81051684": {
+      "title": "Ghost in the Shell: SAC_2045 - Staffel 2",
+      "override": { "season": 4 }
+    },
+    "80131629": {
+      "title": "The Seven Deadly Sins - Signs of Holy War",
+      "override": { "malId": 31722 }
+    },
+    "80201018": {
+      "title": "The Seven Deadly Sins - Revival of the Commandments",
+      "override": { "season": 2 }
+    },
+    "81122674": {
+      "title": "The Seven Deadly Sins - Imperial Wrath of the Gods",
+      "override": { "season": 3 }
+    },
+    "81239557": {
+      "title": "The Seven Deadly Sins - Dragon's Judgement",
+      "override": { "season": 4 }
+    },
+    "70303661": {
+      "title": "Fate/Zero - Staffel 2",
+      "override": { "season": 1, "offset": 13 }
+    },
+    "80052617": {
+      "title": "Fate/stay night: Unlimited Blade Works - Teil 2",
+      "override": { "season": 1, "offset": 12 }
+    },
+    "82661409": {
+      "title": "Pokémon Horizons: Season 2 - The Search for Laqua",
+      "override": { "malId": 53876, "offset": 45 }
+    }
+  }
+}

@@ -250,7 +250,8 @@ export async function getContinueWaching(type, id): Promise<{ url?: string; ep?:
   return api.storage.get(`continue/${type}/${id}`);
 }
 
-export async function setEntrySettings(type, id, options, tags = '') {
+export async function setEntrySettings(type, id, options, tags = '', useTags = true) {
+  const tagMode = useTags && api.settings.get('malTags');
   const tempOptions = {};
   if (options) {
     for (const key in options) {
@@ -263,7 +264,7 @@ export async function setEntrySettings(type, id, options, tags = '') {
       }
     }
 
-    if (api.settings.get('malTags')) {
+    if (tagMode) {
       // TAG mode
       tags = setUrlInTags(JSON.stringify(tempOptions), tags);
     } else {
@@ -274,7 +275,7 @@ export async function setEntrySettings(type, id, options, tags = '') {
 
   if (!Object.values(tempOptions).find(el => Boolean(el))) {
     tags = setUrlInTags('', tags);
-    if (!api.settings.get('malTags')) {
+    if (!tagMode) {
       await api.storage.remove(`tagSettings/${type}/${id}`);
     }
   }
@@ -282,7 +283,7 @@ export async function setEntrySettings(type, id, options, tags = '') {
   return tags;
 }
 
-export async function getEntrySettings(type, id, tags = '') {
+export async function getEntrySettings(type, id, tags = '', useTags = true) {
   const tempOptions: any = {
     u: null, // url
     c: null, // Continue Url
@@ -290,7 +291,7 @@ export async function getEntrySettings(type, id, tags = '') {
     p: '', // Progress Mode
   };
 
-  if (api.settings.get('malTags')) {
+  if (useTags && api.settings.get('malTags')) {
     // TAG mode
     const tagString = getUrlFromTags(tags);
     if (tagString) {

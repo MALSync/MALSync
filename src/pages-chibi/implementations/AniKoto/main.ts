@@ -12,6 +12,7 @@ export const anikoto: PageInterface = {
       '*://*.anikoto.me/*',
       '*://*.anikoto.net/*',
       '*://*.anikototv.se/*',
+      '*://*.anikototv.bz/*',
     ],
     player: {
       megaplay: ['*://vidwish.live/*', '*://megaplay.buzz/*'],

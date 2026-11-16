@@ -67,6 +67,7 @@ export interface BakaSeries {
   id: number;
   state: 'active' | 'merged' | 'deleted';
   merged_with: number | null;
+  canonical_url?: string | null;
   title: string;
   native_title: string | null;
   romanized_title: string | null;

@@ -7,7 +7,7 @@ export const Kuudere: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: ['*://reanime.to/*'],
+    match: ['*://reanime.to/*', '*://reanime.cz/*', '*://reanime.wtf/*'],
     player: {
       flixcloud: ['*://flixcloud.cc/*'],
     },

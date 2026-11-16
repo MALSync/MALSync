@@ -4,6 +4,7 @@ import { PageInterface } from '../../pageInterface';
 export const BSTO: PageInterface = {
   name: 'bs.to',
   type: 'anime',
+  minimumVersion: '0.13.0',
   domain: 'https://bs.cine.to',
   languages: ['German'],
   urls: {
@@ -36,6 +37,12 @@ export const BSTO: PageInterface = {
     getEpisode($c) {
       return $c.querySelector('.episode .active > a').ifNotReturn().text().number().run();
     },
+    getSeason($c) {
+      return $c.this('overview.getSeason').run();
+    },
+    getRuleSet($c) {
+      return $c.ruleSet('tvdb').run();
+    },
     nextEpUrl($c) {
       return $c
         .querySelector(
@@ -63,22 +70,20 @@ export const BSTO: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c
-        .querySelector('h2')
-        .ifNotReturn()
-        .getBaseText()
-        .split('|')
-        .first()
-        .trim()
-        .concat($c.string(' ').concat($c.exec(getSeason).run()).run())
-        .run();
+      return $c.querySelector('h2').ifNotReturn().getBaseText().split('|').first().trim().run();
     },
     getIdentifier($c) {
       return $c
         .url()
         .urlPart(4)
-        .concat($c.string('?s=').concat($c.exec(getSeason).run()).run())
+        .concat($c.string('?s=').concat($c.exec(getSeasonPart).run()).run())
         .run();
+    },
+    getSeason($c) {
+      return $c.exec(getSeason).run();
+    },
+    getRuleSet($c) {
+      return $c.ruleSet('tvdb').run();
     },
     getImage($c) {
       return $c
@@ -135,6 +140,12 @@ function isAnime($c: ChibiGenerator<unknown>) {
   );
 }
 
-function getSeason($c: ChibiGenerator<unknown>) {
+// Season in the url, the series page shows season 1
+function getSeasonPart($c: ChibiGenerator<unknown>) {
   return $c.coalesce($c.fn($c.url().urlPart(5).ifNotReturn().run()).run(), $c.string('1').run());
+}
+
+// Seasons are numbered like tvdb
+function getSeason($c: ChibiGenerator<unknown>) {
+  return $c.exec(getSeasonPart).number();
 }

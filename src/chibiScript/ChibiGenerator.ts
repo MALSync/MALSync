@@ -54,6 +54,14 @@ class ChibiGenerator<Input> {
   run() {
     return this.value as unknown as ChibiJson<Input>;
   }
+
+  /**
+   * Returns an empty generator for building sub-scripts (coalesce branches, fn bodies, …)
+   * inside utilities, without copying the current chain into them.
+   */
+  fresh<T = void>() {
+    return new ChibiGenerator<T>();
+  }
 }
 
 // eslint-disable-next-line no-redeclare

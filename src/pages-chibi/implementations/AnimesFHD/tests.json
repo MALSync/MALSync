@@ -1,0 +1,78 @@
+{
+  "title": "AnimesFHD",
+  "url": "https://animesfhd.net",
+  "testCases": [
+    {
+      "url": "https://animesfhd.net/episod/58832",
+      "expected": {
+        "sync": true,
+        "title": "Machikado Mazoku Season 2",
+        "identifier": "1237539949472249",
+        "episode": 1,
+        "image": "https://image.tmdb.org/t/p/original/f2kPB5s14Sa9Cdv4AwO4ifYZjEg.jpg",
+        "overviewUrl": "https://animesfhd.net/serie/1237539949472249",
+        "nextEpUrl": "https://animesfhd.net/episod/58833",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animesfhd.net/serie/1237539949472249",
+      "expected": {
+        "sync": false,
+        "title": "Machikado Mazoku Season 2",
+        "identifier": "1237539949472249",
+        "image": "https://image.tmdb.org/t/p/original/jTzpBCrmWfqOdF3XoanFfpwKYZU.jpg",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://animesfhd.net/episod/58832",
+          "2": "https://animesfhd.net/episod/58833"
+        }
+      }
+    },
+    {
+      "url": "https://animesfhd.net/serie/3917929175109737",
+      "expected": {
+        "sync": false,
+        "title": "Nisekoi",
+        "identifier": "3917929175109737",
+        "image": "https://image.tmdb.org/t/p/original/vYfnw5eRLrne4ZLDaRdHgvGyys7.jpg",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animesfhd.net/serie/3006846410426130",
+      "expected": {
+        "sync": false,
+        "title": "Magical Explorer",
+        "identifier": "3006846410426130",
+        "image": "https://image.tmdb.org/t/p/original/1mcErCeGi77UmV50E81fwvftdp2.jpg",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animesfhd.net/episod/26778",
+      "expected": {
+        "sync": true,
+        "title": "[Oshi no Ko]",
+        "identifier": "872679688167735",
+        "episode": 1,
+        "nextEpUrl": "https://animesfhd.net/episod/26779",
+        "image": "https://image.tmdb.org/t/p/original/i5fomjeApYRfsKKx4CA1PmXQzoE.jpg",
+        "overviewUrl": "https://animesfhd.net/serie/872679688167735",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animesfhd.net/episod/116613",
+      "expected": {
+        "sync": true,
+        "title": "Tougen Anki Season 2",
+        "identifier": "582742132808354",
+        "episode": 4,
+        "image": "https://image.tmdb.org/t/p/original/xoy8dMojQh1NfDi95IhNSvtLWQ9.jpg",
+        "overviewUrl": "https://animesfhd.net/serie/582742132808354",
+        "uiSelector": false
+      }
+    }
+  ]
+}

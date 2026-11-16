@@ -1,6 +1,0 @@
-{
-  "search": "https://animeko.co/anime?search={searchtermPlus}",
-  "urls": {
-    "match": ["*://*.animeko.co/*"]
-  }
-}

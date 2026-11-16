@@ -239,7 +239,8 @@ export class Single extends SingleAbstract {
       }
     }
 
-    this.displayUrl = buildProviderUrl('MANGABAKA', 'manga', seriesEntry.id);
+    this.displayUrl =
+      seriesEntry.canonical_url || buildProviderUrl('MANGABAKA', 'manga', seriesEntry.id);
 
     let json: BakaLibraryEntry | null = null;
 
@@ -299,12 +300,15 @@ export class Single extends SingleAbstract {
   async _sync() {
     const entryToSend: BakaLibraryEntryUpdate = {
       progress_chapter: this.libraryEntry.progress_chapter,
-      progress_volume: this.libraryEntry.progress_volume,
       start_date: this.libraryEntry.start_date,
       finish_date: this.libraryEntry.finish_date,
       number_of_rereads: this.libraryEntry.number_of_rereads,
       read_link: this.libraryEntry.read_link,
     };
+
+    if (this.isValueDirty('volume')) {
+      entryToSend.progress_volume = this.libraryEntry.progress_volume;
+    }
 
     if (this.isValueDirty('score')) {
       entryToSend.rating = this.libraryEntry.rating;

@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
       with:
         node-version: '24.x'
         cache: 'npm'
@@ -23,11 +23,13 @@ jobs:
         SIMKL_API_SECRET: test-placeholder
         MANGABAKA_API_ID: test-placeholder
         MANGABAKA_API_SECRET: test-placeholder
+        ANIMEOSHI_API_ID: test-placeholder
+        ANIMEOSHI_API_KEY: test-placeholder
   lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
       with:
         node-version: '24.x'
         cache: 'npm'
@@ -44,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
       with:
         node-version: '24.x'
         cache: 'npm'
@@ -62,6 +64,10 @@ jobs:
         CI_MODE: travis
         SIMKL_API_ID: test-placeholder
         SIMKL_API_SECRET: test-placeholder
+        MANGABAKA_API_ID: test-placeholder
+        MANGABAKA_API_SECRET: test-placeholder
+        ANIMEOSHI_API_ID: test-placeholder
+        ANIMEOSHI_API_KEY: test-placeholder
     - name: Tests
       run: |
         npm run test:ts:ci

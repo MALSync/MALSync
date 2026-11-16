@@ -16,7 +16,7 @@ export const search: searchInterface = async function (
       id: item.id,
       name: item.title,
       altNames: getAlternativeTitles(item),
-      url: buildProviderUrl('MANGABAKA', 'manga', item.id),
+      url: item.canonical_url || buildProviderUrl('MANGABAKA', 'manga', item.id),
       malUrl: () => {
         return Promise.resolve(
           item.source.my_anime_list?.id

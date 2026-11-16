@@ -31,15 +31,41 @@ const genres = [
   '81216565',
   '3073', // anime from the 1970s
   '3095', // anime from the 1980s
+  '1433679', // Sci-Fi & Fantasy Anime
+  '1819776', // Anime Based on Books
+  '1819777', // Anime based on a Video Game
+  '1622375', // Sports Anime
 ];
 
-type NetflixEpisodeNode = { id: number; seq: number; title: string };
+type Override = {
+  season?: number;
+  offset?: number;
+  malId?: number;
+};
+
+type Overrides = {
+  seasons: Record<string, { override: Override }>;
+};
+
+// Short keys of the overrides compiled into the page: season, episode offset, MAL id
+type CompactOverride = { s?: number; o?: number; m?: number };
+
+// Overrides of overrides.json by Netflix season id, shortened at build time
+function compactOverrides(overrides: Overrides) {
+  const compact: Record<string, CompactOverride> = {};
+  Object.entries(overrides.seasons).forEach(([seasonId, { override }]) => {
+    compact[seasonId] = { s: override.season, o: override.offset, m: override.malId };
+  });
+  return compact;
+}
+
+type NetflixEpisodeNode = { videoId: number; number: number; title: string };
 
 type NetflixSeasonNode = {
-  id: string;
+  videoId: number;
   title: string;
-  seq: number;
-  episodes?: NetflixEpisodeNode[];
+  number: number;
+  episodes: { edges: { node: NetflixEpisodeNode }[] };
 };
 
 type NetflixShow = {
@@ -62,15 +88,17 @@ type NetflixGraphqlSeasons = {
 };
 
 type NetflixVideoShow = {
-  type: 'show';
   title: string;
-  id: number;
-  seasons: NetflixSeasonNode[];
+  videoId: number;
+  seasons: { edges: { node: NetflixSeasonNode }[] };
 };
 
+// PlayerMetadataData graphql response of the player
 type NetflixRequestResponse = {
   data: {
-    video: NetflixVideoShow;
+    data: {
+      entities: (NetflixEpisodeNode & { __typename: string; parentShow: NetflixVideoShow })[];
+    };
   };
 };
 
@@ -80,7 +108,7 @@ export const Netflix: PageInterface = {
   database: 'Netflix',
   languages: ['Many'],
   type: 'anime',
-  minimumVersion: '0.12.6',
+  minimumVersion: '0.13.0',
   urls: {
     match: ['*://www.netflix.com/*'],
   },
@@ -97,47 +125,67 @@ export const Netflix: PageInterface = {
             .url()
             .urlPart(4)
             .string()
-            .equals($c.getGlobalVariable('meta.episode').get('id').string().run())
+            .equals($c.getGlobalVariable('meta.episode').get('videoId').string().run())
             .run(),
         )
         .run();
     },
     getTitle($c) {
-      const title = $c.getGlobalVariable<NetflixSeasonNode>('meta.show').get('title');
-
-      return $c
-        .setVariable(
-          'seasonSeq',
-          $c.getGlobalVariable<NetflixSeasonNode>('meta.season').get('seq').run(),
-        )
-        .if(
-          $c.getVariable('seasonSeq').number().greaterThan(1).run(),
-          title
-            .concat(' ')
-            .concat('Season ')
-            .concat($c.getVariable('seasonSeq').string().run())
-            .run(),
-          title.run(),
-        )
-        .run();
+      return $c.getGlobalVariable<NetflixVideoShow>('meta.show').get('title').run();
     },
     getIdentifier($c) {
-      return $c.getGlobalVariable<NetflixSeasonNode>('meta.season').get('id').run();
+      return $c.getGlobalVariable<NetflixSeasonNode>('meta.season').get('videoId').string().run();
     },
     getOverviewUrl($c) {
       return $c
         .string('/title/')
-        .concat($c.getGlobalVariable<NetflixSeasonNode>('meta.show').get('id').string().run())
+        .concat($c.getGlobalVariable<NetflixVideoShow>('meta.show').get('videoId').string().run())
         .urlAbsolute()
         .run();
     },
     getEpisode($c) {
-      return $c.getGlobalVariable<NetflixEpisodeNode>('meta.episode').get('seq').run();
+      return $c
+        .getGlobalVariable<NetflixEpisodeNode>('meta.episode')
+        .get('number')
+        .calculate('+', $c.exec(getEpisodeOffset).run())
+        .run();
+    },
+    // Override season, no season if the override sets the MAL entry (a season would remap it),
+    // else the Netflix season
+    getSeason($c) {
+      return $c
+        .exec(getOverride)
+        .setVariable('override')
+        .get('s')
+        .ifThen($o => $o.getVariable<CompactOverride>('override').get('s').return().run())
+        .getVariable<CompactOverride>('override')
+        .get('m')
+        .ifThen($m => $m.string('NaN').number().return().run())
+        .getGlobalVariable<NetflixSeasonNode>('meta.season')
+        .get('number')
+        .exec(skipFirstSeason)
+        .run();
+    },
+    getMalUrl($c) {
+      return $c
+        .exec(getOverride)
+        .get('m')
+        .ifNotReturn()
+        .log('Override MAL id')
+        .setVariable('overrideMalId')
+        .providerUrlUtility({ malId: $c.getVariable<number>('overrideMalId').run() })
+        .run();
     },
   },
   lifecycle: {
     setup($c) {
-      return $c.addStyle(require('./style.less?raw').toString()).run();
+      return $c
+        .addStyle(require('./style.less?raw').toString())
+        .setGlobalVariable(
+          'overrides',
+          $c.object(compactOverrides(require('./overrides.json'))).run(),
+        )
+        .run();
     },
     ready($c) {
       return $c
@@ -146,6 +194,7 @@ export const Netflix: PageInterface = {
             .setVariable('request')
             .fn($c.getVariable('request').exec(handleGraphqlRequest).run())
             .fn($c.getVariable('request').exec(handleMetadataRequest).run())
+            .fn($c.getVariable('request').exec(handleMovieRequest).run())
             .run(),
         )
         .detectChanges(
@@ -157,20 +206,52 @@ export const Netflix: PageInterface = {
   },
 };
 
+// Override of overrides.json for the current Netflix season, {} if there is none
+function getOverride($c: ChibiGenerator<unknown>) {
+  return $c.coalesce(
+    $c
+      .getGlobalVariable<Record<string, CompactOverride>>('overrides')
+      .get($c.getGlobalVariable<NetflixSeasonNode>('meta.season').get('videoId').string().run())
+      .run(),
+    $c.object({}).run(),
+  ) as unknown as ChibiGenerator<CompactOverride>;
+}
+
+// TVDB episode = Netflix episode + offset
+function getEpisodeOffset($c: ChibiGenerator<unknown>) {
+  return $c.coalesce($c.exec(getOverride).get('o').run(), $c.number(0).run());
+}
+
+// Season 1 is often the whole show, so do not infer a mal entry from it.
+function skipFirstSeason($c: ChibiGenerator<unknown>) {
+  return $c
+    .number()
+    .setVariable('season')
+    .equals(1)
+    .ifThen($c => $c.string('NaN').number().return().run())
+    .getVariable<number>('season');
+}
+
 function handleMetadataRequest($c: ChibiGenerator<{ url: string; data: unknown }>) {
   return $c
     .get('url')
-    .matches('/metadata')
+    .matches('/graphql')
     .ifNotReturn()
     .getVariable<NetflixRequestResponse>('request')
-    .log('Metadata request')
     .get('data')
-    .log('Metadata data')
-    .get('video')
+    .ifNotReturn()
+    .get('data')
+    .ifNotReturn()
+    .get('entities')
+    .ifNotReturn()
+    .arrayFind($entity => $entity.get('__typename').equals('Episode').run())
+    .ifNotReturn()
+    .get('parentShow')
+    .ifNotReturn()
     .log('Metadata video')
     .setVariable('meta.video')
     .getPersistentVariable(
-      $c.getVariable<NetflixVideoShow>('meta.video').get('id').log('id').string().run(),
+      $c.getVariable<NetflixVideoShow>('meta.video').get('videoId').log('id').string().run(),
     )
     .log('IsAnime')
     .ifNotReturn()
@@ -178,25 +259,64 @@ function handleMetadataRequest($c: ChibiGenerator<{ url: string; data: unknown }
     .setGlobalVariable('meta.show')
     .log('Show')
     .get('seasons')
+    .get('edges')
     .arrayFind($season =>
       $season
+        .get('node')
         .get('episodes')
+        .get('edges')
         .arrayFind($episode =>
-          $episode.get('id').string().equals($episode.url().urlPart(4).run()).run(),
+          $episode
+            .get('node')
+            .get('videoId')
+            .string()
+            .equals($episode.url().urlPart(4).run())
+            .run(),
         )
         .boolean()
         .run(),
     )
     .ifNotReturn()
+    .get('node')
     .setGlobalVariable('meta.season')
     .log('Active season')
     .get('episodes')
+    .get('edges')
     .arrayFind($episode =>
-      $episode.get('id').string().equals($episode.url().urlPart(4).run()).run(),
+      $episode.get('node').get('videoId').string().equals($episode.url().urlPart(4).run()).run(),
     )
     .ifNotReturn()
+    .get('node')
     .setGlobalVariable('meta.episode')
     .log('Active episode')
+    .trigger();
+}
+
+function handleMovieRequest($c: ChibiGenerator<{ url: string; data: unknown }>) {
+  return $c
+    .get('url')
+    .matches('/graphql')
+    .ifNotReturn()
+    .getVariable<NetflixRequestResponse>('request')
+    .get('data')
+    .ifNotReturn()
+    .get('data')
+    .ifNotReturn()
+    .get('entities')
+    .ifNotReturn()
+    .arrayFind($entity => $entity.get('__typename').equals('Movie').run())
+    .ifNotReturn()
+    .setVariable('meta.movie')
+    .getPersistentVariable(
+      $c.getVariable<NetflixEpisodeNode>('meta.movie').get('videoId').string().run(),
+    )
+    .log('IsAnime movie')
+    .ifNotReturn()
+    .getVariable('meta.movie')
+    .setGlobalVariable('meta.show')
+    .setGlobalVariable('meta.season')
+    .setGlobalVariable('meta.episode')
+    .log('Active movie')
     .trigger();
 }
 
@@ -212,7 +332,8 @@ function handleGraphqlRequest($c: ChibiGenerator<{ url: string; data: unknown }>
     .ifNotReturn()
     .get('unifiedEntities')
     .ifNotReturn()
-    .filter($c => $c.get('__typename').equals('Show').run())
+    .filter($c => $c.get('__typename').matches('^(Show|Movie)$').run())
+    .log('[handle] Shows')
     .filter($c => $c.get('genreTags').boolean().run())
     .ifNotReturn()
     .setVariable('request.shows')
@@ -225,6 +346,7 @@ function setAnime($c: ChibiGenerator<NetflixShow[]>) {
 
 function isAnime($c: ChibiGenerator<NetflixShow>) {
   return $c
+    .log('[handle] isAnime')
     .setVariable('isAnime.show')
     .get('genreTags')
     .get('edges')

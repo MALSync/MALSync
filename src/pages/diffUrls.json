@@ -1,7 +1,4 @@
 {
-  "0.12.1": {
-    "iframe": []
-  },
   "0.12.2": {
     "Anime365": [
       "*://smotret-anime.org/*",
@@ -120,6 +117,8 @@
       "*://www.tranimeizle.live/*"
     ],
     "iframe": [
+      "*://*.vk.ru/*",
+      "*://*.vkvideo.ru/*",
       "*://*.mxdrop.top/e/*",
       "*://*.mxdrop.click/e/*",
       "*://eugenemakedraw.com/e/*",
@@ -129,7 +128,22 @@
       "*://teresapoliticallearn.com/e/*",
       "*://derricknationtop.com/e/*",
       "*://ashleyhardat.com/e/*",
-      "*://shanelocaldog.com/e/*"
+      "*://shanelocaldog.com/e/*",
+      "*://shannoncoldalready.com/e/*"
+    ]
+  },
+  "0.13.0": {
+    "Hdrezka": [
+      "*://hdrezka-home.tv/animation/*",
+      "*://rezka.ag/animation/*",
+      "*://rezka.si/animation/*",
+      "*://rezka.fi/animation/*"
+    ],
+    "Voiranime": [
+      "*://*.voiranime.cx/*"
+    ],
+    "iframe": [
+      "*://susanexpectcare.com/e/*"
     ]
   }
 }

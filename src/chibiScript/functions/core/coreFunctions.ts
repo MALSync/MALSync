@@ -107,11 +107,18 @@ export default {
             | 'getOverviewUrl'
             | `${string}.elementUrl`
             | 'elementUrl'
+            | `${string}.getRuleSet`
+            | 'getRuleSet'
         ? string
         : Property extends `${string}.elementsSelector` | 'elementsSelector'
           ? Element[]
           : Property extends
-                `${string}.getEpisode` | 'getEpisode' | `${string}.getVolume` | 'getVolume'
+                | `${string}.getEpisode`
+                | 'getEpisode'
+                | `${string}.getVolume`
+                | 'getVolume'
+                | `${string}.getSeason`
+                | 'getSeason'
             ? number
             : Property extends `${string}.nextEpUrl` | 'nextEpUrl'
               ? string | undefined | boolean

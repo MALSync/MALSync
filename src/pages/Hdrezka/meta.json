@@ -1,6 +1,12 @@
 {
   "search": "https://hdrezka.ag/search/?do=search&subaction=search&q={searchterm}",
   "urls": {
-    "match": ["*://hdrezka.ag/animation/*"]
+    "match": [
+      "*://hdrezka.ag/animation/*",
+      "*://hdrezka-home.tv/animation/*",
+      "*://rezka.ag/animation/*",
+      "*://rezka.si/animation/*",
+      "*://rezka.fi/animation/*"
+    ]
   }
 }

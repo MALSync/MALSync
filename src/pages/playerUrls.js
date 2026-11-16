@@ -513,6 +513,8 @@ module.exports = {
       '*://derricknationtop.com/e/*',
       '*://ashleyhardat.com/e/*',
       '*://shanelocaldog.com/e/*',
+      '*://shannoncoldalready.com/e/*',
+      '*://susanexpectcare.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
