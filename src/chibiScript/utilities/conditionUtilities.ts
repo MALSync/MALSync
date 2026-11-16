@@ -9,7 +9,7 @@ export default {
    * $c.coalesceFn($c.boolean(false).run(), $c.string("Hello").run()) // returns "Hello"
    */
   coalesceFn: ($c: ChibiGenerator<void>, ...values: ChibiJson<any>[]) => {
-    const args = values.map(val => $c.fn(val).run());
+    const args = values.map(val => $c.fresh().fn(val).run());
     return $c.coalesce(...args);
   },
 };

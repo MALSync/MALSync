@@ -54,6 +54,7 @@ export default {
       const groupIndex = i + 1;
 
       return $c
+        .fresh()
         .getVariable(uniqueVar)
         .string()
         .regex(pattern, groupIndex)
