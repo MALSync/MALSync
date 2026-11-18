@@ -28,7 +28,6 @@ import { TRanimeizle } from './TRanimeizle/main';
 import { Furyosociety } from './Furyosociety/main';
 import { AnimeId } from './AnimeId/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
-import { AnimeUnity } from './AnimeUnity/main';
 import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { DesuOnline } from './DesuOnline/main';
@@ -119,7 +118,6 @@ export const pages = {
   Furyosociety,
   AnimeId,
   MyAnimeListVideo,
-  AnimeUnity,
   MangaHere,
   MangaFox,
   DesuOnline,

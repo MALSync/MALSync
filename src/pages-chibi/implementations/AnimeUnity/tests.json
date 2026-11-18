@@ -1,0 +1,39 @@
+{
+  "title": "AnimeUnity",
+  "url": "https://animeunity.cx/",
+  "testCases": [
+    {
+      "url": "https://animeunity.cx/anime/331-the-irregular-at-magic-high-school/7846",
+      "expected": {
+        "sync": true,
+        "title": "The Irregular at Magic High School",
+        "identifier": "331-the-irregular-at-magic-high-school",
+        "episode": 8,
+        "overviewUrl": "https://animeunity.cx/anime/331-the-irregular-at-magic-high-school",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animeunity.cx/anime/12-one-piece/78803",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "12-one-piece",
+        "episode": 1100,
+        "overviewUrl": "https://animeunity.cx/anime/12-one-piece",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animeunity.cx/anime/3894-one-piece-movie-14-stampede",
+      "expected": {
+        "sync": true,
+        "title": "One Piece Movie 14: Stampede",
+        "identifier": "3894-one-piece-movie-14-stampede",
+        "episode": 1,
+        "overviewUrl": "https://animeunity.cx/anime/3894-one-piece-movie-14-stampede",
+        "uiSelector": true
+      }
+    }
+  ]
+}
