@@ -13,7 +13,7 @@ This means **page code never runs in the browser**. Only the `$c` chain it retur
 
 ## Setup
 
-Requires node >= 22.12 and npm >= 8.
+Requires node >= 24 and npm >= 11.
 
 ```sh
 npm install
