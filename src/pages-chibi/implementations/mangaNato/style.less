@@ -1,17 +1,32 @@
 @import './../pages';
 
-@boxBackground: #ff530d59;
+@boxBackground: var(--background-color-ms-ms, #00000050);
+@boxFontColor: var(--foreground, #faf7f2);
+@boxOptionsBackground: black;
+
+@boxHighlightBackground: var(--primary, #ff530d);
+@boxHighlightFontColor: @boxFontColor;
+
+@highlightStyle: 1;
+@activeEp: var(--primary, #ff530d);
 
 #malp {
-  background-color: white;
-  padding: 0 0 15px 15px;
-  color: black;
-  width: 98%;
-  float: left;
-  padding-left: 2%;
+  --background-color-ms-ms: color-mix(in oklab, var(--foreground) 10%, transparent);
 
-  body.dark & {
-    background-color: #3e3e3e;
-    color: white;
+  .main-wrapper & {
+    font-size: 14px;
+    background-color: white;
+    padding: 15px 0 15px 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: black;
+    width: 98%;
+    float: left;
+    padding-left: 2%;
+
+    body.dark & {
+      background-color: #3e3e3e;
+      color: white;
+    }
   }
 }

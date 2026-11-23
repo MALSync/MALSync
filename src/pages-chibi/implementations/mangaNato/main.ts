@@ -10,6 +10,9 @@ export const mangaNato: PageInterface = {
     'https://mangakakalot.gg',
     'https://kakamanga.com',
     'https://manganami.com',
+    'https://vegetamanga.com',
+    'https://saiyanmanga.com',
+    'https://mangagoku.com',
   ],
   languages: ['English'],
   type: 'manga',
@@ -21,6 +24,9 @@ export const mangaNato: PageInterface = {
       '*://*.mangakakalot.gg/*',
       '*://*.kakamanga.com/*',
       '*://*.manganami.com/*',
+      '*://*.vegetamanga.com/*',
+      '*://*.saiyanmanga.com/*',
+      '*://*.mangagoku.com/*',
     ],
   },
   search: 'https://manganato.gg/search/story/{searchterm(_)[noSpecial]}',
@@ -36,10 +42,21 @@ export const mangaNato: PageInterface = {
     },
     getTitle($c) {
       return $c
-        .querySelectorAll('[itemtype="http://schema.org/Thing"]')
-        .at(1)
-        .getAttribute('title')
-        .trim()
+        .coalesceFn(
+          $c
+            .querySelectorAll('[itemtype="http://schema.org/Thing"]')
+            .at(1)
+            .ifNotReturn()
+            .getAttribute('title')
+            .trim()
+            .run(),
+          $c
+            .querySelector('meta[property="og:image:alt"]')
+            .ifNotReturn()
+            .getAttribute('content')
+            .trim()
+            .run(),
+        )
         .run();
     },
     getIdentifier($c) {
@@ -56,16 +73,25 @@ export const mangaNato: PageInterface = {
     },
     nextEpUrl($c) {
       return $c
-        .querySelector('.btn-navigation-chap .back')
+        .querySelector('.btn-navigation-chap .back, a[title^="Next Chapter"]')
         .getAttribute('href')
         .ifNotReturn()
+        .string()
         .urlAbsolute()
         .run();
     },
     readerConfig: [
       {
-        current: $c => $c.querySelectorAll('.container-chapter-reader img').countAbove().run(),
-        total: $c => $c.querySelectorAll('.container-chapter-reader img').length().run(),
+        current: $c =>
+          $c
+            .querySelectorAll('.container-chapter-reader img, .touch-manipulation img')
+            .countAbove()
+            .run(),
+        total: $c =>
+          $c
+            .querySelectorAll('.container-chapter-reader img, .touch-manipulation img')
+            .length()
+            .run(),
       },
     ],
   },
@@ -80,7 +106,7 @@ export const mangaNato: PageInterface = {
         .run();
     },
     getTitle($c) {
-      return $c.querySelector('.manga-info-text h1').text().trim().run();
+      return $c.querySelector('.manga-info-text h1, main h1').text().trim().run();
     },
     getIdentifier($c) {
       return $c.url().this('sync.getIdentifier').run();
@@ -89,15 +115,19 @@ export const mangaNato: PageInterface = {
       return $c.querySelector('[property="og:image"]').getAttribute('content').ifNotReturn().run();
     },
     uiInjection($c) {
-      return $c.querySelector('.manga-info-chapter').uiBefore().run();
+      return $c.querySelector('.manga-info-top, main h1').uiAfter().run();
     },
   },
   list: {
     elementsSelector($c) {
-      return $c.querySelectorAll('.chapter-list .row').run();
+      return $c.querySelectorAll('.chapter-list .row, a.relative.block[href*="/chapter-"]').run();
     },
     elementUrl($c) {
-      return $c.find('a').getAttribute('href').urlAbsolute().run();
+      return $c
+        .coalesce($c.target().find('a').run(), $c.target().run())
+        .getAttribute('href')
+        .urlAbsolute()
+        .run();
     },
     elementEp($c) {
       return $c.this('list.elementUrl').this('sync.getEpisode').run();
@@ -112,6 +142,7 @@ export const mangaNato: PageInterface = {
         .title()
         .contains('Error 404')
         .ifThen($c => $c.string('404').log().return().run())
+        .detectURLChanges($c.trigger().run())
         .domReady()
         .trigger()
         .run();

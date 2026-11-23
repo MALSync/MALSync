@@ -42,6 +42,32 @@
           "194": "https://www.natomanga.com/manga/dr-stone/chapter-194"
         }
       }
+    },
+    {
+      "url": "https://www.saiyanmanga.com/manga/dr-stone/chapter-190",
+      "expected": {
+        "sync": true,
+        "title": "Dr. Stone",
+        "identifier": "dr-stone",
+        "overviewUrl": "https://www.saiyanmanga.com/manga/dr-stone",
+        "nextEpUrl": "https://www.saiyanmanga.com/manga/dr-stone/chapter-191",
+        "image": "https://img-r1.2xstorage.com/thumb/dr-stone.webp",
+        "episode": 190,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.saiyanmanga.com/manga/dr-stone",
+      "expected": {
+        "sync": false,
+        "title": "Dr. Stone",
+        "identifier": "dr-stone",
+        "image": "https://img-r1.2xstorage.com/thumb/dr-stone.webp",
+        "uiSelector": true,
+        "epList": {
+          "234": "https://www.saiyanmanga.com/manga/dr-stone/chapter-234"
+        }
+      }
     }
   ]
 }
