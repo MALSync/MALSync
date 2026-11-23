@@ -515,6 +515,7 @@ module.exports = {
       '*://shanelocaldog.com/e/*',
       '*://shannoncoldalready.com/e/*',
       '*://susanexpectcare.com/e/*',
+      '*://caseyseemavoid.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
