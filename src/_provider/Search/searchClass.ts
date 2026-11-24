@@ -384,7 +384,7 @@ export class SearchClass {
   public async malSearch(): Promise<SearchResult | false> {
     const logger = this.logger.m('MAL');
 
-    const url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(
+    const url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURIComponent(
       this.sanitizedTitle,
     )}`;
 
