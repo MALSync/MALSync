@@ -2,7 +2,6 @@ import { Mangadex } from './Mangadex/main';
 import { TurkAnime } from './TurkAnime/main';
 import { Emby } from './Emby/main';
 import { Animeflv } from './Animeflv/main';
-import { Jkanime } from './Jkanime/main';
 import { Proxer } from './Proxer/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { Voiranime } from './Voiranime/main';
@@ -91,7 +90,6 @@ export const pages = {
   Mangadex,
   TurkAnime,
   Animeflv,
-  Jkanime,
   Proxer,
   Emby,
   KickAssAnime,
