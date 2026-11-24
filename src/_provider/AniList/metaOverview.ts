@@ -432,10 +432,10 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.data.Media.genres) {
       const gen: any[] = [];
-      data.data.Media.genres.forEach(function (i, index) {
+      data.data.Media.genres.forEach((i, index) => {
         gen.push({
           text: i,
-          url: `https://anilist.co/search/anime?includedGenres=${i}`,
+          url: `https://anilist.co/search/${this.type}?includedGenres=${i}`,
         });
       });
       this.meta.info.push({
