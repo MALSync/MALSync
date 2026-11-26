@@ -97,6 +97,39 @@ describe('Mal Search', function() {
     };
   });
 
+  describe('Search query', function () {
+    let requestedUrl;
+
+    before(function () {
+      global.api.request.xhr = (method, url) => {
+        requestedUrl = url;
+        return Promise.resolve({ responseText: 'No titles that matched', status: 200 });
+      };
+    });
+
+    after(function () {
+      global.api.request.xhr = xhrFunction;
+    });
+
+    [
+      'Spice & Wolf',
+      '.hack//G.U. Returner',
+      'NOUCOME + OVA',
+      'Kino #1',
+      'Durarara!!x2 Shou',
+      'Who is it?',
+      'ソードアート・オンライン',
+    ].forEach(title => {
+      it(title, async function () {
+        await new SearchClass(title, 'anime', 'identifier').malSearch();
+
+        const { searchParams } = new URL(requestedUrl);
+        expect([...searchParams.keys()]).to.eql(['q']);
+        expect(searchParams.get('q')).to.equal(title);
+      });
+    });
+  });
+
   xit('Novelplanet', async function () {
     this.timeout(10000);
     const searchObj = new SearchClass(
