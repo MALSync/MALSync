@@ -69,6 +69,54 @@
           "9": "https://anikoto.cz/watch/solo-leveling-ilh08/ep-9"
         }
       }
+    },
+    {
+      "url": "https://kotoplay.to/watch/one-piece-odmau/5?lang=sub",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "one-piece-odmau",
+        "overviewUrl": "https://kotoplay.to/watch/one-piece-odmau",
+        "nextEpUrl": "https://kotoplay.to/watch/one-piece-odmau/6",
+        "image": "https://cdn.anipixcdn.co/thumbnail/f899139df5e1059396431415e770c6dd.jpg",
+        "episode": 5,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/21",
+        "epList": {
+          "5": "https://kotoplay.to/watch/one-piece-odmau/5?lang=sub"
+        }
+      }
+    },
+    {
+      "url": "https://kotoplay.to/watch/one-piece-odmau/1159?lang=sub",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "one-piece-odmau",
+        "overviewUrl": "https://kotoplay.to/watch/one-piece-odmau",
+        "nextEpUrl": "https://kotoplay.to/watch/one-piece-odmau/1160",
+        "image": "https://cdn.anipixcdn.co/thumbnail/f899139df5e1059396431415e770c6dd.jpg",
+        "episode": 1159,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/21"
+      }
+    },
+    {
+      "url": "https://kotoplay.to/watch/violet-evergarden-uxbvu/1?lang=sub",
+      "expected": {
+        "sync": true,
+        "title": "Violet Evergarden",
+        "identifier": "violet-evergarden-uxbvu",
+        "overviewUrl": "https://kotoplay.to/watch/violet-evergarden-uxbvu",
+        "nextEpUrl": "https://kotoplay.to/watch/violet-evergarden-uxbvu/2",
+        "image": "https://cdn.anipixcdn.co/thumbnail/093f65e080a295f8076b1c5722a46aa2.jpg",
+        "episode": 1,
+        "uiSelector": true,
+        "malUrl": "https://myanimelist.net/anime/33352",
+        "epList": {
+          "1": "https://kotoplay.to/watch/violet-evergarden-uxbvu/1?lang=sub"
+        }
+      }
     }
   ]
 }

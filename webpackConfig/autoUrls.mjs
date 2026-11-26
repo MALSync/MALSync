@@ -87,7 +87,7 @@ async function anikoto() {
     formattedUrls.push('*://*.' + url.hostname + '/*');
   }
 
-  addChibiUrls('AniKoto', [...new Set(formattedUrls)]);
+  addChibiUrls('AniKoto', [...new Set(formattedUrls)], 'anikoto.ts');
 }
 
 async function mangapark() {

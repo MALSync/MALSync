@@ -1,4 +1,35 @@
+import type { ChibiGenerator, ChibiJson } from '../../../chibiScript/ChibiGenerator';
 import { PageInterface } from '../../pageInterface';
+import { anikoto as anikotoSite } from './anikoto';
+import { kotoplay } from './kotoplay';
+
+const FRONTEND_KEY = 'anikotoIsKotoplay';
+
+function isKotoplay($c: ChibiGenerator<unknown>) {
+  return $c.getGlobalVariable(FRONTEND_KEY).boolean().run();
+}
+
+function route<T>(
+  $c: ChibiGenerator<unknown>,
+  kotoplayScript: ChibiJson<T>,
+  anikotoScript: ChibiJson<T>,
+) {
+  return $c.if(isKotoplay($c), kotoplayScript, anikotoScript).run();
+}
+
+function routeElement<T>(
+  $c: ChibiGenerator<Element>,
+  kotoplayFn: ($c: ChibiGenerator<Element>) => ChibiJson<T>,
+  anikotoFn: ($c: ChibiGenerator<Element>) => ChibiJson<T>,
+) {
+  return $c
+    .if(
+      isKotoplay($c as ChibiGenerator<unknown>),
+      $c.target().ifThen(kotoplayFn).run() as ChibiJson<T>,
+      $c.target().ifThen(anikotoFn).run() as ChibiJson<T>,
+    )
+    .run();
+}
 
 export const anikoto: PageInterface = {
   name: 'AniKoto',
@@ -6,14 +37,7 @@ export const anikoto: PageInterface = {
   languages: ['English'],
   type: 'anime',
   urls: {
-    match: [
-      '*://*.anikoto.cz/*',
-      '*://*.anikototv.to/*',
-      '*://*.anikoto.me/*',
-      '*://*.anikoto.net/*',
-      '*://*.anikototv.se/*',
-      '*://*.anikototv.bz/*',
-    ],
+    match: [...anikotoSite.urls.match, ...kotoplay.urls.match],
     player: {
       megaplay: ['*://vidwish.live/*', '*://megaplay.buzz/*'],
       vidtube: ['*://vidtube.site/*'],
@@ -21,77 +45,32 @@ export const anikoto: PageInterface = {
   },
   search: 'https://anikoto.cz/filter?keyword={searchtermPlus}',
   sync: {
-    isSyncPage($c) {
-      return $c
-        .and($c.url().urlPart(3).equals('watch').run(), $c.url().urlPart(5).boolean().run())
-        .run();
-    },
-    getTitle($c) {
-      return $c.querySelector('h1[itemprop="name"]').text().trim().run();
-    },
-    getIdentifier($c) {
-      return $c.url().urlPart(4).run();
-    },
-    getOverviewUrl($c) {
-      return $c.url().split('/').slice(0, 5).join('/').run();
-    },
-    getEpisode($c) {
-      return $c.querySelector('#w-episodes a.active').getAttribute('data-num').number().run();
-    },
-    getImage($c) {
-      return $c.querySelector('[itemprop="image"]').getAttribute('src').ifNotReturn().run();
-    },
-    uiInjection($c) {
-      return $c.querySelector('h1[itemprop="name"]').uiAfter().run();
-    },
-    nextEpUrl($c) {
-      return $c
-        .querySelector('#w-episodes .episodes .active')
-        .parent()
-        .next()
-        .ifNotReturn()
-        .find('a')
-        .getAttribute('href')
-        .ifNotReturn()
-        .urlAbsolute()
-        .run();
-    },
-    getMalUrl($c) {
-      return $c
-        .providerUrlUtility({
-          malId: $c
-            .querySelector('#w-episodes .episodes .active')
-            .getAttribute('data-mal')
-            .number()
-            .ifNotReturn()
-            .run(),
-        })
-        .run();
-    },
+    isSyncPage: $c => route($c, kotoplay.sync.isSyncPage($c), anikotoSite.sync.isSyncPage($c)),
+    getTitle: $c => route($c, kotoplay.sync.getTitle($c), anikotoSite.sync.getTitle($c)),
+    getIdentifier: $c =>
+      route($c, kotoplay.sync.getIdentifier($c), anikotoSite.sync.getIdentifier($c)),
+    getOverviewUrl: $c =>
+      route($c, kotoplay.sync.getOverviewUrl($c), anikotoSite.sync.getOverviewUrl($c)),
+    getEpisode: $c => route($c, kotoplay.sync.getEpisode($c), anikotoSite.sync.getEpisode($c)),
+    getImage: $c => route($c, kotoplay.sync.getImage!($c), anikotoSite.sync.getImage!($c)),
+    uiInjection: $c => route($c, kotoplay.sync.uiInjection!($c), anikotoSite.sync.uiInjection!($c)),
+    nextEpUrl: $c => route($c, kotoplay.sync.nextEpUrl!($c), anikotoSite.sync.nextEpUrl!($c)),
+    getMalUrl: $c => route($c, kotoplay.sync.getMalUrl!($c), anikotoSite.sync.getMalUrl!($c)),
   },
   list: {
-    elementsSelector($c) {
-      return $c.querySelectorAll('#w-episodes .ep-range a').run();
-    },
-    elementUrl($c) {
-      return $c.getAttribute('href').ifNotReturn().urlAbsolute().run();
-    },
-    elementEp($c) {
-      return $c.getAttribute('data-num').number().run();
-    },
+    elementsSelector: $c =>
+      route($c, kotoplay.list!.elementsSelector($c), anikotoSite.list!.elementsSelector($c)),
+    elementUrl: $c => routeElement($c, kotoplay.list!.elementUrl!, anikotoSite.list!.elementUrl!),
+    elementEp: $c => routeElement($c, kotoplay.list!.elementEp, anikotoSite.list!.elementEp),
   },
   lifecycle: {
-    setup($c) {
-      return $c.addStyle(require('./style.less?raw').toString()).run();
-    },
-    ready($c) {
-      return $c.domReady().detectURLChanges($c.trigger().run()).trigger().run();
-    },
-    syncIsReady($c) {
-      return $c
-        .waitUntilTrue($c.querySelector('#w-episodes .episodes .active').boolean().run())
-        .trigger()
-        .run();
-    },
+    setup: $c =>
+      $c
+        .setGlobalVariable(FRONTEND_KEY, $c.url().urlPart(2).contains('kotoplay').run())
+        .if(isKotoplay($c), kotoplay.lifecycle.setup($c), anikotoSite.lifecycle.setup($c))
+        .run(),
+    ready: $c => route($c, kotoplay.lifecycle.ready($c), anikotoSite.lifecycle.ready($c)),
+    syncIsReady: $c =>
+      route($c, kotoplay.lifecycle.syncIsReady!($c), anikotoSite.lifecycle.syncIsReady!($c)),
   },
 };
