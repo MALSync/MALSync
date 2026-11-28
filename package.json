@@ -22,7 +22,7 @@
     "@types/eslint__js": "8.42.3",
     "@types/jquery": "^3.5.34",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^16.18.126",
+    "@types/node": "^26.6.11",
     "@typescript-eslint/parser": "^8.71.1",
     "@vue/compiler-sfc": "^3.5.45",
     "archiver": "^8.0.0",
